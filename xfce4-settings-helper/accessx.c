@@ -143,11 +143,19 @@ cb_accessx_channel_property_changed(XfconfChannel *channel, const gchar *name, c
 static void
 toggle_accessx (XfconfChannel *channel)
 {
+    gboolean mouse_keys = xfconf_channel_get_bool (channel, "/AccessX/MouseKeys", FALSE);
+    gint mouse_keys_delay = xfconf_channel_get_int (channel, "/AccessX/MouseKeys/Delay", 100);
+    gint mouse_keys_interval = xfconf_channel_get_int (channel, "/AccessX/MouseKeys/Interval", 100);
+    gint mouse_keys_ttm = xfconf_channel_get_int (channel, "/AccessX/MouseKeys/TimeToMax", 100);
+    gint mouse_keys_max_speed = xfconf_channel_get_int (channel, "/AccessX/MouseKeys/Speed", 100);
+
     gboolean slow_keys = xfconf_channel_get_bool (channel, "/AccessX/SlowKeys", FALSE);
-    gboolean sticky_keys = xfconf_channel_get_bool (channel, "/AccessX/StickyKeys", FALSE);
+    gint slow_keys_delay = xfconf_channel_get_int (channel, "/AccessX/SlowKeys/Delay", 100);
+
     gboolean bounce_keys = xfconf_channel_get_bool (channel, "/AccessX/BounceKeys", FALSE);
-    gint slow_keys_delay = xfconf_channel_get_int (channel, "/AccessX/SlowKeysDelay", 100);
-    gint debounce_delay = xfconf_channel_get_int (channel, "/AccessX/DeBounceDelay", 100);
+    gint debounce_delay = xfconf_channel_get_int (channel, "/AccessX/BounceKeys/Delay", 100);
+
+    gboolean sticky_keys = xfconf_channel_get_bool (channel, "/AccessX/StickyKeys", FALSE);
     gboolean sticky_keys_ltl = xfconf_channel_get_bool (channel, "/AccessX/StickyKeys/LatchToLock", FALSE);
     gboolean sticky_keys_tk = xfconf_channel_get_bool (channel, "/AccessX/StickyKeys/TwoKeysDisable", FALSE);
 
@@ -158,6 +166,19 @@ toggle_accessx (XfconfChannel *channel)
         {
             gdk_error_trap_push ();
             XkbGetControls (GDK_DISPLAY (), XkbAllControlsMask, xkb);
+
+            /* Mouse keys */
+            if (mouse_keys)
+            {
+                xkb->ctrls->enabled_ctrls |= XkbMouseKeysMask;
+                xkb->ctrls->mk_delay = mouse_keys_delay;
+                xkb->ctrls->mk_interval = 1000 / mouse_keys_interval;
+                xkb->ctrls->mk_time_to_max = mouse_keys_ttm;
+                xkb->ctrls->mk_max_speed = mouse_keys_max_speed;
+
+            }
+            else
+                xkb->ctrls->enabled_ctrls &= XkbMouseKeysMask;
 
             /* Slow keys */
             if(slow_keys)
