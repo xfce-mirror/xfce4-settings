@@ -35,7 +35,7 @@
 #include <xfconf/xfconf.h>
 #include <libnotify/notify.h>
 
-
+#include "xkb.h"
 #include "accessx.h"
 
 #define XF_DEBUG(str) \
@@ -69,7 +69,7 @@ main(int argc, char **argv)
     GdkDisplay *gdpy;
     gint n_screens, screen;
     gboolean keep_running = FALSE;
-    XfconfChannel *accessx_channel;
+    XfconfChannel *accessx_channel, *xkb_channel;
 
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -96,12 +96,14 @@ main(int argc, char **argv)
         return 1;
     }
 
-    notify_init("xfce-xkbd");
+    notify_init("xfce4-settings-helper");
 
     accessx_channel = xfconf_channel_new("accessx");
+    xkb_channel = xfconf_channel_new("xkb");
 
 
     accessx_notification_init(accessx_channel);
+    xkb_notification_init(accessx_channel);
 
     if(!debug) /* If not in debug mode, fork to background */
     {

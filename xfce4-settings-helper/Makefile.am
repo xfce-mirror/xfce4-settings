@@ -2,7 +2,8 @@ bin_PROGRAMS = xfce4-settings-helper
 
 xfce4_settings_helper_SOURCES = \
 	main.c \
-	accessx.c accessx.h
+	accessx.c accessx.h \
+	xkb.c xkb.h
 
 xfce4_settings_helper_CFLAGS = \
 	$(GTK_CFLAGS) \

@@ -44,10 +44,11 @@
 #include <xfconf/xfconf.h>
 #include <libnotify/notify.h>
 
+#include "xkb.h"
+
 static NotifyNotification *accessx_notification = NULL;
 
 static XfconfChannel *accessx_channel;
-static gboolean xkbpresent = FALSE;
 
 static gboolean accessx_initialized = FALSE;
 
@@ -241,27 +242,6 @@ accessx_notification_init (XfconfChannel *channel)
     int xkbopcode, xkbevent, xkberror;
     accessx_channel = channel;
 
-#ifdef DEBUG
-    g_message ("Querying Xkb extension");
-#endif
-    if (XkbQueryExtension (GDK_DISPLAY (), &xkbopcode, &xkbevent, &xkberror, &xkbmajor, &xkbminor))
-    {
-#ifdef DEBUG
-        g_message ("Xkb extension found");
-#endif
-        xkbpresent = TRUE;
-    }
-    else
-    {
-#ifdef DEBUG
-        g_message ("Your X server does not support Xkb extension");
-#endif
-        xkbpresent = FALSE;
-    }
-#ifdef DEBUG
-    g_warning ("This build doesn't include support for Xkb extension");
-#endif
-    
     g_signal_connect(G_OBJECT(channel), "property-changed", (GCallback)cb_accessx_channel_property_changed, NULL);
 
     accessx_notification = notify_notification_new(

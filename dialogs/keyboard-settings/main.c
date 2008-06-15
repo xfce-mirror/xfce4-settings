@@ -51,6 +51,14 @@ static GOptionEntry entries[] =
 };
 
 void
+cb_xkb_key_repeat_toggled (GtkToggleButton *button, gpointer user_data)
+{
+    GladeXML *gxml = GLADE_XML(user_data);
+    GtkWidget *box = glade_xml_get_widget (gxml, "xkb_key_repeat_box");
+    gtk_widget_set_sensitive (box, gtk_toggle_button_get_active (button));
+}
+
+void
 cb_net_cursor_blink_toggled (GtkToggleButton *button, gpointer user_data)
 {
     GladeXML *gxml = GLADE_XML(user_data);
@@ -66,9 +74,28 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
 
     GtkWidget *net_cursor_blink_check = glade_xml_get_widget (gxml, "net_cursor_blink_check");
     GtkWidget *net_cursor_blink_time_scale = (GtkWidget *)gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "net_cursor_blink_time_scale")));
+    GtkWidget *xkb_key_repeat_check = glade_xml_get_widget (gxml, "xkb_key_repeat_check");
+    GtkWidget *xkb_key_repeat_delay_scale = (GtkWidget *)gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_key_repeat_delay_scale")));
+    GtkWidget *xkb_key_repeat_rate_scale = (GtkWidget *)gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_key_repeat_rate_scale")));
 
     g_signal_connect (G_OBJECT(net_cursor_blink_check), "toggled", (GCallback)cb_net_cursor_blink_toggled, gxml);
+    g_signal_connect (G_OBJECT(xkb_key_repeat_check), "toggled", (GCallback)cb_xkb_key_repeat_toggled, gxml);
 
+
+    /* XKB Settings */
+    xfconf_g_property_bind (xkb_channel, 
+                            "/Xkb/KeyRepeat",
+                            G_TYPE_BOOLEAN,
+                            (GObject *)xkb_key_repeat_check, "active");
+    xfconf_g_property_bind (xkb_channel, 
+                            "/Xkb/KeyRepeat/Rate",
+                            G_TYPE_INT,
+                            (GObject *)xkb_key_repeat_rate_scale, "value");
+    xfconf_g_property_bind (xkb_channel, 
+                            "/Xkb/KeyRepeat/Delay",
+                            G_TYPE_INT,
+                            (GObject *)xkb_key_repeat_delay_scale, "value");
+    /* XSETTINGS */
     xfconf_g_property_bind (xsettings_channel, 
                             "/Net/CursorBlink",
                             G_TYPE_BOOLEAN,
