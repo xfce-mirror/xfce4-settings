@@ -1,0 +1,85 @@
+dnl
+dnl Copyright (c) 2006
+dnl         The Xfce development team. All rights reserved.
+dnl
+dnl Originally written for Xfce by Benedikt Meurer <benny@xfce.org>
+dnl Modified by Stephan Arts <stephan@xfce.org>
+dnl
+
+dnl ***************************
+dnl *** Version information ***
+dnl ***************************
+m4_define([xfce4_settings_version_major], [0])
+m4_define([xfce4_settings_version_minor], [0])
+m4_define([xfce4_settings_version_micro], [1])
+m4_define([xfce4_settings_version_build], [r@REVISION@])
+m4_define([xfce4_settings_version_tag], [svn]) # Leave empty for releases
+m4_define([xfce4_settings_version], [xfce4_settings_version_major().xfce4_settings_version_minor().xfce4_settings_version_micro()ifelse(xfce4_settings_version_tag(),[],[], [-ifelse(xfce4_settings_version_tag(), [stephan], [xfce4_settings_version_tag()-xfce4_settings_version_build()], [xfce4_settings_version_tag()])])])
+
+dnl *******************************************
+dnl *** Debugging support for SVN snapshots ***
+dnl *******************************************
+m4_define([xfce4_settings_debug_default], [ifelse(xfce4_settings_version_tag(), [svn], [full], [minimum])])
+
+AC_COPYRIGHT([Copyright (c) 2008
+        The Xfce development team. All rights reserved.
+
+Written for Xfce by Stephan Arts <stephan@xfce.org>.])
+
+AC_INIT([xfce4_settings], [xfce4_settings_version], [])
+AC_PREREQ([2.50])
+
+XFCE4_SETTINGS_VERSION=xfce4_settings_version
+AM_INIT_AUTOMAKE([xfce4_settings], [$XFCE4_SETTINGS_VERSION])
+AM_CONFIG_HEADER([config.h])
+AM_MAINTAINER_MODE
+
+dnl check for UNIX variants
+AC_AIX
+AC_ISC_POSIX
+AC_MINIX
+AM_CONDITIONAL([HAVE_CYGWIN], [test "`uname | grep \"CYGWIN\"`" != ""])
+
+
+dnl check for standard header files
+AC_PROG_CC
+AC_PROG_INTLTOOL([0.31], [no-xml])
+
+AC_HEADER_STDC
+
+dnl Check for i18n support
+XDT_I18N([@LINGUAS@])
+
+
+XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.10.0])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.12.0])
+XDT_CHECK_PACKAGE([GOBJECT], [gobject-2.0], [2.12.0])
+XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.34])
+XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [0])
+XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
+XDT_CHECK_OPTIONAL_PACKAGE([GLADE], [libglade-2.0], [2.0.0])
+
+XDT_CHECK_PACKAGE([LIBNOTIFY], [libnotify], [0.1.3])
+
+
+dnl check for debugging support
+XDT_FEATURE_DEBUG
+
+AC_OUTPUT([
+Makefile
+po/Makefile.in
+dialogs/Makefile
+dialogs/appearance-settings/Makefile
+dialogs/accessibility-settings/Makefile
+dialogs/keyboard-settings/Makefile
+dialogs/mouse-settings/Makefile
+xfce4-settings-helper/Makefile
+])
+
+echo "----------------------------------------"
+echo "$PACKAGE $VERSION"
+echo ""
+echo "The binary will be installed in $prefix/bin"
+echo ""
+echo "Configure finished, type 'make' to build."
