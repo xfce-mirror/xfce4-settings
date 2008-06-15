@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat Jun 14 09:26:50 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Jun 15 22:47:58 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="GtkDialog" id="keyboard-settings-dialog">
@@ -49,7 +49,7 @@
                                 <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                 <property name="shadow_type">GTK_SHADOW_IN</property>
                                 <child>
-                                  <widget class="GtkTreeView" id="treeview1">
+                                  <widget class="GtkTreeView" id="gtk_keytheme_treeview">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="headers_visible">False</property>
@@ -104,8 +104,9 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkAlignment" id="alignment4">
+                                      <widget class="GtkAlignment" id="xkb_key_repeat_box">
                                         <property name="visible">True</property>
+                                        <property name="sensitive">False</property>
                                         <property name="left_padding">12</property>
                                         <child>
                                           <widget class="GtkVBox" id="vbox6">
@@ -274,8 +275,9 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkAlignment" id="alignment5">
+                                      <widget class="GtkAlignment" id="net_cursor_blink_box">
                                         <property name="visible">True</property>
+                                        <property name="sensitive">False</property>
                                         <property name="left_padding">12</property>
                                         <child>
                                           <widget class="GtkVBox" id="vbox7">
@@ -306,10 +308,10 @@
                                                   </packing>
                                                 </child>
                                                 <child>
-                                                  <widget class="GtkHScale" id="net_cursor_blink_delay_scale">
+                                                  <widget class="GtkHScale" id="net_cursor_blink_time_scale">
                                                     <property name="visible">True</property>
                                                     <property name="can_focus">True</property>
-                                                    <property name="adjustment">10 0 100 1 10 10</property>
+                                                    <property name="adjustment">100 100 2000 100 10 10</property>
                                                     <property name="draw_value">False</property>
                                                   </widget>
                                                   <packing>

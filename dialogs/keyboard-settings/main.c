@@ -50,18 +50,33 @@ static GOptionEntry entries[] =
     { NULL }
 };
 
+void
+cb_net_cursor_blink_toggled (GtkToggleButton *button, gpointer user_data)
+{
+    GladeXML *gxml = GLADE_XML(user_data);
+    GtkWidget *box = glade_xml_get_widget (gxml, "net_cursor_blink_box");
+    gtk_widget_set_sensitive (box, gtk_toggle_button_get_active (button));
+}
+
 GtkWidget *
 keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
 {
     XfconfChannel *xsettings_channel = xfconf_channel_new("xsettings");
+    XfconfChannel *xkb_channel = xfconf_channel_new("xkb");
 
-    GtkWidget *blinking_check = glade_xml_get_widget (gxml, "net_cursor_blink_check");
-    GtkWidget *blinking_scale = glade_xml_get_widget (gxml, "net_cursor_blink_time_scale");
+    GtkWidget *net_cursor_blink_check = glade_xml_get_widget (gxml, "net_cursor_blink_check");
+    GtkWidget *net_cursor_blink_time_scale = (GtkWidget *)gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "net_cursor_blink_time_scale")));
+
+    g_signal_connect (G_OBJECT(net_cursor_blink_check), "toggled", (GCallback)cb_net_cursor_blink_toggled, gxml);
 
     xfconf_g_property_bind (xsettings_channel, 
                             "/Net/CursorBlink",
                             G_TYPE_BOOLEAN,
-                            (GObject *)blinking_check, "active");
+                            (GObject *)net_cursor_blink_check, "active");
+    xfconf_g_property_bind (xsettings_channel, 
+                            "/Net/CursorBlinkTime",
+                            G_TYPE_INT,
+                            (GObject *)net_cursor_blink_time_scale, "value");
 
     GtkWidget *dialog = glade_xml_get_widget (gxml, "keyboard-settings-dialog");
     gtk_widget_show_all(dialog);
