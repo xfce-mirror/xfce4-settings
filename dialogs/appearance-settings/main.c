@@ -294,7 +294,7 @@ check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view, XfconfChann
     g_free (dir_name);
 
     dir_name = g_build_filename (g_get_user_data_dir(), "icons",  NULL);
-    xdg_user_theme_list, read_themes_from_dir (dir_name, THEME_TYPE_ICONS);
+    xdg_user_theme_list = read_themes_from_dir (dir_name, THEME_TYPE_ICONS);
     g_free (dir_name);
 
     while (*xdg_system_data_dirs)
@@ -406,7 +406,7 @@ check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view, XfconfChannel
     g_free (dir_name);
 
     dir_name = g_build_filename (g_get_user_data_dir(), "themes",  NULL);
-    xdg_user_theme_list, read_themes_from_dir (dir_name, THEME_TYPE_GTK);
+    xdg_user_theme_list = read_themes_from_dir (dir_name, THEME_TYPE_GTK);
     g_free (dir_name);
 
     while (*xdg_system_data_dirs)
@@ -719,9 +719,7 @@ int
 main(int argc, char **argv)
 {
     GladeXML *gxml;
-    XfconfChannel *channel;
     GError *cli_error = NULL;
-    gchar *data_dirs = NULL;
 
     #ifdef ENABLE_NLS
     bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);

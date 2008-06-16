@@ -19,7 +19,5 @@
  *  by Olivier Fourdan.
  */
 
-static gboolean xkbpresent = FALSE;
-
-void
+gint
 xkb_notification_init (XfconfChannel *channel);

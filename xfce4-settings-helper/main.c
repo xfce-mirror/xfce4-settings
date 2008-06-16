@@ -42,11 +42,8 @@
     if (debug) g_print (str)
 
 static gboolean version = FALSE;
-static gboolean force_replace = FALSE;
-static gboolean running = FALSE;
 static gboolean debug = FALSE;
 
-static GList *registries = NULL;
 
 static GOptionEntry entries[] =
 {
@@ -66,9 +63,6 @@ int
 main(int argc, char **argv)
 {
     GError *cli_error = NULL;
-    GdkDisplay *gdpy;
-    gint n_screens, screen;
-    gboolean keep_running = FALSE;
     XfconfChannel *accessx_channel, *xkb_channel;
 
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -98,12 +92,12 @@ main(int argc, char **argv)
 
     notify_init("xfce4-settings-helper");
 
-    accessx_channel = xfconf_channel_new("accessx");
     xkb_channel = xfconf_channel_new("xkb");
+    accessx_channel = xfconf_channel_new("accessx");
 
 
-    accessx_notification_init(accessx_channel);
-    xkb_notification_init(accessx_channel);
+    if (xkb_notification_init(accessx_channel))
+        accessx_notification_init(accessx_channel);
 
     if(!debug) /* If not in debug mode, fork to background */
     {

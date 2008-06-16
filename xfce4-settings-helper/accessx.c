@@ -160,7 +160,8 @@ toggle_accessx (XfconfChannel *channel)
     gboolean sticky_keys_ltl = xfconf_channel_get_bool (channel, "/AccessX/StickyKeys/LatchToLock", FALSE);
     gboolean sticky_keys_tk = xfconf_channel_get_bool (channel, "/AccessX/StickyKeys/TwoKeysDisable", FALSE);
 
-    if (xkbpresent)
+    /* assume xkb is present, this has laready been checked */
+    if (TRUE)
     {
         XkbDescPtr xkb = XkbAllocKeyboard ();
         if (xkb)
@@ -238,8 +239,6 @@ accessx_notification_init (XfconfChannel *channel)
 {
     g_return_if_fail (accessx_initialized == FALSE);
 
-    int xkbmajor = XkbMajorVersion, xkbminor = XkbMinorVersion;
-    int xkbopcode, xkbevent, xkberror;
     accessx_channel = channel;
 
     g_signal_connect(G_OBJECT(channel), "property-changed", (GCallback)cb_accessx_channel_property_changed, NULL);

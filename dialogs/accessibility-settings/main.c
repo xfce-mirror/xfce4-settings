@@ -85,7 +85,6 @@ cb_xkb_accessx_bounce_toggled (GtkToggleButton *button, gpointer user_data)
 GtkWidget *
 accessibility_settings_dialog_new_from_xml (GladeXML *gxml)
 {
-    XfconfChannel *xsettings_channel = xfconf_channel_new("xsettings");
     XfconfChannel *accessx_channel = xfconf_channel_new("accessx");
 
     GtkWidget *xkb_accessx_mouse_check = glade_xml_get_widget (gxml, "xkb_accessx_mouse_check");
@@ -175,9 +174,7 @@ int
 main(int argc, char **argv)
 {
     GladeXML *gxml;
-    XfconfChannel *channel;
     GError *cli_error = NULL;
-    gchar *data_dirs = NULL;
 
     #ifdef ENABLE_NLS
     bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);

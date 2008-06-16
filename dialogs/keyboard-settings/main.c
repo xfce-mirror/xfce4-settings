@@ -115,9 +115,7 @@ int
 main(int argc, char **argv)
 {
     GladeXML *gxml;
-    XfconfChannel *channel;
     GError *cli_error = NULL;
-    gchar *data_dirs = NULL;
 
     #ifdef ENABLE_NLS
     bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);

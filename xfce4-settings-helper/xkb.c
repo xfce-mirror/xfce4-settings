@@ -37,6 +37,8 @@
 
 #define HAVE_XKB
 
+#include <string.h>
+
 #include <glib.h>
 
 #include <gtk/gtk.h>
@@ -47,6 +49,8 @@
 #include <libnotify/notify.h>
 
 #include "xkb.h"
+
+static gboolean xkbpresent = FALSE;
 
 static XfconfChannel *xkb_channel;
 
@@ -146,10 +150,10 @@ cb_xkb_channel_property_changed(XfconfChannel *channel, const gchar *name, const
     }
 }
 
-void
+gint
 xkb_notification_init (XfconfChannel *channel)
 {
-    g_return_if_fail (xkb_initialized == FALSE);
+    g_return_val_if_fail (xkb_initialized == FALSE, 1);
 
     int xkbmajor = XkbMajorVersion, xkbminor = XkbMinorVersion;
     int xkbopcode, xkbevent, xkberror;
@@ -179,5 +183,6 @@ xkb_notification_init (XfconfChannel *channel)
     g_signal_connect(G_OBJECT(channel), "property-changed", (GCallback)cb_xkb_channel_property_changed, NULL);
 
     xkb_initialized = TRUE;
+    return xkbpresent;
 }
 
