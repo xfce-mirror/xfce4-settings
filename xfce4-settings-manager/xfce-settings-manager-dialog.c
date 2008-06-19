@@ -64,9 +64,10 @@ static void xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
                                                         gpointer user_data);
 
 static const char *categories[] = {
-    "Name", "GenericName", "Icon", "Comment", "Exec", "TryExec", "StartupNotify", "Hidden",
+    "Name", "GenericName", "X-XfceSettingsName", "Icon", "Comment", "Exec",
+    "TryExec", "StartupNotify", "Hidden",
 };
-static const gint n_categories = 8;
+static const gint n_categories = 9;
 
 
 G_DEFINE_TYPE(XfceSettingsManagerDialog, xfce_settings_manager_dialog, XFCE_TYPE_TITLED_DIALOG)
@@ -183,8 +184,9 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                 g_free(tryexec);
             }
 
-            if(!xfce_desktop_entry_get_string(dentry, "GenericName", TRUE, &name))
-                xfce_desktop_entry_get_string(dentry, "Name", TRUE, &name);
+            if(!xfce_desktop_entry_get_string(dentry, "X-XfceSettingsName", TRUE, &name))
+                if(!xfce_desktop_entry_get_string(dentry, "GenericName", TRUE, &name))
+                    xfce_desktop_entry_get_string(dentry, "Name", TRUE, &name);
             xfce_desktop_entry_get_string(dentry, "Icon", FALSE, &icon);
             xfce_desktop_entry_get_string(dentry, "Comment", TRUE, &comment);
             xfce_desktop_entry_get_string(dentry, "Exec", FALSE, &exec);
