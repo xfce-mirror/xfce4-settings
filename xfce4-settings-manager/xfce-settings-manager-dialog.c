@@ -29,6 +29,7 @@
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <exo/exo.h>
 
 #include "xfce-settings-manager-dialog.h"
 
@@ -62,6 +63,14 @@ static void xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDia
 static void xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
                                                         GtkTreePath *path,
                                                         gpointer user_data);
+#if GTK_CHECK_VERSION(2, 12, 0)
+static gboolean xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
+                                                           gint x,
+                                                           gint y,
+                                                           gboolean keyboard_tip,
+                                                           GtkTooltip *tooltip,
+                                                           gpointer data);
+#endif
 
 static const char *categories[] = {
     "Name", "GenericName", "X-XfceSettingsName", "Icon", "Comment", "Exec",
@@ -84,29 +93,43 @@ xfce_settings_manager_dialog_class_init(XfceSettingsManagerDialogClass *klass)
 static void
 xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 {
-    GtkWidget *iconview;
+    GtkWidget *sw, *iconview;
 
     xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dialog),
                                     _("Customize your Xfce desktop"));
     gtk_window_set_title(GTK_WINDOW(dialog), _("Xfce Settings Manager"));
     gtk_window_set_icon_name(GTK_WINDOW(dialog), "xfce4-settings");
 
-    iconview = gtk_icon_view_new();
-    gtk_icon_view_set_text_column(GTK_ICON_VIEW(iconview), COL_NAME);
-    gtk_icon_view_set_pixbuf_column(GTK_ICON_VIEW(iconview), COL_PIXBUF);
+    sw = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
+                                   GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    gtk_widget_show(sw);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), sw, TRUE, TRUE, 0);
+
+    xfce_settings_manager_dialog_create_liststore(dialog);
+    iconview = exo_icon_view_new_with_model(GTK_TREE_MODEL(dialog->ls));
+    /* FIXME: use the cell layout stuff and not these deprecated functions.
+     * for now i'm just lazy cuz this is so much easier. */
+    exo_icon_view_set_text_column(EXO_ICON_VIEW(iconview), COL_NAME);
+    exo_icon_view_set_pixbuf_column(EXO_ICON_VIEW(iconview), COL_PIXBUF);
 #if GTK_CHECK_VERSION(2, 12, 0)
-    gtk_icon_view_set_tooltip_column(GTK_ICON_VIEW(iconview), COL_COMMENT);
+    g_object_set(G_OBJECT(iconview), "has-tooltip", TRUE, NULL);
+    g_signal_connect(G_OBJECT(iconview), "query-tooltip",
+                     G_CALLBACK(xfce_settings_manager_dialog_query_tooltip),
+                     NULL);
 #endif
+    exo_icon_view_set_orientation(EXO_ICON_VIEW(iconview),
+                                  GTK_ORIENTATION_HORIZONTAL);
+    exo_icon_view_set_layout_mode(EXO_ICON_VIEW(iconview),
+                                  EXO_ICON_VIEW_LAYOUT_ROWS);
+    exo_icon_view_set_single_click(EXO_ICON_VIEW(iconview), TRUE);
+    exo_icon_view_set_reorderable(EXO_ICON_VIEW(iconview), FALSE);
     gtk_widget_show(iconview);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), iconview, TRUE, TRUE, 0);
+    gtk_container_add(GTK_CONTAINER(sw), iconview);
     g_signal_connect(G_OBJECT(iconview), "item-activated",
                      G_CALLBACK(xfce_settings_manager_dialog_item_activated),
                      dialog);
     
-    xfce_settings_manager_dialog_create_liststore(dialog);
-    gtk_icon_view_set_model(GTK_ICON_VIEW(iconview),
-                            GTK_TREE_MODEL(dialog->ls));
-
     gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CLOSE,
                           GTK_RESPONSE_ACCEPT);
 }
@@ -253,6 +276,43 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
     g_free(exec);
 }
 
+#if GTK_CHECK_VERSION(2, 12, 0)
+static gboolean
+xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
+                                           gint x,
+                                           gint y,
+                                           gboolean keyboard_tip,
+                                           GtkTooltip *tooltip,
+                                           gpointer data)
+{
+    GtkTreePath *path = NULL;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+    gchar *comment = NULL;
+
+    path = exo_icon_view_get_path_at_pos(EXO_ICON_VIEW(widget), x, y);
+    if(!path)
+        return FALSE;
+
+    model = exo_icon_view_get_model(EXO_ICON_VIEW(widget));
+    if(!gtk_tree_model_get_iter(model, &iter, path)) {
+        gtk_tree_path_free(path);
+        return FALSE;
+    }
+    gtk_tree_path_free(path);
+
+    gtk_tree_model_get(model, &iter, COL_COMMENT, &comment, -1);
+    if(!comment || !*comment) {
+        g_free(comment);
+        return FALSE;
+    }
+
+    gtk_tooltip_set_text(tooltip, comment);
+    g_free(comment);
+
+    return TRUE;
+}
+#endif
 
 
 GtkWidget *
