@@ -146,6 +146,33 @@ xfce_settings_manager_dialog_finalize(GObject *obj)
 
 
 
+static gint
+xfce_settings_manager_dialog_sort_icons(GtkTreeModel *model,
+                                        GtkTreeIter *a,
+                                        GtkTreeIter *b,
+                                        gpointer user_data)
+{
+    gchar *namea = NULL, *nameb = NULL;
+    gint ret;
+
+    gtk_tree_model_get(model, a, COL_NAME, &namea, -1);
+    gtk_tree_model_get(model, b, COL_NAME, &nameb, -1);
+
+    if(!namea && !nameb)
+        ret = 0;
+    else if(!namea)
+        ret = -1;
+    else if(!nameb)
+        ret = 1;
+    else
+        ret = g_utf8_collate(namea, nameb);
+
+    g_free(namea);
+    g_free(nameb);
+
+    return ret;
+}
+
 static void
 xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
 {
@@ -241,6 +268,12 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
     }
 
     g_strfreev(dirs);
+
+    gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(dialog->ls), COL_NAME,
+                                    xfce_settings_manager_dialog_sort_icons,
+                                    dialog, NULL);
+    gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(dialog->ls),
+                                         COL_NAME, GTK_SORT_ASCENDING);
 }
 
 static void
