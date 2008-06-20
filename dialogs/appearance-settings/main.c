@@ -491,6 +491,7 @@ check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view, XfconfChannel
 GtkWidget *
 appearance_settings_dialog_new_from_xml (GladeXML *gxml)
 {
+    GtkWidget *dialog;
     PropertyPair *pair = NULL;
     GtkTreeIter iter;
     GtkListStore *list_store;
@@ -711,13 +712,15 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
     g_signal_connect (G_OBJECT(custom_dpi_check), "toggled", G_CALLBACK(cb_custom_dpi_check_button_toggled), pair);
     g_signal_connect (G_OBJECT(custom_dpi_spin), "value-changed", G_CALLBACK(cb_custom_dpi_spin_value_changed), xsettings_channel);
     
-    GtkWidget *dialog = glade_xml_get_widget (gxml, "appearance-settings-dialog");
+    dialog = glade_xml_get_widget (gxml, "appearance-settings-dialog");
+
     return dialog;
 }
 
 int
 main(int argc, char **argv)
 {
+    GtkWidget *dialog = NULL;
     GladeXML *gxml;
     GError *cli_error = NULL;
 
@@ -749,7 +752,7 @@ main(int argc, char **argv)
                                       appearance_dialog_glade_length,
                                       NULL, NULL);
 
-    GtkWidget *dialog = appearance_settings_dialog_new_from_xml (gxml);
+    dialog = appearance_settings_dialog_new_from_xml (gxml);
 
     gtk_dialog_run(GTK_DIALOG(dialog));
 
