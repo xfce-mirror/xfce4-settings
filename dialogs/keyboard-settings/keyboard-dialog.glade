@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sun Jun 15 23:48:00 2008 -->
+<!--Generated with glade3 3.4.5 on Sat Jun 21 13:21:41 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="GtkDialog" id="keyboard-settings-dialog">
@@ -140,7 +140,8 @@
                                                   <widget class="GtkHScale" id="xkb_key_repeat_delay_scale">
                                                     <property name="visible">True</property>
                                                     <property name="can_focus">True</property>
-                                                    <property name="adjustment">10 0 100 1 10 10</property>
+                                                    <property name="adjustment">100 100 2000 1 10 10</property>
+                                                    <property name="digits">0</property>
                                                     <property name="draw_value">False</property>
                                                   </widget>
                                                   <packing>
@@ -196,7 +197,7 @@
                                                   <widget class="GtkHScale" id="xkb_key_repeat_rate_scale">
                                                     <property name="visible">True</property>
                                                     <property name="can_focus">True</property>
-                                                    <property name="adjustment">10 0 100 1 10 10</property>
+                                                    <property name="adjustment">10 10 500 1 10 10</property>
                                                     <property name="draw_value">False</property>
                                                   </widget>
                                                   <packing>

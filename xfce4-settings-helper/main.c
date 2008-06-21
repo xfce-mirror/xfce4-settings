@@ -96,7 +96,7 @@ main(int argc, char **argv)
     accessx_channel = xfconf_channel_new("accessx");
 
 
-    if (xkb_notification_init(accessx_channel))
+    if (xkb_notification_init(xkb_channel))
         accessx_notification_init(accessx_channel);
 
     if(!debug) /* If not in debug mode, fork to background */

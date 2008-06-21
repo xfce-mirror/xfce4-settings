@@ -56,6 +56,8 @@ static XfconfChannel *xkb_channel;
 
 static gboolean xkb_initialized = FALSE;
 
+#define ALL -1
+
 static void
 set_repeat (int key, int auto_repeat_mode)
 {
@@ -64,7 +66,7 @@ set_repeat (int key, int auto_repeat_mode)
 
     gdk_flush ();
     gdk_error_trap_push ();
-    if (key != -1)
+    if (key != ALL)
     {
         values.key = key;
         XChangeKeyboardControl (GDK_DISPLAY (), KBKey | KBAutoRepeatMode, &values);
@@ -84,19 +86,14 @@ set_repeat_rate (int delay, int rate)
     XF86MiscKbdSettings values;
 #endif
 
-    g_return_if_fail (rate > 0);
-    g_return_if_fail (delay > 0);
-
 #ifdef HAVE_XF86MISC
     if (miscpresent)
     {
         gdk_flush ();
         gdk_error_trap_push ();
         XF86MiscGetKbdSettings (GDK_DISPLAY (), &values);
-        if (delay != -1)
-            values.delay = delay;
-        if (rate != -1)
-            values.rate = rate;
+        values.delay = delay;
+        values.rate = rate;
         XF86MiscSetKbdSettings (GDK_DISPLAY (), &values);
         gdk_flush ();
         gdk_error_trap_pop ();
@@ -111,10 +108,8 @@ set_repeat_rate (int delay, int rate)
         {
             gdk_error_trap_push ();
             XkbGetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
-            if (delay != -1)
-                xkb->ctrls->repeat_delay = delay;
-            if (rate != -1)
-                xkb->ctrls->repeat_interval = 1000 / rate;
+            xkb->ctrls->repeat_delay = delay;
+            xkb->ctrls->repeat_interval = 1000 / rate;
             XkbSetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
             XFree (xkb);
             gdk_flush ();
@@ -133,20 +128,23 @@ set_repeat_rate (int delay, int rate)
 static void
 cb_xkb_channel_property_changed(XfconfChannel *channel, const gchar *name, const GValue *value, gpointer user_data)
 {
+    gint rate = 0;
     if (!strcmp (name, "/Xkb/KeyRepeat"))
     {
         gboolean key_repeat = g_value_get_boolean (value);
-        set_repeat (-1, key_repeat == TRUE?1:0);
+        set_repeat (ALL, key_repeat == TRUE?1:0);
     }
 
     /* TODO */
     if (!strcmp (name, "/Xkb/KeyRepeat/Delay"))
     {
-        set_repeat_rate (g_value_get_int (value), -1);
+        rate = xfconf_channel_get_int (channel, "/Xkb/KeyRepeat/Rate", 0);
+        set_repeat_rate (g_value_get_int (value), rate);
     }
     if (!strcmp (name, "/Xkb/KeyRepeat/Rate"))
     {
-        set_repeat_rate (-1, g_value_get_int (value));
+        rate = xfconf_channel_get_int (channel, "/Xkb/KeyRepeat/Delay", 0);
+        set_repeat_rate (rate, g_value_get_int (value));
     }
 }
 
