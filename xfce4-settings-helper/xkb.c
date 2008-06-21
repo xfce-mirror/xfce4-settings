@@ -58,6 +58,9 @@ static gboolean xkb_initialized = FALSE;
 
 #define ALL -1
 
+static gboolean
+load_xkb_settings (XfconfChannel *channel);
+
 static void
 set_repeat (int key, int auto_repeat_mode)
 {
@@ -181,6 +184,30 @@ xkb_notification_init (XfconfChannel *channel)
     g_signal_connect(G_OBJECT(channel), "property-changed", (GCallback)cb_xkb_channel_property_changed, NULL);
 
     xkb_initialized = TRUE;
+
+    /* Load the xkb-settings
+     * (this is done from inside the main loop because it does
+     *  not seem to work otherwise, probably caused by the gdk_error_*
+     *  functions called in 'set_repeat' and 'set_repeat_rate')
+     */
+    g_timeout_add (100, (GSourceFunc)load_xkb_settings, channel);
+
     return xkbpresent;
 }
 
+
+static gboolean
+load_xkb_settings (XfconfChannel *channel)
+{
+    gboolean repeat;
+    gint rate, delay;
+
+    repeat = xfconf_channel_get_bool (channel, "/Xkb/KeyRepeat", FALSE);
+    rate = xfconf_channel_get_int (channel, "/Xkb/KeyRepeat/Rate", 0);
+    delay = xfconf_channel_get_int (channel, "/Xkb/KeyRepeat/Delay", 0);
+
+    set_repeat (ALL, repeat == TRUE?1:0);
+    set_repeat_rate (delay, rate);
+    
+    return FALSE;
+}

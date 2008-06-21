@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the xfce4_settings package.
 # XFCE <stephan@xfce.org>, 2008.
 #
+#: ../xfce4-settings-helper/main.c:70
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4_settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-21 10:36+0200\n"
+"POT-Creation-Date: 2008-06-21 13:48+0200\n"
 "PO-Revision-Date: 2008-06-21 10:38+0200\n"
 "Last-Translator: XFCE <stephan@xfce.org>\n"
 "Language-Team: Dutch\n"
@@ -18,7 +19,7 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "<b>Bounce keys</b>"
-msgstr ""
+msgstr "<b>Kaatstoetsen</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
 msgid "<b>Mouse emulation</b>"
@@ -26,11 +27,11 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
 msgid "<b>Slow keys</b>"
-msgstr ""
+msgstr "<b>Trage toetsen</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 msgid "<b>Sticky keys</b>"
-msgstr ""
+msgstr "<b>Plaktoetsen</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "<i>long</i>"
@@ -42,7 +43,7 @@ msgstr "<i>kort</i>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Acceleration _delay:"
-msgstr ""
+msgstr "Versnellingstijd:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Accessibility settings"
@@ -50,20 +51,19 @@ msgstr "Toegankelijkheidsinstellingen"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "D_ebounce delay:"
-msgstr ""
+msgstr "Kaatstoetsen vertra_ging:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Disable sticky keys if _two keys are pressed together"
-msgstr "Plaktoetsen uitschakelen wanneer twee toetsen tegelijk zijn "
-"ingedrukt"
+msgstr "Plaktoetsen uitschakelen wanneer twee toetsen tegelijk zijn ingedrukt"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "Enable Slow _Keys"
-msgstr ""
+msgstr "_Trage toetsen inschakelen"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Enable _Bounce Keys"
-msgstr ""
+msgstr "_Kaatstoetsen inschakelen"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Enable _Sticky Keys"
@@ -87,7 +87,7 @@ msgstr "Muis"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Slow Keys _delay:"
-msgstr ""
+msgstr "Trage toetsen v_ertraging:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "_Delay:"
@@ -169,6 +169,8 @@ msgstr "Pictogrammenthema"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid "Please select the UI-theme you want to use"
 msgstr ""
+"Selecteer hier het gebruikersinterface-thema dat\n"
+"je wilt gebruiken."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Please select the icon-theme you want to use:"
@@ -184,7 +186,7 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "UI Theme"
-msgstr "Gebruikersinterfacethema"
+msgstr "Gebruikersinterface-thema"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "_Behaviour"
@@ -249,7 +251,7 @@ msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Enable key repeat"
-msgstr ""
+msgstr "Toetsherhaling inschakelen"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Keyboard settings"
@@ -257,11 +259,11 @@ msgstr "Toetsenbordinstellingen"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Repeat delay:"
-msgstr ""
+msgstr "Herhalingsvertraging:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Repeat speed:"
-msgstr ""
+msgstr "Herhalingssnelheid:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Shortcuts"
@@ -297,7 +299,7 @@ msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "<b>Double click</b>"
-msgstr ""
+msgstr "<b>Dubbelklikken</b>"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "<b>Drag and drop</b>"
@@ -326,3 +328,65 @@ msgstr "Muis-instellingen"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Right handed"
 msgstr "Rechtshandig"
+
+#: ../xfce4-settings-helper/accessx.c:76 ../xfce4-settings-helper/accessx.c:83
+msgid "Sticky keys"
+msgstr "Plaktoetsen"
+
+#: ../xfce4-settings-helper/accessx.c:77
+msgid "Sticky keys are enabled"
+msgstr "Plaktoetsen zijn ingeschakeld"
+
+#: ../xfce4-settings-helper/accessx.c:84
+msgid "Sticky keys are disabled"
+msgstr "Plaktoetsen zijn uitgeschakeld"
+
+#: ../xfce4-settings-helper/accessx.c:96
+#: ../xfce4-settings-helper/accessx.c:103
+msgid "Slow keys"
+msgstr "Trage toetsen"
+
+#: ../xfce4-settings-helper/accessx.c:97
+msgid "Slow keys are enabled"
+msgstr "Trage toetsen zijn ingeschakeld"
+
+#: ../xfce4-settings-helper/accessx.c:104
+msgid "Slow keys are disabled"
+msgstr "Trage toetsen zijn uitgeschakeld"
+
+#: ../xfce4-settings-helper/accessx.c:116
+#: ../xfce4-settings-helper/accessx.c:123
+msgid "Bounce keys"
+msgstr "Kaatstoetsen"
+
+#: ../xfce4-settings-helper/accessx.c:117
+msgid "Bounce keys are enabled"
+msgstr "Kaatstoetsen zijn ingeschakeld"
+
+#: ../xfce4-settings-helper/accessx.c:124
+msgid "Bounce keys are disabled"
+msgstr "Kaatstoetsen zijn uitgeschakeld"
+
+#: ../xfce4-settings-helper/accessx.c:247
+#, fuzzy
+msgid "Accessibility Notification"
+msgstr "Toegankelijkheidsmeldingen"
+
+#: ../xfce4-settings-helper/accessx.c:248
+msgid "Accessibility settings changed"
+msgstr "Toegankelijkheidsinstellingen zijn veranderd"
+
+#: ../xfce4-settings-helper/main.c:51
+msgid "Version information"
+msgstr "Versie-informatie"
+
+#: ../xfce4-settings-helper/main.c:55
+msgid "Start in debug mode (don't fork to the background)"
+msgstr ""
+
+#: ../xfce4-settings-helper/main.c:74
+#, c-format
+msgid ""
+"%s: %s\n"
+"Try %s --help to see a full list of available command line options.\n"
+msgstr ""
