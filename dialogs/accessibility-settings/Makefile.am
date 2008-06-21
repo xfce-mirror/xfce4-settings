@@ -36,7 +36,7 @@ accessibility-dialog_glade.h: accessibility-dialog.glade
 
 endif
 
-desktopdir = $(datadir)/applications
+desktopdir = $(datadir)/xfce4/settings-dialogs
 desktop_in_files = xfce4-accessibility-settings.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
