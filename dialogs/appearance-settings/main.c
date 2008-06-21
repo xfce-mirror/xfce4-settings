@@ -32,7 +32,7 @@
 
 #include <libxfcegui4/libxfcegui4.h>
 #include <xfconf/xfconf.h>
-#include "appearance-dialog.glade.h"
+#include "appearance-dialog_glade.h"
 
 typedef enum {
     THEME_TYPE_ICONS,

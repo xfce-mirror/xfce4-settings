@@ -32,7 +32,7 @@
 
 #include <libxfcegui4/libxfcegui4.h>
 #include <xfconf/xfconf.h>
-#include "keyboard-dialog.glade.h"
+#include "keyboard-dialog_glade.h"
 
 typedef struct {
     GtkWidget *slave;

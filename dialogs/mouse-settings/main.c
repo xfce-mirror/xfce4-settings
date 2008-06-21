@@ -32,7 +32,7 @@
 
 #include <libxfcegui4/libxfcegui4.h>
 #include <xfconf/xfconf.h>
-#include "mouse-dialog.glade.h"
+#include "mouse-dialog_glade.h"
 
 typedef struct {
     GtkWidget *slave;

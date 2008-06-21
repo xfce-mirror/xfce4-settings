@@ -2,7 +2,7 @@ bin_PROGRAMS = xfce4-accessibility-settings
 
 xfce4_accessibility_settings_SOURCES = \
 	main.c \
-	accessibility-dialog.glade.h
+	accessibility-dialog_glade.h
 
 xfce4_accessibility_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -29,9 +29,9 @@ INCLUDES = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-accessibility-dialog.glade.h
+accessibility-dialog_glade.h
 
-accessibility-dialog.glade.h: accessibility-dialog.glade
+accessibility-dialog_glade.h: accessibility-dialog.glade
 	exo-csource --static --name=accessibility_dialog_glade $< >$@
 
 endif

@@ -2,7 +2,7 @@ bin_PROGRAMS = xfce4-appearance-settings
 
 xfce4_appearance_settings_SOURCES = \
 	main.c \
-	appearance-dialog.glade.h
+	appearance-dialog_glade.h
 
 xfce4_appearance_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -29,9 +29,9 @@ INCLUDES = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-appearance-dialog.glade.h
+appearance-dialog_glade.h
 
-appearance-dialog.glade.h: appearance-dialog.glade
+appearance-dialog_glade.h: appearance-dialog.glade
 	exo-csource --static --name=appearance_dialog_glade $< >$@
 
 endif

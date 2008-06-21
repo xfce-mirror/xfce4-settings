@@ -2,7 +2,7 @@ bin_PROGRAMS = xfce4-keyboard-settings
 
 xfce4_keyboard_settings_SOURCES = \
 	main.c \
-	keyboard-dialog.glade.h
+	keyboard-dialog_glade.h
 
 xfce4_keyboard_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -29,9 +29,9 @@ INCLUDES = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-keyboard-dialog.glade.h
+keyboard-dialog_glade.h
 
-keyboard-dialog.glade.h: keyboard-dialog.glade
+keyboard-dialog_glade.h: keyboard-dialog.glade
 	exo-csource --static --name=keyboard_dialog_glade $< >$@
 
 endif

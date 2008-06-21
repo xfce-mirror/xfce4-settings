@@ -2,7 +2,7 @@ bin_PROGRAMS = xfce4-mouse-settings
 
 xfce4_mouse_settings_SOURCES = \
 	main.c \
-	mouse-dialog.glade.h
+	mouse-dialog_glade.h
 
 xfce4_mouse_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -29,9 +29,9 @@ INCLUDES = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-mouse-dialog.glade.h
+mouse-dialog_glade.h
 
-mouse-dialog.glade.h: mouse-dialog.glade
+mouse-dialog_glade.h: mouse-dialog.glade
 	exo-csource --static --name=mouse_dialog_glade $< >$@
 
 endif
