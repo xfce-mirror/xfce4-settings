@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4_settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-21 13:48+0200\n"
+"POT-Creation-Date: 2008-06-21 14:29+0200\n"
 "PO-Revision-Date: 2008-06-21 10:38+0200\n"
 "Last-Translator: XFCE <stephan@xfce.org>\n"
 "Language-Team: Dutch\n"
@@ -118,6 +118,29 @@ msgstr "gtk-close"
 msgid "gtk-help"
 msgstr ""
 
+#: ../dialogs/accessibility-settings/main.c:47
+#: ../dialogs/appearance-settings/main.c:52
+#: ../dialogs/keyboard-settings/main.c:47 ../dialogs/mouse-settings/main.c:47
+#: ../xfce4-settings-helper/main.c:51
+msgid "Version information"
+msgstr "Versie-informatie"
+
+#: ../dialogs/accessibility-settings/main.c:184
+#: ../dialogs/appearance-settings/main.c:733
+#: ../dialogs/keyboard-settings/main.c:126 ../dialogs/mouse-settings/main.c:78
+msgid "."
+msgstr ""
+
+#: ../dialogs/accessibility-settings/main.c:188
+#: ../dialogs/appearance-settings/main.c:737
+#: ../dialogs/keyboard-settings/main.c:130 ../dialogs/mouse-settings/main.c:82
+#: ../xfce4-settings-helper/main.c:74
+#, c-format
+msgid ""
+"%s: %s\n"
+"Try %s --help to see a full list of available command line options.\n"
+msgstr ""
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 msgid "<b>Antialias Fonts</b>"
 msgstr ""
@@ -211,6 +234,67 @@ msgstr ""
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "_Themes"
 msgstr "_Thema's"
+
+#: ../dialogs/appearance-settings/main.c:523
+#, fuzzy
+msgid "Icon theme name"
+msgstr "Pictogrammenthema"
+
+#: ../dialogs/appearance-settings/main.c:535
+msgid "Theme name"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:546
+msgid "Icons"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:548
+msgid "Text"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:550
+msgid "Both"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:552
+msgid "Both Horizontal"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:565
+msgid "No Hinting"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:567
+msgid "Slight Hinting"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:569
+msgid "Medium Hinting"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:571
+msgid "Full Hinting"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:583
+msgid "none"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:585
+msgid "rgb"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:587
+msgid "bgr"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:589
+msgid "vrgb"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:591
+msgid "vbgr"
+msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
 msgid "<b>Cursor</b>"
@@ -376,17 +460,20 @@ msgstr "Toegankelijkheidsmeldingen"
 msgid "Accessibility settings changed"
 msgstr "Toegankelijkheidsinstellingen zijn veranderd"
 
-#: ../xfce4-settings-helper/main.c:51
-msgid "Version information"
-msgstr "Versie-informatie"
-
 #: ../xfce4-settings-helper/main.c:55
 msgid "Start in debug mode (don't fork to the background)"
 msgstr ""
 
-#: ../xfce4-settings-helper/main.c:74
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:99
+msgid "Customize your Xfce desktop"
+msgstr ""
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:100
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:302
+msgid "Xfce Settings Manager"
+msgstr ""
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:301
 #, c-format
-msgid ""
-"%s: %s\n"
-"Try %s --help to see a full list of available command line options.\n"
+msgid "Unable to start \"%s\""
 msgstr ""
