@@ -165,8 +165,7 @@ accessibility_settings_dialog_new_from_xml (GladeXML *gxml)
     GtkWidget *dialog = glade_xml_get_widget (gxml, "accessibility-settings-dialog");
 
 
-    gtk_widget_show_all(dialog);
-    gtk_widget_hide(dialog);
+    gtk_widget_show_all(GTK_DIALOG(dialog)->vbox);
     return dialog;
 }
 
