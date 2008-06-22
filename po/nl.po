@@ -3,14 +3,14 @@
 # Copyright (C) 2008 THE xfce4_settings'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce4_settings package.
 #
-#: ../xfce4-settings-helper/main.c:70
 # XFCE <stephan@xfce.org>, 2008.
 # Balaam's Miracle <balaam@balaamsmiracle.com>, 2008.
+#: ../xfce4-settings-helper/main.c:70
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-21 14:29+0200\n"
+"POT-Creation-Date: 2008-06-22 11:20-0700\n"
 "PO-Revision-Date: 2008-06-21 15:11+0200\n"
 "Last-Translator: Stephan Arts <stephan@xfce.org>\n"
 "Language-Team: Nederlands <nl_NL@li.org>\n"
@@ -146,6 +146,20 @@ msgstr ""
 "Probeer %s --help om een complete lijst van beschikbare commandoregel-\n"
 "opties te zien.\n"
 
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+#, fuzzy
+msgid "Accessibility Settings"
+msgstr "Toegankelijkheidsinstellingen"
+
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
+msgid "Settings to improve usability for some people"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
+#, fuzzy
+msgid "Xfce 4 Accessibility Settings"
+msgstr "Toegankelijkheidsinstellingen"
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 msgid "<b>Antialias Fonts</b>"
 msgstr "<b>Lettertypen gladmaken</b>"
@@ -167,6 +181,7 @@ msgid "<b>Toolbar</b>"
 msgstr "<b>Taakbalk</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
+#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:2
 msgid "Appearance Settings"
 msgstr "Weergave-instellingen"
 
@@ -305,6 +320,16 @@ msgstr "vrgb"
 msgid "vbgr"
 msgstr "vbgr"
 
+#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:1
+#, fuzzy
+msgid " Appearance Settings (themes and fonts)"
+msgstr "Weergave-instellingen"
+
+#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:3
+#, fuzzy
+msgid "Xfce 4 Appearance Settings"
+msgstr "Weergave-instellingen"
+
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
 msgid "<b>Cursor</b>"
 msgstr "<b>Cursor</b>"
@@ -383,6 +408,20 @@ msgstr "gtk-remove"
 msgid "label"
 msgstr ""
 
+#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:1
+msgid " Keyboard Settings (shortcuts and behaviour)"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:2
+#, fuzzy
+msgid "Keyboard Settings"
+msgstr "Toetsenbordinstellingen"
+
+#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:3
+#, fuzzy
+msgid "Xfce 4 Keyboard Settings"
+msgstr "Toetsenbordinstellingen"
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "<b>Button settings</b>"
 msgstr "<b>Muistoetsen-instellingen</b>"
@@ -416,12 +455,18 @@ msgid "Left handed"
 msgstr "Linkshandig"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:1
 msgid "Mouse Settings"
 msgstr "Muis-instellingen"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Right handed"
 msgstr "Rechtshandig"
+
+#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:2
+#, fuzzy
+msgid "Xfce 4 Mouse Settings"
+msgstr "Muis-instellingen"
 
 #: ../xfce4-settings-helper/accessx.c:76 ../xfce4-settings-helper/accessx.c:83
 msgid "Sticky keys"
@@ -474,17 +519,31 @@ msgstr "Toegankelijkheidsinstellingen zijn veranderd"
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Opstarten in debug modus (niet naar de achtergrond verplaatsen)"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:99
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:110
 msgid "Customize your Xfce desktop"
 msgstr "Uw Xfce-bureaublad aanpassen"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:100
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:302
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:111
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:317
 msgid "Xfce Settings Manager"
 msgstr "Xfce instellingenbeheer"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:301
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:316
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kon \"%s\" niet starten"
 
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
+#, fuzzy
+msgid "Graphical Settings Manager for Xfce 4"
+msgstr "Xfce instellingenbeheer"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+#, fuzzy
+msgid "Settings Manager"
+msgstr "Xfce instellingenbeheer"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
+#, fuzzy
+msgid "Xfce 4 Settings Manager"
+msgstr "Xfce instellingenbeheer"

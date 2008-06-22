@@ -19,7 +19,7 @@ xfce4_settings_manager_SOURCES = \
 	xfce-settings-manager-dialog.h
 
 desktopdir = $(datadir)/applications
-desktop_in_files = xfce4-settings-manager.desktop.in
+desktop_in_files = xfce-settings-manager.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @INTLTOOL_DESKTOP_RULE@
