@@ -49,3 +49,5 @@ EXTRA_DIST = \
 	$(desktop_in_files)							\
 	appearance-dialog.glade
 
+DISTCLEANFILES = \
+	$(desktop_DATA)

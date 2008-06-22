@@ -48,3 +48,5 @@ EXTRA_DIST = \
 	$(desktop_in_files)							\
 	mouse-dialog.glade
 
+DISTCLEANFILES = \
+	$(desktop_DATA)
