@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat Jun 21 13:21:41 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Jun 29 00:41:01 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
-  <widget class="GtkDialog" id="keyboard-settings-dialog">
+  <widget class="XfceTitledDialog" id="keyboard-settings-dialog">
+    <property name="title" translatable="yes">Keyboard Settings</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
+    <property name="icon_name">preferences-desktop-keyboard</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">
@@ -14,17 +16,8 @@
         <child>
           <widget class="GtkVBox" id="vbox1">
             <property name="visible">True</property>
-            <child>
-              <widget class="XfceHeading" id="xfce-heading1">
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="icon_name">preferences-desktop-keyboard</property>
-                <property name="title" translatable="yes">Keyboard settings</property>
-              </widget>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-              </packing>
-            </child>
+            <property name="border_width">10</property>
+            <property name="spacing">6</property>
             <child>
               <widget class="GtkNotebook" id="notebook1">
                 <property name="visible">True</property>
@@ -32,6 +25,8 @@
                 <child>
                   <widget class="GtkHBox" id="hbox1">
                     <property name="visible">True</property>
+                    <property name="border_width">10</property>
+                    <property name="spacing">12</property>
                     <child>
                       <widget class="GtkFrame" id="frame1">
                         <property name="visible">True</property>
@@ -40,6 +35,7 @@
                         <child>
                           <widget class="GtkAlignment" id="alignment1">
                             <property name="visible">True</property>
+                            <property name="border_width">6</property>
                             <property name="left_padding">12</property>
                             <child>
                               <widget class="GtkScrolledWindow" id="scrolledwindow1">
@@ -78,6 +74,7 @@
                     <child>
                       <widget class="GtkVBox" id="vbox2">
                         <property name="visible">True</property>
+                        <property name="spacing">6</property>
                         <child>
                           <widget class="GtkFrame" id="frame2">
                             <property name="visible">True</property>
@@ -90,6 +87,8 @@
                                 <child>
                                   <widget class="GtkVBox" id="vbox3">
                                     <property name="visible">True</property>
+                                    <property name="border_width">6</property>
+                                    <property name="spacing">6</property>
                                     <child>
                                       <widget class="GtkCheckButton" id="xkb_key_repeat_check">
                                         <property name="visible">True</property>
@@ -111,6 +110,7 @@
                                         <child>
                                           <widget class="GtkVBox" id="vbox6">
                                             <property name="visible">True</property>
+                                            <property name="spacing">6</property>
                                             <child>
                                               <widget class="GtkLabel" id="label7">
                                                 <property name="visible">True</property>
@@ -262,6 +262,8 @@
                                 <child>
                                   <widget class="GtkVBox" id="vbox4">
                                     <property name="visible">True</property>
+                                    <property name="border_width">6</property>
+                                    <property name="spacing">6</property>
                                     <child>
                                       <widget class="GtkCheckButton" id="net_cursor_blink_check">
                                         <property name="visible">True</property>
@@ -283,6 +285,7 @@
                                         <child>
                                           <widget class="GtkVBox" id="vbox7">
                                             <property name="visible">True</property>
+                                            <property name="spacing">6</property>
                                             <child>
                                               <widget class="GtkLabel" id="label13">
                                                 <property name="visible">True</property>
@@ -384,6 +387,8 @@
                 <child>
                   <widget class="GtkVBox" id="vbox5">
                     <property name="visible">True</property>
+                    <property name="border_width">10</property>
+                    <property name="spacing">6</property>
                     <child>
                       <widget class="GtkLabel" id="label16">
                         <property name="visible">True</property>
@@ -393,7 +398,6 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
-                        <property name="padding">4</property>
                       </packing>
                     </child>
                     <child>
@@ -418,6 +422,7 @@
                     <child>
                       <widget class="GtkHButtonBox" id="hbuttonbox1">
                         <property name="visible">True</property>
+                        <property name="spacing">12</property>
                         <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
                         <child>
                           <widget class="GtkButton" id="button3">
@@ -446,7 +451,6 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
-                        <property name="padding">4</property>
                         <property name="position">2</property>
                       </packing>
                     </child>
@@ -475,12 +479,12 @@
               <widget class="GtkLabel" id="label1">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
+                <property name="yalign">1</property>
                 <property name="label" translatable="yes">Use this area to test the settings above</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
-                <property name="padding">4</property>
                 <property name="position">2</property>
               </packing>
             </child>
