@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sun Jun 29 00:41:01 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Jun 29 00:52:23 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="keyboard-settings-dialog">
@@ -16,7 +16,7 @@
         <child>
           <widget class="GtkVBox" id="vbox1">
             <property name="visible">True</property>
-            <property name="border_width">10</property>
+            <property name="border_width">6</property>
             <property name="spacing">6</property>
             <child>
               <widget class="GtkNotebook" id="notebook1">
@@ -25,7 +25,7 @@
                 <child>
                   <widget class="GtkHBox" id="hbox1">
                     <property name="visible">True</property>
-                    <property name="border_width">10</property>
+                    <property name="border_width">6</property>
                     <property name="spacing">12</property>
                     <child>
                       <widget class="GtkFrame" id="frame1">
@@ -387,7 +387,7 @@
                 <child>
                   <widget class="GtkVBox" id="vbox5">
                     <property name="visible">True</property>
-                    <property name="border_width">10</property>
+                    <property name="border_width">6</property>
                     <property name="spacing">6</property>
                     <child>
                       <widget class="GtkLabel" id="label16">
@@ -422,6 +422,7 @@
                     <child>
                       <widget class="GtkHButtonBox" id="hbuttonbox1">
                         <property name="visible">True</property>
+                        <property name="border_width">2</property>
                         <property name="spacing">12</property>
                         <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
                         <child>
@@ -480,7 +481,9 @@
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="yalign">1</property>
+                <property name="ypad">6</property>
                 <property name="label" translatable="yes">Use this area to test the settings above</property>
+                <property name="wrap_mode">PANGO_WRAP_WORD_CHAR</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
