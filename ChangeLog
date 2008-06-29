@@ -1,3 +1,19 @@
+2008-06-29	Nick Schermer <nick"xfce.org>
+
+	* xfce4-settings-manager/xfce-settings-manager-dialog.c Dialog
+	  default size is 600x400px; Changed window icon name to
+	  preferences-desktop instead of xfce4-settings, since that's
+	  the default icon name; Don't show the dialog separator.
+	  Scrolled window shadow is GTK_SHADOW_IN.
+	* xfce4-settings-manager/xfce-settings-manager.desktop.in: Changed
+	  Exec to xfce4-settings-manager.
+	* dialogs/appearance-settings/appearance-dialog.glade: Make window
+	  resizable; Put hinting and rgb widgets in a table for proper
+	  scaling.
+	* dialogs/mouse-settings/mouse-dialog.glade: Expand the icon theme
+	  list, not the size/preview widget.
+	* dialogs/mouse-settings/main.c: Fix compiler warnings.
+
 2008-06-28	Jannis Pohlmann <jannis@xfce.org>
 
 	* dialogs/accessibility-settings/accessibility-dialog.glade,

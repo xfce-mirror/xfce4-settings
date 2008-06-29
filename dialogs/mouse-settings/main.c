@@ -66,7 +66,6 @@ const static gchar *preview_filenames[] = {
 #define NUM_PER_COL         (3)
 #define NUM_PREVIEW         (6)
 #define PREVIEW_SIZE        (24)
-#define NUM_PREVIEW_NAMES   (sizeof(preview_filenames) / sizeof(preview_filenames[0]))
 
 enum {
     TLIST_THEME_NAME,
@@ -153,7 +152,7 @@ cursor_image_get_pixbuf (XcursorImage *cursor)
 GdkPixbuf *
 generate_preview_image (GtkWidget *widget, const gchar *theme_path)
 {
-    gint i, num_loaded;
+    guint i, num_loaded;
     GdkPixbuf *preview_pix = NULL;
     GdkPixmap *pmap;
     GtkStyle *style;
@@ -169,7 +168,7 @@ generate_preview_image (GtkWidget *widget, const gchar *theme_path)
                        0, 0,
                        NUM_PREVIEW * PREVIEW_SIZE, PREVIEW_SIZE);
 
-    for (i = 0, num_loaded = 0; i < NUM_PREVIEW_NAMES && num_loaded < NUM_PREVIEW; i++) {
+    for (i = 0, num_loaded = 0; i < G_N_ELEMENTS(preview_filenames) && num_loaded < NUM_PREVIEW; i++) {
         XcursorImage *cursor;
         gchar *fn = g_build_filename(theme_path, preview_filenames[i], NULL);
 
@@ -422,7 +421,6 @@ main(int argc, char **argv)
     GtkWidget *dialog = NULL;
     GladeXML *gxml;
     GError *cli_error = NULL;
-    gchar *data_dirs = NULL;
 
     #ifdef ENABLE_NLS
     bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);

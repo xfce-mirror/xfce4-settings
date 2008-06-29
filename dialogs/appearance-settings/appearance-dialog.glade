@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sun Jun 29 00:55:43 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Jun 29 14:00:30 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="appearance-settings-dialog">
     <property name="title" translatable="yes">Appearance Settings</property>
-    <property name="resizable">False</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
     <property name="icon_name">preferences-desktop-theme</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
@@ -55,7 +54,6 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="headers_visible">False</property>
-                                <property name="headers_clickable">True</property>
                               </widget>
                             </child>
                           </widget>
@@ -212,10 +210,12 @@
                             <property name="visible">True</property>
                             <property name="left_padding">12</property>
                             <child>
-                              <widget class="GtkVBox" id="vbox4">
+                              <widget class="GtkTable" id="table1">
                                 <property name="visible">True</property>
-                                <property name="border_width">6</property>
-                                <property name="spacing">6</property>
+                                <property name="n_rows">3</property>
+                                <property name="n_columns">2</property>
+                                <property name="column_spacing">12</property>
+                                <property name="row_spacing">6</property>
                                 <child>
                                   <widget class="GtkCheckButton" id="xft_antialias_check_button">
                                     <property name="visible">True</property>
@@ -225,59 +225,58 @@
                                     <property name="response_id">0</property>
                                     <property name="draw_indicator">True</property>
                                   </widget>
-                                </child>
-                                <child>
-                                  <widget class="GtkHBox" id="hbox1">
-                                    <property name="visible">True</property>
-                                    <property name="spacing">12</property>
-                                    <property name="homogeneous">True</property>
-                                    <child>
-                                      <widget class="GtkLabel" id="label16">
-                                        <property name="visible">True</property>
-                                        <property name="xalign">1</property>
-                                        <property name="label" translatable="yes">_Hinting:</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="mnemonic_widget">xft_hinting_style_combo_box</property>
-                                      </widget>
-                                    </child>
-                                    <child>
-                                      <widget class="GtkComboBox" id="xft_hinting_style_combo_box">
-                                        <property name="visible">True</property>
-                                      </widget>
-                                      <packing>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                  </widget>
                                   <packing>
-                                    <property name="position">1</property>
+                                    <property name="right_attach">2</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkHBox" id="hbox3">
+                                  <widget class="GtkComboBox" id="xft_hinting_style_combo_box">
                                     <property name="visible">True</property>
-                                    <property name="spacing">12</property>
-                                    <property name="homogeneous">True</property>
-                                    <child>
-                                      <widget class="GtkLabel" id="label17">
-                                        <property name="visible">True</property>
-                                        <property name="xalign">1</property>
-                                        <property name="label" translatable="yes">_Subpixel hinting:</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="mnemonic_widget">xft_hinting_style_combo_box</property>
-                                      </widget>
-                                    </child>
-                                    <child>
-                                      <widget class="GtkComboBox" id="xft_rgba_combo_box">
-                                        <property name="visible">True</property>
-                                      </widget>
-                                      <packing>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
                                   </widget>
                                   <packing>
-                                    <property name="position">2</property>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="label16">
+                                    <property name="visible">True</property>
+                                    <property name="xalign">1</property>
+                                    <property name="label" translatable="yes">_Hinting:</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="mnemonic_widget">xft_hinting_style_combo_box</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options">GTK_SHRINK | GTK_FILL</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkComboBox" id="xft_rgba_combo_box">
+                                    <property name="visible">True</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="label17">
+                                    <property name="visible">True</property>
+                                    <property name="xalign">1</property>
+                                    <property name="label" translatable="yes">_Subpixel hinting:</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="mnemonic_widget">xft_rgba_combo_box</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_FILL</property>
                                   </packing>
                                 </child>
                               </widget>
