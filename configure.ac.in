@@ -26,7 +26,7 @@ AC_COPYRIGHT([Copyright (c) 2008
 
 Written for Xfce by Stephan Arts <stephan@xfce.org>.])
 
-AC_INIT([xfce4-settings], [xfce4_settings_version], [])
+AC_INIT([xfce4-settings], [xfce4_settings_version], [http://bugzilla.xfce.org/])
 AC_PREREQ([2.50])
 
 XFCE4_SETTINGS_VERSION=xfce4_settings_version
@@ -44,8 +44,9 @@ AM_CONDITIONAL([HAVE_CYGWIN], [test "`uname | grep \"CYGWIN\"`" != ""])
 dnl check for standard header files
 AC_PROG_CC
 AC_PROG_INTLTOOL([0.31], [no-xml])
-
 AC_HEADER_STDC
+AC_CHECK_HEADERS([string.h math.h stdio.h stdlib.h])
+
 
 dnl Check for i18n support
 XDT_I18N([@LINGUAS@])

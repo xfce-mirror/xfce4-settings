@@ -1,5 +1,6 @@
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
+ *  Copyright (c) 2008 Nick Schermer <nick"xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,447 +17,562 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#ifdef HAVE_STDIO_H
+#include <stdio.h>
+#endif
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+#ifdef HAVE_STRING_H
 #include <string.h>
+#endif
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 #include <X11/Xlib.h>
 #include <X11/Xcursor/Xcursor.h>
 
-#include <glib.h>
-
-#if defined(GETTEXT_PACKAGE)
-#include <glib/gi18n-lib.h>
-#else
-#include <glib/gi18n.h>
-#endif
-
 #include <gtk/gtk.h>
 #include <glade/glade.h>
-
-#include <libxfcegui4/libxfcegui4.h>
 #include <xfconf/xfconf.h>
+#include <libxfce4util/libxfce4util.h>
+#include <libxfcegui4/libxfcegui4.h>
+
 #include "mouse-dialog_glade.h"
 
-static XfconfChannel *xsettings_channel;
 
-/* XDG? */
-static gchar *cursor_dirs[][2] = {
-    { "%s/.icons/",                     "HOME" },
-    { "%s/.themes/",                    "HOME" },
-    { "/usr/share/cursors/xorg-x11/",   NULL },
-    { "/usr/share/cursors/xfree/",      NULL },
-    { "/usr/X11R6/lib/X11/icons/",      NULL },
-    { "/usr/Xorg/lib/X11/icons/",       NULL },
-    { "/usr/share/icons",               NULL },
-    { NULL, NULL }
-};
+/* settings */
+#define PREVIEW_ROWS    (3)
+#define PREVIEW_COLUMNS (6)
+#define PREVIEW_SIZE    (24)
+#define PREVIEW_SPACING (2)
 
-/* List from kde kcontrol */
-const static gchar *preview_filenames[] = {
-    "left_ptr",             "left_ptr_watch",       "watch",                "hand2",
-    "question_arrow",       "sb_h_double_arrow",    "sb_v_double_arrow",    "bottom_left_corner",
-    "bottom_right_corner",  "fleur",                "pirate",               "cross",
-    "X_cursor",             "right_ptr",            "right_side",           "right_tee",
-    "sb_right_arrow",       "sb_right_tee",         "base_arrow_down",      "base_arrow_up",
-    "bottom_side",          "bottom_tee",           "center_ptr",           "circle",
-    "dot",                  "dot_box_mask",         "dot_box_mask",         "double_arrow",
-    "draped_box",           "left_side",            "left_tee",             "ll_angle",
-    "top_side",             "top_tee"
-};
-#define NUM_PER_COL         (3)
-#define NUM_PREVIEW         (6)
-#define PREVIEW_SIZE        (24)
 
-enum {
-    TLIST_THEME_NAME,
-    TLIST_THEME_PATH,
-    TLIST_NUM_COLUMNS
-};
 
-typedef struct {
-    GtkWidget *slave;
-    XfconfChannel *channel;
-} PropertyPair;
-
-gboolean version = FALSE;
-
-static GOptionEntry entries[] =
+/* treeview columns */
+enum
 {
-    {    "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
-        N_("Version information"),
-        NULL
-    },
+    COLUMN_THEME_PIXBUF,
+    COLUMN_THEME_PATH,
+    COLUMN_THEME_NAME,
+    COLUMN_THEME_REAL_NAME,
+    COLUMN_THEME_COMMENT,
+    N_THEME_COLUMNS
+};
+
+
+
+/* icon names for the preview widget */
+static const gchar *preview_names[] = {
+    "left_ptr",            "left_ptr_watch",    "watch",             "hand2",
+    "question_arrow",      "sb_h_double_arrow", "sb_v_double_arrow", "bottom_left_corner",
+    "bottom_right_corner", "fleur",             "pirate",            "cross",
+    "X_cursor",            "right_ptr",         "right_side",        "right_tee",
+    "sb_right_arrow",      "sb_right_tee",      "base_arrow_down",   "base_arrow_up",
+    "bottom_side",         "bottom_tee",        "center_ptr",        "circle",
+    "dot",                 "dot_box_mask",      "dot_box_mask",      "double_arrow",
+    "draped_box",          "left_side",         "left_tee",          "ll_angle",
+    "top_side",            "top_tee"
+};
+
+
+
+/* option entries */
+static gboolean opt_version = FALSE;
+
+static GOptionEntry option_entries[] =
+{
+    { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { NULL }
 };
 
+/* global xfconf channel */
+static XfconfChannel *xsettings_channel;
 
 
-static void
-cursor_plugin_pixbuf_destroy_notify_cb (guchar *pixels, gpointer data)
+
+static GdkPixbuf *
+mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
+                                            guint        size)
 {
-    g_free(pixels);
-}
+    XcursorImage *image;
+    GdkPixbuf    *scaled, *pixbuf = NULL;
+    gsize         bsize;
+    guchar       *buffer, *p, tmp;
+    gdouble       wratio, hratio;
+    gint          dest_width, dest_height;
 
+    /* load the image */
+    image = XcursorFilenameLoadImage (filename, size);
+    if (G_LIKELY (image))
+    {
+        /* buffer size */
+        bsize = image->width * image->height * 4;
 
-GdkPixbuf *
-cursor_image_get_pixbuf (XcursorImage *cursor)
-{
-    GdkPixbuf *pixbuf = NULL;
-    guchar *data, *p;
-    gsize dlen = cursor->width * cursor->height * sizeof(XcursorPixel);
-    guint i;
+        /* allocate buffer */
+        buffer = g_malloc (bsize);
 
-    data = g_malloc(dlen);
-    for (i = 0, p = (guchar *) cursor->pixels; i < dlen; i += 4, p += 4) {
-        data[i] = p[2];
-        data[i+1] = p[1];
-        data[i+2] = p[0];
-        data[i+3] = p[3];
-    }
+        /* copy pixel data to buffer */
+        memcpy (buffer, image->pixels, bsize);
 
-    pixbuf = gdk_pixbuf_new_from_data(data, GDK_COLORSPACE_RGB, TRUE, 8,
-                                      cursor->width, cursor->height,
-                                      cursor->width * sizeof( XcursorPixel ),
-                                      cursor_plugin_pixbuf_destroy_notify_cb,
-                                      NULL);
-    if (pixbuf == NULL) {
-        g_free(data);
-        return NULL;
-    }
-
-    if (cursor->width != PREVIEW_SIZE || cursor->height != PREVIEW_SIZE) {
-        gfloat f;
-        GdkPixbuf *tmp;
-        guint w, h;
-
-        f = (gfloat) cursor->width / (gfloat) cursor->height;
-        if (f >= 1.0f) {
-            w = (gfloat) PREVIEW_SIZE / f;
-            h = PREVIEW_SIZE;
+        /* swap bits */
+        for (p = buffer; p < buffer + bsize; p += 4)
+        {
+            tmp = p[0];
+            p[0] = p[2];
+            p[2] = tmp;
         }
-        else {
-            w = PREVIEW_SIZE;
-            h = (gfloat) PREVIEW_SIZE * f;
-        }
-        tmp = gdk_pixbuf_scale_simple(pixbuf, w, h, GDK_INTERP_BILINEAR);
 
-        g_return_val_if_fail(tmp != NULL, pixbuf);
+        /* create pixbuf */
+        pixbuf = gdk_pixbuf_new_from_data (buffer, GDK_COLORSPACE_RGB, TRUE,
+                                           8, image->width, image->height,
+                                           4 * image->width,
+                                           (GdkPixbufDestroyNotify) g_free, NULL);
 
-        g_object_unref(pixbuf);
-        pixbuf = tmp;
+        /* don't leak when creating the pixbuf failed */
+        if (G_UNLIKELY (pixbuf == NULL))
+            g_free (buffer);
+
+        /* scale pixbuf if needed */
+        if (pixbuf && (image->height > size || image->width > size))
+        {
+            /* calculate the ratio */
+            wratio = (gdouble) image->width / (gdouble) size;
+            hratio = (gdouble) image->height / (gdouble) size;
+
+            /* init */
+            dest_width = dest_height = size;
+
+            /* set dest size */
+            if (hratio > wratio)
+                dest_width  = rint (image->width / hratio);
+            else
+                dest_height = rint (image->height / wratio);
+
+            /* scale pixbuf */
+            scaled = gdk_pixbuf_scale_simple (pixbuf, MAX (dest_width, 1), MAX (dest_height, 1), GDK_INTERP_BILINEAR);
+
+            /* release and set scaled pixbuf */
+            g_object_unref (G_OBJECT (pixbuf));
+            pixbuf = scaled;
+         }
+
+        /* cleanup */
+        XcursorImageDestroy (image);
     }
 
     return pixbuf;
 }
 
-GdkPixbuf *
-generate_preview_image (GtkWidget *widget, const gchar *theme_path)
+
+
+static GdkPixbuf *
+mouse_settings_themes_preview_icon (const gchar *path)
 {
-    guint i, num_loaded;
-    GdkPixbuf *preview_pix = NULL;
-    GdkPixmap *pmap;
-    GtkStyle *style;
+    GdkPixbuf *pixbuf = NULL;
+    gchar     *filename;
 
-    if(!GTK_WIDGET_REALIZED(widget))
-        gtk_widget_realize(widget);
+    /* we only try the normal cursor, it is (most likely) always there */
+    filename = g_build_filename (path, "left_ptr", NULL);
 
-    pmap = gdk_pixmap_new(GDK_DRAWABLE(widget->window),
-                          NUM_PREVIEW*PREVIEW_SIZE, (NUM_PREVIEW/NUM_PER_COL)*PREVIEW_SIZE, -1);
-    style = gtk_widget_get_style(widget);
+    /* try to load the pixbuf */
+    pixbuf = mouse_settings_themes_pixbuf_from_filename (filename, PREVIEW_SIZE);
 
-    gdk_draw_rectangle(GDK_DRAWABLE(pmap), style->bg_gc[GTK_STATE_NORMAL], TRUE,
-                       0, 0,
-                       NUM_PREVIEW * PREVIEW_SIZE, PREVIEW_SIZE);
+    /* cleanup */
+    g_free (filename);
 
-    for (i = 0, num_loaded = 0; i < G_N_ELEMENTS(preview_filenames) && num_loaded < NUM_PREVIEW; i++) {
-        XcursorImage *cursor;
-        gchar *fn = g_build_filename(theme_path, preview_filenames[i], NULL);
-
-        cursor = XcursorFilenameLoadImage(fn, PREVIEW_SIZE);
-
-        if (cursor) {
-            GdkPixbuf *pb = cursor_image_get_pixbuf(cursor);
-            if (pb) {
-                gdk_draw_pixbuf(GDK_DRAWABLE(pmap),
-                                style->bg_gc[GTK_STATE_NORMAL], pb,
-                                0, 0,
-                                num_loaded*PREVIEW_SIZE, 0,
-                                -1, -1,
-                                GDK_RGB_DITHER_NONE, 0, 0);
-                g_object_unref(pb);
-                num_loaded++;
-            }
-            else {
-                g_warning("pb == NULL");
-            }
-            XcursorImageDestroy(cursor);
-        }
-    }
-
-    if (num_loaded > 0) {
-        preview_pix = gdk_pixbuf_get_from_drawable(NULL, GDK_DRAWABLE(pmap),
-                                                   NULL, 0, 0, 0, 0,
-                                                   NUM_PREVIEW*PREVIEW_SIZE,
-                                                   PREVIEW_SIZE);
-    }
-
-    g_object_unref(G_OBJECT(pmap));
-
-    return preview_pix;
+    return pixbuf;
 }
 
 
-
-void
-cb_cursor_theme_treeselection_changed (GtkTreeSelection *selection, GladeXML *gxml)
-{
-    GtkTreeModel *model = NULL;
-    GtkTreeIter iter;
-    GList *list = gtk_tree_selection_get_selected_rows(selection, &model);
-    GValue path = { 0, }, name = { 0, };
-
-    /* valid failure */
-    if (g_list_length(list) == 0)
-        return;
-
-    /* everything else is invalid */
-    g_return_if_fail(g_list_length(list) == 1);
-
-    gtk_tree_model_get_iter(model, &iter, list->data);
-    gtk_tree_model_get_value(model, &iter, TLIST_THEME_NAME, &name);
-    gtk_tree_model_get_value(model, &iter, TLIST_THEME_PATH, &path);
-
-    xfconf_channel_set_property(xsettings_channel, "/Gtk/CursorThemeName", &name);
-
-    g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
-    g_list_free(list);
-
-    GtkWidget *preview_image = glade_xml_get_widget(gxml, "cursor_preview_image");
-    GdkPixbuf *pb = generate_preview_image(preview_image, g_value_get_string(&path));
-    gtk_image_set_from_pixbuf(GTK_IMAGE(preview_image), pb);
-    if (NULL != pb)
-      g_object_unref(pb);
-
-    g_value_unset(&path);
-    g_value_unset(&name);
-}
-
-
-
-static gint
-tree_view_cmp_alpha (GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data)
-{
-    gchar *a_s = NULL, *b_s = NULL;
-    gint ret = 0;
-
-    gtk_tree_model_get(model, a, TLIST_THEME_NAME, &a_s, -1);
-    gtk_tree_model_get(model, b, TLIST_THEME_NAME, &b_s, -1);
-
-    if(!a_s)
-        ret = -1;
-    else if(!b_s)
-        ret = 1;
-    else
-        ret = g_ascii_strcasecmp(a_s, b_s);
-
-    g_free(a_s);
-    g_free(b_s);
-
-    return ret;
-}
 
 static void
-check_cursor_themes (GtkListStore *list_store, GtkTreeView *tree_view)
+mouse_settings_themes_preview_image (const gchar *path,
+                                     GtkWidget   *image)
 {
-    GDir *dir = NULL;
-    guint i;
-    GtkTreeIter iter;
-    GtkTreePath *path;
-    GHashTable *themes;
-    const gchar *theme;
-    gchar *active_theme_name = xfconf_channel_get_string(xsettings_channel, "/Gtk/CursorThemeName", "default");
+    GdkPixbuf *pixbuf;
+    GdkPixbuf *preview;
+    guint      i, position;
+    gchar     *filename;
+    gint       dest_x, dest_y;
 
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, "default", -1);
+    /* create an empty preview image */
+    preview = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8,
+                              (PREVIEW_SIZE + PREVIEW_SPACING) * PREVIEW_COLUMNS - PREVIEW_SPACING,
+                              (PREVIEW_SIZE + PREVIEW_SPACING) * PREVIEW_ROWS - PREVIEW_SPACING);
 
-    path = gtk_tree_path_new_first();
-    gtk_tree_view_set_cursor(tree_view, path, NULL, FALSE);
-    gtk_tree_path_free(path);
+    if (G_LIKELY (preview))
+    {
+        /* make the pixbuf transparent */
+        gdk_pixbuf_fill (preview, 0x00000000);
 
-    themes = g_hash_table_new_full(g_str_hash, g_str_equal,
-                                   (GDestroyNotify)g_free, NULL);
+        for (i = 0, position = 0; i < G_N_ELEMENTS (preview_names); i++)
+        {
+            /* create cursor filename and try to load the pixbuf */
+            filename = g_build_filename (path, preview_names[i], NULL);
+            pixbuf = mouse_settings_themes_pixbuf_from_filename (filename, PREVIEW_SIZE);
+            g_free (filename);
 
-    for (i = 0; cursor_dirs[i][0]; i++) {
-        gchar *curdir = cursor_dirs[i][0];
+            if (G_LIKELY (pixbuf))
+            {
+                /* calculate the icon position */
+                dest_x = (position % PREVIEW_COLUMNS) * (PREVIEW_SIZE + PREVIEW_SPACING);
+                dest_y = (position / PREVIEW_COLUMNS) * (PREVIEW_SIZE + PREVIEW_SPACING);
 
-        if (cursor_dirs[i][1]) {
-            curdir = g_strdup_printf(cursor_dirs[i][0], g_getenv(cursor_dirs[i][1]));
-        }
+                /* render it in the preview */
+                gdk_pixbuf_scale (pixbuf, preview, dest_x, dest_y,
+                                  gdk_pixbuf_get_width (pixbuf),
+                                  gdk_pixbuf_get_height (pixbuf),
+                                  dest_x, dest_y,
+                                  1.00, 1.00, GDK_INTERP_BILINEAR);
 
-        if ((dir = g_dir_open( curdir, 0, NULL))) {
-            for (theme = g_dir_read_name(dir); theme != NULL; theme = g_dir_read_name(dir)) {
-                gchar *full_path = g_build_filename(curdir, theme, "cursors", NULL);
 
-                if (g_file_test(full_path, G_FILE_TEST_IS_DIR)
-                    && !g_hash_table_lookup(themes, theme))
-                {
-                    gtk_list_store_append(list_store, &iter);
-                    gtk_list_store_set(list_store, &iter,
-                                       TLIST_THEME_NAME, theme,
-                                       TLIST_THEME_PATH, full_path,
-                                       -1);
-                    g_hash_table_insert(themes, g_strdup(theme), GINT_TO_POINTER(1));
+                /* release the pixbuf */
+                g_object_unref (G_OBJECT (pixbuf));
 
-                    if (!strcmp(active_theme_name, theme)) {
-                        path = gtk_tree_model_get_path(GTK_TREE_MODEL(list_store), &iter);
-                        gtk_tree_view_set_cursor(tree_view, path, NULL, FALSE);
-                        gtk_tree_view_scroll_to_cell(tree_view, path, NULL, FALSE, 0.5, 0.0);
-                        gtk_tree_path_free(path);
-                    }
-                }
-                g_free(full_path);
+                /* break if we've added enough icons */
+                if (++position >= PREVIEW_ROWS * PREVIEW_COLUMNS)
+                    break;
             }
-            g_dir_close(dir);
         }
 
-        if (cursor_dirs[i][1]) {
-            g_free(curdir);
-        }
+        /* set the image */
+        gtk_image_set_from_pixbuf (GTK_IMAGE (image), preview);
+
+        /* release the pixbuf */
+        g_object_unref (G_OBJECT (preview));
     }
-
-    g_hash_table_destroy(themes);
+    else
+    {
+        /* clear the image */
+        gtk_image_clear (GTK_IMAGE (image));
+    }
 }
 
 
 
-GtkWidget *
-mouse_settings_dialog_new_from_xml (GladeXML *gxml)
+static GtkTreePath *
+mouse_settings_themes_populate_store (GtkListStore *store)
 {
-    GtkWidget *dialog;
-    GtkListStore *list_store;
-    GtkTreeModel *model = NULL;
-    GtkTreeIter iter;
-    GtkCellRenderer *renderer;
-    GtkTreeSelection *cursor_selection;
+    const gchar  *path;
+    gchar       **basedirs;
+    gint          i;
+    gchar        *homedir;
+    GDir         *dir;
+    const gchar  *theme;
+    gchar        *filename;
+    gchar        *index_file;
+    XfceRc       *rc;
+    const gchar  *name;
+    const gchar  *comment;
+    GtkTreeIter   iter;
+    gint          position = 0;
+    GdkPixbuf    *pixbuf;
+    gchar        *active_theme;
+    GtkTreePath  *active_path = NULL;
 
-    GtkWidget *mouse_button_right_handed = glade_xml_get_widget(gxml, "button_right_handed");
-    GtkWidget *mouse_motion_acceleration = (GtkWidget *)gtk_range_get_adjustment(GTK_RANGE(glade_xml_get_widget(gxml, "mouse_motion_acceleration")));
-    GtkWidget *mouse_motion_threshold = (GtkWidget *)gtk_range_get_adjustment(GTK_RANGE(glade_xml_get_widget(gxml, "mouse_motion_threshold")));
-    GtkWidget *mouse_dnd_threshold = (GtkWidget *)gtk_range_get_adjustment(GTK_RANGE(glade_xml_get_widget(gxml, "mouse_dnd_threshold")));
-    GtkWidget *mouse_double_click_speed = (GtkWidget *)gtk_range_get_adjustment(GTK_RANGE(glade_xml_get_widget(gxml, "mouse_double_click_speed")));
+    /* get the cursor paths */
+#if XCURSOR_LIB_MAJOR == 1 && XCURSOR_LIB_MINOR < 1
+    path = "~/.icons:/usr/share/icons:/usr/share/pixmaps:/usr/X11R6/lib/X11/icons";
+#else
+    path = XcursorLibraryPath ();
+#endif
 
-    GtkWidget *spin_cursor_size = glade_xml_get_widget(gxml, "spin_cursor_size");
-    GtkWidget *treeview_cursor_theme = glade_xml_get_widget(gxml, "treeview_cursor_theme");
+    /* split the paths */
+    basedirs = g_strsplit (path, ":", -1);
 
-    GtkWidget *preview_image = glade_xml_get_widget(gxml, "cursor_preview_image");
-    gtk_widget_set_size_request(preview_image, NUM_PREVIEW * PREVIEW_SIZE, PREVIEW_SIZE);
+    /* get the active theme */
+    active_theme = xfconf_channel_get_string (xsettings_channel, "/Gtk/CursorThemeName", "default");
 
-    /* cursor tree view */
-    list_store = gtk_list_store_new(TLIST_NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
+    if (G_LIKELY (basedirs))
+    {
+        /* walk the base directories */
+        for (i = 0; basedirs[i] != NULL; i++)
+        {
+            /* init */
+            homedir = NULL;
 
-    renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_set_model(GTK_TREE_VIEW(treeview_cursor_theme), GTK_TREE_MODEL(list_store));
-    gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(treeview_cursor_theme), TLIST_THEME_NAME, _("Cursor theme"), renderer, "text", 0, NULL);
+            /* parse the homedir if needed */
+            if (strstr (basedirs[i], "~/") != NULL)
+                path = homedir = g_strconcat (g_get_home_dir (), basedirs[i] + 1, NULL);
+            else
+                path = basedirs[i];
 
-    gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), TLIST_THEME_NAME,
-                                    tree_view_cmp_alpha, NULL, NULL);
-    gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(list_store),
-                                         TLIST_THEME_NAME, GTK_SORT_ASCENDING);
+            /* open directory */
+            dir = g_dir_open (path, 0, NULL);
+            if (G_LIKELY (dir))
+            {
+                for (;;)
+                {
+                    /* get the directory name */
+                    theme = g_dir_read_name (dir);
+                    if (G_UNLIKELY (theme == NULL))
+                        break;
 
-    check_cursor_themes(list_store, GTK_TREE_VIEW(treeview_cursor_theme));
+                    /* build the full cursor path */
+                    filename = g_build_filename (path, theme, "cursors", NULL);
 
-    cursor_selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview_cursor_theme));
-    gtk_tree_selection_set_mode(cursor_selection, GTK_SELECTION_SINGLE);
+                    /* check if it looks like a cursor theme */
+                    if (g_file_test (filename, G_FILE_TEST_IS_DIR))
+                    {
+                        /* try to load a pixbuf */
+                        pixbuf = mouse_settings_themes_preview_icon (filename);
 
-    if (gtk_tree_selection_get_selected(cursor_selection, &model, &iter)) {
-        gchar *path = NULL;
-        gtk_tree_model_get(model, &iter, TLIST_THEME_PATH, &path, -1);
-        if (NULL != path) {
-            GdkPixbuf *pb = generate_preview_image(preview_image, path);
-            if (pb) {
-                gtk_image_set_from_pixbuf(GTK_IMAGE(preview_image), pb);
-                g_object_unref(pb);
+                        /* insert in the store */
+                        gtk_list_store_insert_with_values (store, &iter, position++,
+                                                           COLUMN_THEME_PIXBUF, pixbuf,
+                                                           COLUMN_THEME_NAME, theme,
+                                                           COLUMN_THEME_REAL_NAME, theme,
+                                                           COLUMN_THEME_PATH, filename, -1);
+
+                        /* check if this is the active theme, set the path */
+                        if (strcmp (active_theme, theme) == 0 && active_path == NULL)
+                            active_path = gtk_tree_model_get_path (GTK_TREE_MODEL (store), &iter);
+
+                        /* release pixbuf */
+                        if (G_LIKELY (pixbuf))
+                            g_object_unref (G_OBJECT (pixbuf));
+
+                        /* check for a index.theme file for additional information */
+                        index_file = g_build_filename (path, theme, "index.theme", NULL);
+                        if (g_file_test (index_file, G_FILE_TEST_IS_REGULAR))
+                        {
+                            /* open theme desktop file */
+                            rc = xfce_rc_simple_open (index_file, TRUE);
+                            if (G_LIKELY (rc))
+                            {
+                                /* check for the theme group */
+                                if (xfce_rc_has_group (rc, "Icon Theme"))
+                                {
+                                    /* set group */
+                                    xfce_rc_set_group (rc, "Icon Theme");
+
+                                    /* read values */
+                                    name = xfce_rc_read_entry (rc, "Name", theme);
+                                    comment = xfce_rc_read_entry (rc, "Comment", NULL);
+
+                                    /* update store */
+                                    gtk_list_store_set (store, &iter,
+                                                        COLUMN_THEME_REAL_NAME, name,
+                                                        COLUMN_THEME_COMMENT, comment, -1);
+                                }
+
+                                /* close rc file */
+                                xfce_rc_close (rc);
+                            }
+                        }
+
+                        /* cleanup */
+                        g_free (index_file);
+                    }
+
+                    /* cleanup */
+                    g_free (filename);
+                }
+
+                /* close directory */
+                g_dir_close (dir);
             }
-            g_free(path);
+
+            /* cleanup */
+            g_free (homedir);
         }
+
+        /* cleanup */
+        g_strfreev (basedirs);
     }
 
-    /* xfconf */
-    xfconf_g_property_bind(xsettings_channel,
-                           "/Mouse/RightHanded",
-                           G_TYPE_INT,
-                           G_OBJECT(mouse_button_right_handed), "active");
-    xfconf_g_property_bind(xsettings_channel,
-                           "/Mouse/Acceleration",
-                           G_TYPE_INT,
-                           G_OBJECT(mouse_motion_acceleration), "value");
-    xfconf_g_property_bind(xsettings_channel,
-                           "/Mouse/Threshold",
-                           G_TYPE_INT,
-                           G_OBJECT(mouse_motion_threshold), "value");
-    xfconf_g_property_bind(xsettings_channel,
-                           "/Net/DndDragThreshold",
-                           G_TYPE_INT,
-                           G_OBJECT(mouse_dnd_threshold), "value");
-    xfconf_g_property_bind(xsettings_channel,
-                           "/Net/DoubleClickTime",
-                           G_TYPE_INT,
-                           G_OBJECT(mouse_double_click_speed), "value");
+    /* cleanup */
+    g_free (active_theme);
 
-    xfconf_g_property_bind(xsettings_channel,
-                           "/Gtk/CursorThemeSize",
-                           G_TYPE_INT,
-                           G_OBJECT(spin_cursor_size), "value");
+    return active_path;
+}
 
-    g_signal_connect(G_OBJECT(cursor_selection), "changed", G_CALLBACK(cb_cursor_theme_treeselection_changed), gxml);
 
-    dialog = glade_xml_get_widget(gxml, "mouse-settings-dialog");
-    gtk_widget_show_all(GTK_DIALOG(dialog)->vbox);
+
+static void
+mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
+                                         GladeXML         *gxml)
+{
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
+    gboolean      has_selection;
+    gchar        *path, *name;
+
+    has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
+    if (G_LIKELY (has_selection))
+    {
+        /* get theme information from model */
+        gtk_tree_model_get (model, &iter, COLUMN_THEME_PATH, &path,
+                            COLUMN_THEME_NAME, &name, -1);
+
+        /* update the preview widget */
+        mouse_settings_themes_preview_image (path, glade_xml_get_widget (gxml, "cursor_preview_image"));
+
+        /* write configuration */
+        xfconf_channel_set_string (xsettings_channel, "/Gtk/CursorThemeName", name);
+
+        /* cleanup */
+        g_free (path);
+        g_free (name);
+    }
+}
+
+
+
+static GtkWidget *
+mouse_settings_dialog_new_from_xml (GladeXML *gxml)
+{
+    GtkListStore      *store;
+    GtkWidget         *treeview;
+    GtkTreeViewColumn *column;
+    GtkCellRenderer   *renderer;
+    GtkTreeSelection  *selection;
+    GtkWidget         *widget;
+    GtkTreePath       *path;
+    GtkWidget         *dialog;
+    GtkAdjustment     *adjustment;
+
+    /* setup the icon theme treeview */
+    store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+
+    /* add all the themes to the tree */
+    path = mouse_settings_themes_populate_store (store);
+
+    treeview = glade_xml_get_widget (gxml, "treeview_cursor_theme");
+    gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
+#if GTK_CHECK_VERSION (2, 12, 0)
+    gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_THEME_COMMENT);
+#endif
+
+    g_object_unref (G_OBJECT (store));
+
+    renderer = gtk_cell_renderer_pixbuf_new ();
+    column = gtk_tree_view_column_new_with_attributes ("", renderer, "pixbuf", COLUMN_THEME_PIXBUF, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
+    renderer = gtk_cell_renderer_text_new ();
+    column = gtk_tree_view_column_new_with_attributes ("", renderer, "text", COLUMN_THEME_REAL_NAME, NULL);
+    g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+    gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (mouse_settings_themes_selection_changed), gxml);
+
+    /* select the active item */
+    if (G_LIKELY (path != NULL))
+    {
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL, FALSE);
+        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path, NULL, FALSE, 0.5, 0.0);
+        gtk_tree_path_free (path);
+    }
+
+    /* sort the tree, after setting the active item */
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), COLUMN_THEME_REAL_NAME, GTK_SORT_ASCENDING);
+
+    /* connect xfconf properties */
+    widget = glade_xml_get_widget (gxml, "button_right_handed");
+    xfconf_g_property_bind(xsettings_channel, "/Mouse/RightHanded", G_TYPE_INT, G_OBJECT (widget), "active");
+
+    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse_motion_acceleration")));
+    xfconf_g_property_bind(xsettings_channel, "/Mouse/Acceleration", G_TYPE_INT, G_OBJECT (adjustment), "value");
+
+    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse_motion_threshold")));
+    xfconf_g_property_bind(xsettings_channel, "/Mouse/Threshold", G_TYPE_INT, G_OBJECT (adjustment), "value");
+
+    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse_dnd_threshold")));
+    xfconf_g_property_bind(xsettings_channel, "/Net/DndDragThreshold", G_TYPE_INT, G_OBJECT (adjustment), "value");
+
+    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse_double_click_speed")));
+    xfconf_g_property_bind(xsettings_channel, "/Net/DoubleClickTime", G_TYPE_INT, G_OBJECT (adjustment), "value");
+
+    widget = glade_xml_get_widget (gxml, "spin_cursor_size");
+    xfconf_g_property_bind (xsettings_channel, "/Gtk/CursorThemeSize", G_TYPE_INT, G_OBJECT (widget), "value");
+
+    /* show all the dialog widgets */
+    dialog = glade_xml_get_widget (gxml, "mouse-settings-dialog");
+    gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
+
     return dialog;
 }
 
-int
-main(int argc, char **argv)
+
+
+gint
+main(gint argc, gchar **argv)
 {
-    GtkWidget *dialog = NULL;
-    GladeXML *gxml;
-    GError *cli_error = NULL;
+    GtkWidget *dialog;
+    GladeXML  *gxml;
+    GError    *error = NULL;
 
-    #ifdef ENABLE_NLS
-    bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-    textdomain (GETTEXT_PACKAGE);
-    #endif
+    /* setup translation domain */
+    xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
-    if(!gtk_init_with_args(&argc, &argv, _("."), entries, PACKAGE, &cli_error))
+    /* initialize Gtk+ */
+    if (!gtk_init_with_args (&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error))
     {
-        if (cli_error != NULL)
+        if (G_LIKELY (error == NULL))
         {
-            g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, cli_error->message, PACKAGE_NAME);
-            g_error_free (cli_error);
-            return 1;
+            g_critical (_("Failed to open display"));
         }
+        else
+        {
+            /* show error message */
+            g_critical (error->message);
+
+            /* cleanup */
+            g_error_free (error);
+        }
+
+        return EXIT_FAILURE;
     }
 
-    if(version)
+    /* print version information */
+    if (G_UNLIKELY (opt_version))
     {
-        g_print("%s\n", PACKAGE_STRING);
-        return 0;
+        g_print ("%s %s (Xfce %s)\n\n", PACKAGE_NAME, PACKAGE_VERSION, xfce_version_string ());
+        g_print ("%s\n", "Copyright (c) 2004-2008");
+        g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
+        g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
+        g_print ("\n");
+
+        return EXIT_SUCCESS;
     }
 
-    xfconf_init(NULL);
+    /* initialize xfconf */
+    xfconf_init (NULL);
 
-    xsettings_channel = xfconf_channel_new("xsettings");
+    /* open the xsettings channel */
+    xsettings_channel = xfconf_channel_new ("xsettings");
+    if (G_LIKELY (xsettings_channel))
+    {
+        /* load the dialog glade xml */
+        gxml = glade_xml_new_from_buffer (mouse_dialog_glade, mouse_dialog_glade_length, NULL, NULL);
+        if (G_LIKELY (gxml))
+        {
+            /* build the dialog */
+            dialog = mouse_settings_dialog_new_from_xml (gxml);
 
-    gxml = glade_xml_new_from_buffer (mouse_dialog_glade,
-                                      mouse_dialog_glade_length,
-                                      NULL, NULL);
+            /* run the dialog */
+            gtk_dialog_run (GTK_DIALOG (dialog));
 
-    dialog = mouse_settings_dialog_new_from_xml (gxml);
+            /* release the glade xml */
+            g_object_unref (G_OBJECT (gxml));
+        }
 
-    gtk_dialog_run(GTK_DIALOG(dialog));
+        /* release the channel */
+        g_object_unref (G_OBJECT (xsettings_channel));
+    }
 
-    xfconf_shutdown();
+    /* shutdown xfconf */
+    xfconf_shutdown ();
 
-    return 0;
+    return EXIT_SUCCESS;
 }
+

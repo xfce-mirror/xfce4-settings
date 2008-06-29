@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sun Jun 29 14:21:35 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Jun 29 17:03:23 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="mouse-settings-dialog">
     <property name="title" translatable="yes">Xfce4 Mouse Settings</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
+    <property name="default_width">400</property>
     <property name="icon_name">preferences-desktop-peripherals</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="has_separator">False</property>
@@ -452,13 +453,30 @@
                                     <property name="shadow_type">GTK_SHADOW_NONE</property>
                                     <property name="xalign">0</property>
                                     <child>
-                                      <widget class="GtkSpinButton" id="spin_cursor_size">
+                                      <widget class="GtkHBox" id="hbox3">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="editable">False</property>
-                                        <property name="max_length">2</property>
-                                        <property name="adjustment">24 16 48 1 10 10</property>
-                                        <property name="numeric">True</property>
+                                        <property name="spacing">12</property>
+                                        <child>
+                                          <widget class="GtkLabel" id="label13">
+                                            <property name="visible">True</property>
+                                            <property name="label" translatable="yes">Cursor _size:</property>
+                                            <property name="use_underline">True</property>
+                                            <property name="mnemonic_widget">spin_cursor_size</property>
+                                          </widget>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkSpinButton" id="spin_cursor_size">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="editable">False</property>
+                                            <property name="max_length">2</property>
+                                            <property name="adjustment">24 16 48 1 10 10</property>
+                                            <property name="numeric">True</property>
+                                          </widget>
+                                          <packing>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
                                       </widget>
                                     </child>
                                   </widget>
@@ -468,7 +486,7 @@
                             <child>
                               <widget class="GtkLabel" id="label7">
                                 <property name="visible">True</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Cursor size&lt;/b&gt;</property>
+                                <property name="label" translatable="yes">&lt;b&gt;Size&lt;/b&gt;</property>
                                 <property name="use_markup">True</property>
                               </widget>
                               <packing>
