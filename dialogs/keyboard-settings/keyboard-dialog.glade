@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sun Jun 29 14:24:01 2008 -->
+<!--Generated with glade3 3.4.5 on Tue Jul  1 22:39:19 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="keyboard-settings-dialog">
@@ -58,7 +58,7 @@
                         <child>
                           <widget class="GtkLabel" id="label4">
                             <property name="visible">True</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Keytheme&lt;/b&gt;</property>
+                            <property name="label" translatable="yes">&lt;b&gt;Key Theme&lt;/b&gt;</property>
                             <property name="use_markup">True</property>
                           </widget>
                           <packing>
@@ -66,10 +66,6 @@
                           </packing>
                         </child>
                       </widget>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                      </packing>
                     </child>
                     <child>
                       <widget class="GtkVBox" id="vbox2">
@@ -94,7 +90,8 @@
                                       <widget class="GtkCheckButton" id="xkb_key_repeat_check">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="label" translatable="yes">Enable key repeat</property>
+                                        <property name="label" translatable="yes">_Enable key repeat</property>
+                                        <property name="use_underline">True</property>
                                         <property name="response_id">0</property>
                                         <property name="draw_indicator">True</property>
                                       </widget>
@@ -116,7 +113,9 @@
                                               <widget class="GtkLabel" id="label7">
                                                 <property name="visible">True</property>
                                                 <property name="xalign">0</property>
-                                                <property name="label" translatable="yes">Repeat delay:</property>
+                                                <property name="label" translatable="yes">_Repeat delay:</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="mnemonic_widget">xkb_key_repeat_delay_scale</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -126,10 +125,11 @@
                                             <child>
                                               <widget class="GtkHBox" id="hbox2">
                                                 <property name="visible">True</property>
+                                                <property name="spacing">2</property>
                                                 <child>
                                                   <widget class="GtkLabel" id="label8">
                                                     <property name="visible">True</property>
-                                                    <property name="label" translatable="yes">&lt;i&gt;Short&lt;/i&gt;</property>
+                                                    <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Short&lt;/i&gt;&lt;/small&gt;</property>
                                                     <property name="use_markup">True</property>
                                                   </widget>
                                                   <packing>
@@ -152,7 +152,7 @@
                                                 <child>
                                                   <widget class="GtkLabel" id="label9">
                                                     <property name="visible">True</property>
-                                                    <property name="label" translatable="yes">&lt;i&gt;Long&lt;/i&gt;</property>
+                                                    <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Long&lt;/i&gt;&lt;/small&gt;</property>
                                                     <property name="use_markup">True</property>
                                                   </widget>
                                                   <packing>
@@ -172,7 +172,9 @@
                                               <widget class="GtkLabel" id="label10">
                                                 <property name="visible">True</property>
                                                 <property name="xalign">0</property>
-                                                <property name="label" translatable="yes">Repeat speed:</property>
+                                                <property name="label" translatable="yes">Repeat _speed:</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="mnemonic_widget">xkb_key_repeat_rate_scale</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -183,10 +185,11 @@
                                             <child>
                                               <widget class="GtkHBox" id="hbox3">
                                                 <property name="visible">True</property>
+                                                <property name="spacing">2</property>
                                                 <child>
                                                   <widget class="GtkLabel" id="label11">
                                                     <property name="visible">True</property>
-                                                    <property name="label" translatable="yes">&lt;i&gt;Slow&lt;/i&gt;</property>
+                                                    <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Slow&lt;/i&gt;&lt;/small&gt;</property>
                                                     <property name="use_markup">True</property>
                                                   </widget>
                                                   <packing>
@@ -208,7 +211,7 @@
                                                 <child>
                                                   <widget class="GtkLabel" id="label12">
                                                     <property name="visible">True</property>
-                                                    <property name="label" translatable="yes">&lt;i&gt;Fast&lt;/i&gt;</property>
+                                                    <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Fast&lt;/i&gt;&lt;/small&gt;</property>
                                                     <property name="use_markup">True</property>
                                                   </widget>
                                                   <packing>
@@ -269,7 +272,8 @@
                                       <widget class="GtkCheckButton" id="net_cursor_blink_check">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="label" translatable="yes">Show blinking</property>
+                                        <property name="label" translatable="yes">Show _blinking</property>
+                                        <property name="use_underline">True</property>
                                         <property name="response_id">0</property>
                                         <property name="draw_indicator">True</property>
                                       </widget>
@@ -291,7 +295,9 @@
                                               <widget class="GtkLabel" id="label13">
                                                 <property name="visible">True</property>
                                                 <property name="xalign">0</property>
-                                                <property name="label" translatable="yes">Blink delay:</property>
+                                                <property name="label" translatable="yes">Blink _delay:</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="mnemonic_widget">net_cursor_blink_time_scale</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -301,10 +307,11 @@
                                             <child>
                                               <widget class="GtkHBox" id="hbox4">
                                                 <property name="visible">True</property>
+                                                <property name="spacing">2</property>
                                                 <child>
                                                   <widget class="GtkLabel" id="label14">
                                                     <property name="visible">True</property>
-                                                    <property name="label" translatable="yes">&lt;i&gt;Short&lt;/i&gt;</property>
+                                                    <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Short&lt;/i&gt;&lt;/small&gt;</property>
                                                     <property name="use_markup">True</property>
                                                   </widget>
                                                   <packing>
@@ -326,7 +333,7 @@
                                                 <child>
                                                   <widget class="GtkLabel" id="label15">
                                                     <property name="visible">True</property>
-                                                    <property name="label" translatable="yes">&lt;i&gt;Long&lt;/i&gt;</property>
+                                                    <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Long&lt;/i&gt;&lt;/small&gt;</property>
                                                     <property name="use_markup">True</property>
                                                   </widget>
                                                   <packing>
@@ -412,7 +419,6 @@
                           <widget class="GtkTreeView" id="treeview2">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="headers_clickable">True</property>
                           </widget>
                         </child>
                       </widget>
