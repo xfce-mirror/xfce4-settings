@@ -537,7 +537,7 @@ main(gint argc, gchar **argv)
     /* print version information */
     if (G_UNLIKELY (opt_version))
     {
-        g_print ("%s %s (Xfce %s)\n\n", PACKAGE_NAME, PACKAGE_VERSION, xfce_version_string ());
+        g_print ("Xfce4-mouse-settings %s (Xfce %s)\n\n", PACKAGE_VERSION, xfce_version_string ());
         g_print ("%s\n", "Copyright (c) 2004-2008");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
@@ -565,6 +565,9 @@ main(gint argc, gchar **argv)
 
             /* release the glade xml */
             g_object_unref (G_OBJECT (gxml));
+
+            /* destroy the dialog */
+            gtk_widget_destroy (dialog);
         }
 
         /* release the channel */

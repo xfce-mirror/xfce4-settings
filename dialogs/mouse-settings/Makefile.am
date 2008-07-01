@@ -23,7 +23,8 @@ xfce4_mouse_settings_LDADD = \
 	$(XFCONF_LIBS)
 
 INCLUDES = \
-	-I${top_srcdir}
+	-I${top_srcdir} \
+	-DG_LOG_DOMAIN=\"Xfce4-mouse-settings\"
 
 if MAINTAINER_MODE
 
