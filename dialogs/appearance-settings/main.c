@@ -552,6 +552,7 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
     GtkWidget *icon_theme_treeview = glade_xml_get_widget (gxml, "icon_theme_treeview");
 
     list_store = gtk_list_store_new (1, G_TYPE_STRING);
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), 0, GTK_SORT_ASCENDING);
 
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_set_model (GTK_TREE_VIEW (icon_theme_treeview), GTK_TREE_MODEL (list_store));
@@ -569,6 +570,7 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
     GtkWidget *ui_theme_treeview = glade_xml_get_widget (gxml, "gtk_theme_treeview");
 
     list_store = gtk_list_store_new (1, G_TYPE_STRING);
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), 0, GTK_SORT_ASCENDING);
 
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_set_model (GTK_TREE_VIEW (ui_theme_treeview), GTK_TREE_MODEL (list_store));
