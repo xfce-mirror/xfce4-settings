@@ -1,5 +1,6 @@
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
+ *  Copyright (c) 2008 Jannis Pohlmann <jannis@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -262,120 +263,94 @@ read_themes_from_dir (const gchar *dir_name, ThemeType type)
     return theme_list;
 }
 
-/**
- * TODO: Fix icon-theme-spec compliance
- */
+
+
 static void
 check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view)
 {
-    gchar *dir_name;
-    gchar *active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "hicolor");
-    const gchar * const *xdg_system_data_dirs = g_get_system_data_dirs();
-    GList *user_theme_list = NULL;
-    GList *xdg_user_theme_list = NULL;
-    GList *xdg_system_theme_list = NULL;
-    GList *theme_list = NULL;
-    GList *list_iter = NULL;
-    GList *temp_iter = NULL;
-    GtkTreeIter iter;
-    GtkTreeSelection *selection = gtk_tree_view_get_selection (tree_view);
+  GDir         *dir;
+  GtkTreePath  *tree_path;
+  GtkTreeIter   iter;
+  XfceRc       *index_file;
+  const gchar  *file;
+  gchar       **icon_theme_dirs;
+  gchar        *index_filename;
+  gchar        *theme_name;
+  gchar        *active_theme_name;
+  gint          i;
 
-    dir_name = g_build_filename (g_get_home_dir (), ".icons", NULL);
-    user_theme_list = read_themes_from_dir (dir_name, THEME_TYPE_GTK);
-    g_free (dir_name);
+  /* Determine current theme */
+  active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Default");
 
-    dir_name = g_build_filename (g_get_user_data_dir(), "icons",  NULL);
-    xdg_user_theme_list = read_themes_from_dir (dir_name, THEME_TYPE_ICONS);
-    g_free (dir_name);
+  /* Determine directories to look in for icon themes */
+  xfce_resource_push_path (XFCE_RESOURCE_ICONS, DATADIR "/xfce4/icons");
+  icon_theme_dirs = xfce_resource_dirs (XFCE_RESOURCE_ICONS);
+  xfce_resource_pop_path (XFCE_RESOURCE_ICONS);
 
-    while (*xdg_system_data_dirs)
+  /* Iterate over all base directories */
+  for (i = 0; icon_theme_dirs[i] != NULL; ++i)
     {
-        dir_name = g_build_filename (*xdg_system_data_dirs, "icons", NULL);
-        xdg_system_theme_list = g_list_concat (xdg_system_theme_list, read_themes_from_dir (dir_name, THEME_TYPE_ICONS));
-        g_free (dir_name);
+      /* Open directory handle */
+      dir = g_dir_open (icon_theme_dirs[i], 0, NULL);
 
-        xdg_system_data_dirs++;
-    }
+      /* Try next base directory if this one cannot be read */
+      if (G_UNLIKELY (dir == NULL))
+        continue;
 
-    /* Legacy ~/.icons */
-    list_iter = user_theme_list;
-    while (user_theme_list && list_iter != NULL)
-    {
-        temp_iter = g_list_find_custom (theme_list, list_iter->data, (GCompareFunc)strcmp);
-        if (temp_iter == NULL)
+      /* Iterate over filenames in the directory */
+      while ((file = g_dir_read_name (dir)) != NULL)
         {
-            user_theme_list = g_list_remove_link (user_theme_list, list_iter);
-            theme_list = g_list_concat (theme_list, list_iter);
+          /* Build filename for the index.theme of the current icon theme directory */
+          index_filename = g_build_path (G_DIR_SEPARATOR_S, icon_theme_dirs[i], file, "index.theme", NULL);
 
-            list_iter = user_theme_list;
+          /* Try to open the theme index file */
+          index_file = xfce_rc_simple_open (index_filename, TRUE);
+
+          if (G_LIKELY (index_file != NULL))
+            {
+              xfce_rc_set_group (index_file, "Icon Theme");
+
+              /* Check if the icon theme is valid and visible to the user */
+              if (G_LIKELY (xfce_rc_has_entry (index_file, "Directories") 
+                            && strcmp (xfce_rc_read_entry (index_file, "Hidden", "false"), "true") != 0))
+                {
+                  /* Get translated icon theme name */
+                  theme_name = g_strdup (xfce_rc_read_entry (index_file, "Name", file));
+
+                  /* Append icon theme to the list store */
+                  gtk_list_store_append (list_store, &iter);
+                  gtk_list_store_set (list_store, &iter, 0, theme_name, -1);
+
+                  if (G_UNLIKELY (g_utf8_collate (theme_name, active_theme_name) == 0))
+                    {
+                      tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (list_store), &iter);
+                      gtk_tree_selection_select_path (gtk_tree_view_get_selection (tree_view), tree_path);
+                    }
+
+                  /* Free theme name */
+                  g_free (theme_name);
+                }
+
+              /* Close theme index file */
+              xfce_rc_close (index_file);
+            }
+
+          /* Free theme index filename */
+          g_free (index_filename);
         }
-        else
-            list_iter = g_list_next (list_iter);
+
+      /* Close directory handle */
+      g_dir_close (dir);
     }
 
-    /* XDG_DATA_HOME */
-    for (list_iter = xdg_user_theme_list; list_iter != NULL; list_iter = g_list_next (list_iter))
-    {
-        temp_iter = g_list_find_custom (theme_list, list_iter->data, (GCompareFunc)strcmp);
-        if (temp_iter == NULL)
-        {
-            xdg_user_theme_list = g_list_remove_link (xdg_system_theme_list, list_iter);
-            theme_list = g_list_concat (theme_list, list_iter);
+  /* Free active theme name */
+  g_free (active_theme_name);
 
-            list_iter = xdg_user_theme_list;
-        }
-        else
-            list_iter = g_list_next (list_iter);
-    }
-
-    /* XDG_DATA_DIRS */
-    list_iter = xdg_system_theme_list;
-    while (xdg_system_theme_list && list_iter != NULL)
-    {
-        temp_iter = g_list_find_custom (theme_list, list_iter->data, (GCompareFunc)strcmp);
-        if (temp_iter == NULL)
-        {
-            xdg_system_theme_list = g_list_remove_link (xdg_system_theme_list, list_iter);
-            theme_list = g_list_concat (theme_list, list_iter);
-
-            list_iter = xdg_system_theme_list;
-        }
-        else
-            list_iter = g_list_next (list_iter);
-    }
-
-    /* Add all unique themes to the liststore */
-    for (list_iter = theme_list; list_iter != NULL; list_iter = g_list_next (list_iter))
-    {
-        gtk_list_store_insert (list_store, &iter, 0);
-        gtk_list_store_set (list_store, &iter, 0, list_iter->data, -1);
-
-        if (strcmp (list_iter->data, active_theme_name) == 0)
-        {
-            GtkTreePath *path = gtk_tree_model_get_path (GTK_TREE_MODEL (list_store), &iter);
-            gtk_tree_selection_select_path (selection, path);
-        }
-    }
-
-    /* cleanup */
-    if (xdg_system_theme_list)
-    {
-        g_list_foreach (xdg_system_theme_list, (GFunc)g_free, NULL);
-        g_list_free (xdg_system_theme_list);
-    }
-    if (xdg_user_theme_list)
-    {
-        g_list_foreach (xdg_user_theme_list, (GFunc)g_free, NULL);
-        g_list_free (xdg_user_theme_list);
-    }
-    if (user_theme_list)
-    {
-        g_list_foreach (user_theme_list, (GFunc)g_free, NULL);
-        g_list_free (user_theme_list);
-    }
-
-
+  /* Free list of base directories */
+  g_strfreev (icon_theme_dirs);
 }
+
+
 
 static void
 check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view)
