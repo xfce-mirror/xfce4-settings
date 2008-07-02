@@ -16,47 +16,67 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
-#include <string.h>
-
-#include <glib.h>
-
-#if defined(GETTEXT_PACKAGE)
-#include <glib/gi18n-lib.h>
-#else
-#include <glib/gi18n.h>
 #endif
 
+#ifdef HAVE_STDIO_H
+#include <stdio.h>
+#endif
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
+#include <glib.h>
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
+
 #include "appearance-dialog_glade.h"
+
+/* increase this number if new gtk settings have been added */
+#define INITIALIZE_UINT (1)
 
 typedef enum {
     THEME_TYPE_ICONS,
     THEME_TYPE_GTK,
 } ThemeType;
 
-typedef struct {
-    GtkWidget *slave;
-    XfconfChannel *channel;
-} PropertyPair;
-
-gboolean version = FALSE;
-
-static GOptionEntry entries[] =
+/* string arrays with the settings in combo boxes */
+static const gchar* toolbar_styles_array[] =
 {
-    {    "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
-        N_("Version information"),
-        NULL
-    },
+    "icons", "text", "both", "both-horiz"
+};
+
+static const gchar* xft_hint_styles_array[] =
+{
+    "hintnone", "hintslight", "hintmedium", "hintfull"
+};
+
+static const gchar* xft_rgba_array[] =
+{
+    "none", "rgb", "bgr", "vrgb", "vbgr"
+};
+
+/* option entries */
+static gboolean opt_version = FALSE;
+static GOptionEntry option_entries[] =
+{
+    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { NULL }
 };
 
-void
-cb_icon_theme_treeselection_changed (GtkTreeSelection *selection, XfconfChannel *channel)
+/* global xfconf channel */
+static XfconfChannel *xsettings_channel;
+
+static void
+cb_icon_theme_treeselection_changed (GtkTreeSelection *selection)
 {
     GtkTreeModel *model = NULL;
     GList *list = gtk_tree_selection_get_selected_rows (selection, &model);
@@ -72,8 +92,8 @@ cb_icon_theme_treeselection_changed (GtkTreeSelection *selection, XfconfChannel 
 
     gtk_tree_model_get_iter (model, &iter, list->data);
     gtk_tree_model_get_value (model, &iter, 0, &value);
-    
-    xfconf_channel_set_property (channel, "/Net/IconThemeName", &value);
+
+    xfconf_channel_set_property (xsettings_channel, "/Net/IconThemeName", &value);
 
     g_value_unset (&value);
 
@@ -82,8 +102,8 @@ cb_icon_theme_treeselection_changed (GtkTreeSelection *selection, XfconfChannel 
 
 }
 
-void
-cb_ui_theme_treeselection_changed (GtkTreeSelection *selection, XfconfChannel *channel)
+static void
+cb_ui_theme_treeselection_changed (GtkTreeSelection *selection)
 {
     GtkTreeModel *model = NULL;
     GList *list = gtk_tree_selection_get_selected_rows (selection, &model);
@@ -99,8 +119,8 @@ cb_ui_theme_treeselection_changed (GtkTreeSelection *selection, XfconfChannel *c
 
     gtk_tree_model_get_iter (model, &iter, list->data);
     gtk_tree_model_get_value (model, &iter, 0, &value);
-    
-    xfconf_channel_set_property (channel, "/Net/ThemeName", &value);
+
+    xfconf_channel_set_property (xsettings_channel, "/Net/ThemeName", &value);
 
     g_value_unset (&value);
 
@@ -109,105 +129,76 @@ cb_ui_theme_treeselection_changed (GtkTreeSelection *selection, XfconfChannel *c
 
 }
 
-void
-cb_toolbar_style_combo_changed (GtkComboBox *combo, XfconfChannel *channel)
+static void
+cb_toolbar_style_combo_changed (GtkComboBox *combo)
 {
-    switch (gtk_combo_box_get_active(combo))
-    {
-        case 0:
-            xfconf_channel_set_string (channel, "/Gtk/ToolbarStyle", "icons");
-            break;
-        case 1:
-            xfconf_channel_set_string (channel, "/Gtk/ToolbarStyle", "text");
-            break;
-        case 2:
-            xfconf_channel_set_string (channel, "/Gtk/ToolbarStyle", "both");
-            break;
-        case 3:
-            xfconf_channel_set_string (channel, "/Gtk/ToolbarStyle", "both-horiz");
-            break;
-    }
+    gint active;
+
+    /* get active item, prevent number outside the array */
+    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (toolbar_styles_array));
+
+    /* save setting */
+    xfconf_channel_set_string (xsettings_channel, "/Gtk/ToolbarStyle", toolbar_styles_array[active]);
 }
 
-void
-cb_antialias_check_button_toggled (GtkToggleButton *toggle, XfconfChannel *channel)
+static void
+cb_antialias_check_button_toggled (GtkToggleButton *toggle)
 {
-    gtk_toggle_button_set_inconsistent(toggle, FALSE);
-    if (gtk_toggle_button_get_active(toggle))
-    {
-        xfconf_channel_set_int (channel, "/Xft/Antialias", 1);
-    }
-    else
-    {
-        xfconf_channel_set_int (channel, "/Xft/Antialias", 0);
-    }
+    gint active;
+
+    /* get active */
+    active = gtk_toggle_button_get_active (toggle) ? 1 : 0;
+
+    /* save setting */
+    xfconf_channel_set_int (xsettings_channel, "/Xft/Antialias", active);
 }
 
-void
-cb_hinting_style_combo_changed (GtkComboBox *combo, XfconfChannel *channel)
+static void
+cb_hinting_style_combo_changed (GtkComboBox *combo)
 {
-    switch (gtk_combo_box_get_active(combo))
-    {
-        case 0:
-            xfconf_channel_set_string (channel, "/Xft/HintStyle", "hintnone");
-            break;
-        case 1:
-            xfconf_channel_set_string (channel, "/Xft/HintStyle", "hintslight");
-            break;
-        case 2:
-            xfconf_channel_set_string (channel, "/Xft/HintStyle", "hintmedium");
-            break;
-        case 3:
-            xfconf_channel_set_string (channel, "/Xft/HintStyle", "hintfull");
-            break;
-    }
+    gint active;
+
+    /* get active item, prevent number outside the array */
+    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (xft_hint_styles_array));
+
+    /* save setting */
+    xfconf_channel_set_string (xsettings_channel, "/Xft/HintStyle", xft_hint_styles_array[active]);
 }
 
-void
-cb_rgba_style_combo_changed (GtkComboBox *combo, XfconfChannel *channel)
+static void
+cb_rgba_style_combo_changed (GtkComboBox *combo)
 {
-    switch (gtk_combo_box_get_active(combo))
-    {
-        case 0:
-            xfconf_channel_set_string (channel, "/Xft/RGBA", "none");
-            break;
-        case 1:
-            xfconf_channel_set_string (channel, "/Xft/RGBA", "rgb");
-            break;
-        case 2:
-            xfconf_channel_set_string (channel, "/Xft/RGBA", "bgr");
-            break;
-        case 3:
-            xfconf_channel_set_string (channel, "/Xft/RGBA", "vrgb");
-            break;
-        case 4:
-            xfconf_channel_set_string (channel, "/Xft/RGBA", "vbgr");
-            break;
-    }
+    gint active;
+
+    /* get active item, prevent number outside the array */
+    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (xft_rgba_array));
+
+    /* save setting */
+    xfconf_channel_set_string (xsettings_channel, "/Xft/RGBA", xft_rgba_array[active]);
 }
 
-void
-cb_custom_dpi_check_button_toggled (GtkToggleButton *toggle, PropertyPair *pair)
+static void
+cb_custom_dpi_check_button_toggled (GtkToggleButton *toggle, GtkWidget *custom_dpi_spin)
 {
     if (gtk_toggle_button_get_active(toggle))
     {
-        xfconf_channel_set_int (pair->channel, "/Xft/DPI", 96*1024);
-        gtk_widget_set_sensitive(pair->slave, TRUE);
+        xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", 96 * 1024);
+        gtk_widget_set_sensitive (custom_dpi_spin, TRUE);
     }
     else
     {
-        xfconf_channel_set_int (pair->channel, "/Xft/DPI", -1);
-        gtk_widget_set_sensitive(pair->slave, FALSE);
+        xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", -1);
+        gtk_widget_set_sensitive (custom_dpi_spin, FALSE);
     }
 }
 
-void
-cb_custom_dpi_spin_value_changed (GtkSpinButton *spin, XfconfChannel *channel)
+static void
+cb_custom_dpi_spin_value_changed (GtkSpinButton *spin)
 {
-    xfconf_channel_set_int (channel, "/Xft/DPI", (gint)(gtk_spin_button_get_value(spin)*1024));
+    xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", (gint)(gtk_spin_button_get_value(spin)*1024));
 }
 
-GList *
+static GList *
 read_themes_from_dir (const gchar *dir_name, ThemeType type)
 {
     GList *theme_list = NULL;
@@ -236,10 +227,10 @@ read_themes_from_dir (const gchar *dir_name, ThemeType type)
                          */
                         if (g_file_test (theme_index, G_FILE_TEST_EXISTS))
                         {
-                            /* unfortunately, need to strdup here because the 
-                             * resources allocated to the dir get released once 
+                            /* unfortunately, need to strdup here because the
+                             * resources allocated to the dir get released once
                              * the dir is closed at the end of this function
-                             */ 
+                             */
                             theme_list = g_list_append (theme_list, g_strdup(theme_name));
                         }
                     }
@@ -251,10 +242,10 @@ read_themes_from_dir (const gchar *dir_name, ThemeType type)
 
                     if (g_file_test (theme_index, G_FILE_TEST_EXISTS))
                     {
-                        /* unfortunately, need to strdup here because the 
-                         * resources allocated to the dir get released once 
+                        /* unfortunately, need to strdup here because the
+                         * resources allocated to the dir get released once
                          * the dir is closed at the end of this function
-                         */ 
+                         */
                         theme_list = g_list_append (theme_list, g_strdup(theme_name));
                     }
 
@@ -274,11 +265,11 @@ read_themes_from_dir (const gchar *dir_name, ThemeType type)
 /**
  * TODO: Fix icon-theme-spec compliance
  */
-void
-check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view, XfconfChannel *channel)
+static void
+check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view)
 {
     gchar *dir_name;
-    gchar *active_theme_name = xfconf_channel_get_string (channel, "/Net/IconThemeName", "hicolor");
+    gchar *active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "hicolor");
     const gchar * const *xdg_system_data_dirs = g_get_system_data_dirs();
     GList *user_theme_list = NULL;
     GList *xdg_user_theme_list = NULL;
@@ -370,27 +361,27 @@ check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view, XfconfChann
     if (xdg_system_theme_list)
     {
         g_list_foreach (xdg_system_theme_list, (GFunc)g_free, NULL);
-        g_list_free (xdg_system_theme_list);   
+        g_list_free (xdg_system_theme_list);
     }
     if (xdg_user_theme_list)
     {
         g_list_foreach (xdg_user_theme_list, (GFunc)g_free, NULL);
-        g_list_free (xdg_user_theme_list);   
+        g_list_free (xdg_user_theme_list);
     }
     if (user_theme_list)
     {
         g_list_foreach (user_theme_list, (GFunc)g_free, NULL);
-        g_list_free (user_theme_list);   
+        g_list_free (user_theme_list);
     }
 
 
 }
 
-void
-check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view, XfconfChannel *channel)
+static void
+check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view)
 {
     gchar *dir_name;
-    gchar *active_theme_name = xfconf_channel_get_string (channel, "/Net/ThemeName", "Default");
+    gchar *active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/ThemeName", "Default");
     const gchar * const *xdg_system_data_dirs = g_get_system_data_dirs();
     GList *user_theme_list = NULL;
     GList *xdg_user_theme_list = NULL;
@@ -472,292 +463,365 @@ check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view, XfconfChannel
     if (xdg_system_theme_list)
     {
         g_list_foreach (xdg_system_theme_list, (GFunc)g_free, NULL);
-        g_list_free (xdg_system_theme_list);   
+        g_list_free (xdg_system_theme_list);
     }
     if (xdg_user_theme_list)
     {
         g_list_foreach (xdg_user_theme_list, (GFunc)g_free, NULL);
-        g_list_free (xdg_user_theme_list);   
+        g_list_free (xdg_user_theme_list);
     }
     if (user_theme_list)
     {
         g_list_foreach (user_theme_list, (GFunc)g_free, NULL);
-        g_list_free (user_theme_list);   
+        g_list_free (user_theme_list);
     }
 
 
 }
 
-GtkWidget *
+static void
+appearance_settings_from_gtk_settings (void)
+{
+    GtkSettings     *gtk_settings;
+#ifdef GDK_WINDOWING_X11
+    gint             gtk_xft_hinting;
+    gint             gtk_xft_antialias;
+    gint             gtk_xft_dpi;
+    gchar           *gtk_xft_rgba;
+    gchar           *gtk_xft_hintstyle;
+#endif
+    gboolean         gtk_can_change_accels;
+    gboolean         gtk_button_images;
+    gchar           *gtk_font_name;
+    gchar           *gtk_icon_theme_name;
+    gchar           *gtk_theme_name;
+
+    /* read the default gtk settings */
+    gtk_settings = gtk_settings_get_default ();
+
+    if (G_LIKELY (gtk_settings))
+    {
+        /* read settings from gtk */
+        g_object_get (G_OBJECT (gtk_settings),
+#ifdef GDK_WINDOWING_X11
+                      "gtk-xft-antialias", &gtk_xft_antialias,
+                      "gtk-xft-hinting", &gtk_xft_hinting,
+                      "gtk-xft-hintstyle", &gtk_xft_hintstyle,
+                      "gtk-xft-rgba", &gtk_xft_rgba,
+                      "gtk-xft-dpi", &gtk_xft_dpi,
+#endif
+                      "gtk-can-change-accels", &gtk_can_change_accels,
+                      "gtk-button-images", &gtk_button_images,
+                      "gtk-font-name", &gtk_font_name,
+                      "gtk-icon-theme-name", &gtk_icon_theme_name,
+                      "gtk-theme-name", &gtk_theme_name,
+                      NULL);
+
+#ifdef GDK_WINDOWING_X11
+        /* save default xft settings */
+        xfconf_channel_set_int (xsettings_channel, "/Xft/Hinting", gtk_xft_hinting);
+        xfconf_channel_set_int (xsettings_channel, "/Xft/Antialias", gtk_xft_antialias);
+        xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", gtk_xft_dpi);
+
+        if (G_LIKELY (gtk_xft_rgba))
+            xfconf_channel_set_string (xsettings_channel, "/Xft/RGBA", gtk_xft_rgba);
+
+        if (G_LIKELY (gtk_xft_hintstyle))
+            xfconf_channel_set_string (xsettings_channel, "/Xft/HintStyle", gtk_xft_hintstyle);
+#endif
+
+        /* save the default gtk settings */
+        xfconf_channel_set_bool (xsettings_channel, "/Gtk/CanChangeAccels", gtk_can_change_accels);
+        xfconf_channel_set_bool (xsettings_channel, "/Gtk/ButtonImages", gtk_button_images);
+
+        if (G_LIKELY (gtk_font_name))
+            xfconf_channel_set_string (xsettings_channel, "/Gtk/FontName", gtk_font_name);
+
+        if (G_LIKELY (gtk_icon_theme_name))
+            xfconf_channel_set_string (xsettings_channel, "/Net/IconThemeName", gtk_icon_theme_name);
+
+        if (G_LIKELY (gtk_theme_name))
+            xfconf_channel_set_string (xsettings_channel, "/Net/ThemeName", gtk_theme_name);
+return;
+        /* cleanup */
+        g_free (gtk_font_name);
+        g_free (gtk_icon_theme_name);
+        g_free (gtk_theme_name);
+#ifdef GDK_WINDOWING_X11
+        g_free (gtk_xft_rgba);
+        g_free (gtk_xft_hintstyle);
+#endif
+    }
+}
+
+static GtkWidget *
 appearance_settings_dialog_new_from_xml (GladeXML *gxml)
 {
-    GtkWidget *dialog;
-    PropertyPair *pair = NULL;
-    GtkTreeIter iter;
-    GtkListStore *list_store;
-    GtkCellRenderer *renderer;
+    GtkListStore     *list_store;
+    GtkCellRenderer  *renderer;
     GtkTreeSelection *icon_selection, *ui_selection;
+    gchar            *string;
+    guint             i;
 
-    XfconfChannel *xsettings_channel = xfconf_channel_new("xsettings");
+    /* check if we need to restore settings from GtkSettings */
+    if (xfconf_channel_get_uint (xsettings_channel, "/Initialized", 0) < INITIALIZE_UINT)
+    {
+      /* read the gtk settings */
+      appearance_settings_from_gtk_settings ();
 
-    GtkWidget *can_edit_accels = glade_xml_get_widget (gxml, "gtk_caneditaccels_check_button");
-    GtkWidget *menu_images = glade_xml_get_widget (gxml, "gtk_menu_images_check_button");
-    GtkWidget *button_images = glade_xml_get_widget (gxml, "gtk_button_images_check_button");
-    GtkWidget *fontname_button = glade_xml_get_widget (gxml, "gtk_fontname_button");
-    GtkWidget *toolbar_style_combo = glade_xml_get_widget (gxml, "gtk_toolbar_style_combo_box");
+      /* store the number */
+      xfconf_channel_set_uint (xsettings_channel, "/Initialized", INITIALIZE_UINT);
+    }
 
-    GtkWidget *antialias_check_button = glade_xml_get_widget (gxml, "xft_antialias_check_button");
-    GtkWidget *hinting_style_combo = glade_xml_get_widget (gxml, "xft_hinting_style_combo_box");
-    GtkWidget *rgba_style_combo = glade_xml_get_widget (gxml, "xft_rgba_combo_box");
-    GtkWidget *custom_dpi_check = glade_xml_get_widget (gxml, "xft_custom_dpi_check_button");
-    GtkWidget *custom_dpi_spin = glade_xml_get_widget (gxml, "xft_custom_dpi_spin_button");
+    /* Icon themes list */
     GtkWidget *icon_theme_treeview = glade_xml_get_widget (gxml, "icon_theme_treeview");
-    GtkWidget *ui_theme_treeview = glade_xml_get_widget (gxml, "gtk_theme_treeview");
 
-    /* Fill the theme-icons */
-    /* Check icon-themes */
-    list_store = gtk_list_store_new(1, G_TYPE_STRING);
+    list_store = gtk_list_store_new (1, G_TYPE_STRING);
 
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_set_model (GTK_TREE_VIEW (icon_theme_treeview), GTK_TREE_MODEL (list_store));
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (icon_theme_treeview), 0, _("Icon theme name"), renderer, "text", 0, NULL);
 
+    check_icon_themes (list_store, GTK_TREE_VIEW (icon_theme_treeview));
+
+    g_object_unref (G_OBJECT (list_store));
+
     icon_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (icon_theme_treeview));
     gtk_tree_selection_set_mode (icon_selection, GTK_SELECTION_SINGLE);
+    g_signal_connect (G_OBJECT (icon_selection), "changed", G_CALLBACK (cb_icon_theme_treeselection_changed), NULL);
 
-    check_icon_themes (list_store, GTK_TREE_VIEW (icon_theme_treeview), xsettings_channel);
+    /* Gtk (UI) themes */
+    GtkWidget *ui_theme_treeview = glade_xml_get_widget (gxml, "gtk_theme_treeview");
 
-    /* Check gtk-themes */
-    list_store = gtk_list_store_new(1, G_TYPE_STRING);
+    list_store = gtk_list_store_new (1, G_TYPE_STRING);
 
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_set_model (GTK_TREE_VIEW (ui_theme_treeview), GTK_TREE_MODEL (list_store));
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (ui_theme_treeview), 0, _("Theme name"), renderer, "text", 0, NULL);
-    
+
+    check_ui_themes (list_store, GTK_TREE_VIEW (ui_theme_treeview));
+
+    g_object_unref (G_OBJECT (list_store));
+
     ui_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (ui_theme_treeview));
     gtk_tree_selection_set_mode (ui_selection, GTK_SELECTION_SINGLE);
+    g_signal_connect (G_OBJECT (ui_selection), "changed", G_CALLBACK (cb_ui_theme_treeselection_changed), NULL);
 
-    check_ui_themes (list_store, GTK_TREE_VIEW (ui_theme_treeview), xsettings_channel);
+    /* Subpixel (rgba) hinting Combo */
+    GtkWidget *rgba_combo_box = glade_xml_get_widget (gxml, "xft_rgba_combo_box");
 
-    /* Fill the combo-boxes */
-    /* ToolbarStyle combo */
-    list_store = gtk_list_store_new(1, G_TYPE_STRING);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("Icons"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("Text"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("Both"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("Both Horizontal"), -1);
-    
-    /* Should not need to clear the cell layout, doing it anyways. just to be sure */
-    gtk_cell_layout_clear (GTK_CELL_LAYOUT (toolbar_style_combo));
-    renderer = gtk_cell_renderer_text_new();
+    list_store = gtk_list_store_new (1, G_TYPE_STRING);
+    gtk_list_store_insert_with_values (list_store, NULL, 0, 0, N_("None"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 1, 0, N_("RGB"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 2, 0, N_("BGR"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 3, 0, N_("VRGB"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 4, 0, N_("VBGR"), -1);
+
+    renderer = gtk_cell_renderer_text_new ();
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (rgba_combo_box), renderer, TRUE);
+    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (rgba_combo_box), renderer, "text", 0);
+    gtk_combo_box_set_model (GTK_COMBO_BOX (rgba_combo_box), GTK_TREE_MODEL (list_store));
+    g_object_unref (G_OBJECT (list_store));
+
+    string = xfconf_channel_get_string (xsettings_channel, "/Xft/RGBA", "none");
+    for (i = 0; i < G_N_ELEMENTS (xft_rgba_array); i++)
+        if (strcmp (string, xft_rgba_array[i]) == 0)
+        {
+            gtk_combo_box_set_active (GTK_COMBO_BOX (rgba_combo_box), i);
+            break;
+        }
+    g_free (string);
+
+    g_signal_connect (G_OBJECT (rgba_combo_box), "changed", G_CALLBACK (cb_rgba_style_combo_changed), NULL);
+
+    /* Enable editable menu accelerators */
+    GtkWidget *caneditaccels_check_button = glade_xml_get_widget (gxml, "gtk_caneditaccels_check_button");
+    xfconf_g_property_bind (xsettings_channel, "/Gtk/CanChangeAccels", G_TYPE_BOOLEAN,
+                            G_OBJECT (caneditaccels_check_button), "active");
+
+    /* Show menu images */
+    GtkWidget *menu_images_check_button = glade_xml_get_widget (gxml, "gtk_menu_images_check_button");
+    xfconf_g_property_bind (xsettings_channel, "/Gtk/MenuImages", G_TYPE_BOOLEAN,
+                            G_OBJECT (menu_images_check_button), "active");
+
+    /* Show button images */
+    GtkWidget *button_images_check_button = glade_xml_get_widget (gxml, "gtk_button_images_check_button");
+    xfconf_g_property_bind (xsettings_channel, "/Gtk/ButtonImages", G_TYPE_BOOLEAN,
+                            G_OBJECT (button_images_check_button), "active");
+
+    /* Font name */
+    GtkWidget *fontname_button = glade_xml_get_widget (gxml, "gtk_fontname_button");
+    xfconf_g_property_bind (xsettings_channel,  "/Gtk/FontName", G_TYPE_STRING,
+                            G_OBJECT (fontname_button), "font-name");
+
+    /* Toolbar style */
+    GtkWidget *toolbar_style_combo = glade_xml_get_widget (gxml, "gtk_toolbar_style_combo_box");
+
+    list_store = gtk_list_store_new (1, G_TYPE_STRING);
+    gtk_list_store_insert_with_values (list_store, NULL, 0, 0, N_("Icons"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 1, 0, N_("Text"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 2, 0, N_("Both"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 3, 0, N_("Both Horizontal"), -1);
+
+    renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (toolbar_style_combo), renderer, TRUE);
     gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (toolbar_style_combo), renderer, "text", 0);
+    gtk_combo_box_set_model (GTK_COMBO_BOX (toolbar_style_combo), GTK_TREE_MODEL (list_store));
+    g_object_unref (G_OBJECT (list_store));
 
-    gtk_combo_box_set_model (GTK_COMBO_BOX (toolbar_style_combo), GTK_TREE_MODEL(list_store));
+    string = xfconf_channel_get_string (xsettings_channel, "/Gtk/ToolbarStyle", "both");
+    for (i = 0; i < G_N_ELEMENTS (toolbar_styles_array); i++)
+        if (strcmp (string, toolbar_styles_array[i]) == 0)
+        {
+            gtk_combo_box_set_active (GTK_COMBO_BOX (toolbar_style_combo), i);
+            break;
+        }
+    g_free (string);
 
-    /* Hinting Combo */
-    list_store = gtk_list_store_new(1, G_TYPE_STRING);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("No Hinting"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("Slight Hinting"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("Medium Hinting"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("Full Hinting"), -1);
+    g_signal_connect (G_OBJECT (toolbar_style_combo), "changed", G_CALLBACK(cb_toolbar_style_combo_changed), NULL);
 
-    gtk_cell_layout_clear (GTK_CELL_LAYOUT (hinting_style_combo));
-    renderer = gtk_cell_renderer_text_new();
+    /* Hinting style */
+    GtkWidget *hinting_style_combo = glade_xml_get_widget (gxml, "xft_hinting_style_combo_box");
+
+    list_store = gtk_list_store_new (1, G_TYPE_STRING);
+    gtk_list_store_insert_with_values (list_store, NULL, 0, 0, N_("No Hinting"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 1, 0, N_("Slight Hinting"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 2, 0, N_("Medium Hinting"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 3, 0, N_("Full Hinting"), -1);
+
+    renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (hinting_style_combo), renderer, TRUE);
     gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (hinting_style_combo), renderer, "text", 0);
+    gtk_combo_box_set_model (GTK_COMBO_BOX (hinting_style_combo), GTK_TREE_MODEL (list_store));
+    g_object_unref (G_OBJECT (list_store));
 
-    gtk_combo_box_set_model (GTK_COMBO_BOX (hinting_style_combo), GTK_TREE_MODEL(list_store));
-
-    /* Subpixel (rgba)  hinting Combo */
-    list_store = gtk_list_store_new(1, G_TYPE_STRING);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("none"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("rgb"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("bgr"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("vrgb"), -1);
-    gtk_list_store_append(list_store, &iter);
-    gtk_list_store_set(list_store, &iter, 0, N_("vbgr"), -1);
-
-    gtk_cell_layout_clear (GTK_CELL_LAYOUT (rgba_style_combo));
-    renderer = gtk_cell_renderer_text_new();
-    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (rgba_style_combo), renderer, TRUE);
-    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (rgba_style_combo), renderer, "text", 0);
-
-    gtk_combo_box_set_model (GTK_COMBO_BOX (rgba_style_combo), GTK_TREE_MODEL(list_store));
-
-    /* Bind easy properties */
-    xfconf_g_property_bind (xsettings_channel, 
-                            "/Gtk/CanChangeAccels",
-                            G_TYPE_BOOLEAN,
-                            (GObject *)can_edit_accels, "active");
-    xfconf_g_property_bind (xsettings_channel, 
-                            "/Gtk/MenuImages",
-                            G_TYPE_BOOLEAN,
-                            (GObject *)menu_images, "active");
-    xfconf_g_property_bind (xsettings_channel, 
-                            "/Gtk/ButtonImages",
-                            G_TYPE_BOOLEAN,
-                            (GObject *)button_images, "active");
-
-    xfconf_g_property_bind (xsettings_channel, 
-                            "/Gtk/FontName",
-                            G_TYPE_STRING,
-                            (GObject *)fontname_button, "font-name"); 
-    /* Less easy properties */
-    {
-        gchar *toolbar_style_string = xfconf_channel_get_string (xsettings_channel, "/Gtk/ToolbarStyle", "Both");
-        if (!strcmp(toolbar_style_string, "icons"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(toolbar_style_combo), 0);
-        if (!strcmp(toolbar_style_string, "text"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(toolbar_style_combo), 1);
-        if (!strcmp(toolbar_style_string, "both"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(toolbar_style_combo), 2);
-        if (!strcmp(toolbar_style_string, "both-horiz"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(toolbar_style_combo), 3);
-        g_free (toolbar_style_string);
-    }
-    {
-        gchar *hinting_style_string = xfconf_channel_get_string (xsettings_channel, "/Xft/HintStyle", "hintnone");
-        if (!strcmp(hinting_style_string, "hintnone"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(hinting_style_combo), 0);
-        if (!strcmp(hinting_style_string, "hintslight"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(hinting_style_combo), 1);
-        if (!strcmp(hinting_style_string, "hintmedium"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(hinting_style_combo), 2);
-        if (!strcmp(hinting_style_string, "hintfull"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(hinting_style_combo), 3);
-        g_free (hinting_style_string);
-    }
-    {
-        gint hinting = xfconf_channel_get_int (xsettings_channel, "/Xft/Hinting", 1);
-        switch (hinting)
+    string = xfconf_channel_get_string (xsettings_channel, "/Xft/HintStyle", "hintnone");
+    for (i = 0; i < G_N_ELEMENTS (xft_hint_styles_array); i++)
+        if (strcmp (string, xft_hint_styles_array[i]) == 0)
         {
-            case -1:
-            case 1:
-                gtk_combo_box_set_active (GTK_COMBO_BOX(hinting_style_combo), 1);
-                hinting = 1;
-                break;
-            case 0:
-                gtk_combo_box_set_active (GTK_COMBO_BOX(hinting_style_combo), 0);
+            gtk_combo_box_set_active (GTK_COMBO_BOX (hinting_style_combo), i);
+            break;
         }
+    g_free (string);
 
-    }
-    {
-        gint antialias = xfconf_channel_get_int (xsettings_channel, "/Xft/Antialias", -1);
-        switch (antialias)
-        {
-            case 1:
-                gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(antialias_check_button), TRUE);
-                break;
-            case 0:
-                gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(antialias_check_button), FALSE);
-            case -1:
-                gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON(antialias_check_button), TRUE);
-                break;
-        }
+    g_signal_connect (G_OBJECT (hinting_style_combo), "changed", G_CALLBACK (cb_hinting_style_combo_changed), NULL);
 
-    }
+    /* Hinting */
+    GtkWidget *antialias_check_button = glade_xml_get_widget (gxml, "xft_antialias_check_button");
+    gint antialias = xfconf_channel_get_int (xsettings_channel, "/Xft/Antialias", -1);
+
+    switch (antialias)
     {
-        gchar *rgba_style_string = xfconf_channel_get_string (xsettings_channel, "/Xft/RGBA", "none");
-        if (!strcmp(rgba_style_string, "none"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(rgba_style_combo), 0);
-        if (!strcmp(rgba_style_string, "rgb"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(rgba_style_combo), 1);
-        if (!strcmp(rgba_style_string, "bgr"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(rgba_style_combo), 2);
-        if (!strcmp(rgba_style_string, "vrgb"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(rgba_style_combo), 3);
-        if (!strcmp(rgba_style_string, "vbgr"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(rgba_style_combo), 4);
-        g_free (rgba_style_string);
+        case 1:
+            gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (antialias_check_button), TRUE);
+            break;
+
+        case 0:
+            gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (antialias_check_button), FALSE);
+            break;
+
+        default: /* -1 */
+            gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (antialias_check_button), TRUE);
+            break;
     }
+
+    g_signal_connect (G_OBJECT (antialias_check_button), "toggled", G_CALLBACK (cb_antialias_check_button_toggled), NULL);
+
+    /* DPI */
+    GtkWidget *custom_dpi_check = glade_xml_get_widget (gxml, "xft_custom_dpi_check_button");
+    GtkWidget *custom_dpi_spin = glade_xml_get_widget (gxml, "xft_custom_dpi_spin_button");
+    gint dpi = xfconf_channel_get_int (xsettings_channel, "/Xft/DPI", -1);
+
+    if (dpi == -1)
     {
-        gint dpi = xfconf_channel_get_int (xsettings_channel, "/Xft/DPI", -1);
-        if (dpi == -1)
+        gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (custom_dpi_check), FALSE);
+        gtk_widget_set_sensitive (custom_dpi_spin, FALSE);
+    }
+    else
+    {
+        gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (custom_dpi_check), TRUE);
+        gtk_widget_set_sensitive (custom_dpi_spin, TRUE);
+        gtk_spin_button_set_value (GTK_SPIN_BUTTON (custom_dpi_spin), (gdouble) dpi / 1024);
+    }
+
+    g_signal_connect (G_OBJECT (custom_dpi_check), "toggled", G_CALLBACK (cb_custom_dpi_check_button_toggled), custom_dpi_spin);
+    g_signal_connect (G_OBJECT (custom_dpi_spin), "value-changed", G_CALLBACK (cb_custom_dpi_spin_value_changed), NULL);
+
+    /* return dialog */
+    return glade_xml_get_widget (gxml, "appearance-settings-dialog");
+}
+
+gint
+main(gint argc, gchar **argv)
+{
+    GtkWidget *dialog;
+    GladeXML  *gxml;
+    GError    *error = NULL;
+
+    /* setup translation domain */
+    xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+
+    /* initialize Gtk+ */
+    if (!gtk_init_with_args (&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error))
+    {
+        if (G_LIKELY (error == NULL))
         {
-            gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(custom_dpi_check), FALSE);
-            gtk_widget_set_sensitive (custom_dpi_spin, FALSE);
+            g_critical (_("Failed to open display"));
         }
         else
         {
-            gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(custom_dpi_check), TRUE);
-            gtk_widget_set_sensitive (custom_dpi_spin, TRUE);
-            gtk_spin_button_set_value (GTK_SPIN_BUTTON(custom_dpi_spin), (gdouble)dpi/1024);
+            /* show error message */
+            g_critical (error->message);
+
+            /* cleanup */
+            g_error_free (error);
         }
+
+        return EXIT_FAILURE;
     }
 
-    g_signal_connect (G_OBJECT(ui_selection), "changed", G_CALLBACK (cb_ui_theme_treeselection_changed), xsettings_channel);
-    g_signal_connect (G_OBJECT(icon_selection), "changed", G_CALLBACK (cb_icon_theme_treeselection_changed), xsettings_channel);
-
-    g_signal_connect (G_OBJECT(toolbar_style_combo), "changed", G_CALLBACK(cb_toolbar_style_combo_changed), xsettings_channel);
-    g_signal_connect (G_OBJECT(hinting_style_combo), "changed", G_CALLBACK(cb_hinting_style_combo_changed), xsettings_channel);
-    g_signal_connect (G_OBJECT(rgba_style_combo), "changed", G_CALLBACK(cb_rgba_style_combo_changed), xsettings_channel);
-    g_signal_connect (G_OBJECT(antialias_check_button), "toggled", G_CALLBACK(cb_antialias_check_button_toggled), xsettings_channel);
-
-    pair = g_new0(PropertyPair, 1);
-    pair->channel = xsettings_channel;
-    pair->slave = custom_dpi_spin;
-    g_signal_connect (G_OBJECT(custom_dpi_check), "toggled", G_CALLBACK(cb_custom_dpi_check_button_toggled), pair);
-    g_signal_connect (G_OBJECT(custom_dpi_spin), "value-changed", G_CALLBACK(cb_custom_dpi_spin_value_changed), xsettings_channel);
-    
-    dialog = glade_xml_get_widget (gxml, "appearance-settings-dialog");
-
-    return dialog;
-}
-
-int
-main(int argc, char **argv)
-{
-    GtkWidget *dialog = NULL;
-    GladeXML *gxml;
-    GError *cli_error = NULL;
-
-    #ifdef ENABLE_NLS
-    bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-    textdomain (GETTEXT_PACKAGE);
-    #endif
-
-    if(!gtk_init_with_args(&argc, &argv, _("."), entries, PACKAGE, &cli_error))
+    /* print version information */
+    if (G_UNLIKELY (opt_version))
     {
-        if (cli_error != NULL)
+        g_print ("Xfce4-appearance-settings %s (Xfce %s)\n\n", PACKAGE_VERSION, xfce_version_string ());
+        g_print ("%s\n", "Copyright (c) 2004-2008");
+        g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
+        g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
+        g_print ("\n");
+
+        return EXIT_SUCCESS;
+    }
+
+    /* initialize xfconf */
+    xfconf_init (NULL);
+
+    /* open the xsettings channel */
+    xsettings_channel = xfconf_channel_new ("xsettings");
+    if (G_LIKELY (xsettings_channel))
+    {
+        /* load the dialog glade xml */
+        gxml = glade_xml_new_from_buffer (appearance_dialog_glade, appearance_dialog_glade_length, NULL, NULL);
+        if (G_LIKELY (gxml))
         {
-            g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, cli_error->message, PACKAGE_NAME);
-            g_error_free (cli_error);
-            return 1;
+            /* build the dialog */
+            dialog = appearance_settings_dialog_new_from_xml (gxml);
+
+            /* run the dialog */
+            gtk_dialog_run (GTK_DIALOG (dialog));
+
+            /* release the glade xml */
+            g_object_unref (G_OBJECT (gxml));
+
+            /* destroy the dialog */
+            gtk_widget_destroy (dialog);
         }
+
+        /* release the channel */
+        g_object_unref (G_OBJECT (xsettings_channel));
     }
 
-    if(version)
-    {
-        g_print("%s\n", PACKAGE_STRING);
-        return 0;
-    }
+    /* shutdown xfconf */
+    xfconf_shutdown ();
 
-    xfconf_init(NULL);
-
-    gxml = glade_xml_new_from_buffer (appearance_dialog_glade,
-                                      appearance_dialog_glade_length,
-                                      NULL, NULL);
-
-    dialog = appearance_settings_dialog_new_from_xml (gxml);
-
-    gtk_dialog_run(GTK_DIALOG(dialog));
-
-    
-    xfconf_shutdown();
-
-    return 0;
+    return EXIT_SUCCESS;
 }
