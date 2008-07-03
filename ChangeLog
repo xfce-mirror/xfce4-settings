@@ -1,5 +1,18 @@
 2008-07-03	Nick Schermer <nick@xfce.org>
 
+	* dialogs/appearance-dialog/main.c: Use a similar function
+	  for loading ui themes as icon themes. Add a list in both
+	  theme load functions to avoid dupplicates. Read extra ui
+	  theme information from the index.theme file if available.
+	  Store the theme name (folder name) and display name separatly
+	  in the store, authors can define another theme name in the
+	  index.theme file which will result in settings a theme
+	  that is not recognized by Gtk. Use hicolor as default icon
+	  theme name. Fix the icon theme directory that was pushed
+	  (its $datadir/icons, not $datadir/xfce4/icons).
+
+2008-07-03	Nick Schermer <nick@xfce.org>
+
 	* dialogs/appearance-dialog/main.c: Fix indentation of Jannis'
 	  code to match the rest. Add Icon theme comments in the list
 	  for Gtk 2.12. Make some strings static and merge the
