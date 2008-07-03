@@ -86,7 +86,7 @@ static XfconfChannel *xsettings_channel;
 
 static void
 cb_theme_tree_selection_changed (GtkTreeSelection *selection,
-                                 const gchar      *proprty)
+                                 const gchar      *property)
 {
     GtkTreeModel *model;
     gboolean      has_selection;
@@ -101,7 +101,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
         gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
         
         /* Store the new theme */
-        xfconf_channel_set_string (xsettings_channel, proprty, name);
+        xfconf_channel_set_string (xsettings_channel, property, name);
         
         /* Cleanup */
         g_free (name);
