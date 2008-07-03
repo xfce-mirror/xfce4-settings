@@ -44,11 +44,6 @@
 /* Increase this number if new gtk settings have been added */
 #define INITIALIZE_UINT (1)
 
-typedef enum {
-    THEME_TYPE_ICONS,
-    THEME_TYPE_GTK,
-} ThemeType;
-
 enum
 {
     COLUMN_NAME,
@@ -92,17 +87,17 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
     gboolean      has_selection;
     gchar        *name;
     GtkTreeIter   iter;
-    
+
     /* Get the selected list iter */
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
     {
         /* Get the theme name */
         gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
-        
+
         /* Store the new theme */
         xfconf_channel_set_string (xsettings_channel, property, name);
-        
+
         /* Cleanup */
         g_free (name);
     }
@@ -235,11 +230,8 @@ check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view)
             index_file = xfce_rc_simple_open (index_filename, TRUE);
 
             if (index_file != NULL
-                && g_slist_find_custom (check_list, file, (GCompareFunc) strcmp) == NULL)
+                && g_slist_find_custom (check_list, file, (GCompareFunc) g_utf8_collate) == NULL)
             {
-                /* Insert the theme in the check list */
-                check_list = g_slist_prepend (check_list, g_strdup (file));
-                
                 /* Set the icon theme group */
                 xfce_rc_set_group (index_file, "Icon Theme");
 
@@ -247,19 +239,22 @@ check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view)
                 if (G_LIKELY (xfce_rc_has_entry (index_file, "Directories")
                               && !xfce_rc_read_bool_entry (index_file, "Hidden", FALSE)))
                 {
+                    /* Insert the theme in the check list */
+                    check_list = g_slist_prepend (check_list, g_strdup (file));
+
                     /* Get translated icon theme name and comment */
                     theme_name = xfce_rc_read_entry (index_file, "Name", file);
                     theme_comment = xfce_rc_read_entry (index_file, "Comment", NULL);
-                    
+
                     /* Append icon theme to the list store */
                     gtk_list_store_append (list_store, &iter);
-                    gtk_list_store_set (list_store, &iter, 
-                                        COLUMN_NAME, file, 
+                    gtk_list_store_set (list_store, &iter,
+                                        COLUMN_NAME, file,
                                         COLUMN_DISPLAY_NAME, theme_name,
                                         COLUMN_COMMENT, theme_comment, -1);
 
                     /* Check if this is the active theme, if so, select it */
-                    if (G_UNLIKELY (strcmp (theme_name, active_theme_name) == 0))
+                    if (G_UNLIKELY (g_utf8_collate (theme_name, active_theme_name) == 0))
                     {
                         tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (list_store), &iter);
                         gtk_tree_selection_select_path (gtk_tree_view_get_selection (tree_view), tree_path);
@@ -267,7 +262,7 @@ check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view)
                     }
                 }
             }
-            
+
             /* Close theme index file */
             if (G_LIKELY (index_file))
                 xfce_rc_close (index_file);
@@ -285,7 +280,7 @@ check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view)
 
     /* Free list of base directories */
     g_strfreev (icon_theme_dirs);
-    
+
     /* Free the check list */
     if (G_LIKELY (check_list))
     {
@@ -334,14 +329,14 @@ check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view)
         {
             /* Build the theme style filename */
             gtkrc_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-2.0", "gtkrc", NULL);
-            
+
             /* Check if the gtkrc file exists and the theme is not already in the list */
             if (g_file_test (gtkrc_filename, G_FILE_TEST_EXISTS)
-                && g_slist_find_custom (check_list, file, (GCompareFunc) strcmp) == NULL)
+                && g_slist_find_custom (check_list, file, (GCompareFunc) g_utf8_collate) == NULL)
             {
                 /* Insert the theme in the check list */
                 check_list = g_slist_prepend (check_list, g_strdup (file));
-                
+
                 /* Build filename for the index.theme of the current ui theme directory */
                 index_filename = g_build_filename (ui_theme_dirs[i], file, "index.theme", NULL);
 
@@ -363,16 +358,16 @@ check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view)
                     theme_name = file;
                     theme_comment = NULL;
                 }
-                
+
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
-                gtk_list_store_set (list_store, &iter, 
-                                    COLUMN_NAME, file, 
+                gtk_list_store_set (list_store, &iter,
+                                    COLUMN_NAME, file,
                                     COLUMN_DISPLAY_NAME, theme_name,
                                     COLUMN_COMMENT, theme_comment, -1);
 
                 /* Check if this is the active theme, if so, select it */
-                if (G_UNLIKELY (strcmp (theme_name, active_theme_name) == 0))
+                if (G_UNLIKELY (g_utf8_collate (theme_name, active_theme_name) == 0))
                 {
                     tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (list_store), &iter);
                     gtk_tree_selection_select_path (gtk_tree_view_get_selection (tree_view), tree_path);
@@ -382,7 +377,7 @@ check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view)
                 /* Free theme index filename */
                 g_free (index_filename);
             }
-            
+
             /* Free gtkrc filename */
             g_free (gtkrc_filename);
         }
@@ -396,7 +391,7 @@ check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view)
 
     /* Free list of base directories */
     g_strfreev (ui_theme_dirs);
-    
+
     /* Free the check list */
     if (G_LIKELY (check_list))
     {

@@ -1,5 +1,13 @@
 2008-07-03	Nick Schermer <nick@xfce.org>
 
+	* dialogs/appearance-dialog/main.c: Only add the icon theme
+	  to the check list when it's actually added to the store.
+	  Revert strcmp to g_utf8_collate. Strip trailing spaces.
+	  
+	  Both fixes where mentioned by Jannis, thanks for that.
+
+2008-07-03	Nick Schermer <nick@xfce.org>
+
 	* dialogs/appearance-dialog/main.c: Use a similar function
 	  for loading ui themes as icon themes. Add a list in both
 	  theme load functions to avoid dupplicates. Read extra ui
