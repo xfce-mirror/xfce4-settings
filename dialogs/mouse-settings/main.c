@@ -161,7 +161,7 @@ mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
             /* release and set scaled pixbuf */
             g_object_unref (G_OBJECT (pixbuf));
             pixbuf = scaled;
-         }
+        }
 
         /* cleanup */
         XcursorImageDestroy (image);
@@ -289,6 +289,15 @@ mouse_settings_themes_populate_store (GtkListStore *store)
 
     /* get the active theme */
     active_theme = xfconf_channel_get_string (xsettings_channel, "/Gtk/CursorThemeName", "default");
+    
+    /* insert default */
+    gtk_list_store_insert_with_values (store, &iter, position++,
+                                       COLUMN_THEME_NAME, "default",
+                                       COLUMN_THEME_REAL_NAME, _("Default"), -1);
+
+    /* check if the users uses the default theme */
+    if (strcmp (active_theme, "default") == 0)
+        active_path = gtk_tree_model_get_path (GTK_TREE_MODEL (store), &iter);
 
     if (G_LIKELY (basedirs))
     {
@@ -426,6 +435,42 @@ mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
 
 
 
+static gint
+mouse_settings_themes_sort_func (GtkTreeModel *model,
+                                 GtkTreeIter  *a,
+                                 GtkTreeIter  *b,
+                                 gpointer      user_data)
+{
+    gchar *name_a, *name_b;
+    gint   retval;
+    
+    /* get the names from the model */
+    gtk_tree_model_get (model, a, COLUMN_THEME_REAL_NAME, &name_a, -1);
+    gtk_tree_model_get (model, b, COLUMN_THEME_REAL_NAME, &name_b, -1);
+    
+    /* make sure the names are not null */
+    if (G_UNLIKELY (name_a == NULL))
+        name_a = g_strdup ("");
+    if (G_UNLIKELY (name_b == NULL))
+        name_b = g_strdup ("");
+    
+    /* sort the names but keep Default on top */
+    if (g_utf8_collate (name_a, _("Default")) == 0)
+        retval = -1;
+    else if (g_utf8_collate (name_b, _("Default")) == 0)
+        retval = 1;
+    else
+        retval = g_utf8_collate (name_a, name_b);
+    
+    /* cleanup */
+    g_free (name_a);
+    g_free (name_b);
+    
+    return retval;
+}
+
+
+
 static GtkWidget *
 mouse_settings_dialog_new_from_xml (GladeXML *gxml)
 {
@@ -475,7 +520,10 @@ mouse_settings_dialog_new_from_xml (GladeXML *gxml)
     }
 
     /* sort the tree, after setting the active item */
-    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), COLUMN_THEME_REAL_NAME, GTK_SORT_ASCENDING);
+    gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (store), COLUMN_THEME_REAL_NAME,
+                                     mouse_settings_themes_sort_func, NULL, NULL);
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), COLUMN_THEME_REAL_NAME, 
+                                          GTK_SORT_ASCENDING);
 
     /* connect xfconf properties */
     widget = glade_xml_get_widget (gxml, "button_right_handed");
