@@ -40,16 +40,24 @@
 #include <xfconf/xfconf.h>
 
 #include "appearance-dialog_glade.h"
+#include "images.h"
 
 /* Increase this number if new gtk settings have been added */
 #define INITIALIZE_UINT (1)
 
 enum
 {
-    COLUMN_NAME,
-    COLUMN_DISPLAY_NAME,
-    COLUMN_COMMENT,
-    N_COLUMNS
+    COLUMN_THEME_NAME,
+    COLUMN_THEME_DISPLAY_NAME,
+    COLUMN_THEME_COMMENT,
+    N_THEME_COLUMNS
+};
+
+enum
+{
+    COLUMN_RGBA_PIXBUF,
+    COLUMN_RGBA_NAME,
+    N_RGBA_COLUMNS
 };
 
 /* String arrays with the settings in combo boxes */
@@ -93,7 +101,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
     if (G_LIKELY (has_selection))
     {
         /* Get the theme name */
-        gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
+        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, -1);
 
         /* Store the new theme */
         xfconf_channel_set_string (xsettings_channel, property, name);
@@ -249,9 +257,9 @@ check_icon_themes (GtkListStore *list_store, GtkTreeView *tree_view)
                     /* Append icon theme to the list store */
                     gtk_list_store_append (list_store, &iter);
                     gtk_list_store_set (list_store, &iter,
-                                        COLUMN_NAME, file,
-                                        COLUMN_DISPLAY_NAME, theme_name,
-                                        COLUMN_COMMENT, theme_comment, -1);
+                                        COLUMN_THEME_NAME, file,
+                                        COLUMN_THEME_DISPLAY_NAME, theme_name,
+                                        COLUMN_THEME_COMMENT, theme_comment, -1);
 
                     /* Check if this is the active theme, if so, select it */
                     if (G_UNLIKELY (g_utf8_collate (theme_name, active_theme_name) == 0))
@@ -362,9 +370,9 @@ check_ui_themes (GtkListStore *list_store, GtkTreeView *tree_view)
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
                 gtk_list_store_set (list_store, &iter,
-                                    COLUMN_NAME, file,
-                                    COLUMN_DISPLAY_NAME, theme_name,
-                                    COLUMN_COMMENT, theme_comment, -1);
+                                    COLUMN_THEME_NAME, file,
+                                    COLUMN_THEME_DISPLAY_NAME, theme_name,
+                                    COLUMN_THEME_COMMENT, theme_comment, -1);
 
                 /* Check if this is the active theme, if so, select it */
                 if (G_UNLIKELY (g_utf8_collate (theme_name, active_theme_name) == 0))
@@ -483,6 +491,7 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
     GtkTreeSelection *icon_selection, *ui_selection;
     gchar            *string;
     guint             i;
+    GdkPixbuf        *pixbuf;
 
     /* check if we need to restore settings from GtkSettings */
     if (xfconf_channel_get_uint (xsettings_channel, "/Initialized", 0) < INITIALIZE_UINT)
@@ -497,15 +506,15 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
     /* Icon themes list */
     GtkWidget *icon_theme_treeview = glade_xml_get_widget (gxml, "icon_theme_treeview");
 
-    list_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_DISPLAY_NAME, GTK_SORT_ASCENDING);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (icon_theme_treeview), GTK_TREE_MODEL (list_store));
 #if GTK_CHECK_VERSION (2, 12, 0)
-    gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (icon_theme_treeview), COLUMN_COMMENT);
+    gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (icon_theme_treeview), COLUMN_THEME_COMMENT);
 #endif
 
     renderer = gtk_cell_renderer_text_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (icon_theme_treeview), 0, "", renderer, "text", COLUMN_DISPLAY_NAME, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (icon_theme_treeview), 0, "", renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
 
     check_icon_themes (list_store, GTK_TREE_VIEW (icon_theme_treeview));
 
@@ -518,15 +527,15 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
     /* Gtk (UI) themes */
     GtkWidget *ui_theme_treeview = glade_xml_get_widget (gxml, "gtk_theme_treeview");
 
-    list_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_DISPLAY_NAME, GTK_SORT_ASCENDING);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (ui_theme_treeview), GTK_TREE_MODEL (list_store));
 #if GTK_CHECK_VERSION (2, 12, 0)
-    gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (ui_theme_treeview), COLUMN_COMMENT);
+    gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (ui_theme_treeview), COLUMN_THEME_COMMENT);
 #endif
 
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (ui_theme_treeview), 0, "", renderer, "text", COLUMN_DISPLAY_NAME, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (ui_theme_treeview), 0, "", renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
 
     check_ui_themes (list_store, GTK_TREE_VIEW (ui_theme_treeview));
 
@@ -539,16 +548,36 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
     /* Subpixel (rgba) hinting Combo */
     GtkWidget *rgba_combo_box = glade_xml_get_widget (gxml, "xft_rgba_combo_box");
 
-    list_store = gtk_list_store_new (1, G_TYPE_STRING);
-    gtk_list_store_insert_with_values (list_store, NULL, 0, 0, N_("None"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 1, 0, N_("RGB"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 2, 0, N_("BGR"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 3, 0, N_("VRGB"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 4, 0, N_("VBGR"), -1);
+    list_store = gtk_list_store_new (N_RGBA_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING);
+    
+    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_none_xpm);
+    gtk_list_store_insert_with_values (list_store, NULL, 0, COLUMN_RGBA_PIXBUF, pixbuf, COLUMN_RGBA_NAME, _("None"), -1);
+    g_object_unref (G_OBJECT (pixbuf));
+
+    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_rgb_xpm);
+    gtk_list_store_insert_with_values (list_store, NULL, 1, COLUMN_RGBA_PIXBUF, pixbuf, COLUMN_RGBA_NAME, _("RGB"), -1);
+    g_object_unref (G_OBJECT (pixbuf));
+
+    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_bgr_xpm);
+    gtk_list_store_insert_with_values (list_store, NULL, 2, COLUMN_RGBA_PIXBUF, pixbuf, COLUMN_RGBA_NAME, _("BGR"), -1);
+    g_object_unref (G_OBJECT (pixbuf));
+
+    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_vrgb_xpm);
+    gtk_list_store_insert_with_values (list_store, NULL, 3, COLUMN_RGBA_PIXBUF, pixbuf, COLUMN_RGBA_NAME, _("VRGB"), -1);
+    g_object_unref (G_OBJECT (pixbuf));
+
+    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_vbgr_xpm);
+    gtk_list_store_insert_with_values (list_store, NULL, 4, COLUMN_RGBA_PIXBUF, pixbuf, COLUMN_RGBA_NAME, _("VBGR"), -1);
+    g_object_unref (G_OBJECT (pixbuf));
+
+    renderer = gtk_cell_renderer_pixbuf_new ();
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (rgba_combo_box), renderer, FALSE);
+    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (rgba_combo_box), renderer, "pixbuf", COLUMN_RGBA_PIXBUF);
 
     renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (rgba_combo_box), renderer, TRUE);
-    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (rgba_combo_box), renderer, "text", 0);
+    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (rgba_combo_box), renderer, "text", COLUMN_RGBA_NAME);
+
     gtk_combo_box_set_model (GTK_COMBO_BOX (rgba_combo_box), GTK_TREE_MODEL (list_store));
     g_object_unref (G_OBJECT (list_store));
 

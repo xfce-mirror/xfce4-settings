@@ -2,6 +2,7 @@ bin_PROGRAMS = xfce4-appearance-settings
 
 xfce4_appearance_settings_SOURCES = \
 	main.c \
+	images.h \
 	appearance-dialog_glade.h
 
 xfce4_appearance_settings_CFLAGS = \
