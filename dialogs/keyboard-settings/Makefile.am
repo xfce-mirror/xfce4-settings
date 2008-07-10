@@ -2,6 +2,8 @@ bin_PROGRAMS = xfce4-keyboard-settings
 
 xfce4_keyboard_settings_SOURCES = \
 	main.c \
+	shortcut-dialog.c \
+	shortcut-dialog.h \
 	keyboard-dialog_glade.h
 
 xfce4_keyboard_settings_CFLAGS = \

@@ -1,3 +1,14 @@
+2008-07-10	Jannis Pohlmann <jannis@xfce.org>
+
+	* dialogs/keyboard-settings/keyboard-dialog.glade,
+	  dialogs/keyboard-settings/Makefile.am,
+	  dialogs/keyboard-settings/main.c,
+	  dialogs/keyboard-settings/shortcut-dialog.{c,h}:
+	  Revamped the dialog a bit. Add dialog widget for entering
+	  shortcuts. Rewrite the settings dialog and add support for
+	  loading, saving, modifying and removing shortcuts. Not 
+	  supported yet: Adding new ones. 
+
 2008-07-04	Nick Schermer <nick@xfce.org>
 
 	* dialogs/mouse-settings/main.c: Bring support for the
@@ -38,7 +49,7 @@
 
 2008-07-02	Jannis Pohlmann <jannis@xfce.org>
 
-	* dialogs/appearance-dialog/main.c: Load icon themes properly.
+	* dialogs/appearance-settings/main.c: Load icon themes properly.
 	  I used some of the code from the old mcs ui plugin.
 	* AUTHORS: I took the liberty to add my name here. 
 
