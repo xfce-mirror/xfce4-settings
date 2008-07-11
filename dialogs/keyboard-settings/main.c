@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include <glib.h>
-
+#include <dbus/dbus-glib.h>
 #include <gtk/gtk.h>
 
 #include <glade/glade.h>

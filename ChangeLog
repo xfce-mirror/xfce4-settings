@@ -1,3 +1,13 @@
+2008-07-11	Nick Schermer <nick@xfce.org>
+
+	* dialogs/appearance-settings/main.c: Some code cleanups and
+	  plug a stupid leak.
+	* dialogs/appearance-settings/appearance-dialog.glade: Redesign
+	  the dialog a bit, a notebook inside a notebook is not practical.
+	* dialogs/keyboard-settings/main.c, 
+	  dialogs/keyboard-settings/shortcut-dialog.c: Fix includes to make
+	  it compile.
+
 2008-07-11	Jannis Pohlmann <jannis@xfce.org>
 
 	* TODO: Add TODO file and fill it with the stuff that's still
