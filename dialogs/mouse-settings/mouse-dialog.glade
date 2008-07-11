@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Tue Jul  1 22:30:33 2008 -->
+<!--Generated with glade3 3.4.5 on Fri Jul 11 21:11:25 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="mouse-settings-dialog">
@@ -132,6 +132,7 @@
                                       <widget class="GtkHScale" id="mouse_motion_acceleration">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
+                                        <property name="tooltip" translatable="yes">The pointer will go 'acceleration' times as fast when it travels more than 'threshold' pixels in a short time</property>
                                         <property name="adjustment">1 1 30 1 5 0</property>
                                         <property name="digits">0</property>
                                         <property name="draw_value">False</property>
@@ -190,6 +191,7 @@
                                       <widget class="GtkHScale" id="mouse_motion_threshold">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
+                                        <property name="tooltip" translatable="yes">The number of pixels the pointer has to moved in a short time before the acceleration starts</property>
                                         <property name="adjustment">1 1 20 1 5 0</property>
                                         <property name="fill_level">0</property>
                                         <property name="digits">0</property>
@@ -281,6 +283,7 @@
                                       <widget class="GtkHScale" id="mouse_dnd_threshold">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
+                                        <property name="tooltip" translatable="yes">The number of pixels the pointer can move before dragging</property>
                                         <property name="adjustment">1 1 50 1 5 0</property>
                                         <property name="digits">0</property>
                                         <property name="draw_value">False</property>
@@ -370,6 +373,7 @@
                                       <widget class="GtkHScale" id="mouse_double_click_speed">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
+                                        <property name="tooltip" translatable="yes">The maximum time allowed between two clicks for them to be considered a double click</property>
                                         <property name="adjustment">100 100 2000 10 100 0</property>
                                         <property name="digits">0</property>
                                         <property name="draw_value">False</property>
