@@ -1,10 +1,21 @@
 2008-07-13	Nick Schermer <nick@xfce.org>
 
+	* xfce4-settings-manager/main.c: Add basic version information
+	  and gtk_init error. Destroy dialog after running it.
+	* xfce4-settings-manager/xfce-settings-manager-dialog.c: Free
+	  the icon string.
+	* dialogs/accessibility-settings/main.c, dialogs/mouse-settings/main.c,
+	  dialogs/appearance-settings/main.c, dialogs/keyboard-settings/main.c,
+	  xfce4-settings-helper/main.c: Don't include <stdio.h>. Duno why I did
+	  that.
+
+2008-07-13	Nick Schermer <nick@xfce.org>
+
 	* dialogs/accessibility-settings/main.c,
 	  dialogs/mouse-settings/main.c,
 	  dialogs/appearance-settings/main.c,
 	  dialogs/keyboard-settings/main.c,
-	  xfce4-settings-helper/main.c: Add same ad improved error 
+	  xfce4-settings-helper/main.c: Add same and improved error 
 	  messages and version information.
 
 2008-07-13	Nick Schermer <nick@xfce.org>

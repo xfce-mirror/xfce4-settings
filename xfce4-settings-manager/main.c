@@ -21,20 +21,53 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 
 #include "xfce-settings-manager-dialog.h"
+
+static gboolean opt_version = FALSE;
+
+static GOptionEntry option_entries[] = {
+    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, 
+      N_("Version information"), NULL },
+    { NULL }
+};
 
 int
 main(int argc,
      char **argv)
 {
     GtkWidget *dialog;
+    GError *error = NULL;
 
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
-    gtk_init(&argc, &argv);
+    if(!gtk_init_with_args(&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error)) {
+        if(G_LIKELY(error)) {
+            g_print("xfce4-settings-manager: %s.\n", error->message);
+            g_print(_("Type '%s --help' for usage."), "xfce4-settings-manager");
+            g_print("\n");
+
+            g_error_free(error);
+        } else {
+            g_error("Unable to open display.");
+        }
+        return EXIT_FAILURE;
+    }
+
+    if (G_UNLIKELY (opt_version)) {
+        g_print("xfce4-settings-manager %s\n\n", PACKAGE_VERSION);
+        g_print("%s\n", "Copyright (c) 2008");
+        g_print("\t%s\n\n", _("The Xfce development team. All rights reserved."));
+        g_print(_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
+        g_print("\n");
+        return EXIT_SUCCESS;
+    }
 
     dialog = xfce_settings_manager_dialog_new();
     gtk_widget_show(dialog);
@@ -43,5 +76,7 @@ main(int argc,
 
     gtk_main();
 
-    return 0;
+    gtk_widget_destroy(dialog);
+
+    return EXIT_SUCCESS;
 }

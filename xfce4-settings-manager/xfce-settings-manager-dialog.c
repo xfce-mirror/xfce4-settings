@@ -263,6 +263,7 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
             g_free(comment);
             g_free(exec);
             g_free(snotify);
+            g_free(icon);
             if(pix)
                 g_object_unref(G_OBJECT(pix));
             g_object_unref(G_OBJECT(dentry));
