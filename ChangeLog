@@ -20,6 +20,12 @@
 	  keys work; don't call channel_get functions when not needed.
 	* dialogs/keyboard-settings/main.c: Release the channels after
 	  running the dialog, also destroy the dialog after using it.
+	* configure.ac.in: make some dependencies options, like libnotify,
+	  hal, xf86misc. Fix this in the code too.
+	* xfce4-settings-helper/accessx.c: Fix showing notifications on
+	  systems that don't have the daemon running/installed, ie. avoid
+	  a bunch of dbus errors. Make this code cleaner too.
+	* TODO: Remove some items that have been fixed. Add a new one.
 
 2008-07-11	Nick Schermer <nick@xfce.org>
 
