@@ -47,6 +47,11 @@ enum
 };
 
 
+static XfconfChannel *xsettings_channel;
+static XfconfChannel *xkb_channel;
+static XfconfChannel *kbd_channel;
+
+
 
 gboolean opt_version = FALSE;
 
@@ -406,9 +411,6 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
 {
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;
-  XfconfChannel   *xsettings_channel;
-  XfconfChannel   *xkb_channel;
-  XfconfChannel   *kbd_channel;
   GtkAdjustment   *net_cursor_blink_time_scale;
   GtkAdjustment   *xkb_key_repeat_delay_scale;
   GtkAdjustment   *xkb_key_repeat_rate_scale;
@@ -419,10 +421,6 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
   GtkWidget       *add_shortcut_button;
   GtkWidget       *delete_shortcut_button;
   GtkWidget       *dialog;
-
-  xsettings_channel = xfconf_channel_new ("xsettings");
-  xkb_channel = xfconf_channel_new ("xkb");
-  kbd_channel = xfconf_channel_new ("xfce4-keyboard-shortcuts");
 
   net_cursor_blink_check = glade_xml_get_widget (gxml, "net_cursor_blink_check");
   net_cursor_blink_time_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "net_cursor_blink_time_scale")));
@@ -512,6 +510,11 @@ main(int argc, char **argv)
     }
 
   xfconf_init(NULL);
+  
+  /* load channels */
+  xsettings_channel = xfconf_channel_new ("xsettings");
+  xkb_channel = xfconf_channel_new ("xkb");
+  kbd_channel = xfconf_channel_new ("xfce4-keyboard-shortcuts");
 
   /* Parse Glade XML */
   gxml = glade_xml_new_from_buffer (keyboard_dialog_glade, keyboard_dialog_glade_length, NULL, NULL);
