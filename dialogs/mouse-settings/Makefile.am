@@ -1,7 +1,19 @@
-bin_PROGRAMS = xfce4-mouse-settings 
+# $Id$
+
+INCLUDES = \
+	-I${top_srcdir} \
+	-DDATADIR=\"$(datadir)\" \
+	-DSRCDIR=\"$(top_srcdir)\" \
+	-DLOCALEDIR=\"$(localedir)\" \
+	-DG_LOG_DOMAIN=\"xfce4-mouse-settings\" \
+	$(PLATFORM_CPPFLAGS)
+
+bin_PROGRAMS = \
+	xfce4-mouse-settings
+
 xfce4_mouse_settings_SOURCES = \
 	main.c \
-	mouse-dialog-glade.h
+	mouse-dialog_glade.h
 
 xfce4_mouse_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -13,10 +25,11 @@ xfce4_mouse_settings_CFLAGS = \
 	$(XI_CFLAGS) \
 	$(XCURSOR_CFLAGS) \
 	$(HAL_CFLAGS) \
-	$(XFCONF_CFLAGS) \
-	-DDATADIR=\"$(datadir)\" \
-	-DSRCDIR=\"$(top_srcdir)\" \
-	-DLOCALEDIR=\"$(localedir)\"
+	$(XFCONF_CFLAGS)
+
+xfce4_mouse_settings_LDFLAGS = \
+	-no-undefined \
+	$(PLATFORM_LDFLAGS)
 
 xfce4_mouse_settings_LDADD = \
 	$(GTK_LIBS) \
@@ -29,16 +42,12 @@ xfce4_mouse_settings_LDADD = \
 	$(XI_LIBS) \
 	$(XCURSOR_LIBS)
 
-INCLUDES = \
-	-I${top_srcdir} \
-	-DG_LOG_DOMAIN=\"Xfce4-mouse-settings\"
-
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-mouse-dialog-glade.h
+	mouse-dialog_glade.h
 
-mouse-dialog-glade.h: mouse-dialog.glade
+mouse-dialog_glade.h: mouse-dialog.glade
 	exo-csource --static --name=mouse_dialog_glade $< >$@
 
 endif
@@ -53,8 +62,10 @@ settings_DATA = $(desktop_DATA)
 @INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
-	$(desktop_in_files)							\
+	$(desktop_in_files) \
 	mouse-dialog.glade
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
+
+# vi:set ts=8 sw=8 noet ai nocindent syntax=automake:

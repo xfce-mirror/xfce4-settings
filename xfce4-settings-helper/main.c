@@ -62,7 +62,7 @@ main (gint argc, gchar **argv)
     pid_t    pid;
 
     /* setup translation domain */
-    xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+    xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     /* initialize the gthread system */
     if (!g_thread_supported ())
@@ -74,8 +74,8 @@ main (gint argc, gchar **argv)
         if (G_LIKELY (error))
         {
             /* print error */
-            g_print ("xfce4-settings-helper: %s.\n", error->message);
-            g_print (_("Type '%s --help' for usage."), "xfce4-settings-helper");
+            g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
+            g_print (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
             g_print ("\n");
 
             /* cleanup */
@@ -92,7 +92,7 @@ main (gint argc, gchar **argv)
     /* check if we should print version information */
     if (G_UNLIKELY (opt_version))
     {
-        g_print ("xfce4-settings-helper %s\n\n", PACKAGE_VERSION);
+        g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
         g_print ("%s\n", "Copyright (c) 2008");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);

@@ -740,8 +740,8 @@ main(gint argc, gchar **argv)
         if (G_LIKELY (error))
         {
             /* print error */
-            g_print ("xfce4-appearance-settings: %s.\n", error->message);
-            g_print (_("Type '%s --help' for usage."), "xfce4-appearance-settings");
+            g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
+            g_print (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
             g_print ("\n");
 
             /* cleanup */
@@ -758,7 +758,7 @@ main(gint argc, gchar **argv)
     /* print version information */
     if (G_UNLIKELY (opt_version))
     {
-        g_print ("Xfce4-appearance-settings %s (Xfce %s)\n\n", PACKAGE_VERSION, xfce_version_string ());
+        g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
         g_print ("%s\n", "Copyright (c) 2004-2008");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);

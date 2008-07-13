@@ -1,3 +1,5 @@
+# $Id$
+
 SUBDIRS = \
 	dialogs \
 	xfce4-settings-helper \

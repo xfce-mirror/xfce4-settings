@@ -1,3 +1,5 @@
+# $Id$
+
 SUBDIRS = \
 	appearance-settings \
 	accessibility-settings \

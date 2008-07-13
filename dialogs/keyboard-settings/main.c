@@ -501,8 +501,8 @@ main(int argc, char **argv)
       if (G_LIKELY (error))
         {
           /* print error */
-          g_print ("xfce4-accessibility-settings: %s.\n", error->message);
-          g_print (_("Type '%s --help' for usage."), "xfce4-accessibility-settings");
+          g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
+          g_print (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
           g_print ("\n");
 
           /* cleanup */
@@ -519,7 +519,7 @@ main(int argc, char **argv)
   /* Print version information and quit when the user entered --version or -v */
   if (G_UNLIKELY (opt_version))
     {
-      g_print ("xfce4-settings-helper %s\n\n", PACKAGE_VERSION);
+      g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
       g_print ("%s\n", "Copyright (c) 2008");
       g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
       g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
