@@ -16,39 +16,36 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
-#include <string.h>
-
-#include <glib.h>
-
-#if defined(GETTEXT_PACKAGE)
-#include <glib/gi18n-lib.h>
-#else
-#include <glib/gi18n.h>
 #endif
 
+#ifdef HAVE_STDIO_H
+#include <stdio.h>
+#endif
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+
+#include <glib.h>
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
+
 #include "accessibility-dialog_glade.h"
 
-typedef struct {
-    GtkWidget *slave;
-    XfconfChannel *channel;
-} PropertyPair;
 
-gboolean version = FALSE;
-
+gboolean opt_version = FALSE;
 static GOptionEntry entries[] =
 {
-    {    "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
-        N_("Version information"),
-        NULL
-    },
+    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { NULL }
 };
+
+static XfconfChannel *accessx_channel;
 
 void
 cb_xkb_accessx_mouse_toggled (GtkToggleButton *button, gpointer user_data)
@@ -85,8 +82,6 @@ cb_xkb_accessx_bounce_toggled (GtkToggleButton *button, gpointer user_data)
 GtkWidget *
 accessibility_settings_dialog_new_from_xml (GladeXML *gxml)
 {
-    XfconfChannel *accessx_channel = xfconf_channel_new("accessx");
-
     GtkWidget *xkb_accessx_mouse_check = glade_xml_get_widget (gxml, "xkb_accessx_mouse_check");
     GtkWidget *xkb_accessx_mouse_speed_scale =(GtkWidget *)gtk_range_get_adjustment(GTK_RANGE(glade_xml_get_widget (gxml, "xkb_accessx_mouse_speed_scale")));
     GtkWidget *xkb_accessx_mouse_delay_scale =(GtkWidget *)gtk_range_get_adjustment(GTK_RANGE(glade_xml_get_widget (gxml, "xkb_accessx_mouse_delay_scale")));
@@ -160,54 +155,84 @@ accessibility_settings_dialog_new_from_xml (GladeXML *gxml)
                             G_TYPE_INT,
                             (GObject *)xkb_accessx_slow_delay_scale, "value");
 
-
-
-    GtkWidget *dialog = glade_xml_get_widget (gxml, "accessibility-settings-dialog");
-
-
-    gtk_widget_show_all(GTK_DIALOG(dialog)->vbox);
-    return dialog;
+    return glade_xml_get_widget (gxml, "accessibility-settings-dialog");
 }
 
 int
 main(int argc, char **argv)
 {
-    GladeXML *gxml;
-    GError *cli_error = NULL;
+    GladeXML  *gxml;
+    GError    *error = NULL;
+    GtkWidget *dialog;
 
-    #ifdef ENABLE_NLS
-    bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-    textdomain (GETTEXT_PACKAGE);
-    #endif
+    /* setup translation domain */
+    xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
-    if(!gtk_init_with_args(&argc, &argv, _("."), entries, PACKAGE, &cli_error))
+    /* initialize Gtk+ */
+    if(!gtk_init_with_args(&argc, &argv, "", entries, PACKAGE, &error))
     {
-        if (cli_error != NULL)
+        if (G_LIKELY (error))
         {
-            g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, cli_error->message, PACKAGE_NAME);
-            g_error_free (cli_error);
-            return 1;
+            /* print error */
+            g_print ("xfce4-accessibility-settings: %s.\n", error->message);
+            g_print (_("Type '%s --help' for usage."), "xfce4-accessibility-settings");
+            g_print ("\n");
+
+            /* cleanup */
+            g_error_free (error);
         }
+        else
+        {
+            g_error ("Unable to open display.");
+        }
+        
+        return EXIT_FAILURE;
     }
 
-    if(version)
+    /* check if we should print version information */
+    if (G_UNLIKELY (opt_version))
     {
-        g_print("%s\n", PACKAGE_STRING);
-        return 0;
+        g_print ("xfce4-settings-helper %s\n\n", PACKAGE_VERSION);
+        g_print ("%s\n", "Copyright (c) 2008");
+        g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
+        g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
+        g_print ("\n");
+
+        return EXIT_SUCCESS;
     }
 
-    xfconf_init(NULL);
+    /* initialize xfconf */
+    if (!xfconf_init (&error))
+    {
+        /* print error and exit */
+        g_error ("Failed to connect to xfconf daemon: %s.", error->message);
+        g_error_free (error);
 
+        return EXIT_FAILURE;
+    }
+    
+    /* open the channel */
+    accessx_channel = xfconf_channel_new("accessx");
+
+    /* load the glade interface */
     gxml = glade_xml_new_from_buffer (accessibility_dialog_glade,
                                       accessibility_dialog_glade_length,
                                       NULL, NULL);
 
-    GtkWidget *dialog = accessibility_settings_dialog_new_from_xml (gxml);
+    /* get the dialog */
+    dialog = accessibility_settings_dialog_new_from_xml (gxml);
 
-    gtk_dialog_run(GTK_DIALOG(dialog));
+    /* run the dialog */
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    
+    /* destroy the dialog */
+    gtk_widget_destroy (dialog);
+    
+    /* release the channel */
+    g_object_unref (G_OBJECT (accessx_channel));
 
+    /* shutdown xfconf */
     xfconf_shutdown();
 
-    return 0;
+    return EXIT_SUCCESS;
 }

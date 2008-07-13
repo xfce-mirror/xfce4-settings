@@ -491,25 +491,48 @@ main(int argc, char **argv)
   xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
   /* Initialize GTK+ and parse command line options */
-  if(G_UNLIKELY (!gtk_init_with_args (&argc, &argv, _("."), entries, PACKAGE, &error)))
+  if(G_UNLIKELY (!gtk_init_with_args (&argc, &argv, "", entries, PACKAGE, &error)))
     {
       /* Print error if that failed */
-      if (G_LIKELY (error != NULL))
+      if (G_LIKELY (error))
         {
-          g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, error->message, PACKAGE_NAME);
+          /* print error */
+          g_print ("xfce4-accessibility-settings: %s.\n", error->message);
+          g_print (_("Type '%s --help' for usage."), "xfce4-accessibility-settings");
+          g_print ("\n");
+
+          /* cleanup */
           g_error_free (error);
-          return EXIT_FAILURE;
         }
+      else
+        {
+          g_error ("Unable to open display.");
+        }
+        
+        return EXIT_FAILURE;
     }
 
   /* Print version information and quit when the user entered --version or -v */
   if (G_UNLIKELY (opt_version))
     {
-      g_print ("%s\n", PACKAGE_STRING);
+      g_print ("xfce4-settings-helper %s\n\n", PACKAGE_VERSION);
+      g_print ("%s\n", "Copyright (c) 2008");
+      g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
+      g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
+      g_print ("\n");
+      
       return EXIT_SUCCESS;
     }
 
-  xfconf_init(NULL);
+  /* Initialize xfconf */
+  if (!xfconf_init (&error))
+    {
+      /* print error and exit */
+      g_error ("Failed to connect to xfconf daemon: %s.", error->message);
+      g_error_free (error);
+
+      return EXIT_FAILURE;
+    }
   
   /* load channels */
   xsettings_channel = xfconf_channel_new ("xsettings");
@@ -528,7 +551,6 @@ main(int argc, char **argv)
   g_object_unref (xsettings_channel);
   g_object_unref (xkb_channel);
   g_object_unref (kbd_channel);
-
 
   xfconf_shutdown();
 

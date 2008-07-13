@@ -1062,17 +1062,19 @@ main(gint argc, gchar **argv)
     /* initialize Gtk+ */
     if (!gtk_init_with_args (&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error))
     {
-        if (G_LIKELY (error == NULL))
+        if (G_LIKELY (error))
         {
-            g_critical (_("Failed to open display"));
-        }
-        else
-        {
-            /* show error message */
-            g_critical (error->message);
+            /* print error */
+            g_print ("xfce4-mouse-settings: %s.\n", error->message);
+            g_print (_("Type '%s --help' for usage."), "xfce4-mouse-settings");
+            g_print ("\n");
 
             /* cleanup */
             g_error_free (error);
+        }
+        else
+        {
+            g_error ("Unable to open display.");
         }
 
         return EXIT_FAILURE;

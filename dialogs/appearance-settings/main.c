@@ -740,17 +740,19 @@ main(gint argc, gchar **argv)
     /* initialize Gtk+ */
     if (!gtk_init_with_args (&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error))
     {
-        if (G_LIKELY (error == NULL))
+        if (G_LIKELY (error))
         {
-            g_critical (_("Failed to open display"));
-        }
-        else
-        {
-            /* show error message */
-            g_critical (error->message);
+            /* print error */
+            g_print ("xfce4-appearance-settings: %s.\n", error->message);
+            g_print (_("Type '%s --help' for usage."), "xfce4-appearance-settings");
+            g_print ("\n");
 
             /* cleanup */
             g_error_free (error);
+        }
+        else
+        {
+            g_error ("Unable to open display.");
         }
 
         return EXIT_FAILURE;
@@ -769,7 +771,14 @@ main(gint argc, gchar **argv)
     }
 
     /* initialize xfconf */
-    xfconf_init (NULL);
+    if (!xfconf_init (&error))
+    {
+        /* print error and exit */
+        g_error ("Failed to connect to xfconf daemon: %s.", error->message);
+        g_error_free (error);
+
+        return EXIT_FAILURE;
+    }
 
     /* open the xsettings channel */
     xsettings_channel = xfconf_channel_new ("xsettings");

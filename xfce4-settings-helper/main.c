@@ -74,12 +74,20 @@ main (gint argc, gchar **argv)
     /* initialize gtk */
     if(!gtk_init_with_args (&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error))
     {
-        /* print error */
-        g_error ("Failed to initialize GTK+: %s.", (error && error->message) ? error->message : "Unable to open display");
-
-        /* cleanup */
         if (G_LIKELY (error))
+        {
+            /* print error */
+            g_print ("xfce4-settings-helper: %s.\n", error->message);
+            g_print (_("Type '%s --help' for usage."), "xfce4-settings-helper");
+            g_print ("\n");
+
+            /* cleanup */
             g_error_free (error);
+        }
+        else
+        {
+            g_error ("Unable to open display.");
+        }
 
         return EXIT_FAILURE;
     }
