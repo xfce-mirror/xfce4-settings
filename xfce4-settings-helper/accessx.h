@@ -1,3 +1,4 @@
+/* $Id$ */
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
  *
@@ -19,6 +20,19 @@
  *  by Olivier Fourdan.
  */
 
+#ifndef __ACCESSX_H__
+#define __ACCESSX_H__
 
-void
-accessx_notification_init (XfconfChannel *channel);
+typedef struct _XfceAccessxHelperClass XfceAccessxHelperClass;
+typedef struct _XfceAccessxHelper      XfceAccessxHelper;
+
+#define XFCE_TYPE_ACCESSX_HELPER            (xfce_accessx_helper_get_type ())
+#define XFCE_ACCESSX_HELPER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_ACCESSX_HELPER, XfceAccessxHelper))
+#define XFCE_ACCESSX_HELPER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_ACCESSX_HELPER, XfceAccessxHelperClass))
+#define XFCE_IS_ACCESSX_HELPER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_ACCESSX_HELPER))
+#define XFCE_IS_ACCESSX_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_ACCESSX_HELPER))
+#define XFCE_ACCESSX_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_ACCESSX_HELPER, XfceAccessxHelperClass))
+
+GType xfce_accessx_helper_get_type (void) G_GNUC_CONST;
+
+#endif /* !__ACCESSX_H__ */

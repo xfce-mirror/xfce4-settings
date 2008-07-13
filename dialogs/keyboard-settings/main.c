@@ -479,10 +479,6 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
   gtk_widget_show_all(dialog);
   gtk_widget_hide(dialog);
 
-  g_object_unref (xsettings_channel);
-  g_object_unref (xkb_channel);
-  g_object_unref (kbd_channel);
-
   return dialog;
 }
 
@@ -523,6 +519,13 @@ main(int argc, char **argv)
   /* Create settings dialog and run it */
   dialog = keyboard_settings_dialog_new_from_xml (gxml);
   gtk_dialog_run(GTK_DIALOG(dialog));
+  
+  gtk_widget_destroy (dialog);
+  
+  g_object_unref (xsettings_channel);
+  g_object_unref (xkb_channel);
+  g_object_unref (kbd_channel);
+
 
   xfconf_shutdown();
 

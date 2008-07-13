@@ -1,3 +1,4 @@
+/* $Id$ */
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
  *
@@ -23,191 +24,220 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
 
 #include <X11/Xlib.h>
-
 #include <X11/XKBlib.h>
 
 #ifdef HAVE_XF86MISC
 #include <X11/extensions/xf86misc.h>
 #endif
 
-#define HAVE_XKB
-
-#include <string.h>
-
 #include <glib.h>
-
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
-
-#include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
-#include <libnotify/notify.h>
+#include <libxfce4util/libxfce4util.h>
 
-#include "xkb.h"
+#include <xfce4-settings-helper/xkb.h>
 
-static gboolean xkbpresent = FALSE;
 
-static XfconfChannel *xkb_channel;
 
-static gboolean xkb_initialized = FALSE;
+static void            xfce_xkb_helper_class_init                     (XfceXkbHelperClass *klass);
+static void            xfce_xkb_helper_init                           (XfceXkbHelper      *helper);
+static void            xfce_xkb_helper_finalize                       (GObject            *object);
+static void            xfce_xkb_helper_set_auto_repeat_mode           (XfceXkbHelper      *helper);
+static void            xfce_xkb_helper_set_repeat_rate                (XfceXkbHelper      *helper);
+static void            xfce_xkb_helper_channel_property_changed       (XfconfChannel      *channel,
+                                                                       const gchar        *property_name,
+                                                                       const GValue       *value,
+                                                                       XfceXkbHelper      *helper);
 
-#define ALL -1
 
-static gboolean
-load_xkb_settings (XfconfChannel *channel);
+
+struct _XfceXkbHelperClass
+{
+    GObjectClass __parent__;
+};
+
+struct _XfceXkbHelper
+{
+    GObject  __parent__;
+
+    /* xfconf channel */
+    XfconfChannel      *channel;
+
+    /* if xf86misc is present */
+    guint               has_xf86misc : 1;
+};
+
+
+
+G_DEFINE_TYPE (XfceXkbHelper, xfce_xkb_helper, G_TYPE_OBJECT);
+
+
 
 static void
-set_repeat (int key, int auto_repeat_mode)
+xfce_xkb_helper_class_init (XfceXkbHelperClass *klass)
 {
-    XKeyboardControl values;
-    values.auto_repeat_mode = auto_repeat_mode;
+  GObjectClass *gobject_class;
 
-    gdk_flush ();
-    gdk_error_trap_push ();
-    if (key != ALL)
+  gobject_class = G_OBJECT_CLASS (klass);
+  gobject_class->finalize = xfce_xkb_helper_finalize;
+}
+
+
+
+static void
+xfce_xkb_helper_init (XfceXkbHelper *helper)
+{
+    gint dummy;
+
+    /* init */
+    helper->channel = NULL;
+    helper->has_xf86misc = FALSE;
+
+    if (XkbQueryExtension (GDK_DISPLAY (), &dummy, &dummy, &dummy, &dummy, &dummy))
     {
-        values.key = key;
-        XChangeKeyboardControl (GDK_DISPLAY (), KBKey | KBAutoRepeatMode, &values);
+#ifdef HAVE_XF86MISC
+        /* chek for xf86misc */
+        helper->has_xf86misc = XF86MiscQueryVersion (GDK_DISPLAY (), &dummy, &dummy);
+#endif
+
+        /* open the channel */
+        helper->channel = xfconf_channel_new ("xkb");
+
+        /* monitor channel changes */
+        g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_xkb_helper_channel_property_changed), helper);
+
+        /* load settings */
+        xfce_xkb_helper_set_auto_repeat_mode (helper);
+        xfce_xkb_helper_set_repeat_rate (helper);
     }
     else
     {
-        XChangeKeyboardControl (GDK_DISPLAY (), KBAutoRepeatMode, &values);
+        /* warning */
+        g_critical ("Failed to initialize the Xkb extension.");
     }
+}
+
+
+
+static void
+xfce_xkb_helper_finalize (GObject *object)
+{
+    XfceXkbHelper *helper = XFCE_XKB_HELPER (object);
+
+    /* release the channel */
+    if (G_LIKELY (helper->channel))
+        g_object_unref (G_OBJECT (helper->channel));
+
+    (*G_OBJECT_CLASS (xfce_xkb_helper_parent_class)->finalize) (object);
+}
+
+
+
+static void
+xfce_xkb_helper_set_auto_repeat_mode (XfceXkbHelper *helper)
+{
+    XKeyboardControl values;
+    gboolean         repeat;
+
+    /* load setting */
+    repeat = xfconf_channel_get_bool (helper->channel, "/Xkb/KeyRepeat", FALSE);
+
+    /* flush and avoid crashes on x errors */
+    gdk_flush ();
+    gdk_error_trap_push ();
+
+    /* set key repeat */
+    values.auto_repeat_mode = repeat ? 1 : 0;
+
+    /* set key repeat */
+    XChangeKeyboardControl (GDK_DISPLAY (), KBAutoRepeatMode, &values);
+
+    /* flush errors and pop trap */
     gdk_flush ();
     gdk_error_trap_pop ();
 }
 
+
+
 static void
-set_repeat_rate (int delay, int rate)
+xfce_xkb_helper_set_repeat_rate (XfceXkbHelper *helper)
 {
 #ifdef HAVE_XF86MISC
     XF86MiscKbdSettings values;
 #endif
+    XkbDescPtr          xkb;
+    gint                delay, rate;
+
+    /* load settings */
+    delay = xfconf_channel_get_int (helper->channel, "/Xkb/KeyRepeat/Delay", 0);
+    rate = xfconf_channel_get_int (helper->channel, "/Xkb/KeyRepeat/Rate", 0);
+
+    /* flush and avoid crashes on x errors */
+    gdk_flush ();
+    gdk_error_trap_push ();
 
 #ifdef HAVE_XF86MISC
-    if (miscpresent)
+    /* update the xkb misc keyboard delay and rate */
+    if (G_LIKELY (helper->has_xf86misc ))
     {
-        gdk_flush ();
-        gdk_error_trap_push ();
         XF86MiscGetKbdSettings (GDK_DISPLAY (), &values);
         values.delay = delay;
         values.rate = rate;
         XF86MiscSetKbdSettings (GDK_DISPLAY (), &values);
-        gdk_flush ();
-        gdk_error_trap_pop ();
     }
 #endif
 
-#ifdef HAVE_XKB
-    if (xkbpresent)
+    /* allocate xkb structure */
+    xkb = XkbAllocKeyboard ();
+    if (G_LIKELY (xkb))
     {
-        XkbDescPtr xkb = XkbAllocKeyboard ();
-        if (xkb)
-        {
-            gdk_error_trap_push ();
-            XkbGetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
-            xkb->ctrls->repeat_delay = delay;
-            xkb->ctrls->repeat_interval = 1000 / rate;
-            XkbSetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
-            XFree (xkb);
-            gdk_flush ();
-            gdk_error_trap_pop ();
-        }
-        else
-        {
-            g_warning ("XkbAllocKeyboard() returned null pointer");
-        }
+        /* load controls */
+        XkbGetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
+
+        /* set new values */
+        xkb->ctrls->repeat_delay = delay;
+        xkb->ctrls->repeat_interval = 1000 / rate;
+
+        /* set updated controls */
+        XkbSetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
+
+        /* cleanup */
+        XFree (xkb);
     }
-#endif
+
+    /* flush errors and pop trap */
+    gdk_flush ();
+    gdk_error_trap_pop ();
 }
 
 
 
 static void
-cb_xkb_channel_property_changed(XfconfChannel *channel, const gchar *name, const GValue *value, gpointer user_data)
+xfce_xkb_helper_channel_property_changed (XfconfChannel *channel,
+                                          const gchar   *property_name,
+                                          const GValue  *value,
+                                          XfceXkbHelper *helper)
 {
-    gint rate = 0;
-    if (!strcmp (name, "/Xkb/KeyRepeat"))
+    g_return_if_fail (helper->channel == channel);
+
+    if (strcmp (property_name, "/Xkb/KeyRepeat") == 0)
     {
-        gboolean key_repeat = g_value_get_boolean (value);
-        set_repeat (ALL, key_repeat == TRUE?1:0);
+        /* update auto repeat mode */
+        xfce_xkb_helper_set_auto_repeat_mode (helper);
     }
-
-    /* TODO */
-    if (!strcmp (name, "/Xkb/KeyRepeat/Delay"))
+    else if (strcmp (property_name, "/Xkb/KeyRepeat/Delay") == 0
+             || strcmp (property_name, "/Xkb/KeyRepeat/Rate") == 0)
     {
-        rate = xfconf_channel_get_int (channel, "/Xkb/KeyRepeat/Rate", 0);
-        set_repeat_rate (g_value_get_int (value), rate);
+        /* update repeat rate */
+        xfce_xkb_helper_set_repeat_rate (helper);
     }
-    if (!strcmp (name, "/Xkb/KeyRepeat/Rate"))
-    {
-        rate = xfconf_channel_get_int (channel, "/Xkb/KeyRepeat/Delay", 0);
-        set_repeat_rate (rate, g_value_get_int (value));
-    }
-}
-
-gint
-xkb_notification_init (XfconfChannel *channel)
-{
-    g_return_val_if_fail (xkb_initialized == FALSE, 1);
-
-    int xkbmajor = XkbMajorVersion, xkbminor = XkbMinorVersion;
-    int xkbopcode, xkbevent, xkberror;
-    xkb_channel = channel;
-
-#ifdef DEBUG
-    g_message ("Querying Xkb extension");
-#endif
-    if (XkbQueryExtension (GDK_DISPLAY (), &xkbopcode, &xkbevent, &xkberror, &xkbmajor, &xkbminor))
-    {
-#ifdef DEBUG
-        g_message ("Xkb extension found");
-#endif
-        xkbpresent = TRUE;
-    }
-    else
-    {
-#ifdef DEBUG
-        g_message ("Your X server does not support Xkb extension");
-#endif
-        xkbpresent = FALSE;
-    }
-#ifdef DEBUG
-    g_warning ("This build doesn't include support for Xkb extension");
-#endif
-    
-    g_signal_connect(G_OBJECT(channel), "property-changed", (GCallback)cb_xkb_channel_property_changed, NULL);
-
-    xkb_initialized = TRUE;
-
-    /* Load the xkb-settings
-     * (this is done from inside the main loop because it does
-     *  not seem to work otherwise, probably caused by the gdk_error_*
-     *  functions called in 'set_repeat' and 'set_repeat_rate')
-     */
-    g_timeout_add (100, (GSourceFunc)load_xkb_settings, channel);
-
-    return xkbpresent;
-}
-
-
-static gboolean
-load_xkb_settings (XfconfChannel *channel)
-{
-    gboolean repeat;
-    gint rate, delay;
-
-    repeat = xfconf_channel_get_bool (channel, "/Xkb/KeyRepeat", FALSE);
-    rate = xfconf_channel_get_int (channel, "/Xkb/KeyRepeat/Rate", 0);
-    delay = xfconf_channel_get_int (channel, "/Xkb/KeyRepeat/Delay", 0);
-
-    set_repeat (ALL, repeat == TRUE?1:0);
-    set_repeat_rate (delay, rate);
-    
-    return FALSE;
 }

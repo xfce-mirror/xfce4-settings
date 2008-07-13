@@ -1,3 +1,26 @@
+2008-07-13	Nick Schermer <nick@xfce.org>
+
+	* dialogs/mouse-settings/mouse-dialog.glade,
+	  dialogs/mouse-settings/main.c,
+	  dialogs/mouse-settings/Makefile.am,
+	  xfce4-settings-helper/pointers.h,
+	  xfce4-settings-helper/pointers.c: Merge multi pointer
+	  branch code.
+	* dialogs/keyboard-settings/main.c: Release the channels
+	  after running the dialog.
+	* xfce4-settings-helper/accessx.c, 
+	  xfce4-settings-helper/accessx.h,
+	  xfce4-settings-helper/xkb.c,
+	  xfce4-settings-helper/xkb.h: Move code into objects. Will
+	  make things look nice and allows the code to cleanup when
+	  the objects are released in main.c.
+	* xfce4-settings-helper/main.c: Use the objects and do some
+	  more checking before running the dialog.
+	* xfce4-settings-helper/accessx.c: Make disabling the mouse
+	  keys work; don't call channel_get functions when not needed.
+	* dialogs/keyboard-settings/main.c: Release the channels after
+	  running the dialog, also destroy the dialog after using it.
+
 2008-07-11	Nick Schermer <nick@xfce.org>
 
 	* dialogs/mouse-settings/mouse-dialog.glade: Add some tooltips

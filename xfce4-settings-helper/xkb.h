@@ -1,3 +1,4 @@
+/* $Id$ */
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
  *
@@ -19,5 +20,19 @@
  *  by Olivier Fourdan.
  */
 
-gint
-xkb_notification_init (XfconfChannel *channel);
+#ifndef __XKB_H__
+#define __XKB_H__
+
+typedef struct _XfceXkbHelperClass XfceXkbHelperClass;
+typedef struct _XfceXkbHelper      XfceXkbHelper;
+
+#define XFCE_TYPE_XKB_HELPER            (xfce_xkb_helper_get_type ())
+#define XFCE_XKB_HELPER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_XKB_HELPER, XfceXkbHelper))
+#define XFCE_XKB_HELPER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_XKB_HELPER, XfceXkbHelperClass))
+#define XFCE_IS_XKB_HELPER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_XKB_HELPER))
+#define XFCE_IS_XKB_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_XKB_HELPER))
+#define XFCE_XKB_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_XKB_HELPER, XfceXkbHelperClass))
+
+GType xfce_xkb_helper_get_type (void) G_GNUC_CONST;
+
+#endif /* !__XKB_H__ */

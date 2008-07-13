@@ -1,5 +1,7 @@
+/* $Id$ */
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
+ *  Copyright (c) 2008 Nick Schermer <nick@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,100 +22,123 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_STDIO_H
+#include <stdio.h>
+#endif
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
 
-#include <X11/Xlib.h>
-
 #include <glib.h>
-
 #include <gtk/gtk.h>
-#include <gdk/gdkx.h>
 
-#include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
-#include <libnotify/notify.h>
+#include <libxfce4util/libxfce4util.h>
 
-#include "xkb.h"
-#include "accessx.h"
-
-#define XF_DEBUG(str) \
-    if (debug) g_print (str)
-
-static gboolean version = FALSE;
-static gboolean debug = FALSE;
+#include <xfce4-settings-helper/pointers.h>
+#include <xfce4-settings-helper/xkb.h>
+#include <xfce4-settings-helper/accessx.h>
 
 
-static GOptionEntry entries[] =
+
+static gboolean     opt_version = FALSE;
+static gboolean     opt_debug = FALSE;
+static GOptionEntry option_entries[] =
 {
-    {    "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
-        N_("Version information"),
-        NULL
-    },
-    {    "debug", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &debug,
-        N_("Start in debug mode (don't fork to the background)"),
-        NULL
-    },
+    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+    { "debug", 'd', 0, G_OPTION_ARG_NONE, &opt_debug, N_("Start in debug mode (don't fork to the background)"), NULL },
     { NULL }
 };
 
 
-int
-main(int argc, char **argv)
+
+gint
+main (gint argc, gchar **argv)
 {
-    GError *cli_error = NULL;
-    XfconfChannel *accessx_channel, *xkb_channel;
+    GError  *error = NULL;
+    GObject *pointer_helper;
+    GObject *xkb_helper;
+    GObject *accessx_helper;
+    pid_t    pid;
 
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    /* setup translation domain */
+    xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-    if(!gtk_init_with_args(&argc, &argv, _(""), entries, PACKAGE, &cli_error))
+    /* initialize the gthread system */
+    if (!g_thread_supported ())
+        g_thread_init (NULL);
+
+    /* initialize gtk */
+    if(!gtk_init_with_args (&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error))
     {
-        if (cli_error != NULL)
+        /* print error */
+        g_error ("Failed to initialize GTK+: %s.", (error && error->message) ? error->message : "Unable to open display");
+
+        /* cleanup */
+        if (G_LIKELY (error))
+            g_error_free (error);
+
+        return EXIT_FAILURE;
+    }
+
+    /* check if we should print version information */
+    if (G_UNLIKELY (opt_version))
+    {
+        g_print ("xfce4-settings-helper %s\n\n", PACKAGE_VERSION);
+        g_print ("%s\n", "Copyright (c) 2008");
+        g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
+        g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
+        g_print ("\n");
+
+        return EXIT_SUCCESS;
+    }
+
+    /* daemonize the process when not running in debug mode */
+    if (!opt_debug)
+    {
+        /* try to fork the process */
+        pid = fork ();
+
+        if (G_UNLIKELY (pid == -1))
         {
-            g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, cli_error->message, PACKAGE_NAME);
-            g_error_free (cli_error);
-            return 1;
+            /* show message and continue in normal mode */
+            g_warning ("Failed to fork the process, starting in non-daemon mode");
+        }
+        else if (pid > 0)
+        {
+            /* succesfully created a fork, leave this instance */
+            return EXIT_SUCCESS;
         }
     }
 
-    if(version)
+    /* initialize xfconf */
+    if (!xfconf_init (&error))
     {
-        g_print("xfce-xkbd %s\n", PACKAGE_VERSION);
-        return 0;
+        /* print error and exit */
+        g_error ("Failed to connect to xfconf daemon: %s.", error->message);
+        g_error_free (error);
+
+        return EXIT_FAILURE;
     }
 
-    if(!xfconf_init(&cli_error))
-    {
-        g_printerr("Failed to connect to Xfconf daemon: %s\n",
-                   cli_error->message);
-        return 1;
-    }
+    /* create the sub daemons */
+    pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
+    xkb_helper = g_object_new (XFCE_TYPE_XKB_HELPER, NULL);
+    accessx_helper = g_object_new (XFCE_TYPE_ACCESSX_HELPER, NULL);
 
-    notify_init("xfce4-settings-helper");
+    /* enter the main loop */
+    gtk_main();
 
-    xkb_channel = xfconf_channel_new("xkb");
-    accessx_channel = xfconf_channel_new("accessx");
+    /* release the sub daemons */
+    g_object_unref (G_OBJECT (pointer_helper));
+    g_object_unref (G_OBJECT (xkb_helper));
+    g_object_unref (G_OBJECT (accessx_helper));
 
+    /* shutdown xfconf */
+    xfconf_shutdown ();
 
-    if (xkb_notification_init(xkb_channel))
-        accessx_notification_init(accessx_channel);
-
-    if(!debug) /* If not in debug mode, fork to background */
-    {
-        if(!fork())
-        {
-            gtk_main();
-    
-            xfconf_shutdown();
-        }
-    }
-    else
-    {
-        gtk_main();
-
-        xfconf_shutdown();
-    }
-
-    return 0;
+    return EXIT_SUCCESS;
 }

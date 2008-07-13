@@ -1,7 +1,7 @@
 bin_PROGRAMS = xfce4-mouse-settings 
 xfce4_mouse_settings_SOURCES = \
 	main.c \
-	mouse-dialog_glade.h
+	mouse-dialog-glade.h
 
 xfce4_mouse_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -9,6 +9,10 @@ xfce4_mouse_settings_CFLAGS = \
 	$(GLADE_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
+	$(XFCONF_CFLAGS) \
+	$(XI_CFLAGS) \
+	$(XCURSOR_CFLAGS) \
+	$(HAL_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	-DDATADIR=\"$(datadir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \
@@ -20,7 +24,10 @@ xfce4_mouse_settings_LDADD = \
 	$(GLADE_LIBS) \
 	$(DBUS_GLIB_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
-	$(XFCONF_LIBS)
+	$(XFCONF_LIBS) \
+	$(HAL_LIBS) \
+	$(XI_LIBS) \
+	$(XCURSOR_LIBS)
 
 INCLUDES = \
 	-I${top_srcdir} \
@@ -29,9 +36,9 @@ INCLUDES = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-mouse-dialog_glade.h
+mouse-dialog-glade.h
 
-mouse-dialog_glade.h: mouse-dialog.glade
+mouse-dialog-glade.h: mouse-dialog.glade
 	exo-csource --static --name=mouse_dialog_glade $< >$@
 
 endif

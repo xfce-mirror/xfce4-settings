@@ -9,8 +9,6 @@ Keyboard settings (Jannis)
 Mouse settings (Nick)
 ------------------------------------------------------------------------
 
-  * Integrate multi pointer branch.
-  * Make hal and libxcursor an optional dependency.
-  * Check dependency versions of libxi and libxcursor.
-  * Make it work a bit better with onyl 1 pointer.
-  * Move the device information into a separate xfconf channel.
+  * Fixup some of the Makefiles.
+  * Add signal watch to xfce4-setting-helper to quit the main loop when
+    receiving a sigterm.
