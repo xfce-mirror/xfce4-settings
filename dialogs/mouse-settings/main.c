@@ -880,6 +880,9 @@ mouse_settings_device_populate_store (GladeXML *gxml,
         /* set the treeview model */
         gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
         gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), COLUMN_DEVICE_XID, GTK_SORT_ASCENDING);
+#if GTK_CHECK_VERSION (2, 12, 0)
+        gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_DEVICE_DISPLAY_NAME);
+#endif
         g_object_unref (G_OBJECT (store));
 
         /* icon renderer */

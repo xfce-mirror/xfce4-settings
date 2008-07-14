@@ -6,9 +6,26 @@ Keyboard settings (Jannis)
  (* Maybe add support for keyboard themes again)  
 
 
-Mouse settings (Nick)
+Mouse Settings (Nick)
 ------------------------------------------------------------------------
 
-  * Fixup some of the Makefiles.
+  * Figure out the needed Xi and Xcursor dependency version.
+
+
+Settings Helper
+------------------------------------------------------------------------
+
   * Add signal watch to xfce4-setting-helper to quit the main loop when
-    receiving a sigterm.
+    receiving a sigterm. (Nick)
+
+
+Display Settings (Nick)
+------------------------------------------------------------------------
+
+  * Make it all work for individual screens.
+  * Simple dual screen support (2 monitors only).
+  * Figure out the needed Xrandr and Xxf86vm dependency version.
+  * Maybe some sort of stored configurations for different setups
+    (probably not in 4.6).
+  * Hotplug support. Notify the user (with button to change the
+    display settings). Could be integrated with the stored configs.
