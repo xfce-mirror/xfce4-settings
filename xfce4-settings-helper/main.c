@@ -138,7 +138,6 @@ main (gint argc, gchar **argv)
     accessx_helper = g_object_new (XFCE_TYPE_ACCESSX_HELPER, NULL);
     shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
 
-
     /* enter the main loop */
     gtk_main();
 

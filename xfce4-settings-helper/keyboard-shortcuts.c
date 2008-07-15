@@ -33,6 +33,7 @@
 
 #include <xfconf/xfconf.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <dbus/dbus-glib.h>
 
 #include "keyboard-shortcuts.h"
 
@@ -217,7 +218,7 @@ xfce_keyboard_shortcuts_helper_get_property (GObject    *object,
                                              GValue     *value,
                                              GParamSpec *pspec)
 {
-  XfceKeyboardShortcutsHelper *helper = XFCE_KEYBOARD_SHORTCUTS_HELPER (object);
+  /* XfceKeyboardShortcutsHelper *helper = XFCE_KEYBOARD_SHORTCUTS_HELPER (object); */
 
   switch (prop_id)
     {
@@ -235,7 +236,7 @@ xfce_keyboard_shortcuts_helper_set_property (GObject      *object,
                                              const GValue *value,
                                              GParamSpec   *pspec)
 {
-  XfceKeyboardShortcutsHelper *helper = XFCE_KEYBOARD_SHORTCUTS_HELPER (object);
+  /* XfceKeyboardShortcutsHelper *helper = XFCE_KEYBOARD_SHORTCUTS_HELPER (object); */
 
   switch (prop_id)
     {
@@ -251,14 +252,18 @@ static void
 xfce_keyboard_shortcuts_helper_add_filter (XfceKeyboardShortcutsHelper *helper)
 {
   GdkDisplay *display;
+#if 0
   GdkScreen  *screen;
   gint        screens;
   gint        i;
+#endif
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
 
   display = gdk_display_get_default ();
+#if 0
   screens = gdk_display_get_n_screens (display);
+#endif
 
   /* Flush events before adding the event filter */
   XAllowEvents (GDK_DISPLAY_XDISPLAY (display), AsyncBoth, CurrentTime);
@@ -285,7 +290,7 @@ xfce_keyboard_shortcuts_helper_filter (GdkXEvent                   *gdk_xevent,
 {
   XEvent *xevent = (XEvent *) gdk_xevent;
 
-  g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
+  g_return_val_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper), GDK_FILTER_CONTINUE);
 
   switch (xevent->type)
     {
@@ -316,7 +321,6 @@ xfce_keyboard_shortcuts_helper_load_shortcut (const gchar                 *key,
   const GValue    *action_value;
   const gchar     *type;
   const gchar     *action;
-  GtkTreeIter      iter;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
 
@@ -438,8 +442,8 @@ xfce_keyboard_shortcuts_helper_parse_shortcut (XfceKeyboardShortcutsHelper *help
                                                KeyCode                     *keycode,
                                                guint                       *grab_mask)
 {
-  g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
-  g_return_if_fail (GDK_IS_DISPLAY (display));
+  g_return_val_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper), FALSE);
+  g_return_val_if_fail (GDK_IS_DISPLAY (display), FALSE);
 
   /* Reset keycode and grab mask */
   *keycode = 0;

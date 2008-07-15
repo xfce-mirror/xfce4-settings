@@ -205,7 +205,7 @@ xfce_xkb_helper_set_repeat_rate (XfceXkbHelper *helper)
 
         /* set new values */
         xkb->ctrls->repeat_delay = delay;
-        xkb->ctrls->repeat_interval = 1000 / rate;
+        xkb->ctrls->repeat_interval = rate != 0 ? 1000 / rate : 0;
 
         /* set updated controls */
         XkbSetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
