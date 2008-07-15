@@ -1,12 +1,18 @@
 2008-07-14	Nick Schermer <nick@xfce.org>
 
+	* dialogs/display-settings/main.c: Read the gamma settings,
+	  free the xrandr screen info and usse permissions when reading
+	  from xf86vmode.
+
+2008-07-14	Nick Schermer <nick@xfce.org>
+
 	* configure.ac.in: Show if Xf86misc was found.
 
 2008-07-15	Nick Schermer <nick@xfce.org>
 
 	* xfce4-settings-helper/keyboard-shortcuts.c: Make it compile
 	  here.
-	* xfce4-settings-helper/xkb.c: Avoid division by zerro.
+	* xfce4-settings-helper/xkb.c: Avoid division by zero.
 
 2008-07-15	Jannis Pohlmann <jannis@xfce.org>
 

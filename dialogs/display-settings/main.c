@@ -50,10 +50,10 @@
 
 enum
 {
-    COLUMN_MONITOR_NAME,
-    COLUMN_MONITOR_ICON,
-    COLUMN_MONITOR_ID,
-    N_MONITOR_COLUMNS
+    COLUMN_SCREEN_NAME,
+    COLUMN_SCREEN_ICON,
+    COLUMN_SCREEN_ID,
+    N_SCREEN_COLUMNS
 };
 
 enum
@@ -71,7 +71,7 @@ typedef struct {
   const gchar *name;
 } RotationTypes;
 
-static const RotationTypes rotation_names[] = 
+static const RotationTypes rotation_names[] =
 {
   { RR_Rotate_0, N_("Normal") },
   { RR_Rotate_90, N_("Left") },
@@ -93,7 +93,45 @@ static GOptionEntry option_entries[] =
 static XfconfChannel *display_channel;
 
 /* active xrandr configuration */
-XRRScreenConfiguration *screen_config = NULL;
+XRRScreenConfiguration *screen_info = NULL;
+
+
+
+static void
+display_setting_set_gamma (GladeXML *gxml,
+                           gint      screen_id)
+{
+    GtkWidget        *scale;
+    gboolean          sensitive = FALSE;
+    gint              permissions = 0;
+    XF86VidModeGamma  gamma;
+
+    /* get the widget */
+    scale = glade_xml_get_widget (gxml, "screen-gamma");
+
+    /* get the xv permissions */
+    XF86VidModeGetPermissions (GDK_DISPLAY (), screen_id, &permissions);
+
+    /* only continue if we can read */
+    if ((permissions & XF86VM_READ_PERMISSION) != 0)
+    {
+        /* get the screen's gamma */
+        if (XF86VidModeGetGamma (GDK_DISPLAY (), screen_id, &gamma) == True)
+        {
+            /* set the scale value */
+            if (G_LIKELY (gamma.red == gamma.green && gamma.green == gamma.blue))
+                gtk_range_set_value (GTK_RANGE (scale), gamma.red);
+            else
+                gtk_range_set_value (GTK_RANGE (scale), (gamma.red + gamma.green + gamma.blue) / 3);
+
+            /* wether the scale should be sensitive */
+            sensitive = !!((permissions & XF86VM_WRITE_PERMISSION) != 0);
+        }
+    }
+
+    /* set the sensitivity */
+    gtk_widget_set_sensitive (scale, sensitive);
+}
 
 
 
@@ -113,20 +151,20 @@ display_setting_populate_rotation (GladeXML *gxml)
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
     /* get the active and possible rotations */
-    rotations = XRRConfigRotations (screen_config, &current_rotation);
+    rotations = XRRConfigRotations (screen_info, &current_rotation);
 
     /* test and append rotations */
     for (active = i = 0; i < G_N_ELEMENTS (rotation_names); i++)
     {
         if ((rotations & rotation_names[i].rotation) != 0)
         {
-          /* insert in store */
-          gtk_list_store_insert_with_values (GTK_LIST_STORE (model), &iter, i, COLUMN_COMBO_NAME, _(rotation_names[i].name), 
-                                             COLUMN_COMBO_VALUE, rotation_names[i].rotation, -1);
+            /* insert in store */
+            gtk_list_store_insert_with_values (GTK_LIST_STORE (model), &iter, i, COLUMN_COMBO_NAME, _(rotation_names[i].name),
+                                               COLUMN_COMBO_VALUE, rotation_names[i].rotation, -1);
 
-          /* get active rotation */
-          if (rotation_names[i].rotation == current_rotation)
-            active = i;
+            /* get active rotation */
+            if (rotation_names[i].rotation == current_rotation)
+                active = i;
         }
     }
 
@@ -152,10 +190,10 @@ display_setting_populate_refresh_rates (GladeXML *gxml,
     combobox = glade_xml_get_widget (gxml, "screen-refresh-rate");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
-  
+
     /* get refresh rates for this resolution */
-    rates = XRRConfigRates (screen_config, selected_size, &nrates);
-    current_rate = XRRConfigCurrentRate (screen_config);
+    rates = XRRConfigRates (screen_info, selected_size, &nrates);
+    current_rate = XRRConfigCurrentRate (screen_info);
 
     /* insert in store */
     for (active = n = 0; n < nrates; n++)
@@ -170,12 +208,12 @@ display_setting_populate_refresh_rates (GladeXML *gxml,
 
         /* store active size */
         if (diff > current_diff)
-          {
+        {
             active = n;
             diff = current_diff;
-          }
+        }
     }
-    
+
     /* select the active resolution */
     gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), active);
 }
@@ -200,8 +238,8 @@ display_setting_populate_resolutions (GladeXML *gxml)
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
     /* get current reolution and list or possible resolutions */
-    sizes = XRRConfigSizes (screen_config, &nsizes);
-    current_size = XRRConfigCurrentConfiguration (screen_config, &rotation);
+    sizes = XRRConfigSizes (screen_info, &nsizes);
+    current_size = XRRConfigCurrentConfiguration (screen_info, &rotation);
 
     /* insert in store */
     for (n = 0; n < nsizes; n++)
@@ -231,56 +269,66 @@ display_settings_populate_treeview (GladeXML *gxml)
     gchar              *name;
     GtkTreePath        *path;
     GtkTreeSelection   *selection;
-    
+    gint                permissions = 0;
+
     /* create a new list store */
-    store = gtk_list_store_new (N_MONITOR_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT);
+    store = gtk_list_store_new (N_SCREEN_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT);
 
     /* get the default display */
     display = gdk_display_get_default ();
-    
+
     /* get the number of screens */
     nscreens = gdk_display_get_n_screens (display);
 
     /* get the x display */
     xdisplay = gdk_x11_display_get_xdisplay (display);
-    
+
     /* walk the screens on this display */
     for (n = 0; n < nscreens; n++)
     {
-        /* get the monitor information from x */
-        if (XF86VidModeGetMonitor (xdisplay, n, &monitor) == True)
+        /* get the permissions */
+        XF86VidModeGetPermissions (GDK_DISPLAY (), n, &permissions);
+
+        /* check if we can read the screen settings */
+        if ((permissions & XF86VM_READ_PERMISSION) != 0
+            && XF86VidModeGetMonitor (xdisplay, n, &monitor) == True)
         {
-            /* get a suitable name for in the treeview */
             if (IS_STRING (monitor.model) && IS_STRING (monitor.vendor)
                 && strcasestr (monitor.model, monitor.vendor) == NULL)
                 name = g_strdup_printf ("%s %s", monitor.vendor, monitor.model);
             else if (IS_STRING (monitor.model))
                 name = g_strdup (monitor.model);
             else
-                name = g_strdup_printf ("%s %d", _("Screen"), n + 1);
-            
-            /* insert in the store */
-            gtk_list_store_insert_with_values (store, NULL, n,
-                                               COLUMN_MONITOR_ID, n,
-                                               COLUMN_MONITOR_ICON, "video-display",
-                                               COLUMN_MONITOR_NAME, name, -1);
-                                               
-            /* cleanup */
-            g_free (name);
+                goto use_screen_x_name;
         }
+        else
+        {
+             use_screen_x_name:
+
+             name = g_strdup_printf ("%s %d", _("Screen"), n + 1);
+        }
+
+        /* insert in the store */
+        gtk_list_store_insert_with_values (store, NULL, n,
+                                           COLUMN_SCREEN_ID, n,
+                                           COLUMN_SCREEN_ICON, "video-display",
+                                           COLUMN_SCREEN_NAME, name, -1);
+
+        /* cleanup */
+        g_free (name);
     }
-    
+
     /* set the treeview model */
     treeview = glade_xml_get_widget (gxml, "devices-treeview");
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
     g_object_unref (G_OBJECT (store));
-    
+
     /* select first item */
     path = gtk_tree_path_new_first ();
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
     gtk_tree_selection_select_path (selection, path);
     gtk_tree_path_free (path);
-    
+
     /* treeview has initial focus */
     gtk_widget_grab_focus (treeview);
 }
@@ -294,16 +342,28 @@ display_settings_resolution_changed (GtkComboBox *combobox,
     GtkTreeIter   iter;
     GtkTreeModel *model;
     gint          selected_size;
-    
+
     /* get the active item */
     if (gtk_combo_box_get_active_iter (combobox, &iter))
     {
         /* get the combo box model and selected size */
         model = gtk_combo_box_get_model (combobox);
         gtk_tree_model_get (model, &iter, COLUMN_COMBO_VALUE, &selected_size, -1);
-        
+
         /* update the refresh rate combo box */
         display_setting_populate_refresh_rates (gxml, selected_size);
+    }
+}
+
+
+
+static void
+display_settings_free_screen_info (void)
+{
+    if (G_LIKELY (screen_info))
+    {
+       XRRFreeScreenConfigInfo (screen_info);
+       screen_info = NULL;
     }
 }
 
@@ -316,35 +376,39 @@ display_settings_selection_changed (GtkTreeSelection *selection,
     GtkTreeModel *model;
     GtkTreeIter   iter;
     gboolean      has_selection;
-    gint          monitor_id;
+    gint          screen_id;
     GdkDisplay   *display;
     GdkScreen    *screen;
     Display      *xdisplay;
     GdkWindow    *root_window;
-    
+
     /* get the selection */
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
     {
         /* get the monitor id */
-        gtk_tree_model_get (model, &iter, COLUMN_MONITOR_ID, &monitor_id, -1);
-        
+        gtk_tree_model_get (model, &iter, COLUMN_SCREEN_ID, &screen_id, -1);
+
         /* get the current display */
         display = gdk_display_get_default ();
         xdisplay = gdk_x11_display_get_xdisplay (display);
-        
+
         /* get the screen selected in the treeview */
-        screen = gdk_display_get_screen (display, monitor_id);
-        
+        screen = gdk_display_get_screen (display, screen_id);
+
         /* get the root window of this screen */
         root_window = gdk_screen_get_root_window (screen);
-        
+
+        /* cleanup */
+        display_settings_free_screen_info ();
+
         /* get the xrandr screen information */
-        screen_config = XRRGetScreenInfo (xdisplay, gdk_x11_drawable_get_xid (GDK_DRAWABLE (root_window)));
-        
+        screen_info = XRRGetScreenInfo (xdisplay, gdk_x11_drawable_get_xid (GDK_DRAWABLE (root_window)));
+
         /* update dialog */
         display_setting_populate_resolutions (gxml);
         display_setting_populate_rotation (gxml);
+        display_setting_set_gamma (gxml, screen_id);
     }
 }
 
@@ -355,12 +419,12 @@ display_settings_dialog_create_combobox_model (GtkComboBox *combobox)
 {
     GtkCellRenderer *renderer;
     GtkListStore    *store;
-    
+
     /* create and set the combobox model */
     store = gtk_list_store_new (N_COMBO_COLUMNS, G_TYPE_STRING, G_TYPE_INT);
     gtk_combo_box_set_model (combobox, GTK_TREE_MODEL (store));
     g_object_unref (G_OBJECT (store));
-  
+
     /* setup renderer */
     renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_clear (GTK_CELL_LAYOUT (combobox));
@@ -377,44 +441,42 @@ display_settings_dialog_new_from_xml (GladeXML *gxml)
     GtkCellRenderer  *renderer;
     GtkTreeSelection *selection;
     GtkWidget        *combobox;
-   
+
     /* get the treeview */
     treeview = glade_xml_get_widget (gxml, "devices-treeview");
 #if GTK_CHECK_VERSION (2, 12, 0)
-        gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_MONITOR_NAME);
+        gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_SCREEN_NAME);
 #endif
 
     /* icon renderer */
     renderer = gtk_cell_renderer_pixbuf_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 0, "", renderer, "icon-name", COLUMN_MONITOR_ICON, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 0, "", renderer, "icon-name", COLUMN_SCREEN_ICON, NULL);
     g_object_set (G_OBJECT (renderer), "stock-size", GTK_ICON_SIZE_DND, NULL);
-   
+
     /* text renderer */
     renderer = gtk_cell_renderer_text_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 1, "", renderer, "text", COLUMN_MONITOR_NAME, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 1, "", renderer, "text", COLUMN_SCREEN_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
-    
+
     /* treeview selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_selection_changed), gxml);
-    
+
     /* setup the combo boxes */
     combobox = glade_xml_get_widget (gxml, "screen-resolution");
     display_settings_dialog_create_combobox_model (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_resolution_changed), gxml);
-    
+
     combobox = glade_xml_get_widget (gxml, "screen-refresh-rate");
     display_settings_dialog_create_combobox_model (GTK_COMBO_BOX (combobox));
-    //g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (), gxml);
-    
+
     combobox = glade_xml_get_widget (gxml, "screen-rotation");
     display_settings_dialog_create_combobox_model (GTK_COMBO_BOX (combobox));
-    //g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (), gxml);
-    
+
     /* populate the treeview */
     display_settings_populate_treeview (gxml);
-   
+
     return glade_xml_get_widget (gxml, "display-dialog");
 }
 
@@ -483,15 +545,19 @@ main(gint argc, gchar **argv)
         {
             /* build the dialog */
             dialog = display_settings_dialog_new_from_xml (gxml);
+            gtk_window_set_default_size (GTK_WINDOW (dialog), 450, 350);
 
             /* run the dialog */
             gtk_dialog_run (GTK_DIALOG (dialog));
 
+            /* destroy the dialog */
+            gtk_widget_destroy (dialog);
+
             /* release the glade xml */
             g_object_unref (G_OBJECT (gxml));
 
-            /* destroy the dialog */
-            gtk_widget_destroy (dialog);
+            /* cleanup */
+            display_settings_free_screen_info ();
         }
 
         /* release the channel */

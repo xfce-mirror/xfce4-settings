@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Mon Jul 14 21:24:09 2008 -->
+<!--Generated with glade3 3.4.5 on Tue Jul 15 22:28:24 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="display-dialog">
-    <property name="border_width">5</property>
     <property name="title" translatable="yes">Xfce Display Settings</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
     <property name="icon_name">video-display</property>
@@ -25,7 +24,6 @@
                 <property name="visible">True</property>
                 <property name="border_width">6</property>
                 <property name="spacing">12</property>
-                <property name="homogeneous">True</property>
                 <child>
                   <widget class="GtkScrolledWindow" id="scrolledwindow1">
                     <property name="visible">True</property>
@@ -90,7 +88,7 @@
                       <widget class="GtkHScale" id="screen-gamma">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="adjustment">0.10000000000000001 0.10000000000000001 10 0.10000000000000001 1 10</property>
+                        <property name="adjustment">1 0.10000000000000001 10 0.10000000000000001 1 0</property>
                         <property name="digits">2</property>
                         <property name="value_pos">GTK_POS_RIGHT</property>
                       </widget>
