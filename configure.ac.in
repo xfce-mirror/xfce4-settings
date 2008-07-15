@@ -237,4 +237,11 @@ echo "* Xcursor support:           yes"
 else
 echo "* Xcursor support:           no"
 fi
+if test x"$XF86MISC" = x"yes"; then
+echo "* Xf86misc support:          yes"
+else
+echo "* Xf86misc support:          no"
+fi
 echo
+
+
