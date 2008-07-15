@@ -1,3 +1,14 @@
+2008-07-15	Jannis Pohlmann <jannis@xfce.org>
+
+	* xfce4-settings-helper/keyboard-shortcuts{c,h},
+	  xfce4-settings-helper/Makefile.am,
+	  xfce4-settings-helper/main.c: Add support for keyboard shortcuts.
+	  Shortcuts are loaded, passive keyboard grabs are performed and
+	  events with different modifier combinations are handled. The code
+	  related to modifiers might not be sane, but it works quite well
+	  here, even with changes made in .Xmodmap. I'd be curious to know
+	  what happens if you change the keymap at runtime though.
+
 2008-07-14	Nick Schermer <nick@xfce.org>
 
 	* dialogs/display-settings/, dialogs/Makefile.am,
@@ -43,7 +54,7 @@
 	  dialogs/mouse-settings/main.c,
 	  dialogs/appearance-settings/main.c,
 	  dialogs/keyboard-settings/main.c,
-	  xfce4-settings-helper/main.c: Add same and improved error 
+	  xfce4-settings-helper/main.c: Add same and improved error
 	  messages and version information.
 
 2008-07-13	Nick Schermer <nick@xfce.org>
@@ -61,7 +72,7 @@
 	  branch code.
 	* dialogs/keyboard-settings/main.c: Release the channels
 	  after running the dialog.
-	* xfce4-settings-helper/accessx.c, 
+	* xfce4-settings-helper/accessx.c,
 	  xfce4-settings-helper/accessx.h,
 	  xfce4-settings-helper/xkb.c,
 	  xfce4-settings-helper/xkb.h: Move code into objects. Will
@@ -91,7 +102,7 @@
 	  plug a stupid leak.
 	* dialogs/appearance-settings/appearance-dialog.glade: Redesign
 	  the dialog a bit, a notebook inside a notebook is not practical.
-	* dialogs/keyboard-settings/main.c, 
+	* dialogs/keyboard-settings/main.c,
 	  dialogs/keyboard-settings/shortcut-dialog.c: Fix includes to make
 	  it compile.
 
@@ -115,8 +126,8 @@
 	  dialogs/keyboard-settings/shortcut-dialog.{c,h}:
 	  Revamped the dialog a bit. Add dialog widget for entering
 	  shortcuts. Rewrite the settings dialog and add support for
-	  loading, saving, modifying and removing shortcuts. Not 
-	  supported yet: Adding new ones. 
+	  loading, saving, modifying and removing shortcuts. Not
+	  supported yet: Adding new ones.
 
 2008-07-04	Nick Schermer <nick@xfce.org>
 
@@ -128,7 +139,7 @@
 	* dialogs/appearance-dialog/main.c: Only add the icon theme
 	  to the check list when it's actually added to the store.
 	  Revert strcmp to g_utf8_collate. Strip trailing spaces.
-	  
+
 	  Both fixes where mentioned by Jannis, thanks for that.
 
 2008-07-03	Nick Schermer <nick@xfce.org>
@@ -160,7 +171,7 @@
 
 	* dialogs/appearance-settings/main.c: Load icon themes properly.
 	  I used some of the code from the old mcs ui plugin.
-	* AUTHORS: I took the liberty to add my name here. 
+	* AUTHORS: I took the liberty to add my name here.
 
 2008-07-01	Nick Schermer <nick@xfce.org>
 
@@ -181,7 +192,7 @@
 
 2008-06-29	Jannis Pohlmann <jannis@xfce.org>
 
-	* xfce4-settings-manager/xfce-settings-manager-dialog.c: 
+	* xfce4-settings-manager/xfce-settings-manager-dialog.c:
 	  Add 6px border to the scrolled window in order to align it
 	  with the dialog buttons.
 
@@ -191,7 +202,7 @@
 	  dialogs/appearance-settings/appearance-dialog.glade,
 	  dialogs/keyboard-settings/keyboard-dialog.glade,
 	  dialogs/mouse-settings/mouse-dialog.glade: Change border of
-	  toplevel boxes inside notebooks to 12px for the sake of 
+	  toplevel boxes inside notebooks to 12px for the sake of
 	  consistency (thunar does the same). Add bottom padding of
 	  alignments below section titles to 6px.
 
@@ -223,7 +234,7 @@
 
 2008-06-28	Jannis Pohlmann <jannis@xfce.org>
 
-	* dialogs/keyboard-settings/keyboard-dialog.glade: Same 
+	* dialogs/keyboard-settings/keyboard-dialog.glade: Same
 	  procedure as before.
 
 2008-06-28	Jannis Pohlmann <jannis@xfce.org>

@@ -18,7 +18,9 @@ xfce4_settings_helper_SOURCES = \
 	xkb.c \
 	xkb.h \
 	pointers.c \
-	pointers.h
+	pointers.h \
+	keyboard-shortcuts.c \
+	keyboard-shortcuts.h
 
 xfce4_settings_helper_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -27,6 +29,7 @@ xfce4_settings_helper_CFLAGS = \
 	$(DBUS_GLIB_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
+	$(LIBXFCEGUI4_CFLAGS) \
 	$(XI_CFLAGS) \
 	$(LIBX11_CFLAGS)
 
@@ -41,6 +44,7 @@ xfce4_settings_helper_LDADD = \
 	$(DBUS_GLIB_LIBS) \
 	$(XFCONF_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
+	$(LIBXFCEGUI4_LIBS) \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS)
 

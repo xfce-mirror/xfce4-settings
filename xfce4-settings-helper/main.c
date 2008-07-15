@@ -2,6 +2,7 @@
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
  *  Copyright (c) 2008 Nick Schermer <nick@xfce.org>
+ *  Copyright (c) 2008 Jannis Pohlmann <jannis@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,9 +36,10 @@
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include <xfce4-settings-helper/pointers.h>
-#include <xfce4-settings-helper/xkb.h>
-#include <xfce4-settings-helper/accessx.h>
+#include "pointers.h"
+#include "xkb.h"
+#include "accessx.h"
+#include "keyboard-shortcuts.h"
 
 
 
@@ -59,6 +61,7 @@ main (gint argc, gchar **argv)
     GObject *pointer_helper;
     GObject *xkb_helper;
     GObject *accessx_helper;
+    GObject *shortcuts_helper;
     pid_t    pid;
 
     /* setup translation domain */
@@ -133,6 +136,8 @@ main (gint argc, gchar **argv)
     pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
     xkb_helper = g_object_new (XFCE_TYPE_XKB_HELPER, NULL);
     accessx_helper = g_object_new (XFCE_TYPE_ACCESSX_HELPER, NULL);
+    shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
+
 
     /* enter the main loop */
     gtk_main();
@@ -141,6 +146,7 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (pointer_helper));
     g_object_unref (G_OBJECT (xkb_helper));
     g_object_unref (G_OBJECT (accessx_helper));
+    g_object_unref (G_OBJECT (shortcuts_helper));
 
     /* shutdown xfconf */
     xfconf_shutdown ();
