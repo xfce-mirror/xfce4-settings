@@ -3,6 +3,7 @@
 INCLUDES = \
 	-I${top_srcdir} \
 	-DDATADIR=\"$(datadir)\" \
+	-DBINDIR=\"$(bindir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-keyboard-settings\" \
@@ -15,6 +16,8 @@ xfce4_keyboard_settings_SOURCES = \
 	main.c \
 	shortcut-dialog.c \
 	shortcut-dialog.h \
+	command-dialog.c \
+	command-dialog.h \
 	keyboard-dialog_glade.h
 
 xfce4_keyboard_settings_CFLAGS = \

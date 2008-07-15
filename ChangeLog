@@ -1,10 +1,24 @@
-2008-07-14	Nick Schermer <nick@xfce.org>
+2008-07-16	Jannis Pohlmann <jannis@xfce.org>
+
+	* dialogs/keyboard-settings/Makefile.am,
+	  dialogs/keyboard-settings/command-dialog{c,h},
+	  dialogs/keyboard-settings/main.c,
+	  dialogs/keyboard-settings/shortcut-dialog.{c,h}: Add command dialog
+	  for entering/selecting a command for a shortcut. Finally implement
+	  the button for adding a new shortcut. Editing both, shortcuts and
+	  commands also works now. I might have to tweak the command dialog a
+	  little so the file chooser behaves similar to the panel launcher
+	  dialog. The last thing really missing now is that the
+	  xfce4-settings-helper refreshes itself when a shortcut is
+	  changed/removed/added.
+
+2008-07-15	Nick Schermer <nick@xfce.org>
 
 	* dialogs/display-settings/main.c: Read the gamma settings,
 	  free the xrandr screen info and usse permissions when reading
 	  from xf86vmode.
 
-2008-07-14	Nick Schermer <nick@xfce.org>
+2008-07-15	Nick Schermer <nick@xfce.org>
 
 	* configure.ac.in: Show if Xf86misc was found.
 

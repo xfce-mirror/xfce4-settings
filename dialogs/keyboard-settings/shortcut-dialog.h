@@ -35,7 +35,7 @@ typedef struct _ShortcutDialog      ShortcutDialog;
 #define IS_SHORTCUT_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_SHORTCUT_DIALOG))
 #define SHORTCUT_DIALOG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_SHORTCUT_DIALOG, ShortcutDialogClass))
 
-GType     shortcut_dialog_get_type (void) G_GNUC_CONST;
+GType        shortcut_dialog_get_type     (void) G_GNUC_CONST;
 
 GtkWidget   *shortcut_dialog_new          (const gchar    *action);
 gint         shortcut_dialog_run          (ShortcutDialog *dialog,

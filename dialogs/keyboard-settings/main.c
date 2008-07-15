@@ -41,6 +41,7 @@
 
 #include "keyboard-dialog_glade.h"
 #include "shortcut-dialog.h"
+#include "command-dialog.h"
 
 
 
@@ -69,11 +70,11 @@ static GOptionEntry entries[] = {
 
 
 static void
-xkb_key_repeat_toggled (GtkToggleButton *button, 
+xkb_key_repeat_toggled (GtkToggleButton *button,
                         GladeXML        *gxml)
 {
     GtkWidget *box;
-    
+
     box = glade_xml_get_widget (gxml, "xkb_key_repeat_box");
     gtk_widget_set_sensitive (box, gtk_toggle_button_get_active (button));
 }
@@ -81,11 +82,11 @@ xkb_key_repeat_toggled (GtkToggleButton *button,
 
 
 static void
-net_cursor_blink_toggled (GtkToggleButton *button, 
+net_cursor_blink_toggled (GtkToggleButton *button,
                           GladeXML        *gxml)
 {
     GtkWidget *box;
-    
+
     box = glade_xml_get_widget (gxml, "net_cursor_blink_box");
     gtk_widget_set_sensitive (box, gtk_toggle_button_get_active (button));
 }
@@ -139,16 +140,15 @@ keyboard_settings_load_shortcut (const gchar  *key,
 
 
 static void
-keyboard_settings_load_shortcuts (XfconfChannel *channel, 
-                                  GtkWidget     *kbd_shortcuts_view, 
-                                  GtkListStore  *list_store)
+keyboard_settings_load_shortcuts (GtkWidget    *kbd_shortcuts_view,
+                                  GtkListStore *list_store)
 {
   GHashTable *shortcuts;
 
   g_return_if_fail (GTK_IS_TREE_VIEW (kbd_shortcuts_view));
   g_return_if_fail (GTK_IS_LIST_STORE (list_store));
 
-  shortcuts = xfconf_channel_get_all (channel);
+  shortcuts = xfconf_channel_get_all (kbd_channel);
 
   if (G_LIKELY (shortcuts != NULL))
     {
@@ -159,9 +159,112 @@ keyboard_settings_load_shortcuts (XfconfChannel *channel,
 
 
 
+static gboolean
+keyboard_settings_validate_shortcut (ShortcutDialog *dialog,
+                                     const gchar    *shortcut,
+                                     GtkTreeView    *tree_view)
+{
+  GtkTreeSelection *selection;
+  GtkTreeModel     *model;
+  GtkTreeIter       iter;
+  gboolean          shortcut_accepted = TRUE;
+  gchar            *current_shortcut;
+  gchar            *property;
+
+#if 1
+  /* Ignore raw 'Return' since that may have been used to activate the shortcut row */
+  if (G_UNLIKELY (g_utf8_collate (shortcut, "Return") == 0
+                  || g_utf8_collate (shortcut, "space") == 0))
+    return FALSE;
+#endif
+
+  selection = gtk_tree_view_get_selection (tree_view);
+
+  if (G_LIKELY (gtk_tree_selection_get_selected (selection, &model, &iter)))
+    {
+      gtk_tree_model_get (model, &iter, SHORTCUT_COLUMN, &current_shortcut, -1);
+
+      property = g_strdup_printf ("/%s", shortcut);
+
+      if (G_UNLIKELY (xfconf_channel_has_property (kbd_channel, property) && g_utf8_collate (current_shortcut, shortcut) != 0))
+        {
+          xfce_err (_("Keyboard shortcut '%s' is already being used for something else."), shortcut);
+          shortcut_accepted = FALSE;
+        }
+
+      g_free (property);
+      g_free (current_shortcut);
+    }
+
+  return shortcut_accepted;
+}
+
+
+
 static void
 keyboard_settings_add_shortcut (GtkTreeView *tree_view)
 {
+  GtkTreeModel *model;
+  GtkTreeIter   iter;
+  GtkWidget    *dialog;
+  const gchar  *shortcut = NULL;
+  gboolean      finished = FALSE;
+  gchar        *command = NULL;
+  gint          response;
+
+  /* Create command dialog */
+  dialog = command_dialog_new (NULL, NULL);
+
+  /* Run command dialog until a vaild (non-empty) command is entered or the dialog is cancelled */
+  do
+    {
+      response = command_dialog_run (COMMAND_DIALOG (dialog), GTK_WIDGET (tree_view));
+
+      if (G_UNLIKELY (response == GTK_RESPONSE_OK && g_utf8_strlen (command_dialog_get_command (COMMAND_DIALOG (dialog)), -1) == 0))
+        xfce_err (_("Short command may not be empty."));
+      else
+        finished = TRUE;
+    }
+  while (!finished);
+
+  /* Abort if the dialog was cancelled */
+  if (G_UNLIKELY (response == GTK_RESPONSE_CANCEL))
+    return;
+
+  /* Get the command */
+  command = g_strdup (command_dialog_get_command (COMMAND_DIALOG (dialog)));
+
+  /* Destroy the dialog */
+  gtk_widget_destroy (dialog);
+
+  /* Create shortcut dialog */
+  dialog = shortcut_dialog_new (command);
+  g_signal_connect (dialog, "validate-shortcut", G_CALLBACK (keyboard_settings_validate_shortcut), tree_view);
+
+  /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
+  response = shortcut_dialog_run (SHORTCUT_DIALOG (dialog), GTK_WIDGET (tree_view));
+
+  /* Only continue if the shortcut dialog succeeded */
+  if (G_LIKELY (response == GTK_RESPONSE_OK))
+    {
+      /* Get shortcut */
+      shortcut = shortcut_dialog_get_shortcut (SHORTCUT_DIALOG (dialog));
+
+      /* Get tree view list store */
+      model = gtk_tree_view_get_model (tree_view);
+
+      /* Append new row to the list store */
+      gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+
+      /* Set row values */
+      gtk_list_store_set (GTK_LIST_STORE (model), &iter, SHORTCUT_COLUMN, shortcut, ACTION_COLUMN, command, -1);
+    }
+
+  /* Destroy the shortcut dialog */
+  gtk_widget_destroy (dialog);
+
+  /* Free command string */
+  g_free (command);
 }
 
 
@@ -170,7 +273,6 @@ static void
 keyboard_settings_delete_shortcut (GtkTreeView *tree_view)
 {
   GtkTreeSelection *selection;
-  XfconfChannel    *channel;
   GtkTreeModel     *model;
   GtkTreePath      *path;
   GtkTreeIter       iter;
@@ -179,9 +281,6 @@ keyboard_settings_delete_shortcut (GtkTreeView *tree_view)
   GList            *row_references = NULL;
   gchar            *shortcut;
   gchar            *property_name;
-
-  /* Get reference on the keyboard shortcuts channel */
-  channel = xfconf_channel_new ("xfce4-keyboard-shortcuts");
 
   /* Determine selected rows */
   selection = gtk_tree_view_get_selection (tree_view);
@@ -207,7 +306,7 @@ keyboard_settings_delete_shortcut (GtkTreeView *tree_view)
           property_name = g_strdup_printf ("/%s", shortcut);
 
           /* Remove keyboard shortcut via xfconf */
-          xfconf_channel_remove_property (channel, property_name);
+          xfconf_channel_remove_property (kbd_channel, property_name);
 
           /* Free strings */
           g_free (property_name);
@@ -224,9 +323,6 @@ keyboard_settings_delete_shortcut (GtkTreeView *tree_view)
   /* Free row list */
   g_list_foreach (rows, (GFunc) gtk_tree_path_free, NULL);
   g_list_free (rows);
-
-  /* Release reference on the channel */
-  g_object_unref (channel);
 }
 
 
@@ -235,17 +331,13 @@ static void
 keyboard_settings_shortcut_action_edited (GtkTreeView *tree_view,
                                           gchar       *path,
                                           gchar       *new_text)
-                                          
+
 {
-  XfconfChannel *channel;
   GtkTreeModel  *model;
   GtkTreeIter    iter;
   gchar         *shortcut;
   gchar         *old_text;
   gchar         *property_name;
-
-  /* Get reference on the keyboard shortcuts channel */
-  channel = xfconf_channel_new ("xfce4-keyboard-shortcuts");
 
   /* Get tree model */
   model = gtk_tree_view_get_model (tree_view);
@@ -266,7 +358,7 @@ keyboard_settings_shortcut_action_edited (GtkTreeView *tree_view,
           property_name = g_strdup_printf ("/%s", shortcut);
 
           /* Save new shortcut settings */
-          xfconf_channel_set_array (channel, property_name, G_TYPE_STRING, "execute", G_TYPE_STRING, new_text, G_TYPE_INVALID);
+          xfconf_channel_set_array (kbd_channel, property_name, G_TYPE_STRING, "execute", G_TYPE_STRING, new_text, G_TYPE_INVALID);
 
           /* Free property name */
           g_free (property_name);
@@ -276,65 +368,14 @@ keyboard_settings_shortcut_action_edited (GtkTreeView *tree_view,
       g_free (shortcut);
       g_free (old_text);
     }
-
-  /* Release reference on the channel */
-  g_object_unref (channel);
-}
-
-
-
-static gboolean
-keyboard_settings_validate_shortcut (ShortcutDialog *dialog,
-                                     const gchar    *shortcut,
-                                     GtkTreeView    *tree_view)
-{
-  GtkTreeSelection *selection;
-  XfconfChannel    *channel;
-  GtkTreeModel     *model;
-  GtkTreeIter       iter;
-  gboolean          shortcut_accepted = TRUE;
-  gchar            *current_shortcut;
-  gchar            *property;
-
-#if 1
-  /* Ignore raw 'Return' since that may have been used to activate the shortcut row */
-  if (G_UNLIKELY (g_utf8_collate (shortcut, "Return") == 0 
-                  || g_utf8_collate (shortcut, "space") == 0))
-    return FALSE;
-#endif
-
-  selection = gtk_tree_view_get_selection (tree_view);
-
-  if (G_LIKELY (gtk_tree_selection_get_selected (selection, &model, &iter)))
-    {
-      gtk_tree_model_get (model, &iter, SHORTCUT_COLUMN, &current_shortcut, -1);
-
-      channel = xfconf_channel_new ("xfce4-keyboard-shortcuts");
-      property = g_strdup_printf ("/%s", shortcut);
-      
-      if (G_UNLIKELY (xfconf_channel_has_property (channel, property) && g_utf8_collate (current_shortcut, shortcut) != 0))
-        {
-          xfce_err (_("Keyboard shortcut '%s' is already being used for something else."), shortcut);
-          shortcut_accepted = FALSE;
-        }
-
-      g_free (property);
-      g_free (current_shortcut);
-
-      g_object_unref (channel);
-    }
-
-  return shortcut_accepted;
 }
 
 
 
 static void
-keyboard_settings_row_activated (GtkTreeView       *tree_view,
-                                 GtkTreePath       *path,
-                                 GtkTreeViewColumn *column)
+keyboard_settings_edit_shortcut (GtkTreeView *tree_view,
+                                 GtkTreePath *path)
 {
-  XfconfChannel *channel;
   GtkTreeModel  *model;
   GtkTreeIter    iter;
   GtkWidget     *dialog;
@@ -344,12 +385,6 @@ keyboard_settings_row_activated (GtkTreeView       *tree_view,
   gchar         *old_property;
   gchar         *new_property;
   gint           response;
-
-  if (G_UNLIKELY (column != gtk_tree_view_get_column (tree_view, SHORTCUT_COLUMN)))
-    return;
-
-  /* Get reference on the keyboard shortcuts channel */
-  channel = xfconf_channel_new ("xfce4-keyboard-shortcuts");
 
   /* Get tree view model */
   model = gtk_tree_view_get_model (tree_view);
@@ -371,7 +406,7 @@ keyboard_settings_row_activated (GtkTreeView       *tree_view,
           old_property = g_strdup_printf ("/%s", current_shortcut);
 
           /* Remove old shortcut from the settings */
-          xfconf_channel_remove_property (channel, old_property);
+          xfconf_channel_remove_property (kbd_channel, old_property);
 
           /* Get the shortcut entered by the user */
           new_shortcut = shortcut_dialog_get_shortcut (SHORTCUT_DIALOG (dialog));
@@ -386,7 +421,7 @@ keyboard_settings_row_activated (GtkTreeView       *tree_view,
               new_property = g_strdup_printf ("/%s", new_shortcut);
 
               /* Save new shortcut to the settings */
-              xfconf_channel_set_array (channel, new_property, G_TYPE_STRING, "execute", G_TYPE_STRING, action, G_TYPE_INVALID);
+              xfconf_channel_set_array (kbd_channel, new_property, G_TYPE_STRING, "execute", G_TYPE_STRING, action, G_TYPE_INVALID);
 
               /* Free property names */
               g_free (new_property);
@@ -403,9 +438,74 @@ keyboard_settings_row_activated (GtkTreeView       *tree_view,
       g_free (action);
       g_free (current_shortcut);
     }
+}
 
-  /* Release xfconf channel */
-  g_object_unref (channel);
+
+
+static void
+keyboard_settings_edit_action (GtkTreeView *tree_view,
+                               GtkTreePath *path)
+{
+  GtkTreeModel *model;
+  GtkTreeIter   iter;
+  GtkWidget    *dialog;
+  gchar        *shortcut;
+  gchar        *current_action;
+  const gchar  *new_action;
+  gchar        *property;
+  gint          response;
+
+  /* Get tree view model */
+  model = gtk_tree_view_get_model (tree_view);
+
+  /* Convert tree path to tree iter */
+  if (G_LIKELY (gtk_tree_model_get_iter (model, &iter, path)))
+    {
+      /* Read shortcut and current action from the activated row */
+      gtk_tree_model_get (model, &iter, SHORTCUT_COLUMN, &shortcut, ACTION_COLUMN, &current_action, -1);
+
+      /* Build property name */
+      property = g_strdup_printf ("/%s", shortcut);
+
+      /* Request a new action from the user */
+      dialog = command_dialog_new (shortcut, current_action);
+      response = command_dialog_run (COMMAND_DIALOG (dialog), GTK_WIDGET (tree_view));
+
+      if (G_LIKELY (response != GTK_RESPONSE_CANCEL))
+        {
+          /* Get the action entered by the user */
+          new_action = command_dialog_get_command (COMMAND_DIALOG (dialog));
+
+          /* Replace the old action in the tree view */
+          gtk_list_store_set (GTK_LIST_STORE (model), &iter, ACTION_COLUMN, new_action, -1);
+
+          /* Save new action to the settings */
+          xfconf_channel_set_array (kbd_channel, property, G_TYPE_STRING, "execute", G_TYPE_STRING, new_action, G_TYPE_INVALID);
+        }
+
+      /* Destroy the shortcut dialog */
+      gtk_widget_destroy (dialog);
+
+      /* Free strings */
+      g_free (property);
+      g_free (shortcut);
+      g_free (current_action);
+    }
+}
+
+
+
+static void
+keyboard_settings_row_activated (GtkTreeView       *tree_view,
+                                 GtkTreePath       *path,
+                                 GtkTreeViewColumn *column)
+{
+  if (column == gtk_tree_view_get_column (tree_view, SHORTCUT_COLUMN))
+    keyboard_settings_edit_shortcut (tree_view, path);
+  else
+    keyboard_settings_edit_action (tree_view, path);
+
+  return;
 }
 
 
@@ -414,17 +514,17 @@ GtkWidget*
 keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
 {
   GtkTreeViewColumn *column;
-  GtkCellRenderer *renderer;
-  GtkAdjustment   *net_cursor_blink_time_scale;
-  GtkAdjustment   *xkb_key_repeat_delay_scale;
-  GtkAdjustment   *xkb_key_repeat_rate_scale;
-  GtkListStore    *list_store;
-  GtkWidget       *kbd_shortcuts_view;
-  GtkWidget       *net_cursor_blink_check;
-  GtkWidget       *xkb_key_repeat_check;
-  GtkWidget       *add_shortcut_button;
-  GtkWidget       *delete_shortcut_button;
-  GtkWidget       *dialog;
+  GtkCellRenderer   *renderer;
+  GtkAdjustment     *net_cursor_blink_time_scale;
+  GtkAdjustment     *xkb_key_repeat_delay_scale;
+  GtkAdjustment     *xkb_key_repeat_rate_scale;
+  GtkListStore      *list_store;
+  GtkWidget         *kbd_shortcuts_view;
+  GtkWidget         *net_cursor_blink_check;
+  GtkWidget         *xkb_key_repeat_check;
+  GtkWidget         *add_shortcut_button;
+  GtkWidget         *delete_shortcut_button;
+  GtkWidget         *dialog;
 
   net_cursor_blink_check = glade_xml_get_widget (gxml, "net_cursor_blink_check");
   net_cursor_blink_time_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "net_cursor_blink_time_scale")));
@@ -464,13 +564,11 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
 
   /* Create renderer for the action columns */
   renderer = gtk_cell_renderer_text_new ();
-  g_object_set (G_OBJECT (renderer), "editable", TRUE, NULL);
-  g_signal_connect_swapped (renderer, "edited", G_CALLBACK (keyboard_settings_shortcut_action_edited), GTK_TREE_VIEW (kbd_shortcuts_view));
   column = gtk_tree_view_column_new_with_attributes (_("Command"), renderer, "text", ACTION_COLUMN, NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (kbd_shortcuts_view), column);
 
   /* Load keyboard shortcuts */
-  keyboard_settings_load_shortcuts (kbd_channel, kbd_shortcuts_view, list_store);
+  keyboard_settings_load_shortcuts (kbd_shortcuts_view, list_store);
 
   /* Connect to add/delete button signals */
   g_signal_connect_swapped (add_shortcut_button, "clicked", G_CALLBACK (keyboard_settings_add_shortcut), GTK_TREE_VIEW (kbd_shortcuts_view));
@@ -498,7 +596,7 @@ main(int argc, char **argv)
   if(G_UNLIKELY (!gtk_init_with_args (&argc, &argv, "", entries, PACKAGE, &error)))
     {
       /* Print error if that failed */
-      if (G_LIKELY (error))
+      if (G_LIKELY (error != NULL))
         {
           /* print error */
           g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
@@ -509,10 +607,8 @@ main(int argc, char **argv)
           g_error_free (error);
         }
       else
-        {
-          g_error ("Unable to open display.");
-        }
-        
+        g_error ("Unable to open display.");
+
         return EXIT_FAILURE;
     }
 
@@ -524,12 +620,12 @@ main(int argc, char **argv)
       g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
       g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
       g_print ("\n");
-      
+
       return EXIT_SUCCESS;
     }
 
   /* Initialize xfconf */
-  if (!xfconf_init (&error))
+  if (G_UNLIKELY (!xfconf_init (&error)))
     {
       /* print error and exit */
       g_error ("Failed to connect to xfconf daemon: %s.", error->message);
@@ -537,7 +633,7 @@ main(int argc, char **argv)
 
       return EXIT_FAILURE;
     }
-  
+
   /* load channels */
   xsettings_channel = xfconf_channel_new ("xsettings");
   xkb_channel = xfconf_channel_new ("xkb");
@@ -548,15 +644,15 @@ main(int argc, char **argv)
 
   /* Create settings dialog and run it */
   dialog = keyboard_settings_dialog_new_from_xml (gxml);
-  gtk_dialog_run(GTK_DIALOG(dialog));
-  
+  gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
-  
+
+  /* Unload channels */
   g_object_unref (xsettings_channel);
   g_object_unref (xkb_channel);
   g_object_unref (kbd_channel);
 
-  xfconf_shutdown();
+  xfconf_shutdown ();
 
   return EXIT_SUCCESS;
 }

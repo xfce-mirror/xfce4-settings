@@ -274,8 +274,6 @@ shortcut_dialog_run (ShortcutDialog *dialog,
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
 
-  gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
-
   /* Take control on the keyboard */
   if (G_LIKELY (gdk_keyboard_grab (gtk_widget_get_root_window (parent), TRUE, GDK_CURRENT_TIME) == GDK_GRAB_SUCCESS))
     {
