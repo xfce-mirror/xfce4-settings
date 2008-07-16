@@ -5,6 +5,13 @@
 
 2008-07-16	Jannis Pohlmann <jannis@xfce.org>
 
+	* xfce4-settings-helper/keyboard-shortcuts.c: Connect to the
+	  "property-changed" signal of the XfconfChannel. Ungrab keys when a
+	  property is removed and grab keys when a new property is added.
+	  Update the shortcuts -> command hash table according to the changes.
+
+2008-07-16	Jannis Pohlmann <jannis@xfce.org>
+
 	* dialogs/keyboard-settings/keyboard-dialog.glade: In the last commit
 	  I forgot to mention that I've removed the keyboard theme stuff from
 	  the dialog because this would be too complicated to implement before

@@ -76,7 +76,7 @@ static void            xfce_keyboard_shortcuts_helper_load_shortcut    (const gc
                                                                         const GValue                     *value,
                                                                         XfceKeyboardShortcutsHelper      *helper);
 static gboolean        xfce_keyboard_shortcuts_helper_grab_shortcut    (XfceKeyboardShortcutsHelper      *helper,
-                                                                        const char                       *shortcut,
+                                                                        const gchar                      *shortcut,
                                                                         gboolean                          grab);
 static gboolean        xfce_keyboard_shortcuts_helper_parse_shortcut   (XfceKeyboardShortcutsHelper      *helper,
                                                                         GdkDisplay                       *display,
@@ -93,6 +93,16 @@ static gboolean        xfce_keyboard_shortcuts_helper_grab_real        (XfceKeyb
                                                                         gboolean                          grab);
 static void            xfce_keyboard_shortcuts_helper_handle_key_press (XfceKeyboardShortcutsHelper      *helper,
                                                                         XKeyEvent                        *xevent);
+static void            xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel                    *channel,
+                                                                        gchar                            *property,
+                                                                        GValue                           *value,
+                                                                        XfceKeyboardShortcutsHelper      *helper);
+static gboolean        xfce_keyboard_shortcuts_helper_extract_values   (XfceKeyboardShortcutsHelper      *helper,
+                                                                        const gchar                      *key,
+                                                                        const GValue                     *value,
+                                                                        gchar                           **shortcut,
+                                                                        gchar                           **action);
+
 
 
 
@@ -192,6 +202,9 @@ xfce_keyboard_shortcuts_helper_init (XfceKeyboardShortcutsHelper *helper)
     }
 
   xfce_keyboard_shortcuts_helper_add_filter (helper);
+
+  /* Be notified of property changes */
+  g_signal_connect (helper->channel, "property-changed", G_CALLBACK (xfce_keyboard_shortcuts_helper_property_changed), helper);
 }
 
 
@@ -316,48 +329,27 @@ xfce_keyboard_shortcuts_helper_load_shortcut (const gchar                 *key,
                                               const GValue                *value,
                                               XfceKeyboardShortcutsHelper *helper)
 {
-  const GPtrArray *array;
-  const GValue    *type_value;
-  const GValue    *action_value;
-  const gchar     *type;
-  const gchar     *action;
+  gchar *shortcut;
+  gchar *action;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
-
-  /* MAke sure we only load shortcuts from string arrays */
-  if (G_UNLIKELY (G_VALUE_TYPE (value) != dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE)))
-    return;
-
-  /* Get the pointer array */
-  array = g_value_get_boxed (value);
-
-  /* Make sure the array has exactly two members */
-  if (G_UNLIKELY (array->len != 2))
-    return;
-
-  /* Get GValues for the array members */
-  type_value = g_ptr_array_index (array, 0);
-  action_value = g_ptr_array_index (array, 1);
-
-  /* Make sure both are string values */
-  if (G_UNLIKELY (G_VALUE_TYPE (type_value) != G_TYPE_STRING || G_VALUE_TYPE (action_value) != G_TYPE_STRING))
-    return;
-
-  /* Get shortcut type and action */
-  type = g_value_get_string (type_value);
-  action = g_value_get_string (action_value);
+  g_return_if_fail (G_IS_VALUE (value));
 
   /* Only add shortcuts of type 'execute' */
-  if (g_utf8_collate (type, "execute") == 0)
+  if (G_LIKELY (xfce_keyboard_shortcuts_helper_extract_values (helper, key, value, &shortcut, &action)))
     {
       /* Establish passive grab on the shortcut and add it to the hash table */
-      if (G_LIKELY (xfce_keyboard_shortcuts_helper_grab_shortcut (helper, key + 1, TRUE)))
+      if (G_LIKELY (xfce_keyboard_shortcuts_helper_grab_shortcut (helper, shortcut, TRUE)))
         {
           /* Add shortcut -> action pair to the hash table */
-          g_hash_table_insert (helper->shortcuts, g_strdup (key + 1), g_strdup (action));
+          g_hash_table_insert (helper->shortcuts, g_strdup (shortcut), g_strdup (action));
         }
       else
         g_warning ("Failed to load shortcut '%s'", key + 1);
+
+      /* Free strings */
+      g_free (shortcut);
+      g_free (action);
     }
 }
 
@@ -544,4 +536,107 @@ xfce_keyboard_shortcuts_helper_handle_key_press (XfceKeyboardShortcutsHelper *he
 
   /* Free accelerator string */
   g_free (accelerator_name);
+}
+
+
+
+static void
+xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel               *channel,
+                                                 gchar                       *property,
+                                                 GValue                      *value,
+                                                 XfceKeyboardShortcutsHelper *helper)
+{
+  gchar *shortcut;
+  gchar *action;
+
+  g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
+  g_return_if_fail (XFCONF_IS_CHANNEL (channel));
+
+  /* Check whether the property was removed */
+  if (!G_IS_VALUE (value) || G_VALUE_TYPE (value) == G_TYPE_INVALID)
+    {
+      /* Remove shortcut and ungrab keys if we're monitoring it already */
+      if (G_LIKELY (g_hash_table_lookup (helper->shortcuts, property + 1)))
+        {
+          /* Remove shortcut from the hash table */
+          g_hash_table_remove (helper->shortcuts, property + 1);
+
+          /* Ungrab the shortcut */
+          xfce_keyboard_shortcuts_helper_grab_shortcut (helper, property + 1, FALSE);
+        }
+    }
+  else
+    {
+      /* Try to read shortcut information from the GValue. If not, it's probably an Xfwm4 shortcut */
+      if (G_LIKELY (xfce_keyboard_shortcuts_helper_extract_values (helper, property, value, &shortcut, &action)))
+        {
+          /* Check whether the shortcut already exists */
+          if (g_hash_table_lookup (helper->shortcuts, shortcut))
+            {
+              /* Replace the current action. The key combination hasn't changed so don't ungrab/grab */
+              g_hash_table_replace (helper->shortcuts, shortcut, g_strdup (action));
+            }
+          else
+            {
+              /* Insert shortcut into the hash table */
+              g_hash_table_insert (helper->shortcuts, g_strdup (shortcut), g_strdup (action));
+
+              /* Establish passive keyboard grab for the new shortcut */
+              xfce_keyboard_shortcuts_helper_grab_shortcut (helper, shortcut, TRUE);
+            }
+
+          /* Free strings */
+          g_free (shortcut);
+          g_free (action);
+        }
+    }
+}
+
+
+
+static gboolean
+xfce_keyboard_shortcuts_helper_extract_values (XfceKeyboardShortcutsHelper  *helper,
+                                               const gchar                  *key,
+                                               const GValue                 *value,
+                                               gchar                       **shortcut,
+                                               gchar                       **action)
+{
+  const GPtrArray *array;
+  const GValue    *type_value;
+  const GValue    *action_value;
+  gboolean         result = FALSE;
+
+  g_return_val_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper), FALSE);
+  g_return_val_if_fail (G_IS_VALUE (value), FALSE);
+
+  /* Non-arrays will not be accepted */
+  if (G_UNLIKELY (G_VALUE_TYPE (value) != dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE)))
+    return FALSE;
+
+  /* Get the pointer array */
+  array = g_value_get_boxed (value);
+
+  /* Make sure the array has exactly two members */
+  if (G_UNLIKELY (array->len != 2))
+    return FALSE;
+
+  /* Get GValues for the array members */
+  type_value = g_ptr_array_index (array, 0);
+  action_value = g_ptr_array_index (array, 1);
+
+  /* Make sure both are string values */
+  if (G_UNLIKELY (G_VALUE_TYPE (type_value) != G_TYPE_STRING || G_VALUE_TYPE (action_value) != G_TYPE_STRING))
+    return FALSE;
+
+  /* Check whether the type is 'execute' */
+  if (G_LIKELY (g_utf8_collate (g_value_get_string (type_value), "execute") == 0))
+    {
+      /* Get shortcut and action strings */
+      *shortcut = g_strdup (key + 1);
+      *action = g_strdup (g_value_get_string (action_value));
+
+      result = TRUE;
+    }
+
+  return result;
 }
