@@ -211,6 +211,7 @@ xfce_xkb_helper_set_repeat_rate (XfceXkbHelper *helper)
         XkbSetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
 
         /* cleanup */
+        XkbFreeControls (xkb, XkbRepeatKeysMask, True);
         XFree (xkb);
     }
 

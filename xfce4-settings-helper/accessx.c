@@ -245,6 +245,7 @@ xfce_accessx_helper_set_xkb (XfceAccessxHelper *helper)
         XkbSetControls (GDK_DISPLAY (), XkbControlsEnabledMask | XkbStickyKeysMask | XkbBounceKeysMask | XkbSlowKeysMask | XkbMouseKeysMask, xkb);
 
         /* free the structure */
+        XkbFreeControls (xkb, XkbAllControlsMask, True);
         XFree (xkb);
 
         /* flush errors and pop trap */
