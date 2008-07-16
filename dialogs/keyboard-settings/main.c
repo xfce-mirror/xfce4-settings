@@ -326,7 +326,7 @@ keyboard_settings_delete_shortcut (GtkTreeView *tree_view)
 }
 
 
-
+#if 0
 static void
 keyboard_settings_shortcut_action_edited (GtkTreeView *tree_view,
                                           gchar       *path,
@@ -369,7 +369,7 @@ keyboard_settings_shortcut_action_edited (GtkTreeView *tree_view,
       g_free (old_text);
     }
 }
-
+#endif
 
 
 static void

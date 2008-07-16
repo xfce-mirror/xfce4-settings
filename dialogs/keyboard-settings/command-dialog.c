@@ -125,8 +125,6 @@ command_dialog_dispose (GObject *object)
 static void
 command_dialog_finalize (GObject *object)
 {
-  CommandDialog *dialog = COMMAND_DIALOG (object);
-
   (*G_OBJECT_CLASS (command_dialog_parent_class)->finalize) (object);
 }
 
@@ -153,10 +151,7 @@ command_dialog_create_contents (CommandDialog *dialog,
                                 const gchar   *action)
 {
   GtkWidget *button;
-  GtkWidget *vbox;
   GtkWidget *hbox;
-  GtkWidget *image;
-  GtkWidget *label;
   gchar     *text;
 
   /* Set dialog title and icon */
