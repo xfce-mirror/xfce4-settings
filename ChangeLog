@@ -1,7 +1,7 @@
-2008-07-16	Nick Schermer <nick@xfce.org>
+2008-07-16	Jannis Pohlmann <jannis@xfce.org>
 
-	* dialogs/keyboard-settings/main.c, 
-	  dialogs/keyboard-settings/command-dialog.c: Fix compilation.
+	* dialogs/keyboard-settings/main.c: Save property when a new shortcut
+	  is created.
 
 2008-07-16	Jannis Pohlmann <jannis@xfce.org>
 
@@ -9,6 +9,11 @@
 	  "property-changed" signal of the XfconfChannel. Ungrab keys when a
 	  property is removed and grab keys when a new property is added.
 	  Update the shortcuts -> command hash table according to the changes.
+
+2008-07-16	Nick Schermer <nick@xfce.org>
+
+	* dialogs/keyboard-settings/main.c, 
+	  dialogs/keyboard-settings/command-dialog.c: Fix compilation.
 
 2008-07-16	Jannis Pohlmann <jannis@xfce.org>
 

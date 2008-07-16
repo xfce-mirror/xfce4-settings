@@ -210,6 +210,7 @@ keyboard_settings_add_shortcut (GtkTreeView *tree_view)
   const gchar  *shortcut = NULL;
   gboolean      finished = FALSE;
   gchar        *command = NULL;
+  gchar        *property;
   gint          response;
 
   /* Create command dialog */
@@ -258,6 +259,11 @@ keyboard_settings_add_shortcut (GtkTreeView *tree_view)
 
       /* Set row values */
       gtk_list_store_set (GTK_LIST_STORE (model), &iter, SHORTCUT_COLUMN, shortcut, ACTION_COLUMN, command, -1);
+
+      /* Save the new shortcut to xfconf */
+      property = g_strdup_printf ("/%s", shortcut);
+      xfconf_channel_set_array (kbd_channel, property, G_TYPE_STRING, "execute", G_TYPE_STRING, command, G_TYPE_INVALID);
+      g_free (property);
     }
 
   /* Destroy the shortcut dialog */
@@ -324,52 +330,6 @@ keyboard_settings_delete_shortcut (GtkTreeView *tree_view)
   g_list_foreach (rows, (GFunc) gtk_tree_path_free, NULL);
   g_list_free (rows);
 }
-
-
-#if 0
-static void
-keyboard_settings_shortcut_action_edited (GtkTreeView *tree_view,
-                                          gchar       *path,
-                                          gchar       *new_text)
-
-{
-  GtkTreeModel  *model;
-  GtkTreeIter    iter;
-  gchar         *shortcut;
-  gchar         *old_text;
-  gchar         *property_name;
-
-  /* Get tree model */
-  model = gtk_tree_view_get_model (tree_view);
-
-  /* Get iter for the edited row */
-  if (G_LIKELY (gtk_tree_model_get_iter_from_string (model, &iter, path)))
-    {
-      /* Read row values */
-      gtk_tree_model_get (model, &iter, SHORTCUT_COLUMN, &shortcut, ACTION_COLUMN, &old_text, -1);
-
-      /* Check whether anything has changed at all */
-      if (G_LIKELY (g_utf8_collate (old_text, new_text) != 0))
-        {
-          /* Upate row data with the new text */
-          gtk_list_store_set (GTK_LIST_STORE (model), &iter, ACTION_COLUMN, new_text, -1);
-
-          /* Build xfconf property name */
-          property_name = g_strdup_printf ("/%s", shortcut);
-
-          /* Save new shortcut settings */
-          xfconf_channel_set_array (kbd_channel, property_name, G_TYPE_STRING, "execute", G_TYPE_STRING, new_text, G_TYPE_INVALID);
-
-          /* Free property name */
-          g_free (property_name);
-        }
-
-      /* Free strings */
-      g_free (shortcut);
-      g_free (old_text);
-    }
-}
-#endif
 
 
 static void
