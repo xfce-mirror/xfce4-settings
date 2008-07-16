@@ -1,3 +1,4 @@
+/* $Id$ */
 /*
  *  Copyright (c) 2008 Nick Schermer <nick@xfce.org>
  *
@@ -65,7 +66,7 @@
 
 /* global setting channels */
 XfconfChannel *xsettings_channel;
-XfconfChannel *xdevices_channel;
+XfconfChannel *pointers_channel;
 
 /* lock counter to avoid signals during updates */
 static gint locked = 0;
@@ -78,7 +79,6 @@ static guint timeout_id = 0;
 
 /* option entries */
 static gboolean opt_version = FALSE;
-
 static GOptionEntry option_entries[] =
 {
     { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
@@ -699,34 +699,34 @@ mouse_settings_device_save (GladeXML *gxml)
         {
             /* store the button order */
             widget = glade_xml_get_widget (gxml, "mouse-right-handed");
-            property_name = g_strdup_printf ("/Pointers/%s/RightHanded", name);
+            property_name = g_strdup_printf ("/%s/RightHanded", name);
             righthanded = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
-            if (xfconf_channel_get_bool (xdevices_channel, property_name, TRUE) != righthanded)
-                xfconf_channel_set_bool (xdevices_channel, property_name, righthanded);
+            if (xfconf_channel_get_bool (pointers_channel, property_name, TRUE) != righthanded)
+                xfconf_channel_set_bool (pointers_channel, property_name, righthanded);
             g_free (property_name);
 
             /* store reverse scrolling */
             widget = glade_xml_get_widget (gxml, "mouse-reverse-scrolling");
-            property_name = g_strdup_printf ("/Pointers/%s/ReverseScrolling", name);
+            property_name = g_strdup_printf ("/%s/ReverseScrolling", name);
             reverse_scrolling = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
-            if (xfconf_channel_get_bool (xdevices_channel, property_name, TRUE) != reverse_scrolling)
-                xfconf_channel_set_bool (xdevices_channel, property_name, reverse_scrolling);
+            if (xfconf_channel_get_bool (pointers_channel, property_name, TRUE) != reverse_scrolling)
+                xfconf_channel_set_bool (pointers_channel, property_name, reverse_scrolling);
             g_free (property_name);
 
             /* store the threshold */
             widget = glade_xml_get_widget (gxml, "mouse-threshold-scale");
-            property_name = g_strdup_printf ("/Pointers/%s/Threshold", name);
+            property_name = g_strdup_printf ("/%s/Threshold", name);
             threshold = gtk_range_get_value (GTK_RANGE (widget));
-            if (xfconf_channel_get_int (xdevices_channel, property_name, -1) != threshold)
-                xfconf_channel_set_int (xdevices_channel, property_name, threshold);
+            if (xfconf_channel_get_int (pointers_channel, property_name, -1) != threshold)
+                xfconf_channel_set_int (pointers_channel, property_name, threshold);
             g_free (property_name);
 
             /* store the acceleration */
             widget = glade_xml_get_widget (gxml, "mouse-acceleration-scale");
-            property_name = g_strdup_printf ("/Pointers/%s/Acceleration", name);
+            property_name = g_strdup_printf ("/%s/Acceleration", name);
             acceleration = gtk_range_get_value (GTK_RANGE (widget));
-            if (xfconf_channel_get_double (xdevices_channel, property_name, -1) != acceleration)
-                xfconf_channel_set_double (xdevices_channel, property_name, acceleration);
+            if (xfconf_channel_get_double (pointers_channel, property_name, -1) != acceleration)
+                xfconf_channel_set_double (pointers_channel, property_name, acceleration);
             g_free (property_name);
 
             /* cleanup */
@@ -1019,13 +1019,13 @@ mouse_settings_device_reset (GtkWidget *button,
             gtk_widget_set_sensitive (button, FALSE);
 
             /* set the threshold to -1 */
-            property_name = g_strdup_printf ("/Pointers/%s/Threshold", name);
-            xfconf_channel_set_int (xdevices_channel, property_name, -1);
+            property_name = g_strdup_printf ("/%s/Threshold", name);
+            xfconf_channel_set_int (pointers_channel, property_name, -1);
             g_free (property_name);
 
             /* set the acceleration to -1 */
-            property_name = g_strdup_printf ("/Pointers/%s/Acceleration", name);
-            xfconf_channel_set_double (xdevices_channel, property_name, -1.00);
+            property_name = g_strdup_printf ("/%s/Acceleration", name);
+            xfconf_channel_set_double (pointers_channel, property_name, -1.00);
             g_free (property_name);
 
             /* update the sliders in 500ms */
@@ -1102,11 +1102,11 @@ main(gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    /* open the xsettings and xdevices channel */
+    /* open the xsettings and pointers channel */
     xsettings_channel = xfconf_channel_new ("xsettings");
-    xdevices_channel = xfconf_channel_new ("xdevices");
+    pointers_channel = xfconf_channel_new ("pointers");
 
-    if (G_LIKELY (xdevices_channel && xsettings_channel))
+    if (G_LIKELY (pointers_channel && xsettings_channel))
     {
         /* load the glade xml file */
         gxml = glade_xml_new_from_buffer (mouse_dialog_glade, mouse_dialog_glade_length, NULL, NULL);
@@ -1247,7 +1247,7 @@ main(gint argc, gchar **argv)
 
         /* release the channels */
         g_object_unref (G_OBJECT (xsettings_channel));
-        g_object_unref (G_OBJECT (xdevices_channel));
+        g_object_unref (G_OBJECT (pointers_channel));
     }
 
     /* shutdown xfconf */

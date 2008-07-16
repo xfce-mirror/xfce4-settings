@@ -1,3 +1,20 @@
+2008-07-16	Nick Schermer <nick@xfce.org>
+
+	* Mv xfce4-settings-helper/xkb.* xfce4-settings-helper/keyboards.*:
+	  Rename the files and change the internal names too. Settings
+	  channel name renamed from 'xkb' to 'keyboards'.
+	* Mv xfce4-settings-helper/accessx.* xfce4-settings-helper/accessibility.*:
+	  Rename the files and change the internal names too. Settings
+	  channel name renamed from 'accessx' to 'accessibility'.
+	* xfce4-settings-helper/pointers.c: Rename the channel name from
+	  'devices' to 'pointers'.
+	* dialogs/keyboard-settings/main.c: Cleanup code.
+	* dialogs/accessibility-settings/main.c: Cleanup code.
+	* TODO: Add some stuff we need to take a look at.
+	* dialogs/display-settings/: Update glade file and add a bit more code.
+	* *.c, *.h: Add svn:keywords Id on all the source files and add $Id$
+	  where needed. Various other small changes to make to changes above work.
+
 2008-07-16	Jannis Pohlmann <jannis@xfce.org>
 
 	* xfce4-settings-helper/accessx.c, xfce4-settings-helper/xkb.c: Call

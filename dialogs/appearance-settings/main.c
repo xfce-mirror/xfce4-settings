@@ -1,3 +1,4 @@
+/* $Id$ */
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
  *  Copyright (c) 2008 Jannis Pohlmann <jannis@xfce.org>

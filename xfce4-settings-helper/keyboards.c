@@ -44,57 +44,57 @@
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include <xfce4-settings-helper/xkb.h>
+#include "keyboards.h"
 
 
 
-static void            xfce_xkb_helper_class_init                     (XfceXkbHelperClass *klass);
-static void            xfce_xkb_helper_init                           (XfceXkbHelper      *helper);
-static void            xfce_xkb_helper_finalize                       (GObject            *object);
-static void            xfce_xkb_helper_set_auto_repeat_mode           (XfceXkbHelper      *helper);
-static void            xfce_xkb_helper_set_repeat_rate                (XfceXkbHelper      *helper);
-static void            xfce_xkb_helper_channel_property_changed       (XfconfChannel      *channel,
-                                                                       const gchar        *property_name,
-                                                                       const GValue       *value,
-                                                                       XfceXkbHelper      *helper);
+static void xfce_keyboards_helper_class_init                (XfceKeyboardsHelperClass *klass);
+static void xfce_keyboards_helper_init                      (XfceKeyboardsHelper      *helper);
+static void xfce_keyboards_helper_finalize                  (GObject                  *object);
+static void xfce_keyboards_helper_set_auto_repeat_mode      (XfceKeyboardsHelper      *helper);
+static void xfce_keyboards_helper_set_repeat_rate           (XfceKeyboardsHelper      *helper);
+static void xfce_keyboards_helper_channel_property_changed  (XfconfChannel            *channel,
+                                                             const gchar              *property_name,
+                                                             const GValue             *value,
+                                                             XfceKeyboardsHelper      *helper);
 
 
 
-struct _XfceXkbHelperClass
+struct _XfceKeyboardsHelperClass
 {
     GObjectClass __parent__;
 };
 
-struct _XfceXkbHelper
+struct _XfceKeyboardsHelper
 {
     GObject  __parent__;
 
     /* xfconf channel */
-    XfconfChannel      *channel;
+    XfconfChannel *channel;
 
     /* if xf86misc is present */
-    guint               has_xf86misc : 1;
+    guint          has_xf86misc : 1;
 };
 
 
 
-G_DEFINE_TYPE (XfceXkbHelper, xfce_xkb_helper, G_TYPE_OBJECT);
+G_DEFINE_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, G_TYPE_OBJECT);
 
 
 
 static void
-xfce_xkb_helper_class_init (XfceXkbHelperClass *klass)
+xfce_keyboards_helper_class_init (XfceKeyboardsHelperClass *klass)
 {
   GObjectClass *gobject_class;
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = xfce_xkb_helper_finalize;
+  gobject_class->finalize = xfce_keyboards_helper_finalize;
 }
 
 
 
 static void
-xfce_xkb_helper_init (XfceXkbHelper *helper)
+xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
 {
     gint dummy;
 
@@ -110,14 +110,14 @@ xfce_xkb_helper_init (XfceXkbHelper *helper)
 #endif
 
         /* open the channel */
-        helper->channel = xfconf_channel_new ("xkb");
+        helper->channel = xfconf_channel_new ("keyboards");
 
         /* monitor channel changes */
-        g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_xkb_helper_channel_property_changed), helper);
+        g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_keyboards_helper_channel_property_changed), helper);
 
         /* load settings */
-        xfce_xkb_helper_set_auto_repeat_mode (helper);
-        xfce_xkb_helper_set_repeat_rate (helper);
+        xfce_keyboards_helper_set_auto_repeat_mode (helper);
+        xfce_keyboards_helper_set_repeat_rate (helper);
     }
     else
     {
@@ -129,27 +129,27 @@ xfce_xkb_helper_init (XfceXkbHelper *helper)
 
 
 static void
-xfce_xkb_helper_finalize (GObject *object)
+xfce_keyboards_helper_finalize (GObject *object)
 {
-    XfceXkbHelper *helper = XFCE_XKB_HELPER (object);
+    XfceKeyboardsHelper *helper = XFCE_KEYBOARDS_HELPER (object);
 
     /* release the channel */
     if (G_LIKELY (helper->channel))
         g_object_unref (G_OBJECT (helper->channel));
 
-    (*G_OBJECT_CLASS (xfce_xkb_helper_parent_class)->finalize) (object);
+    (*G_OBJECT_CLASS (xfce_keyboards_helper_parent_class)->finalize) (object);
 }
 
 
 
 static void
-xfce_xkb_helper_set_auto_repeat_mode (XfceXkbHelper *helper)
+xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
 {
     XKeyboardControl values;
     gboolean         repeat;
 
     /* load setting */
-    repeat = xfconf_channel_get_bool (helper->channel, "/Xkb/KeyRepeat", FALSE);
+    repeat = xfconf_channel_get_bool (helper->channel, "/Default/KeyRepeat", FALSE);
 
     /* flush and avoid crashes on x errors */
     gdk_flush ();
@@ -169,7 +169,7 @@ xfce_xkb_helper_set_auto_repeat_mode (XfceXkbHelper *helper)
 
 
 static void
-xfce_xkb_helper_set_repeat_rate (XfceXkbHelper *helper)
+xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
 {
 #ifdef HAVE_XF86MISC
     XF86MiscKbdSettings values;
@@ -178,8 +178,8 @@ xfce_xkb_helper_set_repeat_rate (XfceXkbHelper *helper)
     gint                delay, rate;
 
     /* load settings */
-    delay = xfconf_channel_get_int (helper->channel, "/Xkb/KeyRepeat/Delay", 0);
-    rate = xfconf_channel_get_int (helper->channel, "/Xkb/KeyRepeat/Rate", 0);
+    delay = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Delay", 0);
+    rate = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Rate", 0);
 
     /* flush and avoid crashes on x errors */
     gdk_flush ();
@@ -223,22 +223,22 @@ xfce_xkb_helper_set_repeat_rate (XfceXkbHelper *helper)
 
 
 static void
-xfce_xkb_helper_channel_property_changed (XfconfChannel *channel,
-                                          const gchar   *property_name,
-                                          const GValue  *value,
-                                          XfceXkbHelper *helper)
+xfce_keyboards_helper_channel_property_changed (XfconfChannel      *channel,
+                                               const gchar         *property_name,
+                                               const GValue        *value,
+                                               XfceKeyboardsHelper *helper)
 {
     g_return_if_fail (helper->channel == channel);
 
-    if (strcmp (property_name, "/Xkb/KeyRepeat") == 0)
+    if (strcmp (property_name, "/Default/KeyRepeat") == 0)
     {
         /* update auto repeat mode */
-        xfce_xkb_helper_set_auto_repeat_mode (helper);
+        xfce_keyboards_helper_set_auto_repeat_mode (helper);
     }
-    else if (strcmp (property_name, "/Xkb/KeyRepeat/Delay") == 0
-             || strcmp (property_name, "/Xkb/KeyRepeat/Rate") == 0)
+    else if (strcmp (property_name, "/Default/KeyRepeat/Delay") == 0
+             || strcmp (property_name, "/Default/KeyRepeat/Rate") == 0)
     {
         /* update repeat rate */
-        xfce_xkb_helper_set_repeat_rate (helper);
+        xfce_keyboards_helper_set_repeat_rate (helper);
     }
 }

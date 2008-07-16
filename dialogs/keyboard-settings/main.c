@@ -1,3 +1,4 @@
+/* $Id$ */
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
  *  Copyright (c) 2008 Jannis Pohlmann <jannis@xfce.org>
@@ -53,7 +54,7 @@ enum
 
 
 static XfconfChannel *xsettings_channel;
-static XfconfChannel *xkb_channel;
+static XfconfChannel *keyboards_channel;
 static XfconfChannel *kbd_channel;
 
 
@@ -70,25 +71,10 @@ static GOptionEntry entries[] = {
 
 
 static void
-xkb_key_repeat_toggled (GtkToggleButton *button,
-                        GladeXML        *gxml)
+keyboard_settings_box_sensitivity (GtkToggleButton *button,
+                                   GtkWidget       *box)
 {
-    GtkWidget *box;
-
-    box = glade_xml_get_widget (gxml, "xkb_key_repeat_box");
-    gtk_widget_set_sensitive (box, gtk_toggle_button_get_active (button));
-}
-
-
-
-static void
-net_cursor_blink_toggled (GtkToggleButton *button,
-                          GladeXML        *gxml)
-{
-    GtkWidget *box;
-
-    box = glade_xml_get_widget (gxml, "net_cursor_blink_box");
-    gtk_widget_set_sensitive (box, gtk_toggle_button_get_active (button));
+    gtk_widget_set_sensitive (GTK_WIDGET (box), gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
 }
 
 
@@ -485,29 +471,31 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
   GtkWidget         *add_shortcut_button;
   GtkWidget         *delete_shortcut_button;
   GtkWidget         *dialog;
-
-  net_cursor_blink_check = glade_xml_get_widget (gxml, "net_cursor_blink_check");
-  net_cursor_blink_time_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "net_cursor_blink_time_scale")));
-  xkb_key_repeat_check = glade_xml_get_widget (gxml, "xkb_key_repeat_check");
-  xkb_key_repeat_delay_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_key_repeat_delay_scale")));
-  xkb_key_repeat_rate_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_key_repeat_rate_scale")));
-  kbd_shortcuts_view = glade_xml_get_widget (gxml, "kbd_shortcuts_view");
-  add_shortcut_button = glade_xml_get_widget (gxml, "add_shortcut_button");
-  delete_shortcut_button = glade_xml_get_widget (gxml, "delete_shortcut_button");
-
-  g_signal_connect (net_cursor_blink_check, "toggled", G_CALLBACK (net_cursor_blink_toggled), gxml);
-  g_signal_connect (xkb_key_repeat_check, "toggled", G_CALLBACK (xkb_key_repeat_toggled), gxml);
+  GtkWidget         *box;
 
   /* XKB Settings */
-  xfconf_g_property_bind (xkb_channel, "/Xkb/KeyRepeat", G_TYPE_BOOLEAN, G_OBJECT (xkb_key_repeat_check), "active");
-  xfconf_g_property_bind (xkb_channel, "/Xkb/KeyRepeat/Rate", G_TYPE_INT, G_OBJECT (xkb_key_repeat_rate_scale), "value");
-  xfconf_g_property_bind (xkb_channel, "/Xkb/KeyRepeat/Delay", G_TYPE_INT, G_OBJECT (xkb_key_repeat_delay_scale), "value");
+  xkb_key_repeat_check = glade_xml_get_widget (gxml, "xkb_key_repeat_check");
+  box = glade_xml_get_widget (gxml, "xkb_key_repeat_box");
+  g_signal_connect (G_OBJECT (xkb_key_repeat_check), "toggled", G_CALLBACK (keyboard_settings_box_sensitivity), box);
+  xfconf_g_property_bind (keyboards_channel, "/Default/KeyRepeat", G_TYPE_BOOLEAN, G_OBJECT (xkb_key_repeat_check), "active");
+  
+  xkb_key_repeat_rate_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_key_repeat_rate_scale")));
+  xfconf_g_property_bind (keyboards_channel, "/Default/KeyRepeat/Rate", G_TYPE_INT, G_OBJECT (xkb_key_repeat_rate_scale), "value");
+  
+  xkb_key_repeat_delay_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_key_repeat_delay_scale")));
+  xfconf_g_property_bind (keyboards_channel, "/Default/KeyRepeat/Delay", G_TYPE_INT, G_OBJECT (xkb_key_repeat_delay_scale), "value");
 
   /* XSETTINGS */
+  net_cursor_blink_check = glade_xml_get_widget (gxml, "net_cursor_blink_check");
+  box = glade_xml_get_widget (gxml, "net_cursor_blink_box");
+  g_signal_connect (G_OBJECT (net_cursor_blink_check), "toggled", G_CALLBACK (keyboard_settings_box_sensitivity), box);
   xfconf_g_property_bind (xsettings_channel, "/Net/CursorBlink", G_TYPE_BOOLEAN, G_OBJECT (net_cursor_blink_check), "active");
+  
+  net_cursor_blink_time_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "net_cursor_blink_time_scale")));
   xfconf_g_property_bind (xsettings_channel, "/Net/CursorBlinkTime", G_TYPE_INT, G_OBJECT (net_cursor_blink_time_scale), "value");
 
   /* Configure shortcuts tree view */
+  kbd_shortcuts_view = glade_xml_get_widget (gxml, "kbd_shortcuts_view");
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (kbd_shortcuts_view), TRUE);
   gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (kbd_shortcuts_view)), GTK_SELECTION_MULTIPLE);
   g_signal_connect (kbd_shortcuts_view, "row-activated", G_CALLBACK (keyboard_settings_row_activated), NULL);
@@ -531,8 +519,11 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
   keyboard_settings_load_shortcuts (kbd_shortcuts_view, list_store);
 
   /* Connect to add/delete button signals */
-  g_signal_connect_swapped (add_shortcut_button, "clicked", G_CALLBACK (keyboard_settings_add_shortcut), GTK_TREE_VIEW (kbd_shortcuts_view));
-  g_signal_connect_swapped (delete_shortcut_button, "clicked", G_CALLBACK (keyboard_settings_delete_shortcut), GTK_TREE_VIEW (kbd_shortcuts_view));
+  add_shortcut_button = glade_xml_get_widget (gxml, "add_shortcut_button");
+  g_signal_connect_swapped (G_OBJECT (add_shortcut_button), "clicked", G_CALLBACK (keyboard_settings_add_shortcut), GTK_TREE_VIEW (kbd_shortcuts_view));
+  
+  delete_shortcut_button = glade_xml_get_widget (gxml, "delete_shortcut_button");
+  g_signal_connect_swapped (G_OBJECT (delete_shortcut_button), "clicked", G_CALLBACK (keyboard_settings_delete_shortcut), GTK_TREE_VIEW (kbd_shortcuts_view));
 
   /* Get dialog widget */
   dialog = glade_xml_get_widget (gxml, "keyboard-settings-dialog");
@@ -596,7 +587,7 @@ main(int argc, char **argv)
 
   /* load channels */
   xsettings_channel = xfconf_channel_new ("xsettings");
-  xkb_channel = xfconf_channel_new ("xkb");
+  keyboards_channel = xfconf_channel_new ("keyboards");
   kbd_channel = xfconf_channel_new ("xfce4-keyboard-shortcuts");
 
   /* Parse Glade XML */
@@ -608,9 +599,9 @@ main(int argc, char **argv)
   gtk_widget_destroy (dialog);
 
   /* Unload channels */
-  g_object_unref (xsettings_channel);
-  g_object_unref (xkb_channel);
-  g_object_unref (kbd_channel);
+  g_object_unref (G_OBJECT (xsettings_channel));
+  g_object_unref (G_OBJECT (keyboards_channel));
+  g_object_unref (G_OBJECT (kbd_channel));
 
   xfconf_shutdown ();
 

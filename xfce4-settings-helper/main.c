@@ -36,9 +36,9 @@
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 
+#include "accessibility.h"
 #include "pointers.h"
-#include "xkb.h"
-#include "accessx.h"
+#include "keyboards.h"
 #include "keyboard-shortcuts.h"
 
 
@@ -59,8 +59,8 @@ main (gint argc, gchar **argv)
 {
     GError  *error = NULL;
     GObject *pointer_helper;
-    GObject *xkb_helper;
-    GObject *accessx_helper;
+    GObject *keyboards_helper;
+    GObject *accessibility_helper;
     GObject *shortcuts_helper;
     pid_t    pid;
 
@@ -134,8 +134,8 @@ main (gint argc, gchar **argv)
 
     /* create the sub daemons */
     pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
-    xkb_helper = g_object_new (XFCE_TYPE_XKB_HELPER, NULL);
-    accessx_helper = g_object_new (XFCE_TYPE_ACCESSX_HELPER, NULL);
+    keyboards_helper = g_object_new (XFCE_TYPE_KEYBOARDS_HELPER, NULL);
+    accessibility_helper = g_object_new (XFCE_TYPE_ACCESSIBILITY_HELPER, NULL);
     shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
 
     /* enter the main loop */
@@ -143,8 +143,8 @@ main (gint argc, gchar **argv)
 
     /* release the sub daemons */
     g_object_unref (G_OBJECT (pointer_helper));
-    g_object_unref (G_OBJECT (xkb_helper));
-    g_object_unref (G_OBJECT (accessx_helper));
+    g_object_unref (G_OBJECT (keyboards_helper));
+    g_object_unref (G_OBJECT (accessibility_helper));
     g_object_unref (G_OBJECT (shortcuts_helper));
 
     /* shutdown xfconf */

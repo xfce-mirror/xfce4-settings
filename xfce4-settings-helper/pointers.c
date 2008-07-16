@@ -39,7 +39,7 @@
 #include <hal/libhal.h>
 #endif /* !HAVE_HAL */
 
-#include <xfce4-settings-helper/pointers.h>
+#include "pointers.h"
 
 
 
@@ -138,7 +138,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
     if (XQueryExtension (GDK_DISPLAY (), "XInputExtension", &dummy, &dummy, &dummy))
     {
         /* open the channel */
-        helper->channel = xfconf_channel_new ("xdevices");
+        helper->channel = xfconf_channel_new ("pointers");
 
         /* restore the pointer devices */
         xfce_pointers_helper_restore_devices (helper);
@@ -476,15 +476,15 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper)
                 device_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
 
                 /* create righthanded property string */
-                righthanded_str = g_strdup_printf ("/Pointers/%s/RightHanded", device_name);
+                righthanded_str = g_strdup_printf ("/%s/RightHanded", device_name);
 
                 /* check if we have a property for this device, else continue */
                 if (xfconf_channel_has_property (helper->channel, righthanded_str))
                 {
                     /* create property names */
-                    reverse_scrolling_str = g_strdup_printf ("/Pointers/%s/ReverseScrolling", device_name);
-                    threshold_str = g_strdup_printf ("/Pointers/%s/Threshold", device_name);
-                    acceleration_str = g_strdup_printf ("/Pointers/%s/Acceleration", device_name);
+                    reverse_scrolling_str = g_strdup_printf ("/%s/ReverseScrolling", device_name);
+                    threshold_str = g_strdup_printf ("/%s/Threshold", device_name);
+                    acceleration_str = g_strdup_printf ("/%s/Acceleration", device_name);
 
                     /* restore the button mapping */
                     xfce_pointers_helper_change_button_mapping (device_info, device, xdisplay,
@@ -530,12 +530,8 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
     gchar       **names;
     gchar        *device_name;
 
-    /* check if this looks like a pointer property */
-    if (strncmp (property_name, "/Pointers/", 10) != 0)
-        return;
-
-    /* split the property name */
-    names = g_strsplit (property_name + 10, "/", -1);
+    /* split the property name (+1 so skip the first slash in the name) */
+    names = g_strsplit (property_name + 1, "/", -1);
 
     /* check if splitting worked */
     if (names && g_strv_length (names) == 2)

@@ -13,14 +13,14 @@ bin_PROGRAMS = \
 
 xfce4_settings_helper_SOURCES = \
 	main.c \
-	accessx.c \
-	accessx.h \
-	xkb.c \
-	xkb.h \
-	pointers.c \
-	pointers.h \
+	accessibility.c \
+	accessibility.h \
+	keyboards.c \
+	keyboards.h \
 	keyboard-shortcuts.c \
-	keyboard-shortcuts.h
+	keyboard-shortcuts.h \
+	pointers.c \
+	pointers.h
 
 xfce4_settings_helper_CFLAGS = \
 	$(GTK_CFLAGS) \

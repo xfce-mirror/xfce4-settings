@@ -1,3 +1,4 @@
+/* $Id$ */
 /*
  *  Copyright (c) 2008 Nick Schermer <nick@xfce.org>
  *
@@ -66,18 +67,34 @@ enum
 
 
 /* xrandr rotation name conversion */
-typedef struct {
-  Rotation     rotation;
-  const gchar *name;
-} RotationTypes;
+typedef struct
+{
+    Rotation     rotation;
+    const gchar *name;
+}
+RotationTypes;
 
 static const RotationTypes rotation_names[] =
 {
-  { RR_Rotate_0, N_("Normal") },
-  { RR_Rotate_90, N_("Left") },
-  { RR_Rotate_180, N_("Inverted") },
-  { RR_Rotate_270, N_("Right") }
+    { RR_Rotate_0, N_("Normal") },
+    { RR_Rotate_90, N_("Left") },
+    { RR_Rotate_180, N_("Inverted") },
+    { RR_Rotate_270, N_("Right") }
 };
+
+
+
+/* previous working setup, before we apply */
+typedef struct
+{
+    gshort   rate;
+    SizeID   resolution;
+    Rotation rotation;
+    gfloat   gamma_red;
+    gfloat   gamma_green;
+    gfloat   gamma_blue;
+}
+PrevScreenInfo;
 
 
 
@@ -92,8 +109,9 @@ static GOptionEntry option_entries[] =
 /* global xfconf channel */
 static XfconfChannel *display_channel;
 
-/* active xrandr configuration */
+/* active and previous xrandr configuration */
 XRRScreenConfiguration *screen_info = NULL;
+PrevScreenInfo prev_screen_info = { 0, };
 
 
 
@@ -118,6 +136,11 @@ display_setting_set_gamma (GladeXML *gxml,
         /* get the screen's gamma */
         if (XF86VidModeGetGamma (GDK_DISPLAY (), screen_id, &gamma) == True)
         {
+            /* store active setup */
+            prev_screen_info.gamma_red = gamma.red;
+            prev_screen_info.gamma_green = gamma.green;
+            prev_screen_info.gamma_blue = gamma.blue;
+            
             /* set the scale value */
             if (G_LIKELY (gamma.red == gamma.green && gamma.green == gamma.blue))
                 gtk_range_set_value (GTK_RANGE (scale), gamma.red);
@@ -152,6 +175,9 @@ display_setting_populate_rotation (GladeXML *gxml)
 
     /* get the active and possible rotations */
     rotations = XRRConfigRotations (screen_info, &current_rotation);
+    
+    /* store active rotation */
+    prev_screen_info.rotation = current_rotation;
 
     /* test and append rotations */
     for (active = i = 0; i < G_N_ELEMENTS (rotation_names); i++)
@@ -194,6 +220,9 @@ display_setting_populate_refresh_rates (GladeXML *gxml,
     /* get refresh rates for this resolution */
     rates = XRRConfigRates (screen_info, selected_size, &nrates);
     current_rate = XRRConfigCurrentRate (screen_info);
+    
+    /* store the current refresh rate */
+    prev_screen_info.rate = current_rate;
 
     /* insert in store */
     for (active = n = 0; n < nrates; n++)
@@ -240,6 +269,9 @@ display_setting_populate_resolutions (GladeXML *gxml)
     /* get current reolution and list or possible resolutions */
     sizes = XRRConfigSizes (screen_info, &nsizes);
     current_size = XRRConfigCurrentConfiguration (screen_info, &rotation);
+    
+    /* store the current resolution */
+    prev_screen_info.resolution = current_size;
 
     /* insert in store */
     for (n = 0; n < nsizes; n++)
@@ -415,7 +447,7 @@ display_settings_selection_changed (GtkTreeSelection *selection,
 
 
 static void
-display_settings_dialog_create_combobox_model (GtkComboBox *combobox)
+display_settings_combo_box_create (GtkComboBox *combobox)
 {
     GtkCellRenderer *renderer;
     GtkListStore    *store;
@@ -430,6 +462,77 @@ display_settings_dialog_create_combobox_model (GtkComboBox *combobox)
     gtk_cell_layout_clear (GTK_CELL_LAYOUT (combobox));
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combobox), renderer, TRUE);
     gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combobox), renderer, "text", COLUMN_COMBO_NAME);
+}
+
+
+
+static void
+display_settings_combo_box_store (GtkComboBox *combobox,
+                                  const gchar *screen_name,
+                                  const gchar *property_name)
+{
+    GtkTreeIter   iter;
+    GtkTreeModel *model;
+    gint          value;
+    gchar        *property;
+    
+    /* check if the combo box has and selected item */
+    if (gtk_combo_box_get_active_iter (combobox, &iter))
+    {
+        /* get the model and the value */
+        model = gtk_combo_box_get_model (combobox);
+        gtk_tree_model_get (model, &iter, COLUMN_COMBO_VALUE, &value, -1);
+        
+        /* create a property name */
+        property = g_strdup_printf ("/%s/%s", screen_name, property_name);
+        xfconf_channel_set_int (display_channel, property, value);
+        g_free (property);
+    }
+}
+
+
+
+static void
+display_settings_store (GladeXML *gxml)
+{
+    GtkWidget *combobox;
+    GtkWidget *scale;
+    gdouble    gamma;
+    gchar     *property_name;
+    
+    combobox = glade_xml_get_widget (gxml, "screen-resolution");
+    display_settings_combo_box_store (GTK_COMBO_BOX (combobox), "Default", "Resolution");
+
+    combobox = glade_xml_get_widget (gxml, "screen-refresh-rate");
+    display_settings_combo_box_store (GTK_COMBO_BOX (combobox), "Default", "RefreshRate");
+
+    combobox = glade_xml_get_widget (gxml, "screen-rotation");
+    display_settings_combo_box_store (GTK_COMBO_BOX (combobox), "Default", "Rotation");
+    
+    scale = glade_xml_get_widget (gxml, "screen-gamma");
+    gamma = gtk_range_get_value (GTK_RANGE (scale));
+    property_name = g_strdup_printf ("/%s/%s",  "Default", "Gamma");
+    xfconf_channel_set_double (display_channel, property_name, gamma);
+    g_free (property_name);
+}
+
+
+
+static void
+display_settings_dialog_response (GtkDialog *dialog,
+                                  gint       response_id,
+                                  GladeXML  *gxml)
+{
+     if (response_id == 1)
+     {
+         /* test code */
+         display_settings_store (gxml);
+     }
+     else
+     {
+        /* close */
+        gtk_main_quit ();
+     }
 }
 
 
@@ -465,14 +568,14 @@ display_settings_dialog_new_from_xml (GladeXML *gxml)
 
     /* setup the combo boxes */
     combobox = glade_xml_get_widget (gxml, "screen-resolution");
-    display_settings_dialog_create_combobox_model (GTK_COMBO_BOX (combobox));
+    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_resolution_changed), gxml);
 
     combobox = glade_xml_get_widget (gxml, "screen-refresh-rate");
-    display_settings_dialog_create_combobox_model (GTK_COMBO_BOX (combobox));
+    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
 
     combobox = glade_xml_get_widget (gxml, "screen-rotation");
-    display_settings_dialog_create_combobox_model (GTK_COMBO_BOX (combobox));
+    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
 
     /* populate the treeview */
     display_settings_populate_treeview (gxml);
@@ -536,7 +639,7 @@ main(gint argc, gchar **argv)
     }
 
     /* open the xsettings channel */
-    display_channel = xfconf_channel_new ("display");
+    display_channel = xfconf_channel_new ("displays");
     if (G_LIKELY (display_channel))
     {
         /* load the dialog glade xml */
@@ -545,13 +648,18 @@ main(gint argc, gchar **argv)
         {
             /* build the dialog */
             dialog = display_settings_dialog_new_from_xml (gxml);
+            g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), gxml);
             gtk_window_set_default_size (GTK_WINDOW (dialog), 450, 350);
-
-            /* run the dialog */
-            gtk_dialog_run (GTK_DIALOG (dialog));
+            
+            /* show the dialog */
+            gtk_widget_show (dialog);
+            
+            /* enter the main loop */
+            gtk_main ();
 
             /* destroy the dialog */
-            gtk_widget_destroy (dialog);
+            if (GTK_IS_WIDGET (dialog))
+                gtk_widget_destroy (dialog);
 
             /* release the glade xml */
             g_object_unref (G_OBJECT (gxml));
