@@ -1,3 +1,16 @@
+2008-07-17	Jannis Pohlmann <jannis@xfce.org>
+
+	* dialogs/accessibility-settings/accessibility-dialog.glade,
+	  dialogs/appearance-settings/appearance-dialog.glade,
+	  dialogs/display-settings/display-dialog.glade,
+	  dialogs/keyboard-settings/keyboard-dialog.glade,
+	  dialogs/mouse-settings/mouse-dialog.glade: Make all dialogs use
+	  consistent borders/paddings/distances etc. again. Please keep it
+	  this way when adding new dialogs/widgets.
+	* dialogs/accesibility-settings/main.c, 
+	  dialogs/keyboard-settings/main.c: Destroy GladeXML after the dialog
+	  is destroyed. 
+
 2008-07-16	Nick Schermer <nick@xfce.org>
 
 	* Mv xfce4-settings-helper/xkb.* xfce4-settings-helper/keyboards.*:

@@ -598,6 +598,9 @@ main(int argc, char **argv)
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 
+  /* Free Glade XML */
+  g_object_unref (G_OBJECT (gxml));
+
   /* Unload channels */
   g_object_unref (G_OBJECT (xsettings_channel));
   g_object_unref (G_OBJECT (keyboards_channel));

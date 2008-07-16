@@ -189,6 +189,9 @@ main (gint argc, gchar **argv)
     /* destroy the dialog */
     gtk_widget_destroy (dialog);
 
+    /* Free Glade XML */
+    g_object_unref (G_OBJECT (gxml));
+
     /* release the channel */
     g_object_unref (G_OBJECT (accessibility_channel));
 

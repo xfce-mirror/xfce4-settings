@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat Jul 12 20:58:31 2008 -->
+<!--Generated with glade3 3.4.5 on Thu Jul 17 01:02:51 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="mouse-dialog">
@@ -22,7 +22,7 @@
             <child>
               <widget class="GtkHBox" id="hbox1">
                 <property name="visible">True</property>
-                <property name="border_width">6</property>
+                <property name="border_width">12</property>
                 <property name="spacing">12</property>
                 <child>
                   <widget class="GtkScrolledWindow" id="scrolledwindow1">
@@ -43,7 +43,7 @@
                 <child>
                   <widget class="GtkVBox" id="vbox1">
                     <property name="visible">True</property>
-                    <property name="spacing">12</property>
+                    <property name="spacing">6</property>
                     <child>
                       <widget class="GtkFrame" id="frame1">
                         <property name="visible">True</property>
@@ -52,17 +52,17 @@
                         <child>
                           <widget class="GtkAlignment" id="alignment1">
                             <property name="visible">True</property>
-                            <property name="top_padding">6</property>
-                            <property name="left_padding">18</property>
-                            <property name="right_padding">6</property>
+                            <property name="bottom_padding">6</property>
+                            <property name="left_padding">12</property>
                             <child>
                               <widget class="GtkVBox" id="vbox12">
                                 <property name="visible">True</property>
-                                <property name="spacing">12</property>
+                                <property name="border_width">6</property>
+                                <property name="spacing">6</property>
                                 <child>
                                   <widget class="GtkVBox" id="vbox2">
                                     <property name="visible">True</property>
-                                    <property name="spacing">2</property>
+                                    <property name="spacing">6</property>
                                     <child>
                                       <widget class="GtkRadioButton" id="mouse-right-handed">
                                         <property name="visible">True</property>
@@ -132,13 +132,13 @@
                         <child>
                           <widget class="GtkAlignment" id="alignment2">
                             <property name="visible">True</property>
-                            <property name="top_padding">6</property>
-                            <property name="left_padding">18</property>
-                            <property name="right_padding">6</property>
+                            <property name="bottom_padding">6</property>
+                            <property name="left_padding">12</property>
                             <child>
                               <widget class="GtkVBox" id="vbox6">
                                 <property name="visible">True</property>
-                                <property name="spacing">12</property>
+                                <property name="border_width">6</property>
+                                <property name="spacing">6</property>
                                 <child>
                                   <widget class="GtkVBox" id="vbox7">
                                     <property name="visible">True</property>
@@ -204,6 +204,7 @@
                                     <property name="visible">True</property>
                                     <property name="xalign">0</property>
                                     <property name="xscale">0</property>
+                                    <property name="top_padding">6</property>
                                     <child>
                                       <widget class="GtkButton" id="mouse-reset">
                                         <property name="visible">True</property>
@@ -260,8 +261,8 @@
             <child>
               <widget class="GtkVBox" id="vbox3">
                 <property name="visible">True</property>
-                <property name="border_width">6</property>
-                <property name="spacing">12</property>
+                <property name="border_width">12</property>
+                <property name="spacing">6</property>
                 <child>
                   <widget class="GtkFrame" id="frame3">
                     <property name="visible">True</property>
@@ -270,12 +271,12 @@
                     <child>
                       <widget class="GtkAlignment" id="alignment3">
                         <property name="visible">True</property>
-                        <property name="top_padding">6</property>
-                        <property name="left_padding">18</property>
-                        <property name="right_padding">6</property>
+                        <property name="bottom_padding">6</property>
+                        <property name="left_padding">12</property>
                         <child>
                           <widget class="GtkVBox" id="vbox4">
                             <property name="visible">True</property>
+                            <property name="border_width">6</property>
                             <property name="spacing">2</property>
                             <child>
                               <widget class="GtkLabel" id="mouse-dnd-label">
@@ -327,13 +328,13 @@
                     <child>
                       <widget class="GtkAlignment" id="alignment4">
                         <property name="visible">True</property>
-                        <property name="top_padding">6</property>
-                        <property name="left_padding">18</property>
-                        <property name="right_padding">6</property>
+                        <property name="border_width">6</property>
+                        <property name="bottom_padding">6</property>
+                        <property name="left_padding">12</property>
                         <child>
                           <widget class="GtkVBox" id="vbox5">
                             <property name="visible">True</property>
-                            <property name="spacing">12</property>
+                            <property name="spacing">6</property>
                             <child>
                               <widget class="GtkVBox" id="vbox10">
                                 <property name="visible">True</property>
@@ -434,7 +435,7 @@
             <child>
               <widget class="GtkHBox" id="mouse-themes-hbox">
                 <property name="visible">True</property>
-                <property name="border_width">6</property>
+                <property name="border_width">12</property>
                 <property name="spacing">12</property>
                 <child>
                   <widget class="GtkScrolledWindow" id="scrolledwindow2">
@@ -448,7 +449,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="headers_visible">False</property>
-                        <property name="headers_clickable">False</property>
                       </widget>
                     </child>
                   </widget>
@@ -456,7 +456,7 @@
                 <child>
                   <widget class="GtkVBox" id="vbox9">
                     <property name="visible">True</property>
-                    <property name="spacing">12</property>
+                    <property name="spacing">6</property>
                     <child>
                       <widget class="GtkFrame" id="frame5">
                         <property name="visible">True</property>
@@ -465,9 +465,9 @@
                         <child>
                           <widget class="GtkAlignment" id="alignment5">
                             <property name="visible">True</property>
-                            <property name="top_padding">6</property>
-                            <property name="left_padding">18</property>
-                            <property name="right_padding">6</property>
+                            <property name="border_width">6</property>
+                            <property name="bottom_padding">6</property>
+                            <property name="left_padding">12</property>
                             <child>
                               <widget class="GtkHBox" id="hbox7">
                                 <property name="visible">True</property>
@@ -523,9 +523,9 @@
                         <child>
                           <widget class="GtkAlignment" id="alignment6">
                             <property name="visible">True</property>
-                            <property name="top_padding">6</property>
-                            <property name="left_padding">18</property>
-                            <property name="right_padding">6</property>
+                            <property name="border_width">6</property>
+                            <property name="bottom_padding">6</property>
+                            <property name="left_padding">12</property>
                             <child>
                               <widget class="GtkImage" id="mouse-theme-preview">
                                 <property name="visible">True</property>
