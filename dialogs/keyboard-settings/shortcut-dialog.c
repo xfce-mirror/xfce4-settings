@@ -313,8 +313,6 @@ shortcut_dialog_key_released (ShortcutDialog *dialog,
   /* Let 'validate-shortcut' listeners decide whether this shortcut is ok or not */
   g_signal_emit_by_name (dialog, "validate-shortcut", shortcut, &shortcut_accepted);
 
-  g_message ("shortcut accepted: %s", shortcut_accepted ? "yes" : "no");
-
   /* Check if the shortcut was accepted */
   if (G_LIKELY (shortcut_accepted))
     {
