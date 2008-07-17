@@ -174,6 +174,8 @@ command_dialog_create_contents (CommandDialog *dialog,
 
   button = gtk_button_new_from_stock (GTK_STOCK_OK);
   gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_OK);
+  GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+  gtk_widget_grab_default (button);
   gtk_widget_show (button);
 
   hbox = gtk_hbox_new (FALSE, 12);
@@ -182,6 +184,7 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_widget_show (hbox);
 
   dialog->entry = gtk_entry_new ();
+  gtk_entry_set_activates_default (GTK_ENTRY (dialog->entry), TRUE);
   gtk_entry_set_text (GTK_ENTRY (dialog->entry), action != NULL ? action : "");
   gtk_box_pack_start (GTK_BOX (hbox), dialog->entry, TRUE, TRUE, 0);
   gtk_widget_show (dialog->entry);
@@ -190,6 +193,8 @@ command_dialog_create_contents (CommandDialog *dialog,
   g_signal_connect_swapped (dialog->button, "clicked", G_CALLBACK (command_dialog_button_clicked), dialog);
   gtk_box_pack_start (GTK_BOX (hbox), dialog->button, FALSE, TRUE, 0);
   gtk_widget_show (dialog->button);
+
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 }
 
 
