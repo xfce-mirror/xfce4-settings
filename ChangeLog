@@ -1,3 +1,14 @@
+2008-07-17	Nick Schermer <nick@xfce.org>
+
+	* dialogs/display-settings/Makefile.am,
+	  dialogs/accessibility-settings/Makefile.am,
+	  dialogs/mouse-settings/Makefile.am,
+	  dialogs/appearance-settings/Makefile.am,
+	  dialogs/keyboard-settings/Makefile.am: Add --strip-comments 
+	  --strip-content to exo-csource for generating glade headers.
+	* configure.ac.in: Bump exo version to 0.3.7.1 since stripping
+	  glade files on older versions is broken.
+
 2008-07-17	Jannis Pohlmann <jannis@xfce.org>
 
 	* dialogs/keyboard-settings/command-dialog.c: Make entry activate the

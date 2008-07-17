@@ -48,7 +48,7 @@ BUILT_SOURCES = \
 	mouse-dialog_glade.h
 
 mouse-dialog_glade.h: mouse-dialog.glade
-	exo-csource --static --name=mouse_dialog_glade $< >$@
+	exo-csource --static --strip-comments --strip-content --name=mouse_dialog_glade $< >$@
 
 endif
 

@@ -45,7 +45,7 @@ BUILT_SOURCES = \
 	display-dialog_glade.h
 
 display-dialog_glade.h: display-dialog.glade
-	exo-csource --static --name=display_dialog_glade $< >$@
+	exo-csource --static --strip-comments --strip-content --name=display_dialog_glade $< >$@
 
 endif
 

@@ -41,7 +41,7 @@ BUILT_SOURCES = \
 	accessibility-dialog_glade.h
 
 accessibility-dialog_glade.h: accessibility-dialog.glade
-	exo-csource --static --name=accessibility_dialog_glade $< >$@
+	exo-csource --static --strip-comments --strip-content --name=accessibility_dialog_glade $< >$@
 
 endif
 
