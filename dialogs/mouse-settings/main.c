@@ -746,6 +746,55 @@ mouse_settings_device_save (GladeXML *gxml)
 
 
 
+static void
+mouse_settings_device_name_edited (GtkCellRendererText *renderer,
+                                   gchar               *path,
+                                   gchar               *new_name,
+                                   GladeXML            *gxml)
+{
+    GtkWidget        *treeview;
+    GtkTreeSelection *selection;
+    gboolean          has_selection;
+    GtkTreeModel     *model;
+    GtkTreeIter       iter;
+    gchar            *internal_name;
+    gchar            *property_name;
+    gchar            *new_name_escaped;
+
+    /* check if the new name is valid */
+    if (new_name == NULL || *new_name == '\0')
+        return;
+
+    /* get the treeview's selection */
+    treeview = glade_xml_get_widget (gxml, "mouse-devices-treeview");
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
+    /* get the selected item */
+    has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
+    if (G_LIKELY (has_selection))
+    {
+        /* get the internal device name */
+        gtk_tree_model_get (model, &iter, COLUMN_DEVICE_NAME, &internal_name, -1);
+
+        /* store the new name in the channel */
+        property_name = g_strdup_printf ("/%s", internal_name);
+        xfconf_channel_set_string (pointers_channel, property_name, new_name);
+
+        /* escape before adding in the store */
+        new_name_escaped = g_markup_escape_text (new_name, -1);
+
+        /* set the new device name in the store */
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter, COLUMN_DEVICE_DISPLAY_NAME, new_name_escaped, -1);
+
+        /* cleanup */
+        g_free (new_name_escaped);
+        g_free (property_name);
+        g_free (internal_name);
+    }
+}
+
+
+
 static gchar *
 mouse_settings_device_xfconf_name (const gchar *name)
 {
@@ -795,6 +844,8 @@ mouse_settings_device_populate_store (GladeXML *gxml,
     GtkCellRenderer   *renderer;
     GtkTreeSelection  *selection;
     gchar             *device_name;
+    gchar             *property_name;
+    gchar             *property_value;
 
     /* lock */
     locked++;
@@ -852,15 +903,27 @@ mouse_settings_device_populate_store (GladeXML *gxml,
             if (G_UNLIKELY (num_buttons <= 0))
                 continue;
 
-            /* get the device name, escaped */
-            display_name = g_markup_escape_text (device_info->name, -1);
-
-            /* get rid of usb crap in the name */
-            if ((usb = strstr (display_name, "-usb")) != NULL)
-                *usb = '\0';
-
             /* create a valid xfconf device name */
             device_name = mouse_settings_device_xfconf_name (device_info->name);
+
+            /* check if there is a custom name set by the user */
+            property_name = g_strdup_printf ("/%s", device_name);
+            if (xfconf_channel_has_property (pointers_channel, property_name))
+            {
+                /* get the name from the config file, escape it */
+                property_value = xfconf_channel_get_string (pointers_channel, property_name, NULL);
+                display_name = g_markup_escape_text (property_value, -1);
+                g_free (property_value);
+            }
+            else
+            {
+                /* get the device name, escaped */
+                display_name = g_markup_escape_text (device_info->name, -1);
+
+                /* get rid of usb crap in the name */
+                if ((usb = strstr (display_name, "-usb")) != NULL)
+                    *usb = '\0';
+            }
 
             /* insert in the store */
             gtk_list_store_insert_with_values (store, &iter, i,
@@ -870,8 +933,9 @@ mouse_settings_device_populate_store (GladeXML *gxml,
                                                COLUMN_DEVICE_XID, device_info->id,
                                                COLUMN_DEVICE_NBUTTONS, num_buttons, -1);
 
-            /* check if we should select this device */
-            if (opt_device_name && strcmp (opt_device_name, device_info->name) == 0)
+            /* check if we should select this device (for user convience also the display name) */
+            if (opt_device_name && (strcmp (opt_device_name, device_info->name) == 0
+                || (display_name && strcmp (opt_device_name, display_name) == 0)))
             {
                 path = gtk_tree_model_get_path (GTK_TREE_MODEL (store), &iter);
                 g_free (opt_device_name);
@@ -879,6 +943,7 @@ mouse_settings_device_populate_store (GladeXML *gxml,
             }
 
             /* cleanup */
+            g_free (property_name);
             g_free (device_name);
             g_free (display_name);
         }
@@ -907,7 +972,8 @@ mouse_settings_device_populate_store (GladeXML *gxml,
         /* text renderer */
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes ("", renderer, "markup", COLUMN_DEVICE_DISPLAY_NAME, NULL);
-        g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+        g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, "editable", TRUE, NULL);
+        g_signal_connect (G_OBJECT (renderer), "edited", G_CALLBACK (mouse_settings_device_name_edited), gxml);
         gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
         /* setup tree selection */
