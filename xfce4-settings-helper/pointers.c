@@ -341,7 +341,7 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
     {
         /* allocate the button map */
         buttonmap = g_new0 (guchar, num_buttons);
-
+        
         /* get the button mapping */
         XGetDeviceButtonMapping (xdisplay, device, buttonmap, num_buttons);
 
@@ -392,7 +392,7 @@ xfce_pointers_helper_change_feedback (XDevice *device,
     gint                 n;
     gulong               mask = 0;
     gint                 num = -1, denom = -1, gcd;
-
+    
     /* get the feedback states for this device */
     states = XGetFeedbackControl (xdisplay, device, &num_feedbacks);
 
@@ -492,6 +492,10 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper)
     gchar       *acceleration_str;
     gchar       *device_name;
     gchar       *reverse_scrolling_str;
+    
+    /* flush x and trap errors */
+    gdk_flush ();
+    gdk_error_trap_push ();
 
     /* get all the registered devices */
     device_list = XListInputDevices (xdisplay, &ndevices);
@@ -550,6 +554,10 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper)
 
     /* cleanup */
     XFreeDeviceList (device_list);
+    
+    /* flush and remove the x error trap */
+    gdk_flush ();
+    gdk_error_trap_pop ();
 }
 
 
@@ -565,6 +573,10 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
     gint          n, ndevices;
     gchar       **names;
     gchar        *device_name;
+    
+    /* flush x and trap errors */
+    gdk_flush ();
+    gdk_error_trap_push ();
 
     /* split the property name (+1 so skip the first slash in the name) */
     names = g_strsplit (property_name + 1, "/", -1);
@@ -622,6 +634,10 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
 
     /* cleanup */
     g_strfreev (names);
+    
+    /* flush and remove the x error trap */
+    gdk_flush ();
+    gdk_error_trap_pop ();
 }
 
 

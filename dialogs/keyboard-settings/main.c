@@ -620,6 +620,7 @@ main(int argc, char **argv)
 
   /* Create settings dialog and run it */
   dialog = keyboard_settings_dialog_new_from_xml (gxml);
+  gtk_window_set_default_size (GTK_WINDOW (dialog), 400, -1);
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 

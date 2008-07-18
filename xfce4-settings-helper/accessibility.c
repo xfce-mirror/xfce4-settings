@@ -180,16 +180,15 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
     XkbDescPtr xkb;
     gint       delay, interval, time_to_max;
     gint       max_speed, curve;
+    
+    /* flush x and trap errors */
+    gdk_flush ();
+    gdk_error_trap_push ();
 
     /* allocate */
     xkb = XkbAllocKeyboard ();
-
     if (G_LIKELY (xkb))
     {
-        /* flush and avoid crashes on x errors */
-        gdk_flush ();
-        gdk_error_trap_push ();
-        
         /* we always change this, so add it to the mask */
         SET_FLAG (mask, XkbControlsEnabledMask);
         
@@ -300,16 +299,16 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
         /* free the structure */
         XkbFreeControls (xkb, mask, True);
         XFree (xkb);
-
-        /* flush errors and pop trap */
-        gdk_flush ();
-        gdk_error_trap_pop ();
     }
     else
     {
         /* warning */
         g_error ("XkbAllocKeyboard() returned a null pointer");
     }
+    
+    /* flush and remove the x error trap */
+    gdk_flush ();
+    gdk_error_trap_pop ();
 }
 
 

@@ -1,5 +1,19 @@
 2008-07-18	Nick Schermer <nick@xfce.org>
 
+	* configure.ac.in, xfce4-settings-helper/Makefile.am,
+	  xfce4-settings-helper/keyboards.c: Drop libxxf86misc dependency.
+	  Xkb can do all this, it's not needed anymore and already
+	  removed from Xorg git master.
+	* dialogs/keyboard-settings/keyboard-dialog.glade: Show the slider
+	  values, add tooltips and change the slider ranges a bit.
+	* dialogs/keyboard-settings/main.c: Set default window size width to
+	  400px instead on in the glade code.
+	* xfce4-settings-helper/pointers.c, xfce4-settings-helper/keyboards.c,
+	  xfce4-settings-helper/accessibility.c: Property push and trap
+	  x errors.
+
+2008-07-18	Nick Schermer <nick@xfce.org>
+
 	* xfce4-settings-helper/main.c, configure.ac.in: Properly quit
 	  the main loop when a signal is received.
 

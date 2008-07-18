@@ -24,7 +24,7 @@
 
 #include <gtk/gtk.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _CommandDialogClass CommandDialogClass;
 typedef struct _CommandDialog      CommandDialog;
@@ -44,6 +44,6 @@ const char *command_dialog_get_command  (CommandDialog *dialog);
 gint        command_dialog_run          (CommandDialog *dialog,
                                          GtkWidget     *parent);
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__COMMAND_DIALOG_H__ */

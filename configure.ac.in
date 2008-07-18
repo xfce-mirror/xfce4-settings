@@ -102,12 +102,6 @@ dnl ************************************
 XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [1.1.0],
                            [xcursor], [Cursor themes support])
 
-dnl *************************************
-dnl *** Optional support for Xf86misc ***
-dnl *************************************
-XDT_CHECK_OPTIONAL_PACKAGE([XF86MISC], [libxxf86misc], [0.9.0],
-                           [xf86misc], [Support for the X Miscellaneous extension wire protocol])
-
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************

@@ -34,10 +34,6 @@
 #include <X11/Xlib.h>
 #include <X11/XKBlib.h>
 
-#ifdef HAVE_XF86MISC
-#include <X11/extensions/xf86misc.h>
-#endif
-
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
@@ -71,9 +67,6 @@ struct _XfceKeyboardsHelper
 
     /* xfconf channel */
     XfconfChannel *channel;
-
-    /* if xf86misc is present */
-    guint          has_xf86misc : 1;
 };
 
 
@@ -100,15 +93,9 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
 
     /* init */
     helper->channel = NULL;
-    helper->has_xf86misc = FALSE;
 
     if (XkbQueryExtension (GDK_DISPLAY (), &dummy, &dummy, &dummy, &dummy, &dummy))
     {
-#ifdef HAVE_XF86MISC
-        /* chek for xf86misc */
-        helper->has_xf86misc = XF86MiscQueryVersion (GDK_DISPLAY (), &dummy, &dummy);
-#endif
-
         /* open the channel */
         helper->channel = xfconf_channel_new ("keyboards");
 
@@ -151,7 +138,7 @@ xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
     /* load setting */
     repeat = xfconf_channel_get_bool (helper->channel, "/Default/KeyRepeat", FALSE);
 
-    /* flush and avoid crashes on x errors */
+    /* flush x and trap errors */
     gdk_flush ();
     gdk_error_trap_push ();
 
@@ -161,7 +148,7 @@ xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
     /* set key repeat */
     XChangeKeyboardControl (GDK_DISPLAY (), KBAutoRepeatMode, &values);
 
-    /* flush errors and pop trap */
+    /* flush and remove the x error trap */
     gdk_flush ();
     gdk_error_trap_pop ();
 }
@@ -171,30 +158,16 @@ xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
 static void
 xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
 {
-#ifdef HAVE_XF86MISC
-    XF86MiscKbdSettings values;
-#endif
-    XkbDescPtr          xkb;
-    gint                delay, rate;
+    XkbDescPtr xkb;
+    gint       delay, rate;
 
     /* load settings */
     delay = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Delay", 0);
     rate = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Rate", 0);
-
-    /* flush and avoid crashes on x errors */
+    
+    /* flush x and trap errors */
     gdk_flush ();
     gdk_error_trap_push ();
-
-#ifdef HAVE_XF86MISC
-    /* update the xkb misc keyboard delay and rate */
-    if (G_LIKELY (helper->has_xf86misc ))
-    {
-        XF86MiscGetKbdSettings (GDK_DISPLAY (), &values);
-        values.delay = delay;
-        values.rate = rate;
-        XF86MiscSetKbdSettings (GDK_DISPLAY (), &values);
-    }
-#endif
 
     /* allocate xkb structure */
     xkb = XkbAllocKeyboard ();
@@ -202,7 +175,7 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
     {
         /* load controls */
         XkbGetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
-
+        
         /* set new values */
         xkb->ctrls->repeat_delay = delay;
         xkb->ctrls->repeat_interval = rate != 0 ? 1000 / rate : 0;
@@ -214,8 +187,8 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
         XkbFreeControls (xkb, XkbRepeatKeysMask, True);
         XFree (xkb);
     }
-
-    /* flush errors and pop trap */
+    
+    /* flush and remove the x error trap */
     gdk_flush ();
     gdk_error_trap_pop ();
 }
