@@ -1,5 +1,13 @@
 2008-07-18	Nick Schermer <nick@xfce.org>
 
+	* xfce4-settings-helper/Makefile.am, xfce4-settings-helper/main.c,
+	  xfce4-settings-helper/keyboards.c/h: Add basic gobject stuff.
+	* xfce4-settings-helper/accessibility.c, 
+	  xfce4-settings-helper/keyboards.c,
+	  xfce4-settings-helper/pointers.c: Fix some indentation.
+
+2008-07-18	Nick Schermer <nick@xfce.org>
+
 	* configure.ac.in, xfce4-settings-helper/Makefile.am,
 	  xfce4-settings-helper/keyboards.c: Drop libxxf86misc dependency.
 	  Xkb can do all this, it's not needed anymore and already

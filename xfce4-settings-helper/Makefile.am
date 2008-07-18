@@ -16,6 +16,8 @@ xfce4_settings_helper_SOURCES = \
 	main.c \
 	accessibility.c \
 	accessibility.h \
+	displays.c \
+	displays.h \
 	keyboards.c \
 	keyboards.h \
 	keyboard-shortcuts.c \
@@ -32,7 +34,9 @@ xfce4_settings_helper_CFLAGS = \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
 	$(XI_CFLAGS) \
-	$(LIBX11_CFLAGS)
+	$(LIBX11_CFLAGS) \
+	$(XRANDR_CFLAGS) \
+	$(XXF86VM_CFLAGS)
 
 xfce4_settings_helper_LDFLAGS = \
 	-no-undefined \
@@ -47,7 +51,9 @@ xfce4_settings_helper_LDADD = \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
 	$(XI_LIBS) \
-	$(LIBX11_LIBS)
+	$(LIBX11_LIBS) \
+	$(XRANDR_LIBS) \
+	$(XXF86VM_LIBS)
 
 if HAVE_LIBNOTIFY
 xfce4_settings_helper_CFLAGS += \

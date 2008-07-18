@@ -78,10 +78,10 @@ G_DEFINE_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, G_TYPE_OBJECT);
 static void
 xfce_keyboards_helper_class_init (XfceKeyboardsHelperClass *klass)
 {
-  GObjectClass *gobject_class;
+    GObjectClass *gobject_class;
 
-  gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = xfce_keyboards_helper_finalize;
+    gobject_class = G_OBJECT_CLASS (klass);
+    gobject_class->finalize = xfce_keyboards_helper_finalize;
 }
 
 

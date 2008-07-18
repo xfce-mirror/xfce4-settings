@@ -102,10 +102,10 @@ G_DEFINE_TYPE (XfceAccessibilityHelper, xfce_accessibility_helper, G_TYPE_OBJECT
 static void
 xfce_accessibility_helper_class_init (XfceAccessibilityHelperClass *klass)
 {
-  GObjectClass *gobject_class;
+    GObjectClass *gobject_class;
 
-  gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = xfce_accessibility_helper_finalize;
+    gobject_class = G_OBJECT_CLASS (klass);
+    gobject_class->finalize = xfce_accessibility_helper_finalize;
 }
 
 
