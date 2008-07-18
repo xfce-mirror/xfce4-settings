@@ -1,3 +1,23 @@
+2008-07-18	Nick Schermer <nick@xfce.org>
+
+	* xfce4-settings-helper/accessibility.c: Improve the code a bit
+	  and calculate the max_speed and time_to_max using the interval,
+	  so the user can set a speed in pixels/sec and time in msec.
+	* dialogs/accessibility-settings/accessibility-dialog.glade: Redesign
+	  the dialog so you can see the values.
+	* dialogs/display-settings/xfce4-display-settings.desktop.in,
+	  dialogs/display-settings/display-dialog.glade,
+	  dialogs/accessibility-settings/accessibility-dialog.glade,
+	  dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in,
+	  dialogs/mouse-settings/mouse-dialog.glade,
+	  dialogs/mouse-settings/xfce4-mouse-settings.desktop.in,
+	  dialogs/appearance-settings/xfce4-appearance-settings.desktop.in,
+	  dialogs/appearance-settings/appearance-dialog.glade,
+	  dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in,
+	  dialogs/keyboard-settings/keyboard-dialog.glade: Synchronize the
+	  dialog's sub title and .desktop comment, same for the generic name
+	  and window title.
+
 2008-07-18	Jannis Pohlmann <jannis@xfce.org>
 
 	* dialogs/keyboard-settings/main.c: Fix some issues with multiple row

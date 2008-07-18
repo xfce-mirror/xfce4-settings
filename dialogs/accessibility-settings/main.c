@@ -67,52 +67,57 @@ accessibility_settings_dialog_new_from_xml (GladeXML *gxml)
     GtkAdjustment *adjustment;
 
     /* Sticky keys */
-    widget = glade_xml_get_widget (gxml, "xkb_accessx_sticky_check");
-    box = glade_xml_get_widget (gxml, "xkb_accessx_sticky_box");
+    widget = glade_xml_get_widget (gxml, "sticky-keys-enabled");
+    box = glade_xml_get_widget (gxml, "sticky-keys-box");
     g_signal_connect (G_OBJECT (widget), "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
     xfconf_g_property_bind (accessibility_channel, "/StickyKeys", G_TYPE_BOOLEAN, G_OBJECT (widget), "active");
 
-    widget = glade_xml_get_widget (gxml, "xkb_accessx_sticky_lock_mode");
+    widget = glade_xml_get_widget (gxml, "sticky-keys-latch-to-lock");
     xfconf_g_property_bind (accessibility_channel, "/StickyKeys/LatchToLock", G_TYPE_BOOLEAN, G_OBJECT (widget), "active");
 
-    widget = glade_xml_get_widget (gxml, "xkb_accessx_sticky_two_keys_disable_check");
+    widget = glade_xml_get_widget (gxml, "sticky-keys-two-keys-disable");
     xfconf_g_property_bind (accessibility_channel, "/StickyKeys/TwoKeysDisable", G_TYPE_BOOLEAN, G_OBJECT (widget), "active");
 
-    /* Bounce keys */
-    widget = glade_xml_get_widget (gxml, "xkb_accessx_bounce_check");
-    box = glade_xml_get_widget (gxml, "xkb_accessx_bounce_box");
-    g_signal_connect (G_OBJECT (widget), "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
-    xfconf_g_property_bind (accessibility_channel, "/BounceKeys", G_TYPE_BOOLEAN, G_OBJECT (widget), "active");
-
-    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_accessx_debounce_delay_scale")));
-    xfconf_g_property_bind (accessibility_channel, "/BounceKeys/Delay", G_TYPE_INT, G_OBJECT (adjustment), "value");
-
     /* Slow keys */
-    widget = glade_xml_get_widget (gxml, "xkb_accessx_slow_check");
-    box = glade_xml_get_widget (gxml, "xkb_accessx_slow_box");
+    widget = glade_xml_get_widget (gxml, "slow-keys-enabled");
+    box = glade_xml_get_widget (gxml, "slow-keys-box");
     g_signal_connect (G_OBJECT (widget), "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
     xfconf_g_property_bind (accessibility_channel, "/SlowKeys", G_TYPE_BOOLEAN, G_OBJECT (widget), "active");
 
-    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_accessx_slow_delay_scale")));
+    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "slow-keys-delay")));
     xfconf_g_property_bind (accessibility_channel, "/SlowKeys/Delay", G_TYPE_INT, G_OBJECT (adjustment), "value");
+    
+    /* Bounce keys */
+    widget = glade_xml_get_widget (gxml, "bounce-keys-enabled");
+    box = glade_xml_get_widget (gxml, "bounce-keys-box");
+    g_signal_connect (G_OBJECT (widget), "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
+    xfconf_g_property_bind (accessibility_channel, "/BounceKeys", G_TYPE_BOOLEAN, G_OBJECT (widget), "active");
+
+    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "bounce-keys-delay")));
+    xfconf_g_property_bind (accessibility_channel, "/BounceKeys/Delay", G_TYPE_INT, G_OBJECT (adjustment), "value");
 
     /* Mouse keys */
-    widget = glade_xml_get_widget (gxml, "xkb_accessx_mouse_check");
-    box = glade_xml_get_widget (gxml, "xkb_accessx_mouse_box");
+    widget = glade_xml_get_widget (gxml, "mouse-emulation-enabled");
+    box = glade_xml_get_widget (gxml, "mouse-emulation-box");
     g_signal_connect (G_OBJECT (widget), "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
     xfconf_g_property_bind (accessibility_channel, "/MouseKeys", G_TYPE_BOOLEAN, G_OBJECT (widget), "active");
+    
+    widget = glade_xml_get_widget (gxml, "mouse-emulation-delay");
+    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Delay", G_TYPE_INT, G_OBJECT (widget), "value");
 
-    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_accessx_mouse_speed_scale")));
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Speed", G_TYPE_INT, G_OBJECT (adjustment), "value");
+    widget = glade_xml_get_widget (gxml, "mouse-emulation-interval");
+    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Interval", G_TYPE_INT, G_OBJECT (widget), "value");
 
-    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_accessx_mouse_delay_scale")));
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Delay", G_TYPE_INT, G_OBJECT (adjustment), "value");
-
-    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_accessx_mouse_interval_scale")));
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Interval", G_TYPE_INT, G_OBJECT (adjustment), "value");
-
-    adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "xkb_accessx_mouse_acceldelay_scale")));
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/TimeToMax", G_TYPE_INT, G_OBJECT (adjustment), "value");
+    widget = glade_xml_get_widget (gxml, "mouse-emulation-time-to-max");
+    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/TimeToMax", G_TYPE_INT, G_OBJECT (widget), "value");
+    
+    widget = glade_xml_get_widget (gxml, "mouse-emulation-max-speed");
+    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/MaxSpeed", G_TYPE_INT, G_OBJECT (widget), "value");
+    
+    widget = glade_xml_get_widget (gxml, "mouse-emulation-curve");
+    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Curve", G_TYPE_INT, G_OBJECT (widget), "value");
+    
+    
 
     return glade_xml_get_widget (gxml, "accessibility-settings-dialog");
 }

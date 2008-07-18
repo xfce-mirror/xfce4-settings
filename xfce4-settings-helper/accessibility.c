@@ -27,6 +27,9 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
 
 #include <X11/Xlib.h>
 #include <X11/XKBlib.h>
@@ -45,10 +48,17 @@
 
 
 
+#define SET_FLAG(mask,flag)   G_STMT_START{ ((mask) |= (flag)); }G_STMT_END
+#define UNSET_FLAG(mask,flag) G_STMT_START{ ((mask) &= ~(flag)); }G_STMT_END
+#define HAS_FLAG(mask,flag)   (((mask) & (flag)) != 0)
+
+
+
 static void            xfce_accessibility_helper_class_init                     (XfceAccessibilityHelperClass *klass);
 static void            xfce_accessibility_helper_init                           (XfceAccessibilityHelper      *helper);
 static void            xfce_accessibility_helper_finalize                       (GObject                      *object);
-static void            xfce_accessibility_helper_set_xkb                        (XfceAccessibilityHelper      *helper);
+static void            xfce_accessibility_helper_set_xkb                        (XfceAccessibilityHelper      *helper,
+                                                                                 gulong                        mask);
 static void            xfce_accessibility_helper_channel_property_changed       (XfconfChannel                *channel,
                                                                                  const gchar                  *property_name,
                                                                                  const GValue                 *value,
@@ -119,7 +129,7 @@ xfce_accessibility_helper_init (XfceAccessibilityHelper *helper)
         g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_accessibility_helper_channel_property_changed), helper);
         
         /* restore the xbd configuration */
-        xfce_accessibility_helper_set_xkb (helper);
+        xfce_accessibility_helper_set_xkb (helper, XkbStickyKeysMask | XkbSlowKeysMask | XkbBounceKeysMask | XkbMouseKeysMask);
 
 #ifdef HAVE_LIBNOTIFY
         /* setup a connection with the notification daemon */
@@ -163,10 +173,13 @@ xfce_accessibility_helper_finalize (GObject *object)
 
 
 static void
-xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper)
+xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
+                                   gulong                   mask)
 {
 
     XkbDescPtr xkb;
+    gint       delay, interval, time_to_max;
+    gint       max_speed, curve;
 
     /* allocate */
     xkb = XkbAllocKeyboard ();
@@ -176,77 +189,116 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper)
         /* flush and avoid crashes on x errors */
         gdk_flush ();
         gdk_error_trap_push ();
+        
+        /* we always change this, so add it to the mask */
+        SET_FLAG (mask, XkbControlsEnabledMask);
+        
+        /* add the mouse keys values mask if needed */
+        if (HAS_FLAG (mask, XkbMouseKeysMask))
+            SET_FLAG (mask, XkbMouseKeysAccelMask);
 
         /* load the xkb controls into the structure */
-        XkbGetControls (GDK_DISPLAY (), XkbAllControlsMask, xkb);
-
-        /* Mouse keys */
-        if (xfconf_channel_get_bool (helper->channel, "/MouseKeys", FALSE))
-        {
-            xkb->ctrls->enabled_ctrls |= XkbMouseKeysMask;
-            xkb->ctrls->mk_delay = xfconf_channel_get_int (helper->channel, "/MouseKeys/Delay", 100);
-            xkb->ctrls->mk_interval = 1000 / xfconf_channel_get_int (helper->channel, "/MouseKeys/Interval", 100);
-            xkb->ctrls->mk_time_to_max = xfconf_channel_get_int (helper->channel, "/MouseKeys/TimeToMax", 100);
-            xkb->ctrls->mk_max_speed = xfconf_channel_get_int (helper->channel, "/MouseKeys/Speed", 100);
-        }
-        else
-        {
-            xkb->ctrls->enabled_ctrls &= ~XkbMouseKeysMask;
-        }
-
-        /* Slow keys */
-        if (xfconf_channel_get_bool (helper->channel, "/SlowKeys", FALSE))
-        {
-            xkb->ctrls->enabled_ctrls |= XkbSlowKeysMask;
-            xkb->ctrls->slow_keys_delay = xfconf_channel_get_int (helper->channel, "/SlowKeys/Delay", 100);
-        }
-        else
-        {
-            xkb->ctrls->enabled_ctrls &= ~XkbSlowKeysMask;
-        }
-
-        /* Bounce keys */
-        if (xfconf_channel_get_bool (helper->channel, "/BounceKeys", FALSE))
-        {
-            xkb->ctrls->enabled_ctrls |= XkbBounceKeysMask;
-            xkb->ctrls->debounce_delay = xfconf_channel_get_int (helper->channel, "/BounceKeys/Delay", 100);
-        }
-        else
-        {
-            xkb->ctrls->enabled_ctrls &= ~XkbBounceKeysMask;
-        }
-
+        XkbGetControls (GDK_DISPLAY (), mask, xkb);
+        
         /* Sticky keys */
-        if (xfconf_channel_get_bool (helper->channel, "/StickyKeys", FALSE))
+        if (HAS_FLAG (mask, XkbStickyKeysMask))
         {
-            xkb->ctrls->enabled_ctrls |= XkbStickyKeysMask;
+            if (xfconf_channel_get_bool (helper->channel, "/StickyKeys", FALSE))
+            {
+                SET_FLAG (xkb->ctrls->enabled_ctrls, XkbStickyKeysMask);
 
-            if (xfconf_channel_get_bool (helper->channel, "/StickyKeys/LatchToLock", FALSE))
-                xkb->ctrls->ax_options |= XkbAX_LatchToLockMask;
-            else
-                xkb->ctrls->ax_options &= ~XkbAX_LatchToLockMask;
+                if (xfconf_channel_get_bool (helper->channel, "/StickyKeys/LatchToLock", FALSE))
+                    SET_FLAG (xkb->ctrls->ax_options, XkbAX_LatchToLockMask);
+                else
+                    UNSET_FLAG (xkb->ctrls->ax_options, XkbAX_LatchToLockMask);
 
-            if (xfconf_channel_get_bool (helper->channel, "/StickyKeys/TwoKeysDisable", FALSE))
-                xkb->ctrls->ax_options |= XkbAX_TwoKeysMask;
+                if (xfconf_channel_get_bool (helper->channel, "/StickyKeys/TwoKeysDisable", FALSE))
+                    SET_FLAG (xkb->ctrls->ax_options, XkbAX_TwoKeysMask);
+                else
+                    UNSET_FLAG (xkb->ctrls->ax_options, XkbAX_TwoKeysMask);
+            }
             else
-                xkb->ctrls->ax_options &= ~XkbAX_TwoKeysMask;
+            {
+                UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbStickyKeysMask);
+            }
         }
-        else
+        
+        /* Slow keys */
+        if (HAS_FLAG (mask, XkbSlowKeysMask))
         {
-            xkb->ctrls->enabled_ctrls &= ~XkbStickyKeysMask;
+            if (xfconf_channel_get_bool (helper->channel, "/SlowKeys", FALSE))
+            {
+                SET_FLAG (xkb->ctrls->enabled_ctrls, XkbSlowKeysMask);
+                
+                delay = xfconf_channel_get_int (helper->channel, "/SlowKeys/Delay", 100);
+                xkb->ctrls->slow_keys_delay = CLAMP (delay, 1, G_MAXUSHORT);
+            }
+            else
+            {
+                UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbSlowKeysMask);
+            }
         }
-
-        /* If any option is set, enable AccessXKeys, otherwise: don't */
-        if ((xkb->ctrls->enabled_ctrls & (XkbStickyKeysMask | XkbBounceKeysMask | XkbSlowKeysMask)) != 0)
-            xkb->ctrls->enabled_ctrls |= XkbAccessXKeysMask;
-        else
-            xkb->ctrls->enabled_ctrls &= ~XkbAccessXKeysMask;
-
-        /* set the new controls */
-        XkbSetControls (GDK_DISPLAY (), XkbControlsEnabledMask | XkbStickyKeysMask | XkbBounceKeysMask | XkbSlowKeysMask | XkbMouseKeysMask, xkb);
+        
+        /* Bounce keys */
+        if (HAS_FLAG (mask, XkbBounceKeysMask))
+        {
+            if (xfconf_channel_get_bool (helper->channel, "/BounceKeys", FALSE))
+            {
+                SET_FLAG (xkb->ctrls->enabled_ctrls, XkbBounceKeysMask);
+                
+                delay = xfconf_channel_get_int (helper->channel, "/BounceKeys/Delay", 100);
+                xkb->ctrls->debounce_delay = CLAMP (delay, 1, G_MAXUSHORT);
+            }
+            else
+            {
+                UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbBounceKeysMask);
+            }
+        }
+        
+        /* Mouse keys */
+        if (HAS_FLAG (mask, XkbMouseKeysMask))
+        {
+            if (xfconf_channel_get_bool (helper->channel, "/MouseKeys", FALSE))
+            {
+                SET_FLAG (xkb->ctrls->enabled_ctrls, XkbMouseKeysMask);
+                
+                /* get values */
+                delay = xfconf_channel_get_int (helper->channel, "/MouseKeys/Delay", 160);
+                interval = xfconf_channel_get_int (helper->channel, "/MouseKeys/Interval", 20);
+                time_to_max = xfconf_channel_get_int (helper->channel, "/MouseKeys/TimeToMax", 3000);
+                max_speed = xfconf_channel_get_int (helper->channel, "/MouseKeys/MaxSpeed", 1000);
+                curve = xfconf_channel_get_int (helper->channel, "/MouseKeys/Curve", 0);
+                
+                /* calculate maximum speed and to to reach it */
+                interval = CLAMP (interval, 1, G_MAXUSHORT);
+                max_speed = (max_speed * interval) / 1000;
+                time_to_max = (time_to_max + interval / 2) / interval;
+                
+                /* set new values, clamp to limits */
+                xkb->ctrls->mk_delay = CLAMP (delay, 1, G_MAXUSHORT);
+                xkb->ctrls->mk_interval = interval;
+                xkb->ctrls->mk_time_to_max = CLAMP (time_to_max, 1, G_MAXUSHORT);
+                xkb->ctrls->mk_max_speed = CLAMP (max_speed, 1, G_MAXUSHORT);
+                xkb->ctrls->mk_curve = CLAMP (curve, -1000, 1000);
+                
+                /* g_message ("Delay: %d, Interval: %d, TimeToMax: %d, MaxSpeed: %d, Curve: %d",
+                           xkb->ctrls->mk_delay, xkb->ctrls->mk_interval,
+                           xkb->ctrls->mk_time_to_max, xkb->ctrls->mk_max_speed,
+                           xkb->ctrls->mk_curve); */
+            }
+            else
+            {
+                UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbMouseKeysMask);
+                UNSET_FLAG (mask, XkbMouseKeysAccelMask);
+            }
+        }
+        
+        /* set the modified controls */
+        if (!XkbSetControls (GDK_DISPLAY (), mask, xkb))
+            g_message ("Setting the xkb controls failed");
 
         /* free the structure */
-        XkbFreeControls (xkb, XkbAllControlsMask, True);
+        XkbFreeControls (xkb, mask, True);
         XFree (xkb);
 
         /* flush errors and pop trap */
@@ -268,10 +320,23 @@ xfce_accessibility_helper_channel_property_changed (XfconfChannel           *cha
                                                     const GValue            *value,
                                                     XfceAccessibilityHelper *helper)
 {
+    gulong mask;
+    
     g_return_if_fail (helper->channel == channel);
 
+    if (strncmp (property_name, "/StickyKeys", 11) == 0)
+        mask = XkbStickyKeysMask;
+    else if (strncmp (property_name, "/SlowKeys", 9) == 0)
+        mask = XkbSlowKeysMask;
+    else if (strncmp (property_name, "/BounceKeys", 11) == 0)
+        mask = XkbBounceKeysMask;
+    else if (strncmp (property_name, "/MouseKeys", 10) == 0)
+        mask = XkbMouseKeysMask;
+    else
+        return;
+
     /* update the xkb settings */
-    xfce_accessibility_helper_set_xkb (helper);
+    xfce_accessibility_helper_set_xkb (helper, mask);
 }
 
 
@@ -288,27 +353,27 @@ xfce_accessibility_helper_event_filter (GdkXEvent *xevent,
     switch (event->any.xkb_type)
     {
         case XkbControlsNotify:
-            if ((event->ctrls.enabled_ctrl_changes & XkbStickyKeysMask) != 0)
+            if (HAS_FLAG (event->ctrls.enabled_ctrl_changes, XkbStickyKeysMask))
             {
-                if ((event->ctrls.enabled_ctrls & XkbStickyKeysMask) != 0)
+                if (HAS_FLAG (event->ctrls.enabled_ctrls, XkbStickyKeysMask))
                     body = _("Sticky keys are enabled");
                 else
                     body = _("Sticky keys are disabled");
 
                 xfce_accessibility_helper_notification_show (helper, _("Sticky keys"), body);
             }
-            else if ((event->ctrls.enabled_ctrl_changes & XkbSlowKeysMask) != 0)
+            else if (HAS_FLAG (event->ctrls.enabled_ctrl_changes, XkbSlowKeysMask))
             {
-                if ((event->ctrls.enabled_ctrls & XkbSlowKeysMask) != 0)
+                if (HAS_FLAG (event->ctrls.enabled_ctrls, XkbSlowKeysMask))
                     body = _("Slow keys are enabled");
                 else
                     body = _("Slow keys are disabled");
 
                 xfce_accessibility_helper_notification_show (helper, _("Slow keys"), body);
             }
-            else if ((event->ctrls.enabled_ctrl_changes & XkbBounceKeysMask) != 0)
+            else if (HAS_FLAG (event->ctrls.enabled_ctrl_changes, XkbBounceKeysMask))
             {
-                if ((event->ctrls.enabled_ctrls & XkbBounceKeysMask) != 0)
+                if (HAS_FLAG (event->ctrls.enabled_ctrls, XkbBounceKeysMask))
                     body = _("Bounce keys are enabled");
                 else
                     body = _("Bounce keys are disabled");
