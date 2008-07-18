@@ -1,3 +1,13 @@
+2008-07-18	Jannis Pohlmann <jannis@xfce.org>
+
+	* dialogs/keyboard-settings/main.c: Fix some issues with multiple row
+	  selection in the shortcuts tree view. Properly destroy the command
+	  dialog when adding a new command but pressing the cancel button in 
+	  the command dialog. 
+	* dialogs/keyboard-settings/shortcut-dialog.c: Remove the "No
+	  shortcut" button as we don't support empty shortcut properties
+	  anyway.
+
 2008-07-17	Nick Schermer <nick@xfce.org>
 
 	* dialogs/display-settings/Makefile.am,

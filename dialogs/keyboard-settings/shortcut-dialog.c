@@ -233,11 +233,6 @@ shortcut_dialog_create_contents (ShortcutDialog *dialog,
   gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_CANCEL);
   gtk_widget_show (button);
 
-  /* Create clear button */
-  button = GTK_WIDGET (xfce_create_mixed_button (GTK_STOCK_CLEAR, _("No shortcut")));
-  gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_NO);
-  gtk_widget_show (button);
-
   hbox = gtk_hbox_new (FALSE, 12);
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 6);
   gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), hbox);
