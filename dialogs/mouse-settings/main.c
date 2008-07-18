@@ -83,7 +83,7 @@ static gchar *opt_device_name = NULL;
 static GOptionEntry option_entries[] =
 {
     { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
-    { "device", 'd', 0, G_OPTION_ARG_STRING, &opt_device_name, N_("Active device in the dialog"), N_("[NAME..]") },
+    { "device", 'd', 0, G_OPTION_ARG_STRING, &opt_device_name, N_("Active device in the dialog"), N_("DEVICE NAME") },
     { NULL }
 };
 
