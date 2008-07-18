@@ -1,5 +1,12 @@
 2008-07-18	Nick Schermer <nick@xfce.org>
 
+	* dialogs/mouse-settings/main.c, dialogs/appearance-settings/main.c:
+	  Escape the tooltip string, since Gtk+ 2.12 tree tooltips support
+	  markup which results in errors with tips like <default pointer>.
+	* dialogs/keyboard-settings/main.c: Drop unused variables.
+
+2008-07-18	Nick Schermer <nick@xfce.org>
+
 	* xfce4-settings-helper/accessibility.c: Improve the code a bit
 	  and calculate the max_speed and time_to_max using the interval,
 	  so the user can set a speed in pixels/sec and time in msec.

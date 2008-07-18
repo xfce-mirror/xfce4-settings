@@ -155,12 +155,9 @@ keyboard_settings_validate_shortcut (ShortcutDialog      *dialog,
                                      const gchar         *shortcut,
                                      struct TreeViewInfo *info)
 {
-  GtkTreeSelection *selection;
-  GtkTreeModel     *model;
-  GtkTreeIter       iter;
-  gboolean          shortcut_accepted = TRUE;
-  gchar            *current_shortcut;
-  gchar            *property;
+  gboolean  shortcut_accepted = TRUE;
+  gchar    *current_shortcut;
+  gchar    *property;
 
   /* Ignore raw 'Return' and 'space' since that may have been used to activate the shortcut row */
   if (G_UNLIKELY (g_utf8_collate (shortcut, "Return") == 0 || g_utf8_collate (shortcut, "space") == 0))

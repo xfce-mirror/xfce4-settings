@@ -819,8 +819,8 @@ mouse_settings_device_populate_store (GladeXML *gxml,
         /* filter out the pointer devices */
         if (device_info->use == IsXExtensionPointer)
         {
-            /* get the device name */
-            display_name = g_strdup (device_info->name);
+            /* get the device name, escaped */
+            display_name = g_markup_escape_text (device_info->name, -1);
 
             /* get rid of usb crap in the name */
             if ((usb = strstr (display_name, "-usb")) != NULL)

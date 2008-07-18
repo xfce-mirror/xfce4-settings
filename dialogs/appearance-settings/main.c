@@ -216,6 +216,7 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
     gchar        *index_filename;
     const gchar  *theme_name;
     const gchar  *theme_comment;
+    gchar        *comment_escaped;
     gchar        *active_theme_name;
     gint          i;
     GSList       *check_list = NULL;
@@ -264,12 +265,18 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                     theme_name = xfce_rc_read_entry (index_file, "Name", file);
                     theme_comment = xfce_rc_read_entry (index_file, "Comment", NULL);
 
+                    /* Escape the comment, since tooltips are markup, not text */
+                    comment_escaped = theme_comment ? g_markup_escape_text (theme_comment, -1) : NULL;
+
                     /* Append icon theme to the list store */
                     gtk_list_store_append (list_store, &iter);
                     gtk_list_store_set (list_store, &iter,
                                         COLUMN_THEME_NAME, file,
                                         COLUMN_THEME_DISPLAY_NAME, theme_name,
-                                        COLUMN_THEME_COMMENT, theme_comment, -1);
+                                        COLUMN_THEME_COMMENT, comment_escaped, -1);
+
+                    /* Cleanup */
+                    g_free (comment_escaped);
 
                     /* Check if this is the active theme, if so, select it */
                     if (G_UNLIKELY (g_utf8_collate (theme_name, active_theme_name) == 0))
@@ -322,6 +329,7 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
     const gchar  *theme_comment;
     gchar        *active_theme_name;
     gchar        *gtkrc_filename;
+    gchar        *comment_escaped;
     gint          i;
     GSList       *check_list = NULL;
 
@@ -367,6 +375,9 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                     /* Get translated ui theme name and comment */
                     theme_name = xfce_rc_read_entry (index_file, "Name", file);
                     theme_comment = xfce_rc_read_entry (index_file, "Comment", NULL);
+                    
+                    /* Escape the comment because tooltips are markup, not text */
+                    comment_escaped = theme_comment ? g_markup_escape_text (theme_comment, -1) : NULL;
 
                     /* Close theme index file */
                     xfce_rc_close (index_file);
@@ -375,7 +386,7 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                 {
                     /* Set defaults */
                     theme_name = file;
-                    theme_comment = NULL;
+                    comment_escaped = NULL;
                 }
 
                 /* Append ui theme to the list store */
@@ -383,7 +394,10 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                 gtk_list_store_set (list_store, &iter,
                                     COLUMN_THEME_NAME, file,
                                     COLUMN_THEME_DISPLAY_NAME, theme_name,
-                                    COLUMN_THEME_COMMENT, theme_comment, -1);
+                                    COLUMN_THEME_COMMENT, comment_escaped, -1);
+                                    
+                /* Cleanup */
+                g_free (comment_escaped);
 
                 /* Check if this is the active theme, if so, select it */
                 if (G_UNLIKELY (g_utf8_collate (theme_name, active_theme_name) == 0))
