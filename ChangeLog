@@ -1,5 +1,10 @@
 2008-07-18	Nick Schermer <nick@xfce.org>
 
+	* xfce4-settings-helper/main.c, configure.ac.in: Properly quit
+	  the main loop when a signal is received.
+
+2008-07-18	Nick Schermer <nick@xfce.org>
+
 	* dialogs/mouse-settings/main.c: Allow editing the display name
 	  of the device in the dialog. This way users can set usable names
 	  for devices that are plugged.

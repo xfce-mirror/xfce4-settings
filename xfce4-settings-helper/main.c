@@ -29,6 +29,12 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+#ifdef HAVE_SIGNAL_H
+#include <signal.h>
+#endif
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
 
 #include <glib.h>
 #include <gtk/gtk.h>
@@ -43,8 +49,8 @@
 
 
 
-static gboolean     opt_version = FALSE;
-static gboolean     opt_debug = FALSE;
+static gboolean opt_version = FALSE;
+static gboolean opt_debug = FALSE;
 static GOptionEntry option_entries[] =
 {
     { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
@@ -54,15 +60,26 @@ static GOptionEntry option_entries[] =
 
 
 
+static void
+signal_handler (gint signum)
+{
+    /* quit the main loop */
+    gtk_main_quit ();
+}
+
+
+
 gint
 main (gint argc, gchar **argv)
 {
-    GError  *error = NULL;
-    GObject *pointer_helper;
-    GObject *keyboards_helper;
-    GObject *accessibility_helper;
-    GObject *shortcuts_helper;
-    pid_t    pid;
+    GError     *error = NULL;
+    GObject    *pointer_helper;
+    GObject    *keyboards_helper;
+    GObject    *accessibility_helper;
+    GObject    *shortcuts_helper;
+    pid_t       pid;
+    guint       i;
+    const gint  signums[] = { SIGHUP, SIGINT, SIGQUIT, SIGTERM };
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -104,24 +121,6 @@ main (gint argc, gchar **argv)
         return EXIT_SUCCESS;
     }
 
-    /* daemonize the process when not running in debug mode */
-    if (!opt_debug)
-    {
-        /* try to fork the process */
-        pid = fork ();
-
-        if (G_UNLIKELY (pid == -1))
-        {
-            /* show message and continue in normal mode */
-            g_warning ("Failed to fork the process, starting in non-daemon mode");
-        }
-        else if (pid > 0)
-        {
-            /* succesfully created a fork, leave this instance */
-            return EXIT_SUCCESS;
-        }
-    }
-
     /* initialize xfconf */
     if (!xfconf_init (&error))
     {
@@ -132,11 +131,33 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
+    /* daemonize the process when not running in debug mode */
+    if (!opt_debug)
+    {
+        /* try to fork the process */
+        pid = fork ();
+
+        if (G_UNLIKELY (pid == -1))
+        {
+            /* show message and continue in normal mode */
+            g_warning ("Failed to fork the process: %s. Continuing in non-daemon mode.", g_strerror (errno));
+        }
+        else if (pid > 0)
+        {
+            /* succesfully created a fork, leave this instance */
+            return EXIT_SUCCESS;
+        }
+    }
+
     /* create the sub daemons */
     pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
     keyboards_helper = g_object_new (XFCE_TYPE_KEYBOARDS_HELPER, NULL);
     accessibility_helper = g_object_new (XFCE_TYPE_ACCESSIBILITY_HELPER, NULL);
     shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
+
+    /* setup signal handlers to properly quit the main loop */
+    for (i = 0; i < G_N_ELEMENTS (signums); i++)
+        signal (signums[i], signal_handler);
 
     /* enter the main loop */
     gtk_main();
