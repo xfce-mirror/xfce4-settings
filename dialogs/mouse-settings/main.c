@@ -375,6 +375,7 @@ mouse_settings_themes_populate_store (GladeXML *gxml)
     GtkTreeViewColumn  *column;
     GtkWidget          *treeview;
     GtkTreeSelection   *selection;
+    gchar              *comment_escaped;
 
     /* get the cursor paths */
 #if XCURSOR_LIB_MAJOR == 1 && XCURSOR_LIB_MINOR < 1
@@ -471,10 +472,16 @@ mouse_settings_themes_populate_store (GladeXML *gxml)
                                     name = xfce_rc_read_entry (rc, "Name", theme);
                                     comment = xfce_rc_read_entry (rc, "Comment", NULL);
 
+                                    /* escape the comment */
+                                    comment_escaped = comment ? g_markup_escape_text (comment, -1) : NULL;
+
                                     /* update store */
                                     gtk_list_store_set (store, &iter,
                                                         COLUMN_THEME_DISPLAY_NAME, name,
-                                                        COLUMN_THEME_COMMENT, comment, -1);
+                                                        COLUMN_THEME_COMMENT, comment_escaped, -1);
+
+                                    /* cleanup */
+                                    g_free (comment_escaped);
                                 }
 
                                 /* close rc file */
@@ -819,13 +826,6 @@ mouse_settings_device_populate_store (GladeXML *gxml,
         /* filter out the pointer devices */
         if (device_info->use == IsXExtensionPointer)
         {
-            /* get the device name, escaped */
-            display_name = g_markup_escape_text (device_info->name, -1);
-
-            /* get rid of usb crap in the name */
-            if ((usb = strstr (display_name, "-usb")) != NULL)
-                *usb = '\0';
-
             /* get the device classes */
             ptr = device_info->inputclassinfo;
 
@@ -846,25 +846,30 @@ mouse_settings_device_populate_store (GladeXML *gxml,
                 ptr = (XAnyClassPtr) ((gchar *) ptr + ptr->length);
             }
 
-            /* insert the device if it has buttons */
-            if (G_LIKELY (num_buttons > 0))
-            {
-                /* create a valid xfconf device name */
-                device_name = mouse_settings_device_xfconf_name (device_info->name);
+            /* only append devices with buttons */
+            if (G_UNLIKELY (num_buttons <= 0))
+                continue;
 
-                /* insert in the store */
-                gtk_list_store_insert_with_values (store, &iter, i,
-                                                   COLUMN_DEVICE_ICON, "input-mouse",
-                                                   COLUMN_DEVICE_NAME, device_name,
-                                                   COLUMN_DEVICE_DISPLAY_NAME, display_name,
-                                                   COLUMN_DEVICE_XID, device_info->id,
-                                                   COLUMN_DEVICE_NBUTTONS, num_buttons, -1);
+            /* get the device name, escaped */
+            display_name = g_markup_escape_text (device_info->name, -1);
 
-                /* cleanup */
-                g_free (device_name);
-            }
+            /* get rid of usb crap in the name */
+            if ((usb = strstr (display_name, "-usb")) != NULL)
+                *usb = '\0';
+
+            /* create a valid xfconf device name */
+            device_name = mouse_settings_device_xfconf_name (device_info->name);
+
+            /* insert in the store */
+            gtk_list_store_insert_with_values (store, &iter, i,
+                                               COLUMN_DEVICE_ICON, "input-mouse",
+                                               COLUMN_DEVICE_NAME, device_name,
+                                               COLUMN_DEVICE_DISPLAY_NAME, display_name,
+                                               COLUMN_DEVICE_XID, device_info->id,
+                                               COLUMN_DEVICE_NBUTTONS, num_buttons, -1);
 
             /* cleanup */
+            g_free (device_name);
             g_free (display_name);
         }
     }
@@ -893,7 +898,7 @@ mouse_settings_device_populate_store (GladeXML *gxml,
 
         /* text renderer */
         renderer = gtk_cell_renderer_text_new ();
-        column = gtk_tree_view_column_new_with_attributes ("", renderer, "text", COLUMN_DEVICE_DISPLAY_NAME, NULL);
+        column = gtk_tree_view_column_new_with_attributes ("", renderer, "markup", COLUMN_DEVICE_DISPLAY_NAME, NULL);
         g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
@@ -1098,7 +1103,7 @@ main(gint argc, gchar **argv)
         /* print error and leave */
         g_critical ("Failed to connect to Xfconf daemon: %s", error->message);
         g_error_free (error);
-        
+
         return EXIT_FAILURE;
     }
 
@@ -1236,7 +1241,7 @@ main(gint argc, gchar **argv)
             /* stop any running sources */
             if (G_UNLIKELY (timeout_id != 0))
                 g_source_remove (timeout_id);
-#endif /* !HAVE_HAL */   
+#endif /* !HAVE_HAL */
 
             /* destroy the dialog */
             gtk_widget_destroy (GTK_WIDGET (dialog));

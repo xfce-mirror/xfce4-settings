@@ -1,5 +1,10 @@
 2008-07-18	Nick Schermer <nick@xfce.org>
 
+	* dialogs/mouse-settings/main.c: Properly fix previous commit. Also
+	  make the code more readable.
+
+2008-07-18	Nick Schermer <nick@xfce.org>
+
 	* dialogs/mouse-settings/main.c, dialogs/appearance-settings/main.c:
 	  Escape the tooltip string, since Gtk+ 2.12 tree tooltips support
 	  markup which results in errors with tips like <default pointer>.
