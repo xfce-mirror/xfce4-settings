@@ -1,5 +1,12 @@
 2008-07-18	Nick Schermer <nick@xfce.org>
 
+	* dialogs/mouse-settings/main.c, xfce4-settings-helper/pointers.c,
+	  xfce4-settings-helper/Makefile.am: Show a notification when a
+	  mouse device is added. Notifications has a button to open
+	  the settings dialog, which will select the new device (if possible).
+
+2008-07-18	Nick Schermer <nick@xfce.org>
+
 	* dialogs/mouse-settings/main.c: Properly fix previous commit. Also
 	  make the code more readable.
 

@@ -3,6 +3,7 @@
 INCLUDES = \
 	-I${top_srcdir} \
 	-DDATADIR=\"$(datadir)\" \
+	-DBINDIR=\"$(bindir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-settings-helper\" \

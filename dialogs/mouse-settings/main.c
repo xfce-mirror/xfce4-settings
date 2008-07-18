@@ -79,9 +79,11 @@ static guint timeout_id = 0;
 
 /* option entries */
 static gboolean opt_version = FALSE;
+static gchar *opt_device_name = NULL;
 static GOptionEntry option_entries[] =
 {
-    { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+    { "device", 'd', 0, G_OPTION_ARG_STRING, &opt_device_name, N_("Active device in the dialog"), N_("[NAME..]") },
     { NULL }
 };
 
@@ -788,7 +790,7 @@ mouse_settings_device_populate_store (GladeXML *gxml,
     GtkTreeIter        iter;
     GtkListStore      *store;
     GtkWidget         *treeview;
-    GtkTreePath       *path;
+    GtkTreePath       *path = NULL;
     GtkTreeViewColumn *column;
     GtkCellRenderer   *renderer;
     GtkTreeSelection  *selection;
@@ -868,6 +870,14 @@ mouse_settings_device_populate_store (GladeXML *gxml,
                                                COLUMN_DEVICE_XID, device_info->id,
                                                COLUMN_DEVICE_NBUTTONS, num_buttons, -1);
 
+            /* check if we should select this device */
+            if (opt_device_name && strcmp (opt_device_name, device_info->name) == 0)
+            {
+                path = gtk_tree_model_get_path (GTK_TREE_MODEL (store), &iter);
+                g_free (opt_device_name);
+                opt_device_name = NULL;
+            }
+
             /* cleanup */
             g_free (device_name);
             g_free (display_name);
@@ -884,11 +894,9 @@ mouse_settings_device_populate_store (GladeXML *gxml,
     {
         /* set the treeview model */
         gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
-        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), COLUMN_DEVICE_XID, GTK_SORT_ASCENDING);
 #if GTK_CHECK_VERSION (2, 12, 0)
         gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_DEVICE_DISPLAY_NAME);
 #endif
-        g_object_unref (G_OBJECT (store));
 
         /* icon renderer */
         renderer = gtk_cell_renderer_pixbuf_new ();
@@ -907,10 +915,18 @@ mouse_settings_device_populate_store (GladeXML *gxml,
         g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (mouse_settings_device_selection_changed), gxml);
     }
 
-    /* select the first mouse in the tree */
-    path = gtk_tree_path_new_first ();
+    /* select the mouse in the tree */
+    if (G_LIKELY (path == NULL))
+        path = gtk_tree_path_new_first ();
     gtk_tree_selection_select_path (selection, path);
     gtk_tree_path_free (path);
+
+    /* sort after selecting the path */
+    if (G_LIKELY (create_store))
+    {
+        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), COLUMN_DEVICE_XID, GTK_SORT_ASCENDING);
+        g_object_unref (G_OBJECT (store));
+    }
 
     /* unlock */
     locked--;
@@ -1113,6 +1129,12 @@ main(gint argc, gchar **argv)
 
     if (G_LIKELY (pointers_channel && xsettings_channel))
     {
+#if HAVE_LIBNOTIFY
+        /* this is a property we use for notifications, make sure it's there so users van change it */
+        if (!xfconf_channel_has_property (pointers_channel, "/ShowNotifications"))
+            xfconf_channel_set_bool (pointers_channel, "/ShowNotifications", TRUE);
+#endif /* !HAVE_LIBNOTIFY */
+
         /* load the glade xml file */
         gxml = glade_xml_new_from_buffer (mouse_dialog_glade, mouse_dialog_glade_length, NULL, NULL);
         if (G_LIKELY (gxml))
@@ -1257,6 +1279,9 @@ main(gint argc, gchar **argv)
 
     /* shutdown xfconf */
     xfconf_shutdown ();
+
+    /* cleanup */
+    g_free (opt_device_name);
 
     return EXIT_SUCCESS;
 }
