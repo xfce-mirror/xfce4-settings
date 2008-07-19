@@ -38,9 +38,6 @@
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib-lowlevel.h>
 #include <hal/libhal.h>
-#if HAVE_LIBNOTIFY
-#include <libnotify/notify.h>
-#endif /* !HAVE_LIBNOTIFY */
 #endif /* !HAVE_HAL */
 
 #include "pointers.h"
@@ -76,13 +73,6 @@ static void      xfce_pointers_helper_channel_property_changed       (XfconfChan
                                                                       const gchar             *property_name,
                                                                       const GValue            *value);
 #ifdef HAVE_HAL
-#if HAVE_LIBNOTIFY
-static void      xfce_pointers_helper_notification_closed            (NotifyNotification      *notification,
-                                                                      XfcePointersHelper      *helper);
-static void      xfce_pointers_helper_notification_clicked           (NotifyNotification      *notification,
-                                                                      gchar                   *action,
-                                                                      gpointer                 user_data);
-#endif /* !HAVE_LIBNOTIFY */
 static gboolean  xfce_pointers_helper_device_added_timeout           (gpointer                 user_data);
 static void      xfce_pointers_helper_device_added_timeout_destroyed (gpointer                 user_data);
 static void      xfce_pointers_helper_device_added                   (LibHalContext           *context,
@@ -112,13 +102,6 @@ struct _XfcePointersHelper
 
     /* hal context */
     LibHalContext      *context;
-
-    /* last plugged device name */
-    gchar              *last_device;
-
-#ifdef HAVE_LIBNOTIFY
-    NotifyNotification *notification;
-#endif /* !HAVE_LIBNOTIFY */
 #endif /* !HAVE_HAL */
 };
 
@@ -151,10 +134,6 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
     helper->timeout_id = 0;
     helper->context = NULL;
     helper->connection = NULL;
-    helper->last_device = NULL;
-#ifdef HAVE_LIBNOTIFY
-    helper->notification = NULL;
-#endif /* !HAVE_LIBNOTIFY */
 #endif /* !HAVE_HAL */
 
     if (XQueryExtension (GDK_DISPLAY (), "XInputExtension", &dummy, &dummy, &dummy))
@@ -169,11 +148,6 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_pointers_helper_channel_property_changed), NULL);
 
 #ifdef HAVE_HAL
-#ifdef HAVE_LIBNOTIFY
-        /* setup a connection with the notification daemon */
-        if (!notify_init ("xfce4-settings-helper"))
-            g_critical ("Failed to connect to the notification daemon.");
-#endif /* !HAVE_LIBNOTIFY */
         /* initialize the dbus error variable */
         dbus_error_init (&derror);
 
@@ -249,15 +223,6 @@ xfce_pointers_helper_finalize (GObject *object)
     /* release the dbus connection */
     if (G_LIKELY (helper->connection))
         dbus_connection_unref (helper->connection);
-
-    /* cleanup last device name */
-    g_free (helper->last_device);
-
-#ifdef HAVE_LIBNOTIFY
-    /* close an opened notification */
-    if (G_UNLIKELY (helper->notification))
-        notify_notification_close (helper->notification, NULL);
-#endif /* !HAVE_LIBNOTIFY */
 #endif /* !HAVE_HAL */
 
     /* release the channel */
@@ -643,49 +608,6 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
 
 
 #ifdef HAVE_HAL
-#if HAVE_LIBNOTIFY
-static void
-xfce_pointers_helper_notification_closed (NotifyNotification *notification,
-                                          XfcePointersHelper *helper)
-{
-    g_return_if_fail (helper->notification == notification);
-
-    /* set to null */
-    helper->notification = NULL;
-}
-
-
-
-static void
-xfce_pointers_helper_notification_clicked (NotifyNotification *notification,
-                                           gchar              *action,
-                                           gpointer            user_data)
-{
-    XfcePointersHelper *helper = XFCE_POINTERS_HELPER (user_data);
-    GError             *error = NULL;
-    gchar              *command;
-    const gchar        *path = BINDIR G_DIR_SEPARATOR_S "xfce4-mouse-settings";
-
-    /* build a command */
-    if (G_LIKELY (helper->last_device))
-        command = g_strdup_printf ("%s -d '%s'", path, helper->last_device);
-    else
-        command = g_strdup (path);
-
-    /* try to spwn the xfce4-mouse-setting dialog */
-    if (!g_spawn_command_line_async (command, &error))
-    {
-        g_critical ("Failed to spawn the mouse settings dialog: %s", error->message);
-        g_error_free (error);
-    }
-
-    /* cleanup */
-    g_free (command);
-}
-#endif /* !HAVE_LIBNOTIFY */
-
-
-
 static gboolean
 xfce_pointers_helper_device_added_timeout (gpointer user_data)
 {
@@ -695,36 +617,6 @@ xfce_pointers_helper_device_added_timeout (gpointer user_data)
 
     /* restore the devices */
     xfce_pointers_helper_restore_devices (helper);
-
-#if HAVE_LIBNOTIFY
-    /* show a notification */
-    if (xfconf_channel_get_bool (helper->channel, "/ShowNotifications", TRUE)
-        && notify_is_initted ())
-    {
-        if (helper->notification == NULL)
-        {
-            /* create a new notification */
-            helper->notification = notify_notification_new (_("New Mouse Device"), _("A new mouse device has been plugged. Click the button "
-                                                            "below to configure the new device."), "input-mouse", NULL);
-            g_signal_connect (G_OBJECT (helper->notification), "closed", G_CALLBACK (xfce_pointers_helper_notification_closed), helper);
-            notify_notification_add_action (helper->notification, "configure", _("Open Mouse Settings Dialog"), xfce_pointers_helper_notification_clicked, helper, NULL);
-        }
-
-        /* show the notification for (another) 4 seconds */
-        notify_notification_set_timeout (helper->notification, 4000);
-
-        /* show the notification */
-        if (!notify_notification_show (helper->notification, NULL))
-        {
-            /* show warning with the notification information */
-            g_warning ("Failed to show notification: %s", _("New Mouse Device"));
-
-            /* failed to show the notification */
-            notify_notification_close (helper->notification, NULL);
-            helper->notification = NULL;
-        }
-    }
-#endif /* !HAVE_LIBNOTIFY */
 
     GDK_THREADS_LEAVE ();
 
@@ -757,10 +649,6 @@ xfce_pointers_helper_device_added (LibHalContext *context,
     if (libhal_device_query_capability (context, udi, "input.mouse", NULL)
         && helper->timeout_id == 0)
     {
-        /* set the device name */
-        g_free (helper->last_device);
-        helper->last_device = libhal_device_get_property_string (context, udi, "info.product", NULL);
-
         /* queue a new timeout */
         helper->timeout_id = g_timeout_add_full (G_PRIORITY_LOW, 1000, xfce_pointers_helper_device_added_timeout,
                                                  helper, xfce_pointers_helper_device_added_timeout_destroyed);

@@ -1,5 +1,11 @@
 2008-07-19	Nick Schermer <nick@xfce.org>
 
+	* dialogs/mouse-settings/main.c, xfce4-settings-helper/pointers.c:
+	  Remove the notification. Not a good idea since it also shows
+	  after suspend.
+
+2008-07-19	Nick Schermer <nick@xfce.org>
+
 	* dialogs/keyboard-settings/main.c,
 	  dialogs/keyboard-settings/keyboard-dialog.glade: Set default
 	  window width in the glade file, not in the code.

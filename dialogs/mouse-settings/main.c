@@ -1195,12 +1195,6 @@ main(gint argc, gchar **argv)
 
     if (G_LIKELY (pointers_channel && xsettings_channel))
     {
-#if HAVE_LIBNOTIFY
-        /* this is a property we use for notifications, make sure it's there so users van change it */
-        if (!xfconf_channel_has_property (pointers_channel, "/ShowNotifications"))
-            xfconf_channel_set_bool (pointers_channel, "/ShowNotifications", TRUE);
-#endif /* !HAVE_LIBNOTIFY */
-
         /* load the glade xml file */
         gxml = glade_xml_new_from_buffer (mouse_dialog_glade, mouse_dialog_glade_length, NULL, NULL);
         if (G_LIKELY (gxml))
