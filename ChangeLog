@@ -1,3 +1,24 @@
+2008-07-26	Nick Schermer <nick@xfce.org>
+
+	First commit with legacy code working (randr < 1.2). Randr
+	1.2 code disabled for now.
+	
+	* xfce4-settings-helper/Makefile.am,
+	  configure.ac.in: Depend on randr 1.1 and remove xxf86vm.
+	* dialogs/display-settings/xfce-randr-legacy.c,
+	  dialogs/display-settings/xfce-randr-legacy.h: Lagecy backend.
+	  This is used when compiled with randr < 1.2, when the drivers
+	  is not really randr 1.2 or when there are more then one screen
+	  on the default display.
+	* dialogs/display-settings/xfce-randr.c,
+	  dialogs/display-settings/xfce-randr.h: Randr 1.2 code, not
+	  working yet. Disabled it for the moment.
+	* dialogs/display-settings/main.c: Updates.
+	* dialogs/display-settings/Makefile.am: Add new files.
+	* xfce4-settings-helper/displays.c: Make legacy randr
+	  code work.
+	* dialogs/display-settings/display-dialog.glade: Updates.
+
 2008-07-19	Nick Schermer <nick@xfce.org>
 
 	* dialogs/mouse-settings/mouse-dialog.glade: Simplify packing

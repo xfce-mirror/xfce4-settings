@@ -13,6 +13,10 @@ bin_PROGRAMS = \
 
 xfce4_display_settings_SOURCES = \
 	main.c \
+	xfce-randr.c \
+	xfce-randr.h \
+	xfce-randr-legacy.c \
+	xfce-randr-legacy.h \
 	display-dialog_glade.h
 
 xfce4_display_settings_CFLAGS = \
@@ -22,8 +26,7 @@ xfce4_display_settings_CFLAGS = \
 	$(DBUS_GLIB_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
 	$(XFCONF_CFLAGS) \
-	$(XRANDR_CFLAGS) \
-	$(XXF86VM_CFLAGS)
+	$(XRANDR_CFLAGS)
 
 xfce4_displaye_settings_LDFLAGS = \
 	-no-undefined \
@@ -36,8 +39,7 @@ xfce4_display_settings_LDADD = \
 	$(DBUS_GLIB_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
 	$(XFCONF_LIBS) \
-	$(XRANDR_LIBS) \
-	$(XXF86VM_LIBS)
+	$(XRANDR_LIBS)
 
 if MAINTAINER_MODE
 

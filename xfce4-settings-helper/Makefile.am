@@ -35,8 +35,7 @@ xfce4_settings_helper_CFLAGS = \
 	$(LIBXFCEGUI4_CFLAGS) \
 	$(XI_CFLAGS) \
 	$(LIBX11_CFLAGS) \
-	$(XRANDR_CFLAGS) \
-	$(XXF86VM_CFLAGS)
+	$(XRANDR_CFLAGS)
 
 xfce4_settings_helper_LDFLAGS = \
 	-no-undefined \
@@ -52,8 +51,7 @@ xfce4_settings_helper_LDADD = \
 	$(LIBXFCEGUI4_LIBS) \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
-	$(XRANDR_LIBS) \
-	$(XXF86VM_LIBS)
+	$(XRANDR_LIBS)
 
 if HAVE_LIBNOTIFY
 xfce4_settings_helper_CFLAGS += \
