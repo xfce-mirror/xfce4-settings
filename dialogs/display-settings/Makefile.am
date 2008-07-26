@@ -28,7 +28,7 @@ xfce4_display_settings_CFLAGS = \
 	$(XFCONF_CFLAGS) \
 	$(XRANDR_CFLAGS)
 
-xfce4_displaye_settings_LDFLAGS = \
+xfce4_display_settings_LDFLAGS = \
 	-no-undefined \
 	$(PLATFORM_LDFLAGS)
 
