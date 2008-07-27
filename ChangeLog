@@ -1,5 +1,14 @@
 2008-07-27	Nick Schermer <nick@xfce.org>
 
+	* dialogs/mouse-settings/main.c: Always save the RightHand
+	  property, because the deamon uses that property to detect
+	  a device. Use a static property string size. Default for 
+	  ReverseScrolling is FALSE.
+	  Those changes fix a bug where an added device was not
+	  restored property.
+
+2008-07-27	Nick Schermer <nick@xfce.org>
+
 	* configure.ac.in, dialogs/mouse-settings/main.c,
 	  dialogs/mouse-settings/Makefile.am,
 	  xfce4-settings-helper/pointers.c,

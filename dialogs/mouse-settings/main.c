@@ -686,7 +686,7 @@ mouse_settings_device_save (GladeXML *gxml)
     gboolean          has_selection;
     gchar            *name;
     GtkWidget        *widget;
-    gchar            *property_name;
+    gchar             property_name[512];
     gboolean          righthanded;
     gint              threshold;
     gdouble           acceleration;
@@ -714,35 +714,32 @@ mouse_settings_device_save (GladeXML *gxml)
         {
             /* store the button order */
             widget = glade_xml_get_widget (gxml, "mouse-right-handed");
-            property_name = g_strdup_printf ("/%s/RightHanded", name);
+            g_snprintf (property_name, sizeof (property_name), "/%s/RightHanded", name);
             righthanded = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
-            if (xfconf_channel_get_bool (pointers_channel, property_name, TRUE) != righthanded)
+            if (!xfconf_channel_has_property (pointers_channel, property_name)
+                || xfconf_channel_get_bool (pointers_channel, property_name, TRUE) != righthanded)
                 xfconf_channel_set_bool (pointers_channel, property_name, righthanded);
-            g_free (property_name);
 
             /* store reverse scrolling */
             widget = glade_xml_get_widget (gxml, "mouse-reverse-scrolling");
-            property_name = g_strdup_printf ("/%s/ReverseScrolling", name);
+            g_snprintf (property_name, sizeof (property_name), "/%s/ReverseScrolling", name);
             reverse_scrolling = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
-            if (xfconf_channel_get_bool (pointers_channel, property_name, TRUE) != reverse_scrolling)
+            if (xfconf_channel_get_bool (pointers_channel, property_name, FALSE) != reverse_scrolling)
                 xfconf_channel_set_bool (pointers_channel, property_name, reverse_scrolling);
-            g_free (property_name);
 
             /* store the threshold */
             widget = glade_xml_get_widget (gxml, "mouse-threshold-scale");
-            property_name = g_strdup_printf ("/%s/Threshold", name);
+            g_snprintf (property_name, sizeof (property_name), "/%s/Threshold", name);
             threshold = gtk_range_get_value (GTK_RANGE (widget));
             if (xfconf_channel_get_int (pointers_channel, property_name, -1) != threshold)
                 xfconf_channel_set_int (pointers_channel, property_name, threshold);
-            g_free (property_name);
 
             /* store the acceleration */
             widget = glade_xml_get_widget (gxml, "mouse-acceleration-scale");
-            property_name = g_strdup_printf ("/%s/Acceleration", name);
+            g_snprintf (property_name, sizeof (property_name), "/%s/Acceleration", name);
             acceleration = gtk_range_get_value (GTK_RANGE (widget));
             if (xfconf_channel_get_double (pointers_channel, property_name, -1) != acceleration)
                 xfconf_channel_set_double (pointers_channel, property_name, acceleration);
-            g_free (property_name);
 
             /* cleanup */
             g_free (name);
