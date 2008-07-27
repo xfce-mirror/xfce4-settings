@@ -191,7 +191,7 @@ xfce_keyboard_shortcuts_helper_init (XfceKeyboardShortcutsHelper *helper)
   helper->shortcuts = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
   /* Get all properties of the channel */
-  properties = xfconf_channel_get_all (helper->channel);
+  properties = xfconf_channel_get_properties (helper->channel, NULL);
 
   if (G_LIKELY (properties != NULL))
     {

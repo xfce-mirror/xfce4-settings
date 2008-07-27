@@ -139,7 +139,7 @@ keyboard_settings_load_shortcuts (GtkWidget    *kbd_shortcuts_view,
   g_return_if_fail (GTK_IS_TREE_VIEW (kbd_shortcuts_view));
   g_return_if_fail (GTK_IS_LIST_STORE (list_store));
 
-  shortcuts = xfconf_channel_get_all (kbd_channel);
+  shortcuts = xfconf_channel_get_properties (kbd_channel, NULL);
 
   if (G_LIKELY (shortcuts != NULL))
     {

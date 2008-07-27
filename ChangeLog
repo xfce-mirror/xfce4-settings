@@ -1,3 +1,9 @@
+2008-07-27	Jannis Pohlmann <jannis@xfce.org>
+
+	* dialogs/keyboard-settings/main.c,
+	  xfce4-settings-helper/keyboard-shortcuts.c: Use
+	  xfconf_channel_get_properties() instead of xfconf_channel_get_all().
+
 2008-07-26	Nick Schermer <nick@xfce.org>
 
 	First commit with legacy code working (randr < 1.2). Randr
