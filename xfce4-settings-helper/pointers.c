@@ -27,18 +27,13 @@
 
 #include <X11/Xlib.h>
 #include <X11/extensions/XInput.h>
+#include <X11/extensions/XIproto.h>
 
 #include <glib.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
-
-#ifdef HAVE_HAL
-#include <dbus/dbus.h>
-#include <dbus/dbus-glib-lowlevel.h>
-#include <hal/libhal.h>
-#endif /* !HAVE_HAL */
 
 #include "pointers.h"
 
@@ -48,36 +43,34 @@
 
 
 
-static void      xfce_pointers_helper_class_init                     (XfcePointersHelperClass *klass);
-static void      xfce_pointers_helper_init                           (XfcePointersHelper      *helper);
-static void      xfce_pointers_helper_finalize                       (GObject                 *object);
-static void      xfce_pointers_helper_change_button_mapping_swap     (guchar                  *buttonmap,
-                                                                      gshort                   num_buttons,
-                                                                      gint                     id_1,
-                                                                      gint                     id_2,
-                                                                      gboolean                 reverse);
-static void      xfce_pointers_helper_change_button_mapping          (XDeviceInfo             *device_info,
-                                                                      XDevice                 *device,
-                                                                      Display                 *xdisplay,
-                                                                      gint                     right_handed,
-                                                                      gint                     reverse_scrolling);
-static gint      xfce_pointers_helper_gcd                            (gint                     num,
-                                                                      gint                     denom);
-static void      xfce_pointers_helper_change_feedback                (XDevice                 *device,
-                                                                      Display                 *xdisplay,
-                                                                      gint                     threshold,
-                                                                      gdouble                  acceleration);
-static gchar    *xfce_pointers_helper_device_xfconf_name             (const gchar             *name);
-static void      xfce_pointers_helper_restore_devices                (XfcePointersHelper      *helper);
-static void      xfce_pointers_helper_channel_property_changed       (XfconfChannel           *channel,
-                                                                      const gchar             *property_name,
-                                                                      const GValue            *value);
-#ifdef HAVE_HAL
-static gboolean  xfce_pointers_helper_device_added_timeout           (gpointer                 user_data);
-static void      xfce_pointers_helper_device_added_timeout_destroyed (gpointer                 user_data);
-static void      xfce_pointers_helper_device_added                   (LibHalContext           *context,
-                                                                      const gchar             *udi);
-#endif /* !HAVE_HAL */
+static void             xfce_pointers_helper_class_init                     (XfcePointersHelperClass *klass);
+static void             xfce_pointers_helper_init                           (XfcePointersHelper      *helper);
+static void             xfce_pointers_helper_finalize                       (GObject                 *object);
+static void             xfce_pointers_helper_change_button_mapping_swap     (guchar                  *buttonmap,
+                                                                             gshort                   num_buttons,
+                                                                             gint                     id_1,
+                                                                             gint                     id_2,
+                                                                             gboolean                 reverse);
+static void             xfce_pointers_helper_change_button_mapping          (XDeviceInfo             *device_info,
+                                                                             XDevice                 *device,
+                                                                             Display                 *xdisplay,
+                                                                             gint                     right_handed,
+                                                                             gint                     reverse_scrolling);
+static gint             xfce_pointers_helper_gcd                            (gint                     num,
+                                                                             gint                     denom);
+static void             xfce_pointers_helper_change_feedback                (XDevice                 *device,
+                                                                             Display                 *xdisplay,
+                                                                             gint                     threshold,
+                                                                             gdouble                  acceleration);
+static gchar           *xfce_pointers_helper_device_xfconf_name             (const gchar             *name);
+static void             xfce_pointers_helper_restore_devices                (XfcePointersHelper      *helper,
+                                                                             XID                     *xid);
+static void             xfce_pointers_helper_channel_property_changed       (XfconfChannel           *channel,
+                                                                             const gchar             *property_name,
+                                                                             const GValue            *value);
+static GdkFilterReturn  xfce_pointers_helper_event_filter                   (GdkXEvent               *xevent,
+                                                                             GdkEvent                *gdk_event,
+                                                                             gpointer                 user_data);
 
 
 
@@ -91,18 +84,10 @@ struct _XfcePointersHelper
     GObject  __parent__;
 
     /* xfconf channel */
-    XfconfChannel      *channel;
+    XfconfChannel *channel;
 
-#ifdef HAVE_HAL
-    /* timeout for adding hal devices */
-    guint               timeout_id;
-
-    /* dbus connection */
-    DBusConnection     *connection;
-
-    /* hal context */
-    LibHalContext      *context;
-#endif /* !HAVE_HAL */
+    /* device presence event type */
+    gint           device_presence_event_type;
 };
 
 
@@ -125,16 +110,9 @@ xfce_pointers_helper_class_init (XfcePointersHelperClass *klass)
 static void
 xfce_pointers_helper_init (XfcePointersHelper *helper)
 {
-    gint dummy;
-
-#ifdef HAVE_HAL
-    DBusError derror;
-
-    /* initialize */
-    helper->timeout_id = 0;
-    helper->context = NULL;
-    helper->connection = NULL;
-#endif /* !HAVE_HAL */
+    gint         dummy;
+    Display     *xdisplay;
+    XEventClass  event_class;
 
     if (XQueryExtension (GDK_DISPLAY (), "XInputExtension", &dummy, &dummy, &dummy))
     {
@@ -142,58 +120,30 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         helper->channel = xfconf_channel_new ("pointers");
 
         /* restore the pointer devices */
-        xfce_pointers_helper_restore_devices (helper);
+        xfce_pointers_helper_restore_devices (helper, NULL);
 
         /* monitor the channel */
         g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_pointers_helper_channel_property_changed), NULL);
 
-#ifdef HAVE_HAL
-        /* initialize the dbus error variable */
-        dbus_error_init (&derror);
+        /* flush x and trap errors */
+        gdk_flush ();
+        gdk_error_trap_push ();
 
-        /* connect to the dbus system bus */
-        helper->connection = dbus_bus_get (DBUS_BUS_SYSTEM, &derror);
-        if (G_LIKELY (helper->connection))
+        /* get the default display and root window */
+        xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
+        if (G_LIKELY (xdisplay))
         {
-            /* connect dbus to the main loop */
-            dbus_connection_setup_with_g_main (helper->connection, NULL);
+            /* monitor device changes */
+            DevicePresence (xdisplay, helper->device_presence_event_type, event_class);
+            XSelectExtensionEvent (xdisplay, RootWindow (xdisplay, DefaultScreen (xdisplay)), &event_class, 1);
 
-            /* create hal context */
-            helper->context = libhal_ctx_new ();
-            if (G_LIKELY (helper->context))
-            {
-                /* set user data for the callbacks */
-                libhal_ctx_set_user_data (helper->context, helper);
-
-                /* set the dbus connection */
-                if (G_LIKELY (libhal_ctx_set_dbus_connection (helper->context, helper->connection)))
-                {
-                    /* connect to hal */
-                    if (G_LIKELY (libhal_ctx_init (helper->context, &derror)))
-                    {
-                        /* add callbacks for device changes */
-                        libhal_ctx_set_device_added (helper->context, xfce_pointers_helper_device_added);
-                    }
-                    else
-                    {
-                       /* print warning */
-                       g_warning ("Failed to connect to the hal daemon: %s.", derror.message);
-
-                       /* cleanup */
-                       LIBHAL_FREE_DBUS_ERROR (&derror);
-                    }
-                }
-            }
+            /* add an event filter */
+            gdk_window_add_filter (NULL, xfce_pointers_helper_event_filter, helper);
         }
-        else
-        {
-            /* print warning */
-            g_warning ("Failed to connect to DBus: %s.", derror.message);
 
-            /* cleanup */
-            LIBHAL_FREE_DBUS_ERROR (&derror);
-        }
-#endif /* !HAVE_HAL */
+        /* flush and remove the x error trap */
+        gdk_flush ();
+        gdk_error_trap_pop ();
     }
     else
     {
@@ -211,19 +161,6 @@ static void
 xfce_pointers_helper_finalize (GObject *object)
 {
     XfcePointersHelper *helper = XFCE_POINTERS_HELPER (object);
-
-#ifdef HAVE_HAL
-    if (G_LIKELY (helper->context))
-    {
-        /* shutdown and free context */
-        libhal_ctx_shutdown (helper->context, NULL);
-        libhal_ctx_free (helper->context);
-    }
-
-    /* release the dbus connection */
-    if (G_LIKELY (helper->connection))
-        dbus_connection_unref (helper->connection);
-#endif /* !HAVE_HAL */
 
     /* release the channel */
     if (G_LIKELY (helper->channel))
@@ -306,7 +243,7 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
     {
         /* allocate the button map */
         buttonmap = g_new0 (guchar, num_buttons);
-        
+
         /* get the button mapping */
         XGetDeviceButtonMapping (xdisplay, device, buttonmap, num_buttons);
 
@@ -357,7 +294,7 @@ xfce_pointers_helper_change_feedback (XDevice *device,
     gint                 n;
     gulong               mask = 0;
     gint                 num = -1, denom = -1, gcd;
-    
+
     /* get the feedback states for this device */
     states = XGetFeedbackControl (xdisplay, device, &num_feedbacks);
 
@@ -446,7 +383,8 @@ xfce_pointers_helper_device_xfconf_name (const gchar *name)
 
 
 static void
-xfce_pointers_helper_restore_devices (XfcePointersHelper *helper)
+xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
+                                      XID                *xid)
 {
     Display     *xdisplay = GDK_DISPLAY ();
     XDeviceInfo *device_list, *device_info;
@@ -457,7 +395,7 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper)
     gchar       *acceleration_str;
     gchar       *device_name;
     gchar       *reverse_scrolling_str;
-    
+
     /* flush x and trap errors */
     gdk_flush ();
     gdk_error_trap_push ();
@@ -473,6 +411,10 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper)
         /* filter out the pointer devices */
         if (device_info->use == IsXExtensionPointer)
         {
+            /* filter devices */
+            if (xid && device_info->id != *xid)
+                continue;
+
             /* open the device */
             device = XOpenDevice (xdisplay, device_info->id);
             if (G_LIKELY (device))
@@ -519,7 +461,7 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper)
 
     /* cleanup */
     XFreeDeviceList (device_list);
-    
+
     /* flush and remove the x error trap */
     gdk_flush ();
     gdk_error_trap_pop ();
@@ -538,7 +480,7 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
     gint          n, ndevices;
     gchar       **names;
     gchar        *device_name;
-    
+
     /* flush x and trap errors */
     gdk_flush ();
     gdk_error_trap_push ();
@@ -599,7 +541,7 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
 
     /* cleanup */
     g_strfreev (names);
-    
+
     /* flush and remove the x error trap */
     gdk_flush ();
     gdk_error_trap_pop ();
@@ -607,52 +549,19 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
 
 
 
-#ifdef HAVE_HAL
-static gboolean
-xfce_pointers_helper_device_added_timeout (gpointer user_data)
+static GdkFilterReturn
+xfce_pointers_helper_event_filter (GdkXEvent *xevent,
+                                   GdkEvent  *gdk_event,
+                                   gpointer   user_data)
 {
-    XfcePointersHelper *helper = XFCE_POINTERS_HELPER (user_data);
+    XEvent                     *event = xevent;
+    XDevicePresenceNotifyEvent *dpn_event = xevent;
+    XfcePointersHelper         *helper = XFCE_POINTERS_HELPER (user_data);
 
-    GDK_THREADS_ENTER ();
+    /* update on device changes */
+    if (event->type == helper->device_presence_event_type
+        && dpn_event->devchange == DeviceAdded)
+        xfce_pointers_helper_restore_devices (helper, &dpn_event->deviceid);
 
-    /* restore the devices */
-    xfce_pointers_helper_restore_devices (helper);
-
-    GDK_THREADS_LEAVE ();
-
-    return FALSE;
+    return GDK_FILTER_CONTINUE;
 }
-
-
-
-static void
-xfce_pointers_helper_device_added_timeout_destroyed (gpointer user_data)
-{
-    XfcePointersHelper *helper = XFCE_POINTERS_HELPER (user_data);
-
-    /* reset the timeout id */
-    helper->timeout_id = 0;
-}
-
-
-
-static void
-xfce_pointers_helper_device_added (LibHalContext *context,
-                                   const gchar   *udi)
-{
-    XfcePointersHelper *helper;
-
-    /* get the helper */
-    helper = libhal_ctx_get_user_data (context);
-
-    /* check if an input device has been added and no timeout is running */
-    if (libhal_device_query_capability (context, udi, "input.mouse", NULL)
-        && helper->timeout_id == 0)
-    {
-        /* queue a new timeout */
-        helper->timeout_id = g_timeout_add_full (G_PRIORITY_LOW, 1000, xfce_pointers_helper_device_added_timeout,
-                                                 helper, xfce_pointers_helper_device_added_timeout_destroyed);
-    }
-}
-#endif
-

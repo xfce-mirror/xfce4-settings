@@ -33,15 +33,10 @@
 
 #include <X11/Xlib.h>
 #include <X11/extensions/XInput.h>
+#include <X11/extensions/XIproto.h>
 #ifdef HAVE_XCURSOR
 #include <X11/Xcursor/Xcursor.h>
 #endif /* !HAVE_XCURSOR */
-
-#ifdef HAVE_HAL
-#include <dbus/dbus.h>
-#include <dbus/dbus-glib-lowlevel.h>
-#include <hal/libhal.h>
-#endif /* !HAVE_HAL */
 
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
@@ -76,6 +71,9 @@ static GdkDisplay *display;
 
 /* device update id */
 static guint timeout_id = 0;
+
+/* event id for device add/remove */
+gint device_presence_event_type = 0;
 
 /* option entries */
 static gboolean opt_version = FALSE;
@@ -577,6 +575,10 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
     /* lock the dialog */
     locked++;
 
+    /* flush x and trap errors */
+    gdk_flush ();
+    gdk_error_trap_push ();
+
     /* get the selected item */
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
@@ -663,6 +665,10 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
     widget = glade_xml_get_widget (gxml, "mouse-threshold-scale");
     gtk_range_set_value (GTK_RANGE (widget), threshold);
     gtk_widget_set_sensitive (GTK_WIDGET (widget), threshold != -1);
+
+    /* flush and remove the x error trap */
+    gdk_flush ();
+    gdk_error_trap_pop ();
 
     /* unlock */
     locked--;
@@ -850,6 +856,10 @@ mouse_settings_device_populate_store (GladeXML *gxml,
     /* lock */
     locked++;
 
+    /* flush x and trap errors */
+    gdk_flush ();
+    gdk_error_trap_push ();
+
     /* get the treeview */
     treeview = glade_xml_get_widget (gxml, "mouse-devices-treeview");
 
@@ -952,6 +962,10 @@ mouse_settings_device_populate_store (GladeXML *gxml,
     /* cleanup */
     XFreeDeviceList (device_list);
 
+    /* flush and remove the x error trap */
+    gdk_flush ();
+    gdk_error_trap_pop ();
+
     /* get the selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
 
@@ -1035,44 +1049,6 @@ mouse_settings_device_list_changed_timeout_destroyed (gpointer user_data)
 
 
 
-#ifdef HAVE_HAL
-static gboolean
-mouse_settings_device_list_changed_timeout (gpointer user_data)
-{
-    GladeXML *gxml = GLADE_XML (user_data);
-
-    GDK_THREADS_ENTER ();
-
-    /* update the list */
-    mouse_settings_device_populate_store (gxml, FALSE);
-
-    GDK_THREADS_LEAVE ();
-
-    return FALSE;
-}
-
-
-
-static void
-mouse_settings_device_list_changed (LibHalContext *context,
-                                    const gchar   *udi)
-{
-    GladeXML *gxml;
-
-    /* queue a new timeout if none is set */
-    if (timeout_id == 0)
-    {
-        /* get the user data */
-        gxml = libhal_ctx_get_user_data (context);
-
-        /* update the dialog in 1 second */
-        timeout_id = g_timeout_add_full (G_PRIORITY_LOW, 1000, mouse_settings_device_list_changed_timeout,
-                                         gxml, mouse_settings_device_list_changed_timeout_destroyed);
-    }
-}
-#endif  /* !HAVE_HAL */
-
-
 static void
 mouse_settings_device_reset (GtkWidget *button,
                              GladeXML  *gxml)
@@ -1118,8 +1094,6 @@ mouse_settings_device_reset (GtkWidget *button,
             /* update the sliders in 500ms */
             timeout_id = g_timeout_add_full (G_PRIORITY_LOW, 500, mouse_settings_device_update_sliders,
                                              gxml, mouse_settings_device_list_changed_timeout_destroyed);
-
-
         }
 
         /* cleanup */
@@ -1129,19 +1103,62 @@ mouse_settings_device_reset (GtkWidget *button,
 
 
 
+static GdkFilterReturn
+mouse_settings_event_filter (GdkXEvent *xevent,
+                             GdkEvent  *gdk_event,
+                             gpointer   user_data)
+{
+    XEvent                     *event = xevent;
+    XDevicePresenceNotifyEvent *dpn_event = xevent;
+
+    /* update on device changes */
+    if (event->type == device_presence_event_type
+        && (dpn_event->devchange == DeviceAdded
+            || dpn_event->devchange == DeviceRemoved))
+        mouse_settings_device_populate_store (GLADE_XML (user_data), FALSE);
+
+    return GDK_FILTER_CONTINUE;
+}
+
+
+
+static void
+mouse_settings_create_event_filter (GladeXML *gxml)
+{
+    Display     *xdisplay;
+    XEventClass  event_class;
+
+    /* flush x and trap errors */
+    gdk_flush ();
+    gdk_error_trap_push ();
+
+    /* get the default display and root window */
+    xdisplay = gdk_x11_display_get_xdisplay (display);
+    if (G_UNLIKELY (!xdisplay))
+        return;
+
+    /* monitor device change events */
+    DevicePresence (xdisplay, device_presence_event_type, event_class);
+    XSelectExtensionEvent (xdisplay, RootWindow (xdisplay, DefaultScreen (xdisplay)), &event_class, 1);
+
+    /* flush and remove the x error trap */
+    gdk_flush ();
+    gdk_error_trap_pop ();
+
+    /* add an event filter */
+    gdk_window_add_filter (NULL, mouse_settings_event_filter, gxml);
+}
+
+
+
 gint
-main(gint argc, gchar **argv)
+main (gint argc, gchar **argv)
 {
     GtkWidget      *dialog;
     GladeXML       *gxml;
     GError         *error = NULL;
     GtkAdjustment  *adjustment;
     GtkWidget      *widget;
-#ifdef HAVE_HAL
-    DBusConnection *connection;
-    LibHalContext  *context = NULL;
-    DBusError       derror;
-#endif /* !HAVE_HAL */
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -1250,54 +1267,8 @@ main(gint argc, gchar **argv)
             adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse-double-click-distance")));
             xfconf_g_property_bind (xsettings_channel, "/Net/DoubleClickDistance", G_TYPE_INT, G_OBJECT (adjustment), "value");
 
-#ifdef HAVE_HAL
-            /* initialize the dbus error variable */
-            dbus_error_init (&derror);
-
-            /* connect to the dbus system bus */
-            connection = dbus_bus_get (DBUS_BUS_SYSTEM, &derror);
-            if (G_LIKELY (connection))
-            {
-                /* connect dbus to the main loop */
-                dbus_connection_setup_with_g_main (connection, NULL);
-
-                /* create hal context */
-                context = libhal_ctx_new ();
-                if (G_LIKELY (context))
-                {
-                    /* set user data for the callbacks */
-                    libhal_ctx_set_user_data (context, gxml);
-
-                    /* set the dbus connection */
-                    if (G_LIKELY (libhal_ctx_set_dbus_connection (context, connection)))
-                    {
-                        /* connect to hal */
-                        if (G_LIKELY (libhal_ctx_init (context, &derror)))
-                        {
-                            /* add callbacks for device changes */
-                            libhal_ctx_set_device_added (context, mouse_settings_device_list_changed);
-                            libhal_ctx_set_device_removed (context, mouse_settings_device_list_changed);
-                        }
-                        else
-                        {
-                           /* print warning */
-                           g_warning ("Failed to connect to hald: %s", derror.message);
-
-                           /* cleanup */
-                           LIBHAL_FREE_DBUS_ERROR (&derror);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                /* print warning */
-                g_warning ("Failed to connect to DBus: %s", derror.message);
-
-                /* cleanup */
-                LIBHAL_FREE_DBUS_ERROR (&derror);
-            }
-#endif /* !HAVE_HAL */
+            /* create the event filter for device monitoring */
+            mouse_settings_create_event_filter (gxml);
 
             /* gtk the dialog */
             dialog = glade_xml_get_widget (gxml, "mouse-dialog");
@@ -1307,23 +1278,6 @@ main(gint argc, gchar **argv)
 
             /* show the dialog */
             gtk_dialog_run (GTK_DIALOG (dialog));
-
-#ifdef HAVE_HAL
-            /* close the hal connection */
-            if (G_LIKELY (context))
-            {
-                libhal_ctx_shutdown (context, NULL);
-                libhal_ctx_free (context);
-            }
-
-            /* close the dbus connection */
-            if (G_LIKELY (connection))
-                dbus_connection_unref (connection);
-
-            /* stop any running sources */
-            if (G_UNLIKELY (timeout_id != 0))
-                g_source_remove (timeout_id);
-#endif /* !HAVE_HAL */
 
             /* destroy the dialog */
             gtk_widget_destroy (GTK_WIDGET (dialog));

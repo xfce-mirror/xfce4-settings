@@ -19,12 +19,9 @@ xfce4_mouse_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(GLIB_CFLAGS) \
 	$(GLADE_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(XI_CFLAGS) \
-	$(XCURSOR_CFLAGS) \
-	$(HAL_CFLAGS) \
 	$(XFCONF_CFLAGS)
 
 xfce4_mouse_settings_LDFLAGS = \
@@ -35,12 +32,17 @@ xfce4_mouse_settings_LDADD = \
 	$(GTK_LIBS) \
 	$(GLIB_LIBS) \
 	$(GLADE_LIBS) \
-	$(DBUS_GLIB_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
 	$(XFCONF_LIBS) \
-	$(HAL_LIBS) \
-	$(XI_LIBS) \
+	$(XI_LIBS)
+
+if HAVE_XCURSOR
+xfce4_mouse_settings_CFLAGS += \
+	$(XCURSOR_CFLAGS)
+
+xfce4_mouse_settings_LDADD += \
 	$(XCURSOR_LIBS)
+endif
 
 if MAINTAINER_MODE
 

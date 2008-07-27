@@ -61,12 +61,4 @@ xfce4_settings_helper_LDADD += \
 	$(LIBNOTIFY_LIBS)
 endif
 
-if HAVE_HAL
-xfce4_settings_helper_CFLAGS += \
-	$(HAL_CFLAGS)
-
-xfce4_settings_helper_LDADD += \
-	$(HAL_LIBS)
-endif
-
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
