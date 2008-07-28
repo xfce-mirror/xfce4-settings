@@ -133,53 +133,56 @@ check_properties (GtkTreeStore *tree_store, GtkTreeView *tree_view, GtkTreePath 
     gint i = 0;
 
     GHashTable *hash_table = xfconf_channel_get_properties (channel, NULL);
-    g_hash_table_iter_init (&hash_iter, hash_table);
-    while (g_hash_table_iter_next (&hash_iter, (gpointer *)&key, (gpointer *)&value)) 
+    if (hash_table != NULL)
     {
-        gtk_tree_model_get_iter (GTK_TREE_MODEL (tree_store), &parent_iter, path);
-        gchar **components = g_strsplit (key, "/", 0);
-        for (i = 1; components[i]; ++i)
+        g_hash_table_iter_init (&hash_iter, hash_table);
+        while (g_hash_table_iter_next (&hash_iter, (gpointer *)&key, (gpointer *)&value)) 
         {
-            /* Check if this parent has children */
-            if (gtk_tree_model_iter_children (GTK_TREE_MODEL (tree_store), &child_iter, &parent_iter))
+            gtk_tree_model_get_iter (GTK_TREE_MODEL (tree_store), &parent_iter, path);
+            gchar **components = g_strsplit (key, "/", 0);
+            for (i = 1; components[i]; ++i)
             {
-                while (1)
+                /* Check if this parent has children */
+                if (gtk_tree_model_iter_children (GTK_TREE_MODEL (tree_store), &child_iter, &parent_iter))
                 {
-                    /* Check if the component already exists, if so, return this child */
-                    gtk_tree_model_get_value (GTK_TREE_MODEL(tree_store), &child_iter, 0, &parent_val);
-                    if (!strcmp (components[i], g_value_get_string (&parent_val)))
+                    while (1)
                     {
-                        g_value_unset (&parent_val);
-                        break;
-                    }
-                    else
-                        g_value_unset (&parent_val);
+                        /* Check if the component already exists, if so, return this child */
+                        gtk_tree_model_get_value (GTK_TREE_MODEL(tree_store), &child_iter, 0, &parent_val);
+                        if (!strcmp (components[i], g_value_get_string (&parent_val)))
+                        {
+                            g_value_unset (&parent_val);
+                            break;
+                        }
+                        else
+                            g_value_unset (&parent_val);
 
-                    /* If we are at the end of the list of children, the required child is not available and should be created */
-                    if (!gtk_tree_model_iter_next (GTK_TREE_MODEL (tree_store), &child_iter))
-                    {
-                        gtk_tree_store_append (tree_store, &child_iter, &parent_iter);
-                        g_value_init (&child_value, G_TYPE_STRING);
-                        g_value_set_string (&child_value, components[i]);
-                        gtk_tree_store_set_value (tree_store, &child_iter, 0, &child_value);
-                        g_value_unset (&child_value);
-                        break;
+                        /* If we are at the end of the list of children, the required child is not available and should be created */
+                        if (!gtk_tree_model_iter_next (GTK_TREE_MODEL (tree_store), &child_iter))
+                        {
+                            gtk_tree_store_append (tree_store, &child_iter, &parent_iter);
+                            g_value_init (&child_value, G_TYPE_STRING);
+                            g_value_set_string (&child_value, components[i]);
+                            gtk_tree_store_set_value (tree_store, &child_iter, 0, &child_value);
+                            g_value_unset (&child_value);
+                            break;
+                        }
                     }
                 }
+                else
+                {
+                    /* If the parent does not have any children, create this one */
+                    gtk_tree_store_append (tree_store, &child_iter, &parent_iter);
+                    g_value_init (&child_value, G_TYPE_STRING);
+                    g_value_set_string (&child_value, components[i]);
+                    gtk_tree_store_set_value (tree_store, &child_iter, 0, &child_value);
+                    g_value_unset (&child_value);
+                }
+                parent_iter = child_iter;
             }
-            else
-            {
-                /* If the parent does not have any children, create this one */
-                gtk_tree_store_append (tree_store, &child_iter, &parent_iter);
-                g_value_init (&child_value, G_TYPE_STRING);
-                g_value_set_string (&child_value, components[i]);
-                gtk_tree_store_set_value (tree_store, &child_iter, 0, &child_value);
-                g_value_unset (&child_value);
-            }
-            parent_iter = child_iter;
-        }
 
-        g_strfreev (components);
+            g_strfreev (components);
+        }
     }
 }
 
