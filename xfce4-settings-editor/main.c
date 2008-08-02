@@ -190,7 +190,6 @@ static void
 check_channel (GtkTreeStore *tree_store, GtkTreeView *tree_view, const gchar *channel_name)
 {
     GtkTreeIter iter;
-    GtkTreeIter child_iter;
     GValue value = {0,};
     XfconfChannel *channel = NULL;
 
@@ -264,8 +263,6 @@ cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, Gt
     gchar *str_val = NULL;
 
     gtk_list_store_clear (GTK_LIST_STORE (property_model));
-
-    gint i;
 
     while (gtk_tree_path_get_depth(root_path) > 1)
     {
