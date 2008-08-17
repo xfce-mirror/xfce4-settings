@@ -12,7 +12,8 @@ bin_PROGRAMS = \
 	xfce4-settings-editor
 
 xfce4_settings_editor_SOURCES = \
-	main.c
+	main.c \
+	xfce4-settings-editor_glade.h
 
 xfce4_settings_editor_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -43,7 +44,8 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
-	$(desktop_in_files)
+	$(desktop_in_files) \
+	xfce4-settings-editor.glade
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
