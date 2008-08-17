@@ -44,6 +44,7 @@
 #include "xfce-randr-legacy.h"
 #include "display-dialog_glade.h"
 
+/* not available yet */
 #undef HAS_RANDR_ONE_POINT_TWO
 
 enum
@@ -625,7 +626,6 @@ gint
 main (gint argc, gchar **argv)
 {
     GtkWidget  *dialog;
-    GtkWidget  *box;
     GladeXML   *gxml;
     GError     *error = NULL;
     GdkDisplay *display;
@@ -711,6 +711,7 @@ main (gint argc, gchar **argv)
             dialog = display_settings_dialog_new_from_xml (gxml);
             g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), gxml);
 
+#if 0
 #ifdef HAS_RANDR_ONE_POINT_TWO
             if (xfce_randr == NULL)
 #endif
@@ -719,6 +720,7 @@ main (gint argc, gchar **argv)
                 box = glade_xml_get_widget (gxml, "randr-devices-tab");
                 gtk_widget_destroy (box);
             }
+#endif
 
             /* show the dialog */
             gtk_widget_show (dialog);

@@ -80,8 +80,6 @@ xfce_randr_legacy_new (GdkDisplay *display)
         legacy->rotation[n] = rotation;
     }
 
-    g_message ("Legacy backend");
-
     return legacy;
 }
 

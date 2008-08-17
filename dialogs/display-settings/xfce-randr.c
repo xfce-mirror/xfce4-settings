@@ -94,8 +94,6 @@ xfce_randr_new (GdkDisplay *display)
         randr->rotation[n] = 0;
         randr->status[n] = XFCE_OUTPUT_STATUS_NONE;
     }
-    
-    g_message ("Randr 1.2 backend");
 
     return randr;
 }
