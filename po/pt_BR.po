@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-17 19:42+0200\n"
+"POT-Creation-Date: 2008-08-17 20:36+0200\n"
 "PO-Revision-Date: 2008-06-25 21:32-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -190,9 +190,9 @@ msgstr "Teclas de aderência"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
-#: ../dialogs/display-settings/display-dialog.glade.h:17
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "gtk-close"
 msgstr "gtk-close"
@@ -207,17 +207,18 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:81
+#: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:64 ../dialogs/mouse-settings/main.c:83
-#: ../dialogs/display-settings/main.c:82 ../xfce4-settings-editor/main.c:50
-#: ../xfce4-settings-helper/main.c:57 ../xfce4-settings-manager/main.c:38
+#: ../xfce4-settings-editor/main.c:50 ../xfce4-settings-helper/main.c:57
+#: ../xfce4-settings-manager/main.c:38
 msgid "Version information"
 msgstr "Informações da versão"
 
 #: ../dialogs/accessibility-settings/main.c:144
 #: ../dialogs/appearance-settings/main.c:759
+#: ../dialogs/display-settings/main.c:643
 #: ../dialogs/keyboard-settings/main.c:579
-#: ../dialogs/mouse-settings/main.c:1170
-#: ../dialogs/display-settings/main.c:643 ../xfce4-settings-editor/main.c:72
+#: ../dialogs/mouse-settings/main.c:1170 ../xfce4-settings-editor/main.c:72
 #: ../xfce4-settings-helper/main.c:100 ../xfce4-settings-manager/main.c:54
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -225,18 +226,18 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:778
+#: ../dialogs/display-settings/main.c:662
 #: ../dialogs/keyboard-settings/main.c:596
-#: ../dialogs/mouse-settings/main.c:1189
-#: ../dialogs/display-settings/main.c:662 ../xfce4-settings-editor/main.c:91
+#: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:91
 #: ../xfce4-settings-helper/main.c:119 ../xfce4-settings-manager/main.c:67
 msgid "The Xfce development team. All rights reserved."
 msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:164
 #: ../dialogs/appearance-settings/main.c:779
+#: ../dialogs/display-settings/main.c:663
 #: ../dialogs/keyboard-settings/main.c:597
-#: ../dialogs/mouse-settings/main.c:1190
-#: ../dialogs/display-settings/main.c:663 ../xfce4-settings-editor/main.c:92
+#: ../dialogs/mouse-settings/main.c:1190 ../xfce4-settings-editor/main.c:92
 #: ../xfce4-settings-helper/main.c:120 ../xfce4-settings-manager/main.c:68
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -408,6 +409,145 @@ msgstr ""
 msgid "Xfce 4 Appearance Settings"
 msgstr "Configurações da aparência do Xfce 4"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "Configure the display settings and configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:2
+#, fuzzy
+msgid "Display Settings"
+msgstr "Configurações do mouse"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+msgid "R_esolution:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "Refresh _rate:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Ro_tation:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
+msgid "Test the new display settings"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+#, fuzzy
+msgid "gtk-apply"
+msgstr "gtk-add"
+
+#: ../dialogs/display-settings/main.c:71
+msgid "Normal"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:72
+msgid "Left"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:73
+msgid "Inverted"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:74
+msgid "Right"
+msgstr ""
+
+#. insert in the combo box
+#. insert
+#: ../dialogs/display-settings/main.c:258
+#: ../dialogs/display-settings/main.c:289
+msgid "Hz"
+msgstr ""
+
+#. create name
+#: ../dialogs/display-settings/main.c:495
+msgid "Screen"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:322
+msgid "Laptop"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:326
+msgid "Monitor"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:330
+msgid "Television"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:337
+msgid "Digital display"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:341
+msgid "Second monitor"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:347
+msgid "Second digital display"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:1
+msgid "Configure the screen settings and configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:3
+#, fuzzy
+msgid "Xfce 4 Display Settings"
+msgstr "Configurações do mouse do Xfce 4"
+
+#. Set dialog title and icon
+#: ../dialogs/keyboard-settings/command-dialog.c:159
+msgid "Select shortcut command"
+msgstr ""
+
+#. Set subtitle
+#: ../dialogs/keyboard-settings/command-dialog.c:163
+#, fuzzy, c-format
+msgid "Shortcut: %s"
+msgstr "Atalhos"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:163
+msgid "Undefined"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:229
+msgid "The command may not be empty."
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:249
+msgid "Select command"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:257
+msgid "All Files"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:262
+msgid "Executable Files"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:277
+msgid "Perl Scripts"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:283
+msgid "Python Scripts"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:289
+msgid "Ruby Scripts"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:295
+msgid "Shell Scripts"
+msgstr ""
+
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
 msgid "<b>Cursor</b>"
 msgstr "<b>Cursor</b>"
@@ -517,53 +657,6 @@ msgstr "Atalhos"
 
 #: ../dialogs/keyboard-settings/main.c:540
 msgid "Command"
-msgstr ""
-
-#. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:159
-msgid "Select shortcut command"
-msgstr ""
-
-#. Set subtitle
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-#, fuzzy, c-format
-msgid "Shortcut: %s"
-msgstr "Atalhos"
-
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-msgid "Undefined"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:229
-msgid "The command may not be empty."
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:249
-msgid "Select command"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:257
-msgid "All Files"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:262
-msgid "Executable Files"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:277
-msgid "Perl Scripts"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:283
-msgid "Python Scripts"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:289
-msgid "Ruby Scripts"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:295
-msgid "Shell Scripts"
 msgstr ""
 
 #. Set dialog title
@@ -732,143 +825,6 @@ msgstr ""
 msgid "Xfce 4 Mouse Settings"
 msgstr "Configurações do mouse do Xfce 4"
 
-#: ../dialogs/display-settings/main.c:70
-msgid "Normal"
-msgstr ""
-
-#: ../dialogs/display-settings/main.c:71
-msgid "Left"
-msgstr ""
-
-#: ../dialogs/display-settings/main.c:72
-msgid "Inverted"
-msgstr ""
-
-#: ../dialogs/display-settings/main.c:73
-msgid "Right"
-msgstr ""
-
-#. insert in the combo box
-#. insert
-#: ../dialogs/display-settings/main.c:257
-#: ../dialogs/display-settings/main.c:288
-msgid "Hz"
-msgstr ""
-
-#. create name
-#: ../dialogs/display-settings/main.c:494
-msgid "Screen"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce-randr.c:324
-msgid "Laptop"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce-randr.c:328
-msgid "Monitor"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce-randr.c:332
-msgid "Television"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce-randr.c:339
-msgid "Digital display"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce-randr.c:343
-msgid "Second monitor"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce-randr.c:349
-msgid "Second digital display"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:1
-msgid "<b>Multiple Display</b>"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:2
-#, fuzzy
-msgid "<b>Single Display</b>"
-msgstr "<b>Estilo</b>"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:3
-msgid ""
-"Atleast two displays must be connected to the computer before you can use "
-"this feature. Please connect another display."
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:4
-#, fuzzy
-msgid "C_lone"
-msgstr "nenhum"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:5
-msgid "Configure the display settings and configuration"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:6
-msgid "Display Devices"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:7
-#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:2
-#, fuzzy
-msgid "Display Settings"
-msgstr "Configurações do mouse"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:8
-msgid "E_xtend desktop to the"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:9
-msgid "R_esolution:"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:10
-msgid "Refresh _rate:"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:11
-msgid "Ro_tation:"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:12
-msgid "Sche_me:"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:13
-msgid "Test the new display settings"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:14
-msgid "_Primary device:"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:15
-msgid "_Secondary device:"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:16
-#, fuzzy
-msgid "gtk-apply"
-msgstr "gtk-add"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:18
-#, fuzzy
-msgid "gtk-refresh"
-msgstr "gtk-remove"
-
-#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:1
-msgid "Configure the screen settings and configuration"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:3
-#, fuzzy
-msgid "Xfce 4 Display Settings"
-msgstr "Configurações do mouse do Xfce 4"
-
 #: ../xfce4-settings-editor/main.c:223
 msgid "Channel"
 msgstr ""
@@ -904,10 +860,6 @@ msgstr "Gerenciador de configurações do Xfce 4"
 #, fuzzy
 msgid "Xfce4 settings editor"
 msgstr "Gerenciador de configurações do Xfce 4"
-
-#: ../xfce4-settings-helper/main.c:58
-msgid "Start in debug mode (don't fork to the background)"
-msgstr "Iniciar no modo de depuração (não forçar o segundo plano)"
 
 #: ../xfce4-settings-helper/accessibility.c:358
 msgid "Sticky keys are enabled"
@@ -945,6 +897,10 @@ msgstr "Teclas de repercussão estão desabilitadas"
 msgid "Bounce keys"
 msgstr "Teclas de repercussão"
 
+#: ../xfce4-settings-helper/main.c:58
+msgid "Start in debug mode (don't fork to the background)"
+msgstr "Iniciar no modo de depuração (não forçar o segundo plano)"
+
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:100
 msgid "Customize your Xfce desktop"
 msgstr "Personalize sua área de trabalho Xfce"
@@ -966,6 +922,18 @@ msgstr "Gerenciador de configurações gráficas do Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "Xfce 4 Settings Manager"
 msgstr "Gerenciador de configurações do Xfce 4"
+
+#, fuzzy
+#~ msgid "<b>Single Display</b>"
+#~ msgstr "<b>Estilo</b>"
+
+#, fuzzy
+#~ msgid "C_lone"
+#~ msgstr "nenhum"
+
+#, fuzzy
+#~ msgid "gtk-refresh"
+#~ msgstr "gtk-remove"
 
 #~ msgid "<i>long</i>"
 #~ msgstr "<i>longo</i>"
