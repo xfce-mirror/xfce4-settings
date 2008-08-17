@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-22 11:20-0700\n"
+"POT-Creation-Date: 2008-08-17 19:42+0200\n"
 "PO-Revision-Date: 2008-06-25 21:32-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -19,67 +19,83 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
-msgid "<b>Bounce keys</b>"
+#, fuzzy
+msgid "<b>Bounce Keys</b>"
 msgstr "<b>Teclas de repercussão</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
-msgid "<b>Mouse emulation</b>"
+#, fuzzy
+msgid "<b>Mouse Emulation</b>"
 msgstr "<b>Emulação do mouse</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
-msgid "<b>Slow keys</b>"
+#, fuzzy
+msgid "<b>Slow Keys</b>"
 msgstr "<b>Teclas lentas</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
-msgid "<b>Sticky keys</b>"
+#, fuzzy
+msgid "<b>Sticky Keys</b>"
 msgstr "<b>Teclas de aderência</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
-msgid "<i>long</i>"
-msgstr "<i>longo</i>"
+#, fuzzy
+msgid "Acceleration _profile:"
+msgstr "Atraso _de aceleração:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
-msgid "<i>short</i>"
-msgstr "<i>curto</i>"
+#, fuzzy
+msgid "Acceleration _time:"
+msgstr "Atraso _de aceleração:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
-msgid "Acceleration _delay:"
+#, fuzzy
+msgid "Acceptance _delay:"
 msgstr "Atraso _de aceleração:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
-msgid "Accessibility settings"
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+msgid "Accessibility Settings"
 msgstr "Configurações de acessibilidade"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
-msgid "D_ebounce delay:"
+#, fuzzy
+msgid "D_ebounce time:"
 msgstr "Atraso d_e repercussão:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
-msgid "Disable sticky keys if _two keys are pressed together"
-msgstr "Desabilitar teclas de aderência se duas _teclas forem pressionadas juntas"
+#, fuzzy
+msgid "Disable sticky keys if _two keys are pressed"
+msgstr ""
+"Desabilitar teclas de aderência se duas _teclas forem pressionadas juntas"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
-msgid "Enable Slow _Keys"
-msgstr "Habilitar Teclas _lentas"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
-msgid "Enable _Bounce Keys"
+#, fuzzy
+msgid "Enable _bounce keys"
 msgstr "Habilitar Teclas de _repercussão"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
-msgid "Enable _Sticky Keys"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#, fuzzy
+msgid "Enable _sticky keys"
 msgstr "Habilitar Teclas de _aderência"
 
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#, fuzzy
+msgid "Enable slow _keys"
+msgstr "Habilitar Teclas _lentas"
+
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
+msgid "Improve accessibility for disabled persons"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Keyboard"
 msgstr "Teclado"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
-msgid "L_ock Mode"
-msgstr "M_odo bloqueado"
-
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
-msgid "Maximum _Speed:"
+#, fuzzy
+msgid "Maximum _speed:"
 msgstr "Velo_cidade máxima:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
@@ -87,234 +103,306 @@ msgid "Mouse"
 msgstr "Mouse"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
-msgid "Slow Keys _delay:"
-msgstr "Atraso _de teclas lentas:"
+#, fuzzy
+msgid "R_epeat interval:"
+msgstr "_Intervalo:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
-msgid "_Delay:"
-msgstr "Atra_so:"
+msgid ""
+"The amount of time after the keystroke will be accepted, in milliseconds"
+msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+msgid ""
+"The amount of time you have to wait before keystrokes are accepted again, in "
+"milliseconds"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+msgid "The maximum point speed when accelerated"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+msgid "The ramp used to reach maximum pointer speed"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+msgid "The time in milliseconds between repeated motion events"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+msgid ""
+"The time in milliseconds between the initial key press and first repeated "
+"motion event"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+msgid "The time in milliseconds to get to acceleration speed"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+msgid ""
+"Then enabled, the sticky keys feature will be disabled when you press two "
+"keys simultaneously"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+msgid ""
+"When enabled, the Shift, Ctrl and Alt keys stay \"selected\" until you press "
+"them again"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+msgid "When enabled, you can control the pointer using the num pad"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+msgid ""
+"When enabled, you can press and release the Shift, Ctrl and Alt keys, and "
+"then press another key to get a key combo"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+msgid ""
+"When enabled, you must hold the key for a specific amount of time before the "
+"keystroke will be accepted. This helps prevent accidental key strokes"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+msgid ""
+"When enabled, you must wait a specific amount of time before the next "
+"keystroke can be accepted. This prevents accidental multiple key strokes"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#, fuzzy
+msgid "_Acceleration delay:"
+msgstr "Atraso _de aceleração:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Enable mouse emulation"
 msgstr "Habilitar _emulação do mouse"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
-msgid "_Interval:"
-msgstr "_Intervalo:"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#, fuzzy
+msgid "_Lock sticky keys"
+msgstr "Teclas de aderência"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
-msgid "_Latch mode"
-msgstr "Modo _trancado"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/display-settings/display-dialog.glade.h:17
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "gtk-close"
 msgstr "gtk-close"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-msgid "gtk-help"
-msgstr "gtk-help"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+msgid "msec"
+msgstr ""
 
-#: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:52
-#: ../dialogs/keyboard-settings/main.c:47
-#: ../dialogs/mouse-settings/main.c:47
-#: ../xfce4-settings-helper/main.c:51
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+msgid "pixels/sec"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/main.c:43
+#: ../dialogs/appearance-settings/main.c:81
+#: ../dialogs/keyboard-settings/main.c:64 ../dialogs/mouse-settings/main.c:83
+#: ../dialogs/display-settings/main.c:82 ../xfce4-settings-editor/main.c:50
+#: ../xfce4-settings-helper/main.c:57 ../xfce4-settings-manager/main.c:38
 msgid "Version information"
 msgstr "Informações da versão"
 
-#: ../dialogs/accessibility-settings/main.c:184
-#: ../dialogs/appearance-settings/main.c:733
-#: ../dialogs/keyboard-settings/main.c:126
-#: ../dialogs/mouse-settings/main.c:78
-msgid "."
-msgstr "."
-
-#: ../dialogs/accessibility-settings/main.c:188
-#: ../dialogs/appearance-settings/main.c:737
-#: ../dialogs/keyboard-settings/main.c:130
-#: ../dialogs/mouse-settings/main.c:82
-#: ../xfce4-settings-helper/main.c:74
+#: ../dialogs/accessibility-settings/main.c:144
+#: ../dialogs/appearance-settings/main.c:759
+#: ../dialogs/keyboard-settings/main.c:579
+#: ../dialogs/mouse-settings/main.c:1170
+#: ../dialogs/display-settings/main.c:643 ../xfce4-settings-editor/main.c:72
+#: ../xfce4-settings-helper/main.c:100 ../xfce4-settings-manager/main.c:54
 #, c-format
-msgid ""
-"%s: %s\n"
-"Try %s --help to see a full list of available command line options.\n"
+msgid "Type '%s --help' for usage."
 msgstr ""
-"%s: %s\n"
-"Tente %s --help para ver a lista completa das opções da linha de comando.\n"
 
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
-msgid "Accessibility Settings"
-msgstr "Configurações de acessibilidade"
+#: ../dialogs/accessibility-settings/main.c:163
+#: ../dialogs/appearance-settings/main.c:778
+#: ../dialogs/keyboard-settings/main.c:596
+#: ../dialogs/mouse-settings/main.c:1189
+#: ../dialogs/display-settings/main.c:662 ../xfce4-settings-editor/main.c:91
+#: ../xfce4-settings-helper/main.c:119 ../xfce4-settings-manager/main.c:67
+msgid "The Xfce development team. All rights reserved."
+msgstr ""
 
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
-msgid "Settings to improve usability for some people"
-msgstr "Configurações para melhorar a usabilidade para algumas pessoas"
+#: ../dialogs/accessibility-settings/main.c:164
+#: ../dialogs/appearance-settings/main.c:779
+#: ../dialogs/keyboard-settings/main.c:597
+#: ../dialogs/mouse-settings/main.c:1190
+#: ../dialogs/display-settings/main.c:663 ../xfce4-settings-editor/main.c:92
+#: ../xfce4-settings-helper/main.c:120 ../xfce4-settings-manager/main.c:68
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr ""
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
 msgid "Xfce 4 Accessibility Settings"
 msgstr "Configurações de acessibilidade do Xfce 4"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-msgid "<b>Antialias Fonts</b>"
-msgstr "<b>Fontes suaves</b>"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "<b>DPI</b>"
 msgstr "<b>DPI</b>"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
+#, fuzzy
+msgid "<b>Default Font</b>"
+msgstr "<b>Fontes suaves</b>"
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-msgid "<b>Menu and Buttons</b>"
+#, fuzzy
+msgid "<b>Menus and Buttons</b>"
 msgstr "<b>Menu e Botões</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
-msgid "<b>Style</b>"
-msgstr "<b>Estilo</b>"
+#, fuzzy
+msgid "<b>Rendering</b>"
+msgstr "<b>Configurações da digitação</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
-msgid "<b>Toolbar</b>"
+#, fuzzy
+msgid "<b>Toolbar Style</b>"
 msgstr "<b>Barra de ferramentas</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
-#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:2
+#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:1
 msgid "Appearance Settings"
 msgstr "Configurações da aparência"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
-msgid "Change the looks of your XFCE desktop"
+#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:2
+#, fuzzy
+msgid "Change the looks of your Xfce desktop"
 msgstr "Altere a aparência da sua área de trabalho XFCE"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
-msgid "Custom DPI Settings"
+#, fuzzy
+msgid "Custom _DPI setting:"
 msgstr "Configurações DPI personalizadas"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
-msgid "Enable _button-images"
-msgstr "Habilitar _imagens no botão"
+#, fuzzy
+msgid "Enable _anti-aliasing"
+msgstr "_Habilitar Suavização"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
-msgid "Enable e_ditable menuaccelerators"
+#, fuzzy
+msgid "Enable e_ditable accelerators"
 msgstr "Habilitar acelera_dores de menu editáveis"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
-msgid "Enable menu-_images"
-msgstr "Habilitar _imagens no menu"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
-msgid "Icon theme"
-msgstr "Tema de ícones"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
-msgid "Please select the UI-theme you want to use"
-msgstr "Por favor selecione o tema da interface de usuário que deseja utilizar"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
-msgid "Please select the icon-theme you want to use:"
-msgstr "Por favor selecione o tema de ícones que deseja utiliza:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
-msgid "Select the default user-interface font:"
-msgstr "Selecione a fonte para a interface de usuário padrão:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
-msgid "Select the toolbar style:"
-msgstr "Selecione o estilo da barra de ferramentas:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
-msgid "UI Theme"
-msgstr "Tema da interface de usuário"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
-msgid "_Behaviour"
-msgstr "_Comportamento"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
-msgid "_Enable Antialias"
-msgstr "_Habilitar Suavização"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-msgid "_Font"
+#, fuzzy
+msgid "Fonts"
 msgstr "_Fonte"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
-msgid "_Hinting:"
-msgstr "_Dica:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
-msgid "_Subpixel hinting:"
-msgstr "Dica para _sub pixel:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
-msgid "_Themes"
-msgstr "_Temas"
-
-#: ../dialogs/appearance-settings/main.c:523
-msgid "Icon theme name"
-msgstr "Nome do tema de ícones"
-
-#: ../dialogs/appearance-settings/main.c:535
-msgid "Theme name"
-msgstr "Nome do tema"
-
-#: ../dialogs/appearance-settings/main.c:546
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#: ../dialogs/appearance-settings/main.c:645
 msgid "Icons"
 msgstr "Ícones"
 
-#: ../dialogs/appearance-settings/main.c:548
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+msgid ""
+"If you have a TFT or LCD screen you can improve the quality of the fonts by "
+"choosing the correct sub-pixel order of your screen"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#, fuzzy
+msgid "Select a default font"
+msgstr "Selecione a fonte para a interface de usuário padrão:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#, fuzzy
+msgid "Settings"
+msgstr "Configurações do mouse"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+msgid "Show images in _menus"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+msgid "Show images on _buttons"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid "Style"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid "Whether images should be shown in menus"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid ""
+"Whether menu accelerators can be changed by pressing a key over the menu item"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+msgid "Whether stock icons should be shown in buttons"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+msgid "_Hinting:"
+msgstr "_Dica:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#, fuzzy
+msgid "_Sub-pixel order:"
+msgstr "Dica para _sub pixel:"
+
+#: ../dialogs/appearance-settings/main.c:579
+#: ../dialogs/appearance-settings/main.c:672
+#, fuzzy
+msgid "None"
+msgstr "nenhum"
+
+#: ../dialogs/appearance-settings/main.c:583
+msgid "RGB"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:587
+msgid "BGR"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:591
+msgid "Vertical RGB"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:595
+msgid "Vertical BGR"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:646
 msgid "Text"
 msgstr "Texto"
 
-#: ../dialogs/appearance-settings/main.c:550
+#: ../dialogs/appearance-settings/main.c:647
 msgid "Both"
 msgstr "Ambos"
 
-#: ../dialogs/appearance-settings/main.c:552
+#: ../dialogs/appearance-settings/main.c:648
 msgid "Both Horizontal"
 msgstr "Ambos horizontais"
 
-#: ../dialogs/appearance-settings/main.c:565
-msgid "No Hinting"
-msgstr "Sem dica"
-
-#: ../dialogs/appearance-settings/main.c:567
-msgid "Slight Hinting"
+#: ../dialogs/appearance-settings/main.c:673
+#, fuzzy
+msgid "Slight"
 msgstr "Dica sutil"
 
-#: ../dialogs/appearance-settings/main.c:569
-msgid "Medium Hinting"
+#: ../dialogs/appearance-settings/main.c:674
+#, fuzzy
+msgid "Medium"
 msgstr "Dica média"
 
-#: ../dialogs/appearance-settings/main.c:571
-msgid "Full Hinting"
-msgstr "Dica total"
-
-#: ../dialogs/appearance-settings/main.c:583
-msgid "none"
-msgstr "nenhum"
-
-#: ../dialogs/appearance-settings/main.c:585
-msgid "rgb"
-msgstr "rgb"
-
-#: ../dialogs/appearance-settings/main.c:587
-msgid "bgr"
-msgstr "bgr"
-
-#: ../dialogs/appearance-settings/main.c:589
-msgid "vrgb"
-msgstr "vrgb"
-
-#: ../dialogs/appearance-settings/main.c:591
-msgid "vbgr"
-msgstr "vbgr"
-
-#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:1
-msgid " Appearance Settings (themes and fonts)"
-msgstr "Configurações da aparência (temas e fontes)"
+#: ../dialogs/appearance-settings/main.c:675
+msgid "Full"
+msgstr ""
 
 #: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:3
 msgid "Xfce 4 Appearance Settings"
@@ -325,196 +413,548 @@ msgid "<b>Cursor</b>"
 msgstr "<b>Cursor</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
-msgid "<b>Keytheme</b>"
-msgstr "<b>Tema de tecla</b>"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 msgid "<b>Typing Settings</b>"
 msgstr "<b>Configurações da digitação</b>"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-msgid "<i>Fast</i>"
-msgstr "<i>Rápido</i>"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-msgid "<i>Long</i>"
-msgstr "<i>Longo</i>"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-msgid "<i>Short</i>"
-msgstr "<i>Curto</i>"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-msgid "<i>Slow</i>"
-msgstr "<i>Lento</i>"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Behaviour"
 msgstr "Comportamento"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
-msgid "Blink delay:"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#, fuzzy
+msgid "Blink _delay:"
 msgstr "Atraso da piscagem:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
-msgid "Enable key repeat"
-msgstr "Habilitar tecla de repetição"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Define shortcuts for launching applications:"
+msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
-msgid "Keyboard settings"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:1
+msgid "Keyboard Settings"
 msgstr "Configurações do teclado"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
-msgid "Repeat delay:"
-msgstr "Atraso de repetição:"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:2
+#, fuzzy
+msgid "Keyboard settings and shortcuts"
+msgstr "Configurações do teclado"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
-msgid "Repeat speed:"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#, fuzzy
+msgid "Repeat _speed:"
 msgstr "Velocidade de repetição:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Shortcuts"
 msgstr "Atalhos"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
-msgid "Show blinking"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#, fuzzy
+msgid "Show _blinking"
 msgstr "Mostrar piscando"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
-msgid "Use this area to test the settings above"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+msgid "The length of the cursor blink cycle in milliseconds"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "The rate at which keycodes are generated while a key is pressed"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+msgid "The time in milliseconds before a pressed key starts repeating"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#, fuzzy
+msgid "Use this area to test the settings above:"
 msgstr "Utilizar esta área para testar as configurações acima"
 
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid ""
+"When enabled, pressing and holding down a key emits the same character over "
+"and over again"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#, fuzzy
+msgid "_Enable key repeat"
+msgstr "Habilitar tecla de repetição"
+
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#, fuzzy
+msgid "_Repeat delay:"
+msgstr "Atraso de repetição:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "gtk-add"
 msgstr "gtk-add"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+msgid "gtk-help"
+msgstr "gtk-help"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "gtk-remove"
 msgstr "gtk-remove"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "label"
-msgstr "rótulo"
+#: ../dialogs/keyboard-settings/main.c:177
+#: ../dialogs/keyboard-settings/main.c:188
+#, c-format
+msgid "Keyboard shortcut '%s' is already being used for something else."
+msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:1
-msgid " Keyboard Settings (shortcuts and behaviour)"
-msgstr "Configurações de teclado (atalhos e comportamento)"
+#: ../dialogs/keyboard-settings/main.c:224
+msgid "Short command may not be empty."
+msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:2
-msgid "Keyboard Settings"
-msgstr "Configurações do teclado"
+#: ../dialogs/keyboard-settings/main.c:535
+#, fuzzy
+msgid "Shortcut"
+msgstr "Atalhos"
+
+#: ../dialogs/keyboard-settings/main.c:540
+msgid "Command"
+msgstr ""
+
+#. Set dialog title and icon
+#: ../dialogs/keyboard-settings/command-dialog.c:159
+msgid "Select shortcut command"
+msgstr ""
+
+#. Set subtitle
+#: ../dialogs/keyboard-settings/command-dialog.c:163
+#, fuzzy, c-format
+msgid "Shortcut: %s"
+msgstr "Atalhos"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:163
+msgid "Undefined"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:229
+msgid "The command may not be empty."
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:249
+msgid "Select command"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:257
+msgid "All Files"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:262
+msgid "Executable Files"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:277
+msgid "Perl Scripts"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:283
+msgid "Python Scripts"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:289
+msgid "Ruby Scripts"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/command-dialog.c:295
+msgid "Shell Scripts"
+msgstr ""
+
+#. Set dialog title
+#: ../dialogs/keyboard-settings/shortcut-dialog.c:226
+#, fuzzy
+msgid "Set shortcut"
+msgstr "Atalhos"
+
+#: ../dialogs/keyboard-settings/shortcut-dialog.c:245
+msgid "Set shortcut for command:"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/shortcut-dialog.c:290
+msgid "Could not grab the keyboard."
+msgstr ""
 
 #: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:3
 msgid "Xfce 4 Keyboard Settings"
 msgstr "Configurações do teclado do Xfce 4"
 
+#: ../dialogs/mouse-settings/main.c:84
+msgid "Active device in the dialog"
+msgstr ""
+
+#: ../dialogs/mouse-settings/main.c:84
+msgid "DEVICE NAME"
+msgstr ""
+
+#. sort the names but keep Default on top
+#: ../dialogs/mouse-settings/main.c:338 ../dialogs/mouse-settings/main.c:340
+#: ../dialogs/mouse-settings/main.c:400
+msgid "Default"
+msgstr ""
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
-msgid "<b>Button settings</b>"
+#, fuzzy
+msgid "<b>Button Order</b>"
 msgstr "<b>Configurações do botão</b>"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
-msgid "<b>Cursor size</b>"
-msgstr "<b>Tamanho do cursor</b>"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
-msgid "<b>Double click</b>"
+#, fuzzy
+msgid "<b>Double Click</b>"
 msgstr "<b>Duplo clique</b>"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
-msgid "<b>Drag and drop</b>"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+#, fuzzy
+msgid "<b>Drag and Drop</b>"
 msgstr "<b>Arrastar e soltar</b>"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
-msgid "<b>Motion settings</b>"
-msgstr "<b>Configurações de movimento</b>"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#, fuzzy
+msgid "<b>Feedback</b>"
+msgstr "<b>Barra de ferramentas</b>"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "<b>Preview</b>"
 msgstr "<b>Visualização</b>"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#, fuzzy
+msgid "<b>Size</b>"
+msgstr "<b>Estilo</b>"
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-msgid "Cursor"
-msgstr "Cursor"
+#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:1
+msgid "Configure the look and feeling of the pointer devices"
+msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-msgid "Left handed"
-msgstr "Canhoto"
+#, fuzzy
+msgid "Cursor _Size:"
+msgstr "<b>Tamanho do cursor</b>"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
-#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:1
+msgid "Devices"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:2
 msgid "Mouse Settings"
 msgstr "Configurações do mouse"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
-msgid "Right handed"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+msgid "Re_set to default"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid "Re_verse scroll direction"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid ""
+"Set the acceleration and threshold for the selected device to the default "
+"values"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+msgid ""
+"The maximum distance allowed between two clicks, in pixels, for them to be "
+"considered a double click"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+msgid ""
+"The maximum time allowed between two clicks, in milliseconds, for them to be "
+"considered a double click"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+msgid "The number of pixels the pointer can move before dragging"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+msgid ""
+"The number of pixels the pointer has to moved in a short time before the "
+"acceleration starts"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+msgid ""
+"The pointer will go 'acceleration' times as fast when it travels more than "
+"'threshold' pixels in a short time"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#, fuzzy
+msgid "Theme"
+msgstr "_Temas"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+msgid "Thr_eshold:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "Ti_me:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid "When enabled, the scroll wheel will work in the opposite direction"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#, fuzzy
+msgid "_Acceleration:"
+msgstr "Atraso _de aceleração:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+msgid "_Distance:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#, fuzzy
+msgid "_Left handed"
+msgstr "Canhoto"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#, fuzzy
+msgid "_Right handed"
 msgstr "Destro"
 
-#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+msgid "_Threshold:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:3
 msgid "Xfce 4 Mouse Settings"
 msgstr "Configurações do mouse do Xfce 4"
 
-#: ../xfce4-settings-helper/accessx.c:76
-#: ../xfce4-settings-helper/accessx.c:83
-msgid "Sticky keys"
-msgstr "Teclas de aderência"
+#: ../dialogs/display-settings/main.c:70
+msgid "Normal"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:77
-msgid "Sticky keys are enabled"
-msgstr "Teclas de aderência estão habilitadas"
+#: ../dialogs/display-settings/main.c:71
+msgid "Left"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:84
-msgid "Sticky keys are disabled"
-msgstr "Teclas de aderência estão desabilitadas"
+#: ../dialogs/display-settings/main.c:72
+msgid "Inverted"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:96
-#: ../xfce4-settings-helper/accessx.c:103
-msgid "Slow keys"
-msgstr "Teclas lentas"
+#: ../dialogs/display-settings/main.c:73
+msgid "Right"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:97
-msgid "Slow keys are enabled"
-msgstr "Teclas lentas estão habilitadas"
+#. insert in the combo box
+#. insert
+#: ../dialogs/display-settings/main.c:257
+#: ../dialogs/display-settings/main.c:288
+msgid "Hz"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:104
-msgid "Slow keys are disabled"
-msgstr "Teclas lentas estão desabilitadas"
+#. create name
+#: ../dialogs/display-settings/main.c:494
+msgid "Screen"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:116
-#: ../xfce4-settings-helper/accessx.c:123
-msgid "Bounce keys"
-msgstr "Teclas de repercussão"
+#: ../dialogs/display-settings/xfce-randr.c:324
+msgid "Laptop"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:117
-msgid "Bounce keys are enabled"
-msgstr "Teclas de repercussão estão habilitadas"
+#: ../dialogs/display-settings/xfce-randr.c:328
+msgid "Monitor"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:124
-msgid "Bounce keys are disabled"
-msgstr "Teclas de repercussão estão desabilitadas"
+#: ../dialogs/display-settings/xfce-randr.c:332
+msgid "Television"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:247
-msgid "Accessibility Notification"
-msgstr "Notificação de acessibilidade"
+#: ../dialogs/display-settings/xfce-randr.c:339
+msgid "Digital display"
+msgstr ""
 
-#: ../xfce4-settings-helper/accessx.c:248
-msgid "Accessibility settings changed"
-msgstr "Alteradas configurações de acessibilidade"
+#: ../dialogs/display-settings/xfce-randr.c:343
+msgid "Second monitor"
+msgstr ""
 
-#: ../xfce4-settings-helper/main.c:55
+#: ../dialogs/display-settings/xfce-randr.c:349
+msgid "Second digital display"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "<b>Multiple Display</b>"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+#, fuzzy
+msgid "<b>Single Display</b>"
+msgstr "<b>Estilo</b>"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+msgid ""
+"Atleast two displays must be connected to the computer before you can use "
+"this feature. Please connect another display."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+#, fuzzy
+msgid "C_lone"
+msgstr "nenhum"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Configure the display settings and configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
+msgid "Display Devices"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:2
+#, fuzzy
+msgid "Display Settings"
+msgstr "Configurações do mouse"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:8
+msgid "E_xtend desktop to the"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "R_esolution:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid "Refresh _rate:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Ro_tation:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:12
+msgid "Sche_me:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:13
+msgid "Test the new display settings"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:14
+msgid "_Primary device:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:15
+msgid "_Secondary device:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:16
+#, fuzzy
+msgid "gtk-apply"
+msgstr "gtk-add"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:18
+#, fuzzy
+msgid "gtk-refresh"
+msgstr "gtk-remove"
+
+#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:1
+msgid "Configure the screen settings and configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:3
+#, fuzzy
+msgid "Xfce 4 Display Settings"
+msgstr "Configurações do mouse do Xfce 4"
+
+#: ../xfce4-settings-editor/main.c:223
+msgid "Channel"
+msgstr ""
+
+#: ../xfce4-settings-editor/main.c:236
+msgid "Property"
+msgstr ""
+
+#: ../xfce4-settings-editor/main.c:238
+msgid "Type"
+msgstr ""
+
+#: ../xfce4-settings-editor/main.c:240
+msgid "Value"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
+#, fuzzy
+msgid "Graphical Settings Editor for Xfce 4"
+msgstr "Gerenciador de configurações gráficas do Xfce 4"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Settings Manager"
+msgstr "Gerenciador de configurações"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
+#, fuzzy
+msgid "Xfce 4 Settings Editor"
+msgstr "Gerenciador de configurações do Xfce 4"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+#, fuzzy
+msgid "Xfce4 settings editor"
+msgstr "Gerenciador de configurações do Xfce 4"
+
+#: ../xfce4-settings-helper/main.c:58
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Iniciar no modo de depuração (não forçar o segundo plano)"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:110
+#: ../xfce4-settings-helper/accessibility.c:358
+msgid "Sticky keys are enabled"
+msgstr "Teclas de aderência estão habilitadas"
+
+#: ../xfce4-settings-helper/accessibility.c:360
+msgid "Sticky keys are disabled"
+msgstr "Teclas de aderência estão desabilitadas"
+
+#: ../xfce4-settings-helper/accessibility.c:362
+msgid "Sticky keys"
+msgstr "Teclas de aderência"
+
+#: ../xfce4-settings-helper/accessibility.c:367
+msgid "Slow keys are enabled"
+msgstr "Teclas lentas estão habilitadas"
+
+#: ../xfce4-settings-helper/accessibility.c:369
+msgid "Slow keys are disabled"
+msgstr "Teclas lentas estão desabilitadas"
+
+#: ../xfce4-settings-helper/accessibility.c:371
+msgid "Slow keys"
+msgstr "Teclas lentas"
+
+#: ../xfce4-settings-helper/accessibility.c:376
+msgid "Bounce keys are enabled"
+msgstr "Teclas de repercussão estão habilitadas"
+
+#: ../xfce4-settings-helper/accessibility.c:378
+msgid "Bounce keys are disabled"
+msgstr "Teclas de repercussão estão desabilitadas"
+
+#: ../xfce4-settings-helper/accessibility.c:380
+msgid "Bounce keys"
+msgstr "Teclas de repercussão"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:100
 msgid "Customize your Xfce desktop"
 msgstr "Personalize sua área de trabalho Xfce"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:111
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:317
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:101
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:308
 msgid "Xfce Settings Manager"
 msgstr "Gerenciador de configurações do Xfce"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:316
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:307
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Não foi possível iniciar \"%s\""
@@ -523,11 +963,126 @@ msgstr "Não foi possível iniciar \"%s\""
 msgid "Graphical Settings Manager for Xfce 4"
 msgstr "Gerenciador de configurações gráficas do Xfce 4"
 
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Settings Manager"
-msgstr "Gerenciador de configurações"
-
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "Xfce 4 Settings Manager"
 msgstr "Gerenciador de configurações do Xfce 4"
 
+#~ msgid "<i>long</i>"
+#~ msgstr "<i>longo</i>"
+
+#~ msgid "<i>short</i>"
+#~ msgstr "<i>curto</i>"
+
+#~ msgid "Accessibility settings"
+#~ msgstr "Configurações de acessibilidade"
+
+#~ msgid "L_ock Mode"
+#~ msgstr "M_odo bloqueado"
+
+#~ msgid "Slow Keys _delay:"
+#~ msgstr "Atraso _de teclas lentas:"
+
+#~ msgid "_Delay:"
+#~ msgstr "Atra_so:"
+
+#~ msgid "_Latch mode"
+#~ msgstr "Modo _trancado"
+
+#~ msgid "."
+#~ msgstr "."
+
+#~ msgid ""
+#~ "%s: %s\n"
+#~ "Try %s --help to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "%s: %s\n"
+#~ "Tente %s --help para ver a lista completa das opções da linha de "
+#~ "comando.\n"
+
+#~ msgid "Settings to improve usability for some people"
+#~ msgstr "Configurações para melhorar a usabilidade para algumas pessoas"
+
+#~ msgid "Enable _button-images"
+#~ msgstr "Habilitar _imagens no botão"
+
+#~ msgid "Enable menu-_images"
+#~ msgstr "Habilitar _imagens no menu"
+
+#~ msgid "Icon theme"
+#~ msgstr "Tema de ícones"
+
+#~ msgid "Please select the UI-theme you want to use"
+#~ msgstr ""
+#~ "Por favor selecione o tema da interface de usuário que deseja utilizar"
+
+#~ msgid "Please select the icon-theme you want to use:"
+#~ msgstr "Por favor selecione o tema de ícones que deseja utiliza:"
+
+#~ msgid "Select the toolbar style:"
+#~ msgstr "Selecione o estilo da barra de ferramentas:"
+
+#~ msgid "UI Theme"
+#~ msgstr "Tema da interface de usuário"
+
+#~ msgid "_Behaviour"
+#~ msgstr "_Comportamento"
+
+#~ msgid "Icon theme name"
+#~ msgstr "Nome do tema de ícones"
+
+#~ msgid "Theme name"
+#~ msgstr "Nome do tema"
+
+#~ msgid "No Hinting"
+#~ msgstr "Sem dica"
+
+#~ msgid "Full Hinting"
+#~ msgstr "Dica total"
+
+#~ msgid "rgb"
+#~ msgstr "rgb"
+
+#~ msgid "bgr"
+#~ msgstr "bgr"
+
+#~ msgid "vrgb"
+#~ msgstr "vrgb"
+
+#~ msgid "vbgr"
+#~ msgstr "vbgr"
+
+#~ msgid " Appearance Settings (themes and fonts)"
+#~ msgstr "Configurações da aparência (temas e fontes)"
+
+#~ msgid "<b>Keytheme</b>"
+#~ msgstr "<b>Tema de tecla</b>"
+
+#~ msgid "<i>Fast</i>"
+#~ msgstr "<i>Rápido</i>"
+
+#~ msgid "<i>Long</i>"
+#~ msgstr "<i>Longo</i>"
+
+#~ msgid "<i>Short</i>"
+#~ msgstr "<i>Curto</i>"
+
+#~ msgid "<i>Slow</i>"
+#~ msgstr "<i>Lento</i>"
+
+#~ msgid "label"
+#~ msgstr "rótulo"
+
+#~ msgid " Keyboard Settings (shortcuts and behaviour)"
+#~ msgstr "Configurações de teclado (atalhos e comportamento)"
+
+#~ msgid "<b>Motion settings</b>"
+#~ msgstr "<b>Configurações de movimento</b>"
+
+#~ msgid "Cursor"
+#~ msgstr "Cursor"
+
+#~ msgid "Accessibility Notification"
+#~ msgstr "Notificação de acessibilidade"
+
+#~ msgid "Accessibility settings changed"
+#~ msgstr "Alteradas configurações de acessibilidade"
