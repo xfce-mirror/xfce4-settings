@@ -51,7 +51,7 @@ keyboard-dialog_glade.h: keyboard-dialog.glade
 endif
 
 desktopdir = $(datadir)/applications
-desktop_in_files = xfce4-keyboard-settings.desktop.in
+desktop_in_files = xfce-keyboard-settings.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 settingsdir = $(datadir)/xfce4/settings-dialogs

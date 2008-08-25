@@ -52,7 +52,7 @@ display-dialog_glade.h: display-dialog.glade
 endif
 
 desktopdir = $(datadir)/applications
-desktop_in_files = xfce4-display-settings.desktop.in
+desktop_in_files = xfce-display-settings.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 settingsdir = $(datadir)/xfce4/settings-dialogs
