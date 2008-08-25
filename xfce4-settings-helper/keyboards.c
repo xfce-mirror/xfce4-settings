@@ -136,7 +136,7 @@ xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
     gboolean         repeat;
 
     /* load setting */
-    repeat = xfconf_channel_get_bool (helper->channel, "/Default/KeyRepeat", FALSE);
+    repeat = xfconf_channel_get_bool (helper->channel, "/Default/KeyRepeat", TRUE);
 
     /* flush x and trap errors */
     gdk_flush ();
@@ -162,8 +162,8 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
     gint       delay, rate;
 
     /* load settings */
-    delay = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Delay", 0);
-    rate = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Rate", 0);
+    delay = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Delay", 500);
+    rate = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Rate", 20);
     
     /* flush x and trap errors */
     gdk_flush ();
