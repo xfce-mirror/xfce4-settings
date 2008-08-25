@@ -55,4 +55,7 @@ xfce4_settings_helper_LDADD = \
 	$(XRANDR_LIBS) \
 	$(LIBNOTIFY_LIBS)
 
+autostartdir = $(sysconfdir)/xdg/autostart
+autostart_DATA = xfce4-settings-helper-autostart.desktop
+
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
