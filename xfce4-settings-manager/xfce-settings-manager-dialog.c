@@ -234,9 +234,9 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                 continue;
             }
 
-            if(!strncmp(value, SETTINGS_CATEGORY ";",
-                        strlen(SETTINGS_CATEGORY ";"))
-                || !strstr(value, ";" SETTINGS_CATEGORY ";"))
+            if(strncmp(value, SETTINGS_CATEGORY ";",
+                       strlen(SETTINGS_CATEGORY ";"))
+               && !strstr(value, ";" SETTINGS_CATEGORY ";"))
             {
                 xfce_rc_close(rcfile);
                 continue;
