@@ -1,4 +1,3 @@
-/* $Id$ */
 /*
  *  xfce4-settings-manager
  *
@@ -26,6 +25,10 @@
 #include <unistd.h>
 #endif
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
@@ -33,6 +36,8 @@
 #include <exo/exo.h>
 
 #include "xfce-settings-manager-dialog.h"
+
+#define SETTINGS_CATEGORY  "X-XfceSettingsDialog"
 
 struct _XfceSettingsManagerDialog
 {
@@ -72,12 +77,6 @@ static gboolean xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
                                                            GtkTooltip *tooltip,
                                                            gpointer data);
 #endif
-
-static const char *categories[] = {
-    "Name", "GenericName", "X-XfceSettingsName", "Icon", "Comment", "Exec",
-    "TryExec", "StartupNotify", "Hidden",
-};
-static const gint n_categories = 9;
 
 
 G_DEFINE_TYPE(XfceSettingsManagerDialog, xfce_settings_manager_dialog, XFCE_TYPE_TITLED_DIALOG)
@@ -188,8 +187,7 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                                     G_TYPE_STRING, G_TYPE_STRING,
                                     G_TYPE_BOOLEAN);
     
-    dirs = xfce_resource_lookup_all(XFCE_RESOURCE_DATA,
-                                    "xfce4/settings-dialogs/");
+    dirs = xfce_resource_lookup_all(XFCE_RESOURCE_DATA, "applications/");
     if(!dirs)
         return;
 
@@ -203,9 +201,8 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
             continue;
 
         while((file = g_dir_read_name(d))) {
-            XfceDesktopEntry *dentry;
-            gchar *name = NULL, *icon = NULL, *comment = NULL, *exec = NULL;
-            gchar *tryexec = NULL, *snotify = NULL, *hidden = NULL;
+            XfceRc *rcfile;
+            const gchar *name, *exec, *value;
             GdkPixbuf *pix = NULL;
             GtkTreeIter iter;
 
@@ -213,61 +210,78 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                 continue;
 
             g_snprintf(buf, sizeof(buf), "%s/%s", dirs[i], file);
-            dentry = xfce_desktop_entry_new(buf, categories, n_categories);
-            if(!dentry)
+            rcfile = xfce_rc_simple_open(buf, TRUE);
+            if(!rcfile)
                 continue;
 
-            if(xfce_desktop_entry_get_string(dentry, "Hidden", FALSE, &hidden)) {
-                if(!g_ascii_strcasecmp(hidden, "true")) {
-                    g_free(hidden);
-                    g_object_unref(G_OBJECT(dentry));
-                    continue;
-                }
-                g_free(hidden);
+            if(!xfce_rc_has_group(rcfile, "Desktop Entry")) {
+                xfce_rc_close(rcfile);
+                continue;
+            }
+            xfce_rc_set_group(rcfile, "Desktop Entry");
+
+            value = xfce_rc_read_entry(rcfile, "Categories", NULL);
+            if(!value) {
+                xfce_rc_close(rcfile);
+                continue;
             }
 
-            if(xfce_desktop_entry_get_string(dentry, "TryExec", FALSE, &tryexec)) {
-                gchar *prog = g_find_program_in_path(tryexec);
+            if(!strncmp(value, SETTINGS_CATEGORY ";",
+                        strlen(SETTINGS_CATEGORY ";"))
+                || !strstr(value, ";" SETTINGS_CATEGORY ";"))
+            {
+                xfce_rc_close(rcfile);
+                continue;
+            }
+
+            if(xfce_rc_read_bool_entry(rcfile, "Hidden", FALSE)) {
+                xfce_rc_close(rcfile);
+                continue;
+            }
+
+            value = xfce_rc_read_entry(rcfile, "TryExec", NULL);
+            if(value) {
+                gchar *prog = g_find_program_in_path(value);
 
                 if(!prog || access(prog, R_OK|X_OK)) {
                     g_free(prog);
-                    g_free(tryexec);
-                    g_object_unref(G_OBJECT(dentry));
+                    xfce_rc_close(rcfile);
                     continue;
                 }
                 g_free(prog);
-                g_free(tryexec);
             }
 
-            if(!xfce_desktop_entry_get_string(dentry, "X-XfceSettingsName", TRUE, &name))
-                if(!xfce_desktop_entry_get_string(dentry, "GenericName", TRUE, &name))
-                    xfce_desktop_entry_get_string(dentry, "Name", TRUE, &name);
-            xfce_desktop_entry_get_string(dentry, "Icon", FALSE, &icon);
-            xfce_desktop_entry_get_string(dentry, "Comment", TRUE, &comment);
-            xfce_desktop_entry_get_string(dentry, "Exec", FALSE, &exec);
-            xfce_desktop_entry_get_string(dentry, "StartupNotify", FALSE, &snotify);
+            if(!(name = xfce_rc_read_entry(rcfile, "X-XfceSettingsName", NULL))) {
+                if(!(name = xfce_rc_read_entry(rcfile, "GenericName", NULL))) {
+                    if(!(name = xfce_rc_read_entry(rcfile, "Name", NULL))) {
+                        xfce_rc_close(rcfile);
+                        continue;
+                    }
+                }
+            }
 
-            if(icon)
-                pix = xfce_themed_icon_load(icon, icon_size);
+            exec = xfce_rc_read_entry(rcfile, "Exec", NULL);
+            if(!exec) {
+                xfce_rc_close(rcfile);
+                continue;
+            }
+
+            value = xfce_rc_read_entry(rcfile, "Icon", NULL);
+            if(value)
+                pix = xfce_themed_icon_load(value, icon_size);
 
             gtk_list_store_append(dialog->ls, &iter);
             gtk_list_store_set(dialog->ls, &iter,
                                COL_NAME, name,
                                COL_PIXBUF, pix,
-                               COL_COMMENT, comment,
+                               COL_COMMENT, xfce_rc_read_entry(rcfile, "Comment", NULL),
                                COL_EXEC, exec,
-                               COL_SNOTIFY, (snotify && !g_ascii_strcasecmp(snotify, "true")
-                                             ? TRUE : FALSE),
+                               COL_SNOTIFY, xfce_rc_read_bool_entry(rcfile, "StartupNotify", FALSE),
                                -1);
 
-            g_free(name);
-            g_free(comment);
-            g_free(exec);
-            g_free(snotify);
-            g_free(icon);
             if(pix)
                 g_object_unref(G_OBJECT(pix));
-            g_object_unref(G_OBJECT(dentry));
+            xfce_rc_close(rcfile);
         }
 
         g_dir_close(d);
