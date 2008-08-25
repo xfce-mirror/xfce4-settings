@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-24 19:43-0700\n"
+"POT-Creation-Date: 2008-08-24 23:22-0700\n"
 "PO-Revision-Date: 2008-06-25 21:32-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -59,35 +59,35 @@ msgid "Accessibility Settings"
 msgstr "Configurações de acessibilidade"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
+msgid "Configure Sticky Keys, Slow Keys, and other accessibility aids"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 #, fuzzy
 msgid "D_ebounce time:"
 msgstr "Atraso d_e repercussão:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 #, fuzzy
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr ""
 "Desabilitar teclas de aderência se duas _teclas forem pressionadas juntas"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 #, fuzzy
 msgid "Enable _bounce keys"
 msgstr "Habilitar Teclas de _repercussão"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 #, fuzzy
 msgid "Enable _sticky keys"
 msgstr "Habilitar Teclas de _aderência"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 #, fuzzy
 msgid "Enable slow _keys"
 msgstr "Habilitar Teclas _lentas"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
-msgid "Improve accessibility for disabled persons"
-msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
@@ -284,8 +284,9 @@ msgid "Appearance Settings"
 msgstr "Configurações da aparência"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
 #, fuzzy
-msgid "Change the looks of your Xfce desktop"
+msgid "Change the look of your Xfce desktop"
 msgstr "Altere a aparência da sua área de trabalho XFCE"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
@@ -416,17 +417,13 @@ msgstr ""
 msgid "Appearance"
 msgstr "Configurações da aparência"
 
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
-#, fuzzy
-msgid "Change the look of your Xfce desktop"
-msgstr "Altere a aparência da sua área de trabalho XFCE"
-
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:4
 msgid "Xfce 4 Appearance Settings"
 msgstr "Configurações da aparência do Xfce 4"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
-msgid "Configure the display settings and configuration"
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
+msgid "Configure screen settings and layout"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
@@ -506,10 +503,6 @@ msgstr ""
 
 #: ../dialogs/display-settings/xfce-randr.c:347
 msgid "Second digital display"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-msgid "Configure screen settings and configuration"
 msgstr ""
 
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
@@ -743,7 +736,8 @@ msgid "<b>Size</b>"
 msgstr "<b>Estilo</b>"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-msgid "Configure the look and feeling of the pointer devices"
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
+msgid "Configure pointer device behavior, look, and feel"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
@@ -840,10 +834,6 @@ msgstr "Destro"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "_Threshold:"
-msgstr ""
-
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
-msgid "Configure pointer device behavior, look, and feel"
 msgstr ""
 
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:4
@@ -951,6 +941,10 @@ msgstr "Gerenciador de configurações"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "Xfce 4 Settings Manager"
 msgstr "Gerenciador de configurações do Xfce 4"
+
+#, fuzzy
+#~ msgid "Change the looks of your Xfce desktop"
+#~ msgstr "Altere a aparência da sua área de trabalho XFCE"
 
 #, fuzzy
 #~ msgid "<b>Single Display</b>"

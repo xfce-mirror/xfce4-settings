@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-24 19:43-0700\n"
+"POT-Creation-Date: 2008-08-24 23:22-0700\n"
 "PO-Revision-Date: 2008-06-21 15:11+0200\n"
 "Last-Translator: Stephan Arts <stephan@xfce.org>\n"
 "Language-Team: Nederlands <nl_NL@li.org>\n"
@@ -60,34 +60,34 @@ msgid "Accessibility Settings"
 msgstr "Toegankelijkheidsinstellingen"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
+msgid "Configure Sticky Keys, Slow Keys, and other accessibility aids"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 #, fuzzy
 msgid "D_ebounce time:"
 msgstr "V_ertraging voor kaatstoetsen:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 #, fuzzy
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr "Plaktoetsen uitschakelen wanneer _twee toetsen tegelijk zijn ingedrukt"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 #, fuzzy
 msgid "Enable _bounce keys"
 msgstr "_Kaatstoetsen inschakelen"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 #, fuzzy
 msgid "Enable _sticky keys"
 msgstr "_Plaktoetsen inschakelen"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 #, fuzzy
 msgid "Enable slow _keys"
 msgstr "_Trage toetsen inschakelen"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
-msgid "Improve accessibility for disabled persons"
-msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
@@ -285,8 +285,9 @@ msgid "Appearance Settings"
 msgstr "Weergave-instellingen"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
 #, fuzzy
-msgid "Change the looks of your Xfce desktop"
+msgid "Change the look of your Xfce desktop"
 msgstr "Verander de uitstraling van jouw XFCE bureaublad"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
@@ -417,18 +418,14 @@ msgstr ""
 msgid "Appearance"
 msgstr "Weergave-instellingen"
 
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
-#, fuzzy
-msgid "Change the look of your Xfce desktop"
-msgstr "Verander de uitstraling van jouw XFCE bureaublad"
-
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:4
 #, fuzzy
 msgid "Xfce 4 Appearance Settings"
 msgstr "Weergave-instellingen"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
-msgid "Configure the display settings and configuration"
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
+msgid "Configure screen settings and layout"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
@@ -508,10 +505,6 @@ msgstr ""
 
 #: ../dialogs/display-settings/xfce-randr.c:347
 msgid "Second digital display"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-msgid "Configure screen settings and configuration"
 msgstr ""
 
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
@@ -747,7 +740,8 @@ msgid "<b>Size</b>"
 msgstr "<b>Stijl</b>"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-msgid "Configure the look and feeling of the pointer devices"
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
+msgid "Configure pointer device behavior, look, and feel"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
@@ -844,10 +838,6 @@ msgstr "Rechtshandig"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "_Threshold:"
-msgstr ""
-
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
-msgid "Configure pointer device behavior, look, and feel"
 msgstr ""
 
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:4
@@ -960,6 +950,10 @@ msgstr "Xfce instellingenbeheer"
 #, fuzzy
 msgid "Xfce 4 Settings Manager"
 msgstr "Xfce instellingenbeheer"
+
+#, fuzzy
+#~ msgid "Change the looks of your Xfce desktop"
+#~ msgstr "Verander de uitstraling van jouw XFCE bureaublad"
 
 #, fuzzy
 #~ msgid "<b>Single Display</b>"
