@@ -553,7 +553,6 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
   /* Get dialog widget */
   dialog = glade_xml_get_widget (gxml, "keyboard-settings-dialog");
   gtk_widget_show_all(dialog);
-  gtk_widget_hide(dialog);
 
   return dialog;
 }
