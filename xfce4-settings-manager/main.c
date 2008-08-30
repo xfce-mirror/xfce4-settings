@@ -31,6 +31,15 @@
 
 #include "xfce-settings-manager-dialog.h"
 
+#ifndef MIN
+#define MIN(a, b)  ( (a) < (b) ? (a) : (b) )
+#endif
+
+/* somewhat arbitrary; should really do something complicated by
+ * looking at font height/avg width, pixbuf height, etc. */
+#define WINDOW_MAX_WIDTH   800
+#define WINDOW_MAX_HEIGHT  600
+
 static gboolean opt_version = FALSE;
 
 static GOptionEntry option_entries[] = {
@@ -54,8 +63,8 @@ xfce_settings_manager_attempt_appropriate_size(GtkWidget *dialog)
     gdk_screen_get_monitor_geometry(screen, monitor, &geom);
 
     gtk_window_set_default_size(GTK_WINDOW(dialog),
-                                geom.width * 2.0 / 3,
-                                geom.height *2.0 / 3);
+                                MIN(geom.width * 2.0 / 3, WINDOW_MAX_WIDTH),
+                                MIN(geom.height *2.0 / 3, WINDOW_MAX_HEIGHT));
 }
 
 int
