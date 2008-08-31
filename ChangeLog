@@ -1,3 +1,16 @@
+2008-09-01	Jannis Pohlmann	<jannis@xfce.org>
+
+	* dialogs/keyboard-settings/shortcuts-dialog.c,
+	  xfce4-settings-helper/keyboard-shortcuts.c: Add two new functions
+	  called get_modifier_masks() and get_ignore_mask(). The first
+	  determines to which of the Mod2-Mod5 modifiers CapsLock, NumLock and
+	  ScrollLock are mapped and generates a modifier mask for them. The
+	  latter combines this mask with the IGNORED_MODIFIERS mask which we
+	  already used before and which includes GDK_HYPER_MASK etc.. This
+	  mask is then used in several places to avoid these modifiers to
+	  appear in the result of gtk_accelerator_name() and to properly grab
+	  the shortcuts. This should fix bug #4304.
+.
 2008-08-31	Jannis Pohlmann <jannis@xfce.org>
 
 	* dialogs/keyboard-settings/shortcut-dialog.c: Ignore
