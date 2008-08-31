@@ -32,6 +32,15 @@
 
 
 
+/* Modifiers to be ignored (0x2000 is an Xkb modifier) */
+#define IGNORED_MODIFIERS (0x2000 | GDK_LOCK_MASK | GDK_HYPER_MASK | GDK_SUPER_MASK | GDK_META_MASK)
+
+/* Modifiers to be used */
+#define USED_MODIFIERS (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_MOD1_MASK | GDK_MOD2_MASK | \
+                        GDK_MOD3_MASK | GDK_MOD4_MASK | GDK_MOD5_MASK)
+
+
+
 static void     shortcut_dialog_class_init       (ShortcutDialogClass *klass);
 static void     shortcut_dialog_init             (ShortcutDialog      *dialog);
 static void     shortcut_dialog_dispose          (GObject             *object);
@@ -302,9 +311,13 @@ shortcut_dialog_key_released (ShortcutDialog *dialog,
   gboolean event_handled = FALSE;
   gboolean shortcut_accepted = FALSE;
   gchar   *shortcut;
+  gint     modifiers;
+
+  /* Strip ignored modifiers from the event mask */
+  modifiers = event->state & ~IGNORED_MODIFIERS & GDK_MODIFIER_MASK;
 
   /* Get GTK+ accelerator string */
-  shortcut = gtk_accelerator_name (event->keyval, event->state);
+  shortcut = gtk_accelerator_name (event->keyval, modifiers);
 
   /* Let 'validate-shortcut' listeners decide whether this shortcut is ok or not */
   g_signal_emit_by_name (dialog, "validate-shortcut", shortcut, &shortcut_accepted);
