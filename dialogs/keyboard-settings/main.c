@@ -163,6 +163,10 @@ keyboard_settings_validate_shortcut (ShortcutDialog      *dialog,
   if (G_UNLIKELY (g_utf8_collate (shortcut, "Return") == 0 || g_utf8_collate (shortcut, "space") == 0))
     return FALSE;
 
+  /* Ignore empty shortcuts */
+  if (G_UNLIKELY (g_utf8_strlen (shortcut, -1) == 0))
+    return FALSE;
+
   /* Build property name */
   property = g_strdup_printf ("/%s", shortcut);
 
