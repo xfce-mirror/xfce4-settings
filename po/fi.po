@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-06 11:30+0300\n"
-"PO-Revision-Date: 2008-09-06 13:20+0300\n"
+"POT-Creation-Date: 2008-09-06 18:11+0300\n"
+"PO-Revision-Date: 2008-09-06 18:14+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -206,7 +206,7 @@ msgstr "kuvapistettä/s"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:81
 #: ../dialogs/display-settings/main.c:83
-#: ../dialogs/keyboard-settings/main.c:64 ../dialogs/mouse-settings/main.c:83
+#: ../dialogs/keyboard-settings/main.c:73 ../dialogs/mouse-settings/main.c:83
 #: ../xfce4-settings-editor/main.c:50 ../xfce4-settings-helper/main.c:57
 #: ../xfce4-settings-manager/main.c:47
 msgid "Version information"
@@ -215,7 +215,7 @@ msgstr "Versiotiedot"
 #: ../dialogs/accessibility-settings/main.c:144
 #: ../dialogs/appearance-settings/main.c:759
 #: ../dialogs/display-settings/main.c:643
-#: ../dialogs/keyboard-settings/main.c:684
+#: ../dialogs/keyboard-settings/main.c:761
 #: ../dialogs/mouse-settings/main.c:1170 ../xfce4-settings-editor/main.c:72
 #: ../xfce4-settings-helper/main.c:100 ../xfce4-settings-manager/main.c:82
 #, c-format
@@ -225,7 +225,7 @@ msgstr "Saat ohjeita komennolla \"%s --help\"."
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:778
 #: ../dialogs/display-settings/main.c:662
-#: ../dialogs/keyboard-settings/main.c:701
+#: ../dialogs/keyboard-settings/main.c:778
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:91
 #: ../xfce4-settings-helper/main.c:119 ../xfce4-settings-manager/main.c:95
 msgid "The Xfce development team. All rights reserved."
@@ -234,7 +234,7 @@ msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 #: ../dialogs/accessibility-settings/main.c:164
 #: ../dialogs/appearance-settings/main.c:779
 #: ../dialogs/display-settings/main.c:663
-#: ../dialogs/keyboard-settings/main.c:702
+#: ../dialogs/keyboard-settings/main.c:779
 #: ../dialogs/mouse-settings/main.c:1190 ../xfce4-settings-editor/main.c:92
 #: ../xfce4-settings-helper/main.c:120 ../xfce4-settings-manager/main.c:96
 #, c-format
@@ -627,49 +627,65 @@ msgstr ""
 msgid "gtk-remove"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/main.c:212
+#: ../dialogs/keyboard-settings/main.c:223
 #, c-format
-msgid "Shortcut conflict: %s"
-msgstr "Pikanäppäinristiriita: %s"
+msgid "%s shortcut conflict"
+msgstr "%s pikanäppäinristiriita"
 
-#: ../dialogs/keyboard-settings/main.c:218
+#: ../dialogs/keyboard-settings/main.c:229
 msgid "Window manager action"
 msgstr "Ikkunamanagerin toiminto"
 
-#: ../dialogs/keyboard-settings/main.c:219
+#: ../dialogs/keyboard-settings/main.c:230
 msgid ""
-"The shortcut is already used by a window manager action, which raises a "
-"conflict. Which one do you want to keep?"
+"The shortcut is already being used by a <b>window manager action</b>. Which "
+"action do you want to use?"
 msgstr ""
-"Pikanäppäin on jo yhdistetty ikkunamanagerin toimintoon, mikä aiheuttaa "
-"ristiriidan. Kumpi säilytetään?"
+"Pikanäppäin on jo yhdistetty <b>ikkunamanagerin toimintoon</b>. Kumpaa "
+"toimintoa haluat käyttää?"
 
-#: ../dialogs/keyboard-settings/main.c:225
+#: ../dialogs/keyboard-settings/main.c:235
 #, c-format
 msgid ""
-"The shortcut is already used for the command <b>%s</b>. Which one do you "
-"want to keep?"
-msgstr "Pikanäppäin on jo yhdistetty komentoon <b>%s</b>. Kumpi säilytetään?"
+"The shortcut is already being used for the command <b>%s</b>. Which action "
+"do you want to use?"
+msgstr ""
+"Pikanäppäin on jo yhdistetty komentoon <b>%s</b>. Kumpaa toimintoa haluat "
+"käyttää?"
+
+#: ../dialogs/keyboard-settings/main.c:239
+msgid "Use this one"
+msgstr "Valitse tämä"
+
+#: ../dialogs/keyboard-settings/main.c:239
+#, c-format
+msgid "Use %s"
+msgstr "Valitse %s"
+
+#: ../dialogs/keyboard-settings/main.c:240
+#, c-format
+msgid "Keep %s"
+msgstr "Pidä %s"
 
 #. Ask the user what to do
-#: ../dialogs/keyboard-settings/main.c:231
+#: ../dialogs/keyboard-settings/main.c:243
 msgid "Shortcut conflict"
 msgstr "Pikanäppäinristiriita"
 
-#: ../dialogs/keyboard-settings/main.c:247
+#: ../dialogs/keyboard-settings/main.c:261
 #, c-format
-msgid "The keyboard shortcut '%s' is already being used for something else."
-msgstr "Pikanäppäin \"%s\" on jo käytössä."
+msgid "The shortcut '%s' is already being used for something else."
+msgstr "Pikanäppäin \"%s\" on jo muussa käytössä."
 
-#: ../dialogs/keyboard-settings/main.c:330
+#: ../dialogs/keyboard-settings/main.c:344
 msgid "Short command may not be empty."
 msgstr "Pikakomento ei voi olla tyhjä."
 
-#: ../dialogs/keyboard-settings/main.c:641
+#: ../dialogs/keyboard-settings/main.c:715
 msgid "Shortcut"
 msgstr "Pikanäppäin"
 
-#: ../dialogs/keyboard-settings/main.c:646
+#: ../dialogs/keyboard-settings/main.c:720
 msgid "Command"
 msgstr "Komento"
 
