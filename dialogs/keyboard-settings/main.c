@@ -151,16 +151,124 @@ keyboard_settings_load_shortcuts (GtkWidget    *kbd_shortcuts_view,
 
 
 static gboolean
+read_shortcut_property (const GValue *value, 
+                        const gchar **type, 
+                        const gchar **action)
+{
+  const GPtrArray *array;
+  const GValue *type_value;
+  const GValue *action_value;
+
+  /* Make sure we only load shortcuts from string arrays */
+  if (G_UNLIKELY (G_VALUE_TYPE (value) != dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE)))
+    return FALSE;
+
+  /* Get the pointer array */
+  array = g_value_get_boxed (value);
+
+  /* Make sure the array has exactly two members */
+  if (G_UNLIKELY (array->len != 2))
+    return FALSE;
+
+  /* Get the array member values */
+  type_value = g_ptr_array_index (array, 0);
+  action_value = g_ptr_array_index (array, 1);
+
+  /* Make sure both are string values */
+  if (G_UNLIKELY (G_VALUE_TYPE (type_value) != G_TYPE_STRING || G_VALUE_TYPE (action_value) != G_TYPE_STRING))
+    return FALSE;
+
+  /* Read shortcut type and action */
+  *type = g_value_get_string (type_value);
+  *action = g_value_get_string (action_value);
+
+  return TRUE;
+}
+
+
+
+static gboolean
+keyboard_settings_request_confirmation (XfconfChannel *channel, 
+                                        const gchar   *property,
+                                        const gchar   *current_action)
+{
+  GValue       value = { 0 };
+  const gchar *type;
+  const gchar *action;
+  gboolean     shortcut_accepted = TRUE;
+  gchar       *escaped_shortcut;
+  gchar       *other_name;
+  gchar       *primary_text;
+  gchar       *secondary_text;
+  gint         response;
+
+  /* Try to read the property values */
+  if (G_LIKELY (xfconf_channel_get_property (kbd_channel, property, &value) && read_shortcut_property (&value, &type, &action)))
+    {
+      if (G_LIKELY (g_utf8_collate (type, "execute") != 0 || g_utf8_collate (action, current_action) != 0))
+        {
+          /* Build primary error message and insert the shortcut */
+          escaped_shortcut = g_markup_escape_text (property+1, -1);
+          primary_text = g_strdup_printf (_("Shortcut conflict: %s"), escaped_shortcut);
+          g_free (escaped_shortcut);
+
+          /* Generate error description based on the type of the confilcting shortcut */
+          if (g_utf8_collate (type, "xfwm4") == 0)
+            {
+              other_name = g_strdup (_("Window manager action"));
+              secondary_text = g_strdup (_("The shortcut is already used by a window manager action, which "
+                                           "raises a conflict. Which one do you want to keep?"));
+            }
+          else
+            {
+              other_name = g_markup_escape_text (action, -1);
+              secondary_text = g_strdup_printf (_("The shortcut is already used for the command <b>%s</b>. "
+                                                  "Which one do you want to keep?"),
+                                                other_name);
+            }
+
+          /* Ask the user what to do */
+          response = xfce_message_dialog (NULL, _("Shortcut conflict"), GTK_STOCK_DIALOG_ERROR,
+                                          primary_text, secondary_text,
+                                          XFCE_CUSTOM_BUTTON, current_action, GTK_RESPONSE_ACCEPT,
+                                          XFCE_CUSTOM_BUTTON, other_name, GTK_RESPONSE_REJECT, 
+                                          NULL);
+
+          shortcut_accepted = (response == GTK_RESPONSE_ACCEPT);
+
+          /* Free strings */
+          g_free (other_name);
+          g_free (primary_text);
+          g_free (secondary_text);
+        }
+    }
+  else
+    {
+      xfce_err (_("The keyboard shortcut '%s' is already being used for something else."), property+1);
+      shortcut_accepted = FALSE;
+    }
+
+  return shortcut_accepted;
+}
+
+
+
+static gboolean
 keyboard_settings_validate_shortcut (ShortcutDialog      *dialog,
                                      const gchar         *shortcut,
                                      struct TreeViewInfo *info)
 {
   gboolean  shortcut_accepted = TRUE;
+  gchar    *current_action;
   gchar    *current_shortcut;
   gchar    *property;
 
   /* Ignore raw 'Return' and 'space' since that may have been used to activate the shortcut row */
   if (G_UNLIKELY (g_utf8_collate (shortcut, "Return") == 0 || g_utf8_collate (shortcut, "space") == 0))
+    return FALSE;
+
+  /* Ignore empty shortcuts */
+  if (G_UNLIKELY (g_utf8_strlen (shortcut, -1) == 0))
     return FALSE;
 
   /* Build property name */
@@ -169,25 +277,23 @@ keyboard_settings_validate_shortcut (ShortcutDialog      *dialog,
   if (G_LIKELY (info->iter != NULL))
     {
       /* Get shortcut of the row we're currently editing */
-      gtk_tree_model_get (gtk_tree_view_get_model (info->view), info->iter, SHORTCUT_COLUMN, &current_shortcut, -1);
+      gtk_tree_model_get (gtk_tree_view_get_model (info->view), info->iter, 
+                          ACTION_COLUMN, &current_action, 
+                          SHORTCUT_COLUMN, &current_shortcut, -1);
 
-      /* Don't accept the shortcut if it already is being used somewhere else (and not by the current row) */
-      if (G_UNLIKELY (xfconf_channel_has_property (kbd_channel, property) && g_utf8_collate (current_shortcut, shortcut) != 0))
-        {
-          xfce_err (_("Keyboard shortcut '%s' is already being used for something else."), shortcut);
-          shortcut_accepted = FALSE;
-        }
+      /* Let the user handle conflicts if there are any */
+      if (G_UNLIKELY (xfconf_channel_has_property (kbd_channel, property)))
+        shortcut_accepted = keyboard_settings_request_confirmation (kbd_channel, property, current_action);
   
-      /* Free shortcut string */
+      /* Free strings */
+      g_free (current_action);
       g_free (current_shortcut);
     }
   else
     {
+      /* Let the user handle conflicts if there are any */
       if (G_UNLIKELY (xfconf_channel_has_property (kbd_channel, property)))
-        {
-          xfce_err (_("Keyboard shortcut '%s' is already being used for something else."), shortcut);
-          shortcut_accepted = FALSE;
-        }
+        shortcut_accepted = keyboard_settings_request_confirmation (kbd_channel, property, current_action);
     }
 
   /* Free strings */
@@ -553,7 +659,6 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
   /* Get dialog widget */
   dialog = glade_xml_get_widget (gxml, "keyboard-settings-dialog");
   gtk_widget_show_all(dialog);
-  gtk_widget_hide(dialog);
 
   return dialog;
 }

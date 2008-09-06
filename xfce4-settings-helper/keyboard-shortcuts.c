@@ -31,22 +31,13 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
+#include <gdk/gdkkeysyms.h>
 
 #include <xfconf/xfconf.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <dbus/dbus-glib.h>
 
 #include "keyboard-shortcuts.h"
-
-
-
-/* Modifiers to be ignored (0x2000 is an Xkb modifier) */
-#define IGNORED_MODIFIERS (0x2000 | GDK_LOCK_MASK | GDK_HYPER_MASK)
-
-/* Modifiers to be used */
-#define USED_MODIFIERS (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_SUPER_MASK | GDK_META_MASK | \
-                        GDK_MOD1_MASK | GDK_MOD2_MASK | GDK_MOD3_MASK | GDK_MOD4_MASK | GDK_MOD5_MASK)
-
 
 
 
@@ -103,7 +94,11 @@ static gboolean        xfce_keyboard_shortcuts_helper_extract_values   (XfceKeyb
                                                                         const GValue                     *value,
                                                                         gchar                           **shortcut,
                                                                         gchar                           **action);
-
+static gboolean        get_modmap_masks                                (Display                          *display,
+                                                                        gint                             *caps_lock_mask,
+                                                                        gint                             *num_lock_mask,
+                                                                        gint                             *scroll_lock_mask);
+static gint            get_ignore_mask                                 (Display                          *display);
 
 
 
@@ -389,11 +384,11 @@ xfce_keyboard_shortcuts_helper_grab_shortcut (XfceKeyboardShortcutsHelper *helpe
       return FALSE ;
     }
 
-  /* Create mask containing ignored modifier bits set which are not set in the grab_mask already */
-  ignore_mask = IGNORED_MODIFIERS & ~grab_mask & GDK_MODIFIER_MASK;
+  /* Determine mask containing ignored modifier bits */
+  ignore_mask = get_ignore_mask (xdisplay);
 
   /* Store indices of all set bits of the ignore mask in an array */
-  for (i = 0, n_bits = 0; ignore_mask != 0; ++i, ignore_mask >>= 1)
+  for (i = 0, n_bits = 0; i < 32; ++i, ignore_mask >>= 1)
     if ((ignore_mask & 0x1) != 0)
       bits[n_bits++] = i;
 
@@ -496,6 +491,7 @@ xfce_keyboard_shortcuts_helper_handle_key_press (XfceKeyboardShortcutsHelper *he
   const gchar *value;
   gint         monitor;
   gint         modifiers;
+  gint         ignore_mask;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
 
@@ -509,11 +505,16 @@ xfce_keyboard_shortcuts_helper_handle_key_press (XfceKeyboardShortcutsHelper *he
   /* Convert event keycode to keysym */
   keysym = XKeycodeToKeysym (GDK_DISPLAY_XDISPLAY (display), xevent->keycode, 0);
 
+  /* Determine ignored modifiers mask */
+  ignore_mask = get_ignore_mask (GDK_DISPLAY_XDISPLAY (display));
+
   /* Remove ignored modifiers and non-modifier keys from the event state mask */
-  modifiers = xevent->state & ~IGNORED_MODIFIERS & GDK_MODIFIER_MASK;
+  modifiers = xevent->state & ~ignore_mask & GDK_MODIFIER_MASK;
 
   /* Get accelerator string for the pressed keys */
   accelerator_name = gtk_accelerator_name (keysym, modifiers);
+
+  g_message ("accelerator_name = %s", accelerator_name);
 
   /* Perform accelerator lookup */
   if (G_LIKELY (g_hash_table_lookup_extended (helper->shortcuts, accelerator_name, (gpointer) &key, (gpointer) &value)))
@@ -641,3 +642,117 @@ xfce_keyboard_shortcuts_helper_extract_values (XfceKeyboardShortcutsHelper  *hel
 
   return result;
 }
+
+
+
+/* The following code appears again in dialogs/keyboard-settings/shortcut-dialog.c: */
+
+/* Modifiers to be ignored (0x2000 is an Xkb modifier) */
+#define IGNORED_MODIFIERS (0x2000 | GDK_LOCK_MASK | GDK_HYPER_MASK | GDK_SUPER_MASK | GDK_META_MASK)
+
+/* Modifiers to be used */
+#define USED_MODIFIERS (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_MOD1_MASK | GDK_MOD2_MASK | \
+                        GDK_MOD3_MASK | GDK_MOD4_MASK | GDK_MOD5_MASK)
+
+
+
+static gboolean
+get_modmap_masks (Display *display,
+                  gint    *caps_lock_mask,
+                  gint    *num_lock_mask,
+                  gint    *scroll_lock_mask)
+{
+  XModifierKeymap *modmap;
+  const KeySym    *keysyms;
+  KeyCode          keycode;
+  KeySym          *keymap;
+  gint             keysyms_per_keycode = 0;
+  gint             min_keycode = 0;
+  gint             max_keycode = 0;
+  gint             mask;
+  gint             i;
+  gint             j;
+
+  /* Clear the masks */
+  *caps_lock_mask = 0;
+  *num_lock_mask = 0;
+  *scroll_lock_mask = 0;
+
+  gdk_error_trap_push ();
+
+  /* Determine minimum and maximum number of keycodes */
+  XDisplayKeycodes (display, &min_keycode, &max_keycode);
+
+  /* Determine symbols for all keycodes */
+  keymap = XGetKeyboardMapping (display, min_keycode, max_keycode - min_keycode + 1, &keysyms_per_keycode);
+
+  if (G_UNLIKELY (keymap == NULL))
+    return FALSE;
+
+  /* Determine modifier mappign */
+  modmap = XGetModifierMapping (display);
+
+  if (G_UNLIKELY (modmap == NULL))
+    {
+      XFree (keymap);
+      return FALSE;
+    }
+
+  /* Iterate over all modifier keycodes */
+  for (i = 0; i < 8 * modmap->max_keypermod; ++i)
+    {
+      /* Get the current keycode */
+      keycode = modmap->modifiermap[i];
+
+      /* Ignore invalid codes */
+      if (keycode == 0 || keycode < min_keycode || keycode > max_keycode)
+        continue;
+
+      /* Determine all keysyms for the current keycode */
+      keysyms = keymap + (keycode - min_keycode) * keysyms_per_keycode;
+
+      /* Create modifier mask for the current modifier */
+      mask = 1 << (i / modmap->max_keypermod);
+
+      /* Iterate over all keysyms of the current keycode and modify the resulting 
+       * masks according to which keysyms belong to which X modifiers */
+      for (j = 0; j < keysyms_per_keycode; ++j)
+        {
+          if (keysyms[j] == GDK_Caps_Lock) 
+            *caps_lock_mask |= mask;
+          else if (keysyms[j] == GDK_Num_Lock)
+            *num_lock_mask |= mask;
+          else if (keysyms[j] == GDK_Scroll_Lock)
+            *scroll_lock_mask |= mask;
+        }
+    }
+  
+  /* Free mappings */
+  XFreeModifiermap (modmap);
+  XFree (keymap);
+
+  gdk_flush ();
+  gdk_error_trap_pop ();
+
+  return TRUE;
+}
+
+
+
+static gint
+get_ignore_mask (Display *display)
+{
+  gint caps_lock_mask;
+  gint num_lock_mask;
+  gint scroll_lock_mask;
+  gint ignore_mask;
+
+  ignore_mask = IGNORED_MODIFIERS & GDK_MODIFIER_MASK;
+
+  if (G_LIKELY (get_modmap_masks (display, &caps_lock_mask, &num_lock_mask, &scroll_lock_mask)))
+    ignore_mask |= caps_lock_mask | num_lock_mask | scroll_lock_mask;
+
+  return ignore_mask;
+}
+
+/* End of the duplicated code */

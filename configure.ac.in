@@ -11,7 +11,7 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([xfce4_settings_version_major], [4])
 m4_define([xfce4_settings_version_minor], [5])
-m4_define([xfce4_settings_version_micro], [80])
+m4_define([xfce4_settings_version_micro], [90])
 m4_define([xfce4_settings_version_build], [r@REVISION@])
 m4_define([xfce4_settings_version_tag], []) # Leave empty for releases
 m4_define([xfce4_settings_version], [xfce4_settings_version_major().xfce4_settings_version_minor().xfce4_settings_version_micro()ifelse(xfce4_settings_version_tag(),[],[], [-ifelse(xfce4_settings_version_tag(), [stephan], [xfce4_settings_version_tag()-xfce4_settings_version_build()], [xfce4_settings_version_tag()])])])
@@ -48,6 +48,7 @@ dnl ********************************
 dnl *** Check for basic programs ***
 dnl ********************************
 AC_PROG_CC()
+AM_PROG_CC_C_O
 AC_PROG_LD()
 AC_PROG_INSTALL()
 AC_PROG_INTLTOOL([0.31], [no-xml])

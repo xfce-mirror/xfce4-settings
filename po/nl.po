@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-17 20:36+0200\n"
+"POT-Creation-Date: 2008-09-06 07:11+0200\n"
 "PO-Revision-Date: 2008-06-21 15:11+0200\n"
 "Last-Translator: Stephan Arts <stephan@xfce.org>\n"
 "Language-Team: Nederlands <nl_NL@li.org>\n"
@@ -54,42 +54,44 @@ msgid "Acceptance _delay:"
 msgstr "Versnellings_tijd:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 #, fuzzy
 msgid "Accessibility Settings"
 msgstr "Toegankelijkheidsinstellingen"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
+msgid "Configure Sticky Keys, Slow Keys, and other accessibility aids"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 #, fuzzy
 msgid "D_ebounce time:"
 msgstr "V_ertraging voor kaatstoetsen:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 #, fuzzy
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr "Plaktoetsen uitschakelen wanneer _twee toetsen tegelijk zijn ingedrukt"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 #, fuzzy
 msgid "Enable _bounce keys"
 msgstr "_Kaatstoetsen inschakelen"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 #, fuzzy
 msgid "Enable _sticky keys"
 msgstr "_Plaktoetsen inschakelen"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 #, fuzzy
 msgid "Enable slow _keys"
 msgstr "_Trage toetsen inschakelen"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
-msgid "Improve accessibility for disabled persons"
-msgstr ""
-
+#. End of the duplicated code
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
 msgstr "Toetsenbord"
 
@@ -99,6 +101,7 @@ msgid "Maximum _speed:"
 msgstr "Maximum_snelheid:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse"
 msgstr "Muis"
 
@@ -210,16 +213,16 @@ msgstr ""
 #: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:64 ../dialogs/mouse-settings/main.c:83
 #: ../xfce4-settings-editor/main.c:50 ../xfce4-settings-helper/main.c:57
-#: ../xfce4-settings-manager/main.c:38
+#: ../xfce4-settings-manager/main.c:47
 msgid "Version information"
 msgstr "Versie-informatie"
 
 #: ../dialogs/accessibility-settings/main.c:144
 #: ../dialogs/appearance-settings/main.c:759
 #: ../dialogs/display-settings/main.c:643
-#: ../dialogs/keyboard-settings/main.c:579
+#: ../dialogs/keyboard-settings/main.c:684
 #: ../dialogs/mouse-settings/main.c:1170 ../xfce4-settings-editor/main.c:72
-#: ../xfce4-settings-helper/main.c:100 ../xfce4-settings-manager/main.c:54
+#: ../xfce4-settings-helper/main.c:100 ../xfce4-settings-manager/main.c:82
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr ""
@@ -227,23 +230,28 @@ msgstr ""
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:778
 #: ../dialogs/display-settings/main.c:662
-#: ../dialogs/keyboard-settings/main.c:596
+#: ../dialogs/keyboard-settings/main.c:701
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:91
-#: ../xfce4-settings-helper/main.c:119 ../xfce4-settings-manager/main.c:67
+#: ../xfce4-settings-helper/main.c:119 ../xfce4-settings-manager/main.c:95
 msgid "The Xfce development team. All rights reserved."
 msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:164
 #: ../dialogs/appearance-settings/main.c:779
 #: ../dialogs/display-settings/main.c:663
-#: ../dialogs/keyboard-settings/main.c:597
+#: ../dialogs/keyboard-settings/main.c:702
 #: ../dialogs/mouse-settings/main.c:1190 ../xfce4-settings-editor/main.c:92
-#: ../xfce4-settings-helper/main.c:120 ../xfce4-settings-manager/main.c:68
+#: ../xfce4-settings-helper/main.c:120 ../xfce4-settings-manager/main.c:96
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+#, fuzzy
+msgid "Accessibility"
+msgstr "Toegankelijkheidsinstellingen"
+
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:4
 #, fuzzy
 msgid "Xfce 4 Accessibility Settings"
 msgstr "Toegankelijkheidsinstellingen"
@@ -273,14 +281,14 @@ msgid "<b>Toolbar Style</b>"
 msgstr "<b>Taakbalk</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
-#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:1
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Appearance Settings"
 msgstr "Weergave-instellingen"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
-#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:2
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
 #, fuzzy
-msgid "Change the looks of your Xfce desktop"
+msgid "Change the look of your Xfce desktop"
 msgstr "Verander de uitstraling van jouw XFCE bureaublad"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
@@ -406,17 +414,23 @@ msgstr "Gemiddelde vormhints"
 msgid "Full"
 msgstr ""
 
-#: ../dialogs/appearance-settings/xfce4-appearance-settings.desktop.in.h:3
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
+#, fuzzy
+msgid "Appearance"
+msgstr "Weergave-instellingen"
+
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:4
 #, fuzzy
 msgid "Xfce 4 Appearance Settings"
 msgstr "Weergave-instellingen"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
-msgid "Configure the display settings and configuration"
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
+msgid "Configure screen settings and layout"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
-#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:2
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
 #, fuzzy
 msgid "Display Settings"
 msgstr "Muis-instellingen"
@@ -494,11 +508,12 @@ msgstr ""
 msgid "Second digital display"
 msgstr ""
 
-#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:1
-msgid "Configure the screen settings and configuration"
-msgstr ""
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+#, fuzzy
+msgid "Display"
+msgstr "Muis-instellingen"
 
-#: ../dialogs/display-settings/xfce4-display-settings.desktop.in.h:3
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:4
 #, fuzzy
 msgid "Xfce 4 Display Settings"
 msgstr "Muis-instellingen"
@@ -560,7 +575,8 @@ msgstr "<b>Typ-instellingen</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
-msgid "Behaviour"
+#, fuzzy
+msgid "Behavior"
 msgstr "Gedrag"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
@@ -573,13 +589,13 @@ msgid "Define shortcuts for launching applications:"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:1
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 #, fuzzy
 msgid "Keyboard Settings"
 msgstr "Toetsenbordinstellingen"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:2
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
 #, fuzzy
 msgid "Keyboard settings and shortcuts"
 msgstr "Toetsenbordinstellingen"
@@ -643,40 +659,67 @@ msgstr "gtk-help"
 msgid "gtk-remove"
 msgstr "gtk-remove"
 
-#: ../dialogs/keyboard-settings/main.c:177
-#: ../dialogs/keyboard-settings/main.c:188
-#, c-format
-msgid "Keyboard shortcut '%s' is already being used for something else."
+#: ../dialogs/keyboard-settings/main.c:212
+#, fuzzy, c-format
+msgid "Shortcut conflict: %s"
+msgstr "Snelkoppelingen"
+
+#: ../dialogs/keyboard-settings/main.c:218
+msgid "Window manager action"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/main.c:224
+#: ../dialogs/keyboard-settings/main.c:219
+msgid ""
+"The shortcut is already used by a window manager action, which raises a "
+"conflict. Which one do you want to keep?"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/main.c:225
+#, c-format
+msgid ""
+"The shortcut is already used for the command <b>%s</b>. Which one do you "
+"want to keep?"
+msgstr ""
+
+#. Ask the user what to do
+#: ../dialogs/keyboard-settings/main.c:231
+#, fuzzy
+msgid "Shortcut conflict"
+msgstr "Snelkoppelingen"
+
+#: ../dialogs/keyboard-settings/main.c:247
+#, c-format
+msgid "The keyboard shortcut '%s' is already being used for something else."
+msgstr ""
+
+#: ../dialogs/keyboard-settings/main.c:330
 msgid "Short command may not be empty."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/main.c:535
+#: ../dialogs/keyboard-settings/main.c:641
 #, fuzzy
 msgid "Shortcut"
 msgstr "Snelkoppelingen"
 
-#: ../dialogs/keyboard-settings/main.c:540
+#: ../dialogs/keyboard-settings/main.c:646
 msgid "Command"
 msgstr ""
 
 #. Set dialog title
-#: ../dialogs/keyboard-settings/shortcut-dialog.c:226
+#: ../dialogs/keyboard-settings/shortcut-dialog.c:233
 #, fuzzy
 msgid "Set shortcut"
 msgstr "Snelkoppelingen"
 
-#: ../dialogs/keyboard-settings/shortcut-dialog.c:245
+#: ../dialogs/keyboard-settings/shortcut-dialog.c:252
 msgid "Set shortcut for command:"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/shortcut-dialog.c:290
+#: ../dialogs/keyboard-settings/shortcut-dialog.c:297
 msgid "Could not grab the keyboard."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in.h:3
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:4
 #, fuzzy
 msgid "Xfce 4 Keyboard Settings"
 msgstr "Toetsenbordinstellingen"
@@ -725,8 +768,8 @@ msgid "<b>Size</b>"
 msgstr "<b>Stijl</b>"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:1
-msgid "Configure the look and feeling of the pointer devices"
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
+msgid "Configure pointer device behavior, look, and feel"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
@@ -739,7 +782,7 @@ msgid "Devices"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
-#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:2
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
 msgid "Mouse Settings"
 msgstr "Muis-instellingen"
 
@@ -825,7 +868,7 @@ msgstr "Rechtshandig"
 msgid "_Threshold:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/xfce4-mouse-settings.desktop.in.h:3
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:4
 #, fuzzy
 msgid "Xfce 4 Mouse Settings"
 msgstr "Muis-instellingen"
@@ -848,13 +891,12 @@ msgstr ""
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 #, fuzzy
-msgid "Graphical Settings Editor for Xfce 4"
+msgid "Graphical settings editor for Xfce 4"
 msgstr "Xfce instellingenbeheer"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 #, fuzzy
-msgid "Settings Manager"
+msgid "Settings Editor"
 msgstr "Xfce instellingenbeheer"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
@@ -913,11 +955,11 @@ msgid "Customize your Xfce desktop"
 msgstr "Uw Xfce-bureaublad aanpassen"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:101
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:308
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:324
 msgid "Xfce Settings Manager"
 msgstr "Xfce instellingenbeheer"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:307
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:323
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kon \"%s\" niet starten"
@@ -927,10 +969,19 @@ msgstr "Kon \"%s\" niet starten"
 msgid "Graphical Settings Manager for Xfce 4"
 msgstr "Xfce instellingenbeheer"
 
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+#, fuzzy
+msgid "Settings Manager"
+msgstr "Xfce instellingenbeheer"
+
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 #, fuzzy
 msgid "Xfce 4 Settings Manager"
 msgstr "Xfce instellingenbeheer"
+
+#, fuzzy
+#~ msgid "Change the looks of your Xfce desktop"
+#~ msgstr "Verander de uitstraling van jouw XFCE bureaublad"
 
 #, fuzzy
 #~ msgid "<b>Single Display</b>"

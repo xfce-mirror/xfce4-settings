@@ -1,4 +1,3 @@
-/* $Id$ */
 /*
  *  xfce4-settings-manager
  *
@@ -26,6 +25,10 @@
 #include <unistd.h>
 #endif
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
@@ -33,6 +36,8 @@
 #include <exo/exo.h>
 
 #include "xfce-settings-manager-dialog.h"
+
+#define SETTINGS_CATEGORY  "X-XfceSettingsDialog"
 
 struct _XfceSettingsManagerDialog
 {
@@ -49,7 +54,7 @@ typedef struct _XfceSettingsManagerDialogClass
 enum
 {
     COL_NAME = 0,
-    COL_PIXBUF,
+    COL_ICON_NAME,
     COL_COMMENT,
     COL_EXEC,
     COL_SNOTIFY,
@@ -73,12 +78,6 @@ static gboolean xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
                                                            gpointer data);
 #endif
 
-static const char *categories[] = {
-    "Name", "GenericName", "X-XfceSettingsName", "Icon", "Comment", "Exec",
-    "TryExec", "StartupNotify", "Hidden",
-};
-static const gint n_categories = 9;
-
 
 G_DEFINE_TYPE(XfceSettingsManagerDialog, xfce_settings_manager_dialog, XFCE_TYPE_TITLED_DIALOG)
 
@@ -95,45 +94,54 @@ static void
 xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 {
     GtkWidget *sw, *iconview;
+    GtkCellRenderer *render;
 
     xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dialog),
                                     _("Customize your Xfce desktop"));
     gtk_window_set_title(GTK_WINDOW(dialog), _("Xfce Settings Manager"));
     gtk_window_set_icon_name(GTK_WINDOW(dialog), "preferences-desktop");
     gtk_dialog_set_has_separator(GTK_DIALOG(dialog), FALSE);
-    gtk_window_set_default_size(GTK_WINDOW(dialog), 600, 400);
 
     sw = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(sw), GTK_SHADOW_IN);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
                                    GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-    gtk_container_set_border_width (GTK_CONTAINER (sw), 6);
+    gtk_container_set_border_width(GTK_CONTAINER(sw), 6);
     gtk_widget_show(sw);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), sw, TRUE, TRUE, 0);
 
     xfce_settings_manager_dialog_create_liststore(dialog);
     iconview = exo_icon_view_new_with_model(GTK_TREE_MODEL(dialog->ls));
-    /* FIXME: use the cell layout stuff and not these deprecated functions.
-     * for now i'm just lazy cuz this is so much easier. */
-    exo_icon_view_set_text_column(EXO_ICON_VIEW(iconview), COL_NAME);
-    exo_icon_view_set_pixbuf_column(EXO_ICON_VIEW(iconview), COL_PIXBUF);
-#if GTK_CHECK_VERSION(2, 12, 0)
-    g_object_set(G_OBJECT(iconview), "has-tooltip", TRUE, NULL);
-    g_signal_connect(G_OBJECT(iconview), "query-tooltip",
-                     G_CALLBACK(xfce_settings_manager_dialog_query_tooltip),
-                     NULL);
-#endif
     exo_icon_view_set_orientation(EXO_ICON_VIEW(iconview),
                                   GTK_ORIENTATION_HORIZONTAL);
     exo_icon_view_set_layout_mode(EXO_ICON_VIEW(iconview),
                                   EXO_ICON_VIEW_LAYOUT_ROWS);
     exo_icon_view_set_single_click(EXO_ICON_VIEW(iconview), TRUE);
     exo_icon_view_set_reorderable(EXO_ICON_VIEW(iconview), FALSE);
+    exo_icon_view_set_selection_mode(EXO_ICON_VIEW(iconview),
+                                     GTK_SELECTION_NONE);
     gtk_widget_show(iconview);
     gtk_container_add(GTK_CONTAINER(sw), iconview);
     g_signal_connect(G_OBJECT(iconview), "item-activated",
                      G_CALLBACK(xfce_settings_manager_dialog_item_activated),
                      dialog);
+#if GTK_CHECK_VERSION(2, 12, 0)
+    g_object_set(G_OBJECT(iconview), "has-tooltip", TRUE, NULL);
+    g_signal_connect(G_OBJECT(iconview), "query-tooltip",
+                     G_CALLBACK(xfce_settings_manager_dialog_query_tooltip),
+                     NULL);
+#endif
+
+    render = gtk_cell_renderer_pixbuf_new();
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(iconview), render, FALSE);
+    gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(iconview), render,
+                                  "icon-name", COL_ICON_NAME);
+    g_object_set(G_OBJECT(render), "stock-size", GTK_ICON_SIZE_DIALOG, NULL);
+
+    render = gtk_cell_renderer_text_new();
+    gtk_cell_layout_pack_end(GTK_CELL_LAYOUT(iconview), render, TRUE);
+    gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(iconview), render,
+                                  "text", COL_NAME);
     
     gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CLOSE,
                           GTK_RESPONSE_ACCEPT);
@@ -184,12 +192,11 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
     gchar **dirs, buf[PATH_MAX];
     gint i, icon_size;
 
-    dialog->ls = gtk_list_store_new(N_COLS, G_TYPE_STRING, GDK_TYPE_PIXBUF,
+    dialog->ls = gtk_list_store_new(N_COLS, G_TYPE_STRING, G_TYPE_STRING,
                                     G_TYPE_STRING, G_TYPE_STRING,
                                     G_TYPE_BOOLEAN);
     
-    dirs = xfce_resource_lookup_all(XFCE_RESOURCE_DATA,
-                                    "xfce4/settings-dialogs/");
+    dirs = xfce_resource_lookup_all(XFCE_RESOURCE_DATA, "applications/");
     if(!dirs)
         return;
 
@@ -203,71 +210,80 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
             continue;
 
         while((file = g_dir_read_name(d))) {
-            XfceDesktopEntry *dentry;
-            gchar *name = NULL, *icon = NULL, *comment = NULL, *exec = NULL;
-            gchar *tryexec = NULL, *snotify = NULL, *hidden = NULL;
-            GdkPixbuf *pix = NULL;
+            XfceRc *rcfile;
+            const gchar *name, *exec, *value;
             GtkTreeIter iter;
 
             if(!g_str_has_suffix(file, ".desktop"))
                 continue;
 
             g_snprintf(buf, sizeof(buf), "%s/%s", dirs[i], file);
-            dentry = xfce_desktop_entry_new(buf, categories, n_categories);
-            if(!dentry)
+            rcfile = xfce_rc_simple_open(buf, TRUE);
+            if(!rcfile)
                 continue;
 
-            if(xfce_desktop_entry_get_string(dentry, "Hidden", FALSE, &hidden)) {
-                if(!g_ascii_strcasecmp(hidden, "true")) {
-                    g_free(hidden);
-                    g_object_unref(G_OBJECT(dentry));
-                    continue;
-                }
-                g_free(hidden);
+            if(!xfce_rc_has_group(rcfile, "Desktop Entry")) {
+                xfce_rc_close(rcfile);
+                continue;
+            }
+            xfce_rc_set_group(rcfile, "Desktop Entry");
+
+            value = xfce_rc_read_entry(rcfile, "Categories", NULL);
+            if(!value) {
+                xfce_rc_close(rcfile);
+                continue;
             }
 
-            if(xfce_desktop_entry_get_string(dentry, "TryExec", FALSE, &tryexec)) {
-                gchar *prog = g_find_program_in_path(tryexec);
+            if(strncmp(value, SETTINGS_CATEGORY ";",
+                       strlen(SETTINGS_CATEGORY ";"))
+               && !strstr(value, ";" SETTINGS_CATEGORY ";"))
+            {
+                xfce_rc_close(rcfile);
+                continue;
+            }
+
+            if(xfce_rc_read_bool_entry(rcfile, "Hidden", FALSE)) {
+                xfce_rc_close(rcfile);
+                continue;
+            }
+
+            value = xfce_rc_read_entry(rcfile, "TryExec", NULL);
+            if(value) {
+                gchar *prog = g_find_program_in_path(value);
 
                 if(!prog || access(prog, R_OK|X_OK)) {
                     g_free(prog);
-                    g_free(tryexec);
-                    g_object_unref(G_OBJECT(dentry));
+                    xfce_rc_close(rcfile);
                     continue;
                 }
                 g_free(prog);
-                g_free(tryexec);
             }
 
-            if(!xfce_desktop_entry_get_string(dentry, "X-XfceSettingsName", TRUE, &name))
-                if(!xfce_desktop_entry_get_string(dentry, "GenericName", TRUE, &name))
-                    xfce_desktop_entry_get_string(dentry, "Name", TRUE, &name);
-            xfce_desktop_entry_get_string(dentry, "Icon", FALSE, &icon);
-            xfce_desktop_entry_get_string(dentry, "Comment", TRUE, &comment);
-            xfce_desktop_entry_get_string(dentry, "Exec", FALSE, &exec);
-            xfce_desktop_entry_get_string(dentry, "StartupNotify", FALSE, &snotify);
+            if(!(name = xfce_rc_read_entry(rcfile, "X-XfceSettingsName", NULL))) {
+                if(!(name = xfce_rc_read_entry(rcfile, "GenericName", NULL))) {
+                    if(!(name = xfce_rc_read_entry(rcfile, "Name", NULL))) {
+                        xfce_rc_close(rcfile);
+                        continue;
+                    }
+                }
+            }
 
-            if(icon)
-                pix = xfce_themed_icon_load(icon, icon_size);
+            exec = xfce_rc_read_entry(rcfile, "Exec", NULL);
+            if(!exec) {
+                xfce_rc_close(rcfile);
+                continue;
+            }
 
             gtk_list_store_append(dialog->ls, &iter);
             gtk_list_store_set(dialog->ls, &iter,
                                COL_NAME, name,
-                               COL_PIXBUF, pix,
-                               COL_COMMENT, comment,
+                               COL_ICON_NAME, xfce_rc_read_entry(rcfile, "Icon", GTK_STOCK_MISSING_IMAGE),
+                               COL_COMMENT, xfce_rc_read_entry(rcfile, "Comment", NULL),
                                COL_EXEC, exec,
-                               COL_SNOTIFY, (snotify && !g_ascii_strcasecmp(snotify, "true")
-                                             ? TRUE : FALSE),
+                               COL_SNOTIFY, xfce_rc_read_bool_entry(rcfile, "StartupNotify", FALSE),
                                -1);
 
-            g_free(name);
-            g_free(comment);
-            g_free(exec);
-            g_free(snotify);
-            g_free(icon);
-            if(pix)
-                g_object_unref(G_OBJECT(pix));
-            g_object_unref(G_OBJECT(dentry));
+            xfce_rc_close(rcfile);
         }
 
         g_dir_close(d);

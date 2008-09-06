@@ -211,6 +211,7 @@ xfce4_settings_editor_init_dialog (GladeXML *gxml)
     GtkCellRenderer *renderer;
     GtkTreeStore *tree_store;
     GtkListStore *list_store;
+    gchar **channels, **_channels_iter;
 
     GtkWidget *dialog = glade_xml_get_widget (gxml, "settings_editor_dialog");
     GtkWidget *channel_treeview = glade_xml_get_widget (gxml, "channel_treeview");
@@ -222,12 +223,17 @@ xfce4_settings_editor_init_dialog (GladeXML *gxml)
     gtk_tree_view_set_model (GTK_TREE_VIEW (channel_treeview), GTK_TREE_MODEL (tree_store));
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 0, N_("Channel"), renderer, "text", 0, NULL);
 
-
-    check_channel (tree_store, GTK_TREE_VIEW(channel_treeview), "xfwm4");
-    check_channel (tree_store, GTK_TREE_VIEW(channel_treeview), "xsettings");
-    check_channel (tree_store, GTK_TREE_VIEW(channel_treeview), "xfce4-desktop");
-    check_channel (tree_store, GTK_TREE_VIEW(channel_treeview), "accessx");
-    check_channel (tree_store, GTK_TREE_VIEW(channel_treeview), "keyboards");
+    channels = xfconf_list_channels();
+    if (channels != NULL)
+    {
+        _channels_iter = channels;
+        while (*_channels_iter)
+        {
+            check_channel (tree_store, GTK_TREE_VIEW(channel_treeview), (*_channels_iter));
+            _channels_iter++;
+        }
+        g_strfreev (channels);
+    }
 
     list_store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (property_treeview), GTK_TREE_MODEL (list_store));
@@ -249,97 +255,143 @@ xfce4_settings_editor_init_dialog (GladeXML *gxml)
 static void
 cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, GtkTreeView *property_treeview)
 {
-    g_print ("%s\n", __FUNCTION__);
-    GtkTreeIter iter;
     GHashTable *hash_table = NULL;
     XfconfChannel *channel = NULL;
     const gchar *key;
     const GValue *hash_value;
     GHashTableIter hash_iter;
     GValue value = {0, };
+    GValue name_value = {0, };
+    GValue type_value = {0, };
+    GValue val_value = {0, };
     GtkTreeModel *model = gtk_tree_view_get_model (tree_view);
     GtkTreeModel *property_model = gtk_tree_view_get_model (property_treeview);
-    GtkTreePath *root_path = gtk_tree_path_copy (path);
+    GtkTreeIter iter, parent_iter;
     gchar *temp, *prop_name = NULL;
     gchar *str_val = NULL;
+    gint path_depth = gtk_tree_path_get_depth(path);
+
+    g_value_init (&name_value, G_TYPE_STRING);
+    g_value_init (&val_value, G_TYPE_STRING);
+    g_value_init (&type_value, G_TYPE_STRING);
 
     gtk_list_store_clear (GTK_LIST_STORE (property_model));
+    gtk_tree_model_get_iter (model, &iter, path);
 
-    while (gtk_tree_path_get_depth(root_path) > 1)
+    /* If it is not the toplevel path (eg, channel-name), set the prop-name
+     * otherwise, leave it at NULL
+     */
+    if (gtk_tree_path_get_depth(path) > 1)
     {
-        gtk_tree_model_get_iter (model, &iter, root_path);
         gtk_tree_model_get_value (model, &iter, 0, &value);
-        temp = g_strconcat ("/", g_value_get_string (&value), prop_name, NULL);
+        prop_name = g_strconcat ("/", g_value_get_string (&value), NULL);
         g_value_unset (&value);
 
-        if (prop_name)
-            g_free (prop_name);
-        prop_name = temp;
+        /* Traverse the path upwards */
+        while (gtk_tree_path_up (path))
+        {
+            /**
+             * Don't prepend the channel-name, break out of this loop instead.
+             */
+            if (gtk_tree_path_get_depth(path) <= 1)
+                break;
+            gtk_tree_model_get_iter (model, &parent_iter, path);
+            gtk_tree_model_get_value (model, &parent_iter, 0, &value);
+            temp = g_strconcat ("/", g_value_get_string (&value), prop_name, NULL);
+            g_value_unset (&value);
 
-        if (!gtk_tree_path_up (root_path));
-            break; /* this should not happen */
+
+            if (prop_name)
+                g_free (prop_name);
+            prop_name = temp;
+        }
     }
 
-    if (gtk_tree_path_get_depth (root_path) == 1)
+
+    /** the path variable should be set to the root-node, containing the channel-name ... if everything above went well */
+    gtk_tree_model_get_iter (model, &iter, path);
+    gtk_tree_model_get_value (model, &iter, 0, &value);
+    channel = xfconf_channel_new (g_value_get_string(&value));
+    hash_table = xfconf_channel_get_properties (channel, prop_name);
+    g_value_unset (&value);
+
+    if (hash_table)
     {
-        gtk_tree_model_get_iter (model, &iter, root_path);
-        gtk_tree_model_get_value (model, &iter, 0, &value);
-        channel = xfconf_channel_new (g_value_get_string (&value));
-        hash_table = xfconf_channel_get_properties (channel, prop_name);
-
-        if (hash_table)
+        g_hash_table_iter_init (&hash_iter, hash_table);
+        while (g_hash_table_iter_next (&hash_iter, (gpointer *)&key, (gpointer *)&hash_value))
         {
-            g_hash_table_iter_init (&hash_iter, hash_table);
-            while (g_hash_table_iter_next (&hash_iter, (gpointer *)&key, (gpointer *)&hash_value))
+            gchar **components = g_strsplit (key, "/", 0);
+            if (components[path_depth+1] == NULL)
             {
-                gchar **components = g_strsplit (key, "/", 0);
-                g_print ("%d: %s\n", gtk_tree_path_get_depth(path), key);
-                if (components[gtk_tree_path_get_depth (path)+1] == NULL)
+                gtk_list_store_append (GTK_LIST_STORE (property_model), &iter);
+                g_value_set_string (&name_value, components[path_depth]);
+                gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 0, &name_value);
+                g_value_reset (&name_value);
+                switch (G_VALUE_TYPE (hash_value))
                 {
-                    gtk_list_store_append (GTK_LIST_STORE (property_model), &iter);
-                    g_value_init (&value, G_TYPE_STRING);
-                    g_value_set_string (&value, components[gtk_tree_path_get_depth(path)]);
-                    gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 0, &value);
-                    g_value_reset (&value);
-                    g_print ("%s\n", components[gtk_tree_path_get_depth(path)+1]);
-                    switch (G_VALUE_TYPE (hash_value))
-                    {
-                        case G_TYPE_STRING:
-                            g_value_set_string (&value, "String");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &value);
-                            g_value_reset (&value);
-                            g_value_set_string (&value, g_value_get_string (hash_value));
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &value);
-                            g_value_reset (&value);
-                            break;
-                        case G_TYPE_INT:
-                            str_val = g_strdup_printf ("%d", g_value_get_int (hash_value));
-                            g_value_set_string (&value, "Int");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &value);
-                            g_value_reset (&value);
-                            g_value_set_string (&value, str_val);
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &value);
-                            g_value_reset (&value);
-                            g_free (str_val);
-                            str_val = NULL;
-                            break;
-                        case G_TYPE_BOOLEAN:
-                            str_val = g_strdup_printf ("%s", g_value_get_boolean (hash_value)==TRUE?"true":"false");
-                            g_value_set_string (&value, "Bool");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &value);
-                            g_value_reset (&value);
-                            g_value_set_string (&value, str_val);
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &value);
-                            g_value_reset (&value);
-                            g_free (str_val);
-                            str_val = NULL;
-
-                    }
-                    g_value_unset (&value);
+                    case G_TYPE_STRING:
+                        g_value_set_string (&type_value, "String");
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                        g_value_set_string (&value, g_value_get_string (hash_value));
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                        g_value_reset (&type_value);
+                        g_value_reset (&val_value);
+                        break;
+                    case G_TYPE_INT:
+                        str_val = g_strdup_printf ("%d", g_value_get_int (hash_value));
+                        g_value_set_string (&type_value, "Int");
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                        g_value_set_string (&val_value, str_val);
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                        g_value_reset (&type_value);
+                        g_value_reset (&val_value);
+                        g_free (str_val);
+                        str_val = NULL;
+                        break;
+                    case G_TYPE_UINT:
+                        str_val = g_strdup_printf ("%u", g_value_get_uint (hash_value));
+                        g_value_set_string (&type_value, "Int");
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                        g_value_set_string (&val_value, str_val);
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                        g_value_reset (&type_value);
+                        g_value_reset (&val_value);
+                        g_free (str_val);
+                        str_val = NULL;
+                        break;
+                    case G_TYPE_DOUBLE:
+                        str_val = g_strdup_printf ("%f", g_value_get_double (hash_value));
+                        g_value_set_string (&type_value, "Double");
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                        g_value_set_string (&val_value, str_val);
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                        g_value_reset (&type_value);
+                        g_value_reset (&val_value);
+                        g_free (str_val);
+                        str_val = NULL;
+                        break;
+                    case G_TYPE_BOOLEAN:
+                        str_val = g_strdup_printf ("%s", g_value_get_boolean (hash_value)==TRUE?"true":"false");
+                        g_value_set_string (&type_value, "Bool");
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                        g_value_set_string (&val_value, str_val);
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                        g_value_reset (&type_value);
+                        g_value_reset (&val_value);
+                        g_free (str_val);
+                        str_val = NULL;
+                        break;
+                    default:
+                        g_value_set_string (&type_value, "Unknown");
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                        g_value_set_string (&val_value, "Unknown");
+                        gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                        g_value_reset (&type_value);
+                        g_value_reset (&val_value);
+                        break;
                 }
-                g_strfreev (components);
             }
+            g_strfreev (components);
         }
-        g_value_unset (&value);
     }
 }

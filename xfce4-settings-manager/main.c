@@ -31,13 +31,41 @@
 
 #include "xfce-settings-manager-dialog.h"
 
+#ifndef MIN
+#define MIN(a, b)  ( (a) < (b) ? (a) : (b) )
+#endif
+
+/* somewhat arbitrary; should really do something complicated by
+ * looking at font height/avg width, pixbuf height, etc. */
+#define WINDOW_MAX_WIDTH   800
+#define WINDOW_MAX_HEIGHT  600
+
 static gboolean opt_version = FALSE;
 
 static GOptionEntry option_entries[] = {
-    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, 
+    { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, 
       N_("Version information"), NULL },
     { NULL }
 };
+
+static void
+xfce_settings_manager_attempt_appropriate_size(GtkWidget *dialog)
+{
+    GdkScreen *screen = gtk_widget_get_screen(dialog);
+    gint monitor;
+    GdkRectangle geom;
+
+    /* this is a little bit lame */
+    gtk_widget_realize(dialog);
+    monitor = gdk_screen_get_monitor_at_window(screen, dialog->window);
+    gtk_widget_unrealize(dialog);
+
+    gdk_screen_get_monitor_geometry(screen, monitor, &geom);
+
+    gtk_window_set_default_size(GTK_WINDOW(dialog),
+                                MIN(geom.width * 2.0 / 3, WINDOW_MAX_WIDTH),
+                                MIN(geom.height *2.0 / 3, WINDOW_MAX_HEIGHT));
+}
 
 int
 main(int argc,
@@ -61,7 +89,7 @@ main(int argc,
         return EXIT_FAILURE;
     }
 
-    if (G_UNLIKELY (opt_version)) {
+    if(G_UNLIKELY(opt_version)) {
         g_print("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string());
         g_print("%s\n", "Copyright (c) 2008");
         g_print("\t%s\n\n", _("The Xfce development team. All rights reserved."));
@@ -71,6 +99,7 @@ main(int argc,
     }
 
     dialog = xfce_settings_manager_dialog_new();
+    xfce_settings_manager_attempt_appropriate_size(dialog);
     gtk_widget_show(dialog);
     g_signal_connect(G_OBJECT(dialog), "response",
                      G_CALLBACK(gtk_main_quit), NULL);

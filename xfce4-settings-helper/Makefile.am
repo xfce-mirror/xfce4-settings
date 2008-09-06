@@ -35,7 +35,8 @@ xfce4_settings_helper_CFLAGS = \
 	$(LIBXFCEGUI4_CFLAGS) \
 	$(XI_CFLAGS) \
 	$(LIBX11_CFLAGS) \
-	$(XRANDR_CFLAGS)
+	$(XRANDR_CFLAGS) \
+	$(LIBNOTIFY_CFLAGS)
 
 xfce4_settings_helper_LDFLAGS = \
 	-no-undefined \
@@ -51,14 +52,13 @@ xfce4_settings_helper_LDADD = \
 	$(LIBXFCEGUI4_LIBS) \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
-	$(XRANDR_LIBS)
-
-if HAVE_LIBNOTIFY
-xfce4_settings_helper_CFLAGS += \
-	$(LIBNOTIFY_CFLAGS)
-
-xfce4_settings_helper_LDADD += \
+	$(XRANDR_LIBS) \
 	$(LIBNOTIFY_LIBS)
-endif
+
+autostartdir = $(sysconfdir)/xdg/autostart
+autostart_DATA = xfce4-settings-helper-autostart.desktop
+
+EXTRA_DIST = \
+	xfce4-settings-helper-autostart.desktop
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
