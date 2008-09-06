@@ -58,4 +58,7 @@ xfce4_settings_helper_LDADD = \
 autostartdir = $(sysconfdir)/xdg/autostart
 autostart_DATA = xfce4-settings-helper-autostart.desktop
 
+EXTRA_DIST = \
+	xfce4-settings-helper-autostart.desktop
+
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
