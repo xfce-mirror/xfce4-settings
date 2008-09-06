@@ -1,5 +1,14 @@
 2008-09-06	Jannis Pohlmann <jannis@xfce.org>
 
+	* dialogs/keyboard-settings/main.c: Add two new methods
+	  keyboard_settings_request_confirmation() and
+	  read_shortcut_property() for handling conflicts with xfwm4
+	  shortcuts. Provide nice 'please choose between A and B' dialogs in
+	  case we are able to resolve these conflicts via xfconf. The same
+	  dialogs are also going to appear in xfwm4.
+
+2008-09-06	Jannis Pohlmann <jannis@xfce.org>
+
 	* dialogs/keyboard-settings/main.c: Don't accept empty accelerator
 	  names as shortcuts in keyboard_settings_validate_shortcut().
 
