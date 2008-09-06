@@ -53,6 +53,15 @@ enum
 };
 
 
+
+typedef struct
+{
+  const GValue *value;
+  const gchar  *shortcut;
+} ShortcutContext;
+
+
+
 static XfconfChannel *xsettings_channel;
 static XfconfChannel *keyboards_channel;
 static XfconfChannel *kbd_channel;
@@ -200,6 +209,8 @@ keyboard_settings_request_confirmation (XfconfChannel *channel,
   gchar       *other_name;
   gchar       *primary_text;
   gchar       *secondary_text;
+  gchar       *option_accept;
+  gchar       *option_reject;
   gint         response;
 
   /* Try to read the property values */
@@ -209,34 +220,37 @@ keyboard_settings_request_confirmation (XfconfChannel *channel,
         {
           /* Build primary error message and insert the shortcut */
           escaped_shortcut = g_markup_escape_text (property+1, -1);
-          primary_text = g_strdup_printf (_("Shortcut conflict: %s"), escaped_shortcut);
+          primary_text = g_strdup_printf (_("%s shortcut conflict"), escaped_shortcut);
           g_free (escaped_shortcut);
 
-          /* Generate error description based on the type of the confilcting shortcut */
+          /* Generate error description based on the type of the conflicting shortcut */
           if (g_utf8_collate (type, "xfwm4") == 0)
             {
               other_name = g_strdup (_("Window manager action"));
-              secondary_text = g_strdup (_("The shortcut is already used by a window manager action, which "
-                                           "raises a conflict. Which one do you want to keep?"));
+              secondary_text = g_strdup (_("The shortcut is already being used by a <b>window manager action</b>. Which action do you want to use?"));
             }
           else
             {
               other_name = g_markup_escape_text (action, -1);
-              secondary_text = g_strdup_printf (_("The shortcut is already used for the command <b>%s</b>. "
-                                                  "Which one do you want to keep?"),
+              secondary_text = g_strdup_printf (_("The shortcut is already being used for the command <b>%s</b>. Which action do you want to use?"),
                                                 other_name);
             }
+
+          option_accept = current_action == NULL ? g_strdup (_("Use this one")) : g_markup_printf_escaped (_("Use %s"), current_action);
+          option_reject = g_markup_printf_escaped (_("Keep %s"), other_name);
 
           /* Ask the user what to do */
           response = xfce_message_dialog (NULL, _("Shortcut conflict"), GTK_STOCK_DIALOG_ERROR,
                                           primary_text, secondary_text,
-                                          XFCE_CUSTOM_BUTTON, current_action, GTK_RESPONSE_ACCEPT,
-                                          XFCE_CUSTOM_BUTTON, other_name, GTK_RESPONSE_REJECT, 
+                                          XFCE_CUSTOM_BUTTON, option_accept, GTK_RESPONSE_ACCEPT,
+                                          XFCE_CUSTOM_BUTTON, option_reject, GTK_RESPONSE_REJECT, 
                                           NULL);
 
           shortcut_accepted = (response == GTK_RESPONSE_ACCEPT);
 
           /* Free strings */
+          g_free (option_accept);
+          g_free (option_reject);
           g_free (other_name);
           g_free (primary_text);
           g_free (secondary_text);
@@ -244,7 +258,7 @@ keyboard_settings_request_confirmation (XfconfChannel *channel,
     }
   else
     {
-      xfce_err (_("The keyboard shortcut '%s' is already being used for something else."), property+1);
+      xfce_err (_("The shortcut '%s' is already being used for something else."), property+1);
       shortcut_accepted = FALSE;
     }
 
@@ -293,7 +307,7 @@ keyboard_settings_validate_shortcut (ShortcutDialog      *dialog,
     {
       /* Let the user handle conflicts if there are any */
       if (G_UNLIKELY (xfconf_channel_has_property (kbd_channel, property)))
-        shortcut_accepted = keyboard_settings_request_confirmation (kbd_channel, property, current_action);
+        shortcut_accepted = keyboard_settings_request_confirmation (kbd_channel, property, NULL);
     }
 
   /* Free strings */
@@ -364,8 +378,6 @@ keyboard_settings_add_shortcut (GtkTreeView *tree_view)
 
           /* Append new row to the list store */
           gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-
-          /* Set row values */
           gtk_list_store_set (GTK_LIST_STORE (model), &iter, SHORTCUT_COLUMN, shortcut, ACTION_COLUMN, command, -1);
 
           /* Save the new shortcut to xfconf */
@@ -488,23 +500,14 @@ keyboard_settings_edit_shortcut (GtkTreeView *tree_view,
           /* Get the shortcut entered by the user */
           new_shortcut = shortcut_dialog_get_shortcut (SHORTCUT_DIALOG (dialog));
 
-          /* Save the new shortcut */
-          gtk_list_store_set (GTK_LIST_STORE (model), &iter, SHORTCUT_COLUMN, new_shortcut, -1);
+          /* Build property name */
+          new_property = g_strdup_printf ("/%s", new_shortcut);
 
-          /* Only save new shortcut if it's not empty */
-          if (G_LIKELY (response == GTK_RESPONSE_OK && strlen (new_shortcut) > 0))
-            {
-              /* Build property name */
-              new_property = g_strdup_printf ("/%s", new_shortcut);
-
-              /* Save new shortcut to the settings */
-              xfconf_channel_set_array (kbd_channel, new_property, G_TYPE_STRING, "execute", G_TYPE_STRING, action, G_TYPE_INVALID);
-
-              /* Free property names */
-              g_free (new_property);
-            }
+          /* Save new shortcut to the settings */
+          xfconf_channel_set_array (kbd_channel, new_property, G_TYPE_STRING, "execute", G_TYPE_STRING, action, G_TYPE_INVALID);
 
           /* Free strings */
+          g_free (new_property);
           g_free (old_property);
         }
 
@@ -553,9 +556,6 @@ keyboard_settings_edit_action (GtkTreeView *tree_view,
           /* Get the action entered by the user */
           new_action = command_dialog_get_command (COMMAND_DIALOG (dialog));
 
-          /* Replace the old action in the tree view */
-          gtk_list_store_set (GTK_LIST_STORE (model), &iter, ACTION_COLUMN, new_action, -1);
-
           /* Save new action to the settings */
           xfconf_channel_set_array (kbd_channel, property, G_TYPE_STRING, "execute", G_TYPE_STRING, new_action, G_TYPE_INVALID);
         }
@@ -583,6 +583,80 @@ keyboard_settings_row_activated (GtkTreeView       *tree_view,
     keyboard_settings_edit_action (tree_view, path);
 
   return;
+}
+
+
+
+static gboolean
+keyboard_settings_update_shortcut (GtkTreeModel    *model, 
+                                   GtkTreePath     *path, 
+                                   GtkTreeIter     *iter, 
+                                   ShortcutContext *context)
+{
+  const gchar *type;
+  const gchar *action;
+  gboolean exit_loop = FALSE;
+  gchar *current_action;
+  gchar *shortcut;
+
+  gtk_tree_model_get (model, iter, SHORTCUT_COLUMN, &shortcut, ACTION_COLUMN, &current_action, -1);
+
+  if (G_LIKELY (shortcut != NULL))
+    {
+      if (G_UNLIKELY (g_utf8_collate (shortcut, context->shortcut) == 0))
+        {
+          if (G_LIKELY (context->value != NULL))
+            {
+              if (G_LIKELY (read_shortcut_property (context->value, &type, &action)))
+                {
+                  if (G_LIKELY (g_utf8_collate (type, "execute") == 0))
+                    gtk_list_store_set (GTK_LIST_STORE (model), iter, SHORTCUT_COLUMN, shortcut, ACTION_COLUMN, action, -1);
+                  else
+                    gtk_list_store_set (GTK_LIST_STORE (model), iter, SHORTCUT_COLUMN, NULL, -1);
+                }
+            }
+          else
+            gtk_list_store_set (GTK_LIST_STORE (model), iter, SHORTCUT_COLUMN, NULL, -1);
+    
+          exit_loop = TRUE;
+        }
+    }
+  else
+    {
+      if (G_LIKELY (context->value != NULL))
+        {
+          if (G_LIKELY (read_shortcut_property (context->value, &type, &action)))
+            {
+              if (G_UNLIKELY (g_utf8_collate (type, "execute") == 0 && g_utf8_collate (action, current_action) == 0))
+                {
+                  gtk_list_store_set (GTK_LIST_STORE (model), iter, SHORTCUT_COLUMN, context->shortcut, -1);
+                  exit_loop = TRUE;
+                }
+            }
+        }
+    }
+
+  /* Free strings */
+  g_free (shortcut);
+  g_free (current_action);
+
+  return exit_loop;
+}
+
+
+
+static void
+keyboard_settings_property_changed (XfconfChannel *channel, 
+                                    const gchar   *property, 
+                                    const GValue  *value, 
+                                    GtkListStore  *store)
+{
+  ShortcutContext context;
+
+  context.value = value;
+  context.shortcut = property + 1;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (store), (GtkTreeModelForeachFunc) keyboard_settings_update_shortcut, &context);
 }
 
 
@@ -648,6 +722,9 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
 
   /* Load keyboard shortcuts */
   keyboard_settings_load_shortcuts (kbd_shortcuts_view, list_store);
+  
+  /* Connect to xfconf property-changed signal */
+  g_signal_connect (kbd_channel, "property-changed", G_CALLBACK (keyboard_settings_property_changed), list_store);
 
   /* Connect to add/delete button signals */
   add_shortcut_button = glade_xml_get_widget (gxml, "add_shortcut_button");
