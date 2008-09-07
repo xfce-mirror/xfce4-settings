@@ -228,7 +228,6 @@ frap_shortcuts_dialog_create_contents (FrapShortcutsDialog *dialog,
   GtkWidget   *button;
   GtkWidget   *table;
   GtkWidget   *label;
-  GtkWidget   *image;
   const gchar *title;
   const gchar *label_text;
 
