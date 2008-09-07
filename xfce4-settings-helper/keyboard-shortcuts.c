@@ -33,11 +33,14 @@
 #include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
 
-#include <xfconf/xfconf.h>
-#include <libxfcegui4/libxfcegui4.h>
 #include <dbus/dbus-glib.h>
 
+#include <libxfcegui4/libxfcegui4.h>
+
+#include <xfconf/xfconf.h>
+
 #include "keyboard-shortcuts.h"
+#include "frap-shortcuts.h"
 
 
 
@@ -60,45 +63,15 @@ static void            xfce_keyboard_shortcuts_helper_set_property     (GObject 
                                                                         guint                             prop_id,
                                                                         const GValue                     *value,
                                                                         GParamSpec                       *pspec);
-static void            xfce_keyboard_shortcuts_helper_add_filter       (XfceKeyboardShortcutsHelper      *helper);
-static GdkFilterReturn xfce_keyboard_shortcuts_helper_filter           (GdkXEvent                        *gdk_xevent,
-                                                                        GdkEvent                         *event,
-                                                                        XfceKeyboardShortcutsHelper      *helper);
-static void            xfce_keyboard_shortcuts_helper_load_shortcut    (const gchar                      *key,
+static void           xfce_keyboard_shortcuts_helper_load_shortcut     (const gchar                      *key,
                                                                         const GValue                     *value,
                                                                         XfceKeyboardShortcutsHelper      *helper);
-static gboolean        xfce_keyboard_shortcuts_helper_grab_shortcut    (XfceKeyboardShortcutsHelper      *helper,
-                                                                        const gchar                      *shortcut,
-                                                                        gboolean                          grab);
-static gboolean        xfce_keyboard_shortcuts_helper_parse_shortcut   (XfceKeyboardShortcutsHelper      *helper,
-                                                                        GdkDisplay                       *display,
-                                                                        const gchar                      *shortcut,
-                                                                        guint                            *keyval,
-                                                                        GdkModifierType                  *modifiers,
-                                                                        KeyCode                          *keycode,
-                                                                        guint                            *grab_mask);
-static gboolean        xfce_keyboard_shortcuts_helper_grab_real        (XfceKeyboardShortcutsHelper      *helper,
-                                                                        KeyCode                           keycode,
-                                                                        guint                             modifiers,
-                                                                        Display                          *display,
-                                                                        Window                            window,
-                                                                        gboolean                          grab);
-static void            xfce_keyboard_shortcuts_helper_handle_key_press (XfceKeyboardShortcutsHelper      *helper,
-                                                                        XKeyEvent                        *xevent);
+static void            xfce_keyboard_shortcuts_helper_shortcut_callback (const gchar                     *shortcut,
+                                                                         XfceKeyboardShortcutsHelper     *helper);
 static void            xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel                    *channel,
                                                                         gchar                            *property,
                                                                         GValue                           *value,
                                                                         XfceKeyboardShortcutsHelper      *helper);
-static gboolean        xfce_keyboard_shortcuts_helper_extract_values   (XfceKeyboardShortcutsHelper      *helper,
-                                                                        const gchar                      *key,
-                                                                        const GValue                     *value,
-                                                                        gchar                           **shortcut,
-                                                                        gchar                           **action);
-static gboolean        get_modmap_masks                                (Display                          *display,
-                                                                        gint                             *caps_lock_mask,
-                                                                        gint                             *num_lock_mask,
-                                                                        gint                             *scroll_lock_mask);
-static gint            get_ignore_mask                                 (Display                          *display);
 
 
 
@@ -116,9 +89,6 @@ struct _XfceKeyboardShortcutsHelper
 
   /* Hash table for (shortcut -> action) mapping */
   GHashTable    *shortcuts;
-
-  /* Flag to avoid handling multiple key press events at the same time */
-  gboolean       waiting_for_key_release;
 };
 
 
@@ -177,10 +147,8 @@ xfce_keyboard_shortcuts_helper_init (XfceKeyboardShortcutsHelper *helper)
 {
   GHashTable *properties;
 
-  helper->waiting_for_key_release = FALSE;
-
   /* Get Xfconf channel */
-  helper->channel = xfconf_channel_new ("xfce4-keyboard-shortcuts");
+  helper->channel = frap_shortcuts_get_channel ();
 
   /* Create hash table for (shortcut -> command) mapping */
   helper->shortcuts = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
@@ -197,7 +165,8 @@ xfce_keyboard_shortcuts_helper_init (XfceKeyboardShortcutsHelper *helper)
       g_hash_table_destroy (properties);
     }
 
-  xfce_keyboard_shortcuts_helper_add_filter (helper);
+  /* Set shortcut callback */
+  frap_shortcuts_set_shortcut_callback ((FrapShortcutsFunc) xfce_keyboard_shortcuts_helper_shortcut_callback, helper);
 
   /* Be notified of property changes */
   g_signal_connect (helper->channel, "property-changed", G_CALLBACK (xfce_keyboard_shortcuts_helper_property_changed), helper);
@@ -258,286 +227,67 @@ xfce_keyboard_shortcuts_helper_set_property (GObject      *object,
 
 
 static void
-xfce_keyboard_shortcuts_helper_add_filter (XfceKeyboardShortcutsHelper *helper)
-{
-  GdkDisplay *display;
-#if 0
-  GdkScreen  *screen;
-  gint        screens;
-  gint        i;
-#endif
-
-  g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
-
-  display = gdk_display_get_default ();
-#if 0
-  screens = gdk_display_get_n_screens (display);
-#endif
-
-  /* Flush events before adding the event filter */
-  XAllowEvents (GDK_DISPLAY_XDISPLAY (display), AsyncBoth, CurrentTime);
-
-  /* Add event filter to the root window of each screen. FIXME: I'm not
-   * exactly sure which one of these two options I should use: */
-#if 0
-  for (i = 0; i < screens; ++i)
-    {
-      screen = gdk_display_get_screen (display, i);
-      gdk_window_add_filter (gdk_screen_get_root_window (screen), (GdkFilterFunc) xfce_keyboard_shortcuts_helper_filter, helper);
-    }
-#else
-  gdk_window_add_filter (NULL, (GdkFilterFunc) xfce_keyboard_shortcuts_helper_filter, helper);
-#endif
-}
-
-
-
-static GdkFilterReturn
-xfce_keyboard_shortcuts_helper_filter (GdkXEvent                   *gdk_xevent,
-                                       GdkEvent                    *event,
-                                       XfceKeyboardShortcutsHelper *helper)
-{
-  XEvent *xevent = (XEvent *) gdk_xevent;
-
-  g_return_val_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper), GDK_FILTER_CONTINUE);
-
-  switch (xevent->type)
-    {
-      case KeyPress:
-        xfce_keyboard_shortcuts_helper_handle_key_press (helper, (XKeyEvent *) xevent);
-        break;
-      case KeyRelease:
-        helper->waiting_for_key_release = FALSE;
-        break;
-      case MappingNotify:
-        break;
-      default:
-        break;
-    }
-
-  return GDK_FILTER_CONTINUE;
-}
-
-
-
-static void
 xfce_keyboard_shortcuts_helper_load_shortcut (const gchar                 *key,
                                               const GValue                *value,
                                               XfceKeyboardShortcutsHelper *helper)
 {
-  gchar *shortcut;
-  gchar *action;
+  FrapShortcutsType type;
+  gchar            *action;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
   g_return_if_fail (G_IS_VALUE (value));
 
-  /* Only add shortcuts of type 'execute' */
-  if (G_LIKELY (xfce_keyboard_shortcuts_helper_extract_values (helper, key, value, &shortcut, &action)))
+  if (G_LIKELY (frap_shortcuts_parse_value (value, &type, &action)))
     {
       /* Establish passive grab on the shortcut and add it to the hash table */
-      if (G_LIKELY (xfce_keyboard_shortcuts_helper_grab_shortcut (helper, shortcut, TRUE)))
+      if (G_LIKELY (frap_shortcuts_grab_shortcut (key + 1, FALSE)))
         {
           /* Add shortcut -> action pair to the hash table */
-          g_hash_table_insert (helper->shortcuts, g_strdup (shortcut), g_strdup (action));
+          g_hash_table_insert (helper->shortcuts, g_strdup (key + 1), g_strdup (action));
         }
       else
         g_warning ("Failed to load shortcut '%s'", key + 1);
 
-      /* Free strings */
-      g_free (shortcut);
       g_free (action);
     }
 }
 
 
 
-static gboolean
-xfce_keyboard_shortcuts_helper_grab_shortcut (XfceKeyboardShortcutsHelper *helper,
-                                              const char                  *shortcut,
-                                              gboolean                     grab)
-{
-  GdkModifierType modifiers;
-  GdkDisplay     *display;
-  GdkScreen      *screen;
-  Display        *xdisplay;
-  KeyCode         keycode;
-  Window          xwindow;
-  guint           grab_mask;
-  guint           keyval;
-  gint            bits[32];
-  gint            current_mask;
-  gint            ignore_mask;
-  gint            screens;
-  gint            n_bits;
-  gint            i;
-  gint            j;
-  gint            k;
-
-  display = gdk_display_get_default ();
-  screens = gdk_display_get_n_screens (display);
-  xdisplay = GDK_DISPLAY_XDISPLAY (display);
-
-  /* Parse the shortcut and abort if that fails */
-  if (G_UNLIKELY (!xfce_keyboard_shortcuts_helper_parse_shortcut (helper, display, shortcut, &keyval, &modifiers, &keycode, &grab_mask)))
-    {
-      g_warning ("Could not parse shortcut '%s', most likely because it is invalid", shortcut);
-      return FALSE ;
-    }
-
-  /* Determine mask containing ignored modifier bits */
-  ignore_mask = get_ignore_mask (xdisplay);
-
-  /* Store indices of all set bits of the ignore mask in an array */
-  for (i = 0, n_bits = 0; i < 32; ++i, ignore_mask >>= 1)
-    if ((ignore_mask & 0x1) != 0)
-      bits[n_bits++] = i;
-
-  for (i = 0; i < (1 << n_bits); ++i)
-    {
-      /* Map bits in the counter to those in the mask and thereby retrieve all ignored bit
-       * mask combinations */
-      for (current_mask = 0, j = 0; j < n_bits; ++j)
-        if ((i & (1 << j)) != 0)
-          current_mask |= (1 << bits[j]);
-
-      /* Grab key on all screens */
-      for (k = 0; k < screens; ++k)
-        {
-          /* Get current screen and root X window */
-          screen = gdk_display_get_screen (display, k);
-          xwindow = GDK_WINDOW_XWINDOW (gdk_screen_get_root_window (screen));
-
-          /* Really grab or ungrab the key now */
-          if (G_UNLIKELY (!xfce_keyboard_shortcuts_helper_grab_real (helper, keycode, current_mask | grab_mask, xdisplay, xwindow, grab)))
-            {
-              g_warning ("Could not grab shortcut '%s'. It might be used by another application already.", shortcut);
-              return FALSE;
-            }
-        }
-    }
-
-  return TRUE;
-}
-
-
-
-static gboolean
-xfce_keyboard_shortcuts_helper_parse_shortcut (XfceKeyboardShortcutsHelper *helper,
-                                               GdkDisplay                  *display,
-                                               const gchar                 *shortcut,
-                                               guint                       *keyval,
-                                               GdkModifierType             *modifiers,
-                                               KeyCode                     *keycode,
-                                               guint                       *grab_mask)
-{
-  g_return_val_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper), FALSE);
-  g_return_val_if_fail (GDK_IS_DISPLAY (display), FALSE);
-
-  /* Reset keycode and grab mask */
-  *keycode = 0;
-  *grab_mask = 0;
-
-  /* Parse the GTK+ accelerator string */
-  gtk_accelerator_parse (shortcut, keyval, modifiers);
-
-  /* Abort when the accelerator string is invalid */
-  if (G_LIKELY (*keyval == 0 && *modifiers == 0))
-    return FALSE;
-
-  /* Try to convert the keyval into a X11 keycode */
-  if ((*keycode = XKeysymToKeycode (GDK_DISPLAY_XDISPLAY (display), *keyval)) == 0)
-    return FALSE;
-
-  /* FIXME: I'm not really sure about this */
-  *grab_mask = *modifiers;
-
-  return TRUE;
-}
-
-
-
-static gboolean
-xfce_keyboard_shortcuts_helper_grab_real (XfceKeyboardShortcutsHelper *helper,
-                                          KeyCode                      keycode,
-                                          guint                        modifiers,
-                                          Display                     *display,
-                                          Window                       window,
-                                          gboolean                     grab)
-{
-  gdk_error_trap_push ();
-
-  if (G_LIKELY (grab))
-    XGrabKey (display, keycode, modifiers, window, FALSE, GrabModeAsync, GrabModeAsync);
-  else
-    XUngrabKey (display, keycode, modifiers, window);
-
-  gdk_flush ();
-
-  return gdk_error_trap_pop () == 0;
-}
-
-
-
 static void
-xfce_keyboard_shortcuts_helper_handle_key_press (XfceKeyboardShortcutsHelper *helper,
-                                                 XKeyEvent                   *xevent)
+xfce_keyboard_shortcuts_helper_shortcut_callback (const gchar                 *shortcut,
+                                                  XfceKeyboardShortcutsHelper *helper)
 {
   GdkDisplay  *display;
   GdkScreen   *screen;
   GError      *error = NULL;
-  KeySym       keysym;
-  gchar       *accelerator_name;
-  const gchar *key;
-  const gchar *value;
+  const gchar *action;
   gint         monitor;
-  gint         modifiers;
-  gint         ignore_mask;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
 
-  /* Don't handle multiple key press events in parallel (avoid weird behaviour) */
-  if (G_UNLIKELY (helper->waiting_for_key_release))
+  if (shortcut == NULL || g_utf8_strlen (shortcut, -1) == 0)
     return;
 
-  /* Get display information */
   display = gdk_display_get_default ();
 
-  /* Convert event keycode to keysym */
-  keysym = XKeycodeToKeysym (GDK_DISPLAY_XDISPLAY (display), xevent->keycode, 0);
+  g_debug ("shortcut_callback: shortcut = %s", shortcut);
 
-  /* Determine ignored modifiers mask */
-  ignore_mask = get_ignore_mask (GDK_DISPLAY_XDISPLAY (display));
-
-  /* Remove ignored modifiers and non-modifier keys from the event state mask */
-  modifiers = xevent->state & ~ignore_mask & GDK_MODIFIER_MASK;
-
-  /* Get accelerator string for the pressed keys */
-  accelerator_name = gtk_accelerator_name (keysym, modifiers);
-
-  g_message ("accelerator_name = %s", accelerator_name);
-
-  /* Perform accelerator lookup */
-  if (G_LIKELY (g_hash_table_lookup_extended (helper->shortcuts, accelerator_name, (gpointer) &key, (gpointer) &value)))
+  if ((action = g_hash_table_lookup (helper->shortcuts, shortcut)) != NULL)
     {
-      /* We have to wait for a release event before handling another key press event */
-      helper->waiting_for_key_release = TRUE;
+      g_debug ("shortcut_callback: action = %s", action);
 
       /* Determine active monitor */
       screen = xfce_gdk_display_locate_monitor_with_pointer (display, &monitor);
 
       /* Spawn command */
-      if (G_UNLIKELY (!xfce_gdk_spawn_command_line_on_screen (screen, value, &error)))
-        {
-          if (G_LIKELY (error != NULL))
-            {
-              g_warning ("%s", error->message);
-              g_error_free (error);
-            }
-        }
+      if (!G_UNLIKELY (!xfce_gdk_spawn_command_line_on_screen (screen, action, &error)))
+        if (G_LIKELY (error != NULL))
+          {
+            g_warning ("%s", error->message);
+            g_error_free (error);
+          }
     }
-
-  /* Free accelerator string */
-  g_free (accelerator_name);
 }
 
 
@@ -548,8 +298,8 @@ xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel               *ch
                                                  GValue                      *value,
                                                  XfceKeyboardShortcutsHelper *helper)
 {
-  gchar *shortcut;
-  gchar *action;
+  FrapShortcutsType type;
+  gchar            *action;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
   g_return_if_fail (XFCONF_IS_CHANNEL (channel));
@@ -560,199 +310,56 @@ xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel               *ch
       /* Remove shortcut and ungrab keys if we're monitoring it already */
       if (G_LIKELY (g_hash_table_lookup (helper->shortcuts, property + 1)))
         {
+          g_debug ("property_changed: removing shortcut = %s", property + 1);
+
           /* Remove shortcut from the hash table */
           g_hash_table_remove (helper->shortcuts, property + 1);
 
           /* Ungrab the shortcut */
-          xfce_keyboard_shortcuts_helper_grab_shortcut (helper, property + 1, FALSE);
+          frap_shortcuts_grab_shortcut (property + 1, TRUE);
         }
     }
   else
     {
       /* Try to read shortcut information from the GValue. If not, it's probably an Xfwm4 shortcut */
-      if (G_LIKELY (xfce_keyboard_shortcuts_helper_extract_values (helper, property, value, &shortcut, &action)))
+      if (G_LIKELY (frap_shortcuts_parse_value (value, &type, &action)))
         {
           /* Check whether the shortcut already exists */
-          if (g_hash_table_lookup (helper->shortcuts, shortcut))
+          if (g_hash_table_lookup (helper->shortcuts, property + 1))
             {
-              /* Replace the current action. The key combination hasn't changed so don't ungrab/grab */
-              g_hash_table_replace (helper->shortcuts, shortcut, g_strdup (action));
+              if (type == FRAP_SHORTCUTS_EXECUTE)
+                {
+                  g_debug ("property_changed: changing action of shortcut = %s to %s", property + 1, action);
+
+                  /* Replace the current action. The key combination hasn't changed so don't ungrab/grab */
+                  g_hash_table_replace (helper->shortcuts, property + 1, g_strdup (action));
+                }
+              else
+                {
+                  g_debug ("property_changed: removing shortcut = %s", property + 1);
+
+                  /* Remove shortcut from the hash table */
+                  g_hash_table_remove (helper->shortcuts, property + 1);
+
+                  /* Ungrab the shortcut */
+                  frap_shortcuts_grab_shortcut (property + 1, FALSE);
+                }
             }
           else
             {
-              /* Insert shortcut into the hash table */
-              g_hash_table_insert (helper->shortcuts, g_strdup (shortcut), g_strdup (action));
+              if (type == FRAP_SHORTCUTS_EXECUTE)
+                {
+                  g_debug ("property_changed: adding shortcut = %s", property + 1);
 
-              /* Establish passive keyboard grab for the new shortcut */
-              xfce_keyboard_shortcuts_helper_grab_shortcut (helper, shortcut, TRUE);
+                  /* Insert shortcut into the hash table */
+                  g_hash_table_insert (helper->shortcuts, g_strdup (property + 1), g_strdup (action));
+
+                  /* Establish passive keyboard grab for the new shortcut */
+                  frap_shortcuts_grab_shortcut (property + 1, FALSE);
+                }
             }
 
-          /* Free strings */
-          g_free (shortcut);
           g_free (action);
         }
     }
 }
-
-
-
-static gboolean
-xfce_keyboard_shortcuts_helper_extract_values (XfceKeyboardShortcutsHelper  *helper,
-                                               const gchar                  *key,
-                                               const GValue                 *value,
-                                               gchar                       **shortcut,
-                                               gchar                       **action)
-{
-  const GPtrArray *array;
-  const GValue    *type_value;
-  const GValue    *action_value;
-  gboolean         result = FALSE;
-
-  g_return_val_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper), FALSE);
-  g_return_val_if_fail (G_IS_VALUE (value), FALSE);
-
-  /* Non-arrays will not be accepted */
-  if (G_UNLIKELY (G_VALUE_TYPE (value) != dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE)))
-    return FALSE;
-
-  /* Get the pointer array */
-  array = g_value_get_boxed (value);
-
-  /* Make sure the array has exactly two members */
-  if (G_UNLIKELY (array->len != 2))
-    return FALSE;
-
-  /* Get GValues for the array members */
-  type_value = g_ptr_array_index (array, 0);
-  action_value = g_ptr_array_index (array, 1);
-
-  /* Make sure both are string values */
-  if (G_UNLIKELY (G_VALUE_TYPE (type_value) != G_TYPE_STRING || G_VALUE_TYPE (action_value) != G_TYPE_STRING))
-    return FALSE;
-
-  /* Check whether the type is 'execute' */
-  if (G_LIKELY (g_utf8_collate (g_value_get_string (type_value), "execute") == 0))
-    {
-      /* Get shortcut and action strings */
-      *shortcut = g_strdup (key + 1);
-      *action = g_strdup (g_value_get_string (action_value));
-
-      result = TRUE;
-    }
-
-  return result;
-}
-
-
-
-/* The following code appears again in dialogs/keyboard-settings/shortcut-dialog.c: */
-
-/* Modifiers to be ignored (0x2000 is an Xkb modifier) */
-#define IGNORED_MODIFIERS (0x2000 | GDK_LOCK_MASK | GDK_HYPER_MASK | GDK_SUPER_MASK | GDK_META_MASK)
-
-/* Modifiers to be used */
-#define USED_MODIFIERS (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_MOD1_MASK | GDK_MOD2_MASK | \
-                        GDK_MOD3_MASK | GDK_MOD4_MASK | GDK_MOD5_MASK)
-
-
-
-static gboolean
-get_modmap_masks (Display *display,
-                  gint    *caps_lock_mask,
-                  gint    *num_lock_mask,
-                  gint    *scroll_lock_mask)
-{
-  XModifierKeymap *modmap;
-  const KeySym    *keysyms;
-  KeyCode          keycode;
-  KeySym          *keymap;
-  gint             keysyms_per_keycode = 0;
-  gint             min_keycode = 0;
-  gint             max_keycode = 0;
-  gint             mask;
-  gint             i;
-  gint             j;
-
-  /* Clear the masks */
-  *caps_lock_mask = 0;
-  *num_lock_mask = 0;
-  *scroll_lock_mask = 0;
-
-  gdk_error_trap_push ();
-
-  /* Determine minimum and maximum number of keycodes */
-  XDisplayKeycodes (display, &min_keycode, &max_keycode);
-
-  /* Determine symbols for all keycodes */
-  keymap = XGetKeyboardMapping (display, min_keycode, max_keycode - min_keycode + 1, &keysyms_per_keycode);
-
-  if (G_UNLIKELY (keymap == NULL))
-    return FALSE;
-
-  /* Determine modifier mappign */
-  modmap = XGetModifierMapping (display);
-
-  if (G_UNLIKELY (modmap == NULL))
-    {
-      XFree (keymap);
-      return FALSE;
-    }
-
-  /* Iterate over all modifier keycodes */
-  for (i = 0; i < 8 * modmap->max_keypermod; ++i)
-    {
-      /* Get the current keycode */
-      keycode = modmap->modifiermap[i];
-
-      /* Ignore invalid codes */
-      if (keycode == 0 || keycode < min_keycode || keycode > max_keycode)
-        continue;
-
-      /* Determine all keysyms for the current keycode */
-      keysyms = keymap + (keycode - min_keycode) * keysyms_per_keycode;
-
-      /* Create modifier mask for the current modifier */
-      mask = 1 << (i / modmap->max_keypermod);
-
-      /* Iterate over all keysyms of the current keycode and modify the resulting 
-       * masks according to which keysyms belong to which X modifiers */
-      for (j = 0; j < keysyms_per_keycode; ++j)
-        {
-          if (keysyms[j] == GDK_Caps_Lock) 
-            *caps_lock_mask |= mask;
-          else if (keysyms[j] == GDK_Num_Lock)
-            *num_lock_mask |= mask;
-          else if (keysyms[j] == GDK_Scroll_Lock)
-            *scroll_lock_mask |= mask;
-        }
-    }
-  
-  /* Free mappings */
-  XFreeModifiermap (modmap);
-  XFree (keymap);
-
-  gdk_flush ();
-  gdk_error_trap_pop ();
-
-  return TRUE;
-}
-
-
-
-static gint
-get_ignore_mask (Display *display)
-{
-  gint caps_lock_mask;
-  gint num_lock_mask;
-  gint scroll_lock_mask;
-  gint ignore_mask;
-
-  ignore_mask = IGNORED_MODIFIERS & GDK_MODIFIER_MASK;
-
-  if (G_LIKELY (get_modmap_masks (display, &caps_lock_mask, &num_lock_mask, &scroll_lock_mask)))
-    ignore_mask |= caps_lock_mask | num_lock_mask | scroll_lock_mask;
-
-  return ignore_mask;
-}
-
-/* End of the duplicated code */
