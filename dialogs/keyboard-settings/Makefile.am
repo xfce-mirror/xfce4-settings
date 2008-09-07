@@ -14,8 +14,10 @@ bin_PROGRAMS = \
 
 xfce4_keyboard_settings_SOURCES = \
 	main.c \
-	shortcut-dialog.c \
-	shortcut-dialog.h \
+	frap-shortcuts.c \
+	frap-shortcuts.h \
+	frap-shortcuts-dialog.c \
+	frap-shortcuts-dialog.h \
 	command-dialog.c \
 	command-dialog.h \
 	keyboard-dialog_glade.h

@@ -1,4 +1,17 @@
-	2008-09-06	jannis
+2008-09-07	jannis
+
+	* dialogs/keyboard-settings/Makefile.am,
+	  dialogs/keyboard-settings/frap-shortcuts.{c,h},
+		dialogs/keyboard-settings/frap-shortcuts-dialog.{c,h},
+		dialogs/keyboard-settings/main.c: Import frap utility functions and
+		shortcut dialog into xfce4-settings. Modify the keyboard settings dialog
+		so that it makes use of them. Make even better use of the xfconf 
+		'property-changed' signal by adding/removing rows from the shortcuts tree
+		view when necessary.
+	* dialogs/keyboard-settings/shortcut-dialog.{c,h}: Remove this one as it is
+	  now replaced by FrapShortcutsDialog.
+		
+2008-09-06	jannis
 
 	* dialogs/keyboard-settings/main.c: Add support for the
 	  'property-changed' signal of the XfconfChannel. Update shortcuts and

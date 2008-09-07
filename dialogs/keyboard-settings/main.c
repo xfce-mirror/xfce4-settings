@@ -41,8 +41,9 @@
 #include <xfconf/xfconf.h>
 
 #include "keyboard-dialog_glade.h"
-#include "shortcut-dialog.h"
 #include "command-dialog.h"
+#include "frap-shortcuts.h"
+#include "frap-shortcuts-dialog.h"
 
 
 
@@ -58,6 +59,7 @@ typedef struct
 {
   const GValue *value;
   const gchar  *shortcut;
+  gint          counter;
 } ShortcutContext;
 
 
@@ -80,6 +82,7 @@ struct TreeViewInfo
 {
   GtkTreeView *view;
   GtkTreeIter *iter;
+  const gchar *action;
 };
 
 
@@ -98,38 +101,11 @@ keyboard_settings_load_shortcut (const gchar  *key,
                                  const GValue *value,
                                  GtkListStore *list_store)
 {
-  const GPtrArray *array;
-  const GValue    *type_value;
-  const GValue    *action_value;
-  const gchar     *type;
-  const gchar     *action;
-  GtkTreeIter      iter;
+  FrapShortcutsType type;
+  gchar            *action;
+  GtkTreeIter       iter;
 
-  /* MAke sure we only load shortcuts from string arrays */
-  if (G_UNLIKELY (G_VALUE_TYPE (value) != dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE)))
-    return;
-
-  /* Get the pointer array */
-  array = g_value_get_boxed (value);
-
-  /* Make sure the array has exactly two members */
-  if (G_UNLIKELY (array->len != 2))
-    return;
-
-  /* Get GValues for the array members */
-  type_value = g_ptr_array_index (array, 0);
-  action_value = g_ptr_array_index (array, 1);
-
-  /* Make sure both are string values */
-  if (G_UNLIKELY (G_VALUE_TYPE (type_value) != G_TYPE_STRING || G_VALUE_TYPE (action_value) != G_TYPE_STRING))
-    return;
-
-  /* Get shortcut type and action */
-  type = g_value_get_string (type_value);
-  action = g_value_get_string (action_value);
-
-  /* Only add shortcuts with type 'execute' */
-  if (g_utf8_collate (type, "execute") == 0)
+  if (G_LIKELY (frap_shortcuts_parse_value (value, &type, &action) && type == FRAP_SHORTCUTS_EXECUTE))
     {
       /* Add shortcut to the list store */
       gtk_list_store_append (list_store, &iter);
@@ -160,115 +136,7 @@ keyboard_settings_load_shortcuts (GtkWidget    *kbd_shortcuts_view,
 
 
 static gboolean
-read_shortcut_property (const GValue *value, 
-                        const gchar **type, 
-                        const gchar **action)
-{
-  const GPtrArray *array;
-  const GValue *type_value;
-  const GValue *action_value;
-
-  /* Make sure we only load shortcuts from string arrays */
-  if (G_UNLIKELY (G_VALUE_TYPE (value) != dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE)))
-    return FALSE;
-
-  /* Get the pointer array */
-  array = g_value_get_boxed (value);
-
-  /* Make sure the array has exactly two members */
-  if (G_UNLIKELY (array->len != 2))
-    return FALSE;
-
-  /* Get the array member values */
-  type_value = g_ptr_array_index (array, 0);
-  action_value = g_ptr_array_index (array, 1);
-
-  /* Make sure both are string values */
-  if (G_UNLIKELY (G_VALUE_TYPE (type_value) != G_TYPE_STRING || G_VALUE_TYPE (action_value) != G_TYPE_STRING))
-    return FALSE;
-
-  /* Read shortcut type and action */
-  *type = g_value_get_string (type_value);
-  *action = g_value_get_string (action_value);
-
-  return TRUE;
-}
-
-
-
-static gboolean
-keyboard_settings_request_confirmation (XfconfChannel *channel, 
-                                        const gchar   *property,
-                                        const gchar   *current_action)
-{
-  GValue       value = { 0 };
-  const gchar *type;
-  const gchar *action;
-  gboolean     shortcut_accepted = TRUE;
-  gchar       *escaped_shortcut;
-  gchar       *other_name;
-  gchar       *primary_text;
-  gchar       *secondary_text;
-  gchar       *option_accept;
-  gchar       *option_reject;
-  gint         response;
-
-  /* Try to read the property values */
-  if (G_LIKELY (xfconf_channel_get_property (kbd_channel, property, &value) && read_shortcut_property (&value, &type, &action)))
-    {
-      if (G_LIKELY (g_utf8_collate (type, "execute") != 0 || g_utf8_collate (action, current_action) != 0))
-        {
-          /* Build primary error message and insert the shortcut */
-          escaped_shortcut = g_markup_escape_text (property+1, -1);
-          primary_text = g_strdup_printf (_("%s shortcut conflict"), escaped_shortcut);
-          g_free (escaped_shortcut);
-
-          /* Generate error description based on the type of the conflicting shortcut */
-          if (g_utf8_collate (type, "xfwm4") == 0)
-            {
-              other_name = g_strdup (_("Window manager action"));
-              secondary_text = g_strdup (_("The shortcut is already being used by a <b>window manager action</b>. Which action do you want to use?"));
-            }
-          else
-            {
-              other_name = g_markup_escape_text (action, -1);
-              secondary_text = g_strdup_printf (_("The shortcut is already being used for the command <b>%s</b>. Which action do you want to use?"),
-                                                other_name);
-            }
-
-          option_accept = current_action == NULL ? g_strdup (_("Use this one")) : g_markup_printf_escaped (_("Use %s"), current_action);
-          option_reject = g_markup_printf_escaped (_("Keep %s"), other_name);
-
-          /* Ask the user what to do */
-          response = xfce_message_dialog (NULL, _("Shortcut conflict"), GTK_STOCK_DIALOG_ERROR,
-                                          primary_text, secondary_text,
-                                          XFCE_CUSTOM_BUTTON, option_accept, GTK_RESPONSE_ACCEPT,
-                                          XFCE_CUSTOM_BUTTON, option_reject, GTK_RESPONSE_REJECT, 
-                                          NULL);
-
-          shortcut_accepted = (response == GTK_RESPONSE_ACCEPT);
-
-          /* Free strings */
-          g_free (option_accept);
-          g_free (option_reject);
-          g_free (other_name);
-          g_free (primary_text);
-          g_free (secondary_text);
-        }
-    }
-  else
-    {
-      xfce_err (_("The shortcut '%s' is already being used for something else."), property+1);
-      shortcut_accepted = FALSE;
-    }
-
-  return shortcut_accepted;
-}
-
-
-
-static gboolean
-keyboard_settings_validate_shortcut (ShortcutDialog      *dialog,
+keyboard_settings_validate_shortcut (FrapShortcutsDialog *dialog,
                                      const gchar         *shortcut,
                                      struct TreeViewInfo *info)
 {
@@ -296,8 +164,9 @@ keyboard_settings_validate_shortcut (ShortcutDialog      *dialog,
                           SHORTCUT_COLUMN, &current_shortcut, -1);
 
       /* Let the user handle conflicts if there are any */
-      if (G_UNLIKELY (xfconf_channel_has_property (kbd_channel, property)))
-        shortcut_accepted = keyboard_settings_request_confirmation (kbd_channel, property, current_action);
+      if (G_UNLIKELY (frap_shortcuts_has_shortcut (kbd_channel, shortcut)))
+        shortcut_accepted = frap_shortcuts_conflict_dialog (kbd_channel, property, current_action, 
+                                                            FRAP_SHORTCUTS_EXECUTE, FALSE) == GTK_RESPONSE_ACCEPT;
   
       /* Free strings */
       g_free (current_action);
@@ -306,11 +175,12 @@ keyboard_settings_validate_shortcut (ShortcutDialog      *dialog,
   else
     {
       /* Let the user handle conflicts if there are any */
-      if (G_UNLIKELY (xfconf_channel_has_property (kbd_channel, property)))
-        shortcut_accepted = keyboard_settings_request_confirmation (kbd_channel, property, NULL);
+      if (G_UNLIKELY (frap_shortcuts_has_shortcut (kbd_channel, shortcut)))
+        shortcut_accepted = frap_shortcuts_conflict_dialog (kbd_channel, property, info->action, 
+                                                            FRAP_SHORTCUTS_EXECUTE, FALSE) == GTK_RESPONSE_ACCEPT;
     }
 
-  /* Free strings */
+  /* Free property name */
   g_free (property);
 
   return shortcut_accepted;
@@ -329,7 +199,6 @@ keyboard_settings_add_shortcut (GtkTreeView *tree_view)
   const gchar        *shortcut = NULL;
   gboolean            finished = FALSE;
   gchar              *command = NULL;
-  gchar              *property;
   gint                response;
 
   /* Create command dialog */
@@ -341,7 +210,7 @@ keyboard_settings_add_shortcut (GtkTreeView *tree_view)
       response = command_dialog_run (COMMAND_DIALOG (command_dialog), GTK_WIDGET (tree_view));
 
       if (G_UNLIKELY (response == GTK_RESPONSE_OK && g_utf8_strlen (command_dialog_get_command (COMMAND_DIALOG (command_dialog)), -1) == 0))
-        xfce_err (_("Short command may not be empty."));
+        xfce_err (_("Shortcut command may not be empty."));
       else
         finished = TRUE;
     }
@@ -359,31 +228,23 @@ keyboard_settings_add_shortcut (GtkTreeView *tree_view)
       /* Prepare tree view info */
       info.view = tree_view;
       info.iter = NULL;
+      info.action = command;
 
       /* Create shortcut dialog */
-      shortcut_dialog = shortcut_dialog_new (command);
+      shortcut_dialog = frap_shortcuts_dialog_new (FRAP_SHORTCUTS_EXECUTE, command);
       g_signal_connect (shortcut_dialog, "validate-shortcut", G_CALLBACK (keyboard_settings_validate_shortcut), &info);
 
       /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
-      response = shortcut_dialog_run (SHORTCUT_DIALOG (shortcut_dialog), GTK_WIDGET (tree_view));
+      response = frap_shortcuts_dialog_run (FRAP_SHORTCUTS_DIALOG (shortcut_dialog));
 
       /* Only continue if the shortcut dialog succeeded */
       if (G_LIKELY (response == GTK_RESPONSE_OK))
         {
           /* Get shortcut */
-          shortcut = shortcut_dialog_get_shortcut (SHORTCUT_DIALOG (shortcut_dialog));
-
-          /* Get tree view list store */
-          model = gtk_tree_view_get_model (tree_view);
-
-          /* Append new row to the list store */
-          gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-          gtk_list_store_set (GTK_LIST_STORE (model), &iter, SHORTCUT_COLUMN, shortcut, ACTION_COLUMN, command, -1);
+          shortcut = frap_shortcuts_dialog_get_shortcut (FRAP_SHORTCUTS_DIALOG (shortcut_dialog));
 
           /* Save the new shortcut to xfconf */
-          property = g_strdup_printf ("/%s", shortcut);
-          xfconf_channel_set_array (kbd_channel, property, G_TYPE_STRING, "execute", G_TYPE_STRING, command, G_TYPE_INVALID);
-          g_free (property);
+          frap_shortcuts_set_shortcut (kbd_channel, shortcut, command, FRAP_SHORTCUTS_EXECUTE);
         }
 
       /* Destroy the shortcut dialog */
@@ -410,7 +271,6 @@ keyboard_settings_delete_shortcut (GtkTreeView *tree_view)
   GList            *row_iter;
   GList            *row_references = NULL;
   gchar            *shortcut;
-  gchar            *property_name;
 
   /* Determine selected rows */
   selection = gtk_tree_view_get_selection (tree_view);
@@ -429,17 +289,10 @@ keyboard_settings_delete_shortcut (GtkTreeView *tree_view)
           /* Read row values */
           gtk_tree_model_get (model, &iter, SHORTCUT_COLUMN, &shortcut, -1);
 
-          /* Delete row from the list store */
-          gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
-
-          /* Build property name */
-          property_name = g_strdup_printf ("/%s", shortcut);
-
           /* Remove keyboard shortcut via xfconf */
-          xfconf_channel_remove_property (kbd_channel, property_name);
+          frap_shortcuts_remove_shortcut (kbd_channel, shortcut);
 
           /* Free strings */
-          g_free (property_name);
           g_free (shortcut);
         }
 
@@ -467,8 +320,6 @@ keyboard_settings_edit_shortcut (GtkTreeView *tree_view,
   const gchar        *new_shortcut;
   gchar              *current_shortcut;
   gchar              *action;
-  gchar              *old_property;
-  gchar              *new_property;
   gint                response;
 
   /* Get tree view model */
@@ -485,30 +336,20 @@ keyboard_settings_edit_shortcut (GtkTreeView *tree_view,
       info.iter = &iter;
 
       /* Request a new shortcut from the user */
-      dialog = shortcut_dialog_new (action);
+      dialog = frap_shortcuts_dialog_new (FRAP_SHORTCUTS_EXECUTE, action);
       g_signal_connect (dialog, "validate-shortcut", G_CALLBACK (keyboard_settings_validate_shortcut), &info);
-      response = shortcut_dialog_run (SHORTCUT_DIALOG (dialog), GTK_WIDGET (tree_view));
+      response = frap_shortcuts_dialog_run (FRAP_SHORTCUTS_DIALOG (dialog));
 
       if (G_LIKELY (response == GTK_RESPONSE_OK))
         {
-          /* Build property name */
-          old_property = g_strdup_printf ("/%s", current_shortcut);
-
           /* Remove old shortcut from the settings */
-          xfconf_channel_remove_property (kbd_channel, old_property);
+          frap_shortcuts_remove_shortcut (kbd_channel, current_shortcut);
 
           /* Get the shortcut entered by the user */
-          new_shortcut = shortcut_dialog_get_shortcut (SHORTCUT_DIALOG (dialog));
-
-          /* Build property name */
-          new_property = g_strdup_printf ("/%s", new_shortcut);
+          new_shortcut = frap_shortcuts_dialog_get_shortcut (FRAP_SHORTCUTS_DIALOG (dialog));
 
           /* Save new shortcut to the settings */
-          xfconf_channel_set_array (kbd_channel, new_property, G_TYPE_STRING, "execute", G_TYPE_STRING, action, G_TYPE_INVALID);
-
-          /* Free strings */
-          g_free (new_property);
-          g_free (old_property);
+          frap_shortcuts_set_shortcut (kbd_channel, new_shortcut, action, FRAP_SHORTCUTS_EXECUTE);
         }
 
       /* Destroy the shortcut dialog */
@@ -532,7 +373,6 @@ keyboard_settings_edit_action (GtkTreeView *tree_view,
   gchar        *shortcut;
   gchar        *current_action;
   const gchar  *new_action;
-  gchar        *property;
   gint          response;
 
   /* Get tree view model */
@@ -544,9 +384,6 @@ keyboard_settings_edit_action (GtkTreeView *tree_view,
       /* Read shortcut and current action from the activated row */
       gtk_tree_model_get (model, &iter, SHORTCUT_COLUMN, &shortcut, ACTION_COLUMN, &current_action, -1);
 
-      /* Build property name */
-      property = g_strdup_printf ("/%s", shortcut);
-
       /* Request a new action from the user */
       dialog = command_dialog_new (shortcut, current_action);
       response = command_dialog_run (COMMAND_DIALOG (dialog), GTK_WIDGET (tree_view));
@@ -557,14 +394,13 @@ keyboard_settings_edit_action (GtkTreeView *tree_view,
           new_action = command_dialog_get_command (COMMAND_DIALOG (dialog));
 
           /* Save new action to the settings */
-          xfconf_channel_set_array (kbd_channel, property, G_TYPE_STRING, "execute", G_TYPE_STRING, new_action, G_TYPE_INVALID);
+          frap_shortcuts_set_shortcut (kbd_channel, shortcut, new_action, FRAP_SHORTCUTS_EXECUTE);
         }
 
       /* Destroy the shortcut dialog */
       gtk_widget_destroy (dialog);
 
       /* Free strings */
-      g_free (property);
       g_free (shortcut);
       g_free (current_action);
     }
@@ -593,11 +429,10 @@ keyboard_settings_update_shortcut (GtkTreeModel    *model,
                                    GtkTreeIter     *iter, 
                                    ShortcutContext *context)
 {
-  const gchar *type;
-  const gchar *action;
-  gboolean exit_loop = FALSE;
-  gchar *current_action;
-  gchar *shortcut;
+  FrapShortcutsType type;
+  gchar            *action;
+  gchar            *current_action;
+  gchar            *shortcut;
 
   gtk_tree_model_get (model, iter, SHORTCUT_COLUMN, &shortcut, ACTION_COLUMN, &current_action, -1);
 
@@ -607,31 +442,34 @@ keyboard_settings_update_shortcut (GtkTreeModel    *model,
         {
           if (G_LIKELY (context->value != NULL))
             {
-              if (G_LIKELY (read_shortcut_property (context->value, &type, &action)))
+              if (G_LIKELY (frap_shortcuts_parse_value (context->value, &type, &action)))
                 {
-                  if (G_LIKELY (g_utf8_collate (type, "execute") == 0))
+                  if (type == FRAP_SHORTCUTS_EXECUTE)
                     gtk_list_store_set (GTK_LIST_STORE (model), iter, SHORTCUT_COLUMN, shortcut, ACTION_COLUMN, action, -1);
                   else
-                    gtk_list_store_set (GTK_LIST_STORE (model), iter, SHORTCUT_COLUMN, NULL, -1);
+                    gtk_list_store_remove (GTK_LIST_STORE (model), iter);
+
+                  context->counter++;
+
+                  g_free (action);
                 }
             }
           else
-            gtk_list_store_set (GTK_LIST_STORE (model), iter, SHORTCUT_COLUMN, NULL, -1);
-    
-          exit_loop = TRUE;
+            gtk_list_store_remove (GTK_LIST_STORE (model), iter);
         }
     }
   else
     {
       if (G_LIKELY (context->value != NULL))
         {
-          if (G_LIKELY (read_shortcut_property (context->value, &type, &action)))
+          if (G_LIKELY (frap_shortcuts_parse_value (context->value, &type, &action)))
             {
-              if (G_UNLIKELY (g_utf8_collate (type, "execute") == 0 && g_utf8_collate (action, current_action) == 0))
-                {
-                  gtk_list_store_set (GTK_LIST_STORE (model), iter, SHORTCUT_COLUMN, context->shortcut, -1);
-                  exit_loop = TRUE;
-                }
+              if (G_UNLIKELY (type == FRAP_SHORTCUTS_EXECUTE && g_utf8_collate (action, current_action) == 0))
+                gtk_list_store_set (GTK_LIST_STORE (model), iter, SHORTCUT_COLUMN, context->shortcut, -1);
+
+              context->counter++;
+
+              g_free (action);
             }
         }
     }
@@ -640,7 +478,7 @@ keyboard_settings_update_shortcut (GtkTreeModel    *model,
   g_free (shortcut);
   g_free (current_action);
 
-  return exit_loop;
+  return FALSE;
 }
 
 
@@ -651,12 +489,28 @@ keyboard_settings_property_changed (XfconfChannel *channel,
                                     const GValue  *value, 
                                     GtkListStore  *store)
 {
-  ShortcutContext context;
+  FrapShortcutsType type;
+  ShortcutContext   context;
+  GtkTreeIter       iter;
+  gchar            *action;
 
   context.value = value;
   context.shortcut = property + 1;
+  context.counter = 0;
 
   gtk_tree_model_foreach (GTK_TREE_MODEL (store), (GtkTreeModelForeachFunc) keyboard_settings_update_shortcut, &context);
+
+  if (G_UNLIKELY (context.counter == 0 && value != NULL))
+    if (G_LIKELY (frap_shortcuts_parse_value (value, &type, &action)))
+      {
+        if (G_LIKELY (type == FRAP_SHORTCUTS_EXECUTE))
+          {
+            gtk_list_store_append (store, &iter);
+            gtk_list_store_set (store, &iter, SHORTCUT_COLUMN, property + 1, ACTION_COLUMN, action, -1);
+          }
+
+        g_free (action);
+      }
 }
 
 
