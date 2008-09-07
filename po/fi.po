@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-07 20:22+0200\n"
+"POT-Creation-Date: 2008-09-08 00:02+0200\n"
 "PO-Revision-Date: 2008-09-06 18:14+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -643,7 +643,8 @@ msgstr "Komento"
 msgid "Xfce 4 Keyboard Settings"
 msgstr "Xfce 4 näppäimistön asetukset"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:83
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:84
+#: ../xfce4-settings-helper/frap-shortcuts.c:84
 #, fuzzy, c-format
 msgid ""
 "This shortcut is already being used by the window manager action <b>%s</b>. "
@@ -652,23 +653,32 @@ msgstr ""
 "Pikanäppäin on jo yhdistetty <b>ikkunamanagerin toimintoon</b>. Kumpaa "
 "toimintoa haluat käyttää?"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:84
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:87
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:90
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:93
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:85
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:88
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:91
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:94
+#: ../xfce4-settings-helper/frap-shortcuts.c:85
+#: ../xfce4-settings-helper/frap-shortcuts.c:88
+#: ../xfce4-settings-helper/frap-shortcuts.c:91
+#: ../xfce4-settings-helper/frap-shortcuts.c:94
 #, c-format
 msgid "Use %s"
 msgstr "Valitse %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:84
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:87
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:90
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:85
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:88
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:91
+#: ../xfce4-settings-helper/frap-shortcuts.c:85
+#: ../xfce4-settings-helper/frap-shortcuts.c:88
+#: ../xfce4-settings-helper/frap-shortcuts.c:91
 #, c-format
 msgid "Keep %s"
 msgstr "Pidä %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:86
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:89
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:87
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:90
+#: ../xfce4-settings-helper/frap-shortcuts.c:87
+#: ../xfce4-settings-helper/frap-shortcuts.c:90
 #, c-format
 msgid ""
 "The shortcut is already being used for the command <b>%s</b>. Which action "
@@ -677,7 +687,8 @@ msgstr ""
 "Pikanäppäin on jo yhdistetty komentoon <b>%s</b>. Kumpaa toimintoa haluat "
 "käyttää?"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:92
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:93
+#: ../xfce4-settings-helper/frap-shortcuts.c:93
 msgid ""
 "The shortcut is already being used by a <b>window manager action</b>. Which "
 "action do you want to use?"
@@ -685,59 +696,73 @@ msgstr ""
 "Pikanäppäin on jo yhdistetty <b>ikkunamanagerin toimintoon</b>. Kumpaa "
 "toimintoa haluat käyttää?"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:93
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:94
+#: ../xfce4-settings-helper/frap-shortcuts.c:94
 #, fuzzy
 msgid "Keep window manager action"
 msgstr "Ikkunamanagerin toiminto"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:248
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:249
+#: ../xfce4-settings-helper/frap-shortcuts.c:249
 #, c-format
 msgid "%s shortcut conflict"
 msgstr "%s pikanäppäinristiriita"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:256
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:257
+#: ../xfce4-settings-helper/frap-shortcuts.c:257
 #, fuzzy
 msgid "Use this action"
 msgstr "Valitse tämä"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:259
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:260
+#: ../xfce4-settings-helper/frap-shortcuts.c:260
 msgid "Shortcut conflict"
 msgstr "Pikanäppäinristiriita"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:280
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:281
+#: ../xfce4-settings-helper/frap-shortcuts.c:281
 #, c-format
 msgid "The shortcut '%s' is already being used for something else."
 msgstr "Pikanäppäin \"%s\" on jo muussa käytössä."
 
-#. Set dialog title
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:233
-msgid "Set shortcut"
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:236
+#, fuzzy
+msgid "Enter window manager action shortcut"
+msgstr "Ikkunamanagerin toiminto"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:237
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:247
+#, fuzzy
+msgid "Action:"
+msgstr "_Kiihdytys:"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:241
+msgid "Enter command shortcut"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:242
+#, fuzzy
+msgid "Command:"
+msgstr "Komento"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:246
+#, fuzzy
+msgid "Enter shortcut"
 msgstr "Aseta pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:253
-#, fuzzy, c-format
-msgid ""
-"Set shortcut for action\n"
-"<b>%s</b>"
-msgstr "Aseta pikanäppäin komennolle:"
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:279
+#, fuzzy
+msgid "Shortcut:"
+msgstr "Pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:255
-#, fuzzy, c-format
-msgid ""
-"Set shortcut for command\n"
-"<b>%s</b>"
-msgstr "Aseta pikanäppäin komennolle:"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:257
-#, fuzzy, c-format
-msgid ""
-"Set shortcut for\n"
-"<b>%s</b>"
-msgstr "Aseta pikanäppäin"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:302
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:324
 msgid "Could not grab the keyboard."
 msgstr "Näppäimistöä ei voi kaapata."
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:344
+#, fuzzy, c-format
+msgid "<b>%s</b>"
+msgstr "<b>Erottelukyky</b>"
 
 #: ../dialogs/mouse-settings/main.c:84
 msgid "Active device in the dialog"
@@ -981,3 +1006,21 @@ msgstr "Asetukset"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "Xfce 4 Settings Manager"
 msgstr "Xfce 4 asetukset"
+
+#, fuzzy
+#~ msgid ""
+#~ "Set shortcut for action\n"
+#~ "<b>%s</b>"
+#~ msgstr "Aseta pikanäppäin komennolle:"
+
+#, fuzzy
+#~ msgid ""
+#~ "Set shortcut for command\n"
+#~ "<b>%s</b>"
+#~ msgstr "Aseta pikanäppäin komennolle:"
+
+#, fuzzy
+#~ msgid ""
+#~ "Set shortcut for\n"
+#~ "<b>%s</b>"
+#~ msgstr "Aseta pikanäppäin"
