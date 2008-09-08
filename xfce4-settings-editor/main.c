@@ -125,9 +125,9 @@ check_properties (GtkTreeStore *tree_store, GtkTreeView *tree_view, GtkTreePath 
 {
     GValue parent_val = {0,};
     GValue child_value = {0,};
+    GList *keys, *_keys;
     const gchar *key;
     const GValue *value;
-    GHashTableIter hash_iter;
     GtkTreeIter child_iter;
     GtkTreeIter parent_iter;
     gint i = 0;
@@ -135,9 +135,11 @@ check_properties (GtkTreeStore *tree_store, GtkTreeView *tree_view, GtkTreePath 
     GHashTable *hash_table = xfconf_channel_get_properties (channel, NULL);
     if (hash_table != NULL)
     {
-        g_hash_table_iter_init (&hash_iter, hash_table);
-        while (g_hash_table_iter_next (&hash_iter, (gpointer *)&key, (gpointer *)&value)) 
+        keys = g_hash_table_get_keys (hash_table);
+        for(_keys = keys; _keys != NULL; _keys = g_list_next (_keys))
         {
+            key = _keys->data;
+            value = g_hash_table_lookup (hash_table, key);
             gtk_tree_model_get_iter (GTK_TREE_MODEL (tree_store), &parent_iter, path);
             gchar **components = g_strsplit (key, "/", 0);
             for (i = 1; components[i]; ++i)
@@ -183,6 +185,7 @@ check_properties (GtkTreeStore *tree_store, GtkTreeView *tree_view, GtkTreePath 
 
             g_strfreev (components);
         }
+        g_list_free(keys);
     }
 }
 
@@ -257,9 +260,9 @@ cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, Gt
 {
     GHashTable *hash_table = NULL;
     XfconfChannel *channel = NULL;
+    GList *keys, *_keys;
     const gchar *key;
     const GValue *hash_value;
-    GHashTableIter hash_iter;
     GValue value = {0, };
     GValue name_value = {0, };
     GValue type_value = {0, };
@@ -317,9 +320,11 @@ cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, Gt
 
     if (hash_table)
     {
-        g_hash_table_iter_init (&hash_iter, hash_table);
-        while (g_hash_table_iter_next (&hash_iter, (gpointer *)&key, (gpointer *)&hash_value))
+        keys = g_hash_table_get_keys (hash_table);
+        for(_keys = keys; _keys != NULL; _keys = g_list_next (_keys))
         {
+            key = _keys->data;
+            hash_value = g_hash_table_lookup (hash_table, key);
             gchar **components = g_strsplit (key, "/", 0);
             if (components[path_depth+1] == NULL)
             {
@@ -393,5 +398,6 @@ cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, Gt
             }
             g_strfreev (components);
         }
+        g_list_free(keys);
     }
 }
