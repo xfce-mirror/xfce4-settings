@@ -49,10 +49,14 @@
 
 #include "mouse-dialog_glade.h"
 
-#if XI_Add_DevicePresenceNotify_Major == 1 && XI_Add_DevicePresenceNotify_Minor >= 4
+/* this is only added to make the code compile */
+#if XI_Add_DevicePresenceNotify_Major >= 1
 #define HAS_DEVICE_HOTPLUGGING
 #else
 #undef HAS_DEVICE_HOTPLUGGING
+#endif
+#ifndef IsXExtensionPointer
+#define IsXExtensionPointer 4
 #endif
 
 /* settings */
@@ -1160,11 +1164,12 @@ mouse_settings_create_event_filter (GladeXML *gxml)
 gint
 main (gint argc, gchar **argv)
 {
-    GtkWidget      *dialog;
-    GladeXML       *gxml;
-    GError         *error = NULL;
-    GtkAdjustment  *adjustment;
-    GtkWidget      *widget;
+    GtkWidget         *dialog;
+    GladeXML          *gxml;
+    GError            *error = NULL;
+    GtkAdjustment     *adjustment;
+    GtkWidget         *widget;
+    XExtensionVersion *version = NULL;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -1209,6 +1214,15 @@ main (gint argc, gchar **argv)
         g_critical ("Failed to connect to Xfconf daemon: %s", error->message);
         g_error_free (error);
 
+        return EXIT_FAILURE;
+    }
+    
+    /* check for Xi 1.4 */
+    version = XGetExtensionVersion (GDK_DISPLAY (), INAME);
+    if (!version || !version->present || version->major_version < 1 || version->minor_version < 4)
+    {
+        g_critical ("XI is not present or too old.");
+        
         return EXIT_FAILURE;
     }
 

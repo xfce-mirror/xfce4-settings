@@ -42,10 +42,14 @@
 
 #define MAX_DENOMINATOR (100.00)
 
-#if XI_Add_DevicePresenceNotify_Major == 1 && XI_Add_DevicePresenceNotify_Minor >= 4
+/* this is only added to make the code compile */
+#ifdef XI_Add_DevicePresenceNotify_Major
 #define HAS_DEVICE_HOTPLUGGING
 #else
 #undef HAS_DEVICE_HOTPLUGGING
+#endif
+#ifndef IsXExtensionPointer
+#define IsXExtensionPointer 4
 #endif
 
 
@@ -121,13 +125,28 @@ xfce_pointers_helper_class_init (XfcePointersHelperClass *klass)
 static void
 xfce_pointers_helper_init (XfcePointersHelper *helper)
 {
-    gint         dummy;
+    XExtensionVersion *version = NULL;
+    Display           *xdisplay;
 #ifdef HAS_DEVICE_HOTPLUGGING
-    Display     *xdisplay;
-    XEventClass  event_class;
+    XEventClass        event_class;
 #endif
 
-    if (XQueryExtension (GDK_DISPLAY (), "XInputExtension", &dummy, &dummy, &dummy))
+    /* get the default display */
+    xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
+    
+    /* query the extension version */
+    version = XGetExtensionVersion (xdisplay, INAME);
+    
+    /* check for Xi 1.4 */
+    if (!version || !version->present || version->major_version < 1 || version->minor_version < 4)
+    {
+        /* print error */
+        g_critical ("XI is not present or too old.");
+
+        /* no channel */
+        helper->channel = NULL;
+    }
+    else
     {
         /* open the channel */
         helper->channel = xfconf_channel_new ("pointers");
@@ -143,8 +162,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         gdk_flush ();
         gdk_error_trap_push ();
 
-        /* get the default display and root window */
-        xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
+        
         if (G_LIKELY (xdisplay))
         {
             /* monitor device changes */
@@ -159,14 +177,6 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         gdk_flush ();
         gdk_error_trap_pop ();
 #endif
-    }
-    else
-    {
-        /* print error */
-        g_critical ("Failed to query the XInput extension.");
-
-        /* no channel */
-        helper->channel = NULL;
     }
 }
 

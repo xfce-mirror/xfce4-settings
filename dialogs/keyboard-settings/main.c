@@ -192,8 +192,6 @@ static void
 keyboard_settings_add_shortcut (GtkTreeView *tree_view)
 {
   struct TreeViewInfo info;
-  GtkTreeModel       *model;
-  GtkTreeIter         iter;
   GtkWidget          *shortcut_dialog;
   GtkWidget          *command_dialog;
   const gchar        *shortcut = NULL;
