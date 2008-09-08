@@ -274,7 +274,7 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
 
 static gint
 xfce_pointers_helper_gcd (gint num,
-                    gint denom)
+                          gint denom)
 {
     /* calc the greatest common divisor using euclidean's algorithm */
     return (denom != 0 ? xfce_pointers_helper_gcd (denom, num % denom) : num);

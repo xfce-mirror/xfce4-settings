@@ -271,11 +271,15 @@ xfce_keyboard_shortcuts_helper_shortcut_callback (const gchar                 *s
 
   display = gdk_display_get_default ();
 
+#ifndef NDEBUG
   g_debug ("shortcut_callback: shortcut = %s", shortcut);
+#endif
 
   if ((action = g_hash_table_lookup (helper->shortcuts, shortcut)) != NULL)
     {
+#ifndef NDEBUG
       g_debug ("shortcut_callback: action = %s", action);
+#endif
 
       /* Determine active monitor */
       screen = xfce_gdk_display_locate_monitor_with_pointer (display, &monitor);
@@ -310,7 +314,9 @@ xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel               *ch
       /* Remove shortcut and ungrab keys if we're monitoring it already */
       if (G_LIKELY (g_hash_table_lookup (helper->shortcuts, property + 1)))
         {
+#ifndef NDEBUG
           g_debug ("property_changed: removing shortcut = %s", property + 1);
+#endif
 
           /* Remove shortcut from the hash table */
           g_hash_table_remove (helper->shortcuts, property + 1);
@@ -329,14 +335,18 @@ xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel               *ch
             {
               if (type == FRAP_SHORTCUTS_EXECUTE)
                 {
+#ifndef NDEBUG
                   g_debug ("property_changed: changing action of shortcut = %s to %s", property + 1, action);
+#endif
 
                   /* Replace the current action. The key combination hasn't changed so don't ungrab/grab */
                   g_hash_table_replace (helper->shortcuts, property + 1, g_strdup (action));
                 }
               else
                 {
+#ifndef NDEBUG
                   g_debug ("property_changed: removing shortcut = %s", property + 1);
+#endif
 
                   /* Remove shortcut from the hash table */
                   g_hash_table_remove (helper->shortcuts, property + 1);
@@ -349,7 +359,9 @@ xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel               *ch
             {
               if (type == FRAP_SHORTCUTS_EXECUTE)
                 {
+#ifndef NDEBUG
                   g_debug ("property_changed: adding shortcut = %s", property + 1);
+#endif
 
                   /* Insert shortcut into the hash table */
                   g_hash_table_insert (helper->shortcuts, g_strdup (property + 1), g_strdup (action));
