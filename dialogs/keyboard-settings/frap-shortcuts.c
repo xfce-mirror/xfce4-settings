@@ -353,6 +353,9 @@ frap_shortcuts_parse_accelerator (const gchar *name,
                                   guint       *modifiers)
 {
   gtk_accelerator_parse (name, keyval, modifiers);
+
+  *modifiers = frap_shortcuts_gdk_add_x11_modifiers (*modifiers);
+  *modifiers &= ~ frap_shortcuts_x11_get_ignore_mask ();
 }
 
 
@@ -409,7 +412,7 @@ frap_shortcuts_grab_shortcut (const gchar *shortcut,
   guint       use_mask;
   guint       n_bits;
   guint       screens;
-  gint        i;
+  guint       i;
   guint       j;
   guint       k;
 
@@ -574,7 +577,7 @@ frap_shortcuts_gdk_remove_duplicate_modifiers (guint modifiers)
   gint             keysyms_per_keycode = 0;
   gint             min_keycode = 0;
   gint             max_keycode = 0;
-  guint            mask;
+  gint             mask;
   gint             i;
   gint             j;
 
@@ -651,7 +654,7 @@ frap_shortcuts_x11_add_gdk_modifiers (guint modifiers)
   gint             keysyms_per_keycode = 0;
   gint             min_keycode = 0;
   gint             max_keycode = 0;
-  guint            mask;
+  gint             mask;
   gint             i;
   gint             j;
 
