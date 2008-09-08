@@ -106,6 +106,9 @@ AC_MSG_CHECKING([whether to enable debugging support])
 if test x"$enable_debug" = x"full" -o x"$enable_debug" = x"yes"; then
   dnl Print the result
   AC_MSG_RESULT([$enable_debug])
+  
+  dnl Define debug for libxfce4util DBG macro
+  AC_DEFINE([DEBUG], [1], [Define for debugging support])
 
   dnl Make sure we detect possible errors (if supported)
   save_CFLAGS="$CFLAGS"

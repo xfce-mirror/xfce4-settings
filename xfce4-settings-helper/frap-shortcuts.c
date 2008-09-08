@@ -419,9 +419,7 @@ frap_shortcuts_grab_shortcut (const gchar *shortcut,
   /* Parse the shortcut */
   frap_shortcuts_parse_accelerator (shortcut, &keyval, &modifiers);
 
-#ifndef NDEBUG
-  g_debug ("grab_shortcut: shortcut = %s, keyval = 0x%x, modifiers = 0x%x, ungrab = %i", shortcut, keyval, modifiers, ungrab);
-#endif
+  DBG ("grab_shortcut: shortcut = %s, keyval = 0x%x, modifiers = 0x%x, ungrab = %i", shortcut, keyval, modifiers, ungrab);
 
   /* Determine mask containing ignored modifier bits */
   ignore_mask = frap_shortcuts_x11_get_ignore_mask ();
