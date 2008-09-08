@@ -80,8 +80,8 @@ XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.5.90])
 XDT_CHECK_PACKAGE([GLADE], [libglade-2.0], [2.0.0])
 XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [0.1.0svn-r27376])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.34])
-XDT_CHECK_PACKAGE([XI], [xi], [1.1.0])
-XDT_CHECK_PACKAGE([LIBX11], [x11], [1.1.0])
+XDT_CHECK_PACKAGE([XI], [xi], [1.0.0])
+XDT_CHECK_PACKAGE([LIBX11], [x11], [1.0.0])
 XDT_CHECK_PACKAGE([XRANDR], [xrandr], [1.1.0])
 
 dnl **************************************
@@ -106,6 +106,9 @@ AC_MSG_CHECKING([whether to enable debugging support])
 if test x"$enable_debug" = x"full" -o x"$enable_debug" = x"yes"; then
   dnl Print the result
   AC_MSG_RESULT([$enable_debug])
+  
+  dnl Define debug for libxfce4util DBG macro
+  AC_DEFINE([DEBUG], [1], [Define for debugging support])
 
   dnl Make sure we detect possible errors (if supported)
   save_CFLAGS="$CFLAGS"

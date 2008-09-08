@@ -1,5 +1,119 @@
+2008-09-08  jannis
+
+	* ChangeLog, dialogs/keyboard-settings/frap-shortcuts-dialog.c,
+	  dialogs/keyboard-settings/frap-shortcuts.c, po/ChangeLog,
+	  po/fi.po, po/nl.po, po/pt_BR.po, po/xfce4-settings.pot,
+	  xfce4-settings-helper/frap-shortcuts.c:
+	  * dialogs/keyboard-settings/frap-shortcuts.c,
+	  dialogs/keyboard-settings/frap-shortcuts-dialog.c,
+	  xfce4-settings-helper/frap-shortcuts.c: Sync with latest changes
+	  made to libfrap (locally by now) and clean things up a little. *
+	  *.po, xfce4-settings.pot: Merge strings.
+
+2008-09-08  nick
+
+	* configure.ac.in, dialogs/keyboard-settings/frap-shortcuts.c,
+	  xfce4-settings-helper/frap-shortcuts.c,
+	  xfce4-settings-helper/keyboard-shortcuts.c:
+	  * Use DBG macro.
+	* configure.ac.in, dialogs/keyboard-settings/frap-shortcuts.c,
+	  dialogs/keyboard-settings/main.c, dialogs/mouse-settings/main.c,
+	  xfce4-settings-helper/frap-shortcuts.c,
+	  xfce4-settings-helper/pointers.c:
+	  * Check for Xi 1.4 for the pointer code, make it compile on older
+	  version. * Fix some compile warnings. * Check xi and libx11
+	  versions to 1.0.0
+	* dialogs/mouse-settings/main.c, xfce4-settings-helper/pointers.c:
+	  * Disable pointer hotplugging on older Xi versions.
+	* dialogs/keyboard-settings/frap-shortcuts.c,
+	  xfce4-settings-helper/frap-shortcuts.c,
+	  xfce4-settings-helper/keyboard-shortcuts.c,
+	  xfce4-settings-helper/pointers.c:
+	  * Disable the shortcuts debug output in release builds.
+
+2008-09-08  jari
+
+	* po/ChangeLog, po/fi.po:
+	  Update Finnish translations
+
+2008-09-07  jannis
+
+	* po/ChangeLog, po/POTFILES.in, po/fi.po, po/nl.po, po/pt_BR.po,
+	  po/xfce4-settings.pot:
+	  * POTFILES.in: Add missing files. * *.po, xfce4-settings.pot:
+	  Merge new strings.
+	* ChangeLog, dialogs/keyboard-settings/frap-shortcuts-dialog.c:
+	  * dialogs/keyboard-settings/frap-shortcuts-dialogs.c: Remove an
+	  unused variable.
+	* ChangeLog, dialogs/keyboard-settings/frap-shortcuts-dialog.c:
+	  * dialogs/keyboard-settings/frap-shortcuts-dialog.c: Update the
+	  dialog. It now uses XfceTitledDialog as a parent and also
+	  displays the partial shortcut while being entered - cool!
+	* ChangeLog, dialogs/keyboard-settings/frap-shortcuts-dialog.c,
+	  dialogs/keyboard-settings/frap-shortcuts.c,
+	  dialogs/keyboard-settings/frap-shortcuts.h,
+	  xfce4-settings-helper/Makefile.am,
+	  xfce4-settings-helper/frap-shortcuts.c,
+	  xfce4-settings-helper/frap-shortcuts.h,
+	  xfce4-settings-helper/keyboard-shortcuts.c:
+	  * dialogs/keyboard-settings/frap-shortcuts.{c,h},
+	  dialogs/keyboard-settings/frap-shortcuts.{c,h},
+	  xfce4-settings-helper/Makefile.am,
+	  xfce4-settings-helper/frap-shortcuts.{c,h}: Update to most recent
+	  libfrap version. * xfce4-settings-helper/keyboard-shortcuts.c:
+	  Port the keyboard helper to libfrap.
+	* ChangeLog, TODO, dialogs/keyboard-settings/Makefile.am,
+	  dialogs/keyboard-settings/frap-shortcuts-dialog.c,
+	  dialogs/keyboard-settings/frap-shortcuts-dialog.h,
+	  dialogs/keyboard-settings/frap-shortcuts.c,
+	  dialogs/keyboard-settings/frap-shortcuts.h,
+	  dialogs/keyboard-settings/main.c,
+	  dialogs/keyboard-settings/shortcut-dialog.c,
+	  dialogs/keyboard-settings/shortcut-dialog.h, po/ChangeLog,
+	  po/POTFILES.in, po/fi.po, po/nl.po, po/pt_BR.po,
+	  po/xfce4-settings.pot:
+	  * dialogs/keyboard-settings/Makefile.am,
+	  dialogs/keyboard-settings/frap-shortcuts.{c,h},
+	  dialogs/keyboard-settings/frap-shortcuts-dialog.{c,h},
+	  dialogs/keyboard-settings/main.c: Import frap utility functions
+	  and shortcut dialog into xfce4-settings. Modify the keyboard
+	  settings dialog so that it makes use of them. Make even better
+	  use of the xfconf 'property-changed' signal by adding/removing
+	  rows from the shortcuts tree view when necessary. *
+	  dialogs/keyboard-settings/shortcut-dialog.{c,h}: Remove this one
+	  as it is now replaced by FrapShortcutsDialog.
+	  
+	  * POTFILES.in: Add frap-shortcuts.c and frap-shortcuts-dialog.c.
+	  * *.po, xfce4-settings.pot: Merge new strings.
+
+2008-09-06  jari
+
+	* po/ChangeLog, po/fi.po:
+	  Update Finnish translation.
+
+2008-09-06  jannis
+
+	* ChangeLog, TODO, dialogs/keyboard-settings/main.c, po/ChangeLog,
+	  po/nl.po, po/pt_BR.po, po/xfce4-settings.pot:
+	  * dialogs/keyboard-settings/main.c: Add support for the
+	  'property-changed' signal of the XfconfChannel. Update shortcuts
+	  and actions whenever a property changes. Improve conflict
+	  resolving, shorten the dialog messages. * TODO: Add some notes
+	  for the final release. n * *.po, xfce4-settings.pot: Merge new
+	  strings, remove the old ones.
+
+2008-09-06  jari
+
+	* po/ChangeLog, po/LINGUAS, po/fi.po:
+	  Add Finnish translation.
+
 2008-09-06  stephan
 
+	* configure.ac.in:
+	  remove tag Bump library dependency versions
+	* ChangeLog, configure.ac.in, xfce4-settings-helper/Makefile.am:
+	  Fix make distcheck Update ChangeLog Remove -svn tag Remove xfce
+	  4.6 alpha tag
 	* xfce4-settings-editor/main.c:
 	  Improve the settings-editor
 	* xfce4-settings-editor/main.c,

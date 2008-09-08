@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-06 07:11+0200\n"
+"POT-Creation-Date: 2008-09-08 21:11+0200\n"
 "PO-Revision-Date: 2008-06-21 15:11+0200\n"
 "Last-Translator: Stephan Arts <stephan@xfce.org>\n"
 "Language-Team: Nederlands <nl_NL@li.org>\n"
@@ -89,7 +89,6 @@ msgstr "_Plaktoetsen inschakelen"
 msgid "Enable slow _keys"
 msgstr "_Trage toetsen inschakelen"
 
-#. End of the duplicated code
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
@@ -211,7 +210,7 @@ msgstr ""
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:81
 #: ../dialogs/display-settings/main.c:83
-#: ../dialogs/keyboard-settings/main.c:64 ../dialogs/mouse-settings/main.c:83
+#: ../dialogs/keyboard-settings/main.c:75 ../dialogs/mouse-settings/main.c:94
 #: ../xfce4-settings-editor/main.c:50 ../xfce4-settings-helper/main.c:57
 #: ../xfce4-settings-manager/main.c:47
 msgid "Version information"
@@ -220,8 +219,8 @@ msgstr "Versie-informatie"
 #: ../dialogs/accessibility-settings/main.c:144
 #: ../dialogs/appearance-settings/main.c:759
 #: ../dialogs/display-settings/main.c:643
-#: ../dialogs/keyboard-settings/main.c:684
-#: ../dialogs/mouse-settings/main.c:1170 ../xfce4-settings-editor/main.c:72
+#: ../dialogs/keyboard-settings/main.c:613
+#: ../dialogs/mouse-settings/main.c:1184 ../xfce4-settings-editor/main.c:72
 #: ../xfce4-settings-helper/main.c:100 ../xfce4-settings-manager/main.c:82
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -230,8 +229,8 @@ msgstr ""
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:778
 #: ../dialogs/display-settings/main.c:662
-#: ../dialogs/keyboard-settings/main.c:701
-#: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:91
+#: ../dialogs/keyboard-settings/main.c:630
+#: ../dialogs/mouse-settings/main.c:1203 ../xfce4-settings-editor/main.c:91
 #: ../xfce4-settings-helper/main.c:119 ../xfce4-settings-manager/main.c:95
 msgid "The Xfce development team. All rights reserved."
 msgstr ""
@@ -239,8 +238,8 @@ msgstr ""
 #: ../dialogs/accessibility-settings/main.c:164
 #: ../dialogs/appearance-settings/main.c:779
 #: ../dialogs/display-settings/main.c:663
-#: ../dialogs/keyboard-settings/main.c:702
-#: ../dialogs/mouse-settings/main.c:1190 ../xfce4-settings-editor/main.c:92
+#: ../dialogs/keyboard-settings/main.c:631
+#: ../dialogs/mouse-settings/main.c:1204 ../xfce4-settings-editor/main.c:92
 #: ../xfce4-settings-helper/main.c:120 ../xfce4-settings-manager/main.c:96
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -659,64 +658,17 @@ msgstr "gtk-help"
 msgid "gtk-remove"
 msgstr "gtk-remove"
 
-#: ../dialogs/keyboard-settings/main.c:212
-#, fuzzy, c-format
-msgid "Shortcut conflict: %s"
-msgstr "Snelkoppelingen"
-
-#: ../dialogs/keyboard-settings/main.c:218
-msgid "Window manager action"
+#: ../dialogs/keyboard-settings/main.c:211
+msgid "Shortcut command may not be empty."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/main.c:219
-msgid ""
-"The shortcut is already used by a window manager action, which raises a "
-"conflict. Which one do you want to keep?"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/main.c:225
-#, c-format
-msgid ""
-"The shortcut is already used for the command <b>%s</b>. Which one do you "
-"want to keep?"
-msgstr ""
-
-#. Ask the user what to do
-#: ../dialogs/keyboard-settings/main.c:231
-#, fuzzy
-msgid "Shortcut conflict"
-msgstr "Snelkoppelingen"
-
-#: ../dialogs/keyboard-settings/main.c:247
-#, c-format
-msgid "The keyboard shortcut '%s' is already being used for something else."
-msgstr ""
-
-#: ../dialogs/keyboard-settings/main.c:330
-msgid "Short command may not be empty."
-msgstr ""
-
-#: ../dialogs/keyboard-settings/main.c:641
+#: ../dialogs/keyboard-settings/main.c:567
 #, fuzzy
 msgid "Shortcut"
 msgstr "Snelkoppelingen"
 
-#: ../dialogs/keyboard-settings/main.c:646
+#: ../dialogs/keyboard-settings/main.c:572
 msgid "Command"
-msgstr ""
-
-#. Set dialog title
-#: ../dialogs/keyboard-settings/shortcut-dialog.c:233
-#, fuzzy
-msgid "Set shortcut"
-msgstr "Snelkoppelingen"
-
-#: ../dialogs/keyboard-settings/shortcut-dialog.c:252
-msgid "Set shortcut for command:"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/shortcut-dialog.c:297
-msgid "Could not grab the keyboard."
 msgstr ""
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:4
@@ -724,17 +676,130 @@ msgstr ""
 msgid "Xfce 4 Keyboard Settings"
 msgstr "Toetsenbordinstellingen"
 
-#: ../dialogs/mouse-settings/main.c:84
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:84
+#: ../xfce4-settings-helper/frap-shortcuts.c:84
+#, c-format
+msgid ""
+"This shortcut is already being used by the window manager action <b>%s</b>. "
+"Which action do you want to use?"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:85
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:88
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:91
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:94
+#: ../xfce4-settings-helper/frap-shortcuts.c:85
+#: ../xfce4-settings-helper/frap-shortcuts.c:88
+#: ../xfce4-settings-helper/frap-shortcuts.c:91
+#: ../xfce4-settings-helper/frap-shortcuts.c:94
+#, c-format
+msgid "Use %s"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:85
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:88
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:91
+#: ../xfce4-settings-helper/frap-shortcuts.c:85
+#: ../xfce4-settings-helper/frap-shortcuts.c:88
+#: ../xfce4-settings-helper/frap-shortcuts.c:91
+#, c-format
+msgid "Keep %s"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:87
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:90
+#: ../xfce4-settings-helper/frap-shortcuts.c:87
+#: ../xfce4-settings-helper/frap-shortcuts.c:90
+#, c-format
+msgid ""
+"The shortcut is already being used for the command <b>%s</b>. Which action "
+"do you want to use?"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:93
+#: ../xfce4-settings-helper/frap-shortcuts.c:93
+msgid ""
+"The shortcut is already being used by a <b>window manager action</b>. Which "
+"action do you want to use?"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:94
+#: ../xfce4-settings-helper/frap-shortcuts.c:94
+msgid "Keep window manager action"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:249
+#: ../xfce4-settings-helper/frap-shortcuts.c:249
+#, fuzzy, c-format
+msgid "%s shortcut conflict"
+msgstr "Snelkoppelingen"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:257
+#: ../xfce4-settings-helper/frap-shortcuts.c:257
+msgid "Use this action"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:260
+#: ../xfce4-settings-helper/frap-shortcuts.c:260
+#, fuzzy
+msgid "Shortcut conflict"
+msgstr "Snelkoppelingen"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:281
+#: ../xfce4-settings-helper/frap-shortcuts.c:281
+#, c-format
+msgid "The shortcut '%s' is already being used for something else."
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:236
+msgid "Enter window manager action shortcut"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:237
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:247
+#, fuzzy, c-format
+msgid "Action: %s"
+msgstr "Versnellings_tijd:"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:241
+msgid "Enter command shortcut"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:242
+#, c-format
+msgid "Command: %s"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:246
+#, fuzzy
+msgid "Enter shortcut"
+msgstr "Snelkoppelingen"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:277
+#, fuzzy
+msgid "Shortcut:"
+msgstr "Snelkoppelingen"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:321
+msgid "Could not grab the keyboard."
+msgstr ""
+
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:342
+#, c-format
+msgid "<span size='large'><b>%s</b></span>"
+msgstr ""
+
+#: ../dialogs/mouse-settings/main.c:95
 msgid "Active device in the dialog"
 msgstr ""
 
-#: ../dialogs/mouse-settings/main.c:84
+#: ../dialogs/mouse-settings/main.c:95
 msgid "DEVICE NAME"
 msgstr ""
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:338 ../dialogs/mouse-settings/main.c:340
-#: ../dialogs/mouse-settings/main.c:400
+#: ../dialogs/mouse-settings/main.c:349 ../dialogs/mouse-settings/main.c:351
+#: ../dialogs/mouse-settings/main.c:411
 msgid "Default"
 msgstr ""
 
@@ -873,19 +938,19 @@ msgstr ""
 msgid "Xfce 4 Mouse Settings"
 msgstr "Muis-instellingen"
 
-#: ../xfce4-settings-editor/main.c:223
+#: ../xfce4-settings-editor/main.c:224
 msgid "Channel"
 msgstr ""
 
-#: ../xfce4-settings-editor/main.c:236
+#: ../xfce4-settings-editor/main.c:242
 msgid "Property"
 msgstr ""
 
-#: ../xfce4-settings-editor/main.c:238
+#: ../xfce4-settings-editor/main.c:244
 msgid "Type"
 msgstr ""
 
-#: ../xfce4-settings-editor/main.c:240
+#: ../xfce4-settings-editor/main.c:246
 msgid "Value"
 msgstr ""
 
@@ -978,6 +1043,20 @@ msgstr "Xfce instellingenbeheer"
 #, fuzzy
 msgid "Xfce 4 Settings Manager"
 msgstr "Xfce instellingenbeheer"
+
+#, fuzzy
+#~ msgid "<b>%s</b>"
+#~ msgstr "<b>DPI</b>"
+
+#, fuzzy
+#~ msgid ""
+#~ "Set shortcut for\n"
+#~ "<b>%s</b>"
+#~ msgstr "Snelkoppelingen"
+
+#, fuzzy
+#~ msgid "Shortcut conflict: %s"
+#~ msgstr "Snelkoppelingen"
 
 #, fuzzy
 #~ msgid "Change the looks of your Xfce desktop"

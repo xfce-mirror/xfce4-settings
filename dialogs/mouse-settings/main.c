@@ -32,6 +32,7 @@
 #endif
 
 #include <X11/Xlib.h>
+#include <X11/extensions/XI.h>
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XIproto.h>
 #ifdef HAVE_XCURSOR
@@ -48,7 +49,15 @@
 
 #include "mouse-dialog_glade.h"
 
-
+/* this is only added to make the code compile */
+#if XI_Add_DevicePresenceNotify_Major >= 1
+#define HAS_DEVICE_HOTPLUGGING
+#else
+#undef HAS_DEVICE_HOTPLUGGING
+#endif
+#ifndef IsXExtensionPointer
+#define IsXExtensionPointer 4
+#endif
 
 /* settings */
 #ifdef HAVE_XCURSOR
@@ -72,8 +81,10 @@ static GdkDisplay *display;
 /* device update id */
 static guint timeout_id = 0;
 
+#ifdef HAS_DEVICE_HOTPLUGGING
 /* event id for device add/remove */
 gint device_presence_event_type = 0;
+#endif
 
 /* option entries */
 static gboolean opt_version = FALSE;
@@ -1100,6 +1111,7 @@ mouse_settings_device_reset (GtkWidget *button,
 
 
 
+#ifdef HAS_DEVICE_HOTPLUGGING
 static GdkFilterReturn
 mouse_settings_event_filter (GdkXEvent *xevent,
                              GdkEvent  *gdk_event,
@@ -1145,17 +1157,19 @@ mouse_settings_create_event_filter (GladeXML *gxml)
     /* add an event filter */
     gdk_window_add_filter (NULL, mouse_settings_event_filter, gxml);
 }
+#endif
 
 
 
 gint
 main (gint argc, gchar **argv)
 {
-    GtkWidget      *dialog;
-    GladeXML       *gxml;
-    GError         *error = NULL;
-    GtkAdjustment  *adjustment;
-    GtkWidget      *widget;
+    GtkWidget         *dialog;
+    GladeXML          *gxml;
+    GError            *error = NULL;
+    GtkAdjustment     *adjustment;
+    GtkWidget         *widget;
+    XExtensionVersion *version = NULL;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -1200,6 +1214,15 @@ main (gint argc, gchar **argv)
         g_critical ("Failed to connect to Xfconf daemon: %s", error->message);
         g_error_free (error);
 
+        return EXIT_FAILURE;
+    }
+    
+    /* check for Xi 1.4 */
+    version = XGetExtensionVersion (GDK_DISPLAY (), INAME);
+    if (!version || !version->present || version->major_version < 1 || version->minor_version < 4)
+    {
+        g_critical ("XI is not present or too old.");
+        
         return EXIT_FAILURE;
     }
 
@@ -1264,8 +1287,10 @@ main (gint argc, gchar **argv)
             adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse-double-click-distance")));
             xfconf_g_property_bind (xsettings_channel, "/Net/DoubleClickDistance", G_TYPE_INT, G_OBJECT (adjustment), "value");
 
+#ifdef HAS_DEVICE_HOTPLUGGING
             /* create the event filter for device monitoring */
             mouse_settings_create_event_filter (gxml);
+#endif
 
             /* gtk the dialog */
             dialog = glade_xml_get_widget (gxml, "mouse-dialog");

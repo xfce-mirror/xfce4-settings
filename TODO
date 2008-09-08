@@ -1,13 +1,19 @@
 Keyboard settings
 ------------------------------------------------------------------------
 
-  * Use XfceTitledDialog for the ShortcutDialog.
   * The default values of the sliders don't make sence. I think we should
     also show the slider value and add a tooltip to the slide what the
     value actually stands for, like in the mouse dialog.
     The maximum values also seem to be a bit high.
- (* Not before the 4.6 alpha: Maybe add support for keyboard themes 
-    again) (Jannis)
+  * IMPORTANT (for the final release): Update the property-changed 
+    handler so that they it adds a new row for new properties
+  * IMPORTANT (for the final release): Don't display Mod2-Mod5. Instead 
+    figure out which modifiers are mapped to them and unmask the modifier
+    bits before calling gtk_accelerator_name(). Update 
+    xfce4-settings-helper according to this as well (just the other way
+    around).
+  * IMPORTANT (for the final release): Hard-coded default shortcuts and
+    an option to reset them to defaults (see xfwm4).
 
 
 Mouse Settings (Nick)

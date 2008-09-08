@@ -26,6 +26,7 @@
 #endif
 
 #include <X11/Xlib.h>
+#include <X11/extensions/XI.h>
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XIproto.h>
 
@@ -40,6 +41,16 @@
 
 
 #define MAX_DENOMINATOR (100.00)
+
+/* this is only added to make the code compile */
+#ifdef XI_Add_DevicePresenceNotify_Major
+#define HAS_DEVICE_HOTPLUGGING
+#else
+#undef HAS_DEVICE_HOTPLUGGING
+#endif
+#ifndef IsXExtensionPointer
+#define IsXExtensionPointer 4
+#endif
 
 
 
@@ -68,9 +79,11 @@ static void             xfce_pointers_helper_restore_devices                (Xfc
 static void             xfce_pointers_helper_channel_property_changed       (XfconfChannel           *channel,
                                                                              const gchar             *property_name,
                                                                              const GValue            *value);
+#ifdef HAS_DEVICE_HOTPLUGGING
 static GdkFilterReturn  xfce_pointers_helper_event_filter                   (GdkXEvent               *xevent,
                                                                              GdkEvent                *gdk_event,
                                                                              gpointer                 user_data);
+#endif
 
 
 
@@ -86,8 +99,10 @@ struct _XfcePointersHelper
     /* xfconf channel */
     XfconfChannel *channel;
 
+#ifdef HAS_DEVICE_HOTPLUGGING
     /* device presence event type */
     gint           device_presence_event_type;
+#endif
 };
 
 
@@ -110,11 +125,28 @@ xfce_pointers_helper_class_init (XfcePointersHelperClass *klass)
 static void
 xfce_pointers_helper_init (XfcePointersHelper *helper)
 {
-    gint         dummy;
-    Display     *xdisplay;
-    XEventClass  event_class;
+    XExtensionVersion *version = NULL;
+    Display           *xdisplay;
+#ifdef HAS_DEVICE_HOTPLUGGING
+    XEventClass        event_class;
+#endif
 
-    if (XQueryExtension (GDK_DISPLAY (), "XInputExtension", &dummy, &dummy, &dummy))
+    /* get the default display */
+    xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
+    
+    /* query the extension version */
+    version = XGetExtensionVersion (xdisplay, INAME);
+    
+    /* check for Xi 1.4 */
+    if (!version || !version->present || version->major_version < 1 || version->minor_version < 4)
+    {
+        /* print error */
+        g_critical ("XI is not present or too old.");
+
+        /* no channel */
+        helper->channel = NULL;
+    }
+    else
     {
         /* open the channel */
         helper->channel = xfconf_channel_new ("pointers");
@@ -125,12 +157,12 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         /* monitor the channel */
         g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_pointers_helper_channel_property_changed), NULL);
 
+#ifdef HAS_DEVICE_HOTPLUGGING
         /* flush x and trap errors */
         gdk_flush ();
         gdk_error_trap_push ();
 
-        /* get the default display and root window */
-        xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
+        
         if (G_LIKELY (xdisplay))
         {
             /* monitor device changes */
@@ -144,14 +176,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         /* flush and remove the x error trap */
         gdk_flush ();
         gdk_error_trap_pop ();
-    }
-    else
-    {
-        /* print error */
-        g_critical ("Failed to query the XInput extension.");
-
-        /* no channel */
-        helper->channel = NULL;
+#endif
     }
 }
 
@@ -274,7 +299,7 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
 
 static gint
 xfce_pointers_helper_gcd (gint num,
-                    gint denom)
+                          gint denom)
 {
     /* calc the greatest common divisor using euclidean's algorithm */
     return (denom != 0 ? xfce_pointers_helper_gcd (denom, num % denom) : num);
@@ -548,7 +573,7 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
 }
 
 
-
+#ifdef HAS_DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_pointers_helper_event_filter (GdkXEvent *xevent,
                                    GdkEvent  *gdk_event,
@@ -565,3 +590,4 @@ xfce_pointers_helper_event_filter (GdkXEvent *xevent,
 
     return GDK_FILTER_CONTINUE;
 }
+#endif
