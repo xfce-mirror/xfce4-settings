@@ -32,6 +32,7 @@
 #endif
 
 #include <X11/Xlib.h>
+#include <X11/extensions/XI.h>
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XIproto.h>
 #ifdef HAVE_XCURSOR
@@ -48,7 +49,11 @@
 
 #include "mouse-dialog_glade.h"
 
-
+#if XI_Add_DevicePresenceNotify_Major == 1 && XI_Add_DevicePresenceNotify_Minor >= 4
+#define HAS_DEVICE_HOTPLUGGING
+#else
+#undef HAS_DEVICE_HOTPLUGGING
+#endif
 
 /* settings */
 #ifdef HAVE_XCURSOR
@@ -72,8 +77,10 @@ static GdkDisplay *display;
 /* device update id */
 static guint timeout_id = 0;
 
+#ifdef HAS_DEVICE_HOTPLUGGING
 /* event id for device add/remove */
 gint device_presence_event_type = 0;
+#endif
 
 /* option entries */
 static gboolean opt_version = FALSE;
@@ -1100,6 +1107,7 @@ mouse_settings_device_reset (GtkWidget *button,
 
 
 
+#ifdef HAS_DEVICE_HOTPLUGGING
 static GdkFilterReturn
 mouse_settings_event_filter (GdkXEvent *xevent,
                              GdkEvent  *gdk_event,
@@ -1145,6 +1153,7 @@ mouse_settings_create_event_filter (GladeXML *gxml)
     /* add an event filter */
     gdk_window_add_filter (NULL, mouse_settings_event_filter, gxml);
 }
+#endif
 
 
 
@@ -1264,8 +1273,10 @@ main (gint argc, gchar **argv)
             adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse-double-click-distance")));
             xfconf_g_property_bind (xsettings_channel, "/Net/DoubleClickDistance", G_TYPE_INT, G_OBJECT (adjustment), "value");
 
+#ifdef HAS_DEVICE_HOTPLUGGING
             /* create the event filter for device monitoring */
             mouse_settings_create_event_filter (gxml);
+#endif
 
             /* gtk the dialog */
             dialog = glade_xml_get_widget (gxml, "mouse-dialog");

@@ -26,6 +26,7 @@
 #endif
 
 #include <X11/Xlib.h>
+#include <X11/extensions/XI.h>
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XIproto.h>
 
@@ -40,6 +41,12 @@
 
 
 #define MAX_DENOMINATOR (100.00)
+
+#if XI_Add_DevicePresenceNotify_Major == 1 && XI_Add_DevicePresenceNotify_Minor >= 4
+#define HAS_DEVICE_HOTPLUGGING
+#else
+#undef HAS_DEVICE_HOTPLUGGING
+#endif
 
 
 
@@ -68,9 +75,11 @@ static void             xfce_pointers_helper_restore_devices                (Xfc
 static void             xfce_pointers_helper_channel_property_changed       (XfconfChannel           *channel,
                                                                              const gchar             *property_name,
                                                                              const GValue            *value);
+#ifdef HAS_DEVICE_HOTPLUGGING
 static GdkFilterReturn  xfce_pointers_helper_event_filter                   (GdkXEvent               *xevent,
                                                                              GdkEvent                *gdk_event,
                                                                              gpointer                 user_data);
+#endif
 
 
 
@@ -86,8 +95,10 @@ struct _XfcePointersHelper
     /* xfconf channel */
     XfconfChannel *channel;
 
+#ifdef HAS_DEVICE_HOTPLUGGING
     /* device presence event type */
     gint           device_presence_event_type;
+#endif
 };
 
 
@@ -111,8 +122,10 @@ static void
 xfce_pointers_helper_init (XfcePointersHelper *helper)
 {
     gint         dummy;
+#ifdef HAS_DEVICE_HOTPLUGGING
     Display     *xdisplay;
     XEventClass  event_class;
+#endif
 
     if (XQueryExtension (GDK_DISPLAY (), "XInputExtension", &dummy, &dummy, &dummy))
     {
@@ -125,6 +138,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         /* monitor the channel */
         g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_pointers_helper_channel_property_changed), NULL);
 
+#ifdef HAS_DEVICE_HOTPLUGGING
         /* flush x and trap errors */
         gdk_flush ();
         gdk_error_trap_push ();
@@ -144,6 +158,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         /* flush and remove the x error trap */
         gdk_flush ();
         gdk_error_trap_pop ();
+#endif
     }
     else
     {
@@ -548,7 +563,7 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
 }
 
 
-
+#ifdef HAS_DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_pointers_helper_event_filter (GdkXEvent *xevent,
                                    GdkEvent  *gdk_event,
@@ -565,3 +580,4 @@ xfce_pointers_helper_event_filter (GdkXEvent *xevent,
 
     return GDK_FILTER_CONTINUE;
 }
+#endif
