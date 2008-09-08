@@ -305,7 +305,7 @@ xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel               *ch
   g_return_if_fail (XFCONF_IS_CHANNEL (channel));
 
   /* Check whether the property was removed */
-  if (!G_IS_VALUE (value) || G_VALUE_TYPE (value) == G_TYPE_INVALID)
+  if (G_VALUE_TYPE (value) == G_TYPE_INVALID)
     {
       /* Remove shortcut and ungrab keys if we're monitoring it already */
       if (G_LIKELY (g_hash_table_lookup (helper->shortcuts, property + 1)))

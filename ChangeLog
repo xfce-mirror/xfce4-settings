@@ -1,3 +1,10 @@
+2008-09-09	jannis
+
+	* dialogs/keyboard-settings/main.c,
+	  xfce4-settings-helper/keyboard-shortcuts.c: Fix the checks for invalid
+	  values when a property was removed (use G_VALUE_TYPE (value) !=
+	  G_TYPE_INVALID instead of value != NULL).
+
 2008-09-08  jannis
 
 	* ChangeLog, dialogs/keyboard-settings/frap-shortcuts-dialog.c,

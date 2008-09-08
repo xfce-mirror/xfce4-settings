@@ -438,7 +438,7 @@ keyboard_settings_update_shortcut (GtkTreeModel    *model,
     {
       if (G_UNLIKELY (g_utf8_collate (shortcut, context->shortcut) == 0))
         {
-          if (G_LIKELY (context->value != NULL))
+          if (G_LIKELY (G_VALUE_TYPE (context->value) != G_TYPE_INVALID))
             {
               if (G_LIKELY (frap_shortcuts_parse_value (context->value, &type, &action)))
                 {
@@ -458,7 +458,7 @@ keyboard_settings_update_shortcut (GtkTreeModel    *model,
     }
   else
     {
-      if (G_LIKELY (context->value != NULL))
+      if (G_LIKELY (G_VALUE_TYPE (context->value) != G_TYPE_INVALID))
         {
           if (G_LIKELY (frap_shortcuts_parse_value (context->value, &type, &action)))
             {
@@ -498,7 +498,7 @@ keyboard_settings_property_changed (XfconfChannel *channel,
 
   gtk_tree_model_foreach (GTK_TREE_MODEL (store), (GtkTreeModelForeachFunc) keyboard_settings_update_shortcut, &context);
 
-  if (G_UNLIKELY (context.counter == 0 && value != NULL))
+  if (G_UNLIKELY (G_VALUE_TYPE (value) != G_TYPE_INVALID && context.counter == 0))
     if (G_LIKELY (frap_shortcuts_parse_value (value, &type, &action)))
       {
         if (G_LIKELY (type == FRAP_SHORTCUTS_EXECUTE))
