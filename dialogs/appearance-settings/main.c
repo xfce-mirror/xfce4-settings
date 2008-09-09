@@ -182,7 +182,7 @@ cb_custom_dpi_spin_value_changed (GtkSpinButton   *custom_dpi_spin,
 
     if (gtk_toggle_button_get_active (custom_dpi_toggle))
     {
-        dpi = gtk_spin_button_get_value (custom_dpi_spin) * 1024;
+        dpi = gtk_spin_button_get_value (custom_dpi_spin);
         xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", dpi);
     }
 }
@@ -729,7 +729,7 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
     {
         gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (custom_dpi_check), TRUE);
         gtk_widget_set_sensitive (custom_dpi_spin, TRUE);
-        gtk_spin_button_set_value (GTK_SPIN_BUTTON (custom_dpi_spin), (gdouble) dpi / 1024);
+        gtk_spin_button_set_value (GTK_SPIN_BUTTON (custom_dpi_spin), (gdouble) dpi);
     }
 
     g_signal_connect (G_OBJECT (custom_dpi_check), "toggled", G_CALLBACK (cb_custom_dpi_check_button_toggled), custom_dpi_spin);

@@ -1,5 +1,11 @@
 2008-09-09	jannis
 
+	* dialogs/appearance-settings/main.c: Don't multiply the DPI value with
+	  1024. That should only be done for the XChangeProperty call (but why?).
+	  The current behaviour breaks xrdb badly (and thereby all Qt apps).
+
+2008-09-09	jannis
+
 	* dialogs/keyboard-settings/main.c,
 	  xfce4-settings-helper/keyboard-shortcuts.c: Fix the checks for invalid
 	  values when a property was removed (use G_VALUE_TYPE (value) !=
