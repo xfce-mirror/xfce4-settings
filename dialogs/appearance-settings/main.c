@@ -700,11 +700,11 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
     switch (antialias)
     {
         case 1:
-            gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (antialias_check_button), TRUE);
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (antialias_check_button), TRUE);
             break;
 
         case 0:
-            gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (antialias_check_button), FALSE);
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (antialias_check_button), FALSE);
             break;
 
         default: /* -1 */
@@ -721,13 +721,13 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
 
     if (dpi == -1)
     {
-        gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (custom_dpi_check), FALSE);
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (custom_dpi_check), FALSE);
         gtk_widget_set_sensitive (custom_dpi_spin, FALSE);
         gtk_spin_button_set_value (GTK_SPIN_BUTTON (custom_dpi_spin), 96);
     }
     else
     {
-        gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (custom_dpi_check), TRUE);
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (custom_dpi_check), TRUE);
         gtk_widget_set_sensitive (custom_dpi_spin, TRUE);
         gtk_spin_button_set_value (GTK_SPIN_BUTTON (custom_dpi_spin), (gdouble) dpi);
     }
