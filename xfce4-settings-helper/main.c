@@ -47,6 +47,7 @@
 #include "pointers.h"
 #include "keyboards.h"
 #include "keyboard-shortcuts.h"
+#include "workspaces.h"
 
 
 
@@ -79,6 +80,7 @@ main (gint argc, gchar **argv)
     GObject    *accessibility_helper;
     GObject    *shortcuts_helper;
     GObject    *displays_helper;
+    GObject    *workspaces_helper;
     pid_t       pid;
     guint       i;
     const gint  signums[] = { SIGHUP, SIGINT, SIGQUIT, SIGTERM };
@@ -157,6 +159,7 @@ main (gint argc, gchar **argv)
     accessibility_helper = g_object_new (XFCE_TYPE_ACCESSIBILITY_HELPER, NULL);
     shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
     displays_helper = g_object_new (XFCE_TYPE_DISPLAYS_HELPER, NULL);
+    workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
 
     /* setup signal handlers to properly quit the main loop */
     for (i = 0; i < G_N_ELEMENTS (signums); i++)
@@ -171,6 +174,7 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (accessibility_helper));
     g_object_unref (G_OBJECT (shortcuts_helper));
     g_object_unref (G_OBJECT (displays_helper));
+    g_object_unref (G_OBJECT (workspaces_helper));
 
     /* shutdown xfconf */
     xfconf_shutdown ();

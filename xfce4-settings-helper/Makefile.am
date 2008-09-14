@@ -7,6 +7,7 @@ INCLUDES = \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-settings-helper\" \
+	-DWNCK_I_KNOW_THIS_IS_UNSTABLE \
 	$(PLATFORM_CPPFLAGS)
 
 bin_PROGRAMS = \
@@ -25,7 +26,9 @@ xfce4_settings_helper_SOURCES = \
 	frap-shortcuts.c \
 	frap-shortcuts.h \
 	pointers.c \
-	pointers.h
+	pointers.h \
+	workspaces.c \
+	workspaces.h
 
 xfce4_settings_helper_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -38,7 +41,9 @@ xfce4_settings_helper_CFLAGS = \
 	$(XI_CFLAGS) \
 	$(LIBX11_CFLAGS) \
 	$(XRANDR_CFLAGS) \
-	$(LIBNOTIFY_CFLAGS)
+	$(LIBNOTIFY_CFLAGS) \
+	$(LIBWNCK_CFLAGS) \
+	$(PLATFORM_CFLAGS)
 
 xfce4_settings_helper_LDFLAGS = \
 	-no-undefined \
@@ -55,7 +60,8 @@ xfce4_settings_helper_LDADD = \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
 	$(XRANDR_LIBS) \
-	$(LIBNOTIFY_LIBS)
+	$(LIBNOTIFY_LIBS) \
+	$(LIBWNCK_LIBS)
 
 autostartdir = $(sysconfdir)/xdg/autostart
 autostart_DATA = xfce4-settings-helper-autostart.desktop
