@@ -810,6 +810,9 @@ main(gint argc, gchar **argv)
 
                 /* run the dialog */
                 gtk_dialog_run (GTK_DIALOG (dialog));
+
+                /* destroy the dialog */
+                gtk_widget_destroy (dialog);
             }
             else
             {
@@ -828,9 +831,6 @@ main(gint argc, gchar **argv)
 
             /* release the glade xml */
             g_object_unref (G_OBJECT (gxml));
-
-            /* destroy the dialog */
-            gtk_widget_destroy (dialog);
         }
 
         /* release the channel */
