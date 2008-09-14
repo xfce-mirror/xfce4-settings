@@ -73,7 +73,7 @@ static XfconfChannel *kbd_channel;
 static GdkNativeWindow opt_socket_id = 0;
 static gboolean        opt_version = FALSE;
 static GOptionEntry    entries[] = {
-  { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), NULL },
+  { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID") },
   { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
   { NULL }
 };

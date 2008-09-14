@@ -1,6 +1,7 @@
 /* $Id$ */
 /*
  *  Copyright (c) 2008 Nick Schermer <nick@xfce.org>
+ *                     Jannis Pohlmann <jannis@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -87,12 +88,14 @@ gint device_presence_event_type = 0;
 #endif
 
 /* option entries */
-static gboolean opt_version = FALSE;
+static GdkNativeWindow opt_socket_id = 0;
 static gchar *opt_device_name = NULL;
+static gboolean opt_version = FALSE;
 static GOptionEntry option_entries[] =
 {
-    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { "device", 'd', 0, G_OPTION_ARG_STRING, &opt_device_name, N_("Active device in the dialog"), N_("DEVICE NAME") },
+    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID") },
+    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { NULL }
 };
 
@@ -1165,6 +1168,8 @@ gint
 main (gint argc, gchar **argv)
 {
     GtkWidget         *dialog;
+    GtkWidget         *plug;
+    GtkWidget         *plug_child;
     GladeXML          *gxml;
     GError            *error = NULL;
     GtkAdjustment     *adjustment;
@@ -1292,17 +1297,37 @@ main (gint argc, gchar **argv)
             mouse_settings_create_event_filter (gxml);
 #endif
 
-            /* gtk the dialog */
-            dialog = glade_xml_get_widget (gxml, "mouse-dialog");
+            if (G_UNLIKELY (opt_socket_id == 0))
+            {
+                /* get the dialog */
+                dialog = glade_xml_get_widget (gxml, "mouse-dialog");
 
-            /* unlock */
-            locked--;
+                /* unlock */
+                locked--;
 
-            /* show the dialog */
-            gtk_dialog_run (GTK_DIALOG (dialog));
+                /* show the dialog */
+                gtk_dialog_run (GTK_DIALOG (dialog));
 
-            /* destroy the dialog */
-            gtk_widget_destroy (GTK_WIDGET (dialog));
+                /* destroy the dialog */
+                gtk_widget_destroy (GTK_WIDGET (dialog));
+            }
+            else
+            {
+                /* Create plug widget */
+                plug = gtk_plug_new (opt_socket_id);
+                gtk_widget_show (plug);
+
+                /* Get plug child widget */
+                plug_child = glade_xml_get_widget (gxml, "plug-child");
+                gtk_widget_reparent (plug_child, plug);
+                gtk_widget_show (plug_child);
+
+                /* Unlock */
+                locked--;
+
+                /* Enter main loop */
+                gtk_main ();
+            }
 
             /* release the glade xml */
             g_object_unref (G_OBJECT (gxml));
