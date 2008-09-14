@@ -75,9 +75,11 @@ static const gchar* xft_rgba_array[] =
 };
 
 /* Option entries */
+static GdkNativeWindow opt_socket_id = 0;
 static gboolean opt_version = FALSE;
 static GOptionEntry option_entries[] =
 {
+    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), NULL },
     { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { NULL }
 };
@@ -508,8 +510,8 @@ appearance_settings_from_gtk_settings (void)
     }
 }
 
-static GtkWidget *
-appearance_settings_dialog_new_from_xml (GladeXML *gxml)
+static void
+appearance_settings_dialog_configure_widgets (GladeXML *gxml)
 {
     GtkListStore     *list_store;
     GtkCellRenderer  *renderer;
@@ -734,15 +736,14 @@ appearance_settings_dialog_new_from_xml (GladeXML *gxml)
 
     g_signal_connect (G_OBJECT (custom_dpi_check), "toggled", G_CALLBACK (cb_custom_dpi_check_button_toggled), custom_dpi_spin);
     g_signal_connect (G_OBJECT (custom_dpi_spin), "value-changed", G_CALLBACK (cb_custom_dpi_spin_value_changed), custom_dpi_check);
-
-    /* return dialog */
-    return glade_xml_get_widget (gxml, "appearance-settings-dialog");
 }
 
 gint
 main(gint argc, gchar **argv)
 {
     GtkWidget *dialog;
+    GtkWidget *plug;
+    GtkWidget *plug_child;
     GladeXML  *gxml;
     GError    *error = NULL;
 
@@ -800,11 +801,30 @@ main(gint argc, gchar **argv)
         gxml = glade_xml_new_from_buffer (appearance_dialog_glade, appearance_dialog_glade_length, NULL, NULL);
         if (G_LIKELY (gxml))
         {
-            /* build the dialog */
-            dialog = appearance_settings_dialog_new_from_xml (gxml);
+            appearance_settings_dialog_configure_widgets (gxml);
 
-            /* run the dialog */
-            gtk_dialog_run (GTK_DIALOG (dialog));
+            if (G_UNLIKELY (opt_socket_id == 0))
+            {
+                /* build the dialog */
+                dialog = glade_xml_get_widget (gxml, "appearance-settings-dialog");
+
+                /* run the dialog */
+                gtk_dialog_run (GTK_DIALOG (dialog));
+            }
+            else
+            {
+                /* Create plug widget */
+                plug = gtk_plug_new (opt_socket_id);
+                gtk_widget_show (plug);
+
+                /* Get plug child widget */
+                plug_child = glade_xml_get_widget (gxml, "plug-child");
+                gtk_widget_reparent (plug_child, plug);
+                gtk_widget_show (plug_child);
+
+                /* Enter main loop */
+                gtk_main ();
+            }
 
             /* release the glade xml */
             g_object_unref (G_OBJECT (gxml));
