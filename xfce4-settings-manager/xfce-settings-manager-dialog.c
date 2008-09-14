@@ -77,6 +77,7 @@ enum
     COL_COMMENT,
     COL_EXEC,
     COL_SNOTIFY,
+    COL_PLUGGABLE,
     N_COLS
 };
 
@@ -334,7 +335,7 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
 
     dialog->ls = gtk_list_store_new(N_COLS, G_TYPE_STRING, G_TYPE_STRING,
                                     G_TYPE_STRING, G_TYPE_STRING,
-                                    G_TYPE_BOOLEAN);
+                                    G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
     
     dirs = xfce_resource_lookup_all(XFCE_RESOURCE_DATA, "applications/");
     if(!dirs)
@@ -421,6 +422,7 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                                COL_COMMENT, xfce_rc_read_entry(rcfile, "Comment", NULL),
                                COL_EXEC, exec,
                                COL_SNOTIFY, xfce_rc_read_bool_entry(rcfile, "StartupNotify", FALSE),
+                               COL_PLUGGABLE, xfce_rc_read_bool_entry(rcfile, "X-XfcePluggable", FALSE),
                                -1);
 
             xfce_rc_close(rcfile);
@@ -447,7 +449,8 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
     GtkTreeIter iter;
     gchar *exec = NULL, *name, *comment, *icon_name, *primary;
     gboolean snotify = FALSE;
-    gchar *argv[2];
+    gboolean pluggable = FALSE;
+    gchar *argv[3];
     GError *error = NULL;
 
     if(!gtk_tree_model_get_iter(GTK_TREE_MODEL(dialog->ls), &iter, path))
@@ -459,44 +462,68 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
                        COL_EXEC, &exec,
                        COL_ICON_NAME, &icon_name,
                        COL_SNOTIFY, &snotify,
+                       COL_PLUGGABLE, &pluggable,
                        -1);
 
     /* Kill the previously spawned dialog (if there is any) */
     xfce_settings_manager_dialog_destroy_client(dialog);
 
-    /* Update dialog title and icon */
-    gtk_window_set_title(GTK_WINDOW(dialog), name);
-    gtk_window_set_icon_name(GTK_WINDOW(dialog), icon_name);
-    xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dialog), comment);
+    if(pluggable) {
+        /* Update dialog title and icon */
+        gtk_window_set_title(GTK_WINDOW(dialog), name);
+        gtk_window_set_icon_name(GTK_WINDOW(dialog), icon_name);
+        xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dialog), comment);
 
-    /* Switch to the socket view (but don't display it yet) */
-    xfce_settings_manager_dialog_reset_view(dialog, FALSE);
+        /* Switch to the socket view (but don't display it yet) */
+        xfce_settings_manager_dialog_reset_view(dialog, FALSE);
 
-    /* Build the dialog command */
-    argv[0] = exec;
-    argv[1] = g_strdup_printf("--socket-id=%d", 
-                              gtk_socket_get_id(GTK_SOCKET(dialog->socket)));
+        /* Build the dialog command */
+        argv[0] = exec;
+        argv[1] = g_strdup_printf("--socket-id=%d", 
+                                  gtk_socket_get_id(GTK_SOCKET(dialog->socket)));
+        argv[3] = NULL;
 
-    /* Try to spawn the dialog */
-    if(!gdk_spawn_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)), NULL, 
-                            argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, 
-                            &dialog->last_pid, &error))
-    {
-        /* Spawning failed, go back to the overview */
-        xfce_settings_manager_dialog_destroy_client(dialog);
+        /* Try to spawn the dialog */
+        if(!gdk_spawn_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)), 
+                                NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, 
+                                NULL, &dialog->last_pid, &error))
+        {
+            /* Spawning failed, go back to the overview */
+            xfce_settings_manager_dialog_destroy_client(dialog);
+            xfce_settings_manager_dialog_reset_view(dialog, TRUE);
+
+            /* Notify the user that there has been a problem */
+            primary = g_strdup_printf(_("Unable to start \"%s\""), exec);
+            xfce_message_dialog(GTK_WINDOW(dialog), _("Xfce Settings Manager"),
+                                GTK_STOCK_DIALOG_ERROR, primary, error->message,
+                                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+            g_free(primary);
+            g_error_free(error);
+        }
+
+        g_free(argv[0]);
+        g_free(argv[1]);
+    } else {
+        /* Switch to the main view (just to be sure) */
         xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 
-        /* Notify the user that there has been a problem */
-        primary = g_strdup_printf(_("Unable to start \"%s\""), exec);
-        xfce_message_dialog(GTK_WINDOW(dialog), _("Xfce Settings Manager"),
-                            GTK_STOCK_DIALOG_ERROR, primary, error->message,
-                            GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
-        g_free(primary);
-        g_error_free(error);
-    }
+        argv[0] = exec;
+        argv[1] = NULL;
 
-    g_free(argv[0]);
-    g_free(argv[1]);
+        /* Try to spawn the dialog */
+        if (!gdk_spawn_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)), 
+                                NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL,
+                                NULL, NULL, &error))
+        {
+            /* Notify the user that there has been a problem */
+            primary = g_strdup_printf(_("Unable to start \"%s\""), exec);
+            xfce_message_dialog(GTK_WINDOW(dialog), _("Xfce Settings Manager"),
+                                GTK_STOCK_DIALOG_ERROR, primary, error->message,
+                                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+            g_free(primary);
+            g_error_free(error);
+        }
+    }
 }
 
 static void
