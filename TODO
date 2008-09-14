@@ -7,11 +7,8 @@ Keyboard settings
     The maximum values also seem to be a bit high.
   * IMPORTANT (for the final release): Update the property-changed 
     handler so that they it adds a new row for new properties
-  * IMPORTANT (for the final release): Don't display Mod2-Mod5. Instead 
-    figure out which modifiers are mapped to them and unmask the modifier
-    bits before calling gtk_accelerator_name(). Update 
-    xfce4-settings-helper according to this as well (just the other way
-    around).
+  * IMPORTANT (for the final release): Improve the libfrap code for
+    shortcuts. It could be less complicated.
   * IMPORTANT (for the final release): Hard-coded default shortcuts and
     an option to reset them to defaults (see xfwm4).
 
@@ -27,6 +24,21 @@ Settings Helper
 
   * Check for an already running instance. This is quite easy with
     a pid file, but I'm not sure that's a good solution...
+
+
+Settings Manager
+------------------------------------------------------------------------
+
+  * Add embed support to all dialogs (not only those in xfce4-settings).
+  * Figure out a way to avoid the black glitches that happen when 
+    embedding dialogs into the main dialog sometimes.
+  * Consider adding an X-Xfce-Embed=true key to the .desktop files of
+    settings dialogs so that the main dialog can check if they support
+    the embed feature or not.
+  * Come up with a solution for help buttons (maybe using an additonal
+    .desktop file key with a help URL for each settings dialog?).
+  * Maybe make addding dialog-specific buttons to the button bar of the
+    main dialog possible, dunno.
 
 
 Display Settings (Nick)
