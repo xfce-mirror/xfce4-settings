@@ -360,7 +360,7 @@ xfce_pointers_helper_change_feedback (XDevice *device,
                 feedback.accelDenom = denom;
 
                 /* change feedback for this device */
-                XChangeFeedbackControl (xdisplay, device, mask, (XFeedbackControl *) &feedback);
+                XChangeFeedbackControl (xdisplay, device, mask, (XFeedbackControl *)(void *)&feedback);
 
                 /* done */
                 break;
