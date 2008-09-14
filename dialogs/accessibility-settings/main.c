@@ -1,6 +1,7 @@
 /* $Id$ */
 /*
  *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
+ *                     Jannis Pohlmann <jannis@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -37,9 +38,11 @@
 
 
 
-gboolean opt_version = FALSE;
+static GdkNativeWindow opt_socket_id = 0;
+static gboolean opt_version = FALSE;
 static GOptionEntry entries[] =
 {
+    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), NULL },
     { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { NULL }
 };
@@ -60,8 +63,8 @@ accessibility_settings_sensitivity (GtkToggleButton *button,
 
 
 
-static GtkWidget *
-accessibility_settings_dialog_new_from_xml (GladeXML *gxml)
+static void
+accessibility_settings_dialog_configure_widgets (GladeXML *gxml)
 {
     GtkWidget     *widget, *box;
     GtkAdjustment *adjustment;
@@ -116,10 +119,6 @@ accessibility_settings_dialog_new_from_xml (GladeXML *gxml)
     
     widget = glade_xml_get_widget (gxml, "mouse-emulation-curve");
     xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Curve", G_TYPE_INT, G_OBJECT (widget), "value");
-    
-    
-
-    return glade_xml_get_widget (gxml, "accessibility-settings-dialog");
 }
 
 
@@ -127,9 +126,11 @@ accessibility_settings_dialog_new_from_xml (GladeXML *gxml)
 gint
 main (gint argc, gchar **argv)
 {
+    GtkWidget *dialog;
+    GtkWidget *plug;
+    GtkWidget *plug_child;
     GladeXML  *gxml;
     GError    *error = NULL;
-    GtkWidget *dialog;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -185,14 +186,37 @@ main (gint argc, gchar **argv)
                                       accessibility_dialog_glade_length,
                                       NULL, NULL);
 
-    /* get the dialog */
-    dialog = accessibility_settings_dialog_new_from_xml (gxml);
+    if (G_LIKELY (gxml != NULL))
+    {
+        /* Configure widgets */
+        accessibility_settings_dialog_configure_widgets (gxml);
 
-    /* run the dialog */
-    gtk_dialog_run (GTK_DIALOG (dialog));
+        if (G_UNLIKELY (opt_socket_id == 0))
+        {
+            /* Get the dialog widget */
+            dialog = glade_xml_get_widget (gxml, "accessibility-settings-dialog");
 
-    /* destroy the dialog */
-    gtk_widget_destroy (dialog);
+            /* run the dialog */
+            gtk_dialog_run (GTK_DIALOG (dialog));
+
+            /* destroy the dialog */
+            gtk_widget_destroy (dialog);
+        }
+        else
+        {
+            /* Create plug widget */
+            plug = gtk_plug_new (opt_socket_id);
+            gtk_widget_show (plug);
+
+            /* Get plug child widget */
+            plug_child = glade_xml_get_widget (gxml, "plug-child");
+            gtk_widget_reparent (plug_child, plug);
+            gtk_widget_show (plug_child);
+
+            /* Enter main loop */
+            gtk_main ();
+        }
+    }
 
     /* Free Glade XML */
     g_object_unref (G_OBJECT (gxml));

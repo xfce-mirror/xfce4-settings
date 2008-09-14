@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sun Aug 24 23:16:39 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Sep 14 20:51:59 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="accessibility-settings-dialog">
@@ -15,7 +15,7 @@
         <property name="visible">True</property>
         <property name="spacing">2</property>
         <child>
-          <widget class="GtkVBox" id="vbox1">
+          <widget class="GtkVBox" id="plug-child">
             <property name="visible">True</property>
             <child>
               <widget class="GtkNotebook" id="notebook1">
@@ -630,6 +630,7 @@
         <child internal-child="action_area">
           <widget class="GtkHButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
+            <property name="layout_style">GTK_BUTTONBOX_END</property>
             <child>
               <widget class="GtkButton" id="button2">
                 <property name="visible">True</property>
