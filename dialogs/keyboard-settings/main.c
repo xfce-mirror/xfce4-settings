@@ -70,8 +70,10 @@ static XfconfChannel *kbd_channel;
 
 
 
-static gboolean     opt_version = FALSE;
-static GOptionEntry entries[] = {
+static GdkNativeWindow opt_socket_id = 0;
+static gboolean        opt_version = FALSE;
+static GOptionEntry    entries[] = {
+  { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), NULL },
   { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
   { NULL }
 };
@@ -513,8 +515,8 @@ keyboard_settings_property_changed (XfconfChannel *channel,
 
 
 
-GtkWidget*
-keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
+static void
+keyboard_settings_dialog_configure_widgets (GladeXML *gxml)
 {
   GtkTreeViewColumn *column;
   GtkCellRenderer   *renderer;
@@ -527,7 +529,6 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
   GtkWidget         *xkb_key_repeat_check;
   GtkWidget         *add_shortcut_button;
   GtkWidget         *delete_shortcut_button;
-  GtkWidget         *dialog;
   GtkWidget         *box;
 
   /* XKB Settings */
@@ -584,18 +585,14 @@ keyboard_settings_dialog_new_from_xml (GladeXML *gxml)
   
   delete_shortcut_button = glade_xml_get_widget (gxml, "delete_shortcut_button");
   g_signal_connect_swapped (G_OBJECT (delete_shortcut_button), "clicked", G_CALLBACK (keyboard_settings_delete_shortcut), GTK_TREE_VIEW (kbd_shortcuts_view));
-
-  /* Get dialog widget */
-  dialog = glade_xml_get_widget (gxml, "keyboard-settings-dialog");
-  gtk_widget_show_all(dialog);
-
-  return dialog;
 }
 
 int
 main(int argc, char **argv)
 {
   GtkWidget *dialog;
+  GtkWidget *plug;
+  GtkWidget *plug_child;
   GladeXML  *gxml;
   GError    *error = NULL;
 
@@ -652,13 +649,36 @@ main(int argc, char **argv)
   /* Parse Glade XML */
   gxml = glade_xml_new_from_buffer (keyboard_dialog_glade, keyboard_dialog_glade_length, NULL, NULL);
 
-  /* Create settings dialog and run it */
-  dialog = keyboard_settings_dialog_new_from_xml (gxml);
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
+  if (G_LIKELY (gxml != NULL))
+    {
+      /* Configure widgets */
+      keyboard_settings_dialog_configure_widgets (gxml);
 
-  /* Free Glade XML */
-  g_object_unref (G_OBJECT (gxml));
+      if (G_UNLIKELY (opt_socket_id == 0))
+        {
+          /* Get settings dialog and run it */
+          dialog = glade_xml_get_widget (gxml, "keyboard-settings-dialog");
+          gtk_dialog_run (GTK_DIALOG (dialog));
+          gtk_widget_destroy (dialog);
+        }
+      else
+        {
+          /* Create plug widget */
+          plug = gtk_plug_new (opt_socket_id);
+          gtk_widget_show (plug);
+
+          /* Get plug child widget */
+          plug_child = glade_xml_get_widget (gxml, "plug-child");
+          gtk_widget_reparent (plug_child, plug);
+          gtk_widget_show (plug_child);
+
+          /* Enter main loop */
+          gtk_main ();
+        }
+
+      /* Free Glade XML */
+      g_object_unref (G_OBJECT (gxml));
+    }
 
   /* Unload channels */
   g_object_unref (G_OBJECT (xsettings_channel));
