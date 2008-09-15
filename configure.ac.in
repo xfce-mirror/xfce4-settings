@@ -97,6 +97,14 @@ dnl ************************************
 XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [1.1.0],
                            [xcursor], [Cursor themes support])
 
+dnl make xsettings daemon optional
+AC_ARG_ENABLE([xsettings-daemon],
+              [AC_HELP_STRING([--disable-xsettings-daemon],
+                              [Don't build the XSETTINGS daemon (default=yes)])],
+              [build_xfsettingsd=$enableval],
+              [build_xfsettingsd=yes])
+AM_CONDITIONAL([BUILD_XFSETTINGSD], [test "x$build_xfsettingsd" = "xyes"])
+
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
@@ -205,6 +213,7 @@ dialogs/mouse-settings/Makefile
 xfce4-settings-helper/Makefile
 xfce4-settings-manager/Makefile
 xfce4-settings-editor/Makefile
+xfsettingsd/Makefile
 ])
 
 dnl ***************************

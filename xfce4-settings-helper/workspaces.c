@@ -108,7 +108,7 @@ xfce_workspaces_helper_init(XfceWorkspacesHelper *helper)
         }
         names[i] = NULL;
         xfconf_channel_set_string_list(helper->channel, WORKSPACE_NAMES_PROP,
-                                       names);
+                                       (const gchar **)names);
     }
 
     g_signal_connect(G_OBJECT(helper->channel),
@@ -152,7 +152,7 @@ xfce_workspaces_helper_update_all_names(XfceWorkspacesHelper *helper)
     names[n_workspaces] = NULL;
 
     xfconf_channel_set_string_list(helper->channel, WORKSPACE_NAMES_PROP,
-                                   (gchar * const *)names);
+                                   (const gchar **)names);
 
     g_free(names);
 }
