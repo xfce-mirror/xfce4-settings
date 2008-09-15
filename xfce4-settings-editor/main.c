@@ -120,6 +120,17 @@ main(gint argc, gchar **argv)
     return EXIT_SUCCESS;
 }
 
+#if !GLIB_CHECK_VERSION (2,14,0)
+static void
+xfce_tray_widget_name_list_foreach (gpointer key,
+                                    gpointer value,
+                                    gpointer user_data)
+{
+    GList **keys = user_data;
+    *keys = g_list_prepend (*keys, key);
+}
+#endif
+
 static void
 check_properties (GtkTreeStore *tree_store, GtkTreeView *tree_view, GtkTreePath *path, XfconfChannel *channel)
 {
@@ -135,7 +146,12 @@ check_properties (GtkTreeStore *tree_store, GtkTreeView *tree_view, GtkTreePath 
     GHashTable *hash_table = xfconf_channel_get_properties (channel, NULL);
     if (hash_table != NULL)
     {
+
+#if !GLIB_CHECK_VERSION (2,14,0)
+        g_hash_table_foreach (hash_table, xfce_tray_widget_name_list_foreach, &keys);
+#else
         keys = g_hash_table_get_keys (hash_table);
+#endif    
         for(_keys = keys; _keys != NULL; _keys = g_list_next (_keys))
         {
             key = _keys->data;
@@ -320,7 +336,11 @@ cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, Gt
 
     if (hash_table)
     {
+#if !GLIB_CHECK_VERSION (2,14,0)
+        g_hash_table_foreach (hash_table, xfce_tray_widget_name_list_foreach, &keys);
+#else
         keys = g_hash_table_get_keys (hash_table);
+#endif    
         for(_keys = keys; _keys != NULL; _keys = g_list_next (_keys))
         {
             key = _keys->data;
