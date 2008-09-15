@@ -146,7 +146,7 @@ check_properties (GtkTreeStore *tree_store, GtkTreeView *tree_view, GtkTreePath 
     GHashTable *hash_table = xfconf_channel_get_properties (channel, NULL);
     if (hash_table != NULL)
     {
-
+        keys = NULL;
 #if !GLIB_CHECK_VERSION (2,14,0)
         g_hash_table_foreach (hash_table, xfce4_settings_get_list_keys_foreach, &keys);
 #else
@@ -336,6 +336,7 @@ cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, Gt
 
     if (hash_table)
     {
+        keys = NULL;
 #if !GLIB_CHECK_VERSION (2,14,0)
         g_hash_table_foreach (hash_table, xfce4_settings_get_list_keys_foreach, &keys);
 #else
