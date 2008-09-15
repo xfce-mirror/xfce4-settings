@@ -122,7 +122,7 @@ main(gint argc, gchar **argv)
 
 #if !GLIB_CHECK_VERSION (2,14,0)
 static void
-xfce_tray_widget_name_list_foreach (gpointer key,
+xfce4_settings_get_list_keys_foreach (gpointer key,
                                     gpointer value,
                                     gpointer user_data)
 {
@@ -148,7 +148,7 @@ check_properties (GtkTreeStore *tree_store, GtkTreeView *tree_view, GtkTreePath 
     {
 
 #if !GLIB_CHECK_VERSION (2,14,0)
-        g_hash_table_foreach (hash_table, xfce_tray_widget_name_list_foreach, &keys);
+        g_hash_table_foreach (hash_table, xfce4_settings_get_list_keys_foreach, &keys);
 #else
         keys = g_hash_table_get_keys (hash_table);
 #endif    
@@ -337,7 +337,7 @@ cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, Gt
     if (hash_table)
     {
 #if !GLIB_CHECK_VERSION (2,14,0)
-        g_hash_table_foreach (hash_table, xfce_tray_widget_name_list_foreach, &keys);
+        g_hash_table_foreach (hash_table, xfce4_settings_get_list_keys_foreach, &keys);
 #else
         keys = g_hash_table_get_keys (hash_table);
 #endif    
