@@ -507,13 +507,9 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
         /* Switch to the main view (just to be sure) */
         xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 
-        argv[0] = exec;
-        argv[1] = NULL;
-
         /* Try to spawn the dialog */
-        if (!gdk_spawn_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)), 
-                                NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL,
-                                NULL, NULL, &error))
+        if (!gdk_spawn_command_line_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)), 
+                                              exec, &error))
         {
             /* Notify the user that there has been a problem */
             primary = g_strdup_printf(_("Unable to start \"%s\""), exec);
