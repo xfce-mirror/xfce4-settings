@@ -4,11 +4,12 @@
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
 # Og Maciel <ogmaciel@gnome.org>, 2008.
 #
+#: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-10 20:56-0700\n"
+"POT-Creation-Date: 2008-09-15 17:50-0700\n"
 "PO-Revision-Date: 2008-06-25 21:32-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -207,40 +208,53 @@ msgstr ""
 msgid "pixels/sec"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/main.c:43
-#: ../dialogs/appearance-settings/main.c:81
+#: ../dialogs/accessibility-settings/main.c:45
+#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mouse-settings/main.c:97
+#, fuzzy
+msgid "Settings manager socket"
+msgstr "Gerenciador de configurações"
+
+#: ../dialogs/accessibility-settings/main.c:45
+#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mouse-settings/main.c:97
+msgid "SOCKET ID"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/main.c:46
+#: ../dialogs/appearance-settings/main.c:83
 #: ../dialogs/display-settings/main.c:83
-#: ../dialogs/keyboard-settings/main.c:75 ../dialogs/mouse-settings/main.c:94
-#: ../xfce4-settings-editor/main.c:50 ../xfce4-settings-helper/main.c:57
-#: ../xfce4-settings-manager/main.c:47
+#: ../dialogs/keyboard-settings/main.c:77 ../dialogs/mouse-settings/main.c:98
+#: ../xfce4-settings-editor/main.c:50 ../xfce4-settings-helper/main.c:58
+#: ../xfce4-settings-manager/main.c:50 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Informações da versão"
 
-#: ../dialogs/accessibility-settings/main.c:144
-#: ../dialogs/appearance-settings/main.c:759
+#: ../dialogs/accessibility-settings/main.c:145
+#: ../dialogs/appearance-settings/main.c:760
 #: ../dialogs/display-settings/main.c:643
-#: ../dialogs/keyboard-settings/main.c:613
-#: ../dialogs/mouse-settings/main.c:1184 ../xfce4-settings-editor/main.c:72
-#: ../xfce4-settings-helper/main.c:100 ../xfce4-settings-manager/main.c:82
+#: ../dialogs/keyboard-settings/main.c:610
+#: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:72
+#: ../xfce4-settings-helper/main.c:102 ../xfce4-settings-manager/main.c:87
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/main.c:163
-#: ../dialogs/appearance-settings/main.c:778
+#: ../dialogs/accessibility-settings/main.c:164
+#: ../dialogs/appearance-settings/main.c:779
 #: ../dialogs/display-settings/main.c:662
-#: ../dialogs/keyboard-settings/main.c:630
-#: ../dialogs/mouse-settings/main.c:1203 ../xfce4-settings-editor/main.c:91
-#: ../xfce4-settings-helper/main.c:119 ../xfce4-settings-manager/main.c:95
+#: ../dialogs/keyboard-settings/main.c:627
+#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:91
+#: ../xfce4-settings-helper/main.c:121 ../xfce4-settings-manager/main.c:100
 msgid "The Xfce development team. All rights reserved."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/main.c:164
-#: ../dialogs/appearance-settings/main.c:779
+#: ../dialogs/accessibility-settings/main.c:165
+#: ../dialogs/appearance-settings/main.c:780
 #: ../dialogs/display-settings/main.c:663
-#: ../dialogs/keyboard-settings/main.c:631
-#: ../dialogs/mouse-settings/main.c:1204 ../xfce4-settings-editor/main.c:92
-#: ../xfce4-settings-helper/main.c:120 ../xfce4-settings-manager/main.c:96
+#: ../dialogs/keyboard-settings/main.c:628
+#: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:92
+#: ../xfce4-settings-helper/main.c:122 ../xfce4-settings-manager/main.c:101
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr ""
@@ -364,55 +378,55 @@ msgstr "Ícones"
 msgid "_Settings"
 msgstr "Configurações do mouse"
 
-#: ../dialogs/appearance-settings/main.c:579
-#: ../dialogs/appearance-settings/main.c:672
+#: ../dialogs/appearance-settings/main.c:581
+#: ../dialogs/appearance-settings/main.c:674
 #, fuzzy
 msgid "None"
 msgstr "nenhum"
 
-#: ../dialogs/appearance-settings/main.c:583
+#: ../dialogs/appearance-settings/main.c:585
 msgid "RGB"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:587
+#: ../dialogs/appearance-settings/main.c:589
 msgid "BGR"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:591
+#: ../dialogs/appearance-settings/main.c:593
 msgid "Vertical RGB"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:595
+#: ../dialogs/appearance-settings/main.c:597
 msgid "Vertical BGR"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:645
+#: ../dialogs/appearance-settings/main.c:647
 msgid "Icons"
 msgstr "Ícones"
 
-#: ../dialogs/appearance-settings/main.c:646
+#: ../dialogs/appearance-settings/main.c:648
 msgid "Text"
 msgstr "Texto"
 
-#: ../dialogs/appearance-settings/main.c:647
+#: ../dialogs/appearance-settings/main.c:649
 msgid "Both"
 msgstr "Ambos"
 
-#: ../dialogs/appearance-settings/main.c:648
+#: ../dialogs/appearance-settings/main.c:650
 msgid "Both Horizontal"
 msgstr "Ambos horizontais"
 
-#: ../dialogs/appearance-settings/main.c:673
+#: ../dialogs/appearance-settings/main.c:675
 #, fuzzy
 msgid "Slight"
 msgstr "Dica sutil"
 
-#: ../dialogs/appearance-settings/main.c:674
+#: ../dialogs/appearance-settings/main.c:676
 #, fuzzy
 msgid "Medium"
 msgstr "Dica média"
 
-#: ../dialogs/appearance-settings/main.c:675
+#: ../dialogs/appearance-settings/main.c:677
 msgid "Full"
 msgstr ""
 
@@ -659,16 +673,16 @@ msgstr "gtk-help"
 msgid "gtk-remove"
 msgstr "gtk-remove"
 
-#: ../dialogs/keyboard-settings/main.c:211
+#: ../dialogs/keyboard-settings/main.c:213
 msgid "Shortcut command may not be empty."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/main.c:567
+#: ../dialogs/keyboard-settings/main.c:568
 #, fuzzy
 msgid "Shortcut"
 msgstr "Atalhos"
 
-#: ../dialogs/keyboard-settings/main.c:572
+#: ../dialogs/keyboard-settings/main.c:573
 msgid "Command"
 msgstr ""
 
@@ -789,17 +803,17 @@ msgstr ""
 msgid "<span size='large'><b>%s</b></span>"
 msgstr ""
 
-#: ../dialogs/mouse-settings/main.c:95
+#: ../dialogs/mouse-settings/main.c:96
 msgid "Active device in the dialog"
 msgstr ""
 
-#: ../dialogs/mouse-settings/main.c:95
+#: ../dialogs/mouse-settings/main.c:96
 msgid "DEVICE NAME"
 msgstr ""
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:349 ../dialogs/mouse-settings/main.c:351
-#: ../dialogs/mouse-settings/main.c:411
+#: ../dialogs/mouse-settings/main.c:352 ../dialogs/mouse-settings/main.c:354
+#: ../dialogs/mouse-settings/main.c:414
 msgid "Default"
 msgstr ""
 
@@ -937,19 +951,19 @@ msgstr ""
 msgid "Xfce 4 Mouse Settings"
 msgstr "Configurações do mouse do Xfce 4"
 
-#: ../xfce4-settings-editor/main.c:227
+#: ../xfce4-settings-editor/main.c:243
 msgid "Channel"
 msgstr ""
 
-#: ../xfce4-settings-editor/main.c:245
+#: ../xfce4-settings-editor/main.c:261
 msgid "Property"
 msgstr ""
 
-#: ../xfce4-settings-editor/main.c:247
+#: ../xfce4-settings-editor/main.c:263
 msgid "Type"
 msgstr ""
 
-#: ../xfce4-settings-editor/main.c:249
+#: ../xfce4-settings-editor/main.c:265
 msgid "Value"
 msgstr ""
 
@@ -1009,20 +1023,25 @@ msgstr "Teclas de repercussão estão desabilitadas"
 msgid "Bounce keys"
 msgstr "Teclas de repercussão"
 
-#: ../xfce4-settings-helper/main.c:58
+#: ../xfce4-settings-helper/main.c:59 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Iniciar no modo de depuração (não forçar o segundo plano)"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:100
-msgid "Customize your Xfce desktop"
-msgstr "Personalize sua área de trabalho Xfce"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:101
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:324
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:133
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:139
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:497
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:520
 msgid "Xfce Settings Manager"
 msgstr "Gerenciador de configurações do Xfce"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:323
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:134
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:138
+msgid "Customize your Xfce desktop"
+msgstr "Personalize sua área de trabalho Xfce"
+
+#. Notify the user that there has been a problem
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:496
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:519
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Não foi possível iniciar \"%s\""
@@ -1038,6 +1057,24 @@ msgstr "Gerenciador de configurações"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "Xfce 4 Settings Manager"
 msgstr "Gerenciador de configurações do Xfce 4"
+
+#: ../xfsettingsd/main.c:56
+msgid "Verbose output"
+msgstr "Saída detalhada"
+
+#: ../xfsettingsd/main.c:60
+msgid "Force replace existing any xsettings daemon"
+msgstr "Forçar a substituição de qualquer serviço xsettings"
+
+#: ../xfsettingsd/main.c:131
+#, c-format
+msgid ""
+"%s: %s\n"
+"Try %s --help to see a full list of available command line options.\n"
+msgstr ""
+"%s: %s\n"
+"Tente %s --help para ver uma lista completa dos comandos de linha de comando "
+"disponíveis.\n"
 
 #, fuzzy
 #~ msgid "<b>%s</b>"
@@ -1092,14 +1129,6 @@ msgstr "Gerenciador de configurações do Xfce 4"
 
 #~ msgid "."
 #~ msgstr "."
-
-#~ msgid ""
-#~ "%s: %s\n"
-#~ "Try %s --help to see a full list of available command line options.\n"
-#~ msgstr ""
-#~ "%s: %s\n"
-#~ "Tente %s --help para ver a lista completa das opções da linha de "
-#~ "comando.\n"
 
 #~ msgid "Settings to improve usability for some people"
 #~ msgstr "Configurações para melhorar a usabilidade para algumas pessoas"
