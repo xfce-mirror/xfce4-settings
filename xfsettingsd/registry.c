@@ -232,8 +232,8 @@ xsettings_registry_init(XSettingsRegistry *registry)
     g_value_set_string (&properties[XSETTING_ENTRY_NET_THEMENAME].value, "Default");
     g_value_set_string (&properties[XSETTING_ENTRY_NET_ICONTHEMENAME].value, "hicolor");
     g_value_set_string (&properties[XSETTING_ENTRY_NET_SOUNDTHEMENAME].value, "default");
-    g_value_set_string (&properties[XSETTING_ENTRY_NET_ENABLESOUNDEVENTS].value, 0);
-    g_value_set_string (&properties[XSETTING_ENTRY_NET_ENABLEINPUTFEEDBACKSOUNDS].value, 0);
+    g_value_set_int (&properties[XSETTING_ENTRY_NET_ENABLESOUNDEVENTS].value, 0);
+    g_value_set_int (&properties[XSETTING_ENTRY_NET_ENABLEINPUTFEEDBACKSOUNDS].value, 0);
 
     /* Xft settings */
     g_value_set_int (&properties[XSETTING_ENTRY_XFT_ANTIALIAS].value, -1);
