@@ -99,7 +99,7 @@ static void xfce_settings_manager_dialog_plug_added(GtkSocket *socket,
                                                     XfceSettingsManagerDialog *dialog);
 static gboolean xfce_settings_manager_dialog_plug_removed(GtkSocket *socket,
                                                           XfceSettingsManagerDialog *dialog);
-static void xfce_settings_manager_dialog_destroy_client(XfceSettingsManagerDialog *dialog);
+static GtkWidget *xfce_settings_manager_dialog_recreate_socket(XfceSettingsManagerDialog *dialog);
 #if GTK_CHECK_VERSION(2, 12, 0)
 static gboolean xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
                                                            gint x,
@@ -215,20 +215,7 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     gtk_container_add(GTK_CONTAINER(scrollwin), dialog->socket_viewport);
 
     /* Create socket */
-    dialog->socket = gtk_socket_new();
-    gtk_widget_show(dialog->socket);
-    gtk_container_add(GTK_CONTAINER(dialog->socket_viewport), dialog->socket);
-    
-    /* Handle newly added plugs in a callback */
-    g_signal_connect(dialog->socket, "plug-added", 
-                     G_CALLBACK(xfce_settings_manager_dialog_plug_added),
-                     dialog);
-
-    /* Add plug-removed callback to be able to re-use the socket when plugs
-     * are removed */
-    g_signal_connect(dialog->socket, "plug-removed", 
-                     G_CALLBACK(xfce_settings_manager_dialog_plug_removed),
-                     dialog);
+    dialog->socket = xfce_settings_manager_dialog_recreate_socket(dialog);
 
     /* Connect to response signal because maybe we need to kill the settings
      * dialog spawned last before closing the dialog */
@@ -466,7 +453,7 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
                        -1);
 
     /* Kill the previously spawned dialog (if there is any) */
-    xfce_settings_manager_dialog_destroy_client(dialog);
+    xfce_settings_manager_dialog_recreate_socket(dialog);
 
     if(pluggable) {
         /* Update dialog title and icon */
@@ -481,7 +468,7 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
         argv[0] = exec;
         argv[1] = g_strdup_printf("--socket-id=%d", 
                                   gtk_socket_get_id(GTK_SOCKET(dialog->socket)));
-        argv[3] = NULL;
+        argv[2] = NULL;
 
         /* Try to spawn the dialog */
         if(!gdk_spawn_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)), 
@@ -489,7 +476,7 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
                                 NULL, &dialog->last_pid, &error))
         {
             /* Spawning failed, go back to the overview */
-            xfce_settings_manager_dialog_destroy_client(dialog);
+            xfce_settings_manager_dialog_recreate_socket(dialog);
             xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 
             /* Notify the user that there has been a problem */
@@ -527,7 +514,7 @@ xfce_settings_manager_dialog_back_button_clicked(GtkWidget *button,
                                                  XfceSettingsManagerDialog *dialog)
 {
     /* Kill the currently embedded dialog and go back to the overview */
-    xfce_settings_manager_dialog_destroy_client(dialog);
+    xfce_settings_manager_dialog_recreate_socket(dialog);
     xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 }
 
@@ -538,7 +525,7 @@ xfce_settings_manager_dialog_response(GtkDialog *dialog,
     XfceSettingsManagerDialog *sm_dialog = XFCE_SETTINGS_MANAGER_DIALOG(dialog);
 
     /* Make sure the currently embedded dialog is killed before exiting */
-    xfce_settings_manager_dialog_destroy_client(sm_dialog);
+    xfce_settings_manager_dialog_recreate_socket(sm_dialog);
 }
 
 static void
@@ -558,15 +545,28 @@ xfce_settings_manager_dialog_plug_removed(GtkSocket *socket,
     return TRUE;
 }
 
-static void
-xfce_settings_manager_dialog_destroy_client(XfceSettingsManagerDialog *dialog)
+static GtkWidget *
+xfce_settings_manager_dialog_recreate_socket(XfceSettingsManagerDialog *dialog)
 {
-    /* Veeery simple way to make the embedded dialog application quit */
-    if(dialog->last_pid != -1) {
-        g_spawn_close_pid(dialog->last_pid);
-        kill(dialog->last_pid, SIGQUIT);
-        dialog->last_pid = -1;
-    }
+    if(GTK_IS_WIDGET(dialog->socket))
+        gtk_widget_destroy (dialog->socket);
+
+    dialog->socket = gtk_socket_new();
+    gtk_widget_show(dialog->socket);
+    gtk_container_add(GTK_CONTAINER(dialog->socket_viewport), dialog->socket);
+    
+    /* Handle newly added plugs in a callback */
+    g_signal_connect(dialog->socket, "plug-added", 
+                     G_CALLBACK(xfce_settings_manager_dialog_plug_added),
+                     dialog);
+
+    /* Add plug-removed callback to be able to re-use the socket when plugs
+     * are removed */
+    g_signal_connect(dialog->socket, "plug-removed", 
+                     G_CALLBACK(xfce_settings_manager_dialog_plug_removed),
+                     dialog);
+
+    return dialog->socket;
 }
 
 #if GTK_CHECK_VERSION(2, 12, 0)

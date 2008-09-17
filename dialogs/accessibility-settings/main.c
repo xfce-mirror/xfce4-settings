@@ -208,6 +208,8 @@ main (gint argc, gchar **argv)
             plug = gtk_plug_new (opt_socket_id);
             gtk_widget_show (plug);
 
+            g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+
             /* Get plug child widget */
             plug_child = glade_xml_get_widget (gxml, "plug-child");
             gtk_widget_reparent (plug_child, plug);

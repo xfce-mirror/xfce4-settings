@@ -588,7 +588,8 @@ keyboard_settings_dialog_configure_widgets (GladeXML *gxml)
 }
 
 int
-main(int argc, char **argv)
+main(int    argc, 
+     char **argv)
 {
   GtkWidget *dialog;
   GtkWidget *plug;
@@ -666,6 +667,8 @@ main(int argc, char **argv)
           /* Create plug widget */
           plug = gtk_plug_new (opt_socket_id);
           gtk_widget_show (plug);
+
+          g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
 
           /* Get plug child widget */
           plug_child = glade_xml_get_widget (gxml, "plug-child");
