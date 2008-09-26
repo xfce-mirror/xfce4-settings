@@ -266,6 +266,7 @@ xfce4_settings_editor_init_dialog (GladeXML *gxml)
 
     g_signal_connect (G_OBJECT (channel_treeview), "row-activated", G_CALLBACK (cb_channel_treeview_row_activated), property_treeview);
 
+    gtk_window_set_default_size(GTK_WINDOW(dialog), 600, 500);
     gtk_widget_show_all(GTK_WIDGET(GTK_DIALOG(dialog)->vbox));
 
     return GTK_DIALOG(dialog);
