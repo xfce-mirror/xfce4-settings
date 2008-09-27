@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Fri Sep 26 23:46:37 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Sep 28 01:06:08 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="GtkDialog" id="settings_editor_dialog">
@@ -152,6 +152,52 @@ it can not be changed.</property>
                         <property name="column_spacing">5</property>
                         <property name="row_spacing">5</property>
                         <child>
+                          <widget class="GtkComboBox" id="combobox1">
+                            <property name="visible">True</property>
+                          </widget>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
+                            <property name="x_options">GTK_FILL</property>
+                            <property name="y_options"></property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkEntry" id="entry1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                          </widget>
+                          <packing>
+                            <property name="right_attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkLabel" id="label2">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">Type:</property>
+                          </widget>
+                          <packing>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
+                            <property name="x_options">GTK_FILL</property>
+                            <property name="y_options">GTK_FILL</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkLabel" id="label4">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">Value:</property>
+                          </widget>
+                          <packing>
+                            <property name="top_attach">2</property>
+                            <property name="bottom_attach">3</property>
+                            <property name="x_options">GTK_FILL</property>
+                            <property name="y_options">GTK_FILL</property>
+                          </packing>
+                        </child>
+                        <child>
                           <widget class="GtkVBox" id="vbox2">
                             <property name="visible">True</property>
                             <child>
@@ -176,52 +222,6 @@ it can not be changed.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkLabel" id="label4">
-                            <property name="visible">True</property>
-                            <property name="label" translatable="yes">Value:</property>
-                          </widget>
-                          <packing>
-                            <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options">GTK_FILL</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkLabel" id="label2">
-                            <property name="visible">True</property>
-                            <property name="label" translatable="yes">Type:</property>
-                          </widget>
-                          <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options">GTK_FILL</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkEntry" id="entry1">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                          </widget>
-                          <packing>
-                            <property name="right_attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkComboBox" id="combobox1">
-                            <property name="visible">True</property>
-                          </widget>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
                           </packing>
                         </child>
                       </widget>
@@ -282,6 +282,22 @@ it can not be changed.</property>
             <property name="expand">False</property>
             <property name="pack_type">GTK_PACK_END</property>
           </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="GtkMenu" id="property_menu">
+    <property name="visible">True</property>
+    <child>
+      <widget class="GtkImageMenuItem" id="menuitem1">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">menuitem1</property>
+        <property name="use_underline">True</property>
+        <child internal-child="image">
+          <widget class="GtkImage" id="menu-item-image1">
+            <property name="visible">True</property>
+            <property name="stock">gtk-edit</property>
+          </widget>
         </child>
       </widget>
     </child>

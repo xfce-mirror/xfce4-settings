@@ -35,6 +35,12 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "xfce4-settings-editor_glade.h"
+enum PropertyColumns {
+    PROPERTY_COLUMN_NAME,
+    PROPERTY_COLUMN_LOCKED,
+    PROPERTY_COLUMN_TYPE,
+    PROPERTY_COLUMN_VALUE
+};
 
 static void
 cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, GtkTreeView *property_treeview);
@@ -231,7 +237,7 @@ xfce4_settings_editor_init_dialog (GladeXML *gxml)
 {
     GtkCellRenderer *renderer;
     GtkTreeStore *tree_store;
-    GtkListStore *list_store;
+    GtkListStore *list_store, *type_list_store;
     gchar **channels, **_channels_iter;
 
     GtkWidget *dialog = glade_xml_get_widget (gxml, "settings_editor_dialog");
@@ -257,15 +263,46 @@ xfce4_settings_editor_init_dialog (GladeXML *gxml)
         g_strfreev (channels);
     }
 
-    list_store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+    list_store = gtk_list_store_new (4, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_STRING, G_TYPE_STRING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (property_treeview), GTK_TREE_MODEL (list_store));
 
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 0, N_("Property"), renderer, "text", 0, NULL);
+    gtk_tree_view_insert_column_with_attributes (
+            GTK_TREE_VIEW (property_treeview),
+            PROPERTY_COLUMN_NAME, 
+            N_("Property"),
+            renderer,
+            "text",
+            PROPERTY_COLUMN_NAME,
+            NULL);
+    renderer = gtk_cell_renderer_toggle_new();
+    gtk_tree_view_insert_column_with_attributes (
+            GTK_TREE_VIEW (property_treeview),
+            PROPERTY_COLUMN_LOCKED,
+            N_("Locked"),
+            renderer,
+            "active",
+            PROPERTY_COLUMN_LOCKED,
+            NULL);
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 1, N_("Type"), renderer, "text", 1, NULL);
+    gtk_tree_view_insert_column_with_attributes (
+            GTK_TREE_VIEW (property_treeview),
+            PROPERTY_COLUMN_TYPE,
+            N_("Type"),
+            renderer,
+            "text",
+            PROPERTY_COLUMN_TYPE,
+            NULL);
+
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 2, N_("Value"), renderer, "text", 2, NULL);
+    gtk_tree_view_insert_column_with_attributes (
+            GTK_TREE_VIEW (property_treeview),
+            PROPERTY_COLUMN_VALUE,
+            N_("Value"),
+            renderer,
+            "text",
+            PROPERTY_COLUMN_VALUE,
+            NULL);
 
     g_signal_connect (G_OBJECT (channel_treeview), "row-activated", G_CALLBACK (cb_channel_treeview_row_activated), property_treeview);
 
@@ -374,18 +411,18 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView 
                     {
                         case G_TYPE_STRING:
                             g_value_set_string (&type_value, "String");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_TYPE, &type_value);
                             g_value_copy (hash_value, &val_value);
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_VALUE, &val_value);
                             g_value_reset (&type_value);
                             g_value_reset (&val_value);
                             break;
                         case G_TYPE_INT:
                             str_val = g_strdup_printf ("%d", g_value_get_int (hash_value));
                             g_value_set_string (&type_value, "Int");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_TYPE, &type_value);
                             g_value_set_string (&val_value, str_val);
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_VALUE, &val_value);
                             g_value_reset (&type_value);
                             g_value_reset (&val_value);
                             g_free (str_val);
@@ -394,9 +431,9 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView 
                         case G_TYPE_UINT:
                             str_val = g_strdup_printf ("%u", g_value_get_uint (hash_value));
                             g_value_set_string (&type_value, "Int");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_TYPE, &type_value);
                             g_value_set_string (&val_value, str_val);
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_VALUE, &val_value);
                             g_value_reset (&type_value);
                             g_value_reset (&val_value);
                             g_free (str_val);
@@ -405,9 +442,9 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView 
                         case G_TYPE_DOUBLE:
                             str_val = g_strdup_printf ("%f", g_value_get_double (hash_value));
                             g_value_set_string (&type_value, "Double");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_TYPE, &type_value);
                             g_value_set_string (&val_value, str_val);
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_VALUE, &val_value);
                             g_value_reset (&type_value);
                             g_value_reset (&val_value);
                             g_free (str_val);
@@ -416,9 +453,9 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView 
                         case G_TYPE_BOOLEAN:
                             str_val = g_strdup_printf ("%s", g_value_get_boolean (hash_value)==TRUE?"true":"false");
                             g_value_set_string (&type_value, "Bool");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_TYPE, &type_value);
                             g_value_set_string (&val_value, str_val);
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_VALUE, &val_value);
                             g_value_reset (&type_value);
                             g_value_reset (&val_value);
                             g_free (str_val);
