@@ -328,6 +328,7 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView 
     GValue name_value = {0, };
     GValue type_value = {0, };
     GValue val_value = {0, };
+    GValue lock_value = {0, };
     GtkTreeView *tree_view;
     GtkTreeModel *model;
     GtkTreeModel *property_model = gtk_tree_view_get_model (property_treeview);
@@ -343,6 +344,7 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView 
     g_value_init (&name_value, G_TYPE_STRING);
     g_value_init (&val_value, G_TYPE_STRING);
     g_value_init (&type_value, G_TYPE_STRING);
+    g_value_init (&lock_value, G_TYPE_BOOLEAN);
 
     gtk_list_store_clear (GTK_LIST_STORE (property_model));
     tree_view = gtk_tree_selection_get_tree_view (selection);
@@ -407,6 +409,12 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView 
                     g_value_set_string (&name_value, components[path_depth]);
                     gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 0, &name_value);
                     g_value_reset (&name_value);
+
+                    /* Check if a property is locked by kiosk-policy */
+                    g_value_set_boolean (&lock_value, xfconf_channel_is_property_locked  (channel, key));
+                    gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_LOCKED, &lock_value);
+
+                    /* Check type and value of a property */
                     switch (G_VALUE_TYPE (hash_value))
                     {
                         case G_TYPE_STRING:
@@ -463,9 +471,9 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView 
                             break;
                         default:
                             g_value_set_string (&type_value, "Unknown");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 1, &type_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_TYPE, &type_value);
                             g_value_set_string (&val_value, "Unknown");
-                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, 2, &val_value);
+                            gtk_list_store_set_value (GTK_LIST_STORE (property_model), &iter, PROPERTY_COLUMN_VALUE, &val_value);
                             g_value_reset (&type_value);
                             g_value_reset (&val_value);
                             break;
