@@ -43,12 +43,16 @@ enum PropertyColumns {
 };
 
 static void
-cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, GtkTreeView *property_treeview);
+cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
+static void
+cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 static void
 cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView *property_treeview);
+static void
+cb_property_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data);
 
 
-static GtkDialog *xfce4_settings_editor_init_dialog (GladeXML *gxml);
+static GtkDialog *xfce4_settings_editor_init_dialog ();
 
 /* option entries */
 static gboolean opt_version = FALSE;
@@ -59,10 +63,11 @@ static GOptionEntry option_entries[] =
     { NULL }
 };
 
+static GladeXML *main_gxml = NULL;
+
 gint
 main(gint argc, gchar **argv)
 {
-    GladeXML       *gxml;
     GtkDialog      *dialog;
     GError         *error = NULL;
     gint            result = 0;
@@ -113,9 +118,10 @@ main(gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    gxml = glade_xml_new_from_buffer (xfce4_settings_editor_glade, xfce4_settings_editor_glade_length, NULL, NULL);
+    if (!main_gxml)
+        main_gxml = glade_xml_new_from_buffer (xfce4_settings_editor_glade, xfce4_settings_editor_glade_length, NULL, NULL);
 
-    dialog = xfce4_settings_editor_init_dialog (gxml);
+    dialog = xfce4_settings_editor_init_dialog ();
 
     while ((result != GTK_RESPONSE_CLOSE) && (result != GTK_RESPONSE_DELETE_EVENT) && (result != GTK_RESPONSE_NONE))
     {
@@ -233,18 +239,18 @@ check_channel (GtkTreeStore *tree_store, GtkTreeView *tree_view, const gchar *ch
 }
 
 static GtkDialog *
-xfce4_settings_editor_init_dialog (GladeXML *gxml)
+xfce4_settings_editor_init_dialog ()
 {
+    GtkTreeSelection *selection;
     GtkCellRenderer *renderer;
     GtkTreeStore *tree_store;
     GtkListStore *list_store, *type_list_store;
     gchar **channels, **_channels_iter;
 
-    GtkWidget *dialog = glade_xml_get_widget (gxml, "settings_editor_dialog");
-    GtkWidget *channel_treeview = glade_xml_get_widget (gxml, "channel_treeview");
-    GtkWidget *property_treeview = glade_xml_get_widget (gxml, "property_treeview");
-    GtkTreeSelection *selection;
-
+    GtkWidget *dialog = glade_xml_get_widget (main_gxml, "settings_editor_dialog");
+    GtkWidget *channel_treeview = glade_xml_get_widget (main_gxml, "channel_treeview");
+    GtkWidget *property_treeview = glade_xml_get_widget (main_gxml, "property_treeview");
+    
     tree_store = gtk_tree_store_new (1, G_TYPE_STRING);
 
     renderer = gtk_cell_renderer_text_new();
@@ -304,11 +310,15 @@ xfce4_settings_editor_init_dialog (GladeXML *gxml)
             PROPERTY_COLUMN_VALUE,
             NULL);
 
-    g_signal_connect (G_OBJECT (channel_treeview), "row-activated", G_CALLBACK (cb_channel_treeview_row_activated), property_treeview);
+    g_signal_connect (G_OBJECT (channel_treeview), "row-activated", G_CALLBACK (cb_channel_treeview_row_activated), NULL);
+    g_signal_connect (G_OBJECT (channel_treeview), "row-activated", G_CALLBACK (cb_property_treeview_row_activated), NULL);
 
     /* selection handling */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (channel_treeview));
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_channel_treeview_selection_changed), property_treeview);
+
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (property_treeview));
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_property_treeview_selection_changed), NULL);
 
     gtk_window_set_default_size(GTK_WINDOW(dialog), 600, 500);
     gtk_widget_show_all(GTK_WIDGET(GTK_DIALOG(dialog)->vbox));
@@ -488,7 +498,44 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkTreeView 
 }
 
 static void
-cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, GtkTreeView *property_treeview)
+cb_property_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data)
+{
+    GtkWidget *edit_property_button = glade_xml_get_widget (main_gxml, "edit_property_button");
+    GtkWidget *reset_property_button = glade_xml_get_widget (main_gxml, "reset_property_button");
+    
+    if (gtk_tree_selection_count_selected_rows (selection))
+    {
+        gtk_widget_set_sensitive (edit_property_button, TRUE);
+        gtk_widget_set_sensitive (reset_property_button, TRUE);
+    }
+    else
+    {
+        gtk_widget_set_sensitive (edit_property_button, FALSE);
+        gtk_widget_set_sensitive (reset_property_button, FALSE);
+    }
+}
+
+static void
+cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data)
+{
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+
+    model = gtk_tree_view_get_model (tree_view);
+    gtk_tree_model_get_iter (model, &iter, path);
+
+    if (gtk_tree_model_iter_has_child (model, &iter))
+    {
+        if (gtk_tree_view_row_expanded (tree_view, path))
+            gtk_tree_view_collapse_row (tree_view, path);
+        else
+            gtk_tree_view_expand_row (tree_view, path, FALSE);
+
+    }
+}
+
+static void
+cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data)
 {
     GtkTreeModel *model;
     GtkTreeIter iter;
