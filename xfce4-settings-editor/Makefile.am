@@ -13,6 +13,7 @@ bin_PROGRAMS = \
 
 xfce4_settings_editor_SOURCES = \
 	main.c \
+	main_window.c main_window.h \
 	xfce4-settings-editor_glade.h
 
 xfce4_settings_editor_CFLAGS = \
