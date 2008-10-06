@@ -57,10 +57,13 @@ struct _XfceSettingsManagerDialog
     GtkWidget *socket;
 
     GtkWidget *back_button;
+    GtkWidget *help_button;
 
     const gchar *default_title;
     const gchar *default_subtitle;
     const gchar *default_icon;
+
+    gchar       *help_file;
 
     GPid last_pid;
 };
@@ -78,6 +81,7 @@ enum
     COL_EXEC,
     COL_SNOTIFY,
     COL_PLUGGABLE,
+    COL_HELP_FILE,
     N_COLS
 };
 
@@ -92,6 +96,8 @@ static void xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
                                                         GtkTreePath *path,
                                                         gpointer user_data);
 static void xfce_settings_manager_dialog_back_button_clicked(GtkWidget *button,
+                                                             XfceSettingsManagerDialog *dialog);
+static void xfce_settings_manager_dialog_help_button_clicked(GtkWidget *button,
                                                              XfceSettingsManagerDialog *dialog);
 static void xfce_settings_manager_dialog_response(GtkDialog *dialog,
                                                   gint response);
@@ -134,6 +140,8 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     dialog->default_subtitle = _("Customize your Xfce desktop");
     dialog->default_icon = "preferences-desktop";
 
+    dialog->help_file = NULL;
+
     xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dialog),
                                     _("Customize your Xfce desktop"));
     gtk_window_set_title(GTK_WINDOW(dialog), _("Xfce Settings Manager"));
@@ -141,10 +149,6 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     gtk_dialog_set_has_separator(GTK_DIALOG(dialog), FALSE);
 
     dialog->content_frame = gtk_vbox_new(FALSE, 0);
-#if 0
-    dialog->content_frame = gtk_frame_new(NULL);
-    gtk_frame_set_shadow_type(GTK_FRAME(dialog->content_frame), GTK_SHADOW_NONE);
-#endif
     gtk_widget_show(dialog->content_frame);
     gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), 
                       dialog->content_frame);
@@ -222,14 +226,29 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     g_signal_connect(dialog, "response",
                      G_CALLBACK(xfce_settings_manager_dialog_response), NULL);
 
+    /* Configure action area */
+    gtk_button_box_set_layout(GTK_BUTTON_BOX(GTK_DIALOG(dialog)->action_area),
+                              GTK_BUTTONBOX_EDGE);
+
     /* Create back button which takes the user back to the overview */
     dialog->back_button = gtk_button_new_from_stock(GTK_STOCK_GO_BACK);
     gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->action_area), 
                       dialog->back_button);
-    gtk_widget_hide(dialog->back_button);
+    gtk_widget_set_sensitive(dialog->back_button, FALSE);
+    gtk_widget_show(dialog->back_button);
 
     g_signal_connect(dialog->back_button, "clicked", 
                      G_CALLBACK(xfce_settings_manager_dialog_back_button_clicked),
+                     dialog);
+
+    /* Create help button */
+    dialog->help_button = gtk_button_new_from_stock(GTK_STOCK_HELP);
+    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->action_area), 
+                      dialog->help_button);
+    gtk_widget_hide(dialog->help_button);
+
+    g_signal_connect(dialog->help_button, "clicked",
+                     G_CALLBACK(xfce_settings_manager_dialog_help_button_clicked),
                      dialog);
 
     gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CLOSE,
@@ -242,7 +261,8 @@ static void
 xfce_settings_manager_dialog_finalize(GObject *obj)
 {
     XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG(obj);
-
+    
+    g_free (dialog->help_file);
     g_object_unref(dialog->ls);
 
     G_OBJECT_CLASS(xfce_settings_manager_dialog_parent_class)->finalize(obj);
@@ -263,12 +283,15 @@ xfce_settings_manager_dialog_reset_view(XfceSettingsManagerDialog *dialog,
         gtk_widget_hide(dialog->client_frame);
         gtk_widget_show(dialog->scrollwin);
 
-        /* Display the close button on the right */
-        gtk_button_box_set_layout(GTK_BUTTON_BOX(GTK_DIALOG(dialog)->action_area),
-                                  GTK_BUTTONBOX_END);
-
         /* Hide the back button in the overview */
-        gtk_widget_hide(dialog->back_button);
+        gtk_widget_set_sensitive(dialog->back_button, FALSE);
+        
+        /* Show the help button */
+        gtk_widget_show(dialog->help_button);
+
+        /* Use default help url */
+        g_free(dialog->help_file);
+        dialog->help_file = NULL;
     } else {
         /* Hide overview and (just to be sure) the socket view. The latter is
          * to made visible once a plug has been added to the socket */
@@ -278,12 +301,11 @@ xfce_settings_manager_dialog_reset_view(XfceSettingsManagerDialog *dialog,
         /* Realize the socket (just to make sure embedding will succeed) */
         gtk_widget_realize(dialog->socket);
 
-        /* Display back button on the left, close button on the right */
-        gtk_button_box_set_layout(GTK_BUTTON_BOX(GTK_DIALOG(dialog)->action_area),
-                                  GTK_BUTTONBOX_EDGE);
-
         /* Display the back button */
-        gtk_widget_show(dialog->back_button);
+        gtk_widget_set_sensitive(dialog->back_button, TRUE);
+
+        /* Hide the help button */
+        gtk_widget_hide(dialog->help_button);
     }
 }
 
@@ -322,7 +344,8 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
 
     dialog->ls = gtk_list_store_new(N_COLS, G_TYPE_STRING, G_TYPE_STRING,
                                     G_TYPE_STRING, G_TYPE_STRING,
-                                    G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
+                                    G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, 
+                                    G_TYPE_STRING);
     
     dirs = xfce_resource_lookup_all(XFCE_RESOURCE_DATA, "applications/");
     if(!dirs)
@@ -410,6 +433,7 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                                COL_EXEC, exec,
                                COL_SNOTIFY, xfce_rc_read_bool_entry(rcfile, "StartupNotify", FALSE),
                                COL_PLUGGABLE, xfce_rc_read_bool_entry(rcfile, "X-XfcePluggable", FALSE),
+                               COL_HELP_FILE, xfce_rc_read_entry(rcfile, "X-XfceHelpFile", FALSE),
                                -1);
 
             xfce_rc_close(rcfile);
@@ -434,7 +458,7 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
 {
     XfceSettingsManagerDialog *dialog = user_data;
     GtkTreeIter iter;
-    gchar *exec = NULL, *name, *comment, *icon_name, *primary;
+    gchar *exec = NULL, *name, *comment, *icon_name, *primary, *help_file;
     gboolean snotify = FALSE;
     gboolean pluggable = FALSE;
     gchar *argv[3];
@@ -450,6 +474,7 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
                        COL_ICON_NAME, &icon_name,
                        COL_SNOTIFY, &snotify,
                        COL_PLUGGABLE, &pluggable,
+                       COL_HELP_FILE, &help_file,
                        -1);
 
     /* Kill the previously spawned dialog (if there is any) */
@@ -463,6 +488,15 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
 
         /* Switch to the socket view (but don't display it yet) */
         xfce_settings_manager_dialog_reset_view(dialog, FALSE);
+
+        /* If the dialog supports help, show the help button */
+        if(help_file) {
+            gtk_widget_show (dialog->help_button);
+
+            /* Replace the current help url */
+            g_free(dialog->help_file);
+            dialog->help_file = g_strdup(help_file);
+        } 
 
         /* Build the dialog command */
         argv[0] = exec;
@@ -488,7 +522,6 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
             g_error_free(error);
         }
 
-        g_free(argv[0]);
         g_free(argv[1]);
     } else {
         /* Switch to the main view (just to be sure) */
@@ -507,6 +540,12 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
             g_error_free(error);
         }
     }
+
+    g_free(exec);
+    g_free(name);
+    g_free(comment);
+    g_free(icon_name);
+    g_free(help_file);
 }
 
 static void
@@ -516,6 +555,36 @@ xfce_settings_manager_dialog_back_button_clicked(GtkWidget *button,
     /* Kill the currently embedded dialog and go back to the overview */
     xfce_settings_manager_dialog_recreate_socket(dialog);
     xfce_settings_manager_dialog_reset_view(dialog, TRUE);
+}
+
+static void 
+xfce_settings_manager_dialog_help_button_clicked(GtkWidget *button,
+                                                 XfceSettingsManagerDialog *dialog)
+{
+    GError *error = NULL;
+    gchar  *command;
+
+    /* Open absolute filenames with exo-open and relative filenames with xfhelp4 */
+    if(dialog->help_file) {
+        if(g_path_is_absolute(dialog->help_file))
+            command = g_strconcat("exo-open ", dialog->help_file, NULL);
+        else
+            command = g_strconcat("xfhelp4 ", dialog->help_file, NULL);
+    } else {
+        /* TODO: Maybe use xfce4-settings-manager.html or something similar here */
+        command = g_strconcat("xfhelp4 ", "xfce4-settings.html", NULL);
+    }
+
+    /* Try to open the documentation */
+    if(!gdk_spawn_command_line_on_screen(gtk_widget_get_screen(button), 
+                                         command, &error))
+    {
+        xfce_err(_("Failed to open the documentation. Reason: %s"), 
+                 error->message);
+        g_error_free(error);
+    }
+
+    g_free(command);
 }
 
 static void
