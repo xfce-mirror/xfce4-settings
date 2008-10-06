@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-15 17:50-0700\n"
-"PO-Revision-Date: 2008-09-13 15:20+0300\n"
+"POT-Creation-Date: 2008-10-06 19:23+0300\n"
+"PO-Revision-Date: 2008-10-06 19:30+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +191,7 @@ msgstr "_Lukitse alas jäävät näppäimet"
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
 msgid "gtk-close"
 msgstr ""
 
@@ -206,21 +206,20 @@ msgstr "kuvapistettä/s"
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:82
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mouse-settings/main.c:97
-#, fuzzy
 msgid "Settings manager socket"
-msgstr "Asetukset"
+msgstr "Asetustenhallinnan pistoke"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:82
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
-msgstr ""
+msgstr "PISTOKE"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:83
 #: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:77 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:50 ../xfce4-settings-helper/main.c:58
+#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:58
 #: ../xfce4-settings-manager/main.c:50 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Versiotiedot"
@@ -228,8 +227,8 @@ msgstr "Versiotiedot"
 #: ../dialogs/accessibility-settings/main.c:145
 #: ../dialogs/appearance-settings/main.c:760
 #: ../dialogs/display-settings/main.c:643
-#: ../dialogs/keyboard-settings/main.c:610
-#: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:72
+#: ../dialogs/keyboard-settings/main.c:611
+#: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
 #: ../xfce4-settings-helper/main.c:102 ../xfce4-settings-manager/main.c:87
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -238,8 +237,8 @@ msgstr "Saat ohjeita komennolla \"%s --help\"."
 #: ../dialogs/accessibility-settings/main.c:164
 #: ../dialogs/appearance-settings/main.c:779
 #: ../dialogs/display-settings/main.c:662
-#: ../dialogs/keyboard-settings/main.c:627
-#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:91
+#: ../dialogs/keyboard-settings/main.c:628
+#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
 #: ../xfce4-settings-helper/main.c:121 ../xfce4-settings-manager/main.c:100
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
@@ -247,8 +246,8 @@ msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 #: ../dialogs/accessibility-settings/main.c:165
 #: ../dialogs/appearance-settings/main.c:780
 #: ../dialogs/display-settings/main.c:663
-#: ../dialogs/keyboard-settings/main.c:628
-#: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:92
+#: ../dialogs/keyboard-settings/main.c:629
+#: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
 #: ../xfce4-settings-helper/main.c:122 ../xfce4-settings-manager/main.c:101
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -920,22 +919,6 @@ msgstr "Ky_nnys:"
 msgid "Xfce 4 Mouse Settings"
 msgstr "Xfce 4 hiiren Asetukset"
 
-#: ../xfce4-settings-editor/main.c:243
-msgid "Channel"
-msgstr "Kanava"
-
-#: ../xfce4-settings-editor/main.c:261
-msgid "Property"
-msgstr "Ominaisuus"
-
-#: ../xfce4-settings-editor/main.c:263
-msgid "Type"
-msgstr "Tyyppi"
-
-#: ../xfce4-settings-editor/main.c:265
-msgid "Value"
-msgstr "Arvo"
-
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfce 4"
 msgstr "Graafinen asetusten muokkaaja Xfce 4:lle"
@@ -949,8 +932,48 @@ msgid "Xfce 4 Settings Editor"
 msgstr "Xfce 4 asetukset"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "<b>Property Settings</b>"
+msgstr "<b>Ominaisuusasetukset</b>"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+msgid "Locked"
+msgstr "Lukittu"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+msgid "Name:"
+msgstr "Nimi:"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+msgid "Select a channel and property."
+msgstr "Valitse kanava ja ominaisuus."
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+msgid "Type:"
+msgstr "Tyyppi:"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+msgid "Value:"
+msgstr "Arvo:"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Xfce4 settings editor"
-msgstr "Xfce 4 asetukset"
+msgstr "Xfce 4 asetuseditori"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+msgid "Xfconf channels"
+msgstr "Xfconf-kanavat"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+msgid "gtk-edit"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+msgid "gtk-new"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+msgid "gtk-revert-to-saved"
+msgstr ""
 
 #: ../xfce4-settings-helper/accessibility.c:358
 msgid "Sticky keys are enabled"
@@ -992,10 +1015,15 @@ msgstr "Sarjanäppäilyn esto"
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Käynnistä vianetsintätilassa (älä haaroita taustalle)"
 
+#: ../xfce4-settings-helper/workspaces.c:105
+#, c-format
+msgid "Workspace %d"
+msgstr "Työtila %d"
+
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:133
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:139
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:497
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:520
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:484
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:503
 msgid "Xfce Settings Manager"
 msgstr "Xfce:n asetukset"
 
@@ -1005,8 +1033,8 @@ msgid "Customize your Xfce desktop"
 msgstr "Muokkaa Xfce-työpöytäsi asetuksia"
 
 #. Notify the user that there has been a problem
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:496
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:519
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:483
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:502
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kohdetta \"%s\" ei voi käynnistää"
@@ -1039,6 +1067,3 @@ msgid ""
 msgstr ""
 "%s: %s\n"
 "Kirjoittamalla %s --help saat täyden listan komentorivivalitsimista.\n"
-
-#~ msgid "<b>%s</b>"
-#~ msgstr "<b>%s</b>"
