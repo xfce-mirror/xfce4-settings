@@ -39,9 +39,9 @@
 static GladeXML *gxml_main_window = NULL;
 
 static void
-load_channels (GtkTreeStore *store, GtkTreeView *treeview);
+load_channels (GtkListStore *store, GtkTreeView *treeview);
 static void
-load_properties (XfconfChannel *channel, GtkTreePath *path, GtkTreeStore *store, GtkTreeView *treeview);
+load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treeview);
 
 static void
 cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
@@ -68,9 +68,11 @@ xfce4_settings_get_list_keys_foreach (gpointer key,
 GtkDialog *
 xfce4_settings_editor_main_window_new()
 {
-    GtkWidget *dialog;;
+    GtkWidget *dialog;
     GtkWidget *channel_treeview;
-    GtkTreeStore *tree_store;
+    GtkWidget *property_treeview;
+    GtkListStore *channel_list_store;
+    GtkTreeStore *property_tree_store;
     GtkCellRenderer *renderer;
     GtkTreeSelection *selection;
 
@@ -81,12 +83,36 @@ xfce4_settings_editor_main_window_new()
 
     dialog = glade_xml_get_widget (gxml_main_window, "settings_editor_dialog");
     channel_treeview = glade_xml_get_widget (gxml_main_window, "channel_treeview");
+    property_treeview = glade_xml_get_widget (gxml_main_window, "property_treeview");
 
-    tree_store = gtk_tree_store_new (1, G_TYPE_STRING);
+    /*
+     * Channel List
+     */
+    channel_list_store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+
+    gtk_tree_view_set_model (GTK_TREE_VIEW (channel_treeview), GTK_TREE_MODEL (channel_list_store));
+
+    renderer = gtk_cell_renderer_pixbuf_new();
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 0, NULL, renderer, "icon-name", 0, NULL);
 
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_set_model (GTK_TREE_VIEW (channel_treeview), GTK_TREE_MODEL (tree_store));
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 0, N_("Channel/Property"), renderer, "text", 0, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 1, N_("Channel"), renderer, "text", 1, NULL);
+
+    /* 
+     * property list
+     */
+    property_tree_store = gtk_tree_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+
+    gtk_tree_view_set_model (GTK_TREE_VIEW (property_treeview), GTK_TREE_MODEL (property_tree_store));
+
+    renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 0, N_("Property"), renderer, "text", 0, NULL);
+
+    renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 1, N_("Type"), renderer, "text", 1, NULL);
+
+    renderer = gtk_cell_renderer_toggle_new();
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 2, N_("Locked"), renderer, "active", 2, NULL);
 
     /* improve usability by expanding nodes when clicking on them */
     g_signal_connect (G_OBJECT (channel_treeview), "row-activated", G_CALLBACK (cb_channel_treeview_row_activated), NULL);
@@ -95,17 +121,16 @@ xfce4_settings_editor_main_window_new()
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (channel_treeview));
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_channel_treeview_selection_changed), NULL);
 
-    load_channels (tree_store, GTK_TREE_VIEW(channel_treeview));
+    load_channels (channel_list_store, GTK_TREE_VIEW(channel_treeview));
 
     return GTK_DIALOG(dialog);
 }
 
 static void
-load_channels (GtkTreeStore *store, GtkTreeView *treeview)
+load_channels (GtkListStore *store, GtkTreeView *treeview)
 {
     GtkTreeIter iter;
     GValue value = {0,};
-    XfconfChannel *channel = NULL;
 
     gchar **channel_names, **_channel_names_iter;
 
@@ -115,15 +140,12 @@ load_channels (GtkTreeStore *store, GtkTreeView *treeview)
         _channel_names_iter = channel_names;
         while (*_channel_names_iter)
         {
-            gtk_tree_store_append (store, &iter, NULL);
-            channel = xfconf_channel_new (*_channel_names_iter);
-
+            gtk_list_store_append (store, &iter);
             g_value_init (&value, G_TYPE_STRING);
             g_value_set_string (&value, *_channel_names_iter);
-            gtk_tree_store_set_value (store, &iter, 0, &value);
+            gtk_list_store_set_value (store, &iter, 1, &value);
             g_value_unset (&value);
 
-            load_properties (channel, gtk_tree_model_get_path (GTK_TREE_MODEL (store), &iter), store, treeview);
             _channel_names_iter++;
         }
         g_strfreev (channel_names);
@@ -131,7 +153,7 @@ load_channels (GtkTreeStore *store, GtkTreeView *treeview)
 }
 
 static void
-load_properties (XfconfChannel *channel, GtkTreePath *path, GtkTreeStore *store, GtkTreeView *treeview)
+load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treeview)
 {
     gint i = 0;
     gchar *key;
@@ -156,14 +178,13 @@ load_properties (XfconfChannel *channel, GtkTreePath *path, GtkTreeStore *store,
         {
             key = _keys->data;
             value = g_hash_table_lookup (hash_table, key);
-            gtk_tree_model_get_iter (GTK_TREE_MODEL (store), &parent_iter, path);
             gchar **components = g_strsplit (key, "/", 0);
 
             /* components[0] will be empty because properties start with '/'*/
             for (i = 1; components[i]; ++i)
             {
                 /* Check if this parent has children */
-                if (gtk_tree_model_iter_children (GTK_TREE_MODEL (store), &child_iter, &parent_iter))
+                if (gtk_tree_model_iter_children (GTK_TREE_MODEL (store), &child_iter, i==1?NULL:&parent_iter))
                 {
                     while (1)
                     {
@@ -180,7 +201,7 @@ load_properties (XfconfChannel *channel, GtkTreePath *path, GtkTreeStore *store,
                         /* If we are at the end of the list of children, the required child is not available and should be created */
                         if (!gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &child_iter))
                         {
-                            gtk_tree_store_append (store, &child_iter, &parent_iter);
+                            gtk_tree_store_append (store, &child_iter, i==1?NULL:&parent_iter);
                             g_value_init (&child_value, G_TYPE_STRING);
                             g_value_set_string (&child_value, components[i]);
                             gtk_tree_store_set_value (store, &child_iter, 0, &child_value);
@@ -192,7 +213,7 @@ load_properties (XfconfChannel *channel, GtkTreePath *path, GtkTreeStore *store,
                 else
                 {
                     /* If the parent does not have any children, create this one */
-                    gtk_tree_store_append (store, &child_iter, &parent_iter);
+                    gtk_tree_store_append (store, &child_iter, i==1?NULL:&parent_iter);
                     g_value_init (&child_value, G_TYPE_STRING);
                     g_value_set_string (&child_value, components[i]);
                     gtk_tree_store_set_value (store, &child_iter, 0, &child_value);
@@ -231,7 +252,23 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer use
 {
     GtkTreeModel *model;
     GtkTreeIter iter;
+    XfconfChannel *channel;
+    GtkWidget *property_treeview;
+    GtkTreeModel *tree_store = NULL;
+    GValue value = {0, };
 
     if (! gtk_tree_selection_get_selected (selection, &model, &iter))
         return;
+
+    property_treeview = glade_xml_get_widget (gxml_main_window, "property_treeview");
+    tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
+
+    gtk_tree_model_get_value (model, &iter, 1, &value);
+
+    g_return_if_fail (G_VALUE_HOLDS_STRING (&value));
+
+    channel = xfconf_channel_new (g_value_get_string (&value));
+
+    gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
+    load_properties (channel, GTK_TREE_STORE(tree_store), GTK_TREE_VIEW(property_treeview));
 }
