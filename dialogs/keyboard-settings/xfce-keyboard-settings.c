@@ -32,6 +32,7 @@
 
 #include <exo/exo.h>
 #include <xfconf/xfconf.h>
+#include <libxfcegui4/libxfcegui4.h>
 
 #include "keyboard-dialog_glade.h"
 #include "xfce-keyboard-settings.h"
@@ -467,7 +468,6 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
   const gchar  *new_shortcut;
   gchar        *shortcut;
   gchar        *command;
-  gchar        *property;
   gint          response;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
@@ -616,11 +616,6 @@ xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
   XfceKeyboardShortcutInfo *info = NULL;
   FrapShortcutsProvider   **providers;
   FrapShortcut             *sc;
-  gchar                    *default_base;
-  gchar                    *custom_base;
-  gchar                    *override_property;
-  gchar                    *shortcut_property;
-  gchar                    *value;
   gint                      i;
 
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), FALSE);
@@ -863,7 +858,6 @@ xfce_keyboard_settings_delete_button_clicked (XfceKeyboardSettings *settings)
 static void
 xfce_keyboard_settings_reset_button_clicked (XfceKeyboardSettings *settings)
 {
-  GtkWidget *view;
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
 
 #if 0

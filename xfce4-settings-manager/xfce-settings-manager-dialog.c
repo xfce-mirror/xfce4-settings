@@ -130,7 +130,7 @@ xfce_settings_manager_dialog_class_init(XfceSettingsManagerDialogClass *klass)
 static void
 xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 {
-    GtkWidget *iconview, *vbox, *scrollwin, *hbox, *back_button;
+    GtkWidget *iconview, *scrollwin;
     GtkCellRenderer *render;
 
     dialog->socket = NULL;
