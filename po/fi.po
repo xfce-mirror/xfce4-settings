@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-06 19:23+0300\n"
-"PO-Revision-Date: 2008-10-06 19:30+0300\n"
+"POT-Creation-Date: 2008-10-07 17:25+0300\n"
+"PO-Revision-Date: 2008-10-07 17:30+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -205,20 +205,20 @@ msgstr "kuvapistettä/s"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:82
-#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
 msgstr "Asetustenhallinnan pistoke"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:82
-#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
 msgstr "PISTOKE"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:83
 #: ../dialogs/display-settings/main.c:83
-#: ../dialogs/keyboard-settings/main.c:77 ../dialogs/mouse-settings/main.c:98
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
 #: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:58
 #: ../xfce4-settings-manager/main.c:50 ../xfsettingsd/main.c:52
 msgid "Version information"
@@ -227,7 +227,7 @@ msgstr "Versiotiedot"
 #: ../dialogs/accessibility-settings/main.c:145
 #: ../dialogs/appearance-settings/main.c:760
 #: ../dialogs/display-settings/main.c:643
-#: ../dialogs/keyboard-settings/main.c:611
+#: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
 #: ../xfce4-settings-helper/main.c:102 ../xfce4-settings-manager/main.c:87
 #, c-format
@@ -237,7 +237,7 @@ msgstr "Saat ohjeita komennolla \"%s --help\"."
 #: ../dialogs/accessibility-settings/main.c:164
 #: ../dialogs/appearance-settings/main.c:779
 #: ../dialogs/display-settings/main.c:662
-#: ../dialogs/keyboard-settings/main.c:628
+#: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
 #: ../xfce4-settings-helper/main.c:121 ../xfce4-settings-manager/main.c:100
 msgid "The Xfce development team. All rights reserved."
@@ -246,7 +246,7 @@ msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 #: ../dialogs/accessibility-settings/main.c:165
 #: ../dialogs/appearance-settings/main.c:780
 #: ../dialogs/display-settings/main.c:663
-#: ../dialogs/keyboard-settings/main.c:629
+#: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
 #: ../xfce4-settings-helper/main.c:122 ../xfce4-settings-manager/main.c:101
 #, c-format
@@ -642,56 +642,60 @@ msgstr ""
 msgid "gtk-remove"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/main.c:213
-msgid "Shortcut command may not be empty."
-msgstr "Pikanäppäimen komento ei saa olla tyhjä."
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+msgid "gtk-revert-to-saved"
+msgstr ""
 
-#: ../dialogs/keyboard-settings/main.c:568
+#: ../dialogs/keyboard-settings/main.c:70
+msgid "Unable to initialize GTK+."
+msgstr "GTK+:n alustus ei onnistu."
+
+#: ../dialogs/keyboard-settings/main.c:90
+#, c-format
+msgid "Failed to connect to xfconf daemon. Reason: %s"
+msgstr "Ei voi yhdistää xfconf-taustaprosessiin. Syy: %s"
+
+#: ../dialogs/keyboard-settings/main.c:101
+msgid "Could not create the settings dialog."
+msgstr "Asetusdialogia ei voi luoda."
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:262
+msgid "Command"
+msgstr "Komento"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:267
 msgid "Shortcut"
 msgstr "Pikanäppäin"
 
-#: ../dialogs/keyboard-settings/main.c:573
-msgid "Command"
-msgstr "Komento"
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:764
+msgid "Shortcut command may not be empty."
+msgstr "Pikanäppäimen komento ei saa olla tyhjä."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:4
 msgid "Xfce 4 Keyboard Settings"
 msgstr "Xfce 4 näppäimistön asetukset"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:84
-#: ../xfce4-settings-helper/frap-shortcuts.c:84
-#, c-format
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:92
 msgid ""
-"This shortcut is already being used by the window manager action <b>%s</b>. "
+"This shortcut is already being used by <b>another window manager action</b>. "
 "Which action do you want to use?"
 msgstr ""
-"Pikanäppäin on jo yhdistetty ikkunamanagerin toimintoon <b>%s</b>. Kumpaa "
-"toimintoa haluat käyttää?"
+"Pikanäppäin on jo yhdistetty <b>toiseen ikkunamanagerin toimintoon</b>. "
+"Kumpaa toimintoa haluat käyttää?"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:85
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:88
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:91
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:94
-#: ../xfce4-settings-helper/frap-shortcuts.c:85
-#: ../xfce4-settings-helper/frap-shortcuts.c:88
-#: ../xfce4-settings-helper/frap-shortcuts.c:91
-#: ../xfce4-settings-helper/frap-shortcuts.c:94
-#, c-format
-msgid "Use %s"
-msgstr "Valitse %s"
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:93
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:96
+#: ../xfce4-settings-helper/frap-shortcuts.c:257
+msgid "Use this action"
+msgstr "Käytä tätä toimintoa"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:85
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:88
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:91
-#: ../xfce4-settings-helper/frap-shortcuts.c:85
-#: ../xfce4-settings-helper/frap-shortcuts.c:88
-#: ../xfce4-settings-helper/frap-shortcuts.c:91
-#, c-format
-msgid "Keep %s"
-msgstr "Pidä %s"
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:93
+msgid "Keep the other one"
+msgstr "Säilytä toinen"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:87
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:90
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:95
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:98
 #: ../xfce4-settings-helper/frap-shortcuts.c:87
 #: ../xfce4-settings-helper/frap-shortcuts.c:90
 #, c-format
@@ -702,7 +706,26 @@ msgstr ""
 "Pikanäppäin on jo yhdistetty komentoon <b>%s</b>. Kumpaa toimintoa haluat "
 "käyttää?"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:93
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:96
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:99
+#: ../xfce4-settings-helper/frap-shortcuts.c:85
+#: ../xfce4-settings-helper/frap-shortcuts.c:88
+#: ../xfce4-settings-helper/frap-shortcuts.c:91
+#, c-format
+msgid "Keep %s"
+msgstr "Pidä %s"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:99
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:102
+#: ../xfce4-settings-helper/frap-shortcuts.c:85
+#: ../xfce4-settings-helper/frap-shortcuts.c:88
+#: ../xfce4-settings-helper/frap-shortcuts.c:91
+#: ../xfce4-settings-helper/frap-shortcuts.c:94
+#, c-format
+msgid "Use %s"
+msgstr "Valitse %s"
+
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:101
 #: ../xfce4-settings-helper/frap-shortcuts.c:93
 msgid ""
 "The shortcut is already being used by a <b>window manager action</b>. Which "
@@ -711,65 +734,52 @@ msgstr ""
 "Pikanäppäin on jo yhdistetty <b>ikkunamanagerin toimintoon</b>. Kumpaa "
 "toimintoa haluat käyttää?"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:94
-#: ../xfce4-settings-helper/frap-shortcuts.c:94
-msgid "Keep window manager action"
-msgstr "Käytä ikkunamanagerin toimintoa"
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:102
+msgid "Keep the window manager action"
+msgstr "Säilytä ikkunamanagerin toiminto"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:249
-#: ../xfce4-settings-helper/frap-shortcuts.c:249
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:134
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:141
 #, c-format
-msgid "%s shortcut conflict"
-msgstr "%s pikanäppäinristiriita"
+msgid "Conflicting actions for %s"
+msgstr "Päällekkäismääritys pikanäppäimelle %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:257
-#: ../xfce4-settings-helper/frap-shortcuts.c:257
-msgid "Use this action"
-msgstr "Käytä tätä toimintoa"
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:173
+msgid "The shortcut is already being used for something else."
+msgstr "Pikanäppäin on jo muussa käytössä."
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:260
-#: ../xfce4-settings-helper/frap-shortcuts.c:260
-msgid "Shortcut conflict"
-msgstr "Pikanäppäinristiriita"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:281
-#: ../xfce4-settings-helper/frap-shortcuts.c:281
-#, c-format
-msgid "The shortcut '%s' is already being used for something else."
-msgstr "Pikanäppäin \"%s\" on jo muussa käytössä."
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:236
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:239
 msgid "Enter window manager action shortcut"
 msgstr "Valitse ikkunamanagerin toiminnon pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:237
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:247
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:240
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:250
 #, c-format
 msgid "Action: %s"
 msgstr "Toiminto: %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:241
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:244
 msgid "Enter command shortcut"
 msgstr "Valitse komennon pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:242
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:245
 #, c-format
 msgid "Command: %s"
 msgstr "Komento: %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:246
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:249
 msgid "Enter shortcut"
 msgstr "Valitse pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:277
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:280
 msgid "Shortcut:"
 msgstr "Pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:321
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:324
 msgid "Could not grab the keyboard."
 msgstr "Näppäimistöä ei voi kaapata."
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:342
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:345
 #, c-format
 msgid "<span size='large'><b>%s</b></span>"
 msgstr "<span size='large'><b>%s</b></span>"
@@ -971,10 +981,6 @@ msgstr ""
 msgid "gtk-new"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-msgid "gtk-revert-to-saved"
-msgstr ""
-
 #: ../xfce4-settings-helper/accessibility.c:358
 msgid "Sticky keys are enabled"
 msgstr "Alas jäävät näppäimet käytössä"
@@ -1011,6 +1017,33 @@ msgstr "Sarjanäppäilyn esto ei käytössä"
 msgid "Bounce keys"
 msgstr "Sarjanäppäilyn esto"
 
+#: ../xfce4-settings-helper/frap-shortcuts.c:84
+#, c-format
+msgid ""
+"This shortcut is already being used by the window manager action <b>%s</b>. "
+"Which action do you want to use?"
+msgstr ""
+"Pikanäppäin on jo yhdistetty ikkunamanagerin toimintoon <b>%s</b>. Kumpaa "
+"toimintoa haluat käyttää?"
+
+#: ../xfce4-settings-helper/frap-shortcuts.c:94
+msgid "Keep window manager action"
+msgstr "Käytä ikkunamanagerin toimintoa"
+
+#: ../xfce4-settings-helper/frap-shortcuts.c:249
+#, c-format
+msgid "%s shortcut conflict"
+msgstr "%s pikanäppäinristiriita"
+
+#: ../xfce4-settings-helper/frap-shortcuts.c:260
+msgid "Shortcut conflict"
+msgstr "Pikanäppäinristiriita"
+
+#: ../xfce4-settings-helper/frap-shortcuts.c:281
+#, c-format
+msgid "The shortcut '%s' is already being used for something else."
+msgstr "Pikanäppäin \"%s\" on jo muussa käytössä."
+
 #: ../xfce4-settings-helper/main.c:59 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Käynnistä vianetsintätilassa (älä haaroita taustalle)"
@@ -1020,24 +1053,29 @@ msgstr "Käynnistä vianetsintätilassa (älä haaroita taustalle)"
 msgid "Workspace %d"
 msgstr "Työtila %d"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:133
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:139
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:484
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:503
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:147
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:518
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:536
 msgid "Xfce Settings Manager"
 msgstr "Xfce:n asetukset"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:134
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:138
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:140
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:146
 msgid "Customize your Xfce desktop"
 msgstr "Muokkaa Xfce-työpöytäsi asetuksia"
 
 #. Notify the user that there has been a problem
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:483
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:502
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:517
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:535
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kohdetta \"%s\" ei voi käynnistää"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:582
+#, c-format
+msgid "Failed to open the documentation. Reason: %s"
+msgstr "Dokumentaatiota ei voi avata. Syy: %s"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Graphical Settings Manager for Xfce 4"
