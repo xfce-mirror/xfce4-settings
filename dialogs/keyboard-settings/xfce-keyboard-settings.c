@@ -614,9 +614,10 @@ xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
                                           const gchar          *ignore_property)
 {
   XfceKeyboardShortcutInfo *info = NULL;
-  FrapShortcutsProvider   **providers;
+  GList                    *iter;
   FrapShortcut             *sc;
-  gint                      i;
+  GList                    *providers;
+  gchar                    *value;
 
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), FALSE);
   g_return_val_if_fail (shortcut != NULL, FALSE);
@@ -628,17 +629,17 @@ xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
   if (G_UNLIKELY (providers == NULL))
     return NULL;
 
-  for (i = 0; i < G_N_ELEMENTS (providers) && info == NULL; ++i)
+  for (iter = providers; iter != NULL && info == NULL; iter = g_list_next (iter))
     {
-      if (G_UNLIKELY (frap_shortcuts_provider_has_shortcut (providers[i], shortcut)))
+      if (G_UNLIKELY (frap_shortcuts_provider_has_shortcut (iter->data, shortcut)))
         {
-          sc = frap_shortcuts_provider_get_shortcut (providers[i], shortcut);
+          sc = frap_shortcuts_provider_get_shortcut (iter->data, shortcut);
 
           if (G_LIKELY (sc != NULL))
             {
               /* Check ignore_property and change shortcut info struct */
               info = g_new0 (XfceKeyboardShortcutInfo, 1);
-              info->provider = g_object_ref (providers[i]);
+              info->provider = g_object_ref (iter->data);
               info->shortcut = sc;
             }
         }
@@ -859,11 +860,5 @@ static void
 xfce_keyboard_settings_reset_button_clicked (XfceKeyboardSettings *settings)
 {
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
-
-#if 0
-  view = glade_xml_get_widget (settings->priv->glade_xml, "kbd_shortcuts_view");
-  gtk_list_store_clear (GTK_LIST_STORE (gtk_tree_view_get_model (GTK_TREE_VIEW (view))));
-#endif
-
   frap_shortcuts_provider_reset_to_defaults (settings->priv->provider);
 }

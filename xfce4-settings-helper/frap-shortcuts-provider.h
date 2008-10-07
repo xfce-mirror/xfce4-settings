@@ -40,26 +40,26 @@ typedef struct _FrapShortcutsProvider        FrapShortcutsProvider;
 
 GType frap_shortcuts_provider_get_type (void) G_GNUC_CONST;
 
-FrapShortcutsProvider  *frap_shortcuts_provider_new               (const gchar            *name) G_GNUC_MALLOC;
-FrapShortcutsProvider **frap_shortcuts_provider_get_providers     (void) G_GNUC_MALLOC;
-void                    frap_shortcuts_provider_free_providers    (FrapShortcutsProvider **providers);
-const gchar            *frap_shortcuts_provider_get_name          (FrapShortcutsProvider  *provider);
-gboolean                frap_shortcuts_provider_is_custom         (FrapShortcutsProvider  *provider);
-void                    frap_shortcuts_provider_reset_to_defaults (FrapShortcutsProvider  *provider);
-void                    frap_shortcuts_provider_clone_defaults    (FrapShortcutsProvider  *provider);
-GList                  *frap_shortcuts_provider_get_shortcuts     (FrapShortcutsProvider  *provider);
-FrapShortcut           *frap_shortcuts_provider_get_shortcut      (FrapShortcutsProvider  *provider,
-                                                                   const gchar            *shortcut);
-gboolean                frap_shortcuts_provider_has_shortcut      (FrapShortcutsProvider  *provider,
-                                                                   const gchar            *shortcut);
-void                    frap_shortcuts_provider_set_shortcut      (FrapShortcutsProvider  *provider,
-                                                                   const gchar            *shortcut,
-                                                                   const gchar            *command);
-void                    frap_shortcuts_provider_reset_shortcut    (FrapShortcutsProvider  *provider,
-                                                                   const gchar            *shortcut);
+FrapShortcutsProvider  *frap_shortcuts_provider_new               (const gchar           *name) G_GNUC_MALLOC;
+GList                  *frap_shortcuts_provider_get_providers     (void) G_GNUC_MALLOC;
+void                    frap_shortcuts_provider_free_providers    (GList                 *providers);
+const gchar            *frap_shortcuts_provider_get_name          (FrapShortcutsProvider *provider);
+gboolean                frap_shortcuts_provider_is_custom         (FrapShortcutsProvider *provider);
+void                    frap_shortcuts_provider_reset_to_defaults (FrapShortcutsProvider *provider);
+void                    frap_shortcuts_provider_clone_defaults    (FrapShortcutsProvider *provider);
+GList                  *frap_shortcuts_provider_get_shortcuts     (FrapShortcutsProvider *provider);
+FrapShortcut           *frap_shortcuts_provider_get_shortcut      (FrapShortcutsProvider *provider,
+                                                                   const gchar           *shortcut);
+gboolean                frap_shortcuts_provider_has_shortcut      (FrapShortcutsProvider *provider,
+                                                                   const gchar           *shortcut);
+void                    frap_shortcuts_provider_set_shortcut      (FrapShortcutsProvider *provider,
+                                                                   const gchar           *shortcut,
+                                                                   const gchar           *command);
+void                    frap_shortcuts_provider_reset_shortcut    (FrapShortcutsProvider *provider,
+                                                                   const gchar           *shortcut);
 
-void                    frap_shortcuts_free_shortcuts             (GList                  *shortcuts);
-void                    frap_shortcuts_free_shortcut              (FrapShortcut           *shortcut);
+void                    frap_shortcuts_free_shortcuts             (GList                 *shortcuts);
+void                    frap_shortcuts_free_shortcut              (FrapShortcut          *shortcut);
 
 
 

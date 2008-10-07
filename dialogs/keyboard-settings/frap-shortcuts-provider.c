@@ -65,6 +65,7 @@ static void frap_shortcuts_provider_set_property     (GObject                   
                                                       guint                       prop_id,
                                                       const GValue               *value,
                                                       GParamSpec                 *pspec);
+static void frap_shortcuts_provider_register         (FrapShortcutsProvider      *provider);
 static void frap_shortcuts_provider_property_changed (XfconfChannel              *channel,
                                                       gchar                      *property,
                                                       GValue                     *value,
@@ -190,6 +191,8 @@ frap_shortcuts_provider_constructed (GObject *object)
 {
   FrapShortcutsProvider *provider = FRAP_SHORTCUTS_PROVIDER (object);
 
+  frap_shortcuts_provider_register (provider);
+
   provider->priv->default_base_property = g_strdup_printf ("/%s/default", provider->priv->name);
   provider->priv->custom_base_property = g_strdup_printf ("/%s/custom", provider->priv->name);
 
@@ -259,6 +262,46 @@ frap_shortcuts_provider_set_property (GObject      *object,
 
 
 
+static void
+frap_shortcuts_provider_register (FrapShortcutsProvider *provider)
+{
+  gchar       **provider_names;
+  const gchar **names;
+  gboolean      already_registered = FALSE;
+  gint          length;
+  gint          i;
+
+  g_return_if_fail (FRAP_IS_SHORTCUTS_PROVIDER (provider));
+
+  provider_names = xfconf_channel_get_string_list (provider->priv->channel, "/providers");
+
+  for (i = 0; provider_names[i] != NULL; ++i)
+    if (G_UNLIKELY (g_str_equal (provider_names[i], frap_shortcuts_provider_get_name (provider))))
+      {
+        already_registered = TRUE;
+        break;
+      }
+
+  length = i;
+
+  if (G_UNLIKELY (!already_registered))
+    {
+      names = g_new0 (const gchar *, length + 1);
+      for (i = 0; provider_names[i] != NULL; ++i)
+        names[i] = provider_names[i];
+      names[i++] = frap_shortcuts_provider_get_name (provider);
+      names[i] = NULL;
+
+      xfconf_channel_set_string_list (provider->priv->channel, "/providers", names);
+
+      g_free (names);
+    }
+
+  g_strfreev (provider_names);
+}
+
+
+
 static void 
 frap_shortcuts_provider_property_changed (XfconfChannel         *channel,
                                           gchar                 *property,
@@ -302,24 +345,21 @@ frap_shortcuts_provider_new (const gchar *name)
 
 
 
-FrapShortcutsProvider **
+GList *
 frap_shortcuts_provider_get_providers (void)
 {
-  FrapShortcutsProvider **providers = NULL;
-  XfconfChannel          *channel;
-  gchar                 **names;
-  gint                    i;
+  GList         *providers = NULL;
+  XfconfChannel *channel;
+  gchar        **names;
+  gint           i;
 
   channel = xfconf_channel_get ("xfce4-keyboard-shortcuts");
   names = xfconf_channel_get_string_list (channel, "/providers");
 
   if (G_LIKELY (names != NULL))
     {
-      providers = g_new0 (FrapShortcutsProvider *, G_N_ELEMENTS (names));
-
-      for (i = 0; i < G_N_ELEMENTS (names); ++i)
-        providers[i] = frap_shortcuts_provider_new (names[i]);
-
+      for (i = 0; names[i] != NULL; ++i)
+        providers = g_list_append (providers, frap_shortcuts_provider_new (names[i]));
       g_strfreev (names);
     }
     
@@ -329,14 +369,14 @@ frap_shortcuts_provider_get_providers (void)
 
 
 void
-frap_shortcuts_provider_free_providers (FrapShortcutsProvider **providers)
+frap_shortcuts_provider_free_providers (GList *providers)
 {
-  gint i;
+  GList *iter;
 
-  for (i = 0; i < G_N_ELEMENTS (providers); ++i)
-    g_object_unref (providers[i]);
+  for (iter = g_list_first (providers); iter != NULL; iter = g_list_next (iter))
+    g_object_unref (iter->data);
 
-  g_free (providers);
+  g_list_free (providers);
 }
 
 
