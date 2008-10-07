@@ -14,10 +14,14 @@ bin_PROGRAMS = \
 
 xfce4_keyboard_settings_SOURCES = \
 	main.c \
+	xfce-keyboard-settings.c \
+	xfce-keyboard-settings.h \
 	frap-shortcuts.c \
 	frap-shortcuts.h \
 	frap-shortcuts-dialog.c \
 	frap-shortcuts-dialog.h \
+	frap-shortcuts-provider.c \
+	frap-shortcuts-provider.h \
 	command-dialog.c \
 	command-dialog.h \
 	keyboard-dialog_glade.h
@@ -27,7 +31,9 @@ xfce4_keyboard_settings_CFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(GLADE_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
+	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
+	$(EXO_CFLAGS) \
 	$(XFCONF_CFLAGS)
 
 xfce4_keyboard_settings_LDFLAGS = \
@@ -39,7 +45,9 @@ xfce4_keyboard_settings_LDADD = \
 	$(GLIB_LIBS) \
 	$(GLADE_LIBS) \
 	$(DBUS_GLIB_LIBS) \
+	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
+	$(EXO_LIBS) \
 	$(XFCONF_LIBS)
 
 if MAINTAINER_MODE
