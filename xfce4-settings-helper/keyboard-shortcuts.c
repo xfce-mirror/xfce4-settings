@@ -38,11 +38,12 @@
 #include <dbus/dbus-glib.h>
 
 #include <libxfcegui4/libxfcegui4.h>
-
 #include <xfconf/xfconf.h>
 
-#include "keyboard-shortcuts.h"
+#include "frap-shortcuts-provider.h"
 #include "frap-shortcuts.h"
+
+#include "keyboard-shortcuts.h"
 
 
 
@@ -65,17 +66,15 @@ static void            xfce_keyboard_shortcuts_helper_set_property     (GObject 
                                                                         guint                             prop_id,
                                                                         const GValue                     *value,
                                                                         GParamSpec                       *pspec);
-static void           xfce_keyboard_shortcuts_helper_load_shortcut     (const gchar                      *property,
-                                                                        const GValue                     *value,
-                                                                        XfceKeyboardShortcutsHelper      *helper);
 static void            xfce_keyboard_shortcuts_helper_shortcut_callback (const gchar                     *shortcut,
                                                                          XfceKeyboardShortcutsHelper     *helper);
-static void            xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel                    *channel,
-                                                                        const gchar                      *property,
-                                                                        GValue                           *value,
+static void            xfce_keyboard_shortcuts_helper_shortcut_added   (FrapShortcutsProvider            *provider,
+                                                                        const gchar                      *shortcut,
                                                                         XfceKeyboardShortcutsHelper      *helper);
-static const gchar    *xfce_keyboard_shortcuts_helper_shortcut_string  (XfceKeyboardShortcutsHelper      *helper,
-                                                                        const gchar                      *property);
+static void            xfce_keyboard_shortcuts_helper_shortcut_removed (FrapShortcutsProvider            *provider,
+                                                                        const gchar                      *shortcut,
+                                                                        XfceKeyboardShortcutsHelper      *helper);
+static void            xfce_keyboard_shortcuts_helper_load_shortcuts   (XfceKeyboardShortcutsHelper      *helper);
 
 
 
@@ -89,13 +88,10 @@ struct _XfceKeyboardShortcutsHelper
   GObject __parent__;
 
   /* Xfconf channel used for managing the keyboard shortcuts */
-  XfconfChannel *channel;
+  XfconfChannel         *channel;
 
   /* Base property (either /commands/default or /commands/custom) */
-  const gchar   *base_property;
-
-  /* Hash table for (shortcut -> action) mapping */
-  GHashTable    *shortcuts;
+  FrapShortcutsProvider *provider;
 };
 
 
@@ -152,38 +148,20 @@ xfce_keyboard_shortcuts_helper_class_init (XfceKeyboardShortcutsHelperClass *kla
 static void
 xfce_keyboard_shortcuts_helper_init (XfceKeyboardShortcutsHelper *helper)
 {
-  GHashTable *properties;
-
   /* Get Xfconf channel */
   helper->channel = frap_shortcuts_get_channel ();
-
-  if (G_LIKELY (xfconf_channel_get_bool (helper->channel, "/commands/custom/override", FALSE)))
-    helper->base_property = "/commands/custom";
-  else
-    helper->base_property = "/commands/default";
-
-  DBG ("base property = %s", helper->base_property);
-
-  /* Create hash table for (shortcut -> command) mapping */
-  helper->shortcuts = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-
-  /* Get all properties of the channel */
-  properties = xfconf_channel_get_properties (helper->channel, helper->base_property);
-
-  if (G_LIKELY (properties != NULL))
-    {
-      /* Filter shortcuts */
-      g_hash_table_foreach (properties, (GHFunc) xfce_keyboard_shortcuts_helper_load_shortcut, helper);
-
-      /* Destroy properties */
-      g_hash_table_destroy (properties);
-    }
 
   /* Set shortcut callback */
   frap_shortcuts_set_shortcut_callback ((FrapShortcutsFunc) xfce_keyboard_shortcuts_helper_shortcut_callback, helper);
 
+  /* Get shortcuts provider */
+  helper->provider = frap_shortcuts_provider_new ("commands");
+
   /* Be notified of property changes */
-  g_signal_connect (helper->channel, "property-changed", G_CALLBACK (xfce_keyboard_shortcuts_helper_property_changed), helper);
+  g_signal_connect (helper->provider, "shortcut-added", G_CALLBACK (xfce_keyboard_shortcuts_helper_shortcut_added), helper);
+  g_signal_connect (helper->provider, "shortcut-removed", G_CALLBACK (xfce_keyboard_shortcuts_helper_shortcut_removed), helper);
+
+  xfce_keyboard_shortcuts_helper_load_shortcuts (helper);
 }
 
 
@@ -193,11 +171,11 @@ xfce_keyboard_shortcuts_helper_finalize (GObject *object)
 {
   XfceKeyboardShortcutsHelper *helper = XFCE_KEYBOARD_SHORTCUTS_HELPER (object);
 
-  /* Free shortcuts hash table */
-  g_hash_table_destroy (helper->shortcuts);
-
   /* Free Xfconf channel */
   g_object_unref (helper->channel);
+
+  /* Free shortcuts provider */
+  g_object_unref (helper->provider);
 
   (*G_OBJECT_CLASS (xfce_keyboard_shortcuts_helper_parent_class)->finalize) (object);
 }
@@ -241,137 +219,94 @@ xfce_keyboard_shortcuts_helper_set_property (GObject      *object,
 
 
 static void
-xfce_keyboard_shortcuts_helper_load_shortcut (const gchar                 *property,
-                                              const GValue                *value,
-                                              XfceKeyboardShortcutsHelper *helper)
-{
-  const gchar *shortcut;
-  const gchar *command;
-
-  g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
-  g_return_if_fail (G_IS_VALUE (value));
-
-  if (G_UNLIKELY (G_VALUE_TYPE (value) != G_TYPE_STRING))
-    return;
-
-  shortcut = xfce_keyboard_shortcuts_helper_shortcut_string (helper, property);
-  command = g_value_get_string (value);
-
-  DBG ("shortcut = %s, command = %s", shortcut, command);
-
-  /* Establish passive grab on the shortcut and add it to the hash table */
-  if (G_LIKELY (frap_shortcuts_grab_shortcut (shortcut, FALSE)))
-    {
-      /* Add shortcut -> command pair to the hash table */
-      g_hash_table_insert (helper->shortcuts, g_strdup (shortcut), g_strdup (command));
-    }
-  else
-    g_warning ("Failed to load shortcut '%s'", shortcut);
-}
-
-
-
-static void
 xfce_keyboard_shortcuts_helper_shortcut_callback (const gchar                 *shortcut,
                                                   XfceKeyboardShortcutsHelper *helper)
 {
-  GdkDisplay  *display;
-  GdkScreen   *screen;
-  GError      *error = NULL;
-  const gchar *action;
-  gint         monitor;
+  FrapShortcut *sc;
+  GdkDisplay   *display;
+  GdkScreen    *screen;
+  GError       *error = NULL;
+  gint          monitor;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
 
+  /* Ignore empty shortcuts */
   if (shortcut == NULL || g_utf8_strlen (shortcut, -1) == 0)
+    return;
+
+  DBG  ("shortcut = %s", shortcut);
+
+  /* Get shortcut from the provider */
+  sc = frap_shortcuts_provider_get_shortcut (helper->provider, shortcut);
+
+  if (G_UNLIKELY (sc == NULL))
     return;
 
   display = gdk_display_get_default ();
 
-  DBG  ("shortcut = %s", shortcut);
+  DBG ("command = %s", sc->command);
 
-  if ((action = g_hash_table_lookup (helper->shortcuts, shortcut)) != NULL)
-    {
-      DBG ("action = %s", action);
+  /* Determine active monitor */
+  screen = xfce_gdk_display_locate_monitor_with_pointer (display, &monitor);
 
-      /* Determine active monitor */
-      screen = xfce_gdk_display_locate_monitor_with_pointer (display, &monitor);
+  /* Spawn command */
+  if (!G_UNLIKELY (!xfce_gdk_spawn_command_line_on_screen (screen, sc->command, &error)))
+    if (G_LIKELY (error != NULL))
+      {
+        g_error ("%s", error->message);
+        g_error_free (error);
+      }
 
-      /* Spawn command */
-      if (!G_UNLIKELY (!xfce_gdk_spawn_command_line_on_screen (screen, action, &error)))
-        if (G_LIKELY (error != NULL))
-          {
-            g_warning ("%s", error->message);
-            g_error_free (error);
-          }
-    }
+  frap_shortcuts_free_shortcut (sc);
+}
+
+
+
+static void 
+xfce_keyboard_shortcuts_helper_shortcut_added (FrapShortcutsProvider       *provider,
+                                               const gchar                 *shortcut,
+                                               XfceKeyboardShortcutsHelper *helper)
+{
+  g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
+  DBG ("shortcut = %s", shortcut);
+  frap_shortcuts_grab_shortcut (shortcut, FALSE);
 }
 
 
 
 static void
-xfce_keyboard_shortcuts_helper_property_changed (XfconfChannel               *channel,
-                                                 const gchar                 *property,
-                                                 GValue                      *value,
+xfce_keyboard_shortcuts_helper_shortcut_removed (FrapShortcutsProvider       *provider,
+                                                 const gchar                 *shortcut,
                                                  XfceKeyboardShortcutsHelper *helper)
 {
-  const gchar *shortcut;
-  const gchar *command;
-
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
-  g_return_if_fail (XFCONF_IS_CHANNEL (channel));
-
-  shortcut = xfce_keyboard_shortcuts_helper_shortcut_string (helper, property);
-
-  /* Check whether the property was removed */
-  if (G_VALUE_TYPE (value) == G_TYPE_INVALID)
-    {
-      /* Remove shortcut and ungrab keys if we're monitoring it already */
-      if (G_LIKELY (g_hash_table_lookup (helper->shortcuts, shortcut)))
-        {
-          DBG ("removing shortcut = %s", shortcut);
-
-          /* Remove shortcut from the hash table */
-          g_hash_table_remove (helper->shortcuts, shortcut);
-
-          /* Ungrab the shortcut */
-          frap_shortcuts_grab_shortcut (shortcut, TRUE);
-        }
-    }
-  else
-    {
-      command = g_value_get_string (value);
-
-      /* Check whether the shortcut already exists */
-      if (g_hash_table_lookup (helper->shortcuts, shortcut))
-        {
-          DBG ("changing command of shortcut = %s to %s", shortcut, command);
-
-          /* Replace the current command. The key combination hasn't changed so don't ungrab/grab */
-          g_hash_table_replace (helper->shortcuts, g_strdup (shortcut), g_strdup (command));
-        }
-      else
-        {
-          DBG ("adding shortcut = %s", shortcut);
-
-          /* Establish passive keyboard grab for the new shortcut */
-          if (frap_shortcuts_grab_shortcut (shortcut, FALSE))
-            {
-              /* Insert shortcut into the hash table */
-              g_hash_table_insert (helper->shortcuts, g_strdup (shortcut), g_strdup (command));
-            }
-        }
-    }
+  DBG ("shortcut = %s", shortcut);
+  frap_shortcuts_grab_shortcut (shortcut, TRUE);
 }
 
 
 
-static const gchar *
-xfce_keyboard_shortcuts_helper_shortcut_string (XfceKeyboardShortcutsHelper *helper,
-                                                const gchar                 *property)
+static void
+_xfce_keyboard_shortcuts_helper_load_shortcut (FrapShortcut                *shortcut,
+                                               XfceKeyboardShortcutsHelper *helper)
 {
-  g_return_val_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper), NULL);
-  g_return_val_if_fail (property != NULL, NULL);
+  g_return_if_fail (shortcut != NULL);
+  g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
+  DBG ("shortcut = %s", shortcut->shortcut);
+  frap_shortcuts_grab_shortcut (shortcut->shortcut, FALSE);
+}
 
-  return property + strlen (helper->base_property) + 1;
+
+
+static void
+xfce_keyboard_shortcuts_helper_load_shortcuts (XfceKeyboardShortcutsHelper *helper)
+{
+  GList *shortcuts;
+
+  g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
+
+  /* Load shortcuts one by one */
+  shortcuts = frap_shortcuts_provider_get_shortcuts (helper->provider);
+  g_list_foreach (shortcuts, (GFunc) _xfce_keyboard_shortcuts_helper_load_shortcut, helper);
+  frap_shortcuts_free_shortcuts (shortcuts);
 }

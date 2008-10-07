@@ -23,6 +23,8 @@ xfce4_settings_helper_SOURCES = \
 	keyboards.h \
 	keyboard-shortcuts.c \
 	keyboard-shortcuts.h \
+	frap-shortcuts-provider.c \
+	frap-shortcuts-provider.h \
 	frap-shortcuts.c \
 	frap-shortcuts.h \
 	pointers.c \
