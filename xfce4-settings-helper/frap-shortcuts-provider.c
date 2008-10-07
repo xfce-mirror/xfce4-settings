@@ -275,7 +275,7 @@ frap_shortcuts_provider_register (FrapShortcutsProvider *provider)
 
   provider_names = xfconf_channel_get_string_list (provider->priv->channel, "/providers");
 
-  for (i = 0; provider_names[i] != NULL; ++i)
+  for (i = 0; provider_names != NULL && provider_names[i] != NULL; ++i)
     if (G_UNLIKELY (g_str_equal (provider_names[i], frap_shortcuts_provider_get_name (provider))))
       {
         already_registered = TRUE;
@@ -287,7 +287,7 @@ frap_shortcuts_provider_register (FrapShortcutsProvider *provider)
   if (G_UNLIKELY (!already_registered))
     {
       names = g_new0 (const gchar *, length + 1);
-      for (i = 0; provider_names[i] != NULL; ++i)
+      for (i = 0; provider_names != NULL && provider_names[i] != NULL; ++i)
         names[i] = provider_names[i];
       names[i++] = frap_shortcuts_provider_get_name (provider);
       names[i] = NULL;
