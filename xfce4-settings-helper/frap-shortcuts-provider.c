@@ -468,15 +468,15 @@ frap_shortcuts_provider_clone_defaults (FrapShortcutsProvider *provider)
       /* Copy from /commands/default to /commands/custom property by property */
       g_hash_table_foreach (properties, (GHFunc) _frap_shortcuts_provider_clone_default, provider);
 
-      DBG ("adding override property");
-
-      /* Add the override property */
-      property = g_strconcat (provider->priv->custom_base_property, "/override", NULL);
-      xfconf_channel_set_bool (provider->priv->channel, property, TRUE);
-      g_free (property);
-
       g_hash_table_destroy (properties);
     }
+
+  DBG ("adding override property");
+
+  /* Add the override property */
+  property = g_strconcat (provider->priv->custom_base_property, "/override", NULL);
+  xfconf_channel_set_bool (provider->priv->channel, property, TRUE);
+  g_free (property);
 }
 
 
