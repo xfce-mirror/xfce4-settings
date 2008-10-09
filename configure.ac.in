@@ -105,6 +105,18 @@ AC_ARG_ENABLE([xsettings-daemon],
               [build_xfsettingsd=yes])
 AM_CONDITIONAL([BUILD_XFSETTINGSD], [test "x$build_xfsettingsd" = "xyes"])
 
+dnl Camberra XSettings
+AC_ARG_ENABLE([sound-settings],
+              [AC_HELP_STRING([--enable-sound-settings],
+                              [Enable sound XSETTINGS in GUI (from libcamberra) (default=no)])],
+              [enable_sound_settings=$enableval],
+              [enable_sound_settings=no])
+if test x"$enable_sound_settings" = x"yes"; then
+  AC_DEFINE([ENABLE_SOUND_SETTINGS], [1], [Define to enable sound control in UI])
+  ENABLE_SOUND_SETTINGS=1
+fi
+AC_SUBST(ENABLE_SOUND_SETTINGS)
+
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
@@ -115,7 +127,7 @@ AC_MSG_CHECKING([whether to enable debugging support])
 if test x"$enable_debug" = x"full" -o x"$enable_debug" = x"yes"; then
   dnl Print the result
   AC_MSG_RESULT([$enable_debug])
-  
+
   dnl Define debug for libxfce4util DBG macro
   AC_DEFINE([DEBUG], [1], [Define for debugging support])
 
@@ -238,6 +250,11 @@ if test x"$XF86MISC" = x"yes"; then
 echo "* Xf86misc support:          yes"
 else
 echo "* Xf86misc support:          no"
+fi
+if test x"$ENABLE_SOUND_SETTINGS" = x"1"; then
+echo "* Sounds settings support    yes"
+else
+echo "* Sounds settings support    no"
 fi
 echo
 
