@@ -206,6 +206,16 @@ cb_custom_dpi_check_button_toggled (GtkToggleButton *custom_dpi_toggle,
 }
 
 static void
+cb_enable_event_sounds_check_button_toggled (GtkToggleButton *toggle, GtkWidget *button)
+{
+    gboolean active;
+
+    active = gtk_toggle_button_get_active (toggle);
+    gtk_widget_set_sensitive (button, active);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), active);
+}
+
+static void
 appearance_settings_load_icon_themes (GtkListStore *list_store,
                                       GtkTreeView  *tree_view)
 {
@@ -377,7 +387,7 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                     /* Get translated ui theme name and comment */
                     theme_name = xfce_rc_read_entry (index_file, "Name", file);
                     theme_comment = xfce_rc_read_entry (index_file, "Comment", NULL);
-                    
+
                     /* Escape the comment because tooltips are markup, not text */
                     comment_escaped = theme_comment ? g_markup_escape_text (theme_comment, -1) : NULL;
 
@@ -397,7 +407,7 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                                     COLUMN_THEME_NAME, file,
                                     COLUMN_THEME_DISPLAY_NAME, theme_name,
                                     COLUMN_THEME_COMMENT, comment_escaped, -1);
-                                    
+
                 /* Cleanup */
                 g_free (comment_escaped);
 
@@ -736,6 +746,25 @@ appearance_settings_dialog_configure_widgets (GladeXML *gxml)
 
     g_signal_connect (G_OBJECT (custom_dpi_check), "toggled", G_CALLBACK (cb_custom_dpi_check_button_toggled), custom_dpi_spin);
     g_signal_connect (G_OBJECT (custom_dpi_spin), "value-changed", G_CALLBACK (cb_custom_dpi_spin_value_changed), custom_dpi_check);
+
+#ifdef ENABLE_SOUND_SETTINGS
+    /* Sounds */
+    GtkWidget *event_sounds_frame = glade_xml_get_widget (gxml, "event_sounds_frame");
+    GtkWidget *enable_event_sounds_check_button = glade_xml_get_widget (gxml, "enable_event_sounds_check_button");
+    GtkWidget *enable_input_feedback_sounds_button  = glade_xml_get_widget (gxml, "enable_input_feedback_sounds_button");
+
+    gtk_widget_show (event_sounds_frame);
+    g_signal_connect (G_OBJECT (enable_event_sounds_check_button),
+                      "toggled",
+                      G_CALLBACK (cb_enable_event_sounds_check_button_toggled),
+                      enable_input_feedback_sounds_button);
+    xfconf_g_property_bind (xsettings_channel, "/Net/EnableEventSounds", G_TYPE_BOOLEAN,
+                            G_OBJECT (enable_event_sounds_check_button), "active");
+    xfconf_g_property_bind (xsettings_channel, "/Net/EnableInputFeedbackSounds", G_TYPE_BOOLEAN,
+                            G_OBJECT (enable_input_feedback_sounds_button), "active");
+    gtk_widget_set_sensitive (GTK_BUTTON (enable_input_feedback_sounds_button),
+                              gtk_toggle_button_get_active (enable_event_sounds_check_button));
+#endif
 }
 
 gint
@@ -819,7 +848,7 @@ main(gint argc, gchar **argv)
                 /* Create plug widget */
                 plug = gtk_plug_new (opt_socket_id);
                 gtk_widget_show (plug);
-            
+
                 g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
 
                 /* Get plug child widget */

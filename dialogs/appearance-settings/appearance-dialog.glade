@@ -423,6 +423,62 @@
                     <property name="position">1</property>
                   </packing>
                 </child>
+                <child>
+                  <widget class="GtkFrame" id="event_sounds_frame">
+                    <property name="visible">False</property>
+                    <property name="label_xalign">0</property>
+                    <property name="shadow_type">GTK_SHADOW_NONE</property>
+                    <child>
+                      <widget class="GtkAlignment" id="alignment6">
+                        <property name="visible">True</property>
+                        <property name="bottom_padding">6</property>
+                        <property name="left_padding">12</property>
+                        <child>
+                          <widget class="GtkVBox" id="vbox2">
+                            <property name="visible">True</property>
+                            <property name="border_width">6</property>
+                            <property name="spacing">6</property>
+                            <child>
+                              <widget class="GtkCheckButton" id="enable_event_sounds_check_button">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="tooltip" translatable="yes">Enable or disable event sounds globally (requires Camberra)</property>
+                                <property name="label" translatable="yes">Enable event sounds</property>
+                                <property name="use_underline">True</property>
+                                <property name="response_id">0</property>
+                                <property name="draw_indicator">True</property>
+                              </widget>
+                            </child>
+                            <child>
+                              <widget class="GtkCheckButton" id="enable_input_feedback_sounds_button">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="tooltip" translatable="yes">Enable or disable input feedback sounds (i.e. button clicks)</property>
+                                <property name="label" translatable="yes">Enable input feedback sounds</property>
+                                <property name="use_underline">True</property>
+                                <property name="response_id">0</property>
+                                <property name="draw_indicator">True</property>
+                              </widget>
+                              <packing>
+                                <property name="position">3</property>
+                              </packing>
+                            </child>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="label6">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">&lt;b&gt;Sound events&lt;/b&gt;</property>
+                        <property name="use_markup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="type">label_item</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
               </widget>
               <packing>
                 <property name="position">3</property>
