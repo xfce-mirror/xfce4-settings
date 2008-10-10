@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Tue Oct  7 15:50:42 2008 -->
+<!--Generated with glade3 3.4.5 on Fri Oct 10 18:09:12 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="keyboard-settings-dialog">
@@ -391,6 +391,185 @@
                   <packing>
                     <property name="type">tab</property>
                     <property name="position">1</property>
+                    <property name="tab_fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkVBox" id="vbox1">
+                    <property name="visible">False</property>
+                    <child>
+                      <widget class="GtkCheckButton" id="xkb_xconfig_check_button">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">Use default system configuration</property>
+                        <property name="use_underline">True</property>
+                        <property name="response_id">0</property>
+                        <property name="draw_indicator">True</property>
+                      </widget>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="padding">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkFrame" id="frame1">
+                        <property name="visible">True</property>
+                        <property name="label_xalign">0</property>
+                        <property name="shadow_type">GTK_SHADOW_NONE</property>
+                        <child>
+                          <widget class="GtkAlignment" id="alignment1">
+                            <property name="visible">True</property>
+                            <property name="bottom_padding">6</property>
+                            <property name="left_padding">12</property>
+                            <child>
+                              <widget class="GtkVBox" id="vbox8">
+                                <property name="visible">True</property>
+                                <property name="border_width">6</property>
+                                <property name="spacing">6</property>
+                                <child>
+                                  <widget class="GtkComboBox" id="xkb_model_combo">
+                                    <property name="visible">True</property>
+                                  </widget>
+                                </child>
+                              </widget>
+                            </child>
+                          </widget>
+                        </child>
+                        <child>
+                          <widget class="GtkLabel" id="label11">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">&lt;b&gt;Keyboard model&lt;/b&gt;</property>
+                            <property name="use_markup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="type">label_item</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkFrame" id="frame4">
+                        <property name="visible">True</property>
+                        <property name="label_xalign">0</property>
+                        <property name="shadow_type">GTK_SHADOW_NONE</property>
+                        <child>
+                          <widget class="GtkAlignment" id="alignment4">
+                            <property name="visible">True</property>
+                            <property name="bottom_padding">6</property>
+                            <property name="left_padding">12</property>
+                            <child>
+                              <widget class="GtkVBox" id="vbox9">
+                                <property name="visible">True</property>
+                                <property name="border_width">6</property>
+                                <property name="spacing">6</property>
+                                <child>
+                                  <widget class="GtkHBox" id="hbox1">
+                                    <property name="visible">True</property>
+                                    <child>
+                                      <widget class="GtkTreeView" id="xkb_layout_view">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="search_column">0</property>
+                                      </widget>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkVBox" id="vbox10">
+                                        <property name="visible">True</property>
+                                        <child>
+                                          <widget class="GtkButton" id="xkb_layout_add_button">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="label" translatable="yes">gtk-add</property>
+                                            <property name="use_stock">True</property>
+                                            <property name="response_id">0</property>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkButton" id="xkb_layout_edit_button">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="label" translatable="yes">gtk-edit</property>
+                                            <property name="use_stock">True</property>
+                                            <property name="response_id">0</property>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkButton" id="xkb_layout_delete_button">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="label" translatable="yes">gtk-delete</property>
+                                            <property name="use_stock">True</property>
+                                            <property name="response_id">0</property>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="position">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkAlignment" id="alignment5">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </widget>
+                                </child>
+                              </widget>
+                            </child>
+                          </widget>
+                        </child>
+                        <child>
+                          <widget class="GtkLabel" id="label8">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">&lt;b&gt;Keyboard layout&lt;/b&gt;</property>
+                            <property name="use_markup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="type">label_item</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkLabel" id="label4">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Layout</property>
+                  </widget>
+                  <packing>
+                    <property name="type">tab</property>
+                    <property name="position">2</property>
                     <property name="tab_fill">False</property>
                   </packing>
                 </child>
