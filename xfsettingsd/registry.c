@@ -118,8 +118,8 @@ static XSettingsRegistryEntry properties[] = {
 { "Net/ThemeName", {G_TYPE_STRING, }},
 { "Net/IconThemeName", {G_TYPE_STRING, }},
 { "Net/SoundThemeName", {G_TYPE_STRING, }},
-{ "Net/EnableEventSounds", {G_TYPE_INT, }},
-{ "Net/EnableInputFeedbackSounds", {G_TYPE_INT, }},
+{ "Net/EnableEventSounds", {G_TYPE_BOOLEAN, }},
+{ "Net/EnableInputFeedbackSounds", {G_TYPE_BOOLEAN, }},
 
 { "Xft/Antialias", {G_TYPE_INT, }},
 { "Xft/Hinting", {G_TYPE_INT, }},
@@ -232,8 +232,8 @@ xsettings_registry_init(XSettingsRegistry *registry)
     g_value_set_string (&properties[XSETTING_ENTRY_NET_THEMENAME].value, "Default");
     g_value_set_string (&properties[XSETTING_ENTRY_NET_ICONTHEMENAME].value, "hicolor");
     g_value_set_string (&properties[XSETTING_ENTRY_NET_SOUNDTHEMENAME].value, "default");
-    g_value_set_int (&properties[XSETTING_ENTRY_NET_ENABLESOUNDEVENTS].value, 0);
-    g_value_set_int (&properties[XSETTING_ENTRY_NET_ENABLEINPUTFEEDBACKSOUNDS].value, 0);
+    g_value_set_boolean (&properties[XSETTING_ENTRY_NET_ENABLESOUNDEVENTS].value, FALSE);
+    g_value_set_boolean (&properties[XSETTING_ENTRY_NET_ENABLEINPUTFEEDBACKSOUNDS].value, FALSE);
 
     /* Xft settings */
     g_value_set_int (&properties[XSETTING_ENTRY_XFT_ANTIALIAS].value, -1);
