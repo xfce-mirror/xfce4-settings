@@ -1,3 +1,31 @@
+2008-10-10	olivier
+
+	* xfce4-settings/trunk/dialogs/appearance-settings/appearance-dialog.glade:
+	  Add accelerator to labels for sound control
+
+2008-10-10	olivier
+
+	* xfsettingsd/registry.c: Use booleans for Net/EnableEventSounds and 
+	  Net/EnableInputFeedbackSounds, as does gnome with gconf and xsettings
+	  does not make a difference - This is required to make the UI work 
+	  (Bug #4367 cont.)
+
+2008-10-09	olivier
+
+	* xfce4-settings/trunk/dialogs/appearance-settings/appearance-dialog.glade:
+	  Use 'event sounds' in label for consistency
+
+2008-10-09	olivier
+
+	* xfce4-settings/trunk/configure.ac.in: Add optional UI options to 
+	  enable/disable sounds in Camberra (Bug #4367) - continue
+
+2008-10-09	olivier
+
+	* xfce4-settings/trunk/dialogs/appearance-settings/appearance-dialog.glade,
+	  xfce4-settings/trunk/dialogs/appearance-settings/main.c: Add optional UI 
+	  options to enable/disable sounds in Camberra (Bug #4367)
+
 2008-09-09	jannis
 
 	* dialogs/appearance-settings/main.c: Don't multiply the DPI value with
