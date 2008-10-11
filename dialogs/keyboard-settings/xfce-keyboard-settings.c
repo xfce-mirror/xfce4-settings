@@ -1105,7 +1105,7 @@ xfce_keyboard_settings_init_layout (XfceKeyboardSettings *settings)
   model = gtk_tree_view_get_model (GTK_TREE_VIEW(view));
 
   layout = layouts, variant = variants;
-  while (*layout && *variant)
+  while (*layout)
     {
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
       gtk_list_store_set (GTK_LIST_STORE (model), &iter, LAYOUTS, *layout, VARIANTS, *variant, -1);
