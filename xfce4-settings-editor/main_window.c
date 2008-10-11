@@ -44,9 +44,11 @@ static void
 load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treeview);
 
 static void
-cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
-static void
 cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data);
+static void
+cb_property_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data);
+static void
+cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 
 /* 
  * Xfce 4.6 depends on glib 2.12, 
@@ -101,7 +103,7 @@ xfce4_settings_editor_main_window_new()
     /* 
      * property list
      */
-    property_tree_store = gtk_tree_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+    property_tree_store = gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_STRING);
 
     gtk_tree_view_set_model (GTK_TREE_VIEW (property_treeview), GTK_TREE_MODEL (property_tree_store));
 
@@ -114,12 +116,18 @@ xfce4_settings_editor_main_window_new()
     renderer = gtk_cell_renderer_toggle_new();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 2, N_("Locked"), renderer, "active", 2, NULL);
 
+    renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 3, N_("Value"), renderer, "text", 3, NULL);
+
     /* improve usability by expanding nodes when clicking on them */
-    g_signal_connect (G_OBJECT (channel_treeview), "row-activated", G_CALLBACK (cb_channel_treeview_row_activated), NULL);
+    g_signal_connect (G_OBJECT (property_treeview), "row-activated", G_CALLBACK (cb_property_treeview_row_activated), NULL);
 
     /* selection handling */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (channel_treeview));
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_channel_treeview_selection_changed), NULL);
+
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (property_treeview));
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_property_treeview_selection_changed), NULL);
 
     load_channels (channel_list_store, GTK_TREE_VIEW(channel_treeview));
 
@@ -224,15 +232,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                             g_value_reset (&child_name);
 
                             xfconf_channel_get_property (channel, key, &child_value);
-                            switch (G_VALUE_TYPE (&child_value))
-                            {
-                                case G_TYPE_STRING:
-                                    g_value_set_string (&child_type, "String");
-                                    break;
-                                default:
-                                    g_value_set_string (&child_type, "Unknown");
-                                    break;
-                            }
+                            g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&child_value)));
                             g_value_unset (&child_value);
                             gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
                             g_value_reset (&child_type);
@@ -253,6 +253,12 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                     gtk_tree_store_set_value (store, &child_iter, 0, &child_value);
                     g_value_unset (&child_value);
 
+                    xfconf_channel_get_property (channel, key, &child_value);
+                    g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&child_value)));
+                    g_value_unset (&child_value);
+                    gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
+                    g_value_reset (&child_type);
+
                     g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
                     gtk_tree_store_set_value (store, &child_iter, 2, &child_locked);
                     g_value_reset (&child_locked);
@@ -267,7 +273,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 }
 
 static void
-cb_channel_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data)
+cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data)
 {
     GtkTreeModel *model;
     GtkTreeIter iter;
@@ -309,4 +315,17 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer use
 
     gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
     load_properties (channel, GTK_TREE_STORE(tree_store), GTK_TREE_VIEW(property_treeview));
+}
+
+static void
+cb_property_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data)
+{
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+    GValue value = {0, };
+
+    if (! gtk_tree_selection_get_selected (selection, &model, &iter))
+        return;
+
+    gtk_tree_model_get_value (model, &iter, 1, &value);
 }
