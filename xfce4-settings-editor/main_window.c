@@ -126,6 +126,11 @@ xfce4_settings_editor_main_window_new()
     return GTK_DIALOG(dialog);
 }
 
+/**
+ * load_channels
+ *
+ * get the available channels from xfconf and put them in the treemodel
+ */
 static void
 load_channels (GtkListStore *store, GtkTreeView *treeview)
 {
@@ -152,6 +157,11 @@ load_channels (GtkListStore *store, GtkTreeView *treeview)
     }
 }
 
+/**
+ * load_properties
+ *
+ * get the available properties from xfconf and put them in the treemodel
+ */
 static void
 load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treeview)
 {
@@ -163,6 +173,13 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
     GtkTreeIter child_iter;
     GValue parent_val = {0,};
     GValue child_value = {0,};
+    GValue child_name = {0,};
+    GValue child_type = {0,};
+    GValue child_locked = {0,};
+
+    g_value_init (&child_name, G_TYPE_STRING);
+    g_value_init (&child_locked, G_TYPE_BOOLEAN);
+    g_value_init (&child_type, G_TYPE_STRING);
 
     GHashTable *hash_table = xfconf_channel_get_properties (channel, NULL);
 
@@ -202,10 +219,27 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                         if (!gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &child_iter))
                         {
                             gtk_tree_store_append (store, &child_iter, i==1?NULL:&parent_iter);
-                            g_value_init (&child_value, G_TYPE_STRING);
-                            g_value_set_string (&child_value, components[i]);
-                            gtk_tree_store_set_value (store, &child_iter, 0, &child_value);
+                            g_value_set_string (&child_name, components[i]);
+                            gtk_tree_store_set_value (store, &child_iter, 0, &child_name);
+                            g_value_reset (&child_name);
+
+                            xfconf_channel_get_property (channel, key, &child_value);
+                            switch (G_VALUE_TYPE (&child_value))
+                            {
+                                case G_TYPE_STRING:
+                                    g_value_set_string (&child_type, "String");
+                                    break;
+                                default:
+                                    g_value_set_string (&child_type, "Unknown");
+                                    break;
+                            }
                             g_value_unset (&child_value);
+                            gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
+                            g_value_reset (&child_type);
+
+                            g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
+                            gtk_tree_store_set_value (store, &child_iter, 2, &child_locked);
+                            g_value_reset (&child_locked);
                             break;
                         }
                     }
@@ -218,6 +252,10 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                     g_value_set_string (&child_value, components[i]);
                     gtk_tree_store_set_value (store, &child_iter, 0, &child_value);
                     g_value_unset (&child_value);
+
+                    g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
+                    gtk_tree_store_set_value (store, &child_iter, 2, &child_locked);
+                    g_value_reset (&child_locked);
                 }
                 parent_iter = child_iter;
             }
