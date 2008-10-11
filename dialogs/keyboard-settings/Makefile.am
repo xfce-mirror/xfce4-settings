@@ -31,6 +31,7 @@ xfce4_keyboard_settings_CFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(GLADE_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
+	$(LIBXKLAVIER_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
 	$(EXO_CFLAGS) \
@@ -45,6 +46,7 @@ xfce4_keyboard_settings_LDADD = \
 	$(GLIB_LIBS) \
 	$(GLADE_LIBS) \
 	$(DBUS_GLIB_LIBS) \
+	$(LIBXKLAVIER_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
 	$(EXO_LIBS) \

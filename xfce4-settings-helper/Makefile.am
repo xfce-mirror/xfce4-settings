@@ -23,6 +23,8 @@ xfce4_settings_helper_SOURCES = \
 	keyboards.h \
 	keyboard-shortcuts.c \
 	keyboard-shortcuts.h \
+	keyboard-layout.c \
+	keyboard-layout.h \
 	frap-shortcuts-provider.c \
 	frap-shortcuts-provider.h \
 	frap-shortcuts.c \
@@ -40,6 +42,7 @@ xfce4_settings_helper_CFLAGS = \
 	$(XFCONF_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
+	$(LIBXKLAVIER_CFLAGS) \
 	$(XI_CFLAGS) \
 	$(LIBX11_CFLAGS) \
 	$(XRANDR_CFLAGS) \
@@ -59,6 +62,7 @@ xfce4_settings_helper_LDADD = \
 	$(XFCONF_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
+	$(LIBXKLAVIER_LIBS) \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
 	$(XRANDR_LIBS) \

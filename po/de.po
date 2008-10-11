@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-11 09:52+0200\n"
+"POT-Creation-Date: 2008-10-11 23:53+0100\n"
 "PO-Revision-Date: 2008-09-18 23:37+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German\n"
@@ -195,9 +195,9 @@ msgstr "Festk_lebende Tasten sperren"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 #: ../dialogs/display-settings/display-dialog.glade.h:8
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 msgid "gtk-close"
 msgstr "gtk-close"
 
@@ -225,7 +225,7 @@ msgstr "SOCKETNUMMER"
 #: ../dialogs/appearance-settings/main.c:83
 #: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:58
+#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:59
 #: ../xfce4-settings-manager/main.c:50 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Versionsinformation"
@@ -235,7 +235,7 @@ msgstr "Versionsinformation"
 #: ../dialogs/display-settings/main.c:643
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
-#: ../xfce4-settings-helper/main.c:102 ../xfce4-settings-manager/main.c:87
+#: ../xfce4-settings-helper/main.c:104 ../xfce4-settings-manager/main.c:87
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Geben Sie »%s --help« ein für die Verwendung."
@@ -245,7 +245,7 @@ msgstr "Geben Sie »%s --help« ein für die Verwendung."
 #: ../dialogs/display-settings/main.c:662
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
-#: ../xfce4-settings-helper/main.c:121 ../xfce4-settings-manager/main.c:100
+#: ../xfce4-settings-helper/main.c:123 ../xfce4-settings-manager/main.c:100
 msgid "The Xfce development team. All rights reserved."
 msgstr "Das Entwicklungsteam von Xfce. Alle Rechte vorbehalten."
 
@@ -254,7 +254,7 @@ msgstr "Das Entwicklungsteam von Xfce. Alle Rechte vorbehalten."
 #: ../dialogs/display-settings/main.c:663
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
-#: ../xfce4-settings-helper/main.c:122 ../xfce4-settings-manager/main.c:101
+#: ../xfce4-settings-helper/main.c:124 ../xfce4-settings-manager/main.c:101
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Bitte melden Sie Fehlerberichte an <%s>"
@@ -621,49 +621,56 @@ msgid "Keyboard Settings"
 msgstr "Tastatureinstellungen"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#, fuzzy
+msgid "Keyboard layout and variant"
+msgstr "Tastatureinstellungen"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#, fuzzy
+msgid "Keyboard layout selection"
+msgstr "Tastatureinstellungen"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
 msgid "Keyboard settings and shortcuts"
 msgstr "Tastatureinstellungen und Tastenkürzel"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Layout"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Repeat _speed:"
 msgstr "_Wiederholungsgeschwindigkeit:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Shortcuts"
 msgstr "Tastenkürzel"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Show _blinking"
 msgstr "_Blinken"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "The length of the cursor blink cycle in milliseconds"
 msgstr "Die Dauer eines Blinkzyklusses des Cursors in Millisekunden"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The rate at which keycodes are generated while a key is pressed"
 msgstr ""
 "Die Rate, mit der Tastencodes erzeugt werden, während eine Taste gedrückt "
 "wird"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The time in milliseconds before a pressed key starts repeating"
 msgstr "Die Zeit in Millisekunden, bevor eine gedrückte Taste sich wiederholt"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
-msgid "Use default system configuration"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "Use this area to test the settings above:"
 msgstr "Benutzen Sie diese Fläche zum Testen der obigen Einstellungen:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid ""
 "When enabled, pressing and holding down a key emits the same character over "
 "and over again"
@@ -671,39 +678,47 @@ msgstr ""
 "Bei Aktivierung gibt eine gedrückt gehaltene Taste immer wieder das gleiche "
 "Zeichen aus"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "_Enable key repeat"
 msgstr "T_astenwiederholung einstellen"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "_Repeat delay:"
 msgstr "V_erzögerung der Wiederholung"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "gtk-add"
 msgstr "gtk-add"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 #, fuzzy
+msgid "gtk-cancel"
+msgstr "gtk-help"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#, fuzzy
 msgid "gtk-delete"
 msgstr "gtk-help"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 #, fuzzy
 msgid "gtk-edit"
 msgstr "gtk-add"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "gtk-help"
 msgstr "gtk-help"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#, fuzzy
+msgid "gtk-ok"
+msgstr "gtk-close"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "gtk-remove"
 msgstr "gtk-remove"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 #, fuzzy
 msgid "gtk-revert-to-saved"
 msgstr "gtk-remove"
@@ -722,15 +737,19 @@ msgstr ""
 msgid "Could not create the settings dialog."
 msgstr "Benutzen Sie diese Fläche zum Testen der obigen Einstellungen:"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:263
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:342
 msgid "Command"
 msgstr "Befehl"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:268
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:347
 msgid "Shortcut"
 msgstr "Tastenkürzel"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:760
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:403
+msgid "Variant"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:893
 msgid "Shortcut command may not be empty."
 msgstr "Der Befehl für das Tastenkürzel darf nicht leer sein."
 
@@ -1014,44 +1033,34 @@ msgid "Xfce 4 Settings Editor"
 msgstr "Einstellungseditor für Xfce 4"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
-#, fuzzy
-msgid "<b>Property settings</b>"
-msgstr "<b>Tippeinstellungen</b>"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "Locked"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "Name:"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
 msgid "Select a channel and property."
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 #, fuzzy
 msgid "Type:"
 msgstr "Typ"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
 #, fuzzy
 msgid "Value:"
 msgstr "Wert"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "Xfce4 settings editor"
 msgstr "Einstellungseditor für Xfce 4"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Xfconf channels"
 msgstr ""
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
-#, fuzzy
-msgid "gtk-new"
-msgstr "gtk-help"
 
 #: ../xfce4-settings-helper/accessibility.c:358
 msgid "Sticky keys are enabled"
@@ -1116,7 +1125,7 @@ msgstr "Tastenkürzelkonflikt"
 msgid "The shortcut '%s' is already being used for something else."
 msgstr "Das Tastenkürzel »%s« ist bereits an etwas anderes vergeben."
 
-#: ../xfce4-settings-helper/main.c:59 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:60 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Im Debugmodus starten (nicht in den Hintergrund verzweigen)"
 
@@ -1180,16 +1189,16 @@ msgstr ""
 "sehen.\n"
 
 #, fuzzy
+#~ msgid "<b>Property settings</b>"
+#~ msgstr "<b>Tippeinstellungen</b>"
+
+#, fuzzy
 #~ msgid "Keyboard settings"
 #~ msgstr "Tastatureinstellungen"
 
 #, fuzzy
 #~ msgid "Keyboard model:"
 #~ msgstr "Tastatur"
-
-#, fuzzy
-#~ msgid "Keyboard layouts:"
-#~ msgstr "Tastatureinstellungen"
 
 #~ msgid "Channel"
 #~ msgstr "Kanal"

@@ -164,7 +164,7 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
     /* load settings */
     delay = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Delay", 500);
     rate = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Rate", 20);
-    
+
     /* flush x and trap errors */
     gdk_flush ();
     gdk_error_trap_push ();
@@ -175,7 +175,7 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
     {
         /* load controls */
         XkbGetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
-        
+
         /* set new values */
         xkb->ctrls->repeat_delay = delay;
         xkb->ctrls->repeat_interval = rate != 0 ? 1000 / rate : 0;
@@ -187,7 +187,7 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
         XkbFreeControls (xkb, XkbRepeatKeysMask, True);
         XFree (xkb);
     }
-    
+
     /* flush and remove the x error trap */
     gdk_flush ();
     gdk_error_trap_pop ();

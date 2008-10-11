@@ -97,6 +97,13 @@ dnl ************************************
 XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [1.1.0],
                            [xcursor], [Cursor themes support])
 
+dnl ****************************************
+dnl *** Optional support for Libxklavier ***
+dnl ****************************************
+
+XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER], [libxklavier], [0.3.0],
+                           [libxklavier], [Keyboard layout selection])
+
 dnl make xsettings daemon optional
 AC_ARG_ENABLE([xsettings-daemon],
               [AC_HELP_STRING([--disable-xsettings-daemon],
@@ -255,6 +262,11 @@ if test x"$ENABLE_SOUND_SETTINGS" = x"1"; then
 echo "* Sounds settings support    yes"
 else
 echo "* Sounds settings support    no"
+fi
+if test x"$LIBXKLAVIER_FOUND" = x"yes"; then
+echo "* Libxklavier support:       yes"
+else
+echo "* Libxklavier support:       no"
 fi
 echo
 

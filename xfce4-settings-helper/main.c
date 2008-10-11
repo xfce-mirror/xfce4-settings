@@ -46,6 +46,7 @@
 #include "displays.h"
 #include "pointers.h"
 #include "keyboards.h"
+#include "keyboard-layout.h"
 #include "keyboard-shortcuts.h"
 #include "workspaces.h"
 
@@ -79,6 +80,7 @@ main (gint argc, gchar **argv)
     GObject    *keyboards_helper;
     GObject    *accessibility_helper;
     GObject    *shortcuts_helper;
+    GObject    *keyboard_layout_helper;
     GObject    *displays_helper;
     GObject    *workspaces_helper;
     pid_t       pid;
@@ -158,6 +160,7 @@ main (gint argc, gchar **argv)
     keyboards_helper = g_object_new (XFCE_TYPE_KEYBOARDS_HELPER, NULL);
     accessibility_helper = g_object_new (XFCE_TYPE_ACCESSIBILITY_HELPER, NULL);
     shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
+    keyboard_layout_helper = g_object_new (XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, NULL);
     displays_helper = g_object_new (XFCE_TYPE_DISPLAYS_HELPER, NULL);
     workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
 
@@ -173,6 +176,7 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (keyboards_helper));
     g_object_unref (G_OBJECT (accessibility_helper));
     g_object_unref (G_OBJECT (shortcuts_helper));
+    g_object_unref (G_OBJECT (keyboard_layout_helper));
     g_object_unref (G_OBJECT (displays_helper));
     g_object_unref (G_OBJECT (workspaces_helper));
 
