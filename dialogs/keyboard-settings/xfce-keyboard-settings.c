@@ -1322,11 +1322,11 @@ xfce_keyboard_settings_add_variant_to_list (XklConfigRegistry    *config_registr
                                             XklConfigItem        *config_item,
                                             XfceKeyboardSettings *settings)
 {
-  GtkTreeView      *treeview;
-  GtkTreeModel     *model;
-  GtkTreeStore     *treestore;
-  GtkTreeIter       iter;
-  char             *variant;
+  GtkTreeModel *model;
+  GtkTreeStore *treestore;
+  GtkTreeIter   iter;
+  GtkWidget    *treeview;
+  char         *variant;
 
   variant = xfce_keyboard_settings_xkb_description (config_item);
   treeview = glade_xml_get_widget (settings->priv->glade_xml, "layout_selection_view");
@@ -1343,11 +1343,11 @@ xfce_keyboard_settings_add_layout_to_list (XklConfigRegistry    *config_registry
                                            XklConfigItem        *config_item,
                                            XfceKeyboardSettings *settings)
 {
-  GtkTreeView      *treeview;
-  GtkTreeModel     *model;
-  GtkTreeIter       iter;
-  GtkTreeStore     *treestore;
-  gchar            *layout;
+  GtkTreeModel *model;
+  GtkTreeIter   iter;
+  GtkTreeStore *treestore;
+  GtkWidget    *treeview;
+  gchar        *layout;
 
   layout = xfce_keyboard_settings_xkb_description (config_item);
   treeview = glade_xml_get_widget (settings->priv->glade_xml, "layout_selection_view");

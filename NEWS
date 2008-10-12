@@ -1,6 +1,19 @@
 4.5.91 (Xfce 4.6 beta1)
 
   * Add workspace name handling to xfce4-settings-helper.
+  * Add support for embedding dialogs into xfce4-settings-manager (based
+    on the X-XfcePluggable and X-XfceHelpFile desktop file keys).
+  * Add embedding support to the accessibility, appearance, mouse and
+    keyboard settings dialogs.
+  * Don't use g_hash_table_get_keys() which requires GLib 2.14 (bug 
+    #4377).
+  * Move xfsettingsd from xfconf into xfce4-settings.
+  * Rework the way keyboard shortcuts are organized. Support default
+    shortcuts using /default and /custom base properties.
+  * Add optional UI options to enable/disable sounds in Canberra (bug
+    #4367).
+  * Add GUI for selecting/changing the keyboard layout.
+  * Translation updates: Dutch, Finnish, German.
 
 
 4.5.90 (Xfce 4.6 alpha)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.4 on Sat Oct 11 22:46:55 2008 -->
+<!--Generated with glade3 3.4.5 on Mon Oct 13 01:03:42 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="keyboard-settings-dialog">
@@ -455,6 +455,7 @@
                                 <child>
                                   <widget class="GtkHBox" id="hbox1">
                                     <property name="visible">True</property>
+                                    <property name="spacing">12</property>
                                     <child>
                                       <widget class="GtkScrolledWindow" id="scrolledwindow1">
                                         <property name="visible">True</property>
@@ -474,7 +475,7 @@
                                     <child>
                                       <widget class="GtkVBox" id="vbox10">
                                         <property name="visible">True</property>
-                                        <property name="border_width">6</property>
+                                        <property name="spacing">6</property>
                                         <child>
                                           <widget class="GtkButton" id="xkb_layout_add_button">
                                             <property name="visible">True</property>
@@ -516,19 +517,9 @@
                                             <property name="position">2</property>
                                           </packing>
                                         </child>
-                                        <child>
-                                          <widget class="GtkAlignment" id="alignment5">
-                                            <property name="visible">True</property>
-                                            <child>
-                                              <placeholder/>
-                                            </child>
-                                          </widget>
-                                          <packing>
-                                            <property name="position">3</property>
-                                          </packing>
-                                        </child>
                                       </widget>
                                       <packing>
+                                        <property name="expand">False</property>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
