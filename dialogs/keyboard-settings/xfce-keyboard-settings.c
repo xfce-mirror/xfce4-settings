@@ -1110,7 +1110,10 @@ xfce_keyboard_settings_init_layout (XfceKeyboardSettings *settings)
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
       gtk_list_store_set (GTK_LIST_STORE (model), &iter, LAYOUTS, *layout, VARIANTS, *variant, -1);
       layout++;
-      variant++;
+      if (*variant)
+        {
+          variant++;
+        }
     }
 
   g_strfreev(layouts);
