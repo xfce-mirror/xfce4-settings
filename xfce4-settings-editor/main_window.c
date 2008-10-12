@@ -37,6 +37,8 @@
 #include "xfce4-settings-editor_glade.h"
 
 static GladeXML *gxml_main_window = NULL;
+static XfconfChannel *current_channel = NULL;
+static gchar *current_property = NULL;
 
 static void
 load_channels (GtkListStore *store, GtkTreeView *treeview);
@@ -91,7 +93,7 @@ xfce4_settings_editor_main_window_new()
         gxml_main_window = glade_xml_new_from_buffer (xfce4_settings_editor_glade, xfce4_settings_editor_glade_length, NULL, NULL);
     }
 
-    dialog = glade_xml_get_widget (gxml_main_window, "settings_editor_dialog");
+    dialog = glade_xml_get_widget (gxml_main_window, "main_dialog");
     channel_treeview = glade_xml_get_widget (gxml_main_window, "channel_treeview");
     property_treeview = glade_xml_get_widget (gxml_main_window, "property_treeview");
 
@@ -143,9 +145,9 @@ xfce4_settings_editor_main_window_new()
 
 
     /* Connect signal-handlers to toolbar buttons */
-    g_signal_connect (G_OBJECT (property_new_button), "clicked", G_CALLBACK (cb_property_new_button_clicked), NULL);
-    g_signal_connect (G_OBJECT (property_edit_button), "clicked", G_CALLBACK (cb_property_edit_button_clicked), NULL);
-    g_signal_connect (G_OBJECT (property_revert_button), "clicked", G_CALLBACK (cb_property_revert_button_clicked), NULL);
+    g_signal_connect (G_OBJECT (property_new_button), "clicked", G_CALLBACK (cb_property_new_button_clicked), property_treeview);
+    g_signal_connect (G_OBJECT (property_edit_button), "clicked", G_CALLBACK (cb_property_edit_button_clicked), property_treeview);
+    g_signal_connect (G_OBJECT (property_revert_button), "clicked", G_CALLBACK (cb_property_revert_button_clicked), property_treeview);
 
     load_channels (channel_list_store, GTK_TREE_VIEW(channel_treeview));
 
@@ -254,7 +256,12 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 
                             if (components[i+1] == NULL)
                             {
-                                xfconf_channel_get_property (channel, key, &property_value);
+                                g_value_init (&property_value, G_TYPE_STRING);
+                                if (!xfconf_channel_get_property (channel, key, &property_value))
+                                {
+                                    g_value_unset (&property_value);
+                                    xfconf_channel_get_property (channel, key, &property_value);
+                                }
                                 switch (G_VALUE_TYPE(&property_value))
                                 {
                                     case G_TYPE_INT:
@@ -274,7 +281,6 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                                         break;
                                     case G_TYPE_STRING:
                                         g_value_set_string (&child_type, "String");
-                                        g_value_copy (&property_value, &child_value);
                                         break;
                                     case G_TYPE_BOOLEAN:
                                         g_value_set_string (&child_type, "Bool");
@@ -282,6 +288,10 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                                     default:
                                         g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&property_value)));
                                         break;
+                                }
+                                if (G_VALUE_HOLDS_STRING (&property_value))
+                                {
+                                    g_value_copy (&property_value, &child_value);
                                 }
                                 g_value_unset (&property_value);
                             }
@@ -312,7 +322,12 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 
                     if (components[i+1] == NULL) 
                     {
-                        xfconf_channel_get_property (channel, key, &property_value);
+                        g_value_init (&property_value, G_TYPE_STRING);
+                        if (!xfconf_channel_get_property (channel, key, &property_value))
+                        {
+                            g_value_unset (&property_value);
+                            xfconf_channel_get_property (channel, key, &property_value);
+                        }
                         switch (G_VALUE_TYPE(&property_value))
                         {
                             case G_TYPE_INT:
@@ -339,6 +354,10 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                             default:
                                 g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&property_value)));
                                 break;
+                        }
+                        if (G_VALUE_HOLDS_STRING (&property_value))
+                        {
+                            g_value_copy (&property_value, &child_value);
                         }
                         g_value_unset (&property_value);
                     }
@@ -391,6 +410,12 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer use
     GtkTreeModel *tree_store = NULL;
     GValue value = {0, };
 
+    if (current_channel)
+    {
+        g_object_unref (G_OBJECT(current_channel));
+        current_channel = NULL;
+    }
+
     if (! gtk_tree_selection_get_selected (selection, &model, &iter))
         return;
 
@@ -405,6 +430,8 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer use
 
     gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
     load_properties (channel, GTK_TREE_STORE(tree_store), GTK_TREE_VIEW(property_treeview));
+
+    current_channel = channel;
 }
 
 static void
@@ -412,12 +439,41 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, gpointer us
 {
     GtkTreeModel *model;
     GtkTreeIter iter;
+    GtkTreeIter p_iter;
     GValue value = {0, };
+    gchar *prop_name = NULL;
+    gchar *temp = NULL;
 
+    if (current_property)
+    {
+        g_free (prop_name);
+        current_property = NULL;
+    }
+
+    /* return if no property is selected */
     if (! gtk_tree_selection_get_selected (selection, &model, &iter))
         return;
 
-    gtk_tree_model_get_value (model, &iter, 1, &value);
+    /* create the complete property-name */
+    gtk_tree_model_get_value (model, &iter, 0, &value);
+    prop_name = g_strconcat ("/", g_value_get_string(&value), NULL);
+    g_value_unset (&value);
+
+    /* to create the complete property-name, we need it's parents too */
+    while (gtk_tree_model_iter_parent (model, &p_iter, &iter))
+    {
+        gtk_tree_model_get_value (model, &p_iter, 0, &value);
+        temp = g_strconcat ("/", g_value_get_string(&value), prop_name, NULL);
+        g_value_unset (&value);
+
+        if (prop_name)
+            g_free (prop_name);
+        prop_name = temp;
+        
+        iter = p_iter;
+    }
+
+    current_property = prop_name;
 }
 
 static void
@@ -429,11 +485,70 @@ cb_property_new_button_clicked (GtkButton *button, gpointer user_data)
 static void
 cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
 {
+    GtkTreeModel *model;
+    GValue value = {0, };
+    gchar *prop_name = NULL;
+    gchar *temp = NULL;
+    GtkWidget *channel_treeview = glade_xml_get_widget (gxml_main_window, "channel_treeview");
 
+    GtkWidget *dialog = glade_xml_get_widget (gxml_main_window, "edit_settings_dialog");
+    GtkWidget *prop_name_entry = glade_xml_get_widget (gxml_main_window, "property_name_entry");
+
+
+    /* Set the correct properties in the ui */
+    gtk_entry_set_text (GTK_ENTRY(prop_name_entry), current_property);
+    if (xfconf_channel_get_property (current_channel, current_property, &value))
+    {
+        
+    }
+    
+    if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_APPLY)
+    {
+        
+        gtk_widget_hide (dialog);
+    }
+    else
+    {
+        gtk_widget_hide (dialog);
+    }
+
+    if (prop_name)
+        g_free (prop_name);
 }
 
 static void
 cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
 {
+    GtkWidget *dialog;
+    GtkWidget *property_treeview;
+    GtkTreeModel *tree_store = NULL;
+
+    if (xfconf_channel_is_property_locked (current_channel, current_property))
+    {
+        dialog = gtk_message_dialog_new_with_markup (
+                                     GTK_WINDOW (glade_xml_get_widget (gxml_main_window, "main_window")),
+                                     0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+                                     "This property can not be reset because it is locked:\n<b>%s</b>",
+                                     current_property);
+        gtk_dialog_run (GTK_DIALOG(dialog));
+        gtk_widget_destroy (dialog);
+    }
+    else
+    {
+        dialog = gtk_message_dialog_new_with_markup (
+                                     GTK_WINDOW (glade_xml_get_widget (gxml_main_window, "main_window")),
+                                     0, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
+                                     "Are you sure you wat to reset property:\n<b>%s</b>?",
+                                     current_property);
+        if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
+        {
+            property_treeview = glade_xml_get_widget (gxml_main_window, "property_treeview");
+            tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
+            gtk_widget_hide (dialog);
+            xfconf_channel_reset_property (current_channel, current_property, FALSE);
+            load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
+        }
+        gtk_widget_destroy (dialog);
+    }
 
 }
