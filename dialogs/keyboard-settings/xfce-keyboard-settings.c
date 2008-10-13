@@ -279,9 +279,6 @@ xfce_keyboard_settings_init (XfceKeyboardSettings *settings)
                     G_CALLBACK (xfce_keyboard_settings_shortcut_added), settings);
   g_signal_connect (settings->priv->provider, "shortcut-removed",
                     G_CALLBACK (xfce_keyboard_settings_shortcut_removed), settings);
-#ifdef !GLIB_CHECK_VERSION (2,14,0)
-  xfce_keyboard_settings_constructed (settings);
-#endif
 }
 
 
@@ -496,6 +493,10 @@ xfce_keyboard_settings_new (void)
 
   if (G_LIKELY (glade_xml != NULL))
     settings = g_object_new (XFCE_TYPE_KEYBOARD_SETTINGS, "glade-xml", glade_xml, NULL);
+
+#if !GLIB_CHECK_VERSION (2,14,0)
+  xfce_keyboard_settings_constructed (G_OBJECT(settings));
+#endif
 
   return settings;
 }

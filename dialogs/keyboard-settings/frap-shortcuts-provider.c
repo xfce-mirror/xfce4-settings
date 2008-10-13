@@ -184,9 +184,6 @@ frap_shortcuts_provider_init (FrapShortcutsProvider *provider)
 
   g_signal_connect (provider->priv->channel, "property-changed", 
                     G_CALLBACK (frap_shortcuts_provider_property_changed), provider);
-#if !GLIB_CHECK_VERSION (2,14,0)
-  frap_shortcuts_provider_constructed (provider);
-#endif
 }
 
 
@@ -345,7 +342,13 @@ frap_shortcuts_provider_property_changed (XfconfChannel         *channel,
 FrapShortcutsProvider *
 frap_shortcuts_provider_new (const gchar *name)
 {
-  return g_object_new (FRAP_TYPE_SHORTCUTS_PROVIDER, "name", name, NULL);
+  GObject *object = g_object_new (FRAP_TYPE_SHORTCUTS_PROVIDER, "name", name, NULL);
+
+#if !GLIB_CHECK_VERSION (2,14,0)
+  frap_shortcuts_provider_constructed (object);
+#endif
+
+  return FRAP_SHORTCUTS_PROVIDER (object);
 }
 
 
