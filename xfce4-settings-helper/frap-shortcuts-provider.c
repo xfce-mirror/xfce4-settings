@@ -348,7 +348,7 @@ frap_shortcuts_provider_new (const gchar *name)
   frap_shortcuts_provider_constructed (object);  
 #endif
 
-  return object;
+  return FRAP_SHORTCUTS_PROVIDER (object);
 }
 
 
