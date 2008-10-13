@@ -245,7 +245,9 @@ xfce_keyboard_settings_class_init (XfceKeyboardSettingsClass *klass)
   xfce_keyboard_settings_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
+#if GLIB_CHECK_VERSION (2,14,0)
   gobject_class->constructed = xfce_keyboard_settings_constructed;
+#endif
   gobject_class->finalize = xfce_keyboard_settings_finalize;
   gobject_class->get_property = xfce_keyboard_settings_get_property;
   gobject_class->set_property = xfce_keyboard_settings_set_property;
@@ -277,6 +279,9 @@ xfce_keyboard_settings_init (XfceKeyboardSettings *settings)
                     G_CALLBACK (xfce_keyboard_settings_shortcut_added), settings);
   g_signal_connect (settings->priv->provider, "shortcut-removed",
                     G_CALLBACK (xfce_keyboard_settings_shortcut_removed), settings);
+#ifdef !GLIB_CHECK_VERSION (2,14,0)
+  xfce_keyboard_settings_constructed (settings);
+#endif
 }
 
 

@@ -134,7 +134,9 @@ frap_shortcuts_provider_class_init (FrapShortcutsProviderClass *klass)
   frap_shortcuts_provider_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
+#if GLIB_CHECK_VERSION (2,14,0)
   gobject_class->constructed = frap_shortcuts_provider_constructed;
+#endif
   gobject_class->finalize = frap_shortcuts_provider_finalize; 
   gobject_class->get_property = frap_shortcuts_provider_get_property;
   gobject_class->set_property = frap_shortcuts_provider_set_property;
@@ -182,6 +184,9 @@ frap_shortcuts_provider_init (FrapShortcutsProvider *provider)
 
   g_signal_connect (provider->priv->channel, "property-changed", 
                     G_CALLBACK (frap_shortcuts_provider_property_changed), provider);
+#if !GLIB_CHECK_VERSION (2,14,0)
+  frap_shortcuts_provider_constructed (provider);  
+#endif
 }
 
 
