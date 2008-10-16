@@ -1132,7 +1132,6 @@ xfce_keyboard_settings_init_layout (XfceKeyboardSettings *settings)
   view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
 
-  /* FIXME: This actually does not work, xkl_state->group is always 0 */
   xkl_state = xkl_engine_get_current_state (settings->priv->xkl_engine);
   if (xkl_state != NULL)
     current_group = xkl_state->group;
