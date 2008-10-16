@@ -245,7 +245,7 @@ xfce_keyboard_settings_class_init (XfceKeyboardSettingsClass *klass)
   xfce_keyboard_settings_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
-#if GLIB_CHECK_VERSION (2,12,0)
+#if GLIB_CHECK_VERSION (2,14,0)
   gobject_class->constructed = xfce_keyboard_settings_constructed;
 #endif
   gobject_class->finalize = xfce_keyboard_settings_finalize;
@@ -494,7 +494,7 @@ xfce_keyboard_settings_new (void)
   if (G_LIKELY (glade_xml != NULL))
     settings = g_object_new (XFCE_TYPE_KEYBOARD_SETTINGS, "glade-xml", glade_xml, NULL);
 
-#if !GLIB_CHECK_VERSION (2,12,0)
+#if !GLIB_CHECK_VERSION (2,14,0)
   xfce_keyboard_settings_constructed (G_OBJECT (settings));
 #endif
 
