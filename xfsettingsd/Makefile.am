@@ -28,4 +28,11 @@ xfsettingsd_LDADD = \
 INCLUDES = \
 	-I$(top_srcdir)
 
+settingsdir = $(sysconfdir)/xdg/xfce4/xfconf/xfce-perchannel-xml
+settings_DATA = xsettings.xml
+
+EXTRA_DIST = \
+	xsettings.xml
+
+
 endif
