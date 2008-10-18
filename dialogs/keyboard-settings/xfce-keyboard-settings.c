@@ -423,7 +423,7 @@ xfce_keyboard_settings_constructed (GObject *object)
 
   renderer =  gtk_cell_renderer_toggle_new ();
   gtk_cell_renderer_toggle_set_radio (GTK_CELL_RENDERER_TOGGLE (renderer), TRUE);
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (xkb_layout_view), -1, NULL, renderer, "active", XKB_TREE_ACTIVE, NULL);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (xkb_layout_view), -1, _("Active"), renderer, "active", XKB_TREE_ACTIVE, NULL);
   g_signal_connect (renderer, "toggled", G_CALLBACK (xfce_keyboard_settings_active_layout_cb), settings);
 
   renderer = gtk_cell_renderer_text_new ();
