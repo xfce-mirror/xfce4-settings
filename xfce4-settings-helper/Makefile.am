@@ -25,16 +25,14 @@ xfce4_settings_helper_SOURCES = \
 	keyboard-shortcuts.h \
 	keyboard-layout.c \
 	keyboard-layout.h \
-	frap-shortcuts-provider.c \
-	frap-shortcuts-provider.h \
-	frap-shortcuts.c \
-	frap-shortcuts.h \
 	pointers.c \
 	pointers.h \
 	workspaces.c \
 	workspaces.h
 
 xfce4_settings_helper_CFLAGS = \
+	-I$(top_builddir) \
+	-I$(top_srcdir) \
 	$(GTK_CFLAGS) \
 	$(GLIB_CFLAGS) \
 	$(GTHREAD_CFLAGS) \
@@ -50,11 +48,15 @@ xfce4_settings_helper_CFLAGS = \
 	$(LIBWNCK_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
+xfce4_settings_helper_DEPENDENCIES = \
+	$(top_builddir)/common/libcommon.la
+
 xfce4_settings_helper_LDFLAGS = \
 	-no-undefined \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_settings_helper_LDADD = \
+	$(top_builddir)/common/libcommon.la \
 	$(GTK_LIBS) \
 	$(GLIB_LIBS) \
 	$(GTHREAD_LIBS) \

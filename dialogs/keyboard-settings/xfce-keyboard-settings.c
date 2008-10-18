@@ -37,11 +37,12 @@
 #include <xfconf/xfconf.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#include "common/xfce-shortcuts-provider.h"
+
 #include "keyboard-dialog_glade.h"
 #include "xfce-keyboard-settings.h"
 #include "command-dialog.h"
 #include "frap-shortcuts-dialog.h"
-#include "frap-shortcuts-provider.h"
 
 #ifdef HAVE_LIBXKLAVIER
 #include <libxklavier/xklavier.h>
@@ -128,10 +129,10 @@ static XfceKeyboardShortcutInfo *xfce_keyboard_settings_get_shortcut_info     (X
                                                                                const gchar               *shortcut,
                                                                                const gchar               *ignore_property);
 static void                      xfce_keyboard_settings_free_shortcut_info    (XfceKeyboardShortcutInfo  *info);
-static void                      xfce_keyboard_settings_shortcut_added        (FrapShortcutsProvider     *provider,
+static void                      xfce_keyboard_settings_shortcut_added        (XfceShortcutsProvider     *provider,
                                                                                const gchar               *shortcut,
                                                                                XfceKeyboardSettings      *settings);
-static void                      xfce_keyboard_settings_shortcut_removed      (FrapShortcutsProvider     *provider,
+static void                      xfce_keyboard_settings_shortcut_removed      (XfceShortcutsProvider     *provider,
                                                                                const gchar               *shortcut,
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_add_button_clicked    (XfceKeyboardSettings      *settings,
@@ -184,7 +185,7 @@ struct _XfceKeyboardSettingsPrivate
 {
   GladeXML              *glade_xml;
 
-  FrapShortcutsProvider *provider;
+  XfceShortcutsProvider *provider;
 
 #ifdef HAVE_LIBXKLAVIER
   XklEngine             *xkl_engine;
@@ -201,8 +202,8 @@ struct _XfceKeyboardSettingsPrivate
 
 struct _XfceKeyboardShortcutInfo
 {
-  FrapShortcutsProvider *provider;
-  FrapShortcut          *shortcut;
+  XfceShortcutsProvider *provider;
+  XfceShortcut          *shortcut;
 };
 
 
@@ -280,7 +281,7 @@ xfce_keyboard_settings_init (XfceKeyboardSettings *settings)
   settings->priv->keyboard_layout_channel = xfconf_channel_new ("keyboard-layout");
   settings->priv->xsettings_channel = xfconf_channel_new ("xsettings");
 
-  settings->priv->provider = frap_shortcuts_provider_new ("commands");
+  settings->priv->provider = xfce_shortcuts_provider_new ("commands");
   g_signal_connect (settings->priv->provider, "shortcut-added",
                     G_CALLBACK (xfce_keyboard_settings_shortcut_added), settings);
   g_signal_connect (settings->priv->provider, "shortcut-removed",
@@ -587,7 +588,7 @@ xfce_keyboard_settings_initialize_shortcuts (XfceKeyboardSettings *settings)
 
 
 static void
-_xfce_keyboard_settings_load_shortcut (FrapShortcut         *shortcut,
+_xfce_keyboard_settings_load_shortcut (XfceShortcut         *shortcut,
                                        XfceKeyboardSettings *settings)
 {
   GtkTreeModel *tree_model;
@@ -614,15 +615,15 @@ xfce_keyboard_settings_load_shortcuts (XfceKeyboardSettings *settings)
   GList *shortcuts;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
-  g_return_if_fail (FRAP_IS_SHORTCUTS_PROVIDER (settings->priv->provider));
+  g_return_if_fail (XFCE_IS_SHORTCUTS_PROVIDER (settings->priv->provider));
 
   /* Get all (custom) command shortcuts */
-  shortcuts = frap_shortcuts_provider_get_shortcuts (settings->priv->provider);
+  shortcuts = xfce_shortcuts_provider_get_shortcuts (settings->priv->provider);
 
   /* Load shortcuts one by one */
   g_list_foreach (shortcuts, (GFunc) _xfce_keyboard_settings_load_shortcut, settings);
 
-  frap_shortcuts_free_shortcuts (shortcuts);
+  xfce_shortcuts_free (shortcuts);
 }
 
 
@@ -662,13 +663,13 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
       if (G_LIKELY (response == GTK_RESPONSE_OK))
         {
           /* Remove old shortcut from the settings */
-          frap_shortcuts_provider_reset_shortcut (settings->priv->provider, shortcut);
+          xfce_shortcuts_provider_reset_shortcut (settings->priv->provider, shortcut);
 
           /* Get the shortcut entered by the user */
           new_shortcut = frap_shortcuts_dialog_get_shortcut (FRAP_SHORTCUTS_DIALOG (dialog));
 
           /* Save new shortcut to the settings */
-          frap_shortcuts_provider_set_shortcut (settings->priv->provider, new_shortcut, command);
+          xfce_shortcuts_provider_set_shortcut (settings->priv->provider, new_shortcut, command);
         }
 
       /* Destroy the shortcut dialog */
@@ -717,7 +718,7 @@ xfce_keyboard_settings_edit_command (XfceKeyboardSettings *settings,
           new_command = command_dialog_get_command (COMMAND_DIALOG (dialog));
 
           /* Save settings */
-          frap_shortcuts_provider_set_shortcut (settings->priv->provider, shortcut, new_command);
+          xfce_shortcuts_provider_set_shortcut (settings->priv->provider, shortcut, new_command);
         }
 
       /* Destroy the shortcut dialog */
@@ -761,8 +762,8 @@ xfce_keyboard_settings_validate_shortcut (FrapShortcutsDialog  *dialog,
 
   if (G_UNLIKELY (info != NULL))
     {
-      response = frap_shortcuts_conflict_dialog (frap_shortcuts_provider_get_name (settings->priv->provider),
-                                                 frap_shortcuts_provider_get_name (info->provider),
+      response = frap_shortcuts_conflict_dialog (xfce_shortcuts_provider_get_name (settings->priv->provider),
+                                                 xfce_shortcuts_provider_get_name (info->provider),
                                                  shortcut,
                                                  frap_shortcuts_dialog_get_action (dialog),
                                                  info->shortcut->command,
@@ -785,7 +786,7 @@ xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
 {
   XfceKeyboardShortcutInfo *info = NULL;
   GList                    *iter;
-  FrapShortcut             *sc;
+  XfceShortcut             *sc;
   GList                    *providers;
   gchar                    *value;
 
@@ -794,16 +795,16 @@ xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
 
   DBG ("shortcut = %s, ignore_property = %s", shortcut, ignore_property);
 
-  providers = frap_shortcuts_provider_get_providers ();
+  providers = xfce_shortcuts_provider_get_providers ();
 
   if (G_UNLIKELY (providers == NULL))
     return NULL;
 
   for (iter = providers; iter != NULL && info == NULL; iter = g_list_next (iter))
     {
-      if (G_UNLIKELY (frap_shortcuts_provider_has_shortcut (iter->data, shortcut)))
+      if (G_UNLIKELY (xfce_shortcuts_provider_has_shortcut (iter->data, shortcut)))
         {
-          sc = frap_shortcuts_provider_get_shortcut (iter->data, shortcut);
+          sc = xfce_shortcuts_provider_get_shortcut (iter->data, shortcut);
 
           if (G_LIKELY (sc != NULL))
             {
@@ -815,7 +816,7 @@ xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
         }
     }
 
-  frap_shortcuts_provider_free_providers (providers);
+  xfce_shortcuts_provider_free_providers (providers);
 
   return info;
 }
@@ -826,18 +827,18 @@ static void
 xfce_keyboard_settings_free_shortcut_info (XfceKeyboardShortcutInfo *info)
 {
   g_object_unref (info->provider);
-  frap_shortcuts_free_shortcut (info->shortcut);
+  xfce_shortcut_free (info->shortcut);
   g_free (info);
 }
 
 
 
 static void
-xfce_keyboard_settings_shortcut_added (FrapShortcutsProvider *provider,
+xfce_keyboard_settings_shortcut_added (XfceShortcutsProvider *provider,
                                        const gchar           *shortcut,
                                        XfceKeyboardSettings  *settings)
 {
-  FrapShortcut *sc;
+  XfceShortcut *sc;
   GtkTreeModel *model;
   GtkWidget    *view;
   GtkTreeIter   iter;
@@ -847,14 +848,14 @@ xfce_keyboard_settings_shortcut_added (FrapShortcutsProvider *provider,
   view = glade_xml_get_widget (settings->priv->glade_xml, "kbd_shortcuts_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
 
-  sc = frap_shortcuts_provider_get_shortcut (settings->priv->provider, shortcut);
+  sc = xfce_shortcuts_provider_get_shortcut (settings->priv->provider, shortcut);
 
   if (G_LIKELY (sc != NULL))
     {
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
       gtk_list_store_set (GTK_LIST_STORE (model), &iter, SHORTCUT_COLUMN, shortcut, COMMAND_COLUMN, sc->command, -1);
 
-      frap_shortcuts_free_shortcut (sc);
+      xfce_shortcut_free (sc);
     }
 }
 
@@ -886,7 +887,7 @@ _xfce_keyboard_settings_remove_shortcut (GtkTreeModel *model,
 
 
 static void
-xfce_keyboard_settings_shortcut_removed (FrapShortcutsProvider *provider,
+xfce_keyboard_settings_shortcut_removed (XfceShortcutsProvider *provider,
                                          const gchar           *shortcut,
                                          XfceKeyboardSettings  *settings)
 {
@@ -956,7 +957,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
           shortcut = frap_shortcuts_dialog_get_shortcut (FRAP_SHORTCUTS_DIALOG (shortcut_dialog));
 
           /* Save the new shortcut to xfconf */
-          frap_shortcuts_provider_set_shortcut (settings->priv->provider, shortcut, command);
+          xfce_shortcuts_provider_set_shortcut (settings->priv->provider, shortcut, command);
         }
 
       /* Destroy the shortcut dialog */
@@ -1006,7 +1007,7 @@ xfce_keyboard_settings_delete_button_clicked (XfceKeyboardSettings *settings)
           DBG ("remove shortcut %s", shortcut);
 
           /* Remove keyboard shortcut via xfconf */
-          frap_shortcuts_provider_reset_shortcut (settings->priv->provider, shortcut);
+          xfce_shortcuts_provider_reset_shortcut (settings->priv->provider, shortcut);
 
           /* Free strings */
           g_free (shortcut);
@@ -1030,7 +1031,7 @@ static void
 xfce_keyboard_settings_reset_button_clicked (XfceKeyboardSettings *settings)
 {
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
-  frap_shortcuts_provider_reset_to_defaults (settings->priv->provider);
+  xfce_shortcuts_provider_reset_to_defaults (settings->priv->provider);
 }
 
 
