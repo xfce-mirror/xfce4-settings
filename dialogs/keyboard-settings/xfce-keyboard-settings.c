@@ -142,6 +142,8 @@ static void                      xfce_keyboard_settings_reset_button_clicked  (X
 #ifdef HAVE_LIBXKLAVIER
 
 static gchar *                   xfce_keyboard_settings_model_description     (XklConfigItem             *config_item);
+static void                      xfce_keyboard_settings_system_default_cb     (GtkToggleButton           *toggle,
+                                                                               XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_set_layout            (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_init_layout           (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_add_model_to_combo    (XklConfigRegistry         *config_registry,
@@ -304,6 +306,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   GtkWidget            *kbd_shortcuts_view;
   GtkWidget            *button;
 #ifdef HAVE_LIBXKLAVIER
+  GtkWidget            *xkb_use_system_default_checkbutton;
   GtkWidget            *xkb_tab_layout_vbox;
   GtkWidget            *xkb_model_combo;
   GtkWidget            *xkb_layout_view;
@@ -385,6 +388,15 @@ xfce_keyboard_settings_constructed (GObject *object)
   /* Tab */
   xkb_tab_layout_vbox = glade_xml_get_widget (settings->priv->glade_xml, "xkb_tab_layout_vbox");
   gtk_widget_show (GTK_WIDGET (xkb_tab_layout_vbox));
+
+  /* USe system defaults, ie disable options */
+  xkb_use_system_default_checkbutton = glade_xml_get_widget (settings->priv->glade_xml, "xkb_use_system_default_checkbutton");
+  g_signal_connect (G_OBJECT (xkb_use_system_default_checkbutton),
+                    "toggled",
+                    G_CALLBACK (xfce_keyboard_settings_system_default_cb),
+                    settings);
+  xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
+                             (GObject *) xkb_use_system_default_checkbutton, "active");
 
   /* Keyboard model combo */
   xkb_model_combo = glade_xml_get_widget (settings->priv->glade_xml, "xkb_model_combo");
@@ -1039,6 +1051,24 @@ xfce_keyboard_settings_xkb_description (XklConfigItem *config_item)
     description = g_locale_to_utf8 (ci_description, -1, NULL, NULL, NULL);
 
   return description;
+}
+
+
+
+static void
+xfce_keyboard_settings_system_default_cb (GtkToggleButton *toggle, XfceKeyboardSettings *settings)
+{
+  GtkWidget *xkb_model_frame;
+  GtkWidget *xkb_layout_frame;
+  gboolean use_system_defaults;
+
+  use_system_defaults = gtk_toggle_button_get_active (toggle);
+  xkb_model_frame = glade_xml_get_widget (settings->priv->glade_xml, "xkb_model_frame");
+  xkb_layout_frame = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_frame");
+
+  gtk_widget_set_sensitive (xkb_model_frame, !use_system_defaults);
+  gtk_widget_set_sensitive (xkb_layout_frame, !use_system_defaults);
+
 }
 
 
