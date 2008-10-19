@@ -654,10 +654,10 @@ appearance_settings_dialog_configure_widgets (GladeXML *gxml)
     GtkWidget *toolbar_style_combo = glade_xml_get_widget (gxml, "gtk_toolbar_style_combo_box");
 
     list_store = gtk_list_store_new (1, G_TYPE_STRING);
-    gtk_list_store_insert_with_values (list_store, NULL, 0, 0, N_("Icons"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 1, 0, N_("Text"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 2, 0, N_("Both"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 3, 0, N_("Both Horizontal"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 0, 0, _("Icons"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 1, 0, _("Text"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 2, 0, _("Both"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 3, 0, _("Both Horizontal"), -1);
 
     renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_clear (GTK_CELL_LAYOUT (toolbar_style_combo));
@@ -681,10 +681,10 @@ appearance_settings_dialog_configure_widgets (GladeXML *gxml)
     GtkWidget *hinting_style_combo = glade_xml_get_widget (gxml, "xft_hinting_style_combo_box");
 
     list_store = gtk_list_store_new (1, G_TYPE_STRING);
-    gtk_list_store_insert_with_values (list_store, NULL, 0, 0, N_("None"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 1, 0, N_("Slight"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 2, 0, N_("Medium"), -1);
-    gtk_list_store_insert_with_values (list_store, NULL, 3, 0, N_("Full"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 0, 0, _("None"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 1, 0, _("Slight"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 2, 0, _("Medium"), -1);
+    gtk_list_store_insert_with_values (list_store, NULL, 3, 0, _("Full"), -1);
 
     renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_clear (GTK_CELL_LAYOUT (hinting_style_combo));

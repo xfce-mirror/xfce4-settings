@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 01:11+0200\n"
+"POT-Creation-Date: 2008-10-19 02:45+0200\n"
 "PO-Revision-Date: 2008-10-07 22:25+0100\n"
 "Last-Translator: Maximilian Schleiss <maximilian@xfce.org>\n"
 "Language-Team: French <i18n-xfce@xfce.org>\n"
@@ -183,7 +183,7 @@ msgstr "_Verrouiller les touches collantes"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 #: ../dialogs/display-settings/display-dialog.glade.h:8
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
 msgid "gtk-close"
@@ -312,7 +312,7 @@ msgid "Enable i_nput feedback sounds"
 msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
-msgid "Enable or disable event sounds globally (requires Camberra support)"
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
@@ -574,137 +574,153 @@ msgid "Shell Scripts"
 msgstr "Scripts Shell"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
+#, fuzzy
+msgid "<b>Application Shortcuts</b>"
+msgstr "<b>Paramètres de frappe</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "<b>Cursor</b>"
 msgstr "<b>Curseur</b>"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 msgid "<b>Keyboard layout</b>"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 msgid "<b>Keyboard model</b>"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#, fuzzy
+msgid "<b>Keyboard settings</b>"
+msgstr "Paramètres du clavier"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 msgid "<b>Typing Settings</b>"
 msgstr "<b>Paramètres de frappe</b>"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#, fuzzy
+msgid "Application Shortcuts"
+msgstr "Raccourcis"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Behavior"
 msgstr "Comportement"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Blink _delay:"
 msgstr "_Délai de clignotement :"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Define shortcuts for launching applications:"
 msgstr "Définir des raccourcis pour exécuter des applications :"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Keyboard Settings"
 msgstr "Paramètres du clavier"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 #, fuzzy
 msgid "Keyboard layout and variant"
 msgstr "Paramètres du clavier"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 #, fuzzy
 msgid "Keyboard layout selection"
 msgstr "Paramètres du clavier"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
 msgid "Keyboard settings and shortcuts"
 msgstr "Paramètres du clavier et raccourcis"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:430
 msgid "Layout"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Repeat _speed:"
 msgstr "Vitesse de _répétition :"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
-msgid "Shortcuts"
-msgstr "Raccourcis"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Show _blinking"
 msgstr "Afficher le _clignotement"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The length of the cursor blink cycle in milliseconds"
 msgstr "La durée en millisecondes du cycle de clignotement du curseur"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The rate at which keycodes are generated while a key is pressed"
 msgstr ""
 "La vitesse à laquelle les codes claviers sont générés lorsqu'une touche est "
 "pressée"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "The time in milliseconds before a pressed key starts repeating"
 msgstr "Le temps en millisecondes avant la répétition d'une touche enfoncée"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to test the settings above:"
 msgstr "Utilisez cette zone de saisie pour tester les paramètres :"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid ""
 "When enabled, pressing and holding down a key emits the same character over "
 "and over again"
 msgstr "Appuyer et maintenir une touche imprime le même caractère sans arrêt"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Enable key repeat"
 msgstr "_Activer la répétition de touche"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Repeat delay:"
 msgstr "Délai de _répétition :"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#, fuzzy
+msgid "_Use system defaults"
+msgstr "_Remettre à zéro"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "gtk-add"
 msgstr "Ajouter"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 #, fuzzy
 msgid "gtk-cancel"
 msgstr "Aide"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 #, fuzzy
 msgid "gtk-delete"
 msgstr "Aide"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 #, fuzzy
 msgid "gtk-edit"
 msgstr "Ajouter"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "gtk-help"
 msgstr "Aide"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 #, fuzzy
 msgid "gtk-ok"
 msgstr "Fermer"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "gtk-remove"
 msgstr "Supprimer"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 #, fuzzy
 msgid "gtk-revert-to-saved"
 msgstr "Supprimer"
@@ -723,19 +739,23 @@ msgstr ""
 msgid "Could not create the settings dialog."
 msgstr "Utilisez cette zone de saisie pour tester les paramètres :"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:342
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:352
 msgid "Command"
 msgstr "Commande"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:347
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:357
 msgid "Shortcut"
 msgstr "Raccourci"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:403
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:426
+msgid "Active"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:431
 msgid "Variant"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:893
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
 msgid "Shortcut command may not be empty."
 msgstr "La commande de raccourci ne doit pas être vide."
 
@@ -743,7 +763,7 @@ msgstr "La commande de raccourci ne doit pas être vide."
 msgid "Xfce 4 Keyboard Settings"
 msgstr "Paramètres du clavier"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:92
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:53
 #, fuzzy
 msgid ""
 "This shortcut is already being used by <b>another window manager action</b>. "
@@ -752,20 +772,17 @@ msgstr ""
 "Ce raccourci est déjà pris en charge par l'action <b>%s</b> du gestionnaire "
 "de fenêtres. Quelle action voulez-vous utiliser ?"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:93
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:96
-#: ../xfce4-settings-helper/frap-shortcuts.c:257
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:54
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:57
 msgid "Use this action"
 msgstr "Utiliser cette action"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:93
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:54
 msgid "Keep the other one"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:95
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:98
-#: ../xfce4-settings-helper/frap-shortcuts.c:87
-#: ../xfce4-settings-helper/frap-shortcuts.c:90
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:56
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:59
 #, c-format
 msgid ""
 "The shortcut is already being used for the command <b>%s</b>. Which action "
@@ -774,27 +791,19 @@ msgstr ""
 "Ce raccourci est déjà pris en charge par la commande <b>%s</b>. Quelle "
 "action voulez-vous utiliser ?"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:96
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:99
-#: ../xfce4-settings-helper/frap-shortcuts.c:85
-#: ../xfce4-settings-helper/frap-shortcuts.c:88
-#: ../xfce4-settings-helper/frap-shortcuts.c:91
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:57
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:60
 #, c-format
 msgid "Keep %s"
 msgstr "Garder %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:99
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:102
-#: ../xfce4-settings-helper/frap-shortcuts.c:85
-#: ../xfce4-settings-helper/frap-shortcuts.c:88
-#: ../xfce4-settings-helper/frap-shortcuts.c:91
-#: ../xfce4-settings-helper/frap-shortcuts.c:94
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:60
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:63
 #, c-format
 msgid "Use %s"
 msgstr "Utilisez %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:101
-#: ../xfce4-settings-helper/frap-shortcuts.c:93
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:62
 msgid ""
 "The shortcut is already being used by a <b>window manager action</b>. Which "
 "action do you want to use?"
@@ -802,54 +811,54 @@ msgstr ""
 "Ce raccourci est déjà pris en charge par une <b>action du gestionnaire de "
 "fenêtres</b>. Quelle action voulez-vous utiliser ?"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:102
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:63
 #, fuzzy
 msgid "Keep the window manager action"
 msgstr "Garder l'action du gestionnaire de fenêtres"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:134
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:141
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:95
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:102
 #, c-format
 msgid "Conflicting actions for %s"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:173
+#: ../dialogs/keyboard-settings/frap-shortcuts.c:134
 #, fuzzy
 msgid "The shortcut is already being used for something else."
 msgstr "Le raccourci '%s' est déjà attribué."
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:239
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:242
 msgid "Enter window manager action shortcut"
 msgstr "Définir le raccourci de l'action du gestionnaire de fenêtres"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:240
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:250
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:243
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:253
 #, c-format
 msgid "Action: %s"
 msgstr "Action : %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:244
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:247
 msgid "Enter command shortcut"
 msgstr "Définir le raccourci pour la commande"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:245
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:248
 #, c-format
 msgid "Command: %s"
 msgstr "Commande : %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:249
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:252
 msgid "Enter shortcut"
 msgstr "Définir le raccourci"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:280
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:283
 msgid "Shortcut:"
 msgstr "Raccourci :"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:324
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:327
 msgid "Could not grab the keyboard."
 msgstr "Le clavier n'a pas pu être saisi."
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:345
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:348
 #, c-format
 msgid "<span size='large'><b>%s</b></span>"
 msgstr "<span size='large'><b>%s</b></span>"
@@ -1001,6 +1010,33 @@ msgstr "_Seuil :"
 msgid "Xfce 4 Mouse Settings"
 msgstr "Paramètres de la souris"
 
+#: ../xfce4-settings-editor/main_window.c:115
+msgid "Channel"
+msgstr "Canal"
+
+#: ../xfce4-settings-editor/main_window.c:125
+msgid "Property"
+msgstr "Propriété"
+
+#: ../xfce4-settings-editor/main_window.c:128
+#, fuzzy
+msgid "Type"
+msgstr "Type"
+
+#: ../xfce4-settings-editor/main_window.c:131
+msgid "Locked"
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:134
+#, fuzzy
+msgid "Value"
+msgstr "Valeur"
+
+#: ../xfce4-settings-editor/main_window.c:300
+#: ../xfce4-settings-editor/main_window.c:366
+msgid "Empty"
+msgstr ""
+
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfce 4"
 msgstr "Éditeur graphique des paramètres pour Xfce 4"
@@ -1075,33 +1111,6 @@ msgstr "Les touches répétées sont désactivées"
 msgid "Bounce keys"
 msgstr "Touches répétées"
 
-#: ../xfce4-settings-helper/frap-shortcuts.c:84
-#, c-format
-msgid ""
-"This shortcut is already being used by the window manager action <b>%s</b>. "
-"Which action do you want to use?"
-msgstr ""
-"Ce raccourci est déjà pris en charge par l'action <b>%s</b> du gestionnaire "
-"de fenêtres. Quelle action voulez-vous utiliser ?"
-
-#: ../xfce4-settings-helper/frap-shortcuts.c:94
-msgid "Keep window manager action"
-msgstr "Garder l'action du gestionnaire de fenêtres"
-
-#: ../xfce4-settings-helper/frap-shortcuts.c:249
-#, c-format
-msgid "%s shortcut conflict"
-msgstr "Conflit de raccourci %s"
-
-#: ../xfce4-settings-helper/frap-shortcuts.c:260
-msgid "Shortcut conflict"
-msgstr "Conflit de raccourci"
-
-#: ../xfce4-settings-helper/frap-shortcuts.c:281
-#, c-format
-msgid "The shortcut '%s' is already being used for something else."
-msgstr "Le raccourci '%s' est déjà attribué."
-
 #: ../xfce4-settings-helper/main.c:60 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Démarrer en mode débogue (ne pas se mettre en arrière-plan)"
@@ -1165,23 +1174,32 @@ msgstr ""
 "Essayez %s --help pour afficher une liste complète des options de ligne de "
 "commande.\n"
 
+#~ msgid ""
+#~ "This shortcut is already being used by the window manager action <b>%s</"
+#~ "b>. Which action do you want to use?"
+#~ msgstr ""
+#~ "Ce raccourci est déjà pris en charge par l'action <b>%s</b> du "
+#~ "gestionnaire de fenêtres. Quelle action voulez-vous utiliser ?"
+
+#~ msgid "Keep window manager action"
+#~ msgstr "Garder l'action du gestionnaire de fenêtres"
+
+#~ msgid "%s shortcut conflict"
+#~ msgstr "Conflit de raccourci %s"
+
+#~ msgid "Shortcut conflict"
+#~ msgstr "Conflit de raccourci"
+
+#~ msgid "The shortcut '%s' is already being used for something else."
+#~ msgstr "Le raccourci '%s' est déjà attribué."
+
 #, fuzzy
 #~ msgid "<b>Property settings</b>"
 #~ msgstr "<b>Paramètres de frappe</b>"
 
 #, fuzzy
-#~ msgid "Keyboard settings"
-#~ msgstr "Paramètres du clavier"
-
-#, fuzzy
 #~ msgid "Keyboard model:"
 #~ msgstr "Clavier"
-
-#~ msgid "Channel"
-#~ msgstr "Canal"
-
-#~ msgid "Property"
-#~ msgstr "Propriété"
 
 #~ msgid "<b>%s</b>"
 #~ msgstr "<b>%s</b>"
