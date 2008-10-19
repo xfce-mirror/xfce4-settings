@@ -40,8 +40,6 @@
 
 #include "xfce-settings-manager-dialog.h"
 
-#define SETTINGS_CATEGORY  "X-XfceSettingsDialog"
-
 struct _XfceSettingsManagerDialog
 {
     XfceTitledDialog parent;
@@ -363,6 +361,9 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
         while((file = g_dir_read_name(d))) {
             XfceRc *rcfile;
             const gchar *name, *exec, *value;
+            gchar **categories;
+            gboolean have_x_xfce = FALSE, have_desktop_settings = FALSE;
+            gint j;
             GtkTreeIter iter;
 
             if(!g_str_has_suffix(file, ".desktop"))
@@ -379,21 +380,29 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
             }
             xfce_rc_set_group(rcfile, "Desktop Entry");
 
-            value = xfce_rc_read_entry(rcfile, "Categories", NULL);
-            if(!value) {
+            categories = xfce_rc_read_list_entry(rcfile, "Categories", ";");
+            if(!categories) {
                 xfce_rc_close(rcfile);
                 continue;
             }
 
-            if(strncmp(value, SETTINGS_CATEGORY ";",
-                       strlen(SETTINGS_CATEGORY ";"))
-               && !strstr(value, ";" SETTINGS_CATEGORY ";"))
+            for(j = 0; categories[j]; ++j) {
+                if(!strcmp(categories[j], "X-XFCE"))
+                    have_x_xfce = TRUE;
+                else if(!strcmp(categories[j], "DesktopSettings"))
+                    have_desktop_settings = TRUE;
+            }
+            g_strfreev(categories);
+            if(!have_x_xfce || !have_desktop_settings) {
+                xfce_rc_close(rcfile);
+                continue;
+            }
+
+            if(xfce_rc_read_bool_entry(rcfile, "Hidden", FALSE)
+               || xfce_rc_read_bool_entry(rcfile,
+                                          "X-XfceSettingsManagerHidden",
+                                          FALSE))
             {
-                xfce_rc_close(rcfile);
-                continue;
-            }
-
-            if(xfce_rc_read_bool_entry(rcfile, "Hidden", FALSE)) {
                 xfce_rc_close(rcfile);
                 continue;
             }
