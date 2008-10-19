@@ -256,42 +256,40 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 
                             if (components[i+1] == NULL)
                             {
-                                g_value_init (&property_value, G_TYPE_STRING);
-                                if (!xfconf_channel_get_property (channel, key, &property_value))
-                                {
-                                    g_value_unset (&property_value);
-                                    xfconf_channel_get_property (channel, key, &property_value);
-                                }
+                                xfconf_channel_get_property (channel, key, &property_value);
                                 switch (G_VALUE_TYPE(&property_value))
                                 {
                                     case G_TYPE_INT:
                                         g_value_set_string (&child_type, "Int");
+                                        g_value_transform (&property_value, &child_value);
                                         break;
                                     case G_TYPE_UINT:
                                         g_value_set_string (&child_type, "Unsigned Int");
+                                        g_value_transform (&property_value, &child_value);
                                         break;
                                     case G_TYPE_INT64:
                                         g_value_set_string (&child_type, "Int64");
+                                        g_value_transform (&property_value, &child_value);
                                         break;
                                     case G_TYPE_UINT64:
                                         g_value_set_string (&child_type, "Unsigned Int64");
+                                        g_value_transform (&property_value, &child_value);
                                         break;
                                     case G_TYPE_DOUBLE:
                                         g_value_set_string (&child_type, "Double");
+                                        g_value_transform (&property_value, &child_value);
                                         break;
                                     case G_TYPE_STRING:
                                         g_value_set_string (&child_type, "String");
+                                        g_value_copy (&property_value, &child_value);
                                         break;
                                     case G_TYPE_BOOLEAN:
                                         g_value_set_string (&child_type, "Bool");
+                                        g_value_transform (&property_value, &child_value);
                                         break;
                                     default:
                                         g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&property_value)));
                                         break;
-                                }
-                                if (G_VALUE_HOLDS_STRING (&property_value))
-                                {
-                                    g_value_copy (&property_value, &child_value);
                                 }
                                 g_value_unset (&property_value);
                             }
@@ -320,44 +318,43 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                     gtk_tree_store_set_value (store, &child_iter, 0, &child_name);
                     g_value_reset (&child_name);
 
-                    if (components[i+1] == NULL) 
+                    if (components[i+1] == NULL)
                     {
-                        g_value_init (&property_value, G_TYPE_STRING);
-                        if (!xfconf_channel_get_property (channel, key, &property_value))
-                        {
-                            g_value_unset (&property_value);
-                            xfconf_channel_get_property (channel, key, &property_value);
-                        }
+                        xfconf_channel_get_property (channel, key, &property_value);
                         switch (G_VALUE_TYPE(&property_value))
                         {
                             case G_TYPE_INT:
                                 g_value_set_string (&child_type, "Int");
+                                g_value_transform (&property_value, &child_value);
                                 break;
                             case G_TYPE_UINT:
                                 g_value_set_string (&child_type, "Unsigned Int");
+                                g_value_transform (&property_value, &child_value);
                                 break;
                             case G_TYPE_INT64:
                                 g_value_set_string (&child_type, "Int64");
+                                g_value_transform (&property_value, &child_value);
                                 break;
                             case G_TYPE_UINT64:
                                 g_value_set_string (&child_type, "Unsigned Int64");
+                                g_value_transform (&property_value, &child_value);
                                 break;
                             case G_TYPE_DOUBLE:
                                 g_value_set_string (&child_type, "Double");
+                                g_value_transform (&property_value, &child_value);
                                 break;
                             case G_TYPE_STRING:
                                 g_value_set_string (&child_type, "String");
+                                g_value_copy (&property_value, &child_value);
                                 break;
                             case G_TYPE_BOOLEAN:
                                 g_value_set_string (&child_type, "Bool");
+                                g_value_transform (&property_value, &child_value);
                                 break;
                             default:
                                 g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&property_value)));
+                                g_value_set_string (&child_value, "...");
                                 break;
-                        }
-                        if (G_VALUE_HOLDS_STRING (&property_value))
-                        {
-                            g_value_copy (&property_value, &child_value);
                         }
                         g_value_unset (&property_value);
                     }
@@ -371,6 +368,9 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                     g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
                     gtk_tree_store_set_value (store, &child_iter, 2, &child_locked);
                     g_value_reset (&child_locked);
+
+                    gtk_tree_store_set_value (store, &child_iter, 3, &child_value);
+                    g_value_reset (&child_value);
                 }
                 parent_iter = child_iter;
             }
@@ -493,13 +493,42 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
 
     GtkWidget *dialog = glade_xml_get_widget (gxml_main_window, "edit_settings_dialog");
     GtkWidget *prop_name_entry = glade_xml_get_widget (gxml_main_window, "property_name_entry");
+    GtkWidget *prop_type_combo = glade_xml_get_widget (gxml_main_window, "property_type_combo");
 
 
     /* Set the correct properties in the ui */
     gtk_entry_set_text (GTK_ENTRY(prop_name_entry), current_property);
     if (xfconf_channel_get_property (current_channel, current_property, &value))
     {
-        
+        g_debug ("%s", g_type_name (G_VALUE_TYPE (&value)));
+        switch (G_VALUE_TYPE(&value))      
+        {
+            case G_TYPE_STRING:
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 1);
+                break;
+            case G_TYPE_INT:
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 2);
+                break;
+            case G_TYPE_UINT:
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 3);
+                break;
+            case G_TYPE_INT64:
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 4);
+                break;
+            case G_TYPE_UINT64:
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 5);
+                break;
+            case G_TYPE_DOUBLE:
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 6);
+                break;
+            case G_TYPE_BOOLEAN:
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 7);
+                break;
+        }
+    }
+    else
+    {
+        gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 0);
     }
     
     if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_APPLY)
@@ -516,6 +545,11 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
         g_free (prop_name);
 }
 
+/**
+ * cb_property_revert_button_clicked
+ *
+ * Resets a property to it's system-default, it removes the property if it does not exist as a system default.
+ */
 static void
 cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
 {
@@ -538,7 +572,7 @@ cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
         dialog = gtk_message_dialog_new_with_markup (
                                      GTK_WINDOW (glade_xml_get_widget (gxml_main_window, "main_window")),
                                      0, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
-                                     "Are you sure you wat to reset property:\n<b>%s</b>?",
+                                     "Are you sure you wat to reset this property:\n<b>%s</b>?",
                                      current_property);
         if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
         {
@@ -546,6 +580,7 @@ cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
             tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
             gtk_widget_hide (dialog);
             xfconf_channel_reset_property (current_channel, current_property, FALSE);
+            gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
             load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
         }
         gtk_widget_destroy (dialog);
