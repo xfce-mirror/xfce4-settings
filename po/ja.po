@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: xfce 4-settings 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-10-19 02:45+0200\n"
-"PO-Revision-Date: 2008-10-12 16:35+0900\n"
+"PO-Revision-Date: 2008-10-19 16:35+0900\n"
 "Last-Translator: HASHIMOTO Masato <cabezon.hashimo@gmail.com>\n"
 "Language-Team: Japanese  <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -264,7 +264,7 @@ msgstr "<b>DPI</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "<b>Default Fon_t</b>"
-msgstr "<b>デフォルトフォント(_T)</b>"
+msgstr "<b>デフォルトフォント</b>(_T)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 msgid "<b>Event sounds</b>"
@@ -313,9 +313,8 @@ msgid "Enable i_nput feedback sounds"
 msgstr "入力音を有効にする(_N)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
-#, fuzzy
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "全体のイベントサウンドの有効または無効にします (Camberra"
+msgstr "全体のイベントサウンドの有効または無効にします (\"Canberra\" のサポートが必要)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Enable or disable input feedback sounds (i.e. button clicks)"
@@ -576,9 +575,8 @@ msgid "Shell Scripts"
 msgstr "シェルスクリプト"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-#, fuzzy
 msgid "<b>Application Shortcuts</b>"
-msgstr "<b>キー入力の設定</b>"
+msgstr "<b>アプリケーションショートカットキー</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "<b>Cursor</b>"
@@ -593,18 +591,16 @@ msgid "<b>Keyboard model</b>"
 msgstr "<b>キーボードモデル</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-#, fuzzy
 msgid "<b>Keyboard settings</b>"
-msgstr "キーボード設定"
+msgstr "<b>キーボード設定</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 msgid "<b>Typing Settings</b>"
 msgstr "<b>キー入力の設定</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#, fuzzy
 msgid "Application Shortcuts"
-msgstr "ショートカット"
+msgstr "アプリケーションショートカットキー"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
@@ -683,9 +679,8 @@ msgid "_Repeat delay:"
 msgstr "リピートするまでの時間(_R):"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-#, fuzzy
 msgid "_Use system defaults"
-msgstr "デフォルトに戻す(_S)"
+msgstr "システムデフォルトを使用する(_U)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "gtk-add"
@@ -743,7 +738,7 @@ msgstr "ショートカット"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:426
 msgid "Active"
-msgstr ""
+msgstr "アクティブ"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:431
 msgid "Variant"
@@ -781,7 +776,7 @@ msgid ""
 "The shortcut is already being used for the command <b>%s</b>. Which action "
 "do you want to use?"
 msgstr ""
-"このショートカットキーは既に<b>%s</b>で使用されています。どちらの動作で使用し"
+"このショートカットキーは既に <b>%s</b> で使用されています。どちらの動作で使用し"
 "ますか?"
 
 #: ../dialogs/keyboard-settings/frap-shortcuts.c:57
@@ -994,30 +989,28 @@ msgstr "Xfce 4 マウス設定"
 
 #: ../xfce4-settings-editor/main_window.c:115
 msgid "Channel"
-msgstr ""
+msgstr "チャネル"
 
 #: ../xfce4-settings-editor/main_window.c:125
 msgid "Property"
-msgstr ""
+msgstr "プロパティ"
 
 #: ../xfce4-settings-editor/main_window.c:128
-#, fuzzy
 msgid "Type"
-msgstr "タイプ:"
+msgstr "タイプ"
 
 #: ../xfce4-settings-editor/main_window.c:131
 msgid "Locked"
-msgstr ""
+msgstr "ロック"
 
 #: ../xfce4-settings-editor/main_window.c:134
-#, fuzzy
 msgid "Value"
-msgstr "値:"
+msgstr "値"
 
 #: ../xfce4-settings-editor/main_window.c:300
 #: ../xfce4-settings-editor/main_window.c:366
 msgid "Empty"
-msgstr ""
+msgstr "空"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfce 4"
@@ -1153,22 +1146,3 @@ msgstr ""
 "%s: %s\n"
 "%s --help と入力すると利用可能な全てのコマンドラインオプションが表示されま"
 "す。\n"
-
-#~ msgid ""
-#~ "This shortcut is already being used by the window manager action <b>%s</"
-#~ "b>. Which action do you want to use?"
-#~ msgstr ""
-#~ "このショートカットキーは既にウィンドウマネージャの動作<b>%s</b>で使用され"
-#~ "ています。どちらの動作で使用しますか?"
-
-#~ msgid "Keep window manager action"
-#~ msgstr "ウィンドウマネージャの動作で継続使用する"
-
-#~ msgid "%s shortcut conflict"
-#~ msgstr "%s のショートカットキー衝突"
-
-#~ msgid "Shortcut conflict"
-#~ msgstr "ショートカットキー衝突"
-
-#~ msgid "The shortcut '%s' is already being used for something else."
-#~ msgstr "ショートカットキー '%s' は既に他で使用されています。"
