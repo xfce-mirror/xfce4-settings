@@ -367,13 +367,11 @@ xfce_keyboard_settings_constructed (GObject *object)
 
   /* Connect to reset button */
   button = glade_xml_get_widget (settings->priv->glade_xml, "reset_shortcuts_button");
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock (GTK_STOCK_REVERT_TO_SAVED, GTK_ICON_SIZE_BUTTON));
   g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfce_keyboard_settings_reset_button_clicked), settings);
 
   xfce_keyboard_settings_initialize_shortcuts (settings);
   xfce_keyboard_settings_load_shortcuts (settings);
-
-  /* TODO: Handle property-changed signal */
-  /* TODO: Handle 'Add' and 'Remove' buttons */
 
 #ifdef HAVE_LIBXKLAVIER
   /* Init xklavier engine */
@@ -656,7 +654,7 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
       DBG ("shortcut = %s, command = %s", shortcut, command);
 
       /* Request a new shortcut from the user */
-      dialog = frap_shortcuts_dialog_new ("commands", command);
+      dialog = frap_shortcuts_dialog_new ("commands", command, command);
       g_signal_connect (dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
       response = frap_shortcuts_dialog_run (FRAP_SHORTCUTS_DIALOG (dialog));
 
@@ -765,7 +763,7 @@ xfce_keyboard_settings_validate_shortcut (FrapShortcutsDialog  *dialog,
       response = frap_shortcuts_conflict_dialog (xfce_shortcuts_provider_get_name (settings->priv->provider),
                                                  xfce_shortcuts_provider_get_name (info->provider),
                                                  shortcut,
-                                                 frap_shortcuts_dialog_get_action (dialog),
+                                                 frap_shortcuts_dialog_get_action_name (dialog),
                                                  info->shortcut->command,
                                                  FALSE);
 
@@ -943,7 +941,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
       gtk_widget_hide (command_dialog);
 
       /* Create shortcut dialog */
-      shortcut_dialog = frap_shortcuts_dialog_new ("commands", command);
+      shortcut_dialog = frap_shortcuts_dialog_new ("commands", command, command);
       g_signal_connect (shortcut_dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
 
       /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
@@ -1029,8 +1027,20 @@ xfce_keyboard_settings_delete_button_clicked (XfceKeyboardSettings *settings)
 static void
 xfce_keyboard_settings_reset_button_clicked (XfceKeyboardSettings *settings)
 {
+  gint response;
+
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
-  xfce_shortcuts_provider_reset_to_defaults (settings->priv->provider);
+
+  response = xfce_message_dialog (NULL, _("Reset to Defaults"), GTK_STOCK_DIALOG_QUESTION,
+                                  _("Reset to Defaults"),
+                                  _("This will reset <b>all</b> shortcuts to their default "
+                                    "values. Do you really want to do this?"),
+                                  GTK_STOCK_NO, GTK_RESPONSE_NO,
+                                  GTK_STOCK_YES, GTK_RESPONSE_YES,
+                                  NULL);
+
+  if (G_LIKELY (response == GTK_RESPONSE_YES))
+    xfce_shortcuts_provider_reset_to_defaults (settings->priv->provider);
 }
 
 

@@ -482,11 +482,13 @@ xfce_shortcuts_grabber_shortcut_name (XfceShortcutsGrabber *grabber,
       modifiers ^= grabber->priv->modifiers[CACHE_HYPER];
     }
 
+#if 0
   if ((modifiers & grabber->priv->modifiers[CACHE_META]) != 0)
     {
       modifiers |= GDK_META_MASK;
       modifiers ^= grabber->priv->modifiers[CACHE_META];
     }
+#endif
 
   return gtk_accelerator_name (keysym, modifiers);
 }

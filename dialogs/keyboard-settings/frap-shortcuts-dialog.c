@@ -22,7 +22,6 @@
 #include <config.h>
 #endif
 
-#include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
 
 #include <gtk/gtk.h>
@@ -41,6 +40,7 @@ static void     frap_shortcuts_dialog_dispose          (GObject                 
 static void     frap_shortcuts_dialog_finalize         (GObject                  *object);
 static void     frap_shortcuts_dialog_create_contents  (FrapShortcutsDialog      *dialog,
                                                         const gchar              *provider,
+                                                        const gchar              *action_name,
                                                         const gchar              *action);
 static gboolean frap_shortcuts_dialog_key_pressed      (FrapShortcutsDialog      *dialog,
                                                         GdkEventKey              *event);
@@ -69,6 +69,7 @@ struct _FrapShortcutsDialog
 
   GtkWidget *shortcut_label;
 
+  gchar     *action_name;
   gchar     *action;
   gchar     *shortcut;
 };
@@ -203,6 +204,7 @@ frap_shortcuts_dialog_finalize (GObject *object)
 {
   FrapShortcutsDialog *dialog = FRAP_SHORTCUTS_DIALOG (object);
 
+  g_free (dialog->action_name);
   g_free (dialog->action);
   g_free (dialog->shortcut);
 
@@ -213,14 +215,16 @@ frap_shortcuts_dialog_finalize (GObject *object)
 
 GtkWidget*
 frap_shortcuts_dialog_new (const gchar *provider,
+                           const gchar *action_name,
                            const gchar *action)
 {
   FrapShortcutsDialog *dialog;
   
   dialog = g_object_new (FRAP_TYPE_SHORTCUTS_DIALOG, NULL);
+  dialog->action_name = g_strdup (action_name);
   dialog->action = g_strdup (action);
 
-  frap_shortcuts_dialog_create_contents (dialog, provider, action);
+  frap_shortcuts_dialog_create_contents (dialog, provider, action_name, action);
 
   return GTK_WIDGET (dialog);
 }
@@ -230,6 +234,7 @@ frap_shortcuts_dialog_new (const gchar *provider,
 static void
 frap_shortcuts_dialog_create_contents (FrapShortcutsDialog *dialog,
                                        const gchar         *provider,
+                                       const gchar         *action_name,
                                        const gchar         *action)
 {
   GtkWidget   *button;
@@ -241,17 +246,17 @@ frap_shortcuts_dialog_create_contents (FrapShortcutsDialog *dialog,
   if (g_utf8_collate (provider, "xfwm4") == 0)
     {
       title = _("Enter window manager action shortcut");
-      subtitle = g_strdup_printf (_("Action: %s"), action);
+      subtitle = g_strdup_printf (_("Action: %s"), action_name);
     }
   else if (g_utf8_collate (provider, "commands") == 0)
     {
       title = _("Enter command shortcut");
-      subtitle = g_strdup_printf (_("Command: %s"), action);
+      subtitle = g_strdup_printf (_("Command: %s"), action_name);
     }
   else
     {
       title = _("Enter shortcut");
-      subtitle = g_strdup_printf (_("Action: %s"), action);
+      subtitle = g_strdup_printf (_("Action: %s"), action_name);
     }
 
   /* Set dialog title */
@@ -376,6 +381,11 @@ frap_shortcuts_dialog_key_released (FrapShortcutsDialog *dialog,
       /* Exit dialog with positive response */
       gtk_dialog_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
     }
+  else
+    {
+      /* Clear label */
+      gtk_label_set_markup (GTK_LABEL (dialog->shortcut_label), "");
+    }
 
   return FALSE;
 }
@@ -430,8 +440,10 @@ frap_shortcuts_dialog_shortcut_name (FrapShortcutsDialog *dialog,
                   if (keysyms[j] == GDK_Super_L || keysyms[j] == GDK_Super_R)
                     modifiers &= ~mask;
 
+#if 0
                   if (keysyms[j] == GDK_Meta_L || keysyms[j] == GDK_Meta_R)
                     modifiers &= ~mask;
+#endif
 
                   if (keysyms[j] == GDK_Hyper_L || keysyms[j] == GDK_Hyper_R)
                     modifiers &= ~mask;
@@ -475,4 +487,13 @@ frap_shortcuts_dialog_get_action (FrapShortcutsDialog *dialog)
 {
   g_return_val_if_fail (FRAP_IS_SHORTCUTS_DIALOG (dialog), NULL);
   return dialog->action;
+}
+
+
+
+const gchar *
+frap_shortcuts_dialog_get_action_name (FrapShortcutsDialog *dialog)
+{
+  g_return_val_if_fail (FRAP_IS_SHORTCUTS_DIALOG (dialog), NULL);
+  return dialog->action_name;
 }

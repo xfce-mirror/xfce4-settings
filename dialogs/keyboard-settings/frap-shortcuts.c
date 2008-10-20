@@ -51,10 +51,10 @@ typedef struct
 static FrapShortcutsConflictMessage conflict_messages[] = {
   { "xfwm4", "xfwm4", 
     N_("This shortcut is already being used by <b>another window manager action</b>. Which action do you want to use?"), 
-    N_("Use this action"), N_("Keep the other one") },
+    N_("Use %s"), N_("Keep the other one") },
   { "xfwm4", "commands",
     N_("The shortcut is already being used for the command <b>%s</b>. Which action do you want to use?"), 
-    N_("Use this action"), N_("Keep %s") },
+    N_("Use %s"), N_("Keep %s") },
   { "commands","commands",
     N_("The shortcut is already being used for the command <b>%s</b>. Which action do you want to use?"),
     N_("Use %s"), N_("Keep %s") },
@@ -131,7 +131,7 @@ frap_shortcuts_conflict_dialog (const gchar *owner,
   if (G_UNLIKELY (!handled))
     {
       xfce_message_dialog (NULL, title, GTK_STOCK_DIALOG_ERROR,
-                           _("The shortcut is already being used for something else."), NULL,
+                           primary_text, _("The shortcut is already being used for something else."),
                            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
       response = GTK_RESPONSE_REJECT;
     }
