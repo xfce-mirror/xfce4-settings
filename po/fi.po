@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-19 02:45+0200\n"
-"PO-Revision-Date: 2008-10-11 11:37+0300\n"
+"POT-Creation-Date: 2008-10-20 18:18+0300\n"
+"PO-Revision-Date: 2008-10-20 18:29+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -225,7 +225,7 @@ msgid "Version information"
 msgstr "Versiotiedot"
 
 #: ../dialogs/accessibility-settings/main.c:145
-#: ../dialogs/appearance-settings/main.c:789
+#: ../dialogs/appearance-settings/main.c:791
 #: ../dialogs/display-settings/main.c:643
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
@@ -235,7 +235,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Saat ohjeita komennolla \"%s --help\"."
 
 #: ../dialogs/accessibility-settings/main.c:164
-#: ../dialogs/appearance-settings/main.c:808
+#: ../dialogs/appearance-settings/main.c:810
 #: ../dialogs/display-settings/main.c:662
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
@@ -244,7 +244,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 
 #: ../dialogs/accessibility-settings/main.c:165
-#: ../dialogs/appearance-settings/main.c:809
+#: ../dialogs/appearance-settings/main.c:811
 #: ../dialogs/display-settings/main.c:663
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
@@ -316,13 +316,12 @@ msgid "Enable i_nput feedback sounds"
 msgstr "Toista sy_ötteen äänipalaute"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
-#, fuzzy
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "Määrittää yleisesti, toistetaanko merkkiääniä (vaatii Canberra-tuen)"
+msgstr "Toistetaanko käyttöliittymän äänet (vaatii Canberra-tuen)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Enable or disable input feedback sounds (i.e. button clicks)"
-msgstr "Ottaa käyttöön syötteen äänipalautteen (esim hiiren painikkeille)"
+msgstr "Toistetaanko syötteen äänipalaute (esim hiiren painikkeille)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid ""
@@ -382,52 +381,52 @@ msgstr "K_uvakkeet"
 msgid "_Settings"
 msgstr "_Asetukset"
 
-#: ../dialogs/appearance-settings/main.c:591
-#: ../dialogs/appearance-settings/main.c:684
+#: ../dialogs/appearance-settings/main.c:593
+#: ../dialogs/appearance-settings/main.c:686
 msgid "None"
 msgstr "Ei mitään"
 
-#: ../dialogs/appearance-settings/main.c:595
+#: ../dialogs/appearance-settings/main.c:597
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:599
+#: ../dialogs/appearance-settings/main.c:601
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:603
+#: ../dialogs/appearance-settings/main.c:605
 msgid "Vertical RGB"
 msgstr "Pystysuuntainen RGB"
 
-#: ../dialogs/appearance-settings/main.c:607
+#: ../dialogs/appearance-settings/main.c:609
 msgid "Vertical BGR"
 msgstr "Pystysuuntainen BGR"
 
-#: ../dialogs/appearance-settings/main.c:657
+#: ../dialogs/appearance-settings/main.c:659
 msgid "Icons"
 msgstr "Kuvakkeet"
 
-#: ../dialogs/appearance-settings/main.c:658
+#: ../dialogs/appearance-settings/main.c:660
 msgid "Text"
 msgstr "Teksti"
 
-#: ../dialogs/appearance-settings/main.c:659
+#: ../dialogs/appearance-settings/main.c:661
 msgid "Both"
 msgstr "Molemmat"
 
-#: ../dialogs/appearance-settings/main.c:660
+#: ../dialogs/appearance-settings/main.c:662
 msgid "Both Horizontal"
 msgstr "Molemmat vaakasuunnassa"
 
-#: ../dialogs/appearance-settings/main.c:685
+#: ../dialogs/appearance-settings/main.c:687
 msgid "Slight"
 msgstr "Kevyt"
 
-#: ../dialogs/appearance-settings/main.c:686
+#: ../dialogs/appearance-settings/main.c:688
 msgid "Medium"
 msgstr "Kohtalainen"
 
-#: ../dialogs/appearance-settings/main.c:687
+#: ../dialogs/appearance-settings/main.c:689
 msgid "Full"
 msgstr "Täysi"
 
@@ -578,9 +577,8 @@ msgid "Shell Scripts"
 msgstr "Päätekomentotiedostot"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-#, fuzzy
 msgid "<b>Application Shortcuts</b>"
-msgstr "<b>Näppäilyasetukset</b>"
+msgstr "<b>Sovellusten pikanäppäimet</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "<b>Cursor</b>"
@@ -595,18 +593,16 @@ msgid "<b>Keyboard model</b>"
 msgstr "<b>Näppäimistön malli</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-#, fuzzy
 msgid "<b>Keyboard settings</b>"
-msgstr "Näppäimistön asetukset"
+msgstr "<b>Näppäimistön asetukset</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 msgid "<b>Typing Settings</b>"
 msgstr "<b>Näppäilyasetukset</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#, fuzzy
 msgid "Application Shortcuts"
-msgstr "Pikanäppäimet"
+msgstr "Sovellusten pikanäppäimet"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
@@ -627,14 +623,12 @@ msgid "Keyboard Settings"
 msgstr "Näppäimistön asetukset"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
-#, fuzzy
 msgid "Keyboard layout and variant"
-msgstr "<b>Näppäimistön asettelu</b>"
+msgstr "Näppäimistön asettelu ja muunnelma"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
-#, fuzzy
 msgid "Keyboard layout selection"
-msgstr "<b>Näppäimistön asettelu</b>"
+msgstr "Näppäimistön asettelun valinta"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
@@ -687,9 +681,8 @@ msgid "_Repeat delay:"
 msgstr "_Toiston viive:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-#, fuzzy
 msgid "_Use system defaults"
-msgstr "_Palauta oletus"
+msgstr "_Palauta oletukset"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "gtk-add"
@@ -747,15 +740,28 @@ msgstr "Pikanäppäin"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:426
 msgid "Active"
-msgstr ""
+msgstr "Käytössä"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:431
 msgid "Variant"
-msgstr ""
+msgstr "Muunnelma"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:930
 msgid "Shortcut command may not be empty."
 msgstr "Pikanäppäimen komento ei saa olla tyhjä."
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1079
+msgid ""
+"The system defaults will be\n"
+"restored next time you log in."
+msgstr ""
+"Järjestelmän oletukset\n"
+"palautetaan seuraavan\n"
+"kirjautumisen yhteydessä."
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1082
+msgid "Warning"
+msgstr "Varoitus"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:4
 msgid "Xfce 4 Keyboard Settings"
@@ -822,38 +828,38 @@ msgstr "Päällekkäismääritys pikanäppäimelle %s"
 msgid "The shortcut is already being used for something else."
 msgstr "Pikanäppäin on jo muussa käytössä."
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:242
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:243
 msgid "Enter window manager action shortcut"
 msgstr "Valitse ikkunamanagerin toiminnon pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:243
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:253
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:244
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:254
 #, c-format
 msgid "Action: %s"
 msgstr "Toiminto: %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:247
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:248
 msgid "Enter command shortcut"
 msgstr "Valitse komennon pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:248
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:249
 #, c-format
 msgid "Command: %s"
 msgstr "Komento: %s"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:252
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:253
 msgid "Enter shortcut"
 msgstr "Valitse pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:283
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:284
 msgid "Shortcut:"
 msgstr "Pikanäppäin"
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:327
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:328
 msgid "Could not grab the keyboard."
 msgstr "Näppäimistöä ei voi kaapata."
 
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:348
+#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:349
 #, c-format
 msgid "<span size='large'><b>%s</b></span>"
 msgstr "<span size='large'><b>%s</b></span>"
@@ -1005,30 +1011,28 @@ msgstr "Xfce 4 hiiren Asetukset"
 
 #: ../xfce4-settings-editor/main_window.c:115
 msgid "Channel"
-msgstr ""
+msgstr "Kanava"
 
 #: ../xfce4-settings-editor/main_window.c:125
 msgid "Property"
-msgstr ""
+msgstr "Asetus"
 
 #: ../xfce4-settings-editor/main_window.c:128
-#, fuzzy
 msgid "Type"
-msgstr "Tyyppi:"
+msgstr "Tyyppi"
 
 #: ../xfce4-settings-editor/main_window.c:131
 msgid "Locked"
 msgstr "Lukittu"
 
 #: ../xfce4-settings-editor/main_window.c:134
-#, fuzzy
 msgid "Value"
 msgstr "Arvo:"
 
-#: ../xfce4-settings-editor/main_window.c:300
-#: ../xfce4-settings-editor/main_window.c:366
+#: ../xfce4-settings-editor/main_window.c:298
+#: ../xfce4-settings-editor/main_window.c:363
 msgid "Empty"
-msgstr ""
+msgstr "Tyhjä"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfce 4"
@@ -1048,7 +1052,7 @@ msgstr "Nimi:"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "Select a channel and property."
-msgstr "Valitse kanava ja ominaisuus."
+msgstr "Valitse kanava ja asetus."
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
 msgid "Type:"
@@ -1111,26 +1115,26 @@ msgstr "Käynnistä vianetsintätilassa (älä haaroita taustalle)"
 msgid "Workspace %d"
 msgstr "Työtila %d"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:139
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:147
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:518
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:536
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:137
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:145
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:527
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:545
 msgid "Xfce Settings Manager"
 msgstr "Xfce:n asetukset"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:140
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:146
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:138
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:144
 msgid "Customize your Xfce desktop"
 msgstr "Muokkaa Xfce-työpöytäsi asetuksia"
 
 #. Notify the user that there has been a problem
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:517
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:535
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:526
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:544
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kohdetta \"%s\" ei voi käynnistää"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:582
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:591
 #, c-format
 msgid "Failed to open the documentation. Reason: %s"
 msgstr "Dokumentaatiota ei voi avata. Syy: %s"
@@ -1164,27 +1168,3 @@ msgstr ""
 "%s: %s\n"
 "Kirjoittamalla %s --help saat täyden listan komentorivivalitsimista.\n"
 
-#~ msgid ""
-#~ "This shortcut is already being used by the window manager action <b>%s</"
-#~ "b>. Which action do you want to use?"
-#~ msgstr ""
-#~ "Pikanäppäin on jo yhdistetty ikkunamanagerin toimintoon <b>%s</b>. Kumpaa "
-#~ "toimintoa haluat käyttää?"
-
-#~ msgid "Keep window manager action"
-#~ msgstr "Käytä ikkunamanagerin toimintoa"
-
-#~ msgid "%s shortcut conflict"
-#~ msgstr "%s pikanäppäinristiriita"
-
-#~ msgid "Shortcut conflict"
-#~ msgstr "Pikanäppäinristiriita"
-
-#~ msgid "The shortcut '%s' is already being used for something else."
-#~ msgstr "Pikanäppäin \"%s\" on jo muussa käytössä."
-
-#~ msgid "Use default system configuration"
-#~ msgstr "Käytä järjestelmän oletusasetuksia"
-
-#~ msgid "<b>Property Settings</b>"
-#~ msgstr "<b>Ominaisuusasetukset</b>"
