@@ -392,12 +392,12 @@ xfce_keyboard_settings_constructed (GObject *object)
 
   /* USe system defaults, ie disable options */
   xkb_use_system_default_checkbutton = glade_xml_get_widget (settings->priv->glade_xml, "xkb_use_system_default_checkbutton");
+  xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
+                             (GObject *) xkb_use_system_default_checkbutton, "active");
   g_signal_connect (G_OBJECT (xkb_use_system_default_checkbutton),
                     "toggled",
                     G_CALLBACK (xfce_keyboard_settings_system_default_cb),
                     settings);
-  xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
-                             (GObject *) xkb_use_system_default_checkbutton, "active");
 
   /* Keyboard model combo */
   xkb_model_combo = glade_xml_get_widget (settings->priv->glade_xml, "xkb_model_combo");
@@ -1070,6 +1070,20 @@ xfce_keyboard_settings_system_default_cb (GtkToggleButton *toggle, XfceKeyboardS
   gtk_widget_set_sensitive (xkb_model_frame, !use_system_defaults);
   gtk_widget_set_sensitive (xkb_layout_frame, !use_system_defaults);
 
+  if (use_system_defaults)
+    {
+      GtkWidget *warning_dialog;
+
+      warning_dialog = gtk_message_dialog_new (NULL, 0,
+                                         GTK_MESSAGE_WARNING,
+                                         GTK_BUTTONS_OK,
+                                         _("The system defaults will be\n"
+                                         "restored next time you log in."));
+
+      gtk_window_set_title (GTK_WINDOW (warning_dialog), _("Warning"));
+      gtk_dialog_run (GTK_DIALOG (warning_dialog));
+      gtk_widget_destroy (warning_dialog);
+    }
 }
 
 
