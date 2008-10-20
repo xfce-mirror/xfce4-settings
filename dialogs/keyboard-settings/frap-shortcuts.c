@@ -131,7 +131,7 @@ frap_shortcuts_conflict_dialog (const gchar *owner,
   if (G_UNLIKELY (!handled))
     {
       xfce_message_dialog (NULL, title, GTK_STOCK_DIALOG_ERROR,
-                           primary_text, _("The shortcut is already being used for something else."),
+                           _("The shortcut is already being used for something else."), NULL,
                            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
       response = GTK_RESPONSE_REJECT;
     }

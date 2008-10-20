@@ -22,6 +22,7 @@
 #include <config.h>
 #endif
 
+#include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
 
 #include <gtk/gtk.h>

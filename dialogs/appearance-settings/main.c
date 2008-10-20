@@ -205,6 +205,7 @@ cb_custom_dpi_check_button_toggled (GtkToggleButton *custom_dpi_toggle,
     }
 }
 
+#ifdef ENABLE_SOUND_SETTINGS
 static void
 cb_enable_event_sounds_check_button_toggled (GtkToggleButton *toggle, GtkWidget *button)
 {
@@ -214,6 +215,7 @@ cb_enable_event_sounds_check_button_toggled (GtkToggleButton *toggle, GtkWidget 
     gtk_widget_set_sensitive (button, active);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), active);
 }
+#endif
 
 static void
 appearance_settings_load_icon_themes (GtkListStore *list_store,

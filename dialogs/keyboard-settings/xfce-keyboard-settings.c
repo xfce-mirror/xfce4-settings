@@ -788,7 +788,6 @@ xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
   GList                    *iter;
   XfceShortcut             *sc;
   GList                    *providers;
-  gchar                    *value;
 
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), FALSE);
   g_return_val_if_fail (shortcut != NULL, FALSE);

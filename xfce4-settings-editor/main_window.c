@@ -485,11 +485,8 @@ cb_property_new_button_clicked (GtkButton *button, gpointer user_data)
 static void
 cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
 {
-    GtkTreeModel *model;
     GValue value = {0, };
     gchar *prop_name = NULL;
-    gchar *temp = NULL;
-    GtkWidget *channel_treeview = glade_xml_get_widget (gxml_main_window, "channel_treeview");
 
     GtkWidget *dialog = glade_xml_get_widget (gxml_main_window, "edit_settings_dialog");
     GtkWidget *prop_name_entry = glade_xml_get_widget (gxml_main_window, "property_name_entry");

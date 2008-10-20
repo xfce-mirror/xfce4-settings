@@ -507,7 +507,7 @@ xfce_shortcuts_grabber_grab (XfceShortcutsGrabber *grabber,
   guint       screens;
   guint       modifiers;
   guint       ignored_modifiers = 0;
-  guint       i;
+  gint        i;
   guint       j;
   guint       k;
 

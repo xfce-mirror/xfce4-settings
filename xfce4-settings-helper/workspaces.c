@@ -165,7 +165,7 @@ xfce_workspaces_helper_prop_changed(XfconfChannel *channel,
 {
     XfceWorkspacesHelper *helper = user_data;
     GPtrArray *names;
-    gint i, n_workspaces = wnck_screen_get_workspace_count(helper->screen);
+    guint i, n_workspaces = wnck_screen_get_workspace_count(helper->screen);
 
     if(G_VALUE_TYPE(value) !=  dbus_g_type_get_collection("GPtrArray",
                                                           G_TYPE_VALUE))
