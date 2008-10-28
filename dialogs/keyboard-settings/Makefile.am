@@ -16,10 +16,6 @@ xfce4_keyboard_settings_SOURCES = \
 	main.c \
 	xfce-keyboard-settings.c \
 	xfce-keyboard-settings.h \
-	frap-shortcuts.c \
-	frap-shortcuts.h \
-	frap-shortcuts-dialog.c \
-	frap-shortcuts-dialog.h \
 	command-dialog.c \
 	command-dialog.h \
 	keyboard-dialog_glade.h
@@ -32,18 +28,15 @@ xfce4_keyboard_settings_CFLAGS = \
 	$(LIBXKLAVIER_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
+	$(LIBXFCE4KBD_PRIVATE_CFLAGS) \
 	$(EXO_CFLAGS) \
 	$(XFCONF_CFLAGS)
-
-xfce4_keyboard_settings_DEPENDENCIES = \
-	$(top_builddir)/common/libcommon.la
 
 xfce4_keyboard_settings_LDFLAGS = \
 	-no-undefined \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_keyboard_settings_LDADD = \
-	$(top_builddir)/common/libcommon.la \
 	$(GTK_LIBS) \
 	$(GLIB_LIBS) \
 	$(GLADE_LIBS) \
@@ -51,6 +44,7 @@ xfce4_keyboard_settings_LDADD = \
 	$(LIBXKLAVIER_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
+	$(LIBXFCE4KBD_PRIVATE_LIBS) \
 	$(EXO_LIBS) \
 	$(XFCONF_LIBS)
 

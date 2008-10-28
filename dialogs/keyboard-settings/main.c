@@ -103,6 +103,8 @@ main (int    argc,
       return EXIT_FAILURE;
     }
 
+  DBG ("opt_socket_id = %i", opt_socket_id);
+
   if (G_UNLIKELY (opt_socket_id == 0))
     {
       /* Create and run the settings dialog */

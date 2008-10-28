@@ -36,13 +36,12 @@
 #include <exo/exo.h>
 #include <xfconf/xfconf.h>
 #include <libxfcegui4/libxfcegui4.h>
-
-#include "common/xfce-shortcuts-provider.h"
+#include <libxfce4kbd-private/xfce-shortcuts-provider.h>
+#include <libxfce4kbd-private/xfce-shortcut-dialog.h>
 
 #include "keyboard-dialog_glade.h"
 #include "xfce-keyboard-settings.h"
 #include "command-dialog.h"
-#include "frap-shortcuts-dialog.h"
 
 #ifdef HAVE_LIBXKLAVIER
 #include <libxklavier/xklavier.h>
@@ -122,7 +121,7 @@ static void                      xfce_keyboard_settings_edit_shortcut         (X
 static void                      xfce_keyboard_settings_edit_command          (XfceKeyboardSettings      *settings,
                                                                                GtkTreeView               *tree_view,
                                                                                GtkTreePath               *path);
-static gboolean                  xfce_keyboard_settings_validate_shortcut     (FrapShortcutsDialog       *dialog,
+static gboolean                  xfce_keyboard_settings_validate_shortcut     (XfceShortcutDialog        *dialog,
                                                                                const gchar               *shortcut,
                                                                                XfceKeyboardSettings      *settings);
 static XfceKeyboardShortcutInfo *xfce_keyboard_settings_get_shortcut_info     (XfceKeyboardSettings      *settings,
@@ -654,9 +653,9 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
       DBG ("shortcut = %s, command = %s", shortcut, command);
 
       /* Request a new shortcut from the user */
-      dialog = frap_shortcuts_dialog_new ("commands", command, command);
+      dialog = xfce_shortcut_dialog_new ("commands", command, command);
       g_signal_connect (dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
-      response = frap_shortcuts_dialog_run (FRAP_SHORTCUTS_DIALOG (dialog));
+      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (dialog));
 
       if (G_LIKELY (response == GTK_RESPONSE_OK))
         {
@@ -664,7 +663,7 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
           xfce_shortcuts_provider_reset_shortcut (settings->priv->provider, shortcut);
 
           /* Get the shortcut entered by the user */
-          new_shortcut = frap_shortcuts_dialog_get_shortcut (FRAP_SHORTCUTS_DIALOG (dialog));
+          new_shortcut = xfce_shortcut_dialog_get_shortcut (XFCE_SHORTCUT_DIALOG (dialog));
 
           /* Save new shortcut to the settings */
           xfce_shortcuts_provider_set_shortcut (settings->priv->provider, new_shortcut, command);
@@ -731,7 +730,7 @@ xfce_keyboard_settings_edit_command (XfceKeyboardSettings *settings,
 
 
 static gboolean
-xfce_keyboard_settings_validate_shortcut (FrapShortcutsDialog  *dialog,
+xfce_keyboard_settings_validate_shortcut (XfceShortcutDialog   *dialog,
                                           const gchar          *shortcut,
                                           XfceKeyboardSettings *settings)
 {
@@ -740,7 +739,7 @@ xfce_keyboard_settings_validate_shortcut (FrapShortcutsDialog  *dialog,
   gboolean                  accepted = TRUE;
   gint                      response;
 
-  g_return_val_if_fail (FRAP_IS_SHORTCUTS_DIALOG (dialog), FALSE);
+  g_return_val_if_fail (XFCE_IS_SHORTCUT_DIALOG (dialog), FALSE);
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), FALSE);
   g_return_val_if_fail (shortcut != NULL, FALSE);
 
@@ -760,12 +759,12 @@ xfce_keyboard_settings_validate_shortcut (FrapShortcutsDialog  *dialog,
 
   if (G_UNLIKELY (info != NULL))
     {
-      response = frap_shortcuts_conflict_dialog (xfce_shortcuts_provider_get_name (settings->priv->provider),
-                                                 xfce_shortcuts_provider_get_name (info->provider),
-                                                 shortcut,
-                                                 frap_shortcuts_dialog_get_action_name (dialog),
-                                                 info->shortcut->command,
-                                                 FALSE);
+      response = xfce_shortcut_conflict_dialog (xfce_shortcuts_provider_get_name (settings->priv->provider),
+                                                xfce_shortcuts_provider_get_name (info->provider),
+                                                shortcut,
+                                                xfce_shortcut_dialog_get_action_name (dialog),
+                                                info->shortcut->command,
+                                                FALSE);
 
       accepted = response == GTK_RESPONSE_ACCEPT;
 
@@ -941,17 +940,17 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
       gtk_widget_hide (command_dialog);
 
       /* Create shortcut dialog */
-      shortcut_dialog = frap_shortcuts_dialog_new ("commands", command, command);
+      shortcut_dialog = xfce_shortcut_dialog_new ("commands", command, command);
       g_signal_connect (shortcut_dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
 
       /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
-      response = frap_shortcuts_dialog_run (FRAP_SHORTCUTS_DIALOG (shortcut_dialog));
+      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (shortcut_dialog));
 
       /* Only continue if the shortcut dialog succeeded */
       if (G_LIKELY (response == GTK_RESPONSE_OK))
         {
           /* Get shortcut */
-          shortcut = frap_shortcuts_dialog_get_shortcut (FRAP_SHORTCUTS_DIALOG (shortcut_dialog));
+          shortcut = xfce_shortcut_dialog_get_shortcut (XFCE_SHORTCUT_DIALOG (shortcut_dialog));
 
           /* Save the new shortcut to xfconf */
           xfce_shortcuts_provider_set_shortcut (settings->priv->provider, shortcut, command);

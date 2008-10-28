@@ -40,6 +40,7 @@ xfce4_settings_helper_CFLAGS = \
 	$(XFCONF_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
+	$(LIBXFCE4KBD_PRIVATE_CFLAGS) \
 	$(LIBXKLAVIER_CFLAGS) \
 	$(XI_CFLAGS) \
 	$(LIBX11_CFLAGS) \
@@ -48,15 +49,11 @@ xfce4_settings_helper_CFLAGS = \
 	$(LIBWNCK_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
-xfce4_settings_helper_DEPENDENCIES = \
-	$(top_builddir)/common/libcommon.la
-
 xfce4_settings_helper_LDFLAGS = \
 	-no-undefined \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_settings_helper_LDADD = \
-	$(top_builddir)/common/libcommon.la \
 	$(GTK_LIBS) \
 	$(GLIB_LIBS) \
 	$(GTHREAD_LIBS) \
@@ -64,6 +61,7 @@ xfce4_settings_helper_LDADD = \
 	$(XFCONF_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
+	$(LIBXFCE4KBD_PRIVATE_LIBS) \
 	$(LIBXKLAVIER_LIBS) \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
