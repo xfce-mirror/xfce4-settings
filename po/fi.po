@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-20 18:18+0300\n"
+"POT-Creation-Date: 2008-10-29 01:41+0100\n"
 "PO-Revision-Date: 2008-10-20 18:29+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -189,7 +189,7 @@ msgstr "_Lukitse alas jäävät näppäimet"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 #: ../dialogs/display-settings/display-dialog.glade.h:8
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
 msgid "gtk-close"
@@ -636,7 +636,7 @@ msgid "Keyboard settings and shortcuts"
 msgstr "Näppäimistön asetukset ja pikanäppäimet"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:430
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:427
 msgid "Layout"
 msgstr "Asettelu"
 
@@ -681,40 +681,41 @@ msgid "_Repeat delay:"
 msgstr "_Toiston viive:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#, fuzzy
+msgid "_Reset to Defaults"
+msgstr "_Palauta oletus"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
 msgstr "_Palauta oletukset"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "gtk-add"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 msgid "gtk-cancel"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "gtk-delete"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "gtk-edit"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "gtk-help"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "gtk-ok"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
-msgid "gtk-remove"
-msgstr ""
-
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
-msgid "gtk-revert-to-saved"
+msgid "gtk-remove"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/main.c:70
@@ -730,27 +731,39 @@ msgstr "Ei voi yhdistää xfconf-taustaprosessiin. Syy: %s"
 msgid "Could not create the settings dialog."
 msgstr "Asetusdialogia ei voi luoda."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:352
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:351
 msgid "Command"
 msgstr "Komento"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:357
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:356
 msgid "Shortcut"
 msgstr "Pikanäppäin"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:426
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:423
 msgid "Active"
 msgstr "Käytössä"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:431
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:428
 msgid "Variant"
 msgstr "Muunnelma"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:930
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:927
 msgid "Shortcut command may not be empty."
 msgstr "Pikanäppäimen komento ei saa olla tyhjä."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1079
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1033
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#, fuzzy
+msgid "Reset to Defaults"
+msgstr "_Palauta oletus"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1035
+msgid ""
+"This will reset <b>all</b> shortcuts to their default values. Do you really "
+"want to do this?"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1088
 msgid ""
 "The system defaults will be\n"
 "restored next time you log in."
@@ -759,110 +772,13 @@ msgstr ""
 "palautetaan seuraavan\n"
 "kirjautumisen yhteydessä."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1082
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1091
 msgid "Warning"
 msgstr "Varoitus"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:4
 msgid "Xfce 4 Keyboard Settings"
 msgstr "Xfce 4 näppäimistön asetukset"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:53
-msgid ""
-"This shortcut is already being used by <b>another window manager action</b>. "
-"Which action do you want to use?"
-msgstr ""
-"Pikanäppäin on jo yhdistetty <b>toiseen ikkunamanagerin toimintoon</b>. "
-"Kumpaa toimintoa haluat käyttää?"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:54
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:57
-msgid "Use this action"
-msgstr "Käytä tätä toimintoa"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:54
-msgid "Keep the other one"
-msgstr "Säilytä toinen"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:56
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:59
-#, c-format
-msgid ""
-"The shortcut is already being used for the command <b>%s</b>. Which action "
-"do you want to use?"
-msgstr ""
-"Pikanäppäin on jo yhdistetty komentoon <b>%s</b>. Kumpaa toimintoa haluat "
-"käyttää?"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:57
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:60
-#, c-format
-msgid "Keep %s"
-msgstr "Pidä %s"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:60
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:63
-#, c-format
-msgid "Use %s"
-msgstr "Valitse %s"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:62
-msgid ""
-"The shortcut is already being used by a <b>window manager action</b>. Which "
-"action do you want to use?"
-msgstr ""
-"Pikanäppäin on jo yhdistetty <b>ikkunamanagerin toimintoon</b>. Kumpaa "
-"toimintoa haluat käyttää?"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:63
-msgid "Keep the window manager action"
-msgstr "Säilytä ikkunamanagerin toiminto"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:95
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:102
-#, c-format
-msgid "Conflicting actions for %s"
-msgstr "Päällekkäismääritys pikanäppäimelle %s"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:134
-msgid "The shortcut is already being used for something else."
-msgstr "Pikanäppäin on jo muussa käytössä."
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:243
-msgid "Enter window manager action shortcut"
-msgstr "Valitse ikkunamanagerin toiminnon pikanäppäin"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:244
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:254
-#, c-format
-msgid "Action: %s"
-msgstr "Toiminto: %s"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:248
-msgid "Enter command shortcut"
-msgstr "Valitse komennon pikanäppäin"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:249
-#, c-format
-msgid "Command: %s"
-msgstr "Komento: %s"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:253
-msgid "Enter shortcut"
-msgstr "Valitse pikanäppäin"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:284
-msgid "Shortcut:"
-msgstr "Pikanäppäin"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:328
-msgid "Could not grab the keyboard."
-msgstr "Näppäimistöä ei voi kaapata."
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:349
-#, c-format
-msgid "<span size='large'><b>%s</b></span>"
-msgstr "<span size='large'><b>%s</b></span>"
 
 #: ../dialogs/mouse-settings/main.c:96
 msgid "Active device in the dialog"
@@ -1168,3 +1084,68 @@ msgstr ""
 "%s: %s\n"
 "Kirjoittamalla %s --help saat täyden listan komentorivivalitsimista.\n"
 
+#~ msgid ""
+#~ "This shortcut is already being used by <b>another window manager action</"
+#~ "b>. Which action do you want to use?"
+#~ msgstr ""
+#~ "Pikanäppäin on jo yhdistetty <b>toiseen ikkunamanagerin toimintoon</b>. "
+#~ "Kumpaa toimintoa haluat käyttää?"
+
+#~ msgid "Use this action"
+#~ msgstr "Käytä tätä toimintoa"
+
+#~ msgid "Keep the other one"
+#~ msgstr "Säilytä toinen"
+
+#~ msgid ""
+#~ "The shortcut is already being used for the command <b>%s</b>. Which "
+#~ "action do you want to use?"
+#~ msgstr ""
+#~ "Pikanäppäin on jo yhdistetty komentoon <b>%s</b>. Kumpaa toimintoa haluat "
+#~ "käyttää?"
+
+#~ msgid "Keep %s"
+#~ msgstr "Pidä %s"
+
+#~ msgid "Use %s"
+#~ msgstr "Valitse %s"
+
+#~ msgid ""
+#~ "The shortcut is already being used by a <b>window manager action</b>. "
+#~ "Which action do you want to use?"
+#~ msgstr ""
+#~ "Pikanäppäin on jo yhdistetty <b>ikkunamanagerin toimintoon</b>. Kumpaa "
+#~ "toimintoa haluat käyttää?"
+
+#~ msgid "Keep the window manager action"
+#~ msgstr "Säilytä ikkunamanagerin toiminto"
+
+#~ msgid "Conflicting actions for %s"
+#~ msgstr "Päällekkäismääritys pikanäppäimelle %s"
+
+#~ msgid "The shortcut is already being used for something else."
+#~ msgstr "Pikanäppäin on jo muussa käytössä."
+
+#~ msgid "Enter window manager action shortcut"
+#~ msgstr "Valitse ikkunamanagerin toiminnon pikanäppäin"
+
+#~ msgid "Action: %s"
+#~ msgstr "Toiminto: %s"
+
+#~ msgid "Enter command shortcut"
+#~ msgstr "Valitse komennon pikanäppäin"
+
+#~ msgid "Command: %s"
+#~ msgstr "Komento: %s"
+
+#~ msgid "Enter shortcut"
+#~ msgstr "Valitse pikanäppäin"
+
+#~ msgid "Shortcut:"
+#~ msgstr "Pikanäppäin"
+
+#~ msgid "Could not grab the keyboard."
+#~ msgstr "Näppäimistöä ei voi kaapata."
+
+#~ msgid "<span size='large'><b>%s</b></span>"
+#~ msgstr "<span size='large'><b>%s</b></span>"

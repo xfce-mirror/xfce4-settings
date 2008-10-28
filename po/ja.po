@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-19 02:45+0200\n"
+"POT-Creation-Date: 2008-10-29 01:41+0100\n"
 "PO-Revision-Date: 2008-10-19 16:35+0900\n"
 "Last-Translator: HASHIMOTO Masato <cabezon.hashimo@gmail.com>\n"
 "Language-Team: Japanese  <xfce-users-jp@ml.fdiary.net>\n"
@@ -186,7 +186,7 @@ msgstr "スティッキーキーをロック(_L)"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 #: ../dialogs/display-settings/display-dialog.glade.h:8
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
 msgid "gtk-close"
@@ -222,7 +222,7 @@ msgid "Version information"
 msgstr "バージョン情報"
 
 #: ../dialogs/accessibility-settings/main.c:145
-#: ../dialogs/appearance-settings/main.c:789
+#: ../dialogs/appearance-settings/main.c:791
 #: ../dialogs/display-settings/main.c:643
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
@@ -232,7 +232,7 @@ msgid "Type '%s --help' for usage."
 msgstr "'%s --help' と入力すると使用方法が表示されます"
 
 #: ../dialogs/accessibility-settings/main.c:164
-#: ../dialogs/appearance-settings/main.c:808
+#: ../dialogs/appearance-settings/main.c:810
 #: ../dialogs/display-settings/main.c:662
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
@@ -241,7 +241,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:165
-#: ../dialogs/appearance-settings/main.c:809
+#: ../dialogs/appearance-settings/main.c:811
 #: ../dialogs/display-settings/main.c:663
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
@@ -314,7 +314,9 @@ msgstr "入力音を有効にする(_N)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "全体のイベントサウンドの有効または無効にします (\"Canberra\" のサポートが必要)"
+msgstr ""
+"全体のイベントサウンドの有効または無効にします (\"Canberra\" のサポートが必"
+"要)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Enable or disable input feedback sounds (i.e. button clicks)"
@@ -379,52 +381,52 @@ msgstr "アイコン(_I)"
 msgid "_Settings"
 msgstr "設定(_S)"
 
-#: ../dialogs/appearance-settings/main.c:591
-#: ../dialogs/appearance-settings/main.c:684
+#: ../dialogs/appearance-settings/main.c:593
+#: ../dialogs/appearance-settings/main.c:686
 msgid "None"
 msgstr "なし"
 
-#: ../dialogs/appearance-settings/main.c:595
+#: ../dialogs/appearance-settings/main.c:597
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:599
+#: ../dialogs/appearance-settings/main.c:601
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:603
+#: ../dialogs/appearance-settings/main.c:605
 msgid "Vertical RGB"
 msgstr "垂直RGB"
 
-#: ../dialogs/appearance-settings/main.c:607
+#: ../dialogs/appearance-settings/main.c:609
 msgid "Vertical BGR"
 msgstr "垂直GBR"
 
-#: ../dialogs/appearance-settings/main.c:657
+#: ../dialogs/appearance-settings/main.c:659
 msgid "Icons"
 msgstr "アイコン"
 
-#: ../dialogs/appearance-settings/main.c:658
+#: ../dialogs/appearance-settings/main.c:660
 msgid "Text"
 msgstr "文字"
 
-#: ../dialogs/appearance-settings/main.c:659
+#: ../dialogs/appearance-settings/main.c:661
 msgid "Both"
 msgstr "アイコンと文字"
 
-#: ../dialogs/appearance-settings/main.c:660
+#: ../dialogs/appearance-settings/main.c:662
 msgid "Both Horizontal"
 msgstr "アイコンと文字 (水平方向)"
 
-#: ../dialogs/appearance-settings/main.c:685
+#: ../dialogs/appearance-settings/main.c:687
 msgid "Slight"
 msgstr "部分的"
 
-#: ../dialogs/appearance-settings/main.c:686
+#: ../dialogs/appearance-settings/main.c:688
 msgid "Medium"
 msgstr "中位"
 
-#: ../dialogs/appearance-settings/main.c:687
+#: ../dialogs/appearance-settings/main.c:689
 msgid "Full"
 msgstr "全体的"
 
@@ -634,7 +636,7 @@ msgid "Keyboard settings and shortcuts"
 msgstr "キーボードとショートカットキーの設定"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:430
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:427
 msgid "Layout"
 msgstr "レイアウト"
 
@@ -679,41 +681,42 @@ msgid "_Repeat delay:"
 msgstr "リピートするまでの時間(_R):"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#, fuzzy
+msgid "_Reset to Defaults"
+msgstr "デフォルトに戻す(_S)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
 msgstr "システムデフォルトを使用する(_U)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "gtk-add"
 msgstr "追加"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 msgid "gtk-cancel"
 msgstr "キャンセル"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "gtk-delete"
 msgstr "削除"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "gtk-edit"
 msgstr "編集"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "gtk-help"
 msgstr "ヘルプ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "gtk-ok"
 msgstr "OK"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "gtk-remove"
 msgstr "削除"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
-msgid "gtk-revert-to-saved"
-msgstr "元に戻す"
 
 #: ../dialogs/keyboard-settings/main.c:70
 msgid "Unable to initialize GTK+."
@@ -728,126 +731,51 @@ msgstr "xfconf デーモンへの接続に失敗しました。理由: %s"
 msgid "Could not create the settings dialog."
 msgstr "設定ダイアログボックスの生成ができませんでした。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:352
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:351
 msgid "Command"
 msgstr "コマンド"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:357
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:356
 msgid "Shortcut"
 msgstr "ショートカット"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:426
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:423
 msgid "Active"
 msgstr "アクティブ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:431
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:428
 msgid "Variant"
 msgstr "バリエーション"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:927
 msgid "Shortcut command may not be empty."
 msgstr "ショートカットするコマンドが入力されていません。"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1033
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#, fuzzy
+msgid "Reset to Defaults"
+msgstr "デフォルトに戻す(_S)"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1035
+msgid ""
+"This will reset <b>all</b> shortcuts to their default values. Do you really "
+"want to do this?"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1088
+msgid ""
+"The system defaults will be\n"
+"restored next time you log in."
+msgstr ""
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1091
+msgid "Warning"
+msgstr ""
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:4
 msgid "Xfce 4 Keyboard Settings"
 msgstr "Xfce 4 キーボード設定"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:53
-msgid ""
-"This shortcut is already being used by <b>another window manager action</b>. "
-"Which action do you want to use?"
-msgstr ""
-"このショートカットキーは既に<b>他のウィンドウマネージャの動作</b>で使用されて"
-"います。どちらの動作で使用しますか?"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:54
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:57
-msgid "Use this action"
-msgstr "この動作で使用"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:54
-msgid "Keep the other one"
-msgstr "他のもので継続使用"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:56
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:59
-#, c-format
-msgid ""
-"The shortcut is already being used for the command <b>%s</b>. Which action "
-"do you want to use?"
-msgstr ""
-"このショートカットキーは既に <b>%s</b> で使用されています。どちらの動作で使用し"
-"ますか?"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:57
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:60
-#, c-format
-msgid "Keep %s"
-msgstr "%s で継続使用"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:60
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:63
-#, c-format
-msgid "Use %s"
-msgstr "%s で使用"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:62
-msgid ""
-"The shortcut is already being used by a <b>window manager action</b>. Which "
-"action do you want to use?"
-msgstr ""
-"このショートカットキーは既に<b>ウィンドウマネージャの動作</b>で使用されていま"
-"す。どちらの動作で使用しますか?"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:63
-msgid "Keep the window manager action"
-msgstr "ウィンドウマネージャの動作で継続使用"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:95
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:102
-#, c-format
-msgid "Conflicting actions for %s"
-msgstr "%s で衝突している動作"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts.c:134
-msgid "The shortcut is already being used for something else."
-msgstr "このショートカットキーは他で使用されています。"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:242
-msgid "Enter window manager action shortcut"
-msgstr "ウィンドウマネージャの動作のショートカットキーを入力してください"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:243
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:253
-#, c-format
-msgid "Action: %s"
-msgstr "動作: %s"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:247
-msgid "Enter command shortcut"
-msgstr "コマンドに割り当てるショートカットキーを押してください"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:248
-#, c-format
-msgid "Command: %s"
-msgstr "コマンド: %s"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:252
-msgid "Enter shortcut"
-msgstr "ショートカットの入力"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:283
-msgid "Shortcut:"
-msgstr "ショートカットキー:"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:327
-msgid "Could not grab the keyboard."
-msgstr "キーボードを取得できませんでした。"
-
-#: ../dialogs/keyboard-settings/frap-shortcuts-dialog.c:348
-#, c-format
-msgid "<span size='large'><b>%s</b></span>"
-msgstr "<span size='large'><b>%s</b></span>"
 
 #: ../dialogs/mouse-settings/main.c:96
 msgid "Active device in the dialog"
@@ -1007,8 +935,8 @@ msgstr "ロック"
 msgid "Value"
 msgstr "値"
 
-#: ../xfce4-settings-editor/main_window.c:300
-#: ../xfce4-settings-editor/main_window.c:366
+#: ../xfce4-settings-editor/main_window.c:298
+#: ../xfce4-settings-editor/main_window.c:363
 msgid "Empty"
 msgstr "空"
 
@@ -1093,26 +1021,26 @@ msgstr "デバッグモードで起動 (バックグラウンドで fork しま�
 msgid "Workspace %d"
 msgstr "Workspace %d"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:139
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:147
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:518
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:536
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:137
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:145
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:527
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:545
 msgid "Xfce Settings Manager"
 msgstr "Xfce 設定マネージャ"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:140
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:146
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:138
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:144
 msgid "Customize your Xfce desktop"
 msgstr "Xfce デスクトップをカスタマイズします"
 
 #. Notify the user that there has been a problem
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:517
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:535
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:526
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:544
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "\"%s\" を起動できませんでした"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:582
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:591
 #, c-format
 msgid "Failed to open the documentation. Reason: %s"
 msgstr "ドキュメントを開けませんでした。理由: %s"
@@ -1146,3 +1074,72 @@ msgstr ""
 "%s: %s\n"
 "%s --help と入力すると利用可能な全てのコマンドラインオプションが表示されま"
 "す。\n"
+
+#~ msgid "gtk-revert-to-saved"
+#~ msgstr "元に戻す"
+
+#~ msgid ""
+#~ "This shortcut is already being used by <b>another window manager action</"
+#~ "b>. Which action do you want to use?"
+#~ msgstr ""
+#~ "このショートカットキーは既に<b>他のウィンドウマネージャの動作</b>で使用さ"
+#~ "れています。どちらの動作で使用しますか?"
+
+#~ msgid "Use this action"
+#~ msgstr "この動作で使用"
+
+#~ msgid "Keep the other one"
+#~ msgstr "他のもので継続使用"
+
+#~ msgid ""
+#~ "The shortcut is already being used for the command <b>%s</b>. Which "
+#~ "action do you want to use?"
+#~ msgstr ""
+#~ "このショートカットキーは既に <b>%s</b> で使用されています。どちらの動作で"
+#~ "使用しますか?"
+
+#~ msgid "Keep %s"
+#~ msgstr "%s で継続使用"
+
+#~ msgid "Use %s"
+#~ msgstr "%s で使用"
+
+#~ msgid ""
+#~ "The shortcut is already being used by a <b>window manager action</b>. "
+#~ "Which action do you want to use?"
+#~ msgstr ""
+#~ "このショートカットキーは既に<b>ウィンドウマネージャの動作</b>で使用されて"
+#~ "います。どちらの動作で使用しますか?"
+
+#~ msgid "Keep the window manager action"
+#~ msgstr "ウィンドウマネージャの動作で継続使用"
+
+#~ msgid "Conflicting actions for %s"
+#~ msgstr "%s で衝突している動作"
+
+#~ msgid "The shortcut is already being used for something else."
+#~ msgstr "このショートカットキーは他で使用されています。"
+
+#~ msgid "Enter window manager action shortcut"
+#~ msgstr "ウィンドウマネージャの動作のショートカットキーを入力してください"
+
+#~ msgid "Action: %s"
+#~ msgstr "動作: %s"
+
+#~ msgid "Enter command shortcut"
+#~ msgstr "コマンドに割り当てるショートカットキーを押してください"
+
+#~ msgid "Command: %s"
+#~ msgstr "コマンド: %s"
+
+#~ msgid "Enter shortcut"
+#~ msgstr "ショートカットの入力"
+
+#~ msgid "Shortcut:"
+#~ msgstr "ショートカットキー:"
+
+#~ msgid "Could not grab the keyboard."
+#~ msgstr "キーボードを取得できませんでした。"
+
+#~ msgid "<span size='large'><b>%s</b></span>"
+#~ msgstr "<span size='large'><b>%s</b></span>"
