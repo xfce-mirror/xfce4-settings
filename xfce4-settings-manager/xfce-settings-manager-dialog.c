@@ -603,13 +603,23 @@ xfce_settings_manager_dialog_response(GtkDialog *dialog,
     xfce_settings_manager_dialog_recreate_socket(sm_dialog);
 }
 
+static gboolean
+xfce_settings_manager_dialog_show_client(XfceSettingsManagerDialog *dialog)
+{
+    g_return_val_if_fail(XFCE_IS_SETTINGS_MANAGER_DIALOG(dialog), FALSE);
+
+    gtk_widget_show(dialog->client_frame);
+    return FALSE;
+}
+
 static void
 xfce_settings_manager_dialog_plug_added(GtkSocket *socket,
                                         XfceSettingsManagerDialog *dialog)
 {
-    /* TODO: Handle black glitches here, either using a timeout handler to 
-     * display the client frame or by doing something more clever */
-    gtk_widget_show(dialog->client_frame);
+    g_return_if_fail(XFCE_IS_SETTINGS_MANAGER_DIALOG(dialog));
+
+    g_timeout_add(250, (GSourceFunc) xfce_settings_manager_dialog_show_client, 
+                  dialog);
 }
 
 static gboolean
