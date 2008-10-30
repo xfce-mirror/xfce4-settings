@@ -467,10 +467,10 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
 {
     XfceSettingsManagerDialog *dialog = user_data;
     GtkTreeIter iter;
-    gchar *exec = NULL, *name, *comment, *icon_name, *primary, *help_file;
+    gchar *exec = NULL, *name, *comment, *icon_name, *primary, *help_file, 
+          *command;
     gboolean snotify = FALSE;
     gboolean pluggable = FALSE;
-    gchar *argv[3];
     GError *error = NULL;
 
     if(!gtk_tree_model_get_iter(GTK_TREE_MODEL(dialog->ls), &iter, path))
@@ -508,15 +508,12 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
         } 
 
         /* Build the dialog command */
-        argv[0] = exec;
-        argv[1] = g_strdup_printf("--socket-id=%d", 
+        command = g_strdup_printf("%s --socket-id=%d", exec,
                                   gtk_socket_get_id(GTK_SOCKET(dialog->socket)));
-        argv[2] = NULL;
 
         /* Try to spawn the dialog */
-        if(!gdk_spawn_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)), 
-                                NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, 
-                                NULL, &dialog->last_pid, &error))
+        if(!xfce_exec_on_screen (gtk_widget_get_screen(GTK_WIDGET(iconview)), 
+                                 command, FALSE, snotify, &error))
         {
             /* Spawning failed, go back to the overview */
             xfce_settings_manager_dialog_recreate_socket(dialog);
@@ -531,14 +528,14 @@ xfce_settings_manager_dialog_item_activated(GtkIconView *iconview,
             g_error_free(error);
         }
 
-        g_free(argv[1]);
+        g_free(command);
     } else {
         /* Switch to the main view (just to be sure) */
         xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 
         /* Try to spawn the dialog */
-        if (!gdk_spawn_command_line_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)), 
-                                              exec, &error))
+        if (!xfce_exec_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)),
+                                 exec, FALSE, snotify, &error))
         {
             /* Notify the user that there has been a problem */
             primary = g_strdup_printf(_("Unable to start \"%s\""), exec);

@@ -116,8 +116,10 @@ main (int    argc,
     {
       /* Embedd the settings dialog into the given socket ID */
       plug = xfce_keyboard_settings_create_plug (settings, opt_socket_id);
-
       g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+
+      /* Stop startup notification */
+      gdk_notify_startup_complete ();
 
       /* Enter the main loop */
       gtk_main ();

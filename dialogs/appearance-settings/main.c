@@ -849,9 +849,11 @@ main(gint argc, gchar **argv)
             {
                 /* Create plug widget */
                 plug = gtk_plug_new (opt_socket_id);
+                g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
                 gtk_widget_show (plug);
 
-                g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+                /* Stop startup notification */
+                gdk_notify_startup_complete ();
 
                 /* Get plug child widget */
                 plug_child = glade_xml_get_widget (gxml, "plug-child");
