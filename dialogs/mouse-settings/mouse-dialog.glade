@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sun Sep 14 21:05:11 2008 -->
+<!--Generated with glade3 3.4.5 on Fri Oct 31 00:44:15 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="mouse-dialog">
-    <property name="title" translatable="yes">Mouse Settings</property>
+    <property name="title" translatable="yes">Mouse</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
     <property name="icon_name">preferences-desktop-peripherals</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="has_separator">False</property>
-    <property name="subtitle" translatable="yes">Configure pointer device behavior, look, and feel</property>
+    <property name="subtitle" translatable="yes">Configure pointer device behavior and appearance</property>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -195,7 +195,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="tooltip" translatable="yes">Set the acceleration and threshold for the selected device to the default values</property>
-                                        <property name="label" translatable="yes">Re_set to default</property>
+                                        <property name="label" translatable="yes">Re_set to Defaults</property>
                                         <property name="use_underline">True</property>
                                         <property name="response_id">0</property>
                                       </widget>
@@ -418,6 +418,7 @@
                     <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
                     <child>
                       <widget class="GtkTreeView" id="mouse-theme-treeview">
+                        <property name="width_request">200</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="headers_visible">False</property>

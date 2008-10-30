@@ -134,16 +134,16 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     dialog->socket = NULL;
     dialog->last_pid = -1;
 
-    dialog->default_title = _("Xfce Settings Manager");
-    dialog->default_subtitle = _("Customize your Xfce desktop");
+    dialog->default_title = _("Settings");
+    dialog->default_subtitle = _("Customize your desktop");
     dialog->default_icon = "preferences-desktop";
 
     dialog->help_file = NULL;
 
     xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dialog),
-                                    _("Customize your Xfce desktop"));
-    gtk_window_set_title(GTK_WINDOW(dialog), _("Xfce Settings Manager"));
-    gtk_window_set_icon_name(GTK_WINDOW(dialog), "preferences-desktop");
+                                    dialog->default_subtitle);
+    gtk_window_set_title(GTK_WINDOW(dialog), dialog->default_title);
+    gtk_window_set_icon_name(GTK_WINDOW(dialog), dialog->default_icon);
     gtk_dialog_set_has_separator(GTK_DIALOG(dialog), FALSE);
 
     dialog->content_frame = gtk_vbox_new(FALSE, 0);

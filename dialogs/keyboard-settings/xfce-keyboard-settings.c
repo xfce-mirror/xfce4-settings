@@ -47,10 +47,7 @@
 #include <libxklavier/xklavier.h>
 #endif /* HAVE_LIBXKLAVIER */
 
-#define DEFAULT_BASE_PROPERTY        "/commands/default"
 #define CUSTOM_BASE_PROPERTY         "/commands/custom"
-#define DEFAULT_BASE_PROPERTY_FORMAT "/%s/default"
-#define CUSTOM_BASE_PROPERTY_FORMAT  "/%s/custom"
 
 #define COMMAND_COLUMN  0
 #define SHORTCUT_COLUMN 1
@@ -1069,7 +1066,11 @@ xfce_keyboard_settings_system_default_cb (GtkToggleButton *toggle, XfceKeyboardS
 {
   GtkWidget *xkb_model_frame;
   GtkWidget *xkb_layout_frame;
-  gboolean use_system_defaults;
+  GtkWidget *warning_dialog;
+  gboolean   use_system_defaults;
+
+  g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
+  g_return_if_fail (GLADE_IS_XML (settings->priv->glade_xml));
 
   use_system_defaults = gtk_toggle_button_get_active (toggle);
   xkb_model_frame = glade_xml_get_widget (settings->priv->glade_xml, "xkb_model_frame");
@@ -1080,14 +1081,9 @@ xfce_keyboard_settings_system_default_cb (GtkToggleButton *toggle, XfceKeyboardS
 
   if (use_system_defaults)
     {
-      GtkWidget *warning_dialog;
-
-      warning_dialog = gtk_message_dialog_new (NULL, 0,
-                                         GTK_MESSAGE_WARNING,
-                                         GTK_BUTTONS_OK,
-                                         _("The system defaults will be\n"
-                                         "restored next time you log in."));
-
+      warning_dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK,
+                                               _("The system defaults will be "
+                                                 "restored next time you log in."));
       gtk_window_set_title (GTK_WINDOW (warning_dialog), _("Warning"));
       gtk_dialog_run (GTK_DIALOG (warning_dialog));
       gtk_widget_destroy (warning_dialog);
