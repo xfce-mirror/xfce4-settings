@@ -3,7 +3,6 @@
  *  xfce4-settings-manager
  *
  *  Copyright (c) 2008 Brian Tarricone <bjt23@cornell.edu>
- *                     Jannis Pohlmann <jannis@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -38,10 +37,8 @@
 
 /* somewhat arbitrary; should really do something complicated by
  * looking at font height/avg width, pixbuf height, etc. */
-/* These values should be ok from anything starting from a
- * 800x600 resolution */
-#define WINDOW_MIN_WIDTH   640
-#define WINDOW_MIN_HEIGHT  480
+#define WINDOW_MAX_WIDTH   800
+#define WINDOW_MAX_HEIGHT  600
 
 static gboolean opt_version = FALSE;
 
@@ -65,11 +62,9 @@ xfce_settings_manager_attempt_appropriate_size(GtkWidget *dialog)
 
     gdk_screen_get_monitor_geometry(screen, monitor, &geom);
 
-    /* Use 2/3 of the screen width and height and fall back to the pre-defined
-     * minimum size if that's considered too small */
     gtk_window_set_default_size(GTK_WINDOW(dialog),
-                                MAX(geom.width * 2.0 / 3, WINDOW_MIN_WIDTH),
-                                MAX(geom.height * 2.0 / 3, WINDOW_MIN_HEIGHT));
+                                MIN(geom.width * 2.0 / 3, WINDOW_MAX_WIDTH),
+                                MIN(geom.height *2.0 / 3, WINDOW_MAX_HEIGHT));
 }
 
 int
