@@ -155,8 +155,6 @@ static void                      xfce_keyboard_settings_active_layout_cb      (G
 static void                      xfce_keyboard_settings_update_layout_buttons (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_update_edit_button    (GtkTreeView               *tree_view,
                                                                                XfceKeyboardSettings      *settings);
-static void                      xfce_keyboard_settings_del_layout_button_cb  (GtkWidget                 *widget,
-                                                                               XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_update_edit_button    (GtkTreeView               *tree_view,
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_edit_layout_button_cb (GtkWidget                 *widget,
@@ -310,6 +308,9 @@ xfce_keyboard_settings_constructed (GObject *object)
   GtkWidget            *xkb_layout_add_button;
   GtkWidget            *xkb_layout_edit_button;
   GtkWidget            *xkb_layout_delete_button;
+  GtkWidget            *xkb_model_frame;
+  GtkWidget            *xkb_layout_frame;
+  gboolean              use_system_defaults;
 #endif /* HAVE_LIBXKLAVIER */
 
   /* XKB settings */
@@ -388,6 +389,11 @@ xfce_keyboard_settings_constructed (GObject *object)
   xkb_use_system_default_checkbutton = glade_xml_get_widget (settings->priv->glade_xml, "xkb_use_system_default_checkbutton");
   xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
                              (GObject *) xkb_use_system_default_checkbutton, "active");
+  use_system_defaults = gtk_toggle_button_get_active (xkb_use_system_default_checkbutton);
+  xkb_model_frame = glade_xml_get_widget (settings->priv->glade_xml, "xkb_model_frame");
+  xkb_layout_frame = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_frame");
+  gtk_widget_set_sensitive (xkb_model_frame, !use_system_defaults);
+  gtk_widget_set_sensitive (xkb_layout_frame, !use_system_defaults);
   g_signal_connect (G_OBJECT (xkb_use_system_default_checkbutton),
                     "toggled",
                     G_CALLBACK (xfce_keyboard_settings_system_default_cb),
