@@ -40,6 +40,18 @@ static GladeXML *gxml_main_window = NULL;
 static XfconfChannel *current_channel = NULL;
 static gchar *current_property = NULL;
 
+enum {
+    PROP_TYPE_EMPTY,
+    PROP_TYPE_STRING,
+    PROP_TYPE_INT,
+    PROP_TYPE_UINT,
+    PROP_TYPE_INT64,
+    PROP_TYPE_UINT64,
+    PROP_TYPE_DOUBLE,
+    PROP_TYPE_BOOLEAN,
+    PROP_TYPE_ARRAY /* Not used yet */
+};
+
 static void
 load_channels (GtkListStore *store, GtkTreeView *treeview);
 static void
@@ -488,50 +500,135 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
     GValue value = {0, };
     gchar *prop_name = NULL;
 
+    GtkWidget *property_treeview = glade_xml_get_widget (gxml_main_window, "property_treeview");
+    GtkTreeModel *tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
     GtkWidget *dialog = glade_xml_get_widget (gxml_main_window, "edit_settings_dialog");
     GtkWidget *prop_name_entry = glade_xml_get_widget (gxml_main_window, "property_name_entry");
     GtkWidget *prop_type_combo = glade_xml_get_widget (gxml_main_window, "property_type_combo");
+
+    GtkWidget *prop_value_text_entry = glade_xml_get_widget (gxml_main_window, "property_value_text_entry");
+    GtkWidget *prop_value_spin_button = glade_xml_get_widget (gxml_main_window, "property_value_spin_button");
+    GtkAdjustment *spin_button_adj = gtk_spin_button_get_adjustment (GTK_SPIN_BUTTON (prop_value_spin_button));
+    GtkWidget *prop_value_sw = glade_xml_get_widget (gxml_main_window, "property_value_sw");
+    GtkWidget *prop_value_checkbox = glade_xml_get_widget (gxml_main_window, "property_value_checkbutton");
 
 
     /* Set the correct properties in the ui */
     gtk_entry_set_text (GTK_ENTRY(prop_name_entry), current_property);
     if (xfconf_channel_get_property (current_channel, current_property, &value))
     {
-        g_debug ("%s", g_type_name (G_VALUE_TYPE (&value)));
         switch (G_VALUE_TYPE(&value))      
         {
             case G_TYPE_STRING:
-                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 1);
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_STRING);
+                gtk_widget_hide (prop_value_spin_button);
+                gtk_widget_show (prop_value_text_entry);
+                gtk_widget_hide (prop_value_sw);
+                gtk_widget_hide (prop_value_checkbox);
+                gtk_entry_set_text (GTK_ENTRY (prop_value_text_entry), g_value_get_string (&value));
                 break;
             case G_TYPE_INT:
-                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 2);
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_INT);
+                gtk_widget_show (prop_value_spin_button);
+                gtk_widget_hide (prop_value_text_entry);
+                gtk_widget_hide (prop_value_sw);
+                gtk_widget_hide (prop_value_checkbox);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_int (&value));
+                gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), G_MININT, G_MAXINT);
+                gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
                 break;
             case G_TYPE_UINT:
-                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 3);
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_UINT);
+                gtk_widget_show (prop_value_spin_button);
+                gtk_widget_hide (prop_value_text_entry);
+                gtk_widget_hide (prop_value_sw);
+                gtk_widget_hide (prop_value_checkbox);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_uint (&value));
+                gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), 0, G_MAXINT);
+                gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
                 break;
             case G_TYPE_INT64:
-                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 4);
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_INT64);
+                gtk_widget_show (prop_value_spin_button);
+                gtk_widget_hide (prop_value_text_entry);
+                gtk_widget_hide (prop_value_sw);
+                gtk_widget_hide (prop_value_checkbox);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_int64 (&value));
+                gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), G_MININT64, G_MAXINT64);
+                gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
                 break;
             case G_TYPE_UINT64:
-                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 5);
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_UINT64);
+                gtk_widget_show (prop_value_spin_button);
+                gtk_widget_hide (prop_value_text_entry);
+                gtk_widget_hide (prop_value_sw);
+                gtk_widget_hide (prop_value_checkbox);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_uint64 (&value));
+                gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), 0, G_MAXUINT64);
+                gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
                 break;
             case G_TYPE_DOUBLE:
-                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 6);
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_DOUBLE);
+                gtk_widget_show (prop_value_spin_button);
+                gtk_widget_hide (prop_value_text_entry);
+                gtk_widget_hide (prop_value_sw);
+                gtk_widget_hide (prop_value_checkbox);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_double (&value));
+                gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), G_MINDOUBLE, G_MAXDOUBLE);
+                gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 2);
                 break;
             case G_TYPE_BOOLEAN:
-                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 7);
+                gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_BOOLEAN);
+                gtk_widget_hide (prop_value_spin_button);
+                gtk_widget_hide (prop_value_text_entry);
+                gtk_widget_hide (prop_value_sw);
+                gtk_widget_show (prop_value_checkbox);
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prop_value_checkbox), g_value_get_boolean (&value));
+                break;
+            default:
+                return;
                 break;
         }
     }
     else
     {
-        gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), 0);
+        gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_EMPTY);
     }
     
     if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_APPLY)
     {
-        
         gtk_widget_hide (dialog);
+        switch (gtk_combo_box_get_active (GTK_COMBO_BOX (prop_type_combo)))
+        {
+            case PROP_TYPE_EMPTY:
+                break;
+            case PROP_TYPE_STRING:
+                g_value_set_string (&value, gtk_entry_get_text (GTK_ENTRY (prop_value_text_entry))); 
+                break;
+            case PROP_TYPE_INT:
+                g_value_set_int (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                break;
+            case PROP_TYPE_UINT:
+                g_value_set_uint (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                break;
+            case PROP_TYPE_INT64:
+                g_value_set_int64 (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                break;
+            case PROP_TYPE_UINT64:
+                g_value_set_uint64 (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                break;
+            case PROP_TYPE_DOUBLE:
+                g_value_set_double (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                break;
+            case PROP_TYPE_BOOLEAN:
+                g_value_set_boolean (&value, gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (prop_value_checkbox))); 
+                break;
+            case PROP_TYPE_ARRAY:
+                break;
+        }   
+        xfconf_channel_set_property (current_channel, current_property, &value);
+        gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
+        load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
     }
     else
     {
