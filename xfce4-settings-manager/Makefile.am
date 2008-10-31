@@ -20,6 +20,7 @@ xfce4_settings_manager_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCEGUI4_CFLAGS) \
+	$(XFCONF_CFLAGS) \
 	$(EXO_CFLAGS)
 
 xfce4_settings_manager_LDFLAGS = \
@@ -30,6 +31,7 @@ xfce4_settings_manager_LDADD = \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCEGUI4_LIBS) \
+	$(XFCONF_LIBS) \
 	$(EXO_LIBS)
 
 desktopdir = $(datadir)/applications

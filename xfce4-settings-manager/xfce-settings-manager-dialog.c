@@ -37,8 +37,16 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <exo/exo.h>
+#include <xfconf/xfconf.h>
 
 #include "xfce-settings-manager-dialog.h"
+
+#ifndef MIN
+#define MIN(a, b)  ( (a) < (b) ? (a) : (b) )
+#endif
+
+#define WINDOW_MAX_WIDTH 800
+#define WINDOW_MAX_HEIGHT 600
 
 struct _XfceSettingsManagerDialog
 {
@@ -104,6 +112,11 @@ static void xfce_settings_manager_dialog_plug_added(GtkSocket *socket,
 static gboolean xfce_settings_manager_dialog_plug_removed(GtkSocket *socket,
                                                           XfceSettingsManagerDialog *dialog);
 static GtkWidget *xfce_settings_manager_dialog_recreate_socket(XfceSettingsManagerDialog *dialog);
+static void xfce_settings_manager_dialog_compute_default_size (XfceSettingsManagerDialog *dialog,
+                                                               gint *width,
+                                                               gint *height);
+static gboolean xfce_settings_manager_dialog_closed (GtkWidget *dialog,
+                                                     GdkEvent *event);
 #if GTK_CHECK_VERSION(2, 12, 0)
 static gboolean xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
                                                            gint x,
@@ -128,8 +141,10 @@ xfce_settings_manager_dialog_class_init(XfceSettingsManagerDialogClass *klass)
 static void
 xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 {
+    XfconfChannel *channel;
     GtkWidget *iconview, *scrollwin;
     GtkCellRenderer *render;
+    gint width, height;
 
     dialog->socket = NULL;
     dialog->last_pid = -1;
@@ -139,6 +154,14 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     dialog->default_icon = "preferences-desktop";
 
     dialog->help_file = NULL;
+
+    channel = xfconf_channel_get("xfce4-settings-manager");
+    xfce_settings_manager_dialog_compute_default_size(dialog, &width, &height);
+    width = xfconf_channel_get_int(channel, "/window-width", width);
+    height = xfconf_channel_get_int(channel, "/window-height", height);
+    gtk_window_set_default_size(GTK_WINDOW(dialog), width, height);
+
+    g_signal_connect(dialog, "delete-event", G_CALLBACK(xfce_settings_manager_dialog_closed), NULL);
 
     xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dialog),
                                     dialog->default_subtitle);
@@ -250,7 +273,7 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
                      dialog);
 
     gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CLOSE,
-                          GTK_RESPONSE_ACCEPT);
+                          GTK_RESPONSE_CLOSE);
 
     xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 }
@@ -599,6 +622,10 @@ xfce_settings_manager_dialog_response(GtkDialog *dialog,
 {
     XfceSettingsManagerDialog *sm_dialog = XFCE_SETTINGS_MANAGER_DIALOG(dialog);
 
+    if(response == GTK_RESPONSE_CLOSE) {
+        xfce_settings_manager_dialog_closed(GTK_WIDGET(dialog), NULL);
+    }
+
     /* Make sure the currently embedded dialog is killed before exiting */
     xfce_settings_manager_dialog_recreate_socket(sm_dialog);
 }
@@ -652,6 +679,44 @@ xfce_settings_manager_dialog_recreate_socket(XfceSettingsManagerDialog *dialog)
                      dialog);
 
     return dialog->socket;
+}
+
+static void
+xfce_settings_manager_dialog_compute_default_size (XfceSettingsManagerDialog *dialog,
+                                                   gint *width,
+                                                   gint *height)
+{
+    GdkRectangle screen_size;
+    GdkScreen *screen;
+    gint monitor;
+  
+    screen = gtk_widget_get_screen(GTK_WIDGET(dialog));
+  
+    gtk_widget_realize(GTK_WIDGET(dialog));
+    monitor = gdk_screen_get_monitor_at_window(screen, GTK_WIDGET(dialog)->window);
+    gtk_widget_unrealize(GTK_WIDGET(dialog));
+  
+    gdk_screen_get_monitor_geometry (screen, monitor, &screen_size);
+  
+    *width = MIN(screen_size.width * 2.0 / 3, WINDOW_MAX_WIDTH);
+    *height = MIN(screen_size.height * 2.0 / 3, WINDOW_MAX_HEIGHT);
+}
+
+static gboolean
+xfce_settings_manager_dialog_closed (GtkWidget *dialog,
+                                     GdkEvent *event)
+{
+    XfconfChannel *channel;
+    gint width, height;
+
+    g_return_val_if_fail(XFCE_IS_SETTINGS_MANAGER_DIALOG(dialog),FALSE);
+
+    channel = xfconf_channel_get("xfce4-settings-manager");
+    gtk_window_get_size(GTK_WINDOW(dialog), &width, &height);
+    xfconf_channel_set_int(channel, "/window-width", width);
+    xfconf_channel_set_int(channel, "/window-height", height);
+
+    return FALSE;
 }
 
 #if GTK_CHECK_VERSION(2, 12, 0)

@@ -31,15 +31,6 @@
 
 #include "xfce-settings-manager-dialog.h"
 
-#ifndef MIN
-#define MIN(a, b)  ( (a) < (b) ? (a) : (b) )
-#endif
-
-/* somewhat arbitrary; should really do something complicated by
- * looking at font height/avg width, pixbuf height, etc. */
-#define WINDOW_MAX_WIDTH   800
-#define WINDOW_MAX_HEIGHT  600
-
 static gboolean opt_version = FALSE;
 
 static GOptionEntry option_entries[] = {
@@ -47,25 +38,6 @@ static GOptionEntry option_entries[] = {
       N_("Version information"), NULL },
     { NULL }
 };
-
-static void
-xfce_settings_manager_attempt_appropriate_size(GtkWidget *dialog)
-{
-    GdkScreen *screen = gtk_widget_get_screen(dialog);
-    gint monitor;
-    GdkRectangle geom;
-
-    /* this is a little bit lame */
-    gtk_widget_realize(dialog);
-    monitor = gdk_screen_get_monitor_at_window(screen, dialog->window);
-    gtk_widget_unrealize(dialog);
-
-    gdk_screen_get_monitor_geometry(screen, monitor, &geom);
-
-    gtk_window_set_default_size(GTK_WINDOW(dialog),
-                                MIN(geom.width * 2.0 / 3, WINDOW_MAX_WIDTH),
-                                MIN(geom.height *2.0 / 3, WINDOW_MAX_HEIGHT));
-}
 
 int
 main(int argc,
@@ -98,8 +70,18 @@ main(int argc,
         return EXIT_SUCCESS;
     }
 
+    if(G_UNLIKELY(!xfconf_init (&error))) {
+        if(G_LIKELY(error != NULL)) {
+            g_error("%s: Failed to initialize xfconf: %s.\n", G_LOG_DOMAIN, 
+                    error->message);
+            g_error_free(error);
+        } else {
+            g_error("Failed to initialize xfconf.");
+        }
+        return EXIT_FAILURE;
+    }
+
     dialog = xfce_settings_manager_dialog_new();
-    xfce_settings_manager_attempt_appropriate_size(dialog);
     gtk_widget_show(dialog);
     g_signal_connect(G_OBJECT(dialog), "response",
                      G_CALLBACK(gtk_main_quit), NULL);
@@ -107,6 +89,8 @@ main(int argc,
     gtk_main();
 
     gtk_widget_destroy(dialog);
+
+    xfconf_shutdown();
 
     return EXIT_SUCCESS;
 }
