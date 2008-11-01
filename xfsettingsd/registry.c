@@ -230,7 +230,7 @@ xsettings_registry_init(XSettingsRegistry *registry)
     g_value_set_boolean (&properties[XSETTING_ENTRY_NET_CURSORBLINK].value, TRUE);
     g_value_set_int (&properties[XSETTING_ENTRY_NET_CURSORBLINKTIME].value, 1200);
     g_value_set_string (&properties[XSETTING_ENTRY_NET_THEMENAME].value, "Default");
-    g_value_set_string (&properties[XSETTING_ENTRY_NET_ICONTHEMENAME].value, "hicolor");
+    g_value_set_string (&properties[XSETTING_ENTRY_NET_ICONTHEMENAME].value, "Rodent");
     g_value_set_string (&properties[XSETTING_ENTRY_NET_SOUNDTHEMENAME].value, "default");
     g_value_set_boolean (&properties[XSETTING_ENTRY_NET_ENABLESOUNDEVENTS].value, FALSE);
     g_value_set_boolean (&properties[XSETTING_ENTRY_NET_ENABLEINPUTFEEDBACKSOUNDS].value, FALSE);

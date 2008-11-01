@@ -236,7 +236,7 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
     GSList       *check_list = NULL;
 
     /* Determine current theme */
-    active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "hicolor");
+    active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Rodent");
 
     /* Determine directories to look in for icon themes */
     xfce_resource_push_path (XFCE_RESOURCE_ICONS, DATADIR G_DIR_SEPARATOR_S "icons");
