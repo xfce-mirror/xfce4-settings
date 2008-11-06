@@ -64,7 +64,8 @@ static GOptionEntry option_entries[] =
 
 
 static void
-signal_handler (gint signum)
+signal_handler (gint signum,
+                gpointer user_data)
 {
     /* quit the main loop */
     gtk_main_quit ();
@@ -165,8 +166,11 @@ main (gint argc, gchar **argv)
     workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
 
     /* setup signal handlers to properly quit the main loop */
-    for (i = 0; i < G_N_ELEMENTS (signums); i++)
-        signal (signums[i], signal_handler);
+    if (xfce_posix_signal_handler_init (NULL))
+    {
+        for (i = 0; i < G_N_ELEMENTS (signums); i++)
+            xfce_posix_signal_handler_set_handler (signums[i], signal_handler, NULL, NULL);
+    }
 
     /* enter the main loop */
     gtk_main();
