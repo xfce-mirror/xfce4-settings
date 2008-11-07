@@ -297,6 +297,6 @@ xfce_displays_helper_channel_property_changed (XfconfChannel      *channel,
         }
         
         /* remove the apply property */
-        xfconf_channel_remove_property (channel, "/Schemes/Apply");
+        xfconf_channel_reset_property (channel, "/Schemes/Apply", FALSE);
     }
 }

@@ -201,14 +201,14 @@ xfce_randr_save_device (XfceRandr     *randr,
     if (G_LIKELY (resolution_name != NULL))
         xfconf_channel_set_string (channel, property, resolution_name);
     else
-        xfconf_channel_remove_property (channel, property);
+        xfconf_channel_reset_property (channel, property, FALSE);
 
     /* save the refresh rate */
     g_snprintf (property, sizeof (property), "/%s/%s/RefreshRate", scheme, distinct);
     if (G_LIKELY (refresh_rate > 0.00))
         xfconf_channel_set_double (channel, property, refresh_rate);
     else
-        xfconf_channel_remove_property (channel, property);
+        xfconf_channel_reset_property (channel, property, FALSE););
 
     /* convert the rotation into degrees */
     switch (randr->rotation[output])
@@ -243,7 +243,7 @@ xfce_randr_save_device (XfceRandr     *randr,
     else
     {
         /* remove an existing postion */
-        xfconf_channel_remove_property (channel, property);
+        xfconf_channel_reset_property (channel, property, FALSE);
     }
 }
 
