@@ -8,6 +8,7 @@ INCLUDES = \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-settings-helper\" \
 	-DWNCK_I_KNOW_THIS_IS_UNSTABLE \
+	-DAUTOSTART_FILENAME=\"$(autostart_DATA)\" \
 	$(PLATFORM_CPPFLAGS)
 
 bin_PROGRAMS = \
