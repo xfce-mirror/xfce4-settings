@@ -27,6 +27,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 
 #include "xfce-settings-manager-dialog.h"

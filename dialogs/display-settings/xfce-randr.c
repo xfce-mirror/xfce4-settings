@@ -208,7 +208,7 @@ xfce_randr_save_device (XfceRandr     *randr,
     if (G_LIKELY (refresh_rate > 0.00))
         xfconf_channel_set_double (channel, property, refresh_rate);
     else
-        xfconf_channel_reset_property (channel, property, FALSE););
+        xfconf_channel_reset_property (channel, property, FALSE);
 
     /* convert the rotation into degrees */
     switch (randr->rotation[output])

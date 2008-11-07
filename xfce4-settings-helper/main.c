@@ -171,7 +171,6 @@ xfce_settings_helper_acquire_selection ()
     GdkWindow *rootwin = gdk_screen_get_root_window (gdk_display_get_screen (gdpy, 0));
     Window xroot = GDK_WINDOW_XID (rootwin);
     Window xwin;
-    gchar selection_name[128];
     Atom selection_atom, manager_atom;
     XClientMessageEvent xev;
 

@@ -508,7 +508,6 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
 
     GtkWidget *prop_value_text_entry = glade_xml_get_widget (gxml_main_window, "property_value_text_entry");
     GtkWidget *prop_value_spin_button = glade_xml_get_widget (gxml_main_window, "property_value_spin_button");
-    GtkAdjustment *spin_button_adj = gtk_spin_button_get_adjustment (GTK_SPIN_BUTTON (prop_value_spin_button));
     GtkWidget *prop_value_sw = glade_xml_get_widget (gxml_main_window, "property_value_sw");
     GtkWidget *prop_value_checkbox = glade_xml_get_widget (gxml_main_window, "property_value_checkbutton");
 
