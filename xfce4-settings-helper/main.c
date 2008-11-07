@@ -39,8 +39,15 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#include <X11/X.h>
+#include <X11/Xlib.h>
+#endif
+
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
+#include <libxfcegui4/libxfcegui4.h>
 
 #include "accessibility.h"
 #include "displays.h"
@@ -54,10 +61,12 @@
 
 static gboolean opt_version = FALSE;
 static gboolean opt_debug = FALSE;
+static gchar   *opt_sm_client_id = NULL;
 static GOptionEntry option_entries[] =
 {
-    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+    { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { "debug", 'd', 0, G_OPTION_ARG_NONE, &opt_debug, N_("Start in debug mode (don't fork to the background)"), NULL },
+    { "sm-client-id", 0, 0, G_OPTION_ARG_STRING, &opt_sm_client_id, N_("Client id used when resuming session"), NULL },
     { NULL }
 };
 
@@ -71,6 +80,136 @@ signal_handler (gint signum,
     gtk_main_quit ();
 }
 
+
+static void
+sm_client_die (gpointer client_data)
+{
+    signal_handler (SIGTERM, client_data);
+}
+
+
+static gboolean
+xfce_settings_helper_set_autostart_enabled (gboolean enabled)
+{
+    gboolean ret = TRUE;
+    XfceRc *rcfile = xfce_rc_config_open (XFCE_RESOURCE_CONFIG,
+                                          "autostart/" AUTOSTART_FILENAME,
+                                          FALSE);
+
+    if (G_UNLIKELY (rcfile == NULL))
+    {
+        g_warning ("Failed to create per-user autostart directory");
+        return FALSE;
+    }
+
+    xfce_rc_set_group (rcfile, "Desktop Entry");
+    if (xfce_rc_read_bool_entry (rcfile, "Hidden", enabled) == enabled)
+    {
+        xfce_rc_write_bool_entry (rcfile, "Hidden", !enabled);
+        xfce_rc_flush (rcfile);
+    }
+
+    if (xfce_rc_is_dirty (rcfile))
+    {
+        g_warning ("Failed to write autostart file");
+        ret = FALSE;
+    }
+
+    xfce_rc_close (rcfile);
+
+    return ret;
+}
+
+
+/* returns TRUE if we're now connected to the SM, FALSE otherwise */
+static gboolean
+xfce_settings_helper_connect_session (int argc,
+                                      char **argv,
+                                      const gchar *sm_client_id)
+{
+    SessionClient *sm_client;
+
+    /* we can't be sure that the SM will save the session later, so we only
+     * disable the autostart item if we're launching because we got *resumed*
+     * from a previous session. */
+
+    sm_client = client_session_new (argc, argv, NULL,
+                                    SESSION_RESTART_IMMEDIATELY, 40);
+    sm_client->die = sm_client_die;
+    if (sm_client_id)
+        client_session_set_client_id (sm_client, sm_client_id);
+    if (!session_init (sm_client))
+    {
+        g_warning ("Failed to connect to session manager");
+        client_session_free (sm_client);
+        xfce_settings_helper_set_autostart_enabled (TRUE);
+        return FALSE;
+    }
+
+    if (sm_client_id && !g_ascii_strcasecmp (sm_client_id, sm_client->given_client_id))
+    {
+        /* we passed a client id, and got the same one back, which means
+         * we were definitely restarted as a part of the session.  so
+         * it's safe to disable the autostart item. */
+        xfce_settings_helper_set_autostart_enabled (FALSE);
+        return TRUE;
+    }
+
+    /* otherwise, let's just ensure the autostart item is enabled. */
+    xfce_settings_helper_set_autostart_enabled (TRUE);
+
+    return TRUE;
+}
+
+
+static gboolean
+xfce_settings_helper_acquire_selection ()
+{
+#ifdef GDK_WINDOWING_X11
+    GdkDisplay *gdpy = gdk_display_get_default ();
+    Display *dpy = GDK_DISPLAY_XDISPLAY (gdpy);
+    GdkWindow *rootwin = gdk_screen_get_root_window (gdk_display_get_screen (gdpy, 0));
+    Window xroot = GDK_WINDOW_XID (rootwin);
+    Window xwin;
+    gchar selection_name[128];
+    Atom selection_atom, manager_atom;
+    XClientMessageEvent xev;
+
+    xwin = XCreateSimpleWindow (dpy, xroot, -100, -100, 1, 1, 0, 0,
+                                XBlackPixel (GDK_DISPLAY (), 0));
+    XSelectInput (dpy, xwin, PropertyChangeMask | StructureNotifyMask);
+
+    selection_atom = XInternAtom (dpy, "_XFCE_SETTINGS_HELPER", False);
+    manager_atom = XInternAtom (dpy, "MANAGER", False);
+
+    if (XGetSelectionOwner (dpy, selection_atom) != None)
+    {
+        XDestroyWindow (dpy, xwin);
+        return FALSE;
+    }
+
+    XSetSelectionOwner (dpy, selection_atom, xwin, CurrentTime);
+
+    if (XGetSelectionOwner (dpy, selection_atom) != xwin)
+    {
+        XDestroyWindow (dpy, xwin);
+        return FALSE;
+    }
+
+    xev.type = ClientMessage;
+    xev.window = xroot;
+    xev.message_type = manager_atom;
+    xev.format = 32;
+    xev.data.l[0] = CurrentTime;
+    xev.data.l[1] = selection_atom;
+    xev.data.l[2] = xwin;
+    xev.data.l[3] = xev.data.l[4] = 0;
+
+    XSendEvent (dpy, xroot, False, StructureNotifyMask, (XEvent *)&xev);
+#endif
+
+    return TRUE;
+}
 
 
 gint
@@ -138,6 +277,12 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
+    if (!xfce_settings_helper_acquire_selection ())
+    {
+        g_printerr ("%s is already running\n", G_LOG_DOMAIN);
+        return EXIT_FAILURE;
+    }
+
     /* daemonize the process when not running in debug mode */
     if (!opt_debug)
     {
@@ -155,6 +300,8 @@ main (gint argc, gchar **argv)
             return EXIT_SUCCESS;
         }
     }
+
+    xfce_settings_helper_connect_session (argc, argv, opt_sm_client_id);
 
     /* create the sub daemons */
     pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);

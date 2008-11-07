@@ -2,6 +2,14 @@
 
   * Add an option to disable keyboard settings.
   * Default to "Rodent" icon theme instead of "hicolor" (Bug #4545)
+  * Use XfcePosixSignalHandler in xfce4-settings-helper to handle
+    signals, since calling gtk_main_quit() from a signal handler may
+    not be safe.
+  * Make xfce4-settings-helper connect to the session manager and use
+    the SmRestartImmediately facility to make sure it keeps running.
+    Disable the autostart .desktop file if we were restored from a
+    saved session.  Attempt to acquire an X selection on startup to
+    ensure multiple copies of the helper aren't running (bug 4577).
 
 4.5.91 (Xfce 4.6 beta1)
 
