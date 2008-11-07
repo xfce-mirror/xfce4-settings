@@ -297,7 +297,7 @@ main (gint argc, gchar **argv)
         else if (pid > 0)
         {
             /* succesfully created a fork, leave this instance */
-            return EXIT_SUCCESS;
+            _exit (EXIT_SUCCESS);
         }
     }
 
