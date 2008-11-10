@@ -218,6 +218,13 @@ xsettings_registry_class_init(XSettingsRegistryClass *reg_class)
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_WINDOW, pspec);
 }
 
+/**
+ *
+ * Initialize xsettings registry according to the defaults mentioned
+ * in the XSETTINGS-Registry-spec.
+ *
+ * Override inside xsettings.xml to set the XFCE defaults
+ */
 void
 xsettings_registry_init(XSettingsRegistry *registry)
 {
