@@ -33,10 +33,13 @@
 #include "xfce-settings-manager-dialog.h"
 
 static gboolean opt_version = FALSE;
+static gchar   *opt_dialog = NULL;
 
 static GOptionEntry option_entries[] = {
-    { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, 
+    { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, 
       N_("Version information"), NULL },
+    { "dialog", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_dialog, 
+      N_("Settings dialog to show"), NULL },
     { NULL }
 };
 
@@ -86,6 +89,11 @@ main(int argc,
     gtk_widget_show(dialog);
     g_signal_connect(G_OBJECT(dialog), "response",
                      G_CALLBACK(gtk_main_quit), NULL);
+
+    if(opt_dialog != NULL) {
+        xfce_settings_manager_dialog_show_dialog(XFCE_SETTINGS_MANAGER_DIALOG(dialog), 
+                                                 opt_dialog);
+    }
 
     gtk_main();
 
