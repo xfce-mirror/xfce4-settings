@@ -32,7 +32,7 @@ settingsdir = $(sysconfdir)/xdg/xfce4/xfconf/xfce-perchannel-xml
 settings_DATA = xsettings.xml
 
 EXTRA_DIST = \
-	xsettings.xml
+	$(settings_DATA)
 
 
 endif
