@@ -125,7 +125,8 @@ xfce_settings_helper_set_autostart_enabled (gboolean enabled)
 static gboolean
 xfce_settings_helper_connect_session (int argc,
                                       char **argv,
-                                      const gchar *sm_client_id)
+                                      const gchar *sm_client_id,
+                                      gboolean debug_mode)
 {
     SessionClient *sm_client;
 
@@ -134,7 +135,9 @@ xfce_settings_helper_connect_session (int argc,
      * from a previous session. */
 
     sm_client = client_session_new (argc, argv, NULL,
-                                    SESSION_RESTART_IMMEDIATELY, 40);
+                                    debug_mode ? SESSION_RESTART_IF_RUNNING
+                                               : SESSION_RESTART_IMMEDIATELY,
+                                    40);
     sm_client->die = sm_client_die;
     if (sm_client_id)
         client_session_set_client_id (sm_client, sm_client_id);
@@ -300,7 +303,7 @@ main (gint argc, gchar **argv)
         }
     }
 
-    xfce_settings_helper_connect_session (argc, argv, opt_sm_client_id);
+    xfce_settings_helper_connect_session (argc, argv, opt_sm_client_id, opt_debug);
 
     /* create the sub daemons */
     pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
