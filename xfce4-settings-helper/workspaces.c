@@ -38,7 +38,7 @@ struct _XfceWorkspacesHelper
 {
     GObject parent;
 
-    WnckScreen *screen;
+    WnckScreen **screens;
     XfconfChannel *channel;
 };
 
@@ -75,46 +75,57 @@ xfce_workspaces_helper_class_init(XfceWorkspacesHelperClass *klass)
 static void
 xfce_workspaces_helper_init(XfceWorkspacesHelper *helper)
 {
-    gint i, n_workspaces;
+    gint w, s, n_screens, n_workspaces;
     gchar **names;
     GdkDisplay *display;
     GdkScreen *screen;
-
-    /* FIXME: need to do this for all screens? */
-    helper->screen = wnck_screen_get_default();
-    wnck_screen_force_update(helper->screen);
-    g_signal_connect_swapped(G_OBJECT(helper->screen), "workspace-created",
-                             G_CALLBACK(xfce_workspaces_helper_update_all_names),
-                             helper);
-    g_signal_connect_swapped(G_OBJECT(helper->screen), "workspace-destroyed",
-                             G_CALLBACK(xfce_workspaces_helper_update_all_names),
-                             helper);
 
     helper->channel = xfconf_channel_new(WORKSPACES_CHANNEL);
     names = xfconf_channel_get_string_list(helper->channel,
                                            WORKSPACE_NAMES_PROP);
 
-    n_workspaces = wnck_screen_get_workspace_count(helper->screen);
-    if(G_UNLIKELY(!names))
-        names = g_new0(gchar *, n_workspaces + 1);
-    else if(g_strv_length(names) < n_workspaces)
-        names = g_renew(gchar *, names, n_workspaces + 1);
-
-    for(i = g_strv_length(names); i < n_workspaces; ++i) {
-        /* some of them may not have been set in xfconf */
-        names[i] = g_strdup_printf(_("Workspace %d"), i + 1);
-    }
-    names[i] = NULL;
-
+    /* FIXME: need to do this for all screens? */
     display = gdk_display_get_default();
-    screen = gdk_display_get_screen(display, wnck_screen_get_number(helper->screen));
-    xfce_workspaces_helper_set_names_prop(helper, screen, names);
+    n_screens = gdk_display_get_n_screens(display);
+    helper->screens = g_new0(WnckScreen *, n_screens + 1);
+    for(s = 0; s < n_screens; ++s) {
+        helper->screens[s] = wnck_screen_get(s);
+        wnck_screen_force_update(helper->screens[s]);
+
+        if(s == 0) {
+            /* here we assume that all screens will always have the same
+             * number of workspaces, and any changes to this number will
+             * occur at the same time.  this may not be a great assumption,
+             * but it'll do. */
+            g_signal_connect_swapped(G_OBJECT(helper->screens[s]), "workspace-created",
+                                     G_CALLBACK(xfce_workspaces_helper_update_all_names),
+                                     helper);
+            g_signal_connect_swapped(G_OBJECT(helper->screens[s]), "workspace-destroyed",
+                                     G_CALLBACK(xfce_workspaces_helper_update_all_names),
+                                     helper);
+        }
+
+        n_workspaces = wnck_screen_get_workspace_count(helper->screens[s]);
+        if(G_UNLIKELY(!names))
+            names = g_new0(gchar *, n_workspaces + 1);
+        else if(g_strv_length(names) < n_workspaces)
+            names = g_renew(gchar *, names, n_workspaces + 1);
+
+        for(w = g_strv_length(names); w < n_workspaces; ++w) {
+            /* some of them may not have been set in xfconf */
+            names[w] = g_strdup_printf(_("Workspace %d"), w + 1);
+        }
+        names[w] = NULL;
+
+        screen = gdk_display_get_screen(display, s);
+        xfce_workspaces_helper_set_names_prop(helper, screen, names);
+
+        g_strfreev(names);
+    }
 
     g_signal_connect(G_OBJECT(helper->channel),
                      "property-changed::" WORKSPACE_NAMES_PROP,
                      G_CALLBACK(xfce_workspaces_helper_prop_changed), helper);
-
-    g_strfreev(names);
 }
 
 static void
@@ -122,14 +133,15 @@ xfce_workspaces_helper_finalize(GObject *obj)
 {
     XfceWorkspacesHelper *helper = XFCE_WORKSPACES_HELPER(obj);
 
-    g_signal_handlers_disconnect_by_func(G_OBJECT(helper->screen),
-                                         G_CALLBACK(xfce_workspaces_helper_update_all_names),
-                                         helper);
-
     g_signal_handlers_disconnect_by_func(G_OBJECT(helper->channel),
                                          G_CALLBACK(xfce_workspaces_helper_prop_changed),
                                          helper);
     g_object_unref(G_OBJECT(helper->channel));
+
+    g_signal_handlers_disconnect_by_func(G_OBJECT(helper->screens[0]),
+                                         G_CALLBACK(xfce_workspaces_helper_update_all_names),
+                                         helper);
+    g_free(helper->screens);
 
     G_OBJECT_CLASS(xfce_workspaces_helper_parent_class)->finalize(obj);
 }
@@ -166,13 +178,13 @@ xfce_workspaces_helper_set_names_prop(XfceWorkspacesHelper *helper,
 static void
 xfce_workspaces_helper_update_all_names(XfceWorkspacesHelper *helper)
 {
-    gint i, n_workspaces = wnck_screen_get_workspace_count(helper->screen);
+    gint i, n_workspaces = wnck_screen_get_workspace_count(helper->screens[0]);
     gchar const **names;
 
     names = g_new0(gchar const *, n_workspaces + 1);
 
     for(i = 0; i < n_workspaces; ++i) {
-        WnckWorkspace *space = wnck_screen_get_workspace(helper->screen, i);
+        WnckWorkspace *space = wnck_screen_get_workspace(helper->screens[0], i);
         names[i] = wnck_workspace_get_name(space);
     }
 
@@ -190,7 +202,7 @@ xfce_workspaces_helper_prop_changed(XfconfChannel *channel,
 {
     XfceWorkspacesHelper *helper = user_data;
     GPtrArray *names_arr;
-    gint i, n_workspaces;
+    gint s, i, n_workspaces;
     gchar **names;
     GdkDisplay *display;
     GdkScreen *screen;
@@ -210,24 +222,27 @@ xfce_workspaces_helper_prop_changed(XfconfChannel *channel,
     if(!names_arr)
         return;
 
-    wnck_screen_force_update(helper->screen);
-    n_workspaces = wnck_screen_get_workspace_count(helper->screen);
-    if(n_workspaces > names_arr->len)
-        names = g_new0(gchar *, n_workspaces + 1);
-    else {
-        names = g_new0(gchar *, names_arr->len + 1);
-        n_workspaces = names_arr->len;
-    }
-
-    for(i = 0; i < n_workspaces; ++i) {
-        if(i < names_arr->len && G_VALUE_HOLDS_STRING(g_ptr_array_index(names_arr, i)))
-            names[i] = g_value_dup_string(g_ptr_array_index(names_arr, i));
-        else
-            names[i] = g_strdup_printf(_("Workspace %d"), i + 1);
-    }
-
     display = gdk_display_get_default();
-    screen = gdk_display_get_screen(display, wnck_screen_get_number(helper->screen));
-    xfce_workspaces_helper_set_names_prop(helper, screen, names);
-    g_strfreev(names);
+
+    for(s = 0; helper->screens[s]; ++s) {
+        wnck_screen_force_update(helper->screens[s]);
+        n_workspaces = wnck_screen_get_workspace_count(helper->screens[s]);
+        if(n_workspaces > names_arr->len)
+            names = g_new0(gchar *, n_workspaces + 1);
+        else {
+            names = g_new0(gchar *, names_arr->len + 1);
+            n_workspaces = names_arr->len;
+        }
+
+        for(i = 0; i < n_workspaces; ++i) {
+            if(i < names_arr->len && G_VALUE_HOLDS_STRING(g_ptr_array_index(names_arr, i)))
+                names[i] = g_value_dup_string(g_ptr_array_index(names_arr, i));
+            else
+                names[i] = g_strdup_printf(_("Workspace %d"), i + 1);
+        }
+
+        screen = gdk_display_get_screen(display, s);
+        xfce_workspaces_helper_set_names_prop(helper, screen, names);
+        g_strfreev(names);
+    }
 }
