@@ -40,6 +40,7 @@
 #include <xfconf/xfconf.h>
 
 #include "xfce-settings-manager-dialog.h"
+#include "xfce-text-renderer.h"
 
 #ifndef MIN
 #define MIN(a, b)  ( (a) < (b) ? (a) : (b) )
@@ -70,7 +71,7 @@ struct _XfceSettingsManagerDialog
     const gchar *default_subtitle;
     const gchar *default_icon;
 
-    gchar       *help_file;
+    gchar *help_file;
 
     GPid last_pid;
 };
@@ -208,23 +209,26 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 #endif
 
     render = gtk_cell_renderer_pixbuf_new();
-    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(dialog->icon_view), render, FALSE);
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(dialog->icon_view), render, 
+                               FALSE);
     gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(dialog->icon_view), render,
                                   "icon-name", COL_ICON_NAME);
-    g_object_set(G_OBJECT(render), "stock-size", GTK_ICON_SIZE_DIALOG, NULL);
-    g_object_set(G_OBJECT(render), "follow-state", TRUE, NULL);
+    g_object_set(render, "stock-size", GTK_ICON_SIZE_DIALOG, 
+                 "follow-state", TRUE, NULL);
 
-    render = gtk_cell_renderer_text_new();
+    render = xfce_text_renderer_new();
     gtk_cell_layout_pack_end(GTK_CELL_LAYOUT(dialog->icon_view), render, TRUE);
     gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(dialog->icon_view), render,
                                   "text", COL_NAME);
+    g_object_set(render, "follow-state", TRUE, "follow-prelit", TRUE, NULL);
 
     /* Create client frame to contain the socket scroll window */
     dialog->client_frame = gtk_frame_new (NULL);
     gtk_frame_set_shadow_type(GTK_FRAME(dialog->client_frame), 
                               GTK_SHADOW_NONE);
     gtk_widget_hide(dialog->client_frame);
-    gtk_container_add(GTK_CONTAINER(dialog->content_frame), dialog->client_frame);
+    gtk_container_add(GTK_CONTAINER(dialog->content_frame), 
+                      dialog->client_frame);
 
     /* Create scroll window to contain the socket viewport */
     scrollwin = gtk_scrolled_window_new(NULL, NULL);
