@@ -169,7 +169,7 @@ xfce_workspaces_helper_update_all_names(XfceWorkspacesHelper *helper)
     gint i, n_workspaces = wnck_screen_get_workspace_count(helper->screen);
     gchar const **names;
 
-    names = g_new0(gchar *, n_workspaces + 1);
+    names = g_new0(gchar const *, n_workspaces + 1);
 
     for(i = 0; i < n_workspaces; ++i) {
         WnckWorkspace *space = wnck_screen_get_workspace(helper->screen, i);
