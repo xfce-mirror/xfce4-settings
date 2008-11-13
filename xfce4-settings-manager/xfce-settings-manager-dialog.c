@@ -168,9 +168,10 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 
     xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dialog),
                                     dialog->default_subtitle);
+    gtk_dialog_set_has_separator(GTK_DIALOG(dialog), FALSE);
     gtk_window_set_title(GTK_WINDOW(dialog), dialog->default_title);
     gtk_window_set_icon_name(GTK_WINDOW(dialog), dialog->default_icon);
-    gtk_dialog_set_has_separator(GTK_DIALOG(dialog), FALSE);
+    gtk_window_set_type_hint(GTK_WINDOW(dialog), GDK_WINDOW_TYPE_HINT_NORMAL);
 
     dialog->content_frame = gtk_vbox_new(FALSE, 0);
     gtk_widget_show(dialog->content_frame);

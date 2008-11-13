@@ -1,7 +1,11 @@
+4.5.90.0 (Xfce 4.6 rc1)
+
+  * Allow the settings manager window to be minimized (bug 4596).
+
 4.5.92 (Xfce 4.6 beta2)
 
   * Add an option to disable keyboard settings.
-  * Default to "Rodent" icon theme instead of "hicolor" (Bug #4545)
+  * Default to "Rodent" icon theme instead of "hicolor" (Bug 4545).
   * Use XfcePosixSignalHandler in xfce4-settings-helper to handle
     signals, since calling gtk_main_quit() from a signal handler may
     not be safe.
@@ -18,13 +22,11 @@
     on the X-XfcePluggable and X-XfceHelpFile desktop file keys).
   * Add embedding support to the accessibility, appearance, mouse and
     keyboard settings dialogs.
-  * Don't use g_hash_table_get_keys() which requires GLib 2.14 (bug 
-    #4377).
+  * Don't use g_hash_table_get_keys() which requires GLib 2.14 (bug 4377).
   * Move xfsettingsd from xfconf into xfce4-settings.
   * Rework the way keyboard shortcuts are organized. Support default
     shortcuts using /default and /custom base properties.
-  * Add optional UI options to enable/disable sounds in Canberra (bug
-    #4367).
+  * Add optional UI options to enable/disable sounds in Canberra (bug 4367).
   * Add GUI for selecting/changing the keyboard layout.
   * Translation updates: Dutch, Finnish, German.
 
