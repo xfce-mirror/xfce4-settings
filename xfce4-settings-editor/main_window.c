@@ -511,6 +511,9 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
     GtkWidget *prop_value_sw = glade_xml_get_widget (gxml_main_window, "property_value_sw");
     GtkWidget *prop_value_checkbox = glade_xml_get_widget (gxml_main_window, "property_value_checkbutton");
 
+    GtkSizeGroup *sg = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
+    gtk_size_group_add_widget (sg, glade_xml_get_widget (gxml_main_window, "label_name"));
+    gtk_size_group_add_widget (sg, glade_xml_get_widget (gxml_main_window, "label_type"));
 
     /* Set the correct properties in the ui */
     gtk_entry_set_text (GTK_ENTRY(prop_name_entry), current_property);
@@ -655,7 +658,7 @@ cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
         dialog = gtk_message_dialog_new_with_markup (
                                      GTK_WINDOW (glade_xml_get_widget (gxml_main_window, "main_window")),
                                      0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
-                                     "This property can not be reset because it is locked:\n<b>%s</b>",
+                                     _("Property \"<b>%s</b>\" cannot be reset because it is locked"),
                                      current_property);
         gtk_dialog_run (GTK_DIALOG(dialog));
         gtk_widget_destroy (dialog);
@@ -665,7 +668,7 @@ cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
         dialog = gtk_message_dialog_new_with_markup (
                                      GTK_WINDOW (glade_xml_get_widget (gxml_main_window, "main_window")),
                                      0, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
-                                     "Are you sure you wat to reset this property:\n<b>%s</b>?",
+                                     _("Are you sure you want to reset property \"<b>%s</b>\"?"),
                                      current_property);
         if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
         {

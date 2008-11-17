@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Fri Oct 31 00:44:15 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Nov 16 16:10:50 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="mouse-dialog">
@@ -89,7 +89,7 @@
                                   <widget class="GtkCheckButton" id="mouse-reverse-scrolling">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="tooltip" translatable="yes">When enabled, the scroll wheel will work in the opposite direction</property>
+                                    <property name="tooltip" translatable="yes">When selected, the scroll wheel will work in the opposite direction</property>
                                     <property name="label" translatable="yes">Re_verse scroll direction</property>
                                     <property name="use_underline">True</property>
                                     <property name="response_id">0</property>
@@ -98,9 +98,6 @@
                                   <packing>
                                     <property name="position">2</property>
                                   </packing>
-                                </child>
-                                <child>
-                                  <placeholder/>
                                 </child>
                               </widget>
                             </child>
@@ -149,7 +146,7 @@
                                   <widget class="GtkHScale" id="mouse-acceleration-scale">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="tooltip" translatable="yes">The pointer will go 'acceleration' times as fast when it travels more than 'threshold' pixels in a short time</property>
+                                    <property name="tooltip" translatable="yes">The factor at which the pointer's speed will increase as the mouse is moved</property>
                                     <property name="update_policy">GTK_UPDATE_DELAYED</property>
                                     <property name="adjustment">2 0.10000000000000001 10 0.10000000000000001 1 1</property>
                                     <property name="value_pos">GTK_POS_RIGHT</property>
@@ -162,7 +159,7 @@
                                   <widget class="GtkLabel" id="mouse-threshold-label">
                                     <property name="visible">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">_Threshold:</property>
+                                    <property name="label" translatable="yes">T_hreshold:</property>
                                     <property name="use_underline">True</property>
                                     <property name="mnemonic_widget">mouse-threshold-scale</property>
                                   </widget>
@@ -174,7 +171,7 @@
                                   <widget class="GtkHScale" id="mouse-threshold-scale">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="tooltip" translatable="yes">The number of pixels the pointer has to moved in a short time before the acceleration starts</property>
+                                    <property name="tooltip" translatable="yes">The number of pixels the pointer must move in a short time before it starts accelerating</property>
                                     <property name="update_policy">GTK_UPDATE_DELAYED</property>
                                     <property name="adjustment">4 1 30 1 5 5</property>
                                     <property name="digits">0</property>
@@ -235,7 +232,8 @@
             <child>
               <widget class="GtkLabel" id="label1">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">Devices</property>
+                <property name="label" translatable="yes">De_vices</property>
+                <property name="use_underline">True</property>
               </widget>
               <packing>
                 <property name="type">tab</property>
@@ -266,7 +264,7 @@
                               <widget class="GtkLabel" id="mouse-dnd-label">
                                 <property name="visible">True</property>
                                 <property name="xalign">0</property>
-                                <property name="label" translatable="yes">Thr_eshold:</property>
+                                <property name="label" translatable="yes">T_hreshold:</property>
                                 <property name="use_underline">True</property>
                                 <property name="mnemonic_widget">mouse-dnd-threshold</property>
                               </widget>
@@ -275,7 +273,7 @@
                               <widget class="GtkHScale" id="mouse-dnd-threshold">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="tooltip" translatable="yes">The number of pixels the pointer can move before dragging</property>
+                                <property name="tooltip" translatable="yes">The number of pixels the pointer must move before a drag operation will start</property>
                                 <property name="update_policy">GTK_UPDATE_DELAYED</property>
                                 <property name="adjustment">8 1 50 1 10 10</property>
                                 <property name="digits">0</property>
@@ -332,7 +330,7 @@
                               <widget class="GtkHScale" id="mouse-double-click-time">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="tooltip" translatable="yes">The maximum time allowed between two clicks, in milliseconds, for them to be considered a double click</property>
+                                <property name="tooltip" translatable="yes">Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click</property>
                                 <property name="update_policy">GTK_UPDATE_DELAYED</property>
                                 <property name="adjustment">250 100 2000 10 100 100</property>
                                 <property name="digits">0</property>
@@ -358,7 +356,7 @@
                               <widget class="GtkHScale" id="mouse-double-click-distance">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="tooltip" translatable="yes">The maximum distance allowed between two clicks, in pixels, for them to be considered a double click</property>
+                                <property name="tooltip" translatable="yes">The mouse pointer cannot move farther than this distance between two clicks for them to be considered a double click</property>
                                 <property name="update_policy">GTK_UPDATE_DELAYED</property>
                                 <property name="adjustment">4 0 20 1 5 5</property>
                                 <property name="digits">0</property>
@@ -396,7 +394,8 @@
             <child>
               <widget class="GtkLabel" id="label2">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">Behavior</property>
+                <property name="label" translatable="yes">_Behavior</property>
+                <property name="use_underline">True</property>
               </widget>
               <packing>
                 <property name="type">tab</property>
@@ -460,7 +459,7 @@
                                   <widget class="GtkSpinButton" id="mouse-cursor-size">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="adjustment">24 16 48 1 11 10</property>
+                                    <property name="adjustment">24 16 48 1 11 0</property>
                                     <property name="snap_to_ticks">True</property>
                                     <property name="numeric">True</property>
                                   </widget>
@@ -537,7 +536,8 @@
             <child>
               <widget class="GtkLabel" id="label3">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">Theme</property>
+                <property name="label" translatable="yes">_Theme</property>
+                <property name="use_underline">True</property>
               </widget>
               <packing>
                 <property name="type">tab</property>

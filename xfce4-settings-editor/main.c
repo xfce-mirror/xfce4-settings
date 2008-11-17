@@ -41,7 +41,7 @@ static gboolean opt_version = FALSE;
 
 static GOptionEntry option_entries[] =
 {
-    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+    { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { NULL }
 };
 

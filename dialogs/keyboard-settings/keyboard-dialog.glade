@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Fri Oct 31 00:37:39 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Nov 16 15:59:31 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="keyboard-settings-dialog">
@@ -52,7 +52,7 @@
                                       <widget class="GtkCheckButton" id="xkb_key_repeat_check">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="tooltip" translatable="yes">When enabled, pressing and holding down a key emits the same character over and over again</property>
+                                        <property name="tooltip" translatable="yes">When selected, pressing and holding down a key emits the same character over and over again</property>
                                         <property name="label" translatable="yes">_Enable key repeat</property>
                                         <property name="use_underline">True</property>
                                         <property name="response_id">0</property>
@@ -89,7 +89,7 @@
                                               <widget class="GtkHScale" id="xkb_key_repeat_delay_scale">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
-                                                <property name="tooltip" translatable="yes">The time in milliseconds before a pressed key starts repeating</property>
+                                                <property name="tooltip" translatable="yes">The time, in milliseconds, before a pressed key begins repeating</property>
                                                 <property name="update_policy">GTK_UPDATE_DELAYED</property>
                                                 <property name="adjustment">500 10 1000 1 10 1</property>
                                                 <property name="digits">0</property>
@@ -117,7 +117,7 @@
                                               <widget class="GtkHScale" id="xkb_key_repeat_rate_scale">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
-                                                <property name="tooltip" translatable="yes">The rate at which keycodes are generated while a key is pressed</property>
+                                                <property name="tooltip" translatable="yes">The rate at which keystrokes are generated while a key is pressed</property>
                                                 <property name="update_policy">GTK_UPDATE_DELAYED</property>
                                                 <property name="adjustment">20 1 250 1 10 1</property>
                                                 <property name="digits">0</property>
@@ -172,6 +172,7 @@
                                       <widget class="GtkCheckButton" id="net_cursor_blink_check">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
+                                        <property name="tooltip" translatable="yes">Specify whether or not the text cursor blinks</property>
                                         <property name="label" translatable="yes">Show _blinking</property>
                                         <property name="use_underline">True</property>
                                         <property name="response_id">0</property>
@@ -208,7 +209,7 @@
                                               <widget class="GtkHScale" id="net_cursor_blink_time_scale">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
-                                                <property name="tooltip" translatable="yes">The length of the cursor blink cycle in milliseconds</property>
+                                                <property name="tooltip" translatable="yes">The delay, in milliseconds, between successive blinks of the cursor</property>
                                                 <property name="update_policy">GTK_UPDATE_DELAYED</property>
                                                 <property name="adjustment">1000 100 2000 1 10 1</property>
                                                 <property name="digits">0</property>
@@ -262,8 +263,10 @@
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">1</property>
-                        <property name="label" translatable="yes">Use this area to test the settings above:</property>
+                        <property name="label" translatable="yes">Use this area to _test the settings above:</property>
+                        <property name="use_underline">True</property>
                         <property name="wrap_mode">PANGO_WRAP_WORD_CHAR</property>
+                        <property name="mnemonic_widget">entry1</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
@@ -287,7 +290,8 @@
                 <child>
                   <widget class="GtkLabel" id="label2">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">Behavior</property>
+                    <property name="label" translatable="yes">Be_havior</property>
+                    <property name="use_underline">True</property>
                   </widget>
                   <packing>
                     <property name="type">tab</property>
@@ -295,112 +299,89 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkFrame" id="frame1">
+                  <widget class="GtkVBox" id="vbox5">
                     <property name="visible">True</property>
                     <property name="border_width">12</property>
-                    <property name="label_xalign">0</property>
-                    <property name="shadow_type">GTK_SHADOW_NONE</property>
+                    <property name="spacing">6</property>
                     <child>
-                      <widget class="GtkAlignment" id="alignment6">
+                      <widget class="GtkLabel" id="label16">
                         <property name="visible">True</property>
-                        <property name="top_padding">6</property>
-                        <property name="bottom_padding">6</property>
-                        <property name="left_padding">12</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">Define _shortcuts for launching applications:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">kbd_shortcuts_view</property>
+                      </widget>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkScrolledWindow" id="scrolledwindow2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="shadow_type">GTK_SHADOW_IN</property>
                         <child>
-                          <widget class="GtkVBox" id="vbox5">
+                          <widget class="GtkTreeView" id="kbd_shortcuts_view">
                             <property name="visible">True</property>
-                            <property name="spacing">6</property>
-                            <child>
-                              <widget class="GtkLabel" id="label16">
-                                <property name="visible">True</property>
-                                <property name="xalign">0</property>
-                                <property name="label" translatable="yes">Define shortcuts for launching applications:</property>
-                              </widget>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <widget class="GtkScrolledWindow" id="scrolledwindow2">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                                <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                                <property name="shadow_type">GTK_SHADOW_IN</property>
-                                <child>
-                                  <widget class="GtkTreeView" id="kbd_shortcuts_view">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="search_column">0</property>
-                                  </widget>
-                                </child>
-                              </widget>
-                              <packing>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <widget class="GtkHButtonBox" id="hbuttonbox1">
-                                <property name="visible">True</property>
-                                <property name="border_width">2</property>
-                                <property name="spacing">12</property>
-                                <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
-                                <child>
-                                  <widget class="GtkButton" id="add_shortcut_button">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="label" translatable="yes">gtk-add</property>
-                                    <property name="use_stock">True</property>
-                                    <property name="response_id">0</property>
-                                  </widget>
-                                </child>
-                                <child>
-                                  <widget class="GtkButton" id="delete_shortcut_button">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="label" translatable="yes">gtk-remove</property>
-                                    <property name="use_stock">True</property>
-                                    <property name="response_id">0</property>
-                                  </widget>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkButton" id="reset_shortcuts_button">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="label" translatable="yes">_Reset to Defaults</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="response_id">0</property>
-                                  </widget>
-                                  <packing>
-                                    <property name="position">2</property>
-                                  </packing>
-                                </child>
-                              </widget>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
+                            <property name="can_focus">True</property>
+                            <property name="search_column">0</property>
                           </widget>
                         </child>
                       </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                     <child>
-                      <widget class="GtkLabel" id="label12">
+                      <widget class="GtkHButtonBox" id="hbuttonbox1">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Application Shortcuts&lt;/b&gt;</property>
-                        <property name="use_markup">True</property>
+                        <property name="border_width">2</property>
+                        <property name="spacing">12</property>
+                        <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
+                        <child>
+                          <widget class="GtkButton" id="add_shortcut_button">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="label" translatable="yes">gtk-add</property>
+                            <property name="use_stock">True</property>
+                            <property name="response_id">0</property>
+                          </widget>
+                        </child>
+                        <child>
+                          <widget class="GtkButton" id="delete_shortcut_button">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="label" translatable="yes">gtk-remove</property>
+                            <property name="use_stock">True</property>
+                            <property name="response_id">0</property>
+                          </widget>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkButton" id="reset_shortcuts_button">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="label" translatable="yes">_Reset to Defaults</property>
+                            <property name="use_underline">True</property>
+                            <property name="response_id">0</property>
+                          </widget>
+                          <packing>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
                       </widget>
                       <packing>
-                        <property name="type">label_item</property>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </widget>
@@ -411,7 +392,8 @@
                 <child>
                   <widget class="GtkLabel" id="label3">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">Application Shortcuts</property>
+                    <property name="label" translatable="yes">Appli_cation Shortcuts</property>
+                    <property name="use_underline">True</property>
                   </widget>
                   <packing>
                     <property name="type">tab</property>
@@ -422,42 +404,20 @@
                 <child>
                   <widget class="GtkVBox" id="xkb_tab_layout_vbox">
                     <property name="border_width">12</property>
+                    <property name="spacing">6</property>
                     <child>
-                      <widget class="GtkFrame" id="frame5">
+                      <widget class="GtkCheckButton" id="xkb_use_system_default_checkbutton">
                         <property name="visible">True</property>
-                        <property name="label_xalign">0</property>
-                        <property name="shadow_type">GTK_SHADOW_NONE</property>
-                        <child>
-                          <widget class="GtkAlignment" id="alignment5">
-                            <property name="visible">True</property>
-                            <property name="top_padding">6</property>
-                            <property name="bottom_padding">6</property>
-                            <property name="left_padding">12</property>
-                            <child>
-                              <widget class="GtkCheckButton" id="xkb_use_system_default_checkbutton">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="label" translatable="yes">_Use system defaults</property>
-                                <property name="use_underline">True</property>
-                                <property name="response_id">0</property>
-                                <property name="draw_indicator">True</property>
-                              </widget>
-                            </child>
-                          </widget>
-                        </child>
-                        <child>
-                          <widget class="GtkLabel" id="label9">
-                            <property name="visible">True</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Keyboard settings&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
-                          </widget>
-                          <packing>
-                            <property name="type">label_item</property>
-                          </packing>
-                        </child>
+                        <property name="can_focus">True</property>
+                        <property name="tooltip" translatable="yes">Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server</property>
+                        <property name="label" translatable="yes">_Use system defaults</property>
+                        <property name="use_underline">True</property>
+                        <property name="response_id">0</property>
+                        <property name="draw_indicator">True</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="fill">False</property>
                       </packing>
                     </child>
                     <child>
@@ -468,18 +428,11 @@
                         <child>
                           <widget class="GtkAlignment" id="alignment1">
                             <property name="visible">True</property>
-                            <property name="bottom_padding">6</property>
-                            <property name="left_padding">12</property>
+                            <property name="border_width">6</property>
+                            <property name="left_padding">6</property>
                             <child>
-                              <widget class="GtkVBox" id="vbox8">
+                              <widget class="GtkComboBox" id="xkb_model_combo">
                                 <property name="visible">True</property>
-                                <property name="border_width">6</property>
-                                <property name="spacing">6</property>
-                                <child>
-                                  <widget class="GtkComboBox" id="xkb_model_combo">
-                                    <property name="visible">True</property>
-                                  </widget>
-                                </child>
                               </widget>
                             </child>
                           </widget>
@@ -508,85 +461,78 @@
                         <child>
                           <widget class="GtkAlignment" id="alignment4">
                             <property name="visible">True</property>
-                            <property name="bottom_padding">6</property>
-                            <property name="left_padding">12</property>
+                            <property name="border_width">6</property>
+                            <property name="left_padding">6</property>
                             <child>
-                              <widget class="GtkVBox" id="vbox9">
+                              <widget class="GtkHBox" id="hbox1">
                                 <property name="visible">True</property>
-                                <property name="border_width">6</property>
-                                <property name="spacing">6</property>
+                                <property name="spacing">12</property>
                                 <child>
-                                  <widget class="GtkHBox" id="hbox1">
+                                  <widget class="GtkScrolledWindow" id="scrolledwindow1">
                                     <property name="visible">True</property>
-                                    <property name="spacing">12</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                                    <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                                    <property name="shadow_type">GTK_SHADOW_IN</property>
                                     <child>
-                                      <widget class="GtkScrolledWindow" id="scrolledwindow1">
+                                      <widget class="GtkTreeView" id="xkb_layout_view">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                                        <property name="shadow_type">GTK_SHADOW_IN</property>
-                                        <child>
-                                          <widget class="GtkTreeView" id="xkb_layout_view">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="search_column">0</property>
-                                          </widget>
-                                        </child>
+                                        <property name="search_column">0</property>
                                       </widget>
                                     </child>
+                                  </widget>
+                                </child>
+                                <child>
+                                  <widget class="GtkVBox" id="vbox10">
+                                    <property name="visible">True</property>
+                                    <property name="spacing">6</property>
                                     <child>
-                                      <widget class="GtkVBox" id="vbox10">
+                                      <widget class="GtkButton" id="xkb_layout_add_button">
                                         <property name="visible">True</property>
-                                        <property name="spacing">6</property>
-                                        <child>
-                                          <widget class="GtkButton" id="xkb_layout_add_button">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="receives_default">True</property>
-                                            <property name="label" translatable="yes">gtk-add</property>
-                                            <property name="use_stock">True</property>
-                                            <property name="response_id">0</property>
-                                          </widget>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <widget class="GtkButton" id="xkb_layout_edit_button">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="receives_default">True</property>
-                                            <property name="label" translatable="yes">gtk-edit</property>
-                                            <property name="use_stock">True</property>
-                                            <property name="response_id">0</property>
-                                          </widget>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <widget class="GtkButton" id="xkb_layout_delete_button">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="receives_default">True</property>
-                                            <property name="label" translatable="yes">gtk-delete</property>
-                                            <property name="use_stock">True</property>
-                                            <property name="response_id">0</property>
-                                          </widget>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="position">2</property>
-                                          </packing>
-                                        </child>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">True</property>
+                                        <property name="label" translatable="yes">gtk-add</property>
+                                        <property name="use_stock">True</property>
+                                        <property name="response_id">0</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkButton" id="xkb_layout_edit_button">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">True</property>
+                                        <property name="label" translatable="yes">gtk-edit</property>
+                                        <property name="use_stock">True</property>
+                                        <property name="response_id">0</property>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
+                                    <child>
+                                      <widget class="GtkButton" id="xkb_layout_delete_button">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">True</property>
+                                        <property name="label" translatable="yes">gtk-delete</property>
+                                        <property name="use_stock">True</property>
+                                        <property name="response_id">0</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
                                   </widget>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="position">1</property>
+                                  </packing>
                                 </child>
                               </widget>
                             </child>
@@ -615,7 +561,8 @@
                 <child>
                   <widget class="GtkLabel" id="label4">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">Layout</property>
+                    <property name="label" translatable="yes">_Layout</property>
+                    <property name="use_underline">True</property>
                   </widget>
                   <packing>
                     <property name="type">tab</property>

@@ -48,16 +48,16 @@ static GList *registries = NULL;
 
 static GOptionEntry entries[] =
 {
-    {    "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
+    {    "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
         N_("Version information"),
         NULL
     },
-    {    "verbose", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
+    {    "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
         N_("Verbose output"),
         NULL
     },
     {    "force", 'f', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &force_replace,
-        N_("Force replace existing any xsettings daemon"),
+        N_("Replace running xsettings daemon (if any)"),
         NULL
     },
     {    "debug", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &debug,

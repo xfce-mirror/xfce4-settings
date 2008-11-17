@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Fri Oct 31 00:38:49 2008 -->
+<!--Generated with glade3 3.4.5 on Sun Nov 16 15:17:35 2008 -->
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="appearance-settings-dialog">
@@ -102,6 +102,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <property name="tooltip" translatable="yes">This font will be used as the default font used when drawing user interface text</property>
                             <property name="response_id">0</property>
                             <property name="title" translatable="yes">Select a default font</property>
                           </widget>
@@ -144,30 +145,29 @@
                             <property name="column_spacing">12</property>
                             <property name="row_spacing">6</property>
                             <child>
-                              <widget class="GtkCheckButton" id="xft_antialias_check_button">
+                              <widget class="GtkComboBox" id="xft_hinting_style_combo_box">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="label" translatable="yes">Enable _anti-aliasing</property>
-                                <property name="use_underline">True</property>
-                                <property name="response_id">0</property>
-                                <property name="draw_indicator">True</property>
+                                <property name="tooltip" translatable="yes">Many fonts contain information that provides extra hints as to how best draw the font; pick whichever looks best according to personal preference</property>
+                                <property name="items" translatable="yes"></property>
                               </widget>
                               <packing>
+                                <property name="left_attach">1</property>
                                 <property name="right_attach">2</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkLabel" id="label10">
+                              <widget class="GtkComboBox" id="xft_rgba_combo_box">
                                 <property name="visible">True</property>
-                                <property name="xalign">1</property>
-                                <property name="label" translatable="yes">_Hinting:</property>
-                                <property name="use_underline">True</property>
-                                <property name="mnemonic_widget">xft_hinting_style_combo_box</property>
+                                <property name="tooltip" translatable="yes">Font quality on a TFT or LCD screen can be greatly improved by choosing the correct sub-pixel order of the screen</property>
+                                <property name="items" translatable="yes"></property>
                               </widget>
                               <packing>
-                                <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_FILL</property>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">2</property>
+                                <property name="bottom_attach">3</property>
                               </packing>
                             </child>
                             <child>
@@ -185,28 +185,31 @@
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkComboBox" id="xft_rgba_combo_box">
+                              <widget class="GtkLabel" id="label10">
                                 <property name="visible">True</property>
-                                <property name="tooltip" translatable="yes">If you have a TFT or LCD screen you can improve the quality of the fonts by choosing the correct sub-pixel order of your screen</property>
-                                <property name="items" translatable="yes"></property>
+                                <property name="xalign">1</property>
+                                <property name="label" translatable="yes">_Hinting:</property>
+                                <property name="use_underline">True</property>
+                                <property name="mnemonic_widget">xft_hinting_style_combo_box</property>
                               </widget>
                               <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
-                                <property name="top_attach">2</property>
-                                <property name="bottom_attach">3</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
+                                <property name="x_options">GTK_FILL</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkComboBox" id="xft_hinting_style_combo_box">
+                              <widget class="GtkCheckButton" id="xft_antialias_check_button">
                                 <property name="visible">True</property>
-                                <property name="items" translatable="yes"></property>
+                                <property name="can_focus">True</property>
+                                <property name="tooltip" translatable="yes">Anti-aliasing, or font smoothing, can improve the look of text on the screen</property>
+                                <property name="label" translatable="yes">Enable _anti-aliasing</property>
+                                <property name="use_underline">True</property>
+                                <property name="response_id">0</property>
+                                <property name="draw_indicator">True</property>
                               </widget>
                               <packing>
-                                <property name="left_attach">1</property>
                                 <property name="right_attach">2</property>
-                                <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                           </widget>
@@ -248,6 +251,7 @@
                               <widget class="GtkCheckButton" id="xft_custom_dpi_check_button">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip" translatable="yes">Override the detected monitor resolution if fonts look too large or too small</property>
                                 <property name="label" translatable="yes">Custom _DPI setting:</property>
                                 <property name="use_underline">True</property>
                                 <property name="response_id">0</property>
@@ -327,6 +331,7 @@
                         <child>
                           <widget class="GtkComboBox" id="gtk_toolbar_style_combo_box">
                             <property name="visible">True</property>
+                            <property name="tooltip" translatable="yes">Specify what should be displayed in toolbar items</property>
                             <property name="items" translatable="yes"></property>
                           </widget>
                         </child>
@@ -368,7 +373,7 @@
                               <widget class="GtkCheckButton" id="gtk_button_images_check_button">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="tooltip" translatable="yes">Whether stock icons should be shown in buttons</property>
+                                <property name="tooltip" translatable="yes">Specify whether icons should be displayed next to text in buttons</property>
                                 <property name="label" translatable="yes">Show images on _buttons</property>
                                 <property name="use_underline">True</property>
                                 <property name="response_id">0</property>
@@ -379,7 +384,7 @@
                               <widget class="GtkCheckButton" id="gtk_menu_images_check_button">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="tooltip" translatable="yes">Whether images should be shown in menus</property>
+                                <property name="tooltip" translatable="yes">Specify whether icons should be displayed next to items in menus</property>
                                 <property name="label" translatable="yes">Show images in _menus</property>
                                 <property name="use_underline">True</property>
                                 <property name="response_id">0</property>
@@ -393,7 +398,7 @@
                               <widget class="GtkCheckButton" id="gtk_caneditaccels_check_button">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="tooltip" translatable="yes">Whether menu accelerators can be changed by pressing a key over the menu item</property>
+                                <property name="tooltip" translatable="yes">If selected, keyboard shortcuts for menu items can be changed by hovering the mouse over the menu item and pressing the new key combination for the shortcut</property>
                                 <property name="label" translatable="yes">Enable e_ditable accelerators</property>
                                 <property name="use_underline">True</property>
                                 <property name="response_id">0</property>
@@ -452,7 +457,7 @@
                               <widget class="GtkCheckButton" id="enable_input_feedback_sounds_button">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="tooltip" translatable="yes">Enable or disable input feedback sounds (i.e. button clicks)</property>
+                                <property name="tooltip" translatable="yes">Specify whether mouse clicks and other user input will cause event sounds to play</property>
                                 <property name="label" translatable="yes">Enable i_nput feedback sounds</property>
                                 <property name="use_underline">True</property>
                                 <property name="response_id">0</property>
