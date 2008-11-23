@@ -32,7 +32,7 @@
 
 #define WORKSPACES_CHANNEL    "xfwm4"
 #define WORKSPACE_NAMES_PROP  "/general/workspace_names"
-
+#define WORKSPACE_COUNT_PROP  "/general/workspace_count"
 
 struct _XfceWorkspacesHelper
 {
@@ -190,6 +190,7 @@ xfce_workspaces_helper_update_all_names(XfceWorkspacesHelper *helper)
 
     xfconf_channel_set_string_list(helper->channel, WORKSPACE_NAMES_PROP,
                                    (const gchar **)names);
+    xfconf_channel_set_int(helper->channel, WORKSPACE_COUNT_PROP, n_workspaces);
 
     g_free(names);
 }
