@@ -221,7 +221,8 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     gtk_cell_layout_pack_end(GTK_CELL_LAYOUT(dialog->icon_view), render, TRUE);
     gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(dialog->icon_view), render,
                                   "text", COL_NAME);
-    g_object_set(render, "follow-state", TRUE, "follow-prelit", TRUE, NULL);
+    g_object_set(render, "follow-state", TRUE, "follow-prelit", TRUE, 
+                 "wrap-width", 30, NULL);
 
     /* Create client frame to contain the socket scroll window */
     dialog->client_frame = gtk_frame_new (NULL);
