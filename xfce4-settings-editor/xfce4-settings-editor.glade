@@ -1,184 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sun Nov 16 16:26:54 2008 -->
+<!--Generated with glade3 3.4.5 on Fri Jan  2 13:43:50 2009 -->
 <glade-interface>
   <requires lib="xfce4"/>
-  <widget class="GtkDialog" id="main_dialog">
-    <property name="width_request">600</property>
-    <property name="height_request">380</property>
-    <property name="visible">True</property>
-    <property name="border_width">5</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
-    <property name="icon_name">preferences-other</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
-    <property name="has_separator">False</property>
-    <child internal-child="vbox">
-      <widget class="GtkVBox" id="dialog-vbox3">
-        <property name="visible">True</property>
-        <property name="spacing">2</property>
-        <child>
-          <widget class="XfceHeading" id="xfce-heading2">
-            <property name="visible">True</property>
-            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="icon_name">preferences-other</property>
-            <property name="title" translatable="yes">Xfce4 settings editor</property>
-          </widget>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="GtkNotebook" id="notebook2">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="show_tabs">False</property>
-            <property name="show_border">False</property>
-            <child>
-              <widget class="GtkHPaned" id="hpaned2">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="position">200</property>
-                <property name="position_set">True</property>
-                <child>
-                  <widget class="GtkVBox" id="vbox2">
-                    <property name="visible">True</property>
-                    <child>
-                      <widget class="GtkScrolledWindow" id="scrolledwindow3">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="shadow_type">GTK_SHADOW_IN</property>
-                        <child>
-                          <widget class="GtkTreeView" id="channel_treeview">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="tooltip" translatable="yes">Select a channel and property.</property>
-                            <property name="rules_hint">True</property>
-                          </widget>
-                        </child>
-                      </widget>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="resize">False</property>
-                    <property name="shrink">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkVBox" id="vbox1">
-                    <property name="visible">True</property>
-                    <child>
-                      <widget class="GtkToolbar" id="toolbar1">
-                        <property name="visible">True</property>
-                        <child>
-                          <widget class="GtkToolButton" id="property_new_button">
-                            <property name="visible">True</property>
-                            <property name="sensitive">False</property>
-                            <property name="tooltip" translatable="yes">New property</property>
-                            <property name="stock_id">gtk-new</property>
-                          </widget>
-                          <packing>
-                            <property name="homogeneous">True</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkToolButton" id="property_edit_button">
-                            <property name="visible">True</property>
-                            <property name="tooltip" translatable="yes">Edit property</property>
-                            <property name="stock_id">gtk-edit</property>
-                          </widget>
-                          <packing>
-                            <property name="homogeneous">True</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkToolButton" id="property_revert_button">
-                            <property name="visible">True</property>
-                            <property name="tooltip" translatable="yes">Reset/remove property</property>
-                            <property name="stock_id">gtk-revert-to-saved</property>
-                          </widget>
-                          <packing>
-                            <property name="homogeneous">True</property>
-                          </packing>
-                        </child>
-                      </widget>
-                      <packing>
-                        <property name="expand">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkScrolledWindow" id="scrolledwindow1">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="shadow_type">GTK_SHADOW_IN</property>
-                        <child>
-                          <widget class="GtkTreeView" id="property_treeview">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                          </widget>
-                        </child>
-                      </widget>
-                      <packing>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="resize">True</property>
-                    <property name="shrink">False</property>
-                  </packing>
-                </child>
-              </widget>
-              <packing>
-                <property name="tab_expand">True</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="GtkLabel" id="label4">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Xfconf channels</property>
-              </widget>
-              <packing>
-                <property name="type">tab</property>
-                <property name="tab_fill">False</property>
-              </packing>
-            </child>
-          </widget>
-          <packing>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child internal-child="action_area">
-          <widget class="GtkHButtonBox" id="dialog-action_area3">
-            <property name="visible">True</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
-            <child>
-              <widget class="GtkButton" id="button1">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="label" translatable="yes">gtk-close</property>
-                <property name="use_stock">True</property>
-                <property name="response_id">-7</property>
-              </widget>
-              <packing>
-                <property name="pack_type">GTK_PACK_END</property>
-              </packing>
-            </child>
-          </widget>
-          <packing>
-            <property name="expand">False</property>
-            <property name="pack_type">GTK_PACK_END</property>
-          </packing>
-        </child>
-      </widget>
-    </child>
-  </widget>
   <widget class="GtkDialog" id="edit_settings_dialog">
     <property name="border_width">5</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
@@ -369,6 +193,162 @@ Boolean</property>
               </widget>
               <packing>
                 <property name="position">1</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">GTK_PACK_END</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="XfceTitledDialog" id="main_dialog">
+    <property name="width_request">600</property>
+    <property name="height_request">380</property>
+    <property name="title">Settings editor</property>
+    <property name="icon_name">preferences-other</property>
+    <child internal-child="vbox">
+      <widget class="GtkVBox" id="dialog-vbox4">
+        <child>
+          <widget class="GtkNotebook" id="notebook2">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="show_tabs">False</property>
+            <property name="show_border">False</property>
+            <child>
+              <widget class="GtkHPaned" id="hpaned2">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="position">200</property>
+                <property name="position_set">True</property>
+                <child>
+                  <widget class="GtkVBox" id="vbox2">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkScrolledWindow" id="scrolledwindow3">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="shadow_type">GTK_SHADOW_IN</property>
+                        <child>
+                          <widget class="GtkTreeView" id="channel_treeview">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="tooltip" translatable="yes">Select a channel and property.</property>
+                            <property name="rules_hint">True</property>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkVBox" id="vbox1">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkToolbar" id="toolbar1">
+                        <property name="visible">True</property>
+                        <child>
+                          <widget class="GtkToolButton" id="property_new_button">
+                            <property name="visible">True</property>
+                            <property name="sensitive">False</property>
+                            <property name="tooltip" translatable="yes">New property</property>
+                            <property name="stock_id">gtk-new</property>
+                          </widget>
+                          <packing>
+                            <property name="homogeneous">True</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkToolButton" id="property_edit_button">
+                            <property name="visible">True</property>
+                            <property name="tooltip" translatable="yes">Edit property</property>
+                            <property name="stock_id">gtk-edit</property>
+                          </widget>
+                          <packing>
+                            <property name="homogeneous">True</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkToolButton" id="property_revert_button">
+                            <property name="visible">True</property>
+                            <property name="tooltip" translatable="yes">Reset/remove property</property>
+                            <property name="stock_id">gtk-revert-to-saved</property>
+                          </widget>
+                          <packing>
+                            <property name="homogeneous">True</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="expand">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkScrolledWindow" id="scrolledwindow1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="shadow_type">GTK_SHADOW_IN</property>
+                        <child>
+                          <widget class="GtkTreeView" id="property_treeview">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="position">200</property>
+                <property name="tab_expand">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkLabel" id="label4">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Xfconf channels</property>
+              </widget>
+              <packing>
+                <property name="type">tab</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child internal-child="action_area">
+          <widget class="GtkHButtonBox" id="dialog-action_area4">
+            <child>
+              <widget class="GtkButton" id="button1">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="label" translatable="yes">gtk-close</property>
+                <property name="use_stock">True</property>
+                <property name="response_id">-7</property>
+              </widget>
+              <packing>
+                <property name="pack_type">GTK_PACK_END</property>
               </packing>
             </child>
           </widget>
