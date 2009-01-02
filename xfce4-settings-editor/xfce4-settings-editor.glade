@@ -4,11 +4,11 @@
 <glade-interface>
   <requires lib="xfce4"/>
   <widget class="XfceTitledDialog" id="edit_settings_dialog">
-    <property name="title">Edit Property</property>
+    <property name="title" translatable="yes">Edit Property</property>
     <property name="allow_grow">False</property>
     <property name="resizable">False</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
-    <property name="icon_name">preferences-other</property>
+    <property name="icon_name">preferences-system</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="transient_for">main_dialog</property>
     <property name="has_separator">False</property>
@@ -194,8 +194,9 @@ Boolean</property>
   <widget class="XfceTitledDialog" id="main_dialog">
     <property name="width_request">600</property>
     <property name="height_request">380</property>
-    <property name="title">Settings editor</property>
-    <property name="icon_name">preferences-other</property>
+    <property name="title" translatable="yes">Settings Editor</property>
+    <property name="icon_name">preferences-system</property>
+    <property name="subtitle" translatable="yes">Customize settings stored by Xfconf</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox4">
