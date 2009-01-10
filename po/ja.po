@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-02 15:55+0100\n"
+"POT-Creation-Date: 2009-01-10 23:19+0100\n"
 "PO-Revision-Date: 2008-11-26 23:52+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
@@ -48,62 +48,67 @@ msgid "Acceptance _delay:"
 msgstr "確定までの時間(_D):"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+msgid "Accessibility"
+msgstr "アクセシビリティ"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Configure keyboard and mouse accessibility"
 msgstr "キーボードおよびマウスのアクセシビリティを設定します"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr "2つのキーが押された場合スティッキーキーを無効にする(_T)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
 msgstr "次の入力までの時間(_E):"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Keyboa_rd"
 msgstr "キーボード(_R)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Maximum _speed:"
 msgstr "最大速度(_S):"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "R_epeat interval:"
 msgstr "リピート間隔(_E):"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "次のキー入力が受け付けられるまでの時間 (ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "キーを押してから確定されるまで押しつづけなければならない時間 (ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "The maximum pointer speed after acceleration"
 msgstr "加速後のマウスポインタの最大速度"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "ポインタが最大速度に達するまでの加速度"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "キーが押され続けたときのリピート動作時間間隔 (ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "最初にキーが押されてから押され続けていると認識するまでの時間 (ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "最大速度に達するまでの時間 (ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
@@ -111,7 +116,7 @@ msgstr ""
 "不慮のキー入力を避けたいときに設定します。スローキーは指定された時間キーを押"
 "しつづけないと入力が確定しないようにします。"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
@@ -119,19 +124,19 @@ msgstr ""
 "不慮の複数キー入力を避けたいときに設定します。バウンスキーはキー入力後、指定"
 "された時間が経つまで次のキー入力を受け付けないようにします。"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
 msgstr "バウンスキーを使用する(_B)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "Use _sticky keys"
 msgstr "スティッキーキーを使用する(_S)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Use slow _keys"
 msgstr "スローキーを使用する(_K)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
@@ -142,7 +147,7 @@ msgstr ""
 "飾キーを押した後に他のキーを押すことで同時に押したものとして受け付けられま"
 "す。"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -150,7 +155,7 @@ msgstr ""
 "このオプションを設定すると、修飾キー (Ctrl、Alt、および Shift) が押された場合"
 "に再び押されるまで押された状態を維持します。"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
@@ -158,42 +163,42 @@ msgstr ""
 "このオプションを設定すると、2つのキーが同時に押されたときに \"スティッキー"
 "キー\" は機能しません"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
 msgstr "このオプションを設定すると、マウスポインタをテンキーで操作できます"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "_Acceleration delay:"
 msgstr "加速開始までの時間(_A):"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "_Lock sticky keys"
 msgstr "スティッキーキーをロックする(_L)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Mouse"
 msgstr "マウス(_M)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "_Use mouse emulation"
 msgstr "マウスエミュレーションを使用する(_U)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
 msgid "gtk-close"
 msgstr "閉じる"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "msec"
 msgstr "ミリ秒"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "pixels/sec"
 msgstr "ピクセル/秒"
 
@@ -246,10 +251,6 @@ msgstr "The Xfce development team. All rights reserved."
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "バグの報告は <%s> までお願いします。"
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
-msgid "Accessibility"
-msgstr "アクセシビリティ"
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -552,49 +553,50 @@ msgid "Second digital display"
 msgstr "2つめのデジタルディスプレイ"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:159
-msgid "Select shortcut command"
+#: ../dialogs/keyboard-settings/command-dialog.c:161
+#, fuzzy
+msgid "Shortcut Command"
 msgstr "ショートカットのコマンドを選択してください"
 
-#. Set subtitle
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-#, c-format
-msgid "Shortcut: %s"
-msgstr "ショートカット: %s"
+#: ../dialogs/keyboard-settings/command-dialog.c:185
+#, fuzzy
+msgid "Shortcut:"
+msgstr "ショートカット"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-msgid "Undefined"
-msgstr "未定義"
+#: ../dialogs/keyboard-settings/command-dialog.c:195
+#, fuzzy
+msgid "Command:"
+msgstr "コマンド"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:229
+#: ../dialogs/keyboard-settings/command-dialog.c:247
 msgid "The command may not be empty."
 msgstr "コマンドを入力してください。"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:249
+#: ../dialogs/keyboard-settings/command-dialog.c:267
 msgid "Select command"
 msgstr "コマンドの選択"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:257
+#: ../dialogs/keyboard-settings/command-dialog.c:275
 msgid "All Files"
 msgstr "全てのファイル"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:262
+#: ../dialogs/keyboard-settings/command-dialog.c:280
 msgid "Executable Files"
 msgstr "実行ファイル"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:277
+#: ../dialogs/keyboard-settings/command-dialog.c:295
 msgid "Perl Scripts"
 msgstr "Perl スクリプト"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:283
+#: ../dialogs/keyboard-settings/command-dialog.c:301
 msgid "Python Scripts"
 msgstr "Python スクリプト"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:289
+#: ../dialogs/keyboard-settings/command-dialog.c:307
 msgid "Ruby Scripts"
 msgstr "Ruby スクリプト"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:295
+#: ../dialogs/keyboard-settings/command-dialog.c:313
 msgid "Shell Scripts"
 msgstr "シェルスクリプト"
 
@@ -717,7 +719,7 @@ msgid "gtk-add"
 msgstr "追加"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "gtk-cancel"
 msgstr "キャンセル"
 
@@ -973,55 +975,62 @@ msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
 msgstr "プロパティ \"<b>%s</b>\" をリセットしてもよろしいですか?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
-msgid "Graphical settings editor for Xfce 4"
+#, fuzzy
+msgid "Graphical settings editor for Xfconf"
 msgstr "Xfce 4 用グラフィカル設定エディタ"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
 msgid "Settings Editor"
 msgstr "設定エディタ"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
-msgid "Xfce 4 Settings Editor"
-msgstr "Xfce 4 設定エディタ"
-
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Customize settings stored by Xfconf"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#, fuzzy
+msgid "Edit Property"
+msgstr "プロパティを編集します"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
 msgid "Edit property"
 msgstr "プロパティを編集します"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Enabled"
 msgstr "有効"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
 msgid "Name:"
 msgstr "名前:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "New property"
 msgstr "新しいプロパティ"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Reset/remove property"
 msgstr "プロパティをリセット/削除します"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 #, fuzzy
 msgid "Select a channel and property"
 msgstr "チャネルとプロパティを選択してください。"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Type:"
 msgstr "タイプ:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
 msgid "Value:"
 msgstr "値:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
 msgid "Xfconf channels"
 msgstr "Xfconf チャネル"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "gtk-save"
 msgstr "保存"
 
@@ -1139,6 +1148,15 @@ msgstr ""
 "%s: %s\n"
 "%s --help と入力すると利用可能な全てのコマンドラインオプションが表示されま"
 "す。\n"
+
+#~ msgid "Shortcut: %s"
+#~ msgstr "ショートカット: %s"
+
+#~ msgid "Undefined"
+#~ msgstr "未定義"
+
+#~ msgid "Xfce 4 Settings Editor"
+#~ msgstr "Xfce 4 設定エディタ"
 
 #~ msgid "Xfce4 settings editor"
 #~ msgstr "Xfce4 設定エディタ"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-02 15:55+0100\n"
+"POT-Creation-Date: 2009-01-10 23:19+0100\n"
 "PO-Revision-Date: 2008-11-18 21:43+0200\n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
@@ -48,53 +48,58 @@ msgid "Acceptance _delay:"
 msgstr "Onay _gecikmesi:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+msgid "Accessibility"
+msgstr "Erişilebilirlik"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Configure keyboard and mouse accessibility"
 msgstr "Klave ve fare erişilebilirliğini yapılandırınız"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr "Eğer i_ki tuş basılmışsa, yapışkan tuşları çalıştırma"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
 msgstr "Tuş basımı g_ecikmesi:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Keyboa_rd"
 msgstr "Klav_ye"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Maximum _speed:"
 msgstr "En yük_sek hız:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "R_epeat interval:"
 msgstr "A_ralıkları yinele:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "İki tuş basımı arasındaki zamanın milisaniye olarak değeri"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr ""
 "Tuşa basıldıktan sonraki zaman boyutu, milisaniye cinsinden ölçülecektir."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "The maximum pointer speed after acceleration"
 msgstr "Hızlandırmadan sonraki en yüksek imleç hızı"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "En yüksek imleç hızına ulaşmak için kullanılan rampa"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "İki tuş karakteri arasındaki zamanın milisaniye cinsinden değeri"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
@@ -102,11 +107,11 @@ msgstr ""
 "İlk tuş basımı ile tekrarlanacak ilk işlem arasında geçen sürenin milisaniye "
 "olarak değeri"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Maksimum hızı almak için milisaniye olarak geçmesi gereken süre"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
@@ -115,7 +120,7 @@ msgstr ""
 "edilmesi için bir tuşun belirli bir süre basılı tutulmasına ihtiyaç "
 "duymaktadır"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
@@ -123,19 +128,19 @@ msgstr ""
 "Rastlantısal çoğul tuş başımını engellemek için, tutuklu tuşlar tuş "
 "basımları arasındaki süreyi empoze etmektedir"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
 msgstr "T_utuklu tuşları kullan"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "Use _sticky keys"
 msgstr "Y_apışkan tuşları kullan"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Use slow _keys"
 msgstr "Ya_vaş tuşları kullan"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
@@ -144,7 +149,7 @@ msgstr ""
 "Etkinleştirildiğinde, diğer tuşlar aynı anda basılmaya ihtiyaç duyarken "
 "düzenleyici tuşların (Ctrl, Alt ve Shift)  basılı tutulmasına gerek yoktur."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -152,7 +157,7 @@ msgstr ""
 "Etkinleştirildiğinde, düzenleyici tuşlar ((Ctrl, Alt ve Shift) basılmış "
 "sayılacaktır ve bir defa daha basılana kadar basılı sayılacaklardır"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
@@ -160,43 +165,43 @@ msgstr ""
 "Etkinleştirildiğinde, \"yapışkan tuşlar\" özelliği aynı anda iki tuşa "
 "bastığınız zaman devre dışı kalacak"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
 msgstr ""
 "Etkinleştirildiğinde, fareyi klavyedeki yön tuşlarıyla yönetebilirsiniz"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "_Acceleration delay:"
 msgstr "İv_me gecikmesi:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "_Lock sticky keys"
 msgstr "Yapışkan tuşları ki_litle"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Mouse"
 msgstr "_Fare"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "_Use mouse emulation"
 msgstr "Fare öykünmesini k_ullan"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
 msgid "gtk-close"
 msgstr "gtk-close"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "msec"
 msgstr "milisaniye"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "pixels/sec"
 msgstr "piksel/saniye"
 
@@ -249,10 +254,6 @@ msgstr "Xfce geliştirici takımı. Tüm hakları saklıdır."
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Lütfen hatayı bize bildirin: <%s>."
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
-msgid "Accessibility"
-msgstr "Erişilebilirlik"
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -557,49 +558,49 @@ msgid "Second digital display"
 msgstr "İkinci sayısal görüntü"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:159
-msgid "Select shortcut command"
+#: ../dialogs/keyboard-settings/command-dialog.c:161
+#, fuzzy
+msgid "Shortcut Command"
 msgstr "Kısayol komutu seç"
 
-#. Set subtitle
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-#, c-format
-msgid "Shortcut: %s"
-msgstr "Kısayol: %s"
+#: ../dialogs/keyboard-settings/command-dialog.c:185
+msgid "Shortcut:"
+msgstr "Kısayol:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-msgid "Undefined"
-msgstr "Tanımlanmamış"
+#: ../dialogs/keyboard-settings/command-dialog.c:195
+#, fuzzy
+msgid "Command:"
+msgstr "Komut"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:229
+#: ../dialogs/keyboard-settings/command-dialog.c:247
 msgid "The command may not be empty."
 msgstr "Komut boş olmayabilir."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:249
+#: ../dialogs/keyboard-settings/command-dialog.c:267
 msgid "Select command"
 msgstr "Komut seç"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:257
+#: ../dialogs/keyboard-settings/command-dialog.c:275
 msgid "All Files"
 msgstr "Tüm Dosyalar"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:262
+#: ../dialogs/keyboard-settings/command-dialog.c:280
 msgid "Executable Files"
 msgstr "Çalıştırılabilir Dosyalar"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:277
+#: ../dialogs/keyboard-settings/command-dialog.c:295
 msgid "Perl Scripts"
 msgstr "Perl Betikleri"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:283
+#: ../dialogs/keyboard-settings/command-dialog.c:301
 msgid "Python Scripts"
 msgstr "Python Betikleri"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:289
+#: ../dialogs/keyboard-settings/command-dialog.c:307
 msgid "Ruby Scripts"
 msgstr "Ruby Betikleri"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:295
+#: ../dialogs/keyboard-settings/command-dialog.c:313
 msgid "Shell Scripts"
 msgstr "Kabuk Betikleri"
 
@@ -721,7 +722,7 @@ msgid "gtk-add"
 msgstr "gtk-add"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "gtk-cancel"
 msgstr "gtk-cancel"
 
@@ -981,55 +982,62 @@ msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
 msgstr "\"<b>%s</b>\" özelliğini sıfırlamak istediğinize emin misiniz?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
-msgid "Graphical settings editor for Xfce 4"
+#, fuzzy
+msgid "Graphical settings editor for Xfconf"
 msgstr "Xfce 4 için grafik ayarları düzenleyicisi"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
 msgid "Settings Editor"
 msgstr "Ayarlar Düzenleyicisi"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
-msgid "Xfce 4 Settings Editor"
-msgstr "Xfce 4 Ayarlar Düzenleyicisi"
-
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Customize settings stored by Xfconf"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#, fuzzy
+msgid "Edit Property"
+msgstr "Özelliği düzenle"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
 msgid "Edit property"
 msgstr "Özelliği düzenle"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Enabled"
 msgstr "Etkinleştirilmiş"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
 msgid "Name:"
 msgstr "İsim:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "New property"
 msgstr "Yeni özellik"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Reset/remove property"
 msgstr "Özelliği sıfırla / sil"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 #, fuzzy
 msgid "Select a channel and property"
 msgstr "Bir kanal ve özellik seçin"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Type:"
 msgstr "Tür:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
 msgid "Value:"
 msgstr "Değer:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
 msgid "Xfconf channels"
 msgstr "Xfconf kanalları"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "gtk-save"
 msgstr "gtk-save"
 
@@ -1146,6 +1154,15 @@ msgid ""
 msgstr ""
 "%s: %s\n"
 "Komut satırı seçeneklerinin tüm listesini görmek için, %s --help yazın.\n"
+
+#~ msgid "Shortcut: %s"
+#~ msgstr "Kısayol: %s"
+
+#~ msgid "Undefined"
+#~ msgstr "Tanımlanmamış"
+
+#~ msgid "Xfce 4 Settings Editor"
+#~ msgstr "Xfce 4 Ayarlar Düzenleyicisi"
 
 #~ msgid "Xfce4 settings editor"
 #~ msgstr "Xfce4 ayarlar düzenleyicisi"
@@ -1292,9 +1309,6 @@ msgstr ""
 
 #~ msgid "Enter shortcut"
 #~ msgstr "Kısayol gir"
-
-#~ msgid "Shortcut:"
-#~ msgstr "Kısayol:"
 
 #~ msgid "Could not grab the keyboard."
 #~ msgstr "Klavye alınamadı."

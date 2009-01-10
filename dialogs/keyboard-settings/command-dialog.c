@@ -152,17 +152,14 @@ command_dialog_create_contents (CommandDialog *dialog,
                                 const gchar   *action)
 {
   GtkWidget *button;
+  GtkWidget *table;
+  GtkWidget *label;
   GtkWidget *hbox;
   gchar     *text;
 
   /* Set dialog title and icon */
-  gtk_window_set_title (GTK_WINDOW (dialog), _("Select shortcut command"));
+  gtk_window_set_title (GTK_WINDOW (dialog), _("Shortcut Command"));
   gtk_window_set_icon_name (GTK_WINDOW (dialog), "application-x-executable");
-
-  /* Set subtitle */
-  text = g_strdup_printf (_("Shortcut: %s"), shortcut != NULL ? shortcut : _("Undefined"));
-  xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (dialog), text);
-  g_free (text);
 
   /* Configure dialog */
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
@@ -178,15 +175,36 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_widget_grab_default (button);
   gtk_widget_show (button);
 
-  hbox = gtk_hbox_new (FALSE, 12);
-  gtk_container_set_border_width (GTK_CONTAINER (hbox), 6);
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), hbox);
+  table = gtk_table_new (2, 2, FALSE);
+  gtk_table_set_row_spacings (GTK_TABLE (table), 6);
+  gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+  gtk_container_set_border_width (GTK_CONTAINER (table), 6);
+  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), table);
+  gtk_widget_show (table);
+
+  label = gtk_label_new (_("Shortcut:"));
+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_widget_show (label);
+
+  label = gtk_label_new (shortcut);
+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_table_attach (GTK_TABLE (table), label, 1, 2, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_widget_show (label);
+
+  label = gtk_label_new (_("Command:"));
+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_widget_show (label);
+  
+  hbox = gtk_hbox_new (FALSE, 6);
+  gtk_table_attach (GTK_TABLE (table), hbox, 1, 2, 1, 2, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
   gtk_widget_show (hbox);
 
   dialog->entry = gtk_entry_new ();
   gtk_entry_set_activates_default (GTK_ENTRY (dialog->entry), TRUE);
   gtk_entry_set_text (GTK_ENTRY (dialog->entry), action != NULL ? action : "");
-  gtk_box_pack_start (GTK_BOX (hbox), dialog->entry, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (hbox), dialog->entry);
   gtk_widget_show (dialog->entry);
 
   dialog->button = gtk_button_new_from_stock (GTK_STOCK_OPEN);

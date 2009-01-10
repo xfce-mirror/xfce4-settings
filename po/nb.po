@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.5.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-02 15:55+0100\n"
+"POT-Creation-Date: 2009-01-10 23:19+0100\n"
 "PO-Revision-Date: 2008-11-23 20:56+0100\n"
 "Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
 "Language-Team: Norwegian Bokmal\n"
@@ -46,53 +46,58 @@ msgid "Acceptance _delay:"
 msgstr "Godkjennings_forsinkelse:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+msgid "Accessibility"
+msgstr "Tilgjengelighet"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Configure keyboard and mouse accessibility"
 msgstr "Sett opp tilgjengelighet for tastatur og mus"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr "Deaktiver faste valgtaster hvis _to taster trykkes"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
 msgstr "Tast_etrykk forsinkelse:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Keyboa_rd"
 msgstr "Tastatu_r"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Maximum _speed:"
 msgstr "Maksimal ha_stighet:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "R_epeat interval:"
 msgstr "Gj_entagelsesintervall:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Påkrevet tid i millisekunder mellom tastetrykk"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr ""
 "Påkrevet tid i millisekunder som må passere før et tastetrykk godkjennes"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "The maximum pointer speed after acceleration"
 msgstr "Maksimal musepekerhastighet etter akselerasjon"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Rampen som brukes for å nå maksimal musepekerhastighet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Tiden, i millisekunder, mellom gjentatte bevegelseshendelser"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
@@ -100,11 +105,11 @@ msgstr ""
 "Tiden, i millisekunder, mellom første tastetrykk og første gjetatte "
 "bevegelseshendelse"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Tiden, i millisekunder, for å oppnå maksimal hastighet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
@@ -112,7 +117,7 @@ msgstr ""
 "For å unngå utilsiktede tastetrykk krever trege taster at brukeren holder "
 "tasten nede et minimum av tid før tastetrykket aksepteres"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
@@ -120,19 +125,19 @@ msgstr ""
 "For å unngå utilsiktede gjentatte tastetrykk krever filtertaster at det skal "
 "gå et minimum at tid mellom tastetrykk"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
 msgstr "Bruk f_iltertaster"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "Use _sticky keys"
 msgstr "Bruk faste _valgtaster"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Use slow _keys"
 msgstr "Bruk trege t_aster"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
@@ -142,7 +147,7 @@ msgstr ""
 "kan trykkes og slippes opp)  når flere taster ellers måtte vært holdt nede "
 "til samme tid"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -150,49 +155,49 @@ msgstr ""
 "I bruk vil valgtaster (som Ctrl, Alt og Shift) forbli låste inntil "
 "valgtasten trykkes pånytt"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr ""
 "I bruk vil «faste valgtaster» deaktiveres hvis to taster trykkes samtidig"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
 msgstr "I bruk vil musepekeren kontrolleres ved hjelp av talltastaturet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "_Acceleration delay:"
 msgstr "_Akselerasjonsforsinkelse:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "_Lock sticky keys"
 msgstr "L_ås faste valgtaster"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Mouse"
 msgstr "_Mus"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "_Use mouse emulation"
 msgstr "_Bruk museemulering"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
 msgid "gtk-close"
 msgstr "Lukk"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "msec"
 msgstr "millisekunder"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "pixels/sec"
 msgstr "piksler/sek"
 
@@ -245,10 +250,6 @@ msgstr "Xfce utviklingsteam. Alle rettigheter reservert."
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapporter feil til <%s>."
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
-msgid "Accessibility"
-msgstr "Tilgjengelighet"
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -544,49 +545,50 @@ msgid "Second digital display"
 msgstr "Sekunder digital skjerm"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:159
-msgid "Select shortcut command"
+#: ../dialogs/keyboard-settings/command-dialog.c:161
+#, fuzzy
+msgid "Shortcut Command"
 msgstr "Angi hurtigtast kommando"
 
-#. Set subtitle
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-#, c-format
-msgid "Shortcut: %s"
-msgstr "Hurtigtast: %s"
+#: ../dialogs/keyboard-settings/command-dialog.c:185
+#, fuzzy
+msgid "Shortcut:"
+msgstr "Hurtigtast"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-msgid "Undefined"
-msgstr "Ikke definert"
+#: ../dialogs/keyboard-settings/command-dialog.c:195
+#, fuzzy
+msgid "Command:"
+msgstr "Kommando"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:229
+#: ../dialogs/keyboard-settings/command-dialog.c:247
 msgid "The command may not be empty."
 msgstr "Kommandoen kan ikke være tom."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:249
+#: ../dialogs/keyboard-settings/command-dialog.c:267
 msgid "Select command"
 msgstr "Velg kommando"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:257
+#: ../dialogs/keyboard-settings/command-dialog.c:275
 msgid "All Files"
 msgstr "Alle filer"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:262
+#: ../dialogs/keyboard-settings/command-dialog.c:280
 msgid "Executable Files"
 msgstr "Kjørbare filer"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:277
+#: ../dialogs/keyboard-settings/command-dialog.c:295
 msgid "Perl Scripts"
 msgstr "Perlskript"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:283
+#: ../dialogs/keyboard-settings/command-dialog.c:301
 msgid "Python Scripts"
 msgstr "Pythonskript"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:289
+#: ../dialogs/keyboard-settings/command-dialog.c:307
 msgid "Ruby Scripts"
 msgstr "Rubyskript"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:295
+#: ../dialogs/keyboard-settings/command-dialog.c:313
 msgid "Shell Scripts"
 msgstr "Skript"
 
@@ -708,7 +710,7 @@ msgid "gtk-add"
 msgstr "Legg til"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "gtk-cancel"
 msgstr "Avbryt"
 
@@ -968,55 +970,62 @@ msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
 msgstr "Er du sikker på at du vil resette egenskap «<b>%s</b>»?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
-msgid "Graphical settings editor for Xfce 4"
+#, fuzzy
+msgid "Graphical settings editor for Xfconf"
 msgstr "Innstillingsredigerer for Xfce4"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
 msgid "Settings Editor"
 msgstr "Innstillingsredigerer"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
-msgid "Xfce 4 Settings Editor"
-msgstr "Xfce 4 Innstillingsredigerer"
-
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Customize settings stored by Xfconf"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#, fuzzy
+msgid "Edit Property"
+msgstr "Rediger egenskap"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
 msgid "Edit property"
 msgstr "Rediger egenskap"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Enabled"
 msgstr "Aktivert"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
 msgid "Name:"
 msgstr "Navn:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "New property"
 msgstr "Ny egenskap"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Reset/remove property"
 msgstr "Nullstill/fjerne egenskap"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 #, fuzzy
 msgid "Select a channel and property"
 msgstr "Velg en kanal og egenskap"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Type:"
 msgstr "Type:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
 msgid "Value:"
 msgstr "Verdi:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
 msgid "Xfconf channels"
 msgstr "Xfconf kanaler"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "gtk-save"
 msgstr "Lagre"
 
@@ -1134,6 +1143,15 @@ msgstr ""
 "%s: %s\n"
 "Prøv «%s --help» for å se komplett liste over tilgjengelige "
 "kommandolinjevalg.\n"
+
+#~ msgid "Shortcut: %s"
+#~ msgstr "Hurtigtast: %s"
+
+#~ msgid "Undefined"
+#~ msgstr "Ikke definert"
+
+#~ msgid "Xfce 4 Settings Editor"
+#~ msgstr "Xfce 4 Innstillingsredigerer"
 
 #~ msgid "Xfce4 settings editor"
 #~ msgstr "Xfce4 Innstillingsredigerer"

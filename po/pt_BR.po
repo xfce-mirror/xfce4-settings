@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-02 15:55+0100\n"
+"POT-Creation-Date: 2009-01-10 23:19+0100\n"
 "PO-Revision-Date: 2008-11-27 16:27-0300\n"
 "Last-Translator: Henrique P Machado <zehrique@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -50,35 +50,40 @@ msgid "Acceptance _delay:"
 msgstr "Atraso _de aceitação:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+msgid "Accessibility"
+msgstr "Acessibilidade"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Configure keyboard and mouse accessibility"
 msgstr "Configure o teclado e a acessibilidade do mouse"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr ""
 "Desabilitar teclas de aderência se duas _teclas forem pressionadas juntas"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
 msgstr "Atraso dos atalhos de t_eclas:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Keyboa_rd"
 msgstr "Tecla_do"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Maximum _speed:"
 msgstr "Velo_cidade máxima:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "R_epeat interval:"
 msgstr "R_epetir intervalo:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "O tempo em milissegundos, requerido entre os atalhos de teclas"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
@@ -86,19 +91,19 @@ msgstr ""
 "O tempo em milissegundos que deve ocorrer antes que um atalho de teclado "
 "seja aceito"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "The maximum pointer speed after acceleration"
 msgstr "A velocidade máxima do ponteiro depois da aceleração"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "A rampa usada para atingir a velocidade máxima do ponteiro"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "O tempo em milissegundos entre eventos de movimento repetido"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
@@ -106,11 +111,11 @@ msgstr ""
 "O tempo em milissegundos entre o pressionamento inicial da tecla e o "
 "primeiro movimento repetido"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "O tempo em milissegundos para alcançar à velocidade de aceleração"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
@@ -119,7 +124,7 @@ msgstr ""
 "lentas necessitam que uma tecla seja pressionada por um tempo mínimo antes "
 "da tecla de atalho ser aceita"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
@@ -128,19 +133,19 @@ msgstr ""
 "atalho, as teclas de repercussão impõem um tempo mínimo entre os "
 "pressionamentos"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
 msgstr "Usar teclas de _repercussão"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "Use _sticky keys"
 msgstr "Usar teclas de _aderência"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Use slow _keys"
 msgstr "Usar teclas _lentas"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
@@ -151,7 +156,7 @@ msgstr ""
 "quando múltiplas teclas poderiam normalmente necessitar serem pressionadas "
 "ao mesmo tempo"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -160,7 +165,7 @@ msgstr ""
 "permanecerão travadas no estado pressionado até que sejam pressionadas "
 "novamente"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
@@ -168,43 +173,43 @@ msgstr ""
 "Quando selecionado, o recurso de teclas de aderência será desabilitado "
 "quando você pressionar duas teclas simultaneamente"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
 msgstr ""
 "Quando selecionado, você pode controlar o ponteiro usando o teclado numérico"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "_Acceleration delay:"
 msgstr "Atraso _de aceleração:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "_Lock sticky keys"
 msgstr "B_loquear teclas de aderência"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Mouse"
 msgstr "_Mouse"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "_Use mouse emulation"
 msgstr "_Usar emulação do mouse"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
 msgid "gtk-close"
 msgstr "gtk-close"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "msec"
 msgstr "mseg"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "pixels/sec"
 msgstr "pixels/seg"
 
@@ -257,10 +262,6 @@ msgstr "A equipe de desenvolvimento do Xfce. Todos os direitos reservados."
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Por favor relate os erros para <%s>."
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
-msgid "Accessibility"
-msgstr "Acessibilidade"
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -563,49 +564,49 @@ msgid "Second digital display"
 msgstr "Segunda tela digital"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:159
-msgid "Select shortcut command"
+#: ../dialogs/keyboard-settings/command-dialog.c:161
+#, fuzzy
+msgid "Shortcut Command"
 msgstr "Selecionar comando de atalho"
 
-#. Set subtitle
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-#, c-format
-msgid "Shortcut: %s"
-msgstr "Atalho: %s"
+#: ../dialogs/keyboard-settings/command-dialog.c:185
+msgid "Shortcut:"
+msgstr "Atalho:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-msgid "Undefined"
-msgstr "Indefinido"
+#: ../dialogs/keyboard-settings/command-dialog.c:195
+#, fuzzy
+msgid "Command:"
+msgstr "Comando"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:229
+#: ../dialogs/keyboard-settings/command-dialog.c:247
 msgid "The command may not be empty."
 msgstr "O comando não pode ser vazio."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:249
+#: ../dialogs/keyboard-settings/command-dialog.c:267
 msgid "Select command"
 msgstr "Selecionar comando"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:257
+#: ../dialogs/keyboard-settings/command-dialog.c:275
 msgid "All Files"
 msgstr "Todos os arquivos"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:262
+#: ../dialogs/keyboard-settings/command-dialog.c:280
 msgid "Executable Files"
 msgstr "Arquivos executáveis"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:277
+#: ../dialogs/keyboard-settings/command-dialog.c:295
 msgid "Perl Scripts"
 msgstr "Scripts em Perl"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:283
+#: ../dialogs/keyboard-settings/command-dialog.c:301
 msgid "Python Scripts"
 msgstr "Scripts em Python"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:289
+#: ../dialogs/keyboard-settings/command-dialog.c:307
 msgid "Ruby Scripts"
 msgstr "Scripts em Ruby"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:295
+#: ../dialogs/keyboard-settings/command-dialog.c:313
 msgid "Shell Scripts"
 msgstr "Scripts em Shell"
 
@@ -731,7 +732,7 @@ msgid "gtk-add"
 msgstr "gtk-add"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "gtk-cancel"
 msgstr "gtk-cancel"
 
@@ -997,55 +998,62 @@ msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
 msgstr "Tem certeza que quer restaurar a propriedade \"<b>%s</b>\"?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
-msgid "Graphical settings editor for Xfce 4"
+#, fuzzy
+msgid "Graphical settings editor for Xfconf"
 msgstr "Editor de Configurações Gráficas do Xfce 4"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
 msgid "Settings Editor"
 msgstr "Editor de Configurações"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
-msgid "Xfce 4 Settings Editor"
-msgstr "Editor de Configurações do Xfce 4"
-
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Customize settings stored by Xfconf"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#, fuzzy
+msgid "Edit Property"
+msgstr "Editar propriedade"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
 msgid "Edit property"
 msgstr "Editar propriedade"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Enabled"
 msgstr "Habilitado"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
 msgid "Name:"
 msgstr "Nome:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "New property"
 msgstr "Nova propriedade"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Reset/remove property"
 msgstr "Restaurar/remover propriedade"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 #, fuzzy
 msgid "Select a channel and property"
 msgstr "Seleciona um canal e propriedade."
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Type:"
 msgstr "Tipo:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
 msgid "Value:"
 msgstr "Valor:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
 msgid "Xfconf channels"
 msgstr "Canais do xfconf"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "gtk-save"
 msgstr "gtk-save"
 
@@ -1163,6 +1171,15 @@ msgstr ""
 "%s: %s\n"
 "Tente %s --help para ver uma lista completa dos comandos de linha de comando "
 "disponíveis.\n"
+
+#~ msgid "Shortcut: %s"
+#~ msgstr "Atalho: %s"
+
+#~ msgid "Undefined"
+#~ msgstr "Indefinido"
+
+#~ msgid "Xfce 4 Settings Editor"
+#~ msgstr "Editor de Configurações do Xfce 4"
 
 #~ msgid "Xfce4 settings editor"
 #~ msgstr "Editor de Configurações do Xfce 4"
@@ -1324,9 +1341,6 @@ msgstr ""
 
 #~ msgid "Enter shortcut"
 #~ msgstr "Digitar atalho"
-
-#~ msgid "Shortcut:"
-#~ msgstr "Atalho:"
 
 #~ msgid "Could not grab the keyboard."
 #~ msgstr "Não foi possível capturar o teclado."

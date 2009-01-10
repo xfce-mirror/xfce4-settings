@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-02 15:55+0100\n"
+"POT-Creation-Date: 2009-01-10 23:19+0100\n"
 "PO-Revision-Date: 2008-12-15 20:07+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -46,34 +46,39 @@ msgid "Acceptance _delay:"
 msgstr "Fördröjning för a_cceptans:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+msgid "Accessibility"
+msgstr "Hjälpfunktioner"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Configure keyboard and mouse accessibility"
 msgstr "Konfigurera hjälpfunktioner för tangentbord och mus"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr "Inaktivera klistriga tangenter _om två tangenter trycks ner"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
 msgstr "Fördröjning för tangenttr_yckning:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Keyboa_rd"
 msgstr "Tangentbor_d"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Maximum _speed:"
 msgstr "Maximal _hastighet:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "R_epeat interval:"
 msgstr "Uppr_epningsintervall:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Mängden tid, i millisekunder, som krävs mellan tangenttryckningar"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
@@ -81,19 +86,19 @@ msgstr ""
 "Mängden tid, i millisekunder, som måste förflyta innan en tangenttryckning "
 "kan tas emot"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "The maximum pointer speed after acceleration"
 msgstr "Maximala pekarhastigheten efter acceleration"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Tröskeln att använda för att nå maximal pekarhastighet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Tiden, i millisekunder, mellan upprepade rörelsehändelser"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
@@ -101,11 +106,11 @@ msgstr ""
 "Tiden, i millisekunder, mellan en initial tangenttryckning och första "
 "upprepade rörelsehändelsen"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Tiden, i millisekunder, för att komma till maximal hastighet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
@@ -114,7 +119,7 @@ msgstr ""
 "tröga tangenter att en tangent hålls nere i viss tidsperiod innan "
 "tangenttryckningen kommer att tas emot"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
@@ -123,19 +128,19 @@ msgstr ""
 "förelägger studsande tangenter en minimal fördröjning mellan "
 "tangenttryckningar"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
 msgstr "Använd _studsande tangenter"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "Use _sticky keys"
 msgstr "Använd _klistriga tangenter"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Use slow _keys"
 msgstr "Använd tröga _tangenter"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
@@ -145,7 +150,7 @@ msgstr ""
 "hållas ner (de kan tryckas och sedan släppas) när flera tangenter normalt "
 "sett behöver tryckas ner samtidigt"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -153,7 +158,7 @@ msgstr ""
 "När vald så kommer modifierartangenter (såsom Control, Alt och Skift) att "
 "kvarstå i nedtryckt tillstånd tills den trycks ner igen"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
@@ -161,43 +166,43 @@ msgstr ""
 "När vald kommer funktionen \"klistra tangenter\" att inaktiveras om två "
 "tangenter trycks ner samtidigt"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
 msgstr ""
 "När vald kan muspekaren kontrolleras med den numeriska delen av tangentbordet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "_Acceleration delay:"
 msgstr "_Accelerationsfördröjning:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "_Lock sticky keys"
 msgstr "_Lås klistriga tangenter"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Mouse"
 msgstr "_Mus"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "_Use mouse emulation"
 msgstr "_Använd musemulering"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
 msgid "gtk-close"
 msgstr "Stäng"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "msec"
 msgstr "ms"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "pixels/sec"
 msgstr "bildpunkter/s"
 
@@ -250,10 +255,6 @@ msgstr "The Xfce development team. Alla rättigheter är reserverade."
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapportera fel till <%s>."
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
-msgid "Accessibility"
-msgstr "Hjälpfunktioner"
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -553,49 +554,50 @@ msgid "Second digital display"
 msgstr "Sekundär digital skärm"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:159
-msgid "Select shortcut command"
+#: ../dialogs/keyboard-settings/command-dialog.c:161
+#, fuzzy
+msgid "Shortcut Command"
 msgstr "Välj genvägskommando"
 
-#. Set subtitle
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-#, c-format
-msgid "Shortcut: %s"
-msgstr "Genväg: %s"
+#: ../dialogs/keyboard-settings/command-dialog.c:185
+#, fuzzy
+msgid "Shortcut:"
+msgstr "Genväg"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:163
-msgid "Undefined"
-msgstr "Odefinierad"
+#: ../dialogs/keyboard-settings/command-dialog.c:195
+#, fuzzy
+msgid "Command:"
+msgstr "Kommando"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:229
+#: ../dialogs/keyboard-settings/command-dialog.c:247
 msgid "The command may not be empty."
 msgstr "Kommandot får inte vara tomt."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:249
+#: ../dialogs/keyboard-settings/command-dialog.c:267
 msgid "Select command"
 msgstr "Välj kommando"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:257
+#: ../dialogs/keyboard-settings/command-dialog.c:275
 msgid "All Files"
 msgstr "Alla filer"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:262
+#: ../dialogs/keyboard-settings/command-dialog.c:280
 msgid "Executable Files"
 msgstr "Körbara filer"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:277
+#: ../dialogs/keyboard-settings/command-dialog.c:295
 msgid "Perl Scripts"
 msgstr "Perl-skript"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:283
+#: ../dialogs/keyboard-settings/command-dialog.c:301
 msgid "Python Scripts"
 msgstr "Python-skript"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:289
+#: ../dialogs/keyboard-settings/command-dialog.c:307
 msgid "Ruby Scripts"
 msgstr "Ruby-skript"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:295
+#: ../dialogs/keyboard-settings/command-dialog.c:313
 msgid "Shell Scripts"
 msgstr "Skalskript"
 
@@ -719,7 +721,7 @@ msgid "gtk-add"
 msgstr "Lägg till"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "gtk-cancel"
 msgstr "Avbryt"
 
@@ -981,55 +983,62 @@ msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
 msgstr "Är du säker på att du vill återställa egenskapen \"<b>%s</b>\"?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
-msgid "Graphical settings editor for Xfce 4"
+#, fuzzy
+msgid "Graphical settings editor for Xfconf"
 msgstr "Grafisk inställningsredigerare för Xfce 4"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
 msgid "Settings Editor"
 msgstr "Inställningsredigerare"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
-msgid "Xfce 4 Settings Editor"
-msgstr "Inställningsredigerare för Xfce 4"
-
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Customize settings stored by Xfconf"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#, fuzzy
+msgid "Edit Property"
+msgstr "Redigera egenskap"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
 msgid "Edit property"
 msgstr "Redigera egenskap"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Enabled"
 msgstr "Aktiverad"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
 msgid "Name:"
 msgstr "Namn:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "New property"
 msgstr "Ny egenskap"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Reset/remove property"
 msgstr "Återställ/ta bort egenskap"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 #, fuzzy
 msgid "Select a channel and property"
 msgstr "Välj en kanal och egenskap."
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Type:"
 msgstr "Typ:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
 msgid "Value:"
 msgstr "Värde:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
 msgid "Xfconf channels"
 msgstr "Xfconf-kanaler"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "gtk-save"
 msgstr "Spara"
 
@@ -1147,6 +1156,15 @@ msgstr ""
 "%s: %s\n"
 "Prova %s --help för att se en komplett lista över tillgängliga "
 "kommandoradsflaggor.\n"
+
+#~ msgid "Shortcut: %s"
+#~ msgstr "Genväg: %s"
+
+#~ msgid "Undefined"
+#~ msgstr "Odefinierad"
+
+#~ msgid "Xfce 4 Settings Editor"
+#~ msgstr "Inställningsredigerare för Xfce 4"
 
 #~ msgid "Xfce4 settings editor"
 #~ msgstr "Inställningsredigerare för Xfce4"
