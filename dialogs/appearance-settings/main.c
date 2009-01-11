@@ -523,6 +523,116 @@ appearance_settings_from_gtk_settings (void)
 }
 
 static void
+appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
+                                                     const gchar   *property_name,
+                                                     const GValue  *value,
+                                                     GladeXML      *gxml)
+{
+    GtkWidget    *widget, *spin;
+    gchar        *str;
+    guint         i;
+    gint          antialias, dpi;
+    GtkTreeModel *model;
+
+    g_return_if_fail (property_name != NULL);
+
+    if (strcmp (property_name, "/Xft/RGBA") == 0)
+    {
+        str = xfconf_channel_get_string (xsettings_channel, property_name, xft_rgba_array[0]);
+        for (i = 0; i < G_N_ELEMENTS (xft_rgba_array); i++)
+        {
+            if (strcmp (str, xft_rgba_array[i]) == 0)
+            {
+                widget = glade_xml_get_widget (gxml, "xft_rgba_combo_box");
+                gtk_combo_box_set_active (GTK_COMBO_BOX (widget), i);
+                break;
+            }
+        }
+        g_free (str);
+    }
+    else if (strcmp (property_name, "/Gtk/ToolbarStyle") == 0)
+    {
+        str = xfconf_channel_get_string (xsettings_channel, property_name, toolbar_styles_array[2]);
+        for (i = 0; i < G_N_ELEMENTS (toolbar_styles_array); i++)
+        {
+            if (strcmp (str, toolbar_styles_array[i]) == 0)
+            {
+                widget = glade_xml_get_widget (gxml, "gtk_toolbar_style_combo_box");
+                gtk_combo_box_set_active (GTK_COMBO_BOX (widget), i);
+                break;
+            }
+        }
+        g_free (str);
+    }
+    else if (strcmp (property_name, "/Xft/HintStyle") == 0)
+    {
+        str = xfconf_channel_get_string (xsettings_channel, property_name, xft_hint_styles_array[0]);
+        for (i = 0; i < G_N_ELEMENTS (xft_hint_styles_array); i++)
+        {
+            if (strcmp (str, xft_hint_styles_array[i]) == 0)
+            {
+                widget = glade_xml_get_widget (gxml, "xft_hinting_style_combo_box");
+                gtk_combo_box_set_active (GTK_COMBO_BOX (widget), i);
+                break;
+            }
+        }
+        g_free (str);
+    }
+    else if (strcmp (property_name, "/Xft/Antialias") == 0)
+    {
+        widget = glade_xml_get_widget (gxml, "xft_antialias_check_button");
+        antialias = xfconf_channel_get_int (xsettings_channel, property_name, -1);
+        switch (antialias)
+        {
+            case 1:
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
+                break;
+
+            case 0:
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), FALSE);
+                break;
+
+            default: /* -1 */
+                gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (widget), TRUE);
+                break;
+        }
+    }
+    else if (strcmp (property_name, "/Xft/DPI") == 0)
+    {
+        widget = glade_xml_get_widget (gxml, "xft_custom_dpi_check_button");
+        spin = glade_xml_get_widget (gxml, "xft_custom_dpi_spin_button");
+        dpi = xfconf_channel_get_int (xsettings_channel, property_name, -1);
+        
+        if (dpi == -1)
+        {
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), FALSE);
+            gtk_widget_set_sensitive (spin, FALSE);
+            gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin), 96);
+        }
+        else
+        {
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
+            gtk_widget_set_sensitive (spin, TRUE);
+            gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin), (gdouble) dpi);
+        }
+    }
+    else if (strcmp (property_name, "/Net/ThemeName") == 0)
+    {
+        widget = glade_xml_get_widget (gxml, "gtk_theme_treeview");
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
+        gtk_list_store_clear (GTK_LIST_STORE (model));
+        appearance_settings_load_ui_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (widget));
+    }
+    else if (strcmp (property_name, "/Net/IconThemeName") == 0)
+    {
+        widget = glade_xml_get_widget (gxml, "icon_theme_treeview");
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
+        gtk_list_store_clear (GTK_LIST_STORE (model));
+        appearance_settings_load_icon_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (widget));
+    }
+}
+
+static void
 appearance_settings_dialog_configure_widgets (GladeXML *gxml)
 {
     GtkListStore     *list_store;
@@ -620,16 +730,7 @@ appearance_settings_dialog_configure_widgets (GladeXML *gxml)
 
     gtk_combo_box_set_model (GTK_COMBO_BOX (rgba_combo_box), GTK_TREE_MODEL (list_store));
     g_object_unref (G_OBJECT (list_store));
-
-    string = xfconf_channel_get_string (xsettings_channel, "/Xft/RGBA", xft_rgba_array[0]);
-    for (i = 0; i < G_N_ELEMENTS (xft_rgba_array); i++)
-        if (strcmp (string, xft_rgba_array[i]) == 0)
-        {
-            gtk_combo_box_set_active (GTK_COMBO_BOX (rgba_combo_box), i);
-            break;
-        }
-    g_free (string);
-
+    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/RGBA", NULL, gxml);
     g_signal_connect (G_OBJECT (rgba_combo_box), "changed", G_CALLBACK (cb_rgba_style_combo_changed), NULL);
 
     /* Enable editable menu accelerators */
@@ -667,16 +768,7 @@ appearance_settings_dialog_configure_widgets (GladeXML *gxml)
     gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (toolbar_style_combo), renderer, "text", 0);
     gtk_combo_box_set_model (GTK_COMBO_BOX (toolbar_style_combo), GTK_TREE_MODEL (list_store));
     g_object_unref (G_OBJECT (list_store));
-
-    string = xfconf_channel_get_string (xsettings_channel, "/Gtk/ToolbarStyle", toolbar_styles_array[2]);
-    for (i = 0; i < G_N_ELEMENTS (toolbar_styles_array); i++)
-        if (strcmp (string, toolbar_styles_array[i]) == 0)
-        {
-            gtk_combo_box_set_active (GTK_COMBO_BOX (toolbar_style_combo), i);
-            break;
-        }
-    g_free (string);
-
+    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Gtk/ToolbarStyle", NULL, gxml);
     g_signal_connect (G_OBJECT (toolbar_style_combo), "changed", G_CALLBACK(cb_toolbar_style_combo_changed), NULL);
 
     /* Hinting style */
@@ -694,58 +786,18 @@ appearance_settings_dialog_configure_widgets (GladeXML *gxml)
     gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (hinting_style_combo), renderer, "text", 0);
     gtk_combo_box_set_model (GTK_COMBO_BOX (hinting_style_combo), GTK_TREE_MODEL (list_store));
     g_object_unref (G_OBJECT (list_store));
-
-    string = xfconf_channel_get_string (xsettings_channel, "/Xft/HintStyle", xft_hint_styles_array[0]);
-    for (i = 0; i < G_N_ELEMENTS (xft_hint_styles_array); i++)
-        if (strcmp (string, xft_hint_styles_array[i]) == 0)
-        {
-            gtk_combo_box_set_active (GTK_COMBO_BOX (hinting_style_combo), i);
-            break;
-        }
-    g_free (string);
-
+    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/HintStyle", NULL, gxml);
     g_signal_connect (G_OBJECT (hinting_style_combo), "changed", G_CALLBACK (cb_hinting_style_combo_changed), NULL);
 
     /* Hinting */
     GtkWidget *antialias_check_button = glade_xml_get_widget (gxml, "xft_antialias_check_button");
-    gint antialias = xfconf_channel_get_int (xsettings_channel, "/Xft/Antialias", -1);
-    gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (antialias_check_button), antialias == -1);
-
-    switch (antialias)
-    {
-        case 1:
-            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (antialias_check_button), TRUE);
-            break;
-
-        case 0:
-            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (antialias_check_button), FALSE);
-            break;
-
-        default: /* -1 */
-            gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (antialias_check_button), TRUE);
-            break;
-    }
-
+    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/Antialias", NULL, gxml);
     g_signal_connect (G_OBJECT (antialias_check_button), "toggled", G_CALLBACK (cb_antialias_check_button_toggled), NULL);
 
     /* DPI */
     GtkWidget *custom_dpi_check = glade_xml_get_widget (gxml, "xft_custom_dpi_check_button");
     GtkWidget *custom_dpi_spin = glade_xml_get_widget (gxml, "xft_custom_dpi_spin_button");
-    gint dpi = xfconf_channel_get_int (xsettings_channel, "/Xft/DPI", -1);
-
-    if (dpi == -1)
-    {
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (custom_dpi_check), FALSE);
-        gtk_widget_set_sensitive (custom_dpi_spin, FALSE);
-        gtk_spin_button_set_value (GTK_SPIN_BUTTON (custom_dpi_spin), 96);
-    }
-    else
-    {
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (custom_dpi_check), TRUE);
-        gtk_widget_set_sensitive (custom_dpi_spin, TRUE);
-        gtk_spin_button_set_value (GTK_SPIN_BUTTON (custom_dpi_spin), (gdouble) dpi);
-    }
-
+    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/DPI", NULL, gxml);
     g_signal_connect (G_OBJECT (custom_dpi_check), "toggled", G_CALLBACK (cb_custom_dpi_check_button_toggled), custom_dpi_spin);
     g_signal_connect (G_OBJECT (custom_dpi_spin), "value-changed", G_CALLBACK (cb_custom_dpi_spin_value_changed), custom_dpi_check);
 
@@ -832,6 +884,10 @@ main(gint argc, gchar **argv)
         gxml = glade_xml_new_from_buffer (appearance_dialog_glade, appearance_dialog_glade_length, NULL, NULL);
         if (G_LIKELY (gxml))
         {
+            /* connect signal to monitor the channel */
+            g_signal_connect (G_OBJECT (xsettings_channel), "property-changed", 
+                              G_CALLBACK (appearance_settings_dialog_channel_property_changed), gxml);
+
             appearance_settings_dialog_configure_widgets (gxml);
 
             if (G_UNLIKELY (opt_socket_id == 0))
