@@ -43,6 +43,10 @@
 /* Increase this number if new gtk settings have been added */
 #define INITIALIZE_UINT (1)
 
+#define DPI_DEFAULT 96
+#define DPI_MIN     50
+#define DPI_MAX     500
+
 enum
 {
     COLUMN_THEME_NAME,
@@ -447,6 +451,36 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
     }
 }
 
+static gdouble
+appearance_settings_get_dpi_from_x (void)
+{
+    GdkScreen *screen;
+    gdouble    height_dpi = 0, width_dpi = 0;
+    gint       height_mm, width_mm;
+
+    screen = gdk_screen_get_default ();
+    if (G_LIKELY (screen != NULL))
+    {
+        width_mm = gdk_screen_get_width_mm (screen);
+        if (width_mm >= 1)
+            width_dpi = gdk_screen_get_width (screen) / (width_mm / 25.4);
+        else
+            width_dpi = 0;
+
+        height_mm = gdk_screen_get_height_mm (screen);
+        if (height_mm >= 1)
+            height_dpi = gdk_screen_get_height (screen) / (height_mm / 25.4);
+        else
+            height_dpi = 0;
+    }
+
+    if (width_dpi < DPI_MIN || width_dpi > DPI_MAX
+        || height_dpi < DPI_MIN || height_dpi > DPI_MAX)
+        return DPI_DEFAULT;
+
+    return (width_dpi + height_dpi) / 2.00;
+}
+
 static void
 appearance_settings_from_gtk_settings (void)
 {
@@ -607,7 +641,7 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
         {
             gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), FALSE);
             gtk_widget_set_sensitive (spin, FALSE);
-            gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin), 96);
+            gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin), appearance_settings_get_dpi_from_x ());
         }
         else
         {
