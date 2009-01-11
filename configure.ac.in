@@ -1,5 +1,5 @@
 dnl
-dnl Copyright (c) 2006 - 2008
+dnl Copyright (c) 2006 - 2009
 dnl         The Xfce development team. All rights reserved.
 dnl
 dnl Originally written for Xfce by Benedikt Meurer <benny@xfce.org>
@@ -11,7 +11,7 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([xfce4_settings_version_major], [4])
 m4_define([xfce4_settings_version_minor], [5])
-m4_define([xfce4_settings_version_micro], [92])
+m4_define([xfce4_settings_version_micro], [93])
 m4_define([xfce4_settings_version_build], [r@REVISION@])
 m4_define([xfce4_settings_version_tag], []) # Leave empty for releases
 m4_define([xfce4_settings_version], [xfce4_settings_version_major().xfce4_settings_version_minor().xfce4_settings_version_micro()ifelse(xfce4_settings_version_tag(),[],[], [-ifelse(xfce4_settings_version_tag(), [stephan], [xfce4_settings_version_tag()-xfce4_settings_version_build()], [xfce4_settings_version_tag()])])])
@@ -24,7 +24,7 @@ m4_define([xfce4_settings_debug_default], [ifelse(xfce4_settings_version_tag(), 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2008
+AC_COPYRIGHT([Copyright (c) 2008-2009
         The Xfce development team. All rights reserved.])
 AC_INIT([xfce4-settings], [xfce4_settings_version], [http://bugzilla.xfce.org/])
 AC_PREREQ([2.50])
@@ -75,11 +75,11 @@ XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.92])
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.10.0])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.12.0])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.12.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.5.92])
-XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.5.92])
-XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-1.0], [4.5.92])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.5.93])
+XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.5.93])
+XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-1.0], [4.5.93])
 XDT_CHECK_PACKAGE([GLADE], [libglade-2.0], [2.0.0])
-XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.5.92])
+XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.5.93])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.34])
 XDT_CHECK_PACKAGE([XI], [xi], [1.0.0])
 XDT_CHECK_PACKAGE([LIBX11], [x11], [1.0.0])
