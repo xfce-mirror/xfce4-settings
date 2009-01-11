@@ -1,37 +1,50 @@
-4.5.90.0 (Xfce 4.6 rc1)
-
-  * Allow the settings manager window to be minimized (bug 4596).
-  * Fix xfce4-settings-helper not setting workspace count.
+4.5.93 (Xfce 4.6 beta3)
+=======================
+- Allow the settings manager window to be minimized (bug #4596).
+- Fix xfce4-settings-helper not setting workspace count.
+- Improve the UI of the shortcut command dialog and 
+  xfce4-settings-editor a bit.
+- Fix label wrapping in the settings manager icon view (bug #4743).
+- Make workspaces helper multi-screen aware.
+- Set SmRestartIfRunning if started in debug mode.
+- Add XfceTextRenderer for prelit/follow-state and keyboard navigation
+  support in the settings manager dialog.
+- Add --dialog=<dialog name> command line parameter to 
+  xfce4-settings-manager so that one can make it show any of its 
+  children at startup.
+- Review strings.
+- Translation updates: Basque, Brazilian Portuguese, Catalan, Czech, 
+  Finnish, French, German, Greek, Hungarian, Indonesian, Japanese, 
+  Norwegian Bokmal, Spanish, Swedish, Turkish, Ukrainian.
 
 4.5.92 (Xfce 4.6 beta2)
-
-  * Add an option to disable keyboard settings.
-  * Default to "Rodent" icon theme instead of "hicolor" (Bug 4545).
-  * Use XfcePosixSignalHandler in xfce4-settings-helper to handle
-    signals, since calling gtk_main_quit() from a signal handler may
-    not be safe.
-  * Make xfce4-settings-helper connect to the session manager and use
-    the SmRestartImmediately facility to make sure it keeps running.
-    Disable the autostart .desktop file if we were restored from a
-    saved session.  Attempt to acquire an X selection on startup to
-    ensure multiple copies of the helper aren't running (bug 4577).
+=======================
+- Add an option to disable keyboard settings.
+- Default to "Rodent" icon theme instead of "hicolor" (Bug 4545).
+- Use XfcePosixSignalHandler in xfce4-settings-helper to handle
+  signals, since calling gtk_main_quit() from a signal handler may
+  not be safe.
+- Make xfce4-settings-helper connect to the session manager and use
+  the SmRestartImmediately facility to make sure it keeps running.
+  Disable the autostart .desktop file if we were restored from a
+  saved session.  Attempt to acquire an X selection on startup to
+  ensure multiple copies of the helper aren't running (bug 4577).
 
 4.5.91 (Xfce 4.6 beta1)
-
-  * Add workspace name handling to xfce4-settings-helper.
-  * Add support for embedding dialogs into xfce4-settings-manager (based
-    on the X-XfcePluggable and X-XfceHelpFile desktop file keys).
-  * Add embedding support to the accessibility, appearance, mouse and
-    keyboard settings dialogs.
-  * Don't use g_hash_table_get_keys() which requires GLib 2.14 (bug 4377).
-  * Move xfsettingsd from xfconf into xfce4-settings.
-  * Rework the way keyboard shortcuts are organized. Support default
-    shortcuts using /default and /custom base properties.
-  * Add optional UI options to enable/disable sounds in Canberra (bug 4367).
-  * Add GUI for selecting/changing the keyboard layout.
-  * Translation updates: Dutch, Finnish, German.
-
+=======================
+- Add workspace name handling to xfce4-settings-helper.
+- Add support for embedding dialogs into xfce4-settings-manager (based
+  on the X-XfcePluggable and X-XfceHelpFile desktop file keys).
+- Add embedding support to the accessibility, appearance, mouse and
+  keyboard settings dialogs.
+- Don't use g_hash_table_get_keys() which requires GLib 2.14 (bug 4377).
+- Move xfsettingsd from xfconf into xfce4-settings.
+- Rework the way keyboard shortcuts are organized. Support default
+  shortcuts using /default and /custom base properties.
+- Add optional UI options to enable/disable sounds in Canberra (bug 4367).
+- Add GUI for selecting/changing the keyboard layout.
+- Translation updates: Dutch, Finnish, German.
 
 4.5.90 (Xfce 4.6 alpha)
-
-  * Initial release.
+=======================
+- Initial release.
