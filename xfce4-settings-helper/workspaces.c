@@ -120,8 +120,9 @@ xfce_workspaces_helper_init(XfceWorkspacesHelper *helper)
         screen = gdk_display_get_screen(display, s);
         xfce_workspaces_helper_set_names_prop(helper, screen, names);
 
-        g_strfreev(names);
     }
+
+    g_strfreev(names);
 
     g_signal_connect(G_OBJECT(helper->channel),
                      "property-changed::" WORKSPACE_NAMES_PROP,
