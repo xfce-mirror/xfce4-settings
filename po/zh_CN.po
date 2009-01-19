@@ -1,0 +1,1105 @@
+# Simplied Chinese translation for the xfce4-settings package
+# Copyright (C) 2009 The Xfce development team.
+# This file is distributed under the same license as the xfce4-setting package.
+# Chris K. Zhang <plutino@gmail.com>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-settings\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-01-10 23:19+0100\n"
+"PO-Revision-Date: 2009-01-18 21:51-0800\n"
+"Last-Translator: Chris K. Zhang <plutino@gmail.com\n"
+"Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
+msgid "<b>Bounce Keys</b>"
+msgstr "反弹按键"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
+msgid "<b>Mouse Emulation</b>"
+msgstr "模拟鼠标"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+msgid "<b>Slow Keys</b>"
+msgstr "慢速按键"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+msgid "<b>Sticky Keys</b>"
+msgstr "黏性按键"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+msgid "Acceleration _profile:"
+msgstr "加速方式(_P)："
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+msgid "Acceleration _time:"
+msgstr "加速时间(_T)："
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+msgid "Acceptance _delay:"
+msgstr "接受延迟(_D)："
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+msgid "Accessibility"
+msgstr "使用协助"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+msgid "Configure keyboard and mouse accessibility"
+msgstr "设置协助键盘和鼠标"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+msgid "Disable sticky keys if _two keys are pressed"
+msgstr "两个键同时按下时取消黏性按键功能(_T)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+msgid "K_eystroke delay:"
+msgstr "按键延迟(_E)："
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+msgid "Keyboa_rd"
+msgstr "键盘(_R)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+msgid "Maximum _speed:"
+msgstr "最大速度(_S)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+msgid "R_epeat interval:"
+msgstr "重复间隔(_R)："
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+msgid "The amount of time, in milliseconds, required between keystrokes"
+msgstr "两次按键的间隔（毫秒）"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+msgid ""
+"The amount of time, in milliseconds, that must elapse before a keystroke "
+"will be accepted"
+msgstr "按键只在按后过这么长时间（毫秒）才被接受"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+msgid "The maximum pointer speed after acceleration"
+msgstr "加速后光标最快移动速度"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+msgid "The ramp used to reach maximum pointer speed"
+msgstr "光标加速到最快的缓冲"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+msgid "The time, in milliseconds, between repeated motion events"
+msgstr "重复光标移动事件的间隔（毫秒）"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+msgid ""
+"The time, in milliseconds, between the initial key press and first repeated "
+"motion event"
+msgstr "从按键到开始重复的时间间隔（毫秒）"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+msgid "The time, in milliseconds, to get to maximum speed"
+msgstr "到达最快速度所用时间（毫秒）"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+msgid ""
+"To help prevent accidental keystrokes, slow keys requires that a key is held "
+"for a certain minimum amount of time before the keystroke will be accepted"
+msgstr "使用慢速按键可防止错按，一个键只在被按了一定时间之后才被接受。"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+msgid ""
+"To help prevent accidental multiple keystrokes, bounce keys imposes a "
+"minimum delay between keystrokes"
+msgstr "使用反弹按键可防止意外重复，两次按键间隔必须超过最小延迟"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+msgid "Use _bounce keys"
+msgstr "使用反弹按键(_B)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+msgid "Use _sticky keys"
+msgstr "使用黏性按键(_S)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+msgid "Use slow _keys"
+msgstr "使用慢速按键(_K)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) do not need "
+"to be held down (they can be pressed and then released) when multiple keys "
+"would normally need to be pressed at the same time"
+msgstr ""
+"选择该选项后，使用修饰键（比如 Ctrl，Alt，以及 Shift）时不需要一直按下，可\n"
+"以按了再放开，然后按所修饰的键。这样就不需要同时按下多个键。"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) will remain "
+"locked in the pressed state until pressed again"
+msgstr ""
+"选择该选项后，修饰键（比如 Ctrl，Alt，以及 Shift）按过之后会一直保持，直到\n"
+"再按一次。"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+msgid ""
+"When selected, the \"sticky keys\" feature will be disabled if two keys are "
+"pressed simultaneously"
+msgstr "选择该选项后，如果同时按下两个键“黏性按键”功能会暂时取消"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+msgid ""
+"When selected, the mouse pointer can be controlled using the keyboard number "
+"pad"
+msgstr "选择该选项后，可以用数字小键盘控制鼠标光标"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+msgid "_Acceleration delay:"
+msgstr "加速延迟(_A)："
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+msgid "_Lock sticky keys"
+msgstr "锁定黏性按键(_L)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+msgid "_Mouse"
+msgstr "鼠标(_M)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+msgid "_Use mouse emulation"
+msgstr "使用模拟鼠标(_U)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
+msgid "gtk-close"
+msgstr "gtk-close"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+msgid "msec"
+msgstr "毫秒"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+msgid "pixels/sec"
+msgstr "像素/秒"
+
+#: ../dialogs/accessibility-settings/main.c:45
+#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+msgid "Settings manager socket"
+msgstr "设置管理器接口"
+
+#: ../dialogs/accessibility-settings/main.c:45
+#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+msgid "SOCKET ID"
+msgstr "SOCKET ID"
+
+#: ../dialogs/accessibility-settings/main.c:46
+#: ../dialogs/appearance-settings/main.c:83
+#: ../dialogs/display-settings/main.c:83
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
+#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:67
+#: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
+msgid "Version information"
+msgstr "版本信息"
+
+#: ../dialogs/accessibility-settings/main.c:145
+#: ../dialogs/appearance-settings/main.c:791
+#: ../dialogs/display-settings/main.c:643
+#: ../dialogs/keyboard-settings/main.c:64
+#: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
+#: ../xfce4-settings-helper/main.c:246 ../xfce4-settings-manager/main.c:58
+#, c-format
+msgid "Type '%s --help' for usage."
+msgstr "“%s --help”显示使用说明"
+
+#: ../dialogs/accessibility-settings/main.c:164
+#: ../dialogs/appearance-settings/main.c:810
+#: ../dialogs/display-settings/main.c:662
+#: ../dialogs/keyboard-settings/main.c:80
+#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
+#: ../xfce4-settings-helper/main.c:265 ../xfce4-settings-manager/main.c:71
+msgid "The Xfce development team. All rights reserved."
+msgstr "Xfce 开发组，版权所有"
+
+#: ../dialogs/accessibility-settings/main.c:165
+#: ../dialogs/appearance-settings/main.c:811
+#: ../dialogs/display-settings/main.c:663
+#: ../dialogs/keyboard-settings/main.c:81
+#: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
+#: ../xfce4-settings-helper/main.c:266 ../xfce4-settings-manager/main.c:72
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "请向 <%s> 报告程序漏洞。"
+
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
+msgid "Improve keyboard and mouse accessibility"
+msgstr "使您的键盘和鼠标更好用"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
+msgid "<b>DPI</b>"
+msgstr "<b>DPI</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
+msgid "<b>Default Fon_t</b>"
+msgstr "<b>缺省字体(_T)</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+msgid "<b>Event sounds</b>"
+msgstr "事件声音"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "<b>Menus and Buttons</b>"
+msgstr "<b>菜单和按钮</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
+msgid "<b>Rendering</b>"
+msgstr "<b>表述</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
+msgid "<b>_Toolbar Style</b>"
+msgstr "<b>工具条风格(_T)</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr "字体光滑（anti-aliasing）会让屏幕上的字符更好看"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
+msgid "Appearance"
+msgstr "外观"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
+msgid "Custom _DPI setting:"
+msgstr "自定义 DPI 设置(_D)："
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
+msgid "Customize the look of your desktop"
+msgstr "设置桌面外观"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+msgid "Enable _anti-aliasing"
+msgstr "启用字体光滑(_A)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+msgid "Enable _event sounds"
+msgstr "启用事件声音(_E)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+msgid "Enable e_ditable accelerators"
+msgstr "启用可编辑快捷键(_D)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+msgid "Enable i_nput feedback sounds"
+msgstr "启用输入回声(_N)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr "启用或关闭全部事件声音（需要“Canberra”支持）"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr "使用 TFT 或 LCD 液晶显示器时，选择适当的亚像素次序可提高字体的显示质量"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+msgid ""
+"If selected, keyboard shortcuts for menu items can be changed by hovering "
+"the mouse over the menu item and pressing the new key combination for the "
+"shortcut"
+msgstr ""
+"选择该选项后，将鼠标光标停留在一个菜单选项上的同时按下新的组合键可以改变该\n"
+"菜单项的快捷键"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw "
+"the font; pick whichever looks best according to personal preference"
+msgstr "许多字体提供关于如何最好显示该字体的信息，您可以根据自己的喜好选择。"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too small"
+msgstr "如果字体太大或太小就改变显示器的分辨率"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Select a default font"
+msgstr "选择缺省字体"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+msgid "Show images in _menus"
+msgstr "在菜单中显示图像(_M)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+msgid "Show images on _buttons"
+msgstr "在按钮上显示图像(_B)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+msgid "Specify what should be displayed in toolbar items"
+msgstr "指定在工具条上显示什么"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "指定是否在菜单项旁边显示图标"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "指定是否在按钮文字旁边显示图标"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+msgid ""
+"Specify whether mouse clicks and other user input will cause event sounds to "
+"play"
+msgstr "指定是否在鼠标点击以及其他用户事件时播放事件声音"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+msgid "St_yle"
+msgstr "风格(_Y)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+msgid "Sub-_pixel order:"
+msgstr "亚像素次序(_P)："
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr "显示用户界面时用该字体做缺省字体"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+msgid "_Fonts"
+msgstr "字体(_F)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+msgid "_Hinting:"
+msgstr "提示(_H)："
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+msgid "_Icons"
+msgstr "图标(_I)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+msgid "_Settings"
+msgstr "设置(_S)"
+
+#: ../dialogs/appearance-settings/main.c:593
+#: ../dialogs/appearance-settings/main.c:686
+msgid "None"
+msgstr "无"
+
+#: ../dialogs/appearance-settings/main.c:597
+msgid "RGB"
+msgstr "RGB"
+
+#: ../dialogs/appearance-settings/main.c:601
+msgid "BGR"
+msgstr "BGR"
+
+#: ../dialogs/appearance-settings/main.c:605
+msgid "Vertical RGB"
+msgstr "竖直 RGB"
+
+#: ../dialogs/appearance-settings/main.c:609
+msgid "Vertical BGR"
+msgstr "竖直 BGR"
+
+#: ../dialogs/appearance-settings/main.c:659
+msgid "Icons"
+msgstr "图标"
+
+#: ../dialogs/appearance-settings/main.c:660
+msgid "Text"
+msgstr "文字"
+
+#: ../dialogs/appearance-settings/main.c:661
+msgid "Both"
+msgstr "都用"
+
+#: ../dialogs/appearance-settings/main.c:662
+msgid "Both Horizontal"
+msgstr "都用（水平摆放）"
+
+#: ../dialogs/appearance-settings/main.c:687
+msgid "Slight"
+msgstr "略微"
+
+#: ../dialogs/appearance-settings/main.c:688
+msgid "Medium"
+msgstr "中度"
+
+#: ../dialogs/appearance-settings/main.c:689
+msgid "Full"
+msgstr "全部"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "Apply any changes and test the new display settings"
+msgstr "应用所有的信设置并测试显示设置"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
+msgid "Configure screen settings and layout"
+msgstr "设置屏幕参数及布局"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+msgid "Display"
+msgstr "显示"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "R_esolution:"
+msgstr "分辨率(_E)："
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Refresh _rate:"
+msgstr "刷新频率(_R)"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
+msgid "Ro_tation:"
+msgstr "旋转(_T)"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+msgid "gtk-apply"
+msgstr "gtk-apply"
+
+#: ../dialogs/display-settings/main.c:71
+msgid "Normal"
+msgstr "正常"
+
+#: ../dialogs/display-settings/main.c:72
+msgid "Left"
+msgstr "左"
+
+#: ../dialogs/display-settings/main.c:73
+msgid "Inverted"
+msgstr "翻转"
+
+#: ../dialogs/display-settings/main.c:74
+msgid "Right"
+msgstr "右"
+
+#. insert in the combo box
+#. insert
+#: ../dialogs/display-settings/main.c:258
+#: ../dialogs/display-settings/main.c:289
+msgid "Hz"
+msgstr "Hz"
+
+#. create name
+#: ../dialogs/display-settings/main.c:495
+msgid "Screen"
+msgstr "屏幕"
+
+#: ../dialogs/display-settings/xfce-randr.c:322
+msgid "Laptop"
+msgstr "笔记本电脑"
+
+#: ../dialogs/display-settings/xfce-randr.c:326
+msgid "Monitor"
+msgstr "显示器"
+
+#: ../dialogs/display-settings/xfce-randr.c:330
+msgid "Television"
+msgstr "电视"
+
+#: ../dialogs/display-settings/xfce-randr.c:337
+msgid "Digital display"
+msgstr "电子显示板"
+
+#: ../dialogs/display-settings/xfce-randr.c:341
+msgid "Second monitor"
+msgstr "副显示器"
+
+#: ../dialogs/display-settings/xfce-randr.c:347
+msgid "Second digital display"
+msgstr "副电子显示板"
+
+#. Set dialog title and icon
+#: ../dialogs/keyboard-settings/command-dialog.c:161
+msgid "Shortcut Command"
+msgstr "快捷键命令"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:185
+msgid "Shortcut:"
+msgstr "快捷键："
+
+#: ../dialogs/keyboard-settings/command-dialog.c:195
+msgid "Command:"
+msgstr "命令："
+
+#: ../dialogs/keyboard-settings/command-dialog.c:247
+msgid "The command may not be empty."
+msgstr "命令不能为空"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:267
+msgid "Select command"
+msgstr "选择命令"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:275
+msgid "All Files"
+msgstr "全部文件"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:280
+msgid "Executable Files"
+msgstr "可执行文件"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:295
+msgid "Perl Scripts"
+msgstr "Perl 脚本"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:301
+msgid "Python Scripts"
+msgstr "Python 脚本"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:307
+msgid "Ruby Scripts"
+msgstr "Ruby 脚本"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:313
+msgid "Shell Scripts"
+msgstr "Shell 脚本"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
+msgid "<b>Cursor</b>"
+msgstr "<b>光标</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
+msgid "<b>Keyboard layout</b>"
+msgstr "<b>键盘布局</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+msgid "<b>Keyboard model</b>"
+msgstr "<b>键盘型号</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+msgid "<b>Typing Settings</b>"
+msgstr "<b>键盘输入设置</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Appli_cation Shortcuts"
+msgstr "应用程序快捷键(_C)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+msgid "Be_havior"
+msgstr "行为(_H)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+msgid "Blink _delay:"
+msgstr "闪烁延迟(_D)："
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+msgid "Define _shortcuts for launching applications:"
+msgstr "定义应用程序快捷键(_S)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
+msgid "Edit keyboard settings and application shortcuts"
+msgstr "编辑键盘设置和应用程序快捷键"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
+msgid "Keyboard"
+msgstr "键盘"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+msgid "Keyboard layout selection"
+msgstr "键盘布局选择"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Repeat _speed:"
+msgstr "重复速度(_S)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+msgid "Select keyboard layout and variant"
+msgstr "选择键盘布局"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Show _blinking"
+msgstr "显示闪烁光标(_B)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid ""
+"Specifies whether the keyboard layout is controlled with this settings "
+"dialog, or by the X server"
+msgstr "指定由本设置或者 X 服务器控制键盘布局"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+msgid "Specify whether or not the text cursor blinks"
+msgstr "指定字符光标是否闪烁"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr "光标闪烁延迟（毫秒）"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr "按键重复频率"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr "按键重复延迟（毫秒）"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+msgid "Use this area to _test the settings above:"
+msgstr "这个区域用来测试以上设定(_T)："
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+msgid ""
+"When selected, pressing and holding down a key emits the same character over "
+"and over again"
+msgstr "选择该选项后，按下并保持一个按键会一直重复该字符"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+msgid "_Enable key repeat"
+msgstr "启用按键重复(_E)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+msgid "_Layout"
+msgstr "布局(_L)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+msgid "_Repeat delay:"
+msgstr "重复延迟(_R)："
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+msgid "_Reset to Defaults"
+msgstr "恢复缺省设置(_R)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+msgid "_Use system defaults"
+msgstr "使用系统默认设置(_U)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+msgid "gtk-add"
+msgstr "gtk-add"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
+msgid "gtk-cancel"
+msgstr "gtk-cancel"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+msgid "gtk-delete"
+msgstr "gtk-delete"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+msgid "gtk-edit"
+msgstr "gtk-edit"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+msgid "gtk-help"
+msgstr "gtk-help"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+msgid "gtk-ok"
+msgstr "gtk-ok"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
+msgid "gtk-remove"
+msgstr "gtk-remove"
+
+#: ../dialogs/keyboard-settings/main.c:70
+msgid "Unable to initialize GTK+."
+msgstr "无法初始化 GTK+。"
+
+#: ../dialogs/keyboard-settings/main.c:90
+#, c-format
+msgid "Failed to connect to xfconf daemon. Reason: %s"
+msgstr "由于 %s 无法联接 xfconf 后台。"
+
+#: ../dialogs/keyboard-settings/main.c:101
+msgid "Could not create the settings dialog."
+msgstr "无法创建设置对话框。"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:348
+msgid "Command"
+msgstr "命令"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:353
+msgid "Shortcut"
+msgstr "快捷键"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:421
+msgid "Active"
+msgstr "活动"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:425
+msgid "Layout"
+msgstr "布局"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:426
+msgid "Variant"
+msgstr "变化"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:925
+msgid "Shortcut command may not be empty."
+msgstr "快捷键命令不能为空"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1031
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
+msgid "Reset to Defaults"
+msgstr "恢复缺省设置"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1033
+msgid ""
+"This will reset <b>all</b> shortcuts to their default values. Do you really "
+"want to do this?"
+msgstr "<b>所有</b>快捷键将被重设为缺省值，您确定吗？"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1102
+msgid "The system defaults will be restored next time you log in."
+msgstr "你下次登入时将恢复系统默认设置"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1104
+msgid "Warning"
+msgstr "警告"
+
+#: ../dialogs/mouse-settings/main.c:96
+msgid "Active device in the dialog"
+msgstr "激活对话框中的设备"
+
+#: ../dialogs/mouse-settings/main.c:96
+msgid "DEVICE NAME"
+msgstr "DEVICE NAME"
+
+#. sort the names but keep Default on top
+#: ../dialogs/mouse-settings/main.c:352 ../dialogs/mouse-settings/main.c:354
+#: ../dialogs/mouse-settings/main.c:414
+msgid "Default"
+msgstr "缺省"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+msgid "<b>Button Order</b>"
+msgstr "<b>按钮顺序</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+msgid "<b>Double Click</b>"
+msgstr "<b>双击</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "<b>Drag and Drop</b>"
+msgstr "<b>拖放</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+msgid "<b>Feedback</b>"
+msgstr "<b>反馈</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+msgid "<b>Preview</b>"
+msgstr "<b>预览</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+msgid "<b>Size</b>"
+msgstr "<b>尺寸</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
+msgid "Configure pointer device behavior and appearance"
+msgstr "设置定位设备（比如鼠标）行为和外观"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+msgid "Cursor _Size:"
+msgstr "光标大小(_S)："
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+msgid "De_vices"
+msgstr "设备(_V)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
+msgid "Mouse"
+msgstr "鼠标"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+msgid "Re_set to Defaults"
+msgstr "恢复默认值(_S)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+msgid "Re_verse scroll direction"
+msgstr "逆转滚轮方向(_V)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid ""
+"Set the acceleration and threshold for the selected device to the default "
+"values"
+msgstr "将所选设备的加速和阈值恢复成缺省值"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "T_hreshold:"
+msgstr "阈值(_H)："
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr "鼠标移动时光标的加速因子"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+msgid ""
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
+msgstr "双击时鼠标在两次点击之间移动不能超过这个距离"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+msgid ""
+"The number of pixels the pointer must move before a drag operation will start"
+msgstr "拖动开始前光标必须移动至少这么多像素"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr "光标开始加速前必须短时间内移动至少这么多像素"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+msgid "Ti_me:"
+msgstr "时间(_M)："
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+msgid ""
+"Two mouse clicks in less than this length of time (in milliseconds) will be "
+"considered a double click"
+msgstr "两次鼠标点击间隔少于这么长时间（毫秒）会被视为双击"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr "选择该选项后，鼠标滚轮转向相反"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "_Acceleration:"
+msgstr "加速(_A)："
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid "_Behavior"
+msgstr "行为(_B)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+msgid "_Distance:"
+msgstr "距离(_D)："
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+msgid "_Left handed"
+msgstr "习惯左手(_L)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+msgid "_Right handed"
+msgstr "习惯右手(_R)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+msgid "_Theme"
+msgstr "主题(_T)"
+
+#: ../xfce4-settings-editor/main_window.c:127
+msgid "Channel"
+msgstr "频道"
+
+#: ../xfce4-settings-editor/main_window.c:137
+msgid "Property"
+msgstr "属性"
+
+#: ../xfce4-settings-editor/main_window.c:140
+msgid "Type"
+msgstr "类型"
+
+#: ../xfce4-settings-editor/main_window.c:143
+msgid "Locked"
+msgstr "锁定"
+
+#: ../xfce4-settings-editor/main_window.c:146
+msgid "Value"
+msgstr "值"
+
+#: ../xfce4-settings-editor/main_window.c:310
+#: ../xfce4-settings-editor/main_window.c:375
+msgid "Empty"
+msgstr "空"
+
+#: ../xfce4-settings-editor/main_window.c:661
+#, c-format
+msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
+msgstr "属性“<b>%s</b>”被锁定，不能重设"
+
+#: ../xfce4-settings-editor/main_window.c:671
+#, c-format
+msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
+msgstr "您确定要重设属性“<b>%s</b>”吗？"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
+msgid "Graphical settings editor for Xfconf"
+msgstr "Xfconf 的图形界面设置编辑器"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+msgid "Settings Editor"
+msgstr "设置编辑器"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Customize settings stored by Xfconf"
+msgstr "自定义 Xfconf 储存的设定"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+msgid "Edit Property"
+msgstr "编辑属性"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+msgid "Edit property"
+msgstr "编辑属性"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+msgid "Enabled"
+msgstr "已启用"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+msgid "Name:"
+msgstr "名称："
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+msgid "New property"
+msgstr "新建属性"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+msgid "Reset/remove property"
+msgstr "重置/删除属性"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+msgid "Select a channel and property"
+msgstr "选择频道和属性"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+msgid "Type:"
+msgstr "类型："
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+msgid "Value:"
+msgstr "值："
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+msgid "Xfconf channels"
+msgstr "Xfconf 频道"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
+msgid "gtk-save"
+msgstr "gtk-save"
+
+#: ../xfce4-settings-helper/accessibility.c:358
+msgid "Sticky keys are enabled"
+msgstr "黏性按键已启用"
+
+#: ../xfce4-settings-helper/accessibility.c:360
+msgid "Sticky keys are disabled"
+msgstr "黏性按键已取消"
+
+#: ../xfce4-settings-helper/accessibility.c:362
+msgid "Sticky keys"
+msgstr "黏性按键"
+
+#: ../xfce4-settings-helper/accessibility.c:367
+msgid "Slow keys are enabled"
+msgstr "慢速按键已启用"
+
+#: ../xfce4-settings-helper/accessibility.c:369
+msgid "Slow keys are disabled"
+msgstr "慢速按键已取消"
+
+#: ../xfce4-settings-helper/accessibility.c:371
+msgid "Slow keys"
+msgstr "慢速按键"
+
+#: ../xfce4-settings-helper/accessibility.c:376
+msgid "Bounce keys are enabled"
+msgstr "反弹按键已启用"
+
+#: ../xfce4-settings-helper/accessibility.c:378
+msgid "Bounce keys are disabled"
+msgstr "反弹按键已取消"
+
+#: ../xfce4-settings-helper/accessibility.c:380
+msgid "Bounce keys"
+msgstr "反弹按键"
+
+#: ../xfce4-settings-helper/main.c:68 ../xfsettingsd/main.c:64
+msgid "Start in debug mode (don't fork to the background)"
+msgstr "启动到差错模式（不分叉到后台线程）"
+
+#: ../xfce4-settings-helper/main.c:69
+msgid "Client id used when resuming session"
+msgstr "恢复 Session 时使用的客户 ID"
+
+#. some of them may not have been set in xfconf
+#: ../xfce4-settings-helper/workspaces.c:116
+#: ../xfce4-settings-helper/workspaces.c:242
+#, c-format
+msgid "Workspace %d"
+msgstr "工作区 %d"
+
+#: ../xfce4-settings-manager/main.c:42
+msgid "Settings dialog to show"
+msgstr "设置要显示的对话框"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:155
+msgid "Settings"
+msgstr "设置"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:156
+msgid "Customize your desktop"
+msgstr "自定义桌面"
+
+#. Create back button which takes the user back to the overview
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:264
+msgid "_Overview"
+msgstr "概览(_O)"
+
+#. Notify the user that there has been a problem
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:563
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:581
+#, c-format
+msgid "Unable to start \"%s\""
+msgstr "无法启动“%s”"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:564
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:582
+msgid "Xfce Settings Manager"
+msgstr "Xfce 设置管理器"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:628
+#, c-format
+msgid "Failed to open the documentation. Reason: %s"
+msgstr "由于 %s 而无法打开说明文档。"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
+msgid "Graphical Settings Manager for Xfce 4"
+msgstr "Xfce 4 的图形界面设置管理器"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Settings Manager"
+msgstr "设置管理器"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
+msgid "Xfce 4 Settings Manager"
+msgstr "Xfce 4 设置管理器"
+
+#: ../xfsettingsd/main.c:56
+msgid "Verbose output"
+msgstr "输出详细信息"
+
+#: ../xfsettingsd/main.c:60
+msgid "Replace running xsettings daemon (if any)"
+msgstr "如果有的话，取代运行中的 xsettings 后台进程"
+
+#: ../xfsettingsd/main.c:131
+#, c-format
+msgid ""
+"%s: %s\n"
+"Try %s --help to see a full list of available command line options.\n"
+msgstr ""
+"%s: %s\n"
+"%s --help 将列出完整的可选命令行参数\n"
