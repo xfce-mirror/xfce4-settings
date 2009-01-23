@@ -2,6 +2,7 @@
 # Copyright (C) 2008 The Xfce development team.
 # This file is distributed under the same license as the xfce4-settings package.
 # Maximilian Schleiss <maximilian@xfce.org>, 2008.
+# Mike Massonnet <mmassonnet@xfce.org>, 2009.
 #
 #: ../xfsettingsd/main.c:127
 msgid ""
@@ -9,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-10 23:19+0100\n"
-"PO-Revision-Date: 2008-12-03 23:15+0100\n"
-"Last-Translator: Maximilian Schleiss <maximilian@xfce.org>\n"
+"PO-Revision-Date: 2009-01-17 14:57+0100\n"
+"Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <i18n-xfce@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -111,7 +112,9 @@ msgstr "Le temps, en millisecondes, pour atteindre la vitesse maximum"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "Pour éviter les frappes accidentelles, les touches lentes"
+msgstr ""
+"Pour éviter les frappes accidentelles, les touches lentes nécessitent qu'une "
+"touche reste enfoncée un certain temps pour qu'elle soit accepté"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
@@ -202,13 +205,13 @@ msgstr "pixels/sec"
 #: ../dialogs/appearance-settings/main.c:82
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
-msgstr "Socle du gestionnaire de paramètres"
+msgstr "Socket du gestionnaire de paramètres"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:82
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
-msgstr "ID SOCLE"
+msgstr "ID SOCKET"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:83
@@ -258,7 +261,7 @@ msgstr "<b>DPI</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "<b>Default Fon_t</b>"
-msgstr "<b>Police par défau_t</b>"
+msgstr "<b>P_olice par défaut</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 msgid "<b>Event sounds</b>"
@@ -295,7 +298,7 @@ msgstr "Paramètre _DPI personnalisé :"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
-msgstr "Changez l'apparence de votre bureau"
+msgstr "Changer l'apparence du bureau"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 msgid "Enable _anti-aliasing"
@@ -340,6 +343,9 @@ msgid ""
 "Many fonts contain information that provides extra hints as to how best draw "
 "the font; pick whichever looks best according to personal preference"
 msgstr ""
+"Beaucoup de polices contiennent des informations qui fournissent des indications "
+"supplémentaires pour un meilleur rendu ; sélectionner le lissage qui vous convient "
+"le mieux"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid ""
@@ -373,12 +379,12 @@ msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Ajouter l'affichage d'icônes dans les boutons"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
-#, fuzzy
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
 msgstr ""
-"Spécifier si les clics de souris et autres interventions de l'utilisateur "
+"Spécifie si les clics de souris et autres interventions de l'utilisateur causent "
+"des événements sonores"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "St_yle"
@@ -546,18 +552,16 @@ msgstr "Second écran digital"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:161
-#, fuzzy
 msgid "Shortcut Command"
-msgstr "Commande pour le raccourci :"
+msgstr "Raccourci de commande"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:185
 msgid "Shortcut:"
 msgstr "Raccourci :"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:195
-#, fuzzy
 msgid "Command:"
-msgstr "Commande"
+msgstr "Commande :"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:247
 msgid "The command may not be empty."
@@ -659,18 +663,17 @@ msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
-msgstr "Définit si le curseur doit clignoter ou non"
+msgstr "Définie si le curseur doit clignoter ou non"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Le temps, en millisecondes, entre chaque clignotement du curseur"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
-#, fuzzy
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr ""
-"La vitesse à laquelle les codes claviers sont générés lorsqu'une touche est "
-"pressée"
+"La vitesse à laquelle les frappes sont générées lorsqu'une touche est "
+"enfoncée"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
@@ -700,7 +703,7 @@ msgstr "Délai de _répétition :"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Reset to Defaults"
-msgstr "_Réinitialiser aux valeurs par défaut"
+msgstr "_Réinitialiser"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -713,15 +716,15 @@ msgstr "Ajouter"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "gtk-cancel"
-msgstr "annuler"
+msgstr "Annuler"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "gtk-delete"
-msgstr "supprimer"
+msgstr "Supprimer"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "gtk-edit"
-msgstr "éditer"
+msgstr "Éditer"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "gtk-help"
@@ -782,7 +785,7 @@ msgid ""
 "This will reset <b>all</b> shortcuts to their default values. Do you really "
 "want to do this?"
 msgstr ""
-"Voulez-vous vraiment réinitialiser <b>tous</b> les raccourcis à leur valeur "
+"Voulez-vous vraiment réinitialiser tous les raccourcis à leur valeur "
 "par défaut ?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1102
@@ -977,9 +980,8 @@ msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
 msgstr "Êtes-vous sûr de vouloir réinitialiser la propriété \"<b>%s</b>\" ?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
-#, fuzzy
 msgid "Graphical settings editor for Xfconf"
-msgstr "Éditeur graphique des paramètres pour Xfce 4"
+msgstr "Éditeur graphique des paramètres Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
@@ -988,16 +990,15 @@ msgstr "Éditeur de paramètres"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
 msgid "Customize settings stored by Xfconf"
-msgstr ""
+msgstr "Modifier les paramètres stockés par Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
-#, fuzzy
 msgid "Edit Property"
-msgstr "Éditer propriété"
+msgstr "Éditer la propriété"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
 msgid "Edit property"
-msgstr "Éditer propriété"
+msgstr "Éditer la propriété"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Enabled"
@@ -1016,9 +1017,8 @@ msgid "Reset/remove property"
 msgstr "Réinitialiser/supprimer la propriété"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-#, fuzzy
 msgid "Select a channel and property"
-msgstr "Sélectionner un canal et une propriété."
+msgstr "Sélectionner un canal et une propriété"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Type:"
@@ -1093,11 +1093,11 @@ msgstr "Fenêtre de paramètres à afficher"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:155
 msgid "Settings"
-msgstr "Paramètres"
+msgstr "Paramétrage"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:156
 msgid "Customize your desktop"
-msgstr "Personnalisez votre bureau"
+msgstr "Personnaliser l'environnement de bureau"
 
 #. Create back button which takes the user back to the overview
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:264
@@ -1151,228 +1151,3 @@ msgstr ""
 "Essayez %s --help pour afficher une liste complète des options de ligne de "
 "commande.\n"
 
-#~ msgid "Shortcut: %s"
-#~ msgstr "Raccourci : %s"
-
-#~ msgid "Undefined"
-#~ msgstr "Non-défini"
-
-#~ msgid "Xfce 4 Settings Editor"
-#~ msgstr "Éditeur de paramètres"
-
-#~ msgid "Xfce4 settings editor"
-#~ msgstr "Éditeur de paramètres"
-
-#~ msgid "Accessibility Settings"
-#~ msgstr "Paramètres d'accessibilité"
-
-#~ msgid "D_ebounce time:"
-#~ msgstr "Temps hors _répétition :"
-
-#~ msgid ""
-#~ "The amount of time you have to wait before keystrokes are accepted again, "
-#~ "in milliseconds"
-#~ msgstr ""
-#~ "Le délai d'attente avant qu'une touche soit à nouveau acceptée, en "
-#~ "millisecondes"
-
-#~ msgid ""
-#~ "When enabled, the Shift, Ctrl and Alt keys stay \"selected\" until you "
-#~ "press them again"
-#~ msgstr ""
-#~ "Une fois activé, les touches Màj, Ctrl et Alt restent \"sélectionnées\" "
-#~ "jusqu'à leur prochaine pression"
-
-#~ msgid ""
-#~ "When enabled, you can press and release the Shift, Ctrl and Alt keys, and "
-#~ "then press another key to get a key combo"
-#~ msgstr ""
-#~ "Une fois activé, vous pouvez presser et relâcher les touches Màj, Ctrl et "
-#~ "Alt et appuyer une autre touche pour créer une combinaison"
-
-#~ msgid ""
-#~ "When enabled, you must hold the key for a specific amount of time before "
-#~ "the keystroke will be accepted. This helps prevent accidental key strokes"
-#~ msgstr ""
-#~ "La touche doit être tenue enfoncée un certain temps pour que la frappe "
-#~ "soit acceptée. Ceci permet d'éviter les frappes accidentelles"
-
-#~ msgid ""
-#~ "When enabled, you must wait a specific amount of time before the next "
-#~ "keystroke can be accepted. This prevents accidental multiple key strokes"
-#~ msgstr ""
-#~ "Un temps d'attente doit être marqué avant la prochaine frappe. Ceci "
-#~ "permet de prévenir les frappes multiples accidentelles"
-
-#~ msgid "Xfce 4 Accessibility Settings"
-#~ msgstr "Paramètres d'accessibilité"
-
-#~ msgid "Appearance Settings"
-#~ msgstr "Paramètres d'apparence"
-
-#~ msgid "Enable or disable input feedback sounds (i.e. button clicks)"
-#~ msgstr "Activer ou désactiver les sons des entrées (e.g. clics de boutons)"
-
-#~ msgid ""
-#~ "Whether menu accelerators can be changed by pressing a key over the menu "
-#~ "item"
-#~ msgstr ""
-#~ "Permettre le changement de raccourci en pressant une touche au dessus de "
-#~ "l'élément du menu"
-
-#~ msgid "Xfce 4 Appearance Settings"
-#~ msgstr "Paramètres d'apparence Xfce 4"
-
-#~ msgid "Display Settings"
-#~ msgstr "Paramètres d'affichage"
-
-#~ msgid "Xfce 4 Display Settings"
-#~ msgstr "Paramètres d'affichage Xfce 4"
-
-#~ msgid "<b>Application Shortcuts</b>"
-#~ msgstr "<b>Raccourcis des applications</b>"
-
-#~ msgid "<b>Keyboard settings</b>"
-#~ msgstr "<b>Paramètres du clavier</b>"
-
-#~ msgid "Keyboard Settings"
-#~ msgstr "Paramètres du clavier"
-
-#~ msgid "The length of the cursor blink cycle in milliseconds"
-#~ msgstr "La durée en millisecondes du cycle de clignotement du curseur"
-
-#~ msgid "Xfce 4 Keyboard Settings"
-#~ msgstr "Paramètres du clavier"
-
-#~ msgid "Mouse Settings"
-#~ msgstr "Paramètres de la souris"
-
-#~ msgid "Re_set to default"
-#~ msgstr "_Remettre à zéro"
-
-#~ msgid ""
-#~ "The pointer will go 'acceleration' times as fast when it travels more "
-#~ "than 'threshold' pixels in a short time"
-#~ msgstr ""
-#~ "Le pointeur ira 'accélération' de fois plus vite lorsqu'il parcourra plus "
-#~ "de 'seuil' pixels en un court instant"
-
-#~ msgid "_Threshold:"
-#~ msgstr "_Seuil :"
-
-#~ msgid "Xfce 4 Mouse Settings"
-#~ msgstr "Paramètres de la souris"
-
-#~ msgid "gtk-revert-to-saved"
-#~ msgstr "Revenir à l'image enregistrée"
-
-#~ msgid ""
-#~ "This shortcut is already being used by <b>another window manager action</"
-#~ "b>. Which action do you want to use?"
-#~ msgstr ""
-#~ "Ce raccourci est déjà pris en charge par <b>un autre gestionnaire de "
-#~ "fenêtres</b>. Quelle action voulez-vous utiliser ?"
-
-#~ msgid "Use this action"
-#~ msgstr "Utiliser cette action"
-
-#~ msgid "Keep the other one"
-#~ msgstr "Garder l'autre"
-
-#~ msgid ""
-#~ "The shortcut is already being used for the command <b>%s</b>. Which "
-#~ "action do you want to use?"
-#~ msgstr ""
-#~ "Ce raccourci est déjà pris en charge par la commande <b>%s</b>. Quelle "
-#~ "action voulez-vous utiliser ?"
-
-#~ msgid "Keep %s"
-#~ msgstr "Garder %s"
-
-#~ msgid "Use %s"
-#~ msgstr "Utilisez %s"
-
-#~ msgid ""
-#~ "The shortcut is already being used by a <b>window manager action</b>. "
-#~ "Which action do you want to use?"
-#~ msgstr ""
-#~ "Ce raccourci est déjà pris en charge par une <b>action du gestionnaire de "
-#~ "fenêtres</b>. Quelle action voulez-vous utiliser ?"
-
-#~ msgid "Keep the window manager action"
-#~ msgstr "Garder l'action du gestionnaire de fenêtres"
-
-#~ msgid "Conflicting actions for %s"
-#~ msgstr "Actions conflictuelles pour %s"
-
-#~ msgid "The shortcut is already being used for something else."
-#~ msgstr "Le raccourci est déjà attribué."
-
-#~ msgid "Enter window manager action shortcut"
-#~ msgstr "Définir le raccourci de l'action du gestionnaire de fenêtres"
-
-#~ msgid "Action: %s"
-#~ msgstr "Action : %s"
-
-#~ msgid "Enter command shortcut"
-#~ msgstr "Définir le raccourci pour la commande"
-
-#~ msgid "Command: %s"
-#~ msgstr "Commande : %s"
-
-#~ msgid "Enter shortcut"
-#~ msgstr "Définir le raccourci"
-
-#~ msgid "Could not grab the keyboard."
-#~ msgstr "Le clavier n'a pas pu être saisi."
-
-#~ msgid "<span size='large'><b>%s</b></span>"
-#~ msgstr "<span size='large'><b>%s</b></span>"
-
-#~ msgid ""
-#~ "This shortcut is already being used by the window manager action <b>%s</"
-#~ "b>. Which action do you want to use?"
-#~ msgstr ""
-#~ "Ce raccourci est déjà pris en charge par l'action <b>%s</b> du "
-#~ "gestionnaire de fenêtres. Quelle action voulez-vous utiliser ?"
-
-#~ msgid "Keep window manager action"
-#~ msgstr "Garder l'action du gestionnaire de fenêtres"
-
-#~ msgid "%s shortcut conflict"
-#~ msgstr "Conflit de raccourci %s"
-
-#~ msgid "Shortcut conflict"
-#~ msgstr "Conflit de raccourci"
-
-#~ msgid "The shortcut '%s' is already being used for something else."
-#~ msgstr "Le raccourci '%s' est déjà attribué."
-
-#, fuzzy
-#~ msgid "<b>Property settings</b>"
-#~ msgstr "<b>Paramètres de frappe</b>"
-
-#, fuzzy
-#~ msgid "Keyboard model:"
-#~ msgstr "Clavier"
-
-#~ msgid "<b>%s</b>"
-#~ msgstr "<b>%s</b>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Set shortcut for action\n"
-#~ "<b>%s</b>"
-#~ msgstr "Définir le raccourci pour cette commande :"
-
-#, fuzzy
-#~ msgid ""
-#~ "Set shortcut for command\n"
-#~ "<b>%s</b>"
-#~ msgstr "Définir le raccourci pour cette commande :"
-
-#, fuzzy
-#~ msgid ""
-#~ "Set shortcut for\n"
-#~ "<b>%s</b>"
-#~ msgstr "Affecte le raccourcis à :"
