@@ -2,7 +2,7 @@
 # Copyright (C) 2008 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
-# Og Maciel <ogmaciel@gnome.org>, 2008.
+# Og Maciel <ogmaciel@gnome.org>, 2008, 2009.
 # Vladimir Melo <vmelo@gnome.org>, 2008.
 # Henrique P Machado <zehrique@gmail.com>, 2008.
 #
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-25 20:50+0100\n"
-"PO-Revision-Date: 2009-01-15 09:12-0500\n"
+"PO-Revision-Date: 2009-01-25 15:52-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -542,22 +542,24 @@ msgstr "Tela"
 #: ../dialogs/display-settings/main.c:678
 #, c-format
 msgid "RandR extension missing on display \"%s\""
-msgstr ""
+msgstr "Extensão do RandR não encontrada na tela \"%s\""
 
 #: ../dialogs/display-settings/main.c:681
 msgid ""
 "The Resize and Rotate extension (RandR) is not enabled on this display. Try "
 "to enable it and run the dialog again."
 msgstr ""
+"A extensão Redimensionar e Rotacionar (RandR) não está habilitada nesta "
+"tela. Tente habilitá-la e execute o diálogo novamente."
 
 #: ../dialogs/display-settings/main.c:719
 msgid "Failed to use the RandR extension"
-msgstr ""
+msgstr "Falha ao usar a extensão RandR"
 
 #: ../dialogs/display-settings/xfce-randr.c:55
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr ""
+msgstr "Não foi possível consultar a versão da extensão do RandR sendo usada"
 
 #. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
 #: ../dialogs/display-settings/xfce-randr.c:63
@@ -566,6 +568,8 @@ msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.1 is required at least"
 msgstr ""
+"Este sistema está usando o RandR %d.%d. Para que a configuração de tela "
+"funcione é necessário pelo menos a versão 1.1"
 
 #: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
