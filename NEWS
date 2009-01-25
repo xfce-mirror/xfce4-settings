@@ -1,6 +1,12 @@
 4.5.99.1 (Xfce 4.6rc1)
 ======================
-- Check if the randr extension is available (bug #4836).
+- Properly handle missing RandR extension in xfce4-settings-helper
+  and xfce4-display-settings (bug #4836).
+- Fix possible segfault in xfce4-settings-helper (bug #4813).
+- Fix xfsettingsd segfault due to strings defaulting to NULL. Patch
+  by Lars-Peter Clausen (bug #4797).
+- Translation updates: Brazilian Portuguese, Catalan, Czech, Danish, 
+  Finnish, French, Japanese, Simplified Chinese, Spanish and Swedish.
 
 4.5.93 (Xfce 4.6 beta3)
 =======================
