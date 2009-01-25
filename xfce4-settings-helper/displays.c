@@ -96,11 +96,35 @@ xfce_displays_helper_class_init (XfceDisplaysHelperClass *klass)
 static void
 xfce_displays_helper_init (XfceDisplaysHelper *helper)
 {
-    /* open the channel */
-    helper->channel = xfconf_channel_new ("displays");
-    
-    /* monitor channel changes */
-    g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_displays_helper_channel_property_changed), helper);
+    gint major = 0, minor = 0;
+    gint event_base, error_base;
+
+    /* check if the randr extension is running */
+    if (XRRQueryExtension (GDK_DISPLAY (), &event_base, &error_base))
+    {
+        /* query the version */
+        if (XRRQueryVersion (GDK_DISPLAY (), &major, &minor)
+            && major == 1 && minor >= 1)
+        {
+            /* open the channel */
+            helper->channel = xfconf_channel_new ("displays");
+        
+            /* monitor channel changes */
+            g_signal_connect (G_OBJECT (helper->channel), "property-changed", 
+                              G_CALLBACK (xfce_displays_helper_channel_property_changed), helper);
+        }
+        else
+        {
+             g_critical ("RANDR extension is too old, version %d.%d. "
+                         "Display settings won't be applied.",
+                         major, minor);
+        }
+    }
+    else
+    {
+        g_critical ("No RANDR extension found in display %s. Display settings won't be applied.",
+                    gdk_display_get_name (gdk_display_get_default ()));
+    }
 }
 
 
