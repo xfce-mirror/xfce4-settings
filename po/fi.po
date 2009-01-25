@@ -1,15 +1,15 @@
 # Translation of xfce4-settings into Finnish.
 # Copyright (C) 2008 The Xfce Development Team.
 # This file is distributed under the same license as the xfce4-settings package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2009.
 #
 #: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-10 23:19+0100\n"
-"PO-Revision-Date: 2008-12-16 20:21+0200\n"
+"POT-Creation-Date: 2009-01-25 16:12+0200\n"
+"PO-Revision-Date: 2009-01-25 16:17+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -201,19 +201,19 @@ msgid "pixels/sec"
 msgstr "kuvapistettä/s"
 
 #: ../dialogs/accessibility-settings/main.c:45
-#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
 msgstr "Asetustenhallinnan pistoke"
 
 #: ../dialogs/accessibility-settings/main.c:45
-#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
 msgstr "PISTOKE"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:83
+#: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
 #: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:67
@@ -222,7 +222,7 @@ msgid "Version information"
 msgstr "Versiotiedot"
 
 #: ../dialogs/accessibility-settings/main.c:145
-#: ../dialogs/appearance-settings/main.c:791
+#: ../dialogs/appearance-settings/main.c:877
 #: ../dialogs/display-settings/main.c:643
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
@@ -232,7 +232,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Saat ohjeita komennolla \"%s --help\"."
 
 #: ../dialogs/accessibility-settings/main.c:164
-#: ../dialogs/appearance-settings/main.c:810
+#: ../dialogs/appearance-settings/main.c:896
 #: ../dialogs/display-settings/main.c:662
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
@@ -241,7 +241,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 
 #: ../dialogs/accessibility-settings/main.c:165
-#: ../dialogs/appearance-settings/main.c:811
+#: ../dialogs/appearance-settings/main.c:897
 #: ../dialogs/display-settings/main.c:663
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
@@ -412,52 +412,52 @@ msgstr "K_uvakkeet"
 msgid "_Settings"
 msgstr "_Asetukset"
 
-#: ../dialogs/appearance-settings/main.c:593
-#: ../dialogs/appearance-settings/main.c:686
+#: ../dialogs/appearance-settings/main.c:737
+#: ../dialogs/appearance-settings/main.c:812
 msgid "None"
 msgstr "Ei mitään"
 
-#: ../dialogs/appearance-settings/main.c:597
+#: ../dialogs/appearance-settings/main.c:741
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:601
+#: ../dialogs/appearance-settings/main.c:745
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:605
+#: ../dialogs/appearance-settings/main.c:749
 msgid "Vertical RGB"
 msgstr "Pystysuuntainen RGB"
 
-#: ../dialogs/appearance-settings/main.c:609
+#: ../dialogs/appearance-settings/main.c:753
 msgid "Vertical BGR"
 msgstr "Pystysuuntainen BGR"
 
-#: ../dialogs/appearance-settings/main.c:659
+#: ../dialogs/appearance-settings/main.c:794
 msgid "Icons"
 msgstr "Kuvakkeet"
 
-#: ../dialogs/appearance-settings/main.c:660
+#: ../dialogs/appearance-settings/main.c:795
 msgid "Text"
 msgstr "Teksti"
 
-#: ../dialogs/appearance-settings/main.c:661
+#: ../dialogs/appearance-settings/main.c:796
 msgid "Both"
 msgstr "Molemmat"
 
-#: ../dialogs/appearance-settings/main.c:662
+#: ../dialogs/appearance-settings/main.c:797
 msgid "Both Horizontal"
 msgstr "Molemmat vaakasuunnassa"
 
-#: ../dialogs/appearance-settings/main.c:687
+#: ../dialogs/appearance-settings/main.c:813
 msgid "Slight"
 msgstr "Kevyt"
 
-#: ../dialogs/appearance-settings/main.c:688
+#: ../dialogs/appearance-settings/main.c:814
 msgid "Medium"
 msgstr "Kohtalainen"
 
-#: ../dialogs/appearance-settings/main.c:689
+#: ../dialogs/appearance-settings/main.c:815
 msgid "Full"
 msgstr "Täysi"
 
@@ -545,19 +545,16 @@ msgstr "Toinen digitaalinäyttö"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:161
-#, fuzzy
 msgid "Shortcut Command"
-msgstr "Valitse pikanäppäinkomento"
+msgstr "Pikanäppäinkomento"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:185
-#, fuzzy
 msgid "Shortcut:"
-msgstr "Pikanäppäin"
+msgstr "Pikanäppäin:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:195
-#, fuzzy
 msgid "Command:"
-msgstr "Komento"
+msgstr "Komento:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:247
 msgid "The command may not be empty."
@@ -970,9 +967,8 @@ msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
 msgstr "Haluatko varmasti palauttaa asetuksen \"<b>%s</b>\"?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
-#, fuzzy
 msgid "Graphical settings editor for Xfconf"
-msgstr "Graafinen asetusten muokkaaja Xfce 4:lle"
+msgstr "Graafinen Xfconf-asetusten muokkain"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
@@ -981,10 +977,9 @@ msgstr "Asetukset"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
 msgid "Customize settings stored by Xfconf"
-msgstr ""
+msgstr "Mukauta Xfconfiin tallennettuja asetuksia"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
-#, fuzzy
 msgid "Edit Property"
 msgstr "Muokkaa asetusta"
 
@@ -1009,9 +1004,8 @@ msgid "Reset/remove property"
 msgstr "Palauta/poista asetus"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-#, fuzzy
 msgid "Select a channel and property"
-msgstr "Valitse kanava ja asetus."
+msgstr "Valitse kanava ja asetus"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Type:"
@@ -1073,9 +1067,7 @@ msgstr "Käynnistä vianetsintätilassa (älä haaroita taustalle)"
 msgid "Client id used when resuming session"
 msgstr "Asiakasohjelman tunniste istunnon palautuessa"
 
-#. some of them may not have been set in xfconf
-#: ../xfce4-settings-helper/workspaces.c:116
-#: ../xfce4-settings-helper/workspaces.c:242
+#: ../xfce4-settings-helper/workspaces.c:141
 #, c-format
 msgid "Workspace %d"
 msgstr "Työtila %d"
