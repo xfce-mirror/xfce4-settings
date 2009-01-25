@@ -111,7 +111,6 @@ struct _XfceTextRenderer
 
 
 static GObjectClass *xfce_text_renderer_parent_class;
-static guint         text_renderer_signals[LAST_SIGNAL];
 
 
 

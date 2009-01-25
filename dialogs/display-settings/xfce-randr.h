@@ -89,7 +89,8 @@ struct _XfceRandr
 
 
 
-XfceRandr   *xfce_randr_new           (GdkDisplay    *display);
+XfceRandr   *xfce_randr_new           (GdkDisplay    *display,
+                                       GError       **error);
 
 void         xfce_randr_free          (XfceRandr     *randr);
 

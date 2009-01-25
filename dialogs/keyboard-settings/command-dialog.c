@@ -155,7 +155,6 @@ command_dialog_create_contents (CommandDialog *dialog,
   GtkWidget *table;
   GtkWidget *label;
   GtkWidget *hbox;
-  gchar     *text;
 
   /* Set dialog title and icon */
   gtk_window_set_title (GTK_WINDOW (dialog), _("Shortcut Command"));

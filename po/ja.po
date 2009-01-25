@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-12 14:02+0900\n"
+"POT-Creation-Date: 2009-01-25 20:50+0100\n"
 "PO-Revision-Date: 2009-01-11 15:26+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
@@ -224,8 +224,8 @@ msgid "Version information"
 msgstr "バージョン情報を表示する"
 
 #: ../dialogs/accessibility-settings/main.c:145
-#: ../dialogs/appearance-settings/main.c:877
-#: ../dialogs/display-settings/main.c:643
+#: ../dialogs/appearance-settings/main.c:875
+#: ../dialogs/display-settings/main.c:645
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
 #: ../xfce4-settings-helper/main.c:246 ../xfce4-settings-manager/main.c:58
@@ -234,8 +234,8 @@ msgid "Type '%s --help' for usage."
 msgstr "'%s --help' と入力すると使用方法が表示されます。"
 
 #: ../dialogs/accessibility-settings/main.c:164
-#: ../dialogs/appearance-settings/main.c:896
-#: ../dialogs/display-settings/main.c:662
+#: ../dialogs/appearance-settings/main.c:894
+#: ../dialogs/display-settings/main.c:664
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
 #: ../xfce4-settings-helper/main.c:265 ../xfce4-settings-manager/main.c:71
@@ -243,8 +243,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:165
-#: ../dialogs/appearance-settings/main.c:897
-#: ../dialogs/display-settings/main.c:663
+#: ../dialogs/appearance-settings/main.c:895
+#: ../dialogs/display-settings/main.c:665
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
 #: ../xfce4-settings-helper/main.c:266 ../xfce4-settings-manager/main.c:72
@@ -421,52 +421,52 @@ msgstr "アイコン(_I)"
 msgid "_Settings"
 msgstr "設定(_S)"
 
-#: ../dialogs/appearance-settings/main.c:737
-#: ../dialogs/appearance-settings/main.c:812
+#: ../dialogs/appearance-settings/main.c:735
+#: ../dialogs/appearance-settings/main.c:810
 msgid "None"
 msgstr "なし"
 
-#: ../dialogs/appearance-settings/main.c:741
+#: ../dialogs/appearance-settings/main.c:739
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:745
+#: ../dialogs/appearance-settings/main.c:743
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:749
+#: ../dialogs/appearance-settings/main.c:747
 msgid "Vertical RGB"
 msgstr "垂直 RGB"
 
-#: ../dialogs/appearance-settings/main.c:753
+#: ../dialogs/appearance-settings/main.c:751
 msgid "Vertical BGR"
 msgstr "垂直 GBR"
 
-#: ../dialogs/appearance-settings/main.c:794
+#: ../dialogs/appearance-settings/main.c:792
 msgid "Icons"
 msgstr "アイコン"
 
-#: ../dialogs/appearance-settings/main.c:795
+#: ../dialogs/appearance-settings/main.c:793
 msgid "Text"
 msgstr "文字"
 
-#: ../dialogs/appearance-settings/main.c:796
+#: ../dialogs/appearance-settings/main.c:794
 msgid "Both"
 msgstr "アイコンと文字"
 
-#: ../dialogs/appearance-settings/main.c:797
+#: ../dialogs/appearance-settings/main.c:795
 msgid "Both Horizontal"
 msgstr "アイコンと文字 (横方向)"
 
-#: ../dialogs/appearance-settings/main.c:813
+#: ../dialogs/appearance-settings/main.c:811
 msgid "Slight"
 msgstr "部分的"
 
-#: ../dialogs/appearance-settings/main.c:814
+#: ../dialogs/appearance-settings/main.c:812
 msgid "Medium"
 msgstr "中位"
 
-#: ../dialogs/appearance-settings/main.c:815
+#: ../dialogs/appearance-settings/main.c:813
 msgid "Full"
 msgstr "全体的"
 
@@ -528,72 +528,100 @@ msgstr "Hz"
 msgid "Screen"
 msgstr "Screen"
 
-#: ../dialogs/display-settings/xfce-randr.c:322
+#: ../dialogs/display-settings/main.c:678
+#, c-format
+msgid "RandR extension missing on display \"%s\""
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:681
+msgid ""
+"The Resize and Rotate extension (RandR) is not enabled on this display. Try "
+"to enable it and run the dialog again."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:719
+msgid "Failed to use the RandR extension"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:55
+#, c-format
+msgid "Unable to query the version of the RandR extension being used"
+msgstr ""
+
+#. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
+#: ../dialogs/display-settings/xfce-randr.c:63
+#, c-format
+msgid ""
+"This system is using RandR %d.%d. For the display settings to work version "
+"1.1 is required at least"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
 msgstr "ラップトップ"
 
-#: ../dialogs/display-settings/xfce-randr.c:326
+#: ../dialogs/display-settings/xfce-randr.c:347
 msgid "Monitor"
 msgstr "モニタ"
 
-#: ../dialogs/display-settings/xfce-randr.c:330
+#: ../dialogs/display-settings/xfce-randr.c:351
 msgid "Television"
 msgstr "テレビ"
 
-#: ../dialogs/display-settings/xfce-randr.c:337
+#: ../dialogs/display-settings/xfce-randr.c:358
 msgid "Digital display"
 msgstr "デジタルディスプレイ"
 
-#: ../dialogs/display-settings/xfce-randr.c:341
+#: ../dialogs/display-settings/xfce-randr.c:362
 msgid "Second monitor"
 msgstr "2つめのモニタ"
 
-#: ../dialogs/display-settings/xfce-randr.c:347
+#: ../dialogs/display-settings/xfce-randr.c:368
 msgid "Second digital display"
 msgstr "2つめのデジタルディスプレイ"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:161
+#: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Shortcut Command"
 msgstr "ショートカットのコマンド"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:185
+#: ../dialogs/keyboard-settings/command-dialog.c:184
 msgid "Shortcut:"
 msgstr "ショートカット:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:195
+#: ../dialogs/keyboard-settings/command-dialog.c:194
 msgid "Command:"
 msgstr "コマンド:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:247
+#: ../dialogs/keyboard-settings/command-dialog.c:246
 msgid "The command may not be empty."
 msgstr "コマンドを入力してください。"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/keyboard-settings/command-dialog.c:266
 msgid "Select command"
 msgstr "コマンドの選択"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:275
+#: ../dialogs/keyboard-settings/command-dialog.c:274
 msgid "All Files"
 msgstr "全てのファイル"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:280
+#: ../dialogs/keyboard-settings/command-dialog.c:279
 msgid "Executable Files"
 msgstr "実行ファイル"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:295
+#: ../dialogs/keyboard-settings/command-dialog.c:294
 msgid "Perl Scripts"
 msgstr "Perl スクリプト"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:301
+#: ../dialogs/keyboard-settings/command-dialog.c:300
 msgid "Python Scripts"
 msgstr "Python スクリプト"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:307
+#: ../dialogs/keyboard-settings/command-dialog.c:306
 msgid "Ruby Scripts"
 msgstr "Ruby スクリプト"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:313
+#: ../dialogs/keyboard-settings/command-dialog.c:312
 msgid "Shell Scripts"
 msgstr "シェルスクリプト"
 
@@ -1072,9 +1100,7 @@ msgstr "デバッグモードで起動する (バックグラウンドで fork �
 msgid "Client id used when resuming session"
 msgstr "セッション再開時に使用されるクライアント ID"
 
-#. some of them may not have been set in xfconf
-#: ../xfce4-settings-helper/workspaces.c:116
-#: ../xfce4-settings-helper/workspaces.c:242
+#: ../xfce4-settings-helper/workspaces.c:141
 #, c-format
 msgid "Workspace %d"
 msgstr "ワークスペース %d"

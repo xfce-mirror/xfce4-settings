@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-10 23:19+0100\n"
+"POT-Creation-Date: 2009-01-25 20:50+0100\n"
 "PO-Revision-Date: 2008-12-05 21:43+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -209,19 +209,19 @@ msgid "pixels/sec"
 msgstr "пікселів/сек"
 
 #: ../dialogs/accessibility-settings/main.c:45
-#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
 msgstr "Сокет менеджера параметрів"
 
 #: ../dialogs/accessibility-settings/main.c:45
-#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
 msgstr "ID сокета"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:83
+#: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
 #: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:67
@@ -230,8 +230,8 @@ msgid "Version information"
 msgstr "Інформація про версію"
 
 #: ../dialogs/accessibility-settings/main.c:145
-#: ../dialogs/appearance-settings/main.c:791
-#: ../dialogs/display-settings/main.c:643
+#: ../dialogs/appearance-settings/main.c:875
+#: ../dialogs/display-settings/main.c:645
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
 #: ../xfce4-settings-helper/main.c:246 ../xfce4-settings-manager/main.c:58
@@ -240,8 +240,8 @@ msgid "Type '%s --help' for usage."
 msgstr "Наберіть '%s --help' для використання."
 
 #: ../dialogs/accessibility-settings/main.c:164
-#: ../dialogs/appearance-settings/main.c:810
-#: ../dialogs/display-settings/main.c:662
+#: ../dialogs/appearance-settings/main.c:894
+#: ../dialogs/display-settings/main.c:664
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
 #: ../xfce4-settings-helper/main.c:265 ../xfce4-settings-manager/main.c:71
@@ -249,8 +249,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Команда розробників Xfce. Всі права застережено."
 
 #: ../dialogs/accessibility-settings/main.c:165
-#: ../dialogs/appearance-settings/main.c:811
-#: ../dialogs/display-settings/main.c:663
+#: ../dialogs/appearance-settings/main.c:895
+#: ../dialogs/display-settings/main.c:665
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
 #: ../xfce4-settings-helper/main.c:266 ../xfce4-settings-manager/main.c:72
@@ -424,52 +424,52 @@ msgstr "_Значки"
 msgid "_Settings"
 msgstr "_Параметри"
 
-#: ../dialogs/appearance-settings/main.c:593
-#: ../dialogs/appearance-settings/main.c:686
+#: ../dialogs/appearance-settings/main.c:735
+#: ../dialogs/appearance-settings/main.c:810
 msgid "None"
 msgstr "Нічого"
 
-#: ../dialogs/appearance-settings/main.c:597
+#: ../dialogs/appearance-settings/main.c:739
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:601
+#: ../dialogs/appearance-settings/main.c:743
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:605
+#: ../dialogs/appearance-settings/main.c:747
 msgid "Vertical RGB"
 msgstr "Вертикальний RGB"
 
-#: ../dialogs/appearance-settings/main.c:609
+#: ../dialogs/appearance-settings/main.c:751
 msgid "Vertical BGR"
 msgstr "Вертикальний BGR"
 
-#: ../dialogs/appearance-settings/main.c:659
+#: ../dialogs/appearance-settings/main.c:792
 msgid "Icons"
 msgstr "Значки"
 
-#: ../dialogs/appearance-settings/main.c:660
+#: ../dialogs/appearance-settings/main.c:793
 msgid "Text"
 msgstr "Текст"
 
-#: ../dialogs/appearance-settings/main.c:661
+#: ../dialogs/appearance-settings/main.c:794
 msgid "Both"
 msgstr "Значки та текст"
 
-#: ../dialogs/appearance-settings/main.c:662
+#: ../dialogs/appearance-settings/main.c:795
 msgid "Both Horizontal"
 msgstr "Обидва горизонтально"
 
-#: ../dialogs/appearance-settings/main.c:687
+#: ../dialogs/appearance-settings/main.c:811
 msgid "Slight"
 msgstr "Плавно"
 
-#: ../dialogs/appearance-settings/main.c:688
+#: ../dialogs/appearance-settings/main.c:812
 msgid "Medium"
 msgstr "Посередньо"
 
-#: ../dialogs/appearance-settings/main.c:689
+#: ../dialogs/appearance-settings/main.c:813
 msgid "Full"
 msgstr "Повністю"
 
@@ -531,75 +531,103 @@ msgstr "Гц"
 msgid "Screen"
 msgstr "Екран"
 
-#: ../dialogs/display-settings/xfce-randr.c:322
+#: ../dialogs/display-settings/main.c:678
+#, c-format
+msgid "RandR extension missing on display \"%s\""
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:681
+msgid ""
+"The Resize and Rotate extension (RandR) is not enabled on this display. Try "
+"to enable it and run the dialog again."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:719
+msgid "Failed to use the RandR extension"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:55
+#, c-format
+msgid "Unable to query the version of the RandR extension being used"
+msgstr ""
+
+#. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
+#: ../dialogs/display-settings/xfce-randr.c:63
+#, c-format
+msgid ""
+"This system is using RandR %d.%d. For the display settings to work version "
+"1.1 is required at least"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
 msgstr "Ноутбук"
 
-#: ../dialogs/display-settings/xfce-randr.c:326
+#: ../dialogs/display-settings/xfce-randr.c:347
 msgid "Monitor"
 msgstr "Монітор"
 
-#: ../dialogs/display-settings/xfce-randr.c:330
+#: ../dialogs/display-settings/xfce-randr.c:351
 msgid "Television"
 msgstr "Телевізор"
 
-#: ../dialogs/display-settings/xfce-randr.c:337
+#: ../dialogs/display-settings/xfce-randr.c:358
 msgid "Digital display"
 msgstr "Цифровий дисплей"
 
-#: ../dialogs/display-settings/xfce-randr.c:341
+#: ../dialogs/display-settings/xfce-randr.c:362
 msgid "Second monitor"
 msgstr "Другий монітор"
 
-#: ../dialogs/display-settings/xfce-randr.c:347
+#: ../dialogs/display-settings/xfce-randr.c:368
 msgid "Second digital display"
 msgstr "Другий цифровий дисплей"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:161
+#: ../dialogs/keyboard-settings/command-dialog.c:160
 #, fuzzy
 msgid "Shortcut Command"
 msgstr "Виберіть команду для ярлика запуску"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:185
+#: ../dialogs/keyboard-settings/command-dialog.c:184
 #, fuzzy
 msgid "Shortcut:"
 msgstr "Ярлик запуску"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:195
+#: ../dialogs/keyboard-settings/command-dialog.c:194
 #, fuzzy
 msgid "Command:"
 msgstr "Команда"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:247
+#: ../dialogs/keyboard-settings/command-dialog.c:246
 msgid "The command may not be empty."
 msgstr "Стрічка команди не може бути пустою."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/keyboard-settings/command-dialog.c:266
 msgid "Select command"
 msgstr "Вибрати команду"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:275
+#: ../dialogs/keyboard-settings/command-dialog.c:274
 msgid "All Files"
 msgstr "Всі файли"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:280
+#: ../dialogs/keyboard-settings/command-dialog.c:279
 msgid "Executable Files"
 msgstr "Виконувані файли"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:295
+#: ../dialogs/keyboard-settings/command-dialog.c:294
 msgid "Perl Scripts"
 msgstr "Скрипти Perl"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:301
+#: ../dialogs/keyboard-settings/command-dialog.c:300
 msgid "Python Scripts"
 msgstr "Скрипти Python"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:307
+#: ../dialogs/keyboard-settings/command-dialog.c:306
 msgid "Ruby Scripts"
 msgstr "Скрипти Ruby"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:313
+#: ../dialogs/keyboard-settings/command-dialog.c:312
 msgid "Shell Scripts"
 msgstr "Скрипти Shell"
 
@@ -1088,9 +1116,7 @@ msgstr "Старт в режимі відлагодження (не йти у ф
 msgid "Client id used when resuming session"
 msgstr "Використано id клієнта під час відновлення сеансу"
 
-#. some of them may not have been set in xfconf
-#: ../xfce4-settings-helper/workspaces.c:116
-#: ../xfce4-settings-helper/workspaces.c:242
+#: ../xfce4-settings-helper/workspaces.c:141
 #, c-format
 msgid "Workspace %d"
 msgstr "Робоча область %d"

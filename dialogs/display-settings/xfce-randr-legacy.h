@@ -61,7 +61,8 @@ struct _XfceRotation
 
 
 
-XfceRandrLegacy *xfce_randr_legacy_new    (GdkDisplay      *display);
+XfceRandrLegacy *xfce_randr_legacy_new    (GdkDisplay      *display,
+                                           GError         **error);
 
 void             xfce_randr_legacy_free   (XfceRandrLegacy *legacy);
 

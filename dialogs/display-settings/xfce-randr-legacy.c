@@ -35,7 +35,8 @@
 
 
 XfceRandrLegacy *
-xfce_randr_legacy_new (GdkDisplay *display)
+xfce_randr_legacy_new (GdkDisplay  *display,
+                       GError     **error)
 {
     XfceRandrLegacy *legacy;
     gint             n, num_screens;
@@ -43,8 +44,10 @@ xfce_randr_legacy_new (GdkDisplay *display)
     GdkWindow       *root_window;
     Display         *xdisplay;
     Rotation         rotation;
+    gint             major, minor;
 
     g_return_val_if_fail (GDK_IS_DISPLAY (display), NULL);
+    g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
     /* get the number of screens on this diaply */
     num_screens = gdk_display_get_n_screens (display);
@@ -53,6 +56,21 @@ xfce_randr_legacy_new (GdkDisplay *display)
 
     /* get the x display */
     xdisplay = gdk_x11_display_get_xdisplay (display);
+
+    /* check if the randr extension is available */
+    if (XRRQueryVersion (xdisplay, &major, &minor) == FALSE)
+    {
+        g_set_error (error, 0, 0, _("Unable to query the version of the RandR extension being used"));
+        return NULL;
+    }
+
+    /* we need atleast randr 1.1, 2.0 will probably break the api */
+    if (major < 1 || (major == 1 && minor < 1))
+    {
+        g_set_error (error, 0, 0, _("This system is using RandR %d.%d. For the display settings to work "
+                                    "version 1.1 is required at least"), major, minor);
+        return NULL;
+    }
 
     /* allocate a slice for the structure */
     legacy = g_slice_new0 (XfceRandrLegacy);

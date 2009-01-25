@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the xfce4-setting package.
 # Chris K. Zhang <plutino@gmail.com>, 2009.
 #
+#: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-10 23:19+0100\n"
+"POT-Creation-Date: 2009-01-25 20:50+0100\n"
 "PO-Revision-Date: 2009-01-18 21:51-0800\n"
 "Last-Translator: Chris K. Zhang <plutino@gmail.com\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
@@ -191,19 +192,19 @@ msgid "pixels/sec"
 msgstr "像素/秒"
 
 #: ../dialogs/accessibility-settings/main.c:45
-#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
 msgstr "设置管理器接口"
 
 #: ../dialogs/accessibility-settings/main.c:45
-#: ../dialogs/appearance-settings/main.c:82
+#: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:83
+#: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
 #: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:67
@@ -212,8 +213,8 @@ msgid "Version information"
 msgstr "版本信息"
 
 #: ../dialogs/accessibility-settings/main.c:145
-#: ../dialogs/appearance-settings/main.c:791
-#: ../dialogs/display-settings/main.c:643
+#: ../dialogs/appearance-settings/main.c:875
+#: ../dialogs/display-settings/main.c:645
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
 #: ../xfce4-settings-helper/main.c:246 ../xfce4-settings-manager/main.c:58
@@ -222,8 +223,8 @@ msgid "Type '%s --help' for usage."
 msgstr "“%s --help”显示使用说明"
 
 #: ../dialogs/accessibility-settings/main.c:164
-#: ../dialogs/appearance-settings/main.c:810
-#: ../dialogs/display-settings/main.c:662
+#: ../dialogs/appearance-settings/main.c:894
+#: ../dialogs/display-settings/main.c:664
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
 #: ../xfce4-settings-helper/main.c:265 ../xfce4-settings-manager/main.c:71
@@ -231,8 +232,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发组，版权所有"
 
 #: ../dialogs/accessibility-settings/main.c:165
-#: ../dialogs/appearance-settings/main.c:811
-#: ../dialogs/display-settings/main.c:663
+#: ../dialogs/appearance-settings/main.c:895
+#: ../dialogs/display-settings/main.c:665
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
 #: ../xfce4-settings-helper/main.c:266 ../xfce4-settings-manager/main.c:72
@@ -393,52 +394,52 @@ msgstr "图标(_I)"
 msgid "_Settings"
 msgstr "设置(_S)"
 
-#: ../dialogs/appearance-settings/main.c:593
-#: ../dialogs/appearance-settings/main.c:686
+#: ../dialogs/appearance-settings/main.c:735
+#: ../dialogs/appearance-settings/main.c:810
 msgid "None"
 msgstr "无"
 
-#: ../dialogs/appearance-settings/main.c:597
+#: ../dialogs/appearance-settings/main.c:739
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:601
+#: ../dialogs/appearance-settings/main.c:743
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:605
+#: ../dialogs/appearance-settings/main.c:747
 msgid "Vertical RGB"
 msgstr "竖直 RGB"
 
-#: ../dialogs/appearance-settings/main.c:609
+#: ../dialogs/appearance-settings/main.c:751
 msgid "Vertical BGR"
 msgstr "竖直 BGR"
 
-#: ../dialogs/appearance-settings/main.c:659
+#: ../dialogs/appearance-settings/main.c:792
 msgid "Icons"
 msgstr "图标"
 
-#: ../dialogs/appearance-settings/main.c:660
+#: ../dialogs/appearance-settings/main.c:793
 msgid "Text"
 msgstr "文字"
 
-#: ../dialogs/appearance-settings/main.c:661
+#: ../dialogs/appearance-settings/main.c:794
 msgid "Both"
 msgstr "都用"
 
-#: ../dialogs/appearance-settings/main.c:662
+#: ../dialogs/appearance-settings/main.c:795
 msgid "Both Horizontal"
 msgstr "都用（水平摆放）"
 
-#: ../dialogs/appearance-settings/main.c:687
+#: ../dialogs/appearance-settings/main.c:811
 msgid "Slight"
 msgstr "略微"
 
-#: ../dialogs/appearance-settings/main.c:688
+#: ../dialogs/appearance-settings/main.c:812
 msgid "Medium"
 msgstr "中度"
 
-#: ../dialogs/appearance-settings/main.c:689
+#: ../dialogs/appearance-settings/main.c:813
 msgid "Full"
 msgstr "全部"
 
@@ -500,72 +501,100 @@ msgstr "Hz"
 msgid "Screen"
 msgstr "屏幕"
 
-#: ../dialogs/display-settings/xfce-randr.c:322
+#: ../dialogs/display-settings/main.c:678
+#, c-format
+msgid "RandR extension missing on display \"%s\""
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:681
+msgid ""
+"The Resize and Rotate extension (RandR) is not enabled on this display. Try "
+"to enable it and run the dialog again."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:719
+msgid "Failed to use the RandR extension"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:55
+#, c-format
+msgid "Unable to query the version of the RandR extension being used"
+msgstr ""
+
+#. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
+#: ../dialogs/display-settings/xfce-randr.c:63
+#, c-format
+msgid ""
+"This system is using RandR %d.%d. For the display settings to work version "
+"1.1 is required at least"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
 msgstr "笔记本电脑"
 
-#: ../dialogs/display-settings/xfce-randr.c:326
+#: ../dialogs/display-settings/xfce-randr.c:347
 msgid "Monitor"
 msgstr "显示器"
 
-#: ../dialogs/display-settings/xfce-randr.c:330
+#: ../dialogs/display-settings/xfce-randr.c:351
 msgid "Television"
 msgstr "电视"
 
-#: ../dialogs/display-settings/xfce-randr.c:337
+#: ../dialogs/display-settings/xfce-randr.c:358
 msgid "Digital display"
 msgstr "电子显示板"
 
-#: ../dialogs/display-settings/xfce-randr.c:341
+#: ../dialogs/display-settings/xfce-randr.c:362
 msgid "Second monitor"
 msgstr "副显示器"
 
-#: ../dialogs/display-settings/xfce-randr.c:347
+#: ../dialogs/display-settings/xfce-randr.c:368
 msgid "Second digital display"
 msgstr "副电子显示板"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:161
+#: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Shortcut Command"
 msgstr "快捷键命令"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:185
+#: ../dialogs/keyboard-settings/command-dialog.c:184
 msgid "Shortcut:"
 msgstr "快捷键："
 
-#: ../dialogs/keyboard-settings/command-dialog.c:195
+#: ../dialogs/keyboard-settings/command-dialog.c:194
 msgid "Command:"
 msgstr "命令："
 
-#: ../dialogs/keyboard-settings/command-dialog.c:247
+#: ../dialogs/keyboard-settings/command-dialog.c:246
 msgid "The command may not be empty."
 msgstr "命令不能为空"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/keyboard-settings/command-dialog.c:266
 msgid "Select command"
 msgstr "选择命令"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:275
+#: ../dialogs/keyboard-settings/command-dialog.c:274
 msgid "All Files"
 msgstr "全部文件"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:280
+#: ../dialogs/keyboard-settings/command-dialog.c:279
 msgid "Executable Files"
 msgstr "可执行文件"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:295
+#: ../dialogs/keyboard-settings/command-dialog.c:294
 msgid "Perl Scripts"
 msgstr "Perl 脚本"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:301
+#: ../dialogs/keyboard-settings/command-dialog.c:300
 msgid "Python Scripts"
 msgstr "Python 脚本"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:307
+#: ../dialogs/keyboard-settings/command-dialog.c:306
 msgid "Ruby Scripts"
 msgstr "Ruby 脚本"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:313
+#: ../dialogs/keyboard-settings/command-dialog.c:312
 msgid "Shell Scripts"
 msgstr "Shell 脚本"
 
@@ -1034,9 +1063,7 @@ msgstr "启动到差错模式（不分叉到后台线程）"
 msgid "Client id used when resuming session"
 msgstr "恢复 Session 时使用的客户 ID"
 
-#. some of them may not have been set in xfconf
-#: ../xfce4-settings-helper/workspaces.c:116
-#: ../xfce4-settings-helper/workspaces.c:242
+#: ../xfce4-settings-helper/workspaces.c:141
 #, c-format
 msgid "Workspace %d"
 msgstr "工作区 %d"

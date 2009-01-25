@@ -672,8 +672,6 @@ appearance_settings_dialog_configure_widgets (GladeXML *gxml)
     GtkListStore     *list_store;
     GtkCellRenderer  *renderer;
     GtkTreeSelection *icon_selection, *ui_selection;
-    gchar            *string;
-    guint             i;
     GdkPixbuf        *pixbuf;
 
     /* check if we need to restore settings from GtkSettings */

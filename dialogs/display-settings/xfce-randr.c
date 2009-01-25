@@ -34,24 +34,45 @@
 #ifdef HAS_RANDR_ONE_POINT_TWO
 
 XfceRandr *
-xfce_randr_new (GdkDisplay *display)
+xfce_randr_new (GdkDisplay  *display,
+                GError     **error)
 {
     XfceRandr    *randr;
     Display      *xdisplay;
     GdkWindow    *root_window;
     gint          n;
+    gint          major, minor;
 
     g_return_val_if_fail (GDK_IS_DISPLAY (display), NULL);
+    g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
-    /* get the x display and the root window */
+    /* get the x display */
     xdisplay = gdk_x11_display_get_xdisplay (display);
-    root_window = gdk_get_default_root_window ();
+
+    /* check if the randr extension is available */
+    if (XRRQueryVersion (xdisplay, &major, &minor) == FALSE)
+    {
+        g_set_error (error, 0, 0, _("Unable to query the version of the RandR extension being used"));
+        return NULL;
+    }
+
+    /* we need atleast randr 1.2, 2.0 will probably break the api */
+    if (major < 1 || (major == 1 && minor < 2))
+    {
+        /* 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c */
+        g_set_error (error, 0, 0, _("This system is using RandR %d.%d. For the display settings to work "
+                                    "version 1.1 is required at least"), major, minor); 
+        return NULL;
+    }
 
     /* allocate the structure */
     randr = g_slice_new0 (XfceRandr);
     
     /* set display */
     randr->display = display;
+
+    /* get the root window */
+    root_window = gdk_get_default_root_window ();
 
     /* get the screen resource */
     randr->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));

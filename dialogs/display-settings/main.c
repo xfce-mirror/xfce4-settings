@@ -629,6 +629,8 @@ main (gint argc, gchar **argv)
     GladeXML   *gxml;
     GError     *error = NULL;
     GdkDisplay *display;
+    gboolean    succeeded = TRUE;
+    gint        event_base, error_base;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -666,6 +668,25 @@ main (gint argc, gchar **argv)
         return EXIT_SUCCESS;
     }
 
+    /* get the default display */
+    display = gdk_display_get_default ();
+
+    /* check if the randr extension is avaible on the system */
+    if (!XRRQueryExtension (gdk_x11_display_get_xdisplay (display), &event_base, &error_base))
+    {
+        dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_NONE,
+                                         _("RandR extension missing on display \"%s\""),
+                                         gdk_display_get_name (display));
+        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                                  _("The Resize and Rotate extension (RandR) is not enabled on "
+                                                    "this display. Try to enable it and run the dialog again."));
+        gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE);
+        gtk_dialog_run (GTK_DIALOG (dialog));
+        gtk_widget_destroy (dialog);
+
+        return EXIT_FAILURE;
+    }
+
     /* initialize xfconf */
     if (!xfconf_init (&error))
     {
@@ -680,28 +701,32 @@ main (gint argc, gchar **argv)
     display_channel = xfconf_channel_new ("displays");
     if (G_LIKELY (display_channel))
     {
-        /* get the default display */
-        display = gdk_display_get_default ();
-
 #ifdef HAS_RANDR_ONE_POINT_TWO
         /* create a new xfce randr (>= 1.2) for this display
          * this will only work if there is 1 screen on this display */
         if (gdk_display_get_n_screens (display) == 1)
-            xfce_randr = xfce_randr_new (display);
+            xfce_randr = xfce_randr_new (display, NULL);
 
         /* fall back on the legacy backend */
         if (xfce_randr == NULL)
-        {
-            xfce_randr_legacy = xfce_randr_legacy_new (display);
-            if (G_UNLIKELY (xfce_randr_legacy == NULL))
-                goto backend_failed;
-        }
-#else
-        /* create a legacy backend */
-        xfce_randr_legacy = xfce_randr_legacy_new (display);
-        if (G_UNLIKELY (xfce_randr_legacy == NULL))
-            goto backend_failed;
 #endif
+        {
+            xfce_randr_legacy = xfce_randr_legacy_new (display, &error);
+            if (G_UNLIKELY (xfce_randr_legacy == NULL))
+            {
+                /* show an error dialog the version is too old */
+                dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_NONE,
+                                                 _("Failed to use the RandR extension"));
+                gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), error->message);
+                gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE);
+                gtk_dialog_run (GTK_DIALOG (dialog));
+                gtk_widget_destroy (dialog);
+                g_error_free (error);
+
+                /* leave and cleanup the data */
+                goto err1;
+            }
+        }
 
         /* load the dialog glade xml */
         gxml = glade_xml_new_from_buffer (display_dialog_glade, display_dialog_glade_length, NULL, NULL);
@@ -735,6 +760,8 @@ main (gint argc, gchar **argv)
             /* release the glade xml */
             g_object_unref (G_OBJECT (gxml));
         }
+        
+        err1:
 
         /* release the channel */
         g_object_unref (G_OBJECT (display_channel));
@@ -753,12 +780,6 @@ main (gint argc, gchar **argv)
     /* shutdown xfconf */
     xfconf_shutdown ();
 
-    return EXIT_SUCCESS;
-
-    backend_failed:
-
-    /* print error */
-    g_error ("Creating a randr backend failed, leaving...");
-
-    return EXIT_FAILURE;
+    return (succeeded ? EXIT_SUCCESS : EXIT_FAILURE);
+    
 }
