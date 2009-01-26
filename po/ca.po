@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-25 20:50+0100\n"
-"PO-Revision-Date: 2009-01-11 12:39+0100\n"
+"PO-Revision-Date: 2009-01-25 21:22+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -535,22 +535,24 @@ msgstr "Pantalla"
 #: ../dialogs/display-settings/main.c:678
 #, c-format
 msgid "RandR extension missing on display \"%s\""
-msgstr ""
+msgstr "No hi és l'extensió RandR a la pantalla «%s»"
 
 #: ../dialogs/display-settings/main.c:681
 msgid ""
 "The Resize and Rotate extension (RandR) is not enabled on this display. Try "
 "to enable it and run the dialog again."
 msgstr ""
+"L'extensió per canviar la mida i rotar (RandR) no s'ha habilitat en aquesta "
+"pantalla. Intenteu habilitar-la i executeu un altre cop el diàleg."
 
 #: ../dialogs/display-settings/main.c:719
 msgid "Failed to use the RandR extension"
-msgstr ""
+msgstr "No s'ha pogut emprar l'extensió RandR"
 
 #: ../dialogs/display-settings/xfce-randr.c:55
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr ""
+msgstr "No es pot saber la versió de l'extensió Randr que s'està emprant"
 
 #. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
 #: ../dialogs/display-settings/xfce-randr.c:63
@@ -559,6 +561,8 @@ msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.1 is required at least"
 msgstr ""
+"El sistema està emprant Randr %d.%d. Per a que els ajustaments de pantalla "
+"funcionin cal almenys la versió 1.1."
 
 #: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
