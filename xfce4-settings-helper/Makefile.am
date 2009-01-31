@@ -18,8 +18,6 @@ xfce4_settings_helper_SOURCES = \
 	main.c \
 	accessibility.c \
 	accessibility.h \
-	displays.c \
-	displays.h \
 	keyboards.c \
 	keyboards.h \
 	keyboard-shortcuts.c \
@@ -45,7 +43,6 @@ xfce4_settings_helper_CFLAGS = \
 	$(LIBXKLAVIER_CFLAGS) \
 	$(XI_CFLAGS) \
 	$(LIBX11_CFLAGS) \
-	$(XRANDR_CFLAGS) \
 	$(LIBNOTIFY_CFLAGS) \
 	$(LIBWNCK_CFLAGS) \
 	$(PLATFORM_CFLAGS)
@@ -66,9 +63,23 @@ xfce4_settings_helper_LDADD = \
 	$(LIBXKLAVIER_LIBS) \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
-	$(XRANDR_LIBS) \
 	$(LIBNOTIFY_LIBS) \
 	$(LIBWNCK_LIBS)
+
+#
+# Optional support for the display settings
+#
+if HAVE_XRANDR
+xfce4_settings_helper_SOURCES += \
+	displays.c \
+	displays.h
+
+xfce4_settings_helper_CFLAGS += \
+	$(XRANDR_CFLAGS)
+
+xfce4_settings_helper_LDADD += \
+	$(XRANDR_LIBS)
+endif
 
 autostartdir = $(sysconfdir)/xdg/autostart
 autostart_DATA = xfce4-settings-helper-autostart.desktop

@@ -50,12 +50,15 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "accessibility.h"
-#include "displays.h"
 #include "pointers.h"
 #include "keyboards.h"
 #include "keyboard-layout.h"
 #include "keyboard-shortcuts.h"
 #include "workspaces.h"
+
+#ifdef HAVE_XRANDR
+#include "displays.h"
+#endif
 
 
 
@@ -223,7 +226,9 @@ main (gint argc, gchar **argv)
     GObject    *accessibility_helper;
     GObject    *shortcuts_helper;
     GObject    *keyboard_layout_helper;
+#ifdef HAVE_XRANDR
     GObject    *displays_helper;
+#endif
     GObject    *workspaces_helper;
     pid_t       pid;
     guint       i;
@@ -311,7 +316,9 @@ main (gint argc, gchar **argv)
     accessibility_helper = g_object_new (XFCE_TYPE_ACCESSIBILITY_HELPER, NULL);
     shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
     keyboard_layout_helper = g_object_new (XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, NULL);
+#ifdef HAVE_XRANDR
     displays_helper = g_object_new (XFCE_TYPE_DISPLAYS_HELPER, NULL);
+#endif
     workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
 
     /* setup signal handlers to properly quit the main loop */
@@ -330,7 +337,9 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (accessibility_helper));
     g_object_unref (G_OBJECT (shortcuts_helper));
     g_object_unref (G_OBJECT (keyboard_layout_helper));
+#ifdef HAVE_XRANDR
     g_object_unref (G_OBJECT (displays_helper));
+#endif
     g_object_unref (G_OBJECT (workspaces_helper));
 
     /* shutdown xfconf */

@@ -84,8 +84,13 @@ XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.5.99.1])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.34])
 XDT_CHECK_PACKAGE([XI], [xi], [1.0.0])
 XDT_CHECK_PACKAGE([LIBX11], [x11], [1.0.0])
-XDT_CHECK_PACKAGE([XRANDR], [xrandr], [1.1.0])
 XDT_CHECK_PACKAGE([LIBWNCK], [libwnck-1.0], [2.12.0])
+
+dnl ***********************************
+dnl *** Optional support for Xrandr ***
+dnl ***********************************
+XDT_CHECK_OPTIONAL_PACKAGE([XRANDR], [xrandr], [1.1.0],
+                           [xrandr], [Xrandr support])
 
 dnl **************************************
 dnl *** Optional support for Libnotify ***
@@ -102,11 +107,12 @@ XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [1.1.0],
 dnl ****************************************
 dnl *** Optional support for Libxklavier ***
 dnl ****************************************
-
 XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER], [libxklavier], [0.3.0],
                            [libxklavier], [Keyboard layout selection])
 
-dnl make xsettings daemon optional
+dnl ************************************
+dnl *** Xsettings daemon is optional ***
+dnl ************************************
 AC_ARG_ENABLE([xsettings-daemon],
               [AC_HELP_STRING([--disable-xsettings-daemon],
                               [Don't build the XSETTINGS daemon (default=yes)])],
@@ -114,7 +120,9 @@ AC_ARG_ENABLE([xsettings-daemon],
               [build_xfsettingsd=yes])
 AM_CONDITIONAL([BUILD_XFSETTINGSD], [test "x$build_xfsettingsd" = "xyes"])
 
-dnl Camberra XSettings
+dnl ****************************************
+dnl *** Optional support for Libcamberra ***
+dnl ****************************************
 AC_ARG_ENABLE([sound-settings],
               [AC_HELP_STRING([--enable-sound-settings],
                               [Enable sound XSETTINGS in GUI (from libcamberra) (default=no)])],
@@ -245,6 +253,11 @@ echo "Build Configuration:"
 echo
 echo "* Installation prefix:       $prefix"
 echo "* Debug Support:             $enable_debug"
+if test x"$XRANDR_FOUND" = x"yes"; then
+echo "* Xrandr support:            yes"
+else
+echo "* Xrandr support:            no"
+fi
 if test x"$LIBNOTIFY_FOUND" = x"yes"; then
 echo "* Libnotify support:         yes"
 else

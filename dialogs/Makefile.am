@@ -3,6 +3,10 @@
 SUBDIRS = \
 	appearance-settings \
 	accessibility-settings \
-	display-settings \
 	keyboard-settings \
 	mouse-settings
+
+if HAVE_XRANDR
+SUBDIRS += \
+	display-settings
+endif
