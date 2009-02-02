@@ -60,11 +60,13 @@ struct _XfceSettingsManagerDialog
     GtkWidget *scrollwin;
 
     GtkWidget *icon_view;
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     GtkWidget *client_frame;
     GtkWidget *socket_viewport;
     GtkWidget *socket;
 
     GtkWidget *back_button;
+#endif
     GtkWidget *help_button;
 
     const gchar *default_title;
@@ -100,28 +102,30 @@ static void xfce_settings_manager_dialog_class_init(XfceSettingsManagerDialogCla
 static void xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog);
 static void xfce_settings_manager_dialog_finalize(GObject *obj);
 
-static void xfce_settings_manager_dialog_reset_view(XfceSettingsManagerDialog *dialog,
-                                                    gboolean overview);
 static void xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog);
 static void xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
                                                         GtkTreePath *path,
                                                         gpointer user_data);
-static void xfce_settings_manager_dialog_back_button_clicked(GtkWidget *button,
-                                                             XfceSettingsManagerDialog *dialog);
 static void xfce_settings_manager_dialog_help_button_clicked(GtkWidget *button,
                                                              XfceSettingsManagerDialog *dialog);
 static void xfce_settings_manager_dialog_response(GtkDialog *dialog,
                                                   gint response);
-static void xfce_settings_manager_dialog_plug_added(GtkSocket *socket,
-                                                    XfceSettingsManagerDialog *dialog);
-static gboolean xfce_settings_manager_dialog_plug_removed(GtkSocket *socket,
-                                                          XfceSettingsManagerDialog *dialog);
-static GtkWidget *xfce_settings_manager_dialog_recreate_socket(XfceSettingsManagerDialog *dialog);
 static void xfce_settings_manager_dialog_compute_default_size (XfceSettingsManagerDialog *dialog,
                                                                gint *width,
                                                                gint *height);
 static gboolean xfce_settings_manager_dialog_closed (GtkWidget *dialog,
                                                      GdkEvent *event);
+static void xfce_settings_manager_dialog_reset_view(XfceSettingsManagerDialog *dialog,
+                                                    gboolean overview);
+#ifdef ENABLE_PLUGGABLE_DIALOGS
+static void xfce_settings_manager_dialog_back_button_clicked(GtkWidget *button,
+                                                             XfceSettingsManagerDialog *dialog);
+static void xfce_settings_manager_dialog_plug_added(GtkSocket *socket,
+                                                    XfceSettingsManagerDialog *dialog);
+static gboolean xfce_settings_manager_dialog_plug_removed(GtkSocket *socket,
+                                                          XfceSettingsManagerDialog *dialog);
+static GtkWidget *xfce_settings_manager_dialog_recreate_socket(XfceSettingsManagerDialog *dialog);
+#endif
 #if GTK_CHECK_VERSION(2, 12, 0)
 static gboolean xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
                                                            gint x,
@@ -151,14 +155,16 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     GtkCellRenderer *render;
     gint width, height;
 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     dialog->socket = NULL;
     dialog->last_pid = -1;
+
+    dialog->help_file = NULL;
+#endif
 
     dialog->default_title = _("Settings");
     dialog->default_subtitle = _("Customize your desktop");
     dialog->default_icon = "preferences-desktop";
-
-    dialog->help_file = NULL;
 
     channel = xfconf_channel_get("xfce4-settings-manager");
     xfce_settings_manager_dialog_compute_default_size(dialog, &width, &height);
@@ -226,6 +232,7 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     g_object_set(render, "follow-state", TRUE, "follow-prelit", TRUE, 
                  "wrap-width", 128, NULL);
 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     /* Create client frame to contain the socket scroll window */
     dialog->client_frame = gtk_frame_new (NULL);
     gtk_frame_set_shadow_type(GTK_FRAME(dialog->client_frame), 
@@ -252,6 +259,7 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 
     /* Create socket */
     dialog->socket = xfce_settings_manager_dialog_recreate_socket(dialog);
+#endif
 
     /* Connect to response signal because maybe we need to kill the settings
      * dialog spawned last before closing the dialog */
@@ -262,6 +270,7 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     gtk_button_box_set_layout(GTK_BUTTON_BOX(GTK_DIALOG(dialog)->action_area),
                               GTK_BUTTONBOX_EDGE);
 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     /* Create back button which takes the user back to the overview */
     dialog->back_button = gtk_button_new_with_mnemonic(_("_Overview"));
     gtk_button_set_image(GTK_BUTTON(dialog->back_button),
@@ -275,6 +284,7 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     g_signal_connect(dialog->back_button, "clicked", 
                      G_CALLBACK(xfce_settings_manager_dialog_back_button_clicked),
                      dialog);
+#endif
 
     /* Create help button */
     dialog->help_button = gtk_button_new_from_stock(GTK_STOCK_HELP);
@@ -314,20 +324,23 @@ xfce_settings_manager_dialog_reset_view(XfceSettingsManagerDialog *dialog,
         xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dialog),
                                         dialog->default_subtitle);
 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
         /* Hide the socket view and display the overview */
         gtk_widget_hide(dialog->client_frame);
         gtk_widget_show(dialog->scrollwin);
 
         /* Hide the back button in the overview */
         gtk_widget_set_sensitive(dialog->back_button, FALSE);
-        
-        /* Show the help button */
-        gtk_widget_show(dialog->help_button);
 
         /* Use default help url */
         g_free(dialog->help_file);
         dialog->help_file = NULL;
+#endif
+        
+        /* Show the help button */
+        gtk_widget_show(dialog->help_button);
     } else {
+#ifdef ENABLE_PLUGGABLE_DIALOGS
         /* Hide overview and (just to be sure) the socket view. The latter is
          * to made visible once a plug has been added to the socket */
         gtk_widget_hide(dialog->scrollwin);
@@ -338,6 +351,7 @@ xfce_settings_manager_dialog_reset_view(XfceSettingsManagerDialog *dialog,
 
         /* Display the back button */
         gtk_widget_set_sensitive(dialog->back_button, TRUE);
+#endif
 
         /* Hide the help button */
         gtk_widget_hide(dialog->help_button);
@@ -541,10 +555,10 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
 #endif
                        -1);
 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     /* Kill the previously spawned dialog (if there is any) */
     xfce_settings_manager_dialog_recreate_socket(dialog);
 
-#ifdef ENABLE_PLUGGABLE_DIALOGS
     if(pluggable) {
         /* Update dialog title and icon */
         gtk_window_set_title(GTK_WINDOW(dialog), name);
@@ -613,6 +627,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
     g_free(icon_name);
 }
 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
 static void
 xfce_settings_manager_dialog_back_button_clicked(GtkWidget *button,
                                                  XfceSettingsManagerDialog *dialog)
@@ -621,6 +636,7 @@ xfce_settings_manager_dialog_back_button_clicked(GtkWidget *button,
     xfce_settings_manager_dialog_recreate_socket(dialog);
     xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 }
+#endif
 
 static void 
 xfce_settings_manager_dialog_help_button_clicked(GtkWidget *button,
@@ -662,10 +678,13 @@ xfce_settings_manager_dialog_response(GtkDialog *dialog,
         xfce_settings_manager_dialog_closed(GTK_WIDGET(dialog), NULL);
     }
 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     /* Make sure the currently embedded dialog is killed before exiting */
     xfce_settings_manager_dialog_recreate_socket(sm_dialog);
+#endif
 }
 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
 static gboolean
 xfce_settings_manager_dialog_show_client(XfceSettingsManagerDialog *dialog)
 {
@@ -723,6 +742,7 @@ xfce_settings_manager_dialog_recreate_socket(XfceSettingsManagerDialog *dialog)
 
     return dialog->socket;
 }
+#endif
 
 static void
 xfce_settings_manager_dialog_compute_default_size (XfceSettingsManagerDialog *dialog,
