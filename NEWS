@@ -1,7 +1,11 @@
-4.x.xx
-======
+4.5.99.2 (Xfce 4.6rc2)
+======================
 - Make the Xrandr dependency optional. If Xrandr is disabled, the
   display plugin won't be compiled at all (bug #4836).
+- When stealing a shortcut from another shortcuts provider, clear the 
+  shortcut of that provider first.
+- Make embedded settings dialogs optional (and disabled by default). 
+  They can be turned on using --enable-pluggable-dialogs.
 
 4.5.99.1 (Xfce 4.6rc1)
 ======================

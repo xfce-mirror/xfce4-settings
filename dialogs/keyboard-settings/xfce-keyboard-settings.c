@@ -764,7 +764,10 @@ xfce_keyboard_settings_validate_shortcut (XfceShortcutDialog   *dialog,
                                                 info->shortcut->command,
                                                 FALSE);
 
-      accepted = response == GTK_RESPONSE_ACCEPT;
+      if (G_UNLIKELY (response == GTK_RESPONSE_ACCEPT))
+        xfce_shortcuts_provider_reset_shortcut (info->provider, shortcut);
+      else
+        accepted = FALSE;
 
       xfce_keyboard_settings_free_shortcut_info (info);
     }
