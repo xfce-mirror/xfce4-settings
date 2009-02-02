@@ -88,8 +88,10 @@ enum
     COL_COMMENT,
     COL_EXEC,
     COL_SNOTIFY,
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     COL_PLUGGABLE,
     COL_HELP_FILE,
+#endif
     COL_DIALOG_NAME,
     N_COLS
 };
@@ -375,10 +377,17 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
     gchar **dirs, buf[PATH_MAX];
     gint i, icon_size;
 
-    dialog->ls = gtk_list_store_new(N_COLS, G_TYPE_STRING, G_TYPE_STRING,
-                                    G_TYPE_STRING, G_TYPE_STRING,
-                                    G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, 
-                                    G_TYPE_STRING, G_TYPE_STRING);
+    dialog->ls = gtk_list_store_new(N_COLS, 
+                                    G_TYPE_STRING, 
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING, 
+                                    G_TYPE_STRING,
+                                    G_TYPE_BOOLEAN, 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
+                                    G_TYPE_BOOLEAN, 
+                                    G_TYPE_STRING, 
+#endif
+                                    G_TYPE_STRING);
     
     dirs = xfce_resource_lookup_all(XFCE_RESOURCE_DATA, "applications/");
     if(!dirs)
@@ -478,8 +487,10 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                                COL_COMMENT, xfce_rc_read_entry(rcfile, "Comment", NULL),
                                COL_EXEC, exec,
                                COL_SNOTIFY, xfce_rc_read_bool_entry(rcfile, "StartupNotify", FALSE),
+#ifdef ENABLE_PLUGGABLE_DIALOGS
                                COL_PLUGGABLE, xfce_rc_read_bool_entry(rcfile, "X-XfcePluggable", FALSE),
                                COL_HELP_FILE, xfce_rc_read_entry(rcfile, "X-XfceHelpFile", FALSE),
+#endif
                                COL_DIALOG_NAME, dialog_name,
                                -1);
             
@@ -507,10 +518,12 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
 {
     XfceSettingsManagerDialog *dialog = user_data;
     GtkTreeIter iter;
-    gchar *exec = NULL, *name, *comment, *icon_name, *primary, *help_file, 
-          *command;
+    gchar *exec = NULL, *name, *comment, *icon_name, *primary, *command;
     gboolean snotify = FALSE;
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     gboolean pluggable = FALSE;
+    gchar *help_file;
+#endif
     GError *error = NULL;
 
     if(!gtk_tree_model_get_iter(GTK_TREE_MODEL(dialog->ls), &iter, path))
@@ -522,13 +535,16 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
                        COL_EXEC, &exec,
                        COL_ICON_NAME, &icon_name,
                        COL_SNOTIFY, &snotify,
+#ifdef ENABLE_PLUGGABLE_DIALOGS
                        COL_PLUGGABLE, &pluggable,
                        COL_HELP_FILE, &help_file,
+#endif
                        -1);
 
     /* Kill the previously spawned dialog (if there is any) */
     xfce_settings_manager_dialog_recreate_socket(dialog);
 
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     if(pluggable) {
         /* Update dialog title and icon */
         gtk_window_set_title(GTK_WINDOW(dialog), name);
@@ -570,6 +586,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
 
         g_free(command);
     } else {
+#endif
         /* Switch to the main view (just to be sure) */
         xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 
@@ -585,13 +602,15 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
             g_free(primary);
             g_error_free(error);
         }
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     }
 
+    g_free(help_file);
+#endif
     g_free(exec);
     g_free(name);
     g_free(comment);
     g_free(icon_name);
-    g_free(help_file);
 }
 
 static void
@@ -650,7 +669,14 @@ xfce_settings_manager_dialog_response(GtkDialog *dialog,
 static gboolean
 xfce_settings_manager_dialog_show_client(XfceSettingsManagerDialog *dialog)
 {
+    GdkWindow *window;
+    gint width, height;
+
     g_return_val_if_fail(XFCE_IS_SETTINGS_MANAGER_DIALOG(dialog), FALSE);
+
+    window = gtk_socket_get_plug_window(GTK_SOCKET(dialog->socket));
+    gdk_drawable_get_size (GDK_DRAWABLE (window), &width, &height);
+    g_debug ("geometry = (%i,%i)", width, height);
 
     gtk_widget_show(dialog->client_frame);
     return FALSE;
