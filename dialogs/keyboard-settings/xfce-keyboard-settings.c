@@ -653,7 +653,7 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
       /* Request a new shortcut from the user */
       dialog = xfce_shortcut_dialog_new ("commands", command, command);
       g_signal_connect (dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
-      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (dialog));
+      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (dialog), gtk_widget_get_toplevel (GTK_WIDGET (tree_view)));
 
       if (G_LIKELY (response == GTK_RESPONSE_OK))
         {
@@ -908,6 +908,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
 {
   GtkWidget   *command_dialog;
   GtkWidget   *shortcut_dialog;
+  GtkWidget   *parent;
   const gchar *shortcut;
   const gchar *command;
   gboolean     finished = FALSE;
@@ -945,7 +946,8 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
       g_signal_connect (shortcut_dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
 
       /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
-      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (shortcut_dialog));
+      parent = glade_xml_get_widget (settings->priv->glade_xml, "keyboard-shortcuts-dialog");
+      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (shortcut_dialog), parent);
 
       /* Only continue if the shortcut dialog succeeded */
       if (G_LIKELY (response == GTK_RESPONSE_OK))
