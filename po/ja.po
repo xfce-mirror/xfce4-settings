@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-25 20:50+0100\n"
-"PO-Revision-Date: 2009-01-11 15:26+0900\n"
+"POT-Creation-Date: 2009-02-05 00:51+0900\n"
+"PO-Revision-Date: 2009-02-05 00:47+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -218,7 +218,7 @@ msgstr "SOCKET ID"
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:67
+#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:70
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "バージョン情報を表示する"
@@ -228,7 +228,7 @@ msgstr "バージョン情報を表示する"
 #: ../dialogs/display-settings/main.c:645
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
-#: ../xfce4-settings-helper/main.c:246 ../xfce4-settings-manager/main.c:58
+#: ../xfce4-settings-helper/main.c:251 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "'%s --help' と入力すると使用方法が表示されます。"
@@ -238,7 +238,7 @@ msgstr "'%s --help' と入力すると使用方法が表示されます。"
 #: ../dialogs/display-settings/main.c:664
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
-#: ../xfce4-settings-helper/main.c:265 ../xfce4-settings-manager/main.c:71
+#: ../xfce4-settings-helper/main.c:270 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
@@ -247,7 +247,7 @@ msgstr "The Xfce development team. All rights reserved."
 #: ../dialogs/display-settings/main.c:665
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
-#: ../xfce4-settings-helper/main.c:266 ../xfce4-settings-manager/main.c:72
+#: ../xfce4-settings-helper/main.c:271 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "バグの報告は <%s> までお願いします。"
@@ -531,30 +531,38 @@ msgstr "Screen"
 #: ../dialogs/display-settings/main.c:678
 #, c-format
 msgid "RandR extension missing on display \"%s\""
-msgstr ""
+msgstr "ディスプレイ \"%s\" の RandR エクステンションが見当たりません"
 
 #: ../dialogs/display-settings/main.c:681
 msgid ""
 "The Resize and Rotate extension (RandR) is not enabled on this display. Try "
 "to enable it and run the dialog again."
 msgstr ""
+"サイズ変更および回転エクステンション (RandR) はこのディスプレイでは有効になっ"
+"ていません。有効にしてからこの設定ダイアログを起動してみてください。"
 
 #: ../dialogs/display-settings/main.c:719
 msgid "Failed to use the RandR extension"
-msgstr ""
+msgstr "RandR エクステンションの使用に失敗しました"
 
 #: ../dialogs/display-settings/xfce-randr.c:55
+#: ../dialogs/display-settings/xfce-randr-legacy.c:63
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr ""
+"使用されている RandR エクステンションのバージョンを問い合わせることができませ"
+"ん"
 
 #. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
 #: ../dialogs/display-settings/xfce-randr.c:63
+#: ../dialogs/display-settings/xfce-randr-legacy.c:70
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.1 is required at least"
 msgstr ""
+"このシステムでは RandR %d.%d を使用しています。ディスプレイ設定を機能させるた"
+"めには バージョン 1.1 以降が必要です。"
 
 #: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
@@ -801,28 +809,27 @@ msgstr "レイアウト"
 msgid "Variant"
 msgstr "バリエーション"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:925
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:928
 msgid "Shortcut command may not be empty."
 msgstr "ショートカットするコマンドが入力されていません。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1031
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1035
 msgid "Reset to Defaults"
 msgstr "デフォルトに戻す"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1033
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1036
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
 msgstr ""
-"すべてのショートカットをデフォルト値にリセットします。本当にリセットしてもよ"
-"ろしいですか?"
+"すべてのショートカットをデフォルト値にリセットします。本当によろしいですか?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1102
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1105
 msgid "The system defaults will be restored next time you log in."
 msgstr "次回のログイン時にシステムデフォルトに戻ります。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1104
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1107
 msgid "Warning"
 msgstr "警告"
 
@@ -1092,15 +1099,17 @@ msgstr "バウンスキーが無効になりました"
 msgid "Bounce keys"
 msgstr "バウンスキー"
 
-#: ../xfce4-settings-helper/main.c:68 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:71 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "デバッグモードで起動する (バックグラウンドで fork しません)"
 
-#: ../xfce4-settings-helper/main.c:69
+#: ../xfce4-settings-helper/main.c:72
 msgid "Client id used when resuming session"
 msgstr "セッション再開時に使用されるクライアント ID"
 
-#: ../xfce4-settings-helper/workspaces.c:141
+#. some of them may not have been set in xfconf
+#: ../xfce4-settings-helper/workspaces.c:116
+#: ../xfce4-settings-helper/workspaces.c:243
 #, c-format
 msgid "Workspace %d"
 msgstr "ワークスペース %d"
@@ -1109,32 +1118,32 @@ msgstr "ワークスペース %d"
 msgid "Settings dialog to show"
 msgstr "設定ダイアログを表示する"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:155
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:165
 msgid "Settings"
 msgstr "設定マネージャ"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:156
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:166
 msgid "Customize your desktop"
 msgstr "デスクトップをカスタマイズします"
 
 #. Create back button which takes the user back to the overview
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:264
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:275
 msgid "_Overview"
 msgstr "一覧(_O)"
 
 #. Notify the user that there has been a problem
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:563
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:581
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:593
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:612
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "\"%s\" を起動できませんでした"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:564
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:582
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:594
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:613
 msgid "Xfce Settings Manager"
 msgstr "Xfce 設定マネージャ"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:628
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:663
 #, c-format
 msgid "Failed to open the documentation. Reason: %s"
 msgstr "ドキュメントを開けませんでした。理由: %s"

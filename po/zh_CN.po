@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-25 20:50+0100\n"
-"PO-Revision-Date: 2009-01-18 21:51-0800\n"
+"PO-Revision-Date: 2009-01-26 23:34-0800\n"
 "Last-Translator: Chris K. Zhang <plutino@gmail.com\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -504,22 +504,24 @@ msgstr "屏幕"
 #: ../dialogs/display-settings/main.c:678
 #, c-format
 msgid "RandR extension missing on display \"%s\""
-msgstr ""
+msgstr "显示终端“%s”没有 RandR 扩展模块"
 
 #: ../dialogs/display-settings/main.c:681
 msgid ""
 "The Resize and Rotate extension (RandR) is not enabled on this display. Try "
 "to enable it and run the dialog again."
 msgstr ""
+"没有启用当前显示终端的旋转及尺寸变化模块（RandR），\n"
+"请先启用该模块再运行本对话框。"
 
 #: ../dialogs/display-settings/main.c:719
 msgid "Failed to use the RandR extension"
-msgstr ""
+msgstr "无法使用 RandR 扩展模块。"
 
 #: ../dialogs/display-settings/xfce-randr.c:55
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr ""
+msgstr "无法取得 RandR 扩展模块的版本号"
 
 #. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
 #: ../dialogs/display-settings/xfce-randr.c:63
@@ -527,7 +529,7 @@ msgstr ""
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.1 is required at least"
-msgstr ""
+msgstr "您的系统使用的是 RandR %d.%d。显示设置需要至少1.1版"
 
 #: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
