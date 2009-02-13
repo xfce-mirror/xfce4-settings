@@ -151,7 +151,9 @@ static void
 xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 {
     XfconfChannel *channel;
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     GtkWidget *scrollwin;
+#endif
     GtkCellRenderer *render;
     gint width, height;
 
@@ -532,11 +534,11 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
 {
     XfceSettingsManagerDialog *dialog = user_data;
     GtkTreeIter iter;
-    gchar *exec = NULL, *name, *comment, *icon_name, *primary, *command;
+    gchar *exec = NULL, *name, *comment, *icon_name, *primary;
     gboolean snotify = FALSE;
 #ifdef ENABLE_PLUGGABLE_DIALOGS
     gboolean pluggable = FALSE;
-    gchar *help_file;
+    gchar *help_file, *command;
 #endif
     GError *error = NULL;
 
@@ -672,7 +674,9 @@ static void
 xfce_settings_manager_dialog_response(GtkDialog *dialog,
                                       gint response)
 {
+#ifdef ENABLE_PLUGGABLE_DIALOGS
     XfceSettingsManagerDialog *sm_dialog = XFCE_SETTINGS_MANAGER_DIALOG(dialog);
+#endif
 
     if(response == GTK_RESPONSE_CLOSE) {
         xfce_settings_manager_dialog_closed(GTK_WIDGET(dialog), NULL);
