@@ -107,6 +107,7 @@ enum
     XSETTING_ENTRY_GTK_MENUBARACCEL,
     XSETTING_ENTRY_GTK_CURSORTHEMENAME,
     XSETTING_ENTRY_GTK_CURSORTHEMESIZE,
+    XSETTING_ENTRY_GTK_IMMODULE,
 } XSettingType;
 
 static XSettingsRegistryEntry properties[] = {
@@ -141,6 +142,7 @@ static XSettingsRegistryEntry properties[] = {
 { "Gtk/MenuBarAccel", {G_TYPE_STRING, }},
 { "Gtk/CursorThemeName", {G_TYPE_STRING, }},
 { "Gtk/CursorThemeSize", {G_TYPE_INT, }},
+{ "Gtk/IMModule", {G_TYPE_STRING, }},
 
 { NULL, {0, }},
 };
@@ -267,6 +269,7 @@ xsettings_registry_init(XSettingsRegistry *registry)
 
     g_value_set_string (&properties[XSETTING_ENTRY_GTK_CURSORTHEMENAME].value, NULL);
     g_value_set_int (&properties[XSETTING_ENTRY_GTK_CURSORTHEMESIZE].value, 0);
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_IMMODULE].value, NULL);
 }
 
 static void
