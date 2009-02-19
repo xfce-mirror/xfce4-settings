@@ -482,81 +482,6 @@ appearance_settings_get_dpi_from_x (void)
 }
 
 static void
-appearance_settings_from_gtk_settings (void)
-{
-    GtkSettings     *gtk_settings;
-#ifdef GDK_WINDOWING_X11
-    gint             gtk_xft_hinting;
-    gint             gtk_xft_antialias;
-    gint             gtk_xft_dpi;
-    gchar           *gtk_xft_rgba = NULL;
-    gchar           *gtk_xft_hintstyle = NULL;
-#endif
-    gboolean         gtk_can_change_accels;
-    gboolean         gtk_button_images;
-    gchar           *gtk_font_name = NULL;
-    gchar           *gtk_icon_theme_name = NULL;
-    gchar           *gtk_theme_name = NULL;
-
-    /* read the default gtk settings */
-    gtk_settings = gtk_settings_get_default ();
-
-    if (G_LIKELY (gtk_settings))
-    {
-        /* read settings from gtk */
-        g_object_get (G_OBJECT (gtk_settings),
-#ifdef GDK_WINDOWING_X11
-                      "gtk-xft-antialias", &gtk_xft_antialias,
-                      "gtk-xft-hinting", &gtk_xft_hinting,
-                      "gtk-xft-hintstyle", &gtk_xft_hintstyle,
-                      "gtk-xft-rgba", &gtk_xft_rgba,
-                      "gtk-xft-dpi", &gtk_xft_dpi,
-#endif
-                      "gtk-can-change-accels", &gtk_can_change_accels,
-                      "gtk-button-images", &gtk_button_images,
-                      "gtk-font-name", &gtk_font_name,
-                      "gtk-icon-theme-name", &gtk_icon_theme_name,
-                      "gtk-theme-name", &gtk_theme_name,
-                      NULL);
-
-#ifdef GDK_WINDOWING_X11
-        /* save default xft settings */
-        xfconf_channel_set_int (xsettings_channel, "/Xft/Hinting", gtk_xft_hinting);
-        xfconf_channel_set_int (xsettings_channel, "/Xft/Antialias", gtk_xft_antialias);
-        xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", gtk_xft_dpi);
-
-        if (G_LIKELY (gtk_xft_rgba))
-            xfconf_channel_set_string (xsettings_channel, "/Xft/RGBA", gtk_xft_rgba);
-
-        if (G_LIKELY (gtk_xft_hintstyle))
-            xfconf_channel_set_string (xsettings_channel, "/Xft/HintStyle", gtk_xft_hintstyle);
-#endif
-
-        /* save the default gtk settings */
-        xfconf_channel_set_bool (xsettings_channel, "/Gtk/CanChangeAccels", gtk_can_change_accels);
-        xfconf_channel_set_bool (xsettings_channel, "/Gtk/ButtonImages", gtk_button_images);
-
-        if (G_LIKELY (gtk_font_name))
-            xfconf_channel_set_string (xsettings_channel, "/Gtk/FontName", gtk_font_name);
-
-        if (G_LIKELY (gtk_icon_theme_name))
-            xfconf_channel_set_string (xsettings_channel, "/Net/IconThemeName", gtk_icon_theme_name);
-
-        if (G_LIKELY (gtk_theme_name))
-            xfconf_channel_set_string (xsettings_channel, "/Net/ThemeName", gtk_theme_name);
-
-        /* cleanup */
-        g_free (gtk_font_name);
-        g_free (gtk_icon_theme_name);
-        g_free (gtk_theme_name);
-#ifdef GDK_WINDOWING_X11
-        g_free (gtk_xft_rgba);
-        g_free (gtk_xft_hintstyle);
-#endif
-    }
-}
-
-static void
 appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
                                                      const gchar   *property_name,
                                                      const GValue  *value,
@@ -673,16 +598,6 @@ appearance_settings_dialog_configure_widgets (GladeXML *gxml)
     GtkCellRenderer  *renderer;
     GtkTreeSelection *icon_selection, *ui_selection;
     GdkPixbuf        *pixbuf;
-
-    /* check if we need to restore settings from GtkSettings */
-    if (xfconf_channel_get_uint (xsettings_channel, "/Initialized", 0) < INITIALIZE_UINT)
-    {
-      /* read the gtk settings */
-      appearance_settings_from_gtk_settings ();
-
-      /* store the number */
-      xfconf_channel_set_uint (xsettings_channel, "/Initialized", INITIALIZE_UINT);
-    }
 
     /* Icon themes list */
     GtkWidget *icon_theme_treeview = glade_xml_get_widget (gxml, "icon_theme_treeview");
