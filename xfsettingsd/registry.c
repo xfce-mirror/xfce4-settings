@@ -259,7 +259,7 @@ xsettings_registry_init(XSettingsRegistry *registry)
     g_value_set_string (&properties[XSETTING_ENTRY_GTK_FONTNAME].value, "Sans 10");
     g_value_set_string (&properties[XSETTING_ENTRY_GTK_ICONSIZES].value, NULL);
     g_value_set_string (&properties[XSETTING_ENTRY_GTK_KEYTHEMENAME].value, NULL);
-    g_value_set_string (&properties[XSETTING_ENTRY_GTK_TOOLBARSTYLE].value, "Icons");
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_TOOLBARSTYLE].value, "icons");
     g_value_set_int (&properties[XSETTING_ENTRY_GTK_TOOLBARICONSIZE].value, 3);
     g_value_set_string (&properties[XSETTING_ENTRY_GTK_IMPREEDITSTYLE].value, "");
     g_value_set_string (&properties[XSETTING_ENTRY_GTK_IMSTATUSSTYLE].value, "");
