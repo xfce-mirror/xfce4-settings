@@ -507,7 +507,7 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
     GtkWidget    *widget, *spin;
     gchar        *str;
     guint         i;
-    gint          antialias, dpi;
+    gint          antialias;
     GtkTreeModel *model;
 
     g_return_if_fail (property_name != NULL);
