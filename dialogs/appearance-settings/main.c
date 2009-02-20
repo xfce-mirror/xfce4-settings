@@ -40,12 +40,14 @@
 #include "appearance-dialog_glade.h"
 #include "images.h"
 
+#define INCH_MM      25.4
+
+/* Use a fallback DPI of 96 which should be ok-ish on most systems
+ * and is only applied on rare occasions */
+#define FALLBACK_DPI 96
+
 /* Increase this number if new gtk settings have been added */
 #define INITIALIZE_UINT (1)
-
-#define DPI_DEFAULT 96
-#define DPI_MIN     50
-#define DPI_MAX     500
 
 enum
 {
@@ -90,6 +92,30 @@ static GOptionEntry option_entries[] =
 
 /* Global xfconf channel */
 static XfconfChannel *xsettings_channel;
+
+static int
+compute_xsettings_dpi (GtkWidget *widget)
+{
+    Screen *xscreen;
+    int width_mm, height_mm;
+    int width, height;
+    int dpi;
+    
+    xscreen = GDK_SCREEN_XSCREEN (gtk_widget_get_screen (widget));
+    width_mm = WidthMMOfScreen (xscreen);
+    height_mm = HeightMMOfScreen (xscreen);
+    dpi = FALLBACK_DPI;
+    
+    if (width_mm > 0 && height_mm > 0)
+    {
+        width = WidthOfScreen (xscreen);
+        height = HeightOfScreen (xscreen);
+        dpi = MIN (INCH_MM * width  / width_mm,
+                   INCH_MM * height / height_mm);
+    }
+
+    return dpi;
+}
 
 static void
 cb_theme_tree_selection_changed (GtkTreeSelection *selection,
@@ -181,32 +207,53 @@ cb_rgba_style_combo_changed (GtkComboBox *combo)
 }
 
 static void
-cb_custom_dpi_spin_value_changed (GtkSpinButton   *custom_dpi_spin,
-                                  GtkToggleButton *custom_dpi_toggle)
+cb_custom_dpi_check_button_toggled (GtkToggleButton *custom_dpi_toggle,
+                                    GtkSpinButton   *custom_dpi_spin)
 {
     gint dpi;
 
     if (gtk_toggle_button_get_active (custom_dpi_toggle))
     {
-        dpi = gtk_spin_button_get_value (custom_dpi_spin);
+        /* Custom DPI is activated, so restore the last custom DPI we know about */
+        dpi = xfconf_channel_get_int (xsettings_channel, "/Xfce/LastCustomDPI", -1);
+
+        /* Unfortunately, we don't have a valid custom DPI value to use, so compute it */
+        if (dpi <= 0)
+            dpi = compute_xsettings_dpi (GTK_WIDGET (custom_dpi_toggle));
+
+        /* Apply the computed custom DPI value */
         xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", dpi);
+
+        gtk_widget_set_sensitive (GTK_WIDGET (custom_dpi_spin), TRUE);
+    }
+    else
+    {
+        /* Custom DPI is deactivated, so remember the current value as the last custom DPI */
+        dpi = gtk_spin_button_get_value_as_int (custom_dpi_spin);
+        xfconf_channel_set_int (xsettings_channel, "/Xfce/LastCustomDPI", dpi);
+
+        /* Tell xfsettingsd to compute the value itself */
+        xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", -1);
+
+        /* Make the spin button insensitive */
+        gtk_widget_set_sensitive (GTK_WIDGET (custom_dpi_spin), FALSE);
     }
 }
 
 static void
-cb_custom_dpi_check_button_toggled (GtkToggleButton *custom_dpi_toggle,
-                                    GtkSpinButton   *custom_dpi_spin)
+cb_custom_dpi_spin_button_changed (GtkSpinButton   *custom_dpi_spin,
+                                   GtkToggleButton *custom_dpi_toggle)
 {
-    if (gtk_toggle_button_get_active (custom_dpi_toggle))
+    gint dpi = gtk_spin_button_get_value_as_int (custom_dpi_spin);
+
+    if (GTK_WIDGET_IS_SENSITIVE (custom_dpi_spin) && gtk_toggle_button_get_active (custom_dpi_toggle))
     {
-        gtk_widget_set_sensitive (GTK_WIDGET (custom_dpi_spin), TRUE);
-        cb_custom_dpi_spin_value_changed (custom_dpi_spin, custom_dpi_toggle);
+        /* Custom DPI is turned on and the spin button has changed, so remember the value */
+        xfconf_channel_set_int (xsettings_channel, "/Xfce/LastCustomDPI", dpi);
     }
-    else
-    {
-        gtk_widget_set_sensitive (GTK_WIDGET (custom_dpi_spin), FALSE);
-        xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", -1);
-    }
+
+    /* Tell xfsettingsd to apply the custom DPI value */
+    xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", dpi);
 }
 
 #ifdef ENABLE_SOUND_SETTINGS
@@ -451,36 +498,6 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
     }
 }
 
-static gdouble
-appearance_settings_get_dpi_from_x (void)
-{
-    GdkScreen *screen;
-    gdouble    height_dpi = 0, width_dpi = 0;
-    gint       height_mm, width_mm;
-
-    screen = gdk_screen_get_default ();
-    if (G_LIKELY (screen != NULL))
-    {
-        width_mm = gdk_screen_get_width_mm (screen);
-        if (width_mm >= 1)
-            width_dpi = gdk_screen_get_width (screen) / (width_mm / 25.4);
-        else
-            width_dpi = 0;
-
-        height_mm = gdk_screen_get_height_mm (screen);
-        if (height_mm >= 1)
-            height_dpi = gdk_screen_get_height (screen) / (height_mm / 25.4);
-        else
-            height_dpi = 0;
-    }
-
-    if (width_dpi < DPI_MIN || width_dpi > DPI_MAX
-        || height_dpi < DPI_MIN || height_dpi > DPI_MAX)
-        return DPI_DEFAULT;
-
-    return (width_dpi + height_dpi) / 2.00;
-}
-
 static void
 appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
                                                      const gchar   *property_name,
@@ -558,21 +575,29 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
     }
     else if (strcmp (property_name, "/Xft/DPI") == 0)
     {
+        /* The DPI has changed, so get its value and the last known custom value */
+        gint dpi = xfconf_channel_get_int (xsettings_channel, property_name, FALLBACK_DPI);
+        gint custom_dpi = xfconf_channel_get_int (xsettings_channel, "/Xfce/LastCustomDPI", -1);
+          
+        /* Activate the check button if we're using a custom DPI */
         widget = glade_xml_get_widget (gxml, "xft_custom_dpi_check_button");
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), dpi >= 0);
+
+        /* If we're not using a custom DPI, compute the future custom DPI automatically */
+        if (custom_dpi == -1)
+            custom_dpi = compute_xsettings_dpi (widget);
+
         spin = glade_xml_get_widget (gxml, "xft_custom_dpi_spin_button");
-        dpi = xfconf_channel_get_int (xsettings_channel, property_name, -1);
-        
-        if (dpi == -1)
+
+        if (dpi > 0)
         {
-            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), FALSE);
-            gtk_widget_set_sensitive (spin, FALSE);
-            gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin), appearance_settings_get_dpi_from_x ());
+            /* We're using a custom DPI, so use the current DPI setting for the spin value */
+            gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin), dpi);
         }
         else
         {
-            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
-            gtk_widget_set_sensitive (spin, TRUE);
-            gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin), (gdouble) dpi);
+            /* Set the spin button value to the last custom DPI */
+            gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin), custom_dpi);
         }
     }
     else if (strcmp (property_name, "/Net/ThemeName") == 0)
@@ -745,8 +770,8 @@ appearance_settings_dialog_configure_widgets (GladeXML *gxml)
     GtkWidget *custom_dpi_check = glade_xml_get_widget (gxml, "xft_custom_dpi_check_button");
     GtkWidget *custom_dpi_spin = glade_xml_get_widget (gxml, "xft_custom_dpi_spin_button");
     appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/DPI", NULL, gxml);
-    g_signal_connect (G_OBJECT (custom_dpi_check), "toggled", G_CALLBACK (cb_custom_dpi_check_button_toggled), custom_dpi_spin);
-    g_signal_connect (G_OBJECT (custom_dpi_spin), "value-changed", G_CALLBACK (cb_custom_dpi_spin_value_changed), custom_dpi_check);
+    g_signal_connect (custom_dpi_check, "toggled", G_CALLBACK (cb_custom_dpi_check_button_toggled), custom_dpi_spin);
+    g_signal_connect (custom_dpi_spin, "value-changed", G_CALLBACK (cb_custom_dpi_spin_button_changed), custom_dpi_check);
 
 #ifdef ENABLE_SOUND_SETTINGS
     /* Sounds */

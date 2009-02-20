@@ -74,6 +74,16 @@
                                | G_PARAM_STATIC_NICK \
                                | G_PARAM_STATIC_BLURB)
 
+#define INCH_MM      25.4
+
+/* Use a fallback DPI of 96 which should be ok-ish on most systems
+ * and is only applied on rare occasions */
+#define FALLBACK_DPI 96
+
+/* Use the same min/max DPI as in the appearance settings dialog */
+#define MIN_DPI      48
+#define MAX_DPI      1000
+
 G_DEFINE_TYPE(XSettingsRegistry, xsettings_registry, G_TYPE_OBJECT);
 
 enum
@@ -169,6 +179,8 @@ static void
 cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gchar *property_name, const GValue *value, XSettingsRegistry *registry); 
 static Bool
 timestamp_predicate (Display *display, XEvent  *xevent, XPointer arg);
+static int
+compute_xsettings_dpi (XSettingsRegistry *registry);
 
 gboolean
 xsettings_registry_process_event (XSettingsRegistry *registry, XEvent *xevent)
@@ -286,6 +298,7 @@ cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gch
             break;
         }
     }
+
     xsettings_registry_notify(registry);
     if (!strncmp(name, "/Xft", 4) || !strncmp(name, "/Gtk/CursorTheme", 16))
         xsettings_registry_store_xrdb(registry);
@@ -319,7 +332,7 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
             g_string_append_printf (string, "Xft.hintstyle: %s\n", g_value_get_string (&properties[XSETTING_ENTRY_XFT_HINTSTYLE].value));
         else
             string = g_string_append (string, "Xft.hintstyle: hintnone\n");
-            
+        
         if (g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) > 0)
             g_string_append_printf (string, "Xft.dpi: %d\n", g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value));
 
@@ -400,6 +413,31 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
     /* print warning */
     g_critical ("Failed to spawn xrdb: %s", error->message);
     g_error_free (error);
+}
+
+static int
+compute_xsettings_dpi (XSettingsRegistry *registry)
+{
+    Screen *xscreen;
+    int width_mm, height_mm;
+    int width, height;
+    int dpi;
+    
+    xscreen = ScreenOfDisplay (registry->priv->display,
+                                registry->priv->screen);
+    width_mm = WidthMMOfScreen (xscreen);
+    height_mm = HeightMMOfScreen (xscreen);
+    dpi = FALLBACK_DPI;
+    
+    if (width_mm > 0 && height_mm > 0)
+    {
+        width = WidthOfScreen (xscreen);
+        height = HeightOfScreen (xscreen);
+        dpi = MIN (INCH_MM * width  / width_mm,
+                   INCH_MM * height / height_mm);
+    }
+
+    return dpi;
 }
 
 void
@@ -544,8 +582,23 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                  * font sizes with -1 DPI and a forced setting equal to the X
                  * server's calculated DPI don't match.  Need to look into
                  * this a bit more. */
-                if (strcmp (entry->name, "Xft/DPI") == 0 && g_value_get_int(&entry->value) != -1)
-                    *(CARD32 *)pos = g_value_get_int(&entry->value) * 1024;
+                if (strcmp (entry->name, "Xft/DPI") == 0)
+                {
+                    gint dpi = g_value_get_int (&entry->value);
+
+                    if (dpi < 0)
+                    {
+                        /* Compute the DPI based on X */
+                        dpi = compute_xsettings_dpi (registry);
+                    }
+
+                    /* Make sure to use the fallback DPI if the user-defined or computed 
+                     * value is out of range */
+                    dpi = dpi < MIN_DPI ? FALLBACK_DPI : (dpi > MAX_DPI ? FALLBACK_DPI : dpi);
+
+                    /* Apply the new value */
+                    *(CARD32 *)pos = 1024 * dpi;
+                }
                 else
                     *(CARD32 *)pos = g_value_get_int(&entry->value);
                 pos += 4;

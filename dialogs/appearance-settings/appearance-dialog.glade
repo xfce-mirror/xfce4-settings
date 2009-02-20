@@ -256,6 +256,7 @@
                                 <property name="use_underline">True</property>
                                 <property name="response_id">0</property>
                                 <property name="draw_indicator">True</property>
+                                <property name="active">False</property>
                               </widget>
                               <packing>
                                 <property name="expand">False</property>
@@ -265,10 +266,11 @@
                               <widget class="GtkSpinButton" id="xft_custom_dpi_spin_button">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="adjustment">96 48 160 1 10 0</property>
+                                <property name="adjustment">96 48 1000 1 10 0</property>
                                 <property name="snap_to_ticks">True</property>
                                 <property name="numeric">True</property>
                                 <property name="update_policy">GTK_UPDATE_IF_VALID</property>
+                                <property name="sensitive">False</property>
                               </widget>
                               <packing>
                                 <property name="expand">False</property>
