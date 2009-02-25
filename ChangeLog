@@ -1,8 +1,173 @@
-2009-02-07	jannis
+2009-02-22 12:51  jannis
 
-	* dialogs/keyboard-settings/xfce-keyboard-settings.c: Add the new 
-	  parameter required for the API change for xfce_shortcut_dialog_run(), 
-	  configure.ac.in: Add dependecy on libxfce4kbd_private revision.
+	* xfce4-settings-editor/xfce4-settings-editor.glade:
+	  Don't mark GTK+ stock labels as translatable.
+
+2009-02-22 12:41  jannis
+
+	* dialogs/accessibility-settings/accessibility-dialog.glade,
+	  dialogs/appearance-settings/appearance-dialog.glade,
+	  dialogs/display-settings/display-dialog.glade,
+	  dialogs/keyboard-settings/keyboard-dialog.glade,
+	  dialogs/mouse-settings/mouse-dialog.glade:
+	  Don't mark GTK+ stock labels as translatable.
+
+2009-02-22 10:28  mmassonnet
+
+	* po/ChangeLog, po/LINGUAS, po/ru.po:
+	  update translations
+
+2009-02-20 23:58  maximilian
+
+	* po/ChangeLog, po/es.po, po/id.po:
+	  Translations Updates - ca es gl id it pt_PT zh_CN
+
+2009-02-20 22:04  stavrosg
+
+	* po/ChangeLog, po/el.po:
+	  Greek translations update by Stavros Giannouris and Evaggelos
+	  Balaskas.
+
+2009-02-20 20:45  nick
+
+	* dialogs/appearance-settings/main.c:
+	  Fix tiny compiler warning.
+
+2009-02-20 18:04  stephan
+
+	* dialogs/appearance-settings/appearance-dialog.glade,
+	  dialogs/appearance-settings/main.c, xfsettingsd/registry.c,
+	  xfsettingsd/xsettings.xml:
+	  A last-minute fix of the DPI issues (patch by Jannis Pohlmann)
+
+2009-02-19 21:59  stephan
+
+	* xfsettingsd/registry.c:
+	  Fixed typo in default xsettings registry values
+
+2009-02-19 21:53  stephan
+
+	* dialogs/appearance-settings/main.c:
+	  Remove the silly appearance_settings_from_gtk_settings,
+	  gtk_settings come from xfconf channel, so xfconf channel data is
+	  correct.
+
+2009-02-18 17:56  stephan
+
+	* xfsettingsd/registry.c:
+	  Applied Gtk/IMModule created patch by Akira TAGOH (akira AT tagoh
+	  DOT org) (Fixes bug #4961)
+
+2009-02-16 15:54  pko
+
+	* po/ChangeLog, po/da.po:
+	  * da.po: Danish translation update (Per Kongstad) * da.po: Danish
+	  translation update (Per Kongstad) * da.po: Updated Danish
+	  traanslation (Per Kongstad)
+
+2009-02-13 15:11  nick
+
+	* xfce4-settings-manager/xfce-settings-manager-dialog.c:
+	  Fix compilation warnings with pluggable dialogs disabled.
+
+2009-02-11 01:59  sas
+
+	* po/hu.po:
+	  [intl:hu] little updates for 4.6
+
+2009-02-09 00:43  eulex
+
+	* po/ChangeLog, po/sv.po:
+	  xfprint/trunk/po: * sv.po: Swedish translation update (Daniel
+	  Nylander) xfce4-settings/trunk/po: * sv.po: Swedish translation
+	  update (Daniel Nylander) xfce4-mixer/trunk/po: * sv.po: Swedish
+	  translation update (Daniel Nylander) squeeze/trunk/po: * sv.po:
+	  Swedish translation update (Daniel Nylander)
+	  libxfce4util/trunk/po: * sv.po: Swedish translation update
+	  (Daniel Nylander) libxfce4ui/trunk/po: * sv.po: Swedish
+	  translation update (Daniel Nylander)
+
+2009-02-08 08:20  maximilian
+
+	* po/ChangeLog, po/LINGUAS, po/ja.po, po/nb.po, po/pl.po,
+	  po/zh_CN.po:
+	  Translations udaptes - de id ja nb pl zh_CN
+
+2009-02-07 20:13  olivier
+
+	* ChangeLog, configure.ac.in,
+	  dialogs/keyboard-settings/xfce-keyboard-settings.c:
+	  * dialogs/keyboard-settings/xfce-keyboard-settings.c: Add the new
+	  parameter required for the API change for
+	  xfce_shortcut_dialog_run(), configure.ac.in: Add dependecy on
+	  libxfce4kbd_private revision.
+
+2009-02-03 23:29  jannis
+
+	* dialogs/keyboard-settings/xfce-keyboard-settings.c, po/ChangeLog,
+	  po/ca.po, po/cs.po, po/da.po, po/de.po, po/el.po, po/es.po,
+	  po/eu.po, po/fi.po, po/fr.po, po/hu.po, po/id.po, po/ja.po,
+	  po/nb.po, po/nl.po, po/pt_BR.po, po/sv.po, po/tr.po, po/uk.po,
+	  po/xfce4-settings.pot, po/zh_CN.po:
+	  Remove <b> markup from the shortcut reset dialog text (bug
+	  #4785). I also updated all the translation files so that this
+	  string doesn't need to be translated again. Hope that with this,
+	  breaking string freeze is ... kinda ok :-/
+
+2009-02-02 23:38  jannis
+
+	* configure.ac.in:
+	  Fix the configure hints for --disable-xsettings-daemon and
+	  --enable-pluggable-dialogs.
+
+2009-02-02 23:31  jannis
+
+	* xfce4-settings-manager/xfce-settings-manager-dialog.c:
+	  Add a few more ifdefs for the optional pluggable dialogs. Get rid
+	  of more struct members and functions which we only need when
+	  pluggable dialogs are enabled.
+
+2009-02-02 23:09  jannis
+
+	* configure.ac.in,
+	  xfce4-settings-manager/xfce-settings-manager-dialog.c:
+	  Make support for embedded dialogs optional (and disabled by
+	  default). It can be turned on with --enable-pluggable-dialogs.
+	  Fix the xsettings daemon configure flag.
+
+2009-02-02 23:09  jannis
+
+	* NEWS, dialogs/keyboard-settings/xfce-keyboard-settings.c:
+	  When stealing a shortcut from another shortcuts provider, clear
+	  the shortcut of that provider first. Update NEWS file.
+
+2009-01-31 17:38  erenturkay
+
+	* po/ChangeLog, po/tr.po:
+	  Turkish translation update by Gokmen Gorgen and Samed Beyribey
+
+2009-01-31 12:02  nick
+
+	* NEWS, configure.ac.in, dialogs/Makefile.am,
+	  xfce4-settings-helper/Makefile.am, xfce4-settings-helper/main.c:
+	  Make the Xrandr dependency optional. If Xrandr is disabled, the
+	  display plugin won't be compiled at all (bug #4836).
+
+2009-01-27 07:51  kelnos
+
+	* xfce4-settings-helper/workspaces.c:
+	  revert nick's broken commit from r39342. it breaks workspace name
+	  setting, breaks libwnck api compat, and wasn't necessary anyway.
+
+2009-01-26 20:39  maximilian
+
+	* po/ChangeLog, po/ca.po, po/fr.po, po/uk.po:
+	  Translations updates - ca fr uk
+
+2009-01-25 23:43  jannis
+
+	* ChangeLog:
+	  Update ChangeLog.
 
 2009-01-25 23:42  jannis
 

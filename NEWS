@@ -1,11 +1,18 @@
-4.5.99.2 (Xfce 4.6rc2)
-======================
+4.6.0
+=====
 - Make the Xrandr dependency optional. If Xrandr is disabled, the
   display plugin won't be compiled at all (bug #4836).
 - When stealing a shortcut from another shortcuts provider, clear the 
   shortcut of that provider first.
 - Make embedded settings dialogs optional (and disabled by default). 
   They can be turned on using --enable-pluggable-dialogs.
+- Don't mark GTK+ stock labels as translatable
+- Fix DPI calculation when DPI settings are set to '-1', (eg default) since we 
+  can not depend on pango, cairo or fontconfig to do the right thing.
+- Fix typing error in the ToolbarStyle default XSETTINGS registry value
+- Do not fill the xsettings channel from the settings-dialog, xfsettingsd takes
+  care of this.
+- Add Gtk/IMModule XSETTINGS key (Bug #4961)
 
 4.5.99.1 (Xfce 4.6rc1)
 ======================
