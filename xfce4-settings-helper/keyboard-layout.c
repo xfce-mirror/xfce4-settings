@@ -106,7 +106,7 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
 #endif /* HAVE_LIBXKLAVIER */
 
     /* load settings */
-    helper->xkb_disable_settings = xfconf_channel_get_bool (helper->channel, "/Default/XkbDisable", FALSE);
+    helper->xkb_disable_settings = xfconf_channel_get_bool (helper->channel, "/Default/XkbDisable", TRUE);
     xfce_keyboard_layout_helper_set_model (helper);
     xfce_keyboard_layout_helper_set_layout (helper);
     xfce_keyboard_layout_helper_set_variant (helper);

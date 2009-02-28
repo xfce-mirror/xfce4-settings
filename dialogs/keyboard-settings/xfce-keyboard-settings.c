@@ -139,7 +139,7 @@ static void                      xfce_keyboard_settings_reset_button_clicked  (X
 #ifdef HAVE_LIBXKLAVIER
 
 static gchar *                   xfce_keyboard_settings_model_description     (XklConfigItem             *config_item);
-static gboolean                  xfce_keyboard_settings_update_sensitive      (GtkToggleButton           *toggle, 
+static gboolean                  xfce_keyboard_settings_update_sensitive      (GtkToggleButton           *toggle,
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_system_default_cb     (GtkToggleButton           *toggle,
                                                                                XfceKeyboardSettings      *settings);
