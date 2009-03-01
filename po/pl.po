@@ -1,7 +1,7 @@
-# Polish translations for xfce package
-# Polskie tłumaczenia dla pakietu xfce.
-# Copyright (C) 2009 THE xfce'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce package.
+# Polish translations for xfce-settings package.
+# Polskie tłumaczenia dla pakietu xfce-settings.
+# Copyright (C) 2009 The Xfce development team.
+# This file is distributed under the same license as the xfce-settings package.
 # Piotr Sokół <piotr.sokol@10g.pl>, 2009.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-settings 4.5.92\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-25 20:50+0100\n"
-"PO-Revision-Date: 2009-02-03 10:36+0100\n"
+"PO-Revision-Date: 2009-02-23 19:50+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Wyłączenie po jednoczesnym wciśnięciu _dwóch klawiszy"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
-msgstr ""
+msgstr "_Opóźnienie:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Keyboa_rd"
@@ -76,25 +76,23 @@ msgstr "Opóźnienie _powtarzania:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr ""
+msgstr "Określa ilość czasu pomiędzy wciśnięciami klawisza, potrzebnego do ponownego wprowadzenia znaku"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "The amount of time, in milliseconds, that must elapse before a keystroke will be accepted"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
-#, fuzzy
 msgid "The maximum pointer speed after acceleration"
-msgstr "Określa maksymalną prędkość przyspieszonego kursora myszy"
+msgstr "Określa maksymalną prędkość ruchu kursora myszy po przyspieszeniu"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "The ramp used to reach maximum pointer speed"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
-#, fuzzy
 msgid "The time, in milliseconds, between repeated motion events"
-msgstr "Określa w milisekundach czas pomiędzy powtórzeniami"
+msgstr "Określa czas pomiędzy powtórzeniami"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "The time, in milliseconds, between the initial key press and first repeated motion event"
@@ -102,7 +100,7 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The time, in milliseconds, to get to maximum speed"
-msgstr ""
+msgstr "Określa czas potrzebny do osiągnięcia maksymalnej prędkości ruchu kursora"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid "To help prevent accidental keystrokes, slow keys requires that a key is held for a certain minimum amount of time before the keystroke will be accepted"
@@ -146,7 +144,7 @@ msgstr "Opóźnienie _przyspieszenia:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "_Lock sticky keys"
-msgstr "_Zablokowanie"
+msgstr "_Blokowanie"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Mouse"
@@ -178,7 +176,7 @@ msgstr "pikseli/s"
 #: ../dialogs/keyboard-settings/main.c:39
 #: ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
-msgstr ""
+msgstr "Określa gniazdo menedżera ustawień"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:86
@@ -220,7 +218,7 @@ msgstr "Proszę wpisać „%s --help” aby wypisać komunikat pomocy."
 #: ../xfce4-settings-helper/main.c:265
 #: ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
-msgstr "Zespół twórców środowiska graficznego Xfce. Wszystkie prawa zastrzeżone."
+msgstr "Zespół twórców środowiska Xfce. Wszystkie prawa zastrzeżone."
 
 #: ../dialogs/accessibility-settings/main.c:165
 #: ../dialogs/appearance-settings/main.c:895
@@ -236,7 +234,7 @@ msgstr "Proszę zgłaszać błędy na adres <%s>."
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
-msgstr ""
+msgstr "Ulepsza dostępność klawiatury i myszy"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 msgid "<b>DPI</b>"
@@ -264,7 +262,7 @@ msgstr "<b>Styl pasków _narzędziowych</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr ""
+msgstr "Włącza antyaliasing czcionek w celu poprawy wyglądu tekstu na monitorze"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
@@ -290,7 +288,7 @@ msgstr "_Włączenie"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid "Enable e_ditable accelerators"
-msgstr "_Edytowalne klawisze skrótów w menu"
+msgstr "_Modyfikowanie klawiszy skrótów w menu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Enable i_nput feedback sounds"
@@ -310,11 +308,11 @@ msgstr "Umożliwia zmianę klawiszy skrótów w menu programów umieszczając ku
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "Many fonts contain information that provides extra hints as to how best draw the font; pick whichever looks best according to personal preference"
-msgstr ""
+msgstr "Wybiera metodę hintingu umożliwiającą poprawienie wyglądu czcionek na ekranie w postaci rastrowej"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Override the detected monitor resolution if fonts look too large or too small"
-msgstr ""
+msgstr "Określa niezależnie od rozdzielczości monitora wielkość czcionki wyrażoną w ilości punktów na cal"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Select a default font"
@@ -530,7 +528,7 @@ msgstr "Drugi wyświetlacz cyfrowy"
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Shortcut Command"
-msgstr ""
+msgstr "Dodawanie skrótu"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:184
 msgid "Shortcut:"
@@ -541,7 +539,6 @@ msgid "Command:"
 msgstr "Polecenie:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:246
-#, fuzzy
 msgid "The command may not be empty."
 msgstr "Polecenie nie może być puste."
 
@@ -603,7 +600,7 @@ msgstr "Opóź_nienie:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 msgid "Define _shortcuts for launching applications:"
-msgstr "_Skróty uruchamiające programy:"
+msgstr "Skróty klawiszowe p_rogramów:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
@@ -621,12 +618,11 @@ msgstr "Wybór układu klawiatury"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Repeat _speed:"
-msgstr "_Prędkość:"
+msgstr "P_rędkość:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
-#, fuzzy
 msgid "Select keyboard layout and variant"
-msgstr "Proszę wybrać układ klawiszy oraz jego wariant"
+msgstr "Proszę wybrać układ klawiatury oraz jej wariant"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
@@ -637,9 +633,8 @@ msgid "Specifies whether the keyboard layout is controlled with this settings di
 msgstr "Określa czy układ klawiatury ma być skonfigurowany przy użyciu tego okna, czy za pośrednictwem serwera X"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
-#, fuzzy
 msgid "Specify whether or not the text cursor blinks"
-msgstr "Określa czy kursor ma migać"
+msgstr "Określa czy kursor będzie migać"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
@@ -647,7 +642,7 @@ msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr ""
+msgstr "Określa prędkość z jaką generowane będą wprowadzane będą znaki po wciśnięciu klawisza"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
@@ -667,7 +662,7 @@ msgstr "_Powtarzanie"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Layout"
-msgstr "_Układ"
+msgstr "U_kład"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Repeat delay:"
@@ -679,7 +674,7 @@ msgstr "_Przywróć domyślne"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
-msgstr "_Systemowe"
+msgstr "S_ystemowe"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "gtk-add"
@@ -745,7 +740,7 @@ msgstr "Wariant"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:925
 msgid "Shortcut command may not be empty."
-msgstr ""
+msgstr "Polecenie skrótu nie może być puste."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1031
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
@@ -753,7 +748,7 @@ msgid "Reset to Defaults"
 msgstr "Przywracanie wartości domyślnych"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1033
-msgid "This will reset <b>all</b> shortcuts to their default values. Do you really want to do this?"
+msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
 msgstr "Przywrócić wartości domyślne wszystkich skrótów klawiszowych?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1102
@@ -823,7 +818,7 @@ msgstr "Mysz"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Re_set to Defaults"
-msgstr "_Przywróć domyślne"
+msgstr "Przywróć _domyślne"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Re_verse scroll direction"
@@ -835,21 +830,19 @@ msgstr "Przywraca wartości domyślne przyspieszenia i progu zaznaczonego urząd
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "T_hreshold:"
-msgstr "_Próg:"
+msgstr "Pró_g:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
-#, fuzzy
 msgid "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "Określa wielokrotność prędkości kursora jaka zostanie osiągnięta po przekroczeniu progu"
+msgstr "Określa wielokrotność prędkości ruchu kursora jaka zostanie osiągnięta po przekroczeniu wartości progu"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "The mouse pointer cannot move farther than this distance between two clicks for them to be considered a double click"
-msgstr ""
+msgstr "Określa maksymalną odległość jaką kursor myszy może pokonać pomiędzy kliknięciami, aby zostały one zinterpretowane jako dwukrotne"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
-#, fuzzy
 msgid "The number of pixels the pointer must move before a drag operation will start"
-msgstr "Określa ilość pikseli o jaką kursor musi zostać przeniesiony aby rozpocząć operację przenoszenia"
+msgstr "Określa ilość pikseli o jaką kursor musi zostać przeniesiony przed rozpoczęciem operacji przeciągania"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 #, fuzzy
@@ -862,7 +855,7 @@ msgstr "_Czas:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click"
-msgstr ""
+msgstr "Określa maksymalną wartość czasu (w milisekundach) jakim poże upłynąć pomiędzy kliknięciami, aby zostały one zinterpretowane jako dwukrotne"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
@@ -870,7 +863,7 @@ msgstr "Zamienia kierunki działania kółka myszy na przeciwne"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "_Acceleration:"
-msgstr "_Przyspieszenie:"
+msgstr "P_rzyspieszenie:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "_Behavior"
@@ -920,12 +913,12 @@ msgstr "Pusty"
 #: ../xfce4-settings-editor/main_window.c:661
 #, c-format
 msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
-msgstr ""
+msgstr "Nie można przywrócić właściwości „%s”, ponieważ jest ona zablokowana"
 
 #: ../xfce4-settings-editor/main_window.c:671
 #, c-format
 msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
-msgstr ""
+msgstr "Przywrócić właściwość „%s”?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
@@ -938,15 +931,15 @@ msgstr "Edytor ustawień"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
 msgid "Customize settings stored by Xfconf"
-msgstr ""
+msgstr "Konfiguruje ustawienia przechowywane przez Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "Edit Property"
-msgstr ""
+msgstr "Edycja właściwości"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
 msgid "Edit property"
-msgstr ""
+msgstr "Edytuje właściwość"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Enabled"
@@ -958,15 +951,15 @@ msgstr "Nazwa:"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "New property"
-msgstr ""
+msgstr "Tworzy nową właściwość"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Reset/remove property"
-msgstr ""
+msgstr "Przywraca lub usuwa właściwość"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 msgid "Select a channel and property"
-msgstr ""
+msgstr "Wybiera kanał i właściwość"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Type:"
@@ -1035,8 +1028,9 @@ msgid "Workspace %d"
 msgstr "Obszar roboczy %d"
 
 #: ../xfce4-settings-manager/main.c:42
+#, fuzzy
 msgid "Settings dialog to show"
-msgstr ""
+msgstr "Określa okno wyświetlonych ustawień"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:155
 msgid "Settings"
@@ -1049,7 +1043,7 @@ msgstr "Konfiguruje ustawienia środowiska graficznego"
 #. Create back button which takes the user back to the overview
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:264
 msgid "_Overview"
-msgstr ""
+msgstr "_Wróć"
 
 #. Notify the user that there has been a problem
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:563
