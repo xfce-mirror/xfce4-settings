@@ -344,7 +344,7 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                     g_free (comment_escaped);
 
                     /* Check if this is the active theme, if so, select it */
-                    if (G_UNLIKELY (g_utf8_collate (theme_name, active_theme_name) == 0))
+                    if (G_UNLIKELY (g_utf8_collate (file, active_theme_name) == 0))
                     {
                         tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (list_store), &iter);
                         gtk_tree_selection_select_path (gtk_tree_view_get_selection (tree_view), tree_path);
@@ -465,7 +465,7 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                 g_free (comment_escaped);
 
                 /* Check if this is the active theme, if so, select it */
-                if (G_UNLIKELY (g_utf8_collate (theme_name, active_theme_name) == 0))
+                if (G_UNLIKELY (g_utf8_collate (file, active_theme_name) == 0))
                 {
                     tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (list_store), &iter);
                     gtk_tree_selection_select_path (gtk_tree_view_get_selection (tree_view), tree_path);
