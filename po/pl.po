@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-settings 4.5.92\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-25 20:50+0100\n"
-"PO-Revision-Date: 2009-02-23 19:50+0100\n"
+"PO-Revision-Date: 2009-03-08 15:14+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -35,11 +35,11 @@ msgstr "<b>Trwałe klawisze</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "Acceleration _profile:"
-msgstr "Profil _przyspieszenia:"
+msgstr "Profil prz_yspieszenia:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "Acceleration _time:"
-msgstr "Czas _przyspieszania:"
+msgstr "Czas p_rzyspieszania:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Acceptance _delay:"
@@ -60,7 +60,7 @@ msgstr "Wyłączenie po jednoczesnym wciśnięciu _dwóch klawiszy"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
-msgstr "_Opóźnienie:"
+msgstr "O_późnienie:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Keyboa_rd"
@@ -68,19 +68,19 @@ msgstr "_Klawiatura"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Maximum _speed:"
-msgstr "Maksymalna _prędkość:"
+msgstr "Maksymalna prę_dkość:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "R_epeat interval:"
-msgstr "Opóźnienie _powtarzania:"
+msgstr "Opóźnienie p_owtarzania:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "Określa ilość czasu pomiędzy wciśnięciami klawisza, potrzebnego do ponownego wprowadzenia znaku"
+msgstr "Określa w milisekundach ilość czasu jaki musi upłynąć pomiędzy kolejnymi wciśnięciami klawisza, zanim jego znak zostanie ponownie wprowadzony"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "The amount of time, in milliseconds, that must elapse before a keystroke will be accepted"
-msgstr ""
+msgstr "Określa w milisekundach ilość czasu jaki musi upłynąć po wciśnięciu klawisza, zanim jego znak zostanie wprowadzony"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "The maximum pointer speed after acceleration"
@@ -104,7 +104,7 @@ msgstr "Określa czas potrzebny do osiągnięcia maksymalnej prędkości ruchu k
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid "To help prevent accidental keystrokes, slow keys requires that a key is held for a certain minimum amount of time before the keystroke will be accepted"
-msgstr ""
+msgstr "Wymaga przytrzymania wciśniętego klawisza przez określony czas, w celu wprowadzania znaku"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "To help prevent accidental multiple keystrokes, bounce keys imposes a minimum delay between keystrokes"
@@ -112,23 +112,23 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
-msgstr "_Włączenie"
+msgstr "Włącze_nie"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "Use _sticky keys"
-msgstr "_Włączenie"
+msgstr "Włąc_zenie"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Use slow _keys"
-msgstr "_Włączenie"
+msgstr "Włącz_enie"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid "When selected, modifier keys (such as Control, Alt, and Shift) do not need to be held down (they can be pressed and then released) when multiple keys would normally need to be pressed at the same time"
-msgstr ""
+msgstr "Nie wymaga przytrzymywania wciśniętych klawiszy modyfikujących (Control, Alt i Shift) podczas wciskania kombinacji wielu klawiszy (klawisze modyfikujące mogą zostać wciśnięte i zwolnione)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid "When selected, modifier keys (such as Control, Alt, and Shift) will remain locked in the pressed state until pressed again"
-msgstr ""
+msgstr "Blokuje stan klawiszy modyfikujących (Control, Alt i Shift) po ich wciśnięciu, do czasu ich kolejnego wciśnięcia"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "When selected, the \"sticky keys\" feature will be disabled if two keys are pressed simultaneously"
@@ -152,7 +152,7 @@ msgstr "_Mysz"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "_Use mouse emulation"
-msgstr "_Włączenie"
+msgstr "Włąc_zenie"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
@@ -339,8 +339,9 @@ msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Określa czy ikony będą wyświetlane obok etykiet na przyciskach"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#, fuzzy
 msgid "Specify whether mouse clicks and other user input will cause event sounds to play"
-msgstr ""
+msgstr "Określa czy podczas klikania i innych metod wprowadzania danych, będą odtwarzane dźwięki"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "St_yle"
@@ -480,26 +481,26 @@ msgstr "Obraz"
 #: ../dialogs/display-settings/main.c:678
 #, c-format
 msgid "RandR extension missing on display \"%s\""
-msgstr ""
+msgstr "Brak rozszerzenia RandR na monitorze „%s”"
 
 #: ../dialogs/display-settings/main.c:681
 msgid "The Resize and Rotate extension (RandR) is not enabled on this display. Try to enable it and run the dialog again."
-msgstr ""
+msgstr "Rozszerzenie RandR nie zostało włączone na bieżącyn monitorze. Proszę je włączyć i uruchomić ponownie okno dialogowe."
 
 #: ../dialogs/display-settings/main.c:719
 msgid "Failed to use the RandR extension"
-msgstr ""
+msgstr "Nie udało się użyć rozszerzenia RandR"
 
 #: ../dialogs/display-settings/xfce-randr.c:55
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr ""
+msgstr "Nie można uzyskać wersji używanego rozszerzenia RandR"
 
 #. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
 #: ../dialogs/display-settings/xfce-randr.c:63
 #, c-format
 msgid "This system is using RandR %d.%d. For the display settings to work version 1.1 is required at least"
-msgstr ""
+msgstr "Ten system używa RandR %d.%d. Ustawienia moniotra wymagają do pracy co najmniej wersji 1.1."
 
 #: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
@@ -638,11 +639,11 @@ msgstr "Określa czy kursor będzie migać"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr ""
+msgstr "Określa w milisekundach ilość czasu pomiędzy następującymi po sobie mignięciami kursora"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "Określa prędkość z jaką generowane będą wprowadzane będą znaki po wciśnięciu klawisza"
+msgstr "Określa prędkość z jaką wprowadzane będą znaki po wciśnięciu i przytrzymaniu klawisza"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
@@ -654,7 +655,7 @@ msgstr "Pole _testowe:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
-msgstr ""
+msgstr "Umożliwia wielokrotne wprowadzanie znaku po wciśnięciu i przytrzymaniu klawisza"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "_Enable key repeat"
@@ -670,7 +671,7 @@ msgstr "_Opóźnienie:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Reset to Defaults"
-msgstr "_Przywróć domyślne"
+msgstr "Przywróć d_omyślne"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -761,7 +762,7 @@ msgstr "Ostrzeżenie"
 
 #: ../dialogs/mouse-settings/main.c:96
 msgid "Active device in the dialog"
-msgstr ""
+msgstr "Określa aktywne urządzenie okna dialogowego"
 
 #: ../dialogs/mouse-settings/main.c:96
 msgid "DEVICE NAME"
@@ -855,7 +856,7 @@ msgstr "_Czas:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click"
-msgstr "Określa maksymalną wartość czasu (w milisekundach) jakim poże upłynąć pomiędzy kliknięciami, aby zostały one zinterpretowane jako dwukrotne"
+msgstr "Określa w milisekundach maksymalną ilość czasu jaki może upłynąć pomiędzy kliknięciami, aby zostały one zinterpretowane jako dwukrotne"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
@@ -971,7 +972,7 @@ msgstr "Wartość:"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
 msgid "Xfconf channels"
-msgstr ""
+msgstr "Kanały Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "gtk-save"
@@ -1028,9 +1029,8 @@ msgid "Workspace %d"
 msgstr "Obszar roboczy %d"
 
 #: ../xfce4-settings-manager/main.c:42
-#, fuzzy
 msgid "Settings dialog to show"
-msgstr "Określa okno wyświetlonych ustawień"
+msgstr "Określa okno wyświetlanych ustawień"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:155
 msgid "Settings"
@@ -1079,8 +1079,9 @@ msgid "Verbose output"
 msgstr ""
 
 #: ../xfsettingsd/main.c:60
+#, fuzzy
 msgid "Replace running xsettings daemon (if any)"
-msgstr ""
+msgstr "Zastąp uruchomioną usługę xsettings"
 
 #: ../xfsettingsd/main.c:131
 #, c-format
