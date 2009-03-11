@@ -27,11 +27,6 @@
 
 #include "xfce-randr-legacy.h"
 
-/** CLAMP gives a warning with comparing unsigned values */
-#define UCLAMP(x, low, high) \
-  (((x) > (high)) ? (high) : \
-   (((low) > 0) ? (((low) < (x)) ? (low) : (x)) : 0))
-
 
 
 XfceRandrLegacy *
@@ -184,7 +179,7 @@ xfce_randr_legacy_save (XfceRandrLegacy *legacy,
     {
         /* find the resolution and save it as a string */
         sizes = XRRConfigSizes (legacy->config[n], &nsizes);
-        size = UCLAMP (legacy->resolution[n], 0, nsizes - 1);
+        size = MIN (legacy->resolution[n], MAX (0, nsizes - 1));
         resolution = g_strdup_printf ("%dx%d", sizes[size].width, sizes[size].height);
         g_snprintf (property, sizeof (property), "/%s/Screen_%d/Resolution", scheme, n);
         xfconf_channel_set_string (channel, property, resolution);
