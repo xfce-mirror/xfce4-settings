@@ -50,8 +50,8 @@
 
 #include "mouse-dialog_glade.h"
 
-/* this is only added to make the code compile */
-#if XI_Add_DevicePresenceNotify_Major >= 1
+/* test if the required version of inputproto (1.4.2) is available */
+#if XI_Add_DevicePresenceNotify_Major >= 1 && defined (DeviceRemoved)
 #define HAS_DEVICE_HOTPLUGGING
 #else
 #undef HAS_DEVICE_HOTPLUGGING
