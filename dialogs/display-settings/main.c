@@ -296,10 +296,10 @@ display_setting_refresh_rates_populate (GladeXML *gxml)
             /* get the active rate closest to the current diff */
             diff = ABS (rates[n] - XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy));
 
-            /* store active*/
+            /* store active */
             if (active_diff > diff)
             {
-                active = n;
+                active = nrates - n - 1;
                 active_diff = diff;
             }
         }
