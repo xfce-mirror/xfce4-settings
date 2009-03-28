@@ -3,20 +3,26 @@
 # This file is distributed under the same license as the xfce4-settings package.
 # Fabian Nowak <timystery@arcor.de>, 2008.
 # Jannis Pohlmann <jannis@xfce.org>, 2008.
-#
-#: ../xfsettingsd/main.c:127
+# Fabian Nowak <timystery@arcor.de>, 2009.
+# Simon Schneider <simon@schneiderimtal.de>, 2009
+# 
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-25 20:50+0100\n"
-"PO-Revision-Date: 2008-10-19 20:46+0200\n"
-"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
-"Language-Team: German\n"
+"PO-Revision-Date: 2009-02-24 23:27+0000\n"
+"Last-Translator: Simon Schneider <simon@schneiderimtal.de>\n"
+"Language-Team: German <xfce-i18n-de@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "<b>Bounce Keys</b>"
@@ -67,7 +73,7 @@ msgstr "V_erzögerung der Wiederholung"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 #, fuzzy
 msgid "Keyboa_rd"
-msgstr "Tastatur"
+msgstr "Tastatu_r"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Maximum _speed:"
@@ -125,12 +131,16 @@ msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
 msgstr ""
+"Um unerwünschte Einbagen zu vermeiden, ingoriert die Funktion »langsame Tasten«"
+"alle Tastendrucke, die eine gewisse Minimalzeit unterschreiten."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
 msgstr ""
+"Um unerwünschte Mehrfacheingaben zu vermeiden, ignoriert die Funktion »hüpfende Tasten«"
+"zu schnelle Wiederholungen eines Tastendrucks."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 #, fuzzy
@@ -153,12 +163,18 @@ msgid ""
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
 msgstr ""
+"Wenn dies ausgewählt ist, müssen Steuertasten (wie Strg, Alt und die Großschreibetaste) "
+"nicht herunter gehalten werden, wenn normalerweise mehrere Tasten gleichzeitig "
+"gedrückt werden müssten. Sie können dann gedrückt und wieder losgelassen werden."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr ""
+"Wenn dies ausgewählt ist, bleiben Steuerungstasten (wie Strg, Alt oder die "
+"Großschreibetaste) in der gedrückten Position, nachdem sie losgelassen "
+"wurden, bis sie erneut gedrückt werden."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 #, fuzzy
@@ -295,6 +311,7 @@ msgstr "<b>_Werkzeugleistenstil</b>"
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr ""
+"Anti-Aliasing, oder Kantenglättung, kann die Darstellung von Text auf dem Bildschirm verbessern."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
@@ -348,17 +365,23 @@ msgid ""
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr ""
+"Wenn dies ausgewählt ist, kann die Tastenkombination für Menüeinträge "
+"geändert werden, indem man die Maus über den Eintrag hält und die "
+"neue Kombination drückt."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw "
 "the font; pick whichever looks best according to personal preference"
 msgstr ""
+"Viele Schriftarten enthalten zusätzliche Informationen, wie sie am besten darzustellen "
+"sind; Wählen Sie aus, was Ihnen am besten gefällt."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too small"
 msgstr ""
+"Stellen Sie die Bildschirmauflösung von Hand ein, wenn Schrift zu groß oder zu klein erscheint."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Select a default font"
@@ -374,7 +397,7 @@ msgstr "Sy_mbole auf Schaltflächen anzeigen"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Specify what should be displayed in toolbar items"
-msgstr ""
+msgstr "Stellen Sie ein, was in Werkzeugleisten angezeigt werden soll."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 #, fuzzy
@@ -391,6 +414,7 @@ msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
 msgstr ""
+"Geben Sie ein, ob Mausklicks und andere Eingaben Klänge auslösen können sollen."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "St_yle"
@@ -405,6 +429,7 @@ msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr ""
+"Diese Schriftart wird als Standardschriftart verwendet und um Benutzerschnittstellen anzuzeigen."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "_Fonts"
@@ -533,22 +558,24 @@ msgstr "Anzeige"
 #: ../dialogs/display-settings/main.c:678
 #, c-format
 msgid "RandR extension missing on display \"%s\""
-msgstr ""
+msgstr "Die RandR-Erweiterung fehlt für die Anzeige »%s«."
 
 #: ../dialogs/display-settings/main.c:681
 msgid ""
 "The Resize and Rotate extension (RandR) is not enabled on this display. Try "
 "to enable it and run the dialog again."
 msgstr ""
+"Die RandR-Erweiterung zur Größenanpassung und Drehung ist für diese Anzeige "
+"nicht antiviert. Aktivieren Sie sie und rufen Sie diesen Dialog erneut auf."
 
 #: ../dialogs/display-settings/main.c:719
 msgid "Failed to use the RandR extension"
-msgstr ""
+msgstr "Konnte die RandR-Erweiterung nicht verwenden."
 
 #: ../dialogs/display-settings/xfce-randr.c:55
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr ""
+msgstr "Konnte die verwendete Version der RandR-Erweiterung nicht feststellen."
 
 #. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
 #: ../dialogs/display-settings/xfce-randr.c:63
@@ -557,6 +584,8 @@ msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.1 is required at least"
 msgstr ""
+"Dieses System verwendet RandR in der Version %d.%d. Damit die Anzeigeneinstellungen "
+"funktionieren, ist mindestend Version 1.1 erforderlich."
 
 #: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
@@ -648,12 +677,12 @@ msgstr "<b>Tippeinstellungen</b>"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #, fuzzy
 msgid "Appli_cation Shortcuts"
-msgstr "Tastenkürzel für Anwendungen"
+msgstr "Tastenkürzel für _Anwendungen"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #, fuzzy
 msgid "Be_havior"
-msgstr "Verhalten"
+msgstr "Ver_halten"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "Blink _delay:"
@@ -662,7 +691,7 @@ msgstr "Ve_rzögerung beim Blinken:"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #, fuzzy
 msgid "Define _shortcuts for launching applications:"
-msgstr "Definieren Sie Tastenkürzel zum Starten von Anwendungen:"
+msgstr "Definieren Sie Tastenkürzel zum _Starten von Anwendungen:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
@@ -696,10 +725,11 @@ msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
 msgstr ""
+"Gibt an, ob die Tastaturbelegung in diesem Einstellungsdialog definiert wird, oder vom X-Server übernommen wird."
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
-msgstr ""
+msgstr "Geben Sie ein, ob die Textmarke blinken soll."
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 #, fuzzy
@@ -722,7 +752,7 @@ msgstr "Die Zeit in Millisekunden, bevor eine gedrückte Taste sich wiederholt"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 #, fuzzy
 msgid "Use this area to _test the settings above:"
-msgstr "Benutzen Sie diese Fläche zum Testen der obigen Einstellungen:"
+msgstr "Benutzen Sie diese Fläche zum _Testen der obigen Einstellungen:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 #, fuzzy
@@ -740,7 +770,7 @@ msgstr "T_astenwiederholung einstellen"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 #, fuzzy
 msgid "_Layout"
-msgstr "Layout"
+msgstr "_Layout"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Repeat delay:"
@@ -893,7 +923,7 @@ msgstr "G_röße des Mauszeigers:"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 #, fuzzy
 msgid "De_vices"
-msgstr "Geräte"
+msgstr "_Geräte"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
@@ -925,6 +955,7 @@ msgstr "_Schwellwert:"
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr ""
+"Faktor, um den die Zeigergeschwindigkeit ansteigt, wenn die Maus bewegt wird"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 #, fuzzy
@@ -978,7 +1009,7 @@ msgstr "_Beschleunigung:"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 #, fuzzy
 msgid "_Behavior"
-msgstr "Verhalten"
+msgstr "_Verhalten"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "_Distance:"
@@ -995,7 +1026,7 @@ msgstr "_Rechtshändig"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 #, fuzzy
 msgid "_Theme"
-msgstr "Mausthema"
+msgstr "Maus_thema"
 
 #: ../xfce4-settings-editor/main_window.c:127
 msgid "Channel"
@@ -1025,12 +1056,12 @@ msgstr "Leer"
 #: ../xfce4-settings-editor/main_window.c:661
 #, c-format
 msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
-msgstr ""
+msgstr "Die Eigenschaft »%s« kann nicht zurückgesetzt werden, weil die gesperrt ist."
 
 #: ../xfce4-settings-editor/main_window.c:671
 #, c-format
 msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie die Eigenschaft »<b>%s</b>« zurücksetzen möchten?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 #, fuzzy
@@ -1044,7 +1075,7 @@ msgstr "Einstellungseditor"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
 msgid "Customize settings stored by Xfconf"
-msgstr ""
+msgstr "Einstellungen, die von Xfconf gespeichert werden, bearbeiten"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 #, fuzzy
@@ -1071,7 +1102,7 @@ msgstr "Eigenschaft"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Reset/remove property"
-msgstr ""
+msgstr "Eigenschaft zurücksetzen/entfernen"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
 #, fuzzy
