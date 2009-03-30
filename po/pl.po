@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-settings 4.5.92\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-25 20:50+0100\n"
-"PO-Revision-Date: 2009-03-18 13:09+0100\n"
+"PO-Revision-Date: 2009-03-29 01:11+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -35,11 +35,11 @@ msgstr "<b>Trwałe klawisze</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "Acceleration _profile:"
-msgstr "Profil prz_yspieszenia:"
+msgstr "Profil przy_spieszania:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "Acceleration _time:"
-msgstr "Czas p_rzyspieszania:"
+msgstr "Czas prz_yspieszania:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Acceptance _delay:"
@@ -52,7 +52,7 @@ msgstr "Dostępność"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Configure keyboard and mouse accessibility"
-msgstr "Konfiguruje dostępność klawiatury i myszy"
+msgstr "Konfiguruje dostępność interfejsów klawiatury i myszy"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Disable sticky keys if _two keys are pressed"
@@ -72,7 +72,7 @@ msgstr "Maksymalna prę_dkość:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "R_epeat interval:"
-msgstr "Opóźnienie p_owtarzania:"
+msgstr "Opóźnienie _powtarzania:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
@@ -80,7 +80,7 @@ msgstr "Określa w milisekundach minimalną ilość czasu pomiędzy kolejnymi wc
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "The amount of time, in milliseconds, that must elapse before a keystroke will be accepted"
-msgstr "Określa w milisekundach ilość czasu jaki musi upłynąć po wciśnięciu i przytrzymaniu klawisza, zanim jego znak zostanie wprowadzony"
+msgstr "Określa w milisekundach ilość czasu pomiędzy wciśnięciem i przytrzymaniem klawisza, a wprowadzeniem jego znaku"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "The maximum pointer speed after acceleration"
@@ -88,19 +88,19 @@ msgstr "Określa maksymalną prędkość ruchu kursora myszy po przyspieszeniu"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "The ramp used to reach maximum pointer speed"
-msgstr ""
+msgstr "Określa wartość wpływającą na czas osiągnięcia maksymanlej prędkości kursora"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "The time, in milliseconds, between repeated motion events"
-msgstr "Określa czas pomiędzy powtórzeniami"
+msgstr "Określa ilość czasu pomiędzy kolejnymi zmianami pozycji kursora"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "The time, in milliseconds, between the initial key press and first repeated motion event"
-msgstr ""
+msgstr "Określa ilość czasu pomiędzy wciśnięciem klawisza a rozpoczęciem ruchu kursora"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The time, in milliseconds, to get to maximum speed"
-msgstr "Określa czas potrzebny do osiągnięcia maksymalnej prędkości ruchu kursora"
+msgstr "Określa ilość czasu pomiędzy rozpoczęciem ruchu kursora a osiągnięciem jego maksymalnej prędkości"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid "To help prevent accidental keystrokes, slow keys requires that a key is held for a certain minimum amount of time before the keystroke will be accepted"
@@ -140,7 +140,7 @@ msgstr "Umożliwia kontrolowanie kursora myszy za pomocą klawiatury numerycznej
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "_Acceleration delay:"
-msgstr "Opóźnienie _przyspieszenia:"
+msgstr "Opóźnienie _ruchu:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "_Lock sticky keys"
@@ -674,7 +674,7 @@ msgstr "Przywróć d_omyślne"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
-msgstr "S_ystemowe"
+msgstr "Ustawienia s_ystemowe"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "gtk-add"
@@ -1015,11 +1015,11 @@ msgstr "Odskakujące klawisze"
 #: ../xfce4-settings-helper/main.c:68
 #: ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
-msgstr ""
+msgstr "Uruchamia w trybie debugowania (nie przechodzi w tło)"
 
 #: ../xfce4-settings-helper/main.c:69
 msgid "Client id used when resuming session"
-msgstr ""
+msgstr "Określa id klienta podczas wznawiania sesji"
 
 #: ../xfce4-settings-helper/workspaces.c:141
 #, c-format
@@ -1074,12 +1074,11 @@ msgstr "Menedżer ustawień Xfce 4"
 
 #: ../xfsettingsd/main.c:56
 msgid "Verbose output"
-msgstr ""
+msgstr "Wypisuje bardziej szczegółowe komunikaty"
 
 #: ../xfsettingsd/main.c:60
-#, fuzzy
 msgid "Replace running xsettings daemon (if any)"
-msgstr "Zastąp uruchomioną usługę xsettings"
+msgstr "Zastępuje uruchomioną usługę xsettings"
 
 #: ../xfsettingsd/main.c:131
 #, c-format
