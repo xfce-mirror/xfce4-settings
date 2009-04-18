@@ -6,6 +6,9 @@
   hotplugging in the code (bug #5084).
 - Remove unsigned clamp macro that broke applying the display settings
   and select the correct refresh rate (bug #4966).
+- Make sure that the same .desktop file does not appear in the settings-
+  manager more then once if it occurs in different locations in XDG_DATA_DIRS
+  (bug #5159)
 
 4.6.0
 =====
