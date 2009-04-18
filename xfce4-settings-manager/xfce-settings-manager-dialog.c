@@ -392,6 +392,7 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
 {
     gchar **dirs, buf[PATH_MAX];
     gint i, icon_size;
+    GList *dialog_name_list = NULL;
 
     dialog->ls = gtk_list_store_new(N_COLS, 
                                     G_TYPE_STRING, 
@@ -495,7 +496,14 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
             }
 
             dialog_name = g_strndup(file, g_strrstr(file, ".desktop") - file);
+            /* Make sure we do not store duplicates */
+            if (g_list_find_custom(dialog_name_list, dialog_name, (GCompareFunc)g_utf8_collate)) {
+                xfce_rc_close(rcfile);
+                g_free(dialog_name);
+                continue;
+            }
 
+            dialog_name_list = g_list_prepend (dialog_name_list, dialog_name);
             gtk_list_store_append(dialog->ls, &iter);
             gtk_list_store_set(dialog->ls, &iter,
                                COL_NAME, name,
@@ -509,9 +517,6 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
 #endif
                                COL_DIALOG_NAME, dialog_name,
                                -1);
-            
-            g_free(dialog_name);
-
             xfce_rc_close(rcfile);
         }
 
@@ -525,6 +530,9 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                                     dialog, NULL);
     gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(dialog->ls),
                                          COL_NAME, GTK_SORT_ASCENDING);
+
+    g_list_foreach(dialog_name_list, (GFunc)g_free, NULL);
+    g_list_free(dialog_name_list);
 }
 
 static void
