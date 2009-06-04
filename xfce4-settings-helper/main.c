@@ -60,7 +60,14 @@
 #include "displays.h"
 #endif
 
+#define SELECTION_NAME  "_XFCE_SETTINGS_HELPER"
 
+static GdkFilterReturn xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
+                                                               GdkEvent *evt,
+                                                               gpointer user_data);
+
+
+static SessionClient *sm_client = NULL;
 
 static gboolean opt_version = FALSE;
 static gboolean opt_debug = FALSE;
@@ -124,15 +131,14 @@ xfce_settings_helper_set_autostart_enabled (gboolean enabled)
 }
 
 
-/* returns TRUE if we're now connected to the SM, FALSE otherwise */
+/* returns TRUE if we got started by the SM and our client ID was
+ * valid, FALSE otherwise */
 static gboolean
 xfce_settings_helper_connect_session (int argc,
                                       char **argv,
                                       const gchar *sm_client_id,
                                       gboolean debug_mode)
 {
-    SessionClient *sm_client;
-
     /* we can't be sure that the SM will save the session later, so we only
      * disable the autostart item if we're launching because we got *resumed*
      * from a previous session. */
@@ -148,69 +154,96 @@ xfce_settings_helper_connect_session (int argc,
     {
         g_warning ("Failed to connect to session manager");
         client_session_free (sm_client);
-        xfce_settings_helper_set_autostart_enabled (TRUE);
+        sm_client = NULL;
         return FALSE;
     }
 
     if (sm_client_id && !g_ascii_strcasecmp (sm_client_id, sm_client->given_client_id))
     {
         /* we passed a client id, and got the same one back, which means
-         * we were definitely restarted as a part of the session.  so
-         * it's safe to disable the autostart item. */
-        xfce_settings_helper_set_autostart_enabled (FALSE);
+         * we were definitely restarted as a part of the session. */
         return TRUE;
     }
 
-    /* otherwise, let's just ensure the autostart item is enabled. */
-    xfce_settings_helper_set_autostart_enabled (TRUE);
-
-    return TRUE;
+    return FALSE;
 }
 
 
+#ifdef GDK_WINDOWING_X11
+static GdkFilterReturn
+xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
+                                        GdkEvent *evt,
+                                        gpointer user_data)
+{
+    Window xwin = GPOINTER_TO_UINT(user_data);
+    XEvent *xe = (XEvent *)xevt;
+
+    if (xe->type == SelectionClear && xe->xclient.window == xwin)
+    {
+        if (sm_client)
+            client_session_set_restart_style (sm_client, SESSION_RESTART_IF_RUNNING);
+        signal_handler (SIGINT, NULL);
+    }
+
+    return GDK_FILTER_CONTINUE;
+}
+#endif
+
 static gboolean
-xfce_settings_helper_acquire_selection ()
+xfce_settings_helper_acquire_selection (gboolean force)
 {
 #ifdef GDK_WINDOWING_X11
     GdkDisplay *gdpy = gdk_display_get_default ();
+    GtkWidget *invisible;
     Display *dpy = GDK_DISPLAY_XDISPLAY (gdpy);
     GdkWindow *rootwin = gdk_screen_get_root_window (gdk_display_get_screen (gdpy, 0));
     Window xroot = GDK_WINDOW_XID (rootwin);
-    Window xwin;
-    Atom selection_atom, manager_atom;
+    GdkAtom selection_atom;
+    Atom selection_atom_x11;
     XClientMessageEvent xev;
 
-    xwin = XCreateSimpleWindow (dpy, xroot, -100, -100, 1, 1, 0, 0,
-                                XBlackPixel (GDK_DISPLAY (), 0));
-    XSelectInput (dpy, xwin, PropertyChangeMask | StructureNotifyMask);
+    selection_atom = gdk_atom_intern (SELECTION_NAME, FALSE);
+    selection_atom_x11 = gdk_x11_atom_to_xatom_for_display (gdpy, selection_atom);
 
-    selection_atom = XInternAtom (dpy, "_XFCE_SETTINGS_HELPER", False);
-    manager_atom = XInternAtom (dpy, "MANAGER", False);
+    /* can't use gdk for the selection owner here because it returns NULL
+     * if the selection owner is in another process */
+    if (!force && XGetSelectionOwner (dpy, selection_atom_x11) != None)
+        return FALSE;
 
-    if (XGetSelectionOwner (dpy, selection_atom) != None)
+    invisible = gtk_invisible_new ();
+    gtk_widget_realize (invisible);
+    gtk_widget_add_events (invisible, GDK_STRUCTURE_MASK | GDK_PROPERTY_CHANGE_MASK);
+
+    if (!gdk_selection_owner_set_for_display (gdpy, invisible->window,
+                                              selection_atom, GDK_CURRENT_TIME,
+                                              TRUE))
     {
-        XDestroyWindow (dpy, xwin);
+        g_critical ("Unable to get selection " SELECTION_NAME);
+        gtk_widget_destroy (invisible);
         return FALSE;
     }
 
-    XSetSelectionOwner (dpy, selection_atom, xwin, CurrentTime);
-
-    if (XGetSelectionOwner (dpy, selection_atom) != xwin)
+    /* but we can use gdk here since we only care if it's our window */
+    if (gdk_selection_owner_get_for_display (gdpy, selection_atom) != invisible->window)
     {
-        XDestroyWindow (dpy, xwin);
+        gtk_widget_destroy (invisible);
         return FALSE;
     }
 
     xev.type = ClientMessage;
     xev.window = xroot;
-    xev.message_type = manager_atom;
+    xev.message_type = gdk_x11_get_xatom_by_name_for_display (gdpy, "MANAGER");
     xev.format = 32;
     xev.data.l[0] = CurrentTime;
-    xev.data.l[1] = selection_atom;
-    xev.data.l[2] = xwin;
+    xev.data.l[1] = selection_atom_x11;
+    xev.data.l[2] = GDK_WINDOW_XID (invisible->window);
     xev.data.l[3] = xev.data.l[4] = 0;
 
     XSendEvent (dpy, xroot, False, StructureNotifyMask, (XEvent *)&xev);
+
+    gdk_window_add_filter (invisible->window,
+                           xfce_settings_helper_selection_watcher,
+                           GUINT_TO_POINTER (GDK_WINDOW_XID (invisible->window)));
 #endif
 
     return TRUE;
@@ -221,6 +254,7 @@ gint
 main (gint argc, gchar **argv)
 {
     GError     *error = NULL;
+    gboolean    in_session;
     GObject    *pointer_helper;
     GObject    *keyboards_helper;
     GObject    *accessibility_helper;
@@ -284,11 +318,18 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    if (!xfce_settings_helper_acquire_selection ())
+    /* connect to session always, even if we quit below.  this way the
+     * session manager won't wait for us to time out. */
+    in_session = xfce_settings_helper_connect_session (argc, argv, opt_sm_client_id, opt_debug);
+
+    if (!xfce_settings_helper_acquire_selection (in_session))
     {
         g_printerr ("%s is already running\n", G_LOG_DOMAIN);
         return EXIT_FAILURE;
     }
+
+    /* if we were restarted as part of the session, remove us from autostart */
+    xfce_settings_helper_set_autostart_enabled (!in_session);
 
     /* daemonize the process when not running in debug mode */
     if (!opt_debug)
@@ -307,8 +348,6 @@ main (gint argc, gchar **argv)
             _exit (EXIT_SUCCESS);
         }
     }
-
-    xfce_settings_helper_connect_session (argc, argv, opt_sm_client_id, opt_debug);
 
     /* create the sub daemons */
     pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
