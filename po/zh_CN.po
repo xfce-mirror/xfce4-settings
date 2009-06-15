@@ -2,6 +2,8 @@
 # Copyright (C) 2009 The Xfce development team.
 # This file is distributed under the same license as the xfce4-setting package.
 # Chris K. Zhang <plutino@gmail.com>, 2009.
+# Aron Xu <aronmalache@163.com>, 2009.
+# Hunt Xu <huntxu@live.cn>, 2009.
 #
 #: ../xfsettingsd/main.c:127
 msgid ""
@@ -9,8 +11,8 @@ msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-25 20:50+0100\n"
-"PO-Revision-Date: 2009-01-26 23:34-0800\n"
-"Last-Translator: Chris K. Zhang <plutino@gmail.com\n"
+"PO-Revision-Date: 2009-06-14 02:31+0800\n"
+"Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -18,19 +20,19 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "<b>Bounce Keys</b>"
-msgstr "反弹按键"
+msgstr "<b>反弹按键</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
 msgid "<b>Mouse Emulation</b>"
-msgstr "模拟鼠标"
+msgstr "<b>模拟鼠标</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
 msgid "<b>Slow Keys</b>"
-msgstr "慢速按键"
+msgstr "<b>慢速按键</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 msgid "<b>Sticky Keys</b>"
-msgstr "黏性按键"
+msgstr "<b>黏性按键</b>"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "Acceleration _profile:"
@@ -47,11 +49,11 @@ msgstr "接受延迟(_D)："
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
-msgstr "使用协助"
+msgstr "辅助功能"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Configure keyboard and mouse accessibility"
-msgstr "设置协助键盘和鼠标"
+msgstr "为辅助功能设置键盘和鼠标"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Disable sticky keys if _two keys are pressed"
@@ -201,7 +203,7 @@ msgstr "设置管理器接口"
 #: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
-msgstr "SOCKET ID"
+msgstr "套接字 ID"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:87
@@ -229,7 +231,7 @@ msgstr "“%s --help”显示使用说明"
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
 #: ../xfce4-settings-helper/main.c:265 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
-msgstr "Xfce 开发组，版权所有"
+msgstr "Xfce 开发团队，版权所有"
 
 #: ../dialogs/accessibility-settings/main.c:165
 #: ../dialogs/appearance-settings/main.c:895
@@ -251,11 +253,11 @@ msgstr "<b>DPI</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "<b>Default Fon_t</b>"
-msgstr "<b>缺省字体(_T)</b>"
+msgstr "<b>默认字体(_T)</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 msgid "<b>Event sounds</b>"
-msgstr "事件声音"
+msgstr "<b>事件声音</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
 msgid "<b>Menus and Buttons</b>"
@@ -336,7 +338,7 @@ msgstr "如果字体太大或太小就改变显示器的分辨率"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Select a default font"
-msgstr "选择缺省字体"
+msgstr "选择默认字体"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Show images in _menus"
@@ -376,7 +378,7 @@ msgstr "亚像素次序(_P)："
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
-msgstr "显示用户界面时用该字体做缺省字体"
+msgstr "显示用户界面时用该字体做默认字体"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "_Fonts"
@@ -704,7 +706,7 @@ msgstr "重复延迟(_R)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Reset to Defaults"
-msgstr "恢复缺省设置(_R)"
+msgstr "恢复默认设置(_R)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -779,13 +781,13 @@ msgstr "快捷键命令不能为空"
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1031
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
 msgid "Reset to Defaults"
-msgstr "恢复缺省设置"
+msgstr "恢复默认设置"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1033
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
-msgstr "所有快捷键将被重设为缺省值，您确定吗？"
+msgstr "所有快捷键将被重设为默认值，您确定吗？"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1102
 msgid "The system defaults will be restored next time you log in."
@@ -801,13 +803,13 @@ msgstr "激活对话框中的设备"
 
 #: ../dialogs/mouse-settings/main.c:96
 msgid "DEVICE NAME"
-msgstr "DEVICE NAME"
+msgstr "设备名称"
 
 #. sort the names but keep Default on top
 #: ../dialogs/mouse-settings/main.c:352 ../dialogs/mouse-settings/main.c:354
 #: ../dialogs/mouse-settings/main.c:414
 msgid "Default"
-msgstr "缺省"
+msgstr "默认"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "<b>Button Order</b>"
@@ -863,7 +865,7 @@ msgstr "逆转滚轮方向(_V)"
 msgid ""
 "Set the acceleration and threshold for the selected device to the default "
 "values"
-msgstr "将所选设备的加速和阈值恢复成缺省值"
+msgstr "将所选设备的加速和阈值恢复成默认值"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "T_hreshold:"
@@ -1063,7 +1065,7 @@ msgstr "启动到差错模式（不分叉到后台线程）"
 
 #: ../xfce4-settings-helper/main.c:69
 msgid "Client id used when resuming session"
-msgstr "恢复 Session 时使用的客户 ID"
+msgstr "恢复会话时使用的客户 ID"
 
 #: ../xfce4-settings-helper/workspaces.c:141
 #, c-format
