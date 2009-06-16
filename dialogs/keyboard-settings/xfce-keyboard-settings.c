@@ -322,7 +322,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Rate", G_TYPE_INT, G_OBJECT (xkb_key_repeat_rate_scale), "value");
 
   xkb_key_repeat_delay_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (settings->priv->glade_xml, "xkb_key_repeat_delay_scale")));
-  xfconf_g_property_bind (settings->priv->keyboards_channel, "/DefaultKeyRepeat/Delay", G_TYPE_INT, G_OBJECT (xkb_key_repeat_delay_scale), "value");
+  xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Delay", G_TYPE_INT, G_OBJECT (xkb_key_repeat_delay_scale), "value");
 
   /* XSETTINGS */
   net_cursor_blink_check = glade_xml_get_widget (settings->priv->glade_xml, "net_cursor_blink_check");
