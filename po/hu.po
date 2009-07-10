@@ -2,13 +2,14 @@
 # Copyright (C) 2009. Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfce4-settings package.
 # SZERVÁC Attila <sas@321>, 2004-2009.
-# 
+#
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
+#: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-01 21:03+0200\n"
+"POT-Creation-Date: 2009-07-10 17:18+0200\n"
 "PO-Revision-Date: 2009-07-10 16:07+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at gnome dot hu>\n"
@@ -77,13 +78,15 @@ msgstr "Ismétlési idő_köz:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "A billentyűleütések között ennyi időnek kell eltelnie ezredmásodpercben"
+msgstr ""
+"A billentyűleütések között ennyi időnek kell eltelnie ezredmásodpercben"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr "A billentyűleütés elfogadásáig ennyi időnek kell eltelnie ezredmásodpercben"
+msgstr ""
+"A billentyűleütés elfogadásáig ennyi időnek kell eltelnie ezredmásodpercben"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "The maximum pointer speed after acceleration"
@@ -168,7 +171,8 @@ msgstr ""
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
-msgstr "Az egérmutató a billentyűzet számmezejének segítségével lesz irányítható"
+msgstr ""
+"Az egérmutató a billentyűzet számmezejének segítségével lesz irányítható"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "_Acceleration delay:"
@@ -273,7 +277,8 @@ msgid "<b>_Toolbar Style</b>"
 msgstr "<b>Eszköz_társtílus</b>"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
-msgid "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Az élsimítás javíthatja a képernyőn látható szöveg megjelenését"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
@@ -339,7 +344,8 @@ msgstr ""
 "betűkészlettel a legszebb eredményt adó lehetőséget"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
-msgid "Override the detected monitor resolution if fonts look too large or too small"
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too small"
 msgstr ""
 "Az észlelt monitorfelbontás felülbírálása, ha a betűk túl nagynak vagy túl "
 "kicsinek tűnnek"
@@ -503,13 +509,15 @@ msgstr "Jobbra"
 #. insert
 #: ../dialogs/display-settings/main.c:258
 #: ../dialogs/display-settings/main.c:289
-msgid "Hz"
-msgstr "Hz"
+#, c-format
+msgid "%d Hz"
+msgstr "%d Hz"
 
 #. create name
 #: ../dialogs/display-settings/main.c:495
-msgid "Screen"
-msgstr "Képernyő"
+#, c-format
+msgid "Screen %d"
+msgstr "%d. képernyő"
 
 #: ../dialogs/display-settings/main.c:678
 #, c-format
@@ -676,7 +684,8 @@ msgstr "Vill_ogjon"
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
-msgstr "A billentyűzetkiosztást ez a beállítóablak vagy az X kiszolgáló vezérelje"
+msgstr ""
+"A billentyűzetkiosztást ez a beállítóablak vagy az X kiszolgáló vezérelje"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
@@ -684,11 +693,13 @@ msgstr "A szövegkurzor villogjon-e"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Késleltetés ezredmásodpercben a kurzor egymást követő villogásai között"
+msgstr ""
+"Késleltetés ezredmásodpercben a kurzor egymást követő villogásai között"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "Billentyűleütések előállításának sebessége billentyű lenyomva tartásakor"
+msgstr ""
+"Billentyűleütések előállításának sebessége billentyű lenyomva tartásakor"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
@@ -702,7 +713,8 @@ msgstr "Ezen a _területen tesztelheti a fenti beállításokat:"
 msgid ""
 "When selected, pressing and holding down a key emits the same character over "
 "and over again"
-msgstr "Egy billentyű lenyomva tartásakor ugyanaz a karakter ismétlődik újra és újra"
+msgstr ""
+"Egy billentyű lenyomva tartásakor ugyanaz a karakter ismétlődik újra és újra"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "_Enable key repeat"
@@ -861,7 +873,8 @@ msgid "T_hreshold:"
 msgstr "_Küszöbérték:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
-msgid "The factor at which the pointer's speed will increase as the mouse is moved"
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "A mutató sebességének növelése ezen tényezővel az egér mozgatásakor"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
@@ -873,8 +886,10 @@ msgstr ""
 "között, hogy azok dupla kattintásnak számítsanak"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
-msgid "The number of pixels the pointer must move before a drag operation will start"
-msgstr "A mutatónak ennyi képpontot kell mozognia a húzási művelet megkezdéséhez"
+msgid ""
+"The number of pixels the pointer must move before a drag operation will start"
+msgstr ""
+"A mutatónak ennyi képpontot kell mozognia a húzási művelet megkezdéséhez"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid ""
@@ -892,7 +907,8 @@ msgstr "I_dő:"
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
-msgstr "Ennyi ezredmásodpercen belüli két egérkattintás dupla kattintásnak számít"
+msgstr ""
+"Ennyi ezredmásodpercen belüli két egérkattintás dupla kattintásnak számít"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
@@ -1124,3 +1140,5 @@ msgstr ""
 "%s: %s\n"
 "Az elérhető kapcsolók listájáért adja ki az %s --help parancsot.\n"
 
+#~ msgid "Hz"
+#~ msgstr "Hz"
