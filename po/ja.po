@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-16 23:37+0900\n"
+"POT-Creation-Date: 2009-07-10 16:31+0200\n"
 "PO-Revision-Date: 2009-04-08 17:41+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
@@ -209,7 +209,7 @@ msgstr "SOCKET ID"
 #: ../dialogs/appearance-settings/main.c:89
 #: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:70
+#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:77
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "バージョン情報を表示する"
@@ -219,7 +219,7 @@ msgstr "バージョン情報を表示する"
 #: ../dialogs/display-settings/main.c:645
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
-#: ../xfce4-settings-helper/main.c:251 ../xfce4-settings-manager/main.c:58
+#: ../xfce4-settings-helper/main.c:285 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "'%s --help' と入力すると使用方法が表示されます。"
@@ -229,7 +229,7 @@ msgstr "'%s --help' と入力すると使用方法が表示されます。"
 #: ../dialogs/display-settings/main.c:664
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
-#: ../xfce4-settings-helper/main.c:270 ../xfce4-settings-manager/main.c:71
+#: ../xfce4-settings-helper/main.c:304 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
@@ -238,7 +238,7 @@ msgstr "The Xfce development team. All rights reserved."
 #: ../dialogs/display-settings/main.c:665
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
-#: ../xfce4-settings-helper/main.c:271 ../xfce4-settings-manager/main.c:72
+#: ../xfce4-settings-helper/main.c:305 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "バグの報告は <%s> までお願いします。"
@@ -507,12 +507,14 @@ msgstr "右"
 #. insert
 #: ../dialogs/display-settings/main.c:258
 #: ../dialogs/display-settings/main.c:289
-msgid "Hz"
-msgstr "Hz"
+#, c-format
+msgid "%d Hz"
+msgstr ""
 
 #. create name
 #: ../dialogs/display-settings/main.c:495
-msgid "Screen"
+#, fuzzy, c-format
+msgid "Screen %d"
 msgstr "Screen"
 
 #: ../dialogs/display-settings/main.c:678
@@ -1053,11 +1055,11 @@ msgstr "バウンスキーが無効になりました"
 msgid "Bounce keys"
 msgstr "バウンスキー"
 
-#: ../xfce4-settings-helper/main.c:71 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:78 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "デバッグモードで起動する (バックグラウンドで fork しません)"
 
-#: ../xfce4-settings-helper/main.c:72
+#: ../xfce4-settings-helper/main.c:79
 msgid "Client id used when resuming session"
 msgstr "セッション再開時に使用されるクライアント ID"
 
@@ -1086,18 +1088,18 @@ msgid "_Overview"
 msgstr "一覧(_O)"
 
 #. Notify the user that there has been a problem
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:595
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:614
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:603
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:622
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "\"%s\" を起動できませんでした"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:596
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:615
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:604
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:623
 msgid "Xfce Settings Manager"
 msgstr "Xfce 設定マネージャ"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:665
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:673
 #, c-format
 msgid "Failed to open the documentation. Reason: %s"
 msgstr "ドキュメントを開けませんでした。理由: %s"
@@ -1131,3 +1133,6 @@ msgstr ""
 "%s: %s\n"
 "%s --help と入力すると利用可能な全てのコマンドラインオプションが表示されま"
 "す。\n"
+
+#~ msgid "Hz"
+#~ msgstr "Hz"

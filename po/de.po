@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-12 12:49+0200\n"
+"POT-Creation-Date: 2009-07-10 16:31+0200\n"
 "PO-Revision-Date: 2009-04-12 12:58+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -219,7 +219,7 @@ msgstr "SOCKET-NUMMER"
 #: ../dialogs/appearance-settings/main.c:89
 #: ../dialogs/display-settings/main.c:83
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:70
+#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:77
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Versionsinformation"
@@ -228,8 +228,8 @@ msgstr "Versionsinformation"
 #: ../dialogs/appearance-settings/main.c:815
 #: ../dialogs/display-settings/main.c:645
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1191 ../xfce4-settings-editor/main.c:65
-#: ../xfce4-settings-helper/main.c:251 ../xfce4-settings-manager/main.c:58
+#: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
+#: ../xfce4-settings-helper/main.c:285 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr ""
@@ -239,8 +239,8 @@ msgstr ""
 #: ../dialogs/appearance-settings/main.c:834
 #: ../dialogs/display-settings/main.c:664
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1210 ../xfce4-settings-editor/main.c:84
-#: ../xfce4-settings-helper/main.c:270 ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
+#: ../xfce4-settings-helper/main.c:304 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Das Entwicklungsteam von Xfce. Alle Rechte vorbehalten."
 
@@ -248,8 +248,8 @@ msgstr "Das Entwicklungsteam von Xfce. Alle Rechte vorbehalten."
 #: ../dialogs/appearance-settings/main.c:835
 #: ../dialogs/display-settings/main.c:665
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1211 ../xfce4-settings-editor/main.c:85
-#: ../xfce4-settings-helper/main.c:271 ../xfce4-settings-manager/main.c:72
+#: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
+#: ../xfce4-settings-helper/main.c:305 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Bitte melden Sie Fehler an <%s>"
@@ -520,12 +520,14 @@ msgstr "Rechts"
 #. insert
 #: ../dialogs/display-settings/main.c:258
 #: ../dialogs/display-settings/main.c:289
-msgid "Hz"
-msgstr "Hz"
+#, c-format
+msgid "%d Hz"
+msgstr ""
 
 #. create name
 #: ../dialogs/display-settings/main.c:495
-msgid "Screen"
+#, fuzzy, c-format
+msgid "Screen %d"
 msgstr "Anzeige"
 
 #: ../dialogs/display-settings/main.c:678
@@ -587,47 +589,47 @@ msgid "Second digital display"
 msgstr "Zweite Digitalanzeige"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:161
+#: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Shortcut Command"
 msgstr "Tastenkürzelbefehl"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:185
+#: ../dialogs/keyboard-settings/command-dialog.c:184
 msgid "Shortcut:"
 msgstr "Tastenkürzel:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:195
+#: ../dialogs/keyboard-settings/command-dialog.c:194
 msgid "Command:"
 msgstr "Befehl:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:247
+#: ../dialogs/keyboard-settings/command-dialog.c:246
 msgid "The command may not be empty."
 msgstr "Der Befehl darf nicht leer sein."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/keyboard-settings/command-dialog.c:266
 msgid "Select command"
 msgstr "Befehl auswählen"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:275
+#: ../dialogs/keyboard-settings/command-dialog.c:274
 msgid "All Files"
 msgstr "Alle Dateien"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:280
+#: ../dialogs/keyboard-settings/command-dialog.c:279
 msgid "Executable Files"
 msgstr "Ausführbare Dateien"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:295
+#: ../dialogs/keyboard-settings/command-dialog.c:294
 msgid "Perl Scripts"
 msgstr "Perl-Skripte"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:301
+#: ../dialogs/keyboard-settings/command-dialog.c:300
 msgid "Python Scripts"
 msgstr "Python-Skripte"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:307
+#: ../dialogs/keyboard-settings/command-dialog.c:306
 msgid "Ruby Scripts"
 msgstr "Ruby-Skripte"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:313
+#: ../dialogs/keyboard-settings/command-dialog.c:312
 msgid "Shell Scripts"
 msgstr "Shell-Skripte"
 
@@ -817,8 +819,8 @@ msgid "DEVICE NAME"
 msgstr "GERÄTENAME"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:354 ../dialogs/mouse-settings/main.c:356
-#: ../dialogs/mouse-settings/main.c:416
+#: ../dialogs/mouse-settings/main.c:352 ../dialogs/mouse-settings/main.c:354
+#: ../dialogs/mouse-settings/main.c:414
 msgid "Default"
 msgstr "Standard"
 
@@ -1080,11 +1082,11 @@ msgstr "Zurückschnellende Tasten sind deaktiviert"
 msgid "Bounce keys"
 msgstr "Zurückschnellende Tasten"
 
-#: ../xfce4-settings-helper/main.c:71 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:78 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Im Debugmodus starten (nicht im Hintergrund laufen)"
 
-#: ../xfce4-settings-helper/main.c:72
+#: ../xfce4-settings-helper/main.c:79
 msgid "Client id used when resuming session"
 msgstr "Client-ID zur Verwendung beim Wiederaufnehmen einer Sitzung"
 
@@ -1113,18 +1115,18 @@ msgid "_Overview"
 msgstr "Ü_bersicht"
 
 #. Notify the user that there has been a problem
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:595
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:614
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:603
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:622
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kann »%s« nicht starten"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:596
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:615
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:604
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:623
 msgid "Xfce Settings Manager"
 msgstr "Einstellungen"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:665
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:673
 #, c-format
 msgid "Failed to open the documentation. Reason: %s"
 msgstr "Konnte die Hilfe nicht öffnen. Ursache: %s"
@@ -1158,6 +1160,9 @@ msgstr ""
 "%s: %s\n"
 "Geben Sie »%s --help« ein, um eine Übersicht über alle verfügbaren  Befehle "
 "zu erhalten.\n"
+
+#~ msgid "Hz"
+#~ msgstr "Hz"
 
 #~ msgid "gtk-close"
 #~ msgstr "gtk-close"
