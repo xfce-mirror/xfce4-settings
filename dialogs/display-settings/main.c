@@ -255,7 +255,7 @@ display_setting_refresh_rates_populate (GladeXML *gxml)
                     rate = (gfloat) mode_info->dotClock / ((gfloat) mode_info->hTotal * (gfloat) mode_info->vTotal);
 
                     /* insert in the combo box */
-                    name = g_strdup_printf ("%.1f %s", rate, _("Hz"));
+                    name = g_strdup_printf (_("%d Hz"), (gint) rate);
                     gtk_list_store_prepend (GTK_LIST_STORE (model), &iter);
                     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                                         COLUMN_COMBO_NAME, name,
@@ -286,7 +286,7 @@ display_setting_refresh_rates_populate (GladeXML *gxml)
         for (n = 0; n < nrates; n++)
         {
             /* insert */
-            name = g_strdup_printf ("%d %s", rates[n], _("Hz"));
+            name = g_strdup_printf (_("%d Hz"), rates[n]);
             gtk_list_store_prepend (GTK_LIST_STORE (model), &iter);
             gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                                 COLUMN_COMBO_NAME, name,
@@ -492,7 +492,7 @@ display_settings_treeview_populate (GladeXML *gxml)
         for (n = 0; n < xfce_randr_legacy->num_screens; n++)
         {
             /* create name */
-            name = g_strdup_printf ("%s %d", _("Screen"), n + 1);
+            name = g_strdup_printf (_("Screen %d"), n + 1);
 
             /* insert the output in the store */
             gtk_list_store_append (store, &iter);
