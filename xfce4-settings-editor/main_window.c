@@ -124,7 +124,7 @@ xfce4_settings_editor_main_window_new()
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 0, NULL, renderer, "icon-name", 0, NULL);
 
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 1, N_("Channel"), renderer, "text", 1, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 1, _("Channel"), renderer, "text", 1, NULL);
 
     /* 
      * property list
@@ -134,16 +134,16 @@ xfce4_settings_editor_main_window_new()
     gtk_tree_view_set_model (GTK_TREE_VIEW (property_treeview), GTK_TREE_MODEL (property_tree_store));
 
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 0, N_("Property"), renderer, "text", 0, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 0, _("Property"), renderer, "text", 0, NULL);
 
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 1, N_("Type"), renderer, "text", 1, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 1, _("Type"), renderer, "text", 1, NULL);
 
     renderer = gtk_cell_renderer_toggle_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 2, N_("Locked"), renderer, "active", 2, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 2, _("Locked"), renderer, "active", 2, NULL);
 
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 3, N_("Value"), renderer, "text", 3, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 3, _("Value"), renderer, "text", 3, NULL);
 
     /* improve usability by expanding nodes when clicking on them */
     g_signal_connect (G_OBJECT (property_treeview), "row-activated", G_CALLBACK (cb_property_treeview_row_activated), NULL);
@@ -307,7 +307,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                             }
                             else
                             {
-                                g_value_set_string (&child_type, N_("Empty"));
+                                g_value_set_string (&child_type, _("Empty"));
                             }
                             gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
                             g_value_reset (&child_type);
@@ -372,7 +372,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                     }
                     else
                     {
-                        g_value_set_string (&child_type, N_("Empty"));
+                        g_value_set_string (&child_type, _("Empty"));
                     }
                     gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
                     g_value_reset (&child_type);
