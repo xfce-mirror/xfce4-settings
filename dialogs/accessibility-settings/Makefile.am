@@ -17,11 +17,9 @@ xfce4_accessibility_settings_SOURCES = \
 
 xfce4_accessibility_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
-	$(GLIB_CFLAGS) \
-	$(GLADE_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS) \
-	$(LIBXFCEGUI4_CFLAGS) \
-	$(XFCONF_CFLAGS)
+	$(LIBXFCE4UI_CFLAGS) \
+	$(XFCONF_CFLAGS) \
+	$(PLATFORM_CFLAGS)
 
 xfce4_accessibility_settings_LDFLAGS = \
 	-no-undefined \
@@ -29,10 +27,7 @@ xfce4_accessibility_settings_LDFLAGS = \
 
 xfce4_accessibility_settings_LDADD = \
 	$(GTK_LIBS) \
-	$(GLIB_LIBS) \
-	$(GLADE_LIBS) \
-	$(DBUS_GLIB_LIBS) \
-	$(LIBXFCEGUI4_LIBS) \
+	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS)
 
 if MAINTAINER_MODE

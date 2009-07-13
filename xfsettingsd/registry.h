@@ -72,7 +72,7 @@ struct _XSettingsRegistryClass {
     GObjectClass parent_class;
 };
 
-GType xsettings_registry_get_type();
+GType xsettings_registry_get_type(void);
 
 XSettingsRegistry *
 xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen);

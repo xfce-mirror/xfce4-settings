@@ -43,8 +43,6 @@
 
 #undef HAS_RANDR_ONE_POINT_TWO
 
-static void            xfce_displays_helper_class_init                     (XfceDisplaysHelperClass *klass);
-static void            xfce_displays_helper_init                           (XfceDisplaysHelper      *helper);
 static void            xfce_displays_helper_finalize                       (GObject                 *object);
 static void            xfce_displays_helper_channel_property_changed       (XfconfChannel           *channel,
                                                                             const gchar             *property_name,

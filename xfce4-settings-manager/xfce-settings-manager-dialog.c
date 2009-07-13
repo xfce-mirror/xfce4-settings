@@ -35,7 +35,7 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 #include <exo/exo.h>
 #include <xfconf/xfconf.h>
 
@@ -98,8 +98,6 @@ enum
     N_COLS
 };
 
-static void xfce_settings_manager_dialog_class_init(XfceSettingsManagerDialogClass *klass);
-static void xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog);
 static void xfce_settings_manager_dialog_finalize(GObject *obj);
 
 static void xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog);
@@ -126,14 +124,12 @@ static gboolean xfce_settings_manager_dialog_plug_removed(GtkSocket *socket,
                                                           XfceSettingsManagerDialog *dialog);
 static GtkWidget *xfce_settings_manager_dialog_recreate_socket(XfceSettingsManagerDialog *dialog);
 #endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 static gboolean xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
                                                            gint x,
                                                            gint y,
                                                            gboolean keyboard_tip,
                                                            GtkTooltip *tooltip,
                                                            gpointer data);
-#endif
 
 
 G_DEFINE_TYPE(XfceSettingsManagerDialog, xfce_settings_manager_dialog, XFCE_TYPE_TITLED_DIALOG)
@@ -212,12 +208,10 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     g_signal_connect(G_OBJECT(dialog->icon_view), "item-activated",
                      G_CALLBACK(xfce_settings_manager_dialog_item_activated),
                      dialog);
-#if GTK_CHECK_VERSION(2, 12, 0)
     g_object_set(G_OBJECT(dialog->icon_view), "has-tooltip", TRUE, NULL);
     g_signal_connect(G_OBJECT(dialog->icon_view), "query-tooltip",
                      G_CALLBACK(xfce_settings_manager_dialog_query_tooltip),
                      NULL);
-#endif
 
     render = gtk_cell_renderer_pixbuf_new();
     gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(dialog->icon_view), render, 
@@ -542,7 +536,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
 {
     XfceSettingsManagerDialog *dialog = user_data;
     GtkTreeIter iter;
-    gchar *exec = NULL, *name, *comment, *icon_name, *primary;
+    gchar *exec = NULL, *name, *comment, *icon_name;
     gboolean snotify = FALSE;
 #ifdef ENABLE_PLUGGABLE_DIALOGS
     gboolean pluggable = FALSE;
@@ -592,19 +586,16 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
                                   gtk_socket_get_id(GTK_SOCKET(dialog->socket)));
 
         /* Try to spawn the dialog */
-        if(!xfce_exec_on_screen (gtk_widget_get_screen(GTK_WIDGET(iconview)), 
-                                 command, FALSE, snotify, &error))
+        if(!xfce_spawn_command_line_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)),
+                                              exec, FALSE, snotify, &error))
         {
             /* Spawning failed, go back to the overview */
             xfce_settings_manager_dialog_recreate_socket(dialog);
             xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 
             /* Notify the user that there has been a problem */
-            primary = g_strdup_printf(_("Unable to start \"%s\""), exec);
-            xfce_message_dialog(GTK_WINDOW(dialog), _("Xfce Settings Manager"),
-                                GTK_STOCK_DIALOG_ERROR, primary, error->message,
-                                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
-            g_free(primary);
+            xfce_dialog_show_error(GTK_WINDOW(dialog), error,
+                _("Unable to start \"%s\""), exec);
             g_error_free(error);
         }
 
@@ -615,15 +606,12 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
         xfce_settings_manager_dialog_reset_view(dialog, TRUE);
 
         /* Try to spawn the dialog */
-        if (!xfce_exec_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)),
-                                 exec, FALSE, snotify, &error))
+        if (!xfce_spawn_command_line_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)),
+                                               exec, FALSE, snotify, &error))
         {
             /* Notify the user that there has been a problem */
-            primary = g_strdup_printf(_("Unable to start \"%s\""), exec);
-            xfce_message_dialog(GTK_WINDOW(dialog), _("Xfce Settings Manager"),
-                                GTK_STOCK_DIALOG_ERROR, primary, error->message,
-                                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
-            g_free(primary);
+            xfce_dialog_show_error(GTK_WINDOW(dialog), error,
+                _("Unable to start \"%s\""), exec);
             g_error_free(error);
         }
 #ifdef ENABLE_PLUGGABLE_DIALOGS
@@ -670,8 +658,7 @@ xfce_settings_manager_dialog_help_button_clicked(GtkWidget *button,
     if(!gdk_spawn_command_line_on_screen(gtk_widget_get_screen(button), 
                                          command, &error))
     {
-        xfce_err(_("Failed to open the documentation. Reason: %s"), 
-                 error->message);
+        xfce_dialog_show_error (NULL, error, _("Failed to open the documentation"));
         g_error_free(error);
     }
 
@@ -794,7 +781,8 @@ xfce_settings_manager_dialog_closed (GtkWidget *dialog,
     return FALSE;
 }
 
-#if GTK_CHECK_VERSION(2, 12, 0)
+
+
 static gboolean
 xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
                                            gint x,
@@ -830,11 +818,11 @@ xfce_settings_manager_dialog_query_tooltip(GtkWidget *widget,
 
     return TRUE;
 }
-#endif
+
 
 
 GtkWidget *
-xfce_settings_manager_dialog_new()
+xfce_settings_manager_dialog_new(void)
 {
     return g_object_new(XFCE_TYPE_SETTINGS_MANAGER_DIALOG, NULL);
 }

@@ -42,11 +42,10 @@
 
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
-#include <glade/glade.h>
 
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "mouse-dialog_glade.h"
 
@@ -84,7 +83,7 @@ static guint timeout_id = 0;
 
 #ifdef HAS_DEVICE_HOTPLUGGING
 /* event id for device add/remove */
-gint device_presence_event_type = 0;
+static gint device_presence_event_type = 0;
 #endif
 
 /* option entries */
@@ -298,13 +297,13 @@ mouse_settings_themes_preview_image (const gchar *path,
 
 static void
 mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
-                                         GladeXML       *gxml)
+                                         GtkBuilder       *builder)
 {
     GtkTreeModel *model;
     GtkTreeIter   iter;
     gboolean      has_selection;
     gchar        *path, *name;
-    GtkWidget      *image;
+    GObject      *image;
 
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
@@ -314,7 +313,7 @@ mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
                             COLUMN_THEME_NAME, &name, -1);
 
         /* update the preview widget */
-        image = glade_xml_get_widget (gxml, "mouse-theme-preview");
+        image = gtk_builder_get_object (builder, "mouse-theme-preview");
         mouse_settings_themes_preview_image (path, GTK_IMAGE (image));
 
         /* write configuration (not during a lock) */
@@ -366,7 +365,7 @@ mouse_settings_themes_sort_func (GtkTreeModel *model,
 
 
 static void
-mouse_settings_themes_populate_store (GladeXML *gxml)
+mouse_settings_themes_populate_store (GtkBuilder *builder)
 {
     const gchar        *path;
     gchar             **basedirs;
@@ -387,7 +386,7 @@ mouse_settings_themes_populate_store (GladeXML *gxml)
     GtkListStore       *store;
     GtkCellRenderer    *renderer;
     GtkTreeViewColumn  *column;
-    GtkWidget          *treeview;
+    GObject            *treeview;
     GtkTreeSelection   *selection;
     gchar              *comment_escaped;
 
@@ -527,11 +526,9 @@ mouse_settings_themes_populate_store (GladeXML *gxml)
     g_free (active_theme);
 
     /* set the treeview store */
-    treeview = glade_xml_get_widget (gxml, "mouse-theme-treeview");
+    treeview = gtk_builder_get_object (builder, "mouse-theme-treeview");
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
-#if GTK_CHECK_VERSION (2, 12, 0)
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_THEME_COMMENT);
-#endif
 
     /* setup the columns */
     renderer = gtk_cell_renderer_pixbuf_new ();
@@ -546,7 +543,7 @@ mouse_settings_themes_populate_store (GladeXML *gxml)
     /* setup selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (mouse_settings_themes_selection_changed), gxml);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (mouse_settings_themes_selection_changed), builder);
 
     /* select the active theme in the treeview */
     gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), active_path, NULL, FALSE);
@@ -566,7 +563,7 @@ mouse_settings_themes_populate_store (GladeXML *gxml)
 
 static void
 mouse_settings_device_selection_changed (GtkTreeSelection *selection,
-                                         GladeXML         *gxml)
+                                         GtkBuilder       *builder)
 {
     gint               nbuttons;
     Display           *xdisplay;
@@ -580,7 +577,7 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
     gint               id_4 = 0, id_5 = 0;
     gdouble            acceleration = -1.00;
     gint               threshold = -1;
-    GtkWidget         *widget;
+    GObject           *object;
     GtkTreeModel      *model;
     GtkTreeIter        iter;
     gboolean           has_selection;
@@ -663,22 +660,22 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
     }
 
     /* update button order */
-    widget = glade_xml_get_widget (gxml, id_1 > id_3 ? "mouse-left-handed" : "mouse-right-handed");
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
+    object = gtk_builder_get_object (builder, id_1 > id_3 ? "mouse-left-handed" : "mouse-right-handed");
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), TRUE);
 
-    widget = glade_xml_get_widget (gxml, "mouse-reverse-scrolling");
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), !!(id_5 < id_4));
-    gtk_widget_set_sensitive (widget, nbuttons >= 5);
+    object = gtk_builder_get_object (builder, "mouse-reverse-scrolling");
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), !!(id_5 < id_4));
+    gtk_widget_set_sensitive (GTK_WIDGET (object), nbuttons >= 5);
 
     /* update acceleration scale */
-    widget = glade_xml_get_widget (gxml, "mouse-acceleration-scale");
-    gtk_range_set_value (GTK_RANGE (widget), acceleration);
-    gtk_widget_set_sensitive (GTK_WIDGET (widget), acceleration != -1);
+    object = gtk_builder_get_object (builder, "mouse-acceleration-scale");
+    gtk_range_set_value (GTK_RANGE (object), acceleration);
+    gtk_widget_set_sensitive (GTK_WIDGET (object), acceleration != -1);
 
     /* update threshold scale */
-    widget = glade_xml_get_widget (gxml, "mouse-threshold-scale");
-    gtk_range_set_value (GTK_RANGE (widget), threshold);
-    gtk_widget_set_sensitive (GTK_WIDGET (widget), threshold != -1);
+    object = gtk_builder_get_object (builder, "mouse-threshold-scale");
+    gtk_range_set_value (GTK_RANGE (object), threshold);
+    gtk_widget_set_sensitive (GTK_WIDGET (object), threshold != -1);
 
     /* flush and remove the x error trap */
     gdk_flush ();
@@ -691,29 +688,27 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
 
 
 static void
-mouse_settings_device_save (GladeXML *gxml)
+mouse_settings_device_save (GtkBuilder *builder)
 {
-    GtkWidget        *treeview;
+    GObject          *treeview;
     GtkTreeSelection *selection;
     GtkTreeModel     *model;
     GtkTreeIter       iter;
     gboolean          has_selection;
     gchar            *name;
-    GtkWidget        *widget;
+    GObject          *object;
     gchar             property_name[512];
     gboolean          righthanded;
     gint              threshold;
     gdouble           acceleration;
     gboolean          reverse_scrolling;
 
-    g_return_if_fail (GLADE_IS_XML (gxml));
-
     /* leave when locked */
     if (locked > 0)
         return;
 
     /* get the treeview */
-    treeview = glade_xml_get_widget (gxml, "mouse-devices-treeview");
+    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
 
     /* get the selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
@@ -727,31 +722,31 @@ mouse_settings_device_save (GladeXML *gxml)
         if (G_LIKELY (name))
         {
             /* store the button order */
-            widget = glade_xml_get_widget (gxml, "mouse-right-handed");
+            object = gtk_builder_get_object (builder, "mouse-right-handed");
             g_snprintf (property_name, sizeof (property_name), "/%s/RightHanded", name);
-            righthanded = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
+            righthanded = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
             if (!xfconf_channel_has_property (pointers_channel, property_name)
                 || xfconf_channel_get_bool (pointers_channel, property_name, TRUE) != righthanded)
                 xfconf_channel_set_bool (pointers_channel, property_name, righthanded);
 
             /* store reverse scrolling */
-            widget = glade_xml_get_widget (gxml, "mouse-reverse-scrolling");
+            object = gtk_builder_get_object (builder, "mouse-reverse-scrolling");
             g_snprintf (property_name, sizeof (property_name), "/%s/ReverseScrolling", name);
-            reverse_scrolling = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
+            reverse_scrolling = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
             if (xfconf_channel_get_bool (pointers_channel, property_name, FALSE) != reverse_scrolling)
                 xfconf_channel_set_bool (pointers_channel, property_name, reverse_scrolling);
 
             /* store the threshold */
-            widget = glade_xml_get_widget (gxml, "mouse-threshold-scale");
+            object = gtk_builder_get_object (builder, "mouse-threshold-scale");
             g_snprintf (property_name, sizeof (property_name), "/%s/Threshold", name);
-            threshold = gtk_range_get_value (GTK_RANGE (widget));
+            threshold = gtk_range_get_value (GTK_RANGE (object));
             if (xfconf_channel_get_int (pointers_channel, property_name, -1) != threshold)
                 xfconf_channel_set_int (pointers_channel, property_name, threshold);
 
             /* store the acceleration */
-            widget = glade_xml_get_widget (gxml, "mouse-acceleration-scale");
+            object = gtk_builder_get_object (builder, "mouse-acceleration-scale");
             g_snprintf (property_name, sizeof (property_name), "/%s/Acceleration", name);
-            acceleration = gtk_range_get_value (GTK_RANGE (widget));
+            acceleration = gtk_range_get_value (GTK_RANGE (object));
             if (xfconf_channel_get_double (pointers_channel, property_name, -1) != acceleration)
                 xfconf_channel_set_double (pointers_channel, property_name, acceleration);
 
@@ -767,9 +762,9 @@ static void
 mouse_settings_device_name_edited (GtkCellRendererText *renderer,
                                    gchar               *path,
                                    gchar               *new_name,
-                                   GladeXML            *gxml)
+                                   GtkBuilder          *builder)
 {
-    GtkWidget        *treeview;
+    GObject          *treeview;
     GtkTreeSelection *selection;
     gboolean          has_selection;
     GtkTreeModel     *model;
@@ -783,7 +778,7 @@ mouse_settings_device_name_edited (GtkCellRendererText *renderer,
         return;
 
     /* get the treeview's selection */
-    treeview = glade_xml_get_widget (gxml, "mouse-devices-treeview");
+    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
 
     /* get the selected item */
@@ -843,8 +838,8 @@ mouse_settings_device_xfconf_name (const gchar *name)
 
 
 static void
-mouse_settings_device_populate_store (GladeXML *gxml,
-                                      gboolean  create_store)
+mouse_settings_device_populate_store (GtkBuilder *builder,
+                                      gboolean    create_store)
 {
     Display           *xdisplay;
     XDeviceInfo       *device_list, *device_info;
@@ -855,7 +850,7 @@ mouse_settings_device_populate_store (GladeXML *gxml,
     XAnyClassPtr       ptr;
     GtkTreeIter        iter;
     GtkListStore      *store;
-    GtkWidget         *treeview;
+    GObject           *treeview;
     GtkTreePath       *path = NULL;
     GtkTreeViewColumn *column;
     GtkCellRenderer   *renderer;
@@ -872,7 +867,7 @@ mouse_settings_device_populate_store (GladeXML *gxml,
     gdk_error_trap_push ();
 
     /* get the treeview */
-    treeview = glade_xml_get_widget (gxml, "mouse-devices-treeview");
+    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
 
     /* create or get the store */
     if (G_LIKELY (create_store))
@@ -998,12 +993,12 @@ mouse_settings_device_populate_store (GladeXML *gxml,
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes ("", renderer, "markup", COLUMN_DEVICE_DISPLAY_NAME, NULL);
         g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, "editable", TRUE, NULL);
-        g_signal_connect (G_OBJECT (renderer), "edited", G_CALLBACK (mouse_settings_device_name_edited), gxml);
+        g_signal_connect (G_OBJECT (renderer), "edited", G_CALLBACK (mouse_settings_device_name_edited), builder);
         gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
         /* setup tree selection */
         gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-        g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (mouse_settings_device_selection_changed), gxml);
+        g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (mouse_settings_device_selection_changed), builder);
     }
 
     /* select the mouse in the tree */
@@ -1028,21 +1023,20 @@ mouse_settings_device_populate_store (GladeXML *gxml,
 static gboolean
 mouse_settings_device_update_sliders (gpointer user_data)
 {
-    GladeXML  *gxml = GLADE_XML (user_data);
-    GtkWidget *treeview;
-    GtkWidget *button;
+    GtkBuilder *builder = GTK_BUILDER (user_data);
+    GObject    *treeview, *button;
 
     GDK_THREADS_ENTER ();
 
     /* get the treeview */
-    treeview = glade_xml_get_widget (gxml, "mouse-devices-treeview");
+    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
 
     /* update */
-    mouse_settings_device_selection_changed (gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview)), gxml);
+    mouse_settings_device_selection_changed (gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview)), builder);
 
     /* make the button sensitive again */
-    button = glade_xml_get_widget (gxml, "mouse-reset");
-    gtk_widget_set_sensitive (button, TRUE);
+    button = gtk_builder_get_object (builder, "mouse-reset");
+    gtk_widget_set_sensitive (GTK_WIDGET (button), TRUE);
 
     GDK_THREADS_LEAVE ();
 
@@ -1061,10 +1055,10 @@ mouse_settings_device_list_changed_timeout_destroyed (gpointer user_data)
 
 
 static void
-mouse_settings_device_reset (GtkWidget *button,
-                             GladeXML  *gxml)
+mouse_settings_device_reset (GtkWidget  *button,
+                             GtkBuilder *builder)
 {
-    GtkWidget        *treeview;
+    GObject          *treeview;
     GtkTreeSelection *selection;
     gchar            *name, *property_name;
     gboolean          has_selection;
@@ -1076,7 +1070,7 @@ mouse_settings_device_reset (GtkWidget *button,
         return;
 
     /* get the treeview */
-    treeview = glade_xml_get_widget (gxml, "mouse-devices-treeview");
+    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
 
     /* get the selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
@@ -1104,7 +1098,7 @@ mouse_settings_device_reset (GtkWidget *button,
 
             /* update the sliders in 500ms */
             timeout_id = g_timeout_add_full (G_PRIORITY_LOW, 500, mouse_settings_device_update_sliders,
-                                             gxml, mouse_settings_device_list_changed_timeout_destroyed);
+                                             builder, mouse_settings_device_list_changed_timeout_destroyed);
         }
 
         /* cleanup */
@@ -1127,7 +1121,7 @@ mouse_settings_event_filter (GdkXEvent *xevent,
     if (event->type == device_presence_event_type
         && (dpn_event->devchange == DeviceAdded
             || dpn_event->devchange == DeviceRemoved))
-        mouse_settings_device_populate_store (GLADE_XML (user_data), FALSE);
+        mouse_settings_device_populate_store (GTK_BUILDER (user_data), FALSE);
 
     return GDK_FILTER_CONTINUE;
 }
@@ -1135,7 +1129,7 @@ mouse_settings_event_filter (GdkXEvent *xevent,
 
 
 static void
-mouse_settings_create_event_filter (GladeXML *gxml)
+mouse_settings_create_event_filter (GtkBuilder *builder)
 {
     Display     *xdisplay;
     XEventClass  event_class;
@@ -1158,7 +1152,7 @@ mouse_settings_create_event_filter (GladeXML *gxml)
     gdk_error_trap_pop ();
 
     /* add an event filter */
-    gdk_window_add_filter (NULL, mouse_settings_event_filter, gxml);
+    gdk_window_add_filter (NULL, mouse_settings_event_filter, builder);
 }
 #endif
 
@@ -1167,13 +1161,12 @@ mouse_settings_create_event_filter (GladeXML *gxml)
 gint
 main (gint argc, gchar **argv)
 {
-    GtkWidget         *dialog;
+    GObject           *dialog;
     GtkWidget         *plug;
-    GtkWidget         *plug_child;
-    GladeXML          *gxml;
+    GObject           *plug_child;
+    GtkBuilder        *builder;
     GError            *error = NULL;
-    GtkAdjustment     *adjustment;
-    GtkWidget         *widget;
+    GObject           *object;
     XExtensionVersion *version = NULL;
 
     /* setup translation domain */
@@ -1204,7 +1197,7 @@ main (gint argc, gchar **argv)
     if (G_UNLIKELY (opt_version))
     {
         g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
-        g_print ("%s\n", "Copyright (c) 2004-2008");
+        g_print ("%s\n", "Copyright (c) 2004-2009");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
         g_print ("\n");
@@ -1221,15 +1214,19 @@ main (gint argc, gchar **argv)
 
         return EXIT_FAILURE;
     }
-    
+
     /* check for Xi 1.4 */
     version = XGetExtensionVersion (GDK_DISPLAY (), INAME);
     if (!version || !version->present || version->major_version < 1 || version->minor_version < 4)
     {
         g_critical ("XI is not present or too old.");
-        
+
         return EXIT_FAILURE;
     }
+
+     /* hook to make sure the libxfce4ui library is linked */
+    if (xfce_titled_dialog_get_type () == 0)
+        return EXIT_FAILURE;
 
     /* open the xsettings and pointers channel */
     xsettings_channel = xfconf_channel_new ("xsettings");
@@ -1238,8 +1235,9 @@ main (gint argc, gchar **argv)
     if (G_LIKELY (pointers_channel && xsettings_channel))
     {
         /* load the glade xml file */
-        gxml = glade_xml_new_from_buffer (mouse_dialog_glade, mouse_dialog_glade_length, NULL, NULL);
-        if (G_LIKELY (gxml))
+        builder = gtk_builder_new ();
+        if (gtk_builder_add_from_string (builder, mouse_dialog_glade,
+                                         mouse_dialog_glade_length, &error) != 0)
         {
             /* lock */
             locked++;
@@ -1248,68 +1246,65 @@ main (gint argc, gchar **argv)
             display = gdk_display_get_default ();
 
             /* populate the devices treeview */
-            mouse_settings_device_populate_store (gxml, TRUE);
+            mouse_settings_device_populate_store (builder, TRUE);
 
             /* connect signals */
-            widget = glade_xml_get_widget (gxml, "mouse-acceleration-scale");
-            g_signal_connect_swapped (G_OBJECT (widget), "value-changed", G_CALLBACK (mouse_settings_device_save), gxml);
+            object = gtk_builder_get_object (builder, "mouse-acceleration-scale");
+            g_signal_connect_swapped (G_OBJECT (object), "value-changed", G_CALLBACK (mouse_settings_device_save), builder);
 
-            widget = glade_xml_get_widget (gxml, "mouse-threshold-scale");
-            g_signal_connect_swapped (G_OBJECT (widget), "value-changed", G_CALLBACK (mouse_settings_device_save), gxml);
+            object = gtk_builder_get_object (builder, "mouse-threshold-scale");
+            g_signal_connect_swapped (G_OBJECT (object), "value-changed", G_CALLBACK (mouse_settings_device_save), builder);
 
-            widget = glade_xml_get_widget (gxml, "mouse-left-handed");
-            g_signal_connect_swapped (G_OBJECT (widget), "toggled", G_CALLBACK (mouse_settings_device_save), gxml);
+            object = gtk_builder_get_object (builder, "mouse-left-handed");
+            g_signal_connect_swapped (G_OBJECT (object), "toggled", G_CALLBACK (mouse_settings_device_save), builder);
 
-            widget = glade_xml_get_widget (gxml, "mouse-right-handed");
-            g_signal_connect_swapped (G_OBJECT (widget), "toggled", G_CALLBACK (mouse_settings_device_save), gxml);
+            object = gtk_builder_get_object (builder, "mouse-right-handed");
+            g_signal_connect_swapped (G_OBJECT (object), "toggled", G_CALLBACK (mouse_settings_device_save), builder);
 
-            widget = glade_xml_get_widget (gxml, "mouse-reverse-scrolling");
-            g_signal_connect_swapped (G_OBJECT (widget), "toggled", G_CALLBACK (mouse_settings_device_save), gxml);
+            object = gtk_builder_get_object (builder, "mouse-reverse-scrolling");
+            g_signal_connect_swapped (G_OBJECT (object), "toggled", G_CALLBACK (mouse_settings_device_save), builder);
 
-            widget = glade_xml_get_widget (gxml, "mouse-reset");
-            g_signal_connect (G_OBJECT (widget), "clicked", G_CALLBACK (mouse_settings_device_reset), gxml);
+            object = gtk_builder_get_object (builder, "mouse-reset");
+            g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (mouse_settings_device_reset), builder);
 
 #ifdef HAVE_XCURSOR
             /* populate the themes treeview */
-            mouse_settings_themes_populate_store (gxml);
+            mouse_settings_themes_populate_store (builder);
 
             /* connect the cursor size in the cursor tab */
-            widget = glade_xml_get_widget (gxml, "mouse-cursor-size");
-            xfconf_g_property_bind (xsettings_channel, "/Gtk/CursorThemeSize", G_TYPE_INT, G_OBJECT (widget), "value");
+            object = gtk_builder_get_object (builder, "mouse-cursor-size");
+            xfconf_g_property_bind (xsettings_channel, "/Gtk/CursorThemeSize", G_TYPE_INT, G_OBJECT (object), "value");
 #else
             /* hide the themes tab */
-            widget = glade_xml_get_widget (gxml, "mouse-themes-hbox");
-            gtk_widget_hide (widget);
+            object = gtk_builder_get_object (builder, "mouse-themes-hbox");
+            gtk_widget_hide (GTK_WIDGET (object));
 #endif /* !HAVE_XCURSOR */
 
             /* connect sliders in the gtk tab */
-            adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse-dnd-threshold")));
-            xfconf_g_property_bind (xsettings_channel, "/Net/DndDragThreshold", G_TYPE_INT, G_OBJECT (adjustment), "value");
+            object = gtk_builder_get_object (builder, "mouse-dnd-threshold");
+            xfconf_g_property_bind (xsettings_channel, "/Net/DndDragThreshold", G_TYPE_INT, G_OBJECT (object), "value");
 
-            adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse-double-click-time")));
-            xfconf_g_property_bind (xsettings_channel, "/Net/DoubleClickTime", G_TYPE_INT, G_OBJECT (adjustment), "value");
+            object = gtk_builder_get_object (builder, "mouse-double-click-time");
+            xfconf_g_property_bind (xsettings_channel, "/Net/DoubleClickTime", G_TYPE_INT, G_OBJECT (object), "value");
 
-            adjustment = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (gxml, "mouse-double-click-distance")));
-            xfconf_g_property_bind (xsettings_channel, "/Net/DoubleClickDistance", G_TYPE_INT, G_OBJECT (adjustment), "value");
+            object = gtk_builder_get_object (builder, "mouse-double-click-distance");
+            xfconf_g_property_bind (xsettings_channel, "/Net/DoubleClickDistance", G_TYPE_INT, G_OBJECT (object), "value");
 
 #ifdef HAS_DEVICE_HOTPLUGGING
             /* create the event filter for device monitoring */
-            mouse_settings_create_event_filter (gxml);
+            mouse_settings_create_event_filter (builder);
 #endif
 
             if (G_UNLIKELY (opt_socket_id == 0))
             {
                 /* get the dialog */
-                dialog = glade_xml_get_widget (gxml, "mouse-dialog");
+                dialog = gtk_builder_get_object (builder, "mouse-dialog");
 
                 /* unlock */
                 locked--;
 
                 /* show the dialog */
                 gtk_dialog_run (GTK_DIALOG (dialog));
-
-                /* destroy the dialog */
-                gtk_widget_destroy (GTK_WIDGET (dialog));
             }
             else
             {
@@ -1322,9 +1317,9 @@ main (gint argc, gchar **argv)
                 gdk_notify_startup_complete ();
 
                 /* Get plug child widget */
-                plug_child = glade_xml_get_widget (gxml, "plug-child");
-                gtk_widget_reparent (plug_child, plug);
-                gtk_widget_show (plug_child);
+                plug_child = gtk_builder_get_object (builder, "plug-child");
+                gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
+                gtk_widget_show (GTK_WIDGET (plug_child));
 
                 /* Unlock */
                 locked--;
@@ -1332,10 +1327,15 @@ main (gint argc, gchar **argv)
                 /* Enter main loop */
                 gtk_main ();
             }
-
-            /* release the glade xml */
-            g_object_unref (G_OBJECT (gxml));
         }
+        else
+        {
+            g_error ("Failed to load the glade file: %s.", error->message);
+            g_error_free (error);
+        }
+
+        /* release the glade xml */
+        g_object_unref (G_OBJECT (builder));
 
         /* release the channels */
         g_object_unref (G_OBJECT (xsettings_channel));

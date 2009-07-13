@@ -21,9 +21,10 @@ xfce4_settings_manager_SOURCES = \
 xfce4_settings_manager_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
-	$(LIBXFCEGUI4_CFLAGS) \
+	$(LIBXFCE4UI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
-	$(EXO_CFLAGS)
+	$(EXO_CFLAGS) \
+	$(PLATFORM_CFLAGS)
 
 xfce4_settings_manager_LDFLAGS = \
 	-no-undefined \
@@ -32,7 +33,7 @@ xfce4_settings_manager_LDFLAGS = \
 xfce4_settings_manager_LDADD = \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
-	$(LIBXFCEGUI4_LIBS) \
+	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
 	$(EXO_LIBS)
 

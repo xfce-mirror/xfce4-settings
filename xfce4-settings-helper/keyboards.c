@@ -44,8 +44,6 @@
 
 
 
-static void xfce_keyboards_helper_class_init                (XfceKeyboardsHelperClass *klass);
-static void xfce_keyboards_helper_init                      (XfceKeyboardsHelper      *helper);
 static void xfce_keyboards_helper_finalize                  (GObject                  *object);
 static void xfce_keyboards_helper_set_auto_repeat_mode      (XfceKeyboardsHelper      *helper);
 static void xfce_keyboards_helper_set_repeat_rate           (XfceKeyboardsHelper      *helper);

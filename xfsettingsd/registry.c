@@ -445,11 +445,13 @@ xsettings_registry_notify(XSettingsRegistry *registry)
 {
     guchar *buffer, *pos;
     gint buf_len;
-
     gint prop_count = 0;
-    registry->priv->last_change_serial = registry->priv->serial;
-
     XSettingsRegistryEntry *entry = properties;
+    const gchar *value, *val;
+    gint name_len, value_len, str_length;
+    gint dpi;
+    
+    registry->priv->last_change_serial = registry->priv->serial;
 
     buf_len = 12;
 
@@ -467,7 +469,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
             case G_TYPE_STRING:
                 {
                     buf_len += 4;
-                    const gchar *value = g_value_get_string(&entry->value);
+                    value = g_value_get_string(&entry->value);
                     if(value)
                     {
                         buf_len += XSETTINGS_PAD(strlen(value), 4);
@@ -501,9 +503,6 @@ xsettings_registry_notify(XSettingsRegistry *registry)
     entry = properties;
     for(; entry->name != NULL; ++entry)
     {
-        gint name_len, value_len = 0, str_length;
-
-
         name_len = XSETTINGS_PAD(strlen(entry->name), 4);
         value_len = 0;
 
@@ -516,7 +515,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
             case G_TYPE_STRING:
                 *pos++ = 1; // String 
                 {
-                    const gchar *value = g_value_get_string(&entry->value);
+                    value = g_value_get_string(&entry->value);
                     if(value)
                     {
                         value_len = XSETTINGS_PAD(strlen(value), 4);
@@ -553,7 +552,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
         {
             case G_TYPE_STRING:
                 {
-                    const gchar *val = g_value_get_string(&entry->value);
+                    val = g_value_get_string(&entry->value);
 
                     if (val)
                     {
@@ -584,7 +583,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                  * this a bit more. */
                 if (strcmp (entry->name, "Xft/DPI") == 0)
                 {
-                    gint dpi = g_value_get_int (&entry->value);
+                    dpi = g_value_get_int (&entry->value);
 
                     if (dpi < 0)
                     {

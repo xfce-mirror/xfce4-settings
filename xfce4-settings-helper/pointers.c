@@ -54,8 +54,6 @@
 
 
 
-static void             xfce_pointers_helper_class_init                     (XfcePointersHelperClass *klass);
-static void             xfce_pointers_helper_init                           (XfcePointersHelper      *helper);
 static void             xfce_pointers_helper_finalize                       (GObject                 *object);
 static void             xfce_pointers_helper_change_button_mapping_swap     (guchar                  *buttonmap,
                                                                              gshort                   num_buttons,

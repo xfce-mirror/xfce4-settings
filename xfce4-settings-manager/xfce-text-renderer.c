@@ -53,8 +53,6 @@ enum
 
 
 
-static void xfce_text_renderer_class_init   (XfceTextRendererClass *klass);
-static void xfce_text_renderer_init         (XfceTextRenderer      *text_renderer);
 static void xfce_text_renderer_finalize     (GObject               *object);
 static void xfce_text_renderer_get_property (GObject               *object,
                                              guint                  prop_id,
@@ -110,36 +108,7 @@ struct _XfceTextRenderer
 
 
 
-static GObjectClass *xfce_text_renderer_parent_class;
-
-
-
-GType
-xfce_text_renderer_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      static const GTypeInfo info =
-      {
-        sizeof (XfceTextRendererClass),
-        NULL,
-        NULL,
-        (GClassInitFunc) xfce_text_renderer_class_init,
-        NULL,
-        NULL,
-        sizeof (XfceTextRenderer),
-        0,
-        (GInstanceInitFunc) xfce_text_renderer_init,
-        NULL,
-      };
-
-      type = g_type_register_static (GTK_TYPE_CELL_RENDERER, I_("XfceTextRenderer"), &info, 0);
-    }
-
-  return type;
-}
+G_DEFINE_TYPE (XfceTextRenderer, xfce_text_renderer, GTK_TYPE_CELL_RENDERER)
 
 
 
@@ -148,9 +117,6 @@ xfce_text_renderer_class_init (XfceTextRendererClass *klass)
 {
   GtkCellRendererClass *gtkcell_renderer_class;
   GObjectClass         *gobject_class;
-
-  /* determine the parent type class */
-  xfce_text_renderer_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = xfce_text_renderer_finalize;
@@ -461,7 +427,7 @@ xfce_pango_attr_list_wrap (PangoAttribute *attribute, ...)
  *
  * Return value: a #PangoAttrList for underlining text using a single line.
  **/
-PangoAttrList*
+static PangoAttrList*
 xfce_pango_attr_list_underline_single (void)
 {
   static PangoAttrList *attr_list = NULL;
@@ -483,11 +449,7 @@ xfce_text_renderer_render (GtkCellRenderer     *renderer,
 {
   XfceTextRenderer *text_renderer = XFCE_TEXT_RENDERER (renderer);
   GtkStateType      state;
-#if !GTK_CHECK_VERSION(2,8,0)
-  GdkPoint          points[8];
-#else
   cairo_t          *cr;
-#endif
   gint              x0, x1, y0, y1;
   gint              text_width;
   gint              text_height;
@@ -565,7 +527,6 @@ xfce_text_renderer_render (GtkCellRenderer     *renderer,
       x1 = x0 + text_width;
       y1 = y0 + text_height;
 
-#if GTK_CHECK_VERSION(2,8,0)
       /* Cairo produces nicer results than using a polygon
        * and so we use it directly if possible.
        */
@@ -582,20 +543,6 @@ xfce_text_renderer_render (GtkCellRenderer     *renderer,
       gdk_cairo_set_source_color (cr, &widget->style->base[state]);
       cairo_fill (cr);
       cairo_destroy (cr);
-#else
-      /* calculate a (more or less rounded) polygon */
-      points[0].x = x0 + 2; points[0].y = y0;
-      points[1].x = x1 - 2; points[1].y = y0;
-      points[2].x = x1;     points[2].y = y0 + 2;
-      points[3].x = x1;     points[3].y = y1 - 2;
-      points[4].x = x1 - 2; points[4].y = y1;
-      points[5].x = x0 + 2; points[5].y = y1;
-      points[6].x = x0;     points[6].y = y1 - 2;
-      points[7].x = x0;     points[7].y = y0 + 2;
-
-      /* render the indicator */
-      gdk_draw_polygon (window, widget->style->base_gc[state], TRUE, points, G_N_ELEMENTS (points));
-#endif
     }
 
   /* draw the focus indicator */

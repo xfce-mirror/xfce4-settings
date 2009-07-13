@@ -47,8 +47,6 @@ typedef struct _XfceWorkspacesHelperClass
     GObjectClass parent;
 } XfceWorkspacesHelperClass;
 
-static void xfce_workspaces_helper_class_init(XfceWorkspacesHelperClass *klass);
-static void xfce_workspaces_helper_init(XfceWorkspacesHelper *helper);
 static void xfce_workspaces_helper_finalize(GObject *obj);
 
 static void xfce_workspaces_helper_set_names_prop(XfceWorkspacesHelper *helper,
@@ -108,7 +106,7 @@ xfce_workspaces_helper_init(XfceWorkspacesHelper *helper)
         n_workspaces = wnck_screen_get_workspace_count(helper->screens[s]);
         if(G_UNLIKELY(!names))
             names = g_new0(gchar *, n_workspaces + 1);
-        else if(g_strv_length(names) < n_workspaces)
+        else if(g_strv_length(names) < (guint)n_workspaces)
             names = g_renew(gchar *, names, n_workspaces + 1);
 
         for(w = g_strv_length(names); w < n_workspaces; ++w) {
@@ -204,7 +202,7 @@ xfce_workspaces_helper_prop_changed(XfconfChannel *channel,
 {
     XfceWorkspacesHelper *helper = user_data;
     GPtrArray *names_arr;
-    gint s, i, n_workspaces;
+    guint s,i, n_workspaces;
     gchar **names;
     GdkDisplay *display;
     GdkScreen *screen;

@@ -37,7 +37,8 @@
 
 #include <dbus/dbus-glib.h>
 
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 #include <libxfce4kbd-private/xfce-shortcuts-provider.h>
 #include <libxfce4kbd-private/xfce-shortcuts-grabber.h>
@@ -54,8 +55,6 @@ enum
 
 
 
-static void            xfce_keyboard_shortcuts_helper_class_init         (XfceKeyboardShortcutsHelperClass *klass);
-static void            xfce_keyboard_shortcuts_helper_init               (XfceKeyboardShortcutsHelper      *helper);
 static void            xfce_keyboard_shortcuts_helper_finalize           (GObject                          *object);
 static void            xfce_keyboard_shortcuts_helper_get_property       (GObject                          *object,
                                                                           guint                             prop_id,
@@ -96,36 +95,7 @@ struct _XfceKeyboardShortcutsHelper
 
 
 
-static GObjectClass *xfce_keyboard_shortcuts_helper_parent_class = NULL;
-
-
-
-GType
-xfce_keyboard_shortcuts_helper_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      static const GTypeInfo info =
-      {
-        sizeof (XfceKeyboardShortcutsHelperClass),
-        NULL,
-        NULL,
-        (GClassInitFunc) xfce_keyboard_shortcuts_helper_class_init,
-        NULL,
-        NULL,
-        sizeof (XfceKeyboardShortcutsHelper),
-        0,
-        (GInstanceInitFunc) xfce_keyboard_shortcuts_helper_init,
-        NULL,
-      };
-
-      type = g_type_register_static (G_TYPE_OBJECT, "XfceKeyboardShortcutsHelper", &info, 0);
-    }
-
-  return type;
-}
+G_DEFINE_TYPE (XfceKeyboardShortcutsHelper, xfce_keyboard_shortcuts_helper, G_TYPE_OBJECT)
 
 
 
@@ -133,9 +103,6 @@ static void
 xfce_keyboard_shortcuts_helper_class_init (XfceKeyboardShortcutsHelperClass *klass)
 {
   GObjectClass *gobject_class;
-
-  /* Determine the parent type class */
-  xfce_keyboard_shortcuts_helper_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = xfce_keyboard_shortcuts_helper_finalize;
@@ -276,10 +243,8 @@ xfce_keyboard_shortcuts_helper_shortcut_activated (XfceShortcutsGrabber        *
                                                    XfceKeyboardShortcutsHelper *helper)
 {
   XfceShortcut *sc;
-  GdkDisplay   *display;
   GdkScreen    *screen;
   GError       *error = NULL;
-  gint          monitor;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
   g_return_if_fail (XFCE_IS_SHORTCUTS_PROVIDER (helper->provider));
@@ -296,20 +261,15 @@ xfce_keyboard_shortcuts_helper_shortcut_activated (XfceShortcutsGrabber        *
   if (G_UNLIKELY (sc == NULL))
     return;
 
-  display = gdk_display_get_default ();
-
   DBG ("command = %s", sc->command);
 
-  /* Determine active monitor */
-  screen = xfce_gdk_display_locate_monitor_with_pointer (display, &monitor);
-
-  /* Spawn command */
-  if (!G_UNLIKELY (!xfce_gdk_spawn_command_line_on_screen (screen, sc->command, &error)))
-    if (G_LIKELY (error != NULL))
-      {
-        g_error ("%s", error->message);
-        g_error_free (error);
-      }
+  /* Spawn command on active screen */
+  screen = xfce_gdk_screen_get_active (NULL);
+  if (!xfce_spawn_command_line_on_screen (screen, sc->command, FALSE, FALSE, &error))
+    {
+      g_error ("Failed to spawn command \"%s\": %s", sc->command, error->message);
+      g_error_free (error);
+    }
 
   xfce_shortcut_free (sc);
 }

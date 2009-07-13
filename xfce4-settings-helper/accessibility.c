@@ -54,8 +54,6 @@
 
 
 
-static void            xfce_accessibility_helper_class_init                     (XfceAccessibilityHelperClass *klass);
-static void            xfce_accessibility_helper_init                           (XfceAccessibilityHelper      *helper);
 static void            xfce_accessibility_helper_finalize                       (GObject                      *object);
 static void            xfce_accessibility_helper_set_xkb                        (XfceAccessibilityHelper      *helper,
                                                                                  gulong                        mask);

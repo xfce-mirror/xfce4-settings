@@ -28,11 +28,10 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "main_window.h"
 
@@ -50,7 +49,6 @@ main(gint argc, gchar **argv)
 {
     GtkDialog      *dialog;
     GError         *error = NULL;
-    gint            result = 0;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -80,7 +78,7 @@ main(gint argc, gchar **argv)
     if (G_UNLIKELY (opt_version))
     {
         g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
-        g_print ("%s\n", "Copyright (c) 2004-2008");
+        g_print ("%s\n", "Copyright (c) 2004-2009");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
         g_print ("\n");
@@ -100,10 +98,9 @@ main(gint argc, gchar **argv)
 
     dialog = xfce4_settings_editor_main_window_new();
 
-    while ((result != GTK_RESPONSE_CLOSE) && (result != GTK_RESPONSE_DELETE_EVENT) && (result != GTK_RESPONSE_NONE))
-    {
-        result = gtk_dialog_run (dialog);
-    }
+    gtk_dialog_run (dialog);
+
+    gtk_widget_destroy (GTK_WIDGET (dialog));
 
     /* shutdown xfconf */
     xfconf_shutdown ();

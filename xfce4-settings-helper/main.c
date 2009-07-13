@@ -47,7 +47,8 @@
 
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <libxfce4smclient-private/eggsmclient.h>
 
 #include "accessibility.h"
 #include "pointers.h"
@@ -67,16 +68,14 @@ static GdkFilterReturn xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
                                                                gpointer user_data);
 
 
-static SessionClient *sm_client = NULL;
+static EggSMClient *sm_client = NULL;
 
 static gboolean opt_version = FALSE;
 static gboolean opt_debug = FALSE;
-static gchar   *opt_sm_client_id = NULL;
 static GOptionEntry option_entries[] =
 {
     { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { "debug", 'd', 0, G_OPTION_ARG_NONE, &opt_debug, N_("Start in debug mode (don't fork to the background)"), NULL },
-    { "sm-client-id", 0, 0, G_OPTION_ARG_STRING, &opt_sm_client_id, N_("Client id used when resuming session"), NULL },
     { NULL }
 };
 
@@ -90,12 +89,6 @@ signal_handler (gint signum,
     gtk_main_quit ();
 }
 
-
-static void
-sm_client_die (gpointer client_data)
-{
-    signal_handler (SIGTERM, client_data);
-}
 
 
 static gboolean
@@ -131,43 +124,6 @@ xfce_settings_helper_set_autostart_enabled (gboolean enabled)
 }
 
 
-/* returns TRUE if we got started by the SM and our client ID was
- * valid, FALSE otherwise */
-static gboolean
-xfce_settings_helper_connect_session (int argc,
-                                      char **argv,
-                                      const gchar *sm_client_id,
-                                      gboolean debug_mode)
-{
-    /* we can't be sure that the SM will save the session later, so we only
-     * disable the autostart item if we're launching because we got *resumed*
-     * from a previous session. */
-
-    sm_client = client_session_new (argc, argv, NULL,
-                                    debug_mode ? SESSION_RESTART_IF_RUNNING
-                                               : SESSION_RESTART_IMMEDIATELY,
-                                    40);
-    sm_client->die = sm_client_die;
-    if (sm_client_id)
-        client_session_set_client_id (sm_client, sm_client_id);
-    if (!session_init (sm_client))
-    {
-        g_warning ("Failed to connect to session manager");
-        client_session_free (sm_client);
-        sm_client = NULL;
-        return FALSE;
-    }
-
-    if (sm_client_id && !g_ascii_strcasecmp (sm_client_id, sm_client->given_client_id))
-    {
-        /* we passed a client id, and got the same one back, which means
-         * we were definitely restarted as a part of the session. */
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
 
 #ifdef GDK_WINDOWING_X11
 static GdkFilterReturn
@@ -180,9 +136,9 @@ xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
 
     if (xe->type == SelectionClear && xe->xclient.window == xwin)
     {
-        if (sm_client)
-            client_session_set_restart_style (sm_client, SESSION_RESTART_IF_RUNNING);
-        signal_handler (SIGINT, NULL);
+        /*if (sm_client)
+            client_session_set_restart_style (sm_client, SESSION_RESTART_IF_RUNNING);*/
+        gtk_main_quit ();
     }
 
     return GDK_FILTER_CONTINUE;
@@ -253,48 +209,51 @@ xfce_settings_helper_acquire_selection (gboolean force)
 gint
 main (gint argc, gchar **argv)
 {
-    GError     *error = NULL;
-    gboolean    in_session;
-    GObject    *pointer_helper;
-    GObject    *keyboards_helper;
-    GObject    *accessibility_helper;
-    GObject    *shortcuts_helper;
-    GObject    *keyboard_layout_helper;
+    GError         *error = NULL;
+    GOptionContext *context;
+    gboolean        in_session;
+    GObject        *pointer_helper;
+    GObject        *keyboards_helper;
+    GObject        *accessibility_helper;
+    GObject        *shortcuts_helper;
+    GObject        *keyboard_layout_helper;
 #ifdef HAVE_XRANDR
-    GObject    *displays_helper;
+    GObject        *displays_helper;
 #endif
-    GObject    *workspaces_helper;
-    pid_t       pid;
-    guint       i;
-    const gint  signums[] = { SIGHUP, SIGINT, SIGQUIT, SIGTERM };
+    GObject        *workspaces_helper;
+    pid_t           pid;
+    guint           i;
+    const gint      signums[] = { SIGHUP, SIGINT, SIGQUIT, SIGTERM };
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
-    /* initialize the gthread system */
-    if (!g_thread_supported ())
-        g_thread_init (NULL);
+    /* create option context */
+    context = g_option_context_new (NULL);
+    g_option_context_add_main_entries (context, option_entries, GETTEXT_PACKAGE);
+    g_option_context_add_group (context, gtk_get_option_group (FALSE));
+    g_option_context_add_group (context, egg_sm_client_get_option_group ());
 
     /* initialize gtk */
-    if(!gtk_init_with_args (&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error))
-    {
-        if (G_LIKELY (error))
-        {
-            /* print error */
-            g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
-            g_print (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
-            g_print ("\n");
+    gtk_init (&argc, &argv);
 
-            /* cleanup */
-            g_error_free (error);
-        }
-        else
-        {
-            g_error ("Unable to open display.");
-        }
+    /* parse options */
+    if (!g_option_context_parse (context, &argc, &argv, &error))
+    {
+        /* print error */
+        g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
+        g_print (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
+        g_print ("\n");
+
+        /* cleanup */
+        g_error_free (error);
+        g_option_context_free (context);
 
         return EXIT_FAILURE;
     }
+
+    /* cleanup */
+    g_option_context_free (context);
 
     /* check if we should print version information */
     if (G_UNLIKELY (opt_version))
@@ -320,11 +279,14 @@ main (gint argc, gchar **argv)
 
     /* connect to session always, even if we quit below.  this way the
      * session manager won't wait for us to time out. */
-    in_session = xfce_settings_helper_connect_session (argc, argv, opt_sm_client_id, opt_debug);
+    sm_client = egg_sm_client_get ();
+    g_signal_connect (G_OBJECT (sm_client), "quit", G_CALLBACK (gtk_main_quit), NULL);
+    in_session = egg_sm_client_is_resumed (sm_client);
 
     if (!xfce_settings_helper_acquire_selection (in_session))
     {
         g_printerr ("%s is already running\n", G_LOG_DOMAIN);
+        g_object_unref (G_OBJECT (sm_client));
         return EXIT_FAILURE;
     }
 
@@ -383,6 +345,9 @@ main (gint argc, gchar **argv)
 
     /* shutdown xfconf */
     xfconf_shutdown ();
+
+    /* release sm client */
+    g_object_unref (G_OBJECT (sm_client));
 
     return EXIT_SUCCESS;
 }

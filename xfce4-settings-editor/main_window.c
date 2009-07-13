@@ -28,15 +28,15 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "xfce4-settings-editor_glade.h"
+#include "main_window.h"
 
-static GladeXML *gxml_main_window = NULL;
+static GtkBuilder *builder = NULL;
 static XfconfChannel *current_channel = NULL;
 static gchar *current_property = NULL;
 
@@ -71,47 +71,42 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data);
 static void
 cb_property_revert_button_clicked (GtkButton *button, gpointer user_data);
 
-/* 
- * Xfce 4.6 depends on glib 2.12, 
- * Glib 2.14 comes with g_hash_table_get_keys(), 
- * until then... use the following function with
- * g_hash_table_foreach()
- */
-#if !GLIB_CHECK_VERSION (2,14,0)
-static void
-xfce4_settings_get_list_keys_foreach (gpointer key,
-                                    gpointer value,
-                                    gpointer user_data)
-{
-    GList **keys = user_data;
-    *keys = g_list_prepend (*keys, key);
-}
-#endif
+
 
 GtkDialog *
-xfce4_settings_editor_main_window_new()
+xfce4_settings_editor_main_window_new(void)
 {
-    GtkWidget *dialog;
-    GtkWidget *channel_treeview;
-    GtkWidget *property_treeview;
+    GObject *dialog;
+    GObject *channel_treeview;
+    GObject *property_treeview;
     GtkListStore *channel_list_store;
     GtkTreeStore *property_tree_store;
     GtkCellRenderer *renderer;
     GtkTreeSelection *selection;
-    GtkWidget *property_edit_button, *property_new_button, *property_revert_button;
+    GObject *property_edit_button, *property_new_button, *property_revert_button;
 
-    if (!gxml_main_window)
+    if (!builder)
     {
-        gxml_main_window = glade_xml_new_from_buffer (xfce4_settings_editor_glade, xfce4_settings_editor_glade_length, NULL, NULL);
+        /* hook to make sure the libxfce4ui library is linked */
+        if (xfce_titled_dialog_get_type () == 0)
+            return NULL;
+
+        builder = gtk_builder_new ();
+        gtk_builder_add_from_string (builder, xfce4_settings_editor_glade, xfce4_settings_editor_glade_length, NULL);
+
+        dialog = gtk_builder_get_object (builder, "main_dialog");
+        g_object_weak_ref (G_OBJECT (dialog), (GWeakNotify) g_object_unref, builder);
     }
+    else
+    {
+        dialog = gtk_builder_get_object (builder, "main_dialog");
+    }
+    channel_treeview = gtk_builder_get_object (builder, "channel_treeview");
+    property_treeview = gtk_builder_get_object (builder, "property_treeview");
 
-    dialog = glade_xml_get_widget (gxml_main_window, "main_dialog");
-    channel_treeview = glade_xml_get_widget (gxml_main_window, "channel_treeview");
-    property_treeview = glade_xml_get_widget (gxml_main_window, "property_treeview");
-
-    property_edit_button = glade_xml_get_widget (gxml_main_window, "property_edit_button");
-    property_new_button = glade_xml_get_widget (gxml_main_window, "property_new_button");
-    property_revert_button = glade_xml_get_widget (gxml_main_window, "property_revert_button");
+    property_edit_button = gtk_builder_get_object (builder, "property_edit_button");
+    property_new_button = gtk_builder_get_object (builder, "property_new_button");
+    property_revert_button = gtk_builder_get_object (builder, "property_revert_button");
 
     /*
      * Channel List
@@ -126,7 +121,7 @@ xfce4_settings_editor_main_window_new()
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 1, _("Channel"), renderer, "text", 1, NULL);
 
-    /* 
+    /*
      * property list
      */
     property_tree_store = gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_STRING);
@@ -219,26 +214,24 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
     GValue child_type = {0,};
     GValue child_locked = {0,};
 
+    GHashTable *hash_table;
+    gchar **components;
+
     g_value_init (&child_name, G_TYPE_STRING);
     g_value_init (&child_locked, G_TYPE_BOOLEAN);
     g_value_init (&child_type, G_TYPE_STRING);
     g_value_init (&child_value, G_TYPE_STRING);
 
-    GHashTable *hash_table = xfconf_channel_get_properties (channel, NULL);
+    hash_table = xfconf_channel_get_properties (channel, NULL);
 
     if (hash_table != NULL)
     {
-        keys = NULL;
-#if !GLIB_CHECK_VERSION (2,14,0)
-        g_hash_table_foreach (hash_table, xfce4_settings_get_list_keys_foreach, &keys);
-#else
         keys = g_hash_table_get_keys (hash_table);
-#endif    
         for(_keys = keys; _keys != NULL; _keys = g_list_next (_keys))
         {
             key = _keys->data;
             value = g_hash_table_lookup (hash_table, key);
-            gchar **components = g_strsplit (key, "/", 0);
+            components = g_strsplit (key, "/", 0);
 
             /* components[0] will be empty because properties start with '/'*/
             for (i = 1; components[i]; ++i)
@@ -418,7 +411,7 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer use
     GtkTreeModel *model;
     GtkTreeIter iter;
     XfconfChannel *channel;
-    GtkWidget *property_treeview;
+    GObject *property_treeview;
     GtkTreeModel *tree_store = NULL;
     GValue value = {0, };
 
@@ -431,7 +424,7 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer use
     if (! gtk_tree_selection_get_selected (selection, &model, &iter))
         return;
 
-    property_treeview = glade_xml_get_widget (gxml_main_window, "property_treeview");
+    property_treeview = gtk_builder_get_object (builder, "property_treeview");
     tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
 
     gtk_tree_model_get_value (model, &iter, 1, &value);
@@ -481,7 +474,7 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, gpointer us
         if (prop_name)
             g_free (prop_name);
         prop_name = temp;
-        
+
         iter = p_iter;
     }
 
@@ -500,91 +493,87 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
     GValue value = {0, };
     gchar *prop_name = NULL;
 
-    GtkWidget *property_treeview = glade_xml_get_widget (gxml_main_window, "property_treeview");
+    GObject *property_treeview = gtk_builder_get_object (builder, "property_treeview");
     GtkTreeModel *tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
-    GtkWidget *dialog = glade_xml_get_widget (gxml_main_window, "edit_settings_dialog");
-    GtkWidget *prop_name_entry = glade_xml_get_widget (gxml_main_window, "property_name_entry");
-    GtkWidget *prop_type_combo = glade_xml_get_widget (gxml_main_window, "property_type_combo");
+    GObject *dialog = gtk_builder_get_object (builder, "edit_settings_dialog");
+    GObject *prop_name_entry = gtk_builder_get_object (builder, "property_name_entry");
+    GObject *prop_type_combo = gtk_builder_get_object (builder, "property_type_combo");
 
-    GtkWidget *prop_value_text_entry = glade_xml_get_widget (gxml_main_window, "property_value_text_entry");
-    GtkWidget *prop_value_spin_button = glade_xml_get_widget (gxml_main_window, "property_value_spin_button");
-    GtkWidget *prop_value_sw = glade_xml_get_widget (gxml_main_window, "property_value_sw");
-    GtkWidget *prop_value_checkbox = glade_xml_get_widget (gxml_main_window, "property_value_checkbutton");
-
-    GtkSizeGroup *sg = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-    gtk_size_group_add_widget (sg, glade_xml_get_widget (gxml_main_window, "label_name"));
-    gtk_size_group_add_widget (sg, glade_xml_get_widget (gxml_main_window, "label_type"));
+    GObject *prop_value_text_entry = gtk_builder_get_object (builder, "property_value_text_entry");
+    GObject *prop_value_spin_button = gtk_builder_get_object (builder, "property_value_spin_button");
+    GObject *prop_value_sw = gtk_builder_get_object (builder, "property_value_sw");
+    GObject *prop_value_checkbox = gtk_builder_get_object (builder, "property_value_checkbutton");
 
     /* Set the correct properties in the ui */
     gtk_entry_set_text (GTK_ENTRY(prop_name_entry), current_property);
     if (xfconf_channel_get_property (current_channel, current_property, &value))
     {
-        switch (G_VALUE_TYPE(&value))      
+        switch (G_VALUE_TYPE(&value))
         {
             case G_TYPE_STRING:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_STRING);
-                gtk_widget_hide (prop_value_spin_button);
-                gtk_widget_show (prop_value_text_entry);
-                gtk_widget_hide (prop_value_sw);
-                gtk_widget_hide (prop_value_checkbox);
+                gtk_widget_hide (GTK_WIDGET (prop_value_spin_button));
+                gtk_widget_show (GTK_WIDGET (prop_value_text_entry));
+                gtk_widget_hide (GTK_WIDGET (prop_value_sw));
+                gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
                 gtk_entry_set_text (GTK_ENTRY (prop_value_text_entry), g_value_get_string (&value));
                 break;
             case G_TYPE_INT:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_INT);
-                gtk_widget_show (prop_value_spin_button);
-                gtk_widget_hide (prop_value_text_entry);
-                gtk_widget_hide (prop_value_sw);
-                gtk_widget_hide (prop_value_checkbox);
+                gtk_widget_show (GTK_WIDGET (prop_value_spin_button));
+                gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
+                gtk_widget_hide (GTK_WIDGET (prop_value_sw));
+                gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
                 gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_int (&value));
                 gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), G_MININT, G_MAXINT);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
                 break;
             case G_TYPE_UINT:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_UINT);
-                gtk_widget_show (prop_value_spin_button);
-                gtk_widget_hide (prop_value_text_entry);
-                gtk_widget_hide (prop_value_sw);
-                gtk_widget_hide (prop_value_checkbox);
+                gtk_widget_show (GTK_WIDGET (prop_value_spin_button));
+                gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
+                gtk_widget_hide (GTK_WIDGET (prop_value_sw));
+                gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
                 gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_uint (&value));
                 gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), 0, G_MAXINT);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
                 break;
             case G_TYPE_INT64:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_INT64);
-                gtk_widget_show (prop_value_spin_button);
-                gtk_widget_hide (prop_value_text_entry);
-                gtk_widget_hide (prop_value_sw);
-                gtk_widget_hide (prop_value_checkbox);
+                gtk_widget_show (GTK_WIDGET (prop_value_spin_button));
+                gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
+                gtk_widget_hide (GTK_WIDGET (prop_value_sw));
+                gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
                 gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_int64 (&value));
                 gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), G_MININT64, G_MAXINT64);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
                 break;
             case G_TYPE_UINT64:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_UINT64);
-                gtk_widget_show (prop_value_spin_button);
-                gtk_widget_hide (prop_value_text_entry);
-                gtk_widget_hide (prop_value_sw);
-                gtk_widget_hide (prop_value_checkbox);
+                gtk_widget_show (GTK_WIDGET (prop_value_spin_button));
+                gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
+                gtk_widget_hide (GTK_WIDGET (prop_value_sw));
+                gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
                 gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_uint64 (&value));
                 gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), 0, G_MAXUINT64);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
                 break;
             case G_TYPE_DOUBLE:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_DOUBLE);
-                gtk_widget_show (prop_value_spin_button);
-                gtk_widget_hide (prop_value_text_entry);
-                gtk_widget_hide (prop_value_sw);
-                gtk_widget_hide (prop_value_checkbox);
+                gtk_widget_show (GTK_WIDGET (prop_value_spin_button));
+                gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
+                gtk_widget_hide (GTK_WIDGET (prop_value_sw));
+                gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
                 gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_double (&value));
                 gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), G_MINDOUBLE, G_MAXDOUBLE);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 2);
                 break;
             case G_TYPE_BOOLEAN:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_BOOLEAN);
-                gtk_widget_hide (prop_value_spin_button);
-                gtk_widget_hide (prop_value_text_entry);
-                gtk_widget_hide (prop_value_sw);
-                gtk_widget_show (prop_value_checkbox);
+                gtk_widget_hide (GTK_WIDGET (prop_value_spin_button));
+                gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
+                gtk_widget_hide (GTK_WIDGET (prop_value_sw));
+                gtk_widget_show (GTK_WIDGET (prop_value_checkbox));
                 gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prop_value_checkbox), g_value_get_boolean (&value));
                 break;
             default:
@@ -596,45 +585,45 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
     {
         gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_EMPTY);
     }
-    
+
     if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_APPLY)
     {
-        gtk_widget_hide (dialog);
+        gtk_widget_hide (GTK_WIDGET (dialog));
         switch (gtk_combo_box_get_active (GTK_COMBO_BOX (prop_type_combo)))
         {
             case PROP_TYPE_EMPTY:
                 break;
             case PROP_TYPE_STRING:
-                g_value_set_string (&value, gtk_entry_get_text (GTK_ENTRY (prop_value_text_entry))); 
+                g_value_set_string (&value, gtk_entry_get_text (GTK_ENTRY (prop_value_text_entry)));
                 break;
             case PROP_TYPE_INT:
-                g_value_set_int (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                g_value_set_int (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button)));
                 break;
             case PROP_TYPE_UINT:
-                g_value_set_uint (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                g_value_set_uint (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button)));
                 break;
             case PROP_TYPE_INT64:
-                g_value_set_int64 (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                g_value_set_int64 (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button)));
                 break;
             case PROP_TYPE_UINT64:
-                g_value_set_uint64 (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                g_value_set_uint64 (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button)));
                 break;
             case PROP_TYPE_DOUBLE:
-                g_value_set_double (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button))); 
+                g_value_set_double (&value, gtk_spin_button_get_value (GTK_SPIN_BUTTON (prop_value_spin_button)));
                 break;
             case PROP_TYPE_BOOLEAN:
-                g_value_set_boolean (&value, gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (prop_value_checkbox))); 
+                g_value_set_boolean (&value, gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (prop_value_checkbox)));
                 break;
             case PROP_TYPE_ARRAY:
                 break;
-        }   
+        }
         xfconf_channel_set_property (current_channel, current_property, &value);
         gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
         load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
     }
     else
     {
-        gtk_widget_hide (dialog);
+        gtk_widget_hide (GTK_WIDGET (dialog));
     }
 
     if (prop_name)
@@ -650,13 +639,13 @@ static void
 cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
 {
     GtkWidget *dialog;
-    GtkWidget *property_treeview;
+    GObject *property_treeview;
     GtkTreeModel *tree_store = NULL;
 
     if (xfconf_channel_is_property_locked (current_channel, current_property))
     {
         dialog = gtk_message_dialog_new_with_markup (
-                                     GTK_WINDOW (glade_xml_get_widget (gxml_main_window, "main_window")),
+                                     GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
                                      0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
                                      _("Property \"<b>%s</b>\" cannot be reset because it is locked"),
                                      current_property);
@@ -666,13 +655,13 @@ cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
     else
     {
         dialog = gtk_message_dialog_new_with_markup (
-                                     GTK_WINDOW (glade_xml_get_widget (gxml_main_window, "main_window")),
+                                     GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
                                      0, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
                                      _("Are you sure you want to reset property \"<b>%s</b>\"?"),
                                      current_property);
         if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
         {
-            property_treeview = glade_xml_get_widget (gxml_main_window, "property_treeview");
+            property_treeview = gtk_builder_get_object (builder, "property_treeview");
             tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
             gtk_widget_hide (dialog);
             xfconf_channel_reset_property (current_channel, current_property, FALSE);

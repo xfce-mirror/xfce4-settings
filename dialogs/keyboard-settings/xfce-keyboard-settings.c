@@ -29,13 +29,12 @@
 
 #include <glib.h>
 #include <glib-object.h>
-
+#include <gdk/gdkx.h>
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 
 #include <exo/exo.h>
 #include <xfconf/xfconf.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4kbd-private/xfce-shortcuts-provider.h>
 #include <libxfce4kbd-private/xfce-shortcut-dialog.h>
 
@@ -56,14 +55,6 @@
 
 #define XFCE_KEYBOARD_SETTINGS_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettingsPrivate))
 
-
-
-/* Property identifiers */
-enum
-{
-  PROP_0,
-  PROP_GLADE_XML,
-};
 
 
 enum
@@ -94,18 +85,8 @@ typedef struct _XfceKeyboardShortcutInfo    XfceKeyboardShortcutInfo;
 
 
 
-static void                      xfce_keyboard_settings_class_init            (XfceKeyboardSettingsClass *klass);
-static void                      xfce_keyboard_settings_init                  (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_constructed           (GObject                   *object);
 static void                      xfce_keyboard_settings_finalize              (GObject                   *object);
-static void                      xfce_keyboard_settings_get_property          (GObject                   *object,
-                                                                               guint                      prop_id,
-                                                                               GValue                    *value,
-                                                                               GParamSpec                *pspec);
-static void                      xfce_keyboard_settings_set_property          (GObject                   *object,
-                                                                               guint                      prop_id,
-                                                                               const GValue              *value,
-                                                                               GParamSpec                *pspec);
 static void                      xfce_keyboard_settings_row_activated         (GtkTreeView               *tree_view,
                                                                                GtkTreePath               *path,
                                                                                GtkTreeViewColumn         *column,
@@ -138,7 +119,6 @@ static void                      xfce_keyboard_settings_reset_button_clicked  (X
 
 #ifdef HAVE_LIBXKLAVIER
 
-static gchar *                   xfce_keyboard_settings_model_description     (XklConfigItem             *config_item);
 static gboolean                  xfce_keyboard_settings_update_sensitive      (GtkToggleButton           *toggle,
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_system_default_cb     (GtkToggleButton           *toggle,
@@ -155,8 +135,6 @@ static void                      xfce_keyboard_settings_active_layout_cb      (G
                                                                                gchar                     *path_str,
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_update_layout_buttons (XfceKeyboardSettings      *settings);
-static void                      xfce_keyboard_settings_update_edit_button    (GtkTreeView               *tree_view,
-                                                                               XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_update_edit_button    (GtkTreeView               *tree_view,
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_edit_layout_button_cb (GtkWidget                 *widget,
@@ -179,8 +157,6 @@ static gchar *                   xfce_keyboard_settings_layout_selection      (X
 
 struct _XfceKeyboardSettingsPrivate
 {
-  GladeXML              *glade_xml;
-
   XfceShortcutsProvider *provider;
 
 #ifdef HAVE_LIBXKLAVIER
@@ -204,36 +180,7 @@ struct _XfceKeyboardShortcutInfo
 
 
 
-static GObjectClass *xfce_keyboard_settings_parent_class = NULL;
-
-
-
-GType
-xfce_keyboard_settings_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      static const GTypeInfo info =
-      {
-        sizeof (XfceKeyboardSettingsClass),
-        NULL,
-        NULL,
-        (GClassInitFunc) xfce_keyboard_settings_class_init,
-        NULL,
-        NULL,
-        sizeof (XfceKeyboardSettings),
-        0,
-        (GInstanceInitFunc) xfce_keyboard_settings_init,
-        NULL,
-      };
-
-      type = g_type_register_static (G_TYPE_OBJECT, "XfceKeyboardSettings", &info, 0);
-    }
-
-  return type;
-}
+G_DEFINE_TYPE (XfceKeyboardSettings, xfce_keyboard_settings, GTK_TYPE_BUILDER)
 
 
 
@@ -244,25 +191,9 @@ xfce_keyboard_settings_class_init (XfceKeyboardSettingsClass *klass)
 
   g_type_class_add_private (klass, sizeof (XfceKeyboardSettingsPrivate));
 
-  /* Determine the parent type class */
-  xfce_keyboard_settings_parent_class = g_type_class_peek_parent (klass);
-
   gobject_class = G_OBJECT_CLASS (klass);
-#if GLIB_CHECK_VERSION (2,14,0)
   gobject_class->constructed = xfce_keyboard_settings_constructed;
-#endif
   gobject_class->finalize = xfce_keyboard_settings_finalize;
-  gobject_class->get_property = xfce_keyboard_settings_get_property;
-  gobject_class->set_property = xfce_keyboard_settings_set_property;
-
-  g_object_class_install_property (gobject_class,
-                                   PROP_GLADE_XML,
-                                   g_param_spec_object ("glade-xml",
-                                                        "glade-xml",
-                                                        "glade-xml",
-                                                        GLADE_TYPE_XML,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_CONSTRUCT_ONLY));
 }
 
 
@@ -270,8 +201,9 @@ xfce_keyboard_settings_class_init (XfceKeyboardSettingsClass *klass)
 static void
 xfce_keyboard_settings_init (XfceKeyboardSettings *settings)
 {
+  GError *error = NULL;
+
   settings->priv = XFCE_KEYBOARD_SETTINGS_GET_PRIVATE (settings);
-  settings->priv->glade_xml = NULL;
 
   settings->priv->keyboards_channel = xfconf_channel_new ("keyboards");
   settings->priv->keyboard_layout_channel = xfconf_channel_new ("keyboard-layout");
@@ -282,6 +214,13 @@ xfce_keyboard_settings_init (XfceKeyboardSettings *settings)
                     G_CALLBACK (xfce_keyboard_settings_shortcut_added), settings);
   g_signal_connect (settings->priv->provider, "shortcut-removed",
                     G_CALLBACK (xfce_keyboard_settings_shortcut_removed), settings);
+
+  if (gtk_builder_add_from_string (GTK_BUILDER (settings), keyboard_dialog_glade,
+                                   keyboard_dialog_glade_length, &error) == 0)
+    {
+      g_error ("Failed to load the glade file: %s.", error->message);
+      g_error_free (error);
+    }
 }
 
 
@@ -296,45 +235,45 @@ xfce_keyboard_settings_constructed (GObject *object)
   GtkAdjustment        *xkb_key_repeat_delay_scale;
   GtkAdjustment        *net_cursor_blink_time_scale;
   GtkListStore         *list_store;
-  GtkWidget            *xkb_key_repeat_check;
-  GtkWidget            *xkb_key_repeat_box;
-  GtkWidget            *net_cursor_blink_check;
-  GtkWidget            *net_cursor_blink_box;
-  GtkWidget            *kbd_shortcuts_view;
-  GtkWidget            *button;
+  GObject              *xkb_key_repeat_check;
+  GObject              *xkb_key_repeat_box;
+  GObject              *net_cursor_blink_check;
+  GObject              *net_cursor_blink_box;
+  GObject              *kbd_shortcuts_view;
+  GObject              *button;
 #ifdef HAVE_LIBXKLAVIER
-  GtkWidget            *xkb_use_system_default_checkbutton;
-  GtkWidget            *xkb_tab_layout_vbox;
-  GtkWidget            *xkb_model_combo;
-  GtkWidget            *xkb_layout_view;
-  GtkWidget            *xkb_layout_add_button;
-  GtkWidget            *xkb_layout_edit_button;
-  GtkWidget            *xkb_layout_delete_button;
+  GObject              *xkb_use_system_default_checkbutton;
+  GObject              *xkb_tab_layout_vbox;
+  GObject              *xkb_model_combo;
+  GObject              *xkb_layout_view;
+  GObject              *xkb_layout_add_button;
+  GObject              *xkb_layout_edit_button;
+  GObject              *xkb_layout_delete_button;
 #endif /* HAVE_LIBXKLAVIER */
 
   /* XKB settings */
-  xkb_key_repeat_check = glade_xml_get_widget (settings->priv->glade_xml, "xkb_key_repeat_check");
-  xkb_key_repeat_box = glade_xml_get_widget (settings->priv->glade_xml, "xkb_key_repeat_box");
+  xkb_key_repeat_check = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_check");
+  xkb_key_repeat_box = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_box");
   exo_binding_new (G_OBJECT (xkb_key_repeat_check), "active", G_OBJECT (xkb_key_repeat_box), "sensitive");
   xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat", G_TYPE_BOOLEAN, G_OBJECT (xkb_key_repeat_check), "active");
 
-  xkb_key_repeat_rate_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (settings->priv->glade_xml, "xkb_key_repeat_rate_scale")));
+  xkb_key_repeat_rate_scale = gtk_range_get_adjustment (GTK_RANGE (gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_rate_scale")));
   xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Rate", G_TYPE_INT, G_OBJECT (xkb_key_repeat_rate_scale), "value");
 
-  xkb_key_repeat_delay_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (settings->priv->glade_xml, "xkb_key_repeat_delay_scale")));
+  xkb_key_repeat_delay_scale = gtk_range_get_adjustment (GTK_RANGE (gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_delay_scale")));
   xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Delay", G_TYPE_INT, G_OBJECT (xkb_key_repeat_delay_scale), "value");
 
   /* XSETTINGS */
-  net_cursor_blink_check = glade_xml_get_widget (settings->priv->glade_xml, "net_cursor_blink_check");
-  net_cursor_blink_box = glade_xml_get_widget (settings->priv->glade_xml, "net_cursor_blink_box");
+  net_cursor_blink_check = gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_check");
+  net_cursor_blink_box = gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_box");
   exo_binding_new (G_OBJECT (net_cursor_blink_check), "active", G_OBJECT (net_cursor_blink_box), "sensitive");
   xfconf_g_property_bind (settings->priv->xsettings_channel, "/Net/CursorBlink", G_TYPE_BOOLEAN, G_OBJECT (net_cursor_blink_check), "active");
 
-  net_cursor_blink_time_scale = gtk_range_get_adjustment (GTK_RANGE (glade_xml_get_widget (settings->priv->glade_xml, "net_cursor_blink_time_scale")));
+  net_cursor_blink_time_scale = gtk_range_get_adjustment (GTK_RANGE (gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_time_scale")));
   xfconf_g_property_bind (settings->priv->xsettings_channel, "/NetCursorBlinkTime", G_TYPE_INT, G_OBJECT (net_cursor_blink_time_scale), "value");
 
   /* Configure shortcuts tree view */
-  kbd_shortcuts_view = glade_xml_get_widget (settings->priv->glade_xml, "kbd_shortcuts_view");
+  kbd_shortcuts_view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
   gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (kbd_shortcuts_view)), GTK_SELECTION_MULTIPLE);
   g_signal_connect (kbd_shortcuts_view, "row-activated", G_CALLBACK (xfce_keyboard_settings_row_activated), settings);
 
@@ -354,16 +293,15 @@ xfce_keyboard_settings_constructed (GObject *object)
   gtk_tree_view_append_column (GTK_TREE_VIEW (kbd_shortcuts_view), column);
 
   /* Connect to add button */
-  button = glade_xml_get_widget (settings->priv->glade_xml, "add_shortcut_button");
+  button = gtk_builder_get_object (GTK_BUILDER (settings), "add_shortcut_button");
   g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfce_keyboard_settings_add_button_clicked), settings);
 
   /* Connect to remove button */
-  button = glade_xml_get_widget (settings->priv->glade_xml, "delete_shortcut_button");
+  button = gtk_builder_get_object (GTK_BUILDER (settings), "delete_shortcut_button");
   g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfce_keyboard_settings_delete_button_clicked), settings);
 
   /* Connect to reset button */
-  button = glade_xml_get_widget (settings->priv->glade_xml, "reset_shortcuts_button");
-  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock (GTK_STOCK_REVERT_TO_SAVED, GTK_ICON_SIZE_BUTTON));
+  button = gtk_builder_get_object (GTK_BUILDER (settings), "reset_shortcuts_button");
   g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfce_keyboard_settings_reset_button_clicked), settings);
 
   xfce_keyboard_settings_initialize_shortcuts (settings);
@@ -381,11 +319,11 @@ xfce_keyboard_settings_constructed (GObject *object)
   xkl_config_registry_load (settings->priv->xkl_registry);
 
   /* Tab */
-  xkb_tab_layout_vbox = glade_xml_get_widget (settings->priv->glade_xml, "xkb_tab_layout_vbox");
+  xkb_tab_layout_vbox = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_tab_layout_vbox");
   gtk_widget_show (GTK_WIDGET (xkb_tab_layout_vbox));
 
   /* USe system defaults, ie disable options */
-  xkb_use_system_default_checkbutton = glade_xml_get_widget (settings->priv->glade_xml, "xkb_use_system_default_checkbutton");
+  xkb_use_system_default_checkbutton = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_use_system_default_checkbutton");
   xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
                              (GObject *) xkb_use_system_default_checkbutton, "active");
   xfce_keyboard_settings_update_sensitive (GTK_TOGGLE_BUTTON (xkb_use_system_default_checkbutton), settings);
@@ -395,7 +333,7 @@ xfce_keyboard_settings_constructed (GObject *object)
                     settings);
 
   /* Keyboard model combo */
-  xkb_model_combo = glade_xml_get_widget (settings->priv->glade_xml, "xkb_model_combo");
+  xkb_model_combo = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_model_combo");
   gtk_cell_layout_clear (GTK_CELL_LAYOUT (xkb_model_combo));
   renderer = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (xkb_model_combo), renderer, TRUE);
@@ -414,7 +352,7 @@ xfce_keyboard_settings_constructed (GObject *object)
 
   /* Keyboard layout/variant treeview */
   settings->priv->layout_selection_treestore = NULL;
-  xkb_layout_view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_view");
+  xkb_layout_view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
 
   renderer =  gtk_cell_renderer_toggle_new ();
   gtk_cell_renderer_toggle_set_radio (GTK_CELL_RENDERER_TOGGLE (renderer), TRUE);
@@ -431,9 +369,9 @@ xfce_keyboard_settings_constructed (GObject *object)
   g_signal_connect (G_OBJECT (xkb_layout_view), "cursor-changed", G_CALLBACK (xfce_keyboard_settings_update_edit_button), settings);
 
   /* Layout buttons */
-  xkb_layout_add_button = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_add_button");
-  xkb_layout_edit_button = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_edit_button");
-  xkb_layout_delete_button = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_delete_button");
+  xkb_layout_add_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_add_button");
+  xkb_layout_edit_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_edit_button");
+  xkb_layout_delete_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_delete_button");
 
   g_signal_connect (G_OBJECT (xkb_layout_add_button),    "clicked", G_CALLBACK (xfce_keyboard_settings_add_layout_button_cb), settings);
   g_signal_connect (G_OBJECT (xkb_layout_edit_button),   "clicked", G_CALLBACK (xfce_keyboard_settings_edit_layout_button_cb), settings);
@@ -456,56 +394,9 @@ xfce_keyboard_settings_finalize (GObject *object)
   xkl_engine_stop_listen (settings->priv->xkl_engine);
 #endif /* HAVE_LIBXKLAVIER */
 
-  g_object_unref (settings->priv->provider);
+  g_object_unref (G_OBJECT (settings->priv->provider));
 
   (*G_OBJECT_CLASS (xfce_keyboard_settings_parent_class)->finalize) (object);
-}
-
-
-
-static void
-xfce_keyboard_settings_get_property (GObject    *object,
-                                     guint       prop_id,
-                                     GValue     *value,
-                                     GParamSpec *pspec)
-{
-  XfceKeyboardSettings *settings = XFCE_KEYBOARD_SETTINGS (object);
-
-  switch (prop_id)
-    {
-    case PROP_GLADE_XML:
-      g_value_set_object (value, settings->priv->glade_xml);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-    }
-}
-
-
-
-static void
-xfce_keyboard_settings_set_property (GObject      *object,
-                                     guint         prop_id,
-                                     const GValue *value,
-                                     GParamSpec   *pspec)
-{
-  XfceKeyboardSettings *settings = XFCE_KEYBOARD_SETTINGS (object);
-
-  switch (prop_id)
-    {
-    case PROP_GLADE_XML:
-      if (GLADE_IS_XML (settings->priv->glade_xml))
-        g_object_unref (settings->priv->glade_xml);
-
-      settings->priv->glade_xml = g_value_get_object (value);
-
-      g_object_notify (object, "glade-xml");
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-    }
 }
 
 
@@ -513,19 +404,7 @@ xfce_keyboard_settings_set_property (GObject      *object,
 XfceKeyboardSettings *
 xfce_keyboard_settings_new (void)
 {
-  XfceKeyboardSettings *settings = NULL;
-  GladeXML             *glade_xml;
-
-  glade_xml = glade_xml_new_from_buffer (keyboard_dialog_glade, keyboard_dialog_glade_length, NULL, NULL);
-
-  if (G_LIKELY (glade_xml != NULL))
-    settings = g_object_new (XFCE_TYPE_KEYBOARD_SETTINGS, "glade-xml", glade_xml, NULL);
-
-#if !GLIB_CHECK_VERSION (2,14,0)
-  xfce_keyboard_settings_constructed (G_OBJECT (settings));
-#endif
-
-  return settings;
+  return g_object_new (XFCE_TYPE_KEYBOARD_SETTINGS, NULL);
 }
 
 
@@ -534,7 +413,7 @@ GtkWidget *
 xfce_keyboard_settings_create_dialog (XfceKeyboardSettings *settings)
 {
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), NULL);
-  return glade_xml_get_widget (settings->priv->glade_xml, "keyboard-settings-dialog");
+  return GTK_WIDGET (gtk_builder_get_object (GTK_BUILDER (settings), "keyboard-settings-dialog"));
 }
 
 
@@ -544,16 +423,16 @@ xfce_keyboard_settings_create_plug (XfceKeyboardSettings *settings,
                                     GdkNativeWindow       socket_id)
 {
   GtkWidget *plug;
-  GtkWidget *child;
+  GObject   *child;
 
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), NULL);
 
   plug = gtk_plug_new (socket_id);
   gtk_widget_show (plug);
 
-  child = glade_xml_get_widget (settings->priv->glade_xml, "plug-child");
-  gtk_widget_reparent (child, plug);
-  gtk_widget_show (child);
+  child = gtk_builder_get_object (GTK_BUILDER (settings), "plug-child");
+  gtk_widget_reparent (GTK_WIDGET (child), plug);
+  gtk_widget_show (GTK_WIDGET (child));
 
   return plug;
 }
@@ -588,14 +467,14 @@ _xfce_keyboard_settings_load_shortcut (XfceShortcut         *shortcut,
 {
   GtkTreeModel *tree_model;
   GtkTreeIter   iter;
-  GtkWidget    *tree_view;
+  GObject      *tree_view;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
   g_return_if_fail (shortcut != NULL);
 
   DBG ("property = %s, shortcut = %s, command = %s", shortcut->property_name, shortcut->shortcut, shortcut->command);
 
-  tree_view = glade_xml_get_widget (settings->priv->glade_xml, "kbd_shortcuts_view");
+  tree_view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree_view));
 
   gtk_list_store_append (GTK_LIST_STORE (tree_model), &iter);
@@ -837,12 +716,12 @@ xfce_keyboard_settings_shortcut_added (XfceShortcutsProvider *provider,
 {
   XfceShortcut *sc;
   GtkTreeModel *model;
-  GtkWidget    *view;
+  GObject      *view;
   GtkTreeIter   iter;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
 
-  view = glade_xml_get_widget (settings->priv->glade_xml, "kbd_shortcuts_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
 
   sc = xfce_shortcuts_provider_get_shortcut (settings->priv->provider, shortcut);
@@ -889,11 +768,11 @@ xfce_keyboard_settings_shortcut_removed (XfceShortcutsProvider *provider,
                                          XfceKeyboardSettings  *settings)
 {
   GtkTreeModel *model;
-  GtkWidget    *view;
+  GObject      *view;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
 
-  view = glade_xml_get_widget (settings->priv->glade_xml, "kbd_shortcuts_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
 
   gtk_tree_model_foreach (model, (GtkTreeModelForeachFunc) _xfce_keyboard_settings_remove_shortcut,
@@ -908,7 +787,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
 {
   GtkWidget   *command_dialog;
   GtkWidget   *shortcut_dialog;
-  GtkWidget   *parent;
+  GObject      *parent;
   const gchar *shortcut;
   const gchar *command;
   gboolean     finished = FALSE;
@@ -926,7 +805,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
 
       if (G_UNLIKELY (response == GTK_RESPONSE_OK &&
                       g_utf8_strlen (command_dialog_get_command (COMMAND_DIALOG (command_dialog)), -1) == 0))
-        xfce_err (_("Shortcut command may not be empty."));
+        xfce_dialog_show_error (GTK_WINDOW (command_dialog), NULL, _("Shortcut command may not be empty."));
       else
         finished = TRUE;
     }
@@ -946,8 +825,8 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
       g_signal_connect (shortcut_dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
 
       /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
-      parent = glade_xml_get_widget (settings->priv->glade_xml, "keyboard-shortcuts-dialog");
-      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (shortcut_dialog), parent);
+      parent = gtk_builder_get_object (GTK_BUILDER (settings), "keyboard-shortcuts-dialog");
+      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (shortcut_dialog), GTK_WIDGET (parent));
 
       /* Only continue if the shortcut dialog succeeded */
       if (G_LIKELY (response == GTK_RESPONSE_OK))
@@ -976,7 +855,7 @@ xfce_keyboard_settings_delete_button_clicked (XfceKeyboardSettings *settings)
   GtkTreeModel     *model;
   GtkTreePath      *path;
   GtkTreeIter       iter;
-  GtkWidget        *view;
+  GObject          *view;
   GList            *rows;
   GList            *row_iter;
   GList            *row_references = NULL;
@@ -986,7 +865,7 @@ xfce_keyboard_settings_delete_button_clicked (XfceKeyboardSettings *settings)
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
 
-  view = glade_xml_get_widget (settings->priv->glade_xml, "kbd_shortcuts_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (view));
   rows = gtk_tree_selection_get_selected_rows (selection, &model);
 
@@ -1070,19 +949,18 @@ xfce_keyboard_settings_xkb_description (XklConfigItem *config_item)
 static gboolean
 xfce_keyboard_settings_update_sensitive (GtkToggleButton *toggle, XfceKeyboardSettings *settings)
 {
-  GtkWidget *xkb_model_frame;
-  GtkWidget *xkb_layout_frame;
-  gboolean   active;
+  GObject  *xkb_model_frame;
+  GObject  *xkb_layout_frame;
+  gboolean  active;
 
-  g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
-  g_return_if_fail (GLADE_IS_XML (settings->priv->glade_xml));
+  g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), FALSE);
 
   active = gtk_toggle_button_get_active (toggle);
-  xkb_model_frame = glade_xml_get_widget (settings->priv->glade_xml, "xkb_model_frame");
-  xkb_layout_frame = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_frame");
+  xkb_model_frame = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_model_frame");
+  xkb_layout_frame = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_frame");
 
-  gtk_widget_set_sensitive (xkb_model_frame, !active);
-  gtk_widget_set_sensitive (xkb_layout_frame, !active);
+  gtk_widget_set_sensitive (GTK_WIDGET (xkb_model_frame), !active);
+  gtk_widget_set_sensitive (GTK_WIDGET (xkb_layout_frame), !active);
 
   return active;
 }
@@ -1092,13 +970,10 @@ xfce_keyboard_settings_update_sensitive (GtkToggleButton *toggle, XfceKeyboardSe
 static void
 xfce_keyboard_settings_system_default_cb (GtkToggleButton *toggle, XfceKeyboardSettings *settings)
 {
-  GtkWidget *xkb_model_frame;
-  GtkWidget *xkb_layout_frame;
   GtkWidget *warning_dialog;
   gboolean   use_system_defaults;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
-  g_return_if_fail (GLADE_IS_XML (settings->priv->glade_xml));
 
   use_system_defaults = xfce_keyboard_settings_update_sensitive (toggle, settings);
   if (use_system_defaults)
@@ -1117,7 +992,7 @@ xfce_keyboard_settings_system_default_cb (GtkToggleButton *toggle, XfceKeyboardS
 static void
 xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
 {
-  GtkWidget    *view;
+  GObject      *view;
   GtkTreeModel *model;
   GtkTreeIter   iter;
   gboolean      active;
@@ -1127,7 +1002,7 @@ xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
   gchar        *layouts;
   gchar        *tmp;
 
-  view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
   gtk_tree_model_get_iter_first (model, &iter);
   gtk_tree_model_get (model, &iter, XKB_TREE_ACTIVE, &active, XKB_TREE_LAYOUTS, &val_layout, XKB_TREE_VARIANTS, &val_variant, -1);
@@ -1177,7 +1052,7 @@ static void
 xfce_keyboard_settings_init_layout (XfceKeyboardSettings *settings)
 {
   XklState     *xkl_state = NULL;
-  GtkWidget    *view;
+  GObject      *view;
   GtkTreeModel *model;
   GtkTreeIter   iter;
   gchar        *val_layout;
@@ -1200,7 +1075,7 @@ xfce_keyboard_settings_init_layout (XfceKeyboardSettings *settings)
   layouts = g_strsplit (val_layout, ",", 0);
   variants = g_strsplit (val_variant, ",", 0);
 
-  view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
 
   xkl_state = xkl_engine_get_current_state (settings->priv->xkl_engine);
@@ -1230,14 +1105,14 @@ xfce_keyboard_settings_add_model_to_combo (XklConfigRegistry    *config_registry
                                            XklConfigItem        *config_item,
                                            XfceKeyboardSettings *settings)
 {
-  GtkWidget    *view;
+  GObject      *view;
   GtkTreeModel *model;
   GtkTreeIter   iter;
   gchar        *model_name;
 
   model_name = xfce_keyboard_settings_xkb_description (config_item);
 
-  view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_model_combo");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_model_combo");
   model = gtk_combo_box_get_model (GTK_COMBO_BOX (view));
 
   gtk_list_store_append (GTK_LIST_STORE (model), &iter );
@@ -1250,7 +1125,7 @@ xfce_keyboard_settings_add_model_to_combo (XklConfigRegistry    *config_registry
 static void
 xfce_keyboard_settings_init_model (XfceKeyboardSettings *settings)
 {
-  GtkWidget    *view;
+  GObject      *view;
   GtkTreeModel *model;
   GtkTreeIter   iter;
   gchar        *id;
@@ -1258,7 +1133,7 @@ xfce_keyboard_settings_init_model (XfceKeyboardSettings *settings)
   gboolean      item;
   gboolean      found = FALSE;
 
-  view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_model_combo");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_model_combo");
   model = gtk_combo_box_get_model (GTK_COMBO_BOX (view));
 
   xkbmodel = xfconf_channel_get_string (settings->priv->keyboard_layout_channel, "/Default/XkbModel", settings->priv->xkl_rec_config->model);
@@ -1287,7 +1162,7 @@ xfce_keyboard_settings_active_layout_cb (GtkCellRendererToggle *cell,
                                          gchar                 *path_str,
                                          XfceKeyboardSettings  *settings)
 {
-  GtkWidget        *view;
+  GObject          *view;
   GtkTreeModel     *model;
   GtkTreeIter       iter;
   GtkTreePath      *path1,
@@ -1296,7 +1171,7 @@ xfce_keyboard_settings_active_layout_cb (GtkCellRendererToggle *cell,
                     group_id = 0;
   gboolean          selected = FALSE;
 
-  view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
   path1 = gtk_tree_path_new_from_string (path_str);
   column = g_object_get_data (G_OBJECT (cell), "column");
@@ -1339,23 +1214,23 @@ xfce_keyboard_settings_model_changed_cb (GtkComboBox          *combo,
 static void
 xfce_keyboard_settings_update_layout_buttons (XfceKeyboardSettings *settings)
 {
-  GtkWidget    *view;
+  GObject      *view;
   GtkTreeModel *model;
-  GtkWidget    *xkb_layout_add_button;
-  GtkWidget    *xkb_layout_delete_button;
+  GObject      *object;
   gint          n_layouts;
   gint          max_layouts;
 
-  xkb_layout_add_button = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_add_button");
-  xkb_layout_delete_button = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_delete_button");
-  view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
 
   n_layouts = gtk_tree_model_iter_n_children (model, NULL);
   max_layouts = xkl_engine_get_max_num_groups (settings->priv->xkl_engine);
 
-  gtk_widget_set_sensitive (xkb_layout_add_button, (n_layouts < max_layouts));
-  gtk_widget_set_sensitive (xkb_layout_delete_button, (n_layouts > 1));
+  object = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_add_button");
+  gtk_widget_set_sensitive (GTK_WIDGET (object), (n_layouts < max_layouts));
+
+  object = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_delete_button");
+  gtk_widget_set_sensitive (GTK_WIDGET (object), (n_layouts > 1));
 }
 
 
@@ -1364,14 +1239,14 @@ static void
 xfce_keyboard_settings_update_edit_button (GtkTreeView          *tree_view,
                                            XfceKeyboardSettings *settings)
 {
-  GtkWidget         *xkb_layout_edit_button;
+  GObject           *object;
   GtkTreePath       *path;
   GtkTreeViewColumn *column;
 
-  xkb_layout_edit_button = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_edit_button");
+  object = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_edit_button");
 
   gtk_tree_view_get_cursor (GTK_TREE_VIEW (tree_view), &path, &column);
-  gtk_widget_set_sensitive (xkb_layout_edit_button, (path != NULL));
+  gtk_widget_set_sensitive (GTK_WIDGET (object), (path != NULL));
 }
 
 
@@ -1381,14 +1256,14 @@ xfce_keyboard_settings_edit_layout_button_cb (GtkWidget            *widget,
                                               XfceKeyboardSettings *settings)
 {
   GtkTreeSelection *selection;
-  GtkWidget        *view;
+  GObject          *view;
   GtkTreeModel     *model;
   GtkTreeIter       iter;
   gchar            *layout;
   gchar           **strings;
 
   layout = xfce_keyboard_settings_layout_selection (settings);
-  view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   if (layout)
     {
       model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
@@ -1409,15 +1284,14 @@ static void
 xfce_keyboard_settings_add_layout_button_cb (GtkWidget            *widget,
                                              XfceKeyboardSettings *settings)
 {
-  GtkTreeSelection *selection;
-  GtkWidget        *view;
+  GObject          *view;
   GtkTreeModel     *model;
   GtkTreeIter       iter;
   gchar            *layout;
   gchar           **strings;
 
   layout = xfce_keyboard_settings_layout_selection (settings);
-  view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   if (layout)
     {
       model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
@@ -1438,12 +1312,12 @@ static void
 xfce_keyboard_settings_del_layout_button_cb (GtkWidget            *widget,
                                              XfceKeyboardSettings *settings)
 {
-  GtkWidget        *view;
+  GObject          *view;
   GtkTreeModel     *model;
   GtkTreeIter       iter;
   GtkTreeSelection *selection;
 
-  view = glade_xml_get_widget (settings->priv->glade_xml, "xkb_layout_view");
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (view));
 
   if (gtk_tree_selection_get_selected (selection, &model, &iter))
@@ -1462,14 +1336,13 @@ xfce_keyboard_settings_add_variant_to_list (XklConfigRegistry    *config_registr
                                             XklConfigItem        *config_item,
                                             XfceKeyboardSettings *settings)
 {
-  GtkTreeModel *model;
   GtkTreeStore *treestore;
   GtkTreeIter   iter;
-  GtkWidget    *treeview;
-  char         *variant;
+  GObject      *treeview;
+  gchar        *variant;
 
   variant = xfce_keyboard_settings_xkb_description (config_item);
-  treeview = glade_xml_get_widget (settings->priv->glade_xml, "layout_selection_view");
+  treeview = gtk_builder_get_object (GTK_BUILDER (settings), "layout_selection_view");
   treestore = GTK_TREE_STORE (gtk_tree_view_get_model (GTK_TREE_VIEW (treeview)));
   gtk_tree_store_append (treestore, &iter, &settings->priv->layout_selection_iter);
   gtk_tree_store_set (treestore, &iter,
@@ -1485,14 +1358,12 @@ xfce_keyboard_settings_add_layout_to_list (XklConfigRegistry    *config_registry
                                            XklConfigItem        *config_item,
                                            XfceKeyboardSettings *settings)
 {
-  GtkTreeModel *model;
-  GtkTreeIter   iter;
   GtkTreeStore *treestore;
-  GtkWidget    *treeview;
+  GObject      *treeview;
   gchar        *layout;
 
   layout = xfce_keyboard_settings_xkb_description (config_item);
-  treeview = glade_xml_get_widget (settings->priv->glade_xml, "layout_selection_view");
+  treeview = gtk_builder_get_object (GTK_BUILDER (settings), "layout_selection_view");
   treestore = GTK_TREE_STORE (gtk_tree_view_get_model (GTK_TREE_VIEW (treeview)));
   gtk_tree_store_append (treestore, &settings->priv->layout_selection_iter, NULL);
   gtk_tree_store_set (treestore, &settings->priv->layout_selection_iter,
@@ -1520,24 +1391,21 @@ xfce_keyboard_settings_layout_activate_cb (GtkTreeView       *tree_view,
 static gchar *
 xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings)
 {
-  GtkWidget         *keyboard_layout_selection_dialog;
-  GtkWidget         *layout_selection_ok_button;
-  GtkWidget         *layout_selection_cancel_button;
-  GtkWidget         *layout_selection_view;
+  GObject           *keyboard_layout_selection_dialog;
+  GObject           *layout_selection_view;
   GtkTreePath       *path;
   GtkCellRenderer   *renderer;
   GtkTreeModel      *model;
   GtkTreeIter        iter;
   GtkTreeViewColumn *column;
   GtkTreeSelection  *selection;
-  GtkTreeIter        selected_iter;
   gchar             *val_layout;
   gchar             *layout;
   gchar             *variant;
   gint               result;
 
-  keyboard_layout_selection_dialog = glade_xml_get_widget (settings->priv->glade_xml, "keyboard-layout-selection-dialog");
-  layout_selection_view = glade_xml_get_widget (settings->priv->glade_xml, "layout_selection_view");
+  keyboard_layout_selection_dialog = gtk_builder_get_object (GTK_BUILDER (settings), "keyboard-layout-selection-dialog");
+  layout_selection_view = gtk_builder_get_object (GTK_BUILDER (settings), "layout_selection_view");
 
   if (!settings->priv->layout_selection_treestore)
     {
@@ -1553,7 +1421,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings)
       g_signal_connect (GTK_TREE_VIEW (layout_selection_view), "row-activated", G_CALLBACK (xfce_keyboard_settings_layout_activate_cb), keyboard_layout_selection_dialog);
     }
   val_layout = NULL;
-  gtk_widget_show (keyboard_layout_selection_dialog);
+  gtk_widget_show (GTK_WIDGET (keyboard_layout_selection_dialog));
   result = gtk_dialog_run (GTK_DIALOG (keyboard_layout_selection_dialog));
   if (result)
     {
@@ -1577,7 +1445,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings)
       g_free (variant);
     }
 
-  gtk_widget_hide (keyboard_layout_selection_dialog);
+  gtk_widget_hide (GTK_WIDGET (keyboard_layout_selection_dialog));
   return val_layout;
 }
 

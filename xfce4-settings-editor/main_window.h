@@ -18,4 +18,4 @@
 
 
 GtkDialog *
-xfce4_settings_editor_main_window_new();
+xfce4_settings_editor_main_window_new(void);

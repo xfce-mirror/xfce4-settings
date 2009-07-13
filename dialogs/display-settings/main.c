@@ -31,10 +31,9 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
-#include <glade/glade.h>
 
 #include <xfconf/xfconf.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 
 #include <X11/Xlib.h>
@@ -117,7 +116,7 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
 
 static void
 display_setting_rotations_changed (GtkComboBox *combobox,
-                                   GladeXML    *gxml)
+                                   GtkBuilder  *builder)
 {
     gint value;
 
@@ -136,17 +135,17 @@ display_setting_rotations_changed (GtkComboBox *combobox,
 
 
 static void
-display_setting_rotations_populate (GladeXML *gxml)
+display_setting_rotations_populate (GtkBuilder *builder)
 {
     GtkTreeModel *model;
-    GtkWidget    *combobox;
+    GObject      *combobox;
     Rotation      rotations;
     Rotation      active_rotation;
     guint         n;
     GtkTreeIter   iter;
 
     /* get the combo box store and clear it */
-    combobox = glade_xml_get_widget (gxml, "randr-rotation");
+    combobox = gtk_builder_get_object (builder, "randr-rotation");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -185,7 +184,7 @@ display_setting_rotations_populate (GladeXML *gxml)
 
 static void
 display_setting_refresh_rates_changed (GtkComboBox *combobox,
-                                       GladeXML    *gxml)
+                                       GtkBuilder  *builder)
 {
     gint value;
 
@@ -204,10 +203,10 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
 
 
 static void
-display_setting_refresh_rates_populate (GladeXML *gxml)
+display_setting_refresh_rates_populate (GtkBuilder *builder)
 {
     GtkTreeModel *model;
-    GtkWidget    *combobox;
+    GObject      *combobox;
     gshort       *rates;
     gint          nrates;
     GtkTreeIter   iter;
@@ -215,7 +214,7 @@ display_setting_refresh_rates_populate (GladeXML *gxml)
     gint          n, active = -1;
     gshort        diff, active_diff = G_MAXSHORT;
 #ifdef HAS_RANDR_ONE_POINT_TWO
-    GtkWidget    *rescombo;
+    GObject      *rescombo;
     XRRModeInfo  *mode_info;
     gchar        *mode_name;
     gfloat        rate;
@@ -223,16 +222,16 @@ display_setting_refresh_rates_populate (GladeXML *gxml)
 #endif
 
     /* get the combo box store and clear it */
-    combobox = glade_xml_get_widget (gxml, "randr-refresh-rate");
+    combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
     /* get the selected resolution mode */
-    rescombo = glade_xml_get_widget (gxml, "randr-resolution");
+    rescombo = gtk_builder_get_object (builder, "randr-resolution");
     if (!display_setting_combo_box_get_value (GTK_COMBO_BOX (rescombo), (gint *) &active_mode))
         active_mode = 0;
-    
+
     if (xfce_randr)
     {
         /* find the selected resolution name */
@@ -314,7 +313,7 @@ display_setting_refresh_rates_populate (GladeXML *gxml)
 
 static void
 display_setting_resolutions_changed (GtkComboBox *combobox,
-                                     GladeXML    *gxml)
+                                     GtkBuilder  *builder)
 {
     gint value;
 
@@ -326,16 +325,16 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
         XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) = value;
 
     /* update refresh rates */
-    display_setting_refresh_rates_populate (gxml);
+    display_setting_refresh_rates_populate (builder);
 }
 
 
 
 static void
-display_setting_resolutions_populate (GladeXML *gxml)
+display_setting_resolutions_populate (GtkBuilder *builder)
 {
     GtkTreeModel  *model;
-    GtkWidget     *combobox;
+    GObject       *combobox;
     XRRScreenSize *screen_sizes;
     gint           n, nsizes;
     gchar         *name;
@@ -346,7 +345,7 @@ display_setting_resolutions_populate (GladeXML *gxml)
 #endif
 
     /* get the combo box store and clear it */
-    combobox = glade_xml_get_widget (gxml, "randr-resolution");
+    combobox = gtk_builder_get_object (builder, "randr-resolution");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -409,7 +408,7 @@ display_setting_resolutions_populate (GladeXML *gxml)
 
 static void
 display_settings_treeview_selection_changed (GtkTreeSelection *selection,
-                                             GladeXML         *gxml)
+                                             GtkBuilder       *builder)
 {
     GtkTreeModel *model;
     GtkTreeIter   iter;
@@ -432,19 +431,19 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
             xfce_randr_legacy->active_screen = active_id;
 
         /* update the combo boxes */
-        display_setting_resolutions_populate (gxml);
-        display_setting_rotations_populate (gxml);
+        display_setting_resolutions_populate (builder);
+        display_setting_rotations_populate (builder);
     }
 }
 
 
 
 static void
-display_settings_treeview_populate (GladeXML *gxml)
+display_settings_treeview_populate (GtkBuilder *builder)
 {
     gint              n;
     GtkListStore     *store;
-    GtkWidget        *treeview;
+    GObject          *treeview;
     GtkTreeIter       iter;
     gchar            *name;
     GtkTreeSelection *selection;
@@ -454,9 +453,9 @@ display_settings_treeview_populate (GladeXML *gxml)
                                 G_TYPE_STRING, /* COLUMN_OUTPUT_NAME */
                                 G_TYPE_STRING, /* COLUMN_OUTPUT_ICON_NAME */
                                 G_TYPE_INT);   /* COLUMN_OUTPUT_ID */
-    
+
     /* set the treeview model */
-    treeview = glade_xml_get_widget (gxml, "randr-outputs");
+    treeview = gtk_builder_get_object (builder, "randr-outputs");
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
 
@@ -479,7 +478,7 @@ display_settings_treeview_populate (GladeXML *gxml)
                                 COLUMN_OUTPUT_NAME, name,
                                 COLUMN_OUTPUT_ICON_NAME, "video-display",
                                 COLUMN_OUTPUT_ID, n, -1);
-            
+
             /* select active output */
             if (n == xfce_randr->active_output)
                 gtk_tree_selection_select_iter (selection, &iter);
@@ -503,7 +502,7 @@ display_settings_treeview_populate (GladeXML *gxml)
 
             /* cleanup */
             g_free (name);
-            
+
             /* select active screen */
             if (n == xfce_randr_legacy->active_screen)
                 gtk_tree_selection_select_iter (selection, &iter);
@@ -537,9 +536,9 @@ display_settings_combo_box_create (GtkComboBox *combobox)
 
 
 static void
-display_settings_dialog_response (GtkDialog *dialog,
-                                  gint       response_id,
-                                  GladeXML  *gxml)
+display_settings_dialog_response (GtkDialog  *dialog,
+                                  gint        response_id,
+                                  GtkBuilder *builder)
 {
     if (response_id == 1)
     {
@@ -561,7 +560,7 @@ display_settings_dialog_response (GtkDialog *dialog,
             xfce_randr_legacy_reload (xfce_randr_legacy);
 
         /* update dialog */
-        display_settings_treeview_populate (gxml);
+        display_settings_treeview_populate (builder);
     }
     else
     {
@@ -573,18 +572,16 @@ display_settings_dialog_response (GtkDialog *dialog,
 
 
 static GtkWidget *
-display_settings_dialog_new_from_xml (GladeXML *gxml)
+display_settings_dialog_new (GtkBuilder *builder)
 {
-    GtkWidget        *treeview;
+    GObject          *treeview;
     GtkCellRenderer  *renderer;
     GtkTreeSelection *selection;
-    GtkWidget        *combobox;
+    GObject          *combobox;
 
     /* get the treeview */
-    treeview = glade_xml_get_widget (gxml, "randr-outputs");
-#if GTK_CHECK_VERSION (2, 12, 0)
-        gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_OUTPUT_NAME);
-#endif
+    treeview = gtk_builder_get_object (builder, "randr-outputs");
+    gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_OUTPUT_NAME);
 
     /* icon renderer */
     renderer = gtk_cell_renderer_pixbuf_new ();
@@ -599,25 +596,25 @@ display_settings_dialog_new_from_xml (GladeXML *gxml)
     /* treeview selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_treeview_selection_changed), gxml);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_treeview_selection_changed), builder);
 
     /* setup the combo boxes */
-    combobox = glade_xml_get_widget (gxml, "randr-resolution");
+    combobox = gtk_builder_get_object (builder, "randr-resolution");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), gxml);
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
 
-    combobox = glade_xml_get_widget (gxml, "randr-refresh-rate");
+    combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_refresh_rates_changed), gxml);
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_refresh_rates_changed), builder);
 
-    combobox = glade_xml_get_widget (gxml, "randr-rotation");
+    combobox = gtk_builder_get_object (builder, "randr-rotation");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), gxml);
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
 
     /* populate the treeview */
-    display_settings_treeview_populate (gxml);
+    display_settings_treeview_populate (builder);
 
-    return glade_xml_get_widget (gxml, "display-dialog");
+    return GTK_WIDGET (gtk_builder_get_object (builder, "display-dialog"));
 }
 
 
@@ -626,7 +623,7 @@ gint
 main (gint argc, gchar **argv)
 {
     GtkWidget  *dialog;
-    GladeXML   *gxml;
+    GtkBuilder *builder;
     GError     *error = NULL;
     GdkDisplay *display;
     gboolean    succeeded = TRUE;
@@ -660,7 +657,7 @@ main (gint argc, gchar **argv)
     if (G_UNLIKELY (opt_version))
     {
         g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
-        g_print ("%s\n", "Copyright (c) 2004-2008");
+        g_print ("%s\n", "Copyright (c) 2004-2009");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
         g_print ("\n");
@@ -717,7 +714,7 @@ main (gint argc, gchar **argv)
                 /* show an error dialog the version is too old */
                 dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_NONE,
                                                  _("Failed to use the RandR extension"));
-                gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), error->message);
+                gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
                 gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE);
                 gtk_dialog_run (GTK_DIALOG (dialog));
                 gtk_widget_destroy (dialog);
@@ -728,13 +725,18 @@ main (gint argc, gchar **argv)
             }
         }
 
-        /* load the dialog glade xml */
-        gxml = glade_xml_new_from_buffer (display_dialog_glade, display_dialog_glade_length, NULL, NULL);
-        if (G_LIKELY (gxml))
+        /* hook to make sure the libxfce4ui library is linked */
+        if (xfce_titled_dialog_get_type () == 0)
+            return EXIT_FAILURE;
+
+        /* load the glade interface */
+        builder = gtk_builder_new ();
+        if (gtk_builder_add_from_string (builder, display_dialog_glade,
+                                         display_dialog_glade_length, &error) != 0)
         {
             /* build the dialog */
-            dialog = display_settings_dialog_new_from_xml (gxml);
-            g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), gxml);
+            dialog = display_settings_dialog_new (builder);
+            g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), builder);
 
 #if 0
 #ifdef HAS_RANDR_ONE_POINT_TWO
@@ -742,7 +744,7 @@ main (gint argc, gchar **argv)
 #endif
             {
                 /* destroy the devices box */
-                box = glade_xml_get_widget (gxml, "randr-devices-tab");
+                box = gtk_builder_get_object (builder, "randr-devices-tab");
                 gtk_widget_destroy (box);
             }
 #endif
@@ -752,15 +754,16 @@ main (gint argc, gchar **argv)
 
             /* enter the main loop */
             gtk_main ();
-
-            /* destroy the dialog */
-            if (GTK_IS_WIDGET (dialog))
-                gtk_widget_destroy (dialog);
-
-            /* release the glade xml */
-            g_object_unref (G_OBJECT (gxml));
         }
-        
+        else
+        {
+            g_error ("Failed to load the glade file: %s.", error->message);
+            g_error_free (error);
+        }
+
+        /* release the builder */
+        g_object_unref (G_OBJECT (builder));
+
         err1:
 
         /* release the channel */
@@ -781,5 +784,5 @@ main (gint argc, gchar **argv)
     xfconf_shutdown ();
 
     return (succeeded ? EXIT_SUCCESS : EXIT_FAILURE);
-    
+
 }

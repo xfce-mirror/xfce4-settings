@@ -3,19 +3,19 @@
 /*-
  * Copyright (c) 2008 Jannis Pohlmann <jannis@xfce.org>.
  *
- * This program is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published by 
- * the Free Software Foundation; either version 2 of the License, or (at 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but 
- * WITHOUT ANY WARRANTY; without even the implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  * MA  02111-1307  USA
  */
 
@@ -26,14 +26,12 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "command-dialog.h"
 
 
 
-static void command_dialog_class_init      (CommandDialogClass *klass);
-static void command_dialog_init            (CommandDialog      *dialog);
 static void command_dialog_dispose         (GObject             *object);
 static void command_dialog_finalize        (GObject             *object);
 static void command_dialog_create_contents (CommandDialog      *dialog,
@@ -58,36 +56,7 @@ struct _CommandDialog
 
 
 
-static GObjectClass *command_dialog_parent_class = NULL;
-
-
-
-GType
-command_dialog_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      static const GTypeInfo info = 
-        {
-          sizeof (CommandDialogClass),
-          NULL,
-          NULL,
-          (GClassInitFunc) command_dialog_class_init,
-          NULL,
-          NULL,
-          sizeof (CommandDialog),
-          0,
-          (GInstanceInitFunc) command_dialog_init,
-          NULL,
-        };
-
-      type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "CommandDialog", &info, 0);
-    }
-  
-  return type;
-}
+G_DEFINE_TYPE (CommandDialog, command_dialog, XFCE_TYPE_TITLED_DIALOG)
 
 
 
@@ -95,9 +64,6 @@ static void
 command_dialog_class_init (CommandDialogClass *klass)
 {
   GObjectClass *gobject_class;
-
-  /* Determine parent type class */
-  command_dialog_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->dispose = command_dialog_dispose;
@@ -136,7 +102,7 @@ command_dialog_new (const gchar *shortcut,
                     const gchar *action)
 {
   CommandDialog *dialog;
-  
+
   dialog = COMMAND_DIALOG (g_object_new (TYPE_COMMAND_DIALOG, NULL));
 
   command_dialog_create_contents (dialog, shortcut, action);
@@ -146,7 +112,7 @@ command_dialog_new (const gchar *shortcut,
 
 
 
-static void 
+static void
 command_dialog_create_contents (CommandDialog *dialog,
                                 const gchar   *shortcut,
                                 const gchar   *action)
@@ -195,7 +161,7 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
   gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 0, 0);
   gtk_widget_show (label);
-  
+
   hbox = gtk_hbox_new (FALSE, 6);
   gtk_table_attach (GTK_TABLE (table), hbox, 1, 2, 1, 2, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
   gtk_widget_show (hbox);
@@ -238,12 +204,12 @@ command_dialog_run (CommandDialog *dialog,
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
 
-  do 
+  do
     {
       response = gtk_dialog_run (GTK_DIALOG (dialog));
 
       if (G_UNLIKELY (response != GTK_RESPONSE_CANCEL && g_utf8_strlen (command_dialog_get_command (dialog), -1) == 0))
-        xfce_err (_("The command may not be empty."));
+        xfce_dialog_show_error (GTK_WINDOW (dialog), NULL, _("The command may not be empty."));
       else
         finished = TRUE;
     }
@@ -254,7 +220,7 @@ command_dialog_run (CommandDialog *dialog,
 
 
 
-static void 
+static void
 command_dialog_button_clicked (CommandDialog *dialog)
 {
   GtkWidget     *chooser;
@@ -263,9 +229,9 @@ command_dialog_button_clicked (CommandDialog *dialog)
 
   g_return_if_fail (IS_COMMAND_DIALOG (dialog));
 
-  chooser = gtk_file_chooser_dialog_new (_("Select command"), 
-                                         GTK_WINDOW (dialog), 
-                                         GTK_FILE_CHOOSER_ACTION_OPEN, 
+  chooser = gtk_file_chooser_dialog_new (_("Select command"),
+                                         GTK_WINDOW (dialog),
+                                         GTK_FILE_CHOOSER_ACTION_OPEN,
                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                          GTK_STOCK_OPEN, GTK_RESPONSE_OK, NULL);
 

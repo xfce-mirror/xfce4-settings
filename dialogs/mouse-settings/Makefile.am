@@ -17,12 +17,12 @@ xfce4_mouse_settings_SOURCES = \
 
 xfce4_mouse_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
-	$(GLIB_CFLAGS) \
-	$(GLADE_CFLAGS) \
-	$(LIBXFCEGUI4_CFLAGS) \
+	$(LIBXFCE4UTIL_CFLAGS) \
+	$(LIBXFCE4UI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(XI_CFLAGS) \
-	$(XFCONF_CFLAGS)
+	$(XFCONF_CFLAGS) \
+	$(PLATFORM_CFLAGS)
 
 xfce4_mouse_settings_LDFLAGS = \
 	-no-undefined \
@@ -30,9 +30,8 @@ xfce4_mouse_settings_LDFLAGS = \
 
 xfce4_mouse_settings_LDADD = \
 	$(GTK_LIBS) \
-	$(GLIB_LIBS) \
-	$(GLADE_LIBS) \
-	$(LIBXFCEGUI4_LIBS) \
+	$(LIBXFCE4UTIL_LIBS) \
+	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
 	$(XI_LIBS)
 

@@ -68,7 +68,7 @@ static GOptionEntry entries[] =
 };
 
 
-GdkFilterReturn
+static GdkFilterReturn
 manager_event_filter (GdkXEvent *xevent,
                       GdkEvent *event,
                       gpointer data)
@@ -96,7 +96,7 @@ manager_event_filter (GdkXEvent *xevent,
  *
  * Return value: TRUE if an XSETTINGS daemon is already running
  */
-gboolean
+static gboolean
 settings_daemon_check_running (Display *display, gint screen)
 {
     Atom atom;

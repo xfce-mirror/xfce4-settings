@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 
 typedef struct _XfceWorkspacesHelper  XfceWorkspacesHelper;
 
-GType xfce_workspaces_helper_get_type() G_GNUC_CONST;
+GType xfce_workspaces_helper_get_type(void) G_GNUC_CONST;
 
 G_END_DECLS
 

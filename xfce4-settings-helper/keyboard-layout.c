@@ -44,8 +44,6 @@
 
 #include "keyboard-layout.h"
 
-static void xfce_keyboard_layout_helper_class_init                (XfceKeyboardLayoutHelperClass *klass);
-static void xfce_keyboard_layout_helper_init                      (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_finalize                  (GObject                       *object);
 static void xfce_keyboard_layout_helper_set_model                 (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_layout                (XfceKeyboardLayoutHelper      *helper);
