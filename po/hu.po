@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-10 17:18+0200\n"
+"POT-Creation-Date: 2009-07-13 22:50+0200\n"
 "PO-Revision-Date: 2009-07-10 16:07+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at gnome dot hu>\n"
@@ -20,61 +20,65 @@ msgstr ""
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
-msgid "<b>Bounce Keys</b>"
-msgstr "<b>Billentyűszűrés</b>"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
-msgid "<b>Mouse Emulation</b>"
-msgstr "<b>Egéremuláció</b>"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
-msgid "<b>Slow Keys</b>"
-msgstr "<b>Lassú billentyűk</b>"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
-msgid "<b>Sticky Keys</b>"
-msgstr "<b>Ragadós billentyűk</b>"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "Acceleration _profile:"
 msgstr "Gyorsítási _profil:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
 msgid "Acceleration _time:"
 msgstr "Gyorsítási i_dő:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
 msgid "Acceptance _delay:"
 msgstr "Elf_ogadás késleltetése:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
 msgstr "Akadálymentesítés"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+#, fuzzy
+msgid "Bounce Keys"
+msgstr "Billentyűszűrés"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "Configure keyboard and mouse accessibility"
 msgstr "Billentyűzet és egér akadálymentesítésének beállítása"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr "Ragadós billentyűk kikap_csolása két billentyű megnyomásakor"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "K_eystroke delay:"
 msgstr "Billentyűleütés _késleltetése:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Keyboa_rd"
 msgstr "Bille_ntyűzet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Maximum _speed:"
 msgstr "Maximális _sebesség:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#, fuzzy
+msgid "Mouse Emulation"
+msgstr "<b>Egéremuláció</b>"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "R_epeat interval:"
 msgstr "Ismétlési idő_köz:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#, fuzzy
+msgid "Slow Keys"
+msgstr "Lassú billentyűk"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#, fuzzy
+msgid "Sticky Keys"
+msgstr "Ragadós billentyűk"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "The amount of time, in milliseconds, required between keystrokes"
@@ -198,52 +202,52 @@ msgstr "em"
 msgid "pixels/sec"
 msgstr "képpont/mp"
 
-#: ../dialogs/accessibility-settings/main.c:45
-#: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/accessibility-settings/main.c:44
+#: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:96
 msgid "Settings manager socket"
 msgstr "Beállításkezelő foglalat"
 
-#: ../dialogs/accessibility-settings/main.c:45
-#: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/accessibility-settings/main.c:44
+#: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:96
 msgid "SOCKET ID"
 msgstr "FOGLALATAZONOSÍTÓ"
 
-#: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:89
-#: ../dialogs/display-settings/main.c:83
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:44 ../xfce4-settings-helper/main.c:77
+#: ../dialogs/accessibility-settings/main.c:45
+#: ../dialogs/appearance-settings/main.c:88
+#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:97
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:77
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Verzióinformációk"
 
-#: ../dialogs/accessibility-settings/main.c:145
-#: ../dialogs/appearance-settings/main.c:815
-#: ../dialogs/display-settings/main.c:645
+#: ../dialogs/accessibility-settings/main.c:143
+#: ../dialogs/appearance-settings/main.c:773
+#: ../dialogs/display-settings/main.c:642
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1189 ../xfce4-settings-editor/main.c:65
-#: ../xfce4-settings-helper/main.c:285 ../xfce4-settings-manager/main.c:58
+#: ../dialogs/mouse-settings/main.c:1182 ../xfce4-settings-editor/main.c:63
+#: ../xfce4-settings-helper/main.c:245 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Segítségért adja ki az „%s --help” parancsot."
 
-#: ../dialogs/accessibility-settings/main.c:164
-#: ../dialogs/appearance-settings/main.c:834
-#: ../dialogs/display-settings/main.c:664
+#: ../dialogs/accessibility-settings/main.c:162
+#: ../dialogs/appearance-settings/main.c:792
+#: ../dialogs/display-settings/main.c:661
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:84
-#: ../xfce4-settings-helper/main.c:304 ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1201 ../xfce4-settings-editor/main.c:82
+#: ../xfce4-settings-helper/main.c:263 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Az Xfce fejlesztőcsapata. Minden jog fenntartva."
 
-#: ../dialogs/accessibility-settings/main.c:165
-#: ../dialogs/appearance-settings/main.c:835
-#: ../dialogs/display-settings/main.c:665
+#: ../dialogs/accessibility-settings/main.c:163
+#: ../dialogs/appearance-settings/main.c:793
+#: ../dialogs/display-settings/main.c:662
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1209 ../xfce4-settings-editor/main.c:85
-#: ../xfce4-settings-helper/main.c:305 ../xfce4-settings-manager/main.c:72
+#: ../dialogs/mouse-settings/main.c:1202 ../xfce4-settings-editor/main.c:83
+#: ../xfce4-settings-helper/main.c:264 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "A hibákat ide jelentse: <%s>."
@@ -253,71 +257,69 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "Billentyűzet és egér akadálymentesítésének javítása"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-msgid "<b>DPI</b>"
-msgstr "<b>DPI</b>"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
-msgid "<b>Default Fon_t</b>"
-msgstr "<b>_Alapértelmezett betűkészlet</b>"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-msgid "<b>Event sounds</b>"
-msgstr "<b>Eseményhangok</b>"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
-msgid "<b>Menus and Buttons</b>"
-msgstr "<b>Menük és gombok</b>"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
-msgid "<b>Rendering</b>"
-msgstr "<b>Megjelenítés</b>"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
-msgid "<b>_Toolbar Style</b>"
-msgstr "<b>Eszköz_társtílus</b>"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Az élsimítás javíthatja a képernyőn látható szöveg megjelenését"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
 msgstr "Megjelenés"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+msgid "Both"
+msgstr "Mindkettő"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "Both Horizontal"
+msgstr "Mindkettő vízszintesen"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid "Custom _DPI setting:"
 msgstr "Egyéni _DPI beállítás:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
 msgstr "Az asztali környezet megjelenésének személyre szabása"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+msgid "DPI"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+#, fuzzy
+msgid "Default Fon_t"
+msgstr "<b>_Alapértelmezett betűkészlet</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "Enable _anti-aliasing"
 msgstr "Élsi_mítás engedélyezése"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Enable _event sounds"
 msgstr "Esemény_hangok engedélyezése"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 msgid "Enable e_ditable accelerators"
 msgstr "Szerkeszthető gy_orsbillentyűk engedélyezése"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 msgid "Enable i_nput feedback sounds"
 msgstr "Be_vitelt visszajelző hangok engedélyezése"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr ""
 "Eseményhangok globális engedélyezése vagy letiltása („Canberra” támogatást "
 "igényel)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#, fuzzy
+msgid "Event sounds"
+msgstr "<b>Eseményhangok</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
@@ -325,7 +327,15 @@ msgstr ""
 "A TFT vagy LCD képernyőn megjelenő betűkészletek minősége jelentősen "
 "javítható a képernyő megfelelő képponton belüli sorrendjének kiválasztásával"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+msgid "Full"
+msgstr "Teljes"
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+msgid "Icons"
+msgstr "Ikonok"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
@@ -334,7 +344,7 @@ msgstr ""
 "A menüelemek gyorsbillentyűi módosíthatók az egérrel a menüre mutatva és az "
 "új gyorsbillentyű-kombináció lenyomásával"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw "
 "the font; pick whichever looks best according to personal preference"
@@ -343,38 +353,61 @@ msgstr ""
 "kirajzolásához további tanácsokat adnak; válassza ki a beállított "
 "betűkészlettel a legszebb eredményt adó lehetőséget"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Medium"
+msgstr "Közepes"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#, fuzzy
+msgid "Menus and Buttons"
+msgstr "<b>Menük és gombok</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/main.c:670
+msgid "None"
+msgstr "Nincs"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too small"
 msgstr ""
 "Az észlelt monitorfelbontás felülbírálása, ha a betűk túl nagynak vagy túl "
 "kicsinek tűnnek"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#, fuzzy
+msgid "Rendering"
+msgstr "<b>Megjelenítés</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Select a default font"
 msgstr "Válasszon alapértelmezett betűkészletet"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid "Show images in _menus"
 msgstr "Képek megjelenítése a _menükben"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Show images on _buttons"
 msgstr "Képek megjelenítése a _gombokon"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+msgid "Slight"
+msgstr "Enyhe"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Specify what should be displayed in toolbar items"
 msgstr "Hogyan jelenjenek meg az eszköztárelemek"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Megjelenjenek-e ikonok a menüelemek mellett"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Megjelenjenek-e ikonok a gombokon a szöveg mellett"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
@@ -382,15 +415,19 @@ msgstr ""
 "Az egérkattintás és más felhasználói bevitel hatására hallatsszanak-e az "
 "eseményhangok"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "St_yle"
 msgstr "Stíl_us"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Sub-_pixel order:"
 msgstr "Képp_onton belüli sorrend:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+msgid "Text"
+msgstr "Szöveg"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
@@ -398,70 +435,42 @@ msgstr ""
 "Ez a betűkészlet lesz az alapértelmezett a felhasználói felület szövegének "
 "rajzolásakor"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "_Fonts"
 msgstr "Betűkés_zletek"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "_Hinting:"
 msgstr "_Hinting:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "_Icons"
 msgstr "I_konok"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "_Settings"
 msgstr "B_eállítások"
 
-#: ../dialogs/appearance-settings/main.c:675
-#: ../dialogs/appearance-settings/main.c:750
-msgid "None"
-msgstr "Nincs"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#, fuzzy
+msgid "_Toolbar Style"
+msgstr "<b>Eszköz_társtílus</b>"
 
-#: ../dialogs/appearance-settings/main.c:679
+#: ../dialogs/appearance-settings/main.c:674
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:683
+#: ../dialogs/appearance-settings/main.c:678
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:687
+#: ../dialogs/appearance-settings/main.c:682
 msgid "Vertical RGB"
 msgstr "Függőleges RGB"
 
-#: ../dialogs/appearance-settings/main.c:691
+#: ../dialogs/appearance-settings/main.c:686
 msgid "Vertical BGR"
 msgstr "Függőleges BGR"
-
-#: ../dialogs/appearance-settings/main.c:732
-msgid "Icons"
-msgstr "Ikonok"
-
-#: ../dialogs/appearance-settings/main.c:733
-msgid "Text"
-msgstr "Szöveg"
-
-#: ../dialogs/appearance-settings/main.c:734
-msgid "Both"
-msgstr "Mindkettő"
-
-#: ../dialogs/appearance-settings/main.c:735
-msgid "Both Horizontal"
-msgstr "Mindkettő vízszintesen"
-
-#: ../dialogs/appearance-settings/main.c:751
-msgid "Slight"
-msgstr "Enyhe"
-
-#: ../dialogs/appearance-settings/main.c:752
-msgid "Medium"
-msgstr "Közepes"
-
-#: ../dialogs/appearance-settings/main.c:753
-msgid "Full"
-msgstr "Teljes"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "Apply any changes and test the new display settings"
@@ -489,42 +498,42 @@ msgstr "F_rissítési sebesség:"
 msgid "Ro_tation:"
 msgstr "Elf_orgatás:"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:70
 msgid "Normal"
 msgstr "Normál"
 
-#: ../dialogs/display-settings/main.c:72
+#: ../dialogs/display-settings/main.c:71
 msgid "Left"
 msgstr "Balra"
 
-#: ../dialogs/display-settings/main.c:73
+#: ../dialogs/display-settings/main.c:72
 msgid "Inverted"
 msgstr "Fordított"
 
-#: ../dialogs/display-settings/main.c:74
+#: ../dialogs/display-settings/main.c:73
 msgid "Right"
 msgstr "Jobbra"
 
 #. insert in the combo box
 #. insert
-#: ../dialogs/display-settings/main.c:258
-#: ../dialogs/display-settings/main.c:289
+#: ../dialogs/display-settings/main.c:257
+#: ../dialogs/display-settings/main.c:288
 #, c-format
 msgid "%d Hz"
 msgstr "%d Hz"
 
 #. create name
-#: ../dialogs/display-settings/main.c:495
+#: ../dialogs/display-settings/main.c:494
 #, c-format
 msgid "Screen %d"
 msgstr "%d. képernyő"
 
-#: ../dialogs/display-settings/main.c:678
+#: ../dialogs/display-settings/main.c:675
 #, c-format
 msgid "RandR extension missing on display \"%s\""
 msgstr "A RandR kiterjesztés hiányzik ezen a képernyőn: „%s”"
 
-#: ../dialogs/display-settings/main.c:681
+#: ../dialogs/display-settings/main.c:678
 msgid ""
 "The Resize and Rotate extension (RandR) is not enabled on this display. Try "
 "to enable it and run the dialog again."
@@ -532,7 +541,7 @@ msgstr ""
 "A forgatás és átméretezés (RandR) kiterjesztés nincs engedélyezve ezen a "
 "képernyőn. Próbálja meg engedélyezni és indítsa újra ezt az ablakot."
 
-#: ../dialogs/display-settings/main.c:719
+#: ../dialogs/display-settings/main.c:716
 msgid "Failed to use the RandR extension"
 msgstr "A RandR kiterjesztés használata meghiúsult"
 
@@ -578,132 +587,136 @@ msgid "Second digital display"
 msgstr "Második digitális kijelző"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:160
+#: ../dialogs/keyboard-settings/command-dialog.c:126
 msgid "Shortcut Command"
 msgstr "Gyorsbillentyű-parancs"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:184
+#: ../dialogs/keyboard-settings/command-dialog.c:150
 msgid "Shortcut:"
 msgstr "Gyorsbillentyű:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:194
+#: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Command:"
 msgstr "Parancs:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:246
+#: ../dialogs/keyboard-settings/command-dialog.c:212
 msgid "The command may not be empty."
 msgstr "A parancs nem lehet üres."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:266
+#: ../dialogs/keyboard-settings/command-dialog.c:232
 msgid "Select command"
 msgstr "Válasszon parancsot"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:274
+#: ../dialogs/keyboard-settings/command-dialog.c:240
 msgid "All Files"
 msgstr "Minden fájl"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:279
+#: ../dialogs/keyboard-settings/command-dialog.c:245
 msgid "Executable Files"
 msgstr "Végrehajtható fájlok"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:294
+#: ../dialogs/keyboard-settings/command-dialog.c:260
 msgid "Perl Scripts"
 msgstr "Perl-parancsfájlok"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:300
+#: ../dialogs/keyboard-settings/command-dialog.c:266
 msgid "Python Scripts"
 msgstr "Python-parancsfájlok"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:306
+#: ../dialogs/keyboard-settings/command-dialog.c:272
 msgid "Ruby Scripts"
 msgstr "Ruby-parancsfájlok"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:312
+#: ../dialogs/keyboard-settings/command-dialog.c:278
 msgid "Shell Scripts"
 msgstr "Shell-parancsfájlok"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "<b>Cursor</b>"
-msgstr "<b>Kurzor</b>"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
-msgid "<b>Keyboard layout</b>"
-msgstr "<b>Billentyűzet-kiosztás</b>"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
-msgid "<b>Keyboard model</b>"
-msgstr "<b>Billentyűzetmodell</b>"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-msgid "<b>Typing Settings</b>"
-msgstr "<b>Gépelési beállítások</b>"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 msgid "Appli_cation Shortcuts"
 msgstr "Alkalmazás-gyo_rsbillentyűk"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Be_havior"
 msgstr "_Viselkedés"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 msgid "Blink _delay:"
 msgstr "Villogás késl_eltetése:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#, fuzzy
+msgid "Cursor"
+msgstr "<b>Kurzor</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 msgid "Define _shortcuts for launching applications:"
 msgstr "_Gyorsbillentyűk megadása alkalmazások indításához:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "Billentyűzet-beállítások és alkalmazás-gyorsbillentyűk szerkesztése"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Keyboard"
 msgstr "Billentyűzet"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#, fuzzy
+msgid "Keyboard layout"
+msgstr "<b>Billentyűzet-kiosztás</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Keyboard layout selection"
 msgstr "Válasszon billentyűzetkiosztást"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#, fuzzy
+msgid "Keyboard model"
+msgstr "<b>Billentyűzetmodell</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Repeat _speed:"
 msgstr "_Ismétlési sebesség:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Select keyboard layout and variant"
 msgstr "Válassza ki a billentyűzetkiosztást és -változatot"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Show _blinking"
 msgstr "Vill_ogjon"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
 msgstr ""
 "A billentyűzetkiosztást ez a beállítóablak vagy az X kiszolgáló vezérelje"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specify whether or not the text cursor blinks"
 msgstr "A szövegkurzor villogjon-e"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr ""
 "Késleltetés ezredmásodpercben a kurzor egymást követő villogásai között"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr ""
 "Billentyűleütések előállításának sebessége billentyű lenyomva tartásakor"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "A lenyomott billentyű ennyi ezredmásodperc után kezd ismételni"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#, fuzzy
+msgid "Typing Settings"
+msgstr "<b>Gépelési beállítások</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Use this area to _test the settings above:"
@@ -749,36 +762,36 @@ msgstr "Nem sikerült csatlakozni az xfconf démonhoz. Ok: %s"
 msgid "Could not create the settings dialog."
 msgstr "A beállítások ablak nem hozható létre."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:348
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:287
 msgid "Command"
 msgstr "Parancs"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:353
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:292
 msgid "Shortcut"
 msgstr "Gyorsbillentyű"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:421
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:359
 msgid "Active"
 msgstr "Aktív"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:425
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
 msgid "Layout"
 msgstr "Elrendezés"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:426
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:364
 msgid "Variant"
 msgstr "Változat"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:929
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:808
 msgid "Shortcut command may not be empty."
 msgstr "A gyorsbillentyű-parancs nem lehet üres."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1036
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1037
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:915
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:916
 msgid "Reset to Defaults"
 msgstr "Alapértelmezések visszaállítása"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1038
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:917
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -786,87 +799,92 @@ msgstr ""
 "Ez minden gyorsbillentyűt visszaállít az alapértelmezett értékére. Valóban "
 "ezt szeretné?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1107
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:982
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "A rendszer alapértelmezései a következő bejelentkezéskor lesznek "
 "visszaállítva."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1109
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:984
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:95
 msgid "Active device in the dialog"
 msgstr "Aktív eszköz a párbeszédablakban"
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:95
 msgid "DEVICE NAME"
 msgstr "ESZKÖZNÉV"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:352 ../dialogs/mouse-settings/main.c:354
-#: ../dialogs/mouse-settings/main.c:414
+#: ../dialogs/mouse-settings/main.c:351 ../dialogs/mouse-settings/main.c:353
+#: ../dialogs/mouse-settings/main.c:413
 msgid "Default"
 msgstr "Alapértelmezett"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
-msgid "<b>Button Order</b>"
+#, fuzzy
+msgid "Button Order"
 msgstr "<b>Gombsorrend</b>"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
-msgid "<b>Double Click</b>"
-msgstr "<b>Dupla kattintás</b>"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
-msgid "<b>Drag and Drop</b>"
-msgstr "<b>Fogd és vidd</b>"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
-msgid "<b>Feedback</b>"
-msgstr "<b>Visszajelzés</b>"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
-msgid "<b>Preview</b>"
-msgstr "<b>Előnézet</b>"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
-msgid "<b>Size</b>"
-msgstr "<b>Méret</b>"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
 msgstr "Mutatóeszköz viselkedésének és megjelenésének beállítása"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Cursor _Size:"
 msgstr "K_urzorméret:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "De_vices"
 msgstr "_Eszközök"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#, fuzzy
+msgid "Double Click"
+msgstr "<b>Dupla kattintás</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#, fuzzy
+msgid "Drag and Drop"
+msgstr "<b>Fogd és vidd</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#, fuzzy
+msgid "Feedback"
+msgstr "<b>Visszajelzés</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse"
 msgstr "Egér"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#, fuzzy
+msgid "Preview"
+msgstr "<b>Előnézet</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Re_set to Defaults"
 msgstr "_Alapértelmezések visszaállítása"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Re_verse scroll direction"
 msgstr "Görgetési irány megf_ordítása"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid ""
 "Set the acceleration and threshold for the selected device to the default "
 "values"
 msgstr ""
 "A kiválasztott eszköz gyorsításának és küszöbértékének alapértelmezettre "
 "állítása"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid "Size"
+msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "T_hreshold:"
@@ -938,37 +956,38 @@ msgstr "J_obbkezes"
 msgid "_Theme"
 msgstr "_Téma"
 
-#: ../xfce4-settings-editor/main_window.c:127
+#: ../xfce4-settings-editor/main_window.c:122
 msgid "Channel"
 msgstr "Csatorna"
 
-#: ../xfce4-settings-editor/main_window.c:137
+#: ../xfce4-settings-editor/main_window.c:132
 msgid "Property"
 msgstr "Tulajdonság"
 
-#: ../xfce4-settings-editor/main_window.c:140
+#: ../xfce4-settings-editor/main_window.c:135
 msgid "Type"
 msgstr "Típus"
 
-#: ../xfce4-settings-editor/main_window.c:143
+#: ../xfce4-settings-editor/main_window.c:138
 msgid "Locked"
 msgstr "Zárolva"
 
-#: ../xfce4-settings-editor/main_window.c:146
+#: ../xfce4-settings-editor/main_window.c:141
 msgid "Value"
 msgstr "Érték"
 
-#: ../xfce4-settings-editor/main_window.c:310
-#: ../xfce4-settings-editor/main_window.c:375
+#: ../xfce4-settings-editor/main_window.c:303
+#: ../xfce4-settings-editor/main_window.c:368
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "Empty"
 msgstr "Üres"
 
-#: ../xfce4-settings-editor/main_window.c:661
+#: ../xfce4-settings-editor/main_window.c:650
 #, c-format
 msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
 msgstr "A tulajdonság („<b>%s</b>”) nem állítható vissza, mivel zárolva van"
 
-#: ../xfce4-settings-editor/main_window.c:671
+#: ../xfce4-settings-editor/main_window.c:660
 #, c-format
 msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
 msgstr "Biztos, hogy visszaállítja a tulajdonságot („<b>%s</b>”)?"
@@ -978,87 +997,112 @@ msgid "Graphical settings editor for Xfconf"
 msgstr "Grafikus beállításszerkesztő az Xfconf-hoz"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "Settings Editor"
 msgstr "Beállításszerkesztő"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Boolean"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "Customize settings stored by Xfconf"
 msgstr "Az Xfconf által tárolt beállítások személyre szabása"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+msgid "Double"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Edit Property"
 msgstr "Tulajdonság szerkesztése"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
 msgid "Edit property"
 msgstr "Tulajdonság szerkesztése"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Enabled"
 msgstr "Engedélyezve"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+msgid "Int"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+msgid "Int64"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Name:"
 msgstr "Név:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
 msgid "New property"
 msgstr "Új tulajdonság"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
 msgid "Reset/remove property"
 msgstr "Tulajdonság visszaállítása/eltávolítása"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-msgid "Select a channel and property"
-msgstr "Válasszon csatornát és tulajdonságot"
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
+#, fuzzy
+msgid "String"
+msgstr "Beállítások"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "Type:"
 msgstr "Típus:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
+msgid "Unsigned Int"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
+msgid "Unsigned Int64"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
 msgid "Value:"
 msgstr "Érték:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
 msgid "Xfconf channels"
 msgstr "Xfconf csatornák"
 
-#: ../xfce4-settings-helper/accessibility.c:358
+#: ../xfce4-settings-helper/accessibility.c:356
 msgid "Sticky keys are enabled"
 msgstr "A ragadós billentyűk engedélyezve"
 
-#: ../xfce4-settings-helper/accessibility.c:360
+#: ../xfce4-settings-helper/accessibility.c:358
 msgid "Sticky keys are disabled"
 msgstr "A ragadós billentyűk letiltva"
 
-#: ../xfce4-settings-helper/accessibility.c:362
+#: ../xfce4-settings-helper/accessibility.c:360
 msgid "Sticky keys"
 msgstr "Ragadós billentyűk"
 
-#: ../xfce4-settings-helper/accessibility.c:367
+#: ../xfce4-settings-helper/accessibility.c:365
 msgid "Slow keys are enabled"
 msgstr "A lassú billentyűk engedélyezve"
 
-#: ../xfce4-settings-helper/accessibility.c:369
+#: ../xfce4-settings-helper/accessibility.c:367
 msgid "Slow keys are disabled"
 msgstr "A lassú billentyűk letiltva"
 
-#: ../xfce4-settings-helper/accessibility.c:371
+#: ../xfce4-settings-helper/accessibility.c:369
 msgid "Slow keys"
 msgstr "Lassú billentyűk"
 
-#: ../xfce4-settings-helper/accessibility.c:376
+#: ../xfce4-settings-helper/accessibility.c:374
 msgid "Bounce keys are enabled"
 msgstr "A billentyűszűrés engedélyezve"
 
-#: ../xfce4-settings-helper/accessibility.c:378
+#: ../xfce4-settings-helper/accessibility.c:376
 msgid "Bounce keys are disabled"
 msgstr "A billentyűszűrés letiltva"
 
-#: ../xfce4-settings-helper/accessibility.c:380
+#: ../xfce4-settings-helper/accessibility.c:378
 msgid "Bounce keys"
 msgstr "Billentyűszűrés"
 
@@ -1066,13 +1110,9 @@ msgstr "Billentyűszűrés"
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Indítás hibakereső módban (ne indítsa a háttérben)"
 
-#: ../xfce4-settings-helper/main.c:79
-msgid "Client id used when resuming session"
-msgstr "Munkamenet folytatásánál használt kliensazonosító"
-
 #. some of them may not have been set in xfconf
-#: ../xfce4-settings-helper/workspaces.c:116
-#: ../xfce4-settings-helper/workspaces.c:243
+#: ../xfce4-settings-helper/workspaces.c:114
+#: ../xfce4-settings-helper/workspaces.c:241
 #, c-format
 msgid "Workspace %d"
 msgstr "%d. munkaterület"
@@ -1081,34 +1121,28 @@ msgstr "%d. munkaterület"
 msgid "Settings dialog to show"
 msgstr "Megjelenítendő beállítóablak"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:167
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:163
 msgid "Settings"
 msgstr "Beállítások"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:168
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:164
 msgid "Customize your desktop"
 msgstr "Az asztali környezet személyre szabása"
 
 #. Create back button which takes the user back to the overview
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:277
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:271
 msgid "_Overview"
 msgstr "Á_ttekintés"
 
-#. Notify the user that there has been a problem
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:603
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:622
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:598
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:614
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nem indítható: „%s”"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:604
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:623
-msgid "Xfce Settings Manager"
-msgstr "Xfce beállításkezelő"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:673
-#, c-format
-msgid "Failed to open the documentation. Reason: %s"
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:661
+#, fuzzy
+msgid "Failed to open the documentation"
 msgstr "A dokumentáció megnyitása meghiúsult. Ok: %s"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
@@ -1139,6 +1173,30 @@ msgid ""
 msgstr ""
 "%s: %s\n"
 "Az elérhető kapcsolók listájáért adja ki az %s --help parancsot.\n"
+
+#~ msgid "<b>Bounce Keys</b>"
+#~ msgstr "<b>Billentyűszűrés</b>"
+
+#~ msgid "<b>Slow Keys</b>"
+#~ msgstr "<b>Lassú billentyűk</b>"
+
+#~ msgid "<b>Sticky Keys</b>"
+#~ msgstr "<b>Ragadós billentyűk</b>"
+
+#~ msgid "<b>DPI</b>"
+#~ msgstr "<b>DPI</b>"
+
+#~ msgid "<b>Size</b>"
+#~ msgstr "<b>Méret</b>"
+
+#~ msgid "Select a channel and property"
+#~ msgstr "Válasszon csatornát és tulajdonságot"
+
+#~ msgid "Client id used when resuming session"
+#~ msgstr "Munkamenet folytatásánál használt kliensazonosító"
+
+#~ msgid "Xfce Settings Manager"
+#~ msgstr "Xfce beállításkezelő"
 
 #~ msgid "Hz"
 #~ msgstr "Hz"
