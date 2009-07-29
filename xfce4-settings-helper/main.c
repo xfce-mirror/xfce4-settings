@@ -279,6 +279,7 @@ main (gint argc, gchar **argv)
 
     /* connect to session always, even if we quit below.  this way the
      * session manager won't wait for us to time out. */
+    egg_sm_client_set_mode(EGG_SM_CLIENT_MODE_RESTART_IMMEDIATELY);
     sm_client = egg_sm_client_get ();
     g_signal_connect (G_OBJECT (sm_client), "quit", G_CALLBACK (gtk_main_quit), NULL);
     in_session = egg_sm_client_is_resumed (sm_client);
