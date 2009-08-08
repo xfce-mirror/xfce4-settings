@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-13 22:50+0200\n"
-"PO-Revision-Date: 2009-04-18 13:21+0100\n"
+"PO-Revision-Date: 2009-07-13 16:33+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "The maximum pointer speed after acceleration"
-msgstr ""
+msgstr "A velocidade máxima do punteiro despois da aceleración"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "The ramp used to reach maximum pointer speed"
@@ -118,6 +118,7 @@ msgstr ""
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr ""
+"O tempo, en milisegundos, que se tarda en conseguir a velocidade máxima"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
@@ -134,7 +135,7 @@ msgstr ""
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 #, fuzzy
 msgid "Use _bounce keys"
-msgstr "_Ignorar as pulsacións de teclas duplicadas (teclas de rebote)"
+msgstr "Empregar as teclas numéricas"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "Use _sticky keys"
@@ -245,7 +246,7 @@ msgstr "Por favor comuníquelle os erros a <%s>."
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
-msgstr ""
+msgstr "Mellorar a accesibilidade do teclado e do rato"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 msgid ""
@@ -383,15 +384,16 @@ msgstr "_Lixeiro"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Specify what should be displayed in toolbar items"
-msgstr ""
+msgstr "Especifica o que se debe mostrar nos elementos da barra de ferramentas"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr ""
+"Especifique se se deben mostrar nos menús as iconas xunta aos elementos "
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr ""
+msgstr "Especifica se se deben mostrar nos botóns as iconas xunta ao texto"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid ""
@@ -417,6 +419,8 @@ msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr ""
+"Este tipo de letra ha ser o predeterminado cando se debuxe o texto da "
+"interface de usuario"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "_Fonts"
@@ -449,24 +453,21 @@ msgid "BGR"
 msgstr "BGR"
 
 #: ../dialogs/appearance-settings/main.c:682
-#, fuzzy
 msgid "Vertical RGB"
-msgstr "Perfil _RGB:"
+msgstr "RGB vertical"
 
 #: ../dialogs/appearance-settings/main.c:686
-#, fuzzy
 msgid "Vertical BGR"
-msgstr "Disposición _vertical"
+msgstr "BGR vertical"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "Apply any changes and test the new display settings"
-msgstr ""
+msgstr "Aplicar os cambios e probar a nova configuración de visualización"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-#, fuzzy
 msgid "Configure screen settings and layout"
-msgstr "Definir o tamaño da pantalla e as configuracións de rotación"
+msgstr "Configurar as opcións e a disposición da pantalla"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
@@ -508,13 +509,13 @@ msgstr "Dereita"
 #: ../dialogs/display-settings/main.c:288
 #, c-format
 msgid "%d Hz"
-msgstr ""
+msgstr "%d Hz"
 
 #. create name
 #: ../dialogs/display-settings/main.c:494
-#, fuzzy, c-format
+#, c-format
 msgid "Screen %d"
-msgstr "Pantalla"
+msgstr "Pantalla %d"
 
 #: ../dialogs/display-settings/main.c:675
 #, c-format
@@ -536,6 +537,7 @@ msgstr "Non se conseguiu usar a extensión RandR"
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr ""
+"Non foi posible consultar a versión da extensión RandR que se está a usar"
 
 #. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
 #: ../dialogs/display-settings/xfce-randr.c:63
@@ -701,7 +703,7 @@ msgstr "Axustes da conta"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Use this area to _test the settings above:"
-msgstr ""
+msgstr "Use esta área para _probar a configuración de enriba:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid ""
@@ -781,6 +783,8 @@ msgstr ""
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:982
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
+"As predefinicións do sistema hanse restaurar a próxima vez que se conecte ao "
+"sistema."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:984
 msgid "Warning"
@@ -810,6 +814,7 @@ msgstr "<b>Orde dos botóns</b>"
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
 msgstr ""
+"Configurar o comportamento e maila aparencia do dispositivo de punteiro"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Cursor _Size:"
@@ -845,28 +850,26 @@ msgid "Preview"
 msgstr "<b>Previsualización</b>"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
-#, fuzzy
 msgid "Re_set to Defaults"
-msgstr "Restabelecer a visualización aos valores pre_determinados"
+msgstr "Re_stablecer as predefinicións"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Re_verse scroll direction"
-msgstr ""
+msgstr "In_verter o sentido do desprazamento"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid ""
 "Set the acceleration and threshold for the selected device to the default "
 "values"
-msgstr ""
+msgstr "Restablecer a aceleración e o limiar do dispositivo seleccionado"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Size"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-#, fuzzy
 msgid "T_hreshold:"
-msgstr "Límite in_ferior"
+msgstr "_Limiar:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid ""
@@ -878,11 +881,15 @@ msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr ""
+"O punteiro do rato non se pode mover máis desta distancia entre dous clics "
+"para ser considerado un dobre clic"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid ""
 "The number of pixels the pointer must move before a drag operation will start"
 msgstr ""
+"O número de píxels que se debe mover o punteiro antes de que se inicie unha "
+"operación de arrastre"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid ""
@@ -891,19 +898,20 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
-#, fuzzy
 msgid "Ti_me:"
-msgstr "Te_mpo"
+msgstr "Te_mpo:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr ""
+"Dous clics do rato en menos deste tempo (en milisegundos) serán considerados "
+"un dobre clic"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr ""
+msgstr "Cando se selecciona, a roda de desprazamento funcionará ao revés"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "_Acceleration:"
@@ -1140,7 +1148,7 @@ msgstr "Saída detallada"
 
 #: ../xfsettingsd/main.c:60
 msgid "Replace running xsettings daemon (if any)"
-msgstr ""
+msgstr "Substituír o daemon xsettings en execución (se houbera algún)"
 
 #: ../xfsettingsd/main.c:131
 #, c-format
@@ -1162,16 +1170,14 @@ msgstr ""
 #~ msgid "<b>Sticky Keys</b>"
 #~ msgstr "<b>Teclas persistentes</b>"
 
-#, fuzzy
 #~ msgid "<b>DPI</b>"
-#~ msgstr "PPP"
+#~ msgstr "<b>PPP</b>"
 
 #~ msgid "<b>Size</b>"
 #~ msgstr "<b>Tamaño</b>"
 
-#, fuzzy
 #~ msgid "Select a channel and property"
-#~ msgstr "_Seleccionar unha ferramenta e executar..."
+#~ msgstr "Seleccionar unha canle e unha propiedade"
 
 #~ msgid "Xfce Settings Manager"
 #~ msgstr "Xestor de configuración de Xfce"
