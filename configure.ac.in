@@ -14,8 +14,8 @@ m4_define([xfce4_settings_version_minor], [7])
 m4_define([xfce4_settings_version_micro], [0])
 m4_define([xfce4_settings_version_nano], [])
 m4_define([xfce4_settings_version_build], [r@REVISION@])
-m4_define([xfce4_settings_version_tag], [svn]) # Leave empty for releases
-m4_define([xfce4_settings_version], [xfce4_settings_version_major().xfce4_settings_version_minor().xfce4_settings_version_micro()ifelse(xfce4_settings_version_nano(), [], [], [.xfce4_settings_version_nano()])ifelse(xfce4_settings_version_tag(),[],[], [-ifelse(xfce4_settings_version_tag(), [stephan], [xfce4_settings_version_tag()-xfce4_settings_version_build()], [xfce4_settings_version_tag()])])])
+m4_define([xfce4_settings_version_tag], [-git]) # Leave empty for releases
+m4_define([xfce4_settings_version], [xfce4_settings_version_major().xfce4_settings_version_minor().xfce4_settings_version_micro()ifelse(xfce4_settings_version_nano(), [], [], [.xfce4_settings_version_nano()])ifelse(xfce4_settings_version_tag(),[],[], [xfce4_settings_version_tag()])])
 
 dnl *******************************************
 dnl *** Debugging support for SVN snapshots ***
@@ -79,7 +79,6 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.6.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.7.0])
 XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-2], [4.7.0])
 XDT_CHECK_PACKAGE([LIBXFCE4SMCLIENT_PRIVATE], [libxfce4smclient-private-1], [4.7.0])
-XDT_CHECK_PACKAGE([GLADE], [libglade-2.0], [2.0.0])
 XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.6.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.34])
 XDT_CHECK_PACKAGE([LIBWNCK], [libwnck-1.0], [2.12.0])

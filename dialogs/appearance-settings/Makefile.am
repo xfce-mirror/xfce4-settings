@@ -14,7 +14,7 @@ bin_PROGRAMS = \
 xfce4_appearance_settings_SOURCES = \
 	main.c \
 	images.h \
-	appearance-dialog_glade.h
+	appearance-dialog_ui.h
 
 xfce4_appearance_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -34,10 +34,10 @@ xfce4_appearance_settings_LDADD = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-	appearance-dialog_glade.h
+	appearance-dialog_ui.h
 
-appearance-dialog_glade.h: appearance-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=appearance_dialog_glade $< >$@
+appearance-dialog_ui.h: appearance-dialog.ui
+	exo-csource --static --strip-comments --strip-content --name=appearance_dialog_ui $< >$@
 
 endif
 
@@ -49,7 +49,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	appearance-dialog.glade
+	appearance-dialog.ui
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

@@ -13,7 +13,7 @@ bin_PROGRAMS = \
 
 xfce4_mouse_settings_SOURCES = \
 	main.c \
-	mouse-dialog_glade.h
+	mouse-dialog_ui.h
 
 xfce4_mouse_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -46,10 +46,10 @@ endif
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-	mouse-dialog_glade.h
+	mouse-dialog_ui.h
 
-mouse-dialog_glade.h: mouse-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=mouse_dialog_glade $< >$@
+mouse-dialog_ui.h: mouse-dialog.ui
+	exo-csource --static --strip-comments --strip-content --name=mouse_dialog_ui $< >$@
 
 endif
 
@@ -61,7 +61,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	mouse-dialog.glade
+	mouse-dialog.ui
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

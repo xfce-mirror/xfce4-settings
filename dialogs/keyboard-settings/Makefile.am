@@ -18,7 +18,7 @@ xfce4_keyboard_settings_SOURCES = \
 	xfce-keyboard-settings.h \
 	command-dialog.c \
 	command-dialog.h \
-	keyboard-dialog_glade.h
+	keyboard-dialog_ui.h
 
 xfce4_keyboard_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -46,10 +46,10 @@ xfce4_keyboard_settings_LDADD = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-	keyboard-dialog_glade.h
+	keyboard-dialog_ui.h
 
-keyboard-dialog_glade.h: keyboard-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=keyboard_dialog_glade $< >$@
+keyboard-dialog_ui.h: keyboard-dialog.ui
+	exo-csource --static --strip-comments --strip-content --name=keyboard_dialog_ui $< >$@
 
 endif
 
@@ -61,7 +61,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	keyboard-dialog.glade
+	keyboard-dialog.ui
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

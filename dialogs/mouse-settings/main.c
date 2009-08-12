@@ -47,7 +47,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 
-#include "mouse-dialog_glade.h"
+#include "mouse-dialog_ui.h"
 
 /* test if the required version of inputproto (1.4.2) is available */
 #if XI_Add_DevicePresenceNotify_Major >= 1 && defined (DeviceRemoved)
@@ -1234,10 +1234,10 @@ main (gint argc, gchar **argv)
 
     if (G_LIKELY (pointers_channel && xsettings_channel))
     {
-        /* load the glade xml file */
+        /* load the Gtk+ user-interface file */
         builder = gtk_builder_new ();
-        if (gtk_builder_add_from_string (builder, mouse_dialog_glade,
-                                         mouse_dialog_glade_length, &error) != 0)
+        if (gtk_builder_add_from_string (builder, mouse_dialog_ui,
+                                         mouse_dialog_ui_length, &error) != 0)
         {
             /* lock */
             locked++;
@@ -1330,11 +1330,11 @@ main (gint argc, gchar **argv)
         }
         else
         {
-            g_error ("Failed to load the glade file: %s.", error->message);
+            g_error ("Failed to load the UI file: %s.", error->message);
             g_error_free (error);
         }
 
-        /* release the glade xml */
+        /* release the Gtk+ user-interface file */
         g_object_unref (G_OBJECT (builder));
 
         /* release the channels */

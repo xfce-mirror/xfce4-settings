@@ -13,7 +13,7 @@ bin_PROGRAMS = \
 
 xfce4_accessibility_settings_SOURCES = \
 	main.c \
-	accessibility-dialog_glade.h
+	accessibility-dialog_ui.h
 
 xfce4_accessibility_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -33,10 +33,10 @@ xfce4_accessibility_settings_LDADD = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-	accessibility-dialog_glade.h
+	accessibility-dialog_ui.h
 
-accessibility-dialog_glade.h: accessibility-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=accessibility_dialog_glade $< >$@
+accessibility-dialog_ui.h: accessibility-dialog.ui
+	exo-csource --static --strip-comments --strip-content --name=accessibility_dialog_ui $< >$@
 
 endif
 
@@ -48,7 +48,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	accessibility-dialog.glade
+	accessibility-dialog.ui
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

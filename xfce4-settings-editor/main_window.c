@@ -33,7 +33,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 
-#include "xfce4-settings-editor_glade.h"
+#include "xfce4-settings-editor_ui.h"
 #include "main_window.h"
 
 static GtkBuilder *builder = NULL;
@@ -92,7 +92,7 @@ xfce4_settings_editor_main_window_new(void)
             return NULL;
 
         builder = gtk_builder_new ();
-        gtk_builder_add_from_string (builder, xfce4_settings_editor_glade, xfce4_settings_editor_glade_length, NULL);
+        gtk_builder_add_from_string (builder, xfce4_settings_editor_ui, xfce4_settings_editor_ui_length, NULL);
 
         dialog = gtk_builder_get_object (builder, "main_dialog");
         g_object_weak_ref (G_OBJECT (dialog), (GWeakNotify) g_object_unref, builder);

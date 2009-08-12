@@ -36,7 +36,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
-#include "appearance-dialog_glade.h"
+#include "appearance-dialog_ui.h"
 #include "images.h"
 
 #define INCH_MM      25.4
@@ -814,10 +814,10 @@ main(gint argc, gchar **argv)
         if (xfce_titled_dialog_get_type () == 0)
             return EXIT_FAILURE;
 
-        /* load the glade interface */
+        /* load the gtk user interface file*/
         builder = gtk_builder_new ();
-        if (gtk_builder_add_from_string (builder, appearance_dialog_glade,
-                                         appearance_dialog_glade_length, &error) != 0)
+        if (gtk_builder_add_from_string (builder, appearance_dialog_ui,
+                                         appearance_dialog_ui_length, &error) != 0)
           {
             /* connect signal to monitor the channel */
             g_signal_connect (G_OBJECT (xsettings_channel), "property-changed",
@@ -854,7 +854,7 @@ main(gint argc, gchar **argv)
         }
         else
         {
-            g_error ("Failed to load the glade file: %s.", error->message);
+            g_error ("Failed to load the UI file: %s.", error->message);
             g_error_free (error);
         }
 

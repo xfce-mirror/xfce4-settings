@@ -38,7 +38,7 @@
 #include <libxfce4kbd-private/xfce-shortcuts-provider.h>
 #include <libxfce4kbd-private/xfce-shortcut-dialog.h>
 
-#include "keyboard-dialog_glade.h"
+#include "keyboard-dialog_ui.h"
 #include "xfce-keyboard-settings.h"
 #include "command-dialog.h"
 
@@ -215,10 +215,10 @@ xfce_keyboard_settings_init (XfceKeyboardSettings *settings)
   g_signal_connect (settings->priv->provider, "shortcut-removed",
                     G_CALLBACK (xfce_keyboard_settings_shortcut_removed), settings);
 
-  if (gtk_builder_add_from_string (GTK_BUILDER (settings), keyboard_dialog_glade,
-                                   keyboard_dialog_glade_length, &error) == 0)
+  if (gtk_builder_add_from_string (GTK_BUILDER (settings), keyboard_dialog_ui,
+                                   keyboard_dialog_ui_length, &error) == 0)
     {
-      g_error ("Failed to load the glade file: %s.", error->message);
+      g_error ("Failed to load the UI file: %s.", error->message);
       g_error_free (error);
     }
 }

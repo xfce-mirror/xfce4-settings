@@ -17,7 +17,7 @@ xfce4_display_settings_SOURCES = \
 	xfce-randr.h \
 	xfce-randr-legacy.c \
 	xfce-randr-legacy.h \
-	display-dialog_glade.h
+	display-dialog_ui.h
 
 xfce4_display_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -39,10 +39,10 @@ xfce4_display_settings_LDADD = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-	display-dialog_glade.h
+	display-dialog_ui.h
 
-display-dialog_glade.h: display-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=display_dialog_glade $< >$@
+display-dialog_ui.h: display-dialog.ui
+	exo-csource --static --strip-comments --strip-content --name=display_dialog_ui $< >$@
 
 endif
 
@@ -54,7 +54,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	display-dialog.glade
+	display-dialog.ui
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
