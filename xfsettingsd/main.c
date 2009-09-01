@@ -52,7 +52,7 @@ static GOptionEntry entries[] =
         N_("Version information"),
         NULL
     },
-    {    "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
+    {    "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &debug,
         N_("Verbose output"),
         NULL
     },
