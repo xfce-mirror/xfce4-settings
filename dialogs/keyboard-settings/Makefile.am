@@ -23,6 +23,7 @@ xfce4_keyboard_settings_SOURCES = \
 xfce4_keyboard_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(LIBXKLAVIER_CFLAGS) \
+	$(LIBXKLAVIER_0_4_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(LIBXFCE4KBD_PRIVATE_CFLAGS) \
@@ -37,6 +38,7 @@ xfce4_keyboard_settings_LDFLAGS = \
 xfce4_keyboard_settings_LDADD = \
 	$(GTK_LIBS) \
 	$(LIBXKLAVIER_LIBS) \
+	$(LIBXKLAVIER_0_4_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(LIBXFCE4KBD_PRIVATE_LIBS) \

@@ -135,6 +135,8 @@ dnl *** Optional support for Libxklavier ***
 dnl ****************************************
 XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER], [libxklavier], [0.3.0],
                            [libxklavier], [Keyboard layout selection])
+XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER4], [libxklavier], [4.0],
+                           [libxklavier], [Keyboard layout selection])
 
 dnl ************************************
 dnl *** Xsettings daemon is optional ***
