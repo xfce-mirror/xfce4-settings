@@ -378,7 +378,11 @@ xfce_keyboard_settings_constructed (GObject *object)
   xkl_config_rec_get_from_server (settings->priv->xkl_rec_config, settings->priv->xkl_engine);
 
   settings->priv->xkl_registry = xkl_config_registry_get_instance (settings->priv->xkl_engine);
+#ifdef HAVE_LIBXKLAVIER4
+  xkl_config_registry_load (settings->priv->xkl_registry, FALSE);
+#else
   xkl_config_registry_load (settings->priv->xkl_registry);
+#endif
 
   /* Tab */
   xkb_tab_layout_vbox = glade_xml_get_widget (settings->priv->glade_xml, "xkb_tab_layout_vbox");
