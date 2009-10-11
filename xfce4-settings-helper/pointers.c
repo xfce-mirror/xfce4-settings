@@ -276,15 +276,21 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
         buttonmap = g_new0 (guchar, num_buttons);
 
         /* get the button mapping */
+        gdk_error_trap_push ();
         XGetDeviceButtonMapping (xdisplay, device, buttonmap, num_buttons);
+        if (gdk_error_trap_pop ())
+        {
+            g_warning ("Failed to get button mapping");
+            goto out;
+        }
 
         if (right_handed != -1)
         {
             /* get the right button number */
-            right_button = num_buttons < 3 ? 2 : 3;
+            right_button = MIN (num_buttons, 3);
 
             /* check the buttons and swap them if needed */
-            xfce_pointers_helper_change_button_mapping_swap (buttonmap, num_buttons, 1, right_button, !!right_handed);
+            xfce_pointers_helper_change_button_mapping_swap (buttonmap, num_buttons, 1, right_button, right_handed);
         }
 
         if (reverse_scrolling != -1 && num_buttons >= 5)
@@ -294,10 +300,13 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
         }
 
         /* set the new button mapping */
+        gdk_error_trap_push ()
         XSetDeviceButtonMapping (xdisplay, device, buttonmap, num_buttons);
+        if (gdk_error_trap_pop ())
+          g_warning ("Failed to set button mapping");
 
         /* cleanup */
-        g_free (buttonmap);
+out:    g_free (buttonmap);
     }
 }
 
