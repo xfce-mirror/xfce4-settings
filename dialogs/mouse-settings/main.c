@@ -60,6 +60,10 @@
 #define IsXExtensionPointer 4
 #endif
 
+/* Xi 1.4 is required */
+#define MIN_XI_VERS_MAJOR 1
+#define MIN_XI_VERS_MINOR 4
+
 /* settings */
 #ifdef HAVE_XCURSOR
 #define PREVIEW_ROWS    (3)
@@ -1221,13 +1225,21 @@ main (gint argc, gchar **argv)
 
         return EXIT_FAILURE;
     }
-    
-    /* check for Xi 1.4 */
+
+    /* check for Xi */
     version = XGetExtensionVersion (GDK_DISPLAY (), INAME);
-    if (!version || !version->present || version->major_version < 1 || version->minor_version < 4)
+    if (version == NULL || !version->present)
     {
-        g_critical ("XI is not present or too old.");
-        
+        g_critical ("XI is not present.");
+        return EXIT_FAILURE;
+    }
+    else if (version->major_version < MIN_XI_VERS_MAJOR
+             || (version->major_version == MIN_XI_VERS_MAJOR
+                 && version->minor_version < MIN_XI_VERS_MINOR))
+    {
+        g_critical ("Your XI is too old (%d.%d) version %d.%d is required.",
+                    version->major_version, version->minor_version,
+                    MIN_XI_VERS_MAJOR, MIN_XI_VERS_MINOR);
         return EXIT_FAILURE;
     }
 
