@@ -42,6 +42,10 @@
 
 #define MAX_DENOMINATOR (100.00)
 
+/* Xi 1.4 is required */
+#define MIN_XI_VERS_MAJOR 1
+#define MIN_XI_VERS_MINOR 4
+
 /* test if the required version of inputproto (1.4.2) is available */
 #if XI_Add_DevicePresenceNotify_Major >= 1 && defined (DeviceRemoved)
 #define HAS_DEVICE_HOTPLUGGING
@@ -131,18 +135,22 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 
     /* get the default display */
     xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
-    
+
     /* query the extension version */
     version = XGetExtensionVersion (xdisplay, INAME);
-    
-    /* check for Xi 1.4 */
-    if (!version || !version->present || version->major_version < 1 || version->minor_version < 4)
-    {
-        /* print error */
-        g_critical ("XI is not present or too old.");
 
-        /* no channel */
-        helper->channel = NULL;
+    /* check for Xi */
+    if (version == NULL || !version->present)
+    {
+        g_critical ("XI is not present.");
+    }
+    else if (version->major_version < MIN_XI_VERS_MAJOR
+             || (version->major_version == MIN_XI_VERS_MAJOR
+                 && version->minor_version < MIN_XI_VERS_MINOR))
+    {
+        g_critical ("Your XI is too old (%d.%d) version %d.%d is required.",
+                    version->major_version, version->minor_version,
+                    MIN_XI_VERS_MAJOR, MIN_XI_VERS_MINOR);
     }
     else
     {
@@ -160,7 +168,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         gdk_flush ();
         gdk_error_trap_push ();
 
-        
+
         if (G_LIKELY (xdisplay))
         {
             /* monitor device changes */
