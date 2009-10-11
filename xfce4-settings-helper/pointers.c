@@ -300,7 +300,7 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
         }
 
         /* set the new button mapping */
-        gdk_error_trap_push ()
+        gdk_error_trap_push ();
         XSetDeviceButtonMapping (xdisplay, device, buttonmap, num_buttons);
         if (gdk_error_trap_pop ())
           g_warning ("Failed to set button mapping");
