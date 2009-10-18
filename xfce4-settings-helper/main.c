@@ -48,7 +48,6 @@
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
-#include <libxfce4smclient-private/eggsmclient.h>
 
 #include "accessibility.h"
 #include "pointers.h"
@@ -68,7 +67,7 @@ static GdkFilterReturn xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
                                                                gpointer user_data);
 
 
-static EggSMClient *sm_client = NULL;
+static XfceSMClient *sm_client = NULL;
 
 static gboolean opt_version = FALSE;
 static gboolean opt_debug = FALSE;
@@ -136,8 +135,8 @@ xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
 
     if (xe->type == SelectionClear && xe->xclient.window == xwin)
     {
-        /*if (sm_client)
-            client_session_set_restart_style (sm_client, SESSION_RESTART_IF_RUNNING);*/
+        if (sm_client)
+            xfce_sm_client_set_restart_style (sm_client, XFCE_SM_CLIENT_RESTART_NORMAL);
         gtk_main_quit ();
     }
 
@@ -232,7 +231,7 @@ main (gint argc, gchar **argv)
     context = g_option_context_new (NULL);
     g_option_context_add_main_entries (context, option_entries, GETTEXT_PACKAGE);
     g_option_context_add_group (context, gtk_get_option_group (FALSE));
-    g_option_context_add_group (context, egg_sm_client_get_option_group ());
+    g_option_context_add_group (context, xfce_sm_client_get_option_group (argc, argv));
 
     /* initialize gtk */
     gtk_init (&argc, &argv);
@@ -279,11 +278,16 @@ main (gint argc, gchar **argv)
 
     /* connect to session always, even if we quit below.  this way the
      * session manager won't wait for us to time out. */
-    egg_sm_client_set_mode(EGG_SM_CLIENT_MODE_RESTART_IMMEDIATELY);
-    sm_client = egg_sm_client_get ();
+    sm_client = xfce_sm_client_get ();
+    xfce_sm_client_set_restart_style (sm_client, XFCE_SM_CLIENT_RESTART_IMMEDIATELY);
     g_signal_connect (G_OBJECT (sm_client), "quit", G_CALLBACK (gtk_main_quit), NULL);
-    in_session = egg_sm_client_is_resumed (sm_client);
-
+    if (!xfce_sm_client_connect (sm_client, &error) && error)
+    {
+        g_printerr ("Failed to connect to session manager: %s\n", error->message);
+        g_error_free (error);
+    }
+    
+    in_session = xfce_sm_client_is_resumed (sm_client);
     if (!xfce_settings_helper_acquire_selection (in_session))
     {
         g_printerr ("%s is already running\n", G_LOG_DOMAIN);
