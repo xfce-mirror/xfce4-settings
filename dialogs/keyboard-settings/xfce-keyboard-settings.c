@@ -270,7 +270,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   xfconf_g_property_bind (settings->priv->xsettings_channel, "/Net/CursorBlink", G_TYPE_BOOLEAN, G_OBJECT (net_cursor_blink_check), "active");
 
   net_cursor_blink_time_scale = gtk_range_get_adjustment (GTK_RANGE (gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_time_scale")));
-  xfconf_g_property_bind (settings->priv->xsettings_channel, "/NetCursorBlinkTime", G_TYPE_INT, G_OBJECT (net_cursor_blink_time_scale), "value");
+  xfconf_g_property_bind (settings->priv->xsettings_channel, "/Net/CursorBlinkTime", G_TYPE_INT, G_OBJECT (net_cursor_blink_time_scale), "value");
 
   /* Configure shortcuts tree view */
   kbd_shortcuts_view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
