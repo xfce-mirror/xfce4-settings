@@ -18,6 +18,8 @@ xfce4_settings_helper_SOURCES = \
 	main.c \
 	accessibility.c \
 	accessibility.h \
+	gsd-clipboard-manager.c \
+	gsd-clipboard-manager.h \
 	keyboards.c \
 	keyboards.h \
 	keyboard-shortcuts.c \
