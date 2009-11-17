@@ -48,7 +48,6 @@ struct GsdClipboardManagerPrivate
 
 static void     gsd_clipboard_manager_class_init  (GsdClipboardManagerClass *klass);
 static void     gsd_clipboard_manager_init        (GsdClipboardManager      *clipboard_manager);
-static void     gsd_clipboard_manager_finalize    (GObject                  *object);
 
 G_DEFINE_TYPE (GsdClipboardManager, gsd_clipboard_manager, G_TYPE_OBJECT)
 
@@ -314,76 +313,9 @@ gsd_clipboard_manager_stop (GsdClipboardManager *manager)
 }
 
 static void
-gsd_clipboard_manager_set_property (GObject        *object,
-                                    guint           prop_id,
-                                    const GValue   *value,
-                                    GParamSpec     *pspec)
-{
-        GsdClipboardManager *self;
-
-        self = GSD_CLIPBOARD_MANAGER (object);
-
-        switch (prop_id) {
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
-}
-
-static void
-gsd_clipboard_manager_get_property (GObject        *object,
-                                    guint           prop_id,
-                                    GValue         *value,
-                                    GParamSpec     *pspec)
-{
-        GsdClipboardManager *self;
-
-        self = GSD_CLIPBOARD_MANAGER (object);
-
-        switch (prop_id) {
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
-}
-
-static GObject *
-gsd_clipboard_manager_constructor (GType                  type,
-                                   guint                  n_construct_properties,
-                                   GObjectConstructParam *construct_properties)
-{
-        GsdClipboardManager      *clipboard_manager;
-        GsdClipboardManagerClass *klass;
-
-        klass = GSD_CLIPBOARD_MANAGER_CLASS (g_type_class_peek (GSD_TYPE_CLIPBOARD_MANAGER));
-
-        clipboard_manager = GSD_CLIPBOARD_MANAGER (G_OBJECT_CLASS (gsd_clipboard_manager_parent_class)->constructor (type,
-                                                                                                      n_construct_properties,
-                                                                                                      construct_properties));
-
-        return G_OBJECT (clipboard_manager);
-}
-
-static void
-gsd_clipboard_manager_dispose (GObject *object)
-{
-        GsdClipboardManager *clipboard_manager;
-
-        clipboard_manager = GSD_CLIPBOARD_MANAGER (object);
-
-        G_OBJECT_CLASS (gsd_clipboard_manager_parent_class)->dispose (object);
-}
-
-static void
 gsd_clipboard_manager_class_init (GsdClipboardManagerClass *klass)
 {
-        GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-
-        object_class->get_property = gsd_clipboard_manager_get_property;
-        object_class->set_property = gsd_clipboard_manager_set_property;
-        object_class->constructor = gsd_clipboard_manager_constructor;
-        object_class->dispose = gsd_clipboard_manager_dispose;
-        object_class->finalize = gsd_clipboard_manager_finalize;
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         g_type_class_add_private (klass, sizeof (GsdClipboardManagerPrivate));
 }
@@ -398,21 +330,6 @@ gsd_clipboard_manager_init (GsdClipboardManager *manager)
 
         manager->priv->default_cache = NULL;
         manager->priv->primary_cache = NULL;
-}
-
-static void
-gsd_clipboard_manager_finalize (GObject *object)
-{
-        GsdClipboardManager *clipboard_manager;
-
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GSD_IS_CLIPBOARD_MANAGER (object));
-
-        clipboard_manager = GSD_CLIPBOARD_MANAGER (object);
-
-        g_return_if_fail (clipboard_manager->priv != NULL);
-
-        G_OBJECT_CLASS (gsd_clipboard_manager_parent_class)->finalize (object);
 }
 
 GsdClipboardManager *

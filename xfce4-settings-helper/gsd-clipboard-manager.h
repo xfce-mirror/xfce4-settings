@@ -47,10 +47,10 @@ typedef struct
 
 GType                   gsd_clipboard_manager_get_type            (void);
 
-GsdClipboardManager *       gsd_clipboard_manager_new                 (void);
-gboolean                gsd_clipboard_manager_start               (GsdClipboardManager *manager,
-                                                               GError         **error);
-void                    gsd_clipboard_manager_stop                (GsdClipboardManager *manager);
+GsdClipboardManager *   gsd_clipboard_manager_new                 (void);
+gboolean                gsd_clipboard_manager_start               (GsdClipboardManager  *manager,
+                                                                   GError              **error);
+void                    gsd_clipboard_manager_stop                (GsdClipboardManager  *manager);
 
 G_END_DECLS
 
