@@ -300,8 +300,7 @@ start_clipboard_idle_cb (XfceClipboardManager *manager)
 }
 
 gboolean
-xfce_clipboard_manager_start (XfceClipboardManager *manager,
-                              GError              **error)
+xfce_clipboard_manager_start (XfceClipboardManager *manager)
 {
   g_idle_add ((GSourceFunc) start_clipboard_idle_cb, manager);
 

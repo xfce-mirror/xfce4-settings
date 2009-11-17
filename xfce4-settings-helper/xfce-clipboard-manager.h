@@ -48,8 +48,7 @@ typedef struct
 GType                 xfce_clipboard_manager_get_type            (void);
 
 XfceClipboardManager *xfce_clipboard_manager_new                 (void);
-gboolean              xfce_clipboard_manager_start               (XfceClipboardManager  *manager,
-                                                                  GError               **error);
+gboolean              xfce_clipboard_manager_start               (XfceClipboardManager  *manager);
 void                  xfce_clipboard_manager_stop                (XfceClipboardManager  *manager);
 
 G_END_DECLS

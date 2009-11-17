@@ -331,7 +331,7 @@ main (gint argc, gchar **argv)
 
     /* Try to start the clipboard daemon */
     clipboard_daemon = xfce_clipboard_manager_new ();
-    xfce_clipboard_manager_start (clipboard_daemon, NULL);
+    xfce_clipboard_manager_start (clipboard_daemon);
 
     /* setup signal handlers to properly quit the main loop */
     if (xfce_posix_signal_handler_init (NULL))
