@@ -51,11 +51,11 @@
 
 #include "accessibility.h"
 #include "pointers.h"
-#include "gsd-clipboard-manager.h"
 #include "keyboards.h"
 #include "keyboard-layout.h"
 #include "keyboard-shortcuts.h"
 #include "workspaces.h"
+#include "xfce-clipboard-manager.h"
 
 #ifdef HAVE_XRANDR
 #include "displays.h"
@@ -209,22 +209,22 @@ xfce_settings_helper_acquire_selection (gboolean force)
 gint
 main (gint argc, gchar **argv)
 {
-    GsdClipboardManager *clipboard_daemon;
-    GError              *error = NULL;
-    GOptionContext      *context;
-    gboolean             in_session;
-    GObject             *pointer_helper;
-    GObject             *keyboards_helper;
-    GObject             *accessibility_helper;
-    GObject             *shortcuts_helper;
-    GObject             *keyboard_layout_helper;
+    XfceClipboardManager *clipboard_daemon;
+    GError               *error = NULL;
+    GOptionContext       *context;
+    gboolean              in_session;
+    GObject              *pointer_helper;
+    GObject              *keyboards_helper;
+    GObject              *accessibility_helper;
+    GObject              *shortcuts_helper;
+    GObject              *keyboard_layout_helper;
 #ifdef HAVE_XRANDR
-    GObject             *displays_helper;
+    GObject              *displays_helper;
 #endif
-    GObject             *workspaces_helper;
-    pid_t                pid;
-    guint                i;
-    const gint           signums[] = { SIGHUP, SIGINT, SIGQUIT, SIGTERM };
+    GObject              *workspaces_helper;
+    pid_t                 pid;
+    guint                 i;
+    const gint            signums[] = { SIGHUP, SIGINT, SIGQUIT, SIGTERM };
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -288,7 +288,7 @@ main (gint argc, gchar **argv)
         g_printerr ("Failed to connect to session manager: %s\n", error->message);
         g_error_free (error);
     }
-    
+
     in_session = xfce_sm_client_is_resumed (sm_client);
     if (!xfce_settings_helper_acquire_selection (in_session))
     {
@@ -330,8 +330,8 @@ main (gint argc, gchar **argv)
     workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
 
     /* Try to start the clipboard daemon */
-    clipboard_daemon = gsd_clipboard_manager_new ();
-    gsd_clipboard_manager_start (clipboard_daemon, NULL);
+    clipboard_daemon = xfce_clipboard_manager_new ();
+    xfce_clipboard_manager_start (clipboard_daemon, NULL);
 
     /* setup signal handlers to properly quit the main loop */
     if (xfce_posix_signal_handler_init (NULL))
@@ -355,7 +355,7 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (workspaces_helper));
 
     /* Stop the clipboard daemon */
-    gsd_clipboard_manager_stop (clipboard_daemon);
+    xfce_clipboard_manager_stop (clipboard_daemon);
 
     /* shutdown xfconf */
     xfconf_shutdown ();
