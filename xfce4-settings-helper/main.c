@@ -354,6 +354,9 @@ main (gint argc, gchar **argv)
 #endif
     g_object_unref (G_OBJECT (workspaces_helper));
 
+    /* stop clipboard daemon */
+    gsd_clipboard_manager_stop (clipboard_daemon);
+
     /* shutdown xfconf */
     xfconf_shutdown ();
 

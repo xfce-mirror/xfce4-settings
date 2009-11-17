@@ -233,7 +233,6 @@ static gboolean
 start_clipboard_idle_cb (GsdClipboardManager *manager)
 {
         XClientMessageEvent     xev;
-        gboolean                ownership;
         Display                *display;
         Window                  window;
         Time                    timestamp;
