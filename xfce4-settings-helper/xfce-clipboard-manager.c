@@ -80,6 +80,8 @@ default_clipboard_store (XfceClipboardManager *manager)
   gint              n_atoms;
   gint              i;
 
+  g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
+
   if (!gtk_clipboard_wait_for_targets (manager->priv->default_clipboard, &atoms, &n_atoms))
     return;
 
@@ -120,6 +122,8 @@ default_clipboard_get_func (GtkClipboard *clipboard,
   GSList           *list;
   GtkSelectionData *selection_data_cache = NULL;
 
+  g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
+
   list = manager->priv->default_cache;
 
   for (; list->next != NULL; list = list->next)
@@ -158,6 +162,8 @@ default_clipboard_restore (XfceClipboardManager *manager)
   GtkSelectionData *sdata;
   GSList           *list;
 
+  g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
+
   target_list = gtk_target_list_new (NULL, 0);
   list = manager->priv->default_cache;
 
@@ -180,6 +186,8 @@ static void
 default_clipboard_owner_change (XfceClipboardManager *manager,
                                 GdkEventOwnerChange *event)
 {
+  g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
+
   if (event->send_event == TRUE)
     return;
 
@@ -217,6 +225,8 @@ primary_clipboard_owner_change (XfceClipboardManager *manager,
                                 GdkEventOwnerChange *event)
 {
   gchar *text;
+
+  g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
 
   if (event->send_event == TRUE)
     return;
@@ -302,6 +312,8 @@ start_clipboard_idle_cb (XfceClipboardManager *manager)
 gboolean
 xfce_clipboard_manager_start (XfceClipboardManager *manager)
 {
+  g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
+
   g_idle_add ((GSourceFunc) start_clipboard_idle_cb, manager);
 
   return TRUE;
@@ -310,6 +322,8 @@ xfce_clipboard_manager_start (XfceClipboardManager *manager)
 void
 xfce_clipboard_manager_stop (XfceClipboardManager *manager)
 {
+  g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
+
   g_debug ("Stopping clipboard manager");
 
   g_signal_handlers_disconnect_by_func (manager->priv->default_clipboard,
