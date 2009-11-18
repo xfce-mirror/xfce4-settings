@@ -250,8 +250,8 @@ primary_clipboard_owner_change (XfceClipboardManager *manager,
     }
 }
 
-static gboolean
-start_clipboard_idle_cb (XfceClipboardManager *manager)
+gboolean
+xfce_clipboard_manager_start (XfceClipboardManager *manager)
 {
   XClientMessageEvent     xev;
   gboolean                ownership;
@@ -259,13 +259,15 @@ start_clipboard_idle_cb (XfceClipboardManager *manager)
   Window                  window;
   Time                    timestamp;
 
+  g_return_val_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager), FALSE);
+
   display = GDK_DISPLAY ();
   init_atoms (display);
 
   /* Check if there is a clipboard manager running */
   if (gdk_display_supports_clipboard_persistence (gdk_display_get_default ()))
     {
-      g_warning ("Clipboard manager is already running.");
+      g_warning ("A clipboard manager is already running.");
       return FALSE;
     }
 
@@ -304,17 +306,8 @@ start_clipboard_idle_cb (XfceClipboardManager *manager)
   else
     {
       xfce_clipboard_manager_stop (manager);
+      return FALSE;
     }
-
-  return FALSE;
-}
-
-gboolean
-xfce_clipboard_manager_start (XfceClipboardManager *manager)
-{
-  g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
-
-  g_idle_add ((GSourceFunc) start_clipboard_idle_cb, manager);
 
   return TRUE;
 }
