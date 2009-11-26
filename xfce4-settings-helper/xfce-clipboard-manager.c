@@ -51,9 +51,6 @@ static void xfce_clipboard_manager_init       (XfceClipboardManager      *clipbo
 
 G_DEFINE_TYPE (XfceClipboardManager, xfce_clipboard_manager, G_TYPE_OBJECT)
 
-static gpointer manager_object = NULL;
-
-
 Atom XA_CLIPBOARD_MANAGER;
 Atom XA_MANAGER;
 
@@ -349,8 +346,10 @@ xfce_clipboard_manager_init (XfceClipboardManager *manager)
 {
   manager->priv = XFCE_CLIPBOARD_MANAGER_GET_PRIVATE (manager);
 
-  manager->priv->default_clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-  manager->priv->primary_clipboard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
+  manager->priv->default_clipboard =
+    gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+  manager->priv->primary_clipboard =
+    gtk_clipboard_get (GDK_SELECTION_PRIMARY);
 
   manager->priv->default_cache = NULL;
   manager->priv->primary_cache = NULL;
@@ -359,14 +358,6 @@ xfce_clipboard_manager_init (XfceClipboardManager *manager)
 XfceClipboardManager *
 xfce_clipboard_manager_new (void)
 {
-  if (manager_object != NULL)
-    g_object_ref (manager_object);
-  else
-    {
-      manager_object = g_object_new (XFCE_TYPE_CLIPBOARD_MANAGER, NULL);
-      g_object_add_weak_pointer (manager_object,
-                                 (gpointer *) &manager_object);
-    }
-
-  return XFCE_CLIPBOARD_MANAGER (manager_object);
+ return XFCE_CLIPBOARD_MANAGER (g_object_new (XFCE_TYPE_CLIPBOARD_MANAGER,
+                                              NULL));
 }
