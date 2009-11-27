@@ -29,6 +29,7 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 
+#include "utils.h"
 #include "xfce-clipboard-manager.h"
 
 struct _XfceClipboardManagerClass
@@ -47,8 +48,6 @@ struct _XfceClipboardManager
   gchar        *primary_cache;
 
   gboolean      internal_change;
-
-  GtkWidget    *window;
 };
 
 
@@ -74,25 +73,6 @@ xfce_clipboard_manager_init (XfceClipboardManager *manager)
 
   manager->default_cache = NULL;
   manager->primary_cache = NULL;
-}
-
-
-
-Atom XA_CLIPBOARD_MANAGER;
-Atom XA_MANAGER;
-
-static void
-init_atoms (Display *display)
-{
-  static int _init_atoms = 0;
-
-  if (_init_atoms > 0)
-    return;
-
-  XA_CLIPBOARD_MANAGER = XInternAtom (display, "CLIPBOARD_MANAGER", False);
-  XA_MANAGER = XInternAtom (display, "MANAGER", False);
-
-  _init_atoms = 1;
 }
 
 
@@ -299,15 +279,7 @@ xfce_clipboard_manager_new (void)
 gboolean
 xfce_clipboard_manager_start (XfceClipboardManager *manager)
 {
-  XClientMessageEvent     xev;
-  Display                *display;
-  Window                  window;
-  Time                    timestamp;
-
   g_return_val_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager), FALSE);
-
-  display = GDK_DISPLAY ();
-  init_atoms (display);
 
   /* Check if there is a clipboard manager running */
   if (gdk_display_supports_clipboard_persistence (gdk_display_get_default ()))
@@ -316,14 +288,11 @@ xfce_clipboard_manager_start (XfceClipboardManager *manager)
       return FALSE;
     }
 
-  manager->window = gtk_invisible_new ();
-  gtk_widget_realize (manager->window);
-
-  window = GDK_WINDOW_XID (manager->window->window);
-  timestamp = GDK_CURRENT_TIME;
-
-  XSelectInput (display, window, PropertyChangeMask);
-  XSetSelectionOwner (display, XA_CLIPBOARD_MANAGER, window, timestamp);
+  if (!xfce_utils_selection_owner ("CLIPBOARD_MANAGER", FALSE, NULL))
+    {
+      g_warning ("Unable to get the clipboard manager selection.");
+      return FALSE;
+    }
 
   g_signal_connect_swapped (manager->default_clipboard, "owner-change",
                             G_CALLBACK (xfce_clipboard_manager_default_owner_change),
@@ -331,30 +300,6 @@ xfce_clipboard_manager_start (XfceClipboardManager *manager)
   g_signal_connect_swapped (manager->primary_clipboard, "owner-change",
                             G_CALLBACK (xfce_clipboard_manager_primary_owner_change),
                             manager);
-
-  /* Check to see if we managed to claim the selection. If not,
-   * we treat it as if we got it then immediately lost it
-   */
-  if (XGetSelectionOwner (display, XA_CLIPBOARD_MANAGER) == window)
-    {
-      xev.type = ClientMessage;
-      xev.window = DefaultRootWindow (display);
-      xev.message_type = XA_MANAGER;
-      xev.format = 32;
-      xev.data.l[0] = timestamp;
-      xev.data.l[1] = XA_CLIPBOARD_MANAGER;
-      xev.data.l[2] = window;
-      xev.data.l[3] = 0;      /* manager specific data */
-      xev.data.l[4] = 0;      /* manager specific data */
-
-      XSendEvent (display, DefaultRootWindow (display), False,
-                  StructureNotifyMask, (XEvent *)&xev);
-    }
-  else
-    {
-      xfce_clipboard_manager_stop (manager);
-      return FALSE;
-    }
 
   return TRUE;
 }
@@ -366,15 +311,12 @@ xfce_clipboard_manager_stop (XfceClipboardManager *manager)
 {
   g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
 
-  g_debug ("Stopping clipboard manager");
-
   g_signal_handlers_disconnect_by_func (manager->default_clipboard,
                                         xfce_clipboard_manager_default_owner_change,
                                         manager);
   g_signal_handlers_disconnect_by_func (manager->primary_clipboard,
                                         xfce_clipboard_manager_primary_owner_change,
                                         manager);
-  gtk_widget_destroy (manager->window);
 
   if (manager->default_cache != NULL)
     {

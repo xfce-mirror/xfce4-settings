@@ -56,6 +56,7 @@
 #include "keyboard-shortcuts.h"
 #include "workspaces.h"
 #include "xfce-clipboard-manager.h"
+#include "utils.h"
 
 #ifdef HAVE_XRANDR
 #include "displays.h"
@@ -125,13 +126,14 @@ xfce_settings_helper_set_autostart_enabled (gboolean enabled)
 
 
 
-#ifdef GDK_WINDOWING_X11
 static GdkFilterReturn
 xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
                                         GdkEvent *evt,
                                         gpointer user_data)
 {
-    Window xwin = GPOINTER_TO_UINT(user_data);
+#ifdef GDK_WINDOWING_X11
+    GtkWidget *invisible = GTK_WIDGET (user_data);
+    Window xwin = GDK_WINDOW_XID (invisible->window);
     XEvent *xe = (XEvent *)xevt;
 
     if (xe->type == SelectionClear && xe->xclient.window == xwin)
@@ -140,70 +142,10 @@ xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
             xfce_sm_client_set_restart_style (sm_client, XFCE_SM_CLIENT_RESTART_NORMAL);
         gtk_main_quit ();
     }
-
+#endif
     return GDK_FILTER_CONTINUE;
 }
-#endif
 
-static gboolean
-xfce_settings_helper_acquire_selection (gboolean force)
-{
-#ifdef GDK_WINDOWING_X11
-    GdkDisplay *gdpy = gdk_display_get_default ();
-    GtkWidget *invisible;
-    Display *dpy = GDK_DISPLAY_XDISPLAY (gdpy);
-    GdkWindow *rootwin = gdk_screen_get_root_window (gdk_display_get_screen (gdpy, 0));
-    Window xroot = GDK_WINDOW_XID (rootwin);
-    GdkAtom selection_atom;
-    Atom selection_atom_x11;
-    XClientMessageEvent xev;
-
-    selection_atom = gdk_atom_intern (SELECTION_NAME, FALSE);
-    selection_atom_x11 = gdk_x11_atom_to_xatom_for_display (gdpy, selection_atom);
-
-    /* can't use gdk for the selection owner here because it returns NULL
-     * if the selection owner is in another process */
-    if (!force && XGetSelectionOwner (dpy, selection_atom_x11) != None)
-        return FALSE;
-
-    invisible = gtk_invisible_new ();
-    gtk_widget_realize (invisible);
-    gtk_widget_add_events (invisible, GDK_STRUCTURE_MASK | GDK_PROPERTY_CHANGE_MASK);
-
-    if (!gdk_selection_owner_set_for_display (gdpy, invisible->window,
-                                              selection_atom, GDK_CURRENT_TIME,
-                                              TRUE))
-    {
-        g_critical ("Unable to get selection " SELECTION_NAME);
-        gtk_widget_destroy (invisible);
-        return FALSE;
-    }
-
-    /* but we can use gdk here since we only care if it's our window */
-    if (gdk_selection_owner_get_for_display (gdpy, selection_atom) != invisible->window)
-    {
-        gtk_widget_destroy (invisible);
-        return FALSE;
-    }
-
-    xev.type = ClientMessage;
-    xev.window = xroot;
-    xev.message_type = gdk_x11_get_xatom_by_name_for_display (gdpy, "MANAGER");
-    xev.format = 32;
-    xev.data.l[0] = CurrentTime;
-    xev.data.l[1] = selection_atom_x11;
-    xev.data.l[2] = GDK_WINDOW_XID (invisible->window);
-    xev.data.l[3] = xev.data.l[4] = 0;
-
-    XSendEvent (dpy, xroot, False, StructureNotifyMask, (XEvent *)&xev);
-
-    gdk_window_add_filter (invisible->window,
-                           xfce_settings_helper_selection_watcher,
-                           GUINT_TO_POINTER (GDK_WINDOW_XID (invisible->window)));
-#endif
-
-    return TRUE;
-}
 
 
 gint
@@ -290,7 +232,8 @@ main (gint argc, gchar **argv)
     }
 
     in_session = xfce_sm_client_is_resumed (sm_client);
-    if (!xfce_settings_helper_acquire_selection (in_session))
+    if (!xfce_utils_selection_owner (SELECTION_NAME, in_session,
+                                     xfce_settings_helper_selection_watcher))
     {
         g_printerr ("%s is already running\n", G_LOG_DOMAIN);
         g_object_unref (G_OBJECT (sm_client));
@@ -331,7 +274,11 @@ main (gint argc, gchar **argv)
 
     /* Try to start the clipboard daemon */
     clipboard_daemon = xfce_clipboard_manager_new ();
-    xfce_clipboard_manager_start (clipboard_daemon);
+    if (!xfce_clipboard_manager_start (clipboard_daemon))
+    {
+        g_object_unref (G_OBJECT (clipboard_daemon));
+        clipboard_daemon = NULL;
+    }
 
     /* setup signal handlers to properly quit the main loop */
     if (xfce_posix_signal_handler_init (NULL))
@@ -355,7 +302,11 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (workspaces_helper));
 
     /* Stop the clipboard daemon */
-    xfce_clipboard_manager_stop (clipboard_daemon);
+    if (G_LIKELY (clipboard_daemon != NULL))
+    {
+        xfce_clipboard_manager_stop (clipboard_daemon);
+        g_object_unref (G_OBJECT (clipboard_daemon));
+    }
 
     /* shutdown xfconf */
     xfconf_shutdown ();

@@ -26,6 +26,8 @@ xfce4_settings_helper_SOURCES = \
 	keyboard-layout.h \
 	pointers.c \
 	pointers.h \
+	utils.c \
+	utils.h \
 	workspaces.c \
 	workspaces.h \
 	xfce-clipboard-manager.c \
