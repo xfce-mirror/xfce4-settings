@@ -25,25 +25,15 @@
 
 G_BEGIN_DECLS
 
+typedef struct _XfceClipboardManager      XfceClipboardManager;
+typedef struct _XfceClipboardManagerClass XfceClipboardManagerClass;
+
 #define XFCE_TYPE_CLIPBOARD_MANAGER         (xfce_clipboard_manager_get_type ())
 #define XFCE_CLIPBOARD_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFCE_TYPE_CLIPBOARD_MANAGER, XfceClipboardManager))
 #define XFCE_CLIPBOARD_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFCE_TYPE_CLIPBOARD_MANAGER, XfceClipboardManagerClass))
 #define XFCE_IS_CLIPBOARD_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFCE_TYPE_CLIPBOARD_MANAGER))
 #define XFCE_IS_CLIPBOARD_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFCE_TYPE_CLIPBOARD_MANAGER))
 #define XFCE_CLIPBOARD_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFCE_TYPE_CLIPBOARD_MANAGER, XfceClipboardManagerClass))
-
-typedef struct XfceClipboardManagerPrivate XfceClipboardManagerPrivate;
-
-typedef struct
-{
-  GObject                      parent;
-  XfceClipboardManagerPrivate *priv;
-} XfceClipboardManager;
-
-typedef struct
-{
-  GObjectClass   parent_class;
-} XfceClipboardManagerClass;
 
 GType                 xfce_clipboard_manager_get_type            (void);
 
