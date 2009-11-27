@@ -18,6 +18,8 @@ xfce4_settings_helper_SOURCES = \
 	main.c \
 	accessibility.c \
 	accessibility.h \
+	clipboard-manager.c \
+	clipboard-manager.h \
 	keyboards.c \
 	keyboards.h \
 	keyboard-shortcuts.c \
@@ -29,9 +31,7 @@ xfce4_settings_helper_SOURCES = \
 	utils.c \
 	utils.h \
 	workspaces.c \
-	workspaces.h \
-	xfce-clipboard-manager.c \
-	xfce-clipboard-manager.h
+	workspaces.h
 
 xfce4_settings_helper_CFLAGS = \
 	-I$(top_builddir) \

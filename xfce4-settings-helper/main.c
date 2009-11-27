@@ -55,7 +55,7 @@
 #include "keyboard-layout.h"
 #include "keyboard-shortcuts.h"
 #include "workspaces.h"
-#include "xfce-clipboard-manager.h"
+#include "clipboard-manager.h"
 #include "utils.h"
 
 #ifdef HAVE_XRANDR
