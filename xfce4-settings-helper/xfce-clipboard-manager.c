@@ -184,6 +184,8 @@ xfce_clipboard_manager_default_restore (XfceClipboardManager *manager)
 
     targets = gtk_target_table_new_from_list (target_list, &n_targets);
 
+    gtk_target_list_unref (target_list);
+
     gtk_clipboard_set_with_data (manager->default_clipboard,
                                  targets, n_targets,
                                  xfce_clipboard_manager_default_get_func,
