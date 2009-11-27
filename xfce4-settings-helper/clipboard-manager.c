@@ -93,7 +93,7 @@ xfce_clipboard_manager_default_store (XfceClipboardManager *manager)
     if (manager->default_cache != NULL)
     {
         g_slist_foreach (manager->default_cache, (GFunc)gtk_selection_data_free, NULL);
-                         g_slist_free (manager->default_cache);
+        g_slist_free (manager->default_cache);
         manager->default_cache = NULL;
     }
 
@@ -112,7 +112,7 @@ xfce_clipboard_manager_default_store (XfceClipboardManager *manager)
         selection_data = gtk_clipboard_wait_for_contents (manager->default_clipboard, atoms[i]);
 
         if (selection_data == NULL)
-            return;
+            break;
 
         manager->default_cache = g_slist_prepend (manager->default_cache, selection_data);
     }
