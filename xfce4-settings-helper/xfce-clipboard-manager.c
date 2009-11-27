@@ -51,10 +51,32 @@ struct _XfceClipboardManager
   GtkWidget    *window;
 };
 
-static void xfce_clipboard_manager_class_init (XfceClipboardManagerClass *klass);
-static void xfce_clipboard_manager_init       (XfceClipboardManager      *clipboard_manager);
+
 
 G_DEFINE_TYPE (XfceClipboardManager, xfce_clipboard_manager, G_TYPE_OBJECT)
+
+
+
+static void
+xfce_clipboard_manager_class_init (XfceClipboardManagerClass *klass)
+{
+}
+
+
+
+static void
+xfce_clipboard_manager_init (XfceClipboardManager *manager)
+{
+  manager->default_clipboard =
+    gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+  manager->primary_clipboard =
+    gtk_clipboard_get (GDK_SELECTION_PRIMARY);
+
+  manager->default_cache = NULL;
+  manager->primary_cache = NULL;
+}
+
+
 
 Atom XA_CLIPBOARD_MANAGER;
 Atom XA_MANAGER;
@@ -74,8 +96,9 @@ init_atoms (Display *display)
 }
 
 
+
 static void
-default_clipboard_store (XfceClipboardManager *manager)
+xfce_clipboard_manager_default_store (XfceClipboardManager *manager)
 {
   GtkSelectionData *selection_data;
   GdkAtom          *atoms;
@@ -115,14 +138,17 @@ default_clipboard_store (XfceClipboardManager *manager)
     }
 }
 
+
+
 static void
-default_clipboard_get_func (GtkClipboard *clipboard,
-                            GtkSelectionData *selection_data,
-                            guint info,
-                            XfceClipboardManager *manager)
+xfce_clipboard_manager_default_get_func (GtkClipboard     *clipboard,
+                                         GtkSelectionData *selection_data,
+                                         guint             info,
+                                         gpointer          user_data)
 {
-  GSList           *list;
-  GtkSelectionData *selection_data_cache = NULL;
+  XfceClipboardManager *manager = XFCE_CLIPBOARD_MANAGER (user_data);
+  GSList               *list;
+  GtkSelectionData     *selection_data_cache = NULL;
 
   g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
 
@@ -147,16 +173,19 @@ default_clipboard_get_func (GtkClipboard *clipboard,
                           selection_data_cache->length);
 }
 
+
+
 static void
-default_clipboard_clear_func (GtkClipboard *clipboard,
-                              XfceClipboardManager *manager)
+xfce_clipboard_manager_default_clear_func (GtkClipboard *clipboard,
+                                           gpointer      user_data)
 {
   return;
 }
 
 
+
 static void
-default_clipboard_restore (XfceClipboardManager *manager)
+xfce_clipboard_manager_default_restore (XfceClipboardManager *manager)
 {
   GtkTargetList    *target_list;
   GtkTargetEntry   *targets;
@@ -179,14 +208,16 @@ default_clipboard_restore (XfceClipboardManager *manager)
 
   gtk_clipboard_set_with_data (manager->default_clipboard,
                                targets, n_targets,
-                               (GtkClipboardGetFunc)default_clipboard_get_func,
-                               (GtkClipboardClearFunc)default_clipboard_clear_func,
+                               xfce_clipboard_manager_default_get_func,
+                               xfce_clipboard_manager_default_clear_func,
                                manager);
 }
 
+
+
 static void
-default_clipboard_owner_change (XfceClipboardManager *manager,
-                                GdkEventOwnerChange *event)
+xfce_clipboard_manager_default_owner_change (XfceClipboardManager *manager,
+                                             GdkEventOwnerChange  *event)
 {
   g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
 
@@ -201,7 +232,7 @@ default_clipboard_owner_change (XfceClipboardManager *manager,
           return;
         }
 
-      default_clipboard_store (manager);
+      xfce_clipboard_manager_default_store (manager);
     }
   else
     {
@@ -218,13 +249,15 @@ default_clipboard_owner_change (XfceClipboardManager *manager,
         return;
 
       manager->internal_change = TRUE;
-      default_clipboard_restore (manager);
+      xfce_clipboard_manager_default_restore (manager);
     }
 }
 
+
+
 static void
-primary_clipboard_owner_change (XfceClipboardManager *manager,
-                                GdkEventOwnerChange *event)
+xfce_clipboard_manager_primary_owner_change (XfceClipboardManager *manager,
+                                             GdkEventOwnerChange *event)
 {
   gchar *text;
 
@@ -251,6 +284,17 @@ primary_clipboard_owner_change (XfceClipboardManager *manager,
                                 -1);
     }
 }
+
+
+
+XfceClipboardManager *
+xfce_clipboard_manager_new (void)
+{
+ return XFCE_CLIPBOARD_MANAGER (g_object_new (XFCE_TYPE_CLIPBOARD_MANAGER,
+                                              NULL));
+}
+
+
 
 gboolean
 xfce_clipboard_manager_start (XfceClipboardManager *manager)
@@ -282,9 +326,11 @@ xfce_clipboard_manager_start (XfceClipboardManager *manager)
   XSetSelectionOwner (display, XA_CLIPBOARD_MANAGER, window, timestamp);
 
   g_signal_connect_swapped (manager->default_clipboard, "owner-change",
-                            G_CALLBACK (default_clipboard_owner_change), manager);
+                            G_CALLBACK (xfce_clipboard_manager_default_owner_change),
+                            manager);
   g_signal_connect_swapped (manager->primary_clipboard, "owner-change",
-                            G_CALLBACK (primary_clipboard_owner_change), manager);
+                            G_CALLBACK (xfce_clipboard_manager_primary_owner_change),
+                            manager);
 
   /* Check to see if we managed to claim the selection. If not,
    * we treat it as if we got it then immediately lost it
@@ -313,6 +359,8 @@ xfce_clipboard_manager_start (XfceClipboardManager *manager)
   return TRUE;
 }
 
+
+
 void
 xfce_clipboard_manager_stop (XfceClipboardManager *manager)
 {
@@ -321,9 +369,11 @@ xfce_clipboard_manager_stop (XfceClipboardManager *manager)
   g_debug ("Stopping clipboard manager");
 
   g_signal_handlers_disconnect_by_func (manager->default_clipboard,
-                                        default_clipboard_owner_change, manager);
+                                        xfce_clipboard_manager_default_owner_change,
+                                        manager);
   g_signal_handlers_disconnect_by_func (manager->primary_clipboard,
-                                        primary_clipboard_owner_change, manager);
+                                        xfce_clipboard_manager_primary_owner_change,
+                                        manager);
   gtk_widget_destroy (manager->window);
 
   if (manager->default_cache != NULL)
@@ -335,28 +385,4 @@ xfce_clipboard_manager_stop (XfceClipboardManager *manager)
 
   if (manager->primary_cache != NULL)
     g_free (manager->primary_cache);
-}
-
-static void
-xfce_clipboard_manager_class_init (XfceClipboardManagerClass *klass)
-{
-}
-
-static void
-xfce_clipboard_manager_init (XfceClipboardManager *manager)
-{
-  manager->default_clipboard =
-    gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-  manager->primary_clipboard =
-    gtk_clipboard_get (GDK_SELECTION_PRIMARY);
-
-  manager->default_cache = NULL;
-  manager->primary_cache = NULL;
-}
-
-XfceClipboardManager *
-xfce_clipboard_manager_new (void)
-{
- return XFCE_CLIPBOARD_MANAGER (g_object_new (XFCE_TYPE_CLIPBOARD_MANAGER,
-                                              NULL));
 }
