@@ -312,7 +312,7 @@ xfce_clipboard_manager_start (XfceClipboardManager *manager)
   /* Check if there is a clipboard manager running */
   if (gdk_display_supports_clipboard_persistence (gdk_display_get_default ()))
     {
-      g_warning ("A clipboard manager is already running.");
+      g_message ("A clipboard manager is already running.");
       return FALSE;
     }
 
