@@ -114,7 +114,7 @@ xfce_clipboard_manager_default_store (XfceClipboardManager *manager)
         selection_data = gtk_clipboard_wait_for_contents (manager->default_clipboard, atoms[i]);
 
         if (selection_data == NULL)
-            break;
+            continue;
 
         manager->default_cache = g_slist_prepend (manager->default_cache, selection_data);
     }
