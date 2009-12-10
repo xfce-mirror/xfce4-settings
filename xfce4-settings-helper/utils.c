@@ -40,6 +40,7 @@ xfce_utils_selection_owner (const gchar   *selection_name,
     GtkWidget *invisible;
     Display *dpy = GDK_DISPLAY_XDISPLAY (gdpy);
     GdkWindow *rootwin = gdk_screen_get_root_window (gdk_display_get_screen (gdpy, 0));
+    GdkWindow *invisible_window;
     Window xroot = GDK_WINDOW_XID (rootwin);
     GdkAtom selection_atom;
     Atom selection_atom_x11;
@@ -67,7 +68,9 @@ xfce_utils_selection_owner (const gchar   *selection_name,
     gtk_widget_realize (invisible);
     gtk_widget_add_events (invisible, GDK_STRUCTURE_MASK | GDK_PROPERTY_CHANGE_MASK);
 
-    if (!gdk_selection_owner_set_for_display (gdpy, invisible->window,
+    invisible_window = gtk_widget_get_window (invisible);
+
+    if (!gdk_selection_owner_set_for_display (gdpy, invisible_window,
                                               selection_atom, GDK_CURRENT_TIME,
                                               TRUE))
     {
@@ -77,7 +80,7 @@ xfce_utils_selection_owner (const gchar   *selection_name,
     }
 
     /* but we can use gdk here since we only care if it's our window */
-    if (gdk_selection_owner_get_for_display (gdpy, selection_atom) != invisible->window)
+    if (gdk_selection_owner_get_for_display (gdpy, selection_atom) != invisible_window)
     {
         gtk_widget_destroy (invisible);
         return FALSE;
@@ -89,7 +92,7 @@ xfce_utils_selection_owner (const gchar   *selection_name,
     xev.format = 32;
     xev.data.l[0] = CurrentTime;
     xev.data.l[1] = selection_atom_x11;
-    xev.data.l[2] = GDK_WINDOW_XID (invisible->window);
+    xev.data.l[2] = GDK_WINDOW_XID (invisible_window);
     xev.data.l[3] = xev.data.l[4] = 0;
 
     gdk_error_trap_push ();
@@ -99,7 +102,7 @@ xfce_utils_selection_owner (const gchar   *selection_name,
       g_critical ("Failed to send client event");
 
     if (filter_func != NULL)
-        gdk_window_add_filter (invisible->window, filter_func, invisible);
+        gdk_window_add_filter (invisible_window, filter_func, invisible);
 #endif
 
     return TRUE;

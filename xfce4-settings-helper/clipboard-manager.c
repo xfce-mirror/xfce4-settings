@@ -138,7 +138,8 @@ xfce_clipboard_manager_default_get_func (GtkClipboard     *clipboard,
     {
         selection_data_cache = list->data;
 
-        if (selection_data->target == selection_data_cache->target)
+        if (gtk_selection_data_get_target (selection_data) ==
+            gtk_selection_data_get_target (selection_data_cache))
             break;
 
         selection_data_cache = NULL;
@@ -147,10 +148,8 @@ xfce_clipboard_manager_default_get_func (GtkClipboard     *clipboard,
     if (selection_data_cache == NULL)
         return;
 
-    gtk_selection_data_set (selection_data, selection_data->target,
-                            selection_data_cache->format,
-                            selection_data_cache->data,
-                            selection_data_cache->length);
+    gtk_selection_data_free (selection_data);
+    selection_data = gtk_selection_data_copy (selection_data_cache);
 }
 
 
@@ -179,7 +178,9 @@ xfce_clipboard_manager_default_restore (XfceClipboardManager *manager)
     for (list = manager->default_cache; list->next != NULL; list = list->next)
     {
         sdata = list->data;
-        gtk_target_list_add (target_list, sdata->target, 0, 0);
+        gtk_target_list_add (target_list,
+                             gtk_selection_data_get_target (sdata),
+                             0, 0);
     }
 
     targets = gtk_target_table_new_from_list (target_list, &n_targets);
