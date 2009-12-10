@@ -47,7 +47,9 @@ struct _XfceClipboardManager
     GSList       *default_cache;
     gchar        *primary_cache;
 
-    gboolean      internal_change;
+    gboolean default_internal_change;
+    gboolean primary_timeout;
+    gboolean primary_internal_change;
 };
 
 
@@ -207,9 +209,9 @@ xfce_clipboard_manager_default_owner_change (XfceClipboardManager *manager,
 
     if (event->owner != 0)
     {
-        if (manager->internal_change)
+        if (manager->default_internal_change)
         {
-            manager->internal_change = FALSE;
+            manager->default_internal_change = FALSE;
             return;
         }
 
@@ -226,22 +228,45 @@ xfce_clipboard_manager_default_owner_change (XfceClipboardManager *manager,
          * e.g. owner is not 0). By the second time we would store
          * ourself back with an empty clipboard... solution is to jump
          * over the first time and don't try to restore empty data. */
-        if (manager->internal_change)
+        if (manager->default_internal_change)
             return;
 
-        manager->internal_change = TRUE;
+        manager->default_internal_change = TRUE;
         xfce_clipboard_manager_default_restore (manager);
     }
 }
 
 
 
+static gboolean
+xfce_clipboard_manager_primary_clipboard_store (XfceClipboardManager *manager)
+{
+    GdkModifierType state;
+    gchar *text;
+
+    gdk_window_get_pointer (NULL, NULL, NULL, &state);
+
+    if (state & (GDK_BUTTON1_MASK|GDK_SHIFT_MASK))
+        return TRUE;
+
+    text = gtk_clipboard_wait_for_text (manager->primary_clipboard);
+
+    if (text != NULL)
+    {
+        g_free (manager->primary_cache);
+        manager->primary_cache = text;
+    }
+
+    manager->primary_timeout = 0;
+
+    return FALSE;
+}
+
+
 static void
 xfce_clipboard_manager_primary_owner_change (XfceClipboardManager *manager,
                                              GdkEventOwnerChange *event)
 {
-    gchar *text;
-
     g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
 
     if (event->send_event == TRUE)
@@ -249,12 +274,16 @@ xfce_clipboard_manager_primary_owner_change (XfceClipboardManager *manager,
 
     if (event->owner != 0)
     {
-        text = gtk_clipboard_wait_for_text (manager->primary_clipboard);
-
-        if (text != NULL)
+        if (manager->primary_internal_change == TRUE)
         {
-            g_free (manager->primary_cache);
-            manager->primary_cache = text;
+            manager->primary_internal_change = FALSE;
+            return;
+        }
+
+        if (manager->primary_timeout == 0)
+        {
+            manager->primary_timeout =
+            g_timeout_add (250, (GSourceFunc)xfce_clipboard_manager_primary_clipboard_store, manager);
         }
     }
     else
@@ -263,6 +292,7 @@ xfce_clipboard_manager_primary_owner_change (XfceClipboardManager *manager,
             gtk_clipboard_set_text (manager->primary_clipboard,
                                     manager->primary_cache,
                                     -1);
+        manager->primary_internal_change = TRUE;
     }
 }
 
