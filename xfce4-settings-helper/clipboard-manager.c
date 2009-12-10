@@ -150,8 +150,11 @@ xfce_clipboard_manager_default_get_func (GtkClipboard     *clipboard,
     if (selection_data_cache == NULL)
         return;
 
-    gtk_selection_data_free (selection_data);
-    selection_data = gtk_selection_data_copy (selection_data_cache);
+    gtk_selection_data_set (selection_data,
+                            gtk_selection_data_get_target (selection_data_cache),
+                            gtk_selection_data_get_format (selection_data_cache),
+                            gtk_selection_data_get_data (selection_data_cache),
+                            gtk_selection_data_get_length (selection_data_cache));
 }
 
 
