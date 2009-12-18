@@ -35,7 +35,7 @@ if MAINTAINER_MODE
 BUILT_SOURCES = \
 	accessibility-dialog_ui.h
 
-accessibility-dialog_ui.h: accessibility-dialog.ui
+accessibility-dialog_ui.h: accessibility-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=accessibility_dialog_ui $< >$@
 
 endif
@@ -48,7 +48,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	accessibility-dialog.ui
+	accessibility-dialog.glade
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

@@ -50,7 +50,7 @@ if MAINTAINER_MODE
 BUILT_SOURCES = \
 	keyboard-dialog_ui.h
 
-keyboard-dialog_ui.h: keyboard-dialog.ui
+keyboard-dialog_ui.h: keyboard-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=keyboard_dialog_ui $< >$@
 
 endif
@@ -63,7 +63,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	keyboard-dialog.ui
+	keyboard-dialog.glade
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

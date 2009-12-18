@@ -41,7 +41,7 @@ if MAINTAINER_MODE
 BUILT_SOURCES = \
 	display-dialog_ui.h
 
-display-dialog_ui.h: display-dialog.ui
+display-dialog_ui.h: display-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=display_dialog_ui $< >$@
 
 endif
@@ -54,7 +54,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	display-dialog.ui
+	display-dialog.glade
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

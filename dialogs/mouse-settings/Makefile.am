@@ -48,7 +48,7 @@ if MAINTAINER_MODE
 BUILT_SOURCES = \
 	mouse-dialog_ui.h
 
-mouse-dialog_ui.h: mouse-dialog.ui
+mouse-dialog_ui.h: mouse-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=mouse_dialog_ui $< >$@
 
 endif
@@ -61,7 +61,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	mouse-dialog.ui
+	mouse-dialog.glade
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

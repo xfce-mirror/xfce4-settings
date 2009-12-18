@@ -43,7 +43,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	xfce4-settings-editor.ui
+	xfce4-settings-editor.glade
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
@@ -53,7 +53,7 @@ if MAINTAINER_MODE
 BUILT_SOURCES = \
 	xfce4-settings-editor_ui.h
 
-xfce4-settings-editor_ui.h: xfce4-settings-editor.ui
+xfce4-settings-editor_ui.h: xfce4-settings-editor.glade
 	exo-csource --static --strip-comments --strip-content --name=xfce4_settings_editor_ui $< >$@
 
 endif
