@@ -403,6 +403,8 @@ cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, G
             gtk_tree_view_expand_row (tree_view, path, FALSE);
 
     }
+    else
+        cb_property_edit_button_clicked (NULL, NULL);
 }
 
 static void
