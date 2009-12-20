@@ -60,7 +60,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 static void
 cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data);
 static void
-cb_property_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data);
+cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkWidget *edit_button);
 static void
 cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 
@@ -148,7 +148,7 @@ xfce4_settings_editor_main_window_new(void)
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_channel_treeview_selection_changed), NULL);
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (property_treeview));
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_property_treeview_selection_changed), NULL);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_property_treeview_selection_changed), property_edit_button);
 
 
     /* Connect signal-handlers to toolbar buttons */
@@ -442,7 +442,7 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer use
 }
 
 static void
-cb_property_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data)
+cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkWidget *edit_button)
 {
     GtkTreeModel *model;
     GtkTreeIter iter;
@@ -481,6 +481,10 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, gpointer us
     }
 
     current_property = prop_name;
+
+    /* Set the state of the edit button */
+    gtk_widget_set_sensitive (edit_button,
+                              !xfconf_channel_is_property_locked (current_channel, current_property));
 }
 
 static void
