@@ -100,8 +100,6 @@ main(gint argc, gchar **argv)
 
     gtk_dialog_run (dialog);
 
-    gtk_widget_destroy (GTK_WIDGET (dialog));
-
     /* shutdown xfconf */
     xfconf_shutdown ();
 

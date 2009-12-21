@@ -36,6 +36,10 @@
 #include "xfce4-settings-editor_ui.h"
 #include "main_window.h"
 
+#define WINDOW_WIDTH 600
+#define WINDOW_HEIGHT 380
+#define HPANED_POSITION 200
+
 static GtkBuilder *builder = NULL;
 static XfconfChannel *current_channel = NULL;
 static gchar *current_property = NULL;
@@ -70,15 +74,20 @@ static void
 cb_property_edit_button_clicked (GtkButton *button, gpointer user_data);
 static void
 cb_property_revert_button_clicked (GtkButton *button, gpointer user_data);
+static void
+xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, gpointer user_data);
 
 
 
 GtkDialog *
 xfce4_settings_editor_main_window_new(void)
 {
+    gint width, height, position;
     GObject *dialog;
     GObject *channel_treeview;
     GObject *property_treeview;
+    GObject *hpaned;
+    XfconfChannel *channel;
     GtkListStore *channel_list_store;
     GtkTreeStore *property_tree_store;
     GtkCellRenderer *renderer;
@@ -101,6 +110,19 @@ xfce4_settings_editor_main_window_new(void)
     {
         dialog = gtk_builder_get_object (builder, "main_dialog");
     }
+
+    hpaned = gtk_builder_get_object (builder, "hpaned2");
+
+    /* Set the default size of the window */
+    channel = xfconf_channel_get ("xfce4-settings-editor");
+    width = xfconf_channel_get_int (channel, "/window-width", WINDOW_WIDTH);
+    height = xfconf_channel_get_int (channel, "/window-height", WINDOW_HEIGHT);
+    position = xfconf_channel_get_int (channel, "/hpaned-position", HPANED_POSITION);
+    gtk_window_set_default_size (GTK_WINDOW (dialog), width, height);
+    gtk_paned_set_position (GTK_PANED (hpaned), position);
+
+    g_signal_connect (dialog, "response", G_CALLBACK (xfce_settings_editor_dialog_response), NULL);
+
     channel_treeview = gtk_builder_get_object (builder, "channel_treeview");
     property_treeview = gtk_builder_get_object (builder, "property_treeview");
 
@@ -701,6 +723,24 @@ cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
         gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
         load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
     }
+
+    gtk_widget_destroy (dialog);
+}
+
+static void
+xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, gpointer user_data)
+{
+    XfconfChannel *channel;
+    gint width, height;
+    GObject *hpaned;
+
+    hpaned = gtk_builder_get_object (builder, "hpaned2");
+
+    channel = xfconf_channel_get ("xfce4-settings-editor");
+    gtk_window_get_size (GTK_WINDOW (dialog), &width, &height);
+    xfconf_channel_set_int (channel, "/window-width", width);
+    xfconf_channel_set_int (channel, "/window-height", height);
+    xfconf_channel_set_int (channel, "/hpaned-position", gtk_paned_get_position (GTK_PANED (hpaned)));
 
     gtk_widget_destroy (dialog);
 }
