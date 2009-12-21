@@ -686,33 +686,21 @@ cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
     GObject *property_treeview;
     GtkTreeModel *tree_store = NULL;
 
-    if (xfconf_channel_is_property_locked (current_channel, current_property))
+    dialog = gtk_message_dialog_new_with_markup (
+                                 GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
+                                 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
+                                 _("Are you sure you want to reset property \"<b>%s</b>\"?"),
+                                 current_property);
+
+    if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
     {
-        dialog = gtk_message_dialog_new_with_markup (
-                                     GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
-                                     0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
-                                     _("Property \"<b>%s</b>\" cannot be reset because it is locked"),
-                                     current_property);
-        gtk_dialog_run (GTK_DIALOG(dialog));
-        gtk_widget_destroy (dialog);
-    }
-    else
-    {
-        dialog = gtk_message_dialog_new_with_markup (
-                                     GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
-                                     0, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
-                                     _("Are you sure you want to reset property \"<b>%s</b>\"?"),
-                                     current_property);
-        if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
-        {
-            property_treeview = gtk_builder_get_object (builder, "property_treeview");
-            tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
-            gtk_widget_hide (dialog);
-            xfconf_channel_reset_property (current_channel, current_property, FALSE);
-            gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
-            load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
-        }
-        gtk_widget_destroy (dialog);
+        property_treeview = gtk_builder_get_object (builder, "property_treeview");
+        tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
+        gtk_widget_hide (dialog);
+        xfconf_channel_reset_property (current_channel, current_property, FALSE);
+        gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
+        load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
     }
 
+    gtk_widget_destroy (dialog);
 }
