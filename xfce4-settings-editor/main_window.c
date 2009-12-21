@@ -58,7 +58,7 @@ static void
 load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treeview);
 
 static void
-cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data);
+cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *builder);
 static void
 cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *builder);
 static void
@@ -108,6 +108,9 @@ xfce4_settings_editor_main_window_new(void)
     property_new_button = gtk_builder_get_object (builder, "property_new_button");
     property_revert_button = gtk_builder_get_object (builder, "property_revert_button");
 
+    gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET (property_revert_button), FALSE);
+
     /*
      * Channel List
      */
@@ -145,7 +148,7 @@ xfce4_settings_editor_main_window_new(void)
 
     /* selection handling */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (channel_treeview));
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_channel_treeview_selection_changed), NULL);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_channel_treeview_selection_changed), builder);
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (property_treeview));
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_property_treeview_selection_changed), builder);
@@ -408,20 +411,27 @@ cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, G
 }
 
 static void
-cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data)
+cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *builder)
 {
     GtkTreeModel *model;
     GtkTreeIter iter;
     XfconfChannel *channel;
     GObject *property_treeview;
+    GObject *property_edit_button;
+    GObject *property_revert_button;
     GtkTreeModel *tree_store = NULL;
     GValue value = {0, };
+
+    property_edit_button = gtk_builder_get_object (builder, "property_edit_button");
+    property_revert_button = gtk_builder_get_object (builder, "property_revert_button");
 
     if (current_channel)
     {
         g_object_unref (G_OBJECT(current_channel));
         current_channel = NULL;
     }
+
+
 
     if (! gtk_tree_selection_get_selected (selection, &model, &iter))
         return;
@@ -454,15 +464,26 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder 
     gchar *prop_name = NULL;
     gchar *temp = NULL;
 
+    property_edit_button = gtk_builder_get_object (builder, "property_edit_button");
+    property_revert_button = gtk_builder_get_object (builder, "property_revert_button");
+
     if (current_property)
     {
         g_free (prop_name);
         current_property = NULL;
     }
 
+    gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET (property_revert_button), FALSE);
+
     /* return if no property is selected */
-    if (! gtk_tree_selection_get_selected (selection, &model, &iter))
+    if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (property_revert_button), FALSE);
+
         return;
+    }
 
     /* create the complete property-name */
     gtk_tree_model_get_value (model, &iter, 0, &value);
@@ -486,8 +507,6 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder 
     current_property = prop_name;
 
     /* Set the state of the edit and reset buttons */
-    property_edit_button = gtk_builder_get_object (builder, "property_edit_button");
-    property_revert_button = gtk_builder_get_object (builder, "property_revert_button");
     locked = xfconf_channel_is_property_locked (current_channel, current_property);
 
     gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), !locked);
