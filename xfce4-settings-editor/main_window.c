@@ -60,7 +60,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 static void
 cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer user_data);
 static void
-cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkWidget *edit_button);
+cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *builder);
 static void
 cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 
@@ -148,7 +148,7 @@ xfce4_settings_editor_main_window_new(void)
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_channel_treeview_selection_changed), NULL);
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (property_treeview));
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_property_treeview_selection_changed), property_edit_button);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_property_treeview_selection_changed), builder);
 
 
     /* Connect signal-handlers to toolbar buttons */
@@ -442,11 +442,14 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, gpointer use
 }
 
 static void
-cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkWidget *edit_button)
+cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *builder)
 {
     GtkTreeModel *model;
     GtkTreeIter iter;
     GtkTreeIter p_iter;
+    gboolean locked;
+    GObject *property_edit_button;
+    GObject *property_revert_button;
     GValue value = {0, };
     gchar *prop_name = NULL;
     gchar *temp = NULL;
@@ -482,9 +485,13 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkWidget *
 
     current_property = prop_name;
 
-    /* Set the state of the edit button */
-    gtk_widget_set_sensitive (edit_button,
-                              !xfconf_channel_is_property_locked (current_channel, current_property));
+    /* Set the state of the edit and reset buttons */
+    property_edit_button = gtk_builder_get_object (builder, "property_edit_button");
+    property_revert_button = gtk_builder_get_object (builder, "property_revert_button");
+    locked = xfconf_channel_is_property_locked (current_channel, current_property);
+
+    gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), !locked);
+    gtk_widget_set_sensitive (GTK_WIDGET (property_revert_button), !locked);
 }
 
 static void
