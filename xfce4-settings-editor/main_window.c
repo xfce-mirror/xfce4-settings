@@ -439,21 +439,14 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *
     GtkTreeIter iter;
     XfconfChannel *channel;
     GObject *property_treeview;
-    GObject *property_edit_button;
-    GObject *property_revert_button;
     GtkTreeModel *tree_store = NULL;
     GValue value = {0, };
-
-    property_edit_button = gtk_builder_get_object (builder, "property_edit_button");
-    property_revert_button = gtk_builder_get_object (builder, "property_revert_button");
 
     if (current_channel)
     {
         g_object_unref (G_OBJECT(current_channel));
         current_channel = NULL;
     }
-
-
 
     if (! gtk_tree_selection_get_selected (selection, &model, &iter))
         return;
