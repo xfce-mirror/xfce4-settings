@@ -74,7 +74,7 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder);
 static void
 cb_property_revert_button_clicked (GtkButton *button, GtkBuilder *builder);
 static void
-xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, GtkBuilder *builder);
+cb_settings_editor_dialog_response (GtkWidget *dialog, gint response, GtkBuilder *builder);
 static void
 cb_channel_property_changed (XfconfChannel *channel, gchar *property, GValue *value, GtkBuilder *builder);
 
@@ -124,7 +124,7 @@ xfce4_settings_editor_main_window_new(void)
     gtk_window_set_default_size (GTK_WINDOW (dialog), width, height);
     gtk_paned_set_position (GTK_PANED (hpaned), position);
 
-    g_signal_connect (dialog, "response", G_CALLBACK (xfce_settings_editor_dialog_response), builder);
+    g_signal_connect (dialog, "response", G_CALLBACK (cb_settings_editor_dialog_response), builder);
 
     channel_treeview = gtk_builder_get_object (builder, "channel_treeview");
     property_treeview = gtk_builder_get_object (builder, "property_treeview");
@@ -725,7 +725,7 @@ cb_property_revert_button_clicked (GtkButton *button, GtkBuilder *builder)
 }
 
 static void
-xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, GtkBuilder *builder)
+cb_settings_editor_dialog_response (GtkWidget *dialog, gint response, GtkBuilder *builder)
 {
     XfconfChannel *channel;
     gint width, height;
