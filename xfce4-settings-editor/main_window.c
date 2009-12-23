@@ -531,6 +531,14 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder 
 
     gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), !locked);
     gtk_widget_set_sensitive (GTK_WIDGET (property_revert_button), !locked);
+
+    /* If type is Empty, we don't want the user to edit the property */
+    gtk_tree_selection_get_selected (selection, &model, &iter);
+    gtk_tree_model_get_value (model, &iter, 1, &value);
+
+    if (g_strcmp0 (g_value_get_string (&value), "Empty") == 0 )
+        gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), FALSE);
+    g_value_unset (&value);
 }
 
 static void
@@ -543,7 +551,6 @@ static void
 cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
 {
     GValue value = {0, };
-    gchar *prop_name = NULL;
 
     GObject *dialog = gtk_builder_get_object (builder, "edit_settings_dialog");
     GObject *prop_name_entry = gtk_builder_get_object (builder, "property_name_entry");
@@ -638,6 +645,8 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
 
     if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_APPLY)
     {
+        gchar *prop_name;
+
         gtk_widget_hide (GTK_WIDGET (dialog));
         switch (gtk_combo_box_get_active (GTK_COMBO_BOX (prop_type_combo)))
         {
@@ -667,15 +676,24 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
             case PROP_TYPE_ARRAY:
                 break;
         }
+
+        prop_name = g_strdup (gtk_entry_get_text (GTK_ENTRY (prop_name_entry)));
+
+        if (g_strcmp0 (prop_name, current_property) != 0)
+        {
+            xfconf_channel_reset_property (current_channel, current_property, FALSE);
+            g_free (current_property);
+            current_property = prop_name;
+        }
+        else
+            g_free (prop_name);
+
         xfconf_channel_set_property (current_channel, current_property, &value);
     }
     else
     {
         gtk_widget_hide (GTK_WIDGET (dialog));
     }
-
-    if (prop_name)
-        g_free (prop_name);
 }
 
 /**
