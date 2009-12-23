@@ -40,7 +40,6 @@
 #define WINDOW_HEIGHT 380
 #define HPANED_POSITION 200
 
-static GtkBuilder *builder = NULL;
 static XfconfChannel *current_channel = NULL;
 static gchar *current_property = NULL;
 
@@ -69,13 +68,13 @@ static void
 cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 
 static void
-cb_property_new_button_clicked (GtkButton *button, gpointer user_data);
+cb_property_new_button_clicked (GtkButton *button, GtkBuilder *builder);
 static void
-cb_property_edit_button_clicked (GtkButton *button, gpointer user_data);
+cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder);
 static void
-cb_property_revert_button_clicked (GtkButton *button, gpointer user_data);
+cb_property_revert_button_clicked (GtkButton *button, GtkBuilder *builder);
 static void
-xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, gpointer user_data);
+xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, GtkBuilder *builder);
 static void
 cb_channel_property_changed (XfconfChannel *channel, gchar *property, GValue *value, GtkBuilder *builder);
 
@@ -91,6 +90,7 @@ xfce4_settings_editor_main_window_new(void)
     GObject *property_treeview;
     GObject *hpaned;
     XfconfChannel *channel;
+    GtkBuilder *builder = NULL;
     GtkListStore *channel_list_store;
     GtkTreeStore *property_tree_store;
     GtkCellRenderer *renderer;
@@ -124,7 +124,7 @@ xfce4_settings_editor_main_window_new(void)
     gtk_window_set_default_size (GTK_WINDOW (dialog), width, height);
     gtk_paned_set_position (GTK_PANED (hpaned), position);
 
-    g_signal_connect (dialog, "response", G_CALLBACK (xfce_settings_editor_dialog_response), NULL);
+    g_signal_connect (dialog, "response", G_CALLBACK (xfce_settings_editor_dialog_response), builder);
 
     channel_treeview = gtk_builder_get_object (builder, "channel_treeview");
     property_treeview = gtk_builder_get_object (builder, "property_treeview");
@@ -178,15 +178,14 @@ xfce4_settings_editor_main_window_new(void)
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (property_treeview));
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_property_treeview_selection_changed), builder);
 
-
     /* Connect signal-handlers to toolbar buttons */
-    g_signal_connect (G_OBJECT (property_new_button), "clicked", G_CALLBACK (cb_property_new_button_clicked), property_treeview);
-    g_signal_connect (G_OBJECT (property_edit_button), "clicked", G_CALLBACK (cb_property_edit_button_clicked), property_treeview);
-    g_signal_connect (G_OBJECT (property_revert_button), "clicked", G_CALLBACK (cb_property_revert_button_clicked), property_treeview);
+    g_signal_connect (G_OBJECT (property_new_button), "clicked", G_CALLBACK (cb_property_new_button_clicked), builder);
+    g_signal_connect (G_OBJECT (property_edit_button), "clicked", G_CALLBACK (cb_property_edit_button_clicked), builder);
+    g_signal_connect (G_OBJECT (property_revert_button), "clicked", G_CALLBACK (cb_property_revert_button_clicked), builder);
 
-    load_channels (channel_list_store, GTK_TREE_VIEW(channel_treeview));
+    load_channels (channel_list_store, GTK_TREE_VIEW (channel_treeview));
 
-    return GTK_DIALOG(dialog);
+    return GTK_DIALOG (dialog);
 }
 
 /**
@@ -542,13 +541,13 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder 
 }
 
 static void
-cb_property_new_button_clicked (GtkButton *button, gpointer user_data)
+cb_property_new_button_clicked (GtkButton *button, GtkBuilder *builder)
 {
 
 }
 
 static void
-cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
+cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
 {
     GValue value = {0, };
 
@@ -702,7 +701,7 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
  * Resets a property to it's system-default, it removes the property if it does not exist as a system default.
  */
 static void
-cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
+cb_property_revert_button_clicked (GtkButton *button, GtkBuilder *builder)
 {
     GtkWidget *dialog;
     GObject *property_treeview;
@@ -726,7 +725,7 @@ cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
 }
 
 static void
-xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, gpointer user_data)
+xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, GtkBuilder *builder)
 {
     XfconfChannel *channel;
     gint width, height;
