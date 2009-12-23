@@ -76,6 +76,9 @@ static void
 cb_property_revert_button_clicked (GtkButton *button, gpointer user_data);
 static void
 xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, gpointer user_data);
+static void
+cb_channel_property_changed (XfconfChannel *channel, gchar *property, GValue *value, GtkBuilder *builder);
+
 
 
 
@@ -464,6 +467,8 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *
     load_properties (channel, GTK_TREE_STORE(tree_store), GTK_TREE_VIEW(property_treeview));
 
     current_channel = channel;
+
+    g_signal_connect (channel, "property-changed", G_CALLBACK (cb_channel_property_changed), builder);
 }
 
 static void
@@ -540,9 +545,6 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
     GValue value = {0, };
     gchar *prop_name = NULL;
 
-    GObject *property_treeview = gtk_builder_get_object (builder, "property_treeview");
-    GtkTreeModel *tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
-    GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (property_treeview));
     GObject *dialog = gtk_builder_get_object (builder, "edit_settings_dialog");
     GObject *prop_name_entry = gtk_builder_get_object (builder, "property_name_entry");
     GObject *prop_type_combo = gtk_builder_get_object (builder, "property_type_combo");
@@ -636,9 +638,6 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
 
     if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_APPLY)
     {
-        GtkTreeIter iter;
-        GValue child_value = {0, };
-
         gtk_widget_hide (GTK_WIDGET (dialog));
         switch (gtk_combo_box_get_active (GTK_COMBO_BOX (prop_type_combo)))
         {
@@ -669,16 +668,6 @@ cb_property_edit_button_clicked (GtkButton *button, gpointer user_data)
                 break;
         }
         xfconf_channel_set_property (current_channel, current_property, &value);
-
-        /* Update the tree model so that the view is updated */
-        gtk_tree_selection_get_selected (selection, &tree_store, &iter);
-        g_value_init (&child_value, G_TYPE_STRING);
-        g_value_transform (&value, &child_value);
-        gtk_tree_store_set_value (GTK_TREE_STORE(tree_store), &iter, 3, &child_value);
-
-        /* Cleanup */
-        g_value_unset (&value);
-        g_value_reset (&child_value);
     }
     else
     {
@@ -713,8 +702,6 @@ cb_property_revert_button_clicked (GtkButton *button, gpointer user_data)
         tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
         gtk_widget_hide (dialog);
         xfconf_channel_reset_property (current_channel, current_property, FALSE);
-        gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
-        load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
     }
 
     gtk_widget_destroy (dialog);
@@ -736,4 +723,20 @@ xfce_settings_editor_dialog_response (GtkWidget *dialog, gint response, gpointer
     xfconf_channel_set_int (channel, "/hpaned-position", gtk_paned_get_position (GTK_PANED (hpaned)));
 
     gtk_widget_destroy (dialog);
+}
+
+static void
+cb_channel_property_changed (XfconfChannel *channel, gchar *property, GValue *value, GtkBuilder *builder)
+{
+  if (g_strcmp0 (property, current_property) == 0)
+  {
+      GObject *property_treeview;
+      GtkTreeModel *tree_store = NULL;
+
+      property_treeview = gtk_builder_get_object (builder, "property_treeview");
+      tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
+
+      gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
+      load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
+  }
 }
