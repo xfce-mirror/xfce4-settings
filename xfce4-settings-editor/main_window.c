@@ -492,9 +492,6 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder 
         current_property = NULL;
     }
 
-    gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), FALSE);
-    gtk_widget_set_sensitive (GTK_WIDGET (property_revert_button), FALSE);
-
     /* return if no property is selected */
     if (!gtk_tree_selection_get_selected (selection, &model, &iter))
     {
@@ -535,7 +532,7 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder 
     gtk_tree_selection_get_selected (selection, &model, &iter);
     gtk_tree_model_get_value (model, &iter, 1, &value);
 
-    if (g_strcmp0 (g_value_get_string (&value), "Empty") == 0 )
+    if (g_strcmp0 (g_value_get_string (&value), "Empty") == 0)
         gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), FALSE);
     g_value_unset (&value);
 }
