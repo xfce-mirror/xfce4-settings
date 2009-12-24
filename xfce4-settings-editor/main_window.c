@@ -441,8 +441,11 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *
     GtkTreeIter iter;
     XfconfChannel *channel;
     GObject *property_treeview;
+    GObject *property_new_button;
     GtkTreeModel *tree_store = NULL;
     GValue value = {0, };
+
+    property_new_button = gtk_builder_get_object (builder, "property_new_button");
 
     if (current_channel)
     {
@@ -451,7 +454,12 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *
     }
 
     if (! gtk_tree_selection_get_selected (selection, &model, &iter))
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (property_new_button), FALSE);
         return;
+    }
+
+    gtk_widget_set_sensitive (GTK_WIDGET (property_new_button), TRUE);
 
     property_treeview = gtk_builder_get_object (builder, "property_treeview");
     tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
