@@ -11,13 +11,7 @@ SUBDIRS = \
 EXTRA_DIST = \
 	intltool-extract.in \
 	intltool-merge.in \
-	intltool-update.in \
-	AUTHORS \
-	COPYING \
-	ChangeLog \
-	INSTALL \
-	NEWS \
-	README
+	intltool-update.in
 
 .PHONY: ChangeLog
 
