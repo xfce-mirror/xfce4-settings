@@ -136,7 +136,7 @@ xfce_clipboard_manager_default_get_func (GtkClipboard     *clipboard,
 
     list = manager->default_cache;
 
-    for (; list->next != NULL; list = list->next)
+    for (; list != NULL && list->next != NULL; list = list->next)
     {
         selection_data_cache = list->data;
 
@@ -178,9 +178,13 @@ xfce_clipboard_manager_default_restore (XfceClipboardManager *manager)
 
     g_return_if_fail (XFCE_IS_CLIPBOARD_MANAGER (manager));
 
+    list = manager->default_cache;
+    if (list == NULL)
+      return;
+
     target_list = gtk_target_list_new (NULL, 0);
 
-    for (list = manager->default_cache; list->next != NULL; list = list->next)
+    for (; list->next != NULL; list = list->next)
     {
         sdata = list->data;
         gtk_target_list_add (target_list,
