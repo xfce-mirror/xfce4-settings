@@ -77,6 +77,8 @@ static void
 cb_settings_editor_dialog_response (GtkWidget *dialog, gint response, GtkBuilder *builder);
 static void
 cb_channel_property_changed (XfconfChannel *channel, gchar *property, GValue *value, GtkBuilder *builder);
+static gboolean
+xfconf_property_is_valid(const gchar *property, GError **error);
 
 
 
@@ -646,10 +648,21 @@ cb_property_new_button_clicked (GtkButton *button, GtkBuilder *builder)
     {
         const gchar *prop_name = gtk_entry_get_text (GTK_ENTRY (prop_name_entry));
         GValue value = {0, };
+        GError *error = NULL;
         GObject *property_treeview;
         GtkTreeModel *tree_store;
 
         gtk_widget_hide (GTK_WIDGET (dialog));
+
+        if (!xfconf_property_is_valid (prop_name, &error))
+          {
+              GObject *main_window = gtk_builder_get_object (builder, "main_dialog");
+
+              xfce_dialog_show_error (GTK_WINDOW (main_window), error, _("This property name is not valid."));
+
+              g_error_free (error);
+              return;
+          }
 
         switch (gtk_combo_box_get_active (GTK_COMBO_BOX (prop_type_combo)))
         {
@@ -910,4 +923,64 @@ cb_channel_property_changed (XfconfChannel *channel, gchar *property, GValue *va
       gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
       load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
   }
+}
+
+/* Copied from xfconfd/xfconf-backend.c */
+static gboolean
+xfconf_property_is_valid(const gchar *property, GError **error)
+{
+    const gchar *p = property;
+
+    if(!p || *p != '/') {
+        if(error) {
+            g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
+                        _("Property names must start with a '/' character"));
+        }
+        return FALSE;
+    }
+
+    p++;
+    if(!*p) {
+        if(error) {
+            g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
+                        _("The root element ('/') is not a valid property name"));
+        }
+        return FALSE;
+    }
+
+    while(*p) {
+        if(!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
+           && !(*p >= '0' && *p <= '9')
+           && *p != '_' && *p != '-' && *p != '/'
+           && !(*p == '<' || *p == '>'))
+        {
+            if(error) {
+                g_set_error(error, XFCONF_ERROR,
+                            XFCONF_ERROR_INVALID_PROPERTY,
+                            _("Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"));
+            }
+            return FALSE;
+        }
+
+        if('/' == *p && '/' == *(p-1)) {
+            if(error) {
+                g_set_error(error, XFCONF_ERROR,
+                            XFCONF_ERROR_INVALID_PROPERTY,
+                            _("Property names cannot have two or more consecutive '/' characters"));
+            }
+            return FALSE;
+        }
+
+        p++;
+    }
+
+    if(*(p-1) == '/') {
+        if(error) {
+            g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
+                        _("Property names cannot end with a '/' character"));
+        }
+        return FALSE;
+    }
+
+    return TRUE;
 }
