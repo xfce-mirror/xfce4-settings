@@ -210,6 +210,8 @@ load_channels (GtkListStore *store, GtkTreeView *treeview)
     channel_names = xfconf_list_channels();
     if (channel_names != NULL)
     {
+        GtkTreeSelection *selection;
+
         _channel_names_iter = channel_names;
         while (*_channel_names_iter)
         {
@@ -222,6 +224,10 @@ load_channels (GtkListStore *store, GtkTreeView *treeview)
             _channel_names_iter++;
         }
         g_strfreev (channel_names);
+
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+        if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter))
+          gtk_tree_selection_select_iter (selection, &iter);
     }
 }
 
