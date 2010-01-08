@@ -168,6 +168,12 @@ xfce4_settings_editor_main_window_new(void)
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 3, _("Value"), renderer, "text", 3, NULL);
 
+    /* Allow the user to resize the columns */
+    gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), 0), TRUE);
+    gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), 1), TRUE);
+    gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), 2), TRUE);
+    gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), 3), TRUE);
+
     /* improve usability by expanding nodes when clicking on them */
     g_signal_connect (G_OBJECT (property_treeview), "row-activated", G_CALLBACK (cb_property_treeview_row_activated), NULL);
 
