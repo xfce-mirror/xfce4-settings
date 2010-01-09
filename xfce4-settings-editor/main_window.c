@@ -65,7 +65,7 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *
 static void
 cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *builder);
 static void
-cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
+cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, GtkBuilder *builder);
 
 static void
 cb_property_new_button_clicked (GtkButton *button, GtkBuilder *builder);
@@ -177,7 +177,7 @@ xfce4_settings_editor_main_window_new(void)
     gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), 3), TRUE);
 
     /* improve usability by expanding nodes when clicking on them */
-    g_signal_connect (G_OBJECT (property_treeview), "row-activated", G_CALLBACK (cb_property_treeview_row_activated), NULL);
+    g_signal_connect (G_OBJECT (property_treeview), "row-activated", G_CALLBACK (cb_property_treeview_row_activated), builder);
 
     /* selection handling */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (channel_treeview));
@@ -428,7 +428,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 }
 
 static void
-cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data)
+cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, GtkBuilder *builder)
 {
     GtkTreeModel *model;
     GtkTreeIter iter;
@@ -445,7 +445,7 @@ cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, G
 
     }
     else
-        cb_property_edit_button_clicked (NULL, NULL);
+        cb_property_edit_button_clicked (NULL, builder);
 }
 
 static void
