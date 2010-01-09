@@ -66,7 +66,6 @@ static void
 cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *builder);
 static void
 cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, GtkBuilder *builder);
-
 static void
 cb_property_new_button_clicked (GtkButton *button, GtkBuilder *builder);
 static void
@@ -899,8 +898,6 @@ static void
 cb_property_revert_button_clicked (GtkButton *button, GtkBuilder *builder)
 {
     GtkWidget *dialog;
-    GObject *property_treeview;
-    GtkTreeModel *tree_store = NULL;
 
     dialog = gtk_message_dialog_new_with_markup (
                                  GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
@@ -910,8 +907,6 @@ cb_property_revert_button_clicked (GtkButton *button, GtkBuilder *builder)
 
     if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
     {
-        property_treeview = gtk_builder_get_object (builder, "property_treeview");
-        tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
         gtk_widget_hide (dialog);
         xfconf_channel_reset_property (current_channel, current_property, FALSE);
     }
