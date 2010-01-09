@@ -28,6 +28,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
@@ -66,6 +67,8 @@ static void
 cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *builder);
 static void
 cb_property_treeview_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, GtkBuilder *builder);
+static gboolean
+cb_property_treeview_key_pressed (GtkWidget *widget, GdkEventKey *event, GtkBuilder *builder);
 static void
 cb_property_new_button_clicked (GtkButton *button, GtkBuilder *builder);
 static void
@@ -120,6 +123,8 @@ xfce4_settings_editor_main_window_new(void)
     {
         dialog = gtk_builder_get_object (builder, "main_dialog");
     }
+
+    gtk_widget_add_events (GTK_WIDGET (dialog), GDK_KEY_PRESS_MASK);
 
     hpaned = gtk_builder_get_object (builder, "hpaned2");
 
@@ -183,6 +188,9 @@ xfce4_settings_editor_main_window_new(void)
 
     /* improve usability by expanding nodes when clicking on them */
     g_signal_connect (G_OBJECT (property_treeview), "row-activated", G_CALLBACK (cb_property_treeview_row_activated), builder);
+
+    /* Set a handler for key-press-event */
+    g_signal_connect (G_OBJECT (property_treeview), "key-press-event", G_CALLBACK (cb_property_treeview_key_pressed), builder);
 
     /* selection handling */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (channel_treeview));
@@ -584,6 +592,20 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder 
     if (g_strcmp0 (g_value_get_string (&value), "Empty") == 0)
         gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), FALSE);
     g_value_unset (&value);
+}
+
+static gboolean
+cb_property_treeview_key_pressed (GtkWidget *widget, GdkEventKey *event, GtkBuilder *builder)
+{
+  GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
+
+  if (event->keyval == GDK_Delete && gtk_tree_selection_get_selected (selection, NULL, NULL))
+  {
+      cb_property_revert_button_clicked (NULL, builder);
+      return TRUE;
+  }
+
+  return FALSE;
 }
 
 static void
