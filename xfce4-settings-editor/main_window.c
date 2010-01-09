@@ -477,7 +477,7 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *
         current_channel = NULL;
     }
 
-    if (! gtk_tree_selection_get_selected (selection, &model, &iter))
+    if (!gtk_tree_selection_get_selected (selection, &model, &iter))
     {
         gtk_widget_set_sensitive (GTK_WIDGET (property_new_button), FALSE);
         return;
@@ -506,9 +506,7 @@ static gboolean
 cb_channel_treeview_button_press_event (GtkWidget *widget, GdkEventButton *event, GtkBuilder *builder)
 {
     if (event->button == 3 && event->type == GDK_BUTTON_PRESS)
-    {
-        channel_treeview_popup_menu (widget, event, builder);
-    }
+       channel_treeview_popup_menu (widget, event, builder);
 
     return FALSE;
 }
@@ -847,9 +845,7 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
         }
     }
     else
-    {
         gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_EMPTY);
-    }
 
     if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_APPLY)
     {
@@ -899,9 +895,7 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
         xfconf_channel_set_property (current_channel, current_property, &value);
     }
     else
-    {
         gtk_widget_hide (GTK_WIDGET (dialog));
-    }
 }
 
 /**
