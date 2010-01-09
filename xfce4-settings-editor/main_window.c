@@ -56,7 +56,7 @@ enum {
 };
 
 static void
-load_channels (GtkListStore *store, GtkTreeView *treeview);
+load_channels (GtkTreeStore *store, GtkTreeView *treeview);
 static void
 load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treeview);
 
@@ -79,8 +79,14 @@ static void
 cb_channel_property_changed (XfconfChannel *channel, gchar *property, GValue *value, GtkBuilder *builder);
 static gboolean
 xfconf_property_is_valid(const gchar *property, GError **error);
-
-
+static void
+channel_treeview_popup_menu (GtkWidget *widget, GdkEventButton *event, GtkBuilder *builder);
+static gboolean
+cb_channel_treeview_button_press_event (GtkWidget *widget, GdkEventButton *event, GtkBuilder *builder);
+static gboolean
+cb_channel_treeview_popup_menu (GtkWidget *widget, GtkBuilder *builder);
+static void
+cb_channel_popup_menu_remove_item_activate (GtkMenuItem *item, GtkBuilder *builder);
 
 
 GtkDialog *
@@ -93,7 +99,7 @@ xfce4_settings_editor_main_window_new(void)
     GObject *hpaned;
     XfconfChannel *channel;
     GtkBuilder *builder = NULL;
-    GtkListStore *channel_list_store;
+    GtkTreeStore *channel_tree_store;
     GtkTreeStore *property_tree_store;
     GtkCellRenderer *renderer;
     GtkTreeSelection *selection;
@@ -141,9 +147,9 @@ xfce4_settings_editor_main_window_new(void)
     /*
      * Channel List
      */
-    channel_list_store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+    channel_tree_store = gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
 
-    gtk_tree_view_set_model (GTK_TREE_VIEW (channel_treeview), GTK_TREE_MODEL (channel_list_store));
+    gtk_tree_view_set_model (GTK_TREE_VIEW (channel_treeview), GTK_TREE_MODEL (channel_tree_store));
 
     renderer = gtk_cell_renderer_pixbuf_new();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 0, NULL, renderer, "icon-name", 0, NULL);
@@ -186,12 +192,16 @@ xfce4_settings_editor_main_window_new(void)
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (property_treeview));
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_property_treeview_selection_changed), builder);
 
+    /* Connect signal-handlers for the popup-menu and button-press-event events */
+    g_signal_connect (G_OBJECT (channel_treeview), "popup-menu", G_CALLBACK (cb_channel_treeview_popup_menu), builder);
+    g_signal_connect (G_OBJECT (channel_treeview), "button-press-event", G_CALLBACK (cb_channel_treeview_button_press_event), builder);
+
     /* Connect signal-handlers to toolbar buttons */
     g_signal_connect (G_OBJECT (property_new_button), "clicked", G_CALLBACK (cb_property_new_button_clicked), builder);
     g_signal_connect (G_OBJECT (property_edit_button), "clicked", G_CALLBACK (cb_property_edit_button_clicked), builder);
     g_signal_connect (G_OBJECT (property_revert_button), "clicked", G_CALLBACK (cb_property_revert_button_clicked), builder);
 
-    load_channels (channel_list_store, GTK_TREE_VIEW (channel_treeview));
+    load_channels (channel_tree_store, GTK_TREE_VIEW (channel_treeview));
 
     return GTK_DIALOG (dialog);
 }
@@ -202,7 +212,7 @@ xfce4_settings_editor_main_window_new(void)
  * get the available channels from xfconf and put them in the treemodel
  */
 static void
-load_channels (GtkListStore *store, GtkTreeView *treeview)
+load_channels (GtkTreeStore *store, GtkTreeView *treeview)
 {
     GtkTreeIter iter;
     GValue value = {0,};
@@ -217,10 +227,10 @@ load_channels (GtkListStore *store, GtkTreeView *treeview)
         _channel_names_iter = channel_names;
         while (*_channel_names_iter)
         {
-            gtk_list_store_append (store, &iter);
+            gtk_tree_store_append (store, &iter, NULL);
             g_value_init (&value, G_TYPE_STRING);
             g_value_set_string (&value, *_channel_names_iter);
-            gtk_list_store_set_value (store, &iter, 1, &value);
+            gtk_tree_store_set_value (store, &iter, 1, &value);
             g_value_unset (&value);
 
             _channel_names_iter++;
@@ -490,6 +500,24 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *
     current_channel = channel;
 
     g_signal_connect (channel, "property-changed", G_CALLBACK (cb_channel_property_changed), builder);
+}
+
+static gboolean
+cb_channel_treeview_button_press_event (GtkWidget *widget, GdkEventButton *event, GtkBuilder *builder)
+{
+    if (event->button == 3 && event->type == GDK_BUTTON_PRESS)
+    {
+        channel_treeview_popup_menu (widget, event, builder);
+    }
+
+    return FALSE;
+}
+
+static gboolean
+cb_channel_treeview_popup_menu (GtkWidget *widget, GtkBuilder *builder)
+{
+  channel_treeview_popup_menu (widget, NULL, builder);
+  return TRUE;
 }
 
 static void
@@ -983,4 +1011,71 @@ xfconf_property_is_valid(const gchar *property, GError **error)
     }
 
     return TRUE;
+}
+
+static void
+channel_treeview_popup_menu (GtkWidget *widget, GdkEventButton *event, GtkBuilder *builder)
+{
+    GtkWidget *menu;
+    GtkWidget *menu_item;
+    GtkWidget *image;
+    int button, event_time;
+
+    menu = gtk_menu_new ();
+    g_signal_connect (menu, "deactivate", G_CALLBACK (gtk_menu_popdown), NULL);
+
+    menu_item = gtk_image_menu_item_new_with_mnemonic (_("_Remove/reset"));
+    image = gtk_image_new_from_stock ("gtk-remove", GTK_ICON_SIZE_MENU);
+    gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
+    g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cb_channel_popup_menu_remove_item_activate), builder);
+    gtk_widget_show_all (menu_item);
+
+    if (event)
+    {
+        button = event->button;
+        event_time = event->time;
+    }
+    else
+    {
+        button = 0;
+        event_time = gtk_get_current_event_time ();
+    }
+
+    gtk_menu_attach_to_widget (GTK_MENU (menu), widget, NULL);
+    gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, button, event_time);
+}
+
+static void
+cb_channel_popup_menu_remove_item_activate (GtkMenuItem *item, GtkBuilder *builder)
+{
+    GtkWidget *dialog;
+
+    dialog = gtk_message_dialog_new_with_markup (
+                                 GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
+                                 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
+                                 _("Are you sure you want to reset this channel and all its properties?"));
+
+    if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
+    {
+        GObject *channel_treeview;
+        GObject *property_treeview;
+        GtkTreeModel *tree_store = NULL;
+
+        gtk_widget_hide (dialog);
+        channel_treeview = gtk_builder_get_object (builder, "channel_treeview");
+        tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (channel_treeview));
+        xfconf_channel_reset_property (current_channel, "/", TRUE);
+
+        gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
+        load_channels (GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (channel_treeview));
+
+        property_treeview = gtk_builder_get_object (builder, "property_treeview");
+        tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
+
+        gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
+        load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
+    }
+
+    gtk_widget_destroy (dialog);
 }
