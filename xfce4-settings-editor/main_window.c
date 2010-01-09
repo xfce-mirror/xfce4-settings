@@ -1024,6 +1024,7 @@ channel_treeview_popup_menu (GtkWidget *widget, GdkEventButton *event, GtkBuilde
     gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
     g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cb_channel_popup_menu_remove_item_activate), builder);
+    gtk_widget_set_sensitive (menu_item, !xfconf_channel_is_property_locked (current_channel, "/"));
     gtk_widget_show_all (menu_item);
 
     if (event)
