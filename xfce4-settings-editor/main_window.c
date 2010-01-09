@@ -107,22 +107,15 @@ xfce4_settings_editor_main_window_new(void)
     GtkTreeSelection *selection;
     GObject *property_edit_button, *property_new_button, *property_revert_button;
 
-    if (!builder)
-    {
-        /* hook to make sure the libxfce4ui library is linked */
-        if (xfce_titled_dialog_get_type () == 0)
-            return NULL;
+    /* hook to make sure the libxfce4ui library is linked */
+    if (xfce_titled_dialog_get_type () == 0)
+        return NULL;
 
-        builder = gtk_builder_new ();
-        gtk_builder_add_from_string (builder, xfce4_settings_editor_ui, xfce4_settings_editor_ui_length, NULL);
+    builder = gtk_builder_new ();
+    gtk_builder_add_from_string (builder, xfce4_settings_editor_ui, xfce4_settings_editor_ui_length, NULL);
 
-        dialog = gtk_builder_get_object (builder, "main_dialog");
-        g_object_weak_ref (G_OBJECT (dialog), (GWeakNotify) g_object_unref, builder);
-    }
-    else
-    {
-        dialog = gtk_builder_get_object (builder, "main_dialog");
-    }
+    dialog = gtk_builder_get_object (builder, "main_dialog");
+    g_object_weak_ref (G_OBJECT (dialog), (GWeakNotify) g_object_unref, builder);
 
     gtk_widget_add_events (GTK_WIDGET (dialog), GDK_KEY_PRESS_MASK);
 
