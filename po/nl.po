@@ -413,9 +413,8 @@ msgid "_Settings"
 msgstr "_Instellingen"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
-#, fuzzy
 msgid "_Toolbar Style"
-msgstr "<b>Taakbalk</b>"
+msgstr "_Taakbalk stijl"
 
 #: ../dialogs/appearance-settings/main.c:674
 msgid "RGB"
@@ -434,13 +433,11 @@ msgid "Vertical BGR"
 msgstr "Verticaal BGR"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
-#, fuzzy
 msgid "Apply any changes and test the new display settings"
-msgstr "Test de nieuwe beeldscherm instellingen"
+msgstr "Voer de aanpassingen uit en test de nieuwe beeldscherm instellingen"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-#, fuzzy
 msgid "Configure screen settings and layout"
 msgstr "Configureer scherminstellingen en lay-out"
 
@@ -487,35 +484,36 @@ msgstr "%d Hz"
 
 #. create name
 #: ../dialogs/display-settings/main.c:494
-#, fuzzy, c-format
+#, c-format
 msgid "Screen %d"
-msgstr "Scherm"
+msgstr "Scherm %d"
 
 #: ../dialogs/display-settings/main.c:675
 #, c-format
 msgid "RandR extension missing on display \"%s\""
-msgstr ""
+msgstr "RandR uitbreiding ontbreekt op scherm\\ \"%s\""
 
 #: ../dialogs/display-settings/main.c:678
+#, fuzzy
 msgid "The Resize and Rotate extension (RandR) is not enabled on this display. Try to enable it and run the dialog again."
-msgstr ""
+msgstr "De Resize en Roteren uitbreiding (RandR) is niet ingeschakeld op dit scherm. Probeer ihet aan te zetten en voer dan het programma weer."
 
 #: ../dialogs/display-settings/main.c:716
 msgid "Failed to use the RandR extension"
-msgstr ""
+msgstr "Mislukt om RandR uitbreiding te gebruiken"
 
 #: ../dialogs/display-settings/xfce-randr.c:55
 #: ../dialogs/display-settings/xfce-randr-legacy.c:58
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr ""
+msgstr "Kan de versie van de uitbreiding RandR niet bepalen"
 
 #. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
 #: ../dialogs/display-settings/xfce-randr.c:63
 #: ../dialogs/display-settings/xfce-randr-legacy.c:65
 #, c-format
 msgid "This system is using RandR %d.%d. For the display settings to work version 1.1 is required at least"
-msgstr ""
+msgstr "Dit systeem maakt gebruik van RandR% d.% d. Voor de weergave-instellingen te laten werken is versie 1.1 minstens vereist"
 
 #: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
@@ -545,16 +543,15 @@ msgstr "Tweede digitale beeldscherm"
 #: ../dialogs/keyboard-settings/command-dialog.c:126
 #, fuzzy
 msgid "Shortcut Command"
-msgstr "Opdracht selecteren"
+msgstr "Shortcut Commando"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:150
 msgid "Shortcut:"
 msgstr "Snelkoppeling:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:160
-#, fuzzy
 msgid "Command:"
-msgstr "Opdracht"
+msgstr "Opdracht:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:212
 msgid "The command may not be empty."
@@ -607,14 +604,14 @@ msgid "Cursor"
 msgstr "Muisaanwijzer"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#, fuzzy
 msgid "Define _shortcuts for launching applications:"
-msgstr ""
+msgstr "Definieer _shortcuts voor het starten van toepassingen:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
-#, fuzzy
 msgid "Edit keyboard settings and application shortcuts"
-msgstr "Toetsenbordinstellingen en snelkoppelingen"
+msgstr "Toetsenbordinstellingen en snelkoppelingen aanpassen"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
@@ -622,9 +619,8 @@ msgid "Keyboard"
 msgstr "Toetsenbord"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#, fuzzy
 msgid "Keyboard layout"
-msgstr "<b>Toetsenbord-layout</b>"
+msgstr "Toetsenbord-layout"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 #, fuzzy
@@ -651,23 +647,25 @@ msgstr "Knipperend _weergeven"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
-msgstr ""
+msgstr "Geeft aan of de toetsenbordindeling wordt beheerd met dit instellingen dialoogvenster, of door de X server"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specify whether or not the text cursor blinks"
-msgstr ""
+msgstr "Geef of je wilt dat de cursor knippert of niet"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#, fuzzy
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr ""
+msgstr "De vertraging in milliseconden, tussen de opeenvolgende knipperen van de cursor"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#, fuzzy
 msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr ""
+msgstr "De snelheid waarmee toetsaanslagen worden gegenereerd terwijl een toets wordt ingedrukt"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr ""
+msgstr "De tijd, in milliseconden, voordat een ingedrukte toets herhaalt word"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 #, fuzzy
@@ -680,8 +678,9 @@ msgid "Use this area to _test the settings above:"
 msgstr "Gebruik dit gebied om bovenstaande instellingen te testen"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#, fuzzy
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
-msgstr ""
+msgstr "Indien geselecteerd, indrukken en ingedrukt houden van een toets geeft hetzelfde karakter over en weer."
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 #, fuzzy
@@ -689,36 +688,34 @@ msgid "_Enable key repeat"
 msgstr "Toetsherhaling inschakelen"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#, fuzzy
 msgid "_Layout"
-msgstr ""
+msgstr "_Layout"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
-#, fuzzy
 msgid "_Repeat delay:"
-msgstr "Herhalingsvertraging:"
+msgstr "_Herhalingsvertraging:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Reset to Defaults"
-msgstr ""
+msgstr "_Instellingen resetten"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
-#, fuzzy
 msgid "_Use system defaults"
-msgstr "Muis-_emulatie inschakelen"
+msgstr "Systeem standaard gebruiken"
 
 #: ../dialogs/keyboard-settings/main.c:70
 msgid "Unable to initialize GTK+."
-msgstr ""
+msgstr "Mislukt om GTK+ te laden."
 
 #: ../dialogs/keyboard-settings/main.c:90
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
-msgstr ""
+msgstr "Kan geen verbinding maken xfconf daemon. Reden:% s"
 
 #: ../dialogs/keyboard-settings/main.c:101
-#, fuzzy
 msgid "Could not create the settings dialog."
-msgstr "Gebruik dit gebied om bovenstaande instellingen te testen"
+msgstr "Kan niet gebruik maken van het instellingen scherm."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:287
 msgid "Command"
@@ -729,16 +726,19 @@ msgid "Shortcut"
 msgstr "Snelkoppeling"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "Actief"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:367
+#, fuzzy
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:368
+#, fuzzy
 msgid "Variant"
-msgstr ""
+msgstr "Variant"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:812
 msgid "Shortcut command may not be empty."
@@ -747,27 +747,29 @@ msgstr "Snelkoppeling opdracht mag niet leeg zijn."
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:919
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:920
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "Reset naar standaardwaarden"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:921
 msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
-msgstr ""
+msgstr "Dit zal opnieuw alle snelkoppelingen naar hun standaardwaarden zetten. Wil je echt dit doen?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:986
 msgid "The system defaults will be restored next time you log in."
-msgstr ""
+msgstr "Het systeem standaard zal worden hersteld de volgende keer dat u zich aanmeldt."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:988
 msgid "Warning"
-msgstr ""
+msgstr "Waarschuwing"
 
 #: ../dialogs/mouse-settings/main.c:99
+#, fuzzy
 msgid "Active device in the dialog"
-msgstr ""
+msgstr "Actief apparaat in het dialoogvenster"
 
 #: ../dialogs/mouse-settings/main.c:99
+#, fuzzy
 msgid "DEVICE NAME"
-msgstr ""
+msgstr "Apparaatnaam"
 
 #. sort the names but keep Default on top
 #: ../dialogs/mouse-settings/main.c:355 ../dialogs/mouse-settings/main.c:357
@@ -776,14 +778,13 @@ msgid "Default"
 msgstr "Standaard"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
-#, fuzzy
 msgid "Button Order"
-msgstr "<b>Muistoetsen-instellingen</b>"
+msgstr "Knopvolgorde"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
-msgstr ""
+msgstr "Configureer pointer apparaats gedrag en het uiterlijk"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Cursor _Size:"
@@ -821,7 +822,7 @@ msgstr "<b>Voorbeeld</b>"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Re_set to Defaults"
-msgstr ""
+msgstr "Herstellen naar standaard"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Re_verse scroll direction"
@@ -833,47 +834,51 @@ msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Size"
-msgstr ""
+msgstr "Grootte"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "T_hreshold:"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#, fuzzy
 msgid "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr ""
+msgstr "De factor waarmee de snelheid van de aanwijzer zal toenemen als de muis wordt verplaatst"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#, fuzzy
 msgid "The mouse pointer cannot move farther than this distance between two clicks for them to be considered a double click"
-msgstr ""
+msgstr "De muisaanwijzer kan niet verder gaan dan deze afstand tussen twee klikken voordat hij hem beschouwd als een dubbelklik"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#, fuzzy
 msgid "The number of pixels the pointer must move before a drag operation will start"
-msgstr ""
+msgstr "Het aantal pixels de aanwijzer moet bewegen voordat een sleep operatie zal beginnen"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#, fuzzy
 msgid "The number of pixels the pointer must move in a short time before it starts accelerating"
-msgstr ""
+msgstr "Het aantal pixels de aanwijzer moet bewegen in een korte tijd voordat het begint te versnellen"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Ti_me:"
 msgstr "T_ijd:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#, fuzzy
 msgid "Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click"
-msgstr ""
+msgstr "Twee muisklikken in minder dan deze lengte van de tijd (in milliseconden) zal worden beschouwd als een dubbelklik"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#, fuzzy
 msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr ""
+msgstr "Indien geselecteerd, zal het scrollwiel niet werken  in de tegenovergestelde richting"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
-#, fuzzy
 msgid "_Acceleration:"
 msgstr "Versnellings_tijd:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
-#, fuzzy
 msgid "_Behavior"
 msgstr "_Gedrag"
 
@@ -895,32 +900,31 @@ msgid "_Theme"
 msgstr "Thema"
 
 #: ../xfce4-settings-editor/main_window.c:122
+#, fuzzy
 msgid "Channel"
-msgstr ""
+msgstr "Kanaal"
 
 #: ../xfce4-settings-editor/main_window.c:132
 msgid "Property"
 msgstr ""
 
 #: ../xfce4-settings-editor/main_window.c:135
-#, fuzzy
 msgid "Type"
-msgstr "Type:"
+msgstr "Type"
 
 #: ../xfce4-settings-editor/main_window.c:138
 msgid "Locked"
 msgstr "Geblokkeerd"
 
 #: ../xfce4-settings-editor/main_window.c:141
-#, fuzzy
 msgid "Value"
-msgstr "Waarde:"
+msgstr "Waarde"
 
 #: ../xfce4-settings-editor/main_window.c:303
 #: ../xfce4-settings-editor/main_window.c:368
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "Empty"
-msgstr ""
+msgstr "Leeg"
 
 #: ../xfce4-settings-editor/main_window.c:650
 #, c-format
@@ -966,16 +970,19 @@ msgid "Edit property"
 msgstr ""
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+#, fuzzy
 msgid "Enabled"
-msgstr ""
+msgstr "Ingeschakeld"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#, fuzzy
 msgid "Int"
-msgstr ""
+msgstr "Int"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#, fuzzy
 msgid "Int64"
-msgstr ""
+msgstr "Int64"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Name:"
@@ -992,7 +999,7 @@ msgstr ""
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
 #, fuzzy
 msgid "String"
-msgstr "Muis-instellingen"
+msgstr "String"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "Type:"
@@ -1079,8 +1086,9 @@ msgstr "Uw Xfce-bureaublad aanpassen"
 
 #. Create back button which takes the user back to the overview
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:271
+#, fuzzy
 msgid "_Overview"
-msgstr ""
+msgstr "_Overview"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:598
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:614
