@@ -850,6 +850,7 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
     if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_APPLY)
     {
         gchar *prop_name;
+        GError *error = NULL;
 
         gtk_widget_hide (GTK_WIDGET (dialog));
         switch (gtk_combo_box_get_active (GTK_COMBO_BOX (prop_type_combo)))
@@ -882,6 +883,18 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
         }
 
         prop_name = g_strdup (gtk_entry_get_text (GTK_ENTRY (prop_name_entry)));
+
+        if (!xfconf_property_is_valid (prop_name, &error))
+        {
+            GObject *main_window = gtk_builder_get_object (builder, "main_dialog");
+
+            xfce_dialog_show_error (GTK_WINDOW (main_window), error, _("This property name is not valid."));
+
+            g_error_free (error);
+            g_free (prop_name);
+
+            return;
+        }
 
         if (g_strcmp0 (prop_name, current_property) != 0)
         {
