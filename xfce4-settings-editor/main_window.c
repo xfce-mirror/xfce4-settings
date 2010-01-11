@@ -684,6 +684,12 @@ cb_property_new_button_clicked (GtkButton *button, GtkBuilder *builder)
     gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_STRING);
     gtk_widget_set_sensitive (GTK_WIDGET (prop_type_combo), TRUE);
 
+    /* Reset all the value fields */
+    gtk_entry_set_text (GTK_ENTRY (prop_name_entry), "");
+    gtk_entry_set_text (GTK_ENTRY (prop_value_text_entry), "");
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prop_value_checkbox), TRUE);
+
     if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_APPLY)
     {
         const gchar *prop_name = gtk_entry_get_text (GTK_ENTRY (prop_name_entry));
