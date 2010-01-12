@@ -144,15 +144,12 @@ xfce4_settings_editor_main_window_new(void)
     /*
      * Channel List
      */
-    channel_tree_store = gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+    channel_tree_store = gtk_tree_store_new (1, G_TYPE_STRING);
 
     gtk_tree_view_set_model (GTK_TREE_VIEW (channel_treeview), GTK_TREE_MODEL (channel_tree_store));
 
-    renderer = gtk_cell_renderer_pixbuf_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 0, NULL, renderer, "icon-name", 0, NULL);
-
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 1, _("Channel"), renderer, "text", 1, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 1, _("Channel"), renderer, "text", 0, NULL);
 
     /*
      * property list
@@ -230,7 +227,7 @@ load_channels (GtkTreeStore *store, GtkTreeView *treeview)
             gtk_tree_store_append (store, &iter, NULL);
             g_value_init (&value, G_TYPE_STRING);
             g_value_set_string (&value, *_channel_names_iter);
-            gtk_tree_store_set_value (store, &iter, 1, &value);
+            gtk_tree_store_set_value (store, &iter, 0, &value);
             g_value_unset (&value);
 
             _channel_names_iter++;
@@ -488,7 +485,7 @@ cb_channel_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder *
     property_treeview = gtk_builder_get_object (builder, "property_treeview");
     tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
 
-    gtk_tree_model_get_value (model, &iter, 1, &value);
+    gtk_tree_model_get_value (model, &iter, 0, &value);
 
     g_return_if_fail (G_VALUE_HOLDS_STRING (&value));
 
