@@ -773,6 +773,8 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
 
     /* Set the correct properties in the ui */
     gtk_entry_set_text (GTK_ENTRY(prop_name_entry), current_property);
+    gtk_widget_set_sensitive (GTK_WIDGET (prop_type_combo), FALSE);
+
     if (xfconf_channel_get_property (current_channel, current_property, &value))
     {
         switch (G_VALUE_TYPE(&value))
