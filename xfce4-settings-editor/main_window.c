@@ -527,6 +527,7 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder 
     GObject *property_revert_button;
     GValue value = {0, };
     gchar *prop_name = NULL;
+    const gchar *prop_type;
     gchar *temp = NULL;
 
     property_edit_button = gtk_builder_get_object (builder, "property_edit_button");
@@ -578,7 +579,9 @@ cb_property_treeview_selection_changed (GtkTreeSelection *selection, GtkBuilder 
     gtk_tree_selection_get_selected (selection, &model, &iter);
     gtk_tree_model_get_value (model, &iter, 1, &value);
 
-    if (g_strcmp0 (g_value_get_string (&value), "Empty") == 0)
+    prop_type = g_value_get_string (&value);
+
+    if ((g_strcmp0 (prop_type, "Empty") == 0) || g_strcmp0 (prop_type, "GPtrArray_GValue_") == 0)
         gtk_widget_set_sensitive (GTK_WIDGET (property_edit_button), FALSE);
     g_value_unset (&value);
 }
