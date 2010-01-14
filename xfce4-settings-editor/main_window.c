@@ -925,21 +925,17 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
 static void
 cb_property_revert_button_clicked (GtkButton *button, GtkBuilder *builder)
 {
-    GtkWidget *dialog;
+    gboolean response;
 
-    dialog = gtk_message_dialog_new_with_markup (
-                                 GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
-                                 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
-                                 _("Are you sure you want to reset property \"<b>%s</b>\"?"),
-                                 current_property);
+    response = xfce_dialog_confirm (GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
+                                    GTK_STOCK_YES,
+                                    _("Reset"),
+                                    _("Resetting a channel will permanently remove those custom settings."),
+                                    _("Are you sure you want to reset channel \"%s\" and all its properties?"),
+                                    current_property);
 
-    if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
-    {
-        gtk_widget_hide (dialog);
+    if (response)
         xfconf_channel_reset_property (current_channel, current_property, FALSE);
-    }
-
-    gtk_widget_destroy (dialog);
 }
 
 static void
@@ -1073,20 +1069,24 @@ channel_treeview_popup_menu (GtkWidget *widget, GdkEventButton *event, GtkBuilde
 static void
 cb_channel_popup_menu_remove_item_activate (GtkMenuItem *item, GtkBuilder *builder)
 {
-    GtkWidget *dialog;
+    gboolean response;
+    gchar *channel_name;
 
-    dialog = gtk_message_dialog_new_with_markup (
-                                 GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
-                                 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
-                                 _("Are you sure you want to reset this channel and all its properties?"));
+    g_object_get (G_OBJECT (current_channel), "channel-name", &channel_name, NULL);
 
-    if (gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_YES)
+    response = xfce_dialog_confirm (GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
+                                    GTK_STOCK_YES,
+                                    _("Reset"),
+                                    _("Resetting a channel will permanently remove those custom settings."),
+                                    _("Are you sure you want to reset channel \"%s\" and all its properties?"),
+                                    channel_name);
+
+    if (response)
     {
         GObject *channel_treeview;
         GObject *property_treeview;
         GtkTreeModel *tree_store = NULL;
 
-        gtk_widget_hide (dialog);
         channel_treeview = gtk_builder_get_object (builder, "channel_treeview");
         tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (channel_treeview));
         xfconf_channel_reset_property (current_channel, "/", TRUE);
@@ -1101,5 +1101,5 @@ cb_channel_popup_menu_remove_item_activate (GtkMenuItem *item, GtkBuilder *build
         load_properties (current_channel, GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (property_treeview));
     }
 
-    gtk_widget_destroy (dialog);
+    g_free (channel_name);
 }
