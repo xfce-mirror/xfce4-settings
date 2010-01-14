@@ -930,8 +930,8 @@ cb_property_revert_button_clicked (GtkButton *button, GtkBuilder *builder)
     response = xfce_dialog_confirm (GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
                                     GTK_STOCK_YES,
                                     _("Reset"),
-                                    _("Resetting a channel will permanently remove those custom settings."),
-                                    _("Are you sure you want to reset channel \"%s\" and all its properties?"),
+                                    _("Resetting a property will permanently remove those custom settings."),
+                                    _("Are you sure you want to reset property \"%s\"?"),
                                     current_property);
 
     if (response)
@@ -1043,7 +1043,7 @@ channel_treeview_popup_menu (GtkWidget *widget, GdkEventButton *event, GtkBuilde
     menu = gtk_menu_new ();
     g_signal_connect (menu, "deactivate", G_CALLBACK (gtk_menu_popdown), NULL);
 
-    menu_item = gtk_image_menu_item_new_with_mnemonic (_("_Remove/reset"));
+    menu_item = gtk_image_menu_item_new_with_mnemonic (_("_Reset"));
     image = gtk_image_new_from_stock ("gtk-remove", GTK_ICON_SIZE_MENU);
     gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
