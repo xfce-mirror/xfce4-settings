@@ -152,6 +152,9 @@ xfce4_settings_editor_main_window_new(void)
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 1, _("Channel"), renderer, "text", 0, NULL);
 
+    /* Set sorting */
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (channel_tree_store), 0, GTK_SORT_ASCENDING);
+
     /*
      * property list
      */
@@ -176,6 +179,9 @@ xfce4_settings_editor_main_window_new(void)
     gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), 1), TRUE);
     gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), 2), TRUE);
     gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), 3), TRUE);
+
+    /* Set sorting */
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (property_tree_store), 0, GTK_SORT_ASCENDING);
 
     /* improve usability by expanding nodes when clicking on them */
     g_signal_connect (G_OBJECT (property_treeview), "row-activated", G_CALLBACK (cb_property_treeview_row_activated), builder);
