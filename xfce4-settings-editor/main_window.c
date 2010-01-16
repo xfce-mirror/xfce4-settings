@@ -438,6 +438,9 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
             g_strfreev (components);
 
         }
+
+        g_list_free (keys);
+        g_hash_table_destroy (hash_table);
     }
 }
 
