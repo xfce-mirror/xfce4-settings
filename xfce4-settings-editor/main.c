@@ -96,6 +96,13 @@ main(gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
+    /* We don't want a gradient on our toolbar */
+    gtk_rc_parse_string ("style \"xfce-no-shadow\"\n"
+                         "{\n"
+                           "GtkToolbar::shadow-type = GTK_SHADOW_NONE\n"
+                         "}\n"
+                         "class \"*\" style \"xfce-no-shadow\"\n");
+
     dialog = xfce4_settings_editor_main_window_new();
 
     gtk_dialog_run (dialog);
