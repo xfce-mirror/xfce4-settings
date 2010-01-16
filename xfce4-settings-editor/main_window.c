@@ -60,6 +60,8 @@ enum {
 static void
 load_channels (GtkListStore *store, GtkTreeView *treeview);
 static void
+update_iter (gboolean empty, XfconfChannel *channel, gchar *key, GtkTreeStore *store, GtkTreeIter *child_iter);
+static void
 load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treeview);
 
 static void
@@ -90,7 +92,8 @@ static gboolean
 cb_channel_treeview_popup_menu (GtkWidget *widget, GtkBuilder *builder);
 static void
 cb_channel_popup_menu_remove_item_activate (GtkMenuItem *item, GtkBuilder *builder);
-void print_list (gpointer data, gpointer user_data);
+static void
+print_list (gpointer data, gpointer user_data);
 
 
 GtkDialog *
@@ -248,9 +251,76 @@ load_channels (GtkListStore *store, GtkTreeView *treeview)
     }
 }
 
-void print_list (gpointer data, gpointer user_data)
+static void print_list (gpointer data, gpointer user_data)
 {
   TRACE ("%s", (gchar *) data);
+}
+
+static void update_iter (gboolean empty, XfconfChannel *channel, gchar *key, GtkTreeStore *store, GtkTreeIter *child_iter)
+{
+    GValue child_locked = {0, };
+    GValue child_type = {0, };
+    GValue child_value = {0, };
+
+    g_value_init (&child_locked, G_TYPE_BOOLEAN);
+    g_value_init (&child_type, G_TYPE_STRING);
+    g_value_init (&child_value, G_TYPE_STRING);
+
+    if (empty)
+    {
+        GValue property_value = {0, };
+
+        xfconf_channel_get_property (channel, key, &property_value);
+
+        switch (G_VALUE_TYPE(&property_value))
+        {
+            case G_TYPE_INT:
+                g_value_set_string (&child_type, "Int");
+                g_value_transform (&property_value, &child_value);
+                break;
+            case G_TYPE_UINT:
+                g_value_set_string (&child_type, "Unsigned Int");
+                g_value_transform (&property_value, &child_value);
+                break;
+            case G_TYPE_INT64:
+                g_value_set_string (&child_type, "Int64");
+                g_value_transform (&property_value, &child_value);
+                break;
+            case G_TYPE_UINT64:
+                g_value_set_string (&child_type, "Unsigned Int64");
+                g_value_transform (&property_value, &child_value);
+                break;
+            case G_TYPE_DOUBLE:
+                g_value_set_string (&child_type, "Double");
+                g_value_transform (&property_value, &child_value);
+                break;
+            case G_TYPE_STRING:
+                g_value_set_string (&child_type, "String");
+                g_value_copy (&property_value, &child_value);
+                break;
+            case G_TYPE_BOOLEAN:
+                g_value_set_string (&child_type, "Bool");
+                g_value_transform (&property_value, &child_value);
+                break;
+            default:
+                g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&property_value)));
+                break;
+        }
+
+        g_value_unset (&property_value);
+    }
+    else
+        g_value_set_string (&child_type, _("Empty"));
+
+    gtk_tree_store_set_value (store, child_iter, 1, &child_type);
+    g_value_reset (&child_type);
+
+    g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
+    gtk_tree_store_set_value (store, child_iter, 2, &child_locked);
+    g_value_reset (&child_locked);
+
+    gtk_tree_store_set_value (store, child_iter, 3, &child_value);
+    g_value_reset (&child_value);
 }
 
 /**
@@ -269,19 +339,12 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
     GtkTreeIter child_iter;
     GValue parent_val = {0,};
 
-    GValue child_value = {0,};
-    GValue property_value= {0,};
     GValue child_name = {0,};
-    GValue child_type = {0,};
-    GValue child_locked = {0,};
 
     GHashTable *hash_table;
     gchar **components;
 
     g_value_init (&child_name, G_TYPE_STRING);
-    g_value_init (&child_locked, G_TYPE_BOOLEAN);
-    g_value_init (&child_type, G_TYPE_STRING);
-    g_value_init (&child_value, G_TYPE_STRING);
 
     hash_table = xfconf_channel_get_properties (channel, NULL);
 
@@ -320,64 +383,9 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                             gtk_tree_model_get_value (GTK_TREE_MODEL(store), &child_iter, 3, &current_parent_value);
 
                             if (!g_value_get_string (&current_parent_value))
-                            {
-                                if (components[i+1] == NULL)
-                                {
-                                    TRACE ("Components i+1 is NULL");
+                                update_iter (!components[i+1], channel, key, store, &child_iter);
 
-                                    xfconf_channel_get_property (channel, key, &property_value);
-                                    switch (G_VALUE_TYPE(&property_value))
-                                    {
-                                        case G_TYPE_INT:
-                                            g_value_set_string (&child_type, "Int");
-                                            g_value_transform (&property_value, &child_value);
-                                            break;
-                                        case G_TYPE_UINT:
-                                            g_value_set_string (&child_type, "Unsigned Int");
-                                            g_value_transform (&property_value, &child_value);
-                                            break;
-                                        case G_TYPE_INT64:
-                                            g_value_set_string (&child_type, "Int64");
-                                            g_value_transform (&property_value, &child_value);
-                                            break;
-                                        case G_TYPE_UINT64:
-                                            g_value_set_string (&child_type, "Unsigned Int64");
-                                            g_value_transform (&property_value, &child_value);
-                                            break;
-                                        case G_TYPE_DOUBLE:
-                                            g_value_set_string (&child_type, "Double");
-                                            g_value_transform (&property_value, &child_value);
-                                            break;
-                                        case G_TYPE_STRING:
-                                            g_value_set_string (&child_type, "String");
-                                            g_value_copy (&property_value, &child_value);
-                                            break;
-                                        case G_TYPE_BOOLEAN:
-                                            g_value_set_string (&child_type, "Bool");
-                                            g_value_transform (&property_value, &child_value);
-                                            break;
-                                        default:
-                                            g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&property_value)));
-                                            break;
-                                    }
-                                    g_value_unset (&property_value);
-                                }
-                                else
-                                {
-                                    TRACE ("Empty property");
-                                    g_value_set_string (&child_type, _("Empty"));
-                                }
-                                gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
-                                g_value_reset (&child_type);
-
-                                g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
-                                gtk_tree_store_set_value (store, &child_iter, 2, &child_locked);
-                                g_value_reset (&child_locked);
-
-                                gtk_tree_store_set_value (store, &child_iter, 3, &child_value);
-                                g_value_reset (&child_value);
-
-                            }
+                            g_value_unset (&current_parent_value);
 
                             break;
                         }
@@ -393,61 +401,8 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                             gtk_tree_store_set_value (store, &child_iter, 0, &child_name);
                             g_value_reset (&child_name);
 
-                            if (components[i+1] == NULL)
-                            {
-                                TRACE ("Components i+1 is NULL");
+                            update_iter (!components[i+1], channel, key, store, &child_iter);
 
-                                xfconf_channel_get_property (channel, key, &property_value);
-                                switch (G_VALUE_TYPE(&property_value))
-                                {
-                                    case G_TYPE_INT:
-                                        g_value_set_string (&child_type, "Int");
-                                        g_value_transform (&property_value, &child_value);
-                                        break;
-                                    case G_TYPE_UINT:
-                                        g_value_set_string (&child_type, "Unsigned Int");
-                                        g_value_transform (&property_value, &child_value);
-                                        break;
-                                    case G_TYPE_INT64:
-                                        g_value_set_string (&child_type, "Int64");
-                                        g_value_transform (&property_value, &child_value);
-                                        break;
-                                    case G_TYPE_UINT64:
-                                        g_value_set_string (&child_type, "Unsigned Int64");
-                                        g_value_transform (&property_value, &child_value);
-                                        break;
-                                    case G_TYPE_DOUBLE:
-                                        g_value_set_string (&child_type, "Double");
-                                        g_value_transform (&property_value, &child_value);
-                                        break;
-                                    case G_TYPE_STRING:
-                                        g_value_set_string (&child_type, "String");
-                                        g_value_copy (&property_value, &child_value);
-                                        break;
-                                    case G_TYPE_BOOLEAN:
-                                        g_value_set_string (&child_type, "Bool");
-                                        g_value_transform (&property_value, &child_value);
-                                        break;
-                                    default:
-                                        g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&property_value)));
-                                        break;
-                                }
-                                g_value_unset (&property_value);
-                            }
-                            else
-                            {
-                                TRACE ("Empty property");
-                                g_value_set_string (&child_type, _("Empty"));
-                            }
-                            gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
-                            g_value_reset (&child_type);
-
-                            g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
-                            gtk_tree_store_set_value (store, &child_iter, 2, &child_locked);
-                            g_value_reset (&child_locked);
-
-                            gtk_tree_store_set_value (store, &child_iter, 3, &child_value);
-                            g_value_reset (&child_value);
                             break;
                         }
                     }
@@ -461,61 +416,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                     gtk_tree_store_set_value (store, &child_iter, 0, &child_name);
                     g_value_reset (&child_name);
 
-                    if (components[i+1] == NULL)
-                    {
-                        TRACE ("Component i+1 is NULL");
-                        xfconf_channel_get_property (channel, key, &property_value);
-                        switch (G_VALUE_TYPE(&property_value))
-                        {
-                            case G_TYPE_INT:
-                                g_value_set_string (&child_type, "Int");
-                                g_value_transform (&property_value, &child_value);
-                                break;
-                            case G_TYPE_UINT:
-                                g_value_set_string (&child_type, "Unsigned Int");
-                                g_value_transform (&property_value, &child_value);
-                                break;
-                            case G_TYPE_INT64:
-                                g_value_set_string (&child_type, "Int64");
-                                g_value_transform (&property_value, &child_value);
-                                break;
-                            case G_TYPE_UINT64:
-                                g_value_set_string (&child_type, "Unsigned Int64");
-                                g_value_transform (&property_value, &child_value);
-                                break;
-                            case G_TYPE_DOUBLE:
-                                g_value_set_string (&child_type, "Double");
-                                g_value_transform (&property_value, &child_value);
-                                break;
-                            case G_TYPE_STRING:
-                                g_value_set_string (&child_type, "String");
-                                g_value_copy (&property_value, &child_value);
-                                break;
-                            case G_TYPE_BOOLEAN:
-                                g_value_set_string (&child_type, "Bool");
-                                g_value_transform (&property_value, &child_value);
-                                break;
-                            default:
-                                g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&property_value)));
-                                g_value_set_string (&child_value, "...");
-                                break;
-                        }
-                        g_value_unset (&property_value);
-                    }
-                    else
-                    {
-                        TRACE ("Empty property");
-                        g_value_set_string (&child_type, _("Empty"));
-                    }
-                    gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
-                    g_value_reset (&child_type);
-
-                    g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
-                    gtk_tree_store_set_value (store, &child_iter, 2, &child_locked);
-                    g_value_reset (&child_locked);
-
-                    gtk_tree_store_set_value (store, &child_iter, 3, &child_value);
-                    g_value_reset (&child_value);
+                    update_iter (!components[i+1], channel, key, store, &child_iter);
                 }
                 parent_iter = child_iter;
             }
