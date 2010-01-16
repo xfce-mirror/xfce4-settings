@@ -90,6 +90,7 @@ static gboolean
 cb_channel_treeview_popup_menu (GtkWidget *widget, GtkBuilder *builder);
 static void
 cb_channel_popup_menu_remove_item_activate (GtkMenuItem *item, GtkBuilder *builder);
+void print_list (gpointer data, gpointer user_data);
 
 
 GtkDialog *
@@ -247,6 +248,11 @@ load_channels (GtkTreeStore *store, GtkTreeView *treeview)
     }
 }
 
+void print_list (gpointer data, gpointer user_data)
+{
+  TRACE ("%s", (gchar *) data);
+}
+
 /**
  * load_properties
  *
@@ -282,25 +288,97 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
     if (hash_table != NULL)
     {
         keys = g_hash_table_get_keys (hash_table);
+        g_list_foreach (keys, (GFunc) print_list, NULL);
         for(_keys = keys; _keys != NULL; _keys = g_list_next (_keys))
         {
             key = _keys->data;
+            TRACE ("Key: %s", key);
             value = g_hash_table_lookup (hash_table, key);
             components = g_strsplit (key, "/", 0);
 
             /* components[0] will be empty because properties start with '/'*/
             for (i = 1; components[i]; ++i)
             {
+                TRACE ("Component: %s", components[i]);
+
                 /* Check if this parent has children */
                 if (gtk_tree_model_iter_children (GTK_TREE_MODEL (store), &child_iter, i==1?NULL:&parent_iter))
                 {
+                    TRACE ("Parent has children");
+
                     while (1)
                     {
                         /* Check if the component already exists, if so, return this child */
                         gtk_tree_model_get_value (GTK_TREE_MODEL(store), &child_iter, 0, &parent_val);
                         if (!strcmp (components[i], g_value_get_string (&parent_val)))
                         {
+                            GValue current_parent_value = {0, };
+
+                            TRACE ("Component already exists");
                             g_value_unset (&parent_val);
+
+                            gtk_tree_model_get_value (GTK_TREE_MODEL(store), &child_iter, 3, &current_parent_value);
+
+                            if (!g_value_get_string (&current_parent_value))
+                            {
+                                if (components[i+1] == NULL)
+                                {
+                                    TRACE ("Components i+1 is NULL");
+
+                                    xfconf_channel_get_property (channel, key, &property_value);
+                                    switch (G_VALUE_TYPE(&property_value))
+                                    {
+                                        case G_TYPE_INT:
+                                            g_value_set_string (&child_type, "Int");
+                                            g_value_transform (&property_value, &child_value);
+                                            break;
+                                        case G_TYPE_UINT:
+                                            g_value_set_string (&child_type, "Unsigned Int");
+                                            g_value_transform (&property_value, &child_value);
+                                            break;
+                                        case G_TYPE_INT64:
+                                            g_value_set_string (&child_type, "Int64");
+                                            g_value_transform (&property_value, &child_value);
+                                            break;
+                                        case G_TYPE_UINT64:
+                                            g_value_set_string (&child_type, "Unsigned Int64");
+                                            g_value_transform (&property_value, &child_value);
+                                            break;
+                                        case G_TYPE_DOUBLE:
+                                            g_value_set_string (&child_type, "Double");
+                                            g_value_transform (&property_value, &child_value);
+                                            break;
+                                        case G_TYPE_STRING:
+                                            g_value_set_string (&child_type, "String");
+                                            g_value_copy (&property_value, &child_value);
+                                            break;
+                                        case G_TYPE_BOOLEAN:
+                                            g_value_set_string (&child_type, "Bool");
+                                            g_value_transform (&property_value, &child_value);
+                                            break;
+                                        default:
+                                            g_value_set_string (&child_type, g_type_name (G_VALUE_TYPE(&property_value)));
+                                            break;
+                                    }
+                                    g_value_unset (&property_value);
+                                }
+                                else
+                                {
+                                    TRACE ("Empty property");
+                                    g_value_set_string (&child_type, _("Empty"));
+                                }
+                                gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
+                                g_value_reset (&child_type);
+
+                                g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
+                                gtk_tree_store_set_value (store, &child_iter, 2, &child_locked);
+                                g_value_reset (&child_locked);
+
+                                gtk_tree_store_set_value (store, &child_iter, 3, &child_value);
+                                g_value_reset (&child_value);
+
+                            }
+
                             break;
                         }
                         else
@@ -309,6 +387,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                         /* If we are at the end of the list of children, the required child is not available and should be created */
                         if (!gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &child_iter))
                         {
+                            TRACE ("Create the children");
                             gtk_tree_store_append (store, &child_iter, i==1?NULL:&parent_iter);
                             g_value_set_string (&child_name, components[i]);
                             gtk_tree_store_set_value (store, &child_iter, 0, &child_name);
@@ -316,6 +395,8 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 
                             if (components[i+1] == NULL)
                             {
+                                TRACE ("Components i+1 is NULL");
+
                                 xfconf_channel_get_property (channel, key, &property_value);
                                 switch (G_VALUE_TYPE(&property_value))
                                 {
@@ -355,6 +436,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                             }
                             else
                             {
+                                TRACE ("Empty property");
                                 g_value_set_string (&child_type, _("Empty"));
                             }
                             gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
@@ -373,6 +455,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                 else
                 {
                     /* If the parent does not have any children, create this one */
+                    TRACE ("Parent has no children");
                     gtk_tree_store_append (store, &child_iter, i==1?NULL:&parent_iter);
                     g_value_set_string (&child_name, components[i]);
                     gtk_tree_store_set_value (store, &child_iter, 0, &child_name);
@@ -380,6 +463,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 
                     if (components[i+1] == NULL)
                     {
+                        TRACE ("Component i+1 is NULL");
                         xfconf_channel_get_property (channel, key, &property_value);
                         switch (G_VALUE_TYPE(&property_value))
                         {
@@ -420,6 +504,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                     }
                     else
                     {
+                        TRACE ("Empty property");
                         g_value_set_string (&child_type, _("Empty"));
                     }
                     gtk_tree_store_set_value (store, &child_iter, 1, &child_type);
