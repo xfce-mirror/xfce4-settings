@@ -313,14 +313,14 @@ static void update_iter (gboolean empty, XfconfChannel *channel, gchar *key, Gtk
         g_value_set_string (&child_type, _("Empty"));
 
     gtk_tree_store_set_value (store, child_iter, 1, &child_type);
-    g_value_reset (&child_type);
+    g_value_unset (&child_type);
 
     g_value_set_boolean (&child_locked, xfconf_channel_is_property_locked (channel, key));
     gtk_tree_store_set_value (store, child_iter, 2, &child_locked);
-    g_value_reset (&child_locked);
+    g_value_unset (&child_locked);
 
     gtk_tree_store_set_value (store, child_iter, 3, &child_value);
-    g_value_reset (&child_value);
+    g_value_unset (&child_value);
 }
 
 /**
