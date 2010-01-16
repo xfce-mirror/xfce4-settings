@@ -58,7 +58,7 @@ enum {
 };
 
 static void
-load_channels (GtkTreeStore *store, GtkTreeView *treeview);
+load_channels (GtkListStore *store, GtkTreeView *treeview);
 static void
 load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treeview);
 
@@ -103,7 +103,7 @@ xfce4_settings_editor_main_window_new(void)
     GObject *hpaned;
     XfconfChannel *channel;
     GtkBuilder *builder = NULL;
-    GtkTreeStore *channel_tree_store;
+    GtkListStore *channel_list_store;
     GtkTreeStore *property_tree_store;
     GtkCellRenderer *renderer;
     GtkTreeSelection *selection;
@@ -146,15 +146,15 @@ xfce4_settings_editor_main_window_new(void)
     /*
      * Channel List
      */
-    channel_tree_store = gtk_tree_store_new (1, G_TYPE_STRING);
+    channel_list_store = gtk_list_store_new (1, G_TYPE_STRING);
 
-    gtk_tree_view_set_model (GTK_TREE_VIEW (channel_treeview), GTK_TREE_MODEL (channel_tree_store));
+    gtk_tree_view_set_model (GTK_TREE_VIEW (channel_treeview), GTK_TREE_MODEL (channel_list_store));
 
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (channel_treeview), 1, _("Channel"), renderer, "text", 0, NULL);
 
     /* Set sorting */
-    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (channel_tree_store), 0, GTK_SORT_ASCENDING);
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (channel_list_store), 0, GTK_SORT_ASCENDING);
 
     /*
      * property list
@@ -206,7 +206,7 @@ xfce4_settings_editor_main_window_new(void)
     g_signal_connect (G_OBJECT (property_edit_button), "clicked", G_CALLBACK (cb_property_edit_button_clicked), builder);
     g_signal_connect (G_OBJECT (property_revert_button), "clicked", G_CALLBACK (cb_property_revert_button_clicked), builder);
 
-    load_channels (channel_tree_store, GTK_TREE_VIEW (channel_treeview));
+    load_channels (channel_list_store, GTK_TREE_VIEW (channel_treeview));
 
     return GTK_DIALOG (dialog);
 }
@@ -217,7 +217,7 @@ xfce4_settings_editor_main_window_new(void)
  * get the available channels from xfconf and put them in the treemodel
  */
 static void
-load_channels (GtkTreeStore *store, GtkTreeView *treeview)
+load_channels (GtkListStore *store, GtkTreeView *treeview)
 {
     GtkTreeIter iter;
     GValue value = {0,};
@@ -232,10 +232,10 @@ load_channels (GtkTreeStore *store, GtkTreeView *treeview)
         _channel_names_iter = channel_names;
         while (*_channel_names_iter)
         {
-            gtk_tree_store_append (store, &iter, NULL);
+            gtk_list_store_append (store, &iter);
             g_value_init (&value, G_TYPE_STRING);
             g_value_set_string (&value, *_channel_names_iter);
-            gtk_tree_store_set_value (store, &iter, 0, &value);
+            gtk_list_store_set_value (store, &iter, 0, &value);
             g_value_unset (&value);
 
             _channel_names_iter++;
@@ -1182,14 +1182,15 @@ cb_channel_popup_menu_remove_item_activate (GtkMenuItem *item, GtkBuilder *build
     {
         GObject *channel_treeview;
         GObject *property_treeview;
+        GtkTreeModel *list_store = NULL;
         GtkTreeModel *tree_store = NULL;
 
         channel_treeview = gtk_builder_get_object (builder, "channel_treeview");
-        tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (channel_treeview));
+        list_store = gtk_tree_view_get_model (GTK_TREE_VIEW (channel_treeview));
         xfconf_channel_reset_property (current_channel, "/", TRUE);
 
-        gtk_tree_store_clear (GTK_TREE_STORE(tree_store));
-        load_channels (GTK_TREE_STORE (tree_store), GTK_TREE_VIEW (channel_treeview));
+        gtk_list_store_clear (GTK_LIST_STORE(list_store));
+        load_channels (GTK_LIST_STORE (list_store), GTK_TREE_VIEW (channel_treeview));
 
         property_treeview = gtk_builder_get_object (builder, "property_treeview");
         tree_store = gtk_tree_view_get_model (GTK_TREE_VIEW (property_treeview));
