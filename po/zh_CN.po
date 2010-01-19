@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the xfce4-setting package.
 # Chris K. Zhang <plutino@gmail.com>, 2009.
 # Aron Xu <aronmalache@163.com>, 2009.
-# Hunt Xu <huntxu@live.cn>, 2009.
+# Hunt Xu <huntxu@live.cn>, 2009, 2010.
 
 #: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-18 16:11+0000\n"
-"PO-Revision-Date: 2009-12-19 01:47+0800\n"
+"POT-Creation-Date: 2010-01-19 19:43+0100\n"
+"PO-Revision-Date: 2010-01-20 05:16+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr "套接字 ID"
 #: ../dialogs/appearance-settings/main.c:88
 #: ../dialogs/display-settings/main.c:82
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:76
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:78
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "版本信息"
@@ -210,7 +210,7 @@ msgstr "版本信息"
 #: ../dialogs/display-settings/main.c:642
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:244 ../xfce4-settings-manager/main.c:58
+#: ../xfce4-settings-helper/main.c:188 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "“%s --help”显示使用说明"
@@ -220,7 +220,7 @@ msgstr "“%s --help”显示使用说明"
 #: ../dialogs/display-settings/main.c:661
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:262 ../xfce4-settings-manager/main.c:71
+#: ../xfce4-settings-helper/main.c:206 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发团队，版权所有"
 
@@ -229,7 +229,7 @@ msgstr "Xfce 开发团队，版权所有"
 #: ../dialogs/display-settings/main.c:662
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:263 ../xfce4-settings-manager/main.c:72
+#: ../xfce4-settings-helper/main.c:207 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "请向 <%s> 报告程序漏洞。"
@@ -249,53 +249,69 @@ msgid "Appearance"
 msgstr "外观"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+msgid "Both"
+msgstr "都用"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "Both Horizontal"
+msgstr "都用（水平摆放）"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid "Custom _DPI setting:"
 msgstr "自定义 DPI 设置(_D):"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
 msgstr "设置桌面外观"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid "DPI"
 msgstr "DPI"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 msgid "Default Fon_t"
 msgstr "默认字体(_T)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "Enable _anti-aliasing"
 msgstr "启用字体光滑(_A)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Enable _event sounds"
 msgstr "启用事件声音(_E)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 msgid "Enable e_ditable accelerators"
 msgstr "启用可编辑快捷键(_D)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 msgid "Enable i_nput feedback sounds"
 msgstr "启用输入回声(_N)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "启用或关闭全部事件声音（需要“Canberra”支持）"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Event sounds"
 msgstr "事件声音"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "使用 TFT 或 LCD 液晶显示器时，选择适当的亚像素次序可提高字体的显示质量"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+msgid "Full"
+msgstr "全部"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+msgid "Icons"
+msgstr "图标"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
@@ -304,92 +320,105 @@ msgstr ""
 "选择该选项后，将鼠标光标停留在一个菜单选项上的同时按下新的组合键可以改变该\n"
 "菜单项的快捷键"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw "
 "the font; pick whichever looks best according to personal preference"
 msgstr "许多字体提供关于如何最好显示该字体的信息，您可以根据自己的喜好选择。"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Medium"
+msgstr "中度"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Menus and Buttons"
 msgstr "菜单和按钮"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/main.c:670
+msgid "None"
+msgstr "无"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too small"
 msgstr "如果字体太大或太小就改变显示器的分辨率"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "Rendering"
 msgstr "字体渲染"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Select a default font"
 msgstr "选择默认字体"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid "Show images in _menus"
 msgstr "在菜单中显示图像(_M)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Show images on _buttons"
 msgstr "在按钮上显示图像(_B)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+msgid "Slight"
+msgstr "略微"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Specify what should be displayed in toolbar items"
 msgstr "指定在工具条上显示什么"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "指定是否在菜单项旁边显示图标"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "指定是否在按钮文字旁边显示图标"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
 msgstr "指定是否在鼠标点击以及其他用户事件时播放事件声音"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "St_yle"
 msgstr "风格(_Y)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Sub-_pixel order:"
 msgstr "次像素次序(_P):"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+msgid "Text"
+msgstr "文字"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "显示用户界面时用该字体做默认字体"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "_Fonts"
 msgstr "字体(_F)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "_Hinting:"
 msgstr "提示(_H):"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "_Icons"
 msgstr "图标(_I)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "_Settings"
 msgstr "设置(_S)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "_Toolbar Style"
 msgstr "工具栏风格(_T)"
-
-#: ../dialogs/appearance-settings/main.c:670
-msgid "None"
-msgstr "无"
 
 #: ../dialogs/appearance-settings/main.c:674
 msgid "RGB"
@@ -482,6 +511,7 @@ msgstr "无法使用 RandR 扩展模块。"
 
 #: ../dialogs/display-settings/xfce-randr.c:55
 #: ../dialogs/display-settings/xfce-randr-legacy.c:58
+#, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "无法取得 RandR 扩展模块的版本号"
 
@@ -863,87 +893,170 @@ msgstr "习惯右手(_R)"
 msgid "_Theme"
 msgstr "主题(_T)"
 
-#: ../xfce4-settings-editor/main_window.c:122
+#: ../xfce4-settings-editor/main_window.c:157
+#, fuzzy
+# channel 确实想不到更好的词... by huntxu
 msgid "Channel"
 msgstr "频道"
 
-#: ../xfce4-settings-editor/main_window.c:132
+#: ../xfce4-settings-editor/main_window.c:170
 msgid "Property"
 msgstr "属性"
 
-#: ../xfce4-settings-editor/main_window.c:135
+#: ../xfce4-settings-editor/main_window.c:173
 msgid "Type"
 msgstr "类型"
 
-#: ../xfce4-settings-editor/main_window.c:138
+#: ../xfce4-settings-editor/main_window.c:176
 msgid "Locked"
 msgstr "锁定"
 
-#: ../xfce4-settings-editor/main_window.c:141
+#: ../xfce4-settings-editor/main_window.c:179
 msgid "Value"
 msgstr "值"
 
-#: ../xfce4-settings-editor/main_window.c:303
-#: ../xfce4-settings-editor/main_window.c:368
+#: ../xfce4-settings-editor/main_window.c:306
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "Empty"
 msgstr "空"
 
-#: ../xfce4-settings-editor/main_window.c:650
-#, c-format
-msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
-msgstr "属性“<b>%s</b>”被锁定，不能重设"
+#: ../xfce4-settings-editor/main_window.c:696
+#: ../xfce4-settings-editor/main_window.c:888
+msgid "This property name is not valid."
+msgstr "此属性名无效。"
 
-#: ../xfce4-settings-editor/main_window.c:660
+#: ../xfce4-settings-editor/main_window.c:923
+#: ../xfce4-settings-editor/main_window.c:1070
+msgid "Reset"
+msgstr "重置"
+
+#: ../xfce4-settings-editor/main_window.c:924
+msgid "Resetting a property will permanently remove those custom settings."
+msgstr "重置一个属性将会永久删除之前的自定义设置。"
+
+#: ../xfce4-settings-editor/main_window.c:925
 #, c-format
-msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
-msgstr "您确定要重设属性“<b>%s</b>”吗？"
+msgid "Are you sure you want to reset property \"%s\"?"
+msgstr "您确定要重置属性 \"%s\" 吗？"
+
+#: ../xfce4-settings-editor/main_window.c:975
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "属性名必须以 '/' 开头"
+
+#: ../xfce4-settings-editor/main_window.c:984
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "根元素 ('/') 不是一个有效的属性名"
+
+#: ../xfce4-settings-editor/main_window.c:998
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"属性名称只能包含以下 ASCII 字符: A-Z、a-z、0-9、'_'、"
+"'-'、'<' 和 '>'，另外，'/' 作为分隔符"
+
+#: ../xfce4-settings-editor/main_window.c:1007
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "属性名称中不能包含两个或以上连续的 '/' 字符"
+
+#: ../xfce4-settings-editor/main_window.c:1018
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "属性名称不能以 '/' 结束"
+
+#: ../xfce4-settings-editor/main_window.c:1037
+msgid "_Reset"
+msgstr "重置(_R)"
+
+#: ../xfce4-settings-editor/main_window.c:1071
+#, fuzzy
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr "重置一个频道将会永久删除之前的自定义设置。"
+
+#: ../xfce4-settings-editor/main_window.c:1072
+#, fuzzy, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr "您确定要重设频道 \"%s\" 和它的所有属性吗？"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Xfconf 的图形界面设置编辑器"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "Settings Editor"
 msgstr "设置编辑器"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Boolean"
+msgstr "布尔值"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "Customize settings stored by Xfconf"
 msgstr "自定义 Xfconf 储存的设定"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+msgid "Double"
+msgstr "双字"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Edit Property"
 msgstr "编辑属性"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
 msgid "Edit property"
 msgstr "编辑属性"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Enabled"
 msgstr "已启用"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+msgid "Int"
+msgstr "整型"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+msgid "Int64"
+msgstr "64 位整型"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Name:"
 msgstr "名称:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
 msgid "New property"
 msgstr "新建属性"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
-msgid "Reset/remove property"
-msgstr "重置/删除属性"
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+msgid "Reset property"
+msgstr "重置属性"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
+msgid "String"
+msgstr "字符串"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "Type:"
 msgstr "类型:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
+msgid "Unsigned Int"
+msgstr "无符号整型"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
+msgid "Unsigned Int64"
+msgstr "无符号 64 位整型"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
 msgid "Value:"
 msgstr "值:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
+#, fuzzy
 msgid "Xfconf channels"
 msgstr "Xfconf 频道"
 
@@ -983,7 +1096,7 @@ msgstr "反弹按键已取消"
 msgid "Bounce keys"
 msgstr "反弹按键"
 
-#: ../xfce4-settings-helper/main.c:77 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:79 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "启动到差错模式（不分叉到后台线程）"
 
@@ -1050,47 +1163,8 @@ msgstr ""
 "%s: %s\n"
 "%s --help 将列出完整的可选命令行参数\n"
 
-#~ msgid "Both"
-#~ msgstr "都用"
-
-#~ msgid "Both Horizontal"
-#~ msgstr "都用（水平摆放）"
-
-#~ msgid "Full"
-#~ msgstr "全部"
-
-#~ msgid "Icons"
-#~ msgstr "图标"
-
-#~ msgid "Medium"
-#~ msgstr "中度"
-
-#~ msgid "Slight"
-#~ msgstr "略微"
-
-#~ msgid "Text"
-#~ msgstr "文字"
-
-#~ msgid "Boolean"
-#~ msgstr "布尔值"
-
-#~ msgid "Double"
-#~ msgstr "双字"
-
-#~ msgid "Int"
-#~ msgstr "整型"
-
-#~ msgid "Int64"
-#~ msgstr "64 位整型"
-
-#~ msgid "String"
-#~ msgstr "字符串"
-
-#~ msgid "Unsigned Int"
-#~ msgstr "无符号整型"
-
-#~ msgid "Unsigned Int64"
-#~ msgstr "无符号 64 位整型"
+#~ msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
+#~ msgstr "属性“<b>%s</b>”被锁定，不能重设"
 
 #~ msgid "<b>Bounce Keys</b>"
 #~ msgstr "<b>反弹按键</b>"
