@@ -455,7 +455,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
 
     buf_len = 12;
 
-    /** Calculate buffer size */
+    /* Calculate buffer size */
     for(; entry->name != NULL; ++entry)
     {
         prop_count++;
@@ -513,7 +513,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                 *pos++ = 0;
                 break;
             case G_TYPE_STRING:
-                *pos++ = 1; // String 
+                *pos++ = 1; /* String */
                 {
                     value = g_value_get_string(&entry->value);
                     if(value)
