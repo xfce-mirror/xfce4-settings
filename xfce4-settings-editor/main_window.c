@@ -1035,7 +1035,7 @@ channel_treeview_popup_menu (GtkWidget *widget, GdkEventButton *event, GtkBuilde
     g_signal_connect (menu, "deactivate", G_CALLBACK (gtk_menu_popdown), NULL);
 
     menu_item = gtk_image_menu_item_new_with_mnemonic (_("_Reset"));
-    image = gtk_image_new_from_stock ("gtk-remove", GTK_ICON_SIZE_MENU);
+    image = gtk_image_new_from_stock (GTK_STOCK_REMOVE, GTK_ICON_SIZE_MENU);
     gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
     g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cb_channel_popup_menu_remove_item_activate), builder);
@@ -1066,7 +1066,7 @@ cb_channel_popup_menu_remove_item_activate (GtkMenuItem *item, GtkBuilder *build
     g_object_get (G_OBJECT (current_channel), "channel-name", &channel_name, NULL);
 
     response = xfce_dialog_confirm (GTK_WINDOW (gtk_builder_get_object (builder, "main_window")),
-                                    GTK_STOCK_YES,
+                                    GTK_STOCK_REVERT_TO_SAVED,
                                     _("Reset"),
                                     _("Resetting a channel will permanently remove those custom settings."),
                                     _("Are you sure you want to reset channel \"%s\" and all its properties?"),
