@@ -366,7 +366,7 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
                     {
                         /* Check if the component already exists, if so, return this child */
                         gtk_tree_model_get_value (GTK_TREE_MODEL(store), &child_iter, 0, &parent_val);
-                        if (!strcmp (components[i], g_value_get_string (&parent_val)))
+                        if (!g_strcmp0 (components[i], g_value_get_string (&parent_val)))
                         {
                             GValue current_parent_value = {0, };
 
