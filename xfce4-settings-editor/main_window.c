@@ -223,26 +223,19 @@ static void
 load_channels (GtkListStore *store, GtkTreeView *treeview)
 {
     GtkTreeIter iter;
-    GValue value = {0,};
-
-    gchar **channel_names, **_channel_names_iter;
+    gchar **channel_names;
+    guint i;
+    GtkTreeSelection *selection;
 
     channel_names = xfconf_list_channels();
     if (channel_names != NULL)
     {
-        GtkTreeSelection *selection;
-
-        _channel_names_iter = channel_names;
-        while (*_channel_names_iter)
+        for (i = 0; channel_names[i] != NULL; i++)
         {
-            gtk_list_store_append (store, &iter);
-            g_value_init (&value, G_TYPE_STRING);
-            g_value_set_string (&value, *_channel_names_iter);
-            gtk_list_store_set_value (store, &iter, 0, &value);
-            g_value_unset (&value);
-
-            _channel_names_iter++;
+            gtk_list_store_insert_with_values (store, NULL, i,
+                                               0, channel_names[i], -1);
         }
+
         g_strfreev (channel_names);
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
