@@ -249,7 +249,7 @@ static void print_list (gpointer data, gpointer user_data)
   TRACE ("%s", (gchar *) data);
 }
 
-static void update_iter (gboolean empty, XfconfChannel *channel, gchar *key, GtkTreeStore *store, GtkTreeIter *child_iter)
+static void update_iter (gboolean not_empty, XfconfChannel *channel, gchar *key, GtkTreeStore *store, GtkTreeIter *child_iter)
 {
     GValue child_locked = {0, };
     GValue child_type = {0, };
@@ -259,7 +259,7 @@ static void update_iter (gboolean empty, XfconfChannel *channel, gchar *key, Gtk
     g_value_init (&child_type, G_TYPE_STRING);
     g_value_init (&child_value, G_TYPE_STRING);
 
-    if (empty)
+    if (not_empty)
     {
         GValue property_value = {0, };
 
