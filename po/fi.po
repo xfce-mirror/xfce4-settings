@@ -1,38 +1,213 @@
 # Translation of xfce4-settings into Finnish.
 # Copyright (C) 2008 The Xfce Development Team.
 # This file is distributed under the same license as the xfce4-settings package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2009.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2010.
 #
 #: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-14 23:15+0200\n"
-"PO-Revision-Date: 2009-01-25 23:29+0200\n"
+"POT-Creation-Date: 2010-01-23 12:04+0100\n"
+"PO-Revision-Date: 2010-01-23 13:53+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
+msgid "Acceleration _profile:"
+msgstr "Kiihdytys_profiili:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
+msgid "Acceleration _time:"
+msgstr "Kiihdytys_aika:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+msgid "Acceptance _delay:"
+msgstr "Näppäin_viive:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+msgid "Accessibility"
+msgstr "Esteettömyys"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+msgid "Bounce Keys"
+msgstr "Näppäintoiston esto"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+msgid "Configure keyboard and mouse accessibility"
+msgstr "Näppäimistön ja hiiren esteettömyysasetukset"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+msgid "Disable sticky keys if _two keys are pressed"
+msgstr "Poista alas jäävät näppäimet, jos painetaan _kahta näppäintä"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+msgid "K_eystroke delay:"
+msgstr "_Näppäintoiston viive:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+msgid "Keyboa_rd"
+msgstr "N_äppäinkartta"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+msgid "Maximum _speed:"
+msgstr "Enimmäis_nopeus:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+msgid "Mouse Emulation"
+msgstr "Hiiriemulointi"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+msgid "R_epeat interval:"
+msgstr "_Toistoväli:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+msgid "Slow Keys"
+msgstr "Hitaat näppäimet"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+msgid "Sticky Keys"
+msgstr "Alas jäävät näppäimet"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+msgid "The amount of time, in milliseconds, required between keystrokes"
+msgstr "Vaadittu näppäinpainallusten välinen aika millisekunteina"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+msgid ""
+"The amount of time, in milliseconds, that must elapse before a keystroke "
+"will be accepted"
+msgstr "Aika millisekunteina, jonka jälkeen näppäimen painallus hyväksytään"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+msgid "The maximum pointer speed after acceleration"
+msgstr "Suurin osoittimen nopeus kiihdytettynä"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+msgid "The ramp used to reach maximum pointer speed"
+msgstr "Käyrä, jonka mukaisesti osoitin saavuttaa täyden nopeutensa"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+msgid "The time, in milliseconds, between repeated motion events"
+msgstr "Aika toistuvien liikkeiden välillä millisekunteina"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+msgid ""
+"The time, in milliseconds, between the initial key press and first repeated "
+"motion event"
+msgstr ""
+"Aika millisekunteina näppäimen painalluksen ja ensimmäisen toistuvan "
+"liikkeen välillä"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+msgid "The time, in milliseconds, to get to maximum speed"
+msgstr "Kiihdytyksen kesto suurimpaan nopeuteen millisekunteina"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+msgid ""
+"To help prevent accidental keystrokes, slow keys requires that a key is held "
+"for a certain minimum amount of time before the keystroke will be accepted"
+msgstr ""
+"Hitaat näppäimet asettaa vähimmäiskeston näppäimen painallukselle ennen sen "
+"hyväksymistä, jotta vältytään tahattomalta näppäilyltä"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+msgid ""
+"To help prevent accidental multiple keystrokes, bounce keys imposes a "
+"minimum delay between keystrokes"
+msgstr ""
+"Näppäintoiston esto asettaa vähimmäisajan näppäimen painallusten välille, "
+"jotta vältytään tahattomalta näppäimen toistolta"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+msgid "Use _bounce keys"
+msgstr "Estä _näppäintoisto"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+msgid "Use _sticky keys"
+msgstr "Käytä _alas jääviä näppäimiä"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+msgid "Use slow _keys"
+msgstr "Käytä _hitaita näppäimiä"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) do not need "
+"to be held down (they can be pressed and then released) when multiple keys "
+"would normally need to be pressed at the same time"
+msgstr ""
+"Jos valitset tämän, muuntonäppäimiä (kuten Ctrl, Alt ja Vaihto) ei tarvitse "
+"pitää painettuna (vaan ne voi painamisen jälkeen vapauttaa) kun useita "
+"näppäimiä pitäisi tavallisesti painaa yhtä aikaa"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) will remain "
+"locked in the pressed state until pressed again"
+msgstr ""
+"Jos valitset tämän, muuntonäppäimet (kuten Ctrl, Alt ja Vaihto) pysyvät alas "
+"painettuina kunnes niitä painetaan uudelleen"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+msgid ""
+"When selected, the \"sticky keys\" feature will be disabled if two keys are "
+"pressed simultaneously"
+msgstr ""
+"Jos valitset tämän, alas jäävät näppäimet poistuvat käytöstä kun painat "
+"kahta näppäintä samanaikaisesti"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+msgid ""
+"When selected, the mouse pointer can be controlled using the keyboard number "
+"pad"
+msgstr "Jos valitset tämän, voit liikuttaa osoitinta numeronäppäimistön avulla"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+msgid "_Acceleration delay:"
+msgstr "_Kiihdytysviive:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+msgid "_Lock sticky keys"
+msgstr "_Lukitse alas jäävät näppäimet"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+msgid "_Mouse"
+msgstr "_Hiiri"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+msgid "_Use mouse emulation"
+msgstr "Käytä hiiri_emulointia"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+msgid "msec"
+msgstr "ms"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+msgid "pixels/sec"
+msgstr "kuvapistettä/s"
+
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "Asetustenhallinnan pistoke"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "PISTOKE"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
 #: ../dialogs/display-settings/main.c:82
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:97
-#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:77
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:78
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Versiotiedot"
@@ -41,8 +216,8 @@ msgstr "Versiotiedot"
 #: ../dialogs/appearance-settings/main.c:773
 #: ../dialogs/display-settings/main.c:642
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1182 ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:245 ../xfce4-settings-manager/main.c:58
+#: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
+#: ../xfce4-settings-helper/main.c:188 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Saat ohjeita komennolla \"%s --help\"."
@@ -51,8 +226,8 @@ msgstr "Saat ohjeita komennolla \"%s --help\"."
 #: ../dialogs/appearance-settings/main.c:792
 #: ../dialogs/display-settings/main.c:661
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1201 ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:263 ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
+#: ../xfce4-settings-helper/main.c:206 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 
@@ -60,23 +235,206 @@ msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 #: ../dialogs/appearance-settings/main.c:793
 #: ../dialogs/display-settings/main.c:662
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1202 ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:264 ../xfce4-settings-manager/main.c:72
+#: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
+#: ../xfce4-settings-helper/main.c:207 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Ilmoita virheistä osoitteseen <%s>."
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
-msgid "Accessibility"
-msgstr "Esteettömyys"
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
 msgstr "Helpota näppäimistön ja hiiren käyttöä"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr ""
+"Antialiasointi eli kirjasinten reunojen tasoitus voi parantaa tekstin "
+"ulkonäköä näytöllä"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
+msgid "Appearance"
+msgstr "Ulkoasu"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+msgid "Both"
+msgstr "Molemmat"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "Both Horizontal"
+msgstr "Molemmat vaakasuunnassa"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
+msgid "Custom _DPI setting:"
+msgstr "Mukautettu _erottelukyky:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
+msgid "Customize the look of your desktop"
+msgstr "Muokkaa työpöytäsi ulkoasua"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+msgid "DPI"
+msgstr "DPI"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+msgid "Default Fon_t"
+msgstr "Oletuski_rjasin"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
+msgid "Enable _anti-aliasing"
+msgstr "_Tasoita kirjasinten reunoja"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+msgid "Enable _event sounds"
+msgstr "Toista merkki_äänet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+msgid "Enable e_ditable accelerators"
+msgstr "_Muokattavat valikon pikanäppäimet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+msgid "Enable i_nput feedback sounds"
+msgstr "Toista sy_ötteen äänipalaute"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr "Toistetaanko käyttöliittymän äänet (vaatii Canberra-tuen)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+msgid "Event sounds"
+msgstr "Merkkiäänet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr ""
+"Jos sinulla on TFT- tai LCD-näyttö, voit parantaa kirjasinten laatua "
+"valitsemalla näyttösi alipikselijärjestyksen"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+msgid "Full"
+msgstr "Täysi"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+msgid "Icons"
+msgstr "Kuvakkeet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid ""
+"If selected, keyboard shortcuts for menu items can be changed by hovering "
+"the mouse over the menu item and pressing the new key combination for the "
+"shortcut"
+msgstr ""
+"Jos tämä on valittu, valikon kohteen pikanäppäintä voi vaihtaa painamalla "
+"uutta näppäinyhdistelmää hiiren osoittimen ollessa sen yllä"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw "
+"the font; pick whichever looks best according to personal preference"
+msgstr ""
+"Useat kirjasimet sisältävät tietoa siitä, kuinka ne olisi parasta esittää. "
+"Valitse se vaihtoehto, joka mielestäsi näyttää parhaalta"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Medium"
+msgstr "Kohtalainen"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+msgid "Menus and Buttons"
+msgstr "Valikot ja painikkeet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:670
 msgid "None"
 msgstr "Ei mitään"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too small"
+msgstr ""
+"Ohita havaittu näytön tarkkuus jos kirjasimet ovat liian suuria tai pieniä"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+msgid "Rendering"
+msgstr "Kirjasinten piirto"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+msgid "Select a default font"
+msgstr "Valitse oletuskirjasin"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+msgid "Show images in _menus"
+msgstr "Näytä kuvat _valikoissa"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+msgid "Show images on _buttons"
+msgstr "Näytä kuvat _painikkeissa"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+msgid "Slight"
+msgstr "Kevyt"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+msgid "Specify what should be displayed in toolbar items"
+msgstr "Määritä, mitä työkalupalkkien kohteissa näytetään"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "Määritä, näytetäänkö valikon kohteiden vierellä kuvakkeita"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "Määritä, näytetäänkö painikkeissa kuvakkeita tekstin lisäksi"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+msgid ""
+"Specify whether mouse clicks and other user input will cause event sounds to "
+"play"
+msgstr ""
+"Määritä, soitetaanko merkkiääniä kun käyttäjä napsauttaa hiiren painikkeita "
+"tai syöttää muuten tietoa"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+msgid "St_yle"
+msgstr "T_yyli"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+msgid "Sub-_pixel order:"
+msgstr "_Alipikselijärjestys:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+msgid "Text"
+msgstr "Teksti"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr "Tätä kirjasinta käytetään oletuskirjasimena käyttöliittymien tekstille"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+msgid "_Fonts"
+msgstr "_Kirjasimet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+msgid "_Hinting:"
+msgstr "Piirto_vihjeet:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+msgid "_Icons"
+msgstr "K_uvakkeet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+msgid "_Settings"
+msgstr "_Asetukset"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+msgid "_Toolbar Style"
+msgstr "_Työkalupalkkien tyyli"
 
 #: ../dialogs/appearance-settings/main.c:674
 msgid "RGB"
@@ -94,13 +452,31 @@ msgstr "Pystysuuntainen RGB"
 msgid "Vertical BGR"
 msgstr "Pystysuuntainen BGR"
 
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
-msgid "Appearance"
-msgstr "Ulkoasu"
+#: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "Apply any changes and test the new display settings"
+msgstr "Hyväksy muutokset ja kokeile uusia näyttöasetuksia"
 
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
-msgid "Customize the look of your desktop"
-msgstr "Muokkaa työpöytäsi ulkoasua"
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
+msgid "Configure screen settings and layout"
+msgstr "Muokkaa näyttöasetuksia ja asettelua"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+msgid "Display"
+msgstr "Näyttö"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "R_esolution:"
+msgstr "_Tarkkuus:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Refresh _rate:"
+msgstr "_Virkistystaajuus:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
+msgid "Ro_tation:"
+msgstr "_Kääntö:"
 
 #: ../dialogs/display-settings/main.c:70
 msgid "Normal"
@@ -124,13 +500,13 @@ msgstr "Oikea"
 #: ../dialogs/display-settings/main.c:288
 #, c-format
 msgid "%d Hz"
-msgstr ""
+msgstr "%d Hz"
 
 #. create name
 #: ../dialogs/display-settings/main.c:494
-#, fuzzy, c-format
+#, c-format
 msgid "Screen %d"
-msgstr "Ruutu"
+msgstr "Ruutu %d"
 
 #: ../dialogs/display-settings/main.c:675
 #, c-format
@@ -190,14 +566,6 @@ msgstr "Toinen näyttö"
 msgid "Second digital display"
 msgstr "Toinen digitaalinäyttö"
 
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-msgid "Configure screen settings and layout"
-msgstr "Muokkaa näyttöasetuksia ja asettelua"
-
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
-msgid "Display"
-msgstr "Näyttö"
-
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:126
 msgid "Shortcut Command"
@@ -243,6 +611,120 @@ msgstr "Ruby-komentotiedostot"
 msgid "Shell Scripts"
 msgstr "Päätekomentotiedostot"
 
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
+msgid "Appli_cation Shortcuts"
+msgstr "So_vellusten pikanäppäimet"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
+msgid "Be_havior"
+msgstr "Käyt_ös"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+msgid "Blink _delay:"
+msgstr "Vilk_utusviive:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+msgid "Cursor"
+msgstr "Kohdistin"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Define _shortcuts for launching applications:"
+msgstr "Määritä _pikanäppäimiä sovellusten käynnistämiseen:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
+msgid "Edit keyboard settings and application shortcuts"
+msgstr "Näppäimistön asetukset ja sovellusten pikanäppäimet"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
+msgid "Keyboard"
+msgstr "Näppäinkartta"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+msgid "Keyboard layout"
+msgstr "Näppäimistön asettelu"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+msgid "Keyboard layout selection"
+msgstr "Näppäimistön asettelun valinta"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+msgid "Keyboard model"
+msgstr "Näppäimistön malli"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+msgid "Repeat _speed:"
+msgstr "Toisto_nopeus:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Select keyboard layout and variant"
+msgstr "Valitse näppäimistön asettelu ja muunnelma"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+msgid "Show _blinking"
+msgstr "_Vilkuta kohdistinta"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid ""
+"Specifies whether the keyboard layout is controlled with this settings "
+"dialog, or by the X server"
+msgstr ""
+"Määrittää, asetetaanko näppäimistön asettelu tästä asetusikkunasta, vai "
+"määrääkö sen X-palvelin"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid "Specify whether or not the text cursor blinks"
+msgstr "Määritä, vilkkuuko tekstin kohdistin"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr "Kohdistimen vilkutuskertojen välinen viive millisekunteina"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr "Tuotettavien näppäinpainallusten tahti näppäimen ollessa painettuna"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr "Aika millisekunteina, jonka jälkeen näppäintä aletaan toistaa"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+msgid "Typing Settings"
+msgstr "Näppäilyasetukset"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+msgid "Use this area to _test the settings above:"
+msgstr "_Voit kokeilla ylläolevia asetuksia tässä:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+msgid ""
+"When selected, pressing and holding down a key emits the same character over "
+"and over again"
+msgstr ""
+"Kun tämä on valittu, samaa merkkiä toistetaan niin kauan kuin pidät "
+"näppäintä painettuna"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+msgid "_Enable key repeat"
+msgstr "_Käytä näppäintoistoa"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+msgid "_Layout"
+msgstr "_Asettelu"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+msgid "_Repeat delay:"
+msgstr "_Toiston viive:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+msgid "_Reset to Defaults"
+msgstr "Palauta _oletukset"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+msgid "_Use system defaults"
+msgstr "Jä_rjestelmän oletukset"
+
 #: ../dialogs/keyboard-settings/main.c:70
 msgid "Unable to initialize GTK+."
 msgstr "GTK+:n alustus ei onnistu."
@@ -264,28 +746,28 @@ msgstr "Komento"
 msgid "Shortcut"
 msgstr "Pikanäppäin"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:359
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
 msgid "Active"
 msgstr "Käytössä"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:367
 msgid "Layout"
 msgstr "Asettelu"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:364
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:368
 msgid "Variant"
 msgstr "Muunnelma"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:808
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:812
 msgid "Shortcut command may not be empty."
 msgstr "Pikanäppäimen komento ei saa olla tyhjä."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:915
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:916
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:919
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:920
 msgid "Reset to Defaults"
 msgstr "Palauta oletukset"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:917
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:921
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -293,86 +775,318 @@ msgstr ""
 "Tämä palauttaa kaikki pikanäppäimet oletusarvoihinsa. Oletko varma, että "
 "haluat tehdä tämän?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:982
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:986
 msgid "The system defaults will be restored next time you log in."
 msgstr "Järjestelmän oletukset palautetaan seuraavan kirjautumisen yhteydessä."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:984
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:988
 msgid "Warning"
 msgstr "Varoitus"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "Näppäimistön asetukset ja sovellusten pikanäppäimet"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Keyboard"
-msgstr "Näppäinkartta"
-
-#: ../dialogs/mouse-settings/main.c:95
+#: ../dialogs/mouse-settings/main.c:99
 msgid "Active device in the dialog"
 msgstr "Dialogin aktiivinen laite"
 
-#: ../dialogs/mouse-settings/main.c:95
+#: ../dialogs/mouse-settings/main.c:99
 msgid "DEVICE NAME"
 msgstr "LAITTEEN NIMI"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:351 ../dialogs/mouse-settings/main.c:353
-#: ../dialogs/mouse-settings/main.c:413
+#: ../dialogs/mouse-settings/main.c:355 ../dialogs/mouse-settings/main.c:357
+#: ../dialogs/mouse-settings/main.c:417
 msgid "Default"
 msgstr "Oletus"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+msgid "Button Order"
+msgstr "Painikejärjestys"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
 msgstr "Säädä osoitinlaitteen käytöstä ja osoittimen ulkonäköä"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Cursor _Size:"
+msgstr "_Osoittimen koko:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+msgid "De_vices"
+msgstr "_Laitteet"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+msgid "Double Click"
+msgstr "Kaksoisnapsautus"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+msgid "Drag and Drop"
+msgstr "Raahaa ja pudota"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+msgid "Feedback"
+msgstr "Palaute"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse"
 msgstr "Hiiri"
 
-#: ../xfce4-settings-editor/main_window.c:122
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+msgid "Preview"
+msgstr "Esikatselu"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+msgid "Re_set to Defaults"
+msgstr "_Palauta oletukset"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+msgid "Re_verse scroll direction"
+msgstr "_Käännä rullan suunta"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+msgid ""
+"Set the acceleration and threshold for the selected device to the default "
+"values"
+msgstr "Palauta valitun laitteen kiihdytys ja kynnysarvo oletusarvoihinsa"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid "Size"
+msgstr "Koko"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "T_hreshold:"
+msgstr "Ky_nnys:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr ""
+"Kerroin, jonka mukaisesti osoittimen nopeus kiihtyy kun hiirtä liikutetaan"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+msgid ""
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
+msgstr ""
+"Hiiri saa liikkua enintään tämän välimatkan kahden napsautuksen välillä, "
+"jotta se lasketaan kaksoisnapsautukseksi"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+msgid ""
+"The number of pixels the pointer must move before a drag operation will start"
+msgstr ""
+"Montako kuvapistettä osoittimen täytyy liikkua ennen raahauksen aloittamista"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr ""
+"Montako kuvapistettä osoittimen täytyy liikkua lyhyen ajan sisällä, jotta "
+"kiihdytys alkaa"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+msgid "Ti_me:"
+msgstr "_Aika:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+msgid ""
+"Two mouse clicks in less than this length of time (in milliseconds) will be "
+"considered a double click"
+msgstr ""
+"Kaksi hiiren napsautusta tätä lyhyemmässä ajassa (millisekunteina) lasketaan "
+"kaksoisnapsautukseksi"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr "Tämä valinta kääntää hiiren rullan vierityssuunnan päinvastaiseksi"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "_Acceleration:"
+msgstr "Kiih_dytys:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid "_Behavior"
+msgstr "_Käytös"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+msgid "_Distance:"
+msgstr "_Etäisyys:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+msgid "_Left handed"
+msgstr "_Vasenkätinen"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+msgid "_Right handed"
+msgstr "_Oikeakätinen"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+msgid "_Theme"
+msgstr "_Teema"
+
+#: ../xfce4-settings-editor/main_window.c:157
 msgid "Channel"
 msgstr "Kanava"
 
-#: ../xfce4-settings-editor/main_window.c:132
+#: ../xfce4-settings-editor/main_window.c:170
 msgid "Property"
 msgstr "Asetus"
 
-#: ../xfce4-settings-editor/main_window.c:135
+#: ../xfce4-settings-editor/main_window.c:173
 msgid "Type"
 msgstr "Tyyppi"
 
-#: ../xfce4-settings-editor/main_window.c:138
+#: ../xfce4-settings-editor/main_window.c:176
 msgid "Locked"
 msgstr "Lukittu"
 
-#: ../xfce4-settings-editor/main_window.c:141
+#: ../xfce4-settings-editor/main_window.c:179
 msgid "Value"
 msgstr "Arvo"
 
-#: ../xfce4-settings-editor/main_window.c:303
-#: ../xfce4-settings-editor/main_window.c:368
+#: ../xfce4-settings-editor/main_window.c:306
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "Empty"
 msgstr "Tyhjä"
 
-#: ../xfce4-settings-editor/main_window.c:650
-#, c-format
-msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
-msgstr "Asetusta \"<b>%s</b>\" ei voi palauttaa, koska se on lukittu"
+#: ../xfce4-settings-editor/main_window.c:696
+#: ../xfce4-settings-editor/main_window.c:888
+msgid "This property name is not valid."
+msgstr "Asetuksen nimi ei kelpaa"
 
-#: ../xfce4-settings-editor/main_window.c:660
+#: ../xfce4-settings-editor/main_window.c:923
+#: ../xfce4-settings-editor/main_window.c:1070
+msgid "Reset"
+msgstr "Palauta"
+
+#: ../xfce4-settings-editor/main_window.c:924
+msgid "Resetting a property will permanently remove those custom settings."
+msgstr "Jos palautat asetuksen, menetät mukautetut asetukset lopullisesti."
+
+#: ../xfce4-settings-editor/main_window.c:925
 #, c-format
-msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
-msgstr "Haluatko varmasti palauttaa asetuksen \"<b>%s</b>\"?"
+msgid "Are you sure you want to reset property \"%s\"?"
+msgstr "Haluatko varmasti palauttaa asetuksen \"%s\"?"
+
+#: ../xfce4-settings-editor/main_window.c:975
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "Asetuksen nimen täytyy alkaa /-merkillä"
+
+#: ../xfce4-settings-editor/main_window.c:984
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "Juurielementti (\"/\") ei kelpaa asetuksen nimeksi"
+
+#: ../xfce4-settings-editor/main_window.c:998
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Asetuksen nimi voi sisältää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, "
+"\"_\", \"-\", \"<\" ja \">\", sekä erotinmerkin \"/\""
+
+#: ../xfce4-settings-editor/main_window.c:1007
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "Asetuksen nimessä ei voi olla peräkkäisiä /-merkkejä"
+
+#: ../xfce4-settings-editor/main_window.c:1018
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "Asetuksen nimi ei voi päättyä /-merkkiin"
+
+#: ../xfce4-settings-editor/main_window.c:1037
+msgid "_Reset"
+msgstr "_Palauta"
+
+#: ../xfce4-settings-editor/main_window.c:1071
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr "Jos palautat kanavan, menetät mukautetut asetukset lopullisesti."
+
+#: ../xfce4-settings-editor/main_window.c:1072
+#, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr "Haluatko varmasti palauttaa kanavan \"%s\" ja kaikki sen asetukset?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Graafinen Xfconf-asetusten muokkain"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "Settings Editor"
 msgstr "Asetukset"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Boolean"
+msgstr "Totuusarvo"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+msgid "Customize settings stored by Xfconf"
+msgstr "Mukauta Xfconfiin tallennettuja asetuksia"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+msgid "Double"
+msgstr "Liukuluku"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+msgid "Edit Property"
+msgstr "Muokkaa asetusta"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+msgid "Edit property"
+msgstr "Muokkaa asetusta"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+msgid "Enabled"
+msgstr "Käytössä"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+msgid "Int"
+msgstr "Kokonaisluku"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+msgid "Int64"
+msgstr "64bit kok.luku"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+msgid "Name:"
+msgstr "Nimi:"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+msgid "New property"
+msgstr "Uusi asetus"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+msgid "Reset property"
+msgstr "Palauta asetus"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
+msgid "String"
+msgstr "Merkkijono"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
+msgid "Type:"
+msgstr "Tyyppi:"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
+msgid "Unsigned Int"
+msgstr "Pos. kokonaisluku"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
+msgid "Unsigned Int64"
+msgstr "Pos. 64bit kok.luku"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
+msgid "Value:"
+msgstr "Arvo:"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
+msgid "Xfconf channels"
+msgstr "Xfconf-kanavat"
 
 #: ../xfce4-settings-helper/accessibility.c:356
 msgid "Sticky keys are enabled"
@@ -400,17 +1114,17 @@ msgstr "Hitaat näppäimet"
 
 #: ../xfce4-settings-helper/accessibility.c:374
 msgid "Bounce keys are enabled"
-msgstr "Sarjanäppäilyn esto käytössä"
+msgstr "Näppäintoiston esto käytössä"
 
 #: ../xfce4-settings-helper/accessibility.c:376
 msgid "Bounce keys are disabled"
-msgstr "Sarjanäppäilyn esto ei käytössä"
+msgstr "Näppäintoiston esto ei käytössä"
 
 #: ../xfce4-settings-helper/accessibility.c:378
 msgid "Bounce keys"
-msgstr "Sarjanäppäilyn esto"
+msgstr "Näppäintoiston esto"
 
-#: ../xfce4-settings-helper/main.c:78 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:79 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Käynnistä vianetsintätilassa (älä haaroita taustalle)"
 
@@ -436,7 +1150,7 @@ msgstr "Mukauta työpöytääsi"
 #. Create back button which takes the user back to the overview
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:271
 msgid "_Overview"
-msgstr "_Yhteenveto"
+msgstr "_Palaa"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:598
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:614
@@ -445,13 +1159,12 @@ msgid "Unable to start \"%s\""
 msgstr "Kohdetta \"%s\" ei voi käynnistää"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:661
-#, fuzzy
 msgid "Failed to open the documentation"
-msgstr "Dokumentaatiota ei voi avata. Syy: %s"
+msgstr "Dokumentaation avaaminen epäonnistui"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Graafinen asetusten hallintapaneeli Xfce 4:lle"
+msgstr "Asetusten hallintapaneeli Xfce 4:lle"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
@@ -477,585 +1190,3 @@ msgid ""
 msgstr ""
 "%s: %s\n"
 "Kirjoittamalla %s --help saat täyden listan komentorivivalitsimista.\n"
-
-#~ msgid "Acceleration _profile:"
-#~ msgstr "Kiihdytys_profiili:"
-
-#~ msgid "Acceleration _time:"
-#~ msgstr "Kiihdytys_aika:"
-
-#~ msgid "Acceptance _delay:"
-#~ msgstr "Näppäin_viive:"
-
-#, fuzzy
-#~ msgid "Bounce Keys"
-#~ msgstr "Sarjanäppäilyn esto"
-
-#~ msgid "Configure keyboard and mouse accessibility"
-#~ msgstr "Näppäimistön ja hiiren esteettömyysasetukset"
-
-#~ msgid "Disable sticky keys if _two keys are pressed"
-#~ msgstr "Poista alas jäävät näppäimet, jos painetaan _kahta näppäintä"
-
-#~ msgid "K_eystroke delay:"
-#~ msgstr "_Näppäintoiston viive:"
-
-#~ msgid "Keyboa_rd"
-#~ msgstr "N_äppäinkartta"
-
-#~ msgid "Maximum _speed:"
-#~ msgstr "Enimmäis_nopeus:"
-
-#, fuzzy
-#~ msgid "Mouse Emulation"
-#~ msgstr "<b>Käytä hiiriemulointia</b>"
-
-#~ msgid "R_epeat interval:"
-#~ msgstr "_Toistoväli:"
-
-#, fuzzy
-#~ msgid "Slow Keys"
-#~ msgstr "Hitaat näppäimet"
-
-#, fuzzy
-#~ msgid "Sticky Keys"
-#~ msgstr "Alas jäävät näppäimet"
-
-#~ msgid "The amount of time, in milliseconds, required between keystrokes"
-#~ msgstr "Vaadittu näppäinpainallusten välinen aika millisekunteina"
-
-#~ msgid ""
-#~ "The amount of time, in milliseconds, that must elapse before a keystroke "
-#~ "will be accepted"
-#~ msgstr "Aika millisekunteina, jonka jälkeen näppäimen painallus hyväksytään"
-
-#~ msgid "The maximum pointer speed after acceleration"
-#~ msgstr "Suurin osoittimen nopeus kiihdytettynä"
-
-#~ msgid "The ramp used to reach maximum pointer speed"
-#~ msgstr "Käyrä, jonka mukaisesti osoitin saavuttaa täyden nopeutensa"
-
-#~ msgid "The time, in milliseconds, between repeated motion events"
-#~ msgstr "Aika toistuvien liikkeiden välillä millisekunteina"
-
-#~ msgid ""
-#~ "The time, in milliseconds, between the initial key press and first "
-#~ "repeated motion event"
-#~ msgstr ""
-#~ "Aika millisekunteina näppäimen painalluksen ja ensimmäisen toistuvan "
-#~ "liikkeen välillä"
-
-#~ msgid "The time, in milliseconds, to get to maximum speed"
-#~ msgstr "Kiihdytyksen kesto suurimpaan nopeuteen millisekunteina"
-
-#~ msgid ""
-#~ "To help prevent accidental keystrokes, slow keys requires that a key is "
-#~ "held for a certain minimum amount of time before the keystroke will be "
-#~ "accepted"
-#~ msgstr ""
-#~ "Hitaat näppäimet asettaa vähimmäiskeston näppäimen painallukselle ennen "
-#~ "sen hyväksymistä, jotta vältytään tahattomalta näppäilyltä"
-
-#~ msgid ""
-#~ "To help prevent accidental multiple keystrokes, bounce keys imposes a "
-#~ "minimum delay between keystrokes"
-#~ msgstr ""
-#~ "Sarjanäppäilyn esto asettaa vähimmäisajan näppäilyjen välille, jotta "
-#~ "vältytään tahattomalta näppäimen toistolta"
-
-#~ msgid "Use _bounce keys"
-#~ msgstr "Käytä _sarjanäppäilyn estoa"
-
-#~ msgid "Use _sticky keys"
-#~ msgstr "Käytä _alas jääviä näppäimiä"
-
-#~ msgid "Use slow _keys"
-#~ msgstr "Käytä _hitaita näppäimiä"
-
-#~ msgid ""
-#~ "When selected, modifier keys (such as Control, Alt, and Shift) do not "
-#~ "need to be held down (they can be pressed and then released) when "
-#~ "multiple keys would normally need to be pressed at the same time"
-#~ msgstr ""
-#~ "Jos valitset tämän, muuntonäppäimiä (kuten Ctrl, Alt ja Vaihto) ei "
-#~ "tarvitse pitää painettuna (vaan ne voi painamisen jälkeen vapauttaa) kun "
-#~ "useita näppäimiä pitäisi tavallisesti painaa yhtä aikaa"
-
-#~ msgid ""
-#~ "When selected, modifier keys (such as Control, Alt, and Shift) will "
-#~ "remain locked in the pressed state until pressed again"
-#~ msgstr ""
-#~ "Jos valitset tämän, muuntonäppäimet (kuten Ctrl, Alt ja Vaihto) pysyvät "
-#~ "alas painettuina kunnes niitä painetaan uudelleen"
-
-#~ msgid ""
-#~ "When selected, the \"sticky keys\" feature will be disabled if two keys "
-#~ "are pressed simultaneously"
-#~ msgstr ""
-#~ "Jos valitset tämän, alas jäävät näppäimet poistuvat käytöstä kun painat "
-#~ "kahta näppäintä samanaikaisesti"
-
-#~ msgid ""
-#~ "When selected, the mouse pointer can be controlled using the keyboard "
-#~ "number pad"
-#~ msgstr ""
-#~ "Jos valitset tämän, voit liikuttaa osoitinta numeronäppäimistön avulla"
-
-#~ msgid "_Acceleration delay:"
-#~ msgstr "_Kiihdytysviive:"
-
-#~ msgid "_Lock sticky keys"
-#~ msgstr "_Lukitse alas jäävät näppäimet"
-
-#~ msgid "_Mouse"
-#~ msgstr "_Hiiri"
-
-#~ msgid "_Use mouse emulation"
-#~ msgstr "Käytä hiiri_emulointia"
-
-#~ msgid "msec"
-#~ msgstr "ms"
-
-#~ msgid "pixels/sec"
-#~ msgstr "kuvapistettä/s"
-
-#~ msgid ""
-#~ "Anti-aliasing, or font smoothing, can improve the look of text on the "
-#~ "screen"
-#~ msgstr ""
-#~ "Antialiasointi eli kirjasinten reunojen tasoitus voi parantaa tekstin "
-#~ "ulkonäköä näytöllä"
-
-#~ msgid "Both"
-#~ msgstr "Molemmat"
-
-#~ msgid "Both Horizontal"
-#~ msgstr "Molemmat vaakasuunnassa"
-
-#~ msgid "Custom _DPI setting:"
-#~ msgstr "Mukautettu _erottelukyky:"
-
-#, fuzzy
-#~ msgid "Default Fon_t"
-#~ msgstr "<b>Oletus ki_rjasin</b>"
-
-#~ msgid "Enable _anti-aliasing"
-#~ msgstr "_Tasoita kirjasinten reunoja"
-
-#~ msgid "Enable _event sounds"
-#~ msgstr "Toista merkki_äänet"
-
-#~ msgid "Enable e_ditable accelerators"
-#~ msgstr "_Muokattavat valikon pikanäppäimet"
-
-#~ msgid "Enable i_nput feedback sounds"
-#~ msgstr "Toista sy_ötteen äänipalaute"
-
-#~ msgid ""
-#~ "Enable or disable event sounds globally (requires \"Canberra\" support)"
-#~ msgstr "Toistetaanko käyttöliittymän äänet (vaatii Canberra-tuen)"
-
-#, fuzzy
-#~ msgid "Event sounds"
-#~ msgstr "<b>Merkkiäänet</b>"
-
-#~ msgid ""
-#~ "Font quality on a TFT or LCD screen can be greatly improved by choosing "
-#~ "the correct sub-pixel order of the screen"
-#~ msgstr ""
-#~ "Jos sinulla on TFT- tai LCD-näyttö, voit parantaa kirjasinten laatua "
-#~ "valitsemalla näyttösi alipikselijärjestyksen"
-
-#~ msgid "Full"
-#~ msgstr "Täysi"
-
-#~ msgid "Icons"
-#~ msgstr "Kuvakkeet"
-
-#~ msgid ""
-#~ "If selected, keyboard shortcuts for menu items can be changed by hovering "
-#~ "the mouse over the menu item and pressing the new key combination for the "
-#~ "shortcut"
-#~ msgstr ""
-#~ "Jos tämä on valittu, valikon kohteen pikanäppäintä voi vaihtaa painamalla "
-#~ "uutta näppäinyhdistelmää hiiren osoittimen ollessa sen yllä"
-
-#~ msgid ""
-#~ "Many fonts contain information that provides extra hints as to how best "
-#~ "draw the font; pick whichever looks best according to personal preference"
-#~ msgstr ""
-#~ "Useat kirjasimet sisältävät tietoa siitä, kuinka ne olisi parasta "
-#~ "esittää. Valitse se vaihtoehto, joka mielestäsi näyttää parhaalta"
-
-#~ msgid "Medium"
-#~ msgstr "Kohtalainen"
-
-#, fuzzy
-#~ msgid "Menus and Buttons"
-#~ msgstr "<b>Valikot ja painikkeet</b>"
-
-#~ msgid ""
-#~ "Override the detected monitor resolution if fonts look too large or too "
-#~ "small"
-#~ msgstr ""
-#~ "Ohita havaittu näytön tarkkuus jos kirjasimet ovat liian suuria tai pieniä"
-
-#, fuzzy
-#~ msgid "Rendering"
-#~ msgstr "<b>Kirjasinten piirto</b>"
-
-#~ msgid "Select a default font"
-#~ msgstr "Valitse oletuskirjasin"
-
-#~ msgid "Show images in _menus"
-#~ msgstr "Näytä kuvat _valikoissa"
-
-#~ msgid "Show images on _buttons"
-#~ msgstr "Näytä kuvat _painikkeissa"
-
-#~ msgid "Slight"
-#~ msgstr "Kevyt"
-
-#~ msgid "Specify what should be displayed in toolbar items"
-#~ msgstr "Määritä, mitä työkalupalkkien kohteissa näytetään"
-
-#~ msgid "Specify whether icons should be displayed next to items in menus"
-#~ msgstr "Määritä, näytetäänkö valikon kohteiden vierellä kuvakkeita"
-
-#~ msgid "Specify whether icons should be displayed next to text in buttons"
-#~ msgstr "Määritä, näytetäänkö painikkeissa kuvakkeita tekstin lisäksi"
-
-#~ msgid ""
-#~ "Specify whether mouse clicks and other user input will cause event sounds "
-#~ "to play"
-#~ msgstr ""
-#~ "Määritä, soitetaanko merkkiääniä kun käyttäjä napsauttaa hiiren "
-#~ "painikkeita tai syöttää muuten tietoa"
-
-#~ msgid "St_yle"
-#~ msgstr "T_yyli"
-
-#~ msgid "Sub-_pixel order:"
-#~ msgstr "_Alipikselijärjestys:"
-
-#~ msgid "Text"
-#~ msgstr "Teksti"
-
-#~ msgid ""
-#~ "This font will be used as the default font used when drawing user "
-#~ "interface text"
-#~ msgstr ""
-#~ "Tätä kirjasinta käytetään oletuskirjasimena käyttöliittymien tekstille"
-
-#~ msgid "_Fonts"
-#~ msgstr "_Kirjasimet"
-
-#~ msgid "_Hinting:"
-#~ msgstr "Piirto_vihjeet:"
-
-#~ msgid "_Icons"
-#~ msgstr "K_uvakkeet"
-
-#~ msgid "_Settings"
-#~ msgstr "_Asetukset"
-
-#, fuzzy
-#~ msgid "_Toolbar Style"
-#~ msgstr "<b>_Työkalupalkkien tyyli</b>"
-
-#~ msgid "Apply any changes and test the new display settings"
-#~ msgstr "Hyväksy muutokset ja kokeile uusia näyttöasetuksia"
-
-#~ msgid "R_esolution:"
-#~ msgstr "_Tarkkuus:"
-
-#~ msgid "Refresh _rate:"
-#~ msgstr "_Virkistystaajuus:"
-
-#~ msgid "Ro_tation:"
-#~ msgstr "_Kääntö:"
-
-#~ msgid "Appli_cation Shortcuts"
-#~ msgstr "So_vellusten pikanäppäimet"
-
-#~ msgid "Be_havior"
-#~ msgstr "Käyt_ös"
-
-#~ msgid "Blink _delay:"
-#~ msgstr "Vilk_utusviive:"
-
-#, fuzzy
-#~ msgid "Cursor"
-#~ msgstr "<b>Kohdistin</b>"
-
-#~ msgid "Define _shortcuts for launching applications:"
-#~ msgstr "Määritä _pikanäppäimiä sovellusten käynnistämiseen:"
-
-#, fuzzy
-#~ msgid "Keyboard layout"
-#~ msgstr "<b>Näppäimistön asettelu</b>"
-
-#~ msgid "Keyboard layout selection"
-#~ msgstr "Näppäimistön asettelun valinta"
-
-#, fuzzy
-#~ msgid "Keyboard model"
-#~ msgstr "<b>Näppäimistön malli</b>"
-
-#~ msgid "Repeat _speed:"
-#~ msgstr "Toisto_nopeus:"
-
-#~ msgid "Select keyboard layout and variant"
-#~ msgstr "Valitse näppäimistön asettelu ja muunnelma"
-
-#~ msgid "Show _blinking"
-#~ msgstr "_Vilkuta kohdistinta"
-
-#~ msgid ""
-#~ "Specifies whether the keyboard layout is controlled with this settings "
-#~ "dialog, or by the X server"
-#~ msgstr ""
-#~ "Määrittää, asetetaanko näppäimistön asettelu tästä asetusikkunasta, vai "
-#~ "määrääkö sen X-palvelin"
-
-#~ msgid "Specify whether or not the text cursor blinks"
-#~ msgstr "Määritä, vilkkuuko tekstin kohdistin"
-
-#~ msgid "The delay, in milliseconds, between successive blinks of the cursor"
-#~ msgstr "Kohdistimen vilkutuskertojen välinen viive millisekunteina"
-
-#~ msgid "The rate at which keystrokes are generated while a key is pressed"
-#~ msgstr "Tuotettavien näppäinpainallusten tahti näppäimen ollessa painettuna"
-
-#~ msgid "The time, in milliseconds, before a pressed key begins repeating"
-#~ msgstr "Aika millisekunteina, jonka jälkeen näppäintä aletaan toistaa"
-
-#, fuzzy
-#~ msgid "Typing Settings"
-#~ msgstr "<b>Näppäilyasetukset</b>"
-
-#~ msgid "Use this area to _test the settings above:"
-#~ msgstr "_Voit kokeilla ylläolevia asetuksia tässä:"
-
-#~ msgid ""
-#~ "When selected, pressing and holding down a key emits the same character "
-#~ "over and over again"
-#~ msgstr ""
-#~ "Kun tämä on valittu, samaa merkkiä toistetaan niin kauan kuin pidät "
-#~ "näppäintä painettuna"
-
-#~ msgid "_Enable key repeat"
-#~ msgstr "_Käytä näppäintoistoa"
-
-#~ msgid "_Layout"
-#~ msgstr "_Asettelu"
-
-#~ msgid "_Repeat delay:"
-#~ msgstr "_Toiston viive:"
-
-#~ msgid "_Reset to Defaults"
-#~ msgstr "Palauta _oletukset"
-
-#~ msgid "_Use system defaults"
-#~ msgstr "Jä_rjestelmän oletukset"
-
-#, fuzzy
-#~ msgid "Button Order"
-#~ msgstr "<b>Näppäinjärjestys</b>"
-
-#~ msgid "Cursor _Size:"
-#~ msgstr "_Osoittimen koko:"
-
-#~ msgid "De_vices"
-#~ msgstr "_Laitteet"
-
-#, fuzzy
-#~ msgid "Double Click"
-#~ msgstr "<b>Kaksoisnapsautus</b>"
-
-#, fuzzy
-#~ msgid "Drag and Drop"
-#~ msgstr "<b>Raahaa ja pudota</b>"
-
-#, fuzzy
-#~ msgid "Feedback"
-#~ msgstr "<b>Palaute</b>"
-
-#, fuzzy
-#~ msgid "Preview"
-#~ msgstr "<b>Esikatselu</b>"
-
-#~ msgid "Re_set to Defaults"
-#~ msgstr "_Palauta oletukset"
-
-#~ msgid "Re_verse scroll direction"
-#~ msgstr "_Käännä rullan suunta"
-
-#~ msgid ""
-#~ "Set the acceleration and threshold for the selected device to the default "
-#~ "values"
-#~ msgstr "Palauta valitun laitteen kiihdytys ja kynnysarvo oletusarvoihinsa"
-
-#~ msgid "T_hreshold:"
-#~ msgstr "Ky_nnys:"
-
-#~ msgid ""
-#~ "The factor at which the pointer's speed will increase as the mouse is "
-#~ "moved"
-#~ msgstr ""
-#~ "Kerroin, jonka mukaisesti osoittimen nopeus kiihtyy kun hiirtä liikutetaan"
-
-#~ msgid ""
-#~ "The mouse pointer cannot move farther than this distance between two "
-#~ "clicks for them to be considered a double click"
-#~ msgstr ""
-#~ "Hiiri saa liikkua enintään tämän välimatkan kahden napsautuksen välillä, "
-#~ "jotta se lasketaan kaksoisnapsautukseksi"
-
-#~ msgid ""
-#~ "The number of pixels the pointer must move before a drag operation will "
-#~ "start"
-#~ msgstr ""
-#~ "Montako kuvapistettä osoittimen täytyy liikkua ennen raahauksen "
-#~ "aloittamista"
-
-#~ msgid ""
-#~ "The number of pixels the pointer must move in a short time before it "
-#~ "starts accelerating"
-#~ msgstr ""
-#~ "Montako kuvapistettä osoittimen täytyy liikkua lyhyen ajan sisällä, jotta "
-#~ "kiihdytys alkaa"
-
-#~ msgid "Ti_me:"
-#~ msgstr "_Aika:"
-
-#~ msgid ""
-#~ "Two mouse clicks in less than this length of time (in milliseconds) will "
-#~ "be considered a double click"
-#~ msgstr ""
-#~ "Kaksi hiiren napsautusta tätä lyhyemmässä ajassa (millisekunteina) "
-#~ "lasketaan kaksoisnapsautukseksi"
-
-#~ msgid "When selected, the scroll wheel will work in the opposite direction"
-#~ msgstr "Tämä valinta kääntää hiiren rullan vierityssuunnan päinvastaiseksi"
-
-#~ msgid "_Acceleration:"
-#~ msgstr "Kiih_dytys:"
-
-#~ msgid "_Behavior"
-#~ msgstr "_Käytös"
-
-#~ msgid "_Distance:"
-#~ msgstr "_Etäisyys:"
-
-#~ msgid "_Left handed"
-#~ msgstr "_Vasenkätinen"
-
-#~ msgid "_Right handed"
-#~ msgstr "_Oikeakätinen"
-
-#~ msgid "_Theme"
-#~ msgstr "_Teema"
-
-#~ msgid "Customize settings stored by Xfconf"
-#~ msgstr "Mukauta Xfconfiin tallennettuja asetuksia"
-
-#~ msgid "Edit Property"
-#~ msgstr "Muokkaa asetusta"
-
-#~ msgid "Edit property"
-#~ msgstr "Muokkaa asetusta"
-
-#~ msgid "Enabled"
-#~ msgstr "Käytössä"
-
-#~ msgid "Name:"
-#~ msgstr "Nimi:"
-
-#~ msgid "New property"
-#~ msgstr "Uusi asetus"
-
-#~ msgid "Reset/remove property"
-#~ msgstr "Palauta/poista asetus"
-
-#, fuzzy
-#~ msgid "String"
-#~ msgstr "Asetukset"
-
-#~ msgid "Type:"
-#~ msgstr "Tyyppi:"
-
-#~ msgid "Value:"
-#~ msgstr "Arvo:"
-
-#~ msgid "Xfconf channels"
-#~ msgstr "Xfconf-kanavat"
-
-#~ msgid "<b>Bounce Keys</b>"
-#~ msgstr "<b>Sarjanäppäilyn esto</b>"
-
-#~ msgid "<b>Slow Keys</b>"
-#~ msgstr "<b>Hitaat näppäimet</b>"
-
-#~ msgid "<b>Sticky Keys</b>"
-#~ msgstr "<b>Alas jäävät näppäimet</b>"
-
-#~ msgid "<b>DPI</b>"
-#~ msgstr "<b>Erottelukyky</b>"
-
-#~ msgid "<b>Size</b>"
-#~ msgstr "<b>Koko</b>"
-
-#~ msgid "Select a channel and property"
-#~ msgstr "Valitse kanava ja asetus"
-
-#~ msgid "Client id used when resuming session"
-#~ msgstr "Asiakasohjelman tunniste istunnon palautuessa"
-
-#~ msgid "Xfce Settings Manager"
-#~ msgstr "Xfce:n asetukset"
-
-#~ msgid "gtk-close"
-#~ msgstr "gtk-close"
-
-#~ msgid "gtk-apply"
-#~ msgstr "gtk-apply"
-
-#~ msgid "Hz"
-#~ msgstr "Hz"
-
-#~ msgid "gtk-add"
-#~ msgstr "gtk-add"
-
-#~ msgid "gtk-cancel"
-#~ msgstr "gtk-cancel"
-
-#~ msgid "gtk-delete"
-#~ msgstr "gtk-delete"
-
-#~ msgid "gtk-edit"
-#~ msgstr "gtk-edit"
-
-#~ msgid "gtk-help"
-#~ msgstr "gtk-help"
-
-#~ msgid "gtk-ok"
-#~ msgstr "gtk-ok"
-
-#~ msgid "gtk-remove"
-#~ msgstr "gtk-remove"
-
-#~ msgid "gtk-save"
-#~ msgstr "gtk-save"
-
-#~ msgid "Shortcut: %s"
-#~ msgstr "Pikanäppäin: %s"
-
-#~ msgid "Undefined"
-#~ msgstr "Ei määritetty"
-
-#~ msgid "Xfce 4 Settings Editor"
-#~ msgstr "Xfce 4 asetukset"
-
-#~ msgid "Xfce4 settings editor"
-#~ msgstr "Xfce 4 asetuseditori"
