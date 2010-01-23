@@ -11,6 +11,7 @@
 - Respect HIG in xfce4-settings-editor's dialogs.
 - Remember the geometry of xfce4-settings-editor's window.
 - Monitor the existing properties in xfce4-settings-editor.
+- Translation updates (pt, gl, ja, nl, zh_CN, da, cs).
 
 4.7.0
 =====
@@ -52,12 +53,12 @@
 =====
 - Make the Xrandr dependency optional. If Xrandr is disabled, the
   display plugin won't be compiled at all (bug #4836).
-- When stealing a shortcut from another shortcuts provider, clear the 
+- When stealing a shortcut from another shortcuts provider, clear the
   shortcut of that provider first.
-- Make embedded settings dialogs optional (and disabled by default). 
+- Make embedded settings dialogs optional (and disabled by default).
   They can be turned on using --enable-pluggable-dialogs.
 - Don't mark GTK+ stock labels as translatable
-- Fix DPI calculation when DPI settings are set to '-1', (eg default) since we 
+- Fix DPI calculation when DPI settings are set to '-1', (eg default) since we
   can not depend on pango, cairo or fontconfig to do the right thing.
 - Fix typing error in the ToolbarStyle default XSETTINGS registry value
 - Do not fill the xsettings channel from the settings-dialog, xfsettingsd takes
@@ -71,30 +72,30 @@
 - Fix possible segfault in xfce4-settings-helper (bug #4813).
 - Fix xfsettingsd segfault due to strings defaulting to NULL. Patch
   by Lars-Peter Clausen (bug #4797).
-- Translation updates: Brazilian Portuguese, Catalan, Czech, Danish, 
+- Translation updates: Brazilian Portuguese, Catalan, Czech, Danish,
   Finnish, French, Japanese, Simplified Chinese, Spanish and Swedish.
 
 4.5.93 (Xfce 4.6 beta3)
 =======================
 - Allow the settings manager window to be minimized (bug #4596).
 - Fix xfce4-settings-helper not setting workspace count.
-- Improve the UI of the shortcut command dialog and 
+- Improve the UI of the shortcut command dialog and
   xfce4-settings-editor a bit.
 - Fix label wrapping in the settings manager icon view (bug #4743).
 - Make workspaces helper multi-screen aware.
 - Set SmRestartIfRunning if started in debug mode.
 - Add XfceTextRenderer for prelit/follow-state and keyboard navigation
   support in the settings manager dialog.
-- Add --dialog=<dialog name> command line parameter to 
-  xfce4-settings-manager so that one can make it show any of its 
+- Add --dialog=<dialog name> command line parameter to
+  xfce4-settings-manager so that one can make it show any of its
   children at startup.
 - Review strings.
 - Fully update the appearance dialog when the settings are changed in
   another dialog or with xfconf-query.
 - Set a DPI size based on a calculation when a custom DPI is disabled,
   this instead of the hard-coded 96 DPI.
-- Translation updates: Basque, Brazilian Portuguese, Catalan, Czech, 
-  Finnish, French, German, Greek, Hungarian, Indonesian, Japanese, 
+- Translation updates: Basque, Brazilian Portuguese, Catalan, Czech,
+  Finnish, French, German, Greek, Hungarian, Indonesian, Japanese,
   Norwegian Bokmal, Spanish, Swedish, Turkish, Ukrainian.
 
 4.5.92 (Xfce 4.6 beta2)
