@@ -395,7 +395,11 @@ xfce_keyboard_settings_finalize (GObject *object)
 
 #ifdef HAVE_LIBXKLAVIER
   /* Stop xklavier engine */
+#ifdef HAVE_LIBXKLAVIER5
+  xkl_engine_stop_listen (settings->priv->xkl_engine, XKLL_TRACK_KEYBOARD_STATE);
+#else
   xkl_engine_stop_listen (settings->priv->xkl_engine);
+#endif /* HAVE_LIBXKLAVIER5 */
 #endif /* HAVE_LIBXKLAVIER */
 
   g_object_unref (G_OBJECT (settings->priv->provider));
