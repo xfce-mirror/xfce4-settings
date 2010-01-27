@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-18 16:11+0000\n"
-"PO-Revision-Date: 2009-12-18 19:02+0100\n"
-"Last-Translator: Abel Martín Ruiz <abel.martin.ruiz@gmail.com>\n"
+"POT-Creation-Date: 2010-01-27 00:04+0100\n"
+"PO-Revision-Date: 2010-01-27 05:15-0800\n"
+"Last-Translator: Javier Sánchez <donoban@gmail.com>\n"
 "Language-Team: Spanish/ES <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -181,7 +181,7 @@ msgstr "ID de SOCKET"
 #: ../dialogs/keyboard-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:101
 #: ../xfce4-settings-editor/main.c:43
-#: ../xfce4-settings-helper/main.c:76
+#: ../xfce4-settings-helper/main.c:78
 #: ../xfce4-settings-manager/main.c:40
 #: ../xfsettingsd/main.c:52
 msgid "Version information"
@@ -193,7 +193,7 @@ msgstr "Información de versión"
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1186
 #: ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:244
+#: ../xfce4-settings-helper/main.c:188
 #: ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -205,7 +205,7 @@ msgstr "Escriba '%s --help' para instrucciones de uso."
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1205
 #: ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:262
+#: ../xfce4-settings-helper/main.c:206
 #: ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "El equipo de desarrollo de Xfce. Todos los derechos reservados."
@@ -216,7 +216,7 @@ msgstr "El equipo de desarrollo de Xfce. Todos los derechos reservados."
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1206
 #: ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:263
+#: ../xfce4-settings-helper/main.c:207
 #: ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -236,133 +236,162 @@ msgid "Appearance"
 msgstr "Apariencia"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+msgid "Both"
+msgstr "Ambos"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "Both Horizontal"
+msgstr "Ambos en horizontal"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid "Custom _DPI setting:"
 msgstr "Configuración personalizada de _PPP:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
 msgstr "Personalice la apariencia de su escritorio"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid "DPI"
 msgstr "PPP"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 msgid "Default Fon_t"
 msgstr "_Tipo de letra predeterminado"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "Enable _anti-aliasing"
 msgstr "Activar _suavizado de bordes"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Enable _event sounds"
 msgstr "Activar sonidos de _eventos"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 msgid "Enable e_ditable accelerators"
 msgstr "Activar aceleradores e_ditables"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 msgid "Enable i_nput feedback sounds"
 msgstr "Activar sonidos de e_ntradas"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Activar o desactivar sonidos de eventos globalmente (necesita soporte de \"Canberra\")"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Event sounds"
 msgstr "Sonidos de eventos"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Font quality on a TFT or LCD screen can be greatly improved by choosing the correct sub-pixel order of the screen"
 msgstr "La calidad de las letras en pantallas TFT o LCD puede mejorar mucho eligiendo el orden correcto de sub-píxel de su pantalla"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+msgid "Full"
+msgstr "Completo"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+msgid "Icons"
+msgstr "Iconos"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "If selected, keyboard shortcuts for menu items can be changed by hovering the mouse over the menu item and pressing the new key combination for the shortcut"
 msgstr "Si se selecciona, los atajos de teclado para los elementos de menú pueden ser cambiados pasando el ratón sobre el elemento del menú y pulsando la nueva combinación de teclas para el atajo"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Many fonts contain information that provides extra hints as to how best draw the font; pick whichever looks best according to personal preference"
 msgstr "Muchos tipos de letra contienen información que que dan pistas adicionales sobre como dibujar la letra de mejor manera; escoja la que le parezca mejor de acuerdo con sus preferencias"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Medium"
+msgstr "Medio"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Menus and Buttons"
 msgstr "Menús y botones"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
-msgid "Override the detected monitor resolution if fonts look too large or too small"
-msgstr "Ignorar la resolución de monitor detectada si la letra parece demasiado grande o demasiado pequeña"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
-msgid "Rendering"
-msgstr "Representación"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
-msgid "Select a default font"
-msgstr "Seleccione el tipo de letra predeterminado"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-msgid "Show images in _menus"
-msgstr "Mostrar imágenes en _menús"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
-msgid "Show images on _buttons"
-msgstr "Mostrar imágenes en _botones"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
-msgid "Specify what should be displayed in toolbar items"
-msgstr "Especificar qué debería mostrarse en los elementos de la barra de herramientas"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
-msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "Especificar si las imágenes deberían mostrarse junto a los elementos en los menús"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
-msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "Especificar si los iconos deberían mostrarse junto al texto en los botones"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
-msgid "Specify whether mouse clicks and other user input will cause event sounds to play"
-msgstr "Especifica si los clics de ratón u otra entrada del usuario causan la reproducción de sonidos de eventos"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
-msgid "St_yle"
-msgstr "Est_ilo"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
-msgid "Sub-_pixel order:"
-msgstr "Orden de sub-_píxel:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
-msgid "This font will be used as the default font used when drawing user interface text"
-msgstr "Este tipo de letra se usará como el predeterminado cuando se represente texto de interfaz de usuario"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
-msgid "_Fonts"
-msgstr "_Tipos de letra"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
-msgid "_Hinting:"
-msgstr "_Contorno:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
-msgid "_Icons"
-msgstr "_Iconos"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
-msgid "_Settings"
-msgstr "_Configuración"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
-msgid "_Toolbar Style"
-msgstr "Estilo de la _barra de herramientas"
-
 #: ../dialogs/appearance-settings/main.c:670
 msgid "None"
 msgstr "Ninguno"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+msgid "Override the detected monitor resolution if fonts look too large or too small"
+msgstr "Ignorar la resolución de monitor detectada si la letra parece demasiado grande o demasiado pequeña"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+msgid "Rendering"
+msgstr "Representación"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+msgid "Select a default font"
+msgstr "Seleccione el tipo de letra predeterminado"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+msgid "Show images in _menus"
+msgstr "Mostrar imágenes en _menús"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+msgid "Show images on _buttons"
+msgstr "Mostrar imágenes en _botones"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+msgid "Slight"
+msgstr "Ligero"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+msgid "Specify what should be displayed in toolbar items"
+msgstr "Especificar qué debería mostrarse en los elementos de la barra de herramientas"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "Especificar si las imágenes deberían mostrarse junto a los elementos en los menús"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "Especificar si los iconos deberían mostrarse junto al texto en los botones"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+msgid "Specify whether mouse clicks and other user input will cause event sounds to play"
+msgstr "Especifica si los clics de ratón u otra entrada del usuario causan la reproducción de sonidos de eventos"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+msgid "St_yle"
+msgstr "Est_ilo"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+msgid "Sub-_pixel order:"
+msgstr "Orden de sub-_píxel:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+msgid "Text"
+msgstr "Texto"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+msgid "This font will be used as the default font used when drawing user interface text"
+msgstr "Este tipo de letra se usará como el predeterminado cuando se represente texto de interfaz de usuario"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+msgid "_Fonts"
+msgstr "_Tipos de letra"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+msgid "_Hinting:"
+msgstr "_Contorno:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+msgid "_Icons"
+msgstr "_Iconos"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+msgid "_Settings"
+msgstr "_Configuración"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+msgid "_Toolbar Style"
+msgstr "Estilo de la _barra de herramientas"
 
 #: ../dialogs/appearance-settings/main.c:674
 msgid "RGB"
@@ -451,6 +480,7 @@ msgstr "Fallo al usar la extensión RandR"
 
 #: ../dialogs/display-settings/xfce-randr.c:55
 #: ../dialogs/display-settings/xfce-randr-legacy.c:58
+#, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Imposible obtener la versión de la extensión RandR en uso"
 
@@ -669,24 +699,24 @@ msgstr "Distribución"
 msgid "Variant"
 msgstr "Variante"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:812
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:816
 msgid "Shortcut command may not be empty."
 msgstr "El comando de atajo no puede estar vacío."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:919
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:920
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:923
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:924
 msgid "Reset to Defaults"
 msgstr "Restablecer opciones predeterminadas"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:921
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:925
 msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
 msgstr "Esto restablecerá todos los atajos a sus valores predeterminados. ¿Seguro que desea hacer esto?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:986
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:990
 msgid "The system defaults will be restored next time you log in."
 msgstr "Las opciones predeterminadas del sistema se restaurarán la próxima vez que inicie sesión."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:988
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:992
 msgid "Warning"
 msgstr "Atención"
 
@@ -815,87 +845,162 @@ msgstr "_Diestro"
 msgid "_Theme"
 msgstr "_Tema"
 
-#: ../xfce4-settings-editor/main_window.c:122
+#: ../xfce4-settings-editor/main_window.c:157
 msgid "Channel"
 msgstr "Canal"
 
-#: ../xfce4-settings-editor/main_window.c:132
+#: ../xfce4-settings-editor/main_window.c:170
 msgid "Property"
 msgstr "Propiedad"
 
-#: ../xfce4-settings-editor/main_window.c:135
+#: ../xfce4-settings-editor/main_window.c:173
 msgid "Type"
 msgstr "Tipo"
 
-#: ../xfce4-settings-editor/main_window.c:138
+#: ../xfce4-settings-editor/main_window.c:176
 msgid "Locked"
 msgstr "Bloqueado"
 
-#: ../xfce4-settings-editor/main_window.c:141
+#: ../xfce4-settings-editor/main_window.c:179
 msgid "Value"
 msgstr "Valor"
 
-#: ../xfce4-settings-editor/main_window.c:303
-#: ../xfce4-settings-editor/main_window.c:368
+#: ../xfce4-settings-editor/main_window.c:306
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "Empty"
 msgstr "Vacío"
 
-#: ../xfce4-settings-editor/main_window.c:650
-#, c-format
-msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
-msgstr "La propiedad \"<b>%s</b>\" no puede restablecerse porque está bloqueada"
+#: ../xfce4-settings-editor/main_window.c:696
+#: ../xfce4-settings-editor/main_window.c:888
+msgid "This property name is not valid."
+msgstr "Este nombre para la propiedad es inválido"
 
-#: ../xfce4-settings-editor/main_window.c:660
+#: ../xfce4-settings-editor/main_window.c:923
+#: ../xfce4-settings-editor/main_window.c:1070
+msgid "Reset"
+msgstr "Restablecer"
+
+#: ../xfce4-settings-editor/main_window.c:924
+msgid "Resetting a property will permanently remove those custom settings."
+msgstr "Restablecer una propiedad eliminará permamente sus configuraciones personalizadas."
+
+#: ../xfce4-settings-editor/main_window.c:925
 #, c-format
-msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
-msgstr "¿Está seguro de querer restablecer la propiedad \"<b>%s</b>\"?"
+msgid "Are you sure you want to reset property \"%s\"?"
+msgstr "¿Está seguro de querer restablecer la propiedad \"%s\"?"
+
+#: ../xfce4-settings-editor/main_window.c:975
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "Los nombres de las propiedades deben empezar con el carácter '/'"
+
+#: ../xfce4-settings-editor/main_window.c:984
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "La raíz ('/') no es válida como nombre de propiedad"
+
+#: ../xfce4-settings-editor/main_window.c:998
+#, c-format
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Los nombres de las propiedades sólo pueden incluir los carácteres ASCII A-Z, a-z, 0-9, '_', '-', '>', y '>', aparte del separador '/'"
+
+#: ../xfce4-settings-editor/main_window.c:1007
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "Los nombres de las propiedades no pueden tener dos o más carácteres '/' consecutivos"
+
+#: ../xfce4-settings-editor/main_window.c:1018
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "Los nombres de las propiedades no pueden terminar con el carácter '/'"
+
+#: ../xfce4-settings-editor/main_window.c:1037
+msgid "_Reset"
+msgstr "_Reiniciar"
+
+#: ../xfce4-settings-editor/main_window.c:1071
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr "Restabler un canal eliminará permanentemente sus configuraciones personalizadas."
+
+#: ../xfce4-settings-editor/main_window.c:1072
+#, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr "¿Está seguro de querer restablecer el canal \"%s\" y todas sus propiedades?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Editor gráfico de configuración para Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "Settings Editor"
 msgstr "Editor de configuración"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Boolean"
+msgstr "Boolean"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "Customize settings stored by Xfconf"
 msgstr "Personalizar configuración guardada por Xfconf"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+msgid "Double"
+msgstr "Double"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Edit Property"
 msgstr "Editar propiedad"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
 msgid "Edit property"
 msgstr "Editar propiedad"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
 msgid "Enabled"
 msgstr "Activado"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+msgid "Int"
+msgstr "Int"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+msgid "Int64"
+msgstr "Int64"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Name:"
 msgstr "Nombre:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
 msgid "New property"
 msgstr "Nueva propiedad"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
-msgid "Reset/remove property"
-msgstr "Restablecer/eliminar propiedad"
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+msgid "Reset property"
+msgstr "Restablecer propiedad"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
+msgid "String"
+msgstr "String"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
 msgid "Type:"
 msgstr "Tipo:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
+msgid "Unsigned Int"
+msgstr "Unsigned Int"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
+msgid "Unsigned Int64"
+msgstr "Unsigned Int64"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
 msgid "Value:"
 msgstr "Valor:"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
 msgid "Xfconf channels"
 msgstr "Canales de Xfconf"
 
@@ -935,7 +1040,7 @@ msgstr "El rechazo de teclas está desactivado"
 msgid "Bounce keys"
 msgstr "Rechazo de teclas"
 
-#: ../xfce4-settings-helper/main.c:77
+#: ../xfce4-settings-helper/main.c:79
 #: ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Iniciar en modo depuración (no pasa a segundo plano)"
@@ -1003,24 +1108,9 @@ msgstr ""
 "%s: %s\n"
 "Pruebe %s --help para ver una lista de opciones de línea de comando disponibles.\n"
 
-#~ msgid "Both"
-#~ msgstr "Ambos"
-#~ msgid "Both Horizontal"
-#~ msgstr "Ambos en horizontal"
-#~ msgid "Full"
-#~ msgstr "Completo"
-#~ msgid "Icons"
-#~ msgstr "Iconos"
-#~ msgid "Medium"
-#~ msgstr "Medio"
-#~ msgid "Slight"
-#~ msgstr "Ligero"
-#~ msgid "Text"
-#~ msgstr "Texto"
-
-#, fuzzy
-#~ msgid "String"
-#~ msgstr "Configuración"
+#~ msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
+#~ msgstr ""
+#~ "La propiedad \"<b>%s</b>\" no puede restablecerse porque está bloqueada"
 #~ msgid "<b>Bounce Keys</b>"
 #~ msgstr "<b>Rechazo de teclas</b>"
 #~ msgid "<b>Slow Keys</b>"
