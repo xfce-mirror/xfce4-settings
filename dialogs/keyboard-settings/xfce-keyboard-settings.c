@@ -599,6 +599,10 @@ xfce_keyboard_settings_edit_command (XfceKeyboardSettings *settings,
           /* Get the command entered by the user */
           new_command = command_dialog_get_command (COMMAND_DIALOG (dialog));
 
+          /* Remove the row if we're going (though Xfconf) add a new one */
+          if (g_strcmp0 (shortcut, new_command) != 0)
+            gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+
           /* Save settings */
           xfce_shortcuts_provider_set_shortcut (settings->priv->provider, shortcut, new_command);
         }
