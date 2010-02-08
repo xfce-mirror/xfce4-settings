@@ -784,9 +784,9 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
                 gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
                 gtk_widget_hide (GTK_WIDGET (prop_value_sw));
                 gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
-                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_int (&value));
                 gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), G_MININT, G_MAXINT);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_int (&value));
                 break;
             case G_TYPE_UINT:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_UINT);
@@ -794,9 +794,9 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
                 gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
                 gtk_widget_hide (GTK_WIDGET (prop_value_sw));
                 gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
-                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_uint (&value));
-                gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), 0, G_MAXINT);
+                gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), 0, G_MAXUINT);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_uint (&value));
                 break;
             case G_TYPE_INT64:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_INT64);
@@ -804,9 +804,9 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
                 gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
                 gtk_widget_hide (GTK_WIDGET (prop_value_sw));
                 gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
-                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_int64 (&value));
                 gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), G_MININT64, G_MAXINT64);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_int64 (&value));
                 break;
             case G_TYPE_UINT64:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_UINT64);
@@ -814,9 +814,9 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
                 gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
                 gtk_widget_hide (GTK_WIDGET (prop_value_sw));
                 gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
-                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_uint64 (&value));
                 gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), 0, G_MAXUINT64);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 0);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_uint64 (&value));
                 break;
             case G_TYPE_DOUBLE:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_DOUBLE);
@@ -824,9 +824,9 @@ cb_property_edit_button_clicked (GtkButton *button, GtkBuilder *builder)
                 gtk_widget_hide (GTK_WIDGET (prop_value_text_entry));
                 gtk_widget_hide (GTK_WIDGET (prop_value_sw));
                 gtk_widget_hide (GTK_WIDGET (prop_value_checkbox));
-                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_double (&value));
                 gtk_spin_button_set_range (GTK_SPIN_BUTTON (prop_value_spin_button), G_MINDOUBLE, G_MAXDOUBLE);
                 gtk_spin_button_set_digits (GTK_SPIN_BUTTON (prop_value_spin_button), 2);
+                gtk_spin_button_set_value (GTK_SPIN_BUTTON (prop_value_spin_button), g_value_get_double (&value));
                 break;
             case G_TYPE_BOOLEAN:
                 gtk_combo_box_set_active (GTK_COMBO_BOX (prop_type_combo), PROP_TYPE_BOOLEAN);
