@@ -945,6 +945,12 @@ cb_settings_editor_dialog_response (GtkWidget *dialog, gint response, GtkBuilder
     xfconf_channel_set_int (channel, "/hpaned-position", gtk_paned_get_position (GTK_PANED (hpaned)));
 
     gtk_widget_destroy (dialog);
+
+    if (current_channel)
+    {
+        g_object_unref (G_OBJECT(current_channel));
+        current_channel = NULL;
+    }
 }
 
 static void
