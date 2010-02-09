@@ -109,8 +109,16 @@ main (int    argc,
     {
       /* Create and run the settings dialog */
       dialog = xfce_keyboard_settings_create_dialog (settings);
-      gtk_dialog_run (GTK_DIALOG (dialog));
-      gtk_widget_destroy (dialog);
+
+      gtk_widget_show (GTK_WIDGET (dialog));
+      g_signal_connect (dialog, "response", G_CALLBACK (gtk_main_quit), NULL);
+
+      /* To prevent the settings dialog to be saved in the session */
+      gdk_set_sm_client_id ("FAKE ID");
+
+      gtk_main ();
+
+      gtk_widget_destroy (GTK_WIDGET (dialog));
     }
   else
     {
@@ -120,6 +128,9 @@ main (int    argc,
 
       /* Stop startup notification */
       gdk_notify_startup_complete ();
+
+      /* To prevent the settings dialog to be saved in the session */
+      gdk_set_sm_client_id ("FAKE ID");
 
       /* Enter the main loop */
       gtk_main ();

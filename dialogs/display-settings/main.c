@@ -678,6 +678,7 @@ main (gint argc, gchar **argv)
                                                   _("The Resize and Rotate extension (RandR) is not enabled on "
                                                     "this display. Try to enable it and run the dialog again."));
         gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE);
+
         gtk_dialog_run (GTK_DIALOG (dialog));
         gtk_widget_destroy (dialog);
 
@@ -751,6 +752,9 @@ main (gint argc, gchar **argv)
 
             /* show the dialog */
             gtk_widget_show (dialog);
+
+            /* To prevent the settings dialog to be saved in the session */
+            gdk_set_sm_client_id ("FAKE ID");
 
             /* enter the main loop */
             gtk_main ();

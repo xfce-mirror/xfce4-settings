@@ -95,6 +95,9 @@ main(int argc,
                                                  opt_dialog);
     }
 
+    /* To prevent the settings dialog to be saved in the session */
+    gdk_set_sm_client_id ("FAKE ID");
+
     gtk_main();
 
     if(GTK_IS_WIDGET(dialog))

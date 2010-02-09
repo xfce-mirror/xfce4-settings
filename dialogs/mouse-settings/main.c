@@ -1315,8 +1315,15 @@ main (gint argc, gchar **argv)
                 /* unlock */
                 locked--;
 
-                /* show the dialog */
-                gtk_dialog_run (GTK_DIALOG (dialog));
+                gtk_widget_show (GTK_WIDGET (dialog));
+                g_signal_connect (dialog, "response", G_CALLBACK (gtk_main_quit), NULL);
+
+                /* To prevent the settings dialog to be saved in the session */
+                gdk_set_sm_client_id ("FAKE ID");
+
+                gtk_main ();
+
+                gtk_widget_destroy (GTK_WIDGET (dialog));
             }
             else
             {
@@ -1335,6 +1342,9 @@ main (gint argc, gchar **argv)
 
                 /* Unlock */
                 locked--;
+
+                /* To prevent the settings dialog to be saved in the session */
+                gdk_set_sm_client_id ("FAKE ID");
 
                 /* Enter main loop */
                 gtk_main ();

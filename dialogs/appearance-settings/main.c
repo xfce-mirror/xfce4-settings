@@ -830,8 +830,15 @@ main(gint argc, gchar **argv)
                 /* build the dialog */
                 dialog = gtk_builder_get_object (builder, "dialog");
 
-                /* run the dialog */
-                gtk_dialog_run (GTK_DIALOG (dialog));
+                gtk_widget_show (GTK_WIDGET (dialog));
+                g_signal_connect (dialog, "response", gtk_widget_destroy (GTK_WIDGET (dialog)));
+
+                /* To prevent the settings dialog to be saved in the session */
+                gdk_set_sm_client_id ("FAKE ID");
+
+                gtk_main ();
+
+                gtk_widget_destroy (GTK_WIDGET (dialog));
             }
             else
             {
@@ -847,6 +854,9 @@ main(gint argc, gchar **argv)
                 plug_child = gtk_builder_get_object (builder, "plug-child");
                 gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
                 gtk_widget_show (GTK_WIDGET (plug_child));
+
+                /* To prevent the settings dialog to be saved in the session */
+                gdk_set_sm_client_id ("FAKE ID");
 
                 /* Enter main loop */
                 gtk_main ();
