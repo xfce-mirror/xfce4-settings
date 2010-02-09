@@ -831,7 +831,7 @@ main(gint argc, gchar **argv)
                 dialog = gtk_builder_get_object (builder, "dialog");
 
                 gtk_widget_show (GTK_WIDGET (dialog));
-                g_signal_connect (dialog, "response", gtk_widget_destroy (GTK_WIDGET (dialog)));
+                g_signal_connect (dialog, "response", G_CALLBACK (gtk_main_quit), NULL);
 
                 /* To prevent the settings dialog to be saved in the session */
                 gdk_set_sm_client_id ("FAKE ID");
