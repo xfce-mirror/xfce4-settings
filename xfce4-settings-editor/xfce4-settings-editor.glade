@@ -42,7 +42,6 @@
   </object>
   <object class="XfceTitledDialog" id="edit_settings_dialog">
     <property name="title" translatable="yes">Edit Property</property>
-    <property name="resizable">False</property>
     <property name="window_position">center-on-parent</property>
     <property name="icon_name">preferences-system</property>
     <property name="type_hint">dialog</property>
@@ -163,7 +162,6 @@
               <object class="GtkEntry" id="property_name_entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="editable">True</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -294,8 +292,8 @@
                         <child>
                           <object class="GtkToolButton" id="property_new_button">
                             <property name="visible">True</property>
-                            <property name="tooltip_text" translatable="yes">New property</property>
                             <property name="sensitive">False</property>
+                            <property name="tooltip_text" translatable="yes">New property</property>
                             <property name="stock_id">gtk-new</property>
                           </object>
                           <packing>
