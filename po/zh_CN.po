@@ -4,13 +4,12 @@
 # Chris K. Zhang <plutino@gmail.com>, 2009.
 # Aron Xu <aronmalache@163.com>, 2009.
 # Hunt Xu <huntxu@live.cn>, 2009, 2010.
-
 #: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-19 19:43+0100\n"
+"POT-Creation-Date: 2010-02-27 16:15+0100\n"
 "PO-Revision-Date: 2010-01-20 05:16+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
@@ -505,7 +504,7 @@ msgstr ""
 "没有启用当前显示终端的旋转及尺寸变化模块（RandR），\n"
 "请先启用该模块再运行本对话框。"
 
-#: ../dialogs/display-settings/main.c:716
+#: ../dialogs/display-settings/main.c:717
 msgid "Failed to use the RandR extension"
 msgstr "无法使用 RandR 扩展模块。"
 
@@ -736,26 +735,26 @@ msgstr "布局"
 msgid "Variant"
 msgstr "变化"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:812
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:822
 msgid "Shortcut command may not be empty."
 msgstr "快捷键命令不能为空"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:919
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:920
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:929
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:930
 msgid "Reset to Defaults"
 msgstr "恢复默认设置"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:921
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
 msgstr "所有快捷键将被重设为默认值，您确定吗？"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:986
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:996
 msgid "The system defaults will be restored next time you log in."
 msgstr "你下次登入时将恢复系统默认设置"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:988
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:998
 msgid "Warning"
 msgstr "警告"
 
@@ -893,9 +892,9 @@ msgstr "习惯右手(_R)"
 msgid "_Theme"
 msgstr "主题(_T)"
 
+# channel 确实想不到更好的词... by huntxu
 #: ../xfce4-settings-editor/main_window.c:157
 #, fuzzy
-# channel 确实想不到更好的词... by huntxu
 msgid "Channel"
 msgstr "频道"
 
@@ -926,7 +925,7 @@ msgid "This property name is not valid."
 msgstr "此属性名无效。"
 
 #: ../xfce4-settings-editor/main_window.c:923
-#: ../xfce4-settings-editor/main_window.c:1070
+#: ../xfce4-settings-editor/main_window.c:1076
 msgid "Reset"
 msgstr "重置"
 
@@ -939,45 +938,45 @@ msgstr "重置一个属性将会永久删除之前的自定义设置。"
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "您确定要重置属性 \"%s\" 吗？"
 
-#: ../xfce4-settings-editor/main_window.c:975
+#: ../xfce4-settings-editor/main_window.c:981
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "属性名必须以 '/' 开头"
 
-#: ../xfce4-settings-editor/main_window.c:984
+#: ../xfce4-settings-editor/main_window.c:990
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "根元素 ('/') 不是一个有效的属性名"
 
-#: ../xfce4-settings-editor/main_window.c:998
+#: ../xfce4-settings-editor/main_window.c:1004
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
-"属性名称只能包含以下 ASCII 字符: A-Z、a-z、0-9、'_'、"
-"'-'、'<' 和 '>'，另外，'/' 作为分隔符"
+"属性名称只能包含以下 ASCII 字符: A-Z、a-z、0-9、'_'、'-'、'<' 和 '>'，另"
+"外，'/' 作为分隔符"
 
-#: ../xfce4-settings-editor/main_window.c:1007
+#: ../xfce4-settings-editor/main_window.c:1013
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "属性名称中不能包含两个或以上连续的 '/' 字符"
 
-#: ../xfce4-settings-editor/main_window.c:1018
+#: ../xfce4-settings-editor/main_window.c:1024
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "属性名称不能以 '/' 结束"
 
-#: ../xfce4-settings-editor/main_window.c:1037
+#: ../xfce4-settings-editor/main_window.c:1043
 msgid "_Reset"
 msgstr "重置(_R)"
 
-#: ../xfce4-settings-editor/main_window.c:1071
+#: ../xfce4-settings-editor/main_window.c:1077
 #, fuzzy
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "重置一个频道将会永久删除之前的自定义设置。"
 
-#: ../xfce4-settings-editor/main_window.c:1072
+#: ../xfce4-settings-editor/main_window.c:1078
 #, fuzzy, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "您确定要重设频道 \"%s\" 和它的所有属性吗？"

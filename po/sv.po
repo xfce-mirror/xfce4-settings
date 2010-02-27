@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the xfce4-settings package.
 # Daniel Nylander <po@danielnylander.se>, 2008, 2009.
 #
+#: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-14 23:15+0200\n"
+"POT-Creation-Date: 2010-02-27 16:15+0100\n"
 "PO-Revision-Date: 2009-12-16 17:17+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -16,29 +17,208 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
+msgid "Acceleration _profile:"
+msgstr "Accelerations_profil:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
+msgid "Acceleration _time:"
+msgstr "Accelerations_tid:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+msgid "Acceptance _delay:"
+msgstr "Fördröjning för a_cceptans:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
+msgid "Accessibility"
+msgstr "Hjälpfunktioner"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+#, fuzzy
+msgid "Bounce Keys"
+msgstr "Studsande tangenter"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+msgid "Configure keyboard and mouse accessibility"
+msgstr "Konfigurera hjälpfunktioner för tangentbord och mus"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+msgid "Disable sticky keys if _two keys are pressed"
+msgstr "Inaktivera klistriga tangenter _om två tangenter trycks ner"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+msgid "K_eystroke delay:"
+msgstr "Fördröjning för tangenttr_yckning:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+msgid "Keyboa_rd"
+msgstr "Tangentbor_d"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+msgid "Maximum _speed:"
+msgstr "Maximal _hastighet:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#, fuzzy
+msgid "Mouse Emulation"
+msgstr "<b>Musemulering</b>"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+msgid "R_epeat interval:"
+msgstr "Uppr_epningsintervall:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#, fuzzy
+msgid "Slow Keys"
+msgstr "Tröga tangenter"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#, fuzzy
+msgid "Sticky Keys"
+msgstr "Klistriga tangenter"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+msgid "The amount of time, in milliseconds, required between keystrokes"
+msgstr "Mängden tid, i millisekunder, som krävs mellan tangenttryckningar"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+msgid ""
+"The amount of time, in milliseconds, that must elapse before a keystroke "
+"will be accepted"
+msgstr ""
+"Mängden tid, i millisekunder, som måste förflyta innan en tangenttryckning "
+"kan tas emot"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+msgid "The maximum pointer speed after acceleration"
+msgstr "Maximala pekarhastigheten efter acceleration"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+msgid "The ramp used to reach maximum pointer speed"
+msgstr "Tröskeln att använda för att nå maximal pekarhastighet"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+msgid "The time, in milliseconds, between repeated motion events"
+msgstr "Tiden, i millisekunder, mellan upprepade rörelsehändelser"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+msgid ""
+"The time, in milliseconds, between the initial key press and first repeated "
+"motion event"
+msgstr ""
+"Tiden, i millisekunder, mellan en initial tangenttryckning och första "
+"upprepade rörelsehändelsen"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+msgid "The time, in milliseconds, to get to maximum speed"
+msgstr "Tiden, i millisekunder, för att komma till maximal hastighet"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+msgid ""
+"To help prevent accidental keystrokes, slow keys requires that a key is held "
+"for a certain minimum amount of time before the keystroke will be accepted"
+msgstr ""
+"För att hjälpa till att förhindra oavsiktliga tangenttryckningar så kräver "
+"tröga tangenter att en tangent hålls nere i viss tidsperiod innan "
+"tangenttryckningen kommer att tas emot"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+msgid ""
+"To help prevent accidental multiple keystrokes, bounce keys imposes a "
+"minimum delay between keystrokes"
+msgstr ""
+"För att hjälpa till att förhindra oavsiktliga multipla tangenttryckningar så "
+"förelägger studsande tangenter en minimal fördröjning mellan "
+"tangenttryckningar"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+msgid "Use _bounce keys"
+msgstr "Använd _studsande tangenter"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+msgid "Use _sticky keys"
+msgstr "Använd _klistriga tangenter"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+msgid "Use slow _keys"
+msgstr "Använd tröga _tangenter"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) do not need "
+"to be held down (they can be pressed and then released) when multiple keys "
+"would normally need to be pressed at the same time"
+msgstr ""
+"När vald så behöver inte modifierartangenter (såsom Control, Alt och Skift) "
+"hållas ner (de kan tryckas och sedan släppas) när flera tangenter normalt "
+"sett behöver tryckas ner samtidigt"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) will remain "
+"locked in the pressed state until pressed again"
+msgstr ""
+"När vald så kommer modifierartangenter (såsom Control, Alt och Skift) att "
+"kvarstå i nedtryckt tillstånd tills den trycks ner igen"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+msgid ""
+"When selected, the \"sticky keys\" feature will be disabled if two keys are "
+"pressed simultaneously"
+msgstr ""
+"När vald kommer funktionen \"klistra tangenter\" att inaktiveras om två "
+"tangenter trycks ner samtidigt"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+msgid ""
+"When selected, the mouse pointer can be controlled using the keyboard number "
+"pad"
+msgstr ""
+"När vald kan muspekaren kontrolleras med den numeriska delen av tangentbordet"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+msgid "_Acceleration delay:"
+msgstr "_Accelerationsfördröjning:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+msgid "_Lock sticky keys"
+msgstr "_Lås klistriga tangenter"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+msgid "_Mouse"
+msgstr "_Mus"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+msgid "_Use mouse emulation"
+msgstr "_Använd musemulering"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+msgid "msec"
+msgstr "ms"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+msgid "pixels/sec"
+msgstr "bildpunkter/s"
+
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "Uttag för inställningshanterare"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "UTTAGS-ID"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
 #: ../dialogs/display-settings/main.c:82
-#: ../dialogs/keyboard-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:97
-#: ../xfce4-settings-editor/main.c:43
-#: ../xfce4-settings-helper/main.c:77
-#: ../xfce4-settings-manager/main.c:40
-#: ../xfsettingsd/main.c:52
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:78
+#: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Versionsinformation"
 
@@ -46,10 +226,8 @@ msgstr "Versionsinformation"
 #: ../dialogs/appearance-settings/main.c:773
 #: ../dialogs/display-settings/main.c:642
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1182
-#: ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:245
-#: ../xfce4-settings-manager/main.c:58
+#: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
+#: ../xfce4-settings-helper/main.c:188 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Ange \"%s --help\" för användningsinformation."
@@ -58,10 +236,8 @@ msgstr "Ange \"%s --help\" för användningsinformation."
 #: ../dialogs/appearance-settings/main.c:792
 #: ../dialogs/display-settings/main.c:661
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1201
-#: ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:263
-#: ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
+#: ../xfce4-settings-helper/main.c:206 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. Alla rättigheter är reserverade."
 
@@ -69,25 +245,215 @@ msgstr "The Xfce development team. Alla rättigheter är reserverade."
 #: ../dialogs/appearance-settings/main.c:793
 #: ../dialogs/display-settings/main.c:662
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1202
-#: ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:264
-#: ../xfce4-settings-manager/main.c:72
+#: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
+#: ../xfce4-settings-helper/main.c:207 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapportera fel till <%s>."
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
-msgid "Accessibility"
-msgstr "Hjälpfunktioner"
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
 msgstr "Förbättra hjälpfunktioner för tangentbord och mus"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr ""
+"Kantutjämning, eller mjukare typsnitt, kan förbättra utseendet för text på "
+"skärmen"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
+msgid "Appearance"
+msgstr "Utseende"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+msgid "Both"
+msgstr "Båda"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "Both Horizontal"
+msgstr "Båda horisontellt"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
+msgid "Custom _DPI setting:"
+msgstr "Anpassad _DPI-inställning:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
+msgid "Customize the look of your desktop"
+msgstr "Anpassa utseendet för ditt skrivbord"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+msgid "DPI"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+#, fuzzy
+msgid "Default Fon_t"
+msgstr "<b>Standardtyps_nitt</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
+msgid "Enable _anti-aliasing"
+msgstr "Aktivera _kantutjämning"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+msgid "Enable _event sounds"
+msgstr "Aktivera _händelseljud"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+msgid "Enable e_ditable accelerators"
+msgstr "Aktivera r_edigerbara snabbtangenter"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+msgid "Enable i_nput feedback sounds"
+msgstr "Aktivera återkopplingsljud för _inmatning"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr ""
+"Aktivera eller inaktivera allmänna händelseljud (kräver \"Canberra\"-stöd)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#, fuzzy
+msgid "Event sounds"
+msgstr "<b>Händelseljud</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr ""
+"Typsnittskvalitet på en TFT- eller LCD-skärm kan avsevärt förbättras genom "
+"att välja den korrekta sub-pixel-ordningen för skärmen"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+msgid "Full"
+msgstr "Fullständig"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+msgid "Icons"
+msgstr "Ikoner"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid ""
+"If selected, keyboard shortcuts for menu items can be changed by hovering "
+"the mouse over the menu item and pressing the new key combination for the "
+"shortcut"
+msgstr ""
+"Om vald kan tangentbordsgenvägar för menyobjekt ändras genom att dra ut "
+"muspekaren över menyobjektet och trycka på den nya tangentkombinationen för "
+"genvägen"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw "
+"the font; pick whichever looks best according to personal preference"
+msgstr ""
+"Många typsnitt innehåller information som ger extra tips för hur den bäst "
+"ritas ut; välj vilken som du personligen tycker ser bäst ut"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Medium"
+msgstr "Medel"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#, fuzzy
+msgid "Menus and Buttons"
+msgstr "<b>Menyer och knappar</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:670
 msgid "None"
 msgstr "Ingen"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too small"
+msgstr ""
+"Åsidosätt den upptäckta skärmupplösningen om typsnitten ser för stora eller "
+"för små ut"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#, fuzzy
+msgid "Rendering"
+msgstr "<b>Rendering</b>"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+msgid "Select a default font"
+msgstr "Välj ett standardtypsnitt"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+msgid "Show images in _menus"
+msgstr "Visa bilder i _menyer"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+msgid "Show images on _buttons"
+msgstr "Visa bilder på _knappar"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+msgid "Slight"
+msgstr "Lätt"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+msgid "Specify what should be displayed in toolbar items"
+msgstr "Ange vad som ska visas i verktygsradsobjekten"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "Ange huruvida ikoner ska visas bredvid objekt i menyer"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "Ange huruvida ikoner ska visas bredvid text i knappar"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+msgid ""
+"Specify whether mouse clicks and other user input will cause event sounds to "
+"play"
+msgstr ""
+"Ange huruvida musklick och annan användarinmatning ska spela upp händelseljud"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+msgid "St_yle"
+msgstr "St_il"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+msgid "Sub-_pixel order:"
+msgstr "Ordning för sub-_pixel:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+msgid "Text"
+msgstr "Text"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr ""
+"Detta typsnitt kommer att användas som standardtypsnitt när text ritas ut i "
+"användargränssnittet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+msgid "_Fonts"
+msgstr "_Typsnitt"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+msgid "_Hinting:"
+msgstr "_Hintning:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+msgid "_Icons"
+msgstr "_Ikoner"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+msgid "_Settings"
+msgstr "In_ställningar"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#, fuzzy
+msgid "_Toolbar Style"
+msgstr "<b>_Verktygsradsstil</b>"
 
 #: ../dialogs/appearance-settings/main.c:674
 msgid "RGB"
@@ -105,13 +471,31 @@ msgstr "Vertikal RGB"
 msgid "Vertical BGR"
 msgstr "Vertikal BGR"
 
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
-msgid "Appearance"
-msgstr "Utseende"
+#: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "Apply any changes and test the new display settings"
+msgstr "Verkställ ändringar och testa de nya visningsinställningarna"
 
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
-msgid "Customize the look of your desktop"
-msgstr "Anpassa utseendet för ditt skrivbord"
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
+msgid "Configure screen settings and layout"
+msgstr "Konfigurera skärminställningar och -layout"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+msgid "Display"
+msgstr "Skärm"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "R_esolution:"
+msgstr "U_pplösning:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Refresh _rate:"
+msgstr "Uppdaterings_frekvens:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
+msgid "Ro_tation:"
+msgstr "Ro_tation:"
 
 #: ../dialogs/display-settings/main.c:70
 msgid "Normal"
@@ -149,10 +533,14 @@ msgid "RandR extension missing on display \"%s\""
 msgstr "RandR-utökningen saknas på display \"%s\""
 
 #: ../dialogs/display-settings/main.c:678
-msgid "The Resize and Rotate extension (RandR) is not enabled on this display. Try to enable it and run the dialog again."
-msgstr "Utökningen Resize and Rotate (RandR) är inte aktiverad på denna display. Prova att aktivera den och kör dialogrutan igen."
+msgid ""
+"The Resize and Rotate extension (RandR) is not enabled on this display. Try "
+"to enable it and run the dialog again."
+msgstr ""
+"Utökningen Resize and Rotate (RandR) är inte aktiverad på denna display. "
+"Prova att aktivera den och kör dialogrutan igen."
 
-#: ../dialogs/display-settings/main.c:716
+#: ../dialogs/display-settings/main.c:717
 msgid "Failed to use the RandR extension"
 msgstr "Misslyckades med att använda RandR-utökningen"
 
@@ -166,8 +554,12 @@ msgstr "Kunde inte fråga efter vilken version av RandR-utökningen som används
 #: ../dialogs/display-settings/xfce-randr.c:63
 #: ../dialogs/display-settings/xfce-randr-legacy.c:65
 #, c-format
-msgid "This system is using RandR %d.%d. For the display settings to work version 1.1 is required at least"
-msgstr "Detta system använder RandR %d.%d. För att skärminställningarna ska fungera krävs minst version 1.1"
+msgid ""
+"This system is using RandR %d.%d. For the display settings to work version "
+"1.1 is required at least"
+msgstr ""
+"Detta system använder RandR %d.%d. För att skärminställningarna ska fungera "
+"krävs minst version 1.1"
 
 #: ../dialogs/display-settings/xfce-randr.c:343
 msgid "Laptop"
@@ -192,14 +584,6 @@ msgstr "Sekundär skärm"
 #: ../dialogs/display-settings/xfce-randr.c:368
 msgid "Second digital display"
 msgstr "Sekundär digital skärm"
-
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-msgid "Configure screen settings and layout"
-msgstr "Konfigurera skärminställningar och -layout"
-
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
-msgid "Display"
-msgstr "Skärm"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:126
@@ -246,6 +630,125 @@ msgstr "Ruby-skript"
 msgid "Shell Scripts"
 msgstr "Skalskript"
 
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
+msgid "Appli_cation Shortcuts"
+msgstr "Progra_mgenvägar"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
+msgid "Be_havior"
+msgstr "Bet_eende"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+msgid "Blink _delay:"
+msgstr "Blinknings_fördröjning:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#, fuzzy
+msgid "Cursor"
+msgstr "<b>Markör</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Define _shortcuts for launching applications:"
+msgstr "Definiera _genvägar för att starta program:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
+msgid "Edit keyboard settings and application shortcuts"
+msgstr "Redigera tangentbordsinställningar och programgenvägar"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
+msgid "Keyboard"
+msgstr "Tangentbord"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#, fuzzy
+msgid "Keyboard layout"
+msgstr "<b>Tangentbordslayout</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+msgid "Keyboard layout selection"
+msgstr "Val av tangentbordslayout"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#, fuzzy
+msgid "Keyboard model"
+msgstr "<b>Tangentbordsmodell</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+msgid "Repeat _speed:"
+msgstr "Upprepnings_hastighet:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Select keyboard layout and variant"
+msgstr "Välj tangentbordslayout och variant"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+msgid "Show _blinking"
+msgstr "Visa _blinkning"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid ""
+"Specifies whether the keyboard layout is controlled with this settings "
+"dialog, or by the X server"
+msgstr ""
+"Ange huruvida tangentbordslayouten kontrolleras med denna inställningsdialog "
+"eller av X-servern"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid "Specify whether or not the text cursor blinks"
+msgstr "Ange huruvida textmarkören blinkar eller inte"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr "Fördröjningen, i millisekunder, mellan markörens blinkningar"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr ""
+"Frekvensen med vilken tangenttryckningar genereras när en tangent trycks ner"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr "Tiden, i millisekunder, innan en nedtryckt tangent upprepas"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#, fuzzy
+msgid "Typing Settings"
+msgstr "<b>Skrivinställningar</b>"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+msgid "Use this area to _test the settings above:"
+msgstr "Använd detta utrymme för att _testa ovanstående inställningar:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+msgid ""
+"When selected, pressing and holding down a key emits the same character over "
+"and over again"
+msgstr ""
+"När vald kommer trycka och hålla ner en tangent att skicka ut samma tecken "
+"om och om igen"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+msgid "_Enable key repeat"
+msgstr "_Aktivera tangentupprepning"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+msgid "_Layout"
+msgstr "_Layout"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+msgid "_Repeat delay:"
+msgstr "Uppr_epningsfördröjning:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+msgid "_Reset to Defaults"
+msgstr "Å_terställ till standardvärden"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+msgid "_Use system defaults"
+msgstr "_Använd systemets standardvärden"
+
 #: ../dialogs/keyboard-settings/main.c:70
 msgid "Unable to initialize GTK+."
 msgstr "Kunde inte initiera GTK+."
@@ -267,103 +770,274 @@ msgstr "Kommando"
 msgid "Shortcut"
 msgstr "Genväg"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:359
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
 msgid "Active"
 msgstr "Aktiv"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:367
 msgid "Layout"
 msgstr "Layout"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:364
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:368
 msgid "Variant"
 msgstr "Variant"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:808
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:822
 msgid "Shortcut command may not be empty."
 msgstr "Genvägskommandon får inte vara tomma."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:915
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:916
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:929
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:930
 msgid "Reset to Defaults"
 msgstr "Återställ till standardvärden"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:917
-msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
-msgstr "Detta kommer att återställa alla genvägar till sin standardvärden. Vill du verkligen göra detta?"
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
+msgid ""
+"This will reset all shortcuts to their default values. Do you really want to "
+"do this?"
+msgstr ""
+"Detta kommer att återställa alla genvägar till sin standardvärden. Vill du "
+"verkligen göra detta?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:982
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:996
 msgid "The system defaults will be restored next time you log in."
-msgstr "Systemets standardvärden kommer att återställas nästa gång du loggar in."
+msgstr ""
+"Systemets standardvärden kommer att återställas nästa gång du loggar in."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:984
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:998
 msgid "Warning"
 msgstr "Varning"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "Redigera tangentbordsinställningar och programgenvägar"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Keyboard"
-msgstr "Tangentbord"
-
-#: ../dialogs/mouse-settings/main.c:95
+#: ../dialogs/mouse-settings/main.c:99
 msgid "Active device in the dialog"
 msgstr "Aktiv enhet i dialogrutan"
 
-#: ../dialogs/mouse-settings/main.c:95
+#: ../dialogs/mouse-settings/main.c:99
 msgid "DEVICE NAME"
 msgstr "ENHETSNAMN"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:351
-#: ../dialogs/mouse-settings/main.c:353
-#: ../dialogs/mouse-settings/main.c:413
+#: ../dialogs/mouse-settings/main.c:355 ../dialogs/mouse-settings/main.c:357
+#: ../dialogs/mouse-settings/main.c:417
 msgid "Default"
 msgstr "Standard"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+#, fuzzy
+msgid "Button Order"
+msgstr "<b>Knappordning</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
 msgstr "Konfigurera muspekarens beteende och utseende"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Cursor _Size:"
+msgstr "Pekarens _storlek:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+msgid "De_vices"
+msgstr "En_heter"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#, fuzzy
+msgid "Double Click"
+msgstr "<b>Dubbelklick</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#, fuzzy
+msgid "Drag and Drop"
+msgstr "<b>Dra och släpp</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#, fuzzy
+msgid "Feedback"
+msgstr "<b>Återkoppling</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse"
 msgstr "Mus"
 
-#: ../xfce4-settings-editor/main_window.c:122
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#, fuzzy
+msgid "Preview"
+msgstr "<b>Förhandsgranska</b>"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+msgid "Re_set to Defaults"
+msgstr "Återställ till standard_värden"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+msgid "Re_verse scroll direction"
+msgstr "Motsatt r_ullningsriktning"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+msgid ""
+"Set the acceleration and threshold for the selected device to the default "
+"values"
+msgstr ""
+"Ställ in acceleration och tröskelnivå för markerad enhet till standardvärden"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid "Size"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "T_hreshold:"
+msgstr "T_röskelnivå:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr ""
+"Faktorn med vilken pekarens hastighet kommer att öka när musen förflyttas"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+msgid ""
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
+msgstr ""
+"Muspekaren kan inte förflyttas längre än detta avstånd mellan två "
+"klickningar för att de ska anses vara en dubbelklickning"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+msgid ""
+"The number of pixels the pointer must move before a drag operation will start"
+msgstr ""
+"Antal bildpunkter som pekaren måste förflyttas innan en dragåtgärd påbörjas"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr ""
+"Antal bildpunkter som pekaren måste förflyttas på en kort tid innan den "
+"börjar accelerera"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+msgid "Ti_me:"
+msgstr "Ti_d:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+msgid ""
+"Two mouse clicks in less than this length of time (in milliseconds) will be "
+"considered a double click"
+msgstr ""
+"Två musklick på mindre än denna tidsperiod (i millisekunder) kommer att "
+"anses vara en dubbelklickning"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr "När vald kommer rullhjulet att fungera i motsatt riktning"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "_Acceleration:"
+msgstr "_Acceleration:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid "_Behavior"
+msgstr "_Beteende"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+msgid "_Distance:"
+msgstr "_Avstånd:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+msgid "_Left handed"
+msgstr "_Vänsterhänt"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+msgid "_Right handed"
+msgstr "_Högerhänt"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+msgid "_Theme"
+msgstr "_Tema"
+
+#: ../xfce4-settings-editor/main_window.c:157
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../xfce4-settings-editor/main_window.c:132
+#: ../xfce4-settings-editor/main_window.c:170
 msgid "Property"
 msgstr "Egenskap"
 
-#: ../xfce4-settings-editor/main_window.c:135
+#: ../xfce4-settings-editor/main_window.c:173
 msgid "Type"
 msgstr "Typ"
 
-#: ../xfce4-settings-editor/main_window.c:138
+#: ../xfce4-settings-editor/main_window.c:176
 msgid "Locked"
 msgstr "Låst"
 
-#: ../xfce4-settings-editor/main_window.c:141
+#: ../xfce4-settings-editor/main_window.c:179
 msgid "Value"
 msgstr "Värde"
 
-#: ../xfce4-settings-editor/main_window.c:303
-#: ../xfce4-settings-editor/main_window.c:368
+#: ../xfce4-settings-editor/main_window.c:306
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "Empty"
 msgstr "Tom"
 
-#: ../xfce4-settings-editor/main_window.c:650
-#, c-format
-msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
-msgstr "Egenskapen \"<b>%s</b>\" kan inte återställas därför att den är låst"
+#: ../xfce4-settings-editor/main_window.c:696
+#: ../xfce4-settings-editor/main_window.c:888
+msgid "This property name is not valid."
+msgstr ""
 
-#: ../xfce4-settings-editor/main_window.c:660
+#: ../xfce4-settings-editor/main_window.c:923
+#: ../xfce4-settings-editor/main_window.c:1076
+msgid "Reset"
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:924
+msgid "Resetting a property will permanently remove those custom settings."
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:925
+#, fuzzy, c-format
+msgid "Are you sure you want to reset property \"%s\"?"
+msgstr "Är du säker på att du vill återställa egenskapen \"<b>%s</b>\"?"
+
+#: ../xfce4-settings-editor/main_window.c:981
 #, c-format
-msgid "Are you sure you want to reset property \"<b>%s</b>\"?"
+msgid "Property names must start with a '/' character"
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:990
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:1004
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:1013
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:1024
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:1043
+msgid "_Reset"
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:1077
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr ""
+
+#: ../xfce4-settings-editor/main_window.c:1078
+#, fuzzy, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Är du säker på att du vill återställa egenskapen \"<b>%s</b>\"?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
@@ -371,8 +1045,80 @@ msgid "Graphical settings editor for Xfconf"
 msgstr "Grafisk inställningsredigerare för Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
 msgid "Settings Editor"
 msgstr "Inställningsredigerare"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
+msgid "Boolean"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
+msgid "Customize settings stored by Xfconf"
+msgstr "Anpassa inställningar lagrade av Xfconf"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
+#, fuzzy
+msgid "Double"
+msgstr "<b>Dubbelklick</b>"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
+msgid "Edit Property"
+msgstr "Redigera egenskap"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
+msgid "Edit property"
+msgstr "Redigera egenskap"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
+msgid "Enabled"
+msgstr "Aktiverad"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+msgid "Int"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+msgid "Int64"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
+msgid "Name:"
+msgstr "Namn:"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
+msgid "New property"
+msgstr "Ny egenskap"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
+#, fuzzy
+msgid "Reset property"
+msgstr "Återställ/ta bort egenskap"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
+#, fuzzy
+msgid "String"
+msgstr "Inställningar"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
+msgid "Type:"
+msgstr "Typ:"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
+msgid "Unsigned Int"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
+msgid "Unsigned Int64"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
+msgid "Value:"
+msgstr "Värde:"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
+msgid "Xfconf channels"
+msgstr "Xfconf-kanaler"
 
 #: ../xfce4-settings-helper/accessibility.c:356
 msgid "Sticky keys are enabled"
@@ -410,8 +1156,7 @@ msgstr "Studsande tangenter är inaktiverat"
 msgid "Bounce keys"
 msgstr "Studsande tangenter"
 
-#: ../xfce4-settings-helper/main.c:78
-#: ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:79 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Starta i felsökningsläge (grena inte processen till bakgrunden)"
 
@@ -476,462 +1221,78 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s: %s\n"
-"Prova %s --help för att se en komplett lista över tillgängliga kommandoradsflaggor.\n"
+"Prova %s --help för att se en komplett lista över tillgängliga "
+"kommandoradsflaggor.\n"
 
-#~ msgid "Acceleration _profile:"
-#~ msgstr "Accelerations_profil:"
-#~ msgid "Acceleration _time:"
-#~ msgstr "Accelerations_tid:"
-#~ msgid "Acceptance _delay:"
-#~ msgstr "Fördröjning för a_cceptans:"
+#~ msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
+#~ msgstr ""
+#~ "Egenskapen \"<b>%s</b>\" kan inte återställas därför att den är låst"
 
-#, fuzzy
-#~ msgid "Bounce Keys"
-#~ msgstr "Studsande tangenter"
-#~ msgid "Configure keyboard and mouse accessibility"
-#~ msgstr "Konfigurera hjälpfunktioner för tangentbord och mus"
-#~ msgid "Disable sticky keys if _two keys are pressed"
-#~ msgstr "Inaktivera klistriga tangenter _om två tangenter trycks ner"
-#~ msgid "K_eystroke delay:"
-#~ msgstr "Fördröjning för tangenttr_yckning:"
-#~ msgid "Keyboa_rd"
-#~ msgstr "Tangentbor_d"
-#~ msgid "Maximum _speed:"
-#~ msgstr "Maximal _hastighet:"
-
-#, fuzzy
-#~ msgid "Mouse Emulation"
-#~ msgstr "<b>Musemulering</b>"
-#~ msgid "R_epeat interval:"
-#~ msgstr "Uppr_epningsintervall:"
-
-#, fuzzy
-#~ msgid "Slow Keys"
-#~ msgstr "Tröga tangenter"
-
-#, fuzzy
-#~ msgid "Sticky Keys"
-#~ msgstr "Klistriga tangenter"
-#~ msgid "The amount of time, in milliseconds, required between keystrokes"
-#~ msgstr "Mängden tid, i millisekunder, som krävs mellan tangenttryckningar"
-#~ msgid ""
-#~ "The amount of time, in milliseconds, that must elapse before a keystroke "
-#~ "will be accepted"
-#~ msgstr ""
-#~ "Mängden tid, i millisekunder, som måste förflyta innan en "
-#~ "tangenttryckning kan tas emot"
-#~ msgid "The maximum pointer speed after acceleration"
-#~ msgstr "Maximala pekarhastigheten efter acceleration"
-#~ msgid "The ramp used to reach maximum pointer speed"
-#~ msgstr "Tröskeln att använda för att nå maximal pekarhastighet"
-#~ msgid "The time, in milliseconds, between repeated motion events"
-#~ msgstr "Tiden, i millisekunder, mellan upprepade rörelsehändelser"
-#~ msgid ""
-#~ "The time, in milliseconds, between the initial key press and first "
-#~ "repeated motion event"
-#~ msgstr ""
-#~ "Tiden, i millisekunder, mellan en initial tangenttryckning och första "
-#~ "upprepade rörelsehändelsen"
-#~ msgid "The time, in milliseconds, to get to maximum speed"
-#~ msgstr "Tiden, i millisekunder, för att komma till maximal hastighet"
-#~ msgid ""
-#~ "To help prevent accidental keystrokes, slow keys requires that a key is "
-#~ "held for a certain minimum amount of time before the keystroke will be "
-#~ "accepted"
-#~ msgstr ""
-#~ "För att hjälpa till att förhindra oavsiktliga tangenttryckningar så "
-#~ "kräver tröga tangenter att en tangent hålls nere i viss tidsperiod innan "
-#~ "tangenttryckningen kommer att tas emot"
-#~ msgid ""
-#~ "To help prevent accidental multiple keystrokes, bounce keys imposes a "
-#~ "minimum delay between keystrokes"
-#~ msgstr ""
-#~ "För att hjälpa till att förhindra oavsiktliga multipla tangenttryckningar "
-#~ "så förelägger studsande tangenter en minimal fördröjning mellan "
-#~ "tangenttryckningar"
-#~ msgid "Use _bounce keys"
-#~ msgstr "Använd _studsande tangenter"
-#~ msgid "Use _sticky keys"
-#~ msgstr "Använd _klistriga tangenter"
-#~ msgid "Use slow _keys"
-#~ msgstr "Använd tröga _tangenter"
-#~ msgid ""
-#~ "When selected, modifier keys (such as Control, Alt, and Shift) do not "
-#~ "need to be held down (they can be pressed and then released) when "
-#~ "multiple keys would normally need to be pressed at the same time"
-#~ msgstr ""
-#~ "När vald så behöver inte modifierartangenter (såsom Control, Alt och "
-#~ "Skift) hållas ner (de kan tryckas och sedan släppas) när flera tangenter "
-#~ "normalt sett behöver tryckas ner samtidigt"
-#~ msgid ""
-#~ "When selected, modifier keys (such as Control, Alt, and Shift) will "
-#~ "remain locked in the pressed state until pressed again"
-#~ msgstr ""
-#~ "När vald så kommer modifierartangenter (såsom Control, Alt och Skift) att "
-#~ "kvarstå i nedtryckt tillstånd tills den trycks ner igen"
-#~ msgid ""
-#~ "When selected, the \"sticky keys\" feature will be disabled if two keys "
-#~ "are pressed simultaneously"
-#~ msgstr ""
-#~ "När vald kommer funktionen \"klistra tangenter\" att inaktiveras om två "
-#~ "tangenter trycks ner samtidigt"
-#~ msgid ""
-#~ "When selected, the mouse pointer can be controlled using the keyboard "
-#~ "number pad"
-#~ msgstr ""
-#~ "När vald kan muspekaren kontrolleras med den numeriska delen av "
-#~ "tangentbordet"
-#~ msgid "_Acceleration delay:"
-#~ msgstr "_Accelerationsfördröjning:"
-#~ msgid "_Lock sticky keys"
-#~ msgstr "_Lås klistriga tangenter"
-#~ msgid "_Mouse"
-#~ msgstr "_Mus"
-#~ msgid "_Use mouse emulation"
-#~ msgstr "_Använd musemulering"
-#~ msgid "msec"
-#~ msgstr "ms"
-#~ msgid "pixels/sec"
-#~ msgstr "bildpunkter/s"
-#~ msgid ""
-#~ "Anti-aliasing, or font smoothing, can improve the look of text on the "
-#~ "screen"
-#~ msgstr ""
-#~ "Kantutjämning, eller mjukare typsnitt, kan förbättra utseendet för text "
-#~ "på skärmen"
-#~ msgid "Both"
-#~ msgstr "Båda"
-#~ msgid "Both Horizontal"
-#~ msgstr "Båda horisontellt"
-#~ msgid "Custom _DPI setting:"
-#~ msgstr "Anpassad _DPI-inställning:"
-
-#, fuzzy
-#~ msgid "Default Fon_t"
-#~ msgstr "<b>Standardtyps_nitt</b>"
-#~ msgid "Enable _anti-aliasing"
-#~ msgstr "Aktivera _kantutjämning"
-#~ msgid "Enable _event sounds"
-#~ msgstr "Aktivera _händelseljud"
-#~ msgid "Enable e_ditable accelerators"
-#~ msgstr "Aktivera r_edigerbara snabbtangenter"
-#~ msgid "Enable i_nput feedback sounds"
-#~ msgstr "Aktivera återkopplingsljud för _inmatning"
-#~ msgid ""
-#~ "Enable or disable event sounds globally (requires \"Canberra\" support)"
-#~ msgstr ""
-#~ "Aktivera eller inaktivera allmänna händelseljud (kräver \"Canberra\"-stöd)"
-
-#, fuzzy
-#~ msgid "Event sounds"
-#~ msgstr "<b>Händelseljud</b>"
-#~ msgid ""
-#~ "Font quality on a TFT or LCD screen can be greatly improved by choosing "
-#~ "the correct sub-pixel order of the screen"
-#~ msgstr ""
-#~ "Typsnittskvalitet på en TFT- eller LCD-skärm kan avsevärt förbättras "
-#~ "genom att välja den korrekta sub-pixel-ordningen för skärmen"
-#~ msgid "Full"
-#~ msgstr "Fullständig"
-#~ msgid "Icons"
-#~ msgstr "Ikoner"
-#~ msgid ""
-#~ "If selected, keyboard shortcuts for menu items can be changed by hovering "
-#~ "the mouse over the menu item and pressing the new key combination for the "
-#~ "shortcut"
-#~ msgstr ""
-#~ "Om vald kan tangentbordsgenvägar för menyobjekt ändras genom att dra ut "
-#~ "muspekaren över menyobjektet och trycka på den nya tangentkombinationen "
-#~ "för genvägen"
-#~ msgid ""
-#~ "Many fonts contain information that provides extra hints as to how best "
-#~ "draw the font; pick whichever looks best according to personal preference"
-#~ msgstr ""
-#~ "Många typsnitt innehåller information som ger extra tips för hur den bäst "
-#~ "ritas ut; välj vilken som du personligen tycker ser bäst ut"
-#~ msgid "Medium"
-#~ msgstr "Medel"
-
-#, fuzzy
-#~ msgid "Menus and Buttons"
-#~ msgstr "<b>Menyer och knappar</b>"
-#~ msgid ""
-#~ "Override the detected monitor resolution if fonts look too large or too "
-#~ "small"
-#~ msgstr ""
-#~ "Åsidosätt den upptäckta skärmupplösningen om typsnitten ser för stora "
-#~ "eller för små ut"
-
-#, fuzzy
-#~ msgid "Rendering"
-#~ msgstr "<b>Rendering</b>"
-#~ msgid "Select a default font"
-#~ msgstr "Välj ett standardtypsnitt"
-#~ msgid "Show images in _menus"
-#~ msgstr "Visa bilder i _menyer"
-#~ msgid "Show images on _buttons"
-#~ msgstr "Visa bilder på _knappar"
-#~ msgid "Slight"
-#~ msgstr "Lätt"
-#~ msgid "Specify what should be displayed in toolbar items"
-#~ msgstr "Ange vad som ska visas i verktygsradsobjekten"
-#~ msgid "Specify whether icons should be displayed next to items in menus"
-#~ msgstr "Ange huruvida ikoner ska visas bredvid objekt i menyer"
-#~ msgid "Specify whether icons should be displayed next to text in buttons"
-#~ msgstr "Ange huruvida ikoner ska visas bredvid text i knappar"
-#~ msgid ""
-#~ "Specify whether mouse clicks and other user input will cause event sounds "
-#~ "to play"
-#~ msgstr ""
-#~ "Ange huruvida musklick och annan användarinmatning ska spela upp "
-#~ "händelseljud"
-#~ msgid "St_yle"
-#~ msgstr "St_il"
-#~ msgid "Sub-_pixel order:"
-#~ msgstr "Ordning för sub-_pixel:"
-#~ msgid "Text"
-#~ msgstr "Text"
-#~ msgid ""
-#~ "This font will be used as the default font used when drawing user "
-#~ "interface text"
-#~ msgstr ""
-#~ "Detta typsnitt kommer att användas som standardtypsnitt när text ritas ut "
-#~ "i användargränssnittet"
-#~ msgid "_Fonts"
-#~ msgstr "_Typsnitt"
-#~ msgid "_Hinting:"
-#~ msgstr "_Hintning:"
-#~ msgid "_Icons"
-#~ msgstr "_Ikoner"
-#~ msgid "_Settings"
-#~ msgstr "In_ställningar"
-
-#, fuzzy
-#~ msgid "_Toolbar Style"
-#~ msgstr "<b>_Verktygsradsstil</b>"
-#~ msgid "Apply any changes and test the new display settings"
-#~ msgstr "Verkställ ändringar och testa de nya visningsinställningarna"
-#~ msgid "R_esolution:"
-#~ msgstr "U_pplösning:"
-#~ msgid "Refresh _rate:"
-#~ msgstr "Uppdaterings_frekvens:"
-#~ msgid "Ro_tation:"
-#~ msgstr "Ro_tation:"
-#~ msgid "Appli_cation Shortcuts"
-#~ msgstr "Progra_mgenvägar"
-#~ msgid "Be_havior"
-#~ msgstr "Bet_eende"
-#~ msgid "Blink _delay:"
-#~ msgstr "Blinknings_fördröjning:"
-
-#, fuzzy
-#~ msgid "Cursor"
-#~ msgstr "<b>Markör</b>"
-#~ msgid "Define _shortcuts for launching applications:"
-#~ msgstr "Definiera _genvägar för att starta program:"
-
-#, fuzzy
-#~ msgid "Keyboard layout"
-#~ msgstr "<b>Tangentbordslayout</b>"
-#~ msgid "Keyboard layout selection"
-#~ msgstr "Val av tangentbordslayout"
-
-#, fuzzy
-#~ msgid "Keyboard model"
-#~ msgstr "<b>Tangentbordsmodell</b>"
-#~ msgid "Repeat _speed:"
-#~ msgstr "Upprepnings_hastighet:"
-#~ msgid "Select keyboard layout and variant"
-#~ msgstr "Välj tangentbordslayout och variant"
-#~ msgid "Show _blinking"
-#~ msgstr "Visa _blinkning"
-#~ msgid ""
-#~ "Specifies whether the keyboard layout is controlled with this settings "
-#~ "dialog, or by the X server"
-#~ msgstr ""
-#~ "Ange huruvida tangentbordslayouten kontrolleras med denna "
-#~ "inställningsdialog eller av X-servern"
-#~ msgid "Specify whether or not the text cursor blinks"
-#~ msgstr "Ange huruvida textmarkören blinkar eller inte"
-#~ msgid "The delay, in milliseconds, between successive blinks of the cursor"
-#~ msgstr "Fördröjningen, i millisekunder, mellan markörens blinkningar"
-#~ msgid "The rate at which keystrokes are generated while a key is pressed"
-#~ msgstr ""
-#~ "Frekvensen med vilken tangenttryckningar genereras när en tangent trycks "
-#~ "ner"
-#~ msgid "The time, in milliseconds, before a pressed key begins repeating"
-#~ msgstr "Tiden, i millisekunder, innan en nedtryckt tangent upprepas"
-
-#, fuzzy
-#~ msgid "Typing Settings"
-#~ msgstr "<b>Skrivinställningar</b>"
-#~ msgid "Use this area to _test the settings above:"
-#~ msgstr "Använd detta utrymme för att _testa ovanstående inställningar:"
-#~ msgid ""
-#~ "When selected, pressing and holding down a key emits the same character "
-#~ "over and over again"
-#~ msgstr ""
-#~ "När vald kommer trycka och hålla ner en tangent att skicka ut samma "
-#~ "tecken om och om igen"
-#~ msgid "_Enable key repeat"
-#~ msgstr "_Aktivera tangentupprepning"
-#~ msgid "_Layout"
-#~ msgstr "_Layout"
-#~ msgid "_Repeat delay:"
-#~ msgstr "Uppr_epningsfördröjning:"
-#~ msgid "_Reset to Defaults"
-#~ msgstr "Å_terställ till standardvärden"
-#~ msgid "_Use system defaults"
-#~ msgstr "_Använd systemets standardvärden"
-
-#, fuzzy
-#~ msgid "Button Order"
-#~ msgstr "<b>Knappordning</b>"
-#~ msgid "Cursor _Size:"
-#~ msgstr "Pekarens _storlek:"
-#~ msgid "De_vices"
-#~ msgstr "En_heter"
-
-#, fuzzy
-#~ msgid "Double Click"
-#~ msgstr "<b>Dubbelklick</b>"
-
-#, fuzzy
-#~ msgid "Drag and Drop"
-#~ msgstr "<b>Dra och släpp</b>"
-
-#, fuzzy
-#~ msgid "Feedback"
-#~ msgstr "<b>Återkoppling</b>"
-
-#, fuzzy
-#~ msgid "Preview"
-#~ msgstr "<b>Förhandsgranska</b>"
-#~ msgid "Re_set to Defaults"
-#~ msgstr "Återställ till standard_värden"
-#~ msgid "Re_verse scroll direction"
-#~ msgstr "Motsatt r_ullningsriktning"
-#~ msgid ""
-#~ "Set the acceleration and threshold for the selected device to the default "
-#~ "values"
-#~ msgstr ""
-#~ "Ställ in acceleration och tröskelnivå för markerad enhet till "
-#~ "standardvärden"
-#~ msgid "T_hreshold:"
-#~ msgstr "T_röskelnivå:"
-#~ msgid ""
-#~ "The factor at which the pointer's speed will increase as the mouse is "
-#~ "moved"
-#~ msgstr ""
-#~ "Faktorn med vilken pekarens hastighet kommer att öka när musen förflyttas"
-#~ msgid ""
-#~ "The mouse pointer cannot move farther than this distance between two "
-#~ "clicks for them to be considered a double click"
-#~ msgstr ""
-#~ "Muspekaren kan inte förflyttas längre än detta avstånd mellan två "
-#~ "klickningar för att de ska anses vara en dubbelklickning"
-#~ msgid ""
-#~ "The number of pixels the pointer must move before a drag operation will "
-#~ "start"
-#~ msgstr ""
-#~ "Antal bildpunkter som pekaren måste förflyttas innan en dragåtgärd "
-#~ "påbörjas"
-#~ msgid ""
-#~ "The number of pixels the pointer must move in a short time before it "
-#~ "starts accelerating"
-#~ msgstr ""
-#~ "Antal bildpunkter som pekaren måste förflyttas på en kort tid innan den "
-#~ "börjar accelerera"
-#~ msgid "Ti_me:"
-#~ msgstr "Ti_d:"
-#~ msgid ""
-#~ "Two mouse clicks in less than this length of time (in milliseconds) will "
-#~ "be considered a double click"
-#~ msgstr ""
-#~ "Två musklick på mindre än denna tidsperiod (i millisekunder) kommer att "
-#~ "anses vara en dubbelklickning"
-#~ msgid "When selected, the scroll wheel will work in the opposite direction"
-#~ msgstr "När vald kommer rullhjulet att fungera i motsatt riktning"
-#~ msgid "_Acceleration:"
-#~ msgstr "_Acceleration:"
-#~ msgid "_Behavior"
-#~ msgstr "_Beteende"
-#~ msgid "_Distance:"
-#~ msgstr "_Avstånd:"
-#~ msgid "_Left handed"
-#~ msgstr "_Vänsterhänt"
-#~ msgid "_Right handed"
-#~ msgstr "_Högerhänt"
-#~ msgid "_Theme"
-#~ msgstr "_Tema"
-#~ msgid "Customize settings stored by Xfconf"
-#~ msgstr "Anpassa inställningar lagrade av Xfconf"
-#~ msgid "Edit Property"
-#~ msgstr "Redigera egenskap"
-#~ msgid "Edit property"
-#~ msgstr "Redigera egenskap"
-#~ msgid "Enabled"
-#~ msgstr "Aktiverad"
-#~ msgid "Name:"
-#~ msgstr "Namn:"
-#~ msgid "New property"
-#~ msgstr "Ny egenskap"
-#~ msgid "Reset/remove property"
-#~ msgstr "Återställ/ta bort egenskap"
-
-#, fuzzy
-#~ msgid "String"
-#~ msgstr "Inställningar"
-#~ msgid "Type:"
-#~ msgstr "Typ:"
-#~ msgid "Value:"
-#~ msgstr "Värde:"
-#~ msgid "Xfconf channels"
-#~ msgstr "Xfconf-kanaler"
 #~ msgid "<b>Bounce Keys</b>"
 #~ msgstr "<b>Studsande tangenter</b>"
+
 #~ msgid "<b>Slow Keys</b>"
 #~ msgstr "<b>Tröga tangenter</b>"
+
 #~ msgid "<b>Sticky Keys</b>"
 #~ msgstr "<b>Klistriga tangenter</b>"
+
 #~ msgid "<b>DPI</b>"
 #~ msgstr "<b>DPI</b>"
+
 #~ msgid "<b>Size</b>"
 #~ msgstr "<b>Storlek</b>"
+
 #~ msgid "Select a channel and property"
 #~ msgstr "Välj en kanal och egenskap"
+
 #~ msgid "Client id used when resuming session"
 #~ msgstr "Klient-id som används när sessionen återupptas"
+
 #~ msgid "Xfce Settings Manager"
 #~ msgstr "Inställningshanterare för Xfce"
+
 #~ msgid "gtk-close"
 #~ msgstr "Stäng"
+
 #~ msgid "gtk-apply"
 #~ msgstr "Verkställ"
+
 #~ msgid "Hz"
 #~ msgstr "Hz"
+
 #~ msgid "gtk-add"
 #~ msgstr "Lägg till"
+
 #~ msgid "gtk-cancel"
 #~ msgstr "Avbryt"
+
 #~ msgid "gtk-delete"
 #~ msgstr "Ta bort"
+
 #~ msgid "gtk-edit"
 #~ msgstr "Redigera"
+
 #~ msgid "gtk-help"
 #~ msgstr "Hjälp"
+
 #~ msgid "gtk-ok"
 #~ msgstr "OK"
+
 #~ msgid "gtk-remove"
 #~ msgstr "Ta bort"
+
 #~ msgid "gtk-save"
 #~ msgstr "Spara"
+
 #~ msgid "Shortcut: %s"
 #~ msgstr "Genväg: %s"
+
 #~ msgid "Undefined"
 #~ msgstr "Odefinierad"
+
 #~ msgid "Xfce 4 Settings Editor"
 #~ msgstr "Inställningsredigerare för Xfce 4"
+
 #~ msgid "Xfce4 settings editor"
 #~ msgstr "Inställningsredigerare för Xfce4"
-
