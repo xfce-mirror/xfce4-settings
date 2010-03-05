@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -242,7 +242,6 @@ msgid "Customize the look of your desktop"
 msgstr "Налаштуйте зовнішній вигляд вашої стільниці"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
-#, fuzzy
 msgid "DPI"
 msgstr "DPI"
 
@@ -759,9 +758,8 @@ msgid "Mouse"
 msgstr "Миша"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-#, fuzzy
 msgid "Preview"
-msgstr "<b>Попередній перегляд</b>"
+msgstr "Попередній перегляд"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Re_set to Defaults"
@@ -777,7 +775,7 @@ msgstr "Встановити прискорення і поріг для виб�
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Size"
-msgstr ""
+msgstr "Розмір"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "T_hreshold:"
@@ -863,59 +861,59 @@ msgstr "Пусто"
 #: ../xfce4-settings-editor/main_window.c:696
 #: ../xfce4-settings-editor/main_window.c:888
 msgid "This property name is not valid."
-msgstr ""
+msgstr "Назва властивості неправильна."
 
 #: ../xfce4-settings-editor/main_window.c:923
 #: ../xfce4-settings-editor/main_window.c:1076
 msgid "Reset"
-msgstr ""
+msgstr "Відновити"
 
 #: ../xfce4-settings-editor/main_window.c:924
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr ""
+msgstr "відновити властивості дозволить повністю видалити встановлені параметри."
 
 #: ../xfce4-settings-editor/main_window.c:925
-#, fuzzy, c-format
+#, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
-msgstr "Ви впевнені, що хочете відновити властивість \"<b>%s</b>\"?"
+msgstr "Ви впевнені, що хочете відновити властивість \"%s\"?"
 
 #: ../xfce4-settings-editor/main_window.c:981
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr ""
+msgstr "Назва властивості повинна починатись з символу '/'"
 
 #: ../xfce4-settings-editor/main_window.c:990
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr ""
+msgstr "Основний елемент ('/') не є правильною назвою властивості"
 
 #: ../xfce4-settings-editor/main_window.c:1004
 #, c-format
 msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr ""
+msgstr "Назви властивостей можуть включати тільки символи ASCII A-Z, a-z, 0-9, '_', '-', '<' і '>', розділені символом '/'"
 
 #: ../xfce4-settings-editor/main_window.c:1013
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
+msgstr "Назви властивостей не можуть включати дві або більше продовжуваних символів '/'"
 
 #: ../xfce4-settings-editor/main_window.c:1024
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr ""
+msgstr "Назви властивостей не можуть закінчуватись символом '/'"
 
 #: ../xfce4-settings-editor/main_window.c:1043
 msgid "_Reset"
-msgstr ""
+msgstr "_Відновити"
 
 #: ../xfce4-settings-editor/main_window.c:1077
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr ""
+msgstr "Відновлення каналу повністю видалить встановлені параметри."
 
 #: ../xfce4-settings-editor/main_window.c:1078
-#, fuzzy, c-format
+#, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr "Ви впевнені, що хочете відновити властивість \"<b>%s</b>\"?"
+msgstr "Ви впевнені, що хочете відновити канал \"%s\" і всі його властивості?"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
@@ -928,16 +926,15 @@ msgstr "Редактор параметрів"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
 msgid "Boolean"
-msgstr ""
+msgstr "Двійковий"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
 msgid "Customize settings stored by Xfconf"
 msgstr "Упорядкувати властивості збережені через Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
-#, fuzzy
 msgid "Double"
-msgstr "<b>Подвійне клацання</b>"
+msgstr "Подвійний"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
 msgid "Edit Property"
@@ -952,12 +949,14 @@ msgid "Enabled"
 msgstr "Увімкнуто"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#, fuzzy
 msgid "Int"
-msgstr ""
+msgstr "Int"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
+#, fuzzy
 msgid "Int64"
-msgstr ""
+msgstr "Int64"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
 msgid "Name:"
@@ -968,9 +967,8 @@ msgid "New property"
 msgstr "Нова властивість"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-#, fuzzy
 msgid "Reset property"
-msgstr "Відновити/видалити властивість"
+msgstr "Відновити властивість"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
 msgid "String"
