@@ -25,7 +25,8 @@ xfsettingsd_CFLAGS = \
 	$(LIBNOTIFY_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
-	$(PLATFORM_CFLAGS)
+	$(PLATFORM_CFLAGS) \
+	$(LIBX11_CFLAGS)
 
 xfsettingsd_LDFLAGS = \
 	-no-undefined \
@@ -36,7 +37,8 @@ xfsettingsd_LDADD = \
 	$(GLIB_LIBS) \
 	$(LIBNOTIFY_LIBS) \
 	$(XFCONF_LIBS) \
-	$(LIBXFCE4UTIL_LIBS)
+	$(LIBXFCE4UTIL_LIBS) \
+	$(LIBX11_LIBS)
 
 settingsdir = $(sysconfdir)/xdg/xfce4/xfconf/xfce-perchannel-xml
 settings_DATA = xsettings.xml
