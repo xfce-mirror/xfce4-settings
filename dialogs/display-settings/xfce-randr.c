@@ -29,6 +29,8 @@
 #include <gdk/gdkx.h>
 #include <libxfce4util/libxfce4util.h>
 
+#include <X11/Xatom.h>
+
 #include "xfce-randr.h"
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
@@ -42,9 +44,6 @@ xfce_randr_new (GdkDisplay  *display,
     GdkWindow              *root_window;
     XRRScreenConfiguration *screen_config;
     XRRCrtcInfo            *crtc_info;
-#ifdef HAS_RANDR_ONE_POINT_THREE
-    gint                    has_1_3 = FALSE;
-#endif
     gint                    n;
     gint                    major, minor;
 
@@ -69,14 +68,12 @@ xfce_randr_new (GdkDisplay  *display,
                                     "version 1.1 is required at least"), major, minor); 
         return NULL;
     }
-#ifdef HAS_RANDR_ONE_POINT_THREE
-    else if (major == 1 && minor >= 3)
-        has_1_3 = TRUE;
-#endif
 
     /* allocate the structure */
     randr = g_slice_new0 (XfceRandr);
-    
+
+    randr->has_1_3 = (major > 1 || (major == 1 && minor >= 3));
+
     /* set display */
     randr->display = display;
 
@@ -140,7 +137,7 @@ xfce_randr_new (GdkDisplay  *display,
         if (randr->output_info[n]->connection == RR_Connected)
         {
 #ifdef HAS_RANDR_ONE_POINT_THREE
-            if (has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->resources->outputs[n])
+            if (randr->has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->resources->outputs[n])
             {
                 randr->status[n] = XFCE_OUTPUT_STATUS_PRIMARY;
                 continue;
@@ -381,12 +378,65 @@ xfce_randr_load (XfceRandr     *randr,
 
 
 const gchar *
-xfce_randr_friendly_name (const gchar *name)
+xfce_randr_friendly_name (XfceRandr   *randr,
+                          RROutput     output,
+                          const gchar *name)
 {
-    g_return_val_if_fail (name != NULL, "<null>");
+    Display         *xdisplay;
+    unsigned char   *prop;
+    int              actual_format;
+    unsigned long    nitems, bytes_after;
+    Atom             actual_type;
+    Atom             connector_type;
+    gchar           *connector_name;
+    gchar           *friendly_name = NULL;
 
-    /* try to find a translated user friendly name
-     * for the output name */
+    g_return_val_if_fail (randr != NULL && output != None && name != NULL, "<null>");
+
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    xdisplay = gdk_x11_display_get_xdisplay (randr->display);
+
+    /* try to use the connector type first, more reliable */
+    connector_type = XInternAtom (xdisplay, RR_PROPERTY_CONNECTOR_TYPE, False);
+
+    if (randr->has_1_3 && connector_type != None)
+    {
+        if (XRRGetOutputProperty (xdisplay, output, connector_type, 0, 100,
+                                  False, False, AnyPropertyType, &actual_type,
+                                  &actual_format, &nitems, &bytes_after, &prop) == Success)
+        {
+            if (actual_type == XA_ATOM && actual_format == 32 && nitems == 1)
+            {
+                connector_type = *((Atom *) prop);
+                connector_name = XGetAtomName (xdisplay, connector_type);
+
+                if (connector_name)
+                {
+                    if (strcmp (connector_name, "VGA") == 0)
+                        friendly_name = _("Monitor");
+                    else if (g_str_has_prefix (connector_name, "DVI")
+                             || strcmp (connector_name, "HDMI") == 0
+                             || strcmp (connector_name, "DisplayPort") == 0)
+                        friendly_name = _("Digital Display");
+                    else if (strcmp (connector_name, "Panel") == 0)
+                        friendly_name = _("Laptop");
+                    else if (g_str_has_prefix (connector_name, "TV"))
+                        friendly_name = _("Television");
+                    else
+                        g_warning ("Unknown or unsupported connector type.");
+
+                    XFree (connector_name);
+                }
+            }
+            XFree (prop);
+        }
+    }
+
+    if (friendly_name)
+        return friendly_name;
+#endif
+
+    /* fallback */
     if (g_str_has_prefix (name, "LVDS")
         || strcmp (name, "PANEL") == 0)
         return _("Laptop");

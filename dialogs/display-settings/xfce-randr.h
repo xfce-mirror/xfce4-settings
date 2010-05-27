@@ -71,6 +71,9 @@ enum _XfceOutputStatus
 
 struct _XfceRandr
 {
+    /* xrandr 1.3 capable */
+    gint                 has_1_3;
+
     /* display for this randr config */
     GdkDisplay          *display;
     
@@ -111,7 +114,9 @@ void         xfce_randr_load          (XfceRandr     *randr,
                                        const gchar   *scheme,
                                        XfconfChannel *channel);
 
-const gchar *xfce_randr_friendly_name (const gchar   *name);
+const gchar *xfce_randr_friendly_name (XfceRandr     *randr,
+                                       RROutput       output,
+                                       const gchar   *name);
 
 #endif /* !HAS_RANDR_ONE_POINT_TWO */
 

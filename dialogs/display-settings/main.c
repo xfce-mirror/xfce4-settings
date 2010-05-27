@@ -510,7 +510,9 @@ display_settings_treeview_populate (GtkBuilder *builder)
                 continue;
 
             /* get a friendly name for the output */
-            name = (gchar *) xfce_randr_friendly_name (xfce_randr->output_info[n]->name);
+            name = (gchar *) xfce_randr_friendly_name (xfce_randr,
+                                                       xfce_randr->resources->outputs[n],
+                                                       xfce_randr->output_info[n]->name);
 
             /* insert the output in the store */
             gtk_list_store_append (store, &iter);
