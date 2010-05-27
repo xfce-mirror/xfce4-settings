@@ -37,11 +37,16 @@ XfceRandr *
 xfce_randr_new (GdkDisplay  *display,
                 GError     **error)
 {
-    XfceRandr    *randr;
-    Display      *xdisplay;
-    GdkWindow    *root_window;
-    gint          n;
-    gint          major, minor;
+    XfceRandr              *randr;
+    Display                *xdisplay;
+    GdkWindow              *root_window;
+    XRRScreenConfiguration *screen_config;
+    XRRCrtcInfo            *crtc_info;
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    gint                    has_1_3 = FALSE;
+#endif
+    gint                    n;
+    gint                    major, minor;
 
     g_return_val_if_fail (GDK_IS_DISPLAY (display), NULL);
     g_return_val_if_fail (error == NULL || *error == NULL, NULL);
@@ -64,6 +69,10 @@ xfce_randr_new (GdkDisplay  *display,
                                     "version 1.1 is required at least"), major, minor); 
         return NULL;
     }
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    else if (major == 1 && minor >= 3)
+        has_1_3 = TRUE;
+#endif
 
     /* allocate the structure */
     randr = g_slice_new0 (XfceRandr);
@@ -83,6 +92,7 @@ xfce_randr_new (GdkDisplay  *display,
     /* allocate space for the settings */
     randr->mode = g_new0 (RRMode, randr->resources->noutput);
     randr->rotation = g_new0 (Rotation, randr->resources->noutput);
+    randr->rotations = g_new0 (Rotation, randr->resources->noutput);
     randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
     randr->status = g_new0 (XfceOutputStatus, randr->resources->noutput);
     randr->output_info = g_new0 (XRROutputInfo *, randr->resources->noutput);
@@ -110,10 +120,44 @@ xfce_randr_new (GdkDisplay  *display,
             return NULL;
         }
 
-        /* TODO: load defaults */
-        randr->mode[n] = 0;
-        randr->rotation[n] = 0;
-        randr->status[n] = XFCE_OUTPUT_STATUS_NONE;
+        /* load defaults */
+        if (randr->output_info[n]->crtc != None)
+        {
+            crtc_info = XRRGetCrtcInfo (xdisplay, randr->resources, randr->output_info[n]->crtc);
+            randr->mode[n] = crtc_info->mode;
+            randr->rotation[n] = crtc_info->rotation;
+            randr->rotations[n] = crtc_info->rotations;
+            XRRFreeCrtcInfo (crtc_info);
+        }
+        else
+        {
+            randr->mode[n] = None;
+            screen_config = XRRGetScreenInfo (xdisplay, GDK_WINDOW_XID (root_window));
+            randr->rotations[n] = XRRConfigRotations (screen_config, &randr->rotation[n]);
+            XRRFreeScreenConfigInfo (screen_config);
+        }
+
+        if (randr->output_info[n]->connection == RR_Connected)
+        {
+#ifdef HAS_RANDR_ONE_POINT_THREE
+            if (has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->resources->outputs[n])
+            {
+                randr->status[n] = XFCE_OUTPUT_STATUS_PRIMARY;
+                continue;
+            }
+            else
+#endif
+            {
+                /* for randr 1.2, no XRRGetOutputPrimary(), so use the first one */
+                if (G_UNLIKELY (n == 0))
+                {
+                    randr->status[n] = XFCE_OUTPUT_STATUS_PRIMARY;
+                    continue;
+                }
+            }
+
+            randr->status[n] = XFCE_OUTPUT_STATUS_SECONDARY;
+        }
     }
 
     return randr;
@@ -137,6 +181,7 @@ xfce_randr_free (XfceRandr *randr)
     /* free the settings */
     g_free (randr->mode);
     g_free (randr->rotation);
+    g_free (randr->rotations);
     g_free (randr->status);
     g_free (randr->position);
     g_free (randr->output_info);
@@ -242,7 +287,11 @@ xfce_randr_save_device (XfceRandr     *randr,
 
     /* save the rotation in degrees */
     g_snprintf (property, sizeof (property), "/%s/%s/Rotation", scheme, distinct);
-    xfconf_channel_set_int (channel, property, degrees);
+    /* resolution name NULL means output disabled */
+    if (G_LIKELY (resolution_name != NULL))
+        xfconf_channel_set_int (channel, property, degrees);
+    else
+        xfconf_channel_reset_property (channel, property, FALSE);
 
     /* save the position */
     g_snprintf (property, sizeof (property), "/%s/%s/Position", scheme, distinct);
@@ -338,34 +387,19 @@ xfce_randr_friendly_name (const gchar *name)
 
     /* try to find a translated user friendly name
      * for the output name */
-    if (strcmp (name, "LVDS") == 0
+    if (g_str_has_prefix (name, "LVDS")
         || strcmp (name, "PANEL") == 0)
         return _("Laptop");
-    else if (strcmp (name, "VGA") == 0
-             || strcmp (name, "VGA0") == 0
-             || strcmp (name, "Analog-0") == 0)
+    else if (g_str_has_prefix (name, "VGA")
+             || g_str_has_prefix (name, "Analog"))
         return _("Monitor");
-    else if (strcmp (name, "TV") == 0
-             || strcmp (name, "S-video") == 0
-             || strcmp (name, "TV_7PIN_DIN") == 0)
+    else if (g_str_has_prefix (name, "TV")
+             || strcmp (name, "S-video") == 0)
         return _("Television");
-    else if (strcmp (name, "TMDS-1") == 0
-             || strcmp (name, "DVI-0") == 0
-             || strncmp (name, "DVI-I_1", 7) == 0
-             || strcmp (name, "DVI0") == 0
-             || strcmp (name, "DVI") == 0
-             || strcmp (name, "Digital-0") == 0)
+    else if (g_str_has_prefix (name, "TMDS")
+             || g_str_has_prefix (name, "DVI")
+             || g_str_has_prefix (name, "Digital"))
         return _("Digital display");
-    else if (strcmp (name, "VGA_1") == 0
-             || strcmp (name, "VGA1") == 0
-             || strcmp (name, "Analog-1") == 0)
-        return _("Second monitor");
-    else if (strcmp (name, "TMDS-2") == 0
-             || strcmp (name, "DVI-1") == 0
-             || strncmp (name, "DVI-I_2", 7) == 0
-             || strcmp (name, "DVI1") == 0
-             || strcmp (name, "Digital-1") == 0)
-        return _("Second digital display");
 
     return name;
 }

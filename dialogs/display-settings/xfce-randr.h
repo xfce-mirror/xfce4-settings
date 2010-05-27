@@ -26,13 +26,19 @@
 
 #define XFCE_RANDR_MODE(randr)        (randr->mode[randr->active_output])
 #define XFCE_RANDR_ROTATION(randr)    (randr->rotation[randr->active_output])
+#define XFCE_RANDR_ROTATIONS(randr)   (randr->rotations[randr->active_output])
 #define XFCE_RANDR_OUTPUT_INFO(randr) (randr->output_info[randr->active_output])
 
 /* check for randr 1.2 or better */
 #if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 2)
 #define HAS_RANDR_ONE_POINT_TWO
+/* check for randr 1.3 or better */
+#if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 3)
+#define HAS_RANDR_ONE_POINT_THREE
+#endif
 #else
 #undef HAS_RANDR_ONE_POINT_TWO
+#undef HAS_RANDR_ONE_POINT_THREE
 #endif
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
@@ -83,6 +89,7 @@ struct _XfceRandr
     /* selected settings for all outputs */
     RRMode              *mode;
     Rotation            *rotation;
+    Rotation            *rotations;
     XfceOutputPosition  *position;
     XfceOutputStatus    *status;
 };
