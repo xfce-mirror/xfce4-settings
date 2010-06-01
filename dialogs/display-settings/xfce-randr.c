@@ -142,17 +142,7 @@ xfce_randr_new (GdkDisplay  *display,
                 randr->status[n] = XFCE_OUTPUT_STATUS_PRIMARY;
                 continue;
             }
-            else
 #endif
-            {
-                /* for randr 1.2, no XRRGetOutputPrimary(), so use the first one */
-                if (G_UNLIKELY (n == 0))
-                {
-                    randr->status[n] = XFCE_OUTPUT_STATUS_PRIMARY;
-                    continue;
-                }
-            }
-
             randr->status[n] = XFCE_OUTPUT_STATUS_SECONDARY;
         }
     }
