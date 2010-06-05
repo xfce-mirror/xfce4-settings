@@ -174,7 +174,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     GdkWindow          *root_window;
     XRRScreenResources *resources;
     gchar               property[512];
-    gint                l, m, n, num_outputs, output_rot, noutput;
+    gint                j, l, m, n, num_outputs, output_rot, noutput;
 #ifdef HAS_RANDR_ONE_POINT_THREE
     gint                is_primary;
 #endif
@@ -254,23 +254,35 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 continue;
             }
 
-            /* walk all supported modes */
+            /* walk supported modes */
             mode = None;
             for (l = 0; l < output_info->nmode; ++l)
             {
-                /* get the mode info */
-                mode_info = &resources->modes[m];
-
-                /* calculate the refresh rate */
-                rate = (gfloat) mode_info->dotClock / ((gfloat) mode_info->hTotal * (gfloat) mode_info->vTotal);
-
-                /* find the mode corresponding to the saved values */
-                if (((int) rate == (int) output_rate)
-                    && (g_strcmp0 (mode_info->name, output_res) == 0))
+                /* walk all modes */
+                for (j = 0; j < resources->nmode; ++j)
                 {
-                    mode = mode_info->id;
-                    break;
+                    /* get the mode info */
+                    mode_info = &resources->modes[l];
+
+                    /* does the mode info match the mode we seek? */
+                    if (mode_info->id != output_info->mode[j])
+                        continue;
+
+                    /* calculate the refresh rate */
+                    rate = (gfloat) mode_info->dotClock / ((gfloat) mode_info->hTotal * (gfloat) mode_info->vTotal);
+
+                    /* find the mode corresponding to the saved values */
+                    if (((int) rate == (int) output_rate)
+                        && (g_strcmp0 (mode_info->name, output_res) == 0))
+                    {
+                        mode = mode_info->id;
+                        break;
+                    }
                 }
+
+                /* found it */
+                if (mode != None)
+                    break;
             }
 
             /* unsupported mode, abort for this output */
