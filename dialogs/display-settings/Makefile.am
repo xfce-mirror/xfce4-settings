@@ -40,7 +40,8 @@ xfce4_display_settings_LDADD = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-	display-dialog_ui.h
+	display-dialog_ui.h \
+	display-dialog-xrandr1.2_ui.h
 
 display-dialog_ui.h: display-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=display_dialog_ui $< >$@
