@@ -111,26 +111,6 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
 
 
 
-static gboolean
-display_setting_combo_box_get_name (GtkComboBox *combobox,
-                                    gchar       **name)
-{
-    GtkTreeModel *model;
-    GtkTreeIter   iter;
-
-    if (gtk_combo_box_get_active_iter (combobox, &iter))
-    {
-        model = gtk_combo_box_get_model (combobox);
-        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, name, -1);
-
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
-
-
 static void
 display_setting_rotations_changed (GtkComboBox *combobox,
                                    GtkBuilder  *builder)
@@ -216,11 +196,6 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
         return;
 
     /* set new rate */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
-        XFCE_RANDR_MODE (xfce_randr) = value;
-    else
-#endif
         XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy) = value;
 }
 
@@ -237,95 +212,40 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     gchar        *name = NULL;
     gint          n, m, active = -1;
     gshort        diff, active_diff = G_MAXSHORT;
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    GObject      *rescombo;
-    XRRModeInfo  *mode_info;
-    gchar        *mode_name;
-    gfloat        rate;
-    RRMode        active_mode;
-#endif
 
     /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    /* get the selected resolution mode */
-    rescombo = gtk_builder_get_object (builder, "randr-resolution");
-    if (!display_setting_combo_box_get_value (GTK_COMBO_BOX (rescombo), (gint *) &active_mode)
-        || !display_setting_combo_box_get_name (GTK_COMBO_BOX (rescombo), (gchar **) &mode_name))
-        active_mode = None;
+    /* get the refresh rates */
+    rates = XRRConfigRates (XFCE_RANDR_LEGACY_CONFIG (xfce_randr_legacy),
+                            XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy), &nrates);
 
-    if (xfce_randr)
+    for (n = 0; n < nrates; n++)
     {
-        /* walk all supported modes */
-        for (m = 0; m < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++m)
+        /* insert */
+        name = g_strdup_printf (_("%d Hz"), rates[n]);
+        gtk_list_store_prepend (GTK_LIST_STORE (model), &iter);
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                            COLUMN_COMBO_NAME, name,
+                            COLUMN_COMBO_VALUE, rates[n], -1);
+        g_free (name);
+
+        /* get the active rate closest to the current diff */
+        diff = ABS (rates[n] - XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy));
+
+        /* store active */
+        if (active_diff > diff)
         {
-            /* walk the modes to get the mode info for the mode with a matching resolution */
-            for (n = 0; n < xfce_randr->resources->nmode; ++n)
-            {
-                mode_info = &xfce_randr->resources->modes[n];
-
-                /* check if this mode is supported by the output */
-                if (XFCE_RANDR_OUTPUT_INFO (xfce_randr)->modes[m] == mode_info->id)
-                {
-                    if (g_strcmp0 (xfce_randr->resources->modes[n].name, mode_name) == 0)
-                    {
-                        /* calculate the refresh rate */
-                        rate = (gfloat) mode_info->dotClock / ((gfloat) mode_info->hTotal * (gfloat) mode_info->vTotal);
-
-                        /* insert in the combo box */
-                        name = g_strdup_printf (_("%.1f Hz"), rate);
-                        gtk_list_store_prepend (GTK_LIST_STORE (model), &iter);
-                        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                                            COLUMN_COMBO_NAME, name,
-                                            COLUMN_COMBO_VALUE, mode_info->id, -1);
-                        g_free (name);
-
-                        /* select the active mode */
-                        if (mode_info->id == XFCE_RANDR_MODE (xfce_randr))
-                            gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
-                    }
-
-                    /* finished */
-                    break;
-                }
-            }
+            active = nrates - n - 1;
+            active_diff = diff;
         }
     }
-    else
-#endif
-    {
-        /* get the refresh rates */
-        rates = XRRConfigRates (XFCE_RANDR_LEGACY_CONFIG (xfce_randr_legacy),
-                                XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy), &nrates);
 
-        for (n = 0; n < nrates; n++)
-        {
-            /* insert */
-            name = g_strdup_printf (_("%d Hz"), rates[n]);
-            gtk_list_store_prepend (GTK_LIST_STORE (model), &iter);
-            gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                                COLUMN_COMBO_NAME, name,
-                                COLUMN_COMBO_VALUE, rates[n], -1);
-            g_free (name);
-
-            /* get the active rate closest to the current diff */
-            diff = ABS (rates[n] - XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy));
-
-            /* store active */
-            if (active_diff > diff)
-            {
-                active = nrates - n - 1;
-                active_diff = diff;
-            }
-        }
-
-        /* set closest refresh rate */
-        if (G_LIKELY (active != -1))
-            gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), active);
-    }
+    /* set closest refresh rate */
+    if (G_LIKELY (active != -1))
+        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), active);
 }
 
 
@@ -339,12 +259,6 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     if (!display_setting_combo_box_get_value (combobox, &value))
         return;
 
-    /* set new resolution */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
-        XFCE_RANDR_MODE (xfce_randr) = value;
-    else
-#endif
     /* set new resolution */
     if (xfce_randr_legacy)
         XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) = value;
@@ -365,17 +279,75 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     gint           n, nsizes;
     gchar         *name;
     GtkTreeIter    iter;
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    XRRModeInfo   *mode, *prev = NULL;
-    gint           m;
-#endif
 
     /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
+    /* get the possible screen sizes for this screen */
+    screen_sizes = XRRConfigSizes (XFCE_RANDR_LEGACY_CONFIG (xfce_randr_legacy), &nsizes);
+
+    for (n = 0; n < nsizes; n++)
+    {
+        /* insert in the model */
+        name = g_strdup_printf ("%dx%d", screen_sizes[n].width, screen_sizes[n].height);
+        gtk_list_store_insert_with_values (GTK_LIST_STORE (model), &iter, n,
+                                           COLUMN_COMBO_NAME, name,
+                                           COLUMN_COMBO_VALUE, n, -1);
+        g_free (name);
+
+        /* select active */
+        if (G_UNLIKELY (XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) == n))
+            gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
+    }
+}
+
+
+
 #ifdef HAS_RANDR_ONE_POINT_TWO
+static void
+display_setting_modes_changed (GtkComboBox *combobox,
+                               GtkBuilder  *builder)
+{
+    gint value;
+
+    if (!display_setting_combo_box_get_value (combobox, &value))
+        return;
+
+    /* set new mode */
+    if (xfce_randr)
+        XFCE_RANDR_MODE (xfce_randr) = value;
+    else
+    /* set new resolution */
+    if (xfce_randr_legacy)
+        XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) = value;
+
+    /* update refresh rates */
+    if (!xfce_randr)
+        display_setting_refresh_rates_populate (builder);
+
+    display_setting_rotations_populate (builder);
+}
+
+
+
+static void
+display_setting_modes_populate (GtkBuilder *builder)
+{
+    GtkTreeModel  *model;
+    GObject       *combobox;
+    gint           m, n;
+    gchar         *name;
+    GtkTreeIter    iter;
+    XRRModeInfo  *mode_info;
+    gfloat        rate;
+
+    /* get the combo box store and clear it */
+    combobox = gtk_builder_get_object (builder, "randr-mode");
+    model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+    gtk_list_store_clear (GTK_LIST_STORE (model));
+
     if (xfce_randr)
     {
         /* entry for a disabled output */
@@ -393,28 +365,26 @@ display_setting_resolutions_populate (GtkBuilder *builder)
             /* walk all the modes */
             for (n = 0; n < xfce_randr->resources->nmode; ++n)
             {
-                /* get the mode */
-                mode = &xfce_randr->resources->modes[n];
+                /* get the mode info */
+                mode_info = &xfce_randr->resources->modes[n];
 
                 /* check if this mode is supported by the output */
-                if (XFCE_RANDR_OUTPUT_INFO (xfce_randr)->modes[m] == mode->id)
+                if (XFCE_RANDR_OUTPUT_INFO (xfce_randr)->modes[m] == mode_info->id)
                 {
-                    /* avoid dupplicates */
-                    if (!prev || strcmp (prev->name, mode->name) != 0)
-                    {
-                        /* insert the mode */
-                        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-                        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                                            COLUMN_COMBO_NAME, mode->name,
-                                            COLUMN_COMBO_VALUE, mode->id, -1);
+                    /* calculate the refresh rate */
+                    rate = (gfloat) mode_info->dotClock / ((gfloat) mode_info->hTotal * (gfloat) mode_info->vTotal);
 
-                        /* select the active mode */
-                        if (mode->id == XFCE_RANDR_MODE (xfce_randr))
-                            gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
+                    /* insert the mode */
+                    name = g_strdup_printf (_("%s @ %.1f Hz"), mode_info->name, rate);
+                    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+                    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                                        COLUMN_COMBO_NAME, name,
+                                        COLUMN_COMBO_VALUE, mode_info->id, -1);
+                    g_free (name);
 
-                        /* set the previous mode */
-                        prev = mode;
-                    }
+                    /* select the active mode */
+                    if (mode_info->id == XFCE_RANDR_MODE (xfce_randr))
+                        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
 
                     /* finished */
                     break;
@@ -423,26 +393,12 @@ display_setting_resolutions_populate (GtkBuilder *builder)
         }
     }
     else
-#endif
     {
-        /* get the possible screen sizes for this screen */
-        screen_sizes = XRRConfigSizes (XFCE_RANDR_LEGACY_CONFIG (xfce_randr_legacy), &nsizes);
-
-        for (n = 0; n < nsizes; n++)
-        {
-            /* insert in the model */
-            name = g_strdup_printf ("%dx%d", screen_sizes[n].width, screen_sizes[n].height);
-            gtk_list_store_insert_with_values (GTK_LIST_STORE (model), &iter, n,
-                                               COLUMN_COMBO_NAME, name,
-                                               COLUMN_COMBO_VALUE, n, -1);
-            g_free (name);
-
-            /* select active */
-            if (G_UNLIKELY (XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) == n))
-                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
-        }
+        display_setting_resolutions_populate (builder);
+        display_setting_refresh_rates_populate (builder);
     }
 }
+#endif
 
 
 
@@ -471,8 +427,12 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
             xfce_randr_legacy->active_screen = active_id;
 
         /* update the combo boxes */
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        display_setting_modes_populate (builder);
+#else
         display_setting_resolutions_populate (builder);
         display_setting_refresh_rates_populate (builder);
+#endif
         display_setting_rotations_populate (builder);
     }
 }
@@ -642,6 +602,11 @@ display_settings_dialog_new (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_treeview_selection_changed), builder);
 
     /* setup the combo boxes */
+#ifdef HAS_RANDR_ONE_POINT_TWO
+    combobox = gtk_builder_get_object (builder, "randr-mode");
+    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_modes_changed), builder);
+#else
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
@@ -649,7 +614,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_refresh_rates_changed), builder);
-
+#endif
     combobox = gtk_builder_get_object (builder, "randr-rotation");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
