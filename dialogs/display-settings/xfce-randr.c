@@ -278,6 +278,15 @@ xfce_randr_save_device (XfceRandr     *randr,
     else
         xfconf_channel_reset_property (channel, property, FALSE);
 
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    /* is it the primary output? */
+    g_snprintf (property, sizeof (property), "/%s/%s/Primary", scheme, distinct);
+    if (randr->status[output] == XFCE_OUTPUT_STATUS_PRIMARY)
+        xfconf_channel_set_bool (channel, property, TRUE);
+    else
+        xfconf_channel_reset_property (channel, property, FALSE);
+#endif
+
     /* save the position */
     g_snprintf (property, sizeof (property), "/%s/%s/Position", scheme, distinct);
     if (randr->layout == XFCE_DISPLAY_LAYOUT_EXTEND
@@ -311,7 +320,7 @@ xfce_randr_save (XfceRandr     *randr,
 {
     gchar        property[512];
     const gchar *layout_name;
-    gint         n;
+    gint         n, num_outputs = 0;
 
     g_return_if_fail (XFCONF_IS_CHANNEL (channel));
 
@@ -327,28 +336,21 @@ xfce_randr_save (XfceRandr     *randr,
     g_snprintf (property, sizeof (property), "/%s/Layout", scheme);
     xfconf_channel_set_string (channel, property, layout_name);
 
-    /* find the primary layout */
+    /* parse all outputs */
     for (n = 0; n < randr->resources->noutput; n++)
     {
-        switch (randr->status[n])
+        /* do not save disconnected ones */
+        if (randr->status[n] != XFCE_OUTPUT_STATUS_NONE)
         {
-            /* save the primary device */
-            case XFCE_OUTPUT_STATUS_PRIMARY:
-                xfce_randr_save_device (randr, scheme, channel, n, "Primary");
-                break;
-                
-            /* save the secondary device */
-            case XFCE_OUTPUT_STATUS_SECONDARY:
-                if (randr->mode != XFCE_DISPLAY_LAYOUT_SINGLE)
-                    xfce_randr_save_device (randr, scheme, channel, n, "Secondary");
-                break;
-            
-            /* ignore */
-            case XFCE_OUTPUT_STATUS_NONE:
-                break;
+            g_snprintf (property, sizeof (property), "Output%d", num_outputs++);
+            xfce_randr_save_device (randr, scheme, channel, n, property);
         }
     }
-    
+
+    /* store the number of outputs saved */
+    g_snprintf (property, sizeof (property), "/%s/NumOutputs", scheme);
+    xfconf_channel_set_int (channel, property, num_outputs);
+
     /* tell the helper to apply this theme */
     xfconf_channel_set_string (channel, "/Schemes/Apply", scheme);
 }
