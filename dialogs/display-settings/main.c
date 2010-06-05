@@ -374,15 +374,16 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
-    /* entry for a disabled output */
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("None (disabled)"),
-                        COLUMN_COMBO_VALUE, None, -1);
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
     {
+        /* entry for a disabled output */
+        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                            COLUMN_COMBO_NAME, _("None (disabled)"),
+                            COLUMN_COMBO_VALUE, None, -1);
+
         if (XFCE_RANDR_MODE (xfce_randr) == None)
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
 
