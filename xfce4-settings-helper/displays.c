@@ -278,10 +278,10 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 for (j = 0; j < resources->nmode; ++j)
                 {
                     /* get the mode info */
-                    mode_info = &resources->modes[l];
+                    mode_info = &resources->modes[j];
 
                     /* does the mode info match the mode we seek? */
-                    if (mode_info->id != output_info->modes[j])
+                    if (mode_info->id != output_info->modes[l])
                         continue;
 
                     /* calculate the refresh rate */
@@ -354,7 +354,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                         width += resources->modes[j].width;
                         height += resources->modes[j].height;
 
-                        /* set the screen size before apply the resolution, only if it's valid */
+                        /* set the screen size before applying the resolution, only if it's valid */
                         if (width >= min_width && width <= max_width
                             && height >= min_height && height <= max_height)
                             XRRSetScreenSize (xdisplay, GDK_WINDOW_XID (root_window),
