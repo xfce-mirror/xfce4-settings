@@ -186,6 +186,7 @@ display_setting_rotations_populate (GtkBuilder *builder)
 
 
 
+#ifndef HAS_RANDR_ONE_POINT_TWO
 static void
 display_setting_refresh_rates_changed (GtkComboBox *combobox,
                                        GtkBuilder  *builder)
@@ -198,6 +199,7 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
     /* set new rate */
         XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy) = value;
 }
+#endif
 
 
 
@@ -210,7 +212,7 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     gint          nrates;
     GtkTreeIter   iter;
     gchar        *name = NULL;
-    gint          n, m, active = -1;
+    gint          n, active = -1;
     gshort        diff, active_diff = G_MAXSHORT;
 
     /* get the combo box store and clear it */
@@ -250,6 +252,7 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
 
 
 
+#ifndef HAS_RANDR_ONE_POINT_TWO
 static void
 display_setting_resolutions_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
@@ -267,6 +270,7 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     display_setting_refresh_rates_populate (builder);
     display_setting_rotations_populate (builder);
 }
+#endif
 
 
 
