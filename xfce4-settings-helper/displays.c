@@ -174,6 +174,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     GdkWindow          *root_window;
     XRRScreenResources *resources;
     gchar               property[512];
+    gint                min_width, min_height, max_width, max_height;
+    gint                mm_width, mm_height, width, height;
     gint                j, l, m, n, num_outputs, output_rot, noutput;
 #ifdef HAS_RANDR_ONE_POINT_THREE
     gint                is_primary;
@@ -199,6 +201,17 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
     /* get the screen resource */
     resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
+
+    /* get the range of screen sizes */
+    if (XRRGetScreenSizeRange (xdisplay, GDK_WINDOW_XID (root_window), &min_width,
+                               &min_height, &max_width, &max_height) != Success)
+    {
+        g_warning ("Unable to get the range of screen sizes, aborting.");
+        XRRFreeScreenResources (resources);
+        gdk_flush ();
+        gdk_error_trap_pop ();
+        return;
+    }
 
     /* get the number of outputs */
     g_snprintf (property, sizeof (property), "/%s/NumOutputs", scheme);
@@ -325,6 +338,24 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                     {
                         noutput = crtc_info->noutput;
                         outputs = crtc_info->outputs;
+                    }
+
+                    /* do not change the screen size if the output is going to be disabled */
+                    if (mode != None)
+                    {
+                        /* get the "physical sizes" of the output */
+                        mm_width += output_info->mm_width;
+                        mm_height += output_info->mm_height;
+
+                        /* get the sizes of the mode to enforce */
+                        width += resources->modes[j]->width;
+                        height += resources->modes[j]->height;
+
+                        /* set the screen size before apply the resolution, only if it's valid */
+                        if (width >= min_width && width <= max_width
+                            && height >= min_height && height <= max_height)
+                            XRRSetScreenSize (xdisplay, GDK_WINDOW_XID (root_window),
+                                              width, height, mm_width, mm_height);
                     }
 
                     if (XRRSetCrtcConfig (xdisplay, resources, output_info->crtc,
