@@ -240,8 +240,6 @@ xfce_randr_save_device (XfceRandr     *randr,
 
                 break;
             }
-
-            break;
         }
     }
 
