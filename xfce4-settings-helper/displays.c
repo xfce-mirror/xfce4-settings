@@ -174,7 +174,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     GdkWindow          *root_window;
     XRRScreenResources *resources;
     gchar               property[512];
-    gint                l, m, n, num_outputs, output_rot;
+    gint                l, m, n, num_outputs, output_rot, noutput;
 #ifdef HAS_RANDR_ONE_POINT_THREE
     gint                is_primary;
 #endif
@@ -186,6 +186,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gdouble             rate;
     RRMode              mode;
     Rotation            rot;
+    RROutput           *outputs;
 
     /* flush x and trap errors */
     gdk_flush ();
@@ -294,10 +295,33 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 /* check if we really need to do something */
                 if (crtc_info->mode != mode || crtc_info->rotation != rot)
                 {
+                    /* resolution was NULL, so the user wants to disable this output */
+                    if (mode == None)
+                    {
+                        outputs = g_new0 (RROutput, crtc_info->noutput - 1);
+                        noutput = 0;
+                        /* to disable the output, remove it from the list of outputs connected to this crtc */
+                        for (l = 0; l < crtc_info->noutput; ++l)
+                        {
+                            if (crtc_info->outputs[l] == resources->outputs[m])
+                                continue;
+
+                            outputs[noutput++] = crtc_info->outputs[l];
+                        }
+                    }
+                    else
+                    {
+                        noutput = crtc_info->noutput;
+                        outputs = crtc_info->outputs;
+                    }
+
                     if (XRRSetCrtcConfig (xdisplay, resources, output_info->crtc,
                                           crtc_info->timestamp, crtc_info->x, crtc_info->y,
-                                          mode, rot, crtc_info->outputs, crtc_info->noutput) != Success)
+                                          mode, rot, outputs, noutput) != Success)
                         g_warning ("Failed to configure %s.", output_info->name);
+
+                    if (mode == None)
+                        g_free (outputs);
                 }
 
                 XRRFreeCrtcInfo (crtc_info);
