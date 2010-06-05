@@ -47,32 +47,17 @@
             <child>
               <object class="GtkTable" id="table1">
                 <property name="visible">True</property>
-                <property name="n_rows">3</property>
+                <property name="n_rows">2</property>
                 <property name="n_columns">2</property>
                 <property name="column_spacing">12</property>
                 <property name="row_spacing">6</property>
                 <child>
-                  <object class="GtkLabel" id="label5">
+                  <object class="GtkLabel" id="label4">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">Ro_tation:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">randr-rotation</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="label4">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Refresh _rate:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">randr-refresh-rate</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -85,9 +70,9 @@
                   <object class="GtkLabel" id="label3">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">R_esolution:</property>
+                    <property name="label" translatable="yes">M_ode:</property>
                     <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">randr-resolution</property>
+                    <property name="mnemonic_widget">randr-mode</property>
                   </object>
                   <packing>
                     <property name="x_options">GTK_FILL</property>
@@ -101,25 +86,13 @@
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="y_options">GTK_FILL</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="randr-refresh-rate">
-                    <property name="visible">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="y_options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBox" id="randr-resolution">
+                  <object class="GtkComboBox" id="randr-mode">
                     <property name="visible">True</property>
                   </object>
                   <packing>

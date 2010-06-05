@@ -42,6 +42,9 @@
 #include "xfce-randr.h"
 #include "xfce-randr-legacy.h"
 #include "display-dialog_ui.h"
+#ifdef HAS_RANDR_ONE_POINT_TWO
+#include "display-dialog-xrandr1.2_ui.h"
+#endif
 
 enum
 {
@@ -186,7 +189,6 @@ display_setting_rotations_populate (GtkBuilder *builder)
 
 
 
-#ifndef HAS_RANDR_ONE_POINT_TWO
 static void
 display_setting_refresh_rates_changed (GtkComboBox *combobox,
                                        GtkBuilder  *builder)
@@ -199,7 +201,6 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
     /* set new rate */
         XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy) = value;
 }
-#endif
 
 
 
@@ -252,7 +253,6 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
 
 
 
-#ifndef HAS_RANDR_ONE_POINT_TWO
 static void
 display_setting_resolutions_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
@@ -270,7 +270,6 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     display_setting_refresh_rates_populate (builder);
     display_setting_rotations_populate (builder);
 }
-#endif
 
 
 
@@ -607,18 +606,24 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     /* setup the combo boxes */
 #ifdef HAS_RANDR_ONE_POINT_TWO
-    combobox = gtk_builder_get_object (builder, "randr-mode");
-    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_modes_changed), builder);
-#else
-    combobox = gtk_builder_get_object (builder, "randr-resolution");
-    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
-
-    combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
-    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_refresh_rates_changed), builder);
+    if (xfce_randr != NULL)
+    {
+        combobox = gtk_builder_get_object (builder, "randr-mode");
+        display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
+        g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_modes_changed), builder);
+    }
+    else
 #endif
+    {
+        combobox = gtk_builder_get_object (builder, "randr-resolution");
+        display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
+        g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
+
+        combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
+        display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
+        g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_refresh_rates_changed), builder);
+    }
+
     combobox = gtk_builder_get_object (builder, "randr-rotation");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
@@ -640,6 +645,7 @@ main (gint argc, gchar **argv)
     GdkDisplay *display;
     gboolean    succeeded = TRUE;
     gint        event_base, error_base;
+    guint       ui_ret;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -744,8 +750,20 @@ main (gint argc, gchar **argv)
 
         /* load the Gtk user-interface file */
         builder = gtk_builder_new ();
-        if (gtk_builder_add_from_string (builder, display_dialog_ui,
-                                         display_dialog_ui_length, &error) != 0)
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        if (xfce_randr != NULL)
+        {
+            ui_ret = gtk_builder_add_from_string (builder, display_dialog_xrandr12_ui,
+                                                  display_dialog_xrandr12_ui_length, &error);
+        }
+        else
+#endif
+        {
+            ui_ret = gtk_builder_add_from_string (builder, display_dialog_ui,
+                                                  display_dialog_ui_length, &error);
+        }
+
+        if (ui_ret != 0)
         {
             /* build the dialog */
             dialog = display_settings_dialog_new (builder);

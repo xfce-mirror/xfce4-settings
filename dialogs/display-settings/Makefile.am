@@ -17,7 +17,8 @@ xfce4_display_settings_SOURCES = \
 	xfce-randr.h \
 	xfce-randr-legacy.c \
 	xfce-randr-legacy.h \
-	display-dialog_ui.h
+	display-dialog_ui.h \
+	display-dialog-xrandr1.2_ui.h
 
 xfce4_display_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -44,6 +45,9 @@ BUILT_SOURCES = \
 display-dialog_ui.h: display-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=display_dialog_ui $< >$@
 
+display-dialog-xrandr1.2_ui.h: display-dialog-xrandr1.2.glade
+	exo-csource --static --strip-comments --strip-content --name=display_dialog_xrandr12_ui $< >$@
+
 endif
 
 desktopdir = $(datadir)/applications
@@ -54,7 +58,8 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	display-dialog.glade
+	display-dialog.glade \
+	display-dialog-xrandr1.2.glade
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
