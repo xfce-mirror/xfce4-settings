@@ -213,6 +213,9 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         return;
     }
 
+    /* init them before starting */
+    mm_width = mm_height = width = height = 0;
+
     /* get the number of outputs */
     g_snprintf (property, sizeof (property), "/%s/NumOutputs", scheme);
     num_outputs = xfconf_channel_get_int (helper->channel, property, 0);
