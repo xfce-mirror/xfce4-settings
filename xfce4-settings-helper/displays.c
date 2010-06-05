@@ -278,7 +278,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                     mode_info = &resources->modes[l];
 
                     /* does the mode info match the mode we seek? */
-                    if (mode_info->id != output_info->mode[j])
+                    if (mode_info->id != output_info->modes[j])
                         continue;
 
                     /* calculate the refresh rate */
@@ -348,8 +348,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                         mm_height += output_info->mm_height;
 
                         /* get the sizes of the mode to enforce */
-                        width += resources->modes[j]->width;
-                        height += resources->modes[j]->height;
+                        width += resources->modes[j].width;
+                        height += resources->modes[j].height;
 
                         /* set the screen size before apply the resolution, only if it's valid */
                         if (width >= min_width && width <= max_width
