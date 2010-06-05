@@ -37,13 +37,18 @@
 /* check for randr 1.2 or better */
 #if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 2)
 #define HAS_RANDR_ONE_POINT_TWO
+/* check for randr 1.3 or better */
+#if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 3)
+#define HAS_RANDR_ONE_POINT_THREE
+#endif
 #else
 #undef HAS_RANDR_ONE_POINT_TWO
+#undef HAS_RANDR_ONE_POINT_THREE
 #endif
 
-#undef HAS_RANDR_ONE_POINT_TWO
-
 static void            xfce_displays_helper_finalize                       (GObject                 *object);
+static void            xfce_displays_helper_channel_apply                  (XfceDisplaysHelper      *helper,
+                                                                            const gchar             *scheme);
 static void            xfce_displays_helper_channel_apply_legacy           (XfceDisplaysHelper      *helper,
                                                                             const gchar             *scheme);
 static void            xfce_displays_helper_channel_property_changed       (XfconfChannel           *channel,
@@ -64,6 +69,10 @@ struct _XfceDisplaysHelper
 
     /* xfconf channel */
     XfconfChannel *channel;
+
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    gint           has_1_3;
+#endif
 };
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
@@ -113,8 +122,17 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
             g_signal_connect (G_OBJECT (helper->channel), "property-changed", 
                               G_CALLBACK (xfce_displays_helper_channel_property_changed), helper);
 
-            /* restore the default scheme */
-            xfce_displays_helper_channel_apply_legacy (helper, "Default");
+            if (major == 1 && minor >= 2)
+            {
+                helper->has_1_3 = (major == 1 && minor >= 3);
+                /* restore the default scheme */
+                xfce_displays_helper_channel_apply (helper, "Default");
+            }
+            else
+            {
+                /* restore the default scheme */
+                xfce_displays_helper_channel_apply_legacy (helper, "Default");
+            }
         }
         else
         {
@@ -149,10 +167,164 @@ xfce_displays_helper_finalize (GObject *object)
 #ifdef HAS_RANDR_ONE_POINT_TWO
 static void
 xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
-                                    const gchar        *scheme,
-                                    XfceDisplayLayout   layout)
+                                    const gchar        *scheme)
 {
-    g_message ("Apply randr 1.2 scheme '%s'", scheme);
+    GdkDisplay         *display;
+    Display            *xdisplay;
+    GdkWindow          *root_window;
+    XRRScreenResources *resources;
+    gchar               property[512];
+    gint                l, m, n, num_outputs, output_rot;
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    gint                is_primary;
+#endif
+    gchar              *output_name, *output_res;
+    gdouble             output_rate;
+    XRROutputInfo      *output_info;
+    XRRCrtcInfo        *crtc_info;
+    XRRModeInfo        *mode_info;
+    gdouble             rate;
+    RRMode              mode;
+    Rotation            rot;
+
+    /* flush x and trap errors */
+    gdk_flush ();
+    gdk_error_trap_push ();
+
+    /* get the default display */
+    display = gdk_display_get_default ();
+    xdisplay = gdk_x11_display_get_xdisplay (display);
+    root_window = gdk_get_default_root_window ();
+
+    /* get the screen resource */
+    resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
+
+    /* get the number of outputs */
+    g_snprintf (property, sizeof (property), "/%s/NumOutputs", scheme);
+    num_outputs = xfconf_channel_get_int (helper->channel, property, 0);
+
+    for (n = 0; n < num_outputs; ++n)
+    {
+        /* get the output name */
+        g_snprintf (property, sizeof (property), "/%s/Output%d", scheme, n);
+        output_name = xfconf_channel_get_string (helper->channel, property, NULL);
+
+        if (output_name == NULL)
+            continue;
+
+        g_snprintf (property, sizeof (property), "/%s/Output%d/Resolution", scheme, n);
+        output_res = xfconf_channel_get_string (helper->channel, property, NULL);
+
+        g_snprintf (property, sizeof (property), "/%s/Output%d/RefreshRate", scheme, n);
+        output_rate = xfconf_channel_get_double (helper->channel, property, 0.0);
+
+        g_snprintf (property, sizeof (property), "/%s/Output%d/Rotation", scheme, n);
+        output_rot = xfconf_channel_get_int (helper->channel, property, 0);
+        /* convert to a Rotation */
+        switch (output_rot)
+        {
+            case 90:
+                rot = RR_Rotate_90;
+                break;
+            case 180:
+                rot = RR_Rotate_180;
+                break;
+            case 270:
+                rot = RR_Rotate_270;
+                break;
+            default:
+                rot = RR_Rotate_0;
+                break;
+        }
+
+#ifdef HAS_RANDR_ONE_POINT_THREE
+        g_snprintf (property, sizeof (property), "/%s/Output%d/Primary", scheme, n);
+        is_primary = xfconf_channel_get_bool (helper->channel, property, FALSE);
+#endif
+
+        /* walk the existing outputs */
+        for (m = 0; m < resources->noutput; ++m)
+        {
+            output_info = XRRGetOutputInfo (xdisplay, resources, resources->outputs[m]);
+
+            if (g_strcmp0 (output_info->name, output_name) != 0)
+            {
+                XRRFreeOutputInfo (output_info);
+                continue;
+            }
+
+            /* walk all supported modes */
+            mode = None;
+            for (l = 0; l < output_info->nmode; ++l)
+            {
+                /* get the mode info */
+                mode_info = &resources->modes[m];
+
+                /* calculate the refresh rate */
+                rate = (gfloat) mode_info->dotClock / ((gfloat) mode_info->hTotal * (gfloat) mode_info->vTotal);
+
+                /* find the mode corresponding to the saved values */
+                if (((int) rate == (int) output_rate)
+                    && (g_strcmp0 (mode_info->name, output_res) == 0))
+                {
+                    mode = mode_info->id;
+                    break;
+                }
+            }
+
+            /* unsupported mode, abort for this output */
+            if (mode == None && output_res != NULL)
+            {
+                XRRFreeOutputInfo (output_info);
+                break;
+            }
+
+            if (output_info->crtc != None)
+            {
+                crtc_info = XRRGetCrtcInfo (xdisplay, resources, output_info->crtc);
+
+                /* unsupported rotation, abort for this output */
+                if ((crtc_info->rotations & rot) == 0)
+                {
+                    XRRFreeCrtcInfo (crtc_info);
+                    XRRFreeOutputInfo (output_info);
+                    break;
+                }
+
+                /* check if we really need to do something */
+                if (crtc_info->mode != mode || crtc_info->rotation != rot)
+                {
+                    if (XRRSetCrtcConfig (xdisplay, resources, output_info->crtc,
+                                          crtc_info->timestamp, crtc_info->x, crtc_info->y,
+                                          mode, rot, crtc_info->outputs, crtc_info->noutput) != Success)
+                        g_warning ("Failed to configure %s.", output_info->name);
+                }
+
+                XRRFreeCrtcInfo (crtc_info);
+            }
+            else
+                g_warning ("No CRTC found for %s.", output_info->name);
+
+            XRRFreeOutputInfo (output_info);
+
+#ifdef HAS_RANDR_ONE_POINT_THREE
+            if (helper->has_1_3 && is_primary)
+                XRRSetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window), resources->outputs[m]);
+#endif
+            /* done with this output, go to the next one */
+            break;
+        }
+
+        g_free (output_res);
+        g_free (output_name);
+    }
+
+    /* free the screen resources */
+    XRRFreeScreenResources (resources);
+
+    /* flush and remove the x error trap */
+    gdk_flush ();
+    gdk_error_trap_pop ();
 }
 #endif
 
@@ -313,7 +485,7 @@ xfce_displays_helper_channel_property_changed (XfconfChannel      *channel,
                     goto unknow_scheme_layout;
                 
                 /* apply the layout */
-                xfce_displays_helper_channel_apply (helper, g_value_get_string (value), layout);
+                xfce_displays_helper_channel_apply (helper, g_value_get_string (value));
             }
             
             unknow_scheme_layout:
