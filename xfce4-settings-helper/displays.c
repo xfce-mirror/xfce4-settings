@@ -203,8 +203,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
 
     /* get the range of screen sizes */
-    if (XRRGetScreenSizeRange (xdisplay, GDK_WINDOW_XID (root_window), &min_width,
-                               &min_height, &max_width, &max_height) != Success)
+    if (!XRRGetScreenSizeRange (xdisplay, GDK_WINDOW_XID (root_window),
+                                &min_width, &min_height, &max_width, &max_height))
     {
         g_warning ("Unable to get the range of screen sizes, aborting.");
         XRRFreeScreenResources (resources);
