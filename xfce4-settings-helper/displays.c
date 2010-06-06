@@ -363,7 +363,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
                     if (XRRSetCrtcConfig (xdisplay, resources, output_info->crtc,
                                           crtc_info->timestamp, crtc_info->x, crtc_info->y,
-                                          mode, rot, outputs, noutput) != Success)
+                                          mode, rot, outputs, noutput) != RRSetConfigSuccess)
                         g_warning ("Failed to configure %s.", output_info->name);
 
                     if (mode == None)
