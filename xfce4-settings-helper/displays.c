@@ -528,7 +528,7 @@ xfce_displays_helper_channel_property_changed (XfconfChannel      *channel,
     XfceDisplayLayout  layout;
 #endif
 
-    if (G_UNLIKELY (value && strcmp (property_name, "/Schemes/Apply") == 0))
+    if (G_UNLIKELY (G_VALUE_HOLDS_STRING(value) && strcmp (property_name, "/Schemes/Apply") == 0))
     {
         /* get the layout of the scheme */
         property = g_strdup_printf ("/%s/Layout", g_value_get_string (value));
