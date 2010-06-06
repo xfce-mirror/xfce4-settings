@@ -353,12 +353,6 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                         /* get the sizes of the mode to enforce */
                         width += resources->modes[j].width;
                         height += resources->modes[j].height;
-
-                        /* set the screen size before applying the resolution, only if it's valid */
-                        if (width >= min_width && width <= max_width
-                            && height >= min_height && height <= max_height)
-                            XRRSetScreenSize (xdisplay, GDK_WINDOW_XID (root_window),
-                                              width, height, mm_width, mm_height);
                     }
 
                     if (XRRSetCrtcConfig (xdisplay, resources, output_info->crtc,
@@ -388,6 +382,12 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         g_free (output_res);
         g_free (output_name);
     }
+
+    /* everything has been applied, set the screen size */
+    if (width >= min_width && width <= max_width
+        && height >= min_height && height <= max_height)
+        XRRSetScreenSize (xdisplay, GDK_WINDOW_XID (root_window),
+                          width, height, mm_width, mm_height);
 
     /* free the screen resources */
     XRRFreeScreenResources (resources);
