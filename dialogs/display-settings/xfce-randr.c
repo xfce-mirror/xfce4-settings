@@ -43,6 +43,7 @@ xfce_randr_new (GdkDisplay  *display,
     Display                *xdisplay;
     GdkWindow              *root_window;
     XRRScreenConfiguration *screen_config;
+    RRCrtc                  crtc;
     XRRCrtcInfo            *crtc_info;
     gint                    n;
     gint                    major, minor;
@@ -118,38 +119,49 @@ xfce_randr_new (GdkDisplay  *display,
             return NULL;
         }
 
-        /* load defaults */
-        randr->preferred_mode[n] = randr->output_info[n]->modes[randr->output_info[n]->npreferred];
-
-        if (randr->output_info[n]->crtc != None)
-        {
-            crtc_info = XRRGetCrtcInfo (xdisplay, randr->resources, randr->output_info[n]->crtc);
-            randr->mode[n] = crtc_info->mode;
-            randr->rotation[n] = crtc_info->rotation;
-            randr->rotations[n] = crtc_info->rotations;
-            XRRFreeCrtcInfo (crtc_info);
-        }
-        else
-        {
-            randr->mode[n] = None;
-            screen_config = XRRGetScreenInfo (xdisplay, GDK_WINDOW_XID (root_window));
-            randr->rotations[n] = XRRConfigRotations (screen_config, &randr->rotation[n]);
-            XRRFreeScreenConfigInfo (screen_config);
-        }
-
+        /* do not query disconnected outputs */
         if (randr->output_info[n]->connection == RR_Connected)
         {
+            /* load defaults */
+            randr->preferred_mode[n] = randr->output_info[n]->modes[randr->output_info[n]->npreferred];
+
 #ifdef HAS_RANDR_ONE_POINT_THREE
+            /* find the primary screen if supported */
             if (randr->has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->resources->outputs[n])
-            {
                 randr->status[n] = XFCE_OUTPUT_STATUS_PRIMARY;
+            else
+#endif
+                randr->status[n] = XFCE_OUTPUT_STATUS_SECONDARY;
+
+            crtc = None;
+            if (randr->output_info[n]->crtc != None)
+            {
+                /* connected to an active CRTC, take it */
+                crtc = randr->output_info[n]->crtc;
+            }
+            else if (randr->output_info[n]->ncrtc > 0)
+            {
+                /* otherwise, take a possible CRTC instead */
+                crtc = randr->output_info[n]->crtcs[0];
+            }
+
+            if (crtc != None)
+            {
+                crtc_info = XRRGetCrtcInfo (xdisplay, randr->resources, crtc);
+                randr->mode[n] = crtc_info->mode;
+                randr->rotation[n] = crtc_info->rotation;
+                randr->rotations[n] = crtc_info->rotations;
+                XRRFreeCrtcInfo (crtc_info);
                 continue;
             }
-#endif
-            randr->status[n] = XFCE_OUTPUT_STATUS_SECONDARY;
         }
-    }
 
+        /* at this point, the output is obviously disabled and disconnected, so take the global config */
+        randr->mode[n] = None;
+        screen_config = XRRGetScreenInfo (xdisplay, GDK_WINDOW_XID (root_window));
+        randr->rotations[n] = XRRConfigRotations (screen_config, &randr->rotation[n]);
+        XRRFreeScreenConfigInfo (screen_config);
+    }
     return randr;
 }
 
