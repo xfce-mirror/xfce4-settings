@@ -357,8 +357,16 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                     mm_height += output_info->mm_height;
 
                     /* get the sizes of the mode to enforce */
-                    width += resources->modes[j].width;
-                    height += resources->modes[j].height;
+                    if (rot == RR_Rotate_0 || rot == RR_Rotate_180)
+                    {
+                        width += resources->modes[j].width;
+                        height += resources->modes[j].height;
+                    }
+                    else
+                    {
+                        height += resources->modes[j].width;
+                        width += resources->modes[j].height;
+                    }
 
                     if (XRRSetCrtcConfig (xdisplay, resources, output_info->crtc,
                                           crtc_info->timestamp, crtc_info->x, crtc_info->y,
