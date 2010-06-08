@@ -165,6 +165,24 @@ xfce_displays_helper_finalize (GObject *object)
 
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
+static Status
+xfce_displays_helper_disable_crtc (Display            *xdisplay,
+                                   XRRScreenResources *resources,
+                                   RRCrtc              crtc)
+{
+    g_return_val_if_fail (xdisplay != NULL, RRSetConfigSuccess);
+    g_return_val_if_fail (resources != NULL, RRSetConfigSuccess);
+
+    /* already disabled */
+    if (crtc == None)
+        return RRSetConfigSuccess;
+
+    return XRRSetCrtcConfig (xdisplay, resources, crtc, CurrentTime,
+                             0, 0, None, RR_Rotate_0, NULL, 0);
+}
+
+
+
 static void
 xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                                     const gchar        *scheme)
@@ -176,7 +194,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gchar               property[512];
     gint                min_width, min_height, max_width, max_height;
     gint                mm_width, mm_height, width, height;
-    gint                j, l, m, n, num_outputs, output_rot, noutput;
+    gint                j, l, m, n, num_outputs, output_rot;
 #ifdef HAS_RANDR_ONE_POINT_THREE
     gint                is_primary;
 #endif
@@ -188,7 +206,6 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gdouble             rate;
     RRMode              mode;
     Rotation            rot;
-    RROutput           *outputs;
 
     /* flush x and trap errors */
     gdk_flush ();
@@ -271,6 +288,17 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 continue;
             }
 
+            /* outputs that have to be disabled are stored without resolution */
+            if (output_res == NULL)
+            {
+                if (xfce_displays_helper_disable_crtc (xdisplay, resources,
+                                                       output_info->crtc) != RRSetConfigSuccess)
+                    g_warning ("Failed to disable CRTC for output %s.", output_info->name);
+
+                XRRFreeOutputInfo (output_info);
+                break;
+            }
+
             /* walk supported modes */
             mode = None;
             for (l = 0; l < output_info->nmode; ++l)
@@ -303,7 +331,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             }
 
             /* unsupported mode, abort for this output */
-            if (mode == None && output_res != NULL)
+            if (mode == None)
             {
                 XRRFreeOutputInfo (output_info);
                 break;
@@ -324,45 +352,18 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 /* check if we really need to do something */
                 if (crtc_info->mode != mode || crtc_info->rotation != rot)
                 {
-                    /* resolution was NULL, so the user wants to disable this output */
-                    if (mode == None)
-                    {
-                        outputs = g_new0 (RROutput, crtc_info->noutput - 1);
-                        noutput = 0;
-                        /* to disable the output, remove it from the list of outputs connected to this crtc */
-                        for (l = 0; l < crtc_info->noutput; ++l)
-                        {
-                            if (crtc_info->outputs[l] == resources->outputs[m])
-                                continue;
+                    /* get the "physical sizes" of the output */
+                    mm_width += output_info->mm_width;
+                    mm_height += output_info->mm_height;
 
-                            outputs[noutput++] = crtc_info->outputs[l];
-                        }
-                    }
-                    else
-                    {
-                        noutput = crtc_info->noutput;
-                        outputs = crtc_info->outputs;
-                    }
-
-                    /* do not change the screen size if the output is going to be disabled */
-                    if (mode != None)
-                    {
-                        /* get the "physical sizes" of the output */
-                        mm_width += output_info->mm_width;
-                        mm_height += output_info->mm_height;
-
-                        /* get the sizes of the mode to enforce */
-                        width += resources->modes[j].width;
-                        height += resources->modes[j].height;
-                    }
+                    /* get the sizes of the mode to enforce */
+                    width += resources->modes[j].width;
+                    height += resources->modes[j].height;
 
                     if (XRRSetCrtcConfig (xdisplay, resources, output_info->crtc,
                                           crtc_info->timestamp, crtc_info->x, crtc_info->y,
-                                          mode, rot, outputs, noutput) != RRSetConfigSuccess)
+                                          mode, rot, crtc_info->outputs, crtc_info->noutput) != RRSetConfigSuccess)
                         g_warning ("Failed to configure %s.", output_info->name);
-
-                    if (mode == None)
-                        g_free (outputs);
                 }
 
                 XRRFreeCrtcInfo (crtc_info);
