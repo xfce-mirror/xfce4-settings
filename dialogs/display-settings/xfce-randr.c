@@ -88,6 +88,7 @@ xfce_randr_new (GdkDisplay  *display,
 
     /* allocate space for the settings */
     randr->mode = g_new0 (RRMode, randr->resources->noutput);
+    randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
     randr->rotation = g_new0 (Rotation, randr->resources->noutput);
     randr->rotations = g_new0 (Rotation, randr->resources->noutput);
     randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
@@ -118,6 +119,8 @@ xfce_randr_new (GdkDisplay  *display,
         }
 
         /* load defaults */
+        randr->preferred_mode[n] = randr->output_info[n]->modes[randr->output_info[n]->npreferred];
+
         if (randr->output_info[n]->crtc != None)
         {
             crtc_info = XRRGetCrtcInfo (xdisplay, randr->resources, randr->output_info[n]->crtc);
@@ -167,6 +170,7 @@ xfce_randr_free (XfceRandr *randr)
 
     /* free the settings */
     g_free (randr->mode);
+    g_free (randr->preferred_mode);
     g_free (randr->rotation);
     g_free (randr->rotations);
     g_free (randr->status);
