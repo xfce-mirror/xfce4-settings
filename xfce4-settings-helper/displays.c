@@ -264,7 +264,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         {
             output_info = XRRGetOutputInfo (xdisplay, resources, resources->outputs[m]);
 
-            if (g_strcmp0 (output_info->name, output_name) != 0)
+            if (output_info->connection != RR_Connected
+                || g_strcmp0 (output_info->name, output_name) != 0)
             {
                 XRRFreeOutputInfo (output_info);
                 continue;
