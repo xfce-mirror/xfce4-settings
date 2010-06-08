@@ -194,7 +194,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gchar               property[512];
     gint                min_width, min_height, max_width, max_height;
     gint                mm_width, mm_height, width, height;
-    gint                j, l, m, n, num_outputs, output_rot;
+    gint                j, l, m, n, num_outputs, output_rot, noutput;
 #ifdef HAS_RANDR_ONE_POINT_THREE
     gint                is_primary;
 #endif
@@ -205,7 +205,9 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     XRRModeInfo        *mode_info;
     gdouble             rate;
     RRMode              mode;
+    RRCrtc              crtc;
     Rotation            rot;
+    RROutput           *outputs;
 
     /* flush x and trap errors */
     gdk_flush ();
@@ -337,9 +339,23 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 break;
             }
 
+            crtc = None;
             if (output_info->crtc != None)
             {
-                crtc_info = XRRGetCrtcInfo (xdisplay, resources, output_info->crtc);
+                /* Good, output already enabled */
+                crtc = output_info->crtc;
+            }
+            else if (output_info->ncrtc > 0)
+            {
+                /* output previously disabled, and the user wants to reenable it */
+                crtc = output_info->crtcs[0];
+            }
+            else
+                g_warning ("No CRTC found for %s.", output_info->name);
+
+            if (crtc != None)
+            {
+                crtc_info = XRRGetCrtcInfo (xdisplay, resources, crtc);
 
                 /* unsupported rotation, abort for this output */
                 if ((crtc_info->rotations & rot) == 0)
@@ -347,6 +363,19 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                     XRRFreeCrtcInfo (crtc_info);
                     XRRFreeOutputInfo (output_info);
                     break;
+                }
+
+                if (output_info->crtc != None)
+                {
+                    /* already connected and enabled */
+                    noutput = crtc_info->noutput;
+                    outputs = crtc_info->outputs;
+                }
+                else
+                {
+                    /* currently disabled, so take the current output */
+                    noutput = 1;
+                    outputs = &resources->outputs[m];
                 }
 
                 /* check if we really need to do something */
@@ -368,16 +397,14 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                         width += resources->modes[j].height;
                     }
 
-                    if (XRRSetCrtcConfig (xdisplay, resources, output_info->crtc,
+                    if (XRRSetCrtcConfig (xdisplay, resources, crtc,
                                           crtc_info->timestamp, crtc_info->x, crtc_info->y,
-                                          mode, rot, crtc_info->outputs, crtc_info->noutput) != RRSetConfigSuccess)
+                                          mode, rot, outputs, noutput) != RRSetConfigSuccess)
                         g_warning ("Failed to configure %s.", output_info->name);
                 }
 
                 XRRFreeCrtcInfo (crtc_info);
             }
-            else
-                g_warning ("No CRTC found for %s.", output_info->name);
 
             XRRFreeOutputInfo (output_info);
 
