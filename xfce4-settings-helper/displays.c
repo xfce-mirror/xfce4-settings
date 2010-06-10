@@ -165,6 +165,60 @@ xfce_displays_helper_finalize (GObject *object)
 
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
+static RRCrtc
+xfce_displays_helper_find_crtc (Display            *xdisplay,
+                                XRRScreenResources *resources,
+                                XRROutputInfo      *current_output)
+{
+    XRROutputInfo *output_info;
+    gint           m, n, candidate;
+
+    g_return_val_if_fail (current_output != NULL, None);
+
+    /* if there is one already active, return it */
+    if (current_output->crtc != None)
+        return current_output->crtc;
+
+    g_return_val_if_fail (resources != NULL, None);
+
+    /* try to find one that is not already used by another output */
+    for (n = 0; n < current_output->ncrtc; ++n)
+    {
+        candidate = TRUE;
+        for (m = 0; m < resources->noutput; ++m)
+        {
+            output_info = XRRGetOutputInfo (xdisplay, resources, resources->outputs[m]);
+
+            /* go to the next output directly */
+            if (output_info->connection != RR_Connected
+                || g_strcmp0 (output_info->name, current_output->name) == 0)
+            {
+                XRRFreeOutputInfo (output_info);
+                continue;
+            }
+
+            /* crtc already used */
+            if (output_info->crtc == current_output->crtcs[n])
+            {
+                candidate = FALSE;
+                XRRFreeOutputInfo (output_info);
+                break;
+            }
+
+            XRRFreeOutputInfo (output_info);
+        }
+
+        if (candidate)
+            return current_output->crtcs[n];
+    }
+
+    /* none available */
+    g_warning ("No CRTC found for %s.", current_output->name);
+    return None;
+}
+
+
+
 static Status
 xfce_displays_helper_disable_crtc (Display            *xdisplay,
                                    XRRScreenResources *resources,
@@ -339,19 +393,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 break;
             }
 
-            crtc = None;
-            if (output_info->crtc != None)
-            {
-                /* Good, output already enabled */
-                crtc = output_info->crtc;
-            }
-            else if (output_info->ncrtc > 0)
-            {
-                /* output previously disabled, and the user wants to reenable it */
-                crtc = output_info->crtcs[0];
-            }
-            else
-                g_warning ("No CRTC found for %s.", output_info->name);
+            crtc = xfce_displays_helper_find_crtc (xdisplay, resources, output_info);
 
             if (crtc != None)
             {
