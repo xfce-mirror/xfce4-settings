@@ -167,7 +167,6 @@ xfce_displays_helper_finalize (GObject *object)
 #ifdef HAS_RANDR_ONE_POINT_TWO
 static void
 xfce_displays_helper_process_screen_size (Display   *xdisplay,
-                                          GdkWindow *root_window,
                                           gint       mode_width,
                                           gint       mode_height,
                                           gint       crtc_pos_x,
@@ -178,20 +177,20 @@ xfce_displays_helper_process_screen_size (Display   *xdisplay,
                                           gint      *mm_height)
 {
     gdouble dpi = 0;
+    gint    screen = gdk_x11_get_default_screen ();
 
     g_return_if_fail (xdisplay != NULL);
-    g_return_if_fail (root_window != NULL);
 
     *width = MAX (*width, crtc_pos_x + mode_width);
     *height = MAX (*height, crtc_pos_y + mode_height);
 
-    dpi = 25.4 * DisplayHeight (xdisplay, GDK_WINDOW_XID (root_window));
-    dpi /= DisplayHeightMM (xdisplay, GDK_WINDOW_XID (root_window));
+    dpi = 25.4 * DisplayHeight (xdisplay, screen);
+    dpi /= DisplayHeightMM (xdisplay, screen);
 
-    if ((int) dpi == 0)
+    if (dpi <= 0)
     {
-        *mm_width = DisplayWidthMM (xdisplay, GDK_WINDOW_XID (root_window));
-        *mm_height = DisplayHeightMM (xdisplay, GDK_WINDOW_XID (root_window));
+        *mm_width = DisplayWidthMM (xdisplay, screen);
+        *mm_height = DisplayHeightMM (xdisplay, screen);
     }
     else
     {
@@ -459,18 +458,14 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
                 /* get the sizes of the mode to enforce */
                 if (rot == RR_Rotate_90 || rot == RR_Rotate_270)
-                    xfce_displays_helper_process_screen_size (xdisplay, root_window,
-                                                              resources->modes[j].height,
-                                                              resources->modes[j].width,
-                                                              crtc_info->x, crtc_info->y,
-                                                              &width, &height, &mm_width,
+                    xfce_displays_helper_process_screen_size (xdisplay, resources->modes[j].height,
+                                                              resources->modes[j].width, crtc_info->x,
+                                                              crtc_info->y, &width, &height, &mm_width,
                                                               &mm_height);
                 else
-                    xfce_displays_helper_process_screen_size (xdisplay, root_window,
-                                                              resources->modes[j].width,
-                                                              resources->modes[j].height,
-                                                              crtc_info->x, crtc_info->y,
-                                                              &width, &height, &mm_width,
+                    xfce_displays_helper_process_screen_size (xdisplay, resources->modes[j].width,
+                                                              resources->modes[j].height, crtc_info->x,
+                                                              crtc_info->y, &width, &height, &mm_width,
                                                               &mm_height);
 
                 /* check if we really need to do something */
