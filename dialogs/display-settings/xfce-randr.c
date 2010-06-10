@@ -35,45 +35,6 @@
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
 
-static void
-xfce_randr_compute_position (XfceRandr *randr,
-                             gint      *pos_x,
-                             gint      *pos_y)
-{
-    gint m, n;
-
-    for (n = 0; n < randr->resources->noutput; ++n)
-    {
-        randr->position[n].output = -1;
-
-        if (randr->status[n] == XFCE_OUTPUT_STATUS_NONE || randr->mode[n] == None)
-            continue;
-
-        for (m = 0; m < randr->resources->noutput; ++m)
-        {
-            if (randr->status[m] == XFCE_OUTPUT_STATUS_NONE || m == n
-                || randr->mode[m] == None)
-                continue;
-
-            randr->position[n].output = m;
-            if (pos_x[n] < pos_x[m])
-                randr->position[n].option = XFCE_OUTPUT_POSITION_LEFT_OF;
-            else if (pos_x[n] > pos_x[m])
-                randr->position[n].option = XFCE_OUTPUT_POSITION_RIGHT_OF;
-            else if (pos_y[n] < pos_y[m])
-                randr->position[n].option = XFCE_OUTPUT_POSITION_ABOVE;
-            else if (pos_y[n] > pos_y[m])
-                randr->position[n].option = XFCE_OUTPUT_POSITION_BELOW;
-            else
-                randr->position[n].option = XFCE_OUTPUT_POSITION_SAME_AS;
-
-            break;
-        }
-    }
-}
-
-
-
 XfceRandr *
 xfce_randr_new (GdkDisplay  *display,
                 GError     **error)
@@ -86,7 +47,6 @@ xfce_randr_new (GdkDisplay  *display,
     XRRCrtcInfo            *crtc_info;
     gint                    n;
     gint                    major, minor;
-    gint                   *pos_x, *pos_y;
 
     g_return_val_if_fail (GDK_IS_DISPLAY (display), NULL);
     g_return_val_if_fail (error == NULL || *error == NULL, NULL);
@@ -135,10 +95,6 @@ xfce_randr_new (GdkDisplay  *display,
     randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
     randr->status = g_new0 (XfceOutputStatus, randr->resources->noutput);
     randr->output_info = g_new0 (XRROutputInfo *, randr->resources->noutput);
-
-    /* keep track of the positions */
-    pos_x = g_new0 (gint, randr->resources->noutput);
-    pos_y = g_new0 (gint, randr->resources->noutput);
 
     /* walk the outputs */
     for (n = 0; n < randr->resources->noutput; n++)
@@ -196,8 +152,8 @@ xfce_randr_new (GdkDisplay  *display,
                 randr->rotation[n] = crtc_info->rotation;
                 randr->rotations[n] = crtc_info->rotations;
                 XRRFreeCrtcInfo (crtc_info);
-                pos_x[n] = crtc_info->x;
-                pos_y[n] = crtc_info->y;
+                randr->position[n].x = crtc_info->x;
+                randr->position[n].y = crtc_info->y;
                 continue;
             }
         }
@@ -208,9 +164,6 @@ xfce_randr_new (GdkDisplay  *display,
         randr->rotations[n] = XRRConfigRotations (screen_config, &randr->rotation[n]);
         XRRFreeScreenConfigInfo (screen_config);
     }
-
-    /* compute the relative positions of outputs */
-    xfce_randr_compute_position (randr, pos_x, pos_y);
 
     return randr;
 }
@@ -288,7 +241,6 @@ xfce_randr_save_device (XfceRandr     *randr,
     const gchar *resolution_name = NULL;
     gdouble      refresh_rate = 0.00;
     XRRModeInfo *mode;
-    const gchar *position_option;
     gint         n;
     gint         degrees;
 
@@ -358,21 +310,13 @@ xfce_randr_save_device (XfceRandr     *randr,
     xfconf_channel_reset_property (channel, property, TRUE);
     /* then save the new one */
     if (G_LIKELY (resolution_name != NULL)
-        && randr->position[output].output >= 0
-        && randr->position[output].output < randr->resources->noutput)
+        && randr->position[output].x >= 0
+        && randr->position[output].y >= 0)
     {
-        /* convert the position into a string */
-        switch (randr->position[output].option)
-        {
-            case XFCE_OUTPUT_POSITION_LEFT_OF:  position_option = "LeftOf";  break;
-            case XFCE_OUTPUT_POSITION_RIGHT_OF: position_option = "RightOf"; break;
-            case XFCE_OUTPUT_POSITION_ABOVE:    position_option = "Above";   break;
-            case XFCE_OUTPUT_POSITION_BELOW:    position_option = "Below";   break;
-            default:                            position_option = "SameAs";  break;
-        }
-        g_snprintf (property, sizeof (property), "/%s/%s/Position/%s", scheme, distinct, position_option);
-        /* save the position */
-        xfconf_channel_set_string (channel, property, randr->output_info[randr->position[output].output]->name);
+        g_snprintf (property, sizeof (property), "/%s/%s/Position/X", scheme, distinct);
+        xfconf_channel_set_int (channel, property, randr->position[output].x);
+        g_snprintf (property, sizeof (property), "/%s/%s/Position/Y", scheme, distinct);
+        xfconf_channel_set_int (channel, property, randr->position[output].y);
     }
 }
 

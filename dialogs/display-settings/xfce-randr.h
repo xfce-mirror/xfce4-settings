@@ -29,8 +29,8 @@
 #define XFCE_RANDR_ROTATION(randr)        (randr->rotation[randr->active_output])
 #define XFCE_RANDR_ROTATIONS(randr)       (randr->rotations[randr->active_output])
 #define XFCE_RANDR_OUTPUT_INFO(randr)     (randr->output_info[randr->active_output])
-#define XFCE_RANDR_POSITION_OPTION(randr) (randr->position[randr->active_output].option)
-#define XFCE_RANDR_POSITION_OUTPUT(randr) (randr->position[randr->active_output].output)
+#define XFCE_RANDR_POS_X(randr)           (randr->position[randr->active_output].x)
+#define XFCE_RANDR_POS_Y(randr)           (randr->position[randr->active_output].y)
 
 /* check for randr 1.2 or better */
 #if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 2)
@@ -48,7 +48,6 @@
 typedef struct _XfceRandr                XfceRandr;
 typedef struct _XfceOutputPosition       XfceOutputPosition;
 typedef enum   _XfceDisplayLayout        XfceDisplayLayout;
-typedef enum   _XfceOutputPositionOption XfceOutputPositionOption;
 typedef enum   _XfceOutputStatus         XfceOutputStatus;
 
 enum _XfceDisplayLayout
@@ -56,15 +55,6 @@ enum _XfceDisplayLayout
     XFCE_DISPLAY_LAYOUT_SINGLE,
     XFCE_DISPLAY_LAYOUT_CLONE,
     XFCE_DISPLAY_LAYOUT_EXTEND
-};
-
-enum _XfceOutputPositionOption
-{
-    XFCE_OUTPUT_POSITION_LEFT_OF,
-    XFCE_OUTPUT_POSITION_RIGHT_OF,
-    XFCE_OUTPUT_POSITION_ABOVE,
-    XFCE_OUTPUT_POSITION_BELOW,
-    XFCE_OUTPUT_POSITION_SAME_AS
 };
 
 enum _XfceOutputStatus
@@ -76,11 +66,8 @@ enum _XfceOutputStatus
 
 struct _XfceOutputPosition
 {
-    /* option... */
-    XfceOutputPositionOption option;
-
-    /* ... relative to the position of */
-    gint                     output;
+    gint x;
+    gint y;
 };
 
 struct _XfceRandr
