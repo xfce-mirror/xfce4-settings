@@ -165,6 +165,43 @@ xfce_displays_helper_finalize (GObject *object)
 
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
+static void
+xfce_displays_helper_process_screen_size (Display   *xdisplay,
+                                          GdkWindow *root_window,
+                                          gint       mode_width,
+                                          gint       mode_height,
+                                          gint       crtc_pos_x,
+                                          gint       crtc_pos_y,
+                                          gint      *width,
+                                          gint      *height,
+                                          gint      *mm_width,
+                                          gint      *mm_height)
+{
+    gdouble dpi = 0;
+
+    g_return_if_fail (xdisplay != NULL);
+    g_return_if_fail (root_window != NULL);
+
+    *width = MAX (*width, crtc_pos_x + mode_width);
+    *height = MAX (*height, crtc_pos_y + mode_height);
+
+    dpi = 25.4 * DisplayHeight (xdisplay, GDK_WINDOW_XID (root_window));
+    dpi /= DisplayHeightMM (xdisplay, GDK_WINDOW_XID (root_window));
+
+    if ((int) dpi == 0)
+    {
+        *mm_width = DisplayWidthMM (xdisplay, GDK_WINDOW_XID (root_window));
+        *mm_height = DisplayHeightMM (xdisplay, GDK_WINDOW_XID (root_window));
+    }
+    else
+    {
+        *mm_width = 25.4 * (*width) / dpi;
+        *mm_height = 25.4 * (*height) / dpi;
+    }
+}
+
+
+
 static RRCrtc
 xfce_displays_helper_find_crtc (Display            *xdisplay,
                                 XRRScreenResources *resources,
@@ -420,25 +457,25 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                     outputs = &resources->outputs[m];
                 }
 
+                /* get the sizes of the mode to enforce */
+                if (rot == RR_Rotate_90 || rot == RR_Rotate_270)
+                    xfce_displays_helper_process_screen_size (xdisplay, root_window,
+                                                              resources->modes[j].height,
+                                                              resources->modes[j].width,
+                                                              crtc_info->x, crtc_info->y,
+                                                              &width, &height, &mm_width,
+                                                              &mm_height);
+                else
+                    xfce_displays_helper_process_screen_size (xdisplay, root_window,
+                                                              resources->modes[j].width,
+                                                              resources->modes[j].height,
+                                                              crtc_info->x, crtc_info->y,
+                                                              &width, &height, &mm_width,
+                                                              &mm_height);
+
                 /* check if we really need to do something */
                 if (crtc_info->mode != mode || crtc_info->rotation != rot)
                 {
-                    /* get the "physical sizes" of the output */
-                    mm_width += output_info->mm_width;
-                    mm_height += output_info->mm_height;
-
-                    /* get the sizes of the mode to enforce */
-                    if (rot == RR_Rotate_0 || rot == RR_Rotate_180)
-                    {
-                        width += resources->modes[j].width;
-                        height += resources->modes[j].height;
-                    }
-                    else
-                    {
-                        height += resources->modes[j].width;
-                        width += resources->modes[j].height;
-                    }
-
                     if (XRRSetCrtcConfig (xdisplay, resources, crtc,
                                           crtc_info->timestamp, crtc_info->x, crtc_info->y,
                                           mode, rot, outputs, noutput) != RRSetConfigSuccess)
