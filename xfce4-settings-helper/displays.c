@@ -290,6 +290,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 #ifdef HAS_RANDR_ONE_POINT_THREE
     gint                is_primary;
 #endif
+    gint                pos_x, pos_y;
     gchar              *output_name, *output_res;
     gdouble             output_rate;
     XRROutputInfo      *output_info;
@@ -369,6 +370,12 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         g_snprintf (property, sizeof (property), "/%s/Output%d/Primary", scheme, n);
         is_primary = xfconf_channel_get_bool (helper->channel, property, FALSE);
 #endif
+
+        g_snprintf (property, sizeof (property), "/%s/Output%d/Position/X", scheme, n);
+        pos_x = xfconf_channel_get_int (helper->channel, property, 0);
+
+        g_snprintf (property, sizeof (property), "/%s/Output%d/Position/Y", scheme, n);
+        pos_y = xfconf_channel_get_int (helper->channel, property, 0);
 
         /* walk the existing outputs */
         for (m = 0; m < resources->noutput; ++m)
@@ -461,21 +468,18 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 /* get the sizes of the mode to enforce */
                 if (rot == RR_Rotate_90 || rot == RR_Rotate_270)
                     xfce_displays_helper_process_screen_size (xdisplay, resources->modes[j].height,
-                                                              resources->modes[j].width, crtc_info->x,
-                                                              crtc_info->y, &width, &height, &mm_width,
-                                                              &mm_height);
+                                                              resources->modes[j].width, pos_x, pos_y,
+                                                              &width, &height, &mm_width, &mm_height);
                 else
                     xfce_displays_helper_process_screen_size (xdisplay, resources->modes[j].width,
-                                                              resources->modes[j].height, crtc_info->x,
-                                                              crtc_info->y, &width, &height, &mm_width,
-                                                              &mm_height);
+                                                              resources->modes[j].height, pos_x, pos_y,
+                                                              &width, &height, &mm_width, &mm_height);
 
                 /* check if we really need to do something */
                 if (crtc_info->mode != mode || crtc_info->rotation != rot)
                 {
-                    if (XRRSetCrtcConfig (xdisplay, resources, crtc,
-                                          crtc_info->timestamp, crtc_info->x, crtc_info->y,
-                                          mode, rot, outputs, noutput) != RRSetConfigSuccess)
+                    if (XRRSetCrtcConfig (xdisplay, resources, crtc, crtc_info->timestamp,
+                                          pos_x, pos_y, mode, rot, outputs, noutput) != RRSetConfigSuccess)
                         g_warning ("Failed to configure %s.", output_info->name);
                 }
 
