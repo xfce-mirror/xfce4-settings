@@ -151,9 +151,9 @@ xfce_randr_new (GdkDisplay  *display,
                 randr->mode[n] = crtc_info->mode;
                 randr->rotation[n] = crtc_info->rotation;
                 randr->rotations[n] = crtc_info->rotations;
-                XRRFreeCrtcInfo (crtc_info);
                 randr->position[n].x = crtc_info->x;
                 randr->position[n].y = crtc_info->y;
+                XRRFreeCrtcInfo (crtc_info);
                 continue;
             }
         }
