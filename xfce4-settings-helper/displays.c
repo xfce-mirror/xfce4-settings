@@ -480,7 +480,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                                                               &width, &height, &mm_width, &mm_height);
 
                 /* check if we really need to do something */
-                if (crtc_info->mode != mode || crtc_info->rotation != rot)
+                if (crtc_info->mode != mode || crtc_info->rotation != rot
+                    || crtc_info->x != pos_x || crtc_info->y != pos_y)
                 {
                     if (XRRSetCrtcConfig (xdisplay, resources, crtc, crtc_info->timestamp,
                                           pos_x, pos_y, mode, rot, outputs, noutput) != RRSetConfigSuccess)
@@ -505,8 +506,14 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     }
 
     /* everything has been applied, set the screen size */
+    n = gdk_x11_get_default_screen ();
+    /* call it only if it's really needed and valid */
     if (width >= min_width && width <= max_width
-        && height >= min_height && height <= max_height)
+        && height >= min_height && height <= max_height
+        && (width != DisplayWidth (xdisplay, n)
+            || height != DisplayHeight (xdisplay, n)
+            || mm_width != DisplayWidthMM (xdisplay, n)
+            || mm_height != DisplayHeightMM (xdisplay, n)))
         XRRSetScreenSize (xdisplay, GDK_WINDOW_XID (root_window),
                           width, height, mm_width, mm_height);
 
