@@ -75,6 +75,19 @@ static const XfceRotation rotation_names[] =
 
 
 
+#ifdef HAS_RANDR_ONE_POINT_TWO
+/* xrandr reflection name conversion */
+static const XfceRotation reflection_names[] =
+{
+    { 0,                         N_("None") },
+    { RR_Reflect_X,              N_("Horizontal") },
+    { RR_Reflect_Y,              N_("Vertical") },
+    { RR_Reflect_X|RR_Reflect_Y, N_("Both") }
+};
+#endif
+
+
+
 /* option entries */
 static gboolean opt_version = FALSE;
 static GOptionEntry option_entries[] =
@@ -114,6 +127,72 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
 
 
 
+#ifdef HAS_RANDR_ONE_POINT_TWO
+static void
+display_setting_reflections_changed (GtkComboBox *combobox,
+                                     GtkBuilder  *builder)
+{
+    gint value;
+
+    if (!display_setting_combo_box_get_value (combobox, &value))
+        return;
+
+    if (xfce_randr)
+    {
+        /* remove existing reflection */
+        XFCE_RANDR_ROTATION (xfce_randr) &= ~XFCE_RANDR_REFLECTIONS_MASK;
+        /* set the new one */
+        XFCE_RANDR_ROTATION (xfce_randr) |= value;
+    }
+}
+
+
+static void
+display_setting_reflections_populate (GtkBuilder *builder)
+{
+    GtkTreeModel *model;
+    GObject      *combobox;
+    Rotation      reflections;
+    Rotation      active_reflection;
+    guint         n;
+    GtkTreeIter   iter;
+
+    /* get the combo box store and clear it */
+    combobox = gtk_builder_get_object (builder, "randr-reflection");
+    model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+    gtk_list_store_clear (GTK_LIST_STORE (model));
+
+    if (xfce_randr)
+    {
+        /* load only supported reflections */
+        reflections = XFCE_RANDR_ROTATIONS (xfce_randr) & XFCE_RANDR_REFLECTIONS_MASK;
+        active_reflection = XFCE_RANDR_ROTATION (xfce_randr) & XFCE_RANDR_REFLECTIONS_MASK;
+    }
+
+    /* try to insert the reflections */
+    for (n = 0; n < G_N_ELEMENTS (reflection_names); n++)
+    {
+        if ((reflections & reflection_names[n].rotation) == reflection_names[n].rotation)
+        {
+            /* insert */
+            gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+            gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                                COLUMN_COMBO_NAME, _(reflection_names[n].name),
+                                COLUMN_COMBO_VALUE, reflection_names[n].rotation, -1);
+
+            /* select active reflection */
+            if (xfce_randr && XFCE_RANDR_MODE (xfce_randr) != None)
+            {
+                if ((reflection_names[n].rotation & active_reflection) == reflection_names[n].rotation)
+                    gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
+            }
+        }
+    }
+}
+#endif
+
+
+
 static void
 display_setting_rotations_changed (GtkComboBox *combobox,
                                    GtkBuilder  *builder)
@@ -126,7 +205,10 @@ display_setting_rotations_changed (GtkComboBox *combobox,
     /* set new rotation */
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
-        XFCE_RANDR_ROTATION (xfce_randr) = value;
+    {
+        XFCE_RANDR_ROTATION (xfce_randr) &= ~XFCE_RANDR_ROTATIONS_MASK;
+        XFCE_RANDR_ROTATION (xfce_randr) |= value;
+    }
     else
 #endif
         XFCE_RANDR_LEGACY_ROTATION (xfce_randr_legacy) = value;
@@ -153,8 +235,8 @@ display_setting_rotations_populate (GtkBuilder *builder)
     if (xfce_randr)
     {
         /* load only supported rotations */
-        rotations = XFCE_RANDR_ROTATIONS (xfce_randr);
-        active_rotation = XFCE_RANDR_ROTATION (xfce_randr);
+        rotations = XFCE_RANDR_ROTATIONS (xfce_randr) & XFCE_RANDR_ROTATIONS_MASK;
+        active_rotation = XFCE_RANDR_ROTATION (xfce_randr) & XFCE_RANDR_ROTATIONS_MASK;
     }
     else
 #endif
@@ -167,7 +249,7 @@ display_setting_rotations_populate (GtkBuilder *builder)
     /* try to insert the rotations */
     for (n = 0; n < G_N_ELEMENTS (rotation_names); n++)
     {
-        if ((rotations & rotation_names[n].rotation) != 0)
+        if ((rotations & rotation_names[n].rotation) == rotation_names[n].rotation)
         {
             /* insert */
             gtk_list_store_append (GTK_LIST_STORE (model), &iter);
@@ -180,7 +262,7 @@ display_setting_rotations_populate (GtkBuilder *builder)
             if (xfce_randr && XFCE_RANDR_MODE (xfce_randr) != None)
 #endif
             {
-                if (rotation_names[n].rotation == active_rotation)
+                if ((rotation_names[n].rotation & active_rotation) == rotation_names[n].rotation)
                     gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
             }
         }
@@ -331,6 +413,7 @@ display_setting_modes_changed (GtkComboBox *combobox,
         display_setting_refresh_rates_populate (builder);
 
     display_setting_rotations_populate (builder);
+    display_setting_reflections_populate (builder);
 }
 
 
@@ -432,6 +515,7 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         /* update the combo boxes */
 #ifdef HAS_RANDR_ONE_POINT_TWO
         display_setting_modes_populate (builder);
+        display_setting_reflections_populate (builder);
 #else
         display_setting_resolutions_populate (builder);
         display_setting_refresh_rates_populate (builder);
@@ -611,6 +695,10 @@ display_settings_dialog_new (GtkBuilder *builder)
         combobox = gtk_builder_get_object (builder, "randr-mode");
         display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
         g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_modes_changed), builder);
+
+        combobox = gtk_builder_get_object (builder, "randr-reflection");
+        display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
+        g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_reflections_changed), builder);
     }
     else
 #endif

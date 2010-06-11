@@ -239,6 +239,7 @@ xfce_randr_save_device (XfceRandr     *randr,
 {
     gchar        property[512];
     const gchar *resolution_name = NULL;
+    const gchar *reflection_name = NULL;
     gdouble      refresh_rate = 0.00;
     XRRModeInfo *mode;
     gint         n;
@@ -280,7 +281,7 @@ xfce_randr_save_device (XfceRandr     *randr,
         xfconf_channel_reset_property (channel, property, FALSE);
 
     /* convert the rotation into degrees */
-    switch (randr->rotation[output])
+    switch (randr->rotation[output] & XFCE_RANDR_ROTATIONS_MASK)
     {
         case RR_Rotate_90:  degrees = 90;  break;
         case RR_Rotate_180: degrees = 180; break;
@@ -293,6 +294,23 @@ xfce_randr_save_device (XfceRandr     *randr,
     /* resolution name NULL means output disabled */
     if (G_LIKELY (resolution_name != NULL))
         xfconf_channel_set_int (channel, property, degrees);
+    else
+        xfconf_channel_reset_property (channel, property, FALSE);
+
+    /* convert the reflection into a string */
+    switch (randr->rotation[output] & XFCE_RANDR_REFLECTIONS_MASK)
+    {
+        case RR_Reflect_X:              reflection_name = "X";  break;
+        case RR_Reflect_Y:              reflection_name = "Y";  break;
+        case RR_Reflect_X|RR_Reflect_Y: reflection_name = "XY"; break;
+        default:                        reflection_name = "0";  break;
+    }
+
+    /* save the reflection string */
+    g_snprintf (property, sizeof (property), "/%s/%s/Reflection", scheme, distinct);
+    /* resolution name NULL means output disabled */
+    if (G_LIKELY (resolution_name != NULL))
+        xfconf_channel_set_string (channel, property, reflection_name);
     else
         xfconf_channel_reset_property (channel, property, FALSE);
 

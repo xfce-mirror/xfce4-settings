@@ -291,7 +291,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gint                is_primary;
 #endif
     gint                pos_x, pos_y;
-    gchar              *output_name, *output_res;
+    gchar              *output_name, *output_res, *output_ref;
     gdouble             output_rate;
     XRROutputInfo      *output_info;
     XRRCrtcInfo        *crtc_info;
@@ -352,19 +352,23 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         /* convert to a Rotation */
         switch (output_rot)
         {
-            case 90:
-                rot = RR_Rotate_90;
-                break;
-            case 180:
-                rot = RR_Rotate_180;
-                break;
-            case 270:
-                rot = RR_Rotate_270;
-                break;
-            default:
-                rot = RR_Rotate_0;
-                break;
+            case 90:  rot = RR_Rotate_90;  break;
+            case 180: rot = RR_Rotate_180; break;
+            case 270: rot = RR_Rotate_270; break;
+            default:  rot = RR_Rotate_0;   break;
         }
+
+        g_snprintf (property, sizeof (property), "/%s/Output%d/Reflection", scheme, n);
+        output_ref = xfconf_channel_get_string (helper->channel, property, "0");
+        /* convert to a Rotation */
+        if (g_strcmp0 (output_ref, "X") == 0)
+            rot |= RR_Reflect_X;
+        else if (g_strcmp0 (output_ref, "Y") == 0)
+            rot |= RR_Reflect_Y;
+        else if (g_strcmp0 (output_ref, "XY") == 0)
+            rot |= (RR_Reflect_X|RR_Reflect_Y);
+
+        g_free (output_ref);
 
 #ifdef HAS_RANDR_ONE_POINT_THREE
         g_snprintf (property, sizeof (property), "/%s/Output%d/Primary", scheme, n);
@@ -466,7 +470,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 }
 
                 /* get the sizes of the mode to enforce */
-                if (rot == RR_Rotate_90 || rot == RR_Rotate_270)
+                if ((rot & (RR_Rotate_90|RR_Rotate_270)) != 0)
                     xfce_displays_helper_process_screen_size (xdisplay, resources->modes[j].height,
                                                               resources->modes[j].width, pos_x, pos_y,
                                                               &width, &height, &mm_width, &mm_height);
