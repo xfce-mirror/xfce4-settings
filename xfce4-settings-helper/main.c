@@ -239,14 +239,14 @@ main (gint argc, gchar **argv)
     }
 
     /* create the sub daemons */
+#ifdef HAVE_XRANDR
+    displays_helper = g_object_new (XFCE_TYPE_DISPLAYS_HELPER, NULL);
+#endif
     pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
     keyboards_helper = g_object_new (XFCE_TYPE_KEYBOARDS_HELPER, NULL);
     accessibility_helper = g_object_new (XFCE_TYPE_ACCESSIBILITY_HELPER, NULL);
     shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
     keyboard_layout_helper = g_object_new (XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, NULL);
-#ifdef HAVE_XRANDR
-    displays_helper = g_object_new (XFCE_TYPE_DISPLAYS_HELPER, NULL);
-#endif
     workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
 
     clipboard_daemon = xfce_clipboard_manager_new ();
@@ -270,14 +270,14 @@ main (gint argc, gchar **argv)
         dbus_bus_release_name (dbus_connection, HELPER_DBUS_NAME, NULL);
 
     /* release the sub daemons */
+#ifdef HAVE_XRANDR
+    g_object_unref (G_OBJECT (displays_helper));
+#endif
     g_object_unref (G_OBJECT (pointer_helper));
     g_object_unref (G_OBJECT (keyboards_helper));
     g_object_unref (G_OBJECT (accessibility_helper));
     g_object_unref (G_OBJECT (shortcuts_helper));
     g_object_unref (G_OBJECT (keyboard_layout_helper));
-#ifdef HAVE_XRANDR
-    g_object_unref (G_OBJECT (displays_helper));
-#endif
     g_object_unref (G_OBJECT (workspaces_helper));
 
     if (G_LIKELY (clipboard_daemon != NULL))
