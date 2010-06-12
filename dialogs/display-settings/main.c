@@ -724,6 +724,34 @@ display_settings_dialog_new (GtkBuilder *builder)
 
 
 
+#ifdef HAS_RANDR_ONE_POINT_TWO
+static GdkFilterReturn
+screen_on_event (GdkXEvent *xevent,
+                 GdkEvent  *event,
+                 gpointer   data)
+{
+    GtkBuilder *builder = data;
+    XEvent     *e = xevent;
+    gint        event_num;
+
+    if (!e)
+        return GDK_FILTER_CONTINUE;
+
+    event_num = e->type - XFCE_RANDR_EVENT_BASE (xfce_randr);
+
+    if (event_num == RRScreenChangeNotify)
+    {
+        xfce_randr_reload (xfce_randr);
+        display_settings_treeview_populate (builder);
+    }
+
+    /* Pass the event on to GTK+ */
+    return GDK_FILTER_CONTINUE;
+}
+#endif
+
+
+
 gint
 main (gint argc, gchar **argv)
 {
@@ -857,14 +885,18 @@ main (gint argc, gchar **argv)
             dialog = display_settings_dialog_new (builder);
             g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), builder);
 
-#if 0
 #ifdef HAS_RANDR_ONE_POINT_TWO
-            if (xfce_randr == NULL)
-#endif
+            if (xfce_randr != NULL)
             {
-                /* destroy the devices box */
-                box = gtk_builder_get_object (builder, "randr-devices-tab");
-                gtk_widget_destroy (box);
+                XFCE_RANDR_EVENT_BASE (xfce_randr) = event_base;
+                /* set up notifications */
+                XRRSelectInput (gdk_x11_display_get_xdisplay (display),
+                                GDK_WINDOW_XID (gdk_get_default_root_window ()),
+                                RRScreenChangeNotifyMask);
+                gdk_x11_register_standard_event_type (display,
+                                                      event_base,
+                                                      RRNotify + 1);
+                gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
             }
 #endif
 
@@ -882,6 +914,11 @@ main (gint argc, gchar **argv)
             g_error ("Failed to load the UI file: %s.", error->message);
             g_error_free (error);
         }
+
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        if (xfce_randr != NULL)
+            gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, builder);
+#endif
 
         /* release the builder */
         g_object_unref (G_OBJECT (builder));

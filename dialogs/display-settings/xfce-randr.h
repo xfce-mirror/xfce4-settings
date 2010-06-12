@@ -24,6 +24,7 @@
 #ifndef __XFCE_RANDR_H__
 #define __XFCE_RANDR_H__
 
+#define XFCE_RANDR_EVENT_BASE(randr)      (randr->event_base)
 #define XFCE_RANDR_MODE(randr)            (randr->mode[randr->active_output])
 #define XFCE_RANDR_PREFERRED_MODE(randr)  (randr->preferred_mode[randr->active_output])
 #define XFCE_RANDR_ROTATION(randr)        (randr->rotation[randr->active_output])
@@ -79,7 +80,10 @@ struct _XfceRandr
 
     /* display for this randr config */
     GdkDisplay          *display;
-    
+
+    /* event base for notifications */
+    gint                 event_base;
+
     /* screen resource for this display */
     XRRScreenResources  *resources;
 
