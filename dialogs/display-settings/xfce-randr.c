@@ -405,7 +405,7 @@ xfce_randr_friendly_name (XfceRandr   *randr,
     unsigned long    nitems, bytes_after;
     Atom             actual_type;
     Atom             connector_type;
-    gchar           *connector_name;
+    const gchar     *connector_name;
     gchar           *friendly_name = NULL;
 
     g_return_val_if_fail (randr != NULL && output != None && name != NULL, "<null>");
@@ -414,7 +414,7 @@ xfce_randr_friendly_name (XfceRandr   *randr,
     xdisplay = gdk_x11_display_get_xdisplay (randr->display);
 
     /* try to use the connector type first, more reliable */
-    connector_type = XInternAtom (xdisplay, RR_PROPERTY_CONNECTOR_TYPE, False);
+    connector_type = gdk_x11_get_xatom_by_name (RR_PROPERTY_CONNECTOR_TYPE);
 
     if (randr->has_1_3 && connector_type != None)
     {
@@ -425,7 +425,7 @@ xfce_randr_friendly_name (XfceRandr   *randr,
             if (actual_type == XA_ATOM && actual_format == 32 && nitems == 1)
             {
                 connector_type = *((Atom *) prop);
-                connector_name = XGetAtomName (xdisplay, connector_type);
+                connector_name = gdk_x11_get_xatom_name (connector_type);
 
                 if (connector_name)
                 {
@@ -441,8 +441,6 @@ xfce_randr_friendly_name (XfceRandr   *randr,
                         friendly_name = _("Television");
                     else
                         g_warning ("Unknown or unsupported connector type.");
-
-                    XFree (connector_name);
                 }
             }
             XFree (prop);
