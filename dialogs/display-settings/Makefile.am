@@ -6,6 +6,7 @@ INCLUDES = \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-display-settings\" \
+	-DPNP_IDS=\"$(PNP_IDS)\" \
 	$(PLATFORM_CPPFLAGS)
 
 bin_PROGRAMS = \
@@ -18,7 +19,10 @@ xfce4_display_settings_SOURCES = \
 	xfce-randr-legacy.c \
 	xfce-randr-legacy.h \
 	display-dialog_ui.h \
-	display-dialog-xrandr1.2_ui.h
+	display-dialog-xrandr1.2_ui.h \
+	display-name.c \
+	edid-parse.c \
+	edid.h
 
 xfce4_display_settings_CFLAGS = \
 	$(GTK_CFLAGS) \

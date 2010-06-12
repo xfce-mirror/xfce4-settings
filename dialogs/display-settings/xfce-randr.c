@@ -32,6 +32,7 @@
 #include <X11/Xatom.h>
 
 #include "xfce-randr.h"
+#include "edid.h"
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
 
@@ -439,79 +440,85 @@ xfce_randr_load (XfceRandr     *randr,
 
 
 
-const gchar *
+static guint8 *
+xfce_randr_read_edid_data (Display  *xdisplay,
+                           RROutput  output)
+{
+    unsigned char *prop;
+    int            actual_format;
+    unsigned long  nitems, bytes_after;
+    Atom           actual_type;
+    Atom           edid_atom;
+    guint8        *result = NULL;
+
+    edid_atom = gdk_x11_get_xatom_by_name (RR_PROPERTY_RANDR_EDID);
+
+    if (edid_atom != None)
+    {
+        if (XRRGetOutputProperty (xdisplay, output, edid_atom, 0, 100,
+                                  False, False, AnyPropertyType,
+                                  &actual_type, &actual_format, &nitems,
+                                  &bytes_after, &prop) == Success)
+        {
+            if (actual_type == XA_INTEGER && actual_format == 8)
+                result = g_memdup (prop, nitems);
+        }
+
+        XFree (prop);
+    }
+
+    return result;
+}
+
+
+
+gchar *
 xfce_randr_friendly_name (XfceRandr   *randr,
                           RROutput     output,
                           const gchar *name)
 {
-    Display         *xdisplay;
-    unsigned char   *prop;
-    int              actual_format;
-    unsigned long    nitems, bytes_after;
-    Atom             actual_type;
-    Atom             connector_type;
-    const gchar     *connector_name;
-    gchar           *friendly_name = NULL;
+    Display     *xdisplay;
+    MonitorInfo *info = NULL;
+    guint8      *edid_data;
+    gchar       *friendly_name = NULL;
 
     g_return_val_if_fail (randr != NULL && output != None && name != NULL, "<null>");
 
-#ifdef HAS_RANDR_ONE_POINT_THREE
+    /* special case, a laptop */
+    if (g_str_has_prefix (name, "LVDS")
+        || strcmp (name, "PANEL") == 0)
+        return g_strdup (_("Laptop"));
+
+    /* otherwise, get the vendor & size */
     xdisplay = gdk_x11_display_get_xdisplay (randr->display);
+    edid_data = xfce_randr_read_edid_data (xdisplay, output);
 
-    /* try to use the connector type first, more reliable */
-    connector_type = gdk_x11_get_xatom_by_name (RR_PROPERTY_CONNECTOR_TYPE);
+    if (edid_data)
+        info = decode_edid (edid_data);
 
-    if (randr->has_1_3 && connector_type != None)
-    {
-        if (XRRGetOutputProperty (xdisplay, output, connector_type, 0, 100,
-                                  False, False, AnyPropertyType, &actual_type,
-                                  &actual_format, &nitems, &bytes_after, &prop) == Success)
-        {
-            if (actual_type == XA_ATOM && actual_format == 32 && nitems == 1)
-            {
-                connector_type = *((Atom *) prop);
-                connector_name = gdk_x11_get_xatom_name (connector_type);
+    if (info)
+        friendly_name = make_display_name (info);
 
-                if (connector_name)
-                {
-                    if (strcmp (connector_name, "VGA") == 0)
-                        friendly_name = _("Monitor");
-                    else if (g_str_has_prefix (connector_name, "DVI")
-                             || strcmp (connector_name, "HDMI") == 0
-                             || strcmp (connector_name, "DisplayPort") == 0)
-                        friendly_name = _("Digital Display");
-                    else if (strcmp (connector_name, "Panel") == 0)
-                        friendly_name = _("Laptop");
-                    else if (g_str_has_prefix (connector_name, "TV"))
-                        friendly_name = _("Television");
-                    else
-                        g_warning ("Unknown or unsupported connector type.");
-                }
-            }
-            XFree (prop);
-        }
-    }
+    g_free (info);
+    g_free (edid_data);
 
     if (friendly_name)
         return friendly_name;
-#endif
 
-    /* fallback */
-    if (g_str_has_prefix (name, "LVDS")
-        || strcmp (name, "PANEL") == 0)
-        return _("Laptop");
-    else if (g_str_has_prefix (name, "VGA")
+    /* last attempt to return a better name */
+    if (g_str_has_prefix (name, "VGA")
              || g_str_has_prefix (name, "Analog"))
-        return _("Monitor");
+        return g_strdup (_("Monitor"));
     else if (g_str_has_prefix (name, "TV")
              || strcmp (name, "S-video") == 0)
-        return _("Television");
+        return g_strdup (_("Television"));
     else if (g_str_has_prefix (name, "TMDS")
              || g_str_has_prefix (name, "DVI")
              || g_str_has_prefix (name, "Digital"))
-        return _("Digital display");
+        return g_strdup (_("Digital display"));
 
-    return name;
+    /* everything failed, fallback */
+    return g_strdup (name);
 }
 
 #endif /* !HAS_RANDR_ONE_POINT_TWO */

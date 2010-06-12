@@ -118,6 +118,17 @@ dnl ***********************************
 XDT_CHECK_OPTIONAL_PACKAGE([XRANDR], [xrandr], [1.1.0],
                            [xrandr], [Xrandr support])
 
+dnl ***********************************
+dnl *** Optional support for hwdata ***
+dnl ***********************************
+AC_ARG_WITH([pnp-ids-path],
+            [AC_HELP_STRING([--with-pnp-ids-path],
+                            [Specify the path to pnp.ids (default=\${datadir}/hwdata/pnp.ids)])],
+            [with_pnp_ids_path=$withval],
+            [with_pnp_ids_path="\${datadir}/hwdata/pnp.ids"])
+PNP_IDS=$with_pnp_ids_path
+AC_SUBST(PNP_IDS)
+
 dnl **************************************
 dnl *** Optional support for Libnotify ***
 dnl **************************************

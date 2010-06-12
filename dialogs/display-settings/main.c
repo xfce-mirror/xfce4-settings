@@ -558,9 +558,9 @@ display_settings_treeview_populate (GtkBuilder *builder)
                 continue;
 
             /* get a friendly name for the output */
-            name = (gchar *) xfce_randr_friendly_name (xfce_randr,
-                                                       xfce_randr->resources->outputs[n],
-                                                       xfce_randr->output_info[n]->name);
+            name = xfce_randr_friendly_name (xfce_randr,
+                                             xfce_randr->resources->outputs[n],
+                                             xfce_randr->output_info[n]->name);
 
             /* insert the output in the store */
             gtk_list_store_append (store, &iter);
@@ -568,6 +568,8 @@ display_settings_treeview_populate (GtkBuilder *builder)
                                 COLUMN_OUTPUT_NAME, name,
                                 COLUMN_OUTPUT_ICON_NAME, "video-display",
                                 COLUMN_OUTPUT_ID, n, -1);
+
+            g_free (name);
 
             /* select active output */
             if (n == xfce_randr->active_output)

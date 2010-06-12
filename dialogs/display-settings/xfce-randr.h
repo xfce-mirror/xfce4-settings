@@ -107,24 +107,24 @@ struct _XfceRandr
 
 
 
-XfceRandr   *xfce_randr_new           (GdkDisplay    *display,
-                                       GError       **error);
+XfceRandr *xfce_randr_new           (GdkDisplay    *display,
+                                     GError       **error);
 
-void         xfce_randr_free          (XfceRandr     *randr);
+void       xfce_randr_free          (XfceRandr     *randr);
 
-void         xfce_randr_reload        (XfceRandr     *randr);
+void       xfce_randr_reload        (XfceRandr     *randr);
 
-void         xfce_randr_save          (XfceRandr     *randr,
-                                       const gchar   *scheme,
-                                       XfconfChannel *channel);
+void       xfce_randr_save          (XfceRandr     *randr,
+                                     const gchar   *scheme,
+                                     XfconfChannel *channel);
 
-void         xfce_randr_load          (XfceRandr     *randr,
-                                       const gchar   *scheme,
-                                       XfconfChannel *channel);
+void       xfce_randr_load          (XfceRandr     *randr,
+                                     const gchar   *scheme,
+                                     XfconfChannel *channel);
 
-const gchar *xfce_randr_friendly_name (XfceRandr     *randr,
-                                       RROutput       output,
-                                       const gchar   *name);
+gchar     *xfce_randr_friendly_name (XfceRandr     *randr,
+                                     RROutput       output,
+                                     const gchar   *name);
 
 #endif /* !HAS_RANDR_ONE_POINT_TWO */
 
