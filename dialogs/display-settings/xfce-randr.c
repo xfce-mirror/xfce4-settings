@@ -35,66 +35,17 @@
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
 
-XfceRandr *
-xfce_randr_new (GdkDisplay  *display,
-                GError     **error)
+static gboolean
+xfce_randr_populate (XfceRandr *randr,
+                     Display   *xdisplay,
+                     GdkWindow *root_window)
 {
-    XfceRandr              *randr;
-    Display                *xdisplay;
-    GdkWindow              *root_window;
     XRRScreenConfiguration *screen_config;
     RRCrtc                  crtc;
     XRRCrtcInfo            *crtc_info;
     gint                    n;
-    gint                    major, minor;
 
-    g_return_val_if_fail (GDK_IS_DISPLAY (display), NULL);
-    g_return_val_if_fail (error == NULL || *error == NULL, NULL);
-
-    /* get the x display */
-    xdisplay = gdk_x11_display_get_xdisplay (display);
-
-    /* check if the randr extension is available */
-    if (XRRQueryVersion (xdisplay, &major, &minor) == FALSE)
-    {
-        g_set_error (error, 0, 0, _("Unable to query the version of the RandR extension being used"));
-        return NULL;
-    }
-
-    /* we need atleast randr 1.2, 2.0 will probably break the api */
-    if (major < 1 || (major == 1 && minor < 2))
-    {
-        /* 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c */
-        g_set_error (error, 0, 0, _("This system is using RandR %d.%d. For the display settings to work "
-                                    "version 1.1 is required at least"), major, minor); 
-        return NULL;
-    }
-
-    /* allocate the structure */
-    randr = g_slice_new0 (XfceRandr);
-
-    randr->has_1_3 = (major > 1 || (major == 1 && minor >= 3));
-
-    /* set display */
-    randr->display = display;
-
-    /* get the root window */
-    root_window = gdk_get_default_root_window ();
-
-    /* get the screen resource */
-    randr->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
-
-    /* set some layout */
-    randr->layout = XFCE_DISPLAY_LAYOUT_SINGLE;
-
-    /* allocate space for the settings */
-    randr->mode = g_new0 (RRMode, randr->resources->noutput);
-    randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
-    randr->rotation = g_new0 (Rotation, randr->resources->noutput);
-    randr->rotations = g_new0 (Rotation, randr->resources->noutput);
-    randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
-    randr->status = g_new0 (XfceOutputStatus, randr->resources->noutput);
-    randr->output_info = g_new0 (XRROutputInfo *, randr->resources->noutput);
+    g_return_val_if_fail (randr->resources != NULL, FALSE);
 
     /* walk the outputs */
     for (n = 0; n < randr->resources->noutput; n++)
@@ -112,11 +63,7 @@ xfce_randr_new (GdkDisplay  *display,
             for (n++; n < randr->resources->noutput; n++)
                 randr->output_info[n] = NULL;
 
-            /* cleanup */
-            xfce_randr_free (randr);
-
-            /* return nothing, then we'll fallback on screens (randr 1.1) code */
-            return NULL;
+            return FALSE;
         }
 
         /* do not query disconnected outputs */
@@ -165,6 +112,77 @@ xfce_randr_new (GdkDisplay  *display,
         XRRFreeScreenConfigInfo (screen_config);
     }
 
+    return TRUE;
+}
+
+
+
+XfceRandr *
+xfce_randr_new (GdkDisplay  *display,
+                GError     **error)
+{
+    XfceRandr *randr;
+    Display   *xdisplay;
+    GdkWindow *root_window;
+    gint       major, minor;
+
+    g_return_val_if_fail (GDK_IS_DISPLAY (display), NULL);
+    g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+    /* get the x display */
+    xdisplay = gdk_x11_display_get_xdisplay (display);
+
+    /* check if the randr extension is available */
+    if (XRRQueryVersion (xdisplay, &major, &minor) == FALSE)
+    {
+        g_set_error (error, 0, 0, _("Unable to query the version of the RandR extension being used"));
+        return NULL;
+    }
+
+    /* we need atleast randr 1.2, 2.0 will probably break the api */
+    if (major < 1 || (major == 1 && minor < 2))
+    {
+        /* 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c */
+        g_set_error (error, 0, 0, _("This system is using RandR %d.%d. For the display settings to work "
+                                    "version 1.1 is required at least"), major, minor);
+        return NULL;
+    }
+
+    /* allocate the structure */
+    randr = g_slice_new0 (XfceRandr);
+
+    randr->has_1_3 = (major > 1 || (major == 1 && minor >= 3));
+
+    /* set display */
+    randr->display = display;
+
+    /* get the root window */
+    root_window = gdk_get_default_root_window ();
+
+    /* get the screen resource */
+    randr->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
+
+    /* set some layout */
+    randr->layout = XFCE_DISPLAY_LAYOUT_SINGLE;
+
+    /* allocate space for the settings */
+    randr->mode = g_new0 (RRMode, randr->resources->noutput);
+    randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
+    randr->rotation = g_new0 (Rotation, randr->resources->noutput);
+    randr->rotations = g_new0 (Rotation, randr->resources->noutput);
+    randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
+    randr->status = g_new0 (XfceOutputStatus, randr->resources->noutput);
+    randr->output_info = g_new0 (XRROutputInfo *, randr->resources->noutput);
+
+    if (!xfce_randr_populate (randr, xdisplay, root_window))
+    {
+        /* cleanup */
+        xfce_randr_free (randr);
+
+        /* return nothing, then we'll fallback on screens (randr 1.1) code */
+        return NULL;
+    }
+
     return randr;
 }
 
@@ -204,28 +222,55 @@ xfce_randr_reload (XfceRandr *randr)
     gint       n;
     Display   *xdisplay;
     GdkWindow *root_window;
-    
-    /* free the screen resources */
-    XRRFreeScreenResources (randr->resources);
 
     /* free the output info cache */
     for (n = 0; n < randr->resources->noutput; n++)
         if (G_LIKELY (randr->output_info[n]))
             XRRFreeOutputInfo (randr->output_info[n]);
-    
-    /* get the x display and the root window */
+
+    /* free the screen resources */
+    XRRFreeScreenResources (randr->resources);
+
+    /* free the settings */
+    g_free (randr->mode);
+    g_free (randr->preferred_mode);
+    g_free (randr->rotation);
+    g_free (randr->rotations);
+    g_free (randr->status);
+    g_free (randr->position);
+    g_free (randr->output_info);
+
+    /* get the x display */
     xdisplay = gdk_x11_display_get_xdisplay (randr->display);
+
+    /* get the root window */
     root_window = gdk_get_default_root_window ();
 
     /* get the screen resource */
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    /* xfce_randr_reload() is only called after a xrandr notification, which
+       means that X is aware of the new hardware already. So, if possible,
+       do not reprobe the hardware again. */
+    if (randr->has_1_3)
+        randr->resources = XRRGetScreenResourcesCurrent (xdisplay, GDK_WINDOW_XID (root_window));
+    else
+#endif
     randr->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
 
-    /* cache the output info again */
-    for (n = 0; n < randr->resources->noutput; n++)
-    {
-        /* get the output info */
-        randr->output_info[n] = XRRGetOutputInfo (xdisplay, randr->resources, randr->resources->outputs[n]);
-    }
+    /* set some layout */
+    randr->layout = XFCE_DISPLAY_LAYOUT_SINGLE;
+
+    /* allocate space for the settings */
+    randr->mode = g_new0 (RRMode, randr->resources->noutput);
+    randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
+    randr->rotation = g_new0 (Rotation, randr->resources->noutput);
+    randr->rotations = g_new0 (Rotation, randr->resources->noutput);
+    randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
+    randr->status = g_new0 (XfceOutputStatus, randr->resources->noutput);
+    randr->output_info = g_new0 (XRROutputInfo *, randr->resources->noutput);
+
+    /* repopulate */
+    xfce_randr_populate (randr, xdisplay, root_window);
 }
 
 
