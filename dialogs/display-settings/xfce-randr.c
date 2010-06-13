@@ -46,7 +46,20 @@ xfce_randr_populate (XfceRandr *randr,
     XRRCrtcInfo            *crtc_info;
     gint                    n;
 
+    g_return_val_if_fail (randr != NULL, FALSE);
     g_return_val_if_fail (randr->resources != NULL, FALSE);
+
+    /* set some layout */
+    randr->layout = XFCE_DISPLAY_LAYOUT_SINGLE;
+
+    /* allocate space for the settings */
+    randr->mode = g_new0 (RRMode, randr->resources->noutput);
+    randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
+    randr->rotation = g_new0 (Rotation, randr->resources->noutput);
+    randr->rotations = g_new0 (Rotation, randr->resources->noutput);
+    randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
+    randr->status = g_new0 (XfceOutputStatus, randr->resources->noutput);
+    randr->output_info = g_new0 (XRROutputInfo *, randr->resources->noutput);
 
     /* walk the outputs */
     for (n = 0; n < randr->resources->noutput; n++)
@@ -163,18 +176,6 @@ xfce_randr_new (GdkDisplay  *display,
     /* get the screen resource */
     randr->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
 
-    /* set some layout */
-    randr->layout = XFCE_DISPLAY_LAYOUT_SINGLE;
-
-    /* allocate space for the settings */
-    randr->mode = g_new0 (RRMode, randr->resources->noutput);
-    randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
-    randr->rotation = g_new0 (Rotation, randr->resources->noutput);
-    randr->rotations = g_new0 (Rotation, randr->resources->noutput);
-    randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
-    randr->status = g_new0 (XfceOutputStatus, randr->resources->noutput);
-    randr->output_info = g_new0 (XRROutputInfo *, randr->resources->noutput);
-
     if (!xfce_randr_populate (randr, xdisplay, root_window))
     {
         /* cleanup */
@@ -257,18 +258,6 @@ xfce_randr_reload (XfceRandr *randr)
     else
 #endif
     randr->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
-
-    /* set some layout */
-    randr->layout = XFCE_DISPLAY_LAYOUT_SINGLE;
-
-    /* allocate space for the settings */
-    randr->mode = g_new0 (RRMode, randr->resources->noutput);
-    randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
-    randr->rotation = g_new0 (Rotation, randr->resources->noutput);
-    randr->rotations = g_new0 (Rotation, randr->resources->noutput);
-    randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
-    randr->status = g_new0 (XfceOutputStatus, randr->resources->noutput);
-    randr->output_info = g_new0 (XRROutputInfo *, randr->resources->noutput);
 
     /* repopulate */
     xfce_randr_populate (randr, xdisplay, root_window);
