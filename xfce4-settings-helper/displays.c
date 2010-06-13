@@ -117,7 +117,10 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
         {
             /* open the channel */
             helper->channel = xfconf_channel_new ("displays");
-        
+
+            /* remove any leftover apply property before setting the monitor */
+            xfconf_channel_reset_property (helper->channel, "/Schemes/Apply", FALSE);
+
             /* monitor channel changes */
             g_signal_connect (G_OBJECT (helper->channel), "property-changed", 
                               G_CALLBACK (xfce_displays_helper_channel_property_changed), helper);
