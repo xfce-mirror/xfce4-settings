@@ -33,6 +33,7 @@
 #include <gdk/gdkx.h>
 
 #include <xfconf/xfconf.h>
+#include <exo/exo.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 
@@ -49,7 +50,7 @@
 enum
 {
     COLUMN_OUTPUT_NAME,
-    COLUMN_OUTPUT_ICON_NAME,
+    COLUMN_OUTPUT_ICON,
     COLUMN_OUTPUT_ID,
     N_OUTPUT_COLUMNS
 };
@@ -534,18 +535,28 @@ display_settings_treeview_populate (GtkBuilder *builder)
     GObject          *treeview;
     GtkTreeIter       iter;
     gchar            *name;
+    GdkPixbuf        *display_icon, *lucent_display_icon;
     GtkTreeSelection *selection;
 
     /* create a new list store */
     store = gtk_list_store_new (N_OUTPUT_COLUMNS,
                                 G_TYPE_STRING, /* COLUMN_OUTPUT_NAME */
-                                G_TYPE_STRING, /* COLUMN_OUTPUT_ICON_NAME */
+                                GDK_TYPE_PIXBUF, /* COLUMN_OUTPUT_ICON */
                                 G_TYPE_INT);   /* COLUMN_OUTPUT_ID */
 
     /* set the treeview model */
     treeview = gtk_builder_get_object (builder, "randr-outputs");
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
+    /* get the display icon */
+    display_icon =
+        gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), "display-icon",
+                                  32,
+                                  GTK_ICON_LOOKUP_GENERIC_FALLBACK,
+                                  NULL);
+
+    lucent_display_icon = NULL;
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
@@ -562,12 +573,22 @@ display_settings_treeview_populate (GtkBuilder *builder)
                                              xfce_randr->resources->outputs[n],
                                              xfce_randr->output_info[n]->name);
 
+            if (xfce_randr->mode[n] == None && lucent_display_icon == NULL)
+                lucent_display_icon =
+                    exo_gdk_pixbuf_lucent (display_icon, 50);
+
             /* insert the output in the store */
             gtk_list_store_append (store, &iter);
-            gtk_list_store_set (store, &iter,
-                                COLUMN_OUTPUT_NAME, name,
-                                COLUMN_OUTPUT_ICON_NAME, "video-display",
-                                COLUMN_OUTPUT_ID, n, -1);
+            if (xfce_randr->mode[n] == None)
+                gtk_list_store_set (store, &iter,
+                                    COLUMN_OUTPUT_NAME, name,
+                                    COLUMN_OUTPUT_ICON, lucent_display_icon,
+                                    COLUMN_OUTPUT_ID, n, -1);
+            else
+                gtk_list_store_set (store, &iter,
+                                    COLUMN_OUTPUT_NAME, name,
+                                    COLUMN_OUTPUT_ICON, display_icon,
+                                    COLUMN_OUTPUT_ID, n, -1);
 
             g_free (name);
 
@@ -589,7 +610,7 @@ display_settings_treeview_populate (GtkBuilder *builder)
             gtk_list_store_append (store, &iter);
             gtk_list_store_set (store, &iter,
                                 COLUMN_OUTPUT_NAME, name,
-                                COLUMN_OUTPUT_ICON_NAME, "video-display",
+                                COLUMN_OUTPUT_ICON, display_icon,
                                 COLUMN_OUTPUT_ID, n, -1);
 
             /* cleanup */
@@ -603,6 +624,11 @@ display_settings_treeview_populate (GtkBuilder *builder)
 
     /* release the store */
     g_object_unref (G_OBJECT (store));
+
+    /* release the icons */
+    g_object_unref (display_icon);
+    if (lucent_display_icon != NULL)
+        g_object_unref (lucent_display_icon);
 }
 
 
@@ -677,7 +703,7 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     /* icon renderer */
     renderer = gtk_cell_renderer_pixbuf_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 0, "", renderer, "icon-name", COLUMN_OUTPUT_ICON_NAME, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 0, "", renderer, "pixbuf", COLUMN_OUTPUT_ICON, NULL);
     g_object_set (G_OBJECT (renderer), "stock-size", GTK_ICON_SIZE_DND, NULL);
 
     /* text renderer */
