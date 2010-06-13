@@ -36,13 +36,48 @@
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
 
+static Rotation
+xfce_randr_get_safe_rotations (XfceRandr *randr,
+                               Display   *xdisplay,
+                               GdkWindow *root_window,
+                               gint       num_output)
+{
+    XRRScreenConfiguration *screen_config;
+    XRRCrtcInfo            *crtc_info;
+    gint                    n;
+    Rotation                dummy, rot;
+
+    g_return_val_if_fail (num_output >= 0
+                          && num_output < randr->resources->noutput,
+                          RR_Rotate_0);
+
+    if (randr->output_info[num_output]->ncrtc < 1)
+    {
+        screen_config = XRRGetScreenInfo (xdisplay, GDK_WINDOW_XID (root_window));
+        rot = XRRConfigRotations (screen_config, &dummy);
+        XRRFreeScreenConfigInfo (screen_config);
+        return rot;
+    }
+
+    rot = XFCE_RANDR_ROTATIONS_MASK | XFCE_RANDR_REFLECTIONS_MASK;
+    for (n = 0; n < randr->output_info[num_output]->ncrtc; n++)
+    {
+        crtc_info = XRRGetCrtcInfo (xdisplay, randr->resources,
+                                    randr->output_info[num_output]->crtcs[n]);
+        rot &= crtc_info->rotations;
+        XRRFreeCrtcInfo (crtc_info);
+    }
+
+    return rot;
+}
+
+
+
 static gboolean
 xfce_randr_populate (XfceRandr *randr,
                      Display   *xdisplay,
                      GdkWindow *root_window)
 {
-    XRRScreenConfiguration *screen_config;
-    RRCrtc                  crtc;
     XRRCrtcInfo            *crtc_info;
     gint                    n;
 
@@ -94,21 +129,10 @@ xfce_randr_populate (XfceRandr *randr,
 #endif
                 randr->status[n] = XFCE_OUTPUT_STATUS_SECONDARY;
 
-            crtc = None;
             if (randr->output_info[n]->crtc != None)
             {
-                /* connected to an active CRTC, take it */
-                crtc = randr->output_info[n]->crtc;
-            }
-            else if (randr->output_info[n]->ncrtc > 0)
-            {
-                /* otherwise, take a possible CRTC instead */
-                crtc = randr->output_info[n]->crtcs[0];
-            }
-
-            if (crtc != None)
-            {
-                crtc_info = XRRGetCrtcInfo (xdisplay, randr->resources, crtc);
+                crtc_info = XRRGetCrtcInfo (xdisplay, randr->resources,
+                                            randr->output_info[n]->crtc);
                 randr->mode[n] = crtc_info->mode;
                 randr->rotation[n] = crtc_info->rotation;
                 randr->rotations[n] = crtc_info->rotations;
@@ -119,11 +143,11 @@ xfce_randr_populate (XfceRandr *randr,
             }
         }
 
-        /* at this point, the output is obviously disabled and disconnected, so take the global config */
+        /* output either disabled or disconnected */
         randr->mode[n] = None;
-        screen_config = XRRGetScreenInfo (xdisplay, GDK_WINDOW_XID (root_window));
-        randr->rotations[n] = XRRConfigRotations (screen_config, &randr->rotation[n]);
-        XRRFreeScreenConfigInfo (screen_config);
+        randr->rotation[n] = RR_Rotate_0;
+        randr->rotations[n] = xfce_randr_get_safe_rotations (randr, xdisplay,
+                                                             root_window, n);
     }
 
     return TRUE;
