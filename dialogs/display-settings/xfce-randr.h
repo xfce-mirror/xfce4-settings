@@ -50,15 +50,7 @@
 #ifdef HAS_RANDR_ONE_POINT_TWO
 typedef struct _XfceRandr                XfceRandr;
 typedef struct _XfceOutputPosition       XfceOutputPosition;
-typedef enum   _XfceDisplayLayout        XfceDisplayLayout;
 typedef enum   _XfceOutputStatus         XfceOutputStatus;
-
-enum _XfceDisplayLayout
-{
-    XFCE_DISPLAY_LAYOUT_SINGLE,
-    XFCE_DISPLAY_LAYOUT_CLONE,
-    XFCE_DISPLAY_LAYOUT_EXTEND
-};
 
 enum _XfceOutputStatus
 {
@@ -92,9 +84,6 @@ struct _XfceRandr
 
     /* cache for the output info */
     XRROutputInfo      **output_info;
-
-    /* selected display layout */
-    XfceDisplayLayout    layout;
 
     /* modes common to all enabled outputs */
     RRMode              *clone_modes;

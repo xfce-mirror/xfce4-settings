@@ -75,16 +75,6 @@ struct _XfceDisplaysHelper
 #endif
 };
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-typedef enum _XfceDisplayLayout XfceDisplayLayout;
-enum _XfceDisplayLayout
-{
-    XFCE_DISPLAY_LAYOUT_SINGLE,
-    XFCE_DISPLAY_LAYOUT_CLONE,
-    XFCE_DISPLAY_LAYOUT_EXTEND
-};
-#endif
-
 
 
 G_DEFINE_TYPE (XfceDisplaysHelper, xfce_displays_helper, G_TYPE_OBJECT);
@@ -651,9 +641,6 @@ xfce_displays_helper_channel_property_changed (XfconfChannel      *channel,
 {
     gchar             *property;
     gchar             *layout_name;
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    XfceDisplayLayout  layout;
-#endif
 
     if (G_UNLIKELY (G_VALUE_HOLDS_STRING(value) && strcmp (property_name, "/Schemes/Apply") == 0))
     {
@@ -664,29 +651,17 @@ xfce_displays_helper_channel_property_changed (XfconfChannel      *channel,
         
         if (G_LIKELY (layout_name))
         {
-            if (strcmp (layout_name, "Screens") == 0)
-            {
-                xfce_displays_helper_channel_apply_legacy (helper, g_value_get_string (value));
-            }
 #ifdef HAS_RANDR_ONE_POINT_TWO
-            else
-            {
-                /* detect the layout */
-                if (strcmp (layout_name, "Single") == 0)
-                    layout = XFCE_DISPLAY_LAYOUT_SINGLE;
-                else if (strcmp (layout_name, "Clone") == 0)
-                    layout = XFCE_DISPLAY_LAYOUT_CLONE;
-                else if (strcmp (layout_name, "Extend") == 0)
-                    layout = XFCE_DISPLAY_LAYOUT_EXTEND;
-                else
-                    goto unknow_scheme_layout;
-                
-                /* apply the layout */
+            if (strcmp (layout_name, "Outputs") == 0)
                 xfce_displays_helper_channel_apply (helper, g_value_get_string (value));
-            }
-            
-            unknow_scheme_layout:
+            else
 #endif
+            {
+                if (strcmp (layout_name, "Screens") == 0)
+                    xfce_displays_helper_channel_apply_legacy (helper, g_value_get_string (value));
+                else
+                    g_warning ("Unknown layout: %s\n", layout_name);
+            }
 
             /* cleanup */
             g_free (layout_name);

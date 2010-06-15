@@ -134,9 +134,6 @@ xfce_randr_populate (XfceRandr *randr,
     g_return_val_if_fail (randr != NULL, FALSE);
     g_return_val_if_fail (randr->resources != NULL, FALSE);
 
-    /* set some layout */
-    randr->layout = XFCE_DISPLAY_LAYOUT_SINGLE;
-
     /* allocate space for the settings */
     randr->mode = g_new0 (RRMode, randr->resources->noutput);
     randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
@@ -358,20 +355,16 @@ xfce_randr_save_device (XfceRandr     *randr,
     gint         n;
     gint         degrees;
 
-    /* find the resolution name and refresh rate (only for primary device */
-    if (randr->layout != XFCE_DISPLAY_LAYOUT_CLONE
-        || (randr->status[output] & XFCE_OUTPUT_STATUS_PRIMARY) != 0)
+    /* find the resolution name and refresh rate */
+    for (n = 0; n < randr->resources->nmode; n++)
     {
-        for (n = 0; n < randr->resources->nmode; n++)
+        if (randr->resources->modes[n].id == randr->mode[output])
         {
-            if (randr->resources->modes[n].id == randr->mode[output])
-            {
-                mode = &randr->resources->modes[n];
-                resolution_name = mode->name;
-                refresh_rate = (gdouble) mode->dotClock / ((gdouble) mode->hTotal * (gdouble) mode->vTotal);
+            mode = &randr->resources->modes[n];
+            resolution_name = mode->name;
+            refresh_rate = (gdouble) mode->dotClock / ((gdouble) mode->hTotal * (gdouble) mode->vTotal);
 
-                break;
-            }
+            break;
         }
     }
 
@@ -459,22 +452,13 @@ xfce_randr_save (XfceRandr     *randr,
                  XfconfChannel *channel)
 {
     gchar        property[512];
-    const gchar *layout_name;
     gint         n, num_outputs = 0;
 
     g_return_if_fail (XFCONF_IS_CHANNEL (channel));
 
-    /* convert the layout into a string */
-    switch (randr->layout)
-    {
-        case XFCE_DISPLAY_LAYOUT_CLONE:  layout_name = "Clone";  break;
-        case XFCE_DISPLAY_LAYOUT_EXTEND: layout_name = "Extend"; break;
-        default:                         layout_name = "Single"; break;
-    }
-
     /* store the layout type */
     g_snprintf (property, sizeof (property), "/%s/Layout", scheme);
-    xfconf_channel_set_string (channel, property, layout_name);
+    xfconf_channel_set_string (channel, property, "Outputs");
 
     /* parse all outputs */
     for (n = 0; n < randr->resources->noutput; n++)
