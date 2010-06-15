@@ -36,6 +36,56 @@
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
 
+static void
+xfce_randr_get_clone_modes (XfceRandr *randr)
+{
+    GArray *clone_modes;
+    gint    l, m, n, candidate, found;
+    guint   i;
+
+    clone_modes = g_array_new (FALSE, FALSE, sizeof (RRMode));
+
+    /* walk all available modes */
+    for (n = 0; n < randr->resources->nmode; n++)
+    {
+        candidate = TRUE;
+        /* walk all active outputs */
+        for (m = 0; m < randr->resources->noutput; m++)
+        {
+            if (randr->status[m] == XFCE_OUTPUT_STATUS_NONE)
+                continue;
+
+            found = FALSE;
+            /* walk supported modes from this output */
+            for (l = 0; l < randr->output_info[m]->nmode; l++)
+            {
+                if (randr->resources->modes[n].id == randr->output_info[m]->modes[l])
+                {
+                    found = TRUE;
+                    break;
+                }
+            }
+
+            /* if it is not present in one output, forget it */
+            candidate &= found;
+        }
+
+        /* common to all outputs, can be used for clone mode */
+        if (candidate)
+            clone_modes = g_array_append_val (clone_modes, randr->resources->modes[n].id);
+    }
+
+    /* return a "normal" array (last value -> None) */
+    randr->clone_modes = g_new0 (RRMode, clone_modes->len + 1);
+
+    for (i = 0; i < clone_modes->len; i++)
+        randr->clone_modes[i] = g_array_index (clone_modes, RRMode, i);
+
+    g_array_free (clone_modes, TRUE);
+}
+
+
+
 static Rotation
 xfce_randr_get_safe_rotations (XfceRandr *randr,
                                Display   *xdisplay,
@@ -150,6 +200,8 @@ xfce_randr_populate (XfceRandr *randr,
                                                              root_window, n);
     }
 
+    xfce_randr_get_clone_modes (randr);
+
     return TRUE;
 }
 
@@ -228,6 +280,7 @@ xfce_randr_free (XfceRandr *randr)
     XRRFreeScreenResources (randr->resources);
 
     /* free the settings */
+    g_free (randr->clone_modes);
     g_free (randr->mode);
     g_free (randr->preferred_mode);
     g_free (randr->rotation);
@@ -258,6 +311,7 @@ xfce_randr_reload (XfceRandr *randr)
     XRRFreeScreenResources (randr->resources);
 
     /* free the settings */
+    g_free (randr->clone_modes);
     g_free (randr->mode);
     g_free (randr->preferred_mode);
     g_free (randr->rotation);

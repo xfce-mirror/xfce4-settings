@@ -96,6 +96,9 @@ struct _XfceRandr
     /* selected display layout */
     XfceDisplayLayout    layout;
 
+    /* modes common to all enabled outputs */
+    RRMode              *clone_modes;
+
     /* selected settings for all outputs */
     RRMode              *mode;
     RRMode              *preferred_mode;
