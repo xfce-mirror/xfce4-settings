@@ -45,6 +45,7 @@
 #include "display-dialog_ui.h"
 #ifdef HAS_RANDR_ONE_POINT_TWO
 #include "display-dialog-xrandr1.2_ui.h"
+#include "minimal-display-dialog_ui.h"
 #endif
 
 enum
@@ -61,7 +62,6 @@ enum
     COLUMN_COMBO_VALUE,
     N_COMBO_COLUMNS
 };
-
 
 
 
@@ -91,9 +91,19 @@ static const XfceRotation reflection_names[] =
 
 /* option entries */
 static gboolean opt_version = FALSE;
+#ifdef HAS_RANDR_ONE_POINT_TWO
+static gboolean minimal = FALSE;
+#endif
 static GOptionEntry option_entries[] =
 {
     { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+    #ifdef HAS_RANDR_ONE_POINT_TWO
+    {
+    "minimal", 'm', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &minimal,
+    N_("Minimal interface to set up an external output"),
+    NULL
+    },
+    #endif
     { NULL }
 };
 
@@ -776,6 +786,80 @@ screen_on_event (GdkXEvent *xevent,
     /* Pass the event on to GTK+ */
     return GDK_FILTER_CONTINUE;
 }
+
+
+
+static void
+display_settings_minimal_dialog_response (GtkDialog  *dialog,
+                                          gint        response_id,
+                                          GtkBuilder *builder)
+{
+  if (response_id == 1)
+  {
+      /* OK */
+      GObject  *first_screen_radio;
+      GObject  *second_screen_radio;
+      GObject  *both_radio;
+      gboolean  use_first_screen;
+      gboolean  use_second_screen;
+      gboolean  use_both;
+      gint      first;
+      gint      second;
+      gint      n;
+
+      first = second = -1;
+
+      for (n = 0; n < xfce_randr->resources->noutput; n++)
+      {
+          if (xfce_randr->status[n] != XFCE_OUTPUT_STATUS_NONE)
+          {
+              if (first < 0)
+                  first = n;
+              else if (second < 0)
+                  second = n;
+              else
+                  break;
+          }
+      }
+
+      first_screen_radio = gtk_builder_get_object (builder, "radiobutton1");
+      second_screen_radio = gtk_builder_get_object (builder, "radiobutton2");
+      both_radio = gtk_builder_get_object (builder, "radiobutton3");
+
+      use_first_screen =
+          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (first_screen_radio));
+      use_second_screen =
+          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (second_screen_radio));
+      use_both =
+          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (both_radio));
+
+      if (use_first_screen)
+      {
+          xfce_randr->mode[first] = xfce_randr->preferred_mode[first];
+          xfce_randr->mode[second] = None;
+      }
+      else if (use_second_screen)
+      {
+          xfce_randr->mode[second] = xfce_randr->preferred_mode[second];
+          xfce_randr->mode[first] = None;
+      }
+      else
+      {
+          if (xfce_randr->clone_modes[0] != None)
+          {
+              xfce_randr->mode[first] = xfce_randr->clone_modes[0];
+              xfce_randr->mode[second] = xfce_randr->clone_modes[0];
+          }
+      }
+
+      xfce_randr_save (xfce_randr, "AutoConfigSecondary", display_channel);
+      gtk_main_quit ();
+  }
+  else
+  {
+      gtk_main_quit ();
+  }
+}
 #endif
 
 
@@ -892,64 +976,151 @@ main (gint argc, gchar **argv)
         if (xfce_titled_dialog_get_type () == 0)
             return EXIT_FAILURE;
 
-        /* load the Gtk user-interface file */
-        builder = gtk_builder_new ();
 #ifdef HAS_RANDR_ONE_POINT_TWO
-        if (xfce_randr != NULL)
+        if (!minimal)
         {
-            ui_ret = gtk_builder_add_from_string (builder, display_dialog_xrandr12_ui,
-                                                  display_dialog_xrandr12_ui_length, &error);
-        }
-        else
 #endif
-        {
-            ui_ret = gtk_builder_add_from_string (builder, display_dialog_ui,
-                                                  display_dialog_ui_length, &error);
-        }
-
-        if (ui_ret != 0)
-        {
-            /* build the dialog */
-            dialog = display_settings_dialog_new (builder);
-            g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), builder);
-
-#ifdef HAS_RANDR_ONE_POINT_TWO
+            /* load the Gtk user-interface file */
+            builder = gtk_builder_new ();
+    #ifdef HAS_RANDR_ONE_POINT_TWO
             if (xfce_randr != NULL)
             {
-                XFCE_RANDR_EVENT_BASE (xfce_randr) = event_base;
-                /* set up notifications */
-                XRRSelectInput (gdk_x11_display_get_xdisplay (display),
-                                GDK_WINDOW_XID (gdk_get_default_root_window ()),
-                                RRScreenChangeNotifyMask);
-                gdk_x11_register_standard_event_type (display,
-                                                      event_base,
-                                                      RRNotify + 1);
-                gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
+                ui_ret = gtk_builder_add_from_string (builder, display_dialog_xrandr12_ui,
+                                                      display_dialog_xrandr12_ui_length, &error);
             }
-#endif
+            else
+    #endif
+            {
+                ui_ret = gtk_builder_add_from_string (builder, display_dialog_ui,
+                                                      display_dialog_ui_length, &error);
+            }
 
-            /* show the dialog */
-            gtk_widget_show (dialog);
+            if (ui_ret != 0)
+            {
+                /* build the dialog */
+                dialog = display_settings_dialog_new (builder);
+                g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), builder);
 
-            /* To prevent the settings dialog to be saved in the session */
-            gdk_set_sm_client_id ("FAKE ID");
+    #ifdef HAS_RANDR_ONE_POINT_TWO
+                if (xfce_randr != NULL)
+                {
+                    XFCE_RANDR_EVENT_BASE (xfce_randr) = event_base;
+                    /* set up notifications */
+                    XRRSelectInput (gdk_x11_display_get_xdisplay (display),
+                                    GDK_WINDOW_XID (gdk_get_default_root_window ()),
+                                    RRScreenChangeNotifyMask);
+                    gdk_x11_register_standard_event_type (display,
+                                                          event_base,
+                                                          RRNotify + 1);
+                    gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
+                }
+    #endif
 
-            /* enter the main loop */
-            gtk_main ();
+                /* show the dialog */
+                gtk_widget_show (dialog);
+
+                /* To prevent the settings dialog to be saved in the session */
+                gdk_set_sm_client_id ("FAKE ID");
+
+                /* enter the main loop */
+                gtk_main ();
+            }
+            else
+            {
+                g_error ("Failed to load the UI file: %s.", error->message);
+                g_error_free (error);
+            }
+
+    #ifdef HAS_RANDR_ONE_POINT_TWO
+            if (xfce_randr != NULL)
+                gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, builder);
+    #endif
+
+            /* release the builder */
+            g_object_unref (G_OBJECT (builder));
+
+ #ifdef HAS_RANDR_ONE_POINT_TWO
         }
         else
         {
-            g_error ("Failed to load the UI file: %s.", error->message);
-            g_error_free (error);
+            gint n;
+            gint first, second;
+
+            if (xfce_randr->resources->noutput < 2 || xfce_randr == NULL)
+                goto err1;
+
+            first = second = -1;
+
+            for (n = 0; n < xfce_randr->resources->noutput; n++)
+            {
+                if (xfce_randr->status[n] != XFCE_OUTPUT_STATUS_NONE)
+                {
+                    if (first < 0)
+                        first = n;
+                    else if (second < 0)
+                        second = n;
+                    else
+                        break;
+                }
+            }
+
+            if (first < 0 || second < 0)
+                goto err1;
+
+            builder = gtk_builder_new ();
+
+            ui_ret =
+                gtk_builder_add_from_string (builder,
+                                             minimal_display_dialog_ui,
+                                             minimal_display_dialog_ui_length,
+                                             &error);
+
+            if (ui_ret != 0)
+            {
+                GObject    *first_screen_radio;
+                GObject    *second_screen_radio;
+                gchar      *screen_name;
+
+                /* Build the minimal dialog */
+                dialog = (GtkWidget *) gtk_builder_get_object (builder, "dialog1");
+                g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_minimal_dialog_response), builder);
+
+                /* Set the radio buttons captions */
+                first_screen_radio =
+                    gtk_builder_get_object (builder, "radiobutton1");
+                second_screen_radio =
+                    gtk_builder_get_object (builder, "radiobutton2");
+
+                screen_name =
+                    xfce_randr_friendly_name (xfce_randr,
+                                              xfce_randr->resources->outputs[first],
+                                              xfce_randr->output_info[first]->name);
+                gtk_button_set_label (GTK_BUTTON (first_screen_radio),
+                                      screen_name);
+                g_free (screen_name);
+
+                screen_name =
+                    xfce_randr_friendly_name (xfce_randr,
+                                              xfce_randr->resources->outputs[second],
+                                              xfce_randr->output_info[second]->name);
+                gtk_button_set_label (GTK_BUTTON (second_screen_radio),
+                                      screen_name);
+                g_free (screen_name);
+
+                /* Show the minimal dialog and start the main loop */
+                gtk_widget_show (dialog);
+                gtk_main ();
+            }
+            else
+            {
+                g_error ("Failed to load the UI file: %s.", error->message);
+                g_error_free (error);
+            }
+
+            g_object_unref (G_OBJECT (builder));
+
         }
-
-#ifdef HAS_RANDR_ONE_POINT_TWO
-        if (xfce_randr != NULL)
-            gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, builder);
 #endif
-
-        /* release the builder */
-        g_object_unref (G_OBJECT (builder));
 
         err1:
 
