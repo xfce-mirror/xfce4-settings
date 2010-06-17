@@ -197,6 +197,7 @@ xfce_randr_populate (XfceRandr *randr,
                                                              root_window, n);
     }
 
+    /* clone modes: same RRModes present for all outputs */
     xfce_randr_get_clone_modes (randr);
 
     return TRUE;
@@ -263,8 +264,8 @@ xfce_randr_new (GdkDisplay  *display,
 
 
 
-void
-xfce_randr_free (XfceRandr *randr)
+static void
+xfce_randr_cleanup (XfceRandr *randr)
 {
     gint n;
 
@@ -285,6 +286,14 @@ xfce_randr_free (XfceRandr *randr)
     g_free (randr->status);
     g_free (randr->position);
     g_free (randr->output_info);
+}
+
+
+
+void
+xfce_randr_free (XfceRandr *randr)
+{
+    xfce_randr_cleanup (randr);
 
     /* free the structure */
     g_slice_free (XfceRandr, randr);
@@ -295,27 +304,10 @@ xfce_randr_free (XfceRandr *randr)
 void
 xfce_randr_reload (XfceRandr *randr)
 {
-    gint       n;
     Display   *xdisplay;
     GdkWindow *root_window;
 
-    /* free the output info cache */
-    for (n = 0; n < randr->resources->noutput; n++)
-        if (G_LIKELY (randr->output_info[n]))
-            XRRFreeOutputInfo (randr->output_info[n]);
-
-    /* free the screen resources */
-    XRRFreeScreenResources (randr->resources);
-
-    /* free the settings */
-    g_free (randr->clone_modes);
-    g_free (randr->mode);
-    g_free (randr->preferred_mode);
-    g_free (randr->rotation);
-    g_free (randr->rotations);
-    g_free (randr->status);
-    g_free (randr->position);
-    g_free (randr->output_info);
+    xfce_randr_cleanup (randr);
 
     /* get the x display */
     xdisplay = gdk_x11_display_get_xdisplay (randr->display);
