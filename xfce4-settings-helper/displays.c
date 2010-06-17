@@ -75,6 +75,25 @@ struct _XfceDisplaysHelper
 #endif
 };
 
+#ifdef HAS_RANDR_ONE_POINT_TWO
+/* wrapper to avoid querying too often */
+typedef struct _XfceRRCrtc XfceRRCrtc;
+struct _XfceRRCrtc
+{
+    RRCrtc    id;
+    RRMode    mode;
+    Rotation  rotation;
+    Rotation  rotations;
+    gint      x;
+    gint      y;
+    gint      noutput;
+    RROutput *outputs;
+    gint      npossible;
+    RROutput *possible;
+    gint      processed;
+};
+#endif
+
 
 
 G_DEFINE_TYPE (XfceDisplaysHelper, xfce_displays_helper, G_TYPE_OBJECT);
@@ -192,40 +211,100 @@ xfce_displays_helper_process_screen_size (gint  mode_width,
 
 
 
-static RRCrtc
-xfce_displays_helper_find_clone (Display            *xdisplay,
-                                 XRRScreenResources *resources,
-                                 GArray             *activated_crtcs,
-                                 RROutput            current_output,
-                                 gint                pos_x,
-                                 gint                pos_y,
-                                 RRMode              mode,
-                                 Rotation            rot)
+static XfceRRCrtc *
+xfce_displays_helper_list_crtcs (Display            *xdisplay,
+                                 XRRScreenResources *resources)
 {
+    XfceRRCrtc  *crtcs;
     XRRCrtcInfo *crtc_info;
-    RRCrtc       crtc;
-    guint        i;
-    gint         n, candidate;
+    gint         n, m;
 
-    g_return_val_if_fail (xdisplay != NULL, None);
-    g_return_val_if_fail (resources != NULL, None);
-    g_return_val_if_fail (activated_crtcs != NULL, None);
+    g_return_val_if_fail (xdisplay != NULL, NULL);
+    g_return_val_if_fail (resources != NULL, NULL);
 
-    for (i = 0; i < activated_crtcs->len; ++i)
+    /* get all existing CRTCs */
+    crtcs = g_new0 (XfceRRCrtc, resources->ncrtc);
+    for (n = 0; n < resources->ncrtc; ++n)
     {
-        crtc = g_array_index (activated_crtcs, RRCrtc, i);
-        crtc_info = XRRGetCrtcInfo (xdisplay, resources, crtc);
+        crtcs[n].id = resources->crtcs[n];
+        crtc_info = XRRGetCrtcInfo (xdisplay, resources, resources->crtcs[n]);
+        crtcs[n].mode = crtc_info->mode;
+        crtcs[n].rotation = crtc_info->rotation;
+        crtcs[n].rotations = crtc_info->rotations;
+        crtcs[n].x = crtc_info->x;
+        crtcs[n].y = crtc_info->y;
+        crtcs[n].noutput = crtc_info->noutput;
+        crtcs[n].outputs = NULL;
+        if (crtc_info->noutput > 0)
+        {
+            crtcs[n].outputs = g_new0 (RROutput, crtc_info->noutput);
+            for (m = 0; m < crtc_info->noutput; ++m)
+                crtcs[n].outputs[m] = crtc_info->outputs[m];
+        }
+        crtcs[n].npossible = crtc_info->npossible;
+        crtcs[n].possible = NULL;
+        if (crtc_info->npossible > 0)
+        {
+            crtcs[n].possible = g_new0 (RROutput, crtc_info->npossible);
+            for (m = 0; m < crtc_info->npossible; ++m)
+                crtcs[n].possible[m] = crtc_info->possible[m];
+        }
+        crtcs[n].processed = FALSE;
+        XRRFreeCrtcInfo (crtc_info);
+    }
 
-        if (crtc_info->x == pos_x && crtc_info->y == pos_y
-            && crtc_info->mode == mode && crtc_info->rotation == rot)
+    return crtcs;
+}
+
+
+
+static XfceRRCrtc *
+xfce_displays_helper_find_crtc_by_id (XRRScreenResources *resources,
+                                      XfceRRCrtc         *crtcs,
+                                      RRCrtc              id)
+{
+    gint n;
+
+    g_return_val_if_fail (resources != NULL, NULL);
+    g_return_val_if_fail (crtcs != NULL, NULL);
+
+    for (n = 0; n < resources->ncrtc; ++n)
+    {
+        if (crtcs[n].id == id)
+            return &crtcs[n];
+    }
+
+    return NULL;
+}
+
+
+
+static XfceRRCrtc *
+xfce_displays_helper_find_clonable_crtc (XRRScreenResources *resources,
+                                         XfceRRCrtc         *crtcs,
+                                         RROutput            current_output,
+                                         gint                pos_x,
+                                         gint                pos_y,
+                                         RRMode              mode,
+                                         Rotation            rot)
+{
+    gint m, n, candidate;
+
+    g_return_val_if_fail (resources != NULL, NULL);
+    g_return_val_if_fail (crtcs != NULL, NULL);
+
+    for (n = 0; n < resources->ncrtc; ++n)
+    {
+        if (crtcs[n].processed && crtcs[n].x == pos_x && crtcs[n].y == pos_y
+            && crtcs[n].mode == mode && crtcs[n].rotation == rot)
         {
             /* we found a CRTC already enabled with the exact values
                => might be suitable for a clone, check that it can be
                connected to the new output */
             candidate = FALSE;
-            for (n = 0; n < crtc_info->npossible; ++n)
+            for (m = 0; m < crtcs[n].npossible; ++m)
             {
-                if (crtc_info->possible[n] == current_output)
+                if (crtcs[n].possible[m] == current_output)
                 {
                     candidate = TRUE;
                     break;
@@ -234,71 +313,93 @@ xfce_displays_helper_find_clone (Display            *xdisplay,
 
             /* definitely suitable for a clone */
             if (candidate)
-            {
-                XRRFreeCrtcInfo (crtc_info);
-                return crtc;
-            }
+                return &crtcs[n];
         }
-
-        XRRFreeCrtcInfo (crtc_info);
     }
 
-    return None;
+    return NULL;
 }
 
 
 
-static RRCrtc
-xfce_displays_helper_find_crtc (Display            *xdisplay,
-                                XRRScreenResources *resources,
-                                XRROutputInfo      *current_output)
+static XfceRRCrtc *
+xfce_displays_helper_find_usable_crtc (XRRScreenResources *resources,
+                                       XfceRRCrtc         *crtcs,
+                                       XRROutputInfo      *output_info,
+                                       RROutput            output)
 {
-    XRROutputInfo *output_info;
-    gint           m, n, candidate;
+    gint m, n;
 
-    g_return_val_if_fail (current_output != NULL, None);
+    g_return_val_if_fail (resources != NULL, NULL);
+    g_return_val_if_fail (crtcs != NULL, NULL);
+    g_return_val_if_fail (output_info != NULL, NULL);
 
     /* if there is one already active, return it */
-    if (current_output->crtc != None)
-        return current_output->crtc;
-
-    g_return_val_if_fail (xdisplay != NULL, None);
-    g_return_val_if_fail (resources != NULL, None);
+    if (output_info->crtc != None)
+        return xfce_displays_helper_find_crtc_by_id (resources, crtcs,
+                                                     output_info->crtc);
 
     /* try to find one that is not already used by another output */
-    for (n = 0; n < current_output->ncrtc; ++n)
+    for (n = 0; n < resources->ncrtc; ++n)
     {
-        candidate = TRUE;
-        for (m = 0; m < resources->noutput; ++m)
+        if (crtcs[n].noutput > 0)
+            continue;
+
+        for (m = 0; m < crtcs[n].npossible; ++m)
         {
-            output_info = XRRGetOutputInfo (xdisplay, resources, resources->outputs[m]);
-
-            /* go to the next output directly */
-            if (output_info->connection != RR_Connected
-                || g_strcmp0 (output_info->name, current_output->name) == 0)
-            {
-                XRRFreeOutputInfo (output_info);
-                continue;
-            }
-
-            /* crtc already used */
-            if (output_info->crtc == current_output->crtcs[n])
-            {
-                candidate = FALSE;
-                XRRFreeOutputInfo (output_info);
-                break;
-            }
-
-            XRRFreeOutputInfo (output_info);
+            if (crtcs[n].possible[m] == output)
+                return &crtcs[n];
         }
-
-        if (candidate)
-            return current_output->crtcs[n];
     }
 
     /* none available */
-    g_warning ("No CRTC found for %s.", current_output->name);
-    return None;
+    g_warning ("No CRTC found for %s.", output_info->name);
+    return NULL;
+}
+
+
+
+static Status
+xfce_displays_helper_apply_crtc (Display            *xdisplay,
+                                 XRRScreenResources *resources,
+                                 XfceRRCrtc         *crtc,
+                                 RRMode              mode,
+                                 Rotation            rot,
+                                 gint                pos_x,
+                                 gint                pos_y,
+                                 gint                noutput,
+                                 RROutput           *outputs)
+{
+    Status ret;
+    gint   n;
+
+    g_return_val_if_fail (xdisplay != NULL, RRSetConfigSuccess);
+    g_return_val_if_fail (resources != NULL, RRSetConfigSuccess);
+    g_return_val_if_fail (crtc != NULL, RRSetConfigSuccess);
+
+    ret = XRRSetCrtcConfig (xdisplay, resources, crtc->id, CurrentTime, pos_x,
+                            pos_y, mode, rot, outputs, noutput);
+
+    /* update our view */
+    if (ret == RRSetConfigSuccess)
+    {
+        crtc->mode = mode;
+        crtc->rotation = rot;
+        crtc->x = pos_x;
+        crtc->y = pos_y;
+        crtc->noutput = noutput;
+        g_free (crtc->outputs);
+        crtc->outputs = NULL;
+        if (noutput > 0)
+        {
+            crtc->outputs = g_new0 (RROutput, noutput);
+            for (n = 0; n < noutput; ++n)
+                crtc->outputs[n] = outputs[n];
+        }
+        crtc->processed = TRUE;
+    }
+
+    return ret;
 }
 
 
@@ -306,29 +407,29 @@ xfce_displays_helper_find_crtc (Display            *xdisplay,
 static Status
 xfce_displays_helper_disable_crtc (Display            *xdisplay,
                                    XRRScreenResources *resources,
-                                   RRCrtc              crtc)
+                                   XfceRRCrtc         *crtc)
 {
     g_return_val_if_fail (xdisplay != NULL, RRSetConfigSuccess);
     g_return_val_if_fail (resources != NULL, RRSetConfigSuccess);
 
     /* already disabled */
-    if (crtc == None)
+    if (!crtc)
         return RRSetConfigSuccess;
 
-    return XRRSetCrtcConfig (xdisplay, resources, crtc, CurrentTime,
-                             0, 0, None, RR_Rotate_0, NULL, 0);
+    return xfce_displays_helper_apply_crtc (xdisplay, resources, crtc, None,
+                                            RR_Rotate_0, 0, 0, 0, NULL);
 }
 
 
 static void
-xfce_displays_helper_set_outputs (XRRCrtcInfo *crtc_info,
-                                  RROutput     current_output,
-                                  gint        *noutput,
-                                  RROutput   **outputs)
+xfce_displays_helper_set_outputs (XfceRRCrtc *crtc,
+                                  RROutput    current_output,
+                                  gint       *noutput,
+                                  RROutput  **outputs)
 {
-    gint m, n, found;
+    gint n, found;
 
-    if (crtc_info->noutput == 0)
+    if (crtc->noutput == 0)
     {
         /* no output connected, easy, put the current one */
         *noutput = 1;
@@ -339,23 +440,23 @@ xfce_displays_helper_set_outputs (XRRCrtcInfo *crtc_info,
 
     found = FALSE;
     /* some outputs are already connected, check if the current one is present */
-    for (n = 0; n < crtc_info->noutput; ++n)
+    for (n = 0; n < crtc->noutput; ++n)
     {
-        if (crtc_info->outputs[n] == current_output)
+        if (crtc->outputs[n] == current_output)
         {
             found = TRUE;
             break;
         }
     }
 
-    *noutput = found ? crtc_info->noutput : crtc_info->noutput + 1;
+    *noutput = found ? crtc->noutput : crtc->noutput + 1;
     *outputs = g_new0 (RROutput, *noutput);
     /* readd the existing ones */
-    for (m = n = 0; n < crtc_info->noutput; ++n)
-        *outputs[m++] = crtc_info->outputs[n];
+    for (n = 0; n < crtc->noutput; ++n)
+        *outputs[n] = crtc->outputs[n];
     /* add the current one if needed */
     if (!found)
-        *outputs[m] = current_output;
+        *outputs[++n] = current_output;
 
     return;
 }
@@ -369,8 +470,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     GdkDisplay         *display;
     Display            *xdisplay;
     GdkWindow          *root_window;
-    GArray             *activated_crtcs;
     XRRScreenResources *resources;
+    XfceRRCrtc         *crtcs, *crtc;
     gchar               property[512];
     gint                min_width, min_height, max_width, max_height;
     gint                mm_width, mm_height, width, height;
@@ -382,11 +483,9 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gchar              *output_name, *output_res, *output_ref;
     gdouble             output_rate;
     XRROutputInfo      *output_info;
-    XRRCrtcInfo        *crtc_info;
     XRRModeInfo        *mode_info;
     gdouble             rate;
     RRMode              mode;
-    RRCrtc              crtc;
     Rotation            rot;
     RROutput           *outputs;
 
@@ -413,8 +512,10 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         return;
     }
 
+    /* get all existing CRTCs */
+    crtcs = xfce_displays_helper_list_crtcs (xdisplay, resources);
+
     /* init them before starting */
-    activated_crtcs = g_array_new (FALSE, FALSE, sizeof (RRCrtc));
     mm_width = mm_height = width = height = 0;
 
     /* get the number of outputs */
@@ -485,8 +586,9 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             /* outputs that have to be disabled are stored without resolution */
             if (output_res == NULL)
             {
-                if (xfce_displays_helper_disable_crtc (xdisplay, resources,
-                                                       output_info->crtc) != RRSetConfigSuccess)
+                crtc = xfce_displays_helper_find_crtc_by_id (resources, crtcs,
+                                                             output_info->crtc);
+                if (xfce_displays_helper_disable_crtc (xdisplay, resources, crtc) != RRSetConfigSuccess)
                     g_warning ("Failed to disable CRTC for output %s.", output_info->name);
 
                 XRRFreeOutputInfo (output_info);
@@ -532,27 +634,25 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             }
 
             /* first, search for a possible clone */
-            crtc = xfce_displays_helper_find_clone (xdisplay, resources, activated_crtcs,
-                                                    resources->outputs[m], pos_x, pos_y,
-                                                    mode, rot);
+            crtc = xfce_displays_helper_find_clonable_crtc (resources, crtcs,
+                                                            resources->outputs[m],
+                                                            pos_x, pos_y, mode, rot);
             /* if it failed, forget about it and pick a free one */
-            if (crtc == None)
-                crtc = xfce_displays_helper_find_crtc (xdisplay, resources, output_info);
+            if (!crtc)
+                crtc = xfce_displays_helper_find_usable_crtc (resources, crtcs,
+                                                              output_info, resources->outputs[m]);
 
-            if (crtc != None)
+            if (crtc)
             {
-                crtc_info = XRRGetCrtcInfo (xdisplay, resources, crtc);
-
                 /* unsupported rotation, abort for this output */
-                if ((crtc_info->rotations & rot) == 0)
+                if ((crtc->rotations & rot) == 0)
                 {
-                    XRRFreeCrtcInfo (crtc_info);
                     XRRFreeOutputInfo (output_info);
                     break;
                 }
 
                 noutput = 0;
-                xfce_displays_helper_set_outputs (crtc_info, resources->outputs[m],
+                xfce_displays_helper_set_outputs (crtc, resources->outputs[m],
                                                   &noutput, &outputs);
 
                 /* get the sizes of the mode to enforce */
@@ -568,18 +668,20 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                                                               &mm_width, &mm_height);
 
                 /* check if we really need to do something */
-                if (crtc_info->mode != mode || crtc_info->rotation != rot
-                    || crtc_info->x != pos_x || crtc_info->y != pos_y)
+                if (crtc->mode != mode || crtc->rotation != rot
+                    || crtc->x != pos_x || crtc->y != pos_y
+                    || crtc->noutput != noutput)
                 {
-                    if (XRRSetCrtcConfig (xdisplay, resources, crtc, crtc_info->timestamp,
-                                          pos_x, pos_y, mode, rot, outputs, noutput) == RRSetConfigSuccess)
-                        g_array_append_val (activated_crtcs, crtc);
-                    else
+                    if (xfce_displays_helper_apply_crtc (xdisplay, resources, crtc,
+                                                         mode, rot, pos_x, pos_y,
+                                                         noutput, outputs) != RRSetConfigSuccess)
+                    {
+                        /* failure */
                         g_warning ("Failed to configure %s.", output_info->name);
+                    }
                 }
 
                 g_free (outputs);
-                XRRFreeCrtcInfo (crtc_info);
             }
 
             XRRFreeOutputInfo (output_info);
@@ -596,8 +698,6 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         g_free (output_name);
     }
 
-    g_array_free (activated_crtcs, TRUE);
-
     /* set the screen size only if it's really needed and valid */
     if (width >= min_width && width <= max_width
         && height >= min_height && height <= max_height
@@ -607,6 +707,14 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             || mm_height != gdk_screen_height_mm ()))
         XRRSetScreenSize (xdisplay, GDK_WINDOW_XID (root_window),
                           width, height, mm_width, mm_height);
+
+    /* cleanup our CRTC view */
+    for (n = 0; n < resources->ncrtc; ++n)
+    {
+        g_free (crtcs[n].outputs);
+        g_free (crtcs[n].possible);
+    }
+    g_free (crtcs);
 
     /* free the screen resources */
     XRRFreeScreenResources (resources);
