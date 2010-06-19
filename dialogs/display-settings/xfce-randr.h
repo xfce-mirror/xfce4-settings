@@ -27,6 +27,7 @@
 #define XFCE_RANDR_EVENT_BASE(randr)      (randr->event_base)
 #define XFCE_RANDR_MODE(randr)            (randr->mode[randr->active_output])
 #define XFCE_RANDR_PREFERRED_MODE(randr)  (randr->preferred_mode[randr->active_output])
+#define XFCE_RANDR_SUPPORTED_MODES(randr) (randr->modes[randr->active_output])
 #define XFCE_RANDR_ROTATION(randr)        (randr->rotation[randr->active_output])
 #define XFCE_RANDR_ROTATIONS(randr)       (randr->rotations[randr->active_output])
 #define XFCE_RANDR_OUTPUT_INFO(randr)     (randr->output_info[randr->active_output])
@@ -48,9 +49,10 @@
 #endif
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
-typedef struct _XfceRandr                XfceRandr;
-typedef struct _XfceOutputPosition       XfceOutputPosition;
-typedef enum   _XfceOutputStatus         XfceOutputStatus;
+typedef struct _XfceRandr          XfceRandr;
+typedef struct _XfceOutputPosition XfceOutputPosition;
+typedef struct _XfceRRMode         XfceRRMode;
+typedef enum   _XfceOutputStatus   XfceOutputStatus;
 
 enum _XfceOutputStatus
 {
@@ -63,6 +65,14 @@ struct _XfceOutputPosition
 {
     gint x;
     gint y;
+};
+
+struct _XfceRRMode
+{
+    RRMode  id;
+    guint   width;
+    guint   height;
+    gdouble rate;
 };
 
 struct _XfceRandr
@@ -82,8 +92,9 @@ struct _XfceRandr
     /* the active selected layout */
     gint                 active_output;
 
-    /* cache for the output info */
+    /* cache for the output/mode info */
     XRROutputInfo      **output_info;
+    XfceRRMode         **modes;
 
     /* modes common to all enabled outputs */
     RRMode              *clone_modes;

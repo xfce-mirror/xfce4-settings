@@ -37,7 +37,7 @@
 #ifdef HAS_RANDR_ONE_POINT_TWO
 
 static void
-xfce_randr_get_clone_modes (XfceRandr *randr)
+xfce_randr_list_clone_modes (XfceRandr *randr)
 {
     GArray *clone_modes;
     gint    l, m, n, candidate, found;
@@ -123,6 +123,70 @@ xfce_randr_get_safe_rotations (XfceRandr *randr,
 
 
 
+static XfceRRMode *
+xfce_randr_find_mode_by_id (XfceRandr *randr,
+                            gint       output,
+                            RRMode     id)
+{
+    gint n;
+
+    g_return_val_if_fail (randr != NULL, NULL);
+    g_return_val_if_fail (output >= 0 && output < randr->resources->noutput,
+                          NULL);
+
+    if (id == None)
+        return NULL;
+
+    for (n = 0; n < randr->output_info[output]->nmode; ++n)
+    {
+        if (randr->modes[output][n].id == id)
+            return &randr->modes[output][n];
+    }
+
+    return NULL;
+}
+
+
+
+static XfceRRMode *
+xfce_randr_list_supported_modes (XRRScreenResources *resources,
+                                XRROutputInfo       *output_info)
+{
+    XfceRRMode *modes;
+    gint m, n;
+
+    g_return_val_if_fail (resources != NULL, NULL);
+    g_return_val_if_fail (output_info != NULL, NULL);
+
+    if (output_info->nmode == 0)
+        return NULL;
+
+    modes = g_new0 (XfceRRMode, output_info->nmode);
+
+    for (n = 0; n < output_info->nmode; ++n)
+    {
+        modes[n].id = output_info->modes[n];
+
+        /* we need to walk yet another list to get the mode info */
+        for (m = 0; m < resources->nmode; ++m)
+        {
+            if (output_info->modes[n] == resources->modes[m].id)
+            {
+                modes[n].width = resources->modes[m].width;
+                modes[n].height = resources->modes[m].height;
+                modes[n].rate = (gdouble) resources->modes[m].dotClock /
+                                ((gdouble) resources->modes[m].hTotal * (gdouble) resources->modes[m].vTotal);
+
+                break;
+            }
+        }
+    }
+
+    return modes;
+}
+
+
+
 static gboolean
 xfce_randr_populate (XfceRandr *randr,
                      Display   *xdisplay,
@@ -137,6 +201,7 @@ xfce_randr_populate (XfceRandr *randr,
     /* allocate space for the settings */
     randr->mode = g_new0 (RRMode, randr->resources->noutput);
     randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
+    randr->modes = g_new0 (XfceRRMode *, randr->resources->noutput);
     randr->rotation = g_new0 (Rotation, randr->resources->noutput);
     randr->rotations = g_new0 (Rotation, randr->resources->noutput);
     randr->position = g_new0 (XfceOutputPosition, randr->resources->noutput);
@@ -161,6 +226,9 @@ xfce_randr_populate (XfceRandr *randr,
 
             return FALSE;
         }
+
+        /* fill in supported modes */
+        randr->modes[n] = xfce_randr_list_supported_modes (randr->resources, randr->output_info[n]);
 
         /* do not query disconnected outputs */
         if (randr->output_info[n]->connection == RR_Connected)
@@ -198,7 +266,7 @@ xfce_randr_populate (XfceRandr *randr,
     }
 
     /* clone modes: same RRModes present for all outputs */
-    xfce_randr_get_clone_modes (randr);
+    xfce_randr_list_clone_modes (randr);
 
     return TRUE;
 }
@@ -269,10 +337,14 @@ xfce_randr_cleanup (XfceRandr *randr)
 {
     gint n;
 
-    /* free the output info cache */
+    /* free the output/mode info cache */
     for (n = 0; n < randr->resources->noutput; n++)
+    {
         if (G_LIKELY (randr->output_info[n]))
             XRRFreeOutputInfo (randr->output_info[n]);
+        if (G_LIKELY (randr->modes[n]))
+            g_free (randr->modes[n]);
+    }
 
     /* free the screen resources */
     XRRFreeScreenResources (randr->resources);
@@ -280,6 +352,7 @@ xfce_randr_cleanup (XfceRandr *randr)
     /* free the settings */
     g_free (randr->clone_modes);
     g_free (randr->mode);
+    g_free (randr->modes);
     g_free (randr->preferred_mode);
     g_free (randr->rotation);
     g_free (randr->rotations);
@@ -340,25 +413,15 @@ xfce_randr_save_device (XfceRandr     *randr,
                         const gchar   *distinct)
 {
     gchar        property[512];
-    const gchar *resolution_name = NULL;
+    gchar       *resolution_name = NULL;
     const gchar *reflection_name = NULL;
-    gdouble      refresh_rate = 0.00;
-    XRRModeInfo *mode;
-    gint         n;
+    XfceRRMode  *mode;
     gint         degrees;
 
-    /* find the resolution name and refresh rate */
-    for (n = 0; n < randr->resources->nmode; n++)
-    {
-        if (randr->resources->modes[n].id == randr->mode[output])
-        {
-            mode = &randr->resources->modes[n];
-            resolution_name = mode->name;
-            refresh_rate = (gdouble) mode->dotClock / ((gdouble) mode->hTotal * (gdouble) mode->vTotal);
-
-            break;
-        }
-    }
+    /* find the resolution and refresh rate */
+    mode = xfce_randr_find_mode_by_id (randr, output, randr->mode[output]);
+    if (mode)
+        resolution_name = g_strdup_printf ("%dx%d", mode->width, mode->height);
 
     /* save the device name */
     g_snprintf (property, sizeof (property), "/%s/%s", scheme, distinct);
@@ -373,8 +436,8 @@ xfce_randr_save_device (XfceRandr     *randr,
 
     /* save the refresh rate */
     g_snprintf (property, sizeof (property), "/%s/%s/RefreshRate", scheme, distinct);
-    if (G_LIKELY (refresh_rate > 0.00))
-        xfconf_channel_set_double (channel, property, refresh_rate);
+    if (G_LIKELY (resolution_name != NULL))
+        xfconf_channel_set_double (channel, property, mode->rate);
     else
         xfconf_channel_reset_property (channel, property, FALSE);
 
@@ -434,6 +497,8 @@ xfce_randr_save_device (XfceRandr     *randr,
         g_snprintf (property, sizeof (property), "/%s/%s/Position/Y", scheme, distinct);
         xfconf_channel_set_int (channel, property, randr->position[output].y);
     }
+
+    g_free (resolution_name);
 }
 
 

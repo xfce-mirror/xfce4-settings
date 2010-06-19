@@ -432,13 +432,12 @@ display_setting_modes_changed (GtkComboBox *combobox,
 static void
 display_setting_modes_populate (GtkBuilder *builder)
 {
-    GtkTreeModel  *model;
-    GObject       *combobox;
-    gint           m, n;
-    gchar         *name;
-    GtkTreeIter    iter;
-    XRRModeInfo  *mode_info;
-    gfloat        rate;
+    GtkTreeModel *model;
+    GObject      *combobox;
+    gint          n;
+    gchar        *name;
+    GtkTreeIter   iter;
+    XfceRRMode   *modes;
 
     /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-mode");
@@ -457,36 +456,21 @@ display_setting_modes_populate (GtkBuilder *builder)
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
 
         /* walk all supported modes */
-        for (m = 0; m < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++m)
+        modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
+        for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
         {
-            /* walk all the modes */
-            for (n = 0; n < xfce_randr->resources->nmode; ++n)
-            {
-                /* get the mode info */
-                mode_info = &xfce_randr->resources->modes[n];
+            /* insert the mode */
+            name = g_strdup_printf (_("%dx%d @ %.1f Hz"), modes[n].width,
+                                    modes[n].height, modes[n].rate);
+            gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+            gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                                COLUMN_COMBO_NAME, name,
+                                COLUMN_COMBO_VALUE, modes[n].id, -1);
+            g_free (name);
 
-                /* check if this mode is supported by the output */
-                if (XFCE_RANDR_OUTPUT_INFO (xfce_randr)->modes[m] == mode_info->id)
-                {
-                    /* calculate the refresh rate */
-                    rate = (gfloat) mode_info->dotClock / ((gfloat) mode_info->hTotal * (gfloat) mode_info->vTotal);
-
-                    /* insert the mode */
-                    name = g_strdup_printf (_("%s @ %.1f Hz"), mode_info->name, rate);
-                    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-                    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                                        COLUMN_COMBO_NAME, name,
-                                        COLUMN_COMBO_VALUE, mode_info->id, -1);
-                    g_free (name);
-
-                    /* select the active mode */
-                    if (mode_info->id == XFCE_RANDR_MODE (xfce_randr))
-                        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
-
-                    /* finished */
-                    break;
-                }
-            }
+            /* select the active mode */
+            if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
+                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
         }
     }
     else
