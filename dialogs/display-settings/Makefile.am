@@ -19,7 +19,6 @@ xfce4_display_settings_SOURCES = \
 	xfce-randr-legacy.c \
 	xfce-randr-legacy.h \
 	display-dialog_ui.h \
-	display-dialog-xrandr1.2_ui.h \
 	minimal-display-dialog_ui.h \
 	display-name.c \
 	edid-parse.c \
@@ -48,14 +47,10 @@ if MAINTAINER_MODE
 
 BUILT_SOURCES = \
 	display-dialog_ui.h \
-	display-dialog-xrandr1.2_ui.h \
 	minimal-display-dialog_ui.h
 
 display-dialog_ui.h: display-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=display_dialog_ui $< >$@
-
-display-dialog-xrandr1.2_ui.h: display-dialog-xrandr1.2.glade
-	exo-csource --static --strip-comments --strip-content --name=display_dialog_xrandr12_ui $< >$@
 
 minimal-display-dialog_ui.h: minimal-display-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=minimal_display_dialog_ui $< >$@
@@ -71,7 +66,6 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 EXTRA_DIST = \
 	$(desktop_in_files) \
 	display-dialog.glade \
-	display-dialog-xrandr1.2.glade \
 	minimal-display-dialog.glade
 
 DISTCLEANFILES = \
