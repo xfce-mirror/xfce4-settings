@@ -124,31 +124,6 @@ xfce_randr_get_safe_rotations (XfceRandr *randr,
 
 
 static XfceRRMode *
-xfce_randr_find_mode_by_id (XfceRandr *randr,
-                            gint       output,
-                            RRMode     id)
-{
-    gint n;
-
-    g_return_val_if_fail (randr != NULL, NULL);
-    g_return_val_if_fail (output >= 0 && output < randr->resources->noutput,
-                          NULL);
-
-    if (id == None)
-        return NULL;
-
-    for (n = 0; n < randr->output_info[output]->nmode; ++n)
-    {
-        if (randr->modes[output][n].id == id)
-            return &randr->modes[output][n];
-    }
-
-    return NULL;
-}
-
-
-
-static XfceRRMode *
 xfce_randr_list_supported_modes (XRRScreenResources *resources,
                                 XRROutputInfo       *output_info)
 {
@@ -627,6 +602,31 @@ xfce_randr_friendly_name (XfceRandr   *randr,
 
     /* everything failed, fallback */
     return g_strdup (name);
+}
+
+
+
+XfceRRMode *
+xfce_randr_find_mode_by_id (XfceRandr *randr,
+                            gint       output,
+                            RRMode     id)
+{
+    gint n;
+
+    g_return_val_if_fail (randr != NULL, NULL);
+    g_return_val_if_fail (output >= 0 && output < randr->resources->noutput,
+                          NULL);
+
+    if (id == None)
+        return NULL;
+
+    for (n = 0; n < randr->output_info[output]->nmode; ++n)
+    {
+        if (randr->modes[output][n].id == id)
+            return &randr->modes[output][n];
+    }
+
+    return NULL;
 }
 
 #endif /* !HAS_RANDR_ONE_POINT_TWO */
