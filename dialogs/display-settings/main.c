@@ -848,71 +848,94 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
                                           gint        response_id,
                                           GtkBuilder *builder)
 {
-  if (response_id == 1)
-  {
-      /* OK */
-      GObject  *first_screen_radio;
-      GObject  *second_screen_radio;
-      GObject  *both_radio;
-      gboolean  use_first_screen;
-      gboolean  use_second_screen;
-      gboolean  use_both;
-      gint      first;
-      gint      second;
-      gint      n;
+    GObject    *first_screen_radio;
+    GObject    *second_screen_radio;
+    GObject    *both_radio;
+    XfceRRMode *mode1, *mode2;
+    gboolean    use_first_screen;
+    gboolean    use_second_screen;
+    gboolean    use_both;
+    gint        first, second;
+    gint        m, n, found;
 
-      first = second = -1;
+    if (response_id == 1)
+    {
+        /* OK */
 
-      for (n = 0; n < xfce_randr->resources->noutput; n++)
-      {
-          if (xfce_randr->status[n] != XFCE_OUTPUT_STATUS_NONE)
-          {
-              if (first < 0)
-                  first = n;
-              else if (second < 0)
-                  second = n;
-              else
-                  break;
-          }
-      }
+        first = second = -1;
 
-      first_screen_radio = gtk_builder_get_object (builder, "radiobutton1");
-      second_screen_radio = gtk_builder_get_object (builder, "radiobutton2");
-      both_radio = gtk_builder_get_object (builder, "radiobutton3");
+        for (n = 0; n < xfce_randr->resources->noutput; n++)
+        {
+            if (xfce_randr->status[n] != XFCE_OUTPUT_STATUS_NONE)
+            {
+                if (first < 0)
+                    first = n;
+                else if (second < 0)
+                    second = n;
+                else
+                    break;
+            }
+        }
 
-      use_first_screen =
-          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (first_screen_radio));
-      use_second_screen =
-          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (second_screen_radio));
-      use_both =
-          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (both_radio));
+        first_screen_radio = gtk_builder_get_object (builder, "radiobutton1");
+        second_screen_radio = gtk_builder_get_object (builder, "radiobutton2");
+        both_radio = gtk_builder_get_object (builder, "radiobutton3");
 
-      if (use_first_screen)
-      {
-          xfce_randr->mode[first] = xfce_randr->preferred_mode[first];
-          xfce_randr->mode[second] = None;
-      }
-      else if (use_second_screen)
-      {
-          xfce_randr->mode[second] = xfce_randr->preferred_mode[second];
-          xfce_randr->mode[first] = None;
-      }
-      else
-      {
-          if (xfce_randr->clone_modes[0] != None)
-          {
-              xfce_randr->mode[first] = xfce_randr->clone_modes[0];
-              xfce_randr->mode[second] = xfce_randr->clone_modes[0];
-          }
-      }
+        use_first_screen =
+            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (first_screen_radio));
+        use_second_screen =
+            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (second_screen_radio));
+        use_both =
+            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (both_radio));
 
-      xfce_randr_save (xfce_randr, "AutoConfigSecondary", display_channel);
-      gtk_main_quit ();
-  }
-  else
-  {
-      gtk_main_quit ();
-  }
+        if (use_first_screen)
+        {
+            xfce_randr->mode[first] = xfce_randr->preferred_mode[first];
+            xfce_randr->mode[second] = None;
+        }
+        else if (use_second_screen)
+        {
+            xfce_randr->mode[second] = xfce_randr->preferred_mode[second];
+            xfce_randr->mode[first] = None;
+        }
+        else
+        {
+            if (xfce_randr->clone_modes[0] != None)
+            {
+                xfce_randr->mode[first] = xfce_randr->clone_modes[0];
+                xfce_randr->mode[second] = xfce_randr->clone_modes[0];
+            }
+            else
+            {
+                found = FALSE;
+                /* no clone mode available, try to find a "similar" mode */
+                for (n = 0; n < xfce_randr->output_info[first]->nmode; ++n)
+                {
+                    mode1 = &xfce_randr->modes[first][n];
+                    for (m = 0; m < xfce_randr->output_info[second]->nmode; ++m)
+                    {
+                        mode2 = &xfce_randr->modes[second][m];
+                        /* "similar" means same resolution */
+                        if (mode1->width == mode2->width
+                            && mode1->height == mode2->height)
+                        {
+                            xfce_randr->mode[first] = mode1->id;
+                            xfce_randr->mode[second] = mode2->id;
+                            found = TRUE;
+                            break;
+                        }
+                    }
+
+                    if (found)
+                        break;
+                }
+            }
+        }
+
+        xfce_randr_save (xfce_randr, "AutoConfigSecondary", display_channel);
+    }
+
+    gtk_main_quit ();
 }
 #endif
 
