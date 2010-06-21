@@ -54,7 +54,7 @@
                       <object class="GtkRadioButton" id="radiobutton1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="receives_default">True</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                       </object>
@@ -66,7 +66,7 @@
                       <object class="GtkRadioButton" id="radiobutton2">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="receives_default">True</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                         <property name="group">radiobutton1</property>
@@ -80,7 +80,7 @@
                         <property name="label" translatable="yes">Both displays cloned</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Use both displays to show the same contents</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
@@ -129,6 +129,8 @@
                 <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="has_default">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
               </object>
