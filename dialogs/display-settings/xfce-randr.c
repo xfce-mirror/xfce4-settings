@@ -197,7 +197,10 @@ xfce_randr_populate (XfceRandr *randr,
         {
             /* make sure we don't free the not yet allocated outputs */
             for (n++; n < randr->resources->noutput; n++)
+            {
                 randr->output_info[n] = NULL;
+                randr->modes[n] = NULL;
+            }
 
             return FALSE;
         }
