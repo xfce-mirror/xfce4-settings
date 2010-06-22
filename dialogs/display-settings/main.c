@@ -932,7 +932,7 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
             }
         }
 
-        xfce_randr_save (xfce_randr, "AutoConfigSecondary", display_channel);
+        xfce_randr_save (xfce_randr, "MinimalAutoConfig", display_channel);
     }
 
     gtk_main_quit ();
