@@ -175,7 +175,6 @@ xfce_randr_populate (XfceRandr *randr,
 
     /* allocate space for the settings */
     randr->mode = g_new0 (RRMode, randr->resources->noutput);
-    randr->preferred_mode = g_new0 (RRMode, randr->resources->noutput);
     randr->modes = g_new0 (XfceRRMode *, randr->resources->noutput);
     randr->rotation = g_new0 (Rotation, randr->resources->noutput);
     randr->rotations = g_new0 (Rotation, randr->resources->noutput);
@@ -211,9 +210,6 @@ xfce_randr_populate (XfceRandr *randr,
         /* do not query disconnected outputs */
         if (randr->output_info[n]->connection == RR_Connected)
         {
-            /* load defaults */
-            randr->preferred_mode[n] = randr->output_info[n]->modes[randr->output_info[n]->npreferred];
-
 #ifdef HAS_RANDR_ONE_POINT_THREE
             /* find the primary screen if supported */
             if (randr->has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->resources->outputs[n])
@@ -331,7 +327,6 @@ xfce_randr_cleanup (XfceRandr *randr)
     g_free (randr->clone_modes);
     g_free (randr->mode);
     g_free (randr->modes);
-    g_free (randr->preferred_mode);
     g_free (randr->rotation);
     g_free (randr->rotations);
     g_free (randr->status);

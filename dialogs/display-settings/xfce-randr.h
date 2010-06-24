@@ -26,7 +26,6 @@
 
 #define XFCE_RANDR_EVENT_BASE(randr)      (randr->event_base)
 #define XFCE_RANDR_MODE(randr)            (randr->mode[randr->active_output])
-#define XFCE_RANDR_PREFERRED_MODE(randr)  (randr->preferred_mode[randr->active_output])
 #define XFCE_RANDR_SUPPORTED_MODES(randr) (randr->modes[randr->active_output])
 #define XFCE_RANDR_ROTATION(randr)        (randr->rotation[randr->active_output])
 #define XFCE_RANDR_ROTATIONS(randr)       (randr->rotations[randr->active_output])
@@ -101,7 +100,6 @@ struct _XfceRandr
 
     /* selected settings for all outputs */
     RRMode              *mode;
-    RRMode              *preferred_mode;
     Rotation            *rotation;
     Rotation            *rotations;
     XfceOutputPosition  *position;
