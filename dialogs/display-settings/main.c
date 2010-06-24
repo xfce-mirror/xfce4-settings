@@ -319,6 +319,8 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     gint          n, active = -1;
     gshort        diff, active_diff = G_MAXSHORT;
 #ifdef HAS_RANDR_ONE_POINT_TWO
+    GObject      *res_combobox;
+    GtkTreeIter   dummy;
     XfceRRMode   *modes, *current_mode;
 #endif
 
@@ -333,10 +335,12 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
         /* disable it if no mode is selected */
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), XFCE_RANDR_MODE (xfce_randr) != None);
 
-        /* get the current mode */
-        current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output,
-                                                   XFCE_RANDR_MODE (xfce_randr));
+        /* fetch the selected resolution */
+        res_combobox = gtk_builder_get_object (builder, "randr-resolution");
+        if (!display_setting_combo_box_get_value (GTK_COMBO_BOX (res_combobox), &n))
+            return;
 
+        current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output, n);
         if (!current_mode)
             return;
 
@@ -344,7 +348,7 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
         modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
         for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
         {
-            /* the mode resolution does not match the current one */
+            /* the mode resolution does not match the selected one */
             if (modes[n].width != current_mode->width
                 || modes[n].height != current_mode->height)
                 continue;
@@ -361,6 +365,10 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
             if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
                 gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
         }
+
+        /* if a new resolution was selected, set a refresh rate */
+        if (!gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combobox), &dummy))
+            gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
     }
     else
 #endif
