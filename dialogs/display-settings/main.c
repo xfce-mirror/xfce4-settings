@@ -772,7 +772,7 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     /* treeview selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-    gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+    gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_treeview_selection_changed), builder);
 
     /* setup the combo boxes */
