@@ -320,7 +320,6 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     gshort        diff, active_diff = G_MAXSHORT;
 #ifdef HAS_RANDR_ONE_POINT_TWO
     GObject      *res_combobox;
-    GtkTreeIter   dummy;
     XfceRRMode   *modes, *current_mode;
 #endif
 
@@ -367,7 +366,7 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
         }
 
         /* if a new resolution was selected, set a refresh rate */
-        if (!gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combobox), &dummy))
+        if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
     }
     else
