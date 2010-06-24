@@ -498,31 +498,23 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
 static void
-display_setting_output_enabled (GtkToggleButton *togglebutton,
+display_setting_output_toggled (GtkToggleButton *togglebutton,
                                 GtkBuilder      *builder)
 {
-    if (xfce_randr)
-    {
-        if (gtk_toggle_button_get_active (togglebutton))
-            XFCE_RANDR_MODE (xfce_randr) = XFCE_RANDR_PREFERRED_MODE(xfce_randr);
-    }
-    display_setting_resolutions_populate (builder);
-    display_setting_refresh_rates_populate (builder);
-    display_setting_rotations_populate (builder);
-    display_setting_reflections_populate (builder);
-}
+    GObject *radio;
+    gint     is_active;
 
+    if (!xfce_randr)
+        return;
 
+    radio = gtk_builder_get_object (builder, "randr-on");
+    is_active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radio));
 
-static void
-display_setting_output_disabled (GtkToggleButton *togglebutton,
-                                 GtkBuilder      *builder)
-{
-    if (xfce_randr)
-    {
-        if (gtk_toggle_button_get_active (togglebutton))
-            XFCE_RANDR_MODE (xfce_randr) = None;
-    }
+    if (is_active && XFCE_RANDR_MODE (xfce_randr) == None)
+        XFCE_RANDR_MODE (xfce_randr) = XFCE_RANDR_PREFERRED_MODE (xfce_randr);
+    else if (!is_active && XFCE_RANDR_MODE (xfce_randr) != None)
+        XFCE_RANDR_MODE (xfce_randr) = None;
+
     display_setting_resolutions_populate (builder);
     display_setting_refresh_rates_populate (builder);
     display_setting_rotations_populate (builder);
@@ -789,11 +781,11 @@ display_settings_dialog_new (GtkBuilder *builder)
     {
         radio = gtk_builder_get_object (builder, "randr-on");
         gtk_widget_show (GTK_WIDGET (radio));
-        g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_enabled), builder);
+        g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
 
         radio = gtk_builder_get_object (builder, "randr-off");
         gtk_widget_show (GTK_WIDGET (radio));
-        g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_disabled), builder);
+        g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
 
         label = gtk_builder_get_object (builder, "label-reflection");
         gtk_widget_show (GTK_WIDGET (label));
