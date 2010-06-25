@@ -55,7 +55,6 @@ typedef enum   _XfceOutputStatus   XfceOutputStatus;
 
 enum _XfceOutputStatus
 {
-    XFCE_OUTPUT_STATUS_NONE,
     XFCE_OUTPUT_STATUS_PRIMARY,
     XFCE_OUTPUT_STATUS_SECONDARY
 };
@@ -89,16 +88,19 @@ struct _XfceRandr
     XRRScreenResources  *resources;
 
     /* the active selected layout */
-    gint                 active_output;
+    guint                active_output;
+
+    /* number of connected outputs */
+    guint                noutput;
 
     /* cache for the output/mode info */
     XRROutputInfo      **output_info;
     XfceRRMode         **modes;
 
-    /* modes common to all enabled outputs */
+    /* modes common to all connected outputs */
     RRMode              *clone_modes;
 
-    /* selected settings for all outputs */
+    /* selected settings for all connected outputs */
     RRMode              *mode;
     Rotation            *rotation;
     Rotation            *rotations;
@@ -128,7 +130,7 @@ gchar      *xfce_randr_friendly_name   (XfceRandr     *randr,
                                         const gchar   *name);
 
 XfceRRMode *xfce_randr_find_mode_by_id (XfceRandr     *randr,
-                                        gint           output,
+                                        guint          output,
                                         RRMode         id);
 
 #endif /* !HAS_RANDR_ONE_POINT_TWO */

@@ -137,29 +137,6 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
 
 
 
-static gint
-display_setting_get_n_active_outputs (void)
-{
-    gint noutput;
-
-    noutput = 0;
-
-    if (xfce_randr)
-    {
-        gint i;
-
-        for (i = 0; i < xfce_randr->resources->noutput; i++)
-        {
-            if (xfce_randr->status[i] != XFCE_OUTPUT_STATUS_NONE)
-                noutput++;
-        }
-    }
-
-    return noutput;
-}
-
-
-
 #ifdef HAS_RANDR_ONE_POINT_TWO
 static void
 display_setting_reflections_changed (GtkComboBox *combobox,
@@ -528,7 +505,7 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
     if (!xfce_randr)
         return;
 
-    if (display_setting_get_n_active_outputs () > 1)
+    if (xfce_randr->noutput > 1)
     {
         GObject *radio;
         radio = gtk_builder_get_object (builder, "randr-on");
@@ -560,7 +537,7 @@ display_setting_output_status_populate (GtkBuilder *builder)
     if (!xfce_randr)
         return;
 
-    if (display_setting_get_n_active_outputs () <= 1)
+    if (xfce_randr->noutput <= 1)
         return;
 
     radio_on = gtk_builder_get_object (builder, "randr-on");
@@ -619,6 +596,9 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
 static void
 display_settings_treeview_populate (GtkBuilder *builder)
 {
+#ifdef HAS_RANDR_ONE_POINT_TWO
+    guint             m;
+#endif
     gint              n;
     GtkListStore     *store;
     GObject          *treeview;
@@ -650,39 +630,35 @@ display_settings_treeview_populate (GtkBuilder *builder)
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
     {
-        /* walk all the outputs */
-        for (n = 0; n < xfce_randr->resources->noutput; n++)
+        /* walk all the connected outputs */
+        for (m = 0; m < xfce_randr->noutput; ++m)
         {
-            /* only show screen that are primary or secondary */
-            if (xfce_randr->status[n] == XFCE_OUTPUT_STATUS_NONE)
-                continue;
-
             /* get a friendly name for the output */
             name = xfce_randr_friendly_name (xfce_randr,
-                                             xfce_randr->resources->outputs[n],
-                                             xfce_randr->output_info[n]->name);
+                                             xfce_randr->resources->outputs[m],
+                                             xfce_randr->output_info[m]->name);
 
-            if (xfce_randr->mode[n] == None && lucent_display_icon == NULL)
+            if (xfce_randr->mode[m] == None && lucent_display_icon == NULL)
                 lucent_display_icon =
                     exo_gdk_pixbuf_lucent (display_icon, 50);
 
             /* insert the output in the store */
             gtk_list_store_append (store, &iter);
-            if (xfce_randr->mode[n] == None)
+            if (xfce_randr->mode[m] == None)
                 gtk_list_store_set (store, &iter,
                                     COLUMN_OUTPUT_NAME, name,
                                     COLUMN_OUTPUT_ICON, lucent_display_icon,
-                                    COLUMN_OUTPUT_ID, n, -1);
+                                    COLUMN_OUTPUT_ID, m, -1);
             else
                 gtk_list_store_set (store, &iter,
                                     COLUMN_OUTPUT_NAME, name,
                                     COLUMN_OUTPUT_ICON, display_icon,
-                                    COLUMN_OUTPUT_ID, n, -1);
+                                    COLUMN_OUTPUT_ID, m, -1);
 
             g_free (name);
 
             /* select active output */
-            if (n == xfce_randr->active_output)
+            if (m == xfce_randr->active_output)
                 gtk_tree_selection_select_iter (selection, &iter);
         }
     }
@@ -813,7 +789,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     if (xfce_randr != NULL)
     {
         radio = gtk_builder_get_object (builder, "randr-on");
-        if (display_setting_get_n_active_outputs () > 1)
+        if (xfce_randr->noutput > 1)
         {
             gtk_widget_show (GTK_WIDGET (radio));
             g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
@@ -824,7 +800,7 @@ display_settings_dialog_new (GtkBuilder *builder)
         }
 
         radio = gtk_builder_get_object (builder, "randr-off");
-        if (display_setting_get_n_active_outputs () > 1)
+        if (xfce_randr->noutput > 1)
         {
             gtk_widget_show (GTK_WIDGET (radio));
             g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
@@ -902,27 +878,14 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
     gboolean    use_first_screen;
     gboolean    use_second_screen;
     gboolean    use_both;
-    gint        first, second;
+    guint       first, second;
     gint        m, n, found;
 
     if (response_id == 1)
     {
-        /* OK */
-
-        first = second = -1;
-
-        for (n = 0; n < xfce_randr->resources->noutput; n++)
-        {
-            if (xfce_randr->status[n] != XFCE_OUTPUT_STATUS_NONE)
-            {
-                if (first < 0)
-                    first = n;
-                else if (second < 0)
-                    second = n;
-                else
-                    break;
-            }
-        }
+        /* TODO: handle correctly more than 2 outputs? */
+        first = 0;
+        second = 1;
 
         first_screen_radio = gtk_builder_get_object (builder, "radiobutton1");
         second_screen_radio = gtk_builder_get_object (builder, "radiobutton2");
@@ -999,7 +962,7 @@ main (gint argc, gchar **argv)
     GdkDisplay *display;
     gboolean    succeeded = TRUE;
     gint        event_base, error_base;
-    guint       ui_ret;
+    guint       first, second;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -1157,39 +1120,17 @@ main (gint argc, gchar **argv)
         }
         else
         {
-            gint n;
-            gint first, second;
-
-            if (xfce_randr->resources->noutput < 2 || xfce_randr == NULL)
+            if (xfce_randr->noutput < 2 || xfce_randr == NULL)
                 goto err1;
 
-            first = second = -1;
-
-            for (n = 0; n < xfce_randr->resources->noutput; n++)
-            {
-                if (xfce_randr->status[n] != XFCE_OUTPUT_STATUS_NONE)
-                {
-                    if (first < 0)
-                        first = n;
-                    else if (second < 0)
-                        second = n;
-                    else
-                        break;
-                }
-            }
-
-            if (first < 0 || second < 0)
-                goto err1;
+            /* TODO: handle correctly more than 2 outputs? */
+            first = 0;
+            second = 1;
 
             builder = gtk_builder_new ();
 
-            ui_ret =
-                gtk_builder_add_from_string (builder,
-                                             minimal_display_dialog_ui,
-                                             minimal_display_dialog_ui_length,
-                                             &error);
-
-            if (ui_ret != 0)
+            if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
+                                             minimal_display_dialog_ui_length, &error) != 0)
             {
                 GObject    *first_screen_radio;
                 GObject    *second_screen_radio;
