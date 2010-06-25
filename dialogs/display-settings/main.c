@@ -137,6 +137,29 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
 
 
 
+static gint
+display_setting_get_n_active_outputs (void)
+{
+    gint noutput;
+
+    noutput = 0;
+
+    if (xfce_randr)
+    {
+        gint i;
+
+        for (i = 0; i < xfce_randr->resources->noutput; i++)
+        {
+            if (xfce_randr->status[i] != XFCE_OUTPUT_STATUS_NONE)
+                noutput++;
+        }
+    }
+
+    return noutput;
+}
+
+
+
 #ifdef HAS_RANDR_ONE_POINT_TWO
 static void
 display_setting_reflections_changed (GtkComboBox *combobox,
@@ -500,14 +523,21 @@ static void
 display_setting_output_toggled (GtkToggleButton *togglebutton,
                                 GtkBuilder      *builder)
 {
-    GObject *radio;
-    gint     is_active;
+    gint is_active;
 
     if (!xfce_randr)
         return;
 
-    radio = gtk_builder_get_object (builder, "randr-on");
-    is_active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radio));
+    if (display_setting_get_n_active_outputs () > 1)
+    {
+        GObject *radio;
+        radio = gtk_builder_get_object (builder, "randr-on");
+        is_active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radio));
+    }
+    else
+    {
+        is_active = TRUE;
+    }
 
     if (is_active && XFCE_RANDR_MODE (xfce_randr) == None)
         XFCE_RANDR_MODE (xfce_randr) =
@@ -528,6 +558,9 @@ display_setting_output_status_populate (GtkBuilder *builder)
     GObject *radio_on, *radio_off;
 
     if (!xfce_randr)
+        return;
+
+    if (display_setting_get_n_active_outputs () <= 1)
         return;
 
     radio_on = gtk_builder_get_object (builder, "randr-on");
@@ -780,12 +813,26 @@ display_settings_dialog_new (GtkBuilder *builder)
     if (xfce_randr != NULL)
     {
         radio = gtk_builder_get_object (builder, "randr-on");
-        gtk_widget_show (GTK_WIDGET (radio));
-        g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
+        if (display_setting_get_n_active_outputs () > 1)
+        {
+            gtk_widget_show (GTK_WIDGET (radio));
+            g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
+        }
+        else
+        {
+            gtk_widget_hide (GTK_WIDGET (radio));
+        }
 
         radio = gtk_builder_get_object (builder, "randr-off");
-        gtk_widget_show (GTK_WIDGET (radio));
-        g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
+        if (display_setting_get_n_active_outputs () > 1)
+        {
+            gtk_widget_show (GTK_WIDGET (radio));
+            g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
+        }
+        else
+        {
+            gtk_widget_hide (GTK_WIDGET (radio));
+        }
 
         label = gtk_builder_get_object (builder, "label-reflection");
         gtk_widget_show (GTK_WIDGET (label));
