@@ -110,7 +110,7 @@ struct _XfceRandr
 
 
 
-XfceRandr *xfce_randr_new              (GdkDisplay    *display,
+XfceRandr  *xfce_randr_new             (GdkDisplay    *display,
                                         GError       **error);
 
 void        xfce_randr_free            (XfceRandr     *randr);
@@ -132,6 +132,9 @@ gchar      *xfce_randr_friendly_name   (XfceRandr     *randr,
 XfceRRMode *xfce_randr_find_mode_by_id (XfceRandr     *randr,
                                         guint          output,
                                         RRMode         id);
+
+RRMode      xfce_randr_preferred_mode  (XfceRandr     *randr,
+                                        guint          output);
 
 #endif /* !HAS_RANDR_ONE_POINT_TWO */
 

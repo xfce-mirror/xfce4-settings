@@ -518,7 +518,7 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
 
     if (is_active && XFCE_RANDR_MODE (xfce_randr) == None)
         XFCE_RANDR_MODE (xfce_randr) =
-            XFCE_RANDR_OUTPUT_INFO (xfce_randr)->modes[XFCE_RANDR_OUTPUT_INFO (xfce_randr)->npreferred];
+            xfce_randr_preferred_mode (xfce_randr, xfce_randr->active_output);
     else if (!is_active && XFCE_RANDR_MODE (xfce_randr) != None)
         XFCE_RANDR_MODE (xfce_randr) = None;
 
@@ -900,14 +900,12 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
 
         if (use_first_screen)
         {
-            xfce_randr->mode[first] =
-                xfce_randr->output_info[first]->modes[xfce_randr->output_info[first]->npreferred];
+            xfce_randr->mode[first] = xfce_randr_preferred_mode (xfce_randr, first);
             xfce_randr->mode[second] = None;
         }
         else if (use_second_screen)
         {
-            xfce_randr->mode[second] =
-                xfce_randr->output_info[second]->modes[xfce_randr->output_info[second]->npreferred];
+            xfce_randr->mode[second] = xfce_randr_preferred_mode (xfce_randr, second);
             xfce_randr->mode[first] = None;
         }
         else

@@ -615,4 +615,42 @@ xfce_randr_find_mode_by_id (XfceRandr *randr,
     return NULL;
 }
 
+
+
+RRMode
+xfce_randr_preferred_mode (XfceRandr *randr,
+                           guint      output)
+{
+    RRMode best_mode;
+    gint   best_dist, dist, n;
+
+    g_return_val_if_fail (randr != NULL, None);
+    g_return_val_if_fail (output < randr->noutput, None);
+
+    /* mimic xrandr's preferred_mode () */
+
+    best_mode = None;
+    best_dist = 0;
+    for (n = 0; n < randr->output_info[output]->nmode; ++n)
+    {
+        if (n < randr->output_info[output]->npreferred)
+            dist = 0;
+        else if (randr->output_info[output]->mm_height != 0)
+            dist = (1000 * gdk_screen_height () / gdk_screen_height_mm () -
+                1000 * randr->modes[output][n].height /
+                    randr->output_info[output]->mm_height);
+        else
+            dist = gdk_screen_height () - randr->modes[output][n].height;
+
+        dist = ABS (dist);
+
+        if (best_mode == None || dist < best_dist)
+        {
+            best_mode = randr->modes[output][n].id;
+            best_dist = dist;
+        }
+    }
+    return best_mode;
+}
+
 #endif /* !HAS_RANDR_ONE_POINT_TWO */
