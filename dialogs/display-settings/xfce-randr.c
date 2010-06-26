@@ -475,7 +475,7 @@ xfce_randr_save (XfceRandr     *randr,
                  XfconfChannel *channel)
 {
     gchar        property[512];
-    guint        n;
+    guint        n, nsaved;
 
     g_return_if_fail (XFCONF_IS_CHANNEL (channel));
 
@@ -483,12 +483,28 @@ xfce_randr_save (XfceRandr     *randr,
     g_snprintf (property, sizeof (property), "/%s/Layout", scheme);
     xfconf_channel_set_string (channel, property, "Outputs");
 
-    /* save connected outputs */
+    /* first pass: save connected and active outputs */
+    nsaved = 0;
     for (n = 0; n < randr->noutput; ++n)
     {
-        g_snprintf (property, sizeof (property), "Output%u", n);
+        if (randr->mode[n] == None)
+            continue;
+
+        g_snprintf (property, sizeof (property), "Output%u", nsaved++);
         xfce_randr_save_device (randr, scheme, channel, n, property);
     }
+
+    /* second pass: save connected and disabled outputs */
+    for (n = 0; n < randr->noutput; ++n)
+    {
+        if (randr->mode[n] != None)
+            continue;
+
+        g_snprintf (property, sizeof (property), "Output%u", nsaved++);
+        xfce_randr_save_device (randr, scheme, channel, n, property);
+    }
+
+    g_assert_cmpuint (nsaved, ==, randr->noutput);
 
     /* store the number of outputs saved */
     g_snprintf (property, sizeof (property), "/%s/NumOutputs", scheme);
