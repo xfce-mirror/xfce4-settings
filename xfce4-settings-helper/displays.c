@@ -297,7 +297,8 @@ xfce_displays_helper_free_output (XfceRROutput *output)
 
 static GHashTable *
 xfce_displays_helper_list_outputs (Display            *xdisplay,
-                                   XRRScreenResources *resources)
+                                   XRRScreenResources *resources,
+                                   gint               *nactive)
 {
     GHashTable    *outputs;
     XRROutputInfo *info;
@@ -307,12 +308,14 @@ xfce_displays_helper_list_outputs (Display            *xdisplay,
     g_return_val_if_fail (xdisplay != NULL, NULL);
     g_return_val_if_fail (resources != NULL, NULL);
     g_return_val_if_fail (resources->noutput > 0, NULL);
+    g_return_val_if_fail (nactive != NULL, NULL);
 
     /* keys (info->name) are owned by X, do not free them */
     outputs = g_hash_table_new_full (g_str_hash, g_str_equal, NULL,
                                      (GDestroyNotify) xfce_displays_helper_free_output);
 
     /* get all connected outputs */
+    *nactive = 0;
     for (n = 0; n < resources->noutput; ++n)
     {
         info = XRRGetOutputInfo (xdisplay, resources, resources->outputs[n]);
@@ -331,6 +334,10 @@ xfce_displays_helper_list_outputs (Display            *xdisplay,
 
         /* enable quick lookup by name */
         g_hash_table_insert (outputs, info->name, output);
+
+        /* return the number of active outputs */
+        if (info->crtc != None)
+            ++(*nactive);
     }
 
     return outputs;
@@ -556,7 +563,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gchar               property[512];
     gint                min_width, min_height, max_width, max_height;
     gint                mm_width, mm_height, width, height;
-    gint                l, m, n, num_outputs, output_rot;
+    gint                l, m, n, num_outputs, output_rot, nactive;
 #ifdef HAS_RANDR_ONE_POINT_THREE
     gint                is_primary;
 #endif
@@ -594,7 +601,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     crtcs = xfce_displays_helper_list_crtcs (xdisplay, resources);
 
     /* then all connected outputs */
-    connected_outputs = xfce_displays_helper_list_outputs (xdisplay, resources);
+    connected_outputs = xfce_displays_helper_list_outputs (xdisplay, resources, &nactive);
 
     /* get the number of saved outputs */
     g_snprintf (property, sizeof (property), "/%s/NumOutputs", scheme);
@@ -619,9 +626,20 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         /* outputs that have to be disabled are stored without resolution */
         if (value == NULL)
         {
+            /* output already disabled */
+            if (output->info->crtc == None)
+                continue;
+
+            if (nactive == 1)
+            {
+                g_warning ("Disregarding request to disable the last active output (%s).\n", output->info->name);
+                continue;
+            }
             crtc = xfce_displays_helper_find_crtc_by_id (resources, crtcs,
                                                          output->info->crtc);
-            if (xfce_displays_helper_disable_crtc (xdisplay, resources, crtc) != RRSetConfigSuccess)
+            if (xfce_displays_helper_disable_crtc (xdisplay, resources, crtc) == RRSetConfigSuccess)
+                --nactive;
+            else
                 g_warning ("Failed to disable CRTC for output %s.", output->info->name);
 
             continue;
@@ -753,7 +771,15 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 || crtc->noutput != output->pending->noutput)
             {
                 if (xfce_displays_helper_apply_crtc (xdisplay, resources, crtc,
-                                                     output->pending) != RRSetConfigSuccess)
+                                                     output->pending) == RRSetConfigSuccess)
+                {
+                    /* if the output was previously disabled, increment the
+                     * number of active outputs
+                     */
+                    if (output->info->crtc == None)
+                        ++nactive;
+                }
+                else
                     g_warning ("Failed to configure %s.", output->info->name);
             }
             else
