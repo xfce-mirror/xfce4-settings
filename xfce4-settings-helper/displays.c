@@ -29,6 +29,7 @@
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 #include <xfconf/xfconf.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include <X11/extensions/Xrandr.h>
 
@@ -632,7 +633,10 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
             if (nactive == 1)
             {
-                g_warning ("Disregarding request to disable the last active output (%s).\n", output->info->name);
+                xfce_dialog_show_warning (NULL,
+                                          _("The last active screen must not be disabled, the system would"
+                                            " be unusable."),
+                                          _("%s was not disabled"), output->info->name);
                 continue;
             }
             crtc = xfce_displays_helper_find_crtc_by_id (resources, crtcs,
