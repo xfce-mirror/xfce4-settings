@@ -800,16 +800,19 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
 
     disabling = FALSE;
     if (is_active && XFCE_RANDR_MODE (xfce_randr) == None)
+    {
         XFCE_RANDR_MODE (xfce_randr) =
             xfce_randr_preferred_mode (xfce_randr, xfce_randr->active_output);
+        /* Apply the changes */
+        xfce_randr_save (xfce_randr, "Default", display_channel);
+    }
     else if (!is_active && XFCE_RANDR_MODE (xfce_randr) != None)
     {
         XFCE_RANDR_MODE (xfce_randr) = None;
         disabling = TRUE;
+        /* Apply the changes */
+        xfce_randr_save (xfce_randr, "Default", display_channel);
     }
-
-    /* Apply the changes */
-    xfce_randr_save (xfce_randr, "Default", display_channel);
 
     /* if the user attempted to disable an output, forcefully reload the view.
      * It's possible that it failed because it was the last active output.
