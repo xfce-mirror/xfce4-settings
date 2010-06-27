@@ -227,7 +227,7 @@ xfce_displays_helper_list_crtcs (Display            *xdisplay,
 {
     XfceRRCrtc  *crtcs;
     XRRCrtcInfo *crtc_info;
-    gint         n, m;
+    gint         n;
 
     g_return_val_if_fail (xdisplay != NULL, NULL);
     g_return_val_if_fail (resources != NULL, NULL);
@@ -243,22 +243,19 @@ xfce_displays_helper_list_crtcs (Display            *xdisplay,
         crtcs[n].rotations = crtc_info->rotations;
         crtcs[n].x = crtc_info->x;
         crtcs[n].y = crtc_info->y;
+
         crtcs[n].noutput = crtc_info->noutput;
         crtcs[n].outputs = NULL;
         if (crtc_info->noutput > 0)
-        {
-            crtcs[n].outputs = g_new0 (RROutput, crtc_info->noutput);
-            for (m = 0; m < crtc_info->noutput; ++m)
-                crtcs[n].outputs[m] = crtc_info->outputs[m];
-        }
+            crtcs[n].outputs = g_memdup (crtc_info->outputs,
+                                         crtc_info->noutput * sizeof (RROutput));
+
         crtcs[n].npossible = crtc_info->npossible;
         crtcs[n].possible = NULL;
         if (crtc_info->npossible > 0)
-        {
-            crtcs[n].possible = g_new0 (RROutput, crtc_info->npossible);
-            for (m = 0; m < crtc_info->npossible; ++m)
-                crtcs[n].possible[m] = crtc_info->possible[m];
-        }
+            crtcs[n].possible = g_memdup (crtc_info->possible,
+                                          crtc_info->npossible * sizeof (RROutput));
+
         crtcs[n].processed = FALSE;
         XRRFreeCrtcInfo (crtc_info);
     }
