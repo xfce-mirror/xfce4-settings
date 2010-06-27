@@ -274,7 +274,21 @@ display_setting_reflections_populate (GtkBuilder *builder)
     guint         n;
     GtkTreeIter   iter;
 
+    if (!xfce_randr)
+        return;
+
+    /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-reflection");
+    model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+    gtk_list_store_clear (GTK_LIST_STORE (model));
+
+    /* disable it if no mode is selected */
+    if (XFCE_RANDR_MODE (xfce_randr) == None)
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        return;
+    }
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
@@ -282,37 +296,26 @@ display_setting_reflections_populate (GtkBuilder *builder)
                          display_setting_reflections_changed,
                          builder, NULL);
 
-    /* get the combo box store and clear it */
-    model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
-    gtk_list_store_clear (GTK_LIST_STORE (model));
+    /* load only supported reflections */
+    reflections = XFCE_RANDR_ROTATIONS (xfce_randr) & XFCE_RANDR_REFLECTIONS_MASK;
+    active_reflection = XFCE_RANDR_ROTATION (xfce_randr) & XFCE_RANDR_REFLECTIONS_MASK;
 
-
-    if (xfce_randr)
+    /* try to insert the reflections */
+    for (n = 0; n < G_N_ELEMENTS (reflection_names); n++)
     {
-        /* disable it if no mode is selected */
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), XFCE_RANDR_MODE (xfce_randr) != None);
-
-        /* load only supported reflections */
-        reflections = XFCE_RANDR_ROTATIONS (xfce_randr) & XFCE_RANDR_REFLECTIONS_MASK;
-        active_reflection = XFCE_RANDR_ROTATION (xfce_randr) & XFCE_RANDR_REFLECTIONS_MASK;
-
-        /* try to insert the reflections */
-        for (n = 0; n < G_N_ELEMENTS (reflection_names); n++)
+        if ((reflections & reflection_names[n].rotation) == reflection_names[n].rotation)
         {
-            if ((reflections & reflection_names[n].rotation) == reflection_names[n].rotation)
-            {
-                /* insert */
-                gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-                gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                                    COLUMN_COMBO_NAME, _(reflection_names[n].name),
-                                    COLUMN_COMBO_VALUE, reflection_names[n].rotation, -1);
+            /* insert */
+            gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+            gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                                COLUMN_COMBO_NAME, _(reflection_names[n].name),
+                                COLUMN_COMBO_VALUE, reflection_names[n].rotation, -1);
 
-                /* select active reflection */
-                if (xfce_randr && XFCE_RANDR_MODE (xfce_randr) != None)
-                {
-                    if ((reflection_names[n].rotation & active_reflection) == reflection_names[n].rotation)
-                        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
-                }
+            /* select active reflection */
+            if (xfce_randr && XFCE_RANDR_MODE (xfce_randr) != None)
+            {
+                if ((reflection_names[n].rotation & active_reflection) == reflection_names[n].rotation)
+                    gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
             }
         }
     }
@@ -390,13 +393,6 @@ display_setting_rotations_populate (GtkBuilder *builder)
 
     /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-rotation");
-
-    /* Disconnect the "changed" signal to avoid triggering the confirmation
-     * dialog */
-    g_object_disconnect (combobox, "any_signal::changed",
-                         display_setting_rotations_changed,
-                         builder, NULL);
-
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -404,8 +400,24 @@ display_setting_rotations_populate (GtkBuilder *builder)
     if (xfce_randr)
     {
         /* disable it if no mode is selected */
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), XFCE_RANDR_MODE (xfce_randr) != None);
+        if (XFCE_RANDR_MODE (xfce_randr) == None)
+        {
+            gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+            return;
+        }
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    }
+#endif
 
+    /* Disconnect the "changed" signal to avoid triggering the confirmation
+     * dialog */
+    g_object_disconnect (combobox, "any_signal::changed",
+                         display_setting_rotations_changed,
+                         builder, NULL);
+
+#ifdef HAS_RANDR_ONE_POINT_TWO
+    if (xfce_randr)
+    {
         /* load only supported rotations */
         rotations = XFCE_RANDR_ROTATIONS (xfce_randr) & XFCE_RANDR_ROTATIONS_MASK;
         active_rotation = XFCE_RANDR_ROTATION (xfce_randr) & XFCE_RANDR_ROTATIONS_MASK;
@@ -519,13 +531,6 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
 
     /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
-
-    /* Disconnect the "changed" signal to avoid triggering the confirmation
-     * dialog */
-    g_object_disconnect (combobox, "any_signal::changed",
-                         display_setting_refresh_rates_changed,
-                         builder, NULL);
-
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -533,8 +538,24 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     if (xfce_randr)
     {
         /* disable it if no mode is selected */
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), XFCE_RANDR_MODE (xfce_randr) != None);
+        if (XFCE_RANDR_MODE (xfce_randr) == None)
+        {
+            gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+            return;
+        }
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    }
+#endif
 
+    /* Disconnect the "changed" signal to avoid triggering the confirmation
+     * dialog */
+    g_object_disconnect (combobox, "any_signal::changed",
+                         display_setting_refresh_rates_changed,
+                         builder, NULL);
+
+#ifdef HAS_RANDR_ONE_POINT_TWO
+    if (xfce_randr)
+    {
         /* fetch the selected resolution */
         res_combobox = gtk_builder_get_object (builder, "randr-resolution");
         if (!display_setting_combo_box_get_value (GTK_COMBO_BOX (res_combobox), &n))
@@ -682,13 +703,6 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 
     /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-resolution");
-
-    /* Disconnect the "changed" signal to avoid triggering the confirmation
-     * dialog */
-    g_object_disconnect (combobox, "any_signal::changed",
-                         display_setting_resolutions_changed,
-                         builder, NULL);
-
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -696,8 +710,25 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     if (xfce_randr)
     {
         /* disable it if no mode is selected */
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), XFCE_RANDR_MODE (xfce_randr) != None);
+        if (XFCE_RANDR_MODE (xfce_randr) == None)
+        {
+            gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+            display_setting_refresh_rates_populate (builder);
+            return;
+        }
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    }
+#endif
 
+    /* Disconnect the "changed" signal to avoid triggering the confirmation
+     * dialog */
+    g_object_disconnect (combobox, "any_signal::changed",
+                         display_setting_resolutions_changed,
+                         builder, NULL);
+
+#ifdef HAS_RANDR_ONE_POINT_TWO
+    if (xfce_randr)
+    {
         /* walk all supported modes */
         modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
         for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
