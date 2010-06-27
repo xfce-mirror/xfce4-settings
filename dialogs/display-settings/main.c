@@ -203,7 +203,7 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
 
         confirmation_dialog = g_new0 (ConfirmationDialog, 1);
         confirmation_dialog->builder = builder;
-        confirmation_dialog->count = 5;
+        confirmation_dialog->count = 10;
 
         dialog = gtk_builder_get_object (builder, "dialog1");
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
