@@ -775,11 +775,6 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
     else if (!is_active && XFCE_RANDR_MODE (xfce_randr) != None)
         XFCE_RANDR_MODE (xfce_randr) = None;
 
-    display_setting_resolutions_populate (builder);
-    display_setting_refresh_rates_populate (builder);
-    display_setting_rotations_populate (builder);
-    display_setting_reflections_populate (builder);
-
     /* Apply the changes */
     xfce_randr_save (xfce_randr, "Default", display_channel);
 }
@@ -841,8 +836,7 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         display_setting_refresh_rates_populate (builder);
         display_setting_rotations_populate (builder);
 #ifdef HAS_RANDR_ONE_POINT_TWO
-        if (xfce_randr)
-            display_setting_reflections_populate (builder);
+        display_setting_reflections_populate (builder);
 #endif
     }
 }
