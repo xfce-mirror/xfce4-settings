@@ -780,11 +780,15 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
+/* Forward-declaration only needed for display_setting_output_toggled () */
+static void
+display_settings_treeview_populate (GtkBuilder *builder);
+
 static void
 display_setting_output_toggled (GtkToggleButton *togglebutton,
                                 GtkBuilder      *builder)
 {
-    gint is_active;
+    gint is_active, disabling;
 
     if (!xfce_randr)
         return;
@@ -794,14 +798,27 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
     else
         is_active = TRUE;
 
+    disabling = FALSE;
     if (is_active && XFCE_RANDR_MODE (xfce_randr) == None)
         XFCE_RANDR_MODE (xfce_randr) =
             xfce_randr_preferred_mode (xfce_randr, xfce_randr->active_output);
     else if (!is_active && XFCE_RANDR_MODE (xfce_randr) != None)
+    {
         XFCE_RANDR_MODE (xfce_randr) = None;
+        disabling = TRUE;
+    }
 
     /* Apply the changes */
     xfce_randr_save (xfce_randr, "Default", display_channel);
+
+    /* if the user attempted to disable an output, forcefully reload the view.
+     * It's possible that it failed because it was the last active output.
+     */
+    if (disabling)
+    {
+        xfce_randr_reload (xfce_randr);
+        display_settings_treeview_populate (builder);
+    }
 }
 
 
