@@ -18,6 +18,7 @@ xfce4_display_settings_SOURCES = \
 	xfce-randr.h \
 	xfce-randr-legacy.c \
 	xfce-randr-legacy.h \
+	confirmation-dialog_ui.h \
 	display-dialog_ui.h \
 	minimal-display-dialog_ui.h \
 	display-name.c \
@@ -46,8 +47,12 @@ xfce4_display_settings_LDADD = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
+	confirmation-dialog_ui.h
 	display-dialog_ui.h \
 	minimal-display-dialog_ui.h
+
+confirmation-dialog_ui.h: confirmation-dialog.glade
+	exo-csource --static --strip-comments --strip-content --name=confirmation_dialog_ui $< >$@
 
 display-dialog_ui.h: display-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=display_dialog_ui $< >$@
@@ -65,6 +70,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
+	confirmation-dialog.glade \
 	display-dialog.glade \
 	minimal-display-dialog.glade
 

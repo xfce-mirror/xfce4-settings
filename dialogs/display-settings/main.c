@@ -43,6 +43,7 @@
 #include "xfce-randr.h"
 #include "xfce-randr-legacy.h"
 #include "display-dialog_ui.h"
+#include "confirmation-dialog_ui.h"
 #ifdef HAS_RANDR_ONE_POINT_TWO
 #include "minimal-display-dialog_ui.h"
 #endif
@@ -85,6 +86,15 @@ static const XfceRotation reflection_names[] =
     { RR_Reflect_X|RR_Reflect_Y, N_("Both") }
 };
 #endif
+
+
+
+/* confirmation dialog data */
+typedef struct
+{
+    GtkBuilder *builder;
+    gint count;
+} ConfirmationDialog;
 
 
 
@@ -135,6 +145,90 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
     return FALSE;
 }
 
+static gboolean
+display_settings_update_time_label (ConfirmationDialog *confirmation_dialog)
+{
+    GObject *dialog;
+
+    dialog = gtk_builder_get_object (confirmation_dialog->builder, "dialog1");
+    confirmation_dialog->count--;
+
+    if (confirmation_dialog->count <= 0)
+    {
+        gtk_dialog_response (GTK_DIALOG (dialog), 1);
+
+        return FALSE;
+    }
+    else
+    {
+        GObject *label;
+        gchar   *string;
+
+        string = g_strdup_printf (_("The previous configuration will be restored in %i"
+                                    " seconds if you do not reply to this question."),
+                                  confirmation_dialog->count);
+
+        label = gtk_builder_get_object (confirmation_dialog->builder, "label2");
+        gtk_label_set_text (GTK_LABEL (label), string);
+
+        return TRUE;
+    }
+
+    return TRUE;
+}
+
+
+/* Returns true if the configuration is to be kept or false if it is to
+ * be reverted */
+static gboolean
+display_setting_timed_confirmation (GtkBuilder *main_builder)
+{
+    GtkBuilder *builder;
+    GObject    *main_dialog;
+    GError     *error = NULL;
+    gint        response_id;
+    gint        source_id;
+
+    /* Lock the main UI */
+    main_dialog = gtk_builder_get_object (main_builder, "display-dialog");
+    gtk_widget_set_sensitive (GTK_WIDGET (main_dialog), FALSE);
+
+    builder = gtk_builder_new ();
+
+    if (gtk_builder_add_from_string (builder, confirmation_dialog_ui,
+                                     confirmation_dialog_ui_length, &error) != 0)
+    {
+        GObject *dialog;
+        ConfirmationDialog *confirmation_dialog;
+
+        confirmation_dialog = g_new0 (ConfirmationDialog, 1);
+        confirmation_dialog->builder = builder;
+        confirmation_dialog->count = 5;
+
+        dialog = gtk_builder_get_object (builder, "dialog1");
+        gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
+        source_id = g_timeout_add_seconds (1, (GSourceFunc) display_settings_update_time_label,
+                                           confirmation_dialog);
+
+        response_id = gtk_dialog_run (GTK_DIALOG (dialog));
+        g_source_remove (source_id);
+        gtk_widget_destroy (GTK_WIDGET (dialog));
+    }
+    else
+    {
+        response_id = 2;
+        g_error ("Failed to load the UI file: %s.", error->message);
+        g_error_free (error);
+    }
+
+    g_object_unref (G_OBJECT (builder));
+
+    /* Unlock the main UI */
+    gtk_widget_set_sensitive (GTK_WIDGET (main_dialog), TRUE);
+
+    return ((response_id == 2) ? TRUE : FALSE);
+}
+
 
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
@@ -149,12 +243,23 @@ display_setting_reflections_changed (GtkComboBox *combobox,
 
     if (xfce_randr)
     {
+        Rotation old_rotation;
+
+        old_rotation = XFCE_RANDR_ROTATION (xfce_randr);
+
         /* remove existing reflection */
         XFCE_RANDR_ROTATION (xfce_randr) &= ~XFCE_RANDR_REFLECTIONS_MASK;
         /* set the new one */
         XFCE_RANDR_ROTATION (xfce_randr) |= value;
         /* Apply the changes */
         xfce_randr_save (xfce_randr, "Default", display_channel);
+
+        /* Ask user confirmation */
+        if (!display_setting_timed_confirmation (builder))
+        {
+            XFCE_RANDR_ROTATION (xfce_randr) = old_rotation;
+            xfce_randr_save (xfce_randr, "Default", display_channel);
+        }
     }
 }
 
@@ -169,10 +274,18 @@ display_setting_reflections_populate (GtkBuilder *builder)
     guint         n;
     GtkTreeIter   iter;
 
-    /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-reflection");
+
+    /* Disconnect the "changed" signal to avoid triggering the confirmation
+     * dialog */
+    g_object_disconnect (combobox, "any_signal::changed",
+                         display_setting_reflections_changed,
+                         builder, NULL);
+
+    /* get the combo box store and clear it */
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
+
 
     if (xfce_randr)
     {
@@ -203,6 +316,9 @@ display_setting_reflections_populate (GtkBuilder *builder)
             }
         }
     }
+
+    /* Reconnect the signal */
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_reflections_changed), builder);
 }
 #endif
 
@@ -212,29 +328,56 @@ static void
 display_setting_rotations_changed (GtkComboBox *combobox,
                                    GtkBuilder  *builder)
 {
+    Rotation old_rotation;
     gint value;
 
     if (!display_setting_combo_box_get_value (combobox, &value))
         return;
 
+
     /* set new rotation */
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
     {
+        old_rotation = XFCE_RANDR_ROTATION (xfce_randr);
         XFCE_RANDR_ROTATION (xfce_randr) &= ~XFCE_RANDR_ROTATIONS_MASK;
         XFCE_RANDR_ROTATION (xfce_randr) |= value;
     }
     else
+    {
 #endif
+        old_rotation = XFCE_RANDR_LEGACY_ROTATION (xfce_randr_legacy);
         XFCE_RANDR_LEGACY_ROTATION (xfce_randr_legacy) = value;
+#ifdef HAS_RANDR_ONE_POINT_TWO
+    }
+#endif
 
     /* Apply the changes */
-    #ifdef HAS_RANDR_ONE_POINT_TWO
+#ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
         xfce_randr_save (xfce_randr, "Default", display_channel);
     else
-    #endif
+#endif
         xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
+
+    /* Ask user confirmation */
+    if (!display_setting_timed_confirmation (builder))
+    {
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        if (xfce_randr)
+        {
+          XFCE_RANDR_ROTATION (xfce_randr) = old_rotation;
+          xfce_randr_save (xfce_randr, "Default", display_channel);
+        }
+        else
+        {
+#endif
+        XFCE_RANDR_LEGACY_ROTATION (xfce_randr_legacy) = old_rotation;
+        xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        }
+#endif
+    }
 }
 
 
@@ -251,6 +394,13 @@ display_setting_rotations_populate (GtkBuilder *builder)
 
     /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-rotation");
+
+    /* Disconnect the "changed" signal to avoid triggering the confirmation
+     * dialog */
+    g_object_disconnect (combobox, "any_signal::changed",
+                         display_setting_rotations_changed,
+                         builder, NULL);
+
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -293,6 +443,9 @@ display_setting_rotations_populate (GtkBuilder *builder)
             }
         }
     }
+
+    /* Reconnect the signal */
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
 }
 
 
@@ -301,6 +454,10 @@ static void
 display_setting_refresh_rates_changed (GtkComboBox *combobox,
                                        GtkBuilder  *builder)
 {
+#ifdef HAS_RANDR_ONE_POINT_TWO
+    RRMode old_mode;
+#endif
+    gshort old_rate;
     gint value;
 
     if (!display_setting_combo_box_get_value (combobox, &value))
@@ -309,10 +466,18 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
     /* set new mode (1.2) or rate (1.1) */
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
+    {
+        old_mode = XFCE_RANDR_MODE (xfce_randr);
         XFCE_RANDR_MODE (xfce_randr) = value;
+    }
     else
+    {
 #endif
+        old_rate = XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy);
         XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy) = value;
+#ifdef HAS_RANDR_ONE_POINT_TWO
+    }
+#endif
 
     /* Apply the changes */
     #ifdef HAS_RANDR_ONE_POINT_TWO
@@ -321,6 +486,25 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
     else
     #endif
         xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
+
+    /* Ask user confirmation */
+    if (!display_setting_timed_confirmation (builder))
+    {
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        if (xfce_randr)
+        {
+            XFCE_RANDR_MODE (xfce_randr) = old_mode;
+            xfce_randr_save (xfce_randr, "Default", display_channel);
+        }
+        else
+        {
+#endif
+        XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy) = old_rate;
+        xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        }
+#endif
+    }
 }
 
 
@@ -343,6 +527,13 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
 
     /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
+
+    /* Disconnect the "changed" signal to avoid triggering the confirmation
+     * dialog */
+    g_object_disconnect (combobox, "any_signal::changed",
+                         display_setting_refresh_rates_changed,
+                         builder, NULL);
+
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -419,6 +610,9 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
         if (G_LIKELY (active != -1))
             gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), active);
     }
+
+    /* Reconnect the signal */
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_refresh_rates_changed), builder);
 }
 
 
@@ -427,14 +621,27 @@ static void
 display_setting_resolutions_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
+#ifdef HAS_RANDR_ONE_POINT_TWO
+    RRMode old_mode;
+#endif
+    SizeID old_resolution;
     gint value;
 
     if (!display_setting_combo_box_get_value (combobox, &value))
         return;
 
-    /* set new resolution */
+    /* Set new resolution */
+    if (xfce_randr)
+    {
+        old_mode = XFCE_RANDR_MODE (xfce_randr);
+        XFCE_RANDR_MODE (xfce_randr) = value;
+    }
+
     if (xfce_randr_legacy)
+    {
+        old_resolution = XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy);
         XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) = value;
+    }
 
     /* update refresh rates */
     display_setting_refresh_rates_populate (builder);
@@ -446,6 +653,25 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     else
     #endif
         xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
+
+    /* Ask user confirmation */
+    if (!display_setting_timed_confirmation (builder))
+    {
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        if (xfce_randr)
+        {
+            XFCE_RANDR_MODE (xfce_randr) = old_mode;
+            xfce_randr_save (xfce_randr, "Default", display_channel);
+        }
+        else
+        {
+#endif
+        XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) = old_resolution;
+        xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        }
+#endif
+    }
 }
 
 
@@ -465,6 +691,13 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 
     /* get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-resolution");
+
+    /* Disconnect the "changed" signal to avoid triggering the confirmation
+     * dialog */
+    g_object_disconnect (combobox, "any_signal::changed",
+                         display_setting_resolutions_changed,
+                         builder, NULL);
+
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -517,6 +750,9 @@ display_setting_resolutions_populate (GtkBuilder *builder)
                 gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
         }
     }
+
+    /* Reconnect the signal */
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
 }
 
 
