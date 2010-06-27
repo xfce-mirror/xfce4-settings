@@ -47,7 +47,7 @@ xfce4_display_settings_LDADD = \
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-	confirmation-dialog_ui.h
+	confirmation-dialog_ui.h \
 	display-dialog_ui.h \
 	minimal-display-dialog_ui.h
 
