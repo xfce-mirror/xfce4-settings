@@ -759,15 +759,9 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
         return;
 
     if (xfce_randr->noutput > 1)
-    {
-        GObject *radio;
-        radio = gtk_builder_get_object (builder, "randr-on");
-        is_active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radio));
-    }
+        is_active = gtk_toggle_button_get_active (togglebutton);
     else
-    {
         is_active = TRUE;
-    }
 
     if (is_active && XFCE_RANDR_MODE (xfce_randr) == None)
         XFCE_RANDR_MODE (xfce_randr) =
@@ -1027,7 +1021,6 @@ display_settings_dialog_new (GtkBuilder *builder)
         if (xfce_randr->noutput > 1)
         {
             gtk_widget_show (GTK_WIDGET (radio));
-            g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
         }
         else
         {
