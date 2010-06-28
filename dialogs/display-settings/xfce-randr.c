@@ -379,7 +379,7 @@ xfce_randr_save_device (XfceRandr     *randr,
                         const gchar   *distinct)
 {
     gchar        property[512];
-    gchar       *resolution_name = NULL;
+    gchar       *friendly_name, *resolution_name = NULL;
     const gchar *reflection_name = NULL;
     XfceRRMode  *mode;
     gint         degrees;
@@ -390,8 +390,11 @@ xfce_randr_save_device (XfceRandr     *randr,
         resolution_name = g_strdup_printf ("%dx%d", mode->width, mode->height);
 
     /* save the device name */
+    friendly_name = xfce_randr_friendly_name (randr, randr->resources->outputs[output],
+                                              randr->output_info[output]->name);
     g_snprintf (property, sizeof (property), "/%s/%s", scheme, distinct);
-    xfconf_channel_set_string (channel, property, randr->output_info[output]->name);
+    xfconf_channel_set_string (channel, property, friendly_name);
+    g_free (friendly_name);
 
     /* save (or remove) the resolution */
     g_snprintf (property, sizeof (property), "/%s/%s/Resolution", scheme, distinct);
@@ -475,7 +478,7 @@ xfce_randr_save (XfceRandr     *randr,
                  XfconfChannel *channel)
 {
     gchar        property[512];
-    guint        n, nsaved;
+    guint        n;
 
     g_return_if_fail (XFCONF_IS_CHANNEL (channel));
 
@@ -483,32 +486,9 @@ xfce_randr_save (XfceRandr     *randr,
     g_snprintf (property, sizeof (property), "/%s/Layout", scheme);
     xfconf_channel_set_string (channel, property, "Outputs");
 
-    /* first pass: save connected and active outputs */
-    nsaved = 0;
+    /* save connected outputs */
     for (n = 0; n < randr->noutput; ++n)
-    {
-        if (randr->mode[n] == None)
-            continue;
-
-        g_snprintf (property, sizeof (property), "Output%u", nsaved++);
-        xfce_randr_save_device (randr, scheme, channel, n, property);
-    }
-
-    /* second pass: save connected and disabled outputs */
-    for (n = 0; n < randr->noutput; ++n)
-    {
-        if (randr->mode[n] != None)
-            continue;
-
-        g_snprintf (property, sizeof (property), "Output%u", nsaved++);
-        xfce_randr_save_device (randr, scheme, channel, n, property);
-    }
-
-    g_assert_cmpuint (nsaved, ==, randr->noutput);
-
-    /* store the number of outputs saved */
-    g_snprintf (property, sizeof (property), "/%s/NumOutputs", scheme);
-    xfconf_channel_set_int (channel, property, randr->noutput);
+        xfce_randr_save_device (randr, scheme, channel, n, randr->output_info[n]->name);
 
     /* tell the helper to apply this theme */
     xfconf_channel_set_string (channel, "/Schemes/Apply", scheme);
@@ -568,7 +548,7 @@ xfce_randr_friendly_name (XfceRandr   *randr,
     guint8      *edid_data;
     gchar       *friendly_name = NULL;
 
-    g_return_val_if_fail (randr != NULL && output != None && name != NULL, "<null>");
+    g_return_val_if_fail (randr != NULL && output != None && name != NULL, g_strdup ("<null>"));
 
     /* special case, a laptop */
     if (g_str_has_prefix (name, "LVDS")

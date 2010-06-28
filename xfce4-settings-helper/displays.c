@@ -293,12 +293,12 @@ xfce_displays_helper_free_output (XfceRROutput *output)
 
 
 
-static GHashTable *
+static GPtrArray *
 xfce_displays_helper_list_outputs (Display            *xdisplay,
                                    XRRScreenResources *resources,
                                    gint               *nactive)
 {
-    GHashTable    *outputs;
+    GPtrArray     *outputs;
     XRROutputInfo *info;
     XfceRROutput  *output;
     gint           n;
@@ -308,9 +308,8 @@ xfce_displays_helper_list_outputs (Display            *xdisplay,
     g_return_val_if_fail (resources->noutput > 0, NULL);
     g_return_val_if_fail (nactive != NULL, NULL);
 
-    /* keys (info->name) are owned by X, do not free them */
-    outputs = g_hash_table_new_full (g_str_hash, g_str_equal, NULL,
-                                     (GDestroyNotify) xfce_displays_helper_free_output);
+    outputs = g_ptr_array_new_with_free_func (
+        (GDestroyNotify) xfce_displays_helper_free_output);
 
     /* get all connected outputs */
     *nactive = 0;
@@ -330,8 +329,8 @@ xfce_displays_helper_list_outputs (Display            *xdisplay,
         /* this will contain the settings to apply (filled in later) */
         output->pending = NULL;
 
-        /* enable quick lookup by name */
-        g_hash_table_insert (outputs, info->name, output);
+        /* cache it */
+        g_ptr_array_add (outputs, output);
 
         /* return the number of active outputs */
         if (info->crtc != None)
@@ -561,14 +560,17 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gchar               property[512];
     gint                min_width, min_height, max_width, max_height;
     gint                mm_width, mm_height, width, height;
-    gint                l, m, n, num_outputs, output_rot, nactive;
+    gint                l, m, output_rot, nactive;
+    guint               n;
 #ifdef HAS_RANDR_ONE_POINT_THREE
     gint                is_primary;
 #endif
-    gchar              *value;
+    GValue             *value;
+    const gchar        *str_value;
     gdouble             output_rate, rate;
     XRRModeInfo        *mode_info;
-    GHashTable         *connected_outputs;
+    GPtrArray          *connected_outputs;
+    GHashTable         *saved_outputs;
     XfceRROutput       *output;
 
     /* flush x and trap errors */
@@ -601,28 +603,31 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     /* then all connected outputs */
     connected_outputs = xfce_displays_helper_list_outputs (xdisplay, resources, &nactive);
 
-    /* get the number of saved outputs */
-    g_snprintf (property, sizeof (property), "/%s/NumOutputs", scheme);
-    num_outputs = xfconf_channel_get_int (helper->channel, property, 0);
+    /* finally the list of saved outputs from xfconf */
+    g_snprintf (property, sizeof (property), "/%s", scheme);
+    saved_outputs = xfconf_channel_get_properties (helper->channel, property);
 
-    for (n = 0; n < num_outputs; ++n)
+    for (n = 0; n < connected_outputs->len; ++n)
     {
-        /* get the output name */
-        g_snprintf (property, sizeof (property), "/%s/Output%d", scheme, n);
-        value = xfconf_channel_get_string (helper->channel, property, NULL);
+        output = g_ptr_array_index (connected_outputs, n);
 
-        /* does this output exist? */
-        output = g_hash_table_lookup (connected_outputs, value);
-        g_free (value);
+        /* does this output exist in xfconf? */
+        g_snprintf (property, sizeof (property), "/%s/%s", scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
 
-        if (output == NULL)
+        if (value == NULL || !G_VALUE_HOLDS_STRING (value))
             continue;
+        else
+            str_value = g_value_get_string (value);
 
-        g_snprintf (property, sizeof (property), "/%s/Output%d/Resolution", scheme, n);
-        value = xfconf_channel_get_string (helper->channel, property, NULL);
+        /* resolution */
+        g_snprintf (property, sizeof (property), "/%s/%s/Resolution",
+                    scheme, output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
 
         /* outputs that have to be disabled are stored without resolution */
-        if (value == NULL)
+        if (value == NULL || !G_VALUE_HOLDS_STRING (value))
         {
             /* output already disabled */
             if (output->info->crtc == None)
@@ -633,7 +638,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 xfce_dialog_show_warning (NULL,
                                           _("The last active screen must not be disabled, the system would"
                                             " be unusable."),
-                                          _("%s was not disabled"), output->info->name);
+                                          _("%s (%s) was not disabled"), str_value, output->info->name);
                 continue;
             }
             crtc = xfce_displays_helper_find_crtc_by_id (resources, crtcs,
@@ -645,9 +650,17 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
             continue;
         }
+        else
+            str_value = g_value_get_string (value);
 
-        g_snprintf (property, sizeof (property), "/%s/Output%d/RefreshRate", scheme, n);
-        output_rate = xfconf_channel_get_double (helper->channel, property, 0.0);
+        /* refresh rate */
+        g_snprintf (property, sizeof (property), "/%s/%s/RefreshRate", scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_DOUBLE (value))
+            output_rate = g_value_get_double (value);
+        else
+            output_rate = 0.0;
 
         /* prepare pending settings */
         pending = g_new0 (XfceRRCrtc, 1);
@@ -671,32 +684,34 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
                 /* find the mode corresponding to the saved values */
                 if (((int) rate == (int) output_rate)
-                    && (g_strcmp0 (mode_info->name, value) == 0))
+                    && (g_strcmp0 (mode_info->name, str_value) == 0))
                 {
                     pending->mode = mode_info->id;
                     break;
                 }
             }
-
             /* found it */
             if (pending->mode != None)
                 break;
         }
-
         /* unsupported mode, abort for this output */
         if (pending->mode == None)
         {
             g_warning ("Unknown mode '%s @ %.1f' for output %s.\n",
-                       value, output_rate, output->info->name);
+                       str_value, output_rate, output->info->name);
             g_free (pending);
-            g_free (value);
-
             continue;
         }
-        g_free (value);
 
-        g_snprintf (property, sizeof (property), "/%s/Output%d/Rotation", scheme, n);
-        output_rot = xfconf_channel_get_int (helper->channel, property, 0);
+        /* rotation */
+        g_snprintf (property, sizeof (property), "/%s/%s/Rotation", scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_INT (value))
+            output_rot = g_value_get_int (value);
+        else
+            output_rot = 0;
+
         /* convert to a Rotation */
         switch (output_rot)
         {
@@ -706,30 +721,53 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             default:  pending->rotation = RR_Rotate_0;   break;
         }
 
-        g_snprintf (property, sizeof (property), "/%s/Output%d/Reflection", scheme, n);
-        value = xfconf_channel_get_string (helper->channel, property, "0");
+        /* reflection */
+        g_snprintf (property, sizeof (property), "/%s/%s/Reflection", scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_STRING (value))
+            str_value = g_value_get_string (value);
+        else
+            str_value = "0";
+
         /* convert to a Rotation */
-        if (g_strcmp0 (value, "X") == 0)
+        if (g_strcmp0 (str_value, "X") == 0)
             pending->rotation |= RR_Reflect_X;
-        else if (g_strcmp0 (value, "Y") == 0)
+        else if (g_strcmp0 (str_value, "Y") == 0)
             pending->rotation |= RR_Reflect_Y;
-        else if (g_strcmp0 (value, "XY") == 0)
+        else if (g_strcmp0 (str_value, "XY") == 0)
             pending->rotation |= (RR_Reflect_X|RR_Reflect_Y);
 
-        g_free (value);
+        /* position, x */
+        g_snprintf (property, sizeof (property), "/%s/%s/Position/X", scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_INT (value))
+            pending->x = g_value_get_int (value);
+        else
+            pending->x = 0;
 
-        g_snprintf (property, sizeof (property), "/%s/Output%d/Position/X", scheme, n);
-        pending->x = xfconf_channel_get_int (helper->channel, property, 0);
-
-        g_snprintf (property, sizeof (property), "/%s/Output%d/Position/Y", scheme, n);
-        pending->y = xfconf_channel_get_int (helper->channel, property, 0);
+        /* position, y */
+        g_snprintf (property, sizeof (property), "/%s/%s/Position/Y", scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_INT (value))
+            pending->y = g_value_get_int (value);
+        else
+            pending->y = 0;
 
         /* done */
         output->pending = pending;
 
 #ifdef HAS_RANDR_ONE_POINT_THREE
-        g_snprintf (property, sizeof (property), "/%s/Output%d/Primary", scheme, n);
-        is_primary = xfconf_channel_get_bool (helper->channel, property, FALSE);
+        /* is it the primary output? */
+        g_snprintf (property, sizeof (property), "/%s/%s/Primary", scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_BOOLEAN (value))
+            is_primary = g_value_get_boolean (value);
+        else
+            is_primary = FALSE;
 #endif
 
         /* first, search for a possible clone */
@@ -803,13 +841,16 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         XRRSetScreenSize (xdisplay, GDK_WINDOW_XID (root_window),
                           width, height, mm_width, mm_height);
 
+    /* Free the xfconf properties */
+    g_hash_table_destroy (saved_outputs);
+
     /* Free our output cache */
-    g_hash_table_unref (connected_outputs);
+    g_ptr_array_unref (connected_outputs);
 
     /* cleanup our CRTC cache */
-    for (n = 0; n < resources->ncrtc; ++n)
+    for (m = 0; m < resources->ncrtc; ++m)
     {
-        xfce_displays_helper_cleanup_crtc (&crtcs[n]);
+        xfce_displays_helper_cleanup_crtc (&crtcs[m]);
     }
     g_free (crtcs);
 
