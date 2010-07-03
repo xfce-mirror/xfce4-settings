@@ -371,44 +371,51 @@ xfce_randr_reload (XfceRandr *randr)
 
 
 
-static void
-xfce_randr_save_device (XfceRandr     *randr,
+void
+xfce_randr_save_output (XfceRandr     *randr,
                         const gchar   *scheme,
                         XfconfChannel *channel,
-                        guint          output,
-                        const gchar   *distinct)
+                        guint          output)
 {
-    gchar        property[512];
-    gchar       *friendly_name, *resolution_name = NULL;
-    const gchar *reflection_name = NULL;
-    XfceRRMode  *mode;
-    gint         degrees;
+    gchar             property[512];
+    gchar            *str_value;
+    const XfceRRMode *mode;
+    gint              degrees;
+
+    g_return_if_fail (randr != NULL && scheme != NULL);
+    g_return_if_fail (XFCONF_IS_CHANNEL (channel));
+    g_return_if_fail (output < randr->noutput);
+
+    /* save the device name */
+    str_value = xfce_randr_friendly_name (randr, randr->resources->outputs[output],
+                                          randr->output_info[output]->name);
+    g_snprintf (property, sizeof (property), "/%s/%s", scheme,
+                randr->output_info[output]->name);
+    xfconf_channel_set_string (channel, property, str_value);
+    g_free (str_value);
 
     /* find the resolution and refresh rate */
     mode = xfce_randr_find_mode_by_id (randr, output, randr->mode[output]);
-    if (mode)
-        resolution_name = g_strdup_printf ("%dx%d", mode->width, mode->height);
 
-    /* save the device name */
-    friendly_name = xfce_randr_friendly_name (randr, randr->resources->outputs[output],
-                                              randr->output_info[output]->name);
-    g_snprintf (property, sizeof (property), "/%s/%s", scheme, distinct);
-    xfconf_channel_set_string (channel, property, friendly_name);
-    g_free (friendly_name);
+    /* if no resolution was found, mark it as inactive and stop */
+    g_snprintf (property, sizeof (property), "/%s/%s/Active", scheme,
+                randr->output_info[output]->name);
+    xfconf_channel_set_bool (channel, property, mode != NULL);
 
-    /* save (or remove) the resolution */
-    g_snprintf (property, sizeof (property), "/%s/%s/Resolution", scheme, distinct);
-    if (G_LIKELY (resolution_name != NULL))
-        xfconf_channel_set_string (channel, property, resolution_name);
-    else
-        xfconf_channel_reset_property (channel, property, FALSE);
+    if (mode == NULL)
+        return;
+
+    /* save the resolution */
+    str_value = g_strdup_printf ("%dx%d", mode->width, mode->height);
+    g_snprintf (property, sizeof (property), "/%s/%s/Resolution", scheme,
+                randr->output_info[output]->name);
+    xfconf_channel_set_string (channel, property, str_value);
+    g_free (str_value);
 
     /* save the refresh rate */
-    g_snprintf (property, sizeof (property), "/%s/%s/RefreshRate", scheme, distinct);
-    if (G_LIKELY (resolution_name != NULL))
-        xfconf_channel_set_double (channel, property, mode->rate);
-    else
-        xfconf_channel_reset_property (channel, property, FALSE);
+    g_snprintf (property, sizeof (property), "/%s/%s/RefreshRate", scheme,
+                randr->output_info[output]->name);
+    xfconf_channel_set_double (channel, property, mode->rate);
 
     /* convert the rotation into degrees */
     switch (randr->rotation[output] & XFCE_RANDR_ROTATIONS_MASK)
@@ -420,75 +427,67 @@ xfce_randr_save_device (XfceRandr     *randr,
     }
 
     /* save the rotation in degrees */
-    g_snprintf (property, sizeof (property), "/%s/%s/Rotation", scheme, distinct);
-    /* resolution name NULL means output disabled */
-    if (G_LIKELY (resolution_name != NULL))
-        xfconf_channel_set_int (channel, property, degrees);
-    else
-        xfconf_channel_reset_property (channel, property, FALSE);
+    g_snprintf (property, sizeof (property), "/%s/%s/Rotation", scheme,
+                randr->output_info[output]->name);
+    xfconf_channel_set_int (channel, property, degrees);
 
     /* convert the reflection into a string */
     switch (randr->rotation[output] & XFCE_RANDR_REFLECTIONS_MASK)
     {
-        case RR_Reflect_X:              reflection_name = "X";  break;
-        case RR_Reflect_Y:              reflection_name = "Y";  break;
-        case RR_Reflect_X|RR_Reflect_Y: reflection_name = "XY"; break;
-        default:                        reflection_name = "0";  break;
+        case RR_Reflect_X:              str_value = "X";  break;
+        case RR_Reflect_Y:              str_value = "Y";  break;
+        case RR_Reflect_X|RR_Reflect_Y: str_value = "XY"; break;
+        default:                        str_value = "0";  break;
     }
 
     /* save the reflection string */
-    g_snprintf (property, sizeof (property), "/%s/%s/Reflection", scheme, distinct);
-    /* resolution name NULL means output disabled */
-    if (G_LIKELY (resolution_name != NULL))
-        xfconf_channel_set_string (channel, property, reflection_name);
-    else
-        xfconf_channel_reset_property (channel, property, FALSE);
+    g_snprintf (property, sizeof (property), "/%s/%s/Reflection", scheme,
+                randr->output_info[output]->name);
+    xfconf_channel_set_string (channel, property, str_value);
 
 #ifdef HAS_RANDR_ONE_POINT_THREE
     /* is it the primary output? */
-    g_snprintf (property, sizeof (property), "/%s/%s/Primary", scheme, distinct);
-    if (randr->status[output] == XFCE_OUTPUT_STATUS_PRIMARY)
-        xfconf_channel_set_bool (channel, property, TRUE);
-    else
-        xfconf_channel_reset_property (channel, property, FALSE);
+    g_snprintf (property, sizeof (property), "/%s/%s/Primary", scheme,
+                randr->output_info[output]->name);
+    xfconf_channel_set_bool (channel, property,
+                             randr->status[output] == XFCE_OUTPUT_STATUS_PRIMARY);
 #endif
 
-    /* first, remove any existing position */
-    g_snprintf (property, sizeof (property), "/%s/%s/Position", scheme, distinct);
-    xfconf_channel_reset_property (channel, property, TRUE);
-    /* then save the new one */
-    if (G_LIKELY (resolution_name != NULL)
-        && randr->position[output].x >= 0
-        && randr->position[output].y >= 0)
-    {
-        g_snprintf (property, sizeof (property), "/%s/%s/Position/X", scheme, distinct);
-        xfconf_channel_set_int (channel, property, randr->position[output].x);
-        g_snprintf (property, sizeof (property), "/%s/%s/Position/Y", scheme, distinct);
-        xfconf_channel_set_int (channel, property, randr->position[output].y);
-    }
-
-    g_free (resolution_name);
+    /* save the position */
+    g_snprintf (property, sizeof (property), "/%s/%s/Position/X", scheme,
+                randr->output_info[output]->name);
+    xfconf_channel_set_int (channel, property, MAX (randr->position[output].x, 0));
+    g_snprintf (property, sizeof (property), "/%s/%s/Position/Y", scheme,
+                randr->output_info[output]->name);
+    xfconf_channel_set_int (channel, property, MAX (randr->position[output].y, 0));
 }
 
 
 
 void
-xfce_randr_save (XfceRandr     *randr,
-                 const gchar   *scheme,
-                 XfconfChannel *channel)
+xfce_randr_save_all (XfceRandr     *randr,
+                     const gchar   *scheme,
+                     XfconfChannel *channel)
 {
-    gchar        property[512];
     guint        n;
 
+    g_return_if_fail (randr != NULL && scheme != NULL);
     g_return_if_fail (XFCONF_IS_CHANNEL (channel));
-
-    /* store the layout type */
-    g_snprintf (property, sizeof (property), "/%s/Layout", scheme);
-    xfconf_channel_set_string (channel, property, "Outputs");
 
     /* save connected outputs */
     for (n = 0; n < randr->noutput; ++n)
-        xfce_randr_save_device (randr, scheme, channel, n, randr->output_info[n]->name);
+        xfce_randr_save_output (randr, scheme, channel, n);
+}
+
+
+
+void
+xfce_randr_apply (XfceRandr     *randr,
+                  const gchar   *scheme,
+                  XfconfChannel *channel)
+{
+    g_return_if_fail (randr != NULL && scheme != NULL);
+    g_return_if_fail (XFCONF_IS_CHANNEL (channel));
 
     /* tell the helper to apply this theme */
     xfconf_channel_set_string (channel, "/Schemes/Apply", scheme);

@@ -252,13 +252,17 @@ display_setting_reflections_changed (GtkComboBox *combobox,
         /* set the new one */
         XFCE_RANDR_ROTATION (xfce_randr) |= value;
         /* Apply the changes */
-        xfce_randr_save (xfce_randr, "Default", display_channel);
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
 
         /* Ask user confirmation */
         if (!display_setting_timed_confirmation (builder))
         {
             XFCE_RANDR_ROTATION (xfce_randr) = old_rotation;
-            xfce_randr_save (xfce_randr, "Default", display_channel);
+            xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                    xfce_randr->active_output);
+            xfce_randr_apply (xfce_randr, "Default", display_channel);
         }
     }
 }
@@ -356,7 +360,11 @@ display_setting_rotations_changed (GtkComboBox *combobox,
     /* Apply the changes */
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
-        xfce_randr_save (xfce_randr, "Default", display_channel);
+    {
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
+    }
     else
 #endif
         xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
@@ -368,7 +376,9 @@ display_setting_rotations_changed (GtkComboBox *combobox,
         if (xfce_randr)
         {
           XFCE_RANDR_ROTATION (xfce_randr) = old_rotation;
-          xfce_randr_save (xfce_randr, "Default", display_channel);
+          xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                  xfce_randr->active_output);
+          xfce_randr_apply (xfce_randr, "Default", display_channel);
         }
         else
 #endif
@@ -488,7 +498,11 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
     /* Apply the changes */
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
-        xfce_randr_save (xfce_randr, "Default", display_channel);
+    {
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
+    }
     else
 #endif
         xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
@@ -500,7 +514,9 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
         if (xfce_randr)
         {
             XFCE_RANDR_MODE (xfce_randr) = old_mode;
-            xfce_randr_save (xfce_randr, "Default", display_channel);
+            xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                    xfce_randr->active_output);
+            xfce_randr_apply (xfce_randr, "Default", display_channel);
         }
         else
 #endif
@@ -663,7 +679,11 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     /* Apply the changes */
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
-        xfce_randr_save (xfce_randr, "Default", display_channel);
+    {
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
+    }
     else
 #endif
         xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
@@ -675,7 +695,9 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
         if (xfce_randr)
         {
             XFCE_RANDR_MODE (xfce_randr) = old_mode;
-            xfce_randr_save (xfce_randr, "Default", display_channel);
+            xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                    xfce_randr->active_output);
+            xfce_randr_apply (xfce_randr, "Default", display_channel);
         }
         else
 #endif
@@ -804,14 +826,18 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
         XFCE_RANDR_MODE (xfce_randr) =
             xfce_randr_preferred_mode (xfce_randr, xfce_randr->active_output);
         /* Apply the changes */
-        xfce_randr_save (xfce_randr, "Default", display_channel);
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
     }
     else if (!is_active && XFCE_RANDR_MODE (xfce_randr) != None)
     {
         XFCE_RANDR_MODE (xfce_randr) = None;
         disabling = TRUE;
         /* Apply the changes */
-        xfce_randr_save (xfce_randr, "Default", display_channel);
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
     }
 
     /* if the user attempted to disable an output, forcefully reload the view.
@@ -1209,8 +1235,12 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
                 }
             }
         }
-
-        xfce_randr_save (xfce_randr, "MinimalAutoConfig", display_channel);
+        /* save the two outputs and apply */
+        xfce_randr_save_output (xfce_randr, "MinimalAutoConfig", display_channel,
+                                first);
+        xfce_randr_save_output (xfce_randr, "MinimalAutoConfig", display_channel,
+                                second);
+        xfce_randr_apply (xfce_randr, "MinimalAutoConfig", display_channel);
     }
 
     gtk_main_quit ();

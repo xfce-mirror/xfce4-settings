@@ -621,13 +621,14 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         else
             str_value = g_value_get_string (value);
 
-        /* resolution */
-        g_snprintf (property, sizeof (property), "/%s/%s/Resolution",
-                    scheme, output->info->name);
+        /* status */
+        g_snprintf (property, sizeof (property), "/%s/%s/Active", scheme,
+                    output->info->name);
         value = g_hash_table_lookup (saved_outputs, property);
 
-        /* outputs that have to be disabled are stored without resolution */
-        if (value == NULL || !G_VALUE_HOLDS_STRING (value))
+        /* disable inactive outputs  */
+        if (value == NULL || !G_VALUE_HOLDS_BOOLEAN (value)
+            || !g_value_get_boolean (value))
         {
             /* output already disabled */
             if (output->info->crtc == None)
@@ -650,6 +651,13 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
             continue;
         }
+
+        /* resolution */
+        g_snprintf (property, sizeof (property), "/%s/%s/Resolution",
+                    scheme, output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (value == NULL || !G_VALUE_HOLDS_STRING (value))
+            continue;
         else
             str_value = g_value_get_string (value);
 
@@ -997,23 +1005,21 @@ xfce_displays_helper_channel_property_changed (XfconfChannel      *channel,
         layout_name = xfconf_channel_get_string (channel, property, NULL);
         g_free (property);
 
-        if (G_LIKELY (layout_name))
+        /* if there is a layout name, this is the old randr 1.1 scheme */
+        if (layout_name)
         {
-#ifdef HAS_RANDR_ONE_POINT_TWO
-            if (strcmp (layout_name, "Outputs") == 0)
-                xfce_displays_helper_channel_apply (helper, g_value_get_string (value));
+            if (strcmp (layout_name, "Screens") == 0)
+                xfce_displays_helper_channel_apply_legacy (helper, g_value_get_string (value));
             else
-#endif
-            {
-                if (strcmp (layout_name, "Screens") == 0)
-                    xfce_displays_helper_channel_apply_legacy (helper, g_value_get_string (value));
-                else
-                    g_warning ("Unknown layout: %s\n", layout_name);
-            }
+                g_warning ("Unknown layout: %s\n", layout_name);
 
             /* cleanup */
             g_free (layout_name);
         }
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        else
+            xfce_displays_helper_channel_apply (helper, g_value_get_string (value));
+#endif
 
         /* remove the apply property */
         xfconf_channel_reset_property (channel, "/Schemes/Apply", FALSE);

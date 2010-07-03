@@ -117,7 +117,16 @@ void        xfce_randr_free            (XfceRandr     *randr);
 
 void        xfce_randr_reload          (XfceRandr     *randr);
 
-void        xfce_randr_save            (XfceRandr     *randr,
+void        xfce_randr_save_output     (XfceRandr     *randr,
+                                        const gchar   *scheme,
+                                        XfconfChannel *channel,
+                                        guint          output);
+
+void        xfce_randr_save_all        (XfceRandr     *randr,
+                                        const gchar   *scheme,
+                                        XfconfChannel *channel);
+
+void        xfce_randr_apply           (XfceRandr     *randr,
                                         const gchar   *scheme,
                                         XfconfChannel *channel);
 
