@@ -854,7 +854,7 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
 static void
 display_setting_output_status_populate (GtkBuilder *builder)
 {
-    GObject *radio_on, *radio_off;
+    GObject *check;
 
     if (!xfce_randr)
         return;
@@ -862,13 +862,10 @@ display_setting_output_status_populate (GtkBuilder *builder)
     if (xfce_randr->noutput <= 1)
         return;
 
-    radio_on = gtk_builder_get_object (builder, "randr-on");
-    radio_off = gtk_builder_get_object (builder, "randr-off");
+    check = gtk_builder_get_object (builder, "output-on");
 
-    if (XFCE_RANDR_MODE (xfce_randr) != None)
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (radio_on), TRUE);
-    else
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (radio_off), TRUE);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check),
+                                  XFCE_RANDR_MODE (xfce_randr) != None);
 }
 #endif
 
@@ -1057,7 +1054,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     GtkTreeSelection *selection;
     GObject          *combobox;
 #ifdef HAS_RANDR_ONE_POINT_TWO
-    GObject          *label, *radio;
+    GObject          *label, *check;
 #endif
 
     /* get the treeview */
@@ -1083,25 +1080,15 @@ display_settings_dialog_new (GtkBuilder *builder)
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr != NULL)
     {
-        radio = gtk_builder_get_object (builder, "randr-on");
+        check = gtk_builder_get_object (builder, "output-on");
         if (xfce_randr->noutput > 1)
         {
-            gtk_widget_show (GTK_WIDGET (radio));
-            g_signal_connect (G_OBJECT (radio), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
+            gtk_widget_show (GTK_WIDGET (check));
+            g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
         }
         else
         {
-            gtk_widget_hide (GTK_WIDGET (radio));
-        }
-
-        radio = gtk_builder_get_object (builder, "randr-off");
-        if (xfce_randr->noutput > 1)
-        {
-            gtk_widget_show (GTK_WIDGET (radio));
-        }
-        else
-        {
-            gtk_widget_hide (GTK_WIDGET (radio));
+            gtk_widget_hide (GTK_WIDGET (check));
         }
 
         label = gtk_builder_get_object (builder, "label-reflection");
