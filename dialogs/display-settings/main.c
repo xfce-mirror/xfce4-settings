@@ -118,6 +118,7 @@ static GOptionEntry option_entries[] =
 
 /* global xfconf channel */
 static XfconfChannel *display_channel;
+static gboolean       bound_to_channel = FALSE;
 
 /* pointer to the used randr structure */
 #ifdef HAS_RANDR_ONE_POINT_TWO
@@ -802,26 +803,17 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 
 
 #ifdef HAS_RANDR_ONE_POINT_TWO
-/* Forward-declaration only needed for display_setting_output_toggled () */
-static void
-display_settings_treeview_populate (GtkBuilder *builder);
-
 static void
 display_setting_output_toggled (GtkToggleButton *togglebutton,
                                 GtkBuilder      *builder)
 {
-    gint is_active, disabling;
-
     if (!xfce_randr)
         return;
 
-    if (xfce_randr->noutput > 1)
-        is_active = gtk_toggle_button_get_active (togglebutton);
-    else
-        is_active = TRUE;
+    if (xfce_randr->noutput <= 1)
+        return;
 
-    disabling = FALSE;
-    if (is_active && XFCE_RANDR_MODE (xfce_randr) == None)
+    if (gtk_toggle_button_get_active (togglebutton))
     {
         XFCE_RANDR_MODE (xfce_randr) =
             xfce_randr_preferred_mode (xfce_randr, xfce_randr->active_output);
@@ -830,23 +822,11 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
                                 xfce_randr->active_output);
         xfce_randr_apply (xfce_randr, "Default", display_channel);
     }
-    else if (!is_active && XFCE_RANDR_MODE (xfce_randr) != None)
+    else
     {
         XFCE_RANDR_MODE (xfce_randr) = None;
-        disabling = TRUE;
         /* Apply the changes */
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                xfce_randr->active_output);
         xfce_randr_apply (xfce_randr, "Default", display_channel);
-    }
-
-    /* if the user attempted to disable an output, forcefully reload the view.
-     * It's possible that it failed because it was the last active output.
-     */
-    if (disabling)
-    {
-        xfce_randr_reload (xfce_randr);
-        display_settings_treeview_populate (builder);
     }
 }
 
@@ -855,6 +835,7 @@ static void
 display_setting_output_status_populate (GtkBuilder *builder)
 {
     GObject *check;
+    gchar    property[512];
 
     if (!xfce_randr)
         return;
@@ -863,9 +844,28 @@ display_setting_output_status_populate (GtkBuilder *builder)
         return;
 
     check = gtk_builder_get_object (builder, "output-on");
+    /* unbind any existing property, and rebind it */
+    if (bound_to_channel)
+    {
+        xfconf_g_property_unbind_all (check);
+        bound_to_channel = FALSE;
+    }
 
+    /* Disconnect the "toggled" signal to avoid writing the config again */
+    g_object_disconnect (check, "any_signal::toggled",
+                         display_setting_output_toggled,
+                         builder, NULL);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check),
                                   XFCE_RANDR_MODE (xfce_randr) != None);
+    /* Reconnect the signal */
+    g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled),
+                      builder);
+
+    g_snprintf (property, sizeof (property), "/Default/%s/Active",
+                xfce_randr->output_info[xfce_randr->active_output]->name);
+    xfconf_g_property_bind (display_channel, property, G_TYPE_BOOLEAN, check,
+                            "active");
+    bound_to_channel = TRUE;
 }
 #endif
 
@@ -948,6 +948,10 @@ display_settings_treeview_populate (GtkBuilder *builder)
 #ifdef HAS_RANDR_ONE_POINT_TWO
     if (xfce_randr)
     {
+        /* save the current status of all outputs, if the user doesn't change
+         * anything after, it means she's happy with that. */
+        xfce_randr_save_all (xfce_randr, "Default", display_channel);
+
         /* walk all the connected outputs */
         for (m = 0; m < xfce_randr->noutput; ++m)
         {
@@ -1463,6 +1467,7 @@ main (gint argc, gchar **argv)
         err1:
 
         /* release the channel */
+        xfconf_g_property_unbind_all (G_OBJECT (display_channel));
         g_object_unref (G_OBJECT (display_channel));
     }
 
