@@ -636,10 +636,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
             if (nactive == 1)
             {
-                xfce_dialog_show_warning (NULL,
-                                          _("The last active screen must not be disabled, the system would"
-                                            " be unusable."),
-                                          _("%s (%s) was not disabled"), str_value, output->info->name);
+                xfconf_channel_set_bool (helper->channel, property, TRUE);
+                g_warning ("Last active output (%s) not disabled.", output->info->name);
                 continue;
             }
             crtc = xfce_displays_helper_find_crtc_by_id (resources, crtcs,

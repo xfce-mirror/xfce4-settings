@@ -128,6 +128,25 @@ XfceRandrLegacy *xfce_randr_legacy = NULL;
 
 
 
+#ifdef HAS_RANDR_ONE_POINT_TWO
+static guint
+display_settings_get_n_active_outputs (void)
+{
+    guint n, count = 0;
+
+    g_assert (xfce_randr != NULL);
+
+    for (n = 0; n < xfce_randr->noutput; ++n)
+    {
+        if (xfce_randr->mode[n] != None)
+            ++count;
+    }
+    return count;
+}
+#endif
+
+
+
 static gboolean
 display_setting_combo_box_get_value (GtkComboBox *combobox,
                                      gint        *value)
@@ -824,9 +843,22 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
     }
     else
     {
-        XFCE_RANDR_MODE (xfce_randr) = None;
-        /* Apply the changes */
-        xfce_randr_apply (xfce_randr, "Default", display_channel);
+        /* prevents the user from disabling everything… */
+        if (display_settings_get_n_active_outputs () > 1)
+        {
+            XFCE_RANDR_MODE (xfce_randr) = None;
+            /* Apply the changes */
+            xfce_randr_apply (xfce_randr, "Default", display_channel);
+        }
+        else
+        {
+            xfce_dialog_show_warning (NULL,
+                                      _("The last active output must not be disabled, the system would"
+                                        " be unusable."),
+                                      _("Selected output not disabled"));
+            /* set it back to active */
+            gtk_toggle_button_set_active (togglebutton, TRUE);
+        }
     }
 }
 
