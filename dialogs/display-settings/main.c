@@ -1499,7 +1499,10 @@ main (gint argc, gchar **argv)
         err1:
 
         /* release the channel */
-        xfconf_g_property_unbind_all (G_OBJECT (display_channel));
+#ifdef HAS_RANDR_ONE_POINT_TWO
+        if (bound_to_channel)
+            xfconf_g_property_unbind_all (G_OBJECT (display_channel));
+#endif
         g_object_unref (G_OBJECT (display_channel));
     }
 
