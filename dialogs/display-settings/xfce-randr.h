@@ -35,22 +35,17 @@
 #define XFCE_RANDR_ROTATIONS_MASK         (RR_Rotate_0|RR_Rotate_90|RR_Rotate_180|RR_Rotate_270)
 #define XFCE_RANDR_REFLECTIONS_MASK       (RR_Reflect_X|RR_Reflect_Y)
 
-/* check for randr 1.2 or better */
-#if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 2)
-#define HAS_RANDR_ONE_POINT_TWO
 /* check for randr 1.3 or better */
 #if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 3)
 #define HAS_RANDR_ONE_POINT_THREE
-#endif
 #else
-#undef HAS_RANDR_ONE_POINT_TWO
 #undef HAS_RANDR_ONE_POINT_THREE
 #endif
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
 typedef struct _XfceRandr          XfceRandr;
 typedef struct _XfceOutputPosition XfceOutputPosition;
 typedef struct _XfceRRMode         XfceRRMode;
+typedef struct _XfceRotation       XfceRotation;
 typedef enum   _XfceOutputStatus   XfceOutputStatus;
 
 enum _XfceOutputStatus
@@ -71,6 +66,12 @@ struct _XfceRRMode
     guint   width;
     guint   height;
     gdouble rate;
+};
+
+struct _XfceRotation
+{
+    Rotation     rotation;
+    const gchar *name;
 };
 
 struct _XfceRandr
@@ -144,7 +145,5 @@ XfceRRMode *xfce_randr_find_mode_by_id (XfceRandr     *randr,
 
 RRMode      xfce_randr_preferred_mode  (XfceRandr     *randr,
                                         guint          output);
-
-#endif /* !HAS_RANDR_ONE_POINT_TWO */
 
 #endif /* !__XFCE_RANDR_H__ */

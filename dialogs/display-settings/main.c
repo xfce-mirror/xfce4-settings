@@ -41,12 +41,9 @@
 #include <X11/extensions/Xrandr.h>
 
 #include "xfce-randr.h"
-#include "xfce-randr-legacy.h"
 #include "display-dialog_ui.h"
 #include "confirmation-dialog_ui.h"
-#ifdef HAS_RANDR_ONE_POINT_TWO
 #include "minimal-display-dialog_ui.h"
-#endif
 
 enum
 {
@@ -65,7 +62,7 @@ enum
 
 
 
-/* xrandr rotation name conversion */
+/* Xrandr rotation name conversion */
 static const XfceRotation rotation_names[] =
 {
     { RR_Rotate_0,   N_("Normal") },
@@ -76,8 +73,7 @@ static const XfceRotation rotation_names[] =
 
 
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-/* xrandr reflection name conversion */
+/* Xrandr reflection name conversion */
 static const XfceRotation reflection_names[] =
 {
     { 0,                         N_("None") },
@@ -85,11 +81,10 @@ static const XfceRotation reflection_names[] =
     { RR_Reflect_Y,              N_("Vertical") },
     { RR_Reflect_X|RR_Reflect_Y, N_("Both") }
 };
-#endif
 
 
 
-/* confirmation dialog data */
+/* Confirmation dialog data */
 typedef struct
 {
     GtkBuilder *builder;
@@ -98,37 +93,29 @@ typedef struct
 
 
 
-/* option entries */
+/* Option entries */
 static gboolean opt_version = FALSE;
-#ifdef HAS_RANDR_ONE_POINT_TWO
 static gboolean minimal = FALSE;
-#endif
 static GOptionEntry option_entries[] =
 {
     { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
-#ifdef HAS_RANDR_ONE_POINT_TWO
     {
     "minimal", 'm', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &minimal,
     N_("Minimal interface to set up an external output"),
     NULL
     },
-#endif
     { NULL }
 };
 
-/* global xfconf channel */
+/* Global xfconf channel */
 static XfconfChannel *display_channel;
 static gboolean       bound_to_channel = FALSE;
 
-/* pointer to the used randr structure */
-#ifdef HAS_RANDR_ONE_POINT_TWO
+/* Pointer to the used randr structure */
 XfceRandr *xfce_randr = NULL;
-#endif
-XfceRandrLegacy *xfce_randr_legacy = NULL;
 
 
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
 static guint
 display_settings_get_n_active_outputs (void)
 {
@@ -143,7 +130,6 @@ display_settings_get_n_active_outputs (void)
     }
     return count;
 }
-#endif
 
 
 
@@ -251,39 +237,36 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
 
 
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
 static void
 display_setting_reflections_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
     gint value;
+    Rotation old_rotation;
 
     if (!display_setting_combo_box_get_value (combobox, &value))
         return;
 
-    if (xfce_randr)
+    old_rotation = XFCE_RANDR_ROTATION (xfce_randr);
+
+    /* Remove existing reflection */
+    XFCE_RANDR_ROTATION (xfce_randr) &= ~XFCE_RANDR_REFLECTIONS_MASK;
+
+    /* Set the new one */
+    XFCE_RANDR_ROTATION (xfce_randr) |= value;
+
+    /* Apply the changes */
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+
+    /* Ask user confirmation */
+    if (!display_setting_timed_confirmation (builder))
     {
-        Rotation old_rotation;
-
-        old_rotation = XFCE_RANDR_ROTATION (xfce_randr);
-
-        /* remove existing reflection */
-        XFCE_RANDR_ROTATION (xfce_randr) &= ~XFCE_RANDR_REFLECTIONS_MASK;
-        /* set the new one */
-        XFCE_RANDR_ROTATION (xfce_randr) |= value;
-        /* Apply the changes */
+        XFCE_RANDR_ROTATION (xfce_randr) = old_rotation;
         xfce_randr_save_output (xfce_randr, "Default", display_channel,
                                 xfce_randr->active_output);
         xfce_randr_apply (xfce_randr, "Default", display_channel);
-
-        /* Ask user confirmation */
-        if (!display_setting_timed_confirmation (builder))
-        {
-            XFCE_RANDR_ROTATION (xfce_randr) = old_rotation;
-            xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                    xfce_randr->active_output);
-            xfce_randr_apply (xfce_randr, "Default", display_channel);
-        }
     }
 }
 
@@ -301,7 +284,7 @@ display_setting_reflections_populate (GtkBuilder *builder)
     if (!xfce_randr)
         return;
 
-    /* get the combo box store and clear it */
+    /* Get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-reflection");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
@@ -320,22 +303,22 @@ display_setting_reflections_populate (GtkBuilder *builder)
                          display_setting_reflections_changed,
                          builder, NULL);
 
-    /* load only supported reflections */
+    /* Load only supported reflections */
     reflections = XFCE_RANDR_ROTATIONS (xfce_randr) & XFCE_RANDR_REFLECTIONS_MASK;
     active_reflection = XFCE_RANDR_ROTATION (xfce_randr) & XFCE_RANDR_REFLECTIONS_MASK;
 
-    /* try to insert the reflections */
+    /* Try to insert the reflections */
     for (n = 0; n < G_N_ELEMENTS (reflection_names); n++)
     {
         if ((reflections & reflection_names[n].rotation) == reflection_names[n].rotation)
         {
-            /* insert */
+            /* Insert */
             gtk_list_store_append (GTK_LIST_STORE (model), &iter);
             gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                                 COLUMN_COMBO_NAME, _(reflection_names[n].name),
                                 COLUMN_COMBO_VALUE, reflection_names[n].rotation, -1);
 
-            /* select active reflection */
+            /* Select active reflection */
             if (xfce_randr && XFCE_RANDR_MODE (xfce_randr) != None)
             {
                 if ((reflection_names[n].rotation & active_reflection) == reflection_names[n].rotation)
@@ -347,7 +330,6 @@ display_setting_reflections_populate (GtkBuilder *builder)
     /* Reconnect the signal */
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_reflections_changed), builder);
 }
-#endif
 
 
 
@@ -361,51 +343,23 @@ display_setting_rotations_changed (GtkComboBox *combobox,
     if (!display_setting_combo_box_get_value (combobox, &value))
         return;
 
-
-    /* set new rotation */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
-    {
-        old_rotation = XFCE_RANDR_ROTATION (xfce_randr);
-        XFCE_RANDR_ROTATION (xfce_randr) &= ~XFCE_RANDR_ROTATIONS_MASK;
-        XFCE_RANDR_ROTATION (xfce_randr) |= value;
-    }
-    else
-#endif
-    {
-        old_rotation = XFCE_RANDR_LEGACY_ROTATION (xfce_randr_legacy);
-        XFCE_RANDR_LEGACY_ROTATION (xfce_randr_legacy) = value;
-    }
+    /* Set new rotation */
+    old_rotation = XFCE_RANDR_ROTATION (xfce_randr);
+    XFCE_RANDR_ROTATION (xfce_randr) &= ~XFCE_RANDR_ROTATIONS_MASK;
+    XFCE_RANDR_ROTATION (xfce_randr) |= value;
 
     /* Apply the changes */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
-    {
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                xfce_randr->active_output);
-        xfce_randr_apply (xfce_randr, "Default", display_channel);
-    }
-    else
-#endif
-        xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
 
     /* Ask user confirmation */
     if (!display_setting_timed_confirmation (builder))
     {
-#ifdef HAS_RANDR_ONE_POINT_TWO
-        if (xfce_randr)
-        {
-          XFCE_RANDR_ROTATION (xfce_randr) = old_rotation;
-          xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                  xfce_randr->active_output);
-          xfce_randr_apply (xfce_randr, "Default", display_channel);
-        }
-        else
-#endif
-        {
-            XFCE_RANDR_LEGACY_ROTATION (xfce_randr_legacy) = old_rotation;
-            xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
-        }
+        XFCE_RANDR_ROTATION (xfce_randr) = old_rotation;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
     }
 }
 
@@ -421,23 +375,18 @@ display_setting_rotations_populate (GtkBuilder *builder)
     guint         n;
     GtkTreeIter   iter;
 
-    /* get the combo box store and clear it */
+    /* Get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-rotation");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
+    /* Disable it if no mode is selected */
+    if (XFCE_RANDR_MODE (xfce_randr) == None)
     {
-        /* disable it if no mode is selected */
-        if (XFCE_RANDR_MODE (xfce_randr) == None)
-        {
-            gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
-            return;
-        }
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        return;
     }
-#endif
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
@@ -445,36 +394,23 @@ display_setting_rotations_populate (GtkBuilder *builder)
                          display_setting_rotations_changed,
                          builder, NULL);
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
-    {
-        /* load only supported rotations */
-        rotations = XFCE_RANDR_ROTATIONS (xfce_randr) & XFCE_RANDR_ROTATIONS_MASK;
-        active_rotation = XFCE_RANDR_ROTATION (xfce_randr) & XFCE_RANDR_ROTATIONS_MASK;
-    }
-    else
-#endif
-    {
-        /* load all possible rotations */
-        rotations = XRRConfigRotations (XFCE_RANDR_LEGACY_CONFIG (xfce_randr_legacy), &active_rotation);
-        active_rotation = XFCE_RANDR_LEGACY_ROTATION (xfce_randr_legacy);
-    }
+    /* Load only supported rotations */
+    rotations = XFCE_RANDR_ROTATIONS (xfce_randr) & XFCE_RANDR_ROTATIONS_MASK;
+    active_rotation = XFCE_RANDR_ROTATION (xfce_randr) & XFCE_RANDR_ROTATIONS_MASK;
 
-    /* try to insert the rotations */
+    /* Try to insert the rotations */
     for (n = 0; n < G_N_ELEMENTS (rotation_names); n++)
     {
         if ((rotations & rotation_names[n].rotation) == rotation_names[n].rotation)
         {
-            /* insert */
+            /* Insert */
             gtk_list_store_append (GTK_LIST_STORE (model), &iter);
             gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                                 COLUMN_COMBO_NAME, _(rotation_names[n].name),
                                 COLUMN_COMBO_VALUE, rotation_names[n].rotation, -1);
 
-            /* select active rotation */
-#ifdef HAS_RANDR_ONE_POINT_TWO
+            /* Select active rotation */
             if (xfce_randr && XFCE_RANDR_MODE (xfce_randr) != None)
-#endif
             {
                 if ((rotation_names[n].rotation & active_rotation) == rotation_names[n].rotation)
                     gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
@@ -492,58 +428,28 @@ static void
 display_setting_refresh_rates_changed (GtkComboBox *combobox,
                                        GtkBuilder  *builder)
 {
-#ifdef HAS_RANDR_ONE_POINT_TWO
     RRMode old_mode;
-#endif
-    gshort old_rate;
     gint value;
 
     if (!display_setting_combo_box_get_value (combobox, &value))
         return;
 
-    /* set new mode (1.2) or rate (1.1) */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
-    {
-        old_mode = XFCE_RANDR_MODE (xfce_randr);
-        XFCE_RANDR_MODE (xfce_randr) = value;
-    }
-    else
-#endif
-    {
-        old_rate = XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy);
-        XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy) = value;
-    }
+    /* Set new mode */
+    old_mode = XFCE_RANDR_MODE (xfce_randr);
+    XFCE_RANDR_MODE (xfce_randr) = value;
 
     /* Apply the changes */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
-    {
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                xfce_randr->active_output);
-        xfce_randr_apply (xfce_randr, "Default", display_channel);
-    }
-    else
-#endif
-        xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
 
     /* Ask user confirmation */
     if (!display_setting_timed_confirmation (builder))
     {
-#ifdef HAS_RANDR_ONE_POINT_TWO
-        if (xfce_randr)
-        {
-            XFCE_RANDR_MODE (xfce_randr) = old_mode;
-            xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                    xfce_randr->active_output);
-            xfce_randr_apply (xfce_randr, "Default", display_channel);
-        }
-        else
-#endif
-        {
-            XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy) = old_rate;
-            xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
-        }
+        XFCE_RANDR_MODE (xfce_randr) = old_mode;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
     }
 }
 
@@ -554,34 +460,24 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
 {
     GtkTreeModel *model;
     GObject      *combobox;
-    gshort       *rates;
-    gint          nrates;
     GtkTreeIter   iter;
     gchar        *name = NULL;
-    gint          n, active = -1;
-    gshort        diff, active_diff = G_MAXSHORT;
-#ifdef HAS_RANDR_ONE_POINT_TWO
+    gint          n;
     GObject      *res_combobox;
     XfceRRMode   *modes, *current_mode;
-#endif
 
-    /* get the combo box store and clear it */
+    /* Get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
+    /* Disable it if no mode is selected */
+    if (XFCE_RANDR_MODE (xfce_randr) == None)
     {
-        /* disable it if no mode is selected */
-        if (XFCE_RANDR_MODE (xfce_randr) == None)
-        {
-            gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
-            return;
-        }
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        return;
     }
-#endif
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
@@ -589,76 +485,40 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
                          display_setting_refresh_rates_changed,
                          builder, NULL);
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
+    /* Fetch the selected resolution */
+    res_combobox = gtk_builder_get_object (builder, "randr-resolution");
+    if (!display_setting_combo_box_get_value (GTK_COMBO_BOX (res_combobox), &n))
+        return;
+
+    current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output, n);
+    if (!current_mode)
+        return;
+
+    /* Walk all supported modes */
+    modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
+    for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
     {
-        /* fetch the selected resolution */
-        res_combobox = gtk_builder_get_object (builder, "randr-resolution");
-        if (!display_setting_combo_box_get_value (GTK_COMBO_BOX (res_combobox), &n))
-            return;
+        /* The mode resolution does not match the selected one */
+        if (modes[n].width != current_mode->width
+            || modes[n].height != current_mode->height)
+            continue;
 
-        current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output, n);
-        if (!current_mode)
-            return;
+        /* Insert the mode */
+        name = g_strdup_printf (_("%.1f Hz"), modes[n].rate);
+        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                            COLUMN_COMBO_NAME, name,
+                            COLUMN_COMBO_VALUE, modes[n].id, -1);
+        g_free (name);
 
-        /* walk all supported modes */
-        modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
-        for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
-        {
-            /* the mode resolution does not match the selected one */
-            if (modes[n].width != current_mode->width
-                || modes[n].height != current_mode->height)
-                continue;
-
-            /* insert the mode */
-            name = g_strdup_printf (_("%.1f Hz"), modes[n].rate);
-            gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-            gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                                COLUMN_COMBO_NAME, name,
-                                COLUMN_COMBO_VALUE, modes[n].id, -1);
-            g_free (name);
-
-            /* select the active mode */
-            if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
-                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
-        }
-
-        /* if a new resolution was selected, set a refresh rate */
-        if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
+        /* Select the active mode */
+        if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
     }
-    else
-#endif
-    {
-        /* get the refresh rates */
-        rates = XRRConfigRates (XFCE_RANDR_LEGACY_CONFIG (xfce_randr_legacy),
-                                XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy), &nrates);
 
-        for (n = 0; n < nrates; n++)
-        {
-            /* insert */
-            name = g_strdup_printf (_("%d Hz"), rates[n]);
-            gtk_list_store_prepend (GTK_LIST_STORE (model), &iter);
-            gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                                COLUMN_COMBO_NAME, name,
-                                COLUMN_COMBO_VALUE, rates[n], -1);
-            g_free (name);
-
-            /* get the active rate closest to the current diff */
-            diff = ABS (rates[n] - XFCE_RANDR_LEGACY_RATE (xfce_randr_legacy));
-
-            /* store active */
-            if (active_diff > diff)
-            {
-                active = nrates - n - 1;
-                active_diff = diff;
-            }
-        }
-
-        /* set closest refresh rate */
-        if (G_LIKELY (active != -1))
-            gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), active);
-    }
+    /* If a new resolution was selected, set a refresh rate */
+    if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
+        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
 
     /* Reconnect the signal */
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_refresh_rates_changed), builder);
@@ -670,61 +530,31 @@ static void
 display_setting_resolutions_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
-#ifdef HAS_RANDR_ONE_POINT_TWO
     RRMode old_mode;
-#endif
-    SizeID old_resolution;
     gint value;
 
     if (!display_setting_combo_box_get_value (combobox, &value))
         return;
 
     /* Set new resolution */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
-    {
-        old_mode = XFCE_RANDR_MODE (xfce_randr);
-        XFCE_RANDR_MODE (xfce_randr) = value;
-    }
-    else
-#endif
-    {
-        old_resolution = XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy);
-        XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) = value;
-    }
+    old_mode = XFCE_RANDR_MODE (xfce_randr);
+    XFCE_RANDR_MODE (xfce_randr) = value;
 
-    /* update refresh rates */
+    /* Update refresh rates */
     display_setting_refresh_rates_populate (builder);
 
     /* Apply the changes */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
-    {
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                xfce_randr->active_output);
-        xfce_randr_apply (xfce_randr, "Default", display_channel);
-    }
-    else
-#endif
-        xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
 
     /* Ask user confirmation */
     if (!display_setting_timed_confirmation (builder))
     {
-#ifdef HAS_RANDR_ONE_POINT_TWO
-        if (xfce_randr)
-        {
-            XFCE_RANDR_MODE (xfce_randr) = old_mode;
-            xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                    xfce_randr->active_output);
-            xfce_randr_apply (xfce_randr, "Default", display_channel);
-        }
-        else
-#endif
-        {
-            XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) = old_resolution;
-            xfce_randr_legacy_save (xfce_randr_legacy, "Default", display_channel);
-        }
+        XFCE_RANDR_MODE (xfce_randr) = old_mode;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
     }
 }
 
@@ -735,32 +565,24 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 {
     GtkTreeModel  *model;
     GObject       *combobox;
-    XRRScreenSize *screen_sizes;
-    gint           n, nsizes;
+    gint           n;
     gchar         *name;
     GtkTreeIter    iter;
-#ifdef HAS_RANDR_ONE_POINT_TWO
     XfceRRMode   *modes;
-#endif
 
-    /* get the combo box store and clear it */
+    /* Get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
+    /* Disable it if no mode is selected */
+    if (XFCE_RANDR_MODE (xfce_randr) == None)
     {
-        /* disable it if no mode is selected */
-        if (XFCE_RANDR_MODE (xfce_randr) == None)
-        {
-            gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
-            display_setting_refresh_rates_populate (builder);
-            return;
-        }
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        display_setting_refresh_rates_populate (builder);
+        return;
     }
-#endif
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
@@ -768,51 +590,27 @@ display_setting_resolutions_populate (GtkBuilder *builder)
                          display_setting_resolutions_changed,
                          builder, NULL);
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
+    /* Walk all supported modes */
+    modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
+    for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
     {
-        /* walk all supported modes */
-        modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
-        for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
+        /* Try to avoid duplicates */
+        if (n == 0 || (n > 0 && modes[n].width != modes[n - 1].width
+            && modes[n].height != modes[n - 1].height))
         {
-            /* try to avoid duplicates */
-            if (n == 0 || (n > 0 && modes[n].width != modes[n - 1].width
-                && modes[n].height != modes[n - 1].height))
-            {
 
-                /* insert the mode */
-                name = g_strdup_printf ("%dx%d", modes[n].width, modes[n].height);
-                gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-                gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                                    COLUMN_COMBO_NAME, name,
-                                    COLUMN_COMBO_VALUE, modes[n].id, -1);
-                g_free (name);
-            }
-
-            /* select the active mode */
-            if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
-                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
-        }
-    }
-    else
-#endif
-    {
-        /* get the possible screen sizes for this screen */
-        screen_sizes = XRRConfigSizes (XFCE_RANDR_LEGACY_CONFIG (xfce_randr_legacy), &nsizes);
-
-        for (n = 0; n < nsizes; n++)
-        {
-            /* insert in the model */
-            name = g_strdup_printf ("%dx%d", screen_sizes[n].width, screen_sizes[n].height);
-            gtk_list_store_insert_with_values (GTK_LIST_STORE (model), &iter, n,
-                                               COLUMN_COMBO_NAME, name,
-                                               COLUMN_COMBO_VALUE, n, -1);
+            /* Insert the mode */
+            name = g_strdup_printf ("%dx%d", modes[n].width, modes[n].height);
+            gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+            gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                                COLUMN_COMBO_NAME, name,
+                                COLUMN_COMBO_VALUE, modes[n].id, -1);
             g_free (name);
-
-            /* select active */
-            if (G_UNLIKELY (XFCE_RANDR_LEGACY_RESOLUTION (xfce_randr_legacy) == n))
-                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
         }
+
+        /* Select the active mode */
+        if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
+            gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
     }
 
     /* Reconnect the signal */
@@ -821,7 +619,6 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 
 
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
 static void
 display_setting_output_toggled (GtkToggleButton *togglebutton,
                                 GtkBuilder      *builder)
@@ -843,7 +640,7 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
     }
     else
     {
-        /* prevents the user from disabling everything… */
+        /* Prevents the user from disabling everything… */
         if (display_settings_get_n_active_outputs () > 1)
         {
             XFCE_RANDR_MODE (xfce_randr) = None;
@@ -856,7 +653,7 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
                                       _("The last active output must not be disabled, the system would"
                                         " be unusable."),
                                       _("Selected output not disabled"));
-            /* set it back to active */
+            /* Set it back to active */
             gtk_toggle_button_set_active (togglebutton, TRUE);
         }
     }
@@ -876,7 +673,7 @@ display_setting_output_status_populate (GtkBuilder *builder)
         return;
 
     check = gtk_builder_get_object (builder, "output-on");
-    /* unbind any existing property, and rebind it */
+    /* Unbind any existing property, and rebind it */
     if (bound_to_channel)
     {
         xfconf_g_property_unbind_all (check);
@@ -899,7 +696,6 @@ display_setting_output_status_populate (GtkBuilder *builder)
                             "active");
     bound_to_channel = TRUE;
 }
-#endif
 
 
 
@@ -912,32 +708,22 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
     gboolean      has_selection;
     gint          active_id;
 
-    /* get the selection */
+    /* Get the selection */
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
     {
-        /* get the output info */
+        /* Get the output info */
         gtk_tree_model_get (model, &iter, COLUMN_OUTPUT_ID, &active_id, -1);
 
-        /* set the new active screen or output */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-        if (xfce_randr)
-            xfce_randr->active_output = active_id;
-        else
-#endif
-            xfce_randr_legacy->active_screen = active_id;
+        /* Get the new active screen or output */
+        xfce_randr->active_output = active_id;
 
-        /* update the combo boxes */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-        if (xfce_randr)
-            display_setting_output_status_populate (builder);
-#endif
+        /* Update the combo boxes */
+        display_setting_output_status_populate (builder);
         display_setting_resolutions_populate (builder);
         display_setting_refresh_rates_populate (builder);
         display_setting_rotations_populate (builder);
-#ifdef HAS_RANDR_ONE_POINT_TWO
         display_setting_reflections_populate (builder);
-#endif
     }
 }
 
@@ -946,10 +732,7 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
 static void
 display_settings_treeview_populate (GtkBuilder *builder)
 {
-#ifdef HAS_RANDR_ONE_POINT_TWO
     guint             m;
-#endif
-    gint              n;
     GtkListStore     *store;
     GObject          *treeview;
     GtkTreeIter       iter;
@@ -957,18 +740,18 @@ display_settings_treeview_populate (GtkBuilder *builder)
     GdkPixbuf        *display_icon, *lucent_display_icon;
     GtkTreeSelection *selection;
 
-    /* create a new list store */
+    /* Create a new list store */
     store = gtk_list_store_new (N_OUTPUT_COLUMNS,
                                 G_TYPE_STRING, /* COLUMN_OUTPUT_NAME */
                                 GDK_TYPE_PIXBUF, /* COLUMN_OUTPUT_ICON */
                                 G_TYPE_INT);   /* COLUMN_OUTPUT_ID */
 
-    /* set the treeview model */
+    /* Set the treeview model */
     treeview = gtk_builder_get_object (builder, "randr-outputs");
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
 
-    /* get the display icon */
+    /* Get the display icon */
     display_icon =
         gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), "display-icon",
                                   32,
@@ -977,74 +760,46 @@ display_settings_treeview_populate (GtkBuilder *builder)
 
     lucent_display_icon = NULL;
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr)
+    /* Save the current status of all outputs, if the user doesn't change
+     * anything after, it means she's happy with that. */
+    xfce_randr_save_all (xfce_randr, "Default", display_channel);
+
+    /* Walk all the connected outputs */
+    for (m = 0; m < xfce_randr->noutput; ++m)
     {
-        /* save the current status of all outputs, if the user doesn't change
-         * anything after, it means she's happy with that. */
-        xfce_randr_save_all (xfce_randr, "Default", display_channel);
+        /* Get a friendly name for the output */
+        name = xfce_randr_friendly_name (xfce_randr,
+                                         xfce_randr->resources->outputs[m],
+                                         xfce_randr->output_info[m]->name);
 
-        /* walk all the connected outputs */
-        for (m = 0; m < xfce_randr->noutput; ++m)
-        {
-            /* get a friendly name for the output */
-            name = xfce_randr_friendly_name (xfce_randr,
-                                             xfce_randr->resources->outputs[m],
-                                             xfce_randr->output_info[m]->name);
+        if (xfce_randr->mode[m] == None && lucent_display_icon == NULL)
+            lucent_display_icon =
+                exo_gdk_pixbuf_lucent (display_icon, 50);
 
-            if (xfce_randr->mode[m] == None && lucent_display_icon == NULL)
-                lucent_display_icon =
-                    exo_gdk_pixbuf_lucent (display_icon, 50);
-
-            /* insert the output in the store */
-            gtk_list_store_append (store, &iter);
-            if (xfce_randr->mode[m] == None)
-                gtk_list_store_set (store, &iter,
-                                    COLUMN_OUTPUT_NAME, name,
-                                    COLUMN_OUTPUT_ICON, lucent_display_icon,
-                                    COLUMN_OUTPUT_ID, m, -1);
-            else
-                gtk_list_store_set (store, &iter,
-                                    COLUMN_OUTPUT_NAME, name,
-                                    COLUMN_OUTPUT_ICON, display_icon,
-                                    COLUMN_OUTPUT_ID, m, -1);
-
-            g_free (name);
-
-            /* select active output */
-            if (m == xfce_randr->active_output)
-                gtk_tree_selection_select_iter (selection, &iter);
-        }
-    }
-    else
-#endif
-    {
-        /* walk all the screens */
-        for (n = 0; n < xfce_randr_legacy->num_screens; n++)
-        {
-            /* create name */
-            name = g_strdup_printf (_("Screen %d"), n + 1);
-
-            /* insert the output in the store */
-            gtk_list_store_append (store, &iter);
+        /* Insert the output in the store */
+        gtk_list_store_append (store, &iter);
+        if (xfce_randr->mode[m] == None)
+            gtk_list_store_set (store, &iter,
+                                COLUMN_OUTPUT_NAME, name,
+                                COLUMN_OUTPUT_ICON, lucent_display_icon,
+                                COLUMN_OUTPUT_ID, m, -1);
+        else
             gtk_list_store_set (store, &iter,
                                 COLUMN_OUTPUT_NAME, name,
                                 COLUMN_OUTPUT_ICON, display_icon,
-                                COLUMN_OUTPUT_ID, n, -1);
+                                COLUMN_OUTPUT_ID, m, -1);
 
-            /* cleanup */
-            g_free (name);
+        g_free (name);
 
-            /* select active screen */
-            if (n == xfce_randr_legacy->active_screen)
-                gtk_tree_selection_select_iter (selection, &iter);
-        }
+        /* Select active output */
+        if (m == xfce_randr->active_output)
+            gtk_tree_selection_select_iter (selection, &iter);
     }
 
-    /* release the store */
+    /* Release the store */
     g_object_unref (G_OBJECT (store));
 
-    /* release the icons */
+    /* Release the icons */
     g_object_unref (display_icon);
     if (lucent_display_icon != NULL)
         g_object_unref (lucent_display_icon);
@@ -1058,12 +813,12 @@ display_settings_combo_box_create (GtkComboBox *combobox)
     GtkCellRenderer *renderer;
     GtkListStore    *store;
 
-    /* create and set the combobox model */
+    /* Create and set the combobox model */
     store = gtk_list_store_new (N_COMBO_COLUMNS, G_TYPE_STRING, G_TYPE_INT);
     gtk_combo_box_set_model (combobox, GTK_TREE_MODEL (store));
     g_object_unref (G_OBJECT (store));
 
-    /* setup renderer */
+    /* Setup renderer */
     renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_clear (GTK_CELL_LAYOUT (combobox));
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combobox), renderer, TRUE);
@@ -1089,53 +844,45 @@ display_settings_dialog_new (GtkBuilder *builder)
     GtkCellRenderer  *renderer;
     GtkTreeSelection *selection;
     GObject          *combobox;
-#ifdef HAS_RANDR_ONE_POINT_TWO
     GObject          *label, *check;
-#endif
 
-    /* get the treeview */
+    /* Get the treeview */
     treeview = gtk_builder_get_object (builder, "randr-outputs");
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_OUTPUT_NAME);
 
-    /* icon renderer */
+    /* Icon renderer */
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 0, "", renderer, "pixbuf", COLUMN_OUTPUT_ICON, NULL);
     g_object_set (G_OBJECT (renderer), "stock-size", GTK_ICON_SIZE_DND, NULL);
 
-    /* text renderer */
+    /* Text renderer */
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 1, "", renderer, "text", COLUMN_OUTPUT_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
-    /* treeview selection */
+    /* Treeview selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_treeview_selection_changed), builder);
 
-    /* setup the combo boxes */
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    if (xfce_randr != NULL)
+    /* Setup the combo boxes */
+    check = gtk_builder_get_object (builder, "output-on");
+    if (xfce_randr->noutput > 1)
     {
-        check = gtk_builder_get_object (builder, "output-on");
-        if (xfce_randr->noutput > 1)
-        {
-            gtk_widget_show (GTK_WIDGET (check));
-            g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
-        }
-        else
-        {
-            gtk_widget_hide (GTK_WIDGET (check));
-        }
-
-        label = gtk_builder_get_object (builder, "label-reflection");
-        gtk_widget_show (GTK_WIDGET (label));
-
-        combobox = gtk_builder_get_object (builder, "randr-reflection");
-        display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
-        gtk_widget_show (GTK_WIDGET (combobox));
-        g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_reflections_changed), builder);
+        gtk_widget_show (GTK_WIDGET (check));
+        g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
     }
-#endif
+    else
+        gtk_widget_hide (GTK_WIDGET (check));
+
+    label = gtk_builder_get_object (builder, "label-reflection");
+    gtk_widget_show (GTK_WIDGET (label));
+
+    combobox = gtk_builder_get_object (builder, "randr-reflection");
+    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
+    gtk_widget_show (GTK_WIDGET (combobox));
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_reflections_changed), builder);
+
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
@@ -1148,7 +895,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
 
-    /* populate the treeview */
+    /* Populate the treeview */
     display_settings_treeview_populate (builder);
 
     return GTK_WIDGET (gtk_builder_get_object (builder, "display-dialog"));
@@ -1156,7 +903,6 @@ display_settings_dialog_new (GtkBuilder *builder)
 
 
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
 static GdkFilterReturn
 screen_on_event (GdkXEvent *xevent,
                  GdkEvent  *event,
@@ -1235,7 +981,7 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
             else
             {
                 found = FALSE;
-                /* no clone mode available, try to find a "similar" mode */
+                /* No clone mode available, try to find a "similar" mode */
                 for (n = 0; n < xfce_randr->output_info[first]->nmode; ++n)
                 {
                     mode1 = &xfce_randr->modes[first][n];
@@ -1258,7 +1004,7 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
                 }
             }
         }
-        /* save the two outputs and apply */
+        /* Save the two outputs and apply */
         xfce_randr_save_output (xfce_randr, "MinimalAutoConfig", display_channel,
                                 first);
         xfce_randr_save_output (xfce_randr, "MinimalAutoConfig", display_channel,
@@ -1268,7 +1014,6 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
 
     gtk_main_quit ();
 }
-#endif
 
 
 
@@ -1283,20 +1028,20 @@ main (gint argc, gchar **argv)
     gint        event_base, error_base;
     guint       first, second;
 
-    /* setup translation domain */
+    /* Setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
-    /* initialize Gtk+ */
+    /* Initialize Gtk+ */
     if (!gtk_init_with_args (&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error))
     {
         if (G_LIKELY (error))
         {
-            /* print error */
+            /* Print error */
             g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
             g_print (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
             g_print ("\n");
 
-            /* cleanup */
+            /* Cleanup */
             g_error_free (error);
         }
         else
@@ -1307,7 +1052,7 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    /* print version information */
+    /* Print version information */
     if (G_UNLIKELY (opt_version))
     {
         g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
@@ -1319,10 +1064,10 @@ main (gint argc, gchar **argv)
         return EXIT_SUCCESS;
     }
 
-    /* get the default display */
+    /* Get the default display */
     display = gdk_display_get_default ();
 
-    /* check if the randr extension is avaible on the system */
+    /* Check if the randr extension is avaible on the system */
     if (!XRRQueryExtension (gdk_x11_display_get_xdisplay (display), &event_base, &error_base))
     {
         dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_NONE,
@@ -1339,86 +1084,60 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    /* initialize xfconf */
+    /* Initialize xfconf */
     if (!xfconf_init (&error))
     {
-        /* print error and exit */
+        /* Print error and exit */
         g_error ("Failed to connect to xfconf daemon: %s.", error->message);
         g_error_free (error);
 
         return EXIT_FAILURE;
     }
 
-    /* open the xsettings channel */
+    /* Open the xsettings channel */
     display_channel = xfconf_channel_new ("displays");
     if (G_LIKELY (display_channel))
     {
-#ifdef HAS_RANDR_ONE_POINT_TWO
-        /* create a new xfce randr (>= 1.2) for this display
+        /* Create a new xfce randr (>= 1.2) for this display
          * this will only work if there is 1 screen on this display */
         if (gdk_display_get_n_screens (display) == 1)
             xfce_randr = xfce_randr_new (display, NULL);
 
-        /* fall back on the legacy backend */
-        if (xfce_randr == NULL)
-#endif
-        {
-            xfce_randr_legacy = xfce_randr_legacy_new (display, &error);
-            if (G_UNLIKELY (xfce_randr_legacy == NULL))
-            {
-                /* show an error dialog the version is too old */
-                dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_NONE,
-                                                 _("Failed to use the RandR extension"));
-                gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
-                gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE);
-                gtk_dialog_run (GTK_DIALOG (dialog));
-                gtk_widget_destroy (dialog);
-                g_error_free (error);
+        if (!xfce_randr)
+            goto err1;
 
-                /* leave and cleanup the data */
-                goto err1;
-            }
-        }
-
-        /* hook to make sure the libxfce4ui library is linked */
+        /* Hook to make sure the libxfce4ui library is linked */
         if (xfce_titled_dialog_get_type () == 0)
             return EXIT_FAILURE;
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
         if (!minimal)
         {
-#endif
-            /* load the Gtk user-interface file */
+            /* Load the Gtk user-interface file */
             builder = gtk_builder_new ();
             if (gtk_builder_add_from_string (builder, display_dialog_ui,
                                              display_dialog_ui_length, &error) != 0)
             {
-                /* build the dialog */
+                /* Build the dialog */
                 dialog = display_settings_dialog_new (builder);
                 g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), builder);
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-                if (xfce_randr != NULL)
-                {
-                    XFCE_RANDR_EVENT_BASE (xfce_randr) = event_base;
-                    /* set up notifications */
-                    XRRSelectInput (gdk_x11_display_get_xdisplay (display),
-                                    GDK_WINDOW_XID (gdk_get_default_root_window ()),
-                                    RRScreenChangeNotifyMask);
-                    gdk_x11_register_standard_event_type (display,
-                                                          event_base,
-                                                          RRNotify + 1);
-                    gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
-                }
-#endif
+                XFCE_RANDR_EVENT_BASE (xfce_randr) = event_base;
+                /* Set up notifications */
+                XRRSelectInput (gdk_x11_display_get_xdisplay (display),
+                                GDK_WINDOW_XID (gdk_get_default_root_window ()),
+                                RRScreenChangeNotifyMask);
+                gdk_x11_register_standard_event_type (display,
+                                                      event_base,
+                                                      RRNotify + 1);
+                gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
 
-                /* show the dialog */
+                /* Show the dialog */
                 gtk_widget_show (dialog);
 
                 /* To prevent the settings dialog to be saved in the session */
                 gdk_set_sm_client_id ("FAKE ID");
 
-                /* enter the main loop */
+                /* Enter the main loop */
                 gtk_main ();
             }
             else
@@ -1427,15 +1146,10 @@ main (gint argc, gchar **argv)
                 g_error_free (error);
             }
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-            if (xfce_randr != NULL)
-                gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, builder);
-#endif
+            gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, builder);
 
-            /* release the builder */
+            /* Release the builder */
             g_object_unref (G_OBJECT (builder));
-
-#ifdef HAS_RANDR_ONE_POINT_TWO
         }
         else
         {
@@ -1494,31 +1208,21 @@ main (gint argc, gchar **argv)
             g_object_unref (G_OBJECT (builder));
 
         }
-#endif
 
         err1:
 
-        /* release the channel */
-#ifdef HAS_RANDR_ONE_POINT_TWO
+        /* Release the channel */
         if (bound_to_channel)
             xfconf_g_property_unbind_all (G_OBJECT (display_channel));
-#endif
         g_object_unref (G_OBJECT (display_channel));
     }
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-    /* free the randr 1.2 backend */
+    /* Free the randr 1.2 backend */
     if (xfce_randr)
         xfce_randr_free (xfce_randr);
-#endif
 
-    /* free the legacy backend */
-    if (xfce_randr_legacy)
-        xfce_randr_legacy_free (xfce_randr_legacy);
-
-    /* shutdown xfconf */
+    /* Shutdown xfconf */
     xfconf_shutdown ();
 
     return (succeeded ? EXIT_SUCCESS : EXIT_FAILURE);
-
 }

@@ -34,8 +34,6 @@
 #include "xfce-randr.h"
 #include "edid.h"
 
-#ifdef HAS_RANDR_ONE_POINT_TWO
-
 static void
 xfce_randr_list_clone_modes (XfceRandr *randr)
 {
@@ -265,9 +263,9 @@ xfce_randr_new (GdkDisplay  *display,
     /* we need atleast randr 1.2, 2.0 will probably break the api */
     if (major < 1 || (major == 1 && minor < 2))
     {
-        /* 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c */
+        /* 1.2 is required */
         g_set_error (error, 0, 0, _("This system is using RandR %d.%d. For the display settings to work "
-                                    "version 1.1 is required at least"), major, minor);
+                                    "version 1.2 is required at least"), major, minor);
         return NULL;
     }
 
@@ -290,7 +288,7 @@ xfce_randr_new (GdkDisplay  *display,
         /* cleanup */
         xfce_randr_free (randr);
 
-        /* return nothing, then we'll fallback on screens (randr 1.1) code */
+        /* return nothing */
         return NULL;
     }
 
@@ -500,7 +498,7 @@ xfce_randr_load (XfceRandr     *randr,
                  const gchar   *scheme,
                  XfconfChannel *channel)
 {
-    
+
 }
 
 
@@ -647,5 +645,3 @@ xfce_randr_preferred_mode (XfceRandr *randr,
     }
     return best_mode;
 }
-
-#endif /* !HAS_RANDR_ONE_POINT_TWO */

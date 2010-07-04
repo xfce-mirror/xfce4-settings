@@ -16,8 +16,6 @@ xfce4_display_settings_SOURCES = \
 	main.c \
 	xfce-randr.c \
 	xfce-randr.h \
-	xfce-randr-legacy.c \
-	xfce-randr-legacy.h \
 	confirmation-dialog_ui.h \
 	display-dialog_ui.h \
 	minimal-display-dialog_ui.h \
