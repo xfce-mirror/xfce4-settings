@@ -223,7 +223,6 @@ xfce_workspaces_helper_prop_changed(XfconfChannel *channel,
         return;
 
     display = gdk_display_get_default();
-
     for(s = 0; helper->screens[s]; ++s) {
         wnck_screen_force_update(helper->screens[s]);
         n_workspaces = wnck_screen_get_workspace_count(helper->screens[s]);

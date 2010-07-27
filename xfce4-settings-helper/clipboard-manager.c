@@ -305,6 +305,86 @@ xfce_clipboard_manager_primary_owner_change (XfceClipboardManager *manager,
 
 
 
+static gboolean
+xfce_clipboard_manager_selection_owner (const gchar   *selection_name,
+                                        gboolean       force,
+                                        GdkFilterFunc  filter_func)
+{
+#ifdef GDK_WINDOWING_X11
+    GdkDisplay *gdpy = gdk_display_get_default ();
+    GtkWidget *invisible;
+    Display *dpy = GDK_DISPLAY_XDISPLAY (gdpy);
+    GdkWindow *rootwin = gdk_screen_get_root_window (gdk_display_get_screen (gdpy, 0));
+    GdkWindow *invisible_window;
+    Window xroot = GDK_WINDOW_XID (rootwin);
+    GdkAtom selection_atom;
+    Atom selection_atom_x11;
+    XClientMessageEvent xev;
+    gboolean has_owner;
+
+    g_return_val_if_fail (selection_name != NULL, FALSE);
+
+    selection_atom = gdk_atom_intern (selection_name, FALSE);
+    selection_atom_x11 = gdk_x11_atom_to_xatom_for_display (gdpy, selection_atom);
+
+    /* can't use gdk for the selection owner here because it returns NULL
+     * if the selection owner is in another process */
+    if (!force)
+    {
+        gdk_error_trap_push ();
+        has_owner = XGetSelectionOwner (dpy, selection_atom_x11) != None;
+        gdk_flush ();
+        gdk_error_trap_pop ();
+        if (has_owner)
+            return FALSE;
+    }
+
+    invisible = gtk_invisible_new ();
+    gtk_widget_realize (invisible);
+    gtk_widget_add_events (invisible, GDK_STRUCTURE_MASK | GDK_PROPERTY_CHANGE_MASK);
+
+    invisible_window = gtk_widget_get_window (invisible);
+
+    if (!gdk_selection_owner_set_for_display (gdpy, invisible_window,
+                                              selection_atom, GDK_CURRENT_TIME,
+                                              TRUE))
+    {
+        g_critical ("Unable to get selection %s", selection_name);
+        gtk_widget_destroy (invisible);
+        return FALSE;
+    }
+
+    /* but we can use gdk here since we only care if it's our window */
+    if (gdk_selection_owner_get_for_display (gdpy, selection_atom) != invisible_window)
+    {
+        gtk_widget_destroy (invisible);
+        return FALSE;
+    }
+
+    xev.type = ClientMessage;
+    xev.window = xroot;
+    xev.message_type = gdk_x11_get_xatom_by_name_for_display (gdpy, "MANAGER");
+    xev.format = 32;
+    xev.data.l[0] = CurrentTime;
+    xev.data.l[1] = selection_atom_x11;
+    xev.data.l[2] = GDK_WINDOW_XID (invisible_window);
+    xev.data.l[3] = xev.data.l[4] = 0;
+
+    gdk_error_trap_push ();
+    XSendEvent (dpy, xroot, False, StructureNotifyMask, (XEvent *)&xev);
+    gdk_flush ();
+    if (gdk_error_trap_pop ())
+      g_critical ("Failed to send client event");
+
+    if (filter_func != NULL)
+        gdk_window_add_filter (invisible_window, filter_func, invisible);
+#endif
+
+    return TRUE;
+}
+
+
+
 XfceClipboardManager *
 xfce_clipboard_manager_new (void)
 {
@@ -325,7 +405,7 @@ xfce_clipboard_manager_start (XfceClipboardManager *manager)
         return FALSE;
     }
 
-    if (!xfce_utils_selection_owner ("CLIPBOARD_MANAGER", FALSE, NULL))
+    if (!xfce_clipboard_manager_selection_owner ("CLIPBOARD_MANAGER", FALSE, NULL))
     {
         g_warning ("Unable to get the clipboard manager selection.");
         return FALSE;

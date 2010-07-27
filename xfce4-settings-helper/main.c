@@ -38,6 +38,7 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
+#include <dbus/dbus.h>
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
@@ -56,17 +57,12 @@
 #include "keyboard-shortcuts.h"
 #include "workspaces.h"
 #include "clipboard-manager.h"
-#include "utils.h"
 
 #ifdef HAVE_XRANDR
 #include "displays.h"
 #endif
 
-#define SELECTION_NAME  "_XFCE_SETTINGS_HELPER"
-
-static GdkFilterReturn xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
-                                                               GdkEvent *evt,
-                                                               gpointer user_data);
+#define HELPER_DBUS_NAME "org.xfce.SettingsHelper"
 
 
 static XfceSMClient *sm_client = NULL;
@@ -126,28 +122,6 @@ xfce_settings_helper_set_autostart_enabled (gboolean enabled)
 
 
 
-static GdkFilterReturn
-xfce_settings_helper_selection_watcher (GdkXEvent *xevt,
-                                        GdkEvent *evt,
-                                        gpointer user_data)
-{
-#ifdef GDK_WINDOWING_X11
-    GtkWidget *invisible = GTK_WIDGET (user_data);
-    Window xwin = GDK_WINDOW_XID (invisible->window);
-    XEvent *xe = (XEvent *)xevt;
-
-    if (xe->type == SelectionClear && xe->xclient.window == xwin)
-    {
-        if (sm_client)
-            xfce_sm_client_set_restart_style (sm_client, XFCE_SM_CLIENT_RESTART_NORMAL);
-        gtk_main_quit ();
-    }
-#endif
-    return GDK_FILTER_CONTINUE;
-}
-
-
-
 gint
 main (gint argc, gchar **argv)
 {
@@ -166,36 +140,32 @@ main (gint argc, gchar **argv)
     GObject              *workspaces_helper;
     pid_t                 pid;
     guint                 i;
-    const gint            signums[] = { SIGHUP, SIGINT, SIGQUIT, SIGTERM };
+    const gint            signums[] = { SIGQUIT, SIGTERM };
+    DBusConnection       *dbus_connection;
+    gint                  result;
 
-    /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
-    /* create option context */
     context = g_option_context_new (NULL);
     g_option_context_add_main_entries (context, option_entries, GETTEXT_PACKAGE);
     g_option_context_add_group (context, gtk_get_option_group (FALSE));
     g_option_context_add_group (context, xfce_sm_client_get_option_group (argc, argv));
 
-    /* initialize gtk */
     gtk_init (&argc, &argv);
 
     /* parse options */
     if (!g_option_context_parse (context, &argc, &argv, &error))
     {
-        /* print error */
         g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
         g_print (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
         g_print ("\n");
 
-        /* cleanup */
         g_error_free (error);
         g_option_context_free (context);
 
         return EXIT_FAILURE;
     }
 
-    /* cleanup */
     g_option_context_free (context);
 
     /* check if we should print version information */
@@ -210,10 +180,24 @@ main (gint argc, gchar **argv)
         return EXIT_SUCCESS;
     }
 
-    /* initialize xfconf */
+    dbus_connection = dbus_bus_get (DBUS_BUS_SESSION, NULL);
+    if (G_LIKELY (dbus_connection != NULL))
+    {
+        result = dbus_bus_request_name (dbus_connection, HELPER_DBUS_NAME, DBUS_NAME_FLAG_DO_NOT_QUEUE, NULL);
+        if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER)
+          {
+              g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance is already running. Leaving...");
+              return EXIT_SUCCESS;
+          }
+    }
+    else
+    {
+        g_error ("Failed to connect to the dbus session bus.");
+        return EXIT_FAILURE;
+    }
+
     if (!xfconf_init (&error))
     {
-        /* print error and exit */
         g_error ("Failed to connect to xfconf daemon: %s.", error->message);
         g_error_free (error);
 
@@ -231,17 +215,10 @@ main (gint argc, gchar **argv)
         g_error_free (error);
     }
 
+    /* if this instance is started from a saved session, disable autostart so
+     * the helper is not spawned twice */
     in_session = xfce_sm_client_is_resumed (sm_client);
-    if (!xfce_utils_selection_owner (SELECTION_NAME, in_session,
-                                     xfce_settings_helper_selection_watcher))
-    {
-        g_printerr ("%s is already running\n", G_LOG_DOMAIN);
-        g_object_unref (G_OBJECT (sm_client));
-        return EXIT_FAILURE;
-    }
-
-    /* if we were restarted as part of the session, remove us from autostart */
-    xfce_settings_helper_set_autostart_enabled (!in_session);
+    xfce_settings_helper_set_autostart_enabled (in_session);
 
     /* daemonize the process when not running in debug mode */
     if (!opt_debug)
@@ -256,7 +233,7 @@ main (gint argc, gchar **argv)
         }
         else if (pid > 0)
         {
-            /* succesfully created a fork, leave this instance */
+            /* succesfully created a fork */
             _exit (EXIT_SUCCESS);
         }
     }
@@ -272,7 +249,6 @@ main (gint argc, gchar **argv)
 #endif
     workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
 
-    /* Try to start the clipboard daemon */
     clipboard_daemon = xfce_clipboard_manager_new ();
     if (!xfce_clipboard_manager_start (clipboard_daemon))
     {
@@ -287,8 +263,11 @@ main (gint argc, gchar **argv)
             xfce_posix_signal_handler_set_handler (signums[i], signal_handler, NULL, NULL);
     }
 
-    /* enter the main loop */
     gtk_main();
+
+    /* release the dbus name */
+    if (dbus_connection != NULL)
+        dbus_bus_release_name (dbus_connection, HELPER_DBUS_NAME, NULL);
 
     /* release the sub daemons */
     g_object_unref (G_OBJECT (pointer_helper));
@@ -301,17 +280,13 @@ main (gint argc, gchar **argv)
 #endif
     g_object_unref (G_OBJECT (workspaces_helper));
 
-    /* Stop the clipboard daemon */
     if (G_LIKELY (clipboard_daemon != NULL))
     {
         xfce_clipboard_manager_stop (clipboard_daemon);
         g_object_unref (G_OBJECT (clipboard_daemon));
     }
 
-    /* shutdown xfconf */
     xfconf_shutdown ();
-
-    /* release sm client */
     g_object_unref (G_OBJECT (sm_client));
 
     return EXIT_SUCCESS;
