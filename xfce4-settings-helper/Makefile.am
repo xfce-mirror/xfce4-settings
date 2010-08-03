@@ -7,7 +7,6 @@ INCLUDES = \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-settings-helper\" \
-	-DWNCK_I_KNOW_THIS_IS_UNSTABLE \
 	-DAUTOSTART_FILENAME=\"$(autostart_DATA)\" \
 	$(PLATFORM_CPPFLAGS)
 
@@ -46,7 +45,6 @@ xfce4_settings_helper_CFLAGS = \
 	$(XI_CFLAGS) \
 	$(LIBX11_CFLAGS) \
 	$(LIBNOTIFY_CFLAGS) \
-	$(LIBWNCK_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfce4_settings_helper_LDFLAGS = \
@@ -65,8 +63,7 @@ xfce4_settings_helper_LDADD = \
 	$(LIBXKLAVIER_LIBS) \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
-	$(LIBNOTIFY_LIBS) \
-	$(LIBWNCK_LIBS)
+	$(LIBNOTIFY_LIBS)
 
 #
 # Optional support for the display settings
