@@ -108,6 +108,8 @@ xfce_workspaces_helper_init (XfceWorkspacesHelper *helper)
     gdk_window_set_events (root_window, events | GDK_PROPERTY_CHANGE_MASK);
     gdk_window_add_filter (root_window, xfce_workspaces_helper_filter_func, helper);
 
+    xfce_workspaces_helper_set_names (helper);
+
     g_signal_connect (G_OBJECT(helper->channel),
                       "property-changed::" WORKSPACE_NAMES_PROP,
                       G_CALLBACK( xfce_workspaces_helper_prop_changed), helper);
