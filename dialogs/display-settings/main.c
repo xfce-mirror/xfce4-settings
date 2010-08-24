@@ -595,8 +595,8 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
     {
         /* Try to avoid duplicates */
-        if (n == 0 || (n > 0 && modes[n].width != modes[n - 1].width
-            && modes[n].height != modes[n - 1].height))
+        if (n == 0 || (n > 0 && (modes[n].width != modes[n - 1].width
+            || modes[n].height != modes[n - 1].height)))
         {
 
             /* Insert the mode */
