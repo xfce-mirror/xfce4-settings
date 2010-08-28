@@ -289,7 +289,7 @@ xfce_randr_new (GdkDisplay  *display,
         xfce_randr_free (randr);
 
         /* set error */
-        g_set_error (error, 0, 0, _("This system has a fake RandR 1.2 support."));
+        g_set_error (error, 0, 0, _("The video driver does not support video outputs"));
 
         /* return nothing */
         return NULL;

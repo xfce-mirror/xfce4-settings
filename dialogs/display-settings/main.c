@@ -1020,13 +1020,17 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
 gint
 main (gint argc, gchar **argv)
 {
-    GtkWidget  *dialog;
-    GtkBuilder *builder;
-    GError     *error = NULL;
-    GdkDisplay *display;
-    gboolean    succeeded = TRUE;
-    gint        event_base, error_base;
-    guint       first, second;
+    GtkWidget   *dialog;
+    GtkBuilder  *builder;
+    GError      *error = NULL;
+    GdkDisplay  *display;
+    gboolean     succeeded = TRUE;
+    gint         event_base, error_base;
+    guint        first, second;
+    gchar       *command;
+    const gchar *alternative = NULL;
+    const gchar *alternative_icon = NULL;
+    gint         response;
 
     /* Setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -1098,9 +1102,38 @@ main (gint argc, gchar **argv)
 
         if (!xfce_randr)
         {
-            xfce_dialog_show_error (NULL, error, _("Unable to start the Xfce Display Settings"));
-            g_error_free (error);
-            succeeded = FALSE;
+            command = g_find_program_in_path ("nvidia-settings");
+            if (command != NULL)
+            {
+                alternative = _("NVIDIA Settings");
+                alternative_icon = "nvidia-settings";
+            }
+            else
+            {
+                command = g_find_program_in_path ("amdcccle");
+                if (command != NULL)
+                {
+                    alternative = _("ATI Settings");
+                    alternative_icon = "ccc_small";
+                }
+            }
+
+            response = xfce_message_dialog (NULL, NULL, GTK_STOCK_DIALOG_ERROR,
+                                            _("Unable to start the Xfce Display Settings"),
+                                            error ? error->message : NULL,
+                                            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
+                                            alternative != NULL ?XFCE_BUTTON_TYPE_MIXED : NULL,
+                                            alternative_icon, alternative, GTK_RESPONSE_OK, NULL);
+            g_clear_error (&error);
+
+            if (response == GTK_RESPONSE_OK
+                && !g_spawn_command_line_async (command, &error))
+            {
+                xfce_dialog_show_error (NULL, error, _("Unable to launch the proprietary driver settings"));
+                g_error_free (error);
+            }
+
+            g_free (command);
 
             goto cleanup;
         }
