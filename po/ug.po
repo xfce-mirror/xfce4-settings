@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-27 16:15+0100\n"
+"POT-Creation-Date: 2010-08-28 23:05+0200\n"
 "PO-Revision-Date: 2010-01-20 20:21+0900\n"
 "Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
 "Language-Team:Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -193,38 +194,38 @@ msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:101
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:78
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "نەشر ئۇچۇرى"
 
 #: ../dialogs/accessibility-settings/main.c:143
 #: ../dialogs/appearance-settings/main.c:773
-#: ../dialogs/display-settings/main.c:642
+#: ../dialogs/display-settings/main.c:1045
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:188 ../xfce4-settings-manager/main.c:58
+#: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "'%s --help' كىرگۈزسە ئىشلىتىش ئۇسۇلىنى كۆرگىلى بولىدۇ"
 
 #: ../dialogs/accessibility-settings/main.c:162
 #: ../dialogs/appearance-settings/main.c:792
-#: ../dialogs/display-settings/main.c:661
+#: ../dialogs/display-settings/main.c:1064
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:206 ../xfce4-settings-manager/main.c:71
+#: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce ئىجادىيەت گۇرۇپپىسى. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:793
-#: ../dialogs/display-settings/main.c:662
+#: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:207 ../xfce4-settings-manager/main.c:72
+#: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "كەمتۈكنى <%s> غا دوكلات قىلىڭ."
@@ -244,6 +245,7 @@ msgid "Appearance"
 msgstr "كۆرۈنۈشى"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+#: ../dialogs/display-settings/main.c:82
 msgid "Both"
 msgstr "ئىككىلىسى"
 
@@ -317,7 +319,9 @@ msgstr ""
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw "
 "the font; pick whichever looks best according to personal preference"
-msgstr "نۇرغۇن فونتلاردا hints ئۇچۇرلىرى بار بولۇپ، بۇ فونتنى تېخىمۇ چىرايلىق كۆرسىتىش رولىنى ئوينايدۇ. قايسى ئەڭ چىرايلىق كۆرۈنگەن بولسا شۇنى تاللاڭ"
+msgstr ""
+"نۇرغۇن فونتلاردا hints ئۇچۇرلىرى بار بولۇپ، بۇ فونتنى تېخىمۇ چىرايلىق "
+"كۆرسىتىش رولىنى ئوينايدۇ. قايسى ئەڭ چىرايلىق كۆرۈنگەن بولسا شۇنى تاللاڭ"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Medium"
@@ -329,13 +333,16 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:670
+#: ../dialogs/display-settings/main.c:79
 msgid "None"
 msgstr "يوق"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too small"
-msgstr "فونت بەك چوڭ ياكى بەك كىچىك بولۇپ قالغاندا مۇشۇ تاللانما ئارىلىق ياخشىلاشقا بولىدۇ. بۇ ئېكراننىڭ ئېنىقلىقىدىنمۇ ئاۋۋال نەزەرگە ئېلىنىدۇ."
+msgstr ""
+"فونت بەك چوڭ ياكى بەك كىچىك بولۇپ قالغاندا مۇشۇ تاللانما ئارىلىق ياخشىلاشقا "
+"بولىدۇ. بۇ ئېكراننىڭ ئېنىقلىقىدىنمۇ ئاۋۋال نەزەرگە ئېلىنىدۇ."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "Rendering"
@@ -373,7 +380,9 @@ msgstr "بۇ تاللانما تاللانسا توپچا تېكىستنىڭ ي�
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
-msgstr "چاشقىنەك چېكىلگەندە ۋە باشقا كىرگۈزۈش مەشغۇلاتى بولغاندا ئاۋاز چىقىرىش چىقارماسلىقنى بەلگىلەيدۇ"
+msgstr ""
+"چاشقىنەك چېكىلگەندە ۋە باشقا كىرگۈزۈش مەشغۇلاتى بولغاندا ئاۋاز چىقىرىش "
+"چىقارماسلىقنى بەلگىلەيدۇ"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "St_yle"
@@ -429,22 +438,46 @@ msgstr "ۋېرتىكال RGB"
 msgid "Vertical BGR"
 msgstr "ۋېرتىكال GBR"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:1
-msgid "Apply any changes and test the new display settings"
-msgstr "ئۆزگىرىشلەرنى قوللىنىش ۋە يېڭى تەڭشەكنى ئىشلىتىپ سىناش"
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:1
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
+#, fuzzy
+msgid "Confirmation"
+msgstr "نەشر ئۇچۇرى"
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
+msgid "Keep this configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+msgid "Restore the previous configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
+msgid ""
+"The previous configuration will be restored in 10 seconds if you do not "
+"reply to this question."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Configure screen settings and layout"
 msgstr "ئېكراننىڭ ئورۇنلاشتۇرۇلۇشى ۋە ئېنىقلىقىنى تەڭشەش"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Display"
 msgstr "كۆرسەت"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "R_esolution:"
+msgstr "ئېنىقلىق(_E):"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+#, fuzzy
+msgid "Ref_lection:"
 msgstr "ئېنىقلىق(_E):"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
@@ -455,89 +488,143 @@ msgstr "چاستوتىسى(_R):"
 msgid "Ro_tation:"
 msgstr "ئايلاندۇرۇش(_T):"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+msgid "_Use this output"
+msgstr ""
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
+msgid "Both displays cloned"
+msgstr ""
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
+#, fuzzy
+msgid "Display settings"
+msgstr "كۆرسەت"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
+msgid "Several displays are available. Use:\n"
+msgstr ""
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
+msgid "Use both displays to show the same contents"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:68
 msgid "Normal"
 msgstr "نورمال"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:69
 msgid "Left"
 msgstr "سول"
 
-#: ../dialogs/display-settings/main.c:72
+#: ../dialogs/display-settings/main.c:70
 msgid "Inverted"
 msgstr "تەتۈر قىلىش"
 
-#: ../dialogs/display-settings/main.c:73
+#: ../dialogs/display-settings/main.c:71
 msgid "Right"
 msgstr "ئوڭ"
 
-#. insert in the combo box
-#. insert
-#: ../dialogs/display-settings/main.c:257
-#: ../dialogs/display-settings/main.c:288
-#, c-format
-msgid "%d Hz"
+#: ../dialogs/display-settings/main.c:80
+#, fuzzy
+msgid "Horizontal"
+msgstr "ئىككىلىسى (گورىزونتال)"
+
+#: ../dialogs/display-settings/main.c:81
+#, fuzzy
+msgid "Vertical"
+msgstr "ۋېرتىكال RGB"
+
+#: ../dialogs/display-settings/main.c:104
+msgid "Minimal interface to set up an external output"
 msgstr ""
 
-#. create name
-#: ../dialogs/display-settings/main.c:494
+#: ../dialogs/display-settings/main.c:173
 #, c-format
-msgid "Screen %d"
-msgstr "ئېكران %d"
-
-#: ../dialogs/display-settings/main.c:675
-#, c-format
-msgid "RandR extension missing on display \"%s\""
-msgstr "ئېكران \"%s\" نىڭ RandR كېڭەيتىلمىسى يوق ئىكەن"
-
-#: ../dialogs/display-settings/main.c:678
 msgid ""
-"The Resize and Rotate extension (RandR) is not enabled on this display. Try "
-"to enable it and run the dialog again."
-msgstr "چوڭلۇقىنى ئۆزگەرتىش ۋە ئايلاندۇرۇش كېڭەيتىلمىسى (RandR) چەكلىنىپتۇ. ئۇنىڭ چەكلىمىسى يوق قىلىپ ئاندىن بۇ دىئالوگنى قايتا ئىجرا قىلىڭ"
+"The previous configuration will be restored in %i seconds if you do not "
+"reply to this question."
+msgstr ""
 
-#: ../dialogs/display-settings/main.c:717
-msgid "Failed to use the RandR extension"
-msgstr "RandR كېڭەيتىلمىسىنى ئىشلىتىش مەغلۇپ بولدى"
+#. Insert the mode
+#: ../dialogs/display-settings/main.c:507
+#, c-format
+msgid "%.1f Hz"
+msgstr ""
 
-#: ../dialogs/display-settings/xfce-randr.c:55
-#: ../dialogs/display-settings/xfce-randr-legacy.c:58
+#: ../dialogs/display-settings/main.c:653
+msgid ""
+"The last active output must not be disabled, the system would be unusable."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:655
+msgid "Selected output not disabled"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:1077
+#: ../dialogs/display-settings/xfce-randr.c:259
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "ئىشلىتىلىۋاتقان RandR كېڭەيتىلمىسىنىڭ نەشرىنى سۈرۈشتۈرگىلى بولمىدى"
 
-#. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
-#: ../dialogs/display-settings/xfce-randr.c:63
-#: ../dialogs/display-settings/xfce-randr-legacy.c:65
-#, c-format
+#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/main.c:1122
+#, fuzzy
+msgid "Unable to start the Xfce Display Settings"
+msgstr "ئۆزگىرىشلەرنى قوللىنىش ۋە يېڭى تەڭشەكنى ئىشلىتىپ سىناش"
+
+#: ../dialogs/display-settings/main.c:1108
+#, fuzzy
+msgid "NVIDIA Settings"
+msgstr "تەڭشەكلەر"
+
+#: ../dialogs/display-settings/main.c:1116
+#, fuzzy
+msgid "ATI Settings"
+msgstr "تەڭشەكلەر"
+
+#: ../dialogs/display-settings/main.c:1132
+msgid "Unable to launch the proprietary driver settings"
+msgstr ""
+
+#. 1.2 is required
+#: ../dialogs/display-settings/xfce-randr.c:267
+#, fuzzy, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
-"1.1 is required at least"
-msgstr "سىستېمىدا RandR %d.%d ئىشلىتىلىۋېتىپتۇ.  نەشر چوقۇم 1.1 دىن چوڭ بولۇشى كېرەك."
+"1.2 is required at least"
+msgstr ""
+"سىستېمىدا RandR %d.%d ئىشلىتىلىۋېتىپتۇ.  نەشر چوقۇم 1.1 دىن چوڭ بولۇشى كېرەك."
 
-#: ../dialogs/display-settings/xfce-randr.c:343
+#. set error
+#: ../dialogs/display-settings/xfce-randr.c:292
+#, c-format
+msgid "The video driver does not support video outputs"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:556
 msgid "Laptop"
 msgstr "Laptop"
 
-#: ../dialogs/display-settings/xfce-randr.c:347
+#: ../dialogs/display-settings/xfce-randr.c:577
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../dialogs/display-settings/xfce-randr.c:351
+#: ../dialogs/display-settings/xfce-randr.c:580
 msgid "Television"
 msgstr "تېلېۋىزور"
 
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:584
 msgid "Digital display"
 msgstr "رەقەملىك ئېكران"
 
-#: ../dialogs/display-settings/xfce-randr.c:362
-msgid "Second monitor"
-msgstr "ئىككىنچى monitor"
-
-#: ../dialogs/display-settings/xfce-randr.c:368
-msgid "Second digital display"
-msgstr "ئىككىنچى رەقەملىك ئېكران"
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: ../dialogs/display-settings/display-name.c:269
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr ""
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:126
@@ -740,11 +827,15 @@ msgstr "كۆڭۈلدىكىگە قايتۇر"
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
-msgstr "بۇ بارلىق تېزلەتمىلەرنىڭ كۆڭۈلدىكى قىممەتلىرىنى ئەسلىگە كەلتۈرۈۋاتىدۇ. بۇنى قىلسۇنمۇ؟"
+msgstr ""
+"بۇ بارلىق تېزلەتمىلەرنىڭ كۆڭۈلدىكى قىممەتلىرىنى ئەسلىگە كەلتۈرۈۋاتىدۇ. بۇنى "
+"قىلسۇنمۇ؟"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:996
 msgid "The system defaults will be restored next time you log in."
-msgstr "سىستېمىنىڭ كۆڭۈلدىكى قىممەتلىرى كېيىنكى قېتىم سىستېمىغا كىرگەندە ئەسلىگە قايتىدۇ."
+msgstr ""
+"سىستېمىنىڭ كۆڭۈلدىكى قىممەتلىرى كېيىنكى قېتىم سىستېمىغا كىرگەندە ئەسلىگە "
+"قايتىدۇ."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:998
 msgid "Warning"
@@ -814,7 +905,8 @@ msgstr ""
 msgid ""
 "Set the acceleration and threshold for the selected device to the default "
 "values"
-msgstr "تاللانغان ئۈسكىنىنىڭ تېزلەتكۈچى ۋە بوسۇغا قىممىتىنى كۆڭۈلدىكى قىممەتكە تەڭشە"
+msgstr ""
+"تاللانغان ئۈسكىنىنىڭ تېزلەتكۈچى ۋە بوسۇغا قىممىتىنى كۆڭۈلدىكى قىممەتكە تەڭشە"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Size"
@@ -854,7 +946,9 @@ msgstr "ۋاقىت(_M):"
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
-msgstr "2 قېتىملىق چاشقىنەك كۇنۇپكىسىنىڭ چېكىلىش ئارىلىقى(ms) بۇنىڭدىن كىچىك بولۇپ قالسا قوش چېكىلىش دەپ قارالسۇن"
+msgstr ""
+"2 قېتىملىق چاشقىنەك كۇنۇپكىسىنىڭ چېكىلىش ئارىلىقى(ms) بۇنىڭدىن كىچىك بولۇپ "
+"قالسا قوش چېكىلىش دەپ قارالسۇن"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
@@ -943,12 +1037,16 @@ msgstr "root ئېلېمېنت (\"/\") ئىناۋەتلىك خاسلىق ئاتى
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr "خاسلىق ئاتىدا پەقەتلا ASCII دىكى A-Z، a-z، 0-9، \"_\"، \"-\"، \"<\" ۋە  \">\" ھەرپلىرىنى، بۆلگۈچ قىلىپ \"/\" نىلا ئىشلەتكىلى بولىدۇ"
+msgstr ""
+"خاسلىق ئاتىدا پەقەتلا ASCII دىكى A-Z، a-z، 0-9، \"_\"، \"-\"، \"<\" ۋە  \">"
+"\" ھەرپلىرىنى، بۆلگۈچ قىلىپ \"/\" نىلا ئىشلەتكىلى بولىدۇ"
 
 #: ../xfce4-settings-editor/main_window.c:1013
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "خاسلىق ئاتىغا ئارقىمۇ-ئارقا كەلگەن ئىككىدىن ياكى ئۇنىڭدىن ئارتۇق \"/\" نى ئىشلىتىشكە بولمايدۇ"
+msgstr ""
+"خاسلىق ئاتىغا ئارقىمۇ-ئارقا كەلگەن ئىككىدىن ياكى ئۇنىڭدىن ئارتۇق \"/\" نى "
+"ئىشلىتىشكە بولمايدۇ"
 
 #: ../xfce4-settings-editor/main_window.c:1024
 #, c-format
@@ -1081,13 +1179,11 @@ msgstr "Bounce كۇنۇپكىلارنى ئىشلەتكىلى بولمايدۇ"
 msgid "Bounce keys"
 msgstr "Bounce كۇنۇپكىلار"
 
-#: ../xfce4-settings-helper/main.c:79 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:75 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "debug ھالىتىدە قوزغات (don't fork to the background)"
 
-#. some of them may not have been set in xfconf
-#: ../xfce4-settings-helper/workspaces.c:114
-#: ../xfce4-settings-helper/workspaces.c:241
+#: ../xfce4-settings-helper/workspaces.c:355
 #, c-format
 msgid "Workspace %d"
 msgstr "Workspace %d"
@@ -1144,8 +1240,32 @@ msgstr "ئىجرا قىلىنىۋاتقان xsettings daemon (بار بولسا)
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr "%s: %s\n"
-"%s --help نى كىرگۈزسە، بۇيرۇق قۇرىدا ئىشلەتكىلى بولىدىغان بارلىق تاللانمىلار كۆرسىتىلىدۇ.\n"
+msgstr ""
+"%s: %s\n"
+"%s --help نى كىرگۈزسە، بۇيرۇق قۇرىدا ئىشلەتكىلى بولىدىغان بارلىق تاللانمىلار "
+"كۆرسىتىلىدۇ.\n"
+
+#~ msgid "Screen %d"
+#~ msgstr "ئېكران %d"
+
+#~ msgid "RandR extension missing on display \"%s\""
+#~ msgstr "ئېكران \"%s\" نىڭ RandR كېڭەيتىلمىسى يوق ئىكەن"
+
+#~ msgid ""
+#~ "The Resize and Rotate extension (RandR) is not enabled on this display. "
+#~ "Try to enable it and run the dialog again."
+#~ msgstr ""
+#~ "چوڭلۇقىنى ئۆزگەرتىش ۋە ئايلاندۇرۇش كېڭەيتىلمىسى (RandR) چەكلىنىپتۇ. ئۇنىڭ "
+#~ "چەكلىمىسى يوق قىلىپ ئاندىن بۇ دىئالوگنى قايتا ئىجرا قىلىڭ"
+
+#~ msgid "Failed to use the RandR extension"
+#~ msgstr "RandR كېڭەيتىلمىسىنى ئىشلىتىش مەغلۇپ بولدى"
+
+#~ msgid "Second monitor"
+#~ msgstr "ئىككىنچى monitor"
+
+#~ msgid "Second digital display"
+#~ msgstr "ئىككىنچى رەقەملىك ئېكران"
 
 #~ msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
 #~ msgstr "プロパティ \"<b>%s</b>\" はロックされているためリセットできません"

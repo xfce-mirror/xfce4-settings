@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 18:04+0100\n"
+"POT-Creation-Date: 2010-08-28 23:05+0200\n"
 "PO-Revision-Date: 2010-02-23 16:45+0600\n"
 "Last-Translator: Sadia Afroz <sadia@ankur.org.bd>\n"
 "Language-Team: Bengali <ankur-bd-l10n@googlegroups.com>\n"
+"Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -204,38 +205,38 @@ msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:101
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:78
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "সংস্করণ তথ্যাবলী"
 
 #: ../dialogs/accessibility-settings/main.c:143
 #: ../dialogs/appearance-settings/main.c:773
-#: ../dialogs/display-settings/main.c:642
+#: ../dialogs/display-settings/main.c:1045
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:188 ../xfce4-settings-manager/main.c:58
+#: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "ব্যবহারের জন্য '%s --সহায়তা' টাইপ করুন।"
 
 #: ../dialogs/accessibility-settings/main.c:162
 #: ../dialogs/appearance-settings/main.c:792
-#: ../dialogs/display-settings/main.c:661
+#: ../dialogs/display-settings/main.c:1064
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:206 ../xfce4-settings-manager/main.c:71
+#: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce ডেভেলপমেন্ট টিম। সকল অধিকার সংরক্ষিত।"
 
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:793
-#: ../dialogs/display-settings/main.c:662
+#: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:207 ../xfce4-settings-manager/main.c:72
+#: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "অনুগ্রহ করে বাগগুলো <%s>-এ রিপোর্ট করুন।"
@@ -255,6 +256,7 @@ msgid "Appearance"
 msgstr "অবয়ব"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+#: ../dialogs/display-settings/main.c:82
 msgid "Both"
 msgstr "উভয়"
 
@@ -348,6 +350,7 @@ msgstr "মেনু ও বোতাম"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:670
+#: ../dialogs/display-settings/main.c:79
 msgid "None"
 msgstr "কোনটি না"
 
@@ -454,22 +457,46 @@ msgstr "উল্লম্ব RGB"
 msgid "Vertical BGR"
 msgstr "উল্লম্ব BGR"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:1
-msgid "Apply any changes and test the new display settings"
-msgstr "যেকোন পরিবর্তন প্রয়োগ করে নতুন প্রদর্শন সেটিংসমূহ পরীক্ষা করুন"
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:1
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
+#, fuzzy
+msgid "Confirmation"
+msgstr "সংস্করণ তথ্যাবলী"
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
+msgid "Keep this configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+msgid "Restore the previous configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
+msgid ""
+"The previous configuration will be restored in 10 seconds if you do not "
+"reply to this question."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Configure screen settings and layout"
 msgstr "পর্দার সেটিংসমূহ ও বহির্বিন্যাস কনফিগার"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Display"
 msgstr "প্রদর্শন"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "R_esolution:"
+msgstr "রেজল্যুশন: (_e)"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+#, fuzzy
+msgid "Ref_lection:"
 msgstr "রেজল্যুশন: (_e)"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
@@ -480,93 +507,145 @@ msgstr "রিফ্রেশ হার: (_r)"
 msgid "Ro_tation:"
 msgstr "আবর্তন: (_t)"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+#, fuzzy
+msgid "_Use this output"
+msgstr "বাগাড়ম্বর আউটপুট"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
+msgid "Both displays cloned"
+msgstr ""
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
+#, fuzzy
+msgid "Display settings"
+msgstr "প্রদর্শন"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
+msgid "Several displays are available. Use:\n"
+msgstr ""
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
+msgid "Use both displays to show the same contents"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:68
 msgid "Normal"
 msgstr "সাধারণ"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:69
 msgid "Left"
 msgstr "বাম"
 
-#: ../dialogs/display-settings/main.c:72
+#: ../dialogs/display-settings/main.c:70
 msgid "Inverted"
 msgstr "উল্টানো"
 
-#: ../dialogs/display-settings/main.c:73
+#: ../dialogs/display-settings/main.c:71
 msgid "Right"
 msgstr "ডান"
 
-#. insert in the combo box
-#. insert
-#: ../dialogs/display-settings/main.c:257
-#: ../dialogs/display-settings/main.c:288
-#, c-format
-msgid "%d Hz"
-msgstr "%d হার্জ"
+#: ../dialogs/display-settings/main.c:80
+#, fuzzy
+msgid "Horizontal"
+msgstr "উভয়ই অনুভূমিক"
 
-#. create name
-#: ../dialogs/display-settings/main.c:494
-#, c-format
-msgid "Screen %d"
-msgstr "স্ক্রীন %d"
+#: ../dialogs/display-settings/main.c:81
+#, fuzzy
+msgid "Vertical"
+msgstr "উল্লম্ব RGB"
 
-#: ../dialogs/display-settings/main.c:675
-#, c-format
-msgid "RandR extension missing on display \"%s\""
-msgstr "ডিসপ্লে \"%s\"-তে RandR বর্ধিতাংশ অনুপস্থিত"
-
-#: ../dialogs/display-settings/main.c:678
-msgid ""
-"The Resize and Rotate extension (RandR) is not enabled on this display. Try "
-"to enable it and run the dialog again."
+#: ../dialogs/display-settings/main.c:104
+msgid "Minimal interface to set up an external output"
 msgstr ""
-"এই ডিসপ্লেতে আকার পরিবর্তন ও আবর্তন বর্ধিতাংশ (RandR) সক্রিয় করা নেই। এটি সক্রিয় "
-"করার চেষ্টা করুন এবং ডায়ালগটি পুনরায় চালান।"
 
-#: ../dialogs/display-settings/main.c:717
-msgid "Failed to use the RandR extension"
-msgstr "RandR বর্ধিতাংশ ব্যবহার করতে ব্যর্থ"
+#: ../dialogs/display-settings/main.c:173
+#, c-format
+msgid ""
+"The previous configuration will be restored in %i seconds if you do not "
+"reply to this question."
+msgstr ""
 
-#: ../dialogs/display-settings/xfce-randr.c:55
-#: ../dialogs/display-settings/xfce-randr-legacy.c:58
+#. Insert the mode
+#: ../dialogs/display-settings/main.c:507
+#, c-format
+msgid "%.1f Hz"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:653
+msgid ""
+"The last active output must not be disabled, the system would be unusable."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:655
+msgid "Selected output not disabled"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:1077
+#: ../dialogs/display-settings/xfce-randr.c:259
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "ব্যবহৃত RandR বর্ধিতাংশের সংস্করণ জিজ্ঞাসা করতে ব্যর্থ"
 
-#. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
-#: ../dialogs/display-settings/xfce-randr.c:63
-#: ../dialogs/display-settings/xfce-randr-legacy.c:65
-#, c-format
+#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/main.c:1122
+#, fuzzy
+msgid "Unable to start the Xfce Display Settings"
+msgstr "যেকোন পরিবর্তন প্রয়োগ করে নতুন প্রদর্শন সেটিংসমূহ পরীক্ষা করুন"
+
+#: ../dialogs/display-settings/main.c:1108
+#, fuzzy
+msgid "NVIDIA Settings"
+msgstr "সেটিংসমূহ"
+
+#: ../dialogs/display-settings/main.c:1116
+#, fuzzy
+msgid "ATI Settings"
+msgstr "সেটিংসমূহ"
+
+#: ../dialogs/display-settings/main.c:1132
+msgid "Unable to launch the proprietary driver settings"
+msgstr ""
+
+#. 1.2 is required
+#: ../dialogs/display-settings/xfce-randr.c:267
+#, fuzzy, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
-"1.1 is required at least"
+"1.2 is required at least"
 msgstr ""
 "এই সিস্টেমটি RandR %d.%d ব্যবহার করছে। প্রদর্শন সেটিংসমূহের কাজ করার জন্য অন্ততপক্ষে "
 "১.১ সংস্করণ আবশ্যকীয়"
 
-#: ../dialogs/display-settings/xfce-randr.c:343
+#. set error
+#: ../dialogs/display-settings/xfce-randr.c:292
+#, c-format
+msgid "The video driver does not support video outputs"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:556
 msgid "Laptop"
 msgstr "ল্যাপটপ"
 
-#: ../dialogs/display-settings/xfce-randr.c:347
+#: ../dialogs/display-settings/xfce-randr.c:577
 msgid "Monitor"
 msgstr "মনিটর"
 
-#: ../dialogs/display-settings/xfce-randr.c:351
+#: ../dialogs/display-settings/xfce-randr.c:580
 msgid "Television"
 msgstr "টেলিভিশন"
 
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:584
 msgid "Digital display"
 msgstr "ডিজিটাল প্রদর্শন"
 
-#: ../dialogs/display-settings/xfce-randr.c:362
-msgid "Second monitor"
-msgstr "দ্বিতীয় মনিটর"
-
-#: ../dialogs/display-settings/xfce-randr.c:368
-msgid "Second digital display"
-msgstr "দ্বিতীয় ডিজিটাল ডিসপ্লে"
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: ../dialogs/display-settings/display-name.c:269
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr ""
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:126
@@ -1123,13 +1202,11 @@ msgstr "লাফানো কী নিষ্ক্রিয়"
 msgid "Bounce keys"
 msgstr "লাফানো কী"
 
-#: ../xfce4-settings-helper/main.c:79 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:75 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "ডিবাগ মোডে আরম্ভ (পটভূমিতে ফর্ক করা হবে না)"
 
-#. some of them may not have been set in xfconf
-#: ../xfce4-settings-helper/workspaces.c:114
-#: ../xfce4-settings-helper/workspaces.c:241
+#: ../xfce4-settings-helper/workspaces.c:355
 #, c-format
 msgid "Workspace %d"
 msgstr "কর্মপরিসর %d"
@@ -1189,3 +1266,28 @@ msgid ""
 msgstr ""
 "%s: %s\n"
 "চেষ্টা করুন %s --সহায়তা বিদ্যমান কমান্ড লাইন অপশনের পূর্ণ তালিকা দেখতে।\n"
+
+#~ msgid "%d Hz"
+#~ msgstr "%d হার্জ"
+
+#~ msgid "Screen %d"
+#~ msgstr "স্ক্রীন %d"
+
+#~ msgid "RandR extension missing on display \"%s\""
+#~ msgstr "ডিসপ্লে \"%s\"-তে RandR বর্ধিতাংশ অনুপস্থিত"
+
+#~ msgid ""
+#~ "The Resize and Rotate extension (RandR) is not enabled on this display. "
+#~ "Try to enable it and run the dialog again."
+#~ msgstr ""
+#~ "এই ডিসপ্লেতে আকার পরিবর্তন ও আবর্তন বর্ধিতাংশ (RandR) সক্রিয় করা নেই। এটি "
+#~ "সক্রিয় করার চেষ্টা করুন এবং ডায়ালগটি পুনরায় চালান।"
+
+#~ msgid "Failed to use the RandR extension"
+#~ msgstr "RandR বর্ধিতাংশ ব্যবহার করতে ব্যর্থ"
+
+#~ msgid "Second monitor"
+#~ msgstr "দ্বিতীয় মনিটর"
+
+#~ msgid "Second digital display"
+#~ msgstr "দ্বিতীয় ডিজিটাল ডিসপ্লে"

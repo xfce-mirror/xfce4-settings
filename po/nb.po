@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.5.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-27 16:15+0100\n"
+"POT-Creation-Date: 2010-08-28 23:05+0200\n"
 "PO-Revision-Date: 2008-11-23 20:56+0100\n"
 "Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
 "Language-Team: Norwegian Bokmal\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -206,38 +207,38 @@ msgstr "SOKKEL-ID"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:101
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:78
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Versjonsinformasjon"
 
 #: ../dialogs/accessibility-settings/main.c:143
 #: ../dialogs/appearance-settings/main.c:773
-#: ../dialogs/display-settings/main.c:642
+#: ../dialogs/display-settings/main.c:1045
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:188 ../xfce4-settings-manager/main.c:58
+#: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Skriv '%s --help' for bruksinstruksjoner."
 
 #: ../dialogs/accessibility-settings/main.c:162
 #: ../dialogs/appearance-settings/main.c:792
-#: ../dialogs/display-settings/main.c:661
+#: ../dialogs/display-settings/main.c:1064
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:206 ../xfce4-settings-manager/main.c:71
+#: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce utviklingsteam. Alle rettigheter reservert."
 
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:793
-#: ../dialogs/display-settings/main.c:662
+#: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:207 ../xfce4-settings-manager/main.c:72
+#: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapporter feil til <%s>."
@@ -257,6 +258,7 @@ msgid "Appearance"
 msgstr "Utseende"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+#: ../dialogs/display-settings/main.c:82
 msgid "Both"
 msgstr "Begge"
 
@@ -348,6 +350,7 @@ msgstr "Menyer og knapper"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:670
+#: ../dialogs/display-settings/main.c:79
 msgid "None"
 msgstr "Ingen"
 
@@ -453,22 +456,46 @@ msgstr "Loddrett RGB"
 msgid "Vertical BGR"
 msgstr "Loddrett BGR"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:1
-msgid "Apply any changes and test the new display settings"
-msgstr "Bruk endringene og test de nye innstillingene"
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:1
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
+#, fuzzy
+msgid "Confirmation"
+msgstr "Versjonsinformasjon"
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
+msgid "Keep this configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+msgid "Restore the previous configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
+msgid ""
+"The previous configuration will be restored in 10 seconds if you do not "
+"reply to this question."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Configure screen settings and layout"
 msgstr "Sett opp skjerminnstillinger"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Display"
 msgstr "Skjerm"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "R_esolution:"
+msgstr "O_ppløsning:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+#, fuzzy
+msgid "Ref_lection:"
 msgstr "O_ppløsning:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
@@ -479,93 +506,145 @@ msgstr "Oppfrisknings_rate:"
 msgid "Ro_tation:"
 msgstr "Orien_tering:"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+#, fuzzy
+msgid "_Use this output"
+msgstr "Komplett logg"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
+msgid "Both displays cloned"
+msgstr ""
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
+#, fuzzy
+msgid "Display settings"
+msgstr "Skjerm"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
+msgid "Several displays are available. Use:\n"
+msgstr ""
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
+msgid "Use both displays to show the same contents"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:68
 msgid "Normal"
 msgstr "Normal"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:69
 msgid "Left"
 msgstr "Venstre"
 
-#: ../dialogs/display-settings/main.c:72
+#: ../dialogs/display-settings/main.c:70
 msgid "Inverted"
 msgstr "Invertert"
 
-#: ../dialogs/display-settings/main.c:73
+#: ../dialogs/display-settings/main.c:71
 msgid "Right"
 msgstr "Høyre"
 
-#. insert in the combo box
-#. insert
-#: ../dialogs/display-settings/main.c:257
-#: ../dialogs/display-settings/main.c:288
-#, c-format
-msgid "%d Hz"
-msgstr "%d Hz"
+#: ../dialogs/display-settings/main.c:80
+#, fuzzy
+msgid "Horizontal"
+msgstr "Begge vannrett"
 
-#. create name
-#: ../dialogs/display-settings/main.c:494
-#, c-format
-msgid "Screen %d"
-msgstr "Skjerm %d"
+#: ../dialogs/display-settings/main.c:81
+#, fuzzy
+msgid "Vertical"
+msgstr "Loddrett RGB"
 
-#: ../dialogs/display-settings/main.c:675
-#, c-format
-msgid "RandR extension missing on display \"%s\""
-msgstr "RandR utvidelse mangler på skjerm «%s»"
-
-#: ../dialogs/display-settings/main.c:678
-msgid ""
-"The Resize and Rotate extension (RandR) is not enabled on this display. Try "
-"to enable it and run the dialog again."
+#: ../dialogs/display-settings/main.c:104
+msgid "Minimal interface to set up an external output"
 msgstr ""
-"Utvidelse for å endre størrelse og rotere (RandR) er ikke slått på på. Prøv "
-"å skru den på og kjør dialogvinduet på nytt."
 
-#: ../dialogs/display-settings/main.c:717
-msgid "Failed to use the RandR extension"
-msgstr "Klarte ikke ta i bruk RandR utvidelse"
+#: ../dialogs/display-settings/main.c:173
+#, c-format
+msgid ""
+"The previous configuration will be restored in %i seconds if you do not "
+"reply to this question."
+msgstr ""
 
-#: ../dialogs/display-settings/xfce-randr.c:55
-#: ../dialogs/display-settings/xfce-randr-legacy.c:58
+#. Insert the mode
+#: ../dialogs/display-settings/main.c:507
+#, c-format
+msgid "%.1f Hz"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:653
+msgid ""
+"The last active output must not be disabled, the system would be unusable."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:655
+msgid "Selected output not disabled"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:1077
+#: ../dialogs/display-settings/xfce-randr.c:259
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Klarte ikke finne versjonen av RandR utvidlesen som benyttes"
 
-#. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
-#: ../dialogs/display-settings/xfce-randr.c:63
-#: ../dialogs/display-settings/xfce-randr-legacy.c:65
-#, c-format
+#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/main.c:1122
+#, fuzzy
+msgid "Unable to start the Xfce Display Settings"
+msgstr "Bruk endringene og test de nye innstillingene"
+
+#: ../dialogs/display-settings/main.c:1108
+#, fuzzy
+msgid "NVIDIA Settings"
+msgstr "Innstillinger"
+
+#: ../dialogs/display-settings/main.c:1116
+#, fuzzy
+msgid "ATI Settings"
+msgstr "Innstillinger"
+
+#: ../dialogs/display-settings/main.c:1132
+msgid "Unable to launch the proprietary driver settings"
+msgstr ""
+
+#. 1.2 is required
+#: ../dialogs/display-settings/xfce-randr.c:267
+#, fuzzy, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
-"1.1 is required at least"
+"1.2 is required at least"
 msgstr ""
 "Systemet bruker RandR %d, %d. For at skjerminnstillinger skal fungere kreves "
 "minimum versjon 1.1"
 
-#: ../dialogs/display-settings/xfce-randr.c:343
+#. set error
+#: ../dialogs/display-settings/xfce-randr.c:292
+#, c-format
+msgid "The video driver does not support video outputs"
+msgstr ""
+
+#: ../dialogs/display-settings/xfce-randr.c:556
 msgid "Laptop"
 msgstr "Bærbar"
 
-#: ../dialogs/display-settings/xfce-randr.c:347
+#: ../dialogs/display-settings/xfce-randr.c:577
 msgid "Monitor"
 msgstr "Skjerm"
 
-#: ../dialogs/display-settings/xfce-randr.c:351
+#: ../dialogs/display-settings/xfce-randr.c:580
 msgid "Television"
 msgstr "TV"
 
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:584
 msgid "Digital display"
 msgstr "Digital skjerm"
 
-#: ../dialogs/display-settings/xfce-randr.c:362
-msgid "Second monitor"
-msgstr "Sekundær skjerm"
-
-#: ../dialogs/display-settings/xfce-randr.c:368
-msgid "Second digital display"
-msgstr "Sekunder digital skjerm"
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: ../dialogs/display-settings/display-name.c:269
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr ""
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:126
@@ -1123,13 +1202,11 @@ msgstr "Filtertaster er slått av"
 msgid "Bounce keys"
 msgstr "Filtertaster"
 
-#: ../xfce4-settings-helper/main.c:79 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:75 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Start i feilsøkingsmodus (ikke legg prosess i bakgrunnen)"
 
-#. some of them may not have been set in xfconf
-#: ../xfce4-settings-helper/workspaces.c:114
-#: ../xfce4-settings-helper/workspaces.c:241
+#: ../xfce4-settings-helper/workspaces.c:355
 #, c-format
 msgid "Workspace %d"
 msgstr "Arbeidsområde %d"
@@ -1190,6 +1267,31 @@ msgstr ""
 "%s: %s\n"
 "Prøv «%s --help» for å se komplett liste over tilgjengelige "
 "kommandolinjevalg.\n"
+
+#~ msgid "%d Hz"
+#~ msgstr "%d Hz"
+
+#~ msgid "Screen %d"
+#~ msgstr "Skjerm %d"
+
+#~ msgid "RandR extension missing on display \"%s\""
+#~ msgstr "RandR utvidelse mangler på skjerm «%s»"
+
+#~ msgid ""
+#~ "The Resize and Rotate extension (RandR) is not enabled on this display. "
+#~ "Try to enable it and run the dialog again."
+#~ msgstr ""
+#~ "Utvidelse for å endre størrelse og rotere (RandR) er ikke slått på på. "
+#~ "Prøv å skru den på og kjør dialogvinduet på nytt."
+
+#~ msgid "Failed to use the RandR extension"
+#~ msgstr "Klarte ikke ta i bruk RandR utvidelse"
+
+#~ msgid "Second monitor"
+#~ msgstr "Sekundær skjerm"
+
+#~ msgid "Second digital display"
+#~ msgstr "Sekunder digital skjerm"
 
 #~ msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
 #~ msgstr "Egenskap «<b>%s</b>» kan ikke nullstilles fordi den er låst"
