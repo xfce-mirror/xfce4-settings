@@ -1070,16 +1070,9 @@ main (gint argc, gchar **argv)
     /* Check if the randr extension is avaible on the system */
     if (!XRRQueryExtension (gdk_x11_display_get_xdisplay (display), &event_base, &error_base))
     {
-        dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_NONE,
-                                         _("RandR extension missing on display \"%s\""),
-                                         gdk_display_get_name (display));
-        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                                  _("The Resize and Rotate extension (RandR) is not enabled on "
-                                                    "this display. Try to enable it and run the dialog again."));
-        gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE);
-
-        gtk_dialog_run (GTK_DIALOG (dialog));
-        gtk_widget_destroy (dialog);
+        g_set_error (&error, 0, 0, _("Unable to query the version of the RandR extension being used"));
+        xfce_dialog_show_error (NULL, error, _("Unable to start the Xfce Display Settings"));
+        g_error_free (error);
 
         return EXIT_FAILURE;
     }
@@ -1101,10 +1094,16 @@ main (gint argc, gchar **argv)
         /* Create a new xfce randr (>= 1.2) for this display
          * this will only work if there is 1 screen on this display */
         if (gdk_display_get_n_screens (display) == 1)
-            xfce_randr = xfce_randr_new (display, NULL);
+            xfce_randr = xfce_randr_new (display, &error);
 
         if (!xfce_randr)
-            goto err1;
+        {
+            xfce_dialog_show_error (NULL, error, _("Unable to start the Xfce Display Settings"));
+            g_error_free (error);
+            succeeded = FALSE;
+
+            goto cleanup;
+        }
 
         /* Hook to make sure the libxfce4ui library is linked */
         if (xfce_titled_dialog_get_type () == 0)
@@ -1153,8 +1152,8 @@ main (gint argc, gchar **argv)
         }
         else
         {
-            if (xfce_randr->noutput < 2 || xfce_randr == NULL)
-                goto err1;
+            if (xfce_randr->noutput < 2)
+                goto cleanup;
 
             /* TODO: handle correctly more than 2 outputs? */
             first = 0;
@@ -1206,10 +1205,9 @@ main (gint argc, gchar **argv)
             }
 
             g_object_unref (G_OBJECT (builder));
-
         }
 
-        err1:
+        cleanup:
 
         /* Release the channel */
         if (bound_to_channel)
