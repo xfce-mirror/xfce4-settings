@@ -29,6 +29,7 @@ xfce4_display_settings_CFLAGS = \
 	$(XFCONF_CFLAGS) \
 	$(EXO_CFLAGS) \
 	$(XRANDR_CFLAGS) \
+	$(LIBX11_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfce4_display_settings_LDFLAGS = \
@@ -40,6 +41,7 @@ xfce4_display_settings_LDADD = \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
 	$(EXO_LIBS) \
+	$(LIBX11_LIBS) -lm \
 	$(XRANDR_LIBS)
 
 if MAINTAINER_MODE
