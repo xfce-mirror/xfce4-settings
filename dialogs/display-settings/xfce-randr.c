@@ -288,6 +288,9 @@ xfce_randr_new (GdkDisplay  *display,
         /* cleanup */
         xfce_randr_free (randr);
 
+        /* set error */
+        g_set_error (error, 0, 0, _("This system has a fake RandR 1.2 support."));
+
         /* return nothing */
         return NULL;
     }
