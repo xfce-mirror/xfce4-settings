@@ -94,16 +94,14 @@ typedef struct
 
 
 /* Option entries */
+static GdkNativeWindow opt_socket_id = 0;
 static gboolean opt_version = FALSE;
 static gboolean minimal = FALSE;
 static GOptionEntry option_entries[] =
 {
+    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID") },
     { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
-    {
-    "minimal", 'm', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &minimal,
-    N_("Minimal interface to set up an external output"),
-    NULL
-    },
+    { "minimal", 'm', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &minimal, N_("Minimal interface to set up an external output"), NULL},
     { NULL }
 };
 
@@ -1020,10 +1018,12 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
 gint
 main (gint argc, gchar **argv)
 {
-    GtkWidget   *dialog;
     GtkBuilder  *builder;
-    GError      *error = NULL;
     GdkDisplay  *display;
+    GtkWidget   *dialog;
+    GtkWidget   *plug;
+    GObject     *plug_child;
+    GError      *error = NULL;
     gboolean     succeeded = TRUE;
     gint         event_base, error_base;
     guint        first, second;
@@ -1151,8 +1151,6 @@ main (gint argc, gchar **argv)
             {
                 /* Build the dialog */
                 dialog = display_settings_dialog_new (builder);
-                g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), builder);
-
                 XFCE_RANDR_EVENT_BASE (xfce_randr) = event_base;
                 /* Set up notifications */
                 XRRSelectInput (gdk_x11_display_get_xdisplay (display),
@@ -1163,14 +1161,33 @@ main (gint argc, gchar **argv)
                                                       RRNotify + 1);
                 gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
 
-                /* Show the dialog */
-                gtk_widget_show (dialog);
+                if (G_UNLIKELY (opt_socket_id == 0))
+                {
+                    g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), builder);
+
+                    /* Show the dialog */
+                    gtk_widget_show (dialog);
+                }
+                else
+                {
+                    /* Create plug widget */
+                    plug = gtk_plug_new (opt_socket_id);
+                    g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+                    gtk_widget_show (plug);
+
+                    /* Get plug child widget */
+                    plug_child = gtk_builder_get_object (builder, "plug-child");
+                    gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
+                    gtk_widget_show (GTK_WIDGET (plug_child));
+                }
 
                 /* To prevent the settings dialog to be saved in the session */
                 gdk_set_sm_client_id ("FAKE ID");
 
                 /* Enter the main loop */
                 gtk_main ();
+
+                gtk_widget_destroy (dialog);
             }
             else
             {

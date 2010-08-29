@@ -18,7 +18,7 @@
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
-          <object class="GtkHBox" id="hbox1">
+          <object class="GtkHBox" id="plug-child">
             <property name="visible">True</property>
             <property name="border_width">12</property>
             <property name="spacing">12</property>
@@ -52,8 +52,14 @@
                 <child>
                   <object class="GtkCheckButton" id="output-on">
                     <property name="label" translatable="yes">_Use this output</property>
+                    <property name="can_focus">False</property>
+                    <property name="receives_default">False</property>
                     <property name="use_underline">True</property>
+                    <property name="draw_indicator">False</property>
                   </object>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
                 </child>
                 <child>
                   <object class="GtkTable" id="table1">
@@ -169,6 +175,9 @@
                   </packing>
                 </child>
               </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>
