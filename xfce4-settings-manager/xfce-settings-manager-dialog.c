@@ -587,7 +587,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
 
         /* Try to spawn the dialog */
         if(!xfce_spawn_command_line_on_screen(gtk_widget_get_screen(GTK_WIDGET(iconview)),
-                                              command, FALSE, snotify, &error))
+                                              command, FALSE, FALSE, &error))
         {
             /* Spawning failed, go back to the overview */
             xfce_settings_manager_dialog_recreate_socket(dialog);
