@@ -179,7 +179,7 @@ main(int argc, char **argv)
                                           GDK_DISPLAY_XDISPLAY(gdpy),
                                           screen);
         registries = g_list_append(registries, registry);
-        
+
         xsettings_registry_load(registry, debug);
 
         xsettings_registry_notify(registry);
@@ -200,7 +200,7 @@ main(int argc, char **argv)
         if(!fork())
         {
             gtk_main();
-    
+
             xfconf_shutdown();
         }
     }

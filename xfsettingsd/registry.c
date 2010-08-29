@@ -196,7 +196,7 @@ xsettings_registry_process_event (XSettingsRegistry *registry, XEvent *xevent)
 }
 
 enum {
-	XSETTINGS_REGISTRY_PROPERTY_CHANNEL = 1,
+    XSETTINGS_REGISTRY_PROPERTY_CHANNEL = 1,
     XSETTINGS_REGISTRY_PROPERTY_DISPLAY,
     XSETTINGS_REGISTRY_PROPERTY_SCREEN,
     XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM,
@@ -207,29 +207,29 @@ enum {
 void
 xsettings_registry_class_init(XSettingsRegistryClass *reg_class)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS(reg_class);
-	GParamSpec *pspec;
+  GObjectClass *object_class = G_OBJECT_CLASS(reg_class);
+  GParamSpec *pspec;
 
-	object_class->set_property = xsettings_registry_set_property;
-	object_class->get_property = xsettings_registry_get_property;
+  object_class->set_property = xsettings_registry_set_property;
+  object_class->get_property = xsettings_registry_get_property;
 
-	pspec = g_param_spec_object("channel", NULL, NULL, XFCONF_TYPE_CHANNEL, XSETTINGS_PARAM_FLAGS);
-	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_CHANNEL, pspec);
+  pspec = g_param_spec_object("channel", NULL, NULL, XFCONF_TYPE_CHANNEL, XSETTINGS_PARAM_FLAGS);
+  g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_CHANNEL, pspec);
 
-	pspec = g_param_spec_int("screen", NULL, NULL, -1, 65535, -1, XSETTINGS_PARAM_FLAGS);
-	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_SCREEN, pspec);
+  pspec = g_param_spec_int("screen", NULL, NULL, -1, 65535, -1, XSETTINGS_PARAM_FLAGS);
+  g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_SCREEN, pspec);
 
-	pspec = g_param_spec_pointer("display", NULL, NULL, XSETTINGS_PARAM_FLAGS);
-	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_DISPLAY, pspec);
+  pspec = g_param_spec_pointer("display", NULL, NULL, XSETTINGS_PARAM_FLAGS);
+  g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_DISPLAY, pspec);
 
-	pspec = g_param_spec_long("xsettings-atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
-	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM, pspec);
+  pspec = g_param_spec_long("xsettings-atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
+  g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM, pspec);
 
-	pspec = g_param_spec_long("selection-atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
-	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM, pspec);
+  pspec = g_param_spec_long("selection-atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
+  g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM, pspec);
 
-	pspec = g_param_spec_long("window", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
-	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_WINDOW, pspec);
+  pspec = g_param_spec_long("window", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
+  g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_WINDOW, pspec);
 }
 
 /**
@@ -319,7 +319,7 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
     {
         /* create file contents */
         const gchar *xft_rgba = g_value_get_string (&properties[XSETTING_ENTRY_XFT_RGBA].value);
-        
+
         string = g_string_sized_new (80);
         g_string_append_printf (string, "Xft.antialias: %d\n"
                                         "Xft.hinting: %d\n"
@@ -327,12 +327,12 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
                                         g_value_get_int (&properties[XSETTING_ENTRY_XFT_ANTIALIAS].value),
                                         g_value_get_int (&properties[XSETTING_ENTRY_XFT_HINTING].value),
                                         xft_rgba ? xft_rgba : "");
-        
+
         if (g_value_get_int (&properties[XSETTING_ENTRY_XFT_HINTING].value))
             g_string_append_printf (string, "Xft.hintstyle: %s\n", g_value_get_string (&properties[XSETTING_ENTRY_XFT_HINTSTYLE].value));
         else
             string = g_string_append (string, "Xft.hintstyle: hintnone\n");
-        
+
         if (g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) > 0)
             g_string_append_printf (string, "Xft.dpi: %d\n", g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value));
 
@@ -343,7 +343,7 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
             command = g_strdup_printf ("xrdb -nocpp -merge \"%s\"", filename);
             result = g_spawn_command_line_async (command, &error);
             g_free (command);
-            
+
             /* remove dpi from the database if not set */
             if (result && g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) == 0)
             {
@@ -358,29 +358,29 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
             g_critical ("Failed to write to '%s': %s", filename, error->message);
             g_error_free (error);
         }
-        
+
         /* cleanup */
         g_free (filename);
         g_string_free (string, TRUE);
-        
+
         /* leave when there where spawn problems */
         if (result == FALSE)
             goto spawn_error;
     }
-    
+
     /* store cursor settings */
     filename = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, "xfce4" G_DIR_SEPARATOR_S "Xcursor.xrdb", TRUE);
     if (G_LIKELY (filename))
     {
         /* build file contents */
         const gchar *cursor_theme_name = g_value_get_string (&properties[XSETTING_ENTRY_GTK_CURSORTHEMENAME].value);
-        
+
         contents = g_strdup_printf ("Xcursor.theme: %s\n"
                                     "Xcursor.theme_core: true\n"
                                     "Xcursor.size: %d\n",
                                     cursor_theme_name ? cursor_theme_name : "",
                                     g_value_get_int (&properties[XSETTING_ENTRY_GTK_CURSORTHEMESIZE].value));
-        
+
         /* write the contents to the file */
         if (G_LIKELY (g_file_set_contents (filename, contents, -1, &error)))
         {
@@ -395,21 +395,21 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
             g_critical ("Failed to write to '%s': %s", filename, error->message);
             g_error_free (error);
         }
-        
+
         /* cleanup */
         g_free (filename);
         g_free (contents);
-        
+
         /* leave when there where spawn problems */
         if (result == FALSE)
             goto spawn_error;
     }
-    
+
     /* leave */
     return;
-    
+
     spawn_error:
-    
+
     /* print warning */
     g_critical ("Failed to spawn xrdb: %s", error->message);
     g_error_free (error);
@@ -422,13 +422,13 @@ compute_xsettings_dpi (XSettingsRegistry *registry)
     int width_mm, height_mm;
     int width, height;
     int dpi;
-    
+
     xscreen = ScreenOfDisplay (registry->priv->display,
                                 registry->priv->screen);
     width_mm = WidthMMOfScreen (xscreen);
     height_mm = HeightMMOfScreen (xscreen);
     dpi = FALLBACK_DPI;
-    
+
     if (width_mm > 0 && height_mm > 0)
     {
         width = WidthOfScreen (xscreen);
@@ -450,7 +450,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
     const gchar *value, *val;
     gint name_len, value_len, str_length;
     gint dpi;
-    
+
     registry->priv->last_change_serial = registry->priv->serial;
 
     buf_len = 12;
@@ -544,8 +544,8 @@ xsettings_registry_notify(XSettingsRegistry *registry)
             *(pos++) = 0;
             name_len--;
         }
-        
-        *(CARD32 *)pos = registry->priv->last_change_serial; 
+
+        *(CARD32 *)pos = registry->priv->last_change_serial;
         pos+= 4;
 
         switch (G_VALUE_TYPE(&entry->value))
@@ -639,10 +639,10 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
     GObject *object;
 
     window = XCreateSimpleWindow (dpy,
-					 RootWindow (dpy, screen),
-					 0, 0, 10, 10, 0,
-					 WhitePixel (dpy, screen),
-					 WhitePixel (dpy, screen));
+           RootWindow (dpy, screen),
+           0, 0, 10, 10, 0,
+           WhitePixel (dpy, screen),
+           WhitePixel (dpy, screen));
     if (!window)
     {
         g_critical( "no window");
@@ -673,7 +673,7 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
        8, PropModeReplace, &c, 1);
 
     XIfEvent (dpy, &xevent,
-              timestamp_predicate, (XPointer)&info); 
+              timestamp_predicate, (XPointer)&info);
 
     XSetSelectionOwner (dpy, selection_atom,
                         window, xevent.xproperty.time);
@@ -690,8 +690,8 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
         xev.data.l[0] = xevent.xproperty.time;
         xev.data.l[1] = selection_atom;
         xev.data.l[2] = window;
-        xev.data.l[3] = 0;	/* manager specific data */
-        xev.data.l[4] = 0;	/* manager specific data */
+        xev.data.l[3] = 0;  /* manager specific data */
+        xev.data.l[4] = 0;  /* manager specific data */
 
         XSendEvent (dpy, RootWindow (dpy, screen),
           False, StructureNotifyMask, (XEvent *)&xev);
@@ -707,9 +707,9 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
 static void
 xsettings_registry_set_property(GObject *object, guint property_id, const GValue *value, GParamSpec *p_spec)
 {
-	switch(property_id)
-	{
-		case XSETTINGS_REGISTRY_PROPERTY_CHANNEL:
+  switch(property_id)
+  {
+      case XSETTINGS_REGISTRY_PROPERTY_CHANNEL:
             if (XSETTINGS_REGISTRY(object)->priv->channel)
             {
                 XfconfChannel *channel = XSETTINGS_REGISTRY(object)->priv->channel;
@@ -718,7 +718,7 @@ xsettings_registry_set_property(GObject *object, guint property_id, const GValue
                 XSETTINGS_REGISTRY(object)->priv->channel = NULL;
             }
 
-			XSETTINGS_REGISTRY(object)->priv->channel = g_value_get_object(value);
+            XSETTINGS_REGISTRY(object)->priv->channel = g_value_get_object(value);
 
             if (XSETTINGS_REGISTRY(object)->priv->channel)
             {
@@ -726,57 +726,56 @@ xsettings_registry_set_property(GObject *object, guint property_id, const GValue
 
                 g_signal_connect(G_OBJECT(channel), "property-changed", (GCallback)cb_xsettings_registry_channel_property_changed, object);
             }
-		    break;
-		case XSETTINGS_REGISTRY_PROPERTY_SCREEN:
+            break;
+      case XSETTINGS_REGISTRY_PROPERTY_SCREEN:
             XSETTINGS_REGISTRY(object)->priv->screen = g_value_get_int(value);
             break;
-		case XSETTINGS_REGISTRY_PROPERTY_DISPLAY:
+      case XSETTINGS_REGISTRY_PROPERTY_DISPLAY:
             XSETTINGS_REGISTRY(object)->priv->display = g_value_get_pointer(value);
             break;
-        case XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM:
+      case XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM:
             XSETTINGS_REGISTRY(object)->priv->xsettings_atom = g_value_get_long(value);
             break;
-        case XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM:
+      case XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM:
             XSETTINGS_REGISTRY(object)->priv->selection_atom = g_value_get_long(value);
             break;
-        case XSETTINGS_REGISTRY_PROPERTY_WINDOW:
+      case XSETTINGS_REGISTRY_PROPERTY_WINDOW:
             XSETTINGS_REGISTRY(object)->priv->window = g_value_get_long(value);
             break;
-	}
+  }
 
 }
 
 static void
 xsettings_registry_get_property(GObject *object, guint property_id, GValue *value, GParamSpec *p_spec)
 {
-	switch(property_id)
-	{
-		case XSETTINGS_REGISTRY_PROPERTY_CHANNEL:
-			g_value_set_object(value, XSETTINGS_REGISTRY(object)->priv->channel);
-		break;
-		case XSETTINGS_REGISTRY_PROPERTY_SCREEN:
-            g_value_set_int(value, XSETTINGS_REGISTRY(object)->priv->screen);
-        break;
-		case XSETTINGS_REGISTRY_PROPERTY_DISPLAY:
-            g_value_set_pointer(value, XSETTINGS_REGISTRY(object)->priv->display);
-        break;
-        case XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM:
-            g_value_set_long(value, XSETTINGS_REGISTRY(object)->priv->xsettings_atom);
-        break;
-        case XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM:
-            g_value_set_long(value, XSETTINGS_REGISTRY(object)->priv->selection_atom);
-        break;
-        case XSETTINGS_REGISTRY_PROPERTY_WINDOW:
-            g_value_set_long(value, XSETTINGS_REGISTRY(object)->priv->window);
-        break;
-	}
-
+  switch(property_id)
+  {
+      case XSETTINGS_REGISTRY_PROPERTY_CHANNEL:
+          g_value_set_object(value, XSETTINGS_REGISTRY(object)->priv->channel);
+          break;
+      case XSETTINGS_REGISTRY_PROPERTY_SCREEN:
+          g_value_set_int(value, XSETTINGS_REGISTRY(object)->priv->screen);
+          break;
+      case XSETTINGS_REGISTRY_PROPERTY_DISPLAY:
+          g_value_set_pointer(value, XSETTINGS_REGISTRY(object)->priv->display);
+          break;
+      case XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM:
+          g_value_set_long(value, XSETTINGS_REGISTRY(object)->priv->xsettings_atom);
+          break;
+      case XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM:
+          g_value_set_long(value, XSETTINGS_REGISTRY(object)->priv->selection_atom);
+          break;
+      case XSETTINGS_REGISTRY_PROPERTY_WINDOW:
+          g_value_set_long(value, XSETTINGS_REGISTRY(object)->priv->window);
+          break;
+  }
 }
 
 static Bool
 timestamp_predicate (Display *display,
-		     XEvent  *xevent,
-		     XPointer arg)
+                     XEvent  *xevent,
+                     XPointer arg)
 {
   TimeStampInfo *info = (TimeStampInfo *)arg;
 
