@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-28 23:05+0200\n"
-"PO-Revision-Date: 2010-01-23 18:05+0100\n"
+"POT-Creation-Date: 2010-08-31 10:06+0000\n"
+"PO-Revision-Date: 2010-08-31 17:46+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "Language: \n"
@@ -203,19 +203,21 @@ msgstr "píxels/s"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "Sòcol del gestor de paràmetres"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "SÒCOL ID"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:104
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
 #: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
@@ -224,7 +226,7 @@ msgstr "Informació de la versió"
 
 #: ../dialogs/accessibility-settings/main.c:143
 #: ../dialogs/appearance-settings/main.c:773
-#: ../dialogs/display-settings/main.c:1045
+#: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
 #: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
@@ -234,7 +236,7 @@ msgstr "Feu «%s --help» per veure l'ús."
 
 #: ../dialogs/accessibility-settings/main.c:162
 #: ../dialogs/appearance-settings/main.c:792
-#: ../dialogs/display-settings/main.c:1064
+#: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
 #: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
@@ -243,7 +245,7 @@ msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:793
-#: ../dialogs/display-settings/main.c:1065
+#: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
 #: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
@@ -267,7 +269,7 @@ msgid "Appearance"
 msgstr "Aparença"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:83
 msgid "Both"
 msgstr "Ambdós"
 
@@ -362,7 +364,7 @@ msgstr "Menús i botons"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:670
-#: ../dialogs/display-settings/main.c:79
+#: ../dialogs/display-settings/main.c:80
 msgid "None"
 msgstr "Cap"
 
@@ -473,27 +475,27 @@ msgstr "BGR vertical"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr ""
+msgstr "<big><b>Voleu mantenir aquesta configuració?</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
-#, fuzzy
 msgid "Confirmation"
-msgstr "Informació de la versió"
+msgstr "Confirmació"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
-#, fuzzy
 msgid "Keep this configuration"
-msgstr "Manté l'acció del gestor de finestres"
+msgstr "Manté aquesta configuració"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Restore the previous configuration"
-msgstr ""
+msgstr "Recupera l'anterior configuració"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid ""
 "The previous configuration will be restored in 10 seconds if you do not "
 "reply to this question."
 msgstr ""
+"En cas de que no respongueu a aquesta pregunta en 10 segons es restablirà la "
+"configuració anterior."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -510,9 +512,8 @@ msgid "R_esolution:"
 msgstr "R_esolució:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
-#, fuzzy
 msgid "Ref_lection:"
-msgstr "R_esolució:"
+msgstr "Ref_lex:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
@@ -523,134 +524,132 @@ msgid "Ro_tation:"
 msgstr "Ro_tació:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-#, fuzzy
 msgid "_Use this output"
-msgstr "Empra aquesta acció"
+msgstr "_Empra aquesta sortida"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Both displays cloned"
-msgstr ""
+msgstr "S'han clonat ambdues pantalles"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-#, fuzzy
 msgid "Display settings"
 msgstr "Ajustaments de pantalla"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Several displays are available. Use:\n"
-msgstr ""
+msgstr "Varies pantalles estan disponibles. Empra:\n"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Use both displays to show the same contents"
-msgstr ""
+msgstr "Empra ambdues pantalles per mostrar el mateix contingut"
 
-#: ../dialogs/display-settings/main.c:68
+#: ../dialogs/display-settings/main.c:69
 msgid "Normal"
 msgstr "Normal"
 
-#: ../dialogs/display-settings/main.c:69
+#: ../dialogs/display-settings/main.c:70
 msgid "Left"
 msgstr "Esquerra"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/main.c:71
 msgid "Inverted"
 msgstr "Invertit"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:72
 msgid "Right"
 msgstr "Dreta"
 
-#: ../dialogs/display-settings/main.c:80
-#, fuzzy
-msgid "Horizontal"
-msgstr "Ambdós horitzontals"
-
 #: ../dialogs/display-settings/main.c:81
-#, fuzzy
+msgid "Horizontal"
+msgstr "Horitzontal"
+
+#: ../dialogs/display-settings/main.c:82
 msgid "Vertical"
-msgstr "RGB vertical"
+msgstr "Vertical"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:105
 msgid "Minimal interface to set up an external output"
-msgstr ""
+msgstr "Interfície mínima per estable una sortida externa"
 
-#: ../dialogs/display-settings/main.c:173
+#: ../dialogs/display-settings/main.c:172
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
 "reply to this question."
 msgstr ""
+"En cas de que no respongueu a aquesta pregunta en %i segons es restablirà la "
+"configuració anterior."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:507
+#: ../dialogs/display-settings/main.c:506
 #, c-format
 msgid "%.1f Hz"
-msgstr ""
+msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:653
+#: ../dialogs/display-settings/main.c:652
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
+"La darrera sortida activa no s'ha de deshabilitar, el sistema no es podria "
+"utilitzar."
 
-#: ../dialogs/display-settings/main.c:655
+#: ../dialogs/display-settings/main.c:654
 msgid "Selected output not disabled"
-msgstr ""
+msgstr "La sortida seleccionada no està deshabilitada"
 
-#: ../dialogs/display-settings/main.c:1077
-#: ../dialogs/display-settings/xfce-randr.c:259
+#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/xfce-randr.c:260
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "No es pot saber la versió de l'extensió Randr que s'està emprant"
 
-#: ../dialogs/display-settings/main.c:1078
-#: ../dialogs/display-settings/main.c:1122
-#, fuzzy
+#: ../dialogs/display-settings/main.c:1079
+#: ../dialogs/display-settings/main.c:1123
 msgid "Unable to start the Xfce Display Settings"
-msgstr "Ajustaments de pantalla de Xfce 4"
+msgstr "No s'ha pogut iniciar els ajustaments de pantalla de Xfce"
 
-#: ../dialogs/display-settings/main.c:1108
-#, fuzzy
+#: ../dialogs/display-settings/main.c:1109
 msgid "NVIDIA Settings"
-msgstr "Paràmetres"
+msgstr "Configuració per NVIDIA"
 
-#: ../dialogs/display-settings/main.c:1116
-#, fuzzy
+#: ../dialogs/display-settings/main.c:1117
 msgid "ATI Settings"
-msgstr "Paràmetres"
+msgstr "Configuració per ATI"
 
-#: ../dialogs/display-settings/main.c:1132
+#: ../dialogs/display-settings/main.c:1133
 msgid "Unable to launch the proprietary driver settings"
 msgstr ""
+"No s'ha pogut executar el gestor d'ajustaments del controlador propietari"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:267
-#, fuzzy, c-format
+#: ../dialogs/display-settings/xfce-randr.c:268
+#, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr ""
-"El sistema està emprant Randr %d.%d. Per a que els ajustaments de pantalla "
-"funcionin cal almenys la versió 1.1."
+"El sistema està emprant RandR %d.%d. Per a que els ajustaments de pantalla "
+"funcionin cal almenys la versió 1.2"
 
 #. set error
-#: ../dialogs/display-settings/xfce-randr.c:292
+#: ../dialogs/display-settings/xfce-randr.c:293
 #, c-format
 msgid "The video driver does not support video outputs"
-msgstr ""
+msgstr "El controlador de vídeo no permet sortides de vídeo"
 
-#: ../dialogs/display-settings/xfce-randr.c:556
+#: ../dialogs/display-settings/xfce-randr.c:557
 msgid "Laptop"
 msgstr "Portàtil"
 
-#: ../dialogs/display-settings/xfce-randr.c:577
+#: ../dialogs/display-settings/xfce-randr.c:578
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../dialogs/display-settings/xfce-randr.c:580
+#: ../dialogs/display-settings/xfce-randr.c:581
 msgid "Television"
 msgstr "Televisió"
 
-#: ../dialogs/display-settings/xfce-randr.c:584
+#: ../dialogs/display-settings/xfce-randr.c:585
 msgid "Digital display"
 msgstr "Pantalla digital"
 
@@ -660,7 +659,7 @@ msgstr "Pantalla digital"
 #: ../dialogs/display-settings/display-name.c:269
 msgctxt "Monitor vendor"
 msgid "Unknown"
-msgstr ""
+msgstr "desconegut"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:126
