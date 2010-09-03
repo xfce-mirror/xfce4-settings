@@ -126,8 +126,8 @@ static void                      xfce_keyboard_settings_system_default_cb     (G
 static void                      xfce_keyboard_settings_set_layout            (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_init_layout           (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_add_model_to_combo    (XklConfigRegistry         *config_registry,
-                                                                               XklConfigItem             *config_item,
-                                                                               XfceKeyboardSettings      *settings);
+                                                                               const XklConfigItem       *config_item,
+                                                                               gpointer                   user_data);
 static void                      xfce_keyboard_settings_init_model            (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_model_changed_cb      (GtkComboBox               *combo,
                                                                                XfceKeyboardSettings      *settings);
@@ -337,20 +337,23 @@ xfce_keyboard_settings_constructed (GObject *object)
                     settings);
 
   /* Keyboard model combo */
+  list_store = gtk_list_store_new (XKB_COMBO_NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), 0, GTK_SORT_ASCENDING);
+  xkl_config_registry_foreach_model (settings->priv->xkl_registry,
+                                     xfce_keyboard_settings_add_model_to_combo,
+                                     list_store);
+
   xkb_model_combo = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_model_combo");
+  gtk_combo_box_set_model (GTK_COMBO_BOX (xkb_model_combo), GTK_TREE_MODEL (list_store));
+  g_object_unref (G_OBJECT (list_store));
+
   gtk_cell_layout_clear (GTK_CELL_LAYOUT (xkb_model_combo));
   renderer = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (xkb_model_combo), renderer, TRUE);
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (xkb_model_combo), renderer, "text", 0);
-  list_store = gtk_list_store_new (XKB_COMBO_NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
-  gtk_combo_box_set_model (GTK_COMBO_BOX (xkb_model_combo), GTK_TREE_MODEL (list_store));
-  xkl_config_registry_foreach_model (settings->priv->xkl_registry,
-                                     (ConfigItemProcessFunc) xfce_keyboard_settings_add_model_to_combo,
-                                     settings);
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), 0, GTK_SORT_ASCENDING);
+
   xfce_keyboard_settings_init_model (settings);
-  g_signal_connect (G_OBJECT (xkb_model_combo),
-                    "changed",
+  g_signal_connect (G_OBJECT (xkb_model_combo), "changed",
                     G_CALLBACK (xfce_keyboard_settings_model_changed_cb),
                     settings);
 
@@ -1116,21 +1119,19 @@ xfce_keyboard_settings_init_layout (XfceKeyboardSettings *settings)
 
 static void
 xfce_keyboard_settings_add_model_to_combo (XklConfigRegistry    *config_registry,
-                                           XklConfigItem        *config_item,
-                                           XfceKeyboardSettings *settings)
+                                           const XklConfigItem  *config_item,
+                                           gpointer              user_data)
 {
-  GObject      *view;
-  GtkTreeModel *model;
+  GtkListStore *store = GTK_LIST_STORE (user_data);
   GtkTreeIter   iter;
   gchar        *model_name;
 
-  model_name = xfce_keyboard_settings_xkb_description (config_item);
+  model_name = xfce_keyboard_settings_xkb_description ((XklConfigItem *) config_item);
 
-  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_model_combo");
-  model = gtk_combo_box_get_model (GTK_COMBO_BOX (view));
-
-  gtk_list_store_append (GTK_LIST_STORE (model), &iter );
-  gtk_list_store_set (GTK_LIST_STORE (model), &iter, XKB_COMBO_DESCRIPTION, model_name, XKB_COMBO_MODELS, config_item->name, -1);
+  gtk_list_store_append (store, &iter);
+  gtk_list_store_set (store, &iter,
+                      XKB_COMBO_DESCRIPTION, model_name,
+                      XKB_COMBO_MODELS, config_item->name, -1);
   g_free (model_name);
 }
 
