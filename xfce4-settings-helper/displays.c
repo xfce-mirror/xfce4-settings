@@ -489,7 +489,7 @@ xfce_displays_helper_set_outputs (XfceRRCrtc   *crtc,
         output->pending->outputs[n] = crtc->outputs[n];
     /* add the current one if needed */
     if (!found)
-        output->pending->outputs[++n] = output->id;
+        output->pending->outputs[n] = output->id;
 }
 
 
