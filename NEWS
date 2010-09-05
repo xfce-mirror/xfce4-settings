@@ -1,3 +1,25 @@
+4.7.2
+=====
+- Rework the randr support in xfce4-settings, this requires
+  randr 1.2 or higher.
+- Add a minimal dialog for quick display setup (--minimal, -m).
+- Port to libxklavier 5.0 API.
+- Be consistent in the check for exo-1.
+- Require the correct version of xi and inputproto (bug #6033).
+- Fix the old shortcut duplicate after editing a command.
+- Set value after setting the range and digits.
+- Don't save settings dialogs when saving session (bug #5113).
+- Release the current editor channel on exit.
+- Allow resizing of the edit property dialogs.
+- Fix linking issues (bug #6236).
+- Fix pluggable dialogs (bug #6138).
+- Change the way workspace names are handled.
+- Remove deprecated encoding key from desktop files.
+- Make the display settings dialog pluggable (bug #6524).
+- Speedup startup of the keyboard settings dialog (bug #6661).
+- Translation updates (fi, ca, lv, sk, ru, es, el, it, pt_BR,
+  eu, de, uk, si, kk, is, tr, hr, id, zh_TW, fr, da, pt).
+
 4.7.1
 =====
 - Fix possible crash in the clipboard manager (bug #6125).
