@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-29 04:06+0000\n"
+"POT-Creation-Date: 2010-09-13 16:09+0000\n"
 "PO-Revision-Date: 2010-02-19 18:52+0100\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -167,19 +167,21 @@ msgstr "Pixel/s"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "Socket für den Einstellungsdialog"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "SOCKET-NUMMER"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:104
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
 #: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
@@ -188,7 +190,7 @@ msgstr "Versionsinformation"
 
 #: ../dialogs/accessibility-settings/main.c:143
 #: ../dialogs/appearance-settings/main.c:773
-#: ../dialogs/display-settings/main.c:1045
+#: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
 #: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
@@ -198,7 +200,7 @@ msgstr "Geben Sie »%s --help« ein, um Informationen über die Verwendung zu er
 
 #: ../dialogs/accessibility-settings/main.c:162
 #: ../dialogs/appearance-settings/main.c:792
-#: ../dialogs/display-settings/main.c:1064
+#: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
 #: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
@@ -207,7 +209,7 @@ msgstr "Das Entwicklungsteam von Xfce. Alle Rechte vorbehalten."
 
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:793
-#: ../dialogs/display-settings/main.c:1065
+#: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
 #: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
@@ -229,7 +231,7 @@ msgid "Appearance"
 msgstr "Erscheinungsbild"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:83
 msgid "Both"
 msgstr "Beides"
 
@@ -308,7 +310,7 @@ msgstr "Menüs und Schaltflächen"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:670
-#: ../dialogs/display-settings/main.c:79
+#: ../dialogs/display-settings/main.c:80
 msgid "None"
 msgstr "Keine"
 
@@ -405,22 +407,18 @@ msgid "Vertical BGR"
 msgstr "BGR (vertikal)"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
-#, fuzzy
 msgid "<big><b>Would you like to keep this configuration?</b></big>"
 msgstr "<big><b>Möchten sie diese Konfiguration beibehalten?</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
-#, fuzzy
 msgid "Confirmation"
-msgstr "Versionsinformation"
+msgstr "Bestätigung"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
-#, fuzzy
 msgid "Keep this configuration"
-msgstr "Fenstermanageraktion behalten"
+msgstr "Diese Konfiguration behalten"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
-#, fuzzy
 msgid "Restore the previous configuration"
 msgstr "Die  vorherige Konfiguration wiederherstellen"
 
@@ -444,9 +442,8 @@ msgid "R_esolution:"
 msgstr "_Auflösung:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
-#, fuzzy
 msgid "Ref_lection:"
-msgstr "_Auflösung:"
+msgstr "_Spiegelung:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
@@ -457,130 +454,120 @@ msgid "Ro_tation:"
 msgstr "_Drehung:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-#, fuzzy
 msgid "_Use this output"
-msgstr "Diese Aktion verwenden"
+msgstr "Diese _Ausgabe verwenden"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
-#, fuzzy
 msgid "Both displays cloned"
-msgstr "Beide Anzeigen klonen"
+msgstr "Beide Anzeigen geklont"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-#, fuzzy
 msgid "Display settings"
-msgstr "Anzeige"
+msgstr "Anzeigeeinstellungen"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
-#, fuzzy
 msgid "Several displays are available. Use:\n"
 msgstr "Mehrere Anzeigen sind verfügbar. Benutze:\n"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
-#, fuzzy
 msgid "Use both displays to show the same contents"
 msgstr "Denselben Inhalt auf beiden Anzeigen darstellen"
 
-#: ../dialogs/display-settings/main.c:68
+#: ../dialogs/display-settings/main.c:69
 msgid "Normal"
 msgstr "Normal"
 
-#: ../dialogs/display-settings/main.c:69
+#: ../dialogs/display-settings/main.c:70
 msgid "Left"
 msgstr "Links"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/main.c:71
 msgid "Inverted"
 msgstr "Invertiert"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:72
 msgid "Right"
 msgstr "Rechts"
 
-#: ../dialogs/display-settings/main.c:80
-#, fuzzy
-msgid "Horizontal"
-msgstr "Beides (horizontal)"
-
 #: ../dialogs/display-settings/main.c:81
-#, fuzzy
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#: ../dialogs/display-settings/main.c:82
 msgid "Vertical"
-msgstr "RGB (vertikal)"
+msgstr "Vertikal"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:105
 msgid "Minimal interface to set up an external output"
-msgstr ""
+msgstr "Minimale Schnittstelle zum Einstellen einer externen Bildschirmausgabe"
 
-#: ../dialogs/display-settings/main.c:173
+#: ../dialogs/display-settings/main.c:172
 #, c-format
 msgid "The previous configuration will be restored in %i seconds if you do not reply to this question."
-msgstr ""
+msgstr "Die vorherige Konfiguration wird in %i Sekunden wiederhergestellt, wenn Sie diese Frage nicht beantworten."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:507
+#: ../dialogs/display-settings/main.c:506
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:653
+#: ../dialogs/display-settings/main.c:652
 msgid "The last active output must not be disabled, the system would be unusable."
-msgstr ""
+msgstr "Die letzte, noch aktivierte Ausgabe darf nicht abgeschaltet werden, da das System sonst unbrauchbar wird."
 
-#: ../dialogs/display-settings/main.c:655
+#: ../dialogs/display-settings/main.c:654
 msgid "Selected output not disabled"
-msgstr ""
+msgstr "Ausgewählte Ausgabe nicht abgeschaltet"
 
-#: ../dialogs/display-settings/main.c:1077
-#: ../dialogs/display-settings/xfce-randr.c:259
+#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/xfce-randr.c:260
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Konnte die verwendete Version der RandR-Erweiterung nicht feststellen."
 
-#: ../dialogs/display-settings/main.c:1078
-#: ../dialogs/display-settings/main.c:1122
-#, fuzzy
+#: ../dialogs/display-settings/main.c:1079
+#: ../dialogs/display-settings/main.c:1123
 msgid "Unable to start the Xfce Display Settings"
-msgstr "Kann die Xfce4-Anzeigeeinstellungen nicht starten"
+msgstr "Kann die Xfce-Anzeigeeinstellungen nicht starten"
 
-#: ../dialogs/display-settings/main.c:1108
-#, fuzzy
+#: ../dialogs/display-settings/main.c:1109
 msgid "NVIDIA Settings"
-msgstr "Einstellungen"
+msgstr "Einstellungen (NVIDIA)"
 
-#: ../dialogs/display-settings/main.c:1116
-#, fuzzy
+#: ../dialogs/display-settings/main.c:1117
 msgid "ATI Settings"
-msgstr "Einstellungen"
+msgstr "Einstellungen (ATI)"
 
-#: ../dialogs/display-settings/main.c:1132
+#: ../dialogs/display-settings/main.c:1133
 msgid "Unable to launch the proprietary driver settings"
-msgstr ""
+msgstr "Kann die proprietären Treibereinstellungen nicht laden"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:267
+#: ../dialogs/display-settings/xfce-randr.c:268
 #, c-format
 msgid "This system is using RandR %d.%d. For the display settings to work version 1.2 is required at least"
 msgstr "Dieses System verwendet RandR in der Version %d.%d. Damit die Anzeigeneinstellungen funktionieren, ist mindestens Version 1.2 erforderlich."
 
 #. set error
-#: ../dialogs/display-settings/xfce-randr.c:292
+#: ../dialogs/display-settings/xfce-randr.c:293
 #, c-format
 msgid "The video driver does not support video outputs"
-msgstr ""
+msgstr "Der Videotreiber unterstützt keine Videoausgabe"
 
-#: ../dialogs/display-settings/xfce-randr.c:556
+#: ../dialogs/display-settings/xfce-randr.c:557
 msgid "Laptop"
 msgstr "Laptop"
 
-#: ../dialogs/display-settings/xfce-randr.c:577
+#: ../dialogs/display-settings/xfce-randr.c:578
 msgid "Monitor"
 msgstr "Bildschirm"
 
-#: ../dialogs/display-settings/xfce-randr.c:580
+#: ../dialogs/display-settings/xfce-randr.c:581
 msgid "Television"
 msgstr "Fernseher"
 
-#: ../dialogs/display-settings/xfce-randr.c:584
+#: ../dialogs/display-settings/xfce-randr.c:585
 msgid "Digital display"
 msgstr "Digitalanzeige"
 
@@ -588,7 +575,6 @@ msgstr "Digitalanzeige"
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
 #: ../dialogs/display-settings/display-name.c:269
-#, fuzzy
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Unbekannt"
@@ -767,36 +753,36 @@ msgstr "Befehl"
 msgid "Shortcut"
 msgstr "Tastenkürzel"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:366
 msgid "Active"
 msgstr "Aktiv"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:367
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:370
 msgid "Layout"
 msgstr "Belegung"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:368
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:371
 msgid "Variant"
 msgstr "Variante"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:822
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:825
 msgid "Shortcut command may not be empty."
 msgstr "Der Befehl für das Tastenkürzel darf nicht leer sein."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:929
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:930
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:932
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:933
 msgid "Reset to Defaults"
 msgstr "Standardwerte setzen"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:934
 msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
 msgstr "Dies setzt alle Tastenkürzel auf ihre Standardwerte zurück. Möchten Sie dies wirklich?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:996
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:999
 msgid "The system defaults will be restored next time you log in."
 msgstr "Die Systemvorgaben werden wiederhergestellt, wenn Sie sich das nächste Mal anmelden."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:998
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1001
 msgid "Warning"
 msgstr "Warnung"
 
