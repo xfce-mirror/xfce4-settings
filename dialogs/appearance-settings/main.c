@@ -347,6 +347,7 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                     {
                         tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (list_store), &iter);
                         gtk_tree_selection_select_path (gtk_tree_view_get_selection (tree_view), tree_path);
+                        gtk_tree_view_scroll_to_cell (tree_view, tree_path, NULL, TRUE, 0.5, 0);
                         gtk_tree_path_free (tree_path);
                     }
                 }
@@ -468,6 +469,7 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                 {
                     tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (list_store), &iter);
                     gtk_tree_selection_select_path (gtk_tree_view_get_selection (tree_view), tree_path);
+                    gtk_tree_view_scroll_to_cell (tree_view, tree_path, NULL, TRUE, 0.5, 0);
                     gtk_tree_path_free (tree_path);
                 }
 
@@ -602,17 +604,69 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
     }
     else if (strcmp (property_name, "/Net/ThemeName") == 0)
     {
+        GtkTreeIter iter;
+        gboolean    reload;
+
         object = gtk_builder_get_object (builder, "gtk_theme_treeview");
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
-        gtk_list_store_clear (GTK_LIST_STORE (model));
-        appearance_settings_load_ui_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+        reload = TRUE;
+
+        if (gtk_tree_selection_get_selected (gtk_tree_view_get_selection (GTK_TREE_VIEW (object)),
+                                             &model,
+                                             &iter))
+        {
+            gchar *selected_name;
+            gchar *new_name;
+
+            gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &selected_name, -1);
+
+            new_name = xfconf_channel_get_string (channel, property_name, NULL);
+
+            reload = (strcmp (new_name, selected_name) != 0);
+
+            g_free (selected_name);
+            g_free (new_name);
+        }
+
+        if (reload)
+        {
+            gtk_list_store_clear (GTK_LIST_STORE (model));
+            appearance_settings_load_ui_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+        }
     }
     else if (strcmp (property_name, "/Net/IconThemeName") == 0)
     {
+        GtkTreeIter iter;
+        gboolean    reload;
+
+        reload = TRUE;
+
         object = gtk_builder_get_object (builder, "icon_theme_treeview");
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
-        gtk_list_store_clear (GTK_LIST_STORE (model));
-        appearance_settings_load_icon_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+
+        if (gtk_tree_selection_get_selected (gtk_tree_view_get_selection (GTK_TREE_VIEW (object)),
+                                             &model,
+                                             &iter))
+        {
+            gchar *selected_name;
+            gchar *new_name;
+
+            gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &selected_name, -1);
+
+            new_name = xfconf_channel_get_string (channel, property_name, NULL);
+
+            reload = (strcmp (new_name, selected_name) != 0);
+
+            g_free (selected_name);
+            g_free (new_name);
+        }
+
+
+        if (reload)
+        {
+            gtk_list_store_clear (GTK_LIST_STORE (model));
+            appearance_settings_load_icon_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+        }
     }
 }
 
