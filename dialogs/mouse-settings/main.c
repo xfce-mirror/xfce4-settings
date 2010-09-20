@@ -551,7 +551,7 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
 
     /* select the active theme in the treeview */
     gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), active_path, NULL, FALSE);
-    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), active_path, NULL, FALSE, 0.5, 0.0);
+    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), active_path, NULL, TRUE, 0.5, 0.0);
     gtk_tree_path_free (active_path);
 
     /* sort the store */
