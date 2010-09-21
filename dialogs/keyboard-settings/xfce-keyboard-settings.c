@@ -1013,6 +1013,8 @@ xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
   GtkTreeModel *model;
   GtkTreeIter   iter;
   gboolean      active;
+  gchar        *active_layout;
+  gchar        *active_variant;
   gchar        *val_layout;
   gchar        *val_variant;
   gchar        *variants;
@@ -1022,42 +1024,91 @@ xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
   view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
   gtk_tree_model_get_iter_first (model, &iter);
-  gtk_tree_model_get (model, &iter, XKB_TREE_ACTIVE, &active, XKB_TREE_LAYOUTS, &val_layout, XKB_TREE_VARIANTS, &val_variant, -1);
-  layouts = g_strdup (val_layout);
-  g_free (val_layout);
+  gtk_tree_model_get (model, &iter,
+                      XKB_TREE_ACTIVE, &active,
+                      XKB_TREE_LAYOUTS, &val_layout,
+                      XKB_TREE_VARIANTS, &val_variant, -1);
 
-  if (val_variant)
+  /* We put the active layout/variant at the beginning of the list so that it gets
+   * picked by xfce4-settings-helper on the next session start. */
+
+  active_layout = NULL;
+  active_variant = NULL;
+
+  if (val_layout)
     {
+      layouts = g_strdup (val_layout);
+      g_free (val_layout);
+
       variants = g_strdup (val_variant);
       g_free (val_variant);
     }
   else
-    variants = g_strdup ("");
+    {
+      layouts = g_strdup ("");
+      /* If the layout was NULL, we ignore the variant */
+      variants = g_strdup ("");
+    }
 
   while (gtk_tree_model_iter_next (model, &iter))
     {
-      gtk_tree_model_get (model, &iter, XKB_TREE_ACTIVE, &active, XKB_TREE_LAYOUTS, &val_layout, XKB_TREE_VARIANTS, &val_variant, -1);
-      tmp = g_strconcat (layouts, ",", val_layout, NULL);
-      g_free (val_layout);
-      g_free (layouts);
-      layouts = tmp;
+      gtk_tree_model_get (model, &iter,
+                          XKB_TREE_ACTIVE, &active,
+                          XKB_TREE_LAYOUTS, &val_layout,
+                          XKB_TREE_VARIANTS, &val_variant, -1);
 
-      if (val_variant)
+      if (active)
         {
-          tmp = g_strconcat (variants, ",", val_variant, NULL);
-          g_free (val_variant);
-          g_free (variants);
+          if (val_layout)
+            {
+              active_layout = g_strdup (val_layout);
+              g_free (val_layout);
+
+              active_variant = g_strdup (val_variant);
+              g_free (val_variant);
+            }
+          else
+            {
+              /* This should never happen, but still... */
+              active_layout = g_strdup ("");
+              active_variant = g_strdup ("");
+            }
         }
       else
         {
-          tmp = g_strconcat (variants, ",", NULL);
-          g_free (variants);
+          if (val_layout)
+            {
+              tmp = g_strconcat (layouts, ",", val_layout, NULL);
+              g_free (val_layout);
+              g_free (layouts);
+              layouts = tmp;
+
+              tmp = g_strconcat (variants, ",", val_variant, NULL);
+              g_free (val_variant);
+              g_free (variants);
+              variants = tmp;
+            }
         }
-        variants = tmp;
     }
 
-  xfconf_channel_set_string (settings->priv->keyboard_layout_channel, "/Default/XkbLayout", layouts);
-  xfconf_channel_set_string (settings->priv->keyboard_layout_channel, "/Default/XkbVariant", variants);
+  if (active_layout)
+    {
+      tmp = g_strconcat (active_variant, ",", variants, NULL);
+      g_free (variants);
+      variants = tmp;
+
+      tmp = g_strconcat (active_layout, ",", layouts, NULL);
+      g_free (layouts);
+      layouts = tmp;
+
+      g_free (active_layout);
+      g_free (active_variant);
+    }
+
+  xfconf_channel_set_string (settings->priv->keyboard_layout_channel,
+                             "/Default/XkbLayout", layouts);
+  xfconf_channel_set_string (settings->priv->keyboard_layout_channel,
+                             "/Default/XkbVariant", variants);
 
   g_free (layouts);
   g_free (variants);
@@ -1179,32 +1230,41 @@ xfce_keyboard_settings_active_layout_cb (GtkCellRendererToggle *cell,
 {
   GObject          *view;
   GtkTreeModel     *model;
-  GtkTreeIter       iter;
-  GtkTreePath      *path1,
-                   *path2;
-  gint             *column,
-                    group_id = 0;
-  gboolean          selected = FALSE;
+  GtkTreePath      *path;
+  GtkTreeIter       iter, iter2;
+  gint             *column;
 
   view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
-  path1 = gtk_tree_path_new_from_string (path_str);
   column = g_object_get_data (G_OBJECT (cell), "column");
-  gtk_tree_model_get_iter_first (model, &iter);
+  path = gtk_tree_path_new_from_string (path_str);
+
+  /* Unset the previous active item */
+  gtk_tree_model_get_iter_first (model, &iter2);
 
   do
     {
-      path2 = gtk_tree_model_get_path (model, &iter);
-      selected = (gtk_tree_path_compare (path1, path2) == 0);
-      gtk_list_store_set (GTK_LIST_STORE (model), &iter, column, selected, -1);
-      if (selected)
-          xkl_engine_lock_group (settings->priv->xkl_engine, group_id);
-      group_id++;
-      gtk_tree_path_free (path2);
-    }
-  while (gtk_tree_model_iter_next (model, &iter));
+      gboolean active;
 
-  gtk_tree_path_free (path1);
+      gtk_tree_model_get (model, &iter2, XKB_TREE_ACTIVE, &active, -1);
+
+      if (active)
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter2, XKB_TREE_ACTIVE, !active, -1);
+    }
+  while (gtk_tree_model_iter_next (model, &iter2));
+
+  /* Set the clicked item as active */
+  if (gtk_tree_model_get_iter (model, &iter, path))
+    {
+      gboolean active;
+
+      gtk_tree_model_get (model, &iter, XKB_TREE_ACTIVE, &active, -1);
+      gtk_list_store_set (GTK_LIST_STORE (model), &iter, XKB_TREE_ACTIVE, !active, -1);
+    }
+
+  xfce_keyboard_settings_set_layout (settings);
+
+  gtk_tree_path_free (path);
 }
 
 
