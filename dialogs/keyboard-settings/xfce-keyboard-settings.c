@@ -1397,6 +1397,19 @@ xfce_keyboard_settings_del_layout_button_cb (GtkWidget            *widget,
 
   if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
+      gboolean active;
+
+      gtk_tree_model_get (model, &iter, XKB_TREE_ACTIVE, &active, -1);
+
+      if (active)
+        {
+          GtkTreeIter iter2;
+
+          if (gtk_tree_model_get_iter_first (model, &iter2))
+            gtk_list_store_set (GTK_LIST_STORE (model), &iter2,
+                                XKB_TREE_ACTIVE, TRUE, -1);
+        }
+
       gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
       xfce_keyboard_settings_update_edit_button (GTK_TREE_VIEW (view), settings);
       xfce_keyboard_settings_update_layout_buttons (settings);
