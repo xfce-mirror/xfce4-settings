@@ -1159,8 +1159,8 @@ xfce_keyboard_settings_init_layout (XfceKeyboardSettings *settings)
       gchar         *layout_desc;
       gchar         *variant_desc;
 
-      litem = g_new0 (XklConfigItem, 1);
-      vitem = g_new0 (XklConfigItem, 1);
+      litem = xkl_config_item_new ();
+      vitem = xkl_config_item_new ();
 
       g_snprintf (litem->name, sizeof litem->name, "%s", *layout);
       g_snprintf (vitem->name, sizeof vitem->name, "%s", *variant);
@@ -1187,8 +1187,8 @@ xfce_keyboard_settings_init_layout (XfceKeyboardSettings *settings)
       if (*variant)
         variant++;
 
-      g_free (litem);
-      g_free (vitem);
+      g_object_unref (litem);
+      g_object_unref (vitem);
     }
 
   g_strfreev (layouts);
