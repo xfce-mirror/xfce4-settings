@@ -1023,7 +1023,8 @@ xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
   view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (view));
-  gtk_tree_model_get_iter_first (model, &iter);
+  if (!gtk_tree_model_get_iter_first (model, &iter))
+    return;
   gtk_tree_model_get (model, &iter,
                       XKB_TREE_LAYOUTS, &val_layout,
                       XKB_TREE_VARIANTS, &val_variant, -1);
@@ -1515,80 +1516,96 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
     {
       gboolean found;
 
-      gtk_tree_model_get_iter_first (model, &iter);
-      found = FALSE;
-
-      do
+      if (gtk_tree_model_get_iter_first (model, &iter))
         {
-          gchar *tmp_layout;
+          found = FALSE;
 
-          gtk_tree_model_get (model, &iter, XKB_AVAIL_LAYOUTS_TREE_ID, &tmp_layout, -1);
-          path = gtk_tree_model_get_path (model, &iter);
-
-          if (found)
-            break;
-
-          if (g_strcmp0 (tmp_layout, edit_layout) == 0 )
+          do
             {
-              if (edit_variant && g_strcmp0 (edit_variant, "") && gtk_tree_model_iter_has_child (model, &iter))
+              gchar *tmp_layout;
+
+              gtk_tree_model_get (model, &iter, XKB_AVAIL_LAYOUTS_TREE_ID, &tmp_layout, -1);
+              path = gtk_tree_model_get_path (model, &iter);
+
+              if (found)
+                break;
+
+              if (g_strcmp0 (tmp_layout, edit_layout) == 0 )
                 {
-                  GtkTreeIter iter2;
-                  gint n, i;
-
-                  n = gtk_tree_model_iter_n_children (model, &iter);
-
-                  for (i = 0; i < n; i ++)
+                  if (edit_variant && g_strcmp0 (edit_variant, "") && gtk_tree_model_iter_has_child (model, &iter))
                     {
-                      if (gtk_tree_model_iter_nth_child (model, &iter2, &iter, i))
+                      GtkTreeIter iter2;
+                      gint n, i;
+
+                      n = gtk_tree_model_iter_n_children (model, &iter);
+
+                      for (i = 0; i < n; i ++)
                         {
-                          gchar *tmp_variant;
-
-                          gtk_tree_model_get (model, &iter2, XKB_AVAIL_LAYOUTS_TREE_ID, &tmp_variant, -1);
-
-                          if (g_strcmp0 (tmp_variant, edit_variant) == 0)
+                          if (gtk_tree_model_iter_nth_child (model, &iter2, &iter, i))
                             {
-                              GtkTreePath *path2;
+                              gchar *tmp_variant;
 
-                              path2 = gtk_tree_model_get_path (model, &iter2);
+                              gtk_tree_model_get (model, &iter2, XKB_AVAIL_LAYOUTS_TREE_ID, &tmp_variant, -1);
 
-                              gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (layout_selection_view),
-                                                                           path2, NULL,
-                                                                           TRUE, 0.5, 0);
-                              gtk_tree_view_expand_row (GTK_TREE_VIEW (layout_selection_view),
-                                                        path,
-                                                        TRUE);
-                              gtk_tree_selection_select_iter (selection, &iter2);
+                              if (g_strcmp0 (tmp_variant, edit_variant) == 0)
+                                {
+                                  GtkTreePath *path2;
 
-                              found = TRUE;
+                                  path2 = gtk_tree_model_get_path (model, &iter2);
+
+                                  gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (layout_selection_view),
+                                                                               path2, NULL,
+                                                                               TRUE, 0.5, 0);
+                                  gtk_tree_view_expand_row (GTK_TREE_VIEW (layout_selection_view),
+                                                            path,
+                                                            TRUE);
+                                  gtk_tree_selection_select_iter (selection, &iter2);
+
+                                  found = TRUE;
+                                  g_free (tmp_variant);
+                                  gtk_tree_path_free (path2);
+                                  break;
+                                }
+
                               g_free (tmp_variant);
-                              gtk_tree_path_free (path2);
-                              break;
                             }
-
-                          g_free (tmp_variant);
                         }
                     }
-                }
-              else
+                else
+                  {
+                    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (layout_selection_view),
+                                                                 path, NULL,
+                                                                 TRUE, 0.5, 0);
+                    gtk_tree_selection_select_iter (selection, &iter);
+                    found = TRUE;
+                    break;
+                  }
+              }
+
+              gtk_tree_path_free (path);
+              g_free (tmp_layout);
+            }
+          while (gtk_tree_model_iter_next (model, &iter));
+
+          if (!found)
+            {
+              /* We did not find the iter to be edited, fallback to the first one */
+              if (gtk_tree_model_get_iter_first (model, &iter))
                 {
-                  gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (layout_selection_view),
-                                                               path, NULL,
-                                                               TRUE, 0.5, 0);
+                  path = gtk_tree_model_get_path (model, &iter);
                   gtk_tree_selection_select_iter (selection, &iter);
-                  found = TRUE;
-                  break;
+
+                  gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (layout_selection_view),
+                                                path, NULL,
+                                                TRUE, 0.5, 0);
                 }
             }
-
-          gtk_tree_path_free (path);
-          g_free (tmp_layout);
         }
-      while (gtk_tree_model_iter_next (model, &iter));
-
-      if (!found)
+    }
+  else
+    {
+      if (gtk_tree_model_get_iter_first (model, &iter))
         {
-          /* We did not find the iter to be edited, fallback to the first one */
-          gtk_tree_model_get_iter_first (model, &iter);
           path = gtk_tree_model_get_path (model, &iter);
           gtk_tree_selection_select_iter (selection, &iter);
 
@@ -1596,16 +1613,6 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
                                         path, NULL,
                                         TRUE, 0.5, 0);
         }
-    }
-  else
-    {
-      gtk_tree_model_get_iter_first (model, &iter);
-      path = gtk_tree_model_get_path (model, &iter);
-      gtk_tree_selection_select_iter (selection, &iter);
-
-      gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (layout_selection_view),
-                                    path, NULL,
-                                    TRUE, 0.5, 0);
     }
 
   val_layout = NULL;
