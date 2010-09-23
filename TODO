@@ -16,7 +16,6 @@ Keyboard settings
 Mouse Settings (Nick)
 ------------------------------------------------------------------------
 
-  * Figure out the needed Xi and Xcursor dependency version.
   * Try to make inputproto 1.4.0 and libxi 1.2.0 optionnal.
 
 Settings Manager
@@ -25,22 +24,8 @@ Settings Manager
   * Add embed support to all dialogs (not only those in xfce4-settings).
   * Figure out a way to avoid the black glitches that happen when 
     embedding dialogs into the main dialog sometimes.
-  * Consider adding an X-Xfce-Embed=true key to the .desktop files of
-    settings dialogs so that the main dialog can check if they support
-    the embed feature or not.
   * Come up with a solution for help buttons (maybe using an additonal
     .desktop file key with a help URL for each settings dialog?).
   * Maybe make addding dialog-specific buttons to the button bar of the
     main dialog possible, dunno.
 
-
-Display Settings (Nick)
-------------------------------------------------------------------------
-
-  * Make it all work for individual screens.
-  * Simple dual screen support (2 monitors only).
-  * Figure out the needed Xrandr and Xxf86vm dependency version.
-  * Maybe some sort of stored configurations for different setups
-    (probably not in 4.6).
-  * Hotplug support. Notify the user (with button to change the
-    display settings). Could be integrated with the stored configs.
