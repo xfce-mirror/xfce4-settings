@@ -139,6 +139,10 @@ static void                      xfce_keyboard_settings_edit_layout_button_cb (G
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_add_layout_button_cb  (GtkWidget                 *widget,
                                                                                XfceKeyboardSettings      *settings);
+static void                      xfce_keyboard_settings_row_activated_cb      (GtkTreeView               *tree_view,
+                                                                               GtkTreePath               *path,
+                                                                               GtkTreeViewColumn         *column,
+                                                                               XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_del_layout_button_cb  (GtkWidget                 *widget,
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_add_variant_to_list   (XklConfigRegistry         *config_registry,
@@ -369,6 +373,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   gtk_tree_view_set_model (GTK_TREE_VIEW (xkb_layout_view), GTK_TREE_MODEL (list_store));
   xfce_keyboard_settings_init_layout (settings);
   g_signal_connect (G_OBJECT (xkb_layout_view), "cursor-changed", G_CALLBACK (xfce_keyboard_settings_active_layout_cb), settings);
+  g_signal_connect (G_OBJECT (xkb_layout_view), "row-activated", G_CALLBACK (xfce_keyboard_settings_row_activated_cb), settings);
 
   /* Layout buttons */
   xkb_layout_add_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_add_button");
@@ -1255,6 +1260,16 @@ xfce_keyboard_settings_active_layout_cb (GtkTreeView           *view,
   xfce_keyboard_settings_set_layout (settings);
 }
 
+
+
+static void
+xfce_keyboard_settings_row_activated_cb (GtkTreeView          *tree_view,
+                                         GtkTreePath          *path,
+                                         GtkTreeViewColumn    *column,
+                                         XfceKeyboardSettings *settings)
+{
+  xfce_keyboard_settings_edit_layout_button_cb (NULL, settings);
+}
 
 
 static void
