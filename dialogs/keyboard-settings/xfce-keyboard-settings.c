@@ -364,6 +364,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   /* Keyboard layout/variant treeview */
   settings->priv->layout_selection_treestore = NULL;
   xkb_layout_view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
+  gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (xkb_layout_view)), GTK_SELECTION_BROWSE);
 
   renderer = gtk_cell_renderer_text_new ();
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (xkb_layout_view), -1, _("Layout"), renderer, "text", XKB_TREE_LAYOUTS_NAMES, NULL);
@@ -1493,6 +1494,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
   keyboard_layout_selection_dialog = gtk_builder_get_object (GTK_BUILDER (settings), "keyboard-layout-selection-dialog");
   layout_selection_view = gtk_builder_get_object (GTK_BUILDER (settings), "layout_selection_view");
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (layout_selection_view));
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
   if (!settings->priv->layout_selection_treestore)
     {
