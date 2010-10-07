@@ -983,9 +983,7 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
     {
         /* set the treeview model */
         gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
-#if GTK_CHECK_VERSION (2, 12, 0)
         gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_DEVICE_DISPLAY_NAME);
-#endif
 
         /* icon renderer */
         renderer = gtk_cell_renderer_pixbuf_new ();
