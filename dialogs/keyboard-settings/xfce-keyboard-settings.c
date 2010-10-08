@@ -1029,6 +1029,8 @@ xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
   gtk_tree_model_get (model, &iter,
                       XKB_TREE_LAYOUTS, &val_layout,
                       XKB_TREE_VARIANTS, &val_variant, -1);
+  if (val_variant == NULL)
+      val_variant = g_strdup("");
 
   /* We put the active layout/variant at the beginning of the list so that it gets
    * picked by xfce4-settings-helper on the next session start. */
@@ -1056,6 +1058,8 @@ xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
       gtk_tree_model_get (model, &iter,
                           XKB_TREE_LAYOUTS, &val_layout,
                           XKB_TREE_VARIANTS, &val_variant, -1);
+      if (val_variant == NULL)
+          val_variant = g_strdup("");
 
       if (gtk_tree_selection_iter_is_selected (selection, &iter))
         {
