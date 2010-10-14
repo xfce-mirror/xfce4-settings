@@ -923,6 +923,10 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
             if (G_UNLIKELY (num_buttons <= 0))
                 continue;
 
+            /* ignore XTEST device */
+            if (g_str_has_prefix (device_info->name, "Virtual core XTEST"))
+                continue;
+
             /* create a valid xfconf device name */
             device_name = mouse_settings_device_xfconf_name (device_info->name);
 
