@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-28 23:05+0200\n"
-"PO-Revision-Date: 2010-01-23 13:53+0200\n"
+"POT-Creation-Date: 2010-10-16 10:08+0000\n"
+"PO-Revision-Date: 2010-10-16 16:39+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
-"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -194,19 +194,21 @@ msgstr "kuvapistettä/s"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "Asetustenhallinnan pistoke"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "PISTOKE"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:104
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
 #: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
@@ -214,29 +216,29 @@ msgid "Version information"
 msgstr "Versiotiedot"
 
 #: ../dialogs/accessibility-settings/main.c:143
-#: ../dialogs/appearance-settings/main.c:773
-#: ../dialogs/display-settings/main.c:1045
+#: ../dialogs/appearance-settings/main.c:827
+#: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/mouse-settings/main.c:1188 ../xfce4-settings-editor/main.c:63
 #: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Saat ohjeita komennolla \"%s --help\"."
 
 #: ../dialogs/accessibility-settings/main.c:162
-#: ../dialogs/appearance-settings/main.c:792
-#: ../dialogs/display-settings/main.c:1064
+#: ../dialogs/appearance-settings/main.c:846
+#: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:82
 #: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 
 #: ../dialogs/accessibility-settings/main.c:163
-#: ../dialogs/appearance-settings/main.c:793
-#: ../dialogs/display-settings/main.c:1065
+#: ../dialogs/appearance-settings/main.c:847
+#: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:83
 #: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -259,7 +261,7 @@ msgid "Appearance"
 msgstr "Ulkoasu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:83
 msgid "Both"
 msgstr "Molemmat"
 
@@ -350,8 +352,8 @@ msgid "Menus and Buttons"
 msgstr "Valikot ja painikkeet"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
-#: ../dialogs/appearance-settings/main.c:670
-#: ../dialogs/display-settings/main.c:79
+#: ../dialogs/appearance-settings/main.c:724
+#: ../dialogs/display-settings/main.c:80
 msgid "None"
 msgstr "Ei mitään"
 
@@ -439,44 +441,45 @@ msgstr "_Asetukset"
 msgid "_Toolbar Style"
 msgstr "_Työkalupalkkien tyyli"
 
-#: ../dialogs/appearance-settings/main.c:674
+#: ../dialogs/appearance-settings/main.c:728
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:678
+#: ../dialogs/appearance-settings/main.c:732
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:682
+#: ../dialogs/appearance-settings/main.c:736
 msgid "Vertical RGB"
 msgstr "Pystysuuntainen RGB"
 
-#: ../dialogs/appearance-settings/main.c:686
+#: ../dialogs/appearance-settings/main.c:740
 msgid "Vertical BGR"
 msgstr "Pystysuuntainen BGR"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr ""
+msgstr "<big><b>Haluatko säilyttää nämä asetukset?</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
-#, fuzzy
 msgid "Confirmation"
-msgstr "Versiotiedot"
+msgstr "Vahvistus"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Keep this configuration"
-msgstr ""
+msgstr "Säilytä nämä asetukset"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Restore the previous configuration"
-msgstr ""
+msgstr "Palauta edelliset asetukset"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid ""
 "The previous configuration will be restored in 10 seconds if you do not "
 "reply to this question."
 msgstr ""
+"Edelliset asetukset palautetaan, jos et vastaa tähän kysymykseen kymmenen "
+"sekunnin kuluessa."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -493,9 +496,8 @@ msgid "R_esolution:"
 msgstr "_Tarkkuus:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
-#, fuzzy
 msgid "Ref_lection:"
-msgstr "_Tarkkuus:"
+msgstr "_Peilikuva:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
@@ -506,134 +508,131 @@ msgid "Ro_tation:"
 msgstr "_Kääntö:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-#, fuzzy
 msgid "_Use this output"
-msgstr "Yksityiskohtainen tulostus"
+msgstr "Käytä tätä lä_htöä"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Both displays cloned"
-msgstr ""
+msgstr "Molemmat näytöt kloonattu"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-#, fuzzy
 msgid "Display settings"
-msgstr "Näyttö"
+msgstr "Näyttöasetukset"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Several displays are available. Use:\n"
-msgstr ""
+msgstr "Käytettävissä useita näyttöjä. Käytä:\n"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Use both displays to show the same contents"
-msgstr ""
+msgstr "Näytä sama sisältö molemmilla näytöillä"
 
-#: ../dialogs/display-settings/main.c:68
+#: ../dialogs/display-settings/main.c:69
 msgid "Normal"
 msgstr "Normaali"
 
-#: ../dialogs/display-settings/main.c:69
+#: ../dialogs/display-settings/main.c:70
 msgid "Left"
 msgstr "Vasen"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/main.c:71
 msgid "Inverted"
 msgstr "Peilikuva"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:72
 msgid "Right"
 msgstr "Oikea"
 
-#: ../dialogs/display-settings/main.c:80
-#, fuzzy
-msgid "Horizontal"
-msgstr "Molemmat vaakasuunnassa"
-
 #: ../dialogs/display-settings/main.c:81
-#, fuzzy
+msgid "Horizontal"
+msgstr "Vaakasuunnassa"
+
+#: ../dialogs/display-settings/main.c:82
 msgid "Vertical"
-msgstr "Pystysuuntainen RGB"
+msgstr "Pystysuunnassa"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:105
 msgid "Minimal interface to set up an external output"
-msgstr ""
+msgstr "Yksinkertaisin tapa ottaa käyttöön ulkoinen kuvalähtö"
 
-#: ../dialogs/display-settings/main.c:173
+#: ../dialogs/display-settings/main.c:172
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
 "reply to this question."
 msgstr ""
+"Edelliset asetukset palautetaan %i sekunnin kuluttua, jos et vastaa tähän "
+"kysymykseen."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:507
+#: ../dialogs/display-settings/main.c:506
 #, c-format
 msgid "%.1f Hz"
-msgstr ""
+msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:653
+#: ../dialogs/display-settings/main.c:652
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
+"Vähintään yhden kuvalähdön on oltava aktiivinen, tai järjestelmä on "
+"käyttökelvoton.
 
-#: ../dialogs/display-settings/main.c:655
+#: ../dialogs/display-settings/main.c:654
 msgid "Selected output not disabled"
-msgstr ""
+msgstr "Valittua lähtöä ei poistettu käytöstä"
 
-#: ../dialogs/display-settings/main.c:1077
-#: ../dialogs/display-settings/xfce-randr.c:259
+#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/xfce-randr.c:260
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "RandR-laajennuksen versiota ei voi selvittää"
 
-#: ../dialogs/display-settings/main.c:1078
-#: ../dialogs/display-settings/main.c:1122
-#, fuzzy
+#: ../dialogs/display-settings/main.c:1079
+#: ../dialogs/display-settings/main.c:1123
 msgid "Unable to start the Xfce Display Settings"
-msgstr "Hyväksy muutokset ja kokeile uusia näyttöasetuksia"
+msgstr "Xfce:n näyttöasetussovellusta ei voi käynnistää"
 
-#: ../dialogs/display-settings/main.c:1108
-#, fuzzy
+#: ../dialogs/display-settings/main.c:1109
 msgid "NVIDIA Settings"
-msgstr "Asetukset"
+msgstr "NVIDIA:n asetukset"
 
-#: ../dialogs/display-settings/main.c:1116
-#, fuzzy
+#: ../dialogs/display-settings/main.c:1117
 msgid "ATI Settings"
-msgstr "Asetukset"
+msgstr "ATI:n asetukset"
 
-#: ../dialogs/display-settings/main.c:1132
+#: ../dialogs/display-settings/main.c:1133
 msgid "Unable to launch the proprietary driver settings"
-msgstr ""
+msgstr "Näytönohjainvalmistajan asetussovellusta ei voi käynnistää"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:267
-#, fuzzy, c-format
+#: ../dialogs/display-settings/xfce-randr.c:268
+#, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr ""
 "Järjestelmä käyttää RandR-laajennuksen versiota %d.%d. Näytön asetukset "
-"vaativat toimiakseen vähintään version 1.1"
+"vaativat toimiakseen vähintään version 1.2"
 
 #. set error
-#: ../dialogs/display-settings/xfce-randr.c:292
+#: ../dialogs/display-settings/xfce-randr.c:293
 #, c-format
 msgid "The video driver does not support video outputs"
-msgstr ""
+msgstr "Näytönohjainajuri ei tue kuvalähtöjä"
 
-#: ../dialogs/display-settings/xfce-randr.c:556
+#: ../dialogs/display-settings/xfce-randr.c:557
 msgid "Laptop"
 msgstr "Kannettava"
 
-#: ../dialogs/display-settings/xfce-randr.c:577
+#: ../dialogs/display-settings/xfce-randr.c:578
 msgid "Monitor"
-msgstr "Monitori"
+msgstr "Näyttö"
 
-#: ../dialogs/display-settings/xfce-randr.c:580
+#: ../dialogs/display-settings/xfce-randr.c:581
 msgid "Television"
 msgstr "Televisio"
 
-#: ../dialogs/display-settings/xfce-randr.c:584
+#: ../dialogs/display-settings/xfce-randr.c:585
 msgid "Digital display"
 msgstr "Digitaalinäyttö"
 
@@ -643,7 +642,7 @@ msgstr "Digitaalinäyttö"
 #: ../dialogs/display-settings/display-name.c:269
 msgctxt "Monitor vendor"
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:126
@@ -817,36 +816,32 @@ msgstr "Ei voi yhdistää xfconf-taustaprosessiin. Syy: %s"
 msgid "Could not create the settings dialog."
 msgstr "Asetusdialogia ei voi luoda."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:287
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:291
 msgid "Command"
 msgstr "Komento"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:292
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:296
 msgid "Shortcut"
 msgstr "Pikanäppäin"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
-msgid "Active"
-msgstr "Käytössä"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:367
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:370
 msgid "Layout"
 msgstr "Asettelu"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:368
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:371
 msgid "Variant"
 msgstr "Muunnelma"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:822
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:825
 msgid "Shortcut command may not be empty."
 msgstr "Pikanäppäimen komento ei saa olla tyhjä."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:929
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:930
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:932
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:933
 msgid "Reset to Defaults"
 msgstr "Palauta oletukset"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:934
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -854,11 +849,11 @@ msgstr ""
 "Tämä palauttaa kaikki pikanäppäimet oletusarvoihinsa. Oletko varma, että "
 "haluat tehdä tämän?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:996
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:999
 msgid "The system defaults will be restored next time you log in."
 msgstr "Järjestelmän oletukset palautetaan seuraavan kirjautumisen yhteydessä."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:998
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1001
 msgid "Warning"
 msgstr "Varoitus"
 
@@ -1267,6 +1262,9 @@ msgid ""
 msgstr ""
 "%s: %s\n"
 "Kirjoittamalla %s --help saat täyden listan komentorivivalitsimista.\n"
+
+#~ msgid "Active"
+#~ msgstr "Käytössä"
 
 #~ msgid "%d Hz"
 #~ msgstr "%d Hz"
