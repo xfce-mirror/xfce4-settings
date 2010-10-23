@@ -51,6 +51,9 @@ static void xfce_keyboards_helper_channel_property_changed  (XfconfChannel      
                                                              const gchar              *property_name,
                                                              const GValue             *value,
                                                              XfceKeyboardsHelper      *helper);
+static void xfce_keyboards_helper_restore_numlock_state     (XfconfChannel            *channel);
+static void xfce_keyboards_helper_save_numlock_state        (XfconfChannel            *channel);
+
 
 
 
@@ -103,6 +106,7 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
         /* load settings */
         xfce_keyboards_helper_set_auto_repeat_mode (helper);
         xfce_keyboards_helper_set_repeat_rate (helper);
+        xfce_keyboards_helper_restore_numlock_state (helper->channel);
     }
     else
     {
@@ -117,6 +121,9 @@ static void
 xfce_keyboards_helper_finalize (GObject *object)
 {
     XfceKeyboardsHelper *helper = XFCE_KEYBOARDS_HELPER (object);
+
+    /* Save the numlock state */
+    xfce_keyboards_helper_save_numlock_state (helper->channel);
 
     /* release the channel */
     if (G_LIKELY (helper->channel))
@@ -212,4 +219,38 @@ xfce_keyboards_helper_channel_property_changed (XfconfChannel      *channel,
         /* update repeat rate */
         xfce_keyboards_helper_set_repeat_rate (helper);
     }
+}
+
+
+
+static void
+xfce_keyboards_helper_restore_numlock_state (XfconfChannel *channel)
+{
+    unsigned int  numlock_mask;
+    Display      *dpy;
+    gboolean      state;
+
+    dpy = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    state = xfconf_channel_get_bool (channel, "/Default/Numlock", TRUE);
+
+    numlock_mask = XkbKeysymToModifiers (dpy, XK_Num_Lock);
+
+    XkbLockModifiers (dpy, XkbUseCoreKbd, numlock_mask, state ? numlock_mask : 0);
+}
+
+
+
+static void
+xfce_keyboards_helper_save_numlock_state (XfconfChannel *channel)
+{
+    Display *dpy;
+    Bool     numlock_state;
+    Atom     numlock;
+
+    dpy = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    numlock = XInternAtom(dpy, "Num Lock", False);
+
+    XkbGetNamedIndicator (dpy, numlock, NULL, &numlock_state, NULL, NULL);
+
+    xfconf_channel_set_bool (channel, "/Default/Numlock", numlock_state);
 }
