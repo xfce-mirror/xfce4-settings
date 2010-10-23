@@ -45,6 +45,7 @@
 #include "keyboard-layout.h"
 
 static void xfce_keyboard_layout_helper_finalize                  (GObject                       *object);
+static void xfce_keyboard_layout_helper_process_xmodmap           (void);
 static void xfce_keyboard_layout_helper_set_model                 (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_layout                (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_variant               (XfceKeyboardLayoutHelper      *helper);
@@ -108,6 +109,8 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     xfce_keyboard_layout_helper_set_model (helper);
     xfce_keyboard_layout_helper_set_layout (helper);
     xfce_keyboard_layout_helper_set_variant (helper);
+
+    xfce_keyboard_layout_helper_process_xmodmap ();
 }
 
 static void
@@ -120,6 +123,30 @@ xfce_keyboard_layout_helper_finalize (GObject *object)
         g_object_unref (G_OBJECT (helper->channel));
 
     (*G_OBJECT_CLASS (xfce_keyboard_layout_helper_parent_class)->finalize) (object);
+}
+
+static void
+xfce_keyboard_layout_helper_process_xmodmap (void)
+{
+    const gchar *xmodmap_path;
+
+    xmodmap_path = g_build_filename (xfce_get_homedir (), ".Xmodmap", NULL);
+
+    if (g_file_test (xmodmap_path, G_FILE_TEST_EXISTS))
+    {
+        /* There is a .Xmodmap file, try to use it */
+        const gchar *xmodmap_command;
+        GError      *error = NULL;
+
+        xmodmap_command = g_strconcat ("xmodmap ", xmodmap_path, NULL);
+
+        /* Launch the xmodmap command and only print errors when in debugging mode */
+        if (!g_spawn_command_line_async (xmodmap_command, &error))
+        {
+            DBG ("Xmodmap call failed: %s", error->message);
+            g_error_free (error);
+        }
+    }
 }
 
 static void
@@ -208,4 +235,6 @@ xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channe
     {
         xfce_keyboard_layout_helper_set_variant (helper);
     }
+
+    xfce_keyboard_layout_helper_process_xmodmap ();
 }
