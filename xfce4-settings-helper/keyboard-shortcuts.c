@@ -72,6 +72,7 @@ static void            xfce_keyboard_shortcuts_helper_shortcut_removed   (XfceSh
                                                                           XfceKeyboardShortcutsHelper      *helper);
 static void            xfce_keyboard_shortcuts_helper_shortcut_activated (XfceShortcutsGrabber             *grabber,
                                                                           const gchar                      *shortcut,
+                                                                          gint                              timestamp,
                                                                           XfceKeyboardShortcutsHelper      *helper);
 static void            xfce_keyboard_shortcuts_helper_load_shortcuts     (XfceKeyboardShortcutsHelper      *helper);
 
@@ -185,7 +186,7 @@ xfce_keyboard_shortcuts_helper_set_property (GObject      *object,
 
 
 
-static void 
+static void
 xfce_keyboard_shortcuts_helper_shortcut_added (XfceShortcutsProvider       *provider,
                                                const gchar                 *shortcut,
                                                XfceKeyboardShortcutsHelper *helper)
@@ -240,11 +241,13 @@ xfce_keyboard_shortcuts_helper_load_shortcuts (XfceKeyboardShortcutsHelper *help
 static void
 xfce_keyboard_shortcuts_helper_shortcut_activated (XfceShortcutsGrabber        *grabber,
                                                    const gchar                 *shortcut,
+                                                   gint                         timestamp,
                                                    XfceKeyboardShortcutsHelper *helper)
 {
-  XfceShortcut *sc;
-  GdkScreen    *screen;
-  GError       *error = NULL;
+  XfceShortcut  *sc;
+  GError        *error = NULL;
+  gchar        **argv;
+  gboolean       succeed;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
   g_return_if_fail (XFCE_IS_SHORTCUTS_PROVIDER (helper->provider));
@@ -261,11 +264,23 @@ xfce_keyboard_shortcuts_helper_shortcut_activated (XfceShortcutsGrabber        *
   if (G_UNLIKELY (sc == NULL))
     return;
 
-  DBG ("command = %s", sc->command);
+  DBG ("command = %s, snotify = %s (time = %d)",
+       sc->command, sc->snotify ? "true" : "false", timestamp);
 
-  /* Spawn command on active screen */
-  screen = xfce_gdk_screen_get_active (NULL);
-  if (!xfce_spawn_command_line_on_screen (screen, sc->command, FALSE, FALSE, &error))
+  /* Handle the argv ourselfs, because xfce_spawn_command_line_on_screen() does
+   * not accept a custom timestamp for startup notification */
+  succeed = g_shell_parse_argv (sc->command, NULL, &argv, &error);
+  if (G_LIKELY (succeed))
+    {
+      succeed = xfce_spawn_on_screen_with_child_watch (xfce_gdk_screen_get_active (NULL),
+                                                       NULL, argv, NULL,
+                                                       G_SPAWN_SEARCH_PATH, sc->snotify,
+                                                       timestamp, NULL, NULL, &error);
+
+      g_strfreev (argv);
+    }
+
+  if (!succeed)
     {
       g_error ("Failed to spawn command \"%s\": %s", sc->command, error->message);
       g_error_free (error);

@@ -32,11 +32,10 @@
 
 
 
-static void command_dialog_dispose         (GObject             *object);
-static void command_dialog_finalize        (GObject             *object);
 static void command_dialog_create_contents (CommandDialog      *dialog,
                                             const gchar        *shortcut,
-                                            const gchar        *action);
+                                            const gchar        *action,
+                                            gboolean            snotify);
 static void command_dialog_button_clicked  (CommandDialog      *dialog);
 
 
@@ -52,6 +51,7 @@ struct _CommandDialog
 
   GtkWidget *entry;
   GtkWidget *button;
+  GtkWidget *sn_option;
 };
 
 
@@ -63,11 +63,7 @@ G_DEFINE_TYPE (CommandDialog, command_dialog, XFCE_TYPE_TITLED_DIALOG)
 static void
 command_dialog_class_init (CommandDialogClass *klass)
 {
-  GObjectClass *gobject_class;
 
-  gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->dispose = command_dialog_dispose;
-  gobject_class->finalize = command_dialog_finalize;
 }
 
 
@@ -81,31 +77,16 @@ command_dialog_init (CommandDialog *dialog)
 
 
 
-static void
-command_dialog_dispose (GObject *object)
-{
-  (*G_OBJECT_CLASS (command_dialog_parent_class)->dispose) (object);
-}
-
-
-
-static void
-command_dialog_finalize (GObject *object)
-{
-  (*G_OBJECT_CLASS (command_dialog_parent_class)->finalize) (object);
-}
-
-
-
 GtkWidget*
 command_dialog_new (const gchar *shortcut,
-                    const gchar *action)
+                    const gchar *action,
+                    gboolean     snotify)
 {
   CommandDialog *dialog;
 
   dialog = COMMAND_DIALOG (g_object_new (TYPE_COMMAND_DIALOG, NULL));
 
-  command_dialog_create_contents (dialog, shortcut, action);
+  command_dialog_create_contents (dialog, shortcut, action, snotify);
 
   return GTK_WIDGET (dialog);
 }
@@ -115,7 +96,8 @@ command_dialog_new (const gchar *shortcut,
 static void
 command_dialog_create_contents (CommandDialog *dialog,
                                 const gchar   *shortcut,
-                                const gchar   *action)
+                                const gchar   *action,
+                                gboolean       snotify)
 {
   GtkWidget *button;
   GtkWidget *table;
@@ -140,7 +122,7 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_widget_grab_default (button);
   gtk_widget_show (button);
 
-  table = gtk_table_new (2, 2, FALSE);
+  table = gtk_table_new (3, 2, FALSE);
   gtk_table_set_row_spacings (GTK_TABLE (table), 6);
   gtk_table_set_col_spacings (GTK_TABLE (table), 12);
   gtk_container_set_border_width (GTK_CONTAINER (table), 6);
@@ -177,6 +159,11 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_box_pack_start (GTK_BOX (hbox), dialog->button, FALSE, TRUE, 0);
   gtk_widget_show (dialog->button);
 
+  dialog->sn_option = gtk_check_button_new_with_mnemonic (_("Use _startup notification"));
+  gtk_table_attach (GTK_TABLE (table), dialog->sn_option, 1, 2, 2, 3, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->sn_option), snotify);
+  gtk_widget_show (dialog->sn_option);
+
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 }
 
@@ -187,6 +174,16 @@ command_dialog_get_command (CommandDialog *dialog)
 {
   g_return_val_if_fail (IS_COMMAND_DIALOG (dialog), NULL);
   return gtk_entry_get_text (GTK_ENTRY (dialog->entry));
+}
+
+
+
+
+gboolean
+command_dialog_get_snotify (CommandDialog *dialog)
+{
+  g_return_val_if_fail (IS_COMMAND_DIALOG (dialog), FALSE);
+  return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->sn_option));
 }
 
 
