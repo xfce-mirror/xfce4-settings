@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-31 04:07+0000\n"
+"POT-Creation-Date: 2010-11-02 23:08+0000\n"
 "PO-Revision-Date: 2010-08-03 10:14+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
@@ -186,29 +186,29 @@ msgid "Version information"
 msgstr "Нұсқа ақпараты"
 
 #: ../dialogs/accessibility-settings/main.c:143
-#: ../dialogs/appearance-settings/main.c:773
+#: ../dialogs/appearance-settings/main.c:827
 #: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/mouse-settings/main.c:1188 ../xfce4-settings-editor/main.c:63
 #: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Көмек үшін '%s --help' енгізіңіз."
 
 #: ../dialogs/accessibility-settings/main.c:162
-#: ../dialogs/appearance-settings/main.c:792
+#: ../dialogs/appearance-settings/main.c:846
 #: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:82
 #: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce өндіру тобы. Барлық құқықтары қорғалған."
 
 #: ../dialogs/accessibility-settings/main.c:163
-#: ../dialogs/appearance-settings/main.c:793
+#: ../dialogs/appearance-settings/main.c:847
 #: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:83
 #: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -306,7 +306,7 @@ msgid "Menus and Buttons"
 msgstr "Мәзірлер мен батырмалар"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
-#: ../dialogs/appearance-settings/main.c:670
+#: ../dialogs/appearance-settings/main.c:724
 #: ../dialogs/display-settings/main.c:80
 msgid "None"
 msgstr "Ешнәрсе"
@@ -387,19 +387,19 @@ msgstr "Ба_птаулар"
 msgid "_Toolbar Style"
 msgstr "П_анель стилі"
 
-#: ../dialogs/appearance-settings/main.c:674
+#: ../dialogs/appearance-settings/main.c:728
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:678
+#: ../dialogs/appearance-settings/main.c:732
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:682
+#: ../dialogs/appearance-settings/main.c:736
 msgid "Vertical RGB"
 msgstr "Вертикалды RGB"
 
-#: ../dialogs/appearance-settings/main.c:686
+#: ../dialogs/appearance-settings/main.c:740
 msgid "Vertical BGR"
 msgstr "Вертикалды BGR"
 
@@ -576,47 +576,51 @@ msgid "Unknown"
 msgstr "Белгісіз"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:126
+#: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
 msgstr "Жарлық командасы"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:150
+#: ../dialogs/keyboard-settings/command-dialog.c:132
 msgid "Shortcut:"
 msgstr "Жарлық:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:160
+#: ../dialogs/keyboard-settings/command-dialog.c:142
 msgid "Command:"
 msgstr "Команда:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:212
+#: ../dialogs/keyboard-settings/command-dialog.c:162
+msgid "Use _startup notification"
+msgstr "Іске қ_осылу хабарламасын көрсету"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:209
 msgid "The command may not be empty."
 msgstr "Команда бос болуы мүмкін емес."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:232
+#: ../dialogs/keyboard-settings/command-dialog.c:229
 msgid "Select command"
 msgstr "Команданы таңдаңыз"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/keyboard-settings/command-dialog.c:237
 msgid "All Files"
 msgstr "Барлық файлдар"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:245
+#: ../dialogs/keyboard-settings/command-dialog.c:242
 msgid "Executable Files"
 msgstr "Орындалатын файлдар"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:260
+#: ../dialogs/keyboard-settings/command-dialog.c:257
 msgid "Perl Scripts"
 msgstr "Perl скриптері"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:266
+#: ../dialogs/keyboard-settings/command-dialog.c:263
 msgid "Python Scripts"
 msgstr "Python скриптері"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:272
+#: ../dialogs/keyboard-settings/command-dialog.c:269
 msgid "Ruby Scripts"
 msgstr "Ruby скриптері"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:278
+#: ../dialogs/keyboard-settings/command-dialog.c:275
 msgid "Shell Scripts"
 msgstr "Қоршам скриптері"
 
@@ -739,44 +743,40 @@ msgstr "Xfconf қызметімен байланыс орнату мүмкін �
 msgid "Could not create the settings dialog."
 msgstr "Баптаулар сұхбат терезесін жасау мүмкін емес."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:287
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:296
 msgid "Command"
 msgstr "Команда"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:292
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:301
 msgid "Shortcut"
 msgstr "Жарлық"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
-msgid "Active"
-msgstr "Белсенді"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:367
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
 msgid "Layout"
 msgstr "Жайма"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:368
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:376
 msgid "Variant"
 msgstr "Нұсқа"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:822
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
 msgid "Shortcut command may not be empty."
 msgstr "Жарлық командасы бос болуы мүмкін емес."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:929
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:930
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
 msgid "Reset to Defaults"
 msgstr "Бастапқы түріне келтіру"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
 msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
 msgstr "Бұл әрекет барлық жарлықтарды бастапқы түріне келтіреді. Осыны шынымен қалайсыз ба?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:996
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
 msgid "The system defaults will be restored next time you log in."
 msgstr "Жүйенің бастапқы баптаулары сіз келесі рет жүйеге кіргенде іске қосылады."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:998
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
 msgid "Warning"
 msgstr "Ескерту"
 
@@ -1163,6 +1163,9 @@ msgid ""
 msgstr ""
 "%s: %s\n"
 "Командалық жолдың бар опцияларын қарап шығу үшін, %s --help енгізіңз.\n"
+
+#~ msgid "Active"
+#~ msgstr "Белсенді"
 
 #~ msgid "%d Hz"
 #~ msgstr "%d Гц"
