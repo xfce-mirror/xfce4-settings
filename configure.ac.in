@@ -11,10 +11,10 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([xfce4_settings_version_major], [4])
 m4_define([xfce4_settings_version_minor], [7])
-m4_define([xfce4_settings_version_micro], [2])
+m4_define([xfce4_settings_version_micro], [3])
 m4_define([xfce4_settings_version_nano], [])
 m4_define([xfce4_settings_version_build], [@REVISION@])
-m4_define([xfce4_settings_version_tag], [git]) # Leave empty for releases
+m4_define([xfce4_settings_version_tag], []) # Leave empty for releases
 m4_define([xfce4_settings_version], [xfce4_settings_version_major().xfce4_settings_version_minor().xfce4_settings_version_micro()ifelse(xfce4_settings_version_nano(), [], [], [.xfce4_settings_version_nano()])ifelse(xfce4_settings_version_tag(), [git], [xfce4_settings_version_tag()-xfce4_settings_version_build()], [xfce4_settings_version_tag()])])
 
 dnl *******************************************
@@ -77,8 +77,8 @@ XDT_CHECK_PACKAGE([EXO], [exo-1], [0.5.0])
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.14.0])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.16.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.6.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.7.0])
-XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-2], [4.7.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.7.4])
+XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-2], [4.7.4])
 XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.6.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.34])
 

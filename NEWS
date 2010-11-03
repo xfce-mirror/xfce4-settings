@@ -1,10 +1,20 @@
 4.7.3
 =====
+- Add startup notification support for keyboard shortcuts.
+- Process xmodmap file at startup and on layout change (bug #5094).
+- Save and restore numlock state (bug #3098).
+- Ignore virtual XTEST mouse (bug #6735).
+- keyboard: Fix handling of empty variants (bug #6727).
+- Use GTK_SELECTION_BROWSE for treeviews.
+- Use xkl_config_item_new instead of g_new0.
+- Double click a keyboard layout/variant to edit it.
+- Show xklavier descriptions instead of language codes.
 - Fix inclusion of several displays on a single crtc.
 - Scroll to the active gtk, icon or mouse theme.
 - Fix the alignment of the "Hinting" label.
 - Use selected keyboard layout on session startup (bug #5270).
 - Select first available keyboard layout when deleting the active one.
+- Translation updates (gl, de, ru, it, uk, fi, sv, kk, eu, pt, da).
 
 4.7.2
 =====
