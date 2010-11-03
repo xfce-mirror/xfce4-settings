@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-28 21:09+0000\n"
+"POT-Creation-Date: 2010-11-03 11:08+0000\n"
 "PO-Revision-Date: 2010-01-19 21:40+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
@@ -167,19 +167,21 @@ msgstr "pixels i sekundet"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "Sokkel til håndtering af indstillinger"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "SOKKEL-ID"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:104
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
 #: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
@@ -187,29 +189,29 @@ msgid "Version information"
 msgstr "Versionsinformation"
 
 #: ../dialogs/accessibility-settings/main.c:143
-#: ../dialogs/appearance-settings/main.c:773
-#: ../dialogs/display-settings/main.c:1045
+#: ../dialogs/appearance-settings/main.c:827
+#: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/mouse-settings/main.c:1188 ../xfce4-settings-editor/main.c:63
 #: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Tast '%s --help' for brug."
 
 #: ../dialogs/accessibility-settings/main.c:162
-#: ../dialogs/appearance-settings/main.c:792
-#: ../dialogs/display-settings/main.c:1064
+#: ../dialogs/appearance-settings/main.c:846
+#: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:82
 #: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce-udviklingsholdet. Alle rettigheder forbeholdes."
 
 #: ../dialogs/accessibility-settings/main.c:163
-#: ../dialogs/appearance-settings/main.c:793
-#: ../dialogs/display-settings/main.c:1065
+#: ../dialogs/appearance-settings/main.c:847
+#: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:83
 #: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -229,7 +231,7 @@ msgid "Appearance"
 msgstr "Udseende"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:83
 msgid "Both"
 msgstr "Begge"
 
@@ -307,8 +309,8 @@ msgid "Menus and Buttons"
 msgstr "Menuer og knapper"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
-#: ../dialogs/appearance-settings/main.c:670
-#: ../dialogs/display-settings/main.c:79
+#: ../dialogs/appearance-settings/main.c:724
+#: ../dialogs/display-settings/main.c:80
 msgid "None"
 msgstr "Ingen"
 
@@ -388,19 +390,19 @@ msgstr "_Indstillinger"
 msgid "_Toolbar Style"
 msgstr "_Værktøjsbjælkestil"
 
-#: ../dialogs/appearance-settings/main.c:674
+#: ../dialogs/appearance-settings/main.c:728
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:678
+#: ../dialogs/appearance-settings/main.c:732
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:682
+#: ../dialogs/appearance-settings/main.c:736
 msgid "Vertical RGB"
 msgstr "Lodret RGB"
 
-#: ../dialogs/appearance-settings/main.c:686
+#: ../dialogs/appearance-settings/main.c:740
 msgid "Vertical BGR"
 msgstr "Lodret BGR"
 
@@ -470,101 +472,101 @@ msgstr "Flere skærme er tilgængelige. Brug:\n"
 msgid "Use both displays to show the same contents"
 msgstr "Brug begge skærme til at vise det samme indhold"
 
-#: ../dialogs/display-settings/main.c:68
+#: ../dialogs/display-settings/main.c:69
 msgid "Normal"
 msgstr "Normal"
 
-#: ../dialogs/display-settings/main.c:69
+#: ../dialogs/display-settings/main.c:70
 msgid "Left"
 msgstr "Venstre"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/main.c:71
 msgid "Inverted"
 msgstr "Omvendt"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:72
 msgid "Right"
 msgstr "Højre"
 
-#: ../dialogs/display-settings/main.c:80
+#: ../dialogs/display-settings/main.c:81
 msgid "Horizontal"
 msgstr "Vandret"
 
-#: ../dialogs/display-settings/main.c:81
+#: ../dialogs/display-settings/main.c:82
 msgid "Vertical"
 msgstr "Lodret"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:105
 msgid "Minimal interface to set up an external output"
 msgstr "Minimalt interface for at sætte op til eksterne uddata"
 
-#: ../dialogs/display-settings/main.c:173
+#: ../dialogs/display-settings/main.c:172
 #, c-format
 msgid "The previous configuration will be restored in %i seconds if you do not reply to this question."
 msgstr "Den forrige indstilling vil blive genskabt om %i sekunder, hvis du ikke besvarer spørgsmålet."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:507
+#: ../dialogs/display-settings/main.c:506
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:653
+#: ../dialogs/display-settings/main.c:652
 msgid "The last active output must not be disabled, the system would be unusable."
 msgstr "Det sidste aktive uddata må ikke slås fra idet systemet vil blive ubrugbart."
 
-#: ../dialogs/display-settings/main.c:655
+#: ../dialogs/display-settings/main.c:654
 msgid "Selected output not disabled"
 msgstr "Valgte uddata er ikke slået fra"
 
-#: ../dialogs/display-settings/main.c:1077
-#: ../dialogs/display-settings/xfce-randr.c:259
+#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/xfce-randr.c:260
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Kunne ikke forespørge hvilken version af RandR-udvidelsen er ibrug"
 
-#: ../dialogs/display-settings/main.c:1078
-#: ../dialogs/display-settings/main.c:1122
+#: ../dialogs/display-settings/main.c:1079
+#: ../dialogs/display-settings/main.c:1123
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Kunne ikke starte skærmindstillingerne til Xfce"
 
-#: ../dialogs/display-settings/main.c:1108
+#: ../dialogs/display-settings/main.c:1109
 msgid "NVIDIA Settings"
 msgstr "NVIDIA-indstillinger"
 
-#: ../dialogs/display-settings/main.c:1116
+#: ../dialogs/display-settings/main.c:1117
 msgid "ATI Settings"
 msgstr "ATI-indstillinger"
 
-#: ../dialogs/display-settings/main.c:1132
+#: ../dialogs/display-settings/main.c:1133
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kunne ikke starte den lukkede skærmprogramsindstilling."
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:267
+#: ../dialogs/display-settings/xfce-randr.c:268
 #, c-format
 msgid "This system is using RandR %d.%d. For the display settings to work version 1.2 is required at least"
 msgstr "Dette system bruger RandR %d.%d. For at skærmindstillingerne vil virke kræves mindst version 1.2"
 
 #. set error
-#: ../dialogs/display-settings/xfce-randr.c:292
+#: ../dialogs/display-settings/xfce-randr.c:293
 #, c-format
 msgid "The video driver does not support video outputs"
 msgstr "Skærmprogrammet understøtter videouddata"
 
-#: ../dialogs/display-settings/xfce-randr.c:556
+#: ../dialogs/display-settings/xfce-randr.c:557
 msgid "Laptop"
 msgstr "Bærbar computer"
 
-#: ../dialogs/display-settings/xfce-randr.c:577
+#: ../dialogs/display-settings/xfce-randr.c:578
 msgid "Monitor"
 msgstr "Skærm"
 
-#: ../dialogs/display-settings/xfce-randr.c:580
+#: ../dialogs/display-settings/xfce-randr.c:581
 msgid "Television"
 msgstr "Fjernsyn"
 
-#: ../dialogs/display-settings/xfce-randr.c:584
+#: ../dialogs/display-settings/xfce-randr.c:585
 msgid "Digital display"
 msgstr "Digitalskærm"
 
@@ -577,47 +579,51 @@ msgid "Unknown"
 msgstr "Ukendt"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:126
+#: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
 msgstr "Genvejskommando"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:150
+#: ../dialogs/keyboard-settings/command-dialog.c:132
 msgid "Shortcut:"
 msgstr "Genvej:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:160
+#: ../dialogs/keyboard-settings/command-dialog.c:142
 msgid "Command:"
 msgstr "Kommando:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:212
+#: ../dialogs/keyboard-settings/command-dialog.c:162
+msgid "Use _startup notification"
+msgstr "Brug _startopmeddelelser"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:209
 msgid "The command may not be empty."
 msgstr "Kommandoen må ikke være tom."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:232
+#: ../dialogs/keyboard-settings/command-dialog.c:229
 msgid "Select command"
 msgstr "Vælg kommando"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/keyboard-settings/command-dialog.c:237
 msgid "All Files"
 msgstr "Alle filer"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:245
+#: ../dialogs/keyboard-settings/command-dialog.c:242
 msgid "Executable Files"
 msgstr "Kørbare filer"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:260
+#: ../dialogs/keyboard-settings/command-dialog.c:257
 msgid "Perl Scripts"
 msgstr "Perl-skripter"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:266
+#: ../dialogs/keyboard-settings/command-dialog.c:263
 msgid "Python Scripts"
 msgstr "Python-skripter"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:272
+#: ../dialogs/keyboard-settings/command-dialog.c:269
 msgid "Ruby Scripts"
 msgstr "Ruby-skripter"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:278
+#: ../dialogs/keyboard-settings/command-dialog.c:275
 msgid "Shell Scripts"
 msgstr "Skal-skripter"
 
@@ -740,44 +746,40 @@ msgstr "Kunne ikke forbinde til xfconf-dæmon. Årsag: %s"
 msgid "Could not create the settings dialog."
 msgstr "Kunne ikke oprette indstillingsdialogen."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:287
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:296
 msgid "Command"
 msgstr "Kommando"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:292
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:301
 msgid "Shortcut"
 msgstr "Genvej"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
-msgid "Active"
-msgstr "Aktive"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:367
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
 msgid "Layout"
 msgstr "Layout"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:368
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:376
 msgid "Variant"
 msgstr "Variant"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:822
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
 msgid "Shortcut command may not be empty."
 msgstr "Genvejskommando må ikke være tom."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:929
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:930
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
 msgid "Reset to Defaults"
 msgstr "Nulstil til standardindstillinger"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
 msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
 msgstr "Dette vil nulstille alle genvejene til deres standardværdier. Vil du virkelig gøre dette?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:996
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
 msgid "The system defaults will be restored next time you log in."
 msgstr "Systemstandarder vil blive genskabt, når du logger ind næste gang."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:998
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -1165,6 +1167,9 @@ msgid ""
 msgstr ""
 "%s: %s\n"
 "Prøv %s --help for at se hele listen over mulige kommandolinjemuligheder.\n"
+
+#~ msgid "Active"
+#~ msgstr "Aktive"
 
 #~ msgid "%d Hz"
 #~ msgstr "%d Hz"
