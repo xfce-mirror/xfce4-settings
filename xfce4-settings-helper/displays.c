@@ -136,7 +136,9 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
             g_signal_connect (G_OBJECT (helper->channel), "property-changed",
                               G_CALLBACK (xfce_displays_helper_channel_property_changed), helper);
 
+#ifdef HAS_RANDR_ONE_POINT_THREE
             helper->has_1_3 = (major > 1 || (major == 1 && minor >= 3));
+#endif
             /* restore the default scheme */
             xfce_displays_helper_channel_apply (helper, "Default");
         }
