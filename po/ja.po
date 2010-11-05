@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-02 15:30+0900\n"
-"PO-Revision-Date: 2010-01-20 20:21+0900\n"
+"POT-Creation-Date: 2010-11-05 22:48+0900\n"
+"PO-Revision-Date: 2010-11-05 22:46+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "Language: ja\n"
@@ -196,50 +196,52 @@ msgstr "ピクセル/秒"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "設定マネージャソケット"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
+#: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:104
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:78
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
 #: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "バージョン情報を表示する"
 
 #: ../dialogs/accessibility-settings/main.c:143
-#: ../dialogs/appearance-settings/main.c:773
-#: ../dialogs/display-settings/main.c:642
+#: ../dialogs/appearance-settings/main.c:827
+#: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:188 ../xfce4-settings-manager/main.c:58
+#: ../dialogs/mouse-settings/main.c:1188 ../xfce4-settings-editor/main.c:63
+#: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "'%s --help' と入力すると使用方法が表示されます。"
 
 #: ../dialogs/accessibility-settings/main.c:162
-#: ../dialogs/appearance-settings/main.c:792
-#: ../dialogs/display-settings/main.c:661
+#: ../dialogs/appearance-settings/main.c:846
+#: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:206 ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:82
+#: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:163
-#: ../dialogs/appearance-settings/main.c:793
-#: ../dialogs/display-settings/main.c:662
+#: ../dialogs/appearance-settings/main.c:847
+#: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:207 ../xfce4-settings-manager/main.c:72
+#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:83
+#: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "バグの報告は <%s> までお願いします。"
@@ -261,6 +263,7 @@ msgid "Appearance"
 msgstr "外観"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+#: ../dialogs/display-settings/main.c:83
 msgid "Both"
 msgstr "アイコンと文字"
 
@@ -353,7 +356,8 @@ msgid "Menus and Buttons"
 msgstr "メニューとボタン"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
-#: ../dialogs/appearance-settings/main.c:670
+#: ../dialogs/appearance-settings/main.c:724
+#: ../dialogs/display-settings/main.c:80
 msgid "None"
 msgstr "なし"
 
@@ -446,39 +450,61 @@ msgstr "設定(_S)"
 msgid "_Toolbar Style"
 msgstr "ツールバーのスタイル(_T)"
 
-#: ../dialogs/appearance-settings/main.c:674
+#: ../dialogs/appearance-settings/main.c:728
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:678
+#: ../dialogs/appearance-settings/main.c:732
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:682
+#: ../dialogs/appearance-settings/main.c:736
 msgid "Vertical RGB"
 msgstr "垂直 RGB"
 
-#: ../dialogs/appearance-settings/main.c:686
+#: ../dialogs/appearance-settings/main.c:740
 msgid "Vertical BGR"
 msgstr "垂直 GBR"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:1
-msgid "Apply any changes and test the new display settings"
-msgstr "変更を適用し新しいディスプレイ設定をテストします"
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:1
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr "<big><b>この設定で使用しますか？</b></big>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
+msgid "Confirmation"
+msgstr "確認"
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
+msgid "Keep this configuration"
+msgstr "この設定で使用する"
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+msgid "Restore the previous configuration"
+msgstr "元の設定に戻す"
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
+msgid ""
+"The previous configuration will be restored in 10 seconds if you do not "
+"reply to this question."
+msgstr "このままにしておくと 10 秒後に元の設定に戻ります。"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Configure screen settings and layout"
 msgstr "画面の解像度とレイアウトを設定します"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Display"
 msgstr "ディスプレイ"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "R_esolution:"
 msgstr "解像度(_E):"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "Ref_lection:"
+msgstr "反転(_L):"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
@@ -488,138 +514,189 @@ msgstr "周波数(_R):"
 msgid "Ro_tation:"
 msgstr "回転(_T):"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+msgid "_Use this output"
+msgstr "この出力を使う(_U)"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
+msgid "Both displays cloned"
+msgstr "両方のディスプレイにクローン表示する"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
+msgid "Display settings"
+msgstr "ディスプレイ設定"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
+msgid "Several displays are available. Use:\n"
+msgstr "複数のディスプレイが利用可能です。使用方法:\n"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
+msgid "Use both displays to show the same contents"
+msgstr "両方のディスプレイに同じ内容を表示します"
+
+#: ../dialogs/display-settings/main.c:69
 msgid "Normal"
 msgstr "通常"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:70
 msgid "Left"
 msgstr "左"
 
-#: ../dialogs/display-settings/main.c:72
+#: ../dialogs/display-settings/main.c:71
 msgid "Inverted"
 msgstr "反転"
 
-#: ../dialogs/display-settings/main.c:73
+#: ../dialogs/display-settings/main.c:72
 msgid "Right"
 msgstr "右"
 
-#. insert in the combo box
-#. insert
-#: ../dialogs/display-settings/main.c:257
-#: ../dialogs/display-settings/main.c:288
-#, c-format
-msgid "%d Hz"
-msgstr "%d Hz"
+#: ../dialogs/display-settings/main.c:81
+msgid "Horizontal"
+msgstr "水平"
 
-#. create name
-#: ../dialogs/display-settings/main.c:494
-#, c-format
-msgid "Screen %d"
-msgstr "Screen %d"
+#: ../dialogs/display-settings/main.c:82
+msgid "Vertical"
+msgstr "垂直"
 
-#: ../dialogs/display-settings/main.c:675
-#, c-format
-msgid "RandR extension missing on display \"%s\""
-msgstr "ディスプレイ \"%s\" の RandR エクステンションが見当たりません"
+#: ../dialogs/display-settings/main.c:105
+msgid "Minimal interface to set up an external output"
+msgstr "外部出力を設定する最小限のインターフェイス"
 
-#: ../dialogs/display-settings/main.c:678
+#: ../dialogs/display-settings/main.c:172
+#, c-format
 msgid ""
-"The Resize and Rotate extension (RandR) is not enabled on this display. Try "
-"to enable it and run the dialog again."
+"The previous configuration will be restored in %i seconds if you do not "
+"reply to this question."
+msgstr "このままにしておくと %i 秒後に元の設定に戻ります。"
+
+#. Insert the mode
+#: ../dialogs/display-settings/main.c:506
+#, c-format
+msgid "%.1f Hz"
+msgstr "%.1f Hz"
+
+#: ../dialogs/display-settings/main.c:652
+msgid ""
+"The last active output must not be disabled, the system would be unusable."
 msgstr ""
-"サイズ変更および回転エクステンション (RandR) はこのディスプレイでは有効になっ"
-"ていません。有効にしてからこの設定ダイアログを起動してみてください。"
+"最後に有効だった出力を無効にしてはいけません。システムは使用できなくなりま"
+"す。"
 
-#: ../dialogs/display-settings/main.c:717
-msgid "Failed to use the RandR extension"
-msgstr "RandR エクステンションの使用に失敗しました"
+#: ../dialogs/display-settings/main.c:654
+msgid "Selected output not disabled"
+msgstr "選択した出力は無効になっていません"
 
-#: ../dialogs/display-settings/xfce-randr.c:55
-#: ../dialogs/display-settings/xfce-randr-legacy.c:58
+#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/xfce-randr.c:260
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr ""
 "使用されている RandR エクステンションのバージョンを問い合わせることができませ"
 "ん"
 
-#. 1.1 (not 1.2) is required because of the legacy code in xfce-randr-legacy.c
-#: ../dialogs/display-settings/xfce-randr.c:63
-#: ../dialogs/display-settings/xfce-randr-legacy.c:65
+#: ../dialogs/display-settings/main.c:1079
+#: ../dialogs/display-settings/main.c:1123
+msgid "Unable to start the Xfce Display Settings"
+msgstr "Xfce ディスプレイ設定を開始できません"
+
+#: ../dialogs/display-settings/main.c:1109
+msgid "NVIDIA Settings"
+msgstr "NVIDIA 設定"
+
+#: ../dialogs/display-settings/main.c:1117
+msgid "ATI Settings"
+msgstr "ATI 設定"
+
+#: ../dialogs/display-settings/main.c:1133
+msgid "Unable to launch the proprietary driver settings"
+msgstr "プロプライエタリドライバ設定を起動できません"
+
+#. 1.2 is required
+#: ../dialogs/display-settings/xfce-randr.c:268
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
-"1.1 is required at least"
+"1.2 is required at least"
 msgstr ""
 "このシステムでは RandR %d.%d を使用しています。ディスプレイ設定を機能させるた"
-"めには バージョン 1.1 以降が必要です。"
+"めには バージョン 1.2 以降が必要です。"
 
-#: ../dialogs/display-settings/xfce-randr.c:343
+#. set error
+#: ../dialogs/display-settings/xfce-randr.c:293
+#, c-format
+msgid "The video driver does not support video outputs"
+msgstr "ビデオドライバはビデオ出力をサポートしていません"
+
+#: ../dialogs/display-settings/xfce-randr.c:557
 msgid "Laptop"
 msgstr "ラップトップ"
 
-#: ../dialogs/display-settings/xfce-randr.c:347
+#: ../dialogs/display-settings/xfce-randr.c:578
 msgid "Monitor"
 msgstr "モニタ"
 
-#: ../dialogs/display-settings/xfce-randr.c:351
+#: ../dialogs/display-settings/xfce-randr.c:581
 msgid "Television"
 msgstr "テレビ"
 
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:585
 msgid "Digital display"
 msgstr "デジタルディスプレイ"
 
-#: ../dialogs/display-settings/xfce-randr.c:362
-msgid "Second monitor"
-msgstr "2つめのモニタ"
-
-#: ../dialogs/display-settings/xfce-randr.c:368
-msgid "Second digital display"
-msgstr "2つめのデジタルディスプレイ"
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: ../dialogs/display-settings/display-name.c:269
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr "不明"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:126
+#: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
 msgstr "ショートカットのコマンド"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:150
+#: ../dialogs/keyboard-settings/command-dialog.c:132
 msgid "Shortcut:"
 msgstr "ショートカット:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:160
+#: ../dialogs/keyboard-settings/command-dialog.c:142
 msgid "Command:"
 msgstr "コマンド:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:212
+#: ../dialogs/keyboard-settings/command-dialog.c:162
+msgid "Use _startup notification"
+msgstr "起動通知を使用する(_S)"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:209
 msgid "The command may not be empty."
 msgstr "コマンドを入力してください。"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:232
+#: ../dialogs/keyboard-settings/command-dialog.c:229
 msgid "Select command"
 msgstr "コマンドの選択"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/keyboard-settings/command-dialog.c:237
 msgid "All Files"
 msgstr "すべてのファイル"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:245
+#: ../dialogs/keyboard-settings/command-dialog.c:242
 msgid "Executable Files"
 msgstr "実行ファイル"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:260
+#: ../dialogs/keyboard-settings/command-dialog.c:257
 msgid "Perl Scripts"
 msgstr "Perl スクリプト"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:266
+#: ../dialogs/keyboard-settings/command-dialog.c:263
 msgid "Python Scripts"
 msgstr "Python スクリプト"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:272
+#: ../dialogs/keyboard-settings/command-dialog.c:269
 msgid "Ruby Scripts"
 msgstr "Ruby スクリプト"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:278
+#: ../dialogs/keyboard-settings/command-dialog.c:275
 msgid "Shell Scripts"
 msgstr "シェルスクリプト"
 
@@ -750,47 +827,43 @@ msgstr "xfconf デーモンへの接続に失敗しました。理由: %s"
 msgid "Could not create the settings dialog."
 msgstr "設定ダイアログボックスの生成ができませんでした。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:287
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:296
 msgid "Command"
 msgstr "コマンド"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:292
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:301
 msgid "Shortcut"
 msgstr "ショートカット"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:363
-msgid "Active"
-msgstr "アクティブ"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:367
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
 msgid "Layout"
 msgstr "レイアウト"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:368
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:376
 msgid "Variant"
 msgstr "バリエーション"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:822
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
 msgid "Shortcut command may not be empty."
 msgstr "ショートカットするコマンドが入力されていません。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:929
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:930
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
 msgid "Reset to Defaults"
 msgstr "デフォルトに戻す"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:931
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
 msgstr ""
 "すべてのショートカットをデフォルト値にリセットします。本当によろしいですか?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:996
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
 msgid "The system defaults will be restored next time you log in."
 msgstr "次回のログイン時にシステムデフォルトに戻ります。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:998
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
 msgid "Warning"
 msgstr "警告"
 
@@ -1132,13 +1205,11 @@ msgstr "バウンスキーが無効になりました"
 msgid "Bounce keys"
 msgstr "バウンスキー"
 
-#: ../xfce4-settings-helper/main.c:79 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:75 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "デバッグモードで起動する (バックグラウンドで fork しません)"
 
-#. some of them may not have been set in xfconf
-#: ../xfce4-settings-helper/workspaces.c:114
-#: ../xfce4-settings-helper/workspaces.c:241
+#: ../xfce4-settings-helper/workspaces.c:355
 #, c-format
 msgid "Workspace %d"
 msgstr "ワークスペース %d"
@@ -1199,6 +1270,34 @@ msgstr ""
 "%s: %s\n"
 "%s --help と入力すると利用可能なすべてのコマンドラインオプションが表示されま"
 "す。\n"
+
+#~ msgid "%d Hz"
+#~ msgstr "%d Hz"
+
+#~ msgid "Screen %d"
+#~ msgstr "Screen %d"
+
+#~ msgid "RandR extension missing on display \"%s\""
+#~ msgstr "ディスプレイ \"%s\" の RandR エクステンションが見当たりません"
+
+#~ msgid ""
+#~ "The Resize and Rotate extension (RandR) is not enabled on this display. "
+#~ "Try to enable it and run the dialog again."
+#~ msgstr ""
+#~ "サイズ変更および回転エクステンション (RandR) はこのディスプレイでは有効に"
+#~ "なっていません。有効にしてからこの設定ダイアログを起動してみてください。"
+
+#~ msgid "Failed to use the RandR extension"
+#~ msgstr "RandR エクステンションの使用に失敗しました"
+
+#~ msgid "Second monitor"
+#~ msgstr "2つめのモニタ"
+
+#~ msgid "Second digital display"
+#~ msgstr "2つめのデジタルディスプレイ"
+
+#~ msgid "Active"
+#~ msgstr "アクティブ"
 
 #~ msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
 #~ msgstr "プロパティ \"<b>%s</b>\" はロックされているためリセットできません"
