@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-27 10:09+0000\n"
+"POT-Creation-Date: 2010-11-05 11:09+0000\n"
 "PO-Revision-Date: 2009-01-26 16:20+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -189,7 +189,7 @@ msgstr "Інформація про версію"
 #: ../dialogs/appearance-settings/main.c:827
 #: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1186 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/mouse-settings/main.c:1188 ../xfce4-settings-editor/main.c:63
 #: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -199,7 +199,7 @@ msgstr "Наберіть '%s --help' для використання."
 #: ../dialogs/appearance-settings/main.c:846
 #: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1205 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:82
 #: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Команда розробників Xfce. Всі права застережено."
@@ -208,7 +208,7 @@ msgstr "Команда розробників Xfce. Всі права засте
 #: ../dialogs/appearance-settings/main.c:847
 #: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:83
 #: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -576,47 +576,51 @@ msgid "Unknown"
 msgstr "Невідомо"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:126
+#: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
 msgstr "Команда для ярлика запуску"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:150
+#: ../dialogs/keyboard-settings/command-dialog.c:132
 msgid "Shortcut:"
 msgstr "Ярлик запуску:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:160
+#: ../dialogs/keyboard-settings/command-dialog.c:142
 msgid "Command:"
 msgstr "Команда:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:212
+#: ../dialogs/keyboard-settings/command-dialog.c:162
+msgid "Use _startup notification"
+msgstr "Використовувати пов_ідомлення при запуску"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:209
 msgid "The command may not be empty."
 msgstr "Стрічка команди не може бути пустою."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:232
+#: ../dialogs/keyboard-settings/command-dialog.c:229
 msgid "Select command"
 msgstr "Вибрати команду"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/keyboard-settings/command-dialog.c:237
 msgid "All Files"
 msgstr "Всі файли"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:245
+#: ../dialogs/keyboard-settings/command-dialog.c:242
 msgid "Executable Files"
 msgstr "Виконувані файли"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:260
+#: ../dialogs/keyboard-settings/command-dialog.c:257
 msgid "Perl Scripts"
 msgstr "Скрипти Perl"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:266
+#: ../dialogs/keyboard-settings/command-dialog.c:263
 msgid "Python Scripts"
 msgstr "Скрипти Python"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:272
+#: ../dialogs/keyboard-settings/command-dialog.c:269
 msgid "Ruby Scripts"
 msgstr "Скрипти Ruby"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:278
+#: ../dialogs/keyboard-settings/command-dialog.c:275
 msgid "Shell Scripts"
 msgstr "Скрипти Shell"
 
@@ -739,40 +743,40 @@ msgstr "Неможливо з'єднатись з службою xfconf. При�
 msgid "Could not create the settings dialog."
 msgstr "Неможливо створити діалог властивостей."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:291
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:296
 msgid "Command"
 msgstr "Команда"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:296
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:301
 msgid "Shortcut"
 msgstr "Ярлик запуску"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:370
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
 msgid "Layout"
 msgstr "Розкладка"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:371
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:376
 msgid "Variant"
 msgstr "Варіант"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:825
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
 msgid "Shortcut command may not be empty."
 msgstr "Команда для ярлика запуску не може бути пустою."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:932
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:933
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
 msgid "Reset to Defaults"
 msgstr "Відновити типові"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:934
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
 msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
 msgstr "Цим можна скинути всі ярлики запуску до їх типових значень.Ви дійсно хочете це зробити?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:999
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
 msgid "The system defaults will be restored next time you log in."
 msgstr "Типові системні установки будуть відновлені після наступного вашого входу."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1001
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
 msgid "Warning"
 msgstr "Попередження"
 
