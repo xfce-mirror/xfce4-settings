@@ -33,6 +33,7 @@
 
 #include <X11/Xlib.h>
 #include <X11/XKBlib.h>
+#include <X11/keysym.h>
 
 #include <glib.h>
 #include <gtk/gtk.h>
