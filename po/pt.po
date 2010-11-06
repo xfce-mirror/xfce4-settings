@@ -2,13 +2,13 @@
 # Copyright (C) 2008 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce4_settings package.
 # Nuno Miguel <nunis@netcabo.pt>, 2008, 2009.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-03 23:08+0000\n"
-"PO-Revision-Date: 2010-01-20 19:38+0100\n"
+"PO-Revision-Date: 2010-11-06 20:15+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -167,23 +167,28 @@ msgstr "pixeis/seg"
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
+#: ../dialogs/keyboard-settings/main.c:39
+#: ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "\"Socket\" do gestor de definições"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
+#: ../dialogs/keyboard-settings/main.c:39
+#: ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "ID de \"SOCKET\""
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
 #: ../dialogs/display-settings/main.c:104
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
-#: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
+#: ../dialogs/keyboard-settings/main.c:40
+#: ../dialogs/mouse-settings/main.c:101
+#: ../xfce4-settings-editor/main.c:43
+#: ../xfce4-settings-helper/main.c:74
+#: ../xfce4-settings-manager/main.c:40
+#: ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Informações da versão"
 
@@ -191,8 +196,10 @@ msgstr "Informações da versão"
 #: ../dialogs/appearance-settings/main.c:827
 #: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1188 ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
+#: ../dialogs/mouse-settings/main.c:1188
+#: ../xfce4-settings-editor/main.c:63
+#: ../xfce4-settings-helper/main.c:160
+#: ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Digite \"%s --help\" para informações de utilização"
@@ -201,8 +208,10 @@ msgstr "Digite \"%s --help\" para informações de utilização"
 #: ../dialogs/appearance-settings/main.c:846
 #: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1207
+#: ../xfce4-settings-editor/main.c:82
+#: ../xfce4-settings-helper/main.c:176
+#: ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "A equipa de desenvolvimento do Xfce. Todos os direitos reservados."
 
@@ -210,8 +219,10 @@ msgstr "A equipa de desenvolvimento do Xfce. Todos os direitos reservados."
 #: ../dialogs/appearance-settings/main.c:847
 #: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
+#: ../dialogs/mouse-settings/main.c:1208
+#: ../xfce4-settings-editor/main.c:83
+#: ../xfce4-settings-helper/main.c:177
+#: ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Por favor, reporte os erros para <%s>."
@@ -375,7 +386,7 @@ msgstr "_Fontes"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "_Hinting:"
-msgstr "Adivin_har:"
+msgstr "Alisa_mento:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "_Icons"
@@ -791,7 +802,8 @@ msgid "DEVICE NAME"
 msgstr "NOME DO DISPOSITIVO"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:355 ../dialogs/mouse-settings/main.c:357
+#: ../dialogs/mouse-settings/main.c:355
+#: ../dialogs/mouse-settings/main.c:357
 #: ../dialogs/mouse-settings/main.c:417
 msgid "Default"
 msgstr "Por omissão"
@@ -1101,7 +1113,8 @@ msgstr "Teclas saltitantes estão inactivas"
 msgid "Bounce keys"
 msgstr "Teclas saltitantes"
 
-#: ../xfce4-settings-helper/main.c:75 ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:75
+#: ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Iniciar no modo de depuração (não deslocar para segundo plano)"
 
@@ -1168,27 +1181,20 @@ msgstr ""
 
 #~ msgid "Active"
 #~ msgstr "Activo"
-
 #~ msgid "%d Hz"
 #~ msgstr "%d Hz"
-
 #~ msgid "Screen %d"
 #~ msgstr "Ecrã %d"
-
 #~ msgid "RandR extension missing on display \"%s\""
 #~ msgstr "Extensão RandR não encontrada no ecrã \"%s\""
-
 #~ msgid "The Resize and Rotate extension (RandR) is not enabled on this display. Try to enable it and run the dialog again."
 #~ msgstr "A extensão Redimensionar e Rodar (RandR) não está activada neste ecrã. Tente activa-la e execute o diálogo novamente."
-
 #~ msgid "Failed to use the RandR extension"
 #~ msgstr "Falhou ao usar a extensão RandR"
-
 #~ msgid "Second monitor"
 #~ msgstr "Segundo monitor"
-
 #~ msgid "Second digital display"
 #~ msgstr "Segundo ecrã digital"
-
 #~ msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
 #~ msgstr "A propriedade \"<b>%s</b>\" não pode ser reiniciada porque está bloqueada"
+
