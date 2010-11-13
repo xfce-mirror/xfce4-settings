@@ -212,7 +212,7 @@ main (gint argc, gchar **argv)
     if (!xfce_sm_client_connect (sm_client, &error) && error)
     {
         g_printerr ("Failed to connect to session manager: %s\n", error->message);
-        g_error_free (error);
+        g_clear_error (&error);
     }
 
     /* if this instance is started from a saved session, disable autostart so
