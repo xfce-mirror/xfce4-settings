@@ -99,7 +99,7 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
     if (XkbQueryExtension (GDK_DISPLAY (), &dummy, &dummy, &dummy, &dummy, &dummy))
     {
         /* open the channel */
-        helper->channel = xfconf_channel_new ("keyboards");
+        helper->channel = xfconf_channel_get ("keyboards");
 
         /* monitor channel changes */
         g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_keyboards_helper_channel_property_changed), helper);
@@ -125,10 +125,6 @@ xfce_keyboards_helper_finalize (GObject *object)
 
     /* Save the numlock state */
     xfce_keyboards_helper_save_numlock_state (helper->channel);
-
-    /* release the channel */
-    if (G_LIKELY (helper->channel))
-        g_object_unref (G_OBJECT (helper->channel));
 
     (*G_OBJECT_CLASS (xfce_keyboards_helper_parent_class)->finalize) (object);
 }
