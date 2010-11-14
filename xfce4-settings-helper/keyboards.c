@@ -228,7 +228,7 @@ xfce_keyboards_helper_restore_numlock_state (XfconfChannel *channel)
     gboolean      state;
 
     dpy = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
-    state = xfconf_channel_get_bool (channel, "/Default/Numlock", TRUE);
+    state = xfconf_channel_get_bool (channel, "/Default/Numlock", FALSE);
 
     numlock_mask = XkbKeysymToModifiers (dpy, XK_Num_Lock);
 
