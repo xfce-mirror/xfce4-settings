@@ -155,7 +155,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
     else
     {
         /* open the channel */
-        helper->channel = xfconf_channel_new ("pointers");
+        helper->channel = xfconf_channel_get ("pointers");
 
         /* restore the pointer devices */
         xfce_pointers_helper_restore_devices (helper, NULL);
@@ -192,10 +192,6 @@ static void
 xfce_pointers_helper_finalize (GObject *object)
 {
     XfcePointersHelper *helper = XFCE_POINTERS_HELPER (object);
-
-    /* release the channel */
-    if (G_LIKELY (helper->channel))
-        g_object_unref (G_OBJECT (helper->channel));
 
     (*G_OBJECT_CLASS (xfce_pointers_helper_parent_class)->finalize) (object);
 }

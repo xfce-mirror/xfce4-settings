@@ -93,7 +93,7 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     helper->channel = NULL;
 
     /* open the channel */
-    helper->channel = xfconf_channel_new ("keyboard-layout");
+    helper->channel = xfconf_channel_get ("keyboard-layout");
 
     /* monitor channel changes */
     g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_keyboard_layout_helper_channel_property_changed), helper);
@@ -117,10 +117,6 @@ static void
 xfce_keyboard_layout_helper_finalize (GObject *object)
 {
     XfceKeyboardLayoutHelper *helper = XFCE_KEYBOARD_LAYOUT_HELPER (object);
-
-    /* release the channel */
-    if (G_LIKELY (helper->channel))
-        g_object_unref (G_OBJECT (helper->channel));
 
     (*G_OBJECT_CLASS (xfce_keyboard_layout_helper_parent_class)->finalize) (object);
 }

@@ -127,7 +127,7 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
             && (major > 1 || (major == 1 && minor >= 2)))
         {
             /* open the channel */
-            helper->channel = xfconf_channel_new ("displays");
+            helper->channel = xfconf_channel_get ("displays");
 
             /* remove any leftover apply property before setting the monitor */
             xfconf_channel_reset_property (helper->channel, "/Schemes/Apply", FALSE);
@@ -162,10 +162,6 @@ static void
 xfce_displays_helper_finalize (GObject *object)
 {
     XfceDisplaysHelper *helper = XFCE_DISPLAYS_HELPER (object);
-
-    /* release the channel */
-    if (G_LIKELY (helper->channel))
-        g_object_unref (G_OBJECT (helper->channel));
 
     (*G_OBJECT_CLASS (xfce_displays_helper_parent_class)->finalize) (object);
 }

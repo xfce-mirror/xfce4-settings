@@ -100,7 +100,7 @@ xfce_workspaces_helper_init (XfceWorkspacesHelper *helper)
     GdkWindow    *root_window;
     GdkEventMask  events;
 
-    helper->channel = xfconf_channel_new(WORKSPACES_CHANNEL);
+    helper->channel = xfconf_channel_get(WORKSPACES_CHANNEL);
 
     /* monitor root window property changes */
     root_window = gdk_get_default_root_window ();
@@ -125,7 +125,6 @@ xfce_workspaces_helper_finalize (GObject *object)
     g_signal_handlers_disconnect_by_func(G_OBJECT (helper->channel),
                                          G_CALLBACK (xfce_workspaces_helper_prop_changed),
                                          helper);
-    g_object_unref (G_OBJECT (helper->channel));
 
     G_OBJECT_CLASS (xfce_workspaces_helper_parent_class)->finalize (object);
 }
