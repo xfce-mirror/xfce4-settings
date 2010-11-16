@@ -44,7 +44,6 @@
 
 #include "keyboard-layout.h"
 
-static void xfce_keyboard_layout_helper_finalize                  (GObject                       *object);
 static void xfce_keyboard_layout_helper_process_xmodmap           (void);
 static void xfce_keyboard_layout_helper_set_model                 (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_layout                (XfceKeyboardLayoutHelper      *helper);
@@ -65,7 +64,8 @@ struct _XfceKeyboardLayoutHelper
 
     /* xfconf channel */
     XfconfChannel     *channel;
-    gboolean xkb_disable_settings;
+
+    gboolean           xkb_disable_settings;
 
 #ifdef HAVE_LIBXKLAVIER
     /* libxklavier */
@@ -80,10 +80,7 @@ G_DEFINE_TYPE (XfceKeyboardLayoutHelper, xfce_keyboard_layout_helper, G_TYPE_OBJ
 static void
 xfce_keyboard_layout_helper_class_init (XfceKeyboardLayoutHelperClass *klass)
 {
-    GObjectClass *gobject_class;
 
-    gobject_class = G_OBJECT_CLASS (klass);
-    gobject_class->finalize = xfce_keyboard_layout_helper_finalize;
 }
 
 static void
@@ -113,13 +110,7 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     xfce_keyboard_layout_helper_process_xmodmap ();
 }
 
-static void
-xfce_keyboard_layout_helper_finalize (GObject *object)
-{
-    XfceKeyboardLayoutHelper *helper = XFCE_KEYBOARD_LAYOUT_HELPER (object);
 
-    (*G_OBJECT_CLASS (xfce_keyboard_layout_helper_parent_class)->finalize) (object);
-}
 
 static void
 xfce_keyboard_layout_helper_process_xmodmap (void)

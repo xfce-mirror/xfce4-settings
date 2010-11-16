@@ -43,7 +43,8 @@
 #undef HAS_RANDR_ONE_POINT_THREE
 #endif
 
-static void            xfce_displays_helper_finalize                       (GObject                 *object);
+
+
 static void            xfce_displays_helper_channel_apply                  (XfceDisplaysHelper      *helper,
                                                                             const gchar             *scheme);
 static void            xfce_displays_helper_channel_property_changed       (XfconfChannel           *channel,
@@ -105,10 +106,7 @@ G_DEFINE_TYPE (XfceDisplaysHelper, xfce_displays_helper, G_TYPE_OBJECT);
 static void
 xfce_displays_helper_class_init (XfceDisplaysHelperClass *klass)
 {
-    GObjectClass *gobject_class;
 
-    gobject_class = G_OBJECT_CLASS (klass);
-    gobject_class->finalize = xfce_displays_helper_finalize;
 }
 
 
@@ -154,16 +152,6 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
         g_critical ("No RANDR extension found in display %s. Display settings won't be applied.",
                     gdk_display_get_name (gdk_display_get_default ()));
     }
-}
-
-
-
-static void
-xfce_displays_helper_finalize (GObject *object)
-{
-    XfceDisplaysHelper *helper = XFCE_DISPLAYS_HELPER (object);
-
-    (*G_OBJECT_CLASS (xfce_displays_helper_parent_class)->finalize) (object);
 }
 
 

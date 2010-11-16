@@ -153,9 +153,9 @@ xfce_accessibility_helper_init (XfceAccessibilityHelper *helper)
 static void
 xfce_accessibility_helper_finalize (GObject *object)
 {
+#ifdef HAVE_LIBNOTIFY
     XfceAccessibilityHelper *helper = XFCE_ACCESSIBILITY_HELPER (object);
 
-#ifdef HAVE_LIBNOTIFY
     /* close an opened notification */
     if (G_UNLIKELY (helper->notification))
         notify_notification_close (helper->notification, NULL);

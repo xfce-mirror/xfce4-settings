@@ -58,7 +58,6 @@
 
 
 
-static void             xfce_pointers_helper_finalize                       (GObject                 *object);
 static void             xfce_pointers_helper_change_button_mapping_swap     (guchar                  *buttonmap,
                                                                              gshort                   num_buttons,
                                                                              gint                     id_1,
@@ -116,10 +115,7 @@ G_DEFINE_TYPE (XfcePointersHelper, xfce_pointers_helper, G_TYPE_OBJECT);
 static void
 xfce_pointers_helper_class_init (XfcePointersHelperClass *klass)
 {
-    GObjectClass *gobject_class;
 
-    gobject_class = G_OBJECT_CLASS (klass);
-    gobject_class->finalize = xfce_pointers_helper_finalize;
 }
 
 
@@ -184,16 +180,6 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         gdk_error_trap_pop ();
 #endif
     }
-}
-
-
-
-static void
-xfce_pointers_helper_finalize (GObject *object)
-{
-    XfcePointersHelper *helper = XFCE_POINTERS_HELPER (object);
-
-    (*G_OBJECT_CLASS (xfce_pointers_helper_parent_class)->finalize) (object);
 }
 
 
