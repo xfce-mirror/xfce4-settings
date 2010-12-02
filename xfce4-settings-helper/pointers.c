@@ -310,7 +310,7 @@ xfce_pointers_helper_change_feedback (XDevice *device,
                                       gint     threshold,
                                       gdouble  acceleration)
 {
-    XFeedbackState      *states;
+    XFeedbackState      *states, *pt;
     gint                 num_feedbacks;
     XPtrFeedbackControl  feedback;
     gint                 n;
@@ -323,10 +323,10 @@ xfce_pointers_helper_change_feedback (XDevice *device,
     if (G_LIKELY (states))
     {
         /* get the pointer feedback class */
-        for (n = 0; n < num_feedbacks; n++)
+        for (pt = states, n = 0; n < num_feedbacks; n++)
         {
             /* find the pointer feedback class */
-            if (states->class == PtrFeedbackClass)
+            if (pt->class == PtrFeedbackClass)
             {
                 if (acceleration > 0 || acceleration == -1)
                 {
@@ -351,7 +351,7 @@ xfce_pointers_helper_change_feedback (XDevice *device,
                 /* create a new feedback */
                 feedback.class      = PtrFeedbackClass;
                 feedback.length     = sizeof (XPtrFeedbackControl);
-                feedback.id         = states->id;
+                feedback.id         = pt->id;
                 feedback.threshold  = threshold;
                 feedback.accelNum   = num;
                 feedback.accelDenom = denom;
@@ -364,7 +364,7 @@ xfce_pointers_helper_change_feedback (XDevice *device,
             }
 
             /* advance the offset */
-            states = (XFeedbackState *) ((gchar *) states + states->length);
+            pt = (XFeedbackState *) ((gchar *) pt + pt->length);
         }
 
         /* cleanup */
