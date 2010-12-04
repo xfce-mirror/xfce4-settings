@@ -411,7 +411,11 @@ xfce_accessibility_helper_notification_show (XfceAccessibilityHelper *helper,
     if (helper->notification == NULL)
     {
         /* create a new notification */
+#if NOTIFY_CHECK_VERSION (0, 7, 0)
+        helper->notification = notify_notification_new (summary, body, "keyboard");
+#else
         helper->notification = notify_notification_new (summary, body, "keyboard", NULL);
+#endif
 
         /* close signal */
         g_signal_connect (G_OBJECT (helper->notification), "closed", G_CALLBACK (xfce_accessibility_helper_notification_closed), helper);
