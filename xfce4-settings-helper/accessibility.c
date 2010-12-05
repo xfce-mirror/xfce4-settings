@@ -411,8 +411,12 @@ xfce_accessibility_helper_notification_show (XfceAccessibilityHelper *helper,
     if (helper->notification == NULL)
     {
         /* create a new notification */
-#if defined(NOTIFY_CHECK_VERSION) && NOTIFY_CHECK_VERSION (0, 7, 0)
+#ifdef NOTIFY_CHECK_VERSION
+#if NOTIFY_CHECK_VERSION (0, 7, 0)
         helper->notification = notify_notification_new (summary, body, "keyboard");
+#else
+        helper->notification = notify_notification_new (summary, body, "keyboard", NULL);
+#endif
 #else
         helper->notification = notify_notification_new (summary, body, "keyboard", NULL);
 #endif
