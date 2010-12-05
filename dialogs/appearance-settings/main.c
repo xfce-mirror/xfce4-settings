@@ -802,7 +802,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     xfconf_g_property_bind (xsettings_channel, "/Net/EnableInputFeedbackSounds", G_TYPE_BOOLEAN,
                             G_OBJECT (object2), "active");
 
-    gtk_widget_set_sensitive (GTK_WIDGET (object), gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object2)));
+    gtk_widget_set_sensitive (GTK_WIDGET (object2), gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)));
 #endif
 }
 
