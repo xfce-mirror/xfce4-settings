@@ -273,8 +273,7 @@ xfce_displays_helper_list_outputs (Display            *xdisplay,
 
     g_assert (xdisplay && resources && nactive);
 
-    outputs = g_ptr_array_new_with_free_func (
-        (GDestroyNotify) xfce_displays_helper_free_output);
+    outputs = g_ptr_array_new ();
 
     /* get all connected outputs */
     *nactive = 0;
@@ -795,7 +794,8 @@ err_cleanup:
         g_hash_table_destroy (saved_outputs);
 
     /* Free our output cache */
-    g_ptr_array_unref (connected_outputs);
+    g_ptr_array_foreach (connected_outputs, (GFunc) xfce_displays_helper_free_output, NULL);
+    g_ptr_array_free (connected_outputs, TRUE);
 
     /* cleanup our CRTC cache */
     for (m = 0; m < resources->ncrtc; ++m)

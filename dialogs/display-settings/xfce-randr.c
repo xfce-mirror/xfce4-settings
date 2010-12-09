@@ -157,7 +157,7 @@ xfce_randr_populate (XfceRandr *randr,
     g_return_val_if_fail (randr->resources != NULL, FALSE);
 
     /* prepare the temporary cache */
-    outputs = g_ptr_array_new_with_free_func ((GDestroyNotify) XRRFreeOutputInfo);
+    outputs = g_ptr_array_new ();
 
     /* walk the outputs */
     for (n = 0; n < randr->resources->noutput; ++n)
@@ -180,7 +180,8 @@ xfce_randr_populate (XfceRandr *randr,
         if (n == 0 && strcmp (output_info->name, "default") == 0)
         {
             /* free the cache */
-            g_ptr_array_unref (outputs);
+            g_ptr_array_foreach (outputs, (GFunc) XRRFreeOutputInfo, NULL);
+            g_ptr_array_free (outputs, TRUE);
             return FALSE;
         }
     }
