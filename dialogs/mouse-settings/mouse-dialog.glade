@@ -4,47 +4,44 @@
   <!-- interface-requires libxfce4ui 4.5 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkAdjustment" id="mouse-acceleration">
-    <property name="value">2</property>
-    <property name="lower">0.10000000000000001</property>
+    <property name="lower">0.1</property>
     <property name="upper">10</property>
-    <property name="step_increment">0.10000000000000001</property>
+    <property name="value">2</property>
+    <property name="step_increment">0.1</property>
     <property name="page_increment">1</property>
   </object>
   <object class="GtkAdjustment" id="mouse-threshold">
-    <property name="value">4</property>
     <property name="lower">1</property>
     <property name="upper">30</property>
+    <property name="value">4</property>
     <property name="step_increment">1</property>
     <property name="page_increment">5</property>
-    <property name="page_size">5</property>
   </object>
   <object class="GtkAdjustment" id="mouse-dnd-threshold">
-    <property name="value">8</property>
     <property name="lower">1</property>
     <property name="upper">50</property>
+    <property name="value">8</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
-    <property name="page_size">10</property>
   </object>
   <object class="GtkAdjustment" id="mouse-double-click-time">
-    <property name="value">250</property>
     <property name="lower">100</property>
     <property name="upper">2000</property>
+    <property name="value">250</property>
     <property name="step_increment">1</property>
     <property name="page_increment">100</property>
-    <property name="page_size">100</property>
   </object>
   <object class="GtkAdjustment" id="mouse-double-click-distance">
-    <property name="value">4</property>
+    <property name="lower">0</property>
     <property name="upper">20</property>
+    <property name="value">4</property>
     <property name="step_increment">1</property>
     <property name="page_increment">5</property>
-    <property name="page_size">5</property>
   </object>
   <object class="GtkAdjustment" id="adjustment6">
-    <property name="value">24</property>
     <property name="lower">16</property>
     <property name="upper">48</property>
+    <property name="value">24</property>
     <property name="step_increment">1</property>
     <property name="page_increment">11</property>
   </object>

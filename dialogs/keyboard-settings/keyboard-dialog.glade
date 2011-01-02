@@ -4,28 +4,25 @@
   <!-- interface-requires libxfce4ui 4.5 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkAdjustment" id="xkb_key_repeat_delay">
-    <property name="value">500</property>
     <property name="lower">10</property>
     <property name="upper">1000</property>
+    <property name="value">500</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
-    <property name="page_size">1</property>
   </object>
   <object class="GtkAdjustment" id="xkb_key_repeat_rate">
-    <property name="value">20</property>
     <property name="lower">1</property>
     <property name="upper">250</property>
+    <property name="value">20</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
-    <property name="page_size">1</property>
   </object>
   <object class="GtkAdjustment" id="net_cursor_blink_time">
-    <property name="value">1000</property>
     <property name="lower">100</property>
     <property name="upper">2000</property>
+    <property name="value">1000</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
-    <property name="page_size">1</property>
   </object>
   <object class="XfceTitledDialog" id="keyboard-settings-dialog">
     <property name="title" translatable="yes">Keyboard</property>

@@ -4,53 +4,51 @@
   <!-- interface-requires libxfce4ui 4.5 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkAdjustment" id="slow-keys-delay">
-    <property name="value">500.00000000022351</property>
     <property name="lower">50</property>
     <property name="upper">1000</property>
+    <property name="value">500</property>
     <property name="step_increment">10</property>
     <property name="page_increment">100</property>
-    <property name="page_size">10</property>
   </object>
   <object class="GtkAdjustment" id="bounce-keys-delay">
-    <property name="value">500.00000000022351</property>
     <property name="lower">50</property>
     <property name="upper">1000</property>
+    <property name="value">500</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
-    <property name="page_size">10</property>
   </object>
   <object class="GtkAdjustment" id="mouse-emulation-delay">
-    <property name="value">150.00000000022351</property>
     <property name="lower">1</property>
     <property name="upper">1000</property>
+    <property name="value">150</property>
     <property name="step_increment">10</property>
     <property name="page_increment">100</property>
   </object>
   <object class="GtkAdjustment" id="mouse-emulation-interval">
-    <property name="value">20</property>
     <property name="lower">10</property>
     <property name="upper">1000</property>
+    <property name="value">20</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="mouse-emulation-curve">
-    <property name="value">2.2351741811588166e-10</property>
     <property name="lower">-1000</property>
     <property name="upper">1000</property>
+    <property name="value">0</property>
     <property name="step_increment">10</property>
     <property name="page_increment">100</property>
   </object>
   <object class="GtkAdjustment" id="mouse-emulation-max-speed">
-    <property name="value">999.99999999977649</property>
     <property name="lower">1</property>
     <property name="upper">2000</property>
+    <property name="value">1000</property>
     <property name="step_increment">10</property>
     <property name="page_increment">100</property>
   </object>
   <object class="GtkAdjustment" id="mouse-emulation-time-to-max">
-    <property name="value">3000</property>
     <property name="lower">100</property>
     <property name="upper">10000</property>
+    <property name="value">3000</property>
     <property name="step_increment">10</property>
     <property name="page_increment">100</property>
   </object>
