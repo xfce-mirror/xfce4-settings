@@ -240,9 +240,9 @@ xfce_keyboard_settings_constructed (GObject *object)
   XfceKeyboardSettings *settings = XFCE_KEYBOARD_SETTINGS (object);
   GtkTreeViewColumn    *column;
   GtkCellRenderer      *renderer;
-  GtkAdjustment        *xkb_key_repeat_rate_scale;
-  GtkAdjustment        *xkb_key_repeat_delay_scale;
-  GtkAdjustment        *net_cursor_blink_time_scale;
+  GObject              *xkb_key_repeat_rate;
+  GObject              *xkb_key_repeat_delay;
+  GObject              *net_cursor_blink_time;
   GtkListStore         *list_store;
   GObject              *xkb_key_repeat_check;
   GObject              *xkb_key_repeat_box;
@@ -266,11 +266,11 @@ xfce_keyboard_settings_constructed (GObject *object)
   exo_binding_new (G_OBJECT (xkb_key_repeat_check), "active", G_OBJECT (xkb_key_repeat_box), "sensitive");
   xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat", G_TYPE_BOOLEAN, G_OBJECT (xkb_key_repeat_check), "active");
 
-  xkb_key_repeat_rate_scale = gtk_range_get_adjustment (GTK_RANGE (gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_rate_scale")));
-  xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Rate", G_TYPE_INT, G_OBJECT (xkb_key_repeat_rate_scale), "value");
+  xkb_key_repeat_rate = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_rate");
+  xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Rate", G_TYPE_INT, xkb_key_repeat_rate, "value");
 
-  xkb_key_repeat_delay_scale = gtk_range_get_adjustment (GTK_RANGE (gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_delay_scale")));
-  xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Delay", G_TYPE_INT, G_OBJECT (xkb_key_repeat_delay_scale), "value");
+  xkb_key_repeat_delay = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_delay");
+  xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Delay", G_TYPE_INT, xkb_key_repeat_delay, "value");
 
   /* XSETTINGS */
   net_cursor_blink_check = gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_check");
@@ -278,8 +278,8 @@ xfce_keyboard_settings_constructed (GObject *object)
   exo_binding_new (G_OBJECT (net_cursor_blink_check), "active", G_OBJECT (net_cursor_blink_box), "sensitive");
   xfconf_g_property_bind (settings->priv->xsettings_channel, "/Net/CursorBlink", G_TYPE_BOOLEAN, G_OBJECT (net_cursor_blink_check), "active");
 
-  net_cursor_blink_time_scale = gtk_range_get_adjustment (GTK_RANGE (gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_time_scale")));
-  xfconf_g_property_bind (settings->priv->xsettings_channel, "/Net/CursorBlinkTime", G_TYPE_INT, G_OBJECT (net_cursor_blink_time_scale), "value");
+  net_cursor_blink_time = gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_time");
+  xfconf_g_property_bind (settings->priv->xsettings_channel, "/Net/CursorBlinkTime", G_TYPE_INT, net_cursor_blink_time, "value");
 
   /* Configure shortcuts tree view */
   kbd_shortcuts_view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
