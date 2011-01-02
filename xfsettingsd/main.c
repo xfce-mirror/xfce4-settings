@@ -184,6 +184,8 @@ main(int argc, char **argv)
 
         xsettings_registry_notify(registry);
 
+        xsettings_registry_xft_notify(registry);
+
         gdk_window_add_filter(NULL, manager_event_filter, registry);
 
         keep_running = TRUE;

@@ -15,7 +15,7 @@
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL RED HAT
  * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
  * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN 
+ * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  * Author:  Owen Taylor, Red Hat, Inc.
@@ -40,6 +40,7 @@
 #include <config.h>
 #include <X11/Xlib.h>
 #include <X11/Xmd.h>
+#include <X11/Xatom.h>
 
 #include <glib.h>
 
@@ -170,13 +171,14 @@ struct _XSettingsRegistryPriv
     Window window;
     Atom xsettings_atom;
     Atom selection_atom;
+    gboolean debug;
 };
 
 static void xsettings_registry_set_property(GObject*, guint, const GValue*, GParamSpec*);
 static void xsettings_registry_get_property(GObject*, guint, GValue*, GParamSpec*);
 
 static void
-cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gchar *property_name, const GValue *value, XSettingsRegistry *registry); 
+cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gchar *property_name, const GValue *value, XSettingsRegistry *registry);
 static Bool
 timestamp_predicate (Display *display, XEvent  *xevent, XPointer arg);
 static int
@@ -301,118 +303,125 @@ cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gch
 
     xsettings_registry_notify(registry);
     if (!strncmp(name, "/Xft", 4) || !strncmp(name, "/Gtk/CursorTheme", 16))
-        xsettings_registry_store_xrdb(registry);
+        xsettings_registry_xft_notify(registry);
+}
+
+static void
+update_property (GString *props, const gchar* key, const gchar* value)
+{
+    gchar *needle;
+    gssize needle_len;
+    gchar *found = NULL;
+    gsize value_index;
+    gchar *end;
+
+    if (G_UNLIKELY (value == NULL))
+        value = "";
+
+    /* update an existing property */
+    needle = g_strconcat (key, ":", NULL);
+    needle_len = strlen (needle);
+    if (g_str_has_prefix (props->str, needle))
+        found = props->str;
+    else
+        found = strstr (props->str, needle);
+
+    if (found)
+    {
+        end = strchr (found, '\n');
+        value_index = (found - props->str) + needle_len + 1;
+        g_string_erase (props, value_index, end ? (end - found - needle_len) : -1);
+        g_string_insert (props, value_index, "\n");
+        g_string_insert (props, value_index, value);
+    }
+    else
+    {
+        g_string_append_printf (props, "%s:\t%s\n", key, value);
+    }
+}
+
+static void
+remove_property (GString *props, const gchar *key)
+{
+    gchar *needle;
+    gsize needle_len;
+    gchar *found = NULL;
+    gchar *end;
+
+    /* search for the property */
+    needle = g_strconcat (key, ":", NULL);
+    needle_len = strlen (needle);
+    if (g_str_has_prefix (props->str, needle))
+        found = props->str;
+    else
+        found = strstr (props->str, needle);
+
+    if (found)
+    {
+        end = strchr (found, '\n');
+        g_string_erase (props, found - props->str, end ? (end - found + 1) : -1);
+    }
 }
 
 void
-xsettings_registry_store_xrdb(XSettingsRegistry *registry)
+xsettings_registry_xft_notify(XSettingsRegistry *registry)
 {
-    gchar    *filename;
-    GError   *error = NULL;
-    GString  *string;
-    gchar    *command, *contents;
-    gboolean  result = TRUE;
+    Display *dpy;
+    GString *props;
+    gchar buf[256];
+    const gchar *str;
 
-    /* store the xft properties */
-    filename = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, "xfce4" G_DIR_SEPARATOR_S "Xft.xrdb", TRUE);
-    if (G_LIKELY (filename))
+    dpy = XOpenDisplay (NULL);
+    g_return_if_fail (dpy != NULL);
+    props = g_string_new (XResourceManagerString (dpy));
+
+    g_snprintf (buf, sizeof (buf), "%d", g_value_get_int (&properties[XSETTING_ENTRY_XFT_ANTIALIAS].value));
+    update_property (props, "Xft.antialias", buf);
+
+    g_snprintf (buf, sizeof (buf), "%d", g_value_get_int (&properties[XSETTING_ENTRY_XFT_HINTING].value));
+    update_property (props, "Xft.hinting", buf);
+
+    str = g_value_get_string (&properties[XSETTING_ENTRY_XFT_RGBA].value);
+    update_property (props, "Xft.rgba", str);
+
+    /*update_property (props, "Xft.lcdfilter", g_str_equal (str, "rgb") ? "lcddefault" : "none");*/
+
+    if (g_value_get_int (&properties[XSETTING_ENTRY_XFT_HINTING].value))
+        str = g_value_get_string (&properties[XSETTING_ENTRY_XFT_HINTSTYLE].value);
+    else
+        str = "hintnone";
+    update_property (props, "Xft.hintstyle", str);
+
+    if (g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) > 0)
     {
-        /* create file contents */
-        const gchar *xft_rgba = g_value_get_string (&properties[XSETTING_ENTRY_XFT_RGBA].value);
-
-        string = g_string_sized_new (80);
-        g_string_append_printf (string, "Xft.antialias: %d\n"
-                                        "Xft.hinting: %d\n"
-                                        "Xft.rgba: %s\n",
-                                        g_value_get_int (&properties[XSETTING_ENTRY_XFT_ANTIALIAS].value),
-                                        g_value_get_int (&properties[XSETTING_ENTRY_XFT_HINTING].value),
-                                        xft_rgba ? xft_rgba : "");
-
-        if (g_value_get_int (&properties[XSETTING_ENTRY_XFT_HINTING].value))
-            g_string_append_printf (string, "Xft.hintstyle: %s\n", g_value_get_string (&properties[XSETTING_ENTRY_XFT_HINTSTYLE].value));
-        else
-            string = g_string_append (string, "Xft.hintstyle: hintnone\n");
-
-        if (g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) > 0)
-            g_string_append_printf (string, "Xft.dpi: %d\n", g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value));
-
-        /* try to write the file contents */
-        if (G_LIKELY (g_file_set_contents (filename, string->str, -1, &error)))
-        {
-            /* create command to merge with the x resource database */
-            command = g_strdup_printf ("xrdb -nocpp -merge \"%s\"", filename);
-            result = g_spawn_command_line_async (command, &error);
-            g_free (command);
-
-            /* remove dpi from the database if not set */
-            if (result && g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) == 0)
-            {
-                command = g_strdup ("sh -c \"xrdb -query | grep -i -v '^Xft.dpi:' | xrdb\"");
-                result = g_spawn_command_line_async (command, &error);
-                g_free (command);
-            }
-        }
-        else
-        {
-            /* print error */
-            g_critical ("Failed to write to '%s': %s", filename, error->message);
-            g_error_free (error);
-        }
-
-        /* cleanup */
-        g_free (filename);
-        g_string_free (string, TRUE);
-
-        /* leave when there where spawn problems */
-        if (result == FALSE)
-            goto spawn_error;
+        g_snprintf (buf, sizeof (buf), "%d", g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value));
+        update_property (props, "Xft.dpi", buf);
+    }
+    else
+    {
+        remove_property (props, "Xft.dpi");
     }
 
-    /* store cursor settings */
-    filename = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, "xfce4" G_DIR_SEPARATOR_S "Xcursor.xrdb", TRUE);
-    if (G_LIKELY (filename))
-    {
-        /* build file contents */
-        const gchar *cursor_theme_name = g_value_get_string (&properties[XSETTING_ENTRY_GTK_CURSORTHEMENAME].value);
+    str = g_value_get_string (&properties[XSETTING_ENTRY_GTK_CURSORTHEMENAME].value);
+    update_property (props, "Xcursor.theme", str);
 
-        contents = g_strdup_printf ("Xcursor.theme: %s\n"
-                                    "Xcursor.theme_core: true\n"
-                                    "Xcursor.size: %d\n",
-                                    cursor_theme_name ? cursor_theme_name : "",
-                                    g_value_get_int (&properties[XSETTING_ENTRY_GTK_CURSORTHEMESIZE].value));
+    update_property (props, "Xcursor.theme_core", "true");
 
-        /* write the contents to the file */
-        if (G_LIKELY (g_file_set_contents (filename, contents, -1, &error)))
-        {
-            /* create command to merge with the x resource database */
-            command = g_strdup_printf ("xrdb -nocpp -merge \"%s\"", filename);
-            result = g_spawn_command_line_async (command, &error);
-            g_free (command);
-        }
-        else
-        {
-            /* print error */
-            g_critical ("Failed to write to '%s': %s", filename, error->message);
-            g_error_free (error);
-        }
+    g_snprintf (buf, sizeof (buf), "%d", g_value_get_int (&properties[XSETTING_ENTRY_GTK_CURSORTHEMESIZE].value));
+    update_property (props, "Xcursor.size", buf);
 
-        /* cleanup */
-        g_free (filename);
-        g_free (contents);
+    if (registry->priv->debug)
+        g_print ("Update XA_RESOURCE_MANAGER properties (len=%" G_GSIZE_FORMAT ")\n", props->len);
 
-        /* leave when there where spawn problems */
-        if (result == FALSE)
-            goto spawn_error;
-    }
+    XChangeProperty (dpy, RootWindow (dpy, 0),
+                     XA_RESOURCE_MANAGER, XA_STRING, 8,
+                     PropModeReplace,
+                     (const guchar *) props->str,
+                     props->len);
 
-    /* leave */
-    return;
+    XCloseDisplay (dpy);
 
-    spawn_error:
-
-    /* print warning */
-    g_critical ("Failed to spawn xrdb: %s", error->message);
-    g_error_free (error);
+    g_string_free (props, TRUE);
 }
 
 static int
@@ -480,6 +489,9 @@ xsettings_registry_notify(XSettingsRegistry *registry)
             case G_TYPE_UINT64:
                 buf_len += 8;
                 break;
+            default:
+                g_assert_not_reached ();
+                break;
         }
     }
 
@@ -528,6 +540,9 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                 break;
             case G_TYPE_UINT64: /* Color is a 64-bits value */
                 *pos++ = 2;
+                break;
+            default:
+                g_assert_not_reached ();
                 break;
         }
         *pos++ = 0;
@@ -591,7 +606,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                         dpi = compute_xsettings_dpi (registry);
                     }
 
-                    /* Make sure to use the fallback DPI if the user-defined or computed 
+                    /* Make sure to use the fallback DPI if the user-defined or computed
                      * value is out of range */
                     dpi = dpi < MIN_DPI ? FALLBACK_DPI : (dpi > MAX_DPI ? FALLBACK_DPI : dpi);
 
@@ -607,12 +622,17 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                 pos += 4;
                 break;
             case G_TYPE_UINT64:
-
                 pos += 8;
+                break;
+            default:
+                g_assert_not_reached ();
                 break;
         }
 
     }
+
+    if (registry->priv->debug)
+        g_print ("Update _XSETTINGS_SETTINGS properties (len=%d)\n", buf_len);
 
     XChangeProperty(registry->priv->display,
                     registry->priv->window,
@@ -794,6 +814,8 @@ xsettings_registry_load(XSettingsRegistry *registry, gboolean debug)
     XSettingsRegistryEntry *entry = properties;
     gchar *str;
 
+    registry->priv->debug = debug;
+
     while (entry->name)
     {
         gchar *name = g_strconcat("/", entry->name, NULL);
@@ -813,6 +835,9 @@ xsettings_registry_load(XSettingsRegistry *registry, gboolean debug)
                     break;
                 case G_TYPE_BOOLEAN:
                     g_value_set_boolean(&entry->value, xfconf_channel_get_bool(channel, name, g_value_get_boolean(&entry->value)));
+                    break;
+                default:
+                    g_assert_not_reached ();
                     break;
             }
         }
