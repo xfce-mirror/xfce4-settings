@@ -562,6 +562,7 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
       if (G_LIKELY (response == GTK_RESPONSE_OK))
         {
           /* Remove old shortcut from the settings */
+          gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
           xfce_shortcuts_provider_reset_shortcut (settings->priv->provider, shortcut);
 
           /* Get the shortcut entered by the user */
