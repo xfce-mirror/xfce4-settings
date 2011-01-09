@@ -4,7 +4,7 @@
  * Copyright (C) 2007 Anders Carlsson
  * Copyright (C) 2007 Rodrigo Moya
  * Copyright (C) 2007 William Jon McCann <mccann@jhu.edu>
- * Copyright (C) 2009 Mike Massonnet <mmassonnet@xfce.org>
+ * Copyright (C) 2009-2011 Mike Massonnet <mmassonnet@xfce.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -269,6 +269,21 @@ xfce_clipboard_manager_primary_clipboard_store (XfceClipboardManager *manager)
 }
 
 
+static gboolean
+xfce_clipboard_manager_primary_clipboard_restore (XfceClipboardManager *manager)
+{
+    if (manager->primary_cache != NULL)
+    {
+        gtk_clipboard_set_text (manager->primary_clipboard,
+                                manager->primary_cache,
+                                -1);
+        manager->primary_internal_change = TRUE;
+    }
+
+    return FALSE;
+}
+
+
 static void
 xfce_clipboard_manager_primary_owner_change (XfceClipboardManager *manager,
                                              GdkEventOwnerChange *event)
@@ -278,6 +293,12 @@ xfce_clipboard_manager_primary_owner_change (XfceClipboardManager *manager,
     if (event->send_event == TRUE)
         return;
 
+    if (manager->primary_timeout != 0)
+    {
+        g_source_remove (manager->primary_timeout);
+        manager->primary_timeout = 0;
+    }
+
     if (event->owner != 0)
     {
         if (manager->primary_internal_change == TRUE)
@@ -286,19 +307,11 @@ xfce_clipboard_manager_primary_owner_change (XfceClipboardManager *manager,
             return;
         }
 
-        if (manager->primary_timeout == 0)
-        {
-            manager->primary_timeout =
-            g_timeout_add (250, (GSourceFunc)xfce_clipboard_manager_primary_clipboard_store, manager);
-        }
+        manager->primary_timeout = g_timeout_add (250, (GSourceFunc)xfce_clipboard_manager_primary_clipboard_store, manager);
     }
-    else
+    else if (gtk_clipboard_wait_is_text_available (manager->primary_clipboard) == FALSE)
     {
-        if (manager->primary_cache != NULL)
-            gtk_clipboard_set_text (manager->primary_clipboard,
-                                    manager->primary_cache,
-                                    -1);
-        manager->primary_internal_change = TRUE;
+        manager->primary_timeout = g_timeout_add (250, (GSourceFunc)xfce_clipboard_manager_primary_clipboard_restore, manager);
     }
 }
 
