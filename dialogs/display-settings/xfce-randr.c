@@ -142,7 +142,7 @@ xfce_randr_list_supported_modes (XRRScreenResources *resources,
 
 
 
-static gboolean
+static void
 xfce_randr_populate (XfceRandr *randr,
                      Display   *xdisplay,
                      GdkWindow *root_window)
@@ -175,15 +175,6 @@ xfce_randr_populate (XfceRandr *randr,
 
         /* cache it */
         g_ptr_array_add (outputs, output_info);
-
-        /* check if the device is really a randr 1.2 device */
-        if (n == 0 && strcmp (output_info->name, "default") == 0)
-        {
-            /* free the cache */
-            g_ptr_array_foreach (outputs, (GFunc) XRRFreeOutputInfo, NULL);
-            g_ptr_array_free (outputs, TRUE);
-            return FALSE;
-        }
     }
 
     /* migrate the temporary cache */
@@ -234,8 +225,6 @@ xfce_randr_populate (XfceRandr *randr,
 
     /* clone modes: same RRModes present for all outputs */
     xfce_randr_list_clone_modes (randr);
-
-    return TRUE;
 }
 
 
@@ -285,17 +274,7 @@ xfce_randr_new (GdkDisplay  *display,
     /* get the screen resource */
     randr->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
 
-    if (!xfce_randr_populate (randr, xdisplay, root_window))
-    {
-        /* cleanup */
-        xfce_randr_free (randr);
-
-        /* set error */
-        g_set_error (error, 0, 0, _("The video driver does not support video outputs"));
-
-        /* return nothing */
-        return NULL;
-    }
+    xfce_randr_populate (randr, xdisplay, root_window);
 
     return randr;
 }
