@@ -4,15 +4,16 @@
 # Chris K. Zhang <plutino@gmail.com>, 2009.
 # Aron Xu <aronmalache@163.com>, 2009.
 # Hunt Xu <huntxu@live.cn>, 2009, 2010.
-
+#: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-27 11:09+0000\n"
+"POT-Creation-Date: 2011-01-16 17:16+0100\n"
 "PO-Revision-Date: 2010-11-27 21:48+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -459,8 +460,7 @@ msgstr "恢复原来设置"
 msgid ""
 "The previous configuration will be restored in 10 seconds if you do not "
 "reply to this question."
-msgstr ""
-"如果您不对此问题做出确认，原来的设置将会在 10 秒钟之后被恢复。"
+msgstr "如果您不对此问题做出确认，原来的设置将会在 10 秒钟之后被恢复。"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -541,8 +541,7 @@ msgstr "用以设置外部输出的界面"
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
 "reply to this question."
-msgstr ""
-"如果您不对此问题做出确认，原来的设置将会在 %i 秒钟之后被恢复。"
+msgstr "如果您不对此问题做出确认，原来的设置将会在 %i 秒钟之后被恢复。"
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:506
@@ -553,15 +552,14 @@ msgstr "%.1f Hz"
 #: ../dialogs/display-settings/main.c:652
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
-msgstr ""
-"最后一个活动输出不能被禁用，否则整个系统将不可用。"
+msgstr "最后一个活动输出不能被禁用，否则整个系统将不可用。"
 
 #: ../dialogs/display-settings/main.c:654
 msgid "Selected output not disabled"
 msgstr "选择未被禁用的输出"
 
 #: ../dialogs/display-settings/main.c:1078
-#: ../dialogs/display-settings/xfce-randr.c:260
+#: ../dialogs/display-settings/xfce-randr.c:261
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "无法取得 RandR 扩展模块的版本号"
@@ -584,33 +582,32 @@ msgid "Unable to launch the proprietary driver settings"
 msgstr "无法启动专用驱动设置"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:268
+#: ../dialogs/display-settings/xfce-randr.c:269
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr ""
-"您的系统使用的是 RandR %d.%d。显示设置依赖 1.2 以上版本才能正常工作"
+msgstr "您的系统使用的是 RandR %d.%d。显示设置依赖 1.2 以上版本才能正常工作"
 
 #. set error
-#: ../dialogs/display-settings/xfce-randr.c:293
+#: ../dialogs/display-settings/xfce-randr.c:294
 #, c-format
 msgid "The video driver does not support video outputs"
 msgstr "视频驱动不支持该输出"
 
-#: ../dialogs/display-settings/xfce-randr.c:557
+#: ../dialogs/display-settings/xfce-randr.c:558
 msgid "Laptop"
 msgstr "笔记本电脑"
 
-#: ../dialogs/display-settings/xfce-randr.c:578
+#: ../dialogs/display-settings/xfce-randr.c:579
 msgid "Monitor"
 msgstr "显示器"
 
-#: ../dialogs/display-settings/xfce-randr.c:581
+#: ../dialogs/display-settings/xfce-randr.c:582
 msgid "Television"
 msgstr "电视"
 
-#: ../dialogs/display-settings/xfce-randr.c:585
+#: ../dialogs/display-settings/xfce-randr.c:586
 msgid "Digital display"
 msgstr "电子显示板"
 
@@ -810,26 +807,26 @@ msgstr "布局"
 msgid "Variant"
 msgstr "变化"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:852
 msgid "Shortcut command may not be empty."
 msgstr "快捷键命令不能为空"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
 msgid "Reset to Defaults"
 msgstr "恢复默认设置"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:962
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
 msgstr "所有快捷键将被重设为默认值，您确定吗？"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1027
 msgid "The system defaults will be restored next time you log in."
 msgstr "你下次登入时将恢复系统默认设置"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1029
 msgid "Warning"
 msgstr "警告"
 

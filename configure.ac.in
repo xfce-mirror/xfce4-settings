@@ -10,8 +10,8 @@ dnl ***************************
 dnl *** Version information ***
 dnl ***************************
 m4_define([xfce4_settings_version_major], [4])
-m4_define([xfce4_settings_version_minor], [7])
-m4_define([xfce4_settings_version_micro], [7])
+m4_define([xfce4_settings_version_minor], [8])
+m4_define([xfce4_settings_version_micro], [0])
 m4_define([xfce4_settings_version_nano], [])
 m4_define([xfce4_settings_version_build], [@REVISION@])
 m4_define([xfce4_settings_version_tag], [git]) # Leave empty for releases
@@ -25,7 +25,7 @@ m4_define([xfce4_settings_debug_default], [ifelse(xfce4_settings_version_tag(), 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2008-2010
+AC_COPYRIGHT([Copyright (c) 2008-2011
         The Xfce development team. All rights reserved.])
 AC_INIT([xfce4-settings], [xfce4_settings_version], [http://bugzilla.xfce.org/])
 AC_PREREQ([2.50])
@@ -73,13 +73,13 @@ XDT_I18N([@LINGUAS@])
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
-XDT_CHECK_PACKAGE([EXO], [exo-1], [0.5.0])
+XDT_CHECK_PACKAGE([EXO], [exo-1], [0.6.0])
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.14.0])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.16.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.6.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.7.4])
-XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-2], [4.7.4])
-XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.6.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.8.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.8.0])
+XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-2], [4.8.0])
+XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.8.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.34])
 
 XDT_CHECK_PACKAGE([XI], [xi], [1.2.0], [],
