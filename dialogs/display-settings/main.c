@@ -1103,20 +1103,12 @@ main (gint argc, gchar **argv)
 
         if (!xfce_randr)
         {
-            command = g_find_program_in_path ("nvidia-settings");
+            command = g_find_program_in_path ("amdcccle");
+
             if (command != NULL)
             {
-                alternative = _("NVIDIA Settings");
-                alternative_icon = "nvidia-settings";
-            }
-            else
-            {
-                command = g_find_program_in_path ("amdcccle");
-                if (command != NULL)
-                {
-                    alternative = _("ATI Settings");
-                    alternative_icon = "ccc_small";
-                }
+                alternative = _("ATI Settings");
+                alternative_icon = "ccc_small";
             }
 
             response = xfce_message_dialog (NULL, NULL, GTK_STOCK_DIALOG_ERROR,
