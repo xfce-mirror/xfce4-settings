@@ -153,8 +153,8 @@ xfce_randr_populate (XfceRandr *randr,
     gint           n;
     guint          m;
 
-    g_return_val_if_fail (randr != NULL, FALSE);
-    g_return_val_if_fail (randr->resources != NULL, FALSE);
+    g_return_if_fail (randr != NULL);
+    g_return_if_fail (randr->resources != NULL);
 
     /* prepare the temporary cache */
     outputs = g_ptr_array_new ();
