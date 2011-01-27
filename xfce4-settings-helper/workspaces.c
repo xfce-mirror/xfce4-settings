@@ -343,6 +343,10 @@ xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper)
                 if (name != NULL && *name != '\0')
                 {
                     /* use the existing name */
+                    val = g_new0 (GValue, 1);
+                    g_value_init (val, G_TYPE_STRING);
+                    new_name = g_strdup (name);
+                    g_value_take_string (val, new_name);
                     g_ptr_array_add (names, val);
                     continue;
                 }
