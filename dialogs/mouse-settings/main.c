@@ -1223,7 +1223,8 @@ main (gint argc, gchar **argv)
 
     /* check for Xi */
     version = XGetExtensionVersion (GDK_DISPLAY (), INAME);
-    if (version == NULL || !version->present)
+    if (version == NULL || ((long) version) == NoSuchExtension
+        || !version->present)
     {
         g_critical ("XI is not present.");
         return EXIT_FAILURE;
