@@ -99,7 +99,7 @@ print_list (gpointer data, gpointer user_data);
 GtkDialog *
 xfce4_settings_editor_main_window_new(void)
 {
-    gint width, height, position;
+    gint width, height, position, i;
     GObject *dialog;
     GObject *channel_treeview;
     GObject *property_treeview;
@@ -177,6 +177,10 @@ xfce4_settings_editor_main_window_new(void)
 
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (property_treeview), 3, _("Value"), renderer, "text", 3, NULL);
+
+    /* Allow the user to sort the column items by clicking on headers */
+    for (i = 0; i < 4; i++)
+        gtk_tree_view_column_set_sort_column_id (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), i), i);
 
     /* Allow the user to resize the columns */
     gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (property_treeview), 0), TRUE);
