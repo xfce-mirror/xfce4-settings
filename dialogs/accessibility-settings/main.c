@@ -65,6 +65,37 @@ accessibility_settings_sensitivity (GtkToggleButton *button,
 
 
 static void
+accessibility_settings_at (GtkToggleButton *button,
+                           GtkBuilder      *builder)
+{
+  AtkObject  *atkobj;
+  GObject    *info_logout;
+  GObject    *no_atspi;
+  gchar     **atspi;
+
+  info_logout = gtk_builder_get_object (builder, "info-logout");
+  no_atspi = gtk_builder_get_object (builder, "info-no-at");
+
+  gtk_widget_hide (GTK_WIDGET (info_logout));
+  gtk_widget_hide (GTK_WIDGET (no_atspi));
+
+  if (gtk_toggle_button_get_active (button))
+    {
+      atspi = xfce_resource_match (XFCE_RESOURCE_CONFIG, "autostart/at-spi-*.desktop", TRUE);
+      atkobj = gtk_widget_get_accessible (GTK_WIDGET (button));
+
+      if (atspi == NULL || g_strv_length (atspi) == 0)
+        gtk_widget_show (GTK_WIDGET (no_atspi));
+      else if (!GTK_IS_ACCESSIBLE (atkobj))
+        gtk_widget_show (GTK_WIDGET (info_logout));
+
+      g_strfreev (atspi);
+    }
+}
+
+
+
+static void
 accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
 {
     GObject *box, *object;
@@ -72,6 +103,8 @@ accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* assistive technologies */
     object = gtk_builder_get_object (builder, "start-at");
     xfconf_g_property_bind (session_channel, "/general/StartAt", G_TYPE_BOOLEAN, object, "active");
+    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_at), builder);
+    accessibility_settings_at (GTK_TOGGLE_BUTTON (object), builder);
 
     /* Sticky keys */
     object = gtk_builder_get_object (builder, "sticky-keys-enabled");
