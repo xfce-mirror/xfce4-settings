@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-17 05:10+0000\n"
+"POT-Creation-Date: 2011-02-17 11:28+0000\n"
 "PO-Revision-Date: 2009-01-30 20:57+0200\n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
@@ -411,22 +411,20 @@ msgid "<big><b>Would you like to keep this configuration?</b></big>"
 msgstr "<big><b>Bu ayarları saklamak ister misiniz?</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
-#, fuzzy
 msgid "Confirmation"
-msgstr "Sürüm bilgisi"
+msgstr "Onay"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
-#, fuzzy
 msgid "Keep this configuration"
-msgstr "Pencere yöneticisi eylemini sakla"
+msgstr "Bu ayarları sakla"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Restore the previous configuration"
-msgstr ""
+msgstr "Eski ayarları yeniden yükle"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid "The previous configuration will be restored in 10 seconds if you do not reply to this question."
-msgstr ""
+msgstr "Eğer bu soruyu cevaplamazsanız eski ayarlar 10 saniye içinde yüklenecektir."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -458,7 +456,7 @@ msgstr "Dön_dürme:"
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 #, fuzzy
 msgid "_Use this output"
-msgstr "Bu eylemi kullan"
+msgstr "Bu çıktıyı kullan"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Both displays cloned"
@@ -471,7 +469,7 @@ msgstr "Görüntü Ayarları"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Several displays are available. Use:\n"
-msgstr ""
+msgstr "Bir kaç görüntü cihazı uygun:\n"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Use both displays to show the same contents"
@@ -527,56 +525,45 @@ msgid "Selected output not disabled"
 msgstr ""
 
 #: ../dialogs/display-settings/main.c:1078
-#: ../dialogs/display-settings/xfce-randr.c:261
+#: ../dialogs/display-settings/xfce-randr.c:250
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Kullanılan RandR eklentisinin sürüm numarası bilinmiyor"
 
 #: ../dialogs/display-settings/main.c:1079
-#: ../dialogs/display-settings/main.c:1123
+#: ../dialogs/display-settings/main.c:1115
 #, fuzzy
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce 4 Görüntü Ayarları"
 
-#: ../dialogs/display-settings/main.c:1109
-#, fuzzy
-msgid "NVIDIA Settings"
-msgstr "Ayarlar"
-
-#: ../dialogs/display-settings/main.c:1117
+#: ../dialogs/display-settings/main.c:1110
 #, fuzzy
 msgid "ATI Settings"
 msgstr "Ayarlar"
 
-#: ../dialogs/display-settings/main.c:1133
+#: ../dialogs/display-settings/main.c:1125
 msgid "Unable to launch the proprietary driver settings"
 msgstr ""
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:269
+#: ../dialogs/display-settings/xfce-randr.c:258
 #, fuzzy, c-format
 msgid "This system is using RandR %d.%d. For the display settings to work version 1.2 is required at least"
 msgstr "Bu sistem, RandR %d.%d kullanıyor. Ayarları görüntülemek için, en az 1.1 sürümü gereklidir."
 
-#. set error
-#: ../dialogs/display-settings/xfce-randr.c:294
-#, c-format
-msgid "The video driver does not support video outputs"
-msgstr ""
-
-#: ../dialogs/display-settings/xfce-randr.c:558
+#: ../dialogs/display-settings/xfce-randr.c:537
 msgid "Laptop"
 msgstr "Laptop"
 
-#: ../dialogs/display-settings/xfce-randr.c:579
+#: ../dialogs/display-settings/xfce-randr.c:558
 msgid "Monitor"
 msgstr "Ekran"
 
-#: ../dialogs/display-settings/xfce-randr.c:582
+#: ../dialogs/display-settings/xfce-randr.c:561
 msgid "Television"
 msgstr "Televizyon"
 
-#: ../dialogs/display-settings/xfce-randr.c:586
+#: ../dialogs/display-settings/xfce-randr.c:565
 msgid "Digital display"
 msgstr "Sayısal görüntü"
 
@@ -1128,7 +1115,7 @@ msgstr "Tutuklu tuşlar"
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Hata ayıklayıcı modunda başlat (Artalana çatallanma)"
 
-#: ../xfce4-settings-helper/workspaces.c:354
+#: ../xfce4-settings-helper/workspaces.c:358
 #, c-format
 msgid "Workspace %d"
 msgstr "Çalışma Alanı %d"
@@ -1185,6 +1172,9 @@ msgid ""
 msgstr ""
 "%s: %s\n"
 "Komut satırı seçeneklerinin tüm listesini görmek için, %s --help yazın.\n"
+
+#~ msgid "NVIDIA Settings"
+#~ msgstr "Ayarlar"
 
 #~ msgid "Active"
 #~ msgstr "Etkin"
