@@ -50,6 +50,7 @@ static GOptionEntry entries[] =
 
 /* global xfconf channel */
 static XfconfChannel *accessibility_channel = NULL;
+static XfconfChannel *session_channel = NULL;
 
 
 
@@ -67,6 +68,10 @@ static void
 accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
 {
     GObject *box, *object;
+
+    /* assistive technologies */
+    object = gtk_builder_get_object (builder, "start-at");
+    xfconf_g_property_bind (session_channel, "/general/StartAt", G_TYPE_BOOLEAN, object, "active");
 
     /* Sticky keys */
     object = gtk_builder_get_object (builder, "sticky-keys-enabled");
@@ -176,8 +181,9 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    /* open the channel */
+    /* open the channels */
     accessibility_channel = xfconf_channel_new ("accessibility");
+    session_channel = xfconf_channel_new ("xfce4-session");
 
     /* hook to make sure the libxfce4ui library is linked */
     if (xfce_titled_dialog_get_type () == 0)
@@ -237,8 +243,9 @@ main (gint argc, gchar **argv)
     /* Release Builder */
     g_object_unref (G_OBJECT (builder));
 
-    /* release the channel */
+    /* release the channels */
     g_object_unref (G_OBJECT (accessibility_channel));
+    g_object_unref (G_OBJECT (session_channel));
 
     /* shutdown xfconf */
     xfconf_shutdown();
