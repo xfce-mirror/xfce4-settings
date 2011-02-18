@@ -102,7 +102,7 @@ accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     /* assistive technologies */
     object = gtk_builder_get_object (builder, "start-at");
-    xfconf_g_property_bind (session_channel, "/general/StartAt", G_TYPE_BOOLEAN, object, "active");
+    xfconf_g_property_bind (session_channel, "/general/StartAssistiveTechnologies", G_TYPE_BOOLEAN, object, "active");
     g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_at), builder);
     accessibility_settings_at (GTK_TOGGLE_BUTTON (object), builder);
 
