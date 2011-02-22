@@ -5,7 +5,6 @@ SUBDIRS = \
 	xfce4-settings-helper \
 	xfce4-settings-manager \
 	xfce4-settings-editor \
-	xfsettingsd \
 	po
 
 EXTRA_DIST = \
