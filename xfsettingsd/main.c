@@ -63,7 +63,7 @@
 #include "displays.h"
 #endif
 
-#define HELPER_DBUS_NAME "org.xfce.SettingsHelper"
+#define HELPER_DBUS_NAME "org.xfce.SettingsDaemon"
 
 
 static XfceSMClient *sm_client = NULL;

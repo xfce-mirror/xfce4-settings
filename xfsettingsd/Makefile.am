@@ -6,14 +6,14 @@ INCLUDES = \
 	-DBINDIR=\"$(bindir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
-	-DG_LOG_DOMAIN=\"xfce4-settings-helper\" \
+	-DG_LOG_DOMAIN=\"xfsettingsd\" \
 	-DAUTOSTART_FILENAME=\"$(autostart_DATA)\" \
 	$(PLATFORM_CPPFLAGS)
 
 bin_PROGRAMS = \
-	xfce4-settings-helper
+	xfsettingsd
 
-xfce4_settings_helper_SOURCES = \
+xfsettingsd_SOURCES = \
 	main.c \
 	accessibility.c \
 	accessibility.h \
@@ -32,7 +32,7 @@ xfce4_settings_helper_SOURCES = \
 	xsettings.c \
 	xsettings.h
 
-xfce4_settings_helper_CFLAGS = \
+xfsettingsd_CFLAGS = \
 	-I$(top_builddir) \
 	-I$(top_srcdir) \
 	$(GTK_CFLAGS) \
@@ -49,11 +49,11 @@ xfce4_settings_helper_CFLAGS = \
 	$(LIBNOTIFY_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
-xfce4_settings_helper_LDFLAGS = \
+xfsettingsd_LDFLAGS = \
 	-no-undefined \
 	$(PLATFORM_LDFLAGS)
 
-xfce4_settings_helper_LDADD = \
+xfsettingsd_LDADD = \
 	$(GTK_LIBS) \
 	$(GLIB_LIBS) \
 	$(GTHREAD_LIBS) \
@@ -71,14 +71,14 @@ xfce4_settings_helper_LDADD = \
 # Optional support for the display settings
 #
 if HAVE_XRANDR
-xfce4_settings_helper_SOURCES += \
+xfsettingsd_SOURCES += \
 	displays.c \
 	displays.h
 
-xfce4_settings_helper_CFLAGS += \
+xfsettingsd_CFLAGS += \
 	$(XRANDR_CFLAGS)
 
-xfce4_settings_helper_LDADD += \
+xfsettingsd_LDADD += \
 	$(XRANDR_LIBS)
 endif
 
@@ -86,7 +86,7 @@ settingsdir = $(sysconfdir)/xdg/xfce4/xfconf/xfce-perchannel-xml
 settings_DATA = xsettings.xml
 
 autostartdir = $(sysconfdir)/xdg/autostart
-autostart_DATA = xfce4-settings-helper-autostart.desktop
+autostart_DATA = xfsettingsd-autostart.desktop
 
 EXTRA_DIST = \
 	$(settings_DATA) \
