@@ -57,6 +57,7 @@
 #include "keyboard-shortcuts.h"
 #include "workspaces.h"
 #include "clipboard-manager.h"
+#include "xsettings.h"
 
 #ifdef HAVE_XRANDR
 #include "displays.h"
@@ -69,10 +70,12 @@ static XfceSMClient *sm_client = NULL;
 
 static gboolean opt_version = FALSE;
 static gboolean opt_debug = FALSE;
+static gboolean opt_force_replace = FALSE;
 static GOptionEntry option_entries[] =
 {
     { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { "debug", 'd', 0, G_OPTION_ARG_NONE, &opt_debug, N_("Start in debug mode (don't fork to the background)"), NULL },
+    { "force", 'f', 0, G_OPTION_ARG_NONE, &opt_force_replace, N_("Replace running xsettings daemon (if any)"), NULL },
     { NULL }
 };
 
@@ -134,6 +137,7 @@ main (gint argc, gchar **argv)
     GObject              *accessibility_helper;
     GObject              *shortcuts_helper;
     GObject              *keyboard_layout_helper;
+    GObject              *xsettings_helper;
 #ifdef HAVE_XRANDR
     GObject              *displays_helper;
 #endif
@@ -238,6 +242,11 @@ main (gint argc, gchar **argv)
         }
     }
 
+    /* launch settings manager */
+    xsettings_helper = g_object_new (XFCE_TYPE_XSETTINGS_HELPER, NULL);
+    xfce_xsettings_helper_register (XFCE_XSETTINGS_HELPER (xsettings_helper),
+                                    gdk_display_get_default (), opt_force_replace);
+
     /* create the sub daemons */
 #ifdef HAVE_XRANDR
     displays_helper = g_object_new (XFCE_TYPE_DISPLAYS_HELPER, NULL);
@@ -279,6 +288,7 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (shortcuts_helper));
     g_object_unref (G_OBJECT (keyboard_layout_helper));
     g_object_unref (G_OBJECT (workspaces_helper));
+    g_object_unref (G_OBJECT (xsettings_helper));
 
     if (G_LIKELY (clipboard_daemon != NULL))
     {

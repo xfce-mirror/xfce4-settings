@@ -28,7 +28,9 @@ xfce4_settings_helper_SOURCES = \
 	pointers.c \
 	pointers.h \
 	workspaces.c \
-	workspaces.h
+	workspaces.h \
+	xsettings.c \
+	xsettings.h
 
 xfce4_settings_helper_CFLAGS = \
 	-I$(top_builddir) \
@@ -80,10 +82,14 @@ xfce4_settings_helper_LDADD += \
 	$(XRANDR_LIBS)
 endif
 
+settingsdir = $(sysconfdir)/xdg/xfce4/xfconf/xfce-perchannel-xml
+settings_DATA = xsettings.xml
+
 autostartdir = $(sysconfdir)/xdg/autostart
 autostart_DATA = xfce4-settings-helper-autostart.desktop
 
 EXTRA_DIST = \
-	xfce4-settings-helper-autostart.desktop
+	$(settings_DATA) \
+	$(autostart_DATA)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
