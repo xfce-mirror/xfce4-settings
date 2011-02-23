@@ -36,6 +36,7 @@ static const GDebugKey dbg_keys[] =
     { "fontconfig", XFSD_DEBUG_FONTCONFIG },
     { "keyboard-layout", XFSD_DEBUG_KEYBOARD_LAYOUT },
     { "keyboards", XFSD_DEBUG_KEYBOARDS },
+    { "keyboard-shortcuts", XFSD_DEBUG_KEYBOARD_SHORTCUTS },
 };
 
 

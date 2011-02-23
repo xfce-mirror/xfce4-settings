@@ -43,6 +43,7 @@
 #include <libxfce4kbd-private/xfce-shortcuts-provider.h>
 #include <libxfce4kbd-private/xfce-shortcuts-grabber.h>
 
+#include "debug.h"
 #include "keyboard-shortcuts.h"
 
 
@@ -146,8 +147,9 @@ xfce_keyboard_shortcuts_helper_shortcut_added (XfceShortcutsProvider       *prov
                                                XfceKeyboardShortcutsHelper *helper)
 {
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
-  DBG ("shortcut = %s", shortcut);
   xfce_shortcuts_grabber_add (helper->grabber, shortcut);
+
+  xfsettings_dbg (XFSD_DEBUG_KEYBOARD_SHORTCUTS, "add \"%s\"", shortcut);
 }
 
 
@@ -158,8 +160,9 @@ xfce_keyboard_shortcuts_helper_shortcut_removed (XfceShortcutsProvider       *pr
                                                  XfceKeyboardShortcutsHelper *helper)
 {
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
-  DBG ("shortcut = %s", shortcut);
   xfce_shortcuts_grabber_remove (helper->grabber, shortcut);
+
+  xfsettings_dbg (XFSD_DEBUG_KEYBOARD_SHORTCUTS, "remove \"%s\"", shortcut);
 }
 
 
@@ -171,8 +174,10 @@ _xfce_keyboard_shortcuts_helper_load_shortcut (XfceShortcut                *shor
   g_return_if_fail (shortcut != NULL);
   g_return_if_fail (XFCE_IS_KEYBOARD_SHORTCUTS_HELPER (helper));
 
-  DBG ("shortcut = %s", shortcut->shortcut);
   xfce_shortcuts_grabber_add (helper->grabber, shortcut->shortcut);
+
+  xfsettings_dbg_filtered (XFSD_DEBUG_KEYBOARD_SHORTCUTS, "loaded \"%s\" => \"%s\"",
+                           shortcut->shortcut, shortcut->command);
 }
 
 
@@ -187,6 +192,7 @@ xfce_keyboard_shortcuts_helper_load_shortcuts (XfceKeyboardShortcutsHelper *help
   /* Load shortcuts one by one */
   shortcuts = xfce_shortcuts_provider_get_shortcuts (helper->provider);
   g_list_foreach (shortcuts, (GFunc) _xfce_keyboard_shortcuts_helper_load_shortcut, helper);
+  xfsettings_dbg (XFSD_DEBUG_KEYBOARD_SHORTCUTS, "%d shortcuts loaded", g_list_length (shortcuts));
   xfce_shortcuts_free (shortcuts);
 }
 
@@ -210,16 +216,18 @@ xfce_keyboard_shortcuts_helper_shortcut_activated (XfceShortcutsGrabber        *
   if (shortcut == NULL || g_utf8_strlen (shortcut, -1) == 0)
     return;
 
-  DBG  ("shortcut = %s", shortcut);
-
   /* Get shortcut from the provider */
   sc = xfce_shortcuts_provider_get_shortcut (helper->provider, shortcut);
 
   if (G_UNLIKELY (sc == NULL))
-    return;
+   {
+      xfsettings_dbg (XFSD_DEBUG_KEYBOARD_SHORTCUTS, "\"%s\" not found", shortcut);
+      return;
+   }
 
-  DBG ("command = %s, snotify = %s (time = %d)",
-       sc->command, sc->snotify ? "true" : "false", timestamp);
+  xfsettings_dbg (XFSD_DEBUG_KEYBOARD_SHORTCUTS,
+                  "activated \"%s\" (command=\"%s\", snotify=%d, stamp=%d)",
+                  shortcut, sc->command, sc->snotify, timestamp);
 
   /* Handle the argv ourselfs, because xfce_spawn_command_line_on_screen() does
    * not accept a custom timestamp for startup notification */
