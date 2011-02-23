@@ -5,9 +5,9 @@ INCLUDES = \
 	-DDATADIR=\"$(datadir)\" \
 	-DBINDIR=\"$(bindir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \
+	-DSYSCONFIGDIR=\"$(sysconfdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfsettingsd\" \
-	-DAUTOSTART_FILENAME=\"$(autostart_DATA)\" \
 	$(PLATFORM_CPPFLAGS)
 
 bin_PROGRAMS = \
@@ -90,10 +90,15 @@ settingsdir = $(sysconfdir)/xdg/xfce4/xfconf/xfce-perchannel-xml
 settings_DATA = xsettings.xml
 
 autostartdir = $(sysconfdir)/xdg/autostart
-autostart_DATA = xfsettingsd-autostart.desktop
+autostart_in_files = xfsettingsd.desktop.in
+autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
+@INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
 	$(settings_DATA) \
+	$(autostart_in_files)
+
+DISTCLEANFILES = \
 	$(autostart_DATA)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:

@@ -63,7 +63,8 @@
 #include "displays.h"
 #endif
 
-#define HELPER_DBUS_NAME "org.xfce.SettingsDaemon"
+#define XFSETTINGS_DBUS_NAME    ("org.xfce.SettingsDaemon")
+#define XFSETTINGS_DESKTOP_FILE (SYSCONFIGDIR "/xdg/autostart/xfsettingsd.desktop")
 
 
 static XfceSMClient *sm_client = NULL;
@@ -91,47 +92,12 @@ signal_handler (gint signum,
 
 
 
-static gboolean
-xfce_settings_helper_set_autostart_enabled (gboolean enabled)
-{
-    gboolean ret = TRUE;
-    XfceRc *rcfile = xfce_rc_config_open (XFCE_RESOURCE_CONFIG,
-                                          "autostart/" AUTOSTART_FILENAME,
-                                          FALSE);
-
-    if (G_UNLIKELY (rcfile == NULL))
-    {
-        g_warning ("Failed to create per-user autostart directory");
-        return FALSE;
-    }
-
-    xfce_rc_set_group (rcfile, "Desktop Entry");
-    if (xfce_rc_read_bool_entry (rcfile, "Hidden", enabled) == enabled)
-    {
-        xfce_rc_write_bool_entry (rcfile, "Hidden", !enabled);
-        xfce_rc_flush (rcfile);
-    }
-
-    if (xfce_rc_is_dirty (rcfile))
-    {
-        g_warning ("Failed to write autostart file");
-        ret = FALSE;
-    }
-
-    xfce_rc_close (rcfile);
-
-    return ret;
-}
-
-
-
 gint
 main (gint argc, gchar **argv)
 {
     XfceClipboardManager *clipboard_daemon;
     GError               *error = NULL;
     GOptionContext       *context;
-    gboolean              in_session;
     GObject              *pointer_helper;
     GObject              *keyboards_helper;
     GObject              *accessibility_helper;
@@ -176,7 +142,7 @@ main (gint argc, gchar **argv)
     if (G_UNLIKELY (opt_version))
     {
         g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
-        g_print ("%s\n", "Copyright (c) 2008-2012");
+        g_print ("%s\n", "Copyright (c) 2008-2011");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
         g_print ("\n");
@@ -187,7 +153,7 @@ main (gint argc, gchar **argv)
     dbus_connection = dbus_bus_get (DBUS_BUS_SESSION, NULL);
     if (G_LIKELY (dbus_connection != NULL))
     {
-        result = dbus_bus_request_name (dbus_connection, HELPER_DBUS_NAME, DBUS_NAME_FLAG_DO_NOT_QUEUE, NULL);
+        result = dbus_bus_request_name (dbus_connection, XFSETTINGS_DBUS_NAME, DBUS_NAME_FLAG_DO_NOT_QUEUE, NULL);
         if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER)
           {
               g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance is already running. Leaving...");
@@ -212,17 +178,14 @@ main (gint argc, gchar **argv)
      * session manager won't wait for us to time out. */
     sm_client = xfce_sm_client_get ();
     xfce_sm_client_set_restart_style (sm_client, XFCE_SM_CLIENT_RESTART_IMMEDIATELY);
+    xfce_sm_client_set_desktop_file (sm_client, XFSETTINGS_DESKTOP_FILE);
+    xfce_sm_client_set_priority (sm_client, XFCE_SM_CLIENT_PRIORITY_CORE);
     g_signal_connect (G_OBJECT (sm_client), "quit", G_CALLBACK (gtk_main_quit), NULL);
     if (!xfce_sm_client_connect (sm_client, &error) && error)
     {
         g_printerr ("Failed to connect to session manager: %s\n", error->message);
         g_clear_error (&error);
     }
-
-    /* if this instance is started from a saved session, disable autostart so
-     * the helper is not spawned twice */
-    in_session = xfce_sm_client_is_resumed (sm_client);
-    xfce_settings_helper_set_autostart_enabled (in_session);
 
     /* daemonize the process */
     if (!opt_no_daemon)
@@ -276,7 +239,7 @@ main (gint argc, gchar **argv)
 
     /* release the dbus name */
     if (dbus_connection != NULL)
-        dbus_bus_release_name (dbus_connection, HELPER_DBUS_NAME, NULL);
+        dbus_bus_release_name (dbus_connection, XFSETTINGS_DBUS_NAME, NULL);
 
     /* release the sub daemons */
 #ifdef HAVE_XRANDR
