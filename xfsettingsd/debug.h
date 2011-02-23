@@ -27,6 +27,7 @@ typedef enum
    XFSD_DEBUG_XSETTINGS       = 1 << 1,
    XFSD_DEBUG_FONTCONFIG      = 1 << 2,
    XFSD_DEBUG_KEYBOARD_LAYOUT = 1 << 3,
+   XFSD_DEBUG_KEYBOARDS       = 1 << 4,
 
 }
 XfsdDebugDomain;

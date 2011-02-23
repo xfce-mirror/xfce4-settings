@@ -41,6 +41,7 @@
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 
+#include "debug.h"
 #include "keyboards.h"
 
 
@@ -92,17 +93,21 @@ static void
 xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
 {
     gint dummy;
+    gint marjor_ver, minor_ver;
 
     /* init */
     helper->channel = NULL;
 
-    if (XkbQueryExtension (GDK_DISPLAY (), &dummy, &dummy, &dummy, &dummy, &dummy))
+    if (XkbQueryExtension (GDK_DISPLAY (), &dummy, &dummy, &dummy, &marjor_ver, &minor_ver))
     {
+        xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "initialized xkb %d.%d", marjor_ver, minor_ver);
+
         /* open the channel */
         helper->channel = xfconf_channel_get ("keyboards");
 
         /* monitor channel changes */
-        g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_keyboards_helper_channel_property_changed), helper);
+        g_signal_connect (G_OBJECT (helper->channel), "property-changed",
+            G_CALLBACK (xfce_keyboards_helper_channel_property_changed), helper);
 
         /* load settings */
         xfce_keyboards_helper_set_auto_repeat_mode (helper);
@@ -146,9 +151,9 @@ xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
 
     /* set key repeat */
     values.auto_repeat_mode = repeat ? 1 : 0;
-
-    /* set key repeat */
     XChangeKeyboardControl (GDK_DISPLAY (), KBAutoRepeatMode, &values);
+
+    xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set auto repeat %s", repeat ? "on" : "off");
 
     /* flush and remove the x error trap */
     gdk_flush ();
@@ -184,6 +189,9 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
 
         /* set updated controls */
         XkbSetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
+
+        xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set key repeat (delay=%d, rate=%d)",
+                        xkb->ctrls->repeat_delay, xkb->ctrls->repeat_interval);
 
         /* cleanup */
         XkbFreeControls (xkb, XkbRepeatKeysMask, True);
@@ -233,6 +241,8 @@ xfce_keyboards_helper_restore_numlock_state (XfconfChannel *channel)
     numlock_mask = XkbKeysymToModifiers (dpy, XK_Num_Lock);
 
     XkbLockModifiers (dpy, XkbUseCoreKbd, numlock_mask, state ? numlock_mask : 0);
+
+    xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set numlock %s", state ? "on" : "off");
 }
 
 
