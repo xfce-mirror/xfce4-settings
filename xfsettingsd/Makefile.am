@@ -17,6 +17,8 @@ xfsettingsd_SOURCES = \
 	main.c \
 	accessibility.c \
 	accessibility.h \
+	debug.c \
+	debug.h \
 	clipboard-manager.c \
 	clipboard-manager.h \
 	keyboards.c \
