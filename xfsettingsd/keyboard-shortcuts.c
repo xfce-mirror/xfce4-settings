@@ -56,14 +56,6 @@ enum
 
 
 static void            xfce_keyboard_shortcuts_helper_finalize           (GObject                          *object);
-static void            xfce_keyboard_shortcuts_helper_get_property       (GObject                          *object,
-                                                                          guint                             prop_id,
-                                                                          GValue                           *value,
-                                                                          GParamSpec                       *pspec);
-static void            xfce_keyboard_shortcuts_helper_set_property       (GObject                          *object,
-                                                                          guint                             prop_id,
-                                                                          const GValue                     *value,
-                                                                          GParamSpec                       *pspec);
 static void            xfce_keyboard_shortcuts_helper_shortcut_added     (XfceShortcutsProvider            *provider,
                                                                           const gchar                      *shortcut,
                                                                           XfceKeyboardShortcutsHelper      *helper);
@@ -107,8 +99,6 @@ xfce_keyboard_shortcuts_helper_class_init (XfceKeyboardShortcutsHelperClass *kla
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = xfce_keyboard_shortcuts_helper_finalize;
-  gobject_class->get_property = xfce_keyboard_shortcuts_helper_get_property;
-  gobject_class->set_property = xfce_keyboard_shortcuts_helper_set_property;
 }
 
 
@@ -146,42 +136,6 @@ xfce_keyboard_shortcuts_helper_finalize (GObject *object)
   g_object_unref (helper->grabber);
 
   (*G_OBJECT_CLASS (xfce_keyboard_shortcuts_helper_parent_class)->finalize) (object);
-}
-
-
-
-static void
-xfce_keyboard_shortcuts_helper_get_property (GObject    *object,
-                                             guint       prop_id,
-                                             GValue     *value,
-                                             GParamSpec *pspec)
-{
-  /* XfceKeyboardShortcutsHelper *helper = XFCE_KEYBOARD_SHORTCUTS_HELPER (object); */
-
-  switch (prop_id)
-    {
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-    }
-}
-
-
-
-static void
-xfce_keyboard_shortcuts_helper_set_property (GObject      *object,
-                                             guint         prop_id,
-                                             const GValue *value,
-                                             GParamSpec   *pspec)
-{
-  /* XfceKeyboardShortcutsHelper *helper = XFCE_KEYBOARD_SHORTCUTS_HELPER (object); */
-
-  switch (prop_id)
-    {
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-    }
 }
 
 
