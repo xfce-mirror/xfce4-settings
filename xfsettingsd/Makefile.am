@@ -38,6 +38,7 @@ xfsettingsd_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(GLIB_CFLAGS) \
 	$(GTHREAD_CFLAGS) \
+	$(GIO_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
@@ -47,6 +48,7 @@ xfsettingsd_CFLAGS = \
 	$(XI_CFLAGS) \
 	$(LIBX11_CFLAGS) \
 	$(LIBNOTIFY_CFLAGS) \
+	$(FONTCONFIG_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfsettingsd_LDFLAGS = \
@@ -57,6 +59,7 @@ xfsettingsd_LDADD = \
 	$(GTK_LIBS) \
 	$(GLIB_LIBS) \
 	$(GTHREAD_LIBS) \
+	$(GIO_LIBS) \
 	$(DBUS_GLIB_LIBS) \
 	$(XFCONF_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
@@ -65,7 +68,8 @@ xfsettingsd_LDADD = \
 	$(LIBXKLAVIER_LIBS) \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
-	$(LIBNOTIFY_LIBS)
+	$(LIBNOTIFY_LIBS) \
+	$(FONTCONFIG_LIBS)
 
 #
 # Optional support for the display settings

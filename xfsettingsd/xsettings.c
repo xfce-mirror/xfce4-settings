@@ -32,6 +32,9 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+#ifdef HAVE_TIME_H
+#include <time.h>
+#endif
 
 #include <X11/Xlib.h>
 #include <X11/Xmd.h>
@@ -40,9 +43,11 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
-#include <gdk/gdkx.h>
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
+
+#include <gio/gio.h>
+#include <fontconfig/fontconfig.h>
 
 #include "xsettings.h"
 
@@ -56,6 +61,9 @@
 #define DPI_LOW_REASONABLE  50
 #define DPI_HIGH_REASONABLE 500
 
+#define FC_TIMEOUT_SEC 2 /* timeout before xsettings notify */
+#define FC_PROPERTY    "/Fontconfig/Timestamp"
+
 
 
 typedef struct _XfceXSettingsScreen XfceXSettingsScreen;
@@ -64,16 +72,19 @@ typedef struct _XfceXSettingsNotify XfceXSettingsNotify;
 
 
 
-static void xfce_xsettings_helper_finalize     (GObject             *object);
-static void xfce_xsettings_helper_setting_free (gpointer             data);
-static void xfce_xsettings_helper_prop_changed (XfconfChannel       *channel,
-                                                const gchar         *prop_name,
-                                                const GValue        *value,
-                                                XfceXSettingsHelper *helper);
-static void xfce_xsettings_helper_load         (XfceXSettingsHelper *helper);
-static void xfce_xsettings_helper_screen_free  (XfceXSettingsScreen *screen);
-static void xfce_xsettings_helper_notify_xft   (XfceXSettingsHelper *helper);
-static void xfce_xsettings_helper_notify       (XfceXSettingsHelper *helper);
+static void     xfce_xsettings_helper_finalize     (GObject             *object);
+static void     xfce_xsettings_helper_fc_free      (XfceXSettingsHelper *helper);
+static gboolean xfce_xsettings_helper_fc_init      (gpointer             data);
+static gboolean xfce_xsettings_helper_notify_idle  (gpointer             data);
+static void     xfce_xsettings_helper_setting_free (gpointer             data);
+static void     xfce_xsettings_helper_prop_changed (XfconfChannel       *channel,
+                                                    const gchar         *prop_name,
+                                                    const GValue        *value,
+                                                    XfceXSettingsHelper *helper);
+static void     xfce_xsettings_helper_load         (XfceXSettingsHelper *helper);
+static void     xfce_xsettings_helper_screen_free  (XfceXSettingsScreen *screen);
+static void     xfce_xsettings_helper_notify_xft   (XfceXSettingsHelper *helper);
+static void     xfce_xsettings_helper_notify       (XfceXSettingsHelper *helper);
 
 
 
@@ -101,7 +112,13 @@ struct _XfceXSettingsHelper
     guint          notify_idle_id;
     guint          notify_xft_idle_id;
 
+    /* atom for xsetting property changes */
     Atom           xsettings_atom;
+
+    /* fontconfig monitoring */
+    GPtrArray     *fc_monitors;
+    guint          fc_notify_timeout_id;
+    guint          fc_init_id;
 };
 
 struct _XfceXSetting
@@ -165,6 +182,9 @@ xfce_xsettings_helper_finalize (GObject *object)
     XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (object);
     GSList              *li;
 
+    /* stop fontconfig monitoring */
+    xfce_xsettings_helper_fc_free (helper);
+
     /* stop pending update */
     if (helper->notify_idle_id != 0)
         g_source_remove (helper->notify_idle_id);
@@ -182,6 +202,145 @@ xfce_xsettings_helper_finalize (GObject *object)
     g_hash_table_destroy (helper->settings);
 
     (*G_OBJECT_CLASS (xfce_xsettings_helper_parent_class)->finalize) (object);
+}
+
+
+
+static gboolean
+xfce_xsettings_helper_fc_notify (gpointer data)
+{
+    XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (data);
+    XfceXSetting        *setting;
+
+    helper->fc_notify_timeout_id = 0;
+
+    /* check if the font config setup changed */
+    if (!FcConfigUptoDate (NULL) && FcInitReinitialize ())
+    {
+        /* stop the monitors */
+        xfce_xsettings_helper_fc_free (helper);
+
+        setting = g_hash_table_lookup (helper->settings, FC_PROPERTY);
+        if (setting == NULL)
+        {
+            /* create new setting */
+            setting = g_slice_new0 (XfceXSetting);
+            setting->value = g_new0 (GValue, 1);
+            g_value_init (setting->value, G_TYPE_INT);
+            g_hash_table_insert (helper->settings, g_strdup (FC_PROPERTY), setting);
+        }
+
+        /* update setting */
+        setting->last_change_serial = helper->serial;
+        g_value_set_int (setting->value, time (NULL));
+
+        /* schedule xsettings update */
+        if (helper->notify_idle_id == 0)
+            helper->notify_idle_id = g_idle_add (xfce_xsettings_helper_notify_idle, helper);
+
+        /* restart monitoring */
+        helper->fc_init_id = g_idle_add (xfce_xsettings_helper_fc_init, helper);
+    }
+
+    return FALSE;
+}
+
+
+
+static void
+xfce_xsettings_helper_fc_changed (XfceXSettingsHelper *helper)
+{
+    /* reschedule monitor */
+    if (helper->fc_notify_timeout_id != 0)
+        g_source_remove (helper->fc_notify_timeout_id);
+
+    helper->fc_notify_timeout_id = g_timeout_add_seconds (FC_TIMEOUT_SEC,
+        xfce_xsettings_helper_fc_notify, helper);
+}
+
+
+
+static void
+xfce_xsettings_helper_fc_free (XfceXSettingsHelper *helper)
+{
+    if (helper->fc_notify_timeout_id != 0)
+    {
+        /* stop update timeout */
+        g_source_remove (helper->fc_notify_timeout_id);
+        helper->fc_notify_timeout_id = 0;
+    }
+
+    if (helper->fc_init_id != 0)
+    {
+        /* stop startup timeout */
+        g_source_remove (helper->fc_init_id);
+        helper->fc_init_id = 0;
+    }
+
+    if (helper->fc_monitors != NULL)
+    {
+        /* remove monitors */
+        g_ptr_array_foreach (helper->fc_monitors, (GFunc) g_object_unref, NULL);
+        g_ptr_array_free (helper->fc_monitors, TRUE);
+        helper->fc_monitors = NULL;
+    }
+}
+
+
+
+static void
+xfce_xsettings_helper_fc_monitor (XfceXSettingsHelper *helper,
+                                  FcStrList           *files)
+{
+    const gchar  *path;
+    GFile        *file;
+    GFileMonitor *monitor;
+
+    if (G_UNLIKELY (files == NULL))
+        return;
+
+    for (;;)
+    {
+        path = (const gchar *) FcStrListNext (files);
+        if (G_UNLIKELY (path == NULL))
+            break;
+
+        file = g_file_new_for_path (path);
+        monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
+        g_object_unref (G_OBJECT (file));
+
+        if (G_LIKELY (monitor != NULL))
+        {
+            g_ptr_array_add (helper->fc_monitors, monitor);
+            g_signal_connect_swapped (G_OBJECT (monitor), "changed",
+                G_CALLBACK (xfce_xsettings_helper_fc_changed), helper);
+        }
+    }
+
+    FcStrListDone (files);
+}
+
+
+
+static gboolean
+xfce_xsettings_helper_fc_init (gpointer data)
+{
+    XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (data);
+
+    g_return_val_if_fail (helper->fc_monitors == NULL, FALSE);
+
+    helper->fc_init_id = 0;
+
+    if (FcInit ())
+    {
+        helper->fc_monitors = g_ptr_array_new ();
+
+        /* start monitoring config files and font directories */
+        xfce_xsettings_helper_fc_monitor (helper, FcConfigGetConfigFiles (NULL));
+        xfce_xsettings_helper_fc_monitor (helper, FcConfigGetFontDirs (NULL));
+    }
+
+    return FALSE;
 }
 
 
@@ -959,6 +1118,9 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
         /* send notifications */
         xfce_xsettings_helper_notify (helper);
         xfce_xsettings_helper_notify_xft (helper);
+
+        /* startup fontconfig monitoring */
+        helper->fc_init_id = g_idle_add (xfce_xsettings_helper_fc_init, helper);
 
         return TRUE;
     }
