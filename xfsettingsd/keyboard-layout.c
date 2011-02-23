@@ -42,6 +42,7 @@
 #include <libxklavier/xklavier.h>
 #endif /* HAVE_LIBXKLAVIER */
 
+#include "debug.h"
 #include "keyboard-layout.h"
 
 static void xfce_keyboard_layout_helper_process_xmodmap           (void);
@@ -127,6 +128,8 @@ xfce_keyboard_layout_helper_process_xmodmap (void)
 
         xmodmap_command = g_strconcat ("xmodmap ", xmodmap_path, NULL);
 
+        xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "spawning \"%s\"", xmodmap_command);
+
         /* Launch the xmodmap command and only print errors when in debugging mode */
         if (!g_spawn_command_line_async (xmodmap_command, &error))
         {
@@ -148,6 +151,8 @@ xfce_keyboard_layout_helper_set_model (XfceKeyboardLayoutHelper *helper)
         g_free (helper->config->model);
         helper->config->model = xkbmodel;
         xkl_config_rec_activate (helper->config, helper->engine);
+
+        xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set model to \"%s\"", xkbmodel);
     }
 #endif /* HAVE_LIBXKLAVIER */
 }
@@ -167,8 +172,10 @@ xfce_keyboard_layout_helper_set_layout (XfceKeyboardLayoutHelper *helper)
         g_strfreev(helper->config->layouts);
         helper->config->layouts = layouts;
         xkl_config_rec_activate (helper->config, helper->engine);
-        g_free (val_layout);
         g_free (default_layouts);
+
+        xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set layouts to \"%s\"", val_layout);
+        g_free (val_layout);
     }
 #endif /* HAVE_LIBXKLAVIER */
 }
@@ -188,8 +195,10 @@ xfce_keyboard_layout_helper_set_variant (XfceKeyboardLayoutHelper *helper)
         g_strfreev(helper->config->variants);
         helper->config->variants = variants;
         xkl_config_rec_activate (helper->config, helper->engine);
-        g_free (val_variant);
         g_free (default_variants);
+
+        xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set variant to \"%s\"", val_variant);
+        g_free (val_variant);
     }
 #endif /* HAVE_LIBXKLAVIER */
 }
