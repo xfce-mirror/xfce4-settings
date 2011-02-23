@@ -242,6 +242,7 @@ main (gint argc, gchar **argv)
         dbus_bus_release_name (dbus_connection, XFSETTINGS_DBUS_NAME, NULL);
 
     /* release the sub daemons */
+    g_object_unref (G_OBJECT (xsettings_helper));
 #ifdef HAVE_XRANDR
     g_object_unref (G_OBJECT (displays_helper));
 #endif
@@ -251,7 +252,6 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (shortcuts_helper));
     g_object_unref (G_OBJECT (keyboard_layout_helper));
     g_object_unref (G_OBJECT (workspaces_helper));
-    g_object_unref (G_OBJECT (xsettings_helper));
 
     if (G_LIKELY (clipboard_daemon != NULL))
     {
@@ -260,6 +260,7 @@ main (gint argc, gchar **argv)
     }
 
     xfconf_shutdown ();
+
     g_object_unref (G_OBJECT (sm_client));
 
     return EXIT_SUCCESS;
