@@ -69,13 +69,13 @@
 static XfceSMClient *sm_client = NULL;
 
 static gboolean opt_version = FALSE;
-static gboolean opt_debug = FALSE;
-static gboolean opt_force_replace = FALSE;
+static gboolean opt_no_daemon = FALSE;
+static gboolean opt_replace = FALSE;
 static GOptionEntry option_entries[] =
 {
     { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
-    { "debug", 'd', 0, G_OPTION_ARG_NONE, &opt_debug, N_("Start in debug mode (don't fork to the background)"), NULL },
-    { "force", 'f', 0, G_OPTION_ARG_NONE, &opt_force_replace, N_("Replace running xsettings daemon (if any)"), NULL },
+    { "no-daemon", 0, 0, G_OPTION_ARG_NONE, &opt_no_daemon, N_("Do not fork to the background"), NULL },
+    { "replace", 0, 0, G_OPTION_ARG_NONE, &opt_replace, N_("Replace running xsettings daemon (if any)"), NULL },
     { NULL }
 };
 
@@ -224,8 +224,8 @@ main (gint argc, gchar **argv)
     in_session = xfce_sm_client_is_resumed (sm_client);
     xfce_settings_helper_set_autostart_enabled (in_session);
 
-    /* daemonize the process when not running in debug mode */
-    if (!opt_debug)
+    /* daemonize the process */
+    if (!opt_no_daemon)
     {
         /* try to fork the process */
         pid = fork ();
@@ -245,7 +245,7 @@ main (gint argc, gchar **argv)
     /* launch settings manager */
     xsettings_helper = g_object_new (XFCE_TYPE_XSETTINGS_HELPER, NULL);
     xfce_xsettings_helper_register (XFCE_XSETTINGS_HELPER (xsettings_helper),
-                                    gdk_display_get_default (), opt_force_replace);
+                                    gdk_display_get_default (), opt_replace);
 
     /* create the sub daemons */
 #ifdef HAVE_XRANDR
