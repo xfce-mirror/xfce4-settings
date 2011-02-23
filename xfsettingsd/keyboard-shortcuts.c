@@ -234,17 +234,16 @@ xfce_keyboard_shortcuts_helper_shortcut_activated (XfceShortcutsGrabber        *
   succeed = g_shell_parse_argv (sc->command, NULL, &argv, &error);
   if (G_LIKELY (succeed))
     {
-      succeed = xfce_spawn_on_screen_with_child_watch (xfce_gdk_screen_get_active (NULL),
-                                                       NULL, argv, NULL,
-                                                       G_SPAWN_SEARCH_PATH, sc->snotify,
-                                                       timestamp, NULL, NULL, &error);
+      succeed = xfce_spawn_on_screen (xfce_gdk_screen_get_active (NULL),
+                                      NULL, argv, NULL, G_SPAWN_SEARCH_PATH,
+                                      sc->snotify, timestamp, NULL, &error);
 
       g_strfreev (argv);
     }
 
   if (!succeed)
     {
-      g_error ("Failed to spawn command \"%s\": %s", sc->command, error->message);
+      xfce_dialog_show_error (NULL, error, _("Failed to launch shortcut \"%s\""), shortcut);
       g_error_free (error);
     }
 
