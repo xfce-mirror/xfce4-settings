@@ -50,6 +50,7 @@
 #include <fontconfig/fontconfig.h>
 
 #include "xsettings.h"
+#include "debug.h"
 
 #define XSettingsTypeInteger 0
 #define XSettingsTypeString  1
@@ -234,6 +235,9 @@ xfce_xsettings_helper_fc_notify (gpointer data)
         setting->last_change_serial = helper->serial;
         g_value_set_int (setting->value, time (NULL));
 
+        xfsettings_dbg (XFSD_DEBUG_FONTCONFIG, "timestamp updated (time=%d)",
+                        g_value_get_int (setting->value));
+
         /* schedule xsettings update */
         if (helper->notify_idle_id == 0)
             helper->notify_idle_id = g_idle_add (xfce_xsettings_helper_notify_idle, helper);
@@ -314,6 +318,9 @@ xfce_xsettings_helper_fc_monitor (XfceXSettingsHelper *helper,
             g_ptr_array_add (helper->fc_monitors, monitor);
             g_signal_connect_swapped (G_OBJECT (monitor), "changed",
                 G_CALLBACK (xfce_xsettings_helper_fc_changed), helper);
+
+            xfsettings_dbg_filtered (XFSD_DEBUG_FONTCONFIG, "monitoring \"%s\"",
+                                     path);
         }
     }
 
@@ -338,6 +345,9 @@ xfce_xsettings_helper_fc_init (gpointer data)
         /* start monitoring config files and font directories */
         xfce_xsettings_helper_fc_monitor (helper, FcConfigGetConfigFiles (NULL));
         xfce_xsettings_helper_fc_monitor (helper, FcConfigGetFontDirs (NULL));
+
+        xfsettings_dbg (XFSD_DEBUG_FONTCONFIG, "monitoring %d paths",
+                        helper->fc_monitors->len);
     }
 
     return FALSE;
@@ -418,6 +428,9 @@ xfce_xsettings_helper_prop_load (gchar               *prop_name,
     setting->value = value;
     setting->last_change_serial = helper->serial;
 
+    xfsettings_dbg_filtered (XFSD_DEBUG_XSETTINGS, "prop \"%s\" loaded (type=%s)",
+                             prop_name, G_VALUE_TYPE_NAME (value));
+
     g_hash_table_insert (helper->settings, prop_name, setting);
 
     /* we've stolen the value */
@@ -435,6 +448,9 @@ xfce_xsettings_helper_prop_changed (XfconfChannel       *channel,
     XfceXSetting *setting;
 
     g_return_if_fail (helper->channel == channel);
+
+    xfsettings_dbg_filtered (XFSD_DEBUG_XSETTINGS, "prop \"%s\" changed (type=%s)",
+                             prop_name, G_VALUE_TYPE_NAME (value));
 
     if (G_LIKELY (value != NULL))
     {
@@ -551,6 +567,9 @@ xfce_xsettings_helper_screen_dpi (XfceXSettingsScreen *screen)
             }
         }
     }
+
+    xfsettings_dbg_filtered (XFSD_DEBUG_XSETTINGS, "calculated dpi of %d for screen %d",
+                             dpi, screen->screen_num);
 
     return dpi;
 }
@@ -674,6 +693,10 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
 
     if (gdk_error_trap_pop () != 0)
         g_critical ("Failed to update the resource manager string");
+
+    xfsettings_dbg (XFSD_DEBUG_XSETTINGS,
+                    "resource manager (xft) changed (len=%"G_GSIZE_FORMAT")",
+                    resource->len);
 
     g_string_free (resource, TRUE);
 }
@@ -930,6 +953,10 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
         g_critical ("Failed to set properties");
     }
 
+    xfsettings_dbg (XFSD_DEBUG_XSETTINGS,
+                    "%d settings changed (serial=%lu, len=%"G_GSIZE_FORMAT")",
+                    notify->n_settings, helper->serial - 1, notify->buf_len);
+
     g_free (notify->buf);
   errnomem:
     g_slice_free (XfceXSettingsNotify, notify);
@@ -970,6 +997,9 @@ xfce_xsettings_helper_event_filter (GdkXEvent *gdkxevent,
                 /* remove the screen */
                 helper->screens = g_slist_delete_link (helper->screens, li);
                 xfce_xsettings_helper_screen_free (screen);
+
+                xfsettings_dbg (XFSD_DEBUG_XSETTINGS, "lost selection, %d screens left",
+                                g_slist_length (helper->screens));
 
                 /* remove this filter if there are no screens */
                 if (helper->screens == NULL)
@@ -1098,6 +1128,8 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
             screen->selection_atom = selection_atom;
             screen->xdisplay = xdisplay;
             screen->screen_num = n;
+
+            xfsettings_dbg (XFSD_DEBUG_XSETTINGS, "%s registered on screen %d", atom_name, n);
 
             helper->screens = g_slist_prepend (helper->screens, screen);
         }
