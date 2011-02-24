@@ -186,6 +186,10 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
         /* we always change this, so add it to the mask */
         SET_FLAG (mask, XkbControlsEnabledMask);
         
+        /* if setting sticky keys, we set expiration too */
+        if (HAS_FLAG (mask, XkbStickyKeysMask))
+          SET_FLAG (mask, XkbAccessXTimeoutMask);
+
         /* add the mouse keys values mask if needed */
         if (HAS_FLAG (mask, XkbMouseKeysMask))
             SET_FLAG (mask, XkbMouseKeysAccelMask);
@@ -199,6 +203,8 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
             if (xfconf_channel_get_bool (helper->channel, "/StickyKeys", FALSE))
             {
                 SET_FLAG (xkb->ctrls->enabled_ctrls, XkbStickyKeysMask);
+                UNSET_FLAG (xkb->ctrls->axt_ctrls_mask, XkbStickyKeysMask);
+                UNSET_FLAG (xkb->ctrls->axt_ctrls_values, XkbStickyKeysMask);
 
                 if (xfconf_channel_get_bool (helper->channel, "/StickyKeys/LatchToLock", FALSE))
                     SET_FLAG (xkb->ctrls->ax_options, XkbAX_LatchToLockMask);
@@ -213,6 +219,8 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
             else
             {
                 UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbStickyKeysMask);
+                SET_FLAG (xkb->ctrls->axt_ctrls_mask, XkbStickyKeysMask);
+                UNSET_FLAG (xkb->ctrls->axt_ctrls_values, XkbStickyKeysMask);
             }
         }
         
