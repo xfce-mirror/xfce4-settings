@@ -44,6 +44,7 @@
 #include <libnotify/notify.h>
 #endif /* !HAVE_LIBNOTIFY */
 
+#include "debug.h"
 #include "accessibility.h"
 
 
@@ -113,7 +114,7 @@ xfce_accessibility_helper_init (XfceAccessibilityHelper *helper)
 {
     gint dummy;
 
-    helper->channel = NULL;    
+    helper->channel = NULL;
 #ifdef HAVE_LIBNOTIFY
     helper->notification = NULL;
 #endif /* !HAVE_LIBNOTIFY */
@@ -125,7 +126,7 @@ xfce_accessibility_helper_init (XfceAccessibilityHelper *helper)
 
         /* monitor channel changes */
         g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_accessibility_helper_channel_property_changed), helper);
-        
+
         /* restore the xbd configuration */
         xfce_accessibility_helper_set_xkb (helper, XkbStickyKeysMask | XkbSlowKeysMask | XkbBounceKeysMask | XkbMouseKeysMask);
 
@@ -174,7 +175,7 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
     XkbDescPtr xkb;
     gint       delay, interval, time_to_max;
     gint       max_speed, curve;
-    
+
     /* flush x and trap errors */
     gdk_flush ();
     gdk_error_trap_push ();
@@ -185,7 +186,7 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
     {
         /* we always change this, so add it to the mask */
         SET_FLAG (mask, XkbControlsEnabledMask);
-        
+
         /* if setting sticky keys, we set expiration too */
         if (HAS_FLAG (mask, XkbStickyKeysMask))
           SET_FLAG (mask, XkbAccessXTimeoutMask);
@@ -196,7 +197,7 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
 
         /* load the xkb controls into the structure */
         XkbGetControls (GDK_DISPLAY (), mask, xkb);
-        
+
         /* Sticky keys */
         if (HAS_FLAG (mask, XkbStickyKeysMask))
         {
@@ -215,85 +216,103 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
                     SET_FLAG (xkb->ctrls->ax_options, XkbAX_TwoKeysMask);
                 else
                     UNSET_FLAG (xkb->ctrls->ax_options, XkbAX_TwoKeysMask);
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "stickykeys enabled (ax_options=%d)",
+                                xkb->ctrls->ax_options);
             }
             else
             {
                 UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbStickyKeysMask);
                 SET_FLAG (xkb->ctrls->axt_ctrls_mask, XkbStickyKeysMask);
                 UNSET_FLAG (xkb->ctrls->axt_ctrls_values, XkbStickyKeysMask);
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "stickykeys disabled");
             }
         }
-        
+
         /* Slow keys */
         if (HAS_FLAG (mask, XkbSlowKeysMask))
         {
             if (xfconf_channel_get_bool (helper->channel, "/SlowKeys", FALSE))
             {
                 SET_FLAG (xkb->ctrls->enabled_ctrls, XkbSlowKeysMask);
-                
+
                 delay = xfconf_channel_get_int (helper->channel, "/SlowKeys/Delay", 100);
                 xkb->ctrls->slow_keys_delay = CLAMP (delay, 1, G_MAXUSHORT);
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "slowkeys enabled (delay=%d)",
+                                xkb->ctrls->slow_keys_delay);
             }
             else
             {
                 UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbSlowKeysMask);
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "slowkeys disabled");
             }
         }
-        
+
         /* Bounce keys */
         if (HAS_FLAG (mask, XkbBounceKeysMask))
         {
             if (xfconf_channel_get_bool (helper->channel, "/BounceKeys", FALSE))
             {
                 SET_FLAG (xkb->ctrls->enabled_ctrls, XkbBounceKeysMask);
-                
+
                 delay = xfconf_channel_get_int (helper->channel, "/BounceKeys/Delay", 100);
                 xkb->ctrls->debounce_delay = CLAMP (delay, 1, G_MAXUSHORT);
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "bouncekeys enabled (delay=%d)",
+                                xkb->ctrls->debounce_delay);
             }
             else
             {
                 UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbBounceKeysMask);
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "bouncekeys disabled");
             }
         }
-        
+
         /* Mouse keys */
         if (HAS_FLAG (mask, XkbMouseKeysMask))
         {
             if (xfconf_channel_get_bool (helper->channel, "/MouseKeys", FALSE))
             {
                 SET_FLAG (xkb->ctrls->enabled_ctrls, XkbMouseKeysMask);
-                
+
                 /* get values */
                 delay = xfconf_channel_get_int (helper->channel, "/MouseKeys/Delay", 160);
                 interval = xfconf_channel_get_int (helper->channel, "/MouseKeys/Interval", 20);
                 time_to_max = xfconf_channel_get_int (helper->channel, "/MouseKeys/TimeToMax", 3000);
                 max_speed = xfconf_channel_get_int (helper->channel, "/MouseKeys/MaxSpeed", 1000);
                 curve = xfconf_channel_get_int (helper->channel, "/MouseKeys/Curve", 0);
-                
+
                 /* calculate maximum speed and to to reach it */
                 interval = CLAMP (interval, 1, G_MAXUSHORT);
                 max_speed = (max_speed * interval) / 1000;
                 time_to_max = (time_to_max + interval / 2) / interval;
-                
+
                 /* set new values, clamp to limits */
                 xkb->ctrls->mk_delay = CLAMP (delay, 1, G_MAXUSHORT);
                 xkb->ctrls->mk_interval = interval;
                 xkb->ctrls->mk_time_to_max = CLAMP (time_to_max, 1, G_MAXUSHORT);
                 xkb->ctrls->mk_max_speed = CLAMP (max_speed, 1, G_MAXUSHORT);
                 xkb->ctrls->mk_curve = CLAMP (curve, -1000, 1000);
-                
-                /* g_message ("Delay: %d, Interval: %d, TimeToMax: %d, MaxSpeed: %d, Curve: %d",
-                           xkb->ctrls->mk_delay, xkb->ctrls->mk_interval,
-                           xkb->ctrls->mk_time_to_max, xkb->ctrls->mk_max_speed,
-                           xkb->ctrls->mk_curve); */
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "mousekeys enabled (delay=%d, interval=%d, "
+                                "time_to_max=%d, max_speed=%d, curve=%d)",
+                                xkb->ctrls->mk_delay, xkb->ctrls->mk_interval,
+                                xkb->ctrls->mk_time_to_max, xkb->ctrls->mk_max_speed,
+                                xkb->ctrls->mk_curve);
             }
             else
             {
                 UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbMouseKeysMask);
                 UNSET_FLAG (mask, XkbMouseKeysAccelMask);
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "mousekeys disabled");
             }
         }
-        
+
         /* set the modified controls */
         if (!XkbSetControls (GDK_DISPLAY (), mask, xkb))
             g_message ("Setting the xkb controls failed");
@@ -307,7 +326,7 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
         /* warning */
         g_error ("XkbAllocKeyboard() returned a null pointer");
     }
-    
+
     /* flush and remove the x error trap */
     gdk_flush ();
     gdk_error_trap_pop ();
@@ -322,7 +341,7 @@ xfce_accessibility_helper_channel_property_changed (XfconfChannel           *cha
                                                     XfceAccessibilityHelper *helper)
 {
     gulong mask;
-    
+
     g_return_if_fail (helper->channel == channel);
 
     if (strncmp (property_name, "/StickyKeys", 11) == 0)
@@ -347,9 +366,9 @@ xfce_accessibility_helper_event_filter (GdkXEvent *xevent,
                                         GdkEvent  *gdk_event,
                                         gpointer   user_data)
 {
-    XkbEvent          *event = xevent;
+    XkbEvent                *event = xevent;
     XfceAccessibilityHelper *helper = XFCE_ACCESSIBILITY_HELPER (user_data);
-    const gchar       *body;
+    const gchar             *body;
 
     switch (event->any.xkb_type)
     {
@@ -410,7 +429,7 @@ xfce_accessibility_helper_notification_show (XfceAccessibilityHelper *helper,
                                              const gchar             *summary,
                                              const gchar             *body)
 {
-    /* early leave the avoid dbus errors, we already 
+    /* early leave the avoid dbus errors, we already
      * told we were unable to connect during init */
     if (notify_is_initted () == FALSE)
         return;

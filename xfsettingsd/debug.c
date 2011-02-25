@@ -38,6 +38,7 @@ static const GDebugKey dbg_keys[] =
     { "keyboards", XFSD_DEBUG_KEYBOARDS },
     { "keyboard-shortcuts", XFSD_DEBUG_KEYBOARD_SHORTCUTS },
     { "workspaces", XFSD_DEBUG_WORKSPACES },
+    { "accessibility", XFSD_DEBUG_ACCESSIBILITY },
 };
 
 
