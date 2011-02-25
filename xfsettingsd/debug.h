@@ -31,6 +31,7 @@ typedef enum
    XFSD_DEBUG_KEYBOARD_SHORTCUTS = 1 << 5,
    XFSD_DEBUG_WORKSPACES         = 1 << 6,
    XFSD_DEBUG_ACCESSIBILITY      = 1 << 7,
+   XFSD_DEBUG_POINTERS           = 1 << 8,
 }
 XfsdDebugDomain;
 

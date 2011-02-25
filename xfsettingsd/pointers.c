@@ -36,6 +36,7 @@
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 
+#include "debug.h"
 #include "pointers.h"
 
 
@@ -70,7 +71,8 @@ static void             xfce_pointers_helper_change_button_mapping          (XDe
                                                                              gint                     reverse_scrolling);
 static gint             xfce_pointers_helper_gcd                            (gint                     num,
                                                                              gint                     denom);
-static void             xfce_pointers_helper_change_feedback                (XDevice                 *device,
+static void             xfce_pointers_helper_change_feedback                (XDeviceInfo             *device_info,
+                                                                             XDevice                 *device,
                                                                              Display                 *xdisplay,
                                                                              gint                     threshold,
                                                                              gdouble                  acceleration);
@@ -150,6 +152,9 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
     }
     else
     {
+        xfsettings_dbg (XFSD_DEBUG_POINTERS, "initialized xi %d.%d",
+                        version->major_version, version->minor_version);
+
         /* open the channel */
         helper->channel = xfconf_channel_get ("pointers");
 
@@ -192,11 +197,11 @@ xfce_pointers_helper_change_button_mapping_swap (guchar   *buttonmap,
                                                  gboolean  reverse)
 {
     gint n;
-    gint id_a;
-    gint id_b;
+    gint id_a = -1;
+    gint id_b = -1;
 
     /* figure out the position of the id_1 and id_2 buttons in the map */
-    for (n = 0, id_a = id_b = -1; n < num_buttons; n++)
+    for (n = 0; n < num_buttons; n++)
     {
         if (buttonmap[n] == id_1)
             id_a = n;
@@ -231,6 +236,7 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
     guchar       *buttonmap;
     gint          n;
     gint          right_button;
+    GString      *readable_map;
 
     /* get the device classes */
     ptr = device_info->inputclassinfo;
@@ -283,11 +289,19 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
 
         /* set the new button mapping */
         gdk_error_trap_push ();
+
         XSetDeviceButtonMapping (xdisplay, device, buttonmap, num_buttons);
+
         if (gdk_error_trap_pop ())
           g_warning ("Failed to set button mapping");
 
-        /* cleanup */
+        readable_map = g_string_sized_new (num_buttons);
+        for (n = 0; n < num_buttons; n++)
+            g_string_append_printf (readable_map, "%d;", buttonmap[n]);
+        xfsettings_dbg (XFSD_DEBUG_POINTERS, "[%s] new buttonmap is \"%s\"",
+                        device_info->name, readable_map->str);
+        g_string_free (readable_map, TRUE);
+
 out:    g_free (buttonmap);
     }
 }
@@ -305,10 +319,11 @@ xfce_pointers_helper_gcd (gint num,
 
 
 static void
-xfce_pointers_helper_change_feedback (XDevice *device,
-                                      Display *xdisplay,
-                                      gint     threshold,
-                                      gdouble  acceleration)
+xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
+                                      XDevice     *device,
+                                      Display     *xdisplay,
+                                      gint         threshold,
+                                      gdouble      acceleration)
 {
     XFeedbackState      *states, *pt;
     gint                 num_feedbacks;
@@ -358,6 +373,9 @@ xfce_pointers_helper_change_feedback (XDevice *device,
 
                 /* change feedback for this device */
                 XChangeFeedbackControl (xdisplay, device, mask, (XFeedbackControl *)(void *)&feedback);
+
+                xfsettings_dbg (XFSD_DEBUG_POINTERS, "[%s] change feedback (threshold=%d, accelNum=%d, accelDenom=%d)",
+                                device_info->name, feedback.threshold, feedback.accelNum, feedback.accelDenom);
 
                 /* done */
                 break;
@@ -461,7 +479,7 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
                                                                 xfconf_channel_get_bool (helper->channel, reverse_scrolling_str, FALSE) ? 1 : 0);
 
                     /* restore the pointer feedback */
-                    xfce_pointers_helper_change_feedback (device, xdisplay,
+                    xfce_pointers_helper_change_feedback (device_info, device, xdisplay,
                                                           xfconf_channel_get_int (helper->channel, threshold_str, -1),
                                                           xfconf_channel_get_double (helper->channel, acceleration_str, -1.00));
 
@@ -540,9 +558,9 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
                         else if (strcmp (names[1], "ReverseScrolling") == 0)
                             xfce_pointers_helper_change_button_mapping (device_info, device, xdisplay, -1, !!g_value_get_boolean (value));
                         else if (strcmp (names[1], "Threshold") == 0)
-                            xfce_pointers_helper_change_feedback (device, xdisplay, g_value_get_int (value), -2.00);
+                            xfce_pointers_helper_change_feedback (device_info, device, xdisplay, g_value_get_int (value), -2.00);
                         else if (strcmp (names[1], "Acceleration") == 0)
-                            xfce_pointers_helper_change_feedback (device, xdisplay, -2, g_value_get_double (value));
+                            xfce_pointers_helper_change_feedback (device_info, device, xdisplay, -2, g_value_get_double (value));
 
                         /* close the device */
                         XCloseDevice (xdisplay, device);
