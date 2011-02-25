@@ -33,6 +33,7 @@
 #include <gdk/gdkx.h>
 #endif
 
+#include "debug.h"
 #include "workspaces.h"
 
 #define WORKSPACES_CHANNEL    "xfwm4"
@@ -147,6 +148,8 @@ xfce_workspaces_helper_filter_func (GdkXEvent  *gdkxevent,
         {
             /* new workspace was added or removed */
             xfce_workspaces_helper_set_names (helper);
+
+            xfsettings_dbg (XFSD_DEBUG_WORKSPACES, "number of desktops changed");
         }
         else if (xevent->xproperty.atom == atom_net_desktop_names)
         {
@@ -160,6 +163,8 @@ xfce_workspaces_helper_filter_func (GdkXEvent  *gdkxevent,
                  * not update xfconf) the name of a desktop, store the
                  * new names in xfconf if different*/
                 xfce_workspaces_helper_save_names (helper);
+
+                xfsettings_dbg (XFSD_DEBUG_WORKSPACES, "someone else changed the desktop names");
             }
         }
     }
@@ -322,6 +327,8 @@ xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper)
         if (gdk_error_trap_pop () != 0)
             g_warning ("Failed to change _NET_DESKTOP_NAMES.");
 
+        xfsettings_dbg (XFSD_DEBUG_WORKSPACES, "%d desktop names set from xfconf", i);
+
         g_string_free (names_str, TRUE);
     }
     else
@@ -364,6 +371,8 @@ xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper)
         if (!xfconf_channel_set_arrayv (helper->channel, WORKSPACE_NAMES_PROP, names))
              g_critical ("Failed to save xfconf property %s", WORKSPACE_NAMES_PROP);
 
+        xfsettings_dbg (XFSD_DEBUG_WORKSPACES, "extended names in xfconf, waiting for property-change");
+
         xfconf_array_free (existing_names);
     }
 
@@ -396,6 +405,8 @@ xfce_workspaces_helper_save_names (XfceWorkspacesHelper *helper)
          * we probably saved (and set) a name when the workspace count
          * was changed */
         xfconf_channel_set_arrayv (helper->channel, WORKSPACE_NAMES_PROP, new_names);
+
+        xfsettings_dbg (XFSD_DEBUG_WORKSPACES, "storing %d names in xfconf", new_names->len);
     }
     else if (xfconf_names != NULL
              && xfconf_names->len >= new_names->len)
@@ -421,7 +432,9 @@ xfce_workspaces_helper_save_names (XfceWorkspacesHelper *helper)
         if (save_array)
         {
             xfconf_channel_set_arrayv (helper->channel, WORKSPACE_NAMES_PROP, xfconf_names);
-            g_message ("Saved new workspace names in xfconf.");
+
+            xfsettings_dbg (XFSD_DEBUG_WORKSPACES, "merged %d xfconf and %d desktop names",
+                            xfconf_names->len, new_names->len);
         }
     }
 
