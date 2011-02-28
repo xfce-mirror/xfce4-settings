@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the xfce4-settings package.
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2010.
 #
-#: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 17:16+0100\n"
+"POT-Creation-Date: 2011-02-28 17:23+0100\n"
 "PO-Revision-Date: 2010-09-03 19:40+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: chinese-l10n <chinese-l10n@googlegroups.com>\n"
@@ -36,78 +35,95 @@ msgid "Accessibility"
 msgstr "輔助功能"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+#, fuzzy
+msgid ""
+"Assistive technologies will be available the\n"
+"next time you login"
+msgstr "下次您登入時將還原系統預設值。"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Bounce Keys"
 msgstr "彈回鍵"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Configure keyboard and mouse accessibility"
 msgstr "調整鍵盤與滑鼠的輔助能力"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr "若按下兩個按鍵的話則停用相黏鍵(_T)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+msgid ""
+"If enabled, the session manager will start the required applications for "
+"screen readers and magnifiers"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
 msgstr "按鍵按壓延遲(_E)："
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Keyboa_rd"
 msgstr "鍵盤(_R)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Maximum _speed:"
 msgstr "最大速度(_S)："
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "Mouse Emulation"
 msgstr "滑鼠模擬"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+msgid "No AT-SPI provider was found on your system"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "R_epeat interval:"
 msgstr "重複間隔(_E)："
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "Slow Keys"
 msgstr "緩速鍵"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Sticky Keys"
 msgstr "相黏鍵"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "按鍵效果之間所需要的時間，單位為毫秒"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "在按鍵效果被接受之前所要經過的時間，單位為毫秒"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The maximum pointer speed after acceleration"
 msgstr "加速度後的最大指標速度"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "達到最大指標速度的斜率"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "介於重複動作事件的時間，單位為毫秒"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "介於剛開始按壓按鍵與第一個重複動作事件間的時間，單位為毫秒"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "達到最大速度的時間，單位為毫秒"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
@@ -115,26 +131,26 @@ msgstr ""
 "協助防止產生按鍵效果的意外，緩速鍵需要該按鍵至少要被按壓一小段時間後才會接受"
 "其按鍵效果"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
 msgstr ""
 "協助防止產生多個按鍵效果的意外，彈回鍵讓按鍵效果間都至少需要一小段延遲時間"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid "Use _bounce keys"
 msgstr "使用彈回鍵(_B)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "Use _sticky keys"
 msgstr "使用相黏鍵(_S)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "Use slow _keys"
 msgstr "使用緩速鍵(_K)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
@@ -143,7 +159,7 @@ msgstr ""
 "當選取時，一般需要同時按下按鍵的多按鍵功能其按鍵修飾鍵 (像是 Ctrl、Alt、"
 "Shift) 不需要一直按著不放 (它們可以被按壓然後放開)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -151,39 +167,47 @@ msgstr ""
 "當選取時，修飾鍵 (像是 Ctrl、Alt、Shift) 在按壓狀態時將維持上鎖直到您再度按壓"
 "為止"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr "當選取時，若兩個按鍵被同時按壓的話，「相黏鍵」功能將停用"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
 msgstr "當選取時，滑鼠指標可以使用鍵盤的數字鍵盤來控制"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "_Acceleration delay:"
 msgstr "加速度延遲(_A)："
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+msgid "_Assistive Technologies"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+msgid "_Enable assistive technologies"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "_Lock sticky keys"
 msgstr "鎖定相黏鍵(_L)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "_Mouse"
 msgstr "滑鼠(_M)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "_Use mouse emulation"
 msgstr "使用滑鼠模擬(_M)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "msec"
 msgstr "微秒"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "pixels/sec"
 msgstr "像素/秒"
 
@@ -205,36 +229,36 @@ msgstr "SOCKET ID"
 #: ../dialogs/appearance-settings/main.c:88
 #: ../dialogs/display-settings/main.c:104
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
-#: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
+#: ../xfce4-settings-manager/main.c:40
 msgid "Version information"
 msgstr "版本資訊"
 
-#: ../dialogs/accessibility-settings/main.c:143
-#: ../dialogs/appearance-settings/main.c:827
+#: ../dialogs/accessibility-settings/main.c:181
+#: ../dialogs/appearance-settings/main.c:828
 #: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1188 ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
+#: ../xfsettingsd/main.c:130 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "輸入 '%s --help' 以了解用法。"
 
-#: ../dialogs/accessibility-settings/main.c:162
-#: ../dialogs/appearance-settings/main.c:846
+#: ../dialogs/accessibility-settings/main.c:200
+#: ../dialogs/appearance-settings/main.c:847
 #: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:146 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 開發團隊。保留所有權利。"
 
-#: ../dialogs/accessibility-settings/main.c:163
-#: ../dialogs/appearance-settings/main.c:847
+#: ../dialogs/accessibility-settings/main.c:201
+#: ../dialogs/appearance-settings/main.c:848
 #: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
+#: ../xfsettingsd/main.c:147 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "請回報錯誤至 <%s>。"
@@ -566,55 +590,45 @@ msgid "Selected output not disabled"
 msgstr "選取的輸出未停用"
 
 #: ../dialogs/display-settings/main.c:1078
-#: ../dialogs/display-settings/xfce-randr.c:261
+#: ../dialogs/display-settings/xfce-randr.c:250
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "無法查詢正在使用中的 RandR 擴展版本"
 
 #: ../dialogs/display-settings/main.c:1079
-#: ../dialogs/display-settings/main.c:1123
+#: ../dialogs/display-settings/main.c:1115
 msgid "Unable to start the Xfce Display Settings"
 msgstr "無法啟動 Xfce 顯示設定值"
 
-#: ../dialogs/display-settings/main.c:1109
-msgid "NVIDIA Settings"
-msgstr "NVIDIA 設定值"
-
-#: ../dialogs/display-settings/main.c:1117
+#: ../dialogs/display-settings/main.c:1110
 msgid "ATI Settings"
 msgstr "ATI 設定值"
 
-#: ../dialogs/display-settings/main.c:1133
+#: ../dialogs/display-settings/main.c:1125
 msgid "Unable to launch the proprietary driver settings"
 msgstr "無法啟動專有驅動程式設定值"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:269
+#: ../dialogs/display-settings/xfce-randr.c:258
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "本系統正在使用 RanR %d.%d。若要讓該顯示設定值運作，至少需要 1.2 版"
 
-#. set error
-#: ../dialogs/display-settings/xfce-randr.c:294
-#, c-format
-msgid "The video driver does not support video outputs"
-msgstr "顯示卡驅動程式不支援影像輸出"
-
-#: ../dialogs/display-settings/xfce-randr.c:558
+#: ../dialogs/display-settings/xfce-randr.c:537
 msgid "Laptop"
 msgstr "膝上型電腦"
 
-#: ../dialogs/display-settings/xfce-randr.c:579
+#: ../dialogs/display-settings/xfce-randr.c:558
 msgid "Monitor"
 msgstr "螢幕"
 
-#: ../dialogs/display-settings/xfce-randr.c:582
+#: ../dialogs/display-settings/xfce-randr.c:561
 msgid "Television"
 msgstr "電視"
 
-#: ../dialogs/display-settings/xfce-randr.c:586
+#: ../dialogs/display-settings/xfce-randr.c:565
 msgid "Digital display"
 msgstr "數位顯示"
 
@@ -993,41 +1007,41 @@ msgstr "鎖上"
 msgid "Value"
 msgstr "值"
 
-#: ../xfce4-settings-editor/main_window.c:306
+#: ../xfce4-settings-editor/main_window.c:310
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "Empty"
 msgstr "空"
 
-#: ../xfce4-settings-editor/main_window.c:696
-#: ../xfce4-settings-editor/main_window.c:888
+#: ../xfce4-settings-editor/main_window.c:700
+#: ../xfce4-settings-editor/main_window.c:892
 msgid "This property name is not valid."
 msgstr "此屬性名稱無效。"
 
-#: ../xfce4-settings-editor/main_window.c:923
-#: ../xfce4-settings-editor/main_window.c:1076
+#: ../xfce4-settings-editor/main_window.c:927
+#: ../xfce4-settings-editor/main_window.c:1080
 msgid "Reset"
 msgstr "重設"
 
-#: ../xfce4-settings-editor/main_window.c:924
+#: ../xfce4-settings-editor/main_window.c:928
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "重設屬性將永久移除那些自訂過的設定值。"
 
-#: ../xfce4-settings-editor/main_window.c:925
+#: ../xfce4-settings-editor/main_window.c:929
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "您確定要重設屬性「%s」嗎？"
 
-#: ../xfce4-settings-editor/main_window.c:981
+#: ../xfce4-settings-editor/main_window.c:985
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "屬性名稱必須以 '/' 字元作開頭"
 
-#: ../xfce4-settings-editor/main_window.c:990
+#: ../xfce4-settings-editor/main_window.c:994
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "根元素 ('/') 不是有效的屬性名稱"
 
-#: ../xfce4-settings-editor/main_window.c:1004
+#: ../xfce4-settings-editor/main_window.c:1008
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1036,25 +1050,25 @@ msgstr ""
 "屬性名稱只能包含 ASCII 字元 A-Z、a-z、0-9、'_'、'-'、'<'、'>'，而 '/' 作為分"
 "隔符"
 
-#: ../xfce4-settings-editor/main_window.c:1013
+#: ../xfce4-settings-editor/main_window.c:1017
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "屬性名稱無法擁有兩個或多個連續的 '/' 字元"
 
-#: ../xfce4-settings-editor/main_window.c:1024
+#: ../xfce4-settings-editor/main_window.c:1028
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "屬性名稱無法以 '/' 字元作結尾"
 
-#: ../xfce4-settings-editor/main_window.c:1043
+#: ../xfce4-settings-editor/main_window.c:1047
 msgid "_Reset"
 msgstr "重設(_R)"
 
-#: ../xfce4-settings-editor/main_window.c:1077
+#: ../xfce4-settings-editor/main_window.c:1081
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "重設通道將永久移除那些自訂過的設定值。"
 
-#: ../xfce4-settings-editor/main_window.c:1078
+#: ../xfce4-settings-editor/main_window.c:1082
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "您確定要重設「%s」通道與其全部屬性？"
@@ -1136,50 +1150,65 @@ msgstr "值："
 msgid "Xfconf channels"
 msgstr "Xfconf 通道"
 
-#: ../xfce4-settings-helper/accessibility.c:352
+#: ../xfsettingsd/accessibility.c:379
 msgid "Sticky keys are enabled"
 msgstr "相黏鍵已啟用"
 
-#: ../xfce4-settings-helper/accessibility.c:354
+#: ../xfsettingsd/accessibility.c:381
 msgid "Sticky keys are disabled"
 msgstr "相黏鍵已停用"
 
-#: ../xfce4-settings-helper/accessibility.c:356
+#: ../xfsettingsd/accessibility.c:383
 msgid "Sticky keys"
 msgstr "相黏鍵"
 
-#: ../xfce4-settings-helper/accessibility.c:361
+#: ../xfsettingsd/accessibility.c:388
 msgid "Slow keys are enabled"
 msgstr "緩速鍵已啟用"
 
-#: ../xfce4-settings-helper/accessibility.c:363
+#: ../xfsettingsd/accessibility.c:390
 msgid "Slow keys are disabled"
 msgstr "緩速鍵已停用"
 
-#: ../xfce4-settings-helper/accessibility.c:365
+#: ../xfsettingsd/accessibility.c:392
 msgid "Slow keys"
 msgstr "緩速鍵"
 
-#: ../xfce4-settings-helper/accessibility.c:370
+#: ../xfsettingsd/accessibility.c:397
 msgid "Bounce keys are enabled"
 msgstr "彈回鍵已啟用"
 
-#: ../xfce4-settings-helper/accessibility.c:372
+#: ../xfsettingsd/accessibility.c:399
 msgid "Bounce keys are disabled"
 msgstr "彈回鍵已停用"
 
-#: ../xfce4-settings-helper/accessibility.c:374
+#: ../xfsettingsd/accessibility.c:401
 msgid "Bounce keys"
 msgstr "彈回鍵"
 
-#: ../xfce4-settings-helper/main.c:75 ../xfsettingsd/main.c:64
-msgid "Start in debug mode (don't fork to the background)"
+#: ../xfsettingsd/keyboard-shortcuts.c:246
+#, fuzzy, c-format
+msgid "Failed to launch shortcut \"%s\""
+msgstr "無法啟動「%s」"
+
+#: ../xfsettingsd/main.c:78
+#, fuzzy
+msgid "Do not fork to the background"
 msgstr "以除錯模式啟動 (不要分叉至背景)"
 
-#: ../xfce4-settings-helper/workspaces.c:354
+#: ../xfsettingsd/main.c:79
+msgid "Replace running xsettings daemon (if any)"
+msgstr "取代正在執行中的 xsettings 幕後程式 (如果有的話)"
+
+#: ../xfsettingsd/workspaces.c:365
 #, c-format
 msgid "Workspace %d"
 msgstr "工作區 %d"
+
+#: ../xfsettingsd/xfsettingsd.desktop.in.h:1
+#, fuzzy
+msgid "The Xfce Settings Daemon"
+msgstr "Xfce 4 設定值管理員"
 
 #: ../xfce4-settings-manager/main.c:42
 msgid "Settings dialog to show"
@@ -1216,25 +1245,21 @@ msgstr "Xfce 4 的圖形設定值管理員"
 msgid "Settings Manager"
 msgstr "設定值管理員"
 
-#: ../xfsettingsd/main.c:56
-msgid "Verbose output"
-msgstr "冗長輸出"
+#~ msgid "NVIDIA Settings"
+#~ msgstr "NVIDIA 設定值"
 
-#: ../xfsettingsd/main.c:60
-msgid "Replace running xsettings daemon (if any)"
-msgstr "取代正在執行中的 xsettings 幕後程式 (如果有的話)"
+#~ msgid "The video driver does not support video outputs"
+#~ msgstr "顯示卡驅動程式不支援影像輸出"
 
-#: ../xfsettingsd/main.c:131
-#, c-format
-msgid ""
-"%s: %s\n"
-"Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"試試 %s --help 以查看可用指令列選項的完整清單。\n"
+#~ msgid "Verbose output"
+#~ msgstr "冗長輸出"
 
-#~ msgid "Xfce 4 Settings Manager"
-#~ msgstr "Xfce 4 設定值管理員"
+#~ msgid ""
+#~ "%s: %s\n"
+#~ "Try %s --help to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "%s: %s\n"
+#~ "試試 %s --help 以查看可用指令列選項的完整清單。\n"
 
 #~ msgid "Active"
 #~ msgstr "活動中"

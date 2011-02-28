@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the xfce4-settings package.
 # Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2010.
 #
-#: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 17:16+0100\n"
+"POT-Creation-Date: 2011-02-28 17:23+0100\n"
 "PO-Revision-Date: 2010-11-04 12:18+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <xfce-i18n@xfce.org>\n"
@@ -35,68 +34,85 @@ msgid "Accessibility"
 msgstr "Esteettömyys"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+#, fuzzy
+msgid ""
+"Assistive technologies will be available the\n"
+"next time you login"
+msgstr "Järjestelmän oletukset palautetaan seuraavan kirjautumisen yhteydessä."
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Bounce Keys"
 msgstr "Näppäintoiston esto"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Configure keyboard and mouse accessibility"
 msgstr "Näppäimistön ja hiiren esteettömyysasetukset"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Disable sticky keys if _two keys are pressed"
 msgstr "Poista alas jäävät näppäimet, jos painetaan _kahta näppäintä"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+msgid ""
+"If enabled, the session manager will start the required applications for "
+"screen readers and magnifiers"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
 msgstr "_Näppäintoiston viive:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "Keyboa_rd"
 msgstr "N_äppäinkartta"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Maximum _speed:"
 msgstr "Enimmäis_nopeus:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "Mouse Emulation"
 msgstr "Hiiriemulointi"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+msgid "No AT-SPI provider was found on your system"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "R_epeat interval:"
 msgstr "_Toistoväli:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "Slow Keys"
 msgstr "Hitaat näppäimet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Sticky Keys"
 msgstr "Alas jäävät näppäimet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Vaadittu näppäinpainallusten välinen aika millisekunteina"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "Aika millisekunteina, jonka jälkeen näppäimen painallus hyväksytään"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The maximum pointer speed after acceleration"
 msgstr "Suurin osoittimen nopeus kiihdytettynä"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Käyrä, jonka mukaisesti osoitin saavuttaa täyden nopeutensa"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Aika toistuvien liikkeiden välillä millisekunteina"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
@@ -104,11 +120,11 @@ msgstr ""
 "Aika millisekunteina näppäimen painalluksen ja ensimmäisen toistuvan "
 "liikkeen välillä"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Kiihdytyksen kesto suurimpaan nopeuteen millisekunteina"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
@@ -116,7 +132,7 @@ msgstr ""
 "Hitaat näppäimet asettaa vähimmäiskeston näppäimen painallukselle ennen sen "
 "hyväksymistä, jotta vältytään tahattomalta näppäilyltä"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
@@ -124,19 +140,19 @@ msgstr ""
 "Näppäintoiston esto asettaa vähimmäisajan näppäimen painallusten välille, "
 "jotta vältytään tahattomalta näppäimen toistolta"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid "Use _bounce keys"
 msgstr "Estä _näppäintoisto"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "Use _sticky keys"
 msgstr "Käytä _alas jääviä näppäimiä"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "Use slow _keys"
 msgstr "Käytä _hitaita näppäimiä"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
@@ -146,7 +162,7 @@ msgstr ""
 "pitää painettuna (vaan ne voi painamisen jälkeen vapauttaa) kun useita "
 "näppäimiä pitäisi tavallisesti painaa yhtä aikaa"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -154,7 +170,7 @@ msgstr ""
 "Jos valitset tämän, muuntonäppäimet (kuten Ctrl, Alt ja Vaihto) pysyvät alas "
 "painettuina kunnes niitä painetaan uudelleen"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
@@ -162,33 +178,41 @@ msgstr ""
 "Jos valitset tämän, alas jäävät näppäimet poistuvat käytöstä kun painat "
 "kahta näppäintä samanaikaisesti"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
 msgstr "Jos valitset tämän, voit liikuttaa osoitinta numeronäppäimistön avulla"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "_Acceleration delay:"
 msgstr "_Kiihdytysviive:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+msgid "_Assistive Technologies"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+msgid "_Enable assistive technologies"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "_Lock sticky keys"
 msgstr "_Lukitse alas jäävät näppäimet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "_Mouse"
 msgstr "_Hiiri"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "_Use mouse emulation"
 msgstr "Käytä hiiri_emulointia"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "msec"
 msgstr "ms"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "pixels/sec"
 msgstr "kuvapistettä/s"
 
@@ -210,36 +234,36 @@ msgstr "PISTOKE"
 #: ../dialogs/appearance-settings/main.c:88
 #: ../dialogs/display-settings/main.c:104
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
-#: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
+#: ../xfce4-settings-manager/main.c:40
 msgid "Version information"
 msgstr "Versiotiedot"
 
-#: ../dialogs/accessibility-settings/main.c:143
-#: ../dialogs/appearance-settings/main.c:827
+#: ../dialogs/accessibility-settings/main.c:181
+#: ../dialogs/appearance-settings/main.c:828
 #: ../dialogs/display-settings/main.c:1046
 #: ../dialogs/keyboard-settings/main.c:64
 #: ../dialogs/mouse-settings/main.c:1188 ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
+#: ../xfsettingsd/main.c:130 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Saat ohjeita komennolla \"%s --help\"."
 
-#: ../dialogs/accessibility-settings/main.c:162
-#: ../dialogs/appearance-settings/main.c:846
+#: ../dialogs/accessibility-settings/main.c:200
+#: ../dialogs/appearance-settings/main.c:847
 #: ../dialogs/display-settings/main.c:1065
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:146 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 
-#: ../dialogs/accessibility-settings/main.c:163
-#: ../dialogs/appearance-settings/main.c:847
+#: ../dialogs/accessibility-settings/main.c:201
+#: ../dialogs/appearance-settings/main.c:848
 #: ../dialogs/display-settings/main.c:1066
 #: ../dialogs/keyboard-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1208 ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
+#: ../xfsettingsd/main.c:147 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Ilmoita virheistä osoitteseen <%s>."
@@ -582,30 +606,26 @@ msgid "Selected output not disabled"
 msgstr "Valittua lähtöä ei poistettu käytöstä"
 
 #: ../dialogs/display-settings/main.c:1078
-#: ../dialogs/display-settings/xfce-randr.c:261
+#: ../dialogs/display-settings/xfce-randr.c:250
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "RandR-laajennuksen versiota ei voi selvittää"
 
 #: ../dialogs/display-settings/main.c:1079
-#: ../dialogs/display-settings/main.c:1123
+#: ../dialogs/display-settings/main.c:1115
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce:n näyttöasetussovellusta ei voi käynnistää"
 
-#: ../dialogs/display-settings/main.c:1109
-msgid "NVIDIA Settings"
-msgstr "NVIDIA:n asetukset"
-
-#: ../dialogs/display-settings/main.c:1117
+#: ../dialogs/display-settings/main.c:1110
 msgid "ATI Settings"
 msgstr "ATI:n asetukset"
 
-#: ../dialogs/display-settings/main.c:1133
+#: ../dialogs/display-settings/main.c:1125
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Näytönohjainvalmistajan asetussovellusta ei voi käynnistää"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:269
+#: ../dialogs/display-settings/xfce-randr.c:258
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -614,25 +634,19 @@ msgstr ""
 "Järjestelmä käyttää RandR-laajennuksen versiota %d.%d. Näytön asetukset "
 "vaativat toimiakseen vähintään version 1.2"
 
-#. set error
-#: ../dialogs/display-settings/xfce-randr.c:294
-#, c-format
-msgid "The video driver does not support video outputs"
-msgstr "Näytönohjainajuri ei tue kuvalähtöjä"
-
-#: ../dialogs/display-settings/xfce-randr.c:558
+#: ../dialogs/display-settings/xfce-randr.c:537
 msgid "Laptop"
 msgstr "Kannettava"
 
-#: ../dialogs/display-settings/xfce-randr.c:579
+#: ../dialogs/display-settings/xfce-randr.c:558
 msgid "Monitor"
 msgstr "Näyttö"
 
-#: ../dialogs/display-settings/xfce-randr.c:582
+#: ../dialogs/display-settings/xfce-randr.c:561
 msgid "Television"
 msgstr "Televisio"
 
-#: ../dialogs/display-settings/xfce-randr.c:586
+#: ../dialogs/display-settings/xfce-randr.c:565
 msgid "Digital display"
 msgstr "Digitaalinäyttö"
 
@@ -1021,41 +1035,41 @@ msgstr "Lukittu"
 msgid "Value"
 msgstr "Arvo"
 
-#: ../xfce4-settings-editor/main_window.c:306
+#: ../xfce4-settings-editor/main_window.c:310
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
 msgid "Empty"
 msgstr "Tyhjä"
 
-#: ../xfce4-settings-editor/main_window.c:696
-#: ../xfce4-settings-editor/main_window.c:888
+#: ../xfce4-settings-editor/main_window.c:700
+#: ../xfce4-settings-editor/main_window.c:892
 msgid "This property name is not valid."
 msgstr "Asetuksen nimi ei kelpaa."
 
-#: ../xfce4-settings-editor/main_window.c:923
-#: ../xfce4-settings-editor/main_window.c:1076
+#: ../xfce4-settings-editor/main_window.c:927
+#: ../xfce4-settings-editor/main_window.c:1080
 msgid "Reset"
 msgstr "Palauta"
 
-#: ../xfce4-settings-editor/main_window.c:924
+#: ../xfce4-settings-editor/main_window.c:928
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Jos palautat asetuksen, menetät mukautetut asetukset lopullisesti."
 
-#: ../xfce4-settings-editor/main_window.c:925
+#: ../xfce4-settings-editor/main_window.c:929
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Haluatko varmasti palauttaa asetuksen \"%s\"?"
 
-#: ../xfce4-settings-editor/main_window.c:981
+#: ../xfce4-settings-editor/main_window.c:985
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Asetuksen nimen täytyy alkaa /-merkillä."
 
-#: ../xfce4-settings-editor/main_window.c:990
+#: ../xfce4-settings-editor/main_window.c:994
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Juurielementti (\"/\") ei kelpaa asetuksen nimeksi."
 
-#: ../xfce4-settings-editor/main_window.c:1004
+#: ../xfce4-settings-editor/main_window.c:1008
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1064,25 +1078,25 @@ msgstr ""
 "Asetuksen nimi voi sisältää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, \"_\", "
 "\"-\", \"<\" ja \">\", sekä erotinmerkin \"/\"."
 
-#: ../xfce4-settings-editor/main_window.c:1013
+#: ../xfce4-settings-editor/main_window.c:1017
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Asetuksen nimessä ei voi olla peräkkäisiä /-merkkejä."
 
-#: ../xfce4-settings-editor/main_window.c:1024
+#: ../xfce4-settings-editor/main_window.c:1028
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Asetuksen nimi ei voi päättyä /-merkkiin."
 
-#: ../xfce4-settings-editor/main_window.c:1043
+#: ../xfce4-settings-editor/main_window.c:1047
 msgid "_Reset"
 msgstr "_Palauta"
 
-#: ../xfce4-settings-editor/main_window.c:1077
+#: ../xfce4-settings-editor/main_window.c:1081
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Jos palautat kanavan, menetät mukautetut asetukset lopullisesti."
 
-#: ../xfce4-settings-editor/main_window.c:1078
+#: ../xfce4-settings-editor/main_window.c:1082
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Haluatko varmasti palauttaa kanavan \"%s\" ja kaikki sen asetukset?"
@@ -1164,50 +1178,65 @@ msgstr "Arvo:"
 msgid "Xfconf channels"
 msgstr "Xfconf-kanavat"
 
-#: ../xfce4-settings-helper/accessibility.c:352
+#: ../xfsettingsd/accessibility.c:379
 msgid "Sticky keys are enabled"
 msgstr "Alas jäävät näppäimet käytössä"
 
-#: ../xfce4-settings-helper/accessibility.c:354
+#: ../xfsettingsd/accessibility.c:381
 msgid "Sticky keys are disabled"
 msgstr "Alas jäävät näppäimet ei käytössä"
 
-#: ../xfce4-settings-helper/accessibility.c:356
+#: ../xfsettingsd/accessibility.c:383
 msgid "Sticky keys"
 msgstr "Alas jäävät näppäimet"
 
-#: ../xfce4-settings-helper/accessibility.c:361
+#: ../xfsettingsd/accessibility.c:388
 msgid "Slow keys are enabled"
 msgstr "Hitaat näppäimet käytössä"
 
-#: ../xfce4-settings-helper/accessibility.c:363
+#: ../xfsettingsd/accessibility.c:390
 msgid "Slow keys are disabled"
 msgstr "Hitaat näppäimet ei käytössä"
 
-#: ../xfce4-settings-helper/accessibility.c:365
+#: ../xfsettingsd/accessibility.c:392
 msgid "Slow keys"
 msgstr "Hitaat näppäimet"
 
-#: ../xfce4-settings-helper/accessibility.c:370
+#: ../xfsettingsd/accessibility.c:397
 msgid "Bounce keys are enabled"
 msgstr "Näppäintoiston esto käytössä"
 
-#: ../xfce4-settings-helper/accessibility.c:372
+#: ../xfsettingsd/accessibility.c:399
 msgid "Bounce keys are disabled"
 msgstr "Näppäintoiston esto ei käytössä"
 
-#: ../xfce4-settings-helper/accessibility.c:374
+#: ../xfsettingsd/accessibility.c:401
 msgid "Bounce keys"
 msgstr "Näppäintoiston esto"
 
-#: ../xfce4-settings-helper/main.c:75 ../xfsettingsd/main.c:64
-msgid "Start in debug mode (don't fork to the background)"
+#: ../xfsettingsd/keyboard-shortcuts.c:246
+#, fuzzy, c-format
+msgid "Failed to launch shortcut \"%s\""
+msgstr "Kohdetta \"%s\" ei voi käynnistää."
+
+#: ../xfsettingsd/main.c:78
+#, fuzzy
+msgid "Do not fork to the background"
 msgstr "Käynnistä vianetsintätilassa (älä haaroita taustalle)"
 
-#: ../xfce4-settings-helper/workspaces.c:354
+#: ../xfsettingsd/main.c:79
+msgid "Replace running xsettings daemon (if any)"
+msgstr "Korvaa olemassaoleva xsettings-taustaprosessi"
+
+#: ../xfsettingsd/workspaces.c:365
 #, c-format
 msgid "Workspace %d"
 msgstr "Työtila %d"
+
+#: ../xfsettingsd/xfsettingsd.desktop.in.h:1
+#, fuzzy
+msgid "The Xfce Settings Daemon"
+msgstr "Xfce 4 asetukset"
 
 #: ../xfce4-settings-manager/main.c:42
 msgid "Settings dialog to show"
@@ -1244,22 +1273,18 @@ msgstr "Asetusten hallintapaneeli Xfce 4:lle"
 msgid "Settings Manager"
 msgstr "Asetukset"
 
-#: ../xfsettingsd/main.c:56
-msgid "Verbose output"
-msgstr "Yksityiskohtainen tulostus"
+#~ msgid "NVIDIA Settings"
+#~ msgstr "NVIDIA:n asetukset"
 
-#: ../xfsettingsd/main.c:60
-msgid "Replace running xsettings daemon (if any)"
-msgstr "Korvaa olemassaoleva xsettings-taustaprosessi"
+#~ msgid "The video driver does not support video outputs"
+#~ msgstr "Näytönohjainajuri ei tue kuvalähtöjä"
 
-#: ../xfsettingsd/main.c:131
-#, c-format
-msgid ""
-"%s: %s\n"
-"Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"Kirjoittamalla %s --help saat täyden listan komentorivivalitsimista.\n"
+#~ msgid "Verbose output"
+#~ msgstr "Yksityiskohtainen tulostus"
 
-#~ msgid "Xfce 4 Settings Manager"
-#~ msgstr "Xfce 4 asetukset"
+#~ msgid ""
+#~ "%s: %s\n"
+#~ "Try %s --help to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "%s: %s\n"
+#~ "Kirjoittamalla %s --help saat täyden listan komentorivivalitsimista.\n"
