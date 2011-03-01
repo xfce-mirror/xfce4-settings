@@ -132,7 +132,7 @@ struct _XfceXSettingsNotify
 {
     guchar *buf;
     gsize   buf_len;
-    CARD32  n_settings;
+    gint    n_settings;
     gsize   dpi_offset;
 };
 
