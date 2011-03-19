@@ -491,6 +491,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gchar               property[512];
     gint                min_width, min_height, max_width, max_height;
     gint                mm_width, mm_height, width, height, mode_height, mode_width;
+    gint                min_x, min_y;
     gint                l, m, output_rot, nactive;
     guint               n;
     GValue             *value;
@@ -515,6 +516,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
     /* get the range of screen sizes */
     mm_width = mm_height = width = height = 0;
+    min_x = min_y = 32768;
     if (!XRRGetScreenSizeRange (xdisplay, GDK_WINDOW_XID (root_window),
                                 &min_width, &min_height, &max_width, &max_height))
     {
@@ -690,6 +692,10 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             pending->y = g_value_get_int (value);
         else
             pending->y = 0;
+
+        /* normalize positions to ensure the upper left corner is at (0,0) */
+        min_x = MIN (min_x, pending->x);
+        min_y = MIN (min_y, pending->y);
     }
 
     /* safety check */
@@ -736,33 +742,42 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             xfce_displays_helper_set_outputs (crtc, output);
 
             mode_height = mode_width = 0;
-            /* get the sizes of the mode to enforce */
-            for (m = 0; m < resources->nmode; ++m)
+            /* get the sizes of the mode to enforce, but ignore to-be-disabled outputs */
+            if (output->pending->mode != None)
             {
-                /* get the mode info */
-                mode_info = &resources->modes[m];
+                for (m = 0; m < resources->nmode; ++m)
+                {
+                    /* get the mode info */
+                    mode_info = &resources->modes[m];
 
-                /* does the mode info match the mode we seek? */
-                if (mode_info->id != output->pending->mode)
-                    continue;
+                    /* does the mode info match the mode we seek? */
+                    if (mode_info->id != output->pending->mode)
+                        continue;
 
-                /* store the dimensions */
-                mode_height = resources->modes[m].height;
-                mode_width = resources->modes[m].width;
-                break;
+                    /* store the dimensions */
+                    mode_height = resources->modes[m].height;
+                    mode_width = resources->modes[m].width;
+                    break;
+                }
+
+                /* move the output to a normalized position */
+                if (min_x || min_y)
+                {
+                    output->pending->x -= min_x;
+                    output->pending->y -= min_y;
+                }
+
+                if ((output->pending->rotation & (RR_Rotate_90|RR_Rotate_270)) != 0)
+                    xfce_displays_helper_process_screen_size (mode_height, mode_width,
+                                                              output->pending->x,
+                                                              output->pending->y, &width,
+                                                              &height, &mm_width, &mm_height);
+                else
+                    xfce_displays_helper_process_screen_size (mode_width, mode_height,
+                                                              output->pending->x,
+                                                              output->pending->y, &width,
+                                                              &height, &mm_width, &mm_height);
             }
-
-
-            if ((output->pending->rotation & (RR_Rotate_90|RR_Rotate_270)) != 0)
-                xfce_displays_helper_process_screen_size (mode_height, mode_width,
-                                                          output->pending->x,
-                                                          output->pending->y, &width,
-                                                          &height, &mm_width, &mm_height);
-            else
-                xfce_displays_helper_process_screen_size (mode_width, mode_height,
-                                                          output->pending->x,
-                                                          output->pending->y, &width,
-                                                          &height, &mm_width, &mm_height);
 
             /* check if we really need to do something */
             if (crtc->mode != output->pending->mode
@@ -771,12 +786,16 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 || crtc->y != output->pending->y
                 || crtc->noutput != output->pending->noutput)
             {
+                TRACE("Configuring %s: size=%dx%d, pos=%dx%d.", output->info->name, mode_width, mode_height,
+                                                                output->pending->x, output->pending->y);
                 if (xfce_displays_helper_apply_crtc (xdisplay, resources, crtc,
                                                      output->pending) != RRSetConfigSuccess)
                     g_warning ("Failed to configure %s.", output->info->name);
             }
         }
     }
+
+    TRACE("Desktop dimensions: %dx%d (px), %dx%d (mm).", width, height, mm_width, mm_height);
 
     /* set the screen size only if it's really needed and valid */
     if (width >= min_width && width <= max_width
