@@ -384,7 +384,8 @@ xfce_settings_manager_dialog_sort_icons(GtkTreeModel *model,
 static void
 xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
 {
-    gchar **dirs, buf[PATH_MAX];
+    gchar **dirs;
+    gchar *filename;
     gint i, icon_size;
     GList *dialog_name_list = NULL;
 
@@ -424,8 +425,9 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
             if(!g_str_has_suffix(file, ".desktop"))
                 continue;
 
-            g_snprintf(buf, sizeof(buf), "%s/%s", dirs[i], file);
-            rcfile = xfce_rc_simple_open(buf, TRUE);
+            filename = g_build_filename(dirs[i], file, NULL);
+            rcfile = xfce_rc_simple_open(filename, TRUE);
+            g_free (filename);
             if(!rcfile)
                 continue;
 
