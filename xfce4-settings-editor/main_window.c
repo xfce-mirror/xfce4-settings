@@ -330,7 +330,6 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
 {
     gint i = 0;
     gchar *key;
-    GValue *value;
     GList *keys, *_keys;
     GtkTreeIter parent_iter;
     GtkTreeIter child_iter;
@@ -353,7 +352,6 @@ load_properties (XfconfChannel *channel, GtkTreeStore *store, GtkTreeView *treev
         {
             key = _keys->data;
             TRACE ("Key: %s", key);
-            value = g_hash_table_lookup (hash_table, key);
             components = g_strsplit (key, "/", 0);
 
             /* components[0] will be empty because properties start with '/'*/
