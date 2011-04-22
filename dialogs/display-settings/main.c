@@ -935,11 +935,9 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
 {
     GObject    *first_screen_radio;
     GObject    *second_screen_radio;
-    GObject    *both_radio;
     XfceRRMode *mode1, *mode2;
     gboolean    use_first_screen;
     gboolean    use_second_screen;
-    gboolean    use_both;
     guint       first, second;
     gint        m, n, found;
 
@@ -951,14 +949,11 @@ display_settings_minimal_dialog_response (GtkDialog  *dialog,
 
         first_screen_radio = gtk_builder_get_object (builder, "radiobutton1");
         second_screen_radio = gtk_builder_get_object (builder, "radiobutton2");
-        both_radio = gtk_builder_get_object (builder, "radiobutton3");
 
         use_first_screen =
             gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (first_screen_radio));
         use_second_screen =
             gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (second_screen_radio));
-        use_both =
-            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (both_radio));
 
         if (use_first_screen)
         {
