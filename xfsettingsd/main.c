@@ -63,7 +63,7 @@
 #include "displays.h"
 #endif
 
-#define XFSETTINGS_DBUS_NAME    ("org.xfce.SettingsDaemon")
+#define XFSETTINGS_DBUS_NAME    "org.xfce.SettingsDaemon"
 #define XFSETTINGS_DESKTOP_FILE (SYSCONFIGDIR "/xdg/autostart/xfsettingsd.desktop")
 
 
@@ -92,6 +92,23 @@ signal_handler (gint signum,
 
 
 
+static DBusHandlerResult
+dbus_connection_filter_func (DBusConnection     *connection,
+                             DBusMessage        *message,
+                             void               *user_data)
+{
+    if (dbus_message_is_signal (message, DBUS_INTERFACE_DBUS, "NameOwnerChanged"))
+    {
+        g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
+        gtk_main_quit ();
+        return DBUS_HANDLER_RESULT_HANDLED;
+    }
+
+    return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+
+
 gint
 main (gint argc, gchar **argv)
 {
@@ -113,6 +130,7 @@ main (gint argc, gchar **argv)
     const gint            signums[] = { SIGQUIT, SIGTERM };
     DBusConnection       *dbus_connection;
     gint                  result;
+    guint                 dbus_flags;
 
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -153,12 +171,21 @@ main (gint argc, gchar **argv)
     dbus_connection = dbus_bus_get (DBUS_BUS_SESSION, NULL);
     if (G_LIKELY (dbus_connection != NULL))
     {
-        result = dbus_bus_request_name (dbus_connection, XFSETTINGS_DBUS_NAME, DBUS_NAME_FLAG_DO_NOT_QUEUE, NULL);
+        dbus_connection_set_exit_on_disconnect (dbus_connection, FALSE);
+
+        dbus_flags = DBUS_NAME_FLAG_ALLOW_REPLACEMENT | DBUS_NAME_FLAG_DO_NOT_QUEUE;
+        if (opt_replace)
+          dbus_flags |= DBUS_NAME_FLAG_REPLACE_EXISTING;
+
+        result = dbus_bus_request_name (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, NULL);
         if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER)
-          {
-              g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance is already running. Leaving...");
-              return EXIT_SUCCESS;
-          }
+        {
+            g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance is already running. Leaving...");
+            return EXIT_SUCCESS;
+        }
+
+        dbus_bus_add_match (dbus_connection, "type='signal',member='NameOwnerChanged',arg0='"XFSETTINGS_DBUS_NAME"'", NULL);
+        dbus_connection_add_filter (dbus_connection, dbus_connection_filter_func, NULL, NULL);
     }
     else
     {
@@ -239,7 +266,11 @@ main (gint argc, gchar **argv)
 
     /* release the dbus name */
     if (dbus_connection != NULL)
+    {
+        dbus_connection_remove_filter (dbus_connection, dbus_connection_filter_func, NULL);
         dbus_bus_release_name (dbus_connection, XFSETTINGS_DBUS_NAME, NULL);
+        dbus_connection_unref (dbus_connection);
+    }
 
     /* release the sub daemons */
     g_object_unref (G_OBJECT (xsettings_helper));
