@@ -112,7 +112,6 @@ dbus_connection_filter_func (DBusConnection     *connection,
 gint
 main (gint argc, gchar **argv)
 {
-    XfceClipboardManager *clipboard_daemon;
     GError               *error = NULL;
     GOptionContext       *context;
     GObject              *pointer_helper;
@@ -121,6 +120,7 @@ main (gint argc, gchar **argv)
     GObject              *shortcuts_helper;
     GObject              *keyboard_layout_helper;
     GObject              *xsettings_helper;
+    GObject              *clipboard_daemon = NULL;
 #ifdef HAVE_XRANDR
     GObject              *displays_helper;
 #endif
@@ -248,11 +248,16 @@ main (gint argc, gchar **argv)
     keyboard_layout_helper = g_object_new (XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, NULL);
     workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
 
-    clipboard_daemon = xfce_clipboard_manager_new ();
-    if (!xfce_clipboard_manager_start (clipboard_daemon))
+    if (g_getenv ("XFSETTINGSD_NO_CLIPBOARD") == NULL)
     {
-        g_object_unref (G_OBJECT (clipboard_daemon));
-        clipboard_daemon = NULL;
+        clipboard_daemon = g_object_new (GSD_TYPE_CLIPBOARD_MANAGER, NULL);
+        if (!gsd_clipboard_manager_start (GSD_CLIPBOARD_MANAGER (clipboard_daemon), opt_replace))
+        {
+            g_object_unref (G_OBJECT (clipboard_daemon));
+            clipboard_daemon = NULL;
+            
+            g_printerr (G_LOG_DOMAIN ": %s\n", "Another clipboard manager is already running.");
+        }
     }
 
     /* setup signal handlers to properly quit the main loop */
@@ -286,7 +291,7 @@ main (gint argc, gchar **argv)
 
     if (G_LIKELY (clipboard_daemon != NULL))
     {
-        xfce_clipboard_manager_stop (clipboard_daemon);
+        gsd_clipboard_manager_stop (GSD_CLIPBOARD_MANAGER (clipboard_daemon));
         g_object_unref (G_OBJECT (clipboard_daemon));
     }
 

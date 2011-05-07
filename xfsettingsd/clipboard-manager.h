@@ -18,29 +18,42 @@
  *
  */
 
-#ifndef __XFCE_CLIPBOARD_MANAGER_H
-#define __XFCE_CLIPBOARD_MANAGER_H
+#ifndef __GSD_CLIPBOARD_MANAGER_H
+#define __GSD_CLIPBOARD_MANAGER_H
 
 #include <glib-object.h>
 
 G_BEGIN_DECLS
 
-typedef struct _XfceClipboardManager      XfceClipboardManager;
-typedef struct _XfceClipboardManagerClass XfceClipboardManagerClass;
+typedef struct _GsdClipboardManager        GsdClipboardManager;
+typedef struct _GsdClipboardManagerClass   GsdClipboardManagerClass;
+typedef struct _GsdClipboardManagerPrivate GsdClipboardManagerPrivate;
 
-#define XFCE_TYPE_CLIPBOARD_MANAGER         (xfce_clipboard_manager_get_type ())
-#define XFCE_CLIPBOARD_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFCE_TYPE_CLIPBOARD_MANAGER, XfceClipboardManager))
-#define XFCE_CLIPBOARD_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFCE_TYPE_CLIPBOARD_MANAGER, XfceClipboardManagerClass))
-#define XFCE_IS_CLIPBOARD_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFCE_TYPE_CLIPBOARD_MANAGER))
-#define XFCE_IS_CLIPBOARD_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFCE_TYPE_CLIPBOARD_MANAGER))
-#define XFCE_CLIPBOARD_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFCE_TYPE_CLIPBOARD_MANAGER, XfceClipboardManagerClass))
+#define GSD_TYPE_CLIPBOARD_MANAGER         (gsd_clipboard_manager_get_type ())
+#define GSD_CLIPBOARD_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSD_TYPE_CLIPBOARD_MANAGER, GsdClipboardManager))
+#define GSD_CLIPBOARD_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSD_TYPE_CLIPBOARD_MANAGER, GsdClipboardManagerClass))
+#define GSD_IS_CLIPBOARD_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSD_TYPE_CLIPBOARD_MANAGER))
+#define GSD_IS_CLIPBOARD_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSD_TYPE_CLIPBOARD_MANAGER))
+#define GSD_CLIPBOARD_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSD_TYPE_CLIPBOARD_MANAGER, GsdClipboardManagerClass))
 
-GType                 xfce_clipboard_manager_get_type            (void);
+struct _GsdClipboardManager
+{
+    GObject                     parent;
+    GsdClipboardManagerPrivate *priv;
+};
 
-XfceClipboardManager *xfce_clipboard_manager_new                 (void);
-gboolean              xfce_clipboard_manager_start               (XfceClipboardManager  *manager);
-void                  xfce_clipboard_manager_stop                (XfceClipboardManager  *manager);
+struct _GsdClipboardManagerClass
+{
+    GObjectClass parent_class;
+};
+
+GType gsd_clipboard_manager_get_type (void);
+
+gboolean gsd_clipboard_manager_start (GsdClipboardManager *manager,
+                                      gboolean             replace);
+
+void     gsd_clipboard_manager_stop  (GsdClipboardManager *manager);
 
 G_END_DECLS
 
-#endif /* __XFCE_CLIPBOARD_MANAGER_H */
+#endif /* __GSD_CLIPBOARD_MANAGER_H */
