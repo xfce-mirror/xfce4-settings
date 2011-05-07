@@ -572,7 +572,7 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
     gint               nbuttons;
     Display           *xdisplay;
     XDevice           *device;
-    XFeedbackState    *states;
+    XFeedbackState    *states, *pt;
     gint               nstates;
     XPtrFeedbackState *state;
     gint               i;
@@ -634,28 +634,27 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
 
             /* get the feedback states for this device */
             states = XGetFeedbackControl (xdisplay, device, &nstates);
-
-            /* intial values */
-            acceleration = threshold = -1;
-
-            /* get the pointer feedback class */
-            for (i = 0; i < nstates; i++)
+            if (states != NULL)
             {
-                if (states->class == PtrFeedbackClass)
+                /* get the pointer feedback class */
+                for (pt = states, i = 0; i < nstates; i++)
                 {
-                    /* get the state */
-                    state = (XPtrFeedbackState *) states;
+                    if (pt->class == PtrFeedbackClass)
+                    {
+                        /* get the state */
+                        state = (XPtrFeedbackState *) pt;
+                        acceleration = (gdouble) state->accelNum / (gdouble) state->accelDenom;
+                        threshold = state->threshold;
 
-                    /* set values */
-                    acceleration = (gdouble) state->accelNum / (gdouble) state->accelDenom;
-                    threshold = state->threshold;
+                        /* done */
+                        break;
+                    }
 
-                    /* done */
-                    break;
+                    /* advance the offset */
+                    pt = (XFeedbackState *) ((gchar *) pt + pt->length);
                 }
 
-                /* advance the offset */
-                states = (XFeedbackState *) ((gchar *) states + states->length);
+                XFreeFeedbackList (states);
             }
 
             /* close the device */
