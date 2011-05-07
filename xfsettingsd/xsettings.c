@@ -1029,6 +1029,26 @@ xfce_xsettings_helper_timestamp_predicate (Display  *xdisplay,
 
 
 
+Time     
+xfce_xsettings_get_server_time (Display *xdisplay,
+                                Window   window)
+{
+    Atom   timestamp_atom;
+    guchar c = 'a';
+    XEvent xevent;
+
+    /* get the current xserver timestamp */
+    timestamp_atom = XInternAtom (xdisplay, "_TIMESTAMP_PROP", False);
+    XChangeProperty (xdisplay, window, timestamp_atom, timestamp_atom,
+                     8, PropModeReplace, &c, 1);
+    XIfEvent (xdisplay, &xevent, xfce_xsettings_helper_timestamp_predicate,
+              GUINT_TO_POINTER (window));
+
+    return xevent.xproperty.time;
+}
+
+
+
 gboolean
 xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
                                 GdkDisplay          *gdkdisplay,
@@ -1039,11 +1059,9 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
     Window               window;
     gchar                atom_name[64];
     Atom                 selection_atom;
-    Atom                 timestamp_atom;
     gint                 n_screens, n;
-    guchar               c = 'a';
+    
     XfceXSettingsScreen *screen;
-    XEvent               xevent;
     Time                 timestamp;
     XClientMessageEvent  xev;
     gboolean             succeed;
@@ -1079,12 +1097,7 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
         XSelectInput (xdisplay, window, PropertyChangeMask);
 
         /* get the current xserver timestamp */
-        timestamp_atom = XInternAtom (xdisplay, "_TIMESTAMP_PROP", False);
-        XChangeProperty (xdisplay, window, timestamp_atom, timestamp_atom,
-                         8, PropModeReplace, &c, 1);
-        XIfEvent (xdisplay, &xevent, xfce_xsettings_helper_timestamp_predicate,
-                  GUINT_TO_POINTER (window));
-        timestamp = xevent.xproperty.time;
+        timestamp = xfce_xsettings_get_server_time (xdisplay, window);
 
         /* request ownership of the xsettings selection on this screen */
         XSetSelectionOwner (xdisplay, selection_atom, window, timestamp);

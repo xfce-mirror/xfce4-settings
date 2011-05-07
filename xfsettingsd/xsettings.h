@@ -36,4 +36,7 @@ gboolean xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
                                          GdkDisplay          *gdkdisplay,
                                          gboolean             force_replace);
 
+Time     xfce_xsettings_get_server_time (Display             *display,
+                                         Window               window);
+
 #endif /* !__XSETTINGS_H__ */
