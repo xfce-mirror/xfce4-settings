@@ -393,7 +393,7 @@ receive_incrementally (GsdClipboardManager *manager,
                         tdata->data = data;
                         tdata->length = length;
                 } else {
-                        tdata->data = realloc (tdata->data, tdata->length + length + 1);
+                        tdata->data = g_realloc (tdata->data, tdata->length + length + 1);
                         memcpy (tdata->data + tdata->length, data, length + 1);
                         tdata->length += length;
                         XFree (data);
@@ -642,7 +642,7 @@ convert_clipboard (GsdClipboardManager *manager,
                 }
 
                 for (i = 0; i < nitems; i += 2) {
-                        rdata = (IncrConversion *) malloc (sizeof (IncrConversion));
+                        rdata = g_slice_new (IncrConversion);
                         rdata->requestor = xev->xselectionrequest.requestor;
                         rdata->target = multiple[i];
                         rdata->property = multiple[i+1];
