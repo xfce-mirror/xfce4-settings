@@ -35,6 +35,7 @@
 
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
+#include <gtk/gtk.h>
 
 #include "clipboard-manager.h"
 #include "xsettings.h"
