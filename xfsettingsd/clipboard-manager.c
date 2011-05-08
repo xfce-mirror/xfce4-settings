@@ -22,25 +22,19 @@
  *
  */
 
-#include "config.h"
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+#ifdef HAVE_STRING_H
 #include <string.h>
-#include <errno.h>
+#endif
 
-#include <locale.h>
-
-#include <glib.h>
-#include <glib/gi18n.h>
-#include <gdk/gdk.h>
-#include <gdk/gdkx.h>
-#include <gtk/gtk.h>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
+
+#include <gdk/gdk.h>
+#include <gdk/gdkx.h>
 
 #include "clipboard-manager.h"
 #include "xsettings.h"
