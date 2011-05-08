@@ -282,7 +282,7 @@ xfce_keyboard_shortcuts_helper_shortcut_activated (XfceShortcutsGrabber        *
 
   if (!succeed)
     {
-      g_error ("Failed to spawn command \"%s\": %s", sc->command, error->message);
+      g_warning ("Failed to spawn command \"%s\": %s", sc->command, error->message);
       g_error_free (error);
     }
 
