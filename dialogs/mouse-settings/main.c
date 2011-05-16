@@ -129,9 +129,8 @@ enum
 
 enum
 {
-    COLUMN_DEVICE_ICON,
     COLUMN_DEVICE_NAME,
-    COLUMN_DEVICE_DISPLAY_NAME,
+    COLUMN_DEVICE_XFCONF_NAME,
     COLUMN_DEVICE_XID,
     COLUMN_DEVICE_NBUTTONS,
     N_DEVICE_COLUMNS
@@ -566,8 +565,7 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
 
 
 static void
-mouse_settings_device_selection_changed (GtkTreeSelection *selection,
-                                         GtkBuilder       *builder)
+mouse_settings_device_selection_changed (GtkBuilder *builder)
 {
     gint               nbuttons;
     Display           *xdisplay;
@@ -583,8 +581,8 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
     gint               threshold = -1;
     GObject           *object;
     GtkTreeModel      *model;
+    GObject           *combobox;
     GtkTreeIter        iter;
-    gboolean           has_selection;
     XID                xid;
 
     /* lock the dialog */
@@ -595,10 +593,11 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
     gdk_error_trap_push ();
 
     /* get the selected item */
-    has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
-    if (G_LIKELY (has_selection))
+    combobox = gtk_builder_get_object (builder, "device-combobox");
+    if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combobox), &iter))
     {
         /* get device id and number of buttons */
+        model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
         gtk_tree_model_get (model, &iter, COLUMN_DEVICE_XID, &xid,
                             COLUMN_DEVICE_NBUTTONS, &nbuttons, -1);
 
@@ -693,11 +692,9 @@ mouse_settings_device_selection_changed (GtkTreeSelection *selection,
 static void
 mouse_settings_device_save (GtkBuilder *builder)
 {
-    GObject          *treeview;
-    GtkTreeSelection *selection;
+    GObject          *combobox;
     GtkTreeModel     *model;
     GtkTreeIter       iter;
-    gboolean          has_selection;
     gchar            *name;
     GObject          *object;
     gchar             property_name[512];
@@ -710,17 +707,12 @@ mouse_settings_device_save (GtkBuilder *builder)
     if (locked > 0)
         return;
 
-    /* get the treeview */
-    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
-
-    /* get the selection */
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-
-    has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
-    if (G_LIKELY (has_selection))
+    combobox = gtk_builder_get_object (builder, "device-combobox");
+    if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combobox), &iter))
     {
         /* get device id and number of buttons */
-        gtk_tree_model_get (model, &iter, COLUMN_DEVICE_NAME, &name, -1);
+        model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+        gtk_tree_model_get (model, &iter, COLUMN_DEVICE_XFCONF_NAME, &name, -1);
 
         if (G_LIKELY (name))
         {
@@ -761,55 +753,6 @@ mouse_settings_device_save (GtkBuilder *builder)
 
 
 
-static void
-mouse_settings_device_name_edited (GtkCellRendererText *renderer,
-                                   gchar               *path,
-                                   gchar               *new_name,
-                                   GtkBuilder          *builder)
-{
-    GObject          *treeview;
-    GtkTreeSelection *selection;
-    gboolean          has_selection;
-    GtkTreeModel     *model;
-    GtkTreeIter       iter;
-    gchar            *internal_name;
-    gchar            *property_name;
-    gchar            *new_name_escaped;
-
-    /* check if the new name is valid */
-    if (new_name == NULL || *new_name == '\0')
-        return;
-
-    /* get the treeview's selection */
-    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-
-    /* get the selected item */
-    has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
-    if (G_LIKELY (has_selection))
-    {
-        /* get the internal device name */
-        gtk_tree_model_get (model, &iter, COLUMN_DEVICE_NAME, &internal_name, -1);
-
-        /* store the new name in the channel */
-        property_name = g_strdup_printf ("/%s", internal_name);
-        xfconf_channel_set_string (pointers_channel, property_name, new_name);
-
-        /* escape before adding in the store */
-        new_name_escaped = g_markup_escape_text (new_name, -1);
-
-        /* set the new device name in the store */
-        gtk_list_store_set (GTK_LIST_STORE (model), &iter, COLUMN_DEVICE_DISPLAY_NAME, new_name_escaped, -1);
-
-        /* cleanup */
-        g_free (new_name_escaped);
-        g_free (property_name);
-        g_free (internal_name);
-    }
-}
-
-
-
 static gchar *
 mouse_settings_device_xfconf_name (const gchar *name)
 {
@@ -844,23 +787,18 @@ static void
 mouse_settings_device_populate_store (GtkBuilder *builder,
                                       gboolean    create_store)
 {
-    Display           *xdisplay;
-    XDeviceInfo       *device_list, *device_info;
-    gchar             *display_name, *usb;
-    gshort             num_buttons;
-    gint               ndevices;
-    gint               i, m;
-    XAnyClassPtr       ptr;
-    GtkTreeIter        iter;
-    GtkListStore      *store;
-    GObject           *treeview;
-    GtkTreePath       *path = NULL;
-    GtkTreeViewColumn *column;
-    GtkCellRenderer   *renderer;
-    GtkTreeSelection  *selection;
-    gchar             *device_name;
-    gchar             *property_name;
-    gchar             *property_value;
+    Display         *xdisplay;
+    XDeviceInfo     *device_list, *device_info;
+    gshort           num_buttons;
+    gint             ndevices;
+    gint             i, m;
+    XAnyClassPtr     ptr;
+    GtkTreeIter      iter;
+    GtkListStore    *store;
+    GObject         *combobox;
+    GtkCellRenderer *renderer;
+    gchar           *xfconf_name;
+    gboolean         has_active_item = FALSE;
 
     /* lock */
     locked++;
@@ -869,18 +807,25 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
     gdk_flush ();
     gdk_error_trap_push ();
 
-    /* get the treeview */
-    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
+    combobox = gtk_builder_get_object (builder, "device-combobox");
 
     /* create or get the store */
     if (G_LIKELY (create_store))
     {
-        store = gtk_list_store_new (N_DEVICE_COLUMNS, G_TYPE_STRING, G_TYPE_STRING,
-                                    G_TYPE_STRING, G_TYPE_INT, G_TYPE_INT);
+        store = gtk_list_store_new (N_DEVICE_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT, G_TYPE_INT);
+        gtk_combo_box_set_model (GTK_COMBO_BOX (combobox), GTK_TREE_MODEL (store));
+
+        /* text renderer */
+        renderer = gtk_cell_renderer_text_new ();
+        gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combobox), renderer, TRUE);
+        gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combobox), renderer, "text", COLUMN_DEVICE_NAME, NULL);
+
+        g_signal_connect_swapped (G_OBJECT (combobox), "changed",
+            G_CALLBACK (mouse_settings_device_selection_changed), builder);
     }
     else
     {
-        store = GTK_LIST_STORE (gtk_tree_view_get_model (GTK_TREE_VIEW (treeview)));
+        store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (combobox)));
         gtk_list_store_clear (store);
     }
 
@@ -927,97 +872,38 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
                 continue;
 
             /* create a valid xfconf device name */
-            device_name = mouse_settings_device_xfconf_name (device_info->name);
-
-            /* check if there is a custom name set by the user */
-            property_name = g_strdup_printf ("/%s", device_name);
-            if (xfconf_channel_has_property (pointers_channel, property_name))
-            {
-                /* get the name from the config file, escape it */
-                property_value = xfconf_channel_get_string (pointers_channel, property_name, NULL);
-                display_name = g_markup_escape_text (property_value, -1);
-                g_free (property_value);
-            }
-            else
-            {
-                /* get the device name, escaped */
-                display_name = g_markup_escape_text (device_info->name, -1);
-
-                /* get rid of usb crap in the name */
-                if ((usb = strstr (display_name, "-usb")) != NULL)
-                    *usb = '\0';
-            }
+            xfconf_name = mouse_settings_device_xfconf_name (device_info->name);
 
             /* insert in the store */
             gtk_list_store_insert_with_values (store, &iter, i,
-                                               COLUMN_DEVICE_ICON, "input-mouse",
-                                               COLUMN_DEVICE_NAME, device_name,
-                                               COLUMN_DEVICE_DISPLAY_NAME, display_name,
+                                               COLUMN_DEVICE_XFCONF_NAME, xfconf_name,
+                                               COLUMN_DEVICE_NAME, device_info->name,
                                                COLUMN_DEVICE_XID, device_info->id,
                                                COLUMN_DEVICE_NBUTTONS, num_buttons, -1);
 
-            /* check if we should select this device (for user convience also the display name) */
-            if (opt_device_name && (strcmp (opt_device_name, device_info->name) == 0
-                || (display_name && strcmp (opt_device_name, display_name) == 0)))
+            /* check if we should select this device */
+            if (device_info->name != NULL
+                && opt_device_name != NULL
+                && strcmp (opt_device_name, device_info->name) == 0)
             {
-                path = gtk_tree_model_get_path (GTK_TREE_MODEL (store), &iter);
+                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
                 g_free (opt_device_name);
                 opt_device_name = NULL;
+                has_active_item = TRUE;
             }
 
-            /* cleanup */
-            g_free (property_name);
-            g_free (device_name);
-            g_free (display_name);
+            g_free (xfconf_name);
         }
     }
 
-    /* cleanup */
     XFreeDeviceList (device_list);
+
+    if (!has_active_item)
+        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), 0);
 
     /* flush and remove the x error trap */
     gdk_flush ();
     gdk_error_trap_pop ();
-
-    /* get the selection */
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-
-    if (G_LIKELY (create_store))
-    {
-        /* set the treeview model */
-        gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
-        gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_DEVICE_DISPLAY_NAME);
-
-        /* icon renderer */
-        renderer = gtk_cell_renderer_pixbuf_new ();
-        column = gtk_tree_view_column_new_with_attributes ("", renderer, "icon-name", COLUMN_DEVICE_ICON, NULL);
-        g_object_set (G_OBJECT (renderer), "stock-size", GTK_ICON_SIZE_DND, NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-
-        /* text renderer */
-        renderer = gtk_cell_renderer_text_new ();
-        column = gtk_tree_view_column_new_with_attributes ("", renderer, "markup", COLUMN_DEVICE_DISPLAY_NAME, NULL);
-        g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, "editable", TRUE, NULL);
-        g_signal_connect (G_OBJECT (renderer), "edited", G_CALLBACK (mouse_settings_device_name_edited), builder);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-
-        /* setup tree selection */
-        gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-        g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (mouse_settings_device_selection_changed), builder);
-    }
-
-    /* select the mouse in the tree */
-    if (G_LIKELY (path == NULL))
-        path = gtk_tree_path_new_first ();
-    gtk_tree_selection_select_path (selection, path);
-    gtk_tree_path_free (path);
-
-    /* sort after selecting the path */
-    if (G_LIKELY (create_store))
-    {
-        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), COLUMN_DEVICE_XID, GTK_SORT_ASCENDING);
-        g_object_unref (G_OBJECT (store));
-    }
 
     /* unlock */
     locked--;
@@ -1029,15 +915,12 @@ static gboolean
 mouse_settings_device_update_sliders (gpointer user_data)
 {
     GtkBuilder *builder = GTK_BUILDER (user_data);
-    GObject    *treeview, *button;
+    GObject    *button;
 
     GDK_THREADS_ENTER ();
 
-    /* get the treeview */
-    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
-
     /* update */
-    mouse_settings_device_selection_changed (gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview)), builder);
+    mouse_settings_device_selection_changed (builder);
 
     /* make the button sensitive again */
     button = gtk_builder_get_object (builder, "mouse-reset");
@@ -1063,30 +946,24 @@ static void
 mouse_settings_device_reset (GtkWidget  *button,
                              GtkBuilder *builder)
 {
-    GObject          *treeview;
-    GtkTreeSelection *selection;
-    gchar            *name, *property_name;
-    gboolean          has_selection;
-    GtkTreeModel     *model;
-    GtkTreeIter       iter;
+    gchar        *name, *property_name;
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
+    GObject      *combobox;
 
     /* leave when locked */
     if (locked > 0)
         return;
 
-    /* get the treeview */
-    treeview = gtk_builder_get_object (builder, "mouse-devices-treeview");
-
-    /* get the selection */
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-
-    has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
-    if (G_LIKELY (has_selection))
+    /* get the selected item */
+    combobox = gtk_builder_get_object (builder, "device-combobox");
+    if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combobox), &iter))
     {
         /* get device id and number of buttons */
-        gtk_tree_model_get (model, &iter, COLUMN_DEVICE_NAME, &name, -1);
+        model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+        gtk_tree_model_get (model, &iter, COLUMN_DEVICE_XFCONF_NAME, &name, -1);
 
-        if (G_LIKELY (name && timeout_id == 0))
+        if (G_LIKELY (name != NULL && timeout_id == 0))
         {
             /* make the button insensitive */
             gtk_widget_set_sensitive (button, FALSE);
@@ -1259,7 +1136,7 @@ main (gint argc, gchar **argv)
             /* set the working display for this instance */
             display = gdk_display_get_default ();
 
-            /* populate the devices treeview */
+            /* populate the devices combobox */
             mouse_settings_device_populate_store (builder, TRUE);
 
             /* connect signals */

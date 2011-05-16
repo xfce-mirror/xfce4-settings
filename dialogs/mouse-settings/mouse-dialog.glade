@@ -1,43 +1,8 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.14"/>
+  <requires lib="gtk+" version="2.20"/>
   <!-- interface-requires libxfce4ui 4.5 -->
-  <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkAdjustment" id="mouse-acceleration">
-    <property name="lower">0.1</property>
-    <property name="upper">10</property>
-    <property name="value">2</property>
-    <property name="step_increment">0.1</property>
-    <property name="page_increment">1</property>
-  </object>
-  <object class="GtkAdjustment" id="mouse-threshold">
-    <property name="lower">1</property>
-    <property name="upper">30</property>
-    <property name="value">4</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">5</property>
-  </object>
-  <object class="GtkAdjustment" id="mouse-dnd-threshold">
-    <property name="lower">1</property>
-    <property name="upper">50</property>
-    <property name="value">8</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="mouse-double-click-time">
-    <property name="lower">100</property>
-    <property name="upper">2000</property>
-    <property name="value">250</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">100</property>
-  </object>
-  <object class="GtkAdjustment" id="mouse-double-click-distance">
-    <property name="lower">0</property>
-    <property name="upper">20</property>
-    <property name="value">4</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">5</property>
-  </object>
+  <!-- interface-naming-policy project-wide -->
   <object class="GtkAdjustment" id="adjustment6">
     <property name="lower">16</property>
     <property name="upper">48</property>
@@ -45,67 +10,139 @@
     <property name="step_increment">1</property>
     <property name="page_increment">11</property>
   </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-revert-to-saved</property>
+  </object>
+  <object class="GtkAdjustment" id="mouse-acceleration">
+    <property name="lower">0.10000000000000001</property>
+    <property name="upper">10</property>
+    <property name="value">2</property>
+    <property name="step_increment">0.10000000000000001</property>
+    <property name="page_increment">1</property>
+  </object>
   <object class="XfceTitledDialog" id="mouse-dialog">
+    <property name="can_focus">False</property>
     <property name="title" translatable="yes">Mouse</property>
     <property name="window_position">center-on-parent</property>
     <property name="icon_name">preferences-desktop-peripherals</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <property name="subtitle" translatable="yes">Configure pointer device behavior and appearance</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
+        <property name="can_focus">False</property>
         <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
         <child>
           <object class="GtkNotebook" id="plug-child">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="border_width">6</property>
             <child>
-              <object class="GtkHBox" id="hbox1">
+              <object class="GtkVBox" id="vbox1">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="border_width">12</property>
-                <property name="spacing">12</property>
+                <property name="spacing">6</property>
                 <child>
-                  <object class="GtkScrolledWindow" id="scrolledwindow1">
+                  <object class="GtkHBox" id="hbox1">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
-                    <property name="shadow_type">in</property>
+                    <property name="can_focus">False</property>
+                    <property name="spacing">12</property>
                     <child>
-                      <object class="GtkTreeView" id="mouse-devices-treeview">
+                      <object class="GtkLabel" id="label7">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="headers_visible">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">_Device:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">device-combobox</property>
+                        <property name="angle">0.050000000000000003</property>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="device-combobox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
                   <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkVBox" id="vbox1">
+                  <object class="GtkHSeparator" id="hseparator1">
                     <property name="visible">True</property>
-                    <property name="orientation">vertical</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkVBox" id="vbox2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkFrame" id="frame1">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="label_xalign">0</property>
                         <property name="shadow_type">none</property>
                         <child>
                           <object class="GtkAlignment" id="alignment1">
                             <property name="visible">True</property>
-                            <property name="bottom_padding">6</property>
+                            <property name="can_focus">False</property>
                             <property name="left_padding">12</property>
                             <child>
                               <object class="GtkVBox" id="vbox12">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="border_width">6</property>
-                                <property name="orientation">vertical</property>
                                 <property name="spacing">6</property>
                                 <child>
                                   <object class="GtkRadioButton" id="mouse-right-handed">
@@ -113,11 +150,14 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="use_underline">True</property>
                                     <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
+                                    <property name="expand">True</property>
+                                    <property name="fill">True</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
@@ -127,12 +167,14 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="use_underline">True</property>
-                                    <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
                                     <property name="group">mouse-right-handed</property>
                                   </object>
                                   <packing>
+                                    <property name="expand">True</property>
+                                    <property name="fill">True</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
@@ -143,10 +185,13 @@
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="tooltip_text" translatable="yes">When selected, the scroll wheel will work in the opposite direction</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="use_underline">True</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
+                                    <property name="expand">True</property>
+                                    <property name="fill">True</property>
                                     <property name="position">2</property>
                                   </packing>
                                 </child>
@@ -157,7 +202,8 @@
                         <child type="label">
                           <object class="GtkLabel" id="label4">
                             <property name="visible">True</property>
-                            <property name="label" translatable="yes">Button Order</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">General</property>
                             <attributes>
                               <attribute name="weight" value="bold"/>
                             </attributes>
@@ -166,35 +212,42 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkFrame" id="frame2">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="label_xalign">0</property>
                         <property name="shadow_type">none</property>
                         <child>
                           <object class="GtkAlignment" id="alignment2">
                             <property name="visible">True</property>
-                            <property name="bottom_padding">6</property>
+                            <property name="can_focus">False</property>
                             <property name="left_padding">12</property>
                             <child>
-                              <object class="GtkVBox" id="vbox6">
+                              <object class="GtkTable" id="table1">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="border_width">6</property>
-                                <property name="orientation">vertical</property>
-                                <property name="spacing">6</property>
+                                <property name="n_rows">3</property>
+                                <property name="n_columns">2</property>
+                                <property name="column_spacing">12</property>
+                                <property name="row_spacing">6</property>
                                 <child>
                                   <object class="GtkLabel" id="mouse-acceleration-label">
                                     <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
                                     <property name="xalign">0</property>
                                     <property name="label" translatable="yes">_Acceleration:</property>
                                     <property name="use_underline">True</property>
                                     <property name="mnemonic_widget">mouse-acceleration-scale</property>
                                   </object>
                                   <packing>
-                                    <property name="position">0</property>
+                                    <property name="x_options">GTK_FILL</property>
+                                    <property name="y_options">GTK_FILL</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -204,22 +257,12 @@
                                     <property name="tooltip_text" translatable="yes">The factor at which the pointer's speed will increase as the mouse is moved</property>
                                     <property name="update_policy">delayed</property>
                                     <property name="adjustment">mouse-acceleration</property>
+                                    <property name="round_digits">1</property>
                                     <property name="value_pos">right</property>
                                   </object>
                                   <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="mouse-threshold-label">
-                                    <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">T_hreshold:</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="mnemonic_widget">mouse-threshold-scale</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">2</property>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -229,18 +272,39 @@
                                     <property name="tooltip_text" translatable="yes">The number of pixels the pointer must move in a short time before it starts accelerating</property>
                                     <property name="update_policy">delayed</property>
                                     <property name="adjustment">mouse-threshold</property>
+                                    <property name="round_digits">0</property>
                                     <property name="digits">0</property>
                                     <property name="value_pos">right</property>
                                   </object>
                                   <packing>
-                                    <property name="position">3</property>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="mouse-threshold-label">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">S_ensitivity:</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="mnemonic_widget">mouse-threshold-scale</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options">GTK_FILL</property>
                                   </packing>
                                 </child>
                                 <child>
                                   <object class="GtkAlignment" id="alignment7">
                                     <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
                                     <property name="xalign">0</property>
                                     <property name="xscale">0</property>
+                                    <property name="yscale">0</property>
                                     <child>
                                       <object class="GtkButton" id="mouse-reset">
                                         <property name="label" translatable="yes">Re_set to Defaults</property>
@@ -248,13 +312,16 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="tooltip_text" translatable="yes">Set the acceleration and threshold for the selected device to the default values</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="image">image1</property>
                                         <property name="use_underline">True</property>
                                       </object>
                                     </child>
                                   </object>
                                   <packing>
-                                    <property name="position">4</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
                                   </packing>
                                 </child>
                               </object>
@@ -264,7 +331,8 @@
                         <child type="label">
                           <object class="GtkLabel" id="label5">
                             <property name="visible">True</property>
-                            <property name="label" translatable="yes">Feedback</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Pointer Speed</property>
                             <attributes>
                               <attribute name="weight" value="bold"/>
                             </attributes>
@@ -273,12 +341,15 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="fill">True</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
-                    <property name="position">1</property>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
               </object>
@@ -286,6 +357,7 @@
             <child type="tab">
               <object class="GtkLabel" id="label1">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">De_vices</property>
                 <property name="use_underline">True</property>
               </object>
@@ -296,34 +368,39 @@
             <child>
               <object class="GtkVBox" id="vbox3">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="border_width">12</property>
-                <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkFrame" id="frame3">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="label_xalign">0</property>
                     <property name="shadow_type">none</property>
                     <child>
                       <object class="GtkAlignment" id="alignment3">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="bottom_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
                           <object class="GtkVBox" id="vbox4">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="border_width">6</property>
-                            <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="mouse-dnd-label">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="xalign">0</property>
                                 <property name="label" translatable="yes">T_hreshold:</property>
                                 <property name="use_underline">True</property>
                                 <property name="mnemonic_widget">mouse-dnd-widget</property>
                               </object>
                               <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
                                 <property name="position">0</property>
                               </packing>
                             </child>
@@ -338,6 +415,8 @@
                                 <property name="value_pos">right</property>
                               </object>
                               <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
@@ -348,6 +427,7 @@
                     <child type="label">
                       <object class="GtkLabel" id="label6">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Drag and Drop</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -357,34 +437,40 @@
                   </object>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkFrame" id="frame4">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="label_xalign">0</property>
                     <property name="shadow_type">none</property>
                     <child>
                       <object class="GtkAlignment" id="alignment4">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="border_width">6</property>
                         <property name="bottom_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
                           <object class="GtkVBox" id="vbox5">
                             <property name="visible">True</property>
-                            <property name="orientation">vertical</property>
+                            <property name="can_focus">False</property>
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="mouse-double-click-time-label">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="xalign">0</property>
                                 <property name="label" translatable="yes">Ti_me:</property>
                                 <property name="use_underline">True</property>
                                 <property name="mnemonic_widget">mouse-double-click-time-widget</property>
                               </object>
                               <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
                                 <property name="position">0</property>
                               </packing>
                             </child>
@@ -399,18 +485,23 @@
                                 <property name="value_pos">right</property>
                               </object>
                               <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
                             <child>
                               <object class="GtkLabel" id="mouse-double-click-distance-label">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="xalign">0</property>
                                 <property name="label" translatable="yes">_Distance:</property>
                                 <property name="use_underline">True</property>
                                 <property name="mnemonic_widget">mouse-double-click-distance-widget</property>
                               </object>
                               <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
                                 <property name="position">2</property>
                               </packing>
                             </child>
@@ -425,6 +516,8 @@
                                 <property name="value_pos">right</property>
                               </object>
                               <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
                                 <property name="position">3</property>
                               </packing>
                             </child>
@@ -435,6 +528,7 @@
                     <child type="label">
                       <object class="GtkLabel" id="label8">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Double Click</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -444,6 +538,7 @@
                   </object>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="fill">True</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -455,6 +550,7 @@
             <child type="tab">
               <object class="GtkLabel" id="label2">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_Behavior</property>
                 <property name="use_underline">True</property>
               </object>
@@ -466,6 +562,7 @@
             <child>
               <object class="GtkHBox" id="mouse-themes-hbox">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="border_width">12</property>
                 <property name="spacing">12</property>
                 <child>
@@ -485,38 +582,45 @@
                     </child>
                   </object>
                   <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkVBox" id="vbox9">
                     <property name="visible">True</property>
-                    <property name="orientation">vertical</property>
+                    <property name="can_focus">False</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkFrame" id="frame5">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="label_xalign">0</property>
                         <property name="shadow_type">none</property>
                         <child>
                           <object class="GtkAlignment" id="alignment5">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="border_width">6</property>
                             <property name="bottom_padding">6</property>
                             <property name="left_padding">12</property>
                             <child>
                               <object class="GtkHBox" id="hbox7">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="spacing">12</property>
                                 <child>
                                   <object class="GtkLabel" id="label21">
                                     <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Cursor _Size:</property>
                                     <property name="use_underline">True</property>
                                     <property name="mnemonic_widget">mouse-cursor-size</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
+                                    <property name="fill">True</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
@@ -524,12 +628,17 @@
                                   <object class="GtkSpinButton" id="mouse-cursor-size">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="primary_icon_activatable">False</property>
+                                    <property name="secondary_icon_activatable">False</property>
+                                    <property name="primary_icon_sensitive">True</property>
+                                    <property name="secondary_icon_sensitive">True</property>
                                     <property name="adjustment">adjustment6</property>
                                     <property name="snap_to_ticks">True</property>
                                     <property name="numeric">True</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
+                                    <property name="fill">True</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
@@ -540,6 +649,7 @@
                         <child type="label">
                           <object class="GtkLabel" id="label20">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="label" translatable="yes">Size</property>
                             <attributes>
                               <attribute name="weight" value="bold"/>
@@ -549,23 +659,27 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkFrame" id="frame6">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="label_xalign">0</property>
                         <property name="shadow_type">none</property>
                         <child>
                           <object class="GtkAlignment" id="alignment6">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="border_width">6</property>
                             <property name="bottom_padding">6</property>
                             <property name="left_padding">12</property>
                             <child>
                               <object class="GtkImage" id="mouse-theme-preview">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="stock">gtk-missing-image</property>
                               </object>
                             </child>
@@ -574,6 +688,7 @@
                         <child type="label">
                           <object class="GtkLabel" id="label22">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="label" translatable="yes">Preview</property>
                             <attributes>
                               <attribute name="weight" value="bold"/>
@@ -583,12 +698,14 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="fill">True</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="fill">True</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -600,6 +717,7 @@
             <child type="tab">
               <object class="GtkLabel" id="label3">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_Theme</property>
                 <property name="use_underline">True</property>
               </object>
@@ -610,32 +728,9 @@
             </child>
           </object>
           <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
             <property name="position">1</property>
-          </packing>
-        </child>
-        <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area1">
-            <property name="visible">True</property>
-            <property name="layout_style">end</property>
-            <child>
-              <object class="GtkButton" id="button1">
-                <property name="label">gtk-close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
           </packing>
         </child>
       </object>
@@ -644,8 +739,31 @@
       <action-widget response="0">button1</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="stock">gtk-revert-to-saved</property>
+  <object class="GtkAdjustment" id="mouse-dnd-threshold">
+    <property name="lower">1</property>
+    <property name="upper">50</property>
+    <property name="value">8</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="mouse-double-click-distance">
+    <property name="upper">20</property>
+    <property name="value">4</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">5</property>
+  </object>
+  <object class="GtkAdjustment" id="mouse-double-click-time">
+    <property name="lower">100</property>
+    <property name="upper">2000</property>
+    <property name="value">250</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">100</property>
+  </object>
+  <object class="GtkAdjustment" id="mouse-threshold">
+    <property name="lower">1</property>
+    <property name="upper">30</property>
+    <property name="value">4</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">5</property>
   </object>
 </interface>
