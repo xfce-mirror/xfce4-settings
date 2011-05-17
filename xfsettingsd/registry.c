@@ -344,13 +344,11 @@ static void
 remove_property (GString *props, const gchar *key)
 {
     gchar *needle;
-    gsize needle_len;
     gchar *found = NULL;
     gchar *end;
 
     /* search for the property */
     needle = g_strconcat (key, ":", NULL);
-    needle_len = strlen (needle);
     if (g_str_has_prefix (props->str, needle))
         found = props->str;
     else
