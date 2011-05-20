@@ -1,6 +1,5 @@
-/* $Id$ */
 /*
- *  Copyright (c) 2008 Nick Schermer <nick@xfce.org>
+ *  Copyright (c) 2008-2011 Nick Schermer <nick@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -59,24 +58,6 @@
 
 
 
-static void             xfce_pointers_helper_change_button_mapping_swap     (guchar                  *buttonmap,
-                                                                             gshort                   num_buttons,
-                                                                             gint                     id_1,
-                                                                             gint                     id_2,
-                                                                             gboolean                 reverse);
-static void             xfce_pointers_helper_change_button_mapping          (XDeviceInfo             *device_info,
-                                                                             XDevice                 *device,
-                                                                             Display                 *xdisplay,
-                                                                             gint                     right_handed,
-                                                                             gint                     reverse_scrolling);
-static gint             xfce_pointers_helper_gcd                            (gint                     num,
-                                                                             gint                     denom);
-static void             xfce_pointers_helper_change_feedback                (XDeviceInfo             *device_info,
-                                                                             XDevice                 *device,
-                                                                             Display                 *xdisplay,
-                                                                             gint                     threshold,
-                                                                             gdouble                  acceleration);
-static gchar           *xfce_pointers_helper_device_xfconf_name             (const gchar             *name);
 static void             xfce_pointers_helper_restore_devices                (XfcePointersHelper      *helper,
                                                                              XID                     *xid);
 static void             xfce_pointers_helper_channel_property_changed       (XfconfChannel           *channel,
@@ -162,43 +143,39 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         xfce_pointers_helper_restore_devices (helper, NULL);
 
         /* monitor the channel */
-        g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_pointers_helper_channel_property_changed), NULL);
+        g_signal_connect (G_OBJECT (helper->channel), "property-changed",
+             G_CALLBACK (xfce_pointers_helper_channel_property_changed), NULL);
 
 #ifdef HAS_DEVICE_HOTPLUGGING
-        /* flush x and trap errors */
-        gdk_flush ();
-        gdk_error_trap_push ();
-
-
-        if (G_LIKELY (xdisplay))
+        if (G_LIKELY (xdisplay != NULL))
         {
             /* monitor device changes */
+            gdk_error_trap_push ();
             DevicePresence (xdisplay, helper->device_presence_event_type, event_class);
             XSelectExtensionEvent (xdisplay, RootWindow (xdisplay, DefaultScreen (xdisplay)), &event_class, 1);
 
             /* add an event filter */
-            gdk_window_add_filter (NULL, xfce_pointers_helper_event_filter, helper);
+            if (gdk_error_trap_pop () == 0)
+                gdk_window_add_filter (NULL, xfce_pointers_helper_event_filter, helper);
+            else
+                g_warning ("Failed to create device filter");
         }
-
-        /* flush and remove the x error trap */
-        gdk_flush ();
-        gdk_error_trap_pop ();
 #endif
     }
 }
 
 
 
-static void
+static gboolean
 xfce_pointers_helper_change_button_mapping_swap (guchar   *buttonmap,
                                                  gshort    num_buttons,
                                                  gint      id_1,
                                                  gint      id_2,
                                                  gboolean  reverse)
 {
-    gint n;
-    gint id_a = -1;
-    gint id_b = -1;
+    gshort n;
+    gint   id_a = -1;
+    gint   id_b = -1;
 
     /* figure out the position of the id_1 and id_2 buttons in the map */
     for (n = 0; n < num_buttons; n++)
@@ -213,13 +190,18 @@ xfce_pointers_helper_change_button_mapping_swap (guchar   *buttonmap,
     if (G_LIKELY (id_a != -1 && id_b != -1))
     {
         /* check if we need to change the buttonmap */
-        if ((!reverse && (id_a < id_b)) || (reverse && (id_a > id_b)))
+        if ((!reverse && (id_a < id_b))
+            || (reverse && (id_a > id_b)))
         {
             /* swap the buttons in the button map */
             buttonmap[id_a] = id_2;
             buttonmap[id_b] = id_1;
+
+            return TRUE;
         }
     }
+
+    return FALSE;
 }
 
 
@@ -232,25 +214,19 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
                                             gint         reverse_scrolling)
 {
     XAnyClassPtr  ptr;
-    gshort        num_buttons;
+    gshort        num_buttons = 0;
     guchar       *buttonmap;
+    gboolean      map_changed = FALSE;
     gint          n;
     gint          right_button;
     GString      *readable_map;
 
-    /* get the device classes */
-    ptr = device_info->inputclassinfo;
-
-    /* search the classes for the number of buttons */
-    for (n = 0, num_buttons = 0; n < device_info->num_classes; n++)
+    /* search the number of buttons */
+    for (n = 0, ptr = device_info->inputclassinfo; n < device_info->num_classes; n++)
     {
-        /* find the button class */
         if (ptr->class == ButtonClass)
         {
-            /* get the number of buttons */
             num_buttons = ((XButtonInfoPtr) ptr)->num_buttons;
-
-            /* done */
             break;
         }
 
@@ -258,52 +234,73 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
         ptr = (XAnyClassPtr) ((gchar *) ptr + ptr->length);
     }
 
-    if (G_LIKELY (num_buttons > 0))
+    if (num_buttons == 0)
     {
-        /* allocate the button map */
-        buttonmap = g_new0 (guchar, num_buttons);
+        g_critical ("Device %s has no buttons", device_info->name);
+        return;
+    }
 
-        /* get the button mapping */
+    /* allocate the button map */
+    buttonmap = g_new0 (guchar, num_buttons);
+
+    gdk_error_trap_push ();
+    XGetDeviceButtonMapping (xdisplay, device, buttonmap, num_buttons);
+    if (gdk_error_trap_pop () != 0)
+    {
+        g_warning ("Failed to get button mapping");
+        goto leave;
+    }
+
+    /* -1 means we don't change this in the mapping */
+    if (right_handed != -1)
+    {
+        /* get the right button number */
+        right_button = MIN (num_buttons, 3);
+
+        /* check the buttons and swap them if needed */
+        if (xfce_pointers_helper_change_button_mapping_swap (buttonmap, num_buttons,
+                                                             1 /* left button */,
+                                                             right_button,
+                                                             right_handed))
+            map_changed = TRUE;
+    }
+
+    /* -1 means we don't change this in the mapping */
+    if (reverse_scrolling != -1 && num_buttons >= 5)
+    {
+        /* check the buttons and swap them if needed */
+        if (xfce_pointers_helper_change_button_mapping_swap (buttonmap, num_buttons,
+                                                             4 /* scroll up */,
+                                                             5 /* scroll down */,
+                                                             !reverse_scrolling))
+            map_changed = TRUE;
+    }
+
+    /* only set on changes */
+    if (map_changed)
+    {
         gdk_error_trap_push ();
-        XGetDeviceButtonMapping (xdisplay, device, buttonmap, num_buttons);
-        if (gdk_error_trap_pop ())
-        {
-            g_warning ("Failed to get button mapping");
-            goto out;
-        }
-
-        if (right_handed != -1)
-        {
-            /* get the right button number */
-            right_button = MIN (num_buttons, 3);
-
-            /* check the buttons and swap them if needed */
-            xfce_pointers_helper_change_button_mapping_swap (buttonmap, num_buttons, 1, right_button, right_handed);
-        }
-
-        if (reverse_scrolling != -1 && num_buttons >= 5)
-        {
-            /* check the buttons and swap them if needed */
-            xfce_pointers_helper_change_button_mapping_swap (buttonmap, num_buttons, 4, 5, !reverse_scrolling);
-        }
-
-        /* set the new button mapping */
-        gdk_error_trap_push ();
-
         XSetDeviceButtonMapping (xdisplay, device, buttonmap, num_buttons);
+        if (gdk_error_trap_pop () != 0)
+            g_warning ("Failed to set button mapping");
 
-        if (gdk_error_trap_pop ())
-          g_warning ("Failed to set button mapping");
-
+        /* don't put a hard time on ourselves and make debugging a lot better */
         readable_map = g_string_sized_new (num_buttons);
         for (n = 0; n < num_buttons; n++)
-            g_string_append_printf (readable_map, "%d;", buttonmap[n]);
-        xfsettings_dbg (XFSD_DEBUG_POINTERS, "[%s] new buttonmap is \"%s\"",
+            g_string_append_printf (readable_map, "%d ", buttonmap[n]);
+        xfsettings_dbg (XFSD_DEBUG_POINTERS, "[%s] new buttonmap is [%s]",
                         device_info->name, readable_map->str);
         g_string_free (readable_map, TRUE);
-
-out:    g_free (buttonmap);
     }
+    else
+    {
+        xfsettings_dbg (XFSD_DEBUG_POINTERS, "[%s] new buttonmap not changed",
+                        device_info->name);
+    }
+
+    leave:
+
+    g_free (buttonmap);
 }
 
 
@@ -330,64 +327,97 @@ xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
     XPtrFeedbackControl  feedback;
     gint                 n;
     gulong               mask = 0;
-    gint                 num = -1, denom = -1, gcd;
+    gint                 num, denom, gcd;
+    gboolean             found = FALSE;
 
     /* get the feedback states for this device */
+    gdk_error_trap_push ();
     states = XGetFeedbackControl (xdisplay, device, &num_feedbacks);
-
-    if (G_LIKELY (states))
+    if (gdk_error_trap_pop() != 0 || states == NULL)
     {
-        /* get the pointer feedback class */
-        for (pt = states, n = 0; n < num_feedbacks; n++)
+        g_critical ("Failed to get the feedback states of device %s",
+                    device_info->name);
+        return;
+    }
+
+    for (pt = states, n = 0; n < num_feedbacks; n++)
+    {
+        /* find the pointer feedback class */
+        if (pt->class != PtrFeedbackClass)
         {
-            /* find the pointer feedback class */
-            if (pt->class == PtrFeedbackClass)
-            {
-                if (acceleration > 0 || acceleration == -1)
-                {
-                    if (acceleration > 0)
-                    {
-                        /* calculate the faction of the acceleration */
-                        num = acceleration * MAX_DENOMINATOR;
-                        denom = MAX_DENOMINATOR;
-                        gcd = xfce_pointers_helper_gcd (num, denom);
-                        num /= gcd;
-                        denom /= gcd;
-                    }
-
-                    /* set the mask */
-                    mask |= DvAccelNum | DvAccelDenom;
-                }
-
-                /* setup the mask for the threshold */
-                if (threshold > 0 || threshold == -1)
-                    mask |= DvThreshold;
-
-                /* create a new feedback */
-                feedback.class      = PtrFeedbackClass;
-                feedback.length     = sizeof (XPtrFeedbackControl);
-                feedback.id         = pt->id;
-                feedback.threshold  = threshold;
-                feedback.accelNum   = num;
-                feedback.accelDenom = denom;
-
-                /* change feedback for this device */
-                XChangeFeedbackControl (xdisplay, device, mask, (XFeedbackControl *)(void *)&feedback);
-
-                xfsettings_dbg (XFSD_DEBUG_POINTERS, "[%s] change feedback (threshold=%d, accelNum=%d, accelDenom=%d)",
-                                device_info->name, feedback.threshold, feedback.accelNum, feedback.accelDenom);
-
-                /* done */
-                break;
-            }
-
             /* advance the offset */
             pt = (XFeedbackState *) ((gchar *) pt + pt->length);
+            continue;
         }
 
-        /* cleanup */
-        XFreeFeedbackList (states);
+        /* initialize the feedback, -1 for reset if the
+         * mask matches in XChangeFeedbackControl */
+        feedback.class = PtrFeedbackClass;
+        feedback.length = sizeof (XPtrFeedbackControl);
+        feedback.id = pt->id;
+        feedback.threshold = -1;
+        feedback.accelNum = -1;
+        feedback.accelDenom = -1;
+
+        found = TRUE;
+
+        /* above 0 is a valid value, -1 is reset, -2.00
+         * is passed if no change is required */
+        if (acceleration > 0 || acceleration == -1)
+        {
+            if (acceleration > 0)
+            {
+                /* calculate the faction of the acceleration */
+                num = acceleration * MAX_DENOMINATOR;
+                denom = MAX_DENOMINATOR;
+                gcd = xfce_pointers_helper_gcd (num, denom);
+                num /= gcd;
+                denom /= gcd;
+
+                feedback.accelNum = num;
+                feedback.accelDenom = denom;
+            }
+
+            /* include acceleration in the mask */
+            mask |= DvAccelNum | DvAccelDenom;
+        }
+
+        /* above 0 is a valid value, -1 is reset, -2 is
+         * passed if no change is required */
+        if (threshold > 0 || threshold == -1)
+        {
+            if (threshold > 0)
+                feedback.threshold = threshold;
+
+            mask |= DvThreshold;
+        }
+
+        /* update the feedback of the device */
+        gdk_error_trap_push ();
+        XChangeFeedbackControl (xdisplay, device, mask,
+                                (XFeedbackControl *) &feedback);
+        if (gdk_error_trap_pop() != 0)
+        {
+            g_warning ("Failed to set feedback states for device %s",
+                       device_info->name);
+        }
+
+        xfsettings_dbg (XFSD_DEBUG_POINTERS,
+                        "[%s] change feedback (threshold=%d, "
+                        "accelNum=%d, accelDenom=%d)",
+                        device_info->name, feedback.threshold,
+                        feedback.accelNum, feedback.accelDenom);
+
+        break;
     }
+
+    if (!found)
+    {
+        g_critical ("Unable to find PtrFeedbackClass for %s",
+                    device_info->name);
+    }
+
+    XFreeFeedbackList (states);
 }
 
 
@@ -411,9 +441,13 @@ xfce_pointers_helper_device_xfconf_name (const gchar *name)
             || (*p >= 'a' && *p <= 'z')
             || (*p >= '0' && *p <= '9')
             || *p == '_' || *p == '-')
-          g_string_append_c (string, *p);
+        {
+            g_string_append_c (string, *p);
+        }
         else if (*p == ' ')
+        {
             string = g_string_append_c (string, '_');
+        }
     }
 
     /* return the new string */
@@ -428,83 +462,78 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
 {
     Display     *xdisplay = GDK_DISPLAY ();
     XDeviceInfo *device_list, *device_info;
-    XDevice     *device;
     gint         n, ndevices;
-    gchar       *righthanded_str;
-    gchar       *threshold_str;
-    gchar       *acceleration_str;
+    XDevice     *device;
     gchar       *device_name;
-    gchar       *reverse_scrolling_str;
+    gchar        prop[256];
+    gboolean     right_handed;
+    gboolean     reverse_scrolling;
+    gint         threshold;
+    gdouble      acceleration;
 
-    /* flush x and trap errors */
-    gdk_flush ();
     gdk_error_trap_push ();
-
-    /* get all the registered devices */
     device_list = XListInputDevices (xdisplay, &ndevices);
+    if (gdk_error_trap_pop () != 0 || device_list == NULL)
+    {
+        g_message ("No input devices found");
+        return;
+    }
 
     for (n = 0; n < ndevices; n++)
     {
-        /* get the device info */
+        /* filter the pointer devices */
         device_info = &device_list[n];
+        if (device_info->use != IsXExtensionPointer
+            || device_info->name == NULL)
+            continue;
 
-        /* filter out the pointer devices */
-        if (device_info->use == IsXExtensionPointer)
+        /* filter out the device if one is set */
+        if (xid != NULL && device_info->id != *xid)
+            continue;
+
+        /* open the device */
+        gdk_error_trap_push ();
+        device = XOpenDevice (xdisplay, device_info->id);
+        if (gdk_error_trap_pop () != 0 || device == NULL)
         {
-            /* filter devices */
-            if (xid && device_info->id != *xid)
-                continue;
-
-            /* open the device */
-            device = XOpenDevice (xdisplay, device_info->id);
-            if (G_LIKELY (device))
-            {
-                /* get a clean device name */
-                device_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
-
-                /* create righthanded property string */
-                righthanded_str = g_strdup_printf ("/%s/RightHanded", device_name);
-
-                /* check if we have a property for this device, else continue */
-                if (xfconf_channel_has_property (helper->channel, righthanded_str))
-                {
-                    /* create property names */
-                    reverse_scrolling_str = g_strdup_printf ("/%s/ReverseScrolling", device_name);
-                    threshold_str = g_strdup_printf ("/%s/Threshold", device_name);
-                    acceleration_str = g_strdup_printf ("/%s/Acceleration", device_name);
-
-                    /* restore the button mapping */
-                    xfce_pointers_helper_change_button_mapping (device_info, device, xdisplay,
-                                                                xfconf_channel_get_bool (helper->channel, righthanded_str, TRUE) ? 1 : 0,
-                                                                xfconf_channel_get_bool (helper->channel, reverse_scrolling_str, FALSE) ? 1 : 0);
-
-                    /* restore the pointer feedback */
-                    xfce_pointers_helper_change_feedback (device_info, device, xdisplay,
-                                                          xfconf_channel_get_int (helper->channel, threshold_str, -1),
-                                                          xfconf_channel_get_double (helper->channel, acceleration_str, -1.00));
-
-                    /* cleanup */
-                    g_free (reverse_scrolling_str);
-                    g_free (threshold_str);
-                    g_free (acceleration_str);
-                }
-
-                /* cleanup */
-                g_free (righthanded_str);
-                g_free (device_name);
-
-                /* close the device */
-                XCloseDevice (xdisplay, device);
-            }
+            g_critical ("Unable to open device %s", device_info->name);
+            continue;
         }
+
+        /* create a valid xfconf property name for the device */
+        device_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
+
+        /* read buttonmap properties */
+        g_snprintf (prop, sizeof (prop), "/%s/RightHanded", device_name);
+        right_handed = xfconf_channel_get_bool (helper->channel, prop, -1);
+
+        g_snprintf (prop, sizeof (prop), "/%s/ReverseScrolling", device_name);
+        reverse_scrolling = xfconf_channel_get_bool (helper->channel, prop, -1);
+
+        if (right_handed != -1 || reverse_scrolling != -1)
+        {
+            xfce_pointers_helper_change_button_mapping (device_info, device, xdisplay,
+                                                        right_handed, reverse_scrolling);
+        }
+
+        /* read feedback settings */
+        g_snprintf (prop, sizeof (prop), "/%s/Threshold", device_name);
+        threshold = xfconf_channel_get_int (helper->channel, prop, -1);
+
+        g_snprintf (prop, sizeof (prop), "/%s/Acceleration", device_name);
+        acceleration = xfconf_channel_get_double (helper->channel, prop, -1.00);
+
+        if (threshold != -1 || acceleration != -1.00)
+        {
+            xfce_pointers_helper_change_feedback (device_info, device, xdisplay,
+                                                  threshold, acceleration);
+        }
+
+        g_free (device_name);
+        XCloseDevice (xdisplay, device);
     }
 
-    /* cleanup */
     XFreeDeviceList (device_list);
-
-    /* flush and remove the x error trap */
-    gdk_flush ();
-    gdk_error_trap_pop ();
 }
 
 
@@ -521,71 +550,89 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
     gchar       **names;
     gchar        *device_name;
 
-    /* flush x and trap errors */
-    gdk_flush ();
-    gdk_error_trap_push ();
+    if (G_UNLIKELY (property_name == NULL))
+         return;
 
     /* split the property name (+1 so skip the first slash in the name) */
     names = g_strsplit (property_name + 1, "/", -1);
 
-    /* check if splitting worked */
-    if (names && g_strv_length (names) == 2)
+    if (names != NULL && g_strv_length (names) >= 2)
     {
-        /* get all the registered devices */
+        gdk_error_trap_push ();
         device_list = XListInputDevices (xdisplay, &ndevices);
+        if (gdk_error_trap_pop () != 0 || device_list == NULL)
+        {
+            g_message ("No input devices found");
+            return;
+        }
 
         for (n = 0; n < ndevices; n++)
         {
-            /* get the device info */
+            /* filter the pointer devices */
             device_info = &device_list[n];
+            if (device_info->use != IsXExtensionPointer
+                || device_info->name == NULL)
+                continue;
 
-            /* find the pointer device */
-            if (device_info->use == IsXExtensionPointer)
+            /* search the device name */
+            device_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
+            if (strcmp (names[0], device_name) == 0)
             {
-                /* create a valid xfconf device name */
-                device_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
-
-                /* check if this is the device that's been changed */
-                if (strcmp (names[0], device_name) == 0)
+                /* open the device */
+                gdk_error_trap_push ();
+                device = XOpenDevice (xdisplay, device_info->id);
+                if (gdk_error_trap_pop () != 0 || device == NULL)
                 {
-                    /* open the device */
-                    device = XOpenDevice (xdisplay, device_info->id);
-                    if (G_LIKELY (device))
-                    {
-                        /* update the right property */
-                        if (strcmp (names[1], "RightHanded") == 0)
-                            xfce_pointers_helper_change_button_mapping (device_info, device, xdisplay, !!g_value_get_boolean (value), -1);
-                        else if (strcmp (names[1], "ReverseScrolling") == 0)
-                            xfce_pointers_helper_change_button_mapping (device_info, device, xdisplay, -1, !!g_value_get_boolean (value));
-                        else if (strcmp (names[1], "Threshold") == 0)
-                            xfce_pointers_helper_change_feedback (device_info, device, xdisplay, g_value_get_int (value), -2.00);
-                        else if (strcmp (names[1], "Acceleration") == 0)
-                            xfce_pointers_helper_change_feedback (device_info, device, xdisplay, -2, g_value_get_double (value));
-
-                        /* close the device */
-                        XCloseDevice (xdisplay, device);
-                    }
-
-                    /* stop searching */
-                    n = ndevices;
+                    g_critical ("Unable to open device %s", device_info->name);
+                    continue;
                 }
 
-                /* cleanup */
-                g_free (device_name);
+                /* check the property that requires updating */
+                if (strcmp (names[1], "RightHanded") == 0)
+                {
+                    xfce_pointers_helper_change_button_mapping (device_info, device, xdisplay,
+                                                                g_value_get_boolean (value), -1);
+                }
+                else if (strcmp (names[1], "ReverseScrolling") == 0)
+                {
+                    xfce_pointers_helper_change_button_mapping (device_info, device, xdisplay,
+                                                                -1, g_value_get_boolean (value));
+                }
+                else if (strcmp (names[1], "Threshold") == 0)
+                {
+                    xfce_pointers_helper_change_feedback (device_info, device, xdisplay,
+                                                          g_value_get_int (value), -2.00);
+                }
+                else if (strcmp (names[1], "Acceleration") == 0)
+                {
+                    xfce_pointers_helper_change_feedback (device_info, device, xdisplay,
+                                                          -2, g_value_get_double (value));
+                }
+                /*else if (strcmp (names[1], "Properties") == 0)
+                {
+                    xfce_pointers_helper_change_properties (device_info, device, xdisplay);
+                }*/
+                else
+                {
+                    g_warning ("Unknown property %s set for device %s",
+                               property_name, device_info->name);
+                }
+
+                XCloseDevice (xdisplay, device);
+
+                /* stop searching */
+                n = ndevices;
             }
+
+            g_free (device_name);
         }
 
-        /* cleanup */
         XFreeDeviceList (device_list);
     }
 
-    /* cleanup */
     g_strfreev (names);
-
-    /* flush and remove the x error trap */
-    gdk_flush ();
-    gdk_error_trap_pop ();
 }
+
 
 
 #ifdef HAS_DEVICE_HOTPLUGGING
@@ -601,7 +648,9 @@ xfce_pointers_helper_event_filter (GdkXEvent *xevent,
     /* update on device changes */
     if (event->type == helper->device_presence_event_type
         && dpn_event->devchange == DeviceAdded)
+    {
         xfce_pointers_helper_restore_devices (helper, &dpn_event->deviceid);
+    }
 
     return GDK_FILTER_CONTINUE;
 }
