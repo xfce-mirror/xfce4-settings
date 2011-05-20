@@ -145,19 +145,15 @@ xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
     /* load setting */
     repeat = xfconf_channel_get_bool (helper->channel, "/Default/KeyRepeat", TRUE);
 
-    /* flush x and trap errors */
-    gdk_flush ();
-    gdk_error_trap_push ();
-
     /* set key repeat */
     values.auto_repeat_mode = repeat ? 1 : 0;
+
+    gdk_error_trap_push ();
     XChangeKeyboardControl (GDK_DISPLAY (), KBAutoRepeatMode, &values);
+    if (gdk_error_trap_pop () != 0)
+        g_critical ("Failed to change keyboard repeat mode");
 
     xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set auto repeat %s", repeat ? "on" : "off");
-
-    /* flush and remove the x error trap */
-    gdk_flush ();
-    gdk_error_trap_pop ();
 }
 
 
@@ -172,8 +168,6 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
     delay = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Delay", 500);
     rate = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Rate", 20);
 
-    /* flush x and trap errors */
-    gdk_flush ();
     gdk_error_trap_push ();
 
     /* allocate xkb structure */
@@ -198,9 +192,8 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
         XFree (xkb);
     }
 
-    /* flush and remove the x error trap */
-    gdk_flush ();
-    gdk_error_trap_pop ();
+    if (gdk_error_trap_pop () != 0)
+        g_critical ("Failed to change the keyboard repeat");
 }
 
 

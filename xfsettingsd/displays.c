@@ -502,8 +502,6 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     GHashTable         *saved_outputs;
     XfceRROutput       *output;
 
-    /* flush x and trap errors */
-    gdk_flush ();
     gdk_error_trap_push ();
 
     /* get the default display */
@@ -826,8 +824,6 @@ err_cleanup:
     /* free the screen resources */
     XRRFreeScreenResources (resources);
 
-    /* flush and remove the x error trap */
-    gdk_flush ();
     gdk_error_trap_pop ();
 }
 
