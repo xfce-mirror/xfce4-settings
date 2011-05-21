@@ -25,6 +25,7 @@
 #endif
 
 #include <X11/Xlib.h>
+#include <X11/Xatom.h>
 #include <X11/extensions/XI.h>
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XIproto.h>
@@ -35,12 +36,16 @@
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 
+#include <dbus/dbus-glib.h>
+
 #include "debug.h"
 #include "pointers.h"
 
 
 
 #define MAX_DENOMINATOR (100.00)
+
+#define XFCONF_TYPE_G_VALUE_ARRAY (dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE))
 
 /* Xi 1.4 is required */
 #define MIN_XI_VERS_MAJOR 1
@@ -88,6 +93,15 @@ struct _XfcePointersHelper
     gint           device_presence_event_type;
 #endif
 };
+
+typedef struct
+{
+    Display     *xdisplay;
+    XDevice     *device;
+    XDeviceInfo *device_info;
+    gsize        prop_name_len;
+}
+XfcePointerData;
 
 
 
@@ -294,7 +308,7 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
     }
     else
     {
-        xfsettings_dbg (XFSD_DEBUG_POINTERS, "[%s] new buttonmap not changed",
+        xfsettings_dbg (XFSD_DEBUG_POINTERS, "[%s] buttonmap not changed",
                         device_info->name);
     }
 
@@ -422,6 +436,35 @@ xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
 
 
 
+static void
+xfce_pointers_helper_change_mode (XDeviceInfo  *device_info,
+                                  XDevice      *device,
+                                  Display      *xdisplay,
+                                  const gchar  *mode_name)
+{
+    gint mode;
+
+    if (strcmp (mode_name, "RELATIVE") == 0)
+        mode = Relative;
+    else if (strcmp (mode_name, "ABSOLUTE") == 0)
+        mode = Absolute;
+    else
+    {
+        g_warning ("Unknown device mode %s, only RELATIVE and ABSOLUTE are valid", mode_name);
+        return;
+    }
+
+    gdk_error_trap_push ();
+    XSetDeviceMode (xdisplay, device, mode);
+    if (gdk_error_trap_pop () != 0)
+        g_critical ("Failed to change the device mode");
+
+    xfsettings_dbg (XFSD_DEBUG_POINTERS,
+                    "[%s] Set mode to %s", device_info->name, mode_name);
+}
+
+
+
 static gchar *
 xfce_pointers_helper_device_xfconf_name (const gchar *name)
 {
@@ -457,19 +500,192 @@ xfce_pointers_helper_device_xfconf_name (const gchar *name)
 
 
 static void
+xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
+                                      XDevice      *device,
+                                      Display      *xdisplay,
+                                      const gchar  *prop_name,
+                                      const GValue *value)
+{
+    Atom         *props;
+    gint          n, n_props;
+    Atom          prop;
+    gchar        *atom_name;
+    Atom          type;
+    gint          format;
+    gulong        n_items, bytes_after, i;
+    gulong        n_succeeds;
+    Atom          float_atom;
+    GPtrArray    *array = NULL;
+    const GValue *val;
+    union {
+        guchar *c;
+        gshort *s;
+        glong  *l;
+        Atom   *a;
+    } data;
+
+    /* assuming the device property never contained underscores... */
+    atom_name = g_strdup (prop_name);
+    g_strdelimit (atom_name, "_", ' ');
+    prop = XInternAtom (xdisplay, atom_name, True);
+    g_free (atom_name);
+
+    /* because of the True in XInternAtom we quit here if the property
+     * does not exists on any of the devices */
+    if (prop == None)
+        return;
+
+    gdk_error_trap_push ();
+    props = XListDeviceProperties (xdisplay, device, &n_props);
+    if (gdk_error_trap_pop () != 0 || props == NULL)
+        return;
+
+    float_atom = XInternAtom (xdisplay, "FLOAT", False);
+
+    for (n = 0; n < n_props; n++)
+    {
+        /* find the matching property */
+        if (props[n] != prop)
+            continue;
+
+        if (XGetDeviceProperty (xdisplay, device, prop, 0, 1000, False,
+                                AnyPropertyType, &type, &format,
+                                &n_items, &bytes_after, &data.c) == Success)
+        {
+            if (n_items == 1
+                && (G_VALUE_HOLDS_INT (value)
+                    || G_VALUE_HOLDS_STRING (value)
+                    || G_VALUE_HOLDS_DOUBLE (value)))
+            {
+                /* only 1 items to set */
+                val = value;
+            }
+            else if (G_VALUE_TYPE (value) == XFCONF_TYPE_G_VALUE_ARRAY)
+            {
+                array = g_value_get_boxed (value);
+                if (array->len != n_items)
+                {
+                    g_critical ("Nr device property items (%ld) and xfconf value (%d) differ",
+                                n_items, array->len);
+                    break;
+                }
+            }
+            else
+            {
+                g_critical ("Invalid device property combination");
+                break;
+            }
+
+            /* reset check counter */
+            n_succeeds = 0;
+
+            for (i = 0; i < n_items; i++)
+            {
+                /* get value from pointer array */
+                if (array != NULL)
+                    val = g_ptr_array_index (array, i);
+                else
+                    val = value;
+
+                if (G_VALUE_HOLDS_INT (val)
+                    && type == XA_INTEGER)
+                {
+                    if (format == 8)
+                        data.c[i] = g_value_get_int (val);
+                    else if (format == 16)
+                        data.s[i] = g_value_get_int (val);
+                    else if (format == 32)
+                        data.l[i] = g_value_get_int (val);
+                    else
+                    {
+                        g_critical ("Unknown format %d for integer", format);
+                        break;
+                    }
+                }
+                else if (G_VALUE_HOLDS_STRING (val)
+                         && type == XA_ATOM
+                         && format == 32)
+                {
+                    /* set atom (reference to a string) */
+                    data.a[i] = XInternAtom (xdisplay, g_value_get_string (val), False);
+                }
+                else if (G_VALUE_HOLDS_DOUBLE (val) /* xfconf doesn't support floats */
+                         && type == float_atom
+                         && format == 32)
+                {
+                    data.l[i] = g_value_get_double (val);
+                }
+                else
+                {
+                    g_critical ("Unknown property type %s: target = %s, format = %d",
+                                G_VALUE_TYPE_NAME (val), XGetAtomName (xdisplay, type), format);
+                    break;
+                }
+
+                /* the item was successfully updated */
+                n_succeeds++;
+            }
+
+            if (n_succeeds == n_items)
+            {
+                gdk_error_trap_push ();
+                XChangeDeviceProperty (xdisplay, device, prop, type, format,
+                                       PropModeReplace, data.c, n_items);
+                if (gdk_error_trap_pop () != 0)
+                {
+                    g_critical ("Failed to set device property %s for %s",
+                                prop_name, device_info->name);
+                }
+
+                xfsettings_dbg (XFSD_DEBUG_POINTERS,
+                                "[%s] Changed device property %s",
+                                device_info->name, prop_name);
+            }
+
+            XFree (data.c);
+        }
+
+        break;
+    }
+
+    XFree (props);
+}
+
+
+
+static void
+xfce_pointers_helper_change_properties (gpointer key,
+                                        gpointer value,
+                                        gpointer user_data)
+{
+    XfcePointerData *pointer_data = user_data;
+    const gchar     *prop_name = ((gchar *) key) + pointer_data->prop_name_len;
+
+    xfce_pointers_helper_change_property (pointer_data->device_info,
+                                          pointer_data->device,
+                                          pointer_data->xdisplay,
+                                          prop_name, value);
+}
+
+
+
+static void
 xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
                                       XID                *xid)
 {
-    Display     *xdisplay = GDK_DISPLAY ();
-    XDeviceInfo *device_list, *device_info;
-    gint         n, ndevices;
-    XDevice     *device;
-    gchar       *device_name;
-    gchar        prop[256];
-    gboolean     right_handed;
-    gboolean     reverse_scrolling;
-    gint         threshold;
-    gdouble      acceleration;
+    Display         *xdisplay = GDK_DISPLAY ();
+    XDeviceInfo     *device_list, *device_info;
+    gint             n, ndevices;
+    XDevice         *device;
+    gchar           *device_name;
+    gchar            prop[256];
+    gboolean         right_handed;
+    gboolean         reverse_scrolling;
+    gint             threshold;
+    gdouble          acceleration;
+    GHashTable      *props;
+    XfcePointerData  pointer_data;
+    const gchar     *mode;
 
     gdk_error_trap_push ();
     device_list = XListInputDevices (xdisplay, &ndevices);
@@ -527,6 +743,29 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
         {
             xfce_pointers_helper_change_feedback (device_info, device, xdisplay,
                                                   threshold, acceleration);
+        }
+
+        /* read mode settings */
+        g_snprintf (prop, sizeof (prop), "/%s/Mode", device_name);
+        mode =  xfconf_channel_get_string  (helper->channel, prop, NULL);
+
+        if (mode != NULL)
+            xfce_pointers_helper_change_mode (device_info, device, xdisplay, mode);
+
+        /* set device properties */
+        g_snprintf (prop, sizeof (prop), "/%s/Properties", device_name);
+        props = xfconf_channel_get_properties (helper->channel, prop);
+
+        if (props != NULL)
+        {
+            pointer_data.xdisplay = xdisplay;
+            pointer_data.device = device;
+            pointer_data.device_info = device_info;
+            pointer_data.prop_name_len = strlen (prop) + 1;
+
+            g_hash_table_foreach (props, xfce_pointers_helper_change_properties, &pointer_data);
+
+            g_hash_table_destroy (props);
         }
 
         g_free (device_name);
@@ -608,10 +847,16 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
                     xfce_pointers_helper_change_feedback (device_info, device, xdisplay,
                                                           -2, g_value_get_double (value));
                 }
-                /*else if (strcmp (names[1], "Properties") == 0)
+                else if (strcmp (names[1], "Properties") == 0)
                 {
-                    xfce_pointers_helper_change_properties (device_info, device, xdisplay);
-                }*/
+                    xfce_pointers_helper_change_property (device_info, device, xdisplay,
+                                                          names[2], value);
+                }
+                else if (strcmp (names[1], "Mode") == 0)
+                {
+                    xfce_pointers_helper_change_mode (device_info, device, xdisplay,
+                                                      g_value_get_string (value));
+                }
                 else
                 {
                     g_warning ("Unknown property %s set for device %s",
