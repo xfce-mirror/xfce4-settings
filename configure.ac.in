@@ -63,7 +63,7 @@ AC_PROG_LIBTOOL()
 dnl **********************************
 dnl *** Check for standard headers ***
 dnl **********************************
-AC_CHECK_HEADERS([errno.h memory.h math.h stdlib.h string.h unistd.h signal.h time.h])
+AC_CHECK_HEADERS([errno.h memory.h math.h stdlib.h string.h unistd.h signal.h time.h sys/types.h])
 
 dnl ******************************
 dnl *** Check for i18n support ***
@@ -74,9 +74,9 @@ dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
 XDT_CHECK_PACKAGE([EXO], [exo-1], [0.6.0])
-XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.14.0])
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.16.0])
-XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.16.0])
+XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.20.0])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.24.0])
+XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.24.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.8.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.8.0])
 XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-2], [4.8.0])

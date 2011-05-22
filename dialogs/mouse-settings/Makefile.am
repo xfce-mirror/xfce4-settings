@@ -22,6 +22,7 @@ xfce4_mouse_settings_CFLAGS = \
 	$(XFCONF_CFLAGS) \
 	$(XI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
+	$(LIBX11_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfce4_mouse_settings_LDFLAGS = \
@@ -34,6 +35,7 @@ xfce4_mouse_settings_LDADD = \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
 	$(XI_LIBS) \
+	$(LIBX11_LIBS) \
 	-lm
 
 if HAVE_XCURSOR
