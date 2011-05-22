@@ -20,9 +20,16 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+#ifdef HAVE_SIGNAL_H
+#include <signal.h>
+#endif
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
+
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
@@ -63,15 +70,19 @@
 
 
 
-static void             xfce_pointers_helper_restore_devices                (XfcePointersHelper      *helper,
-                                                                             XID                     *xid);
-static void             xfce_pointers_helper_channel_property_changed       (XfconfChannel           *channel,
-                                                                             const gchar             *property_name,
-                                                                             const GValue            *value);
+static void             xfce_pointers_helper_finalize                 (GObject            *object);
+static void             xfce_pointers_helper_syndaemon_stop           (XfcePointersHelper *helper);
+static void             xfce_pointers_helper_syndaemon_check          (XfcePointersHelper *helper);
+static void             xfce_pointers_helper_restore_devices          (XfcePointersHelper *helper,
+                                                                       XID                *xid);
+static void             xfce_pointers_helper_channel_property_changed (XfconfChannel      *channel,
+                                                                       const gchar        *property_name,
+                                                                       const GValue       *value,
+                                                                       XfcePointersHelper *helper);
 #ifdef HAS_DEVICE_HOTPLUGGING
-static GdkFilterReturn  xfce_pointers_helper_event_filter                   (GdkXEvent               *xevent,
-                                                                             GdkEvent                *gdk_event,
-                                                                             gpointer                 user_data);
+static GdkFilterReturn  xfce_pointers_helper_event_filter             (GdkXEvent          *xevent,
+                                                                       GdkEvent           *gdk_event,
+                                                                       gpointer            user_data);
 #endif
 
 
@@ -87,6 +98,8 @@ struct _XfcePointersHelper
 
     /* xfconf channel */
     XfconfChannel *channel;
+
+    GPid           syndaemon_pid;
 
 #ifdef HAS_DEVICE_HOTPLUGGING
     /* device presence event type */
@@ -112,7 +125,9 @@ G_DEFINE_TYPE (XfcePointersHelper, xfce_pointers_helper, G_TYPE_OBJECT);
 static void
 xfce_pointers_helper_class_init (XfcePointersHelperClass *klass)
 {
+    GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+    gobject_class->finalize = xfce_pointers_helper_finalize;
 }
 
 
@@ -125,6 +140,8 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 #ifdef HAS_DEVICE_HOTPLUGGING
     XEventClass        event_class;
 #endif
+
+    helper->syndaemon_pid = 0;
 
     /* get the default display */
     xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
@@ -158,7 +175,10 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 
         /* monitor the channel */
         g_signal_connect (G_OBJECT (helper->channel), "property-changed",
-             G_CALLBACK (xfce_pointers_helper_channel_property_changed), NULL);
+             G_CALLBACK (xfce_pointers_helper_channel_property_changed), helper);
+
+        /* launch syndaemon if required */
+        xfce_pointers_helper_syndaemon_check (helper);
 
 #ifdef HAS_DEVICE_HOTPLUGGING
         if (G_LIKELY (xdisplay != NULL))
@@ -175,6 +195,119 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
                 g_warning ("Failed to create device filter");
         }
 #endif
+    }
+}
+
+
+
+static void
+xfce_pointers_helper_finalize (GObject *object)
+{
+    xfce_pointers_helper_syndaemon_stop (XFCE_POINTERS_HELPER (object));
+
+    (*G_OBJECT_CLASS (xfce_pointers_helper_parent_class)->finalize) (object);
+}
+
+
+
+static void
+xfce_pointers_helper_syndaemon_stop (XfcePointersHelper *helper)
+{
+    if (helper->syndaemon_pid != 0)
+    {
+        xfsettings_dbg (XFSD_DEBUG_POINTERS, "Killed syndaemon with pid %d",
+                        helper->syndaemon_pid);
+
+        kill (helper->syndaemon_pid, SIGHUP);
+        g_spawn_close_pid (helper->syndaemon_pid);
+        helper->syndaemon_pid = 0;
+    }
+}
+
+
+
+static void
+xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
+{
+    Display     *xdisplay = GDK_DISPLAY ();
+    XDeviceInfo *device_list;
+    XDevice     *device;
+    gint         n, ndevices;
+    Atom         touchpad_type;
+    Atom         touchpad_off_prop;
+    Atom        *props;
+    gint         i, nprops;
+    gboolean     have_synaptics = FALSE;
+    gchar       *args[] = { "syndaemon", "-i", "2.0", "-K", "-R", NULL };
+    GError      *error = NULL;
+
+    /* only stop a running daemon */
+    if (!xfconf_channel_get_bool (helper->channel, "/DisableTouchpadWhileTyping", FALSE))
+        goto start_stop_daemon;
+
+    gdk_error_trap_push ();
+    device_list = XListInputDevices (xdisplay, &ndevices);
+    if (gdk_error_trap_pop () != 0 || device_list == NULL)
+        goto start_stop_daemon;
+
+    touchpad_type = XInternAtom (xdisplay, XI_TOUCHPAD, True);
+    touchpad_off_prop = XInternAtom (xdisplay, "Synaptics Off", True);
+
+    for (n = 0; n < ndevices; n++)
+    {
+        /* search for a touchpad */
+        if (device_list[n].type != touchpad_type)
+            continue;
+
+        gdk_error_trap_push ();
+        device = XOpenDevice (xdisplay, device_list[n].id);
+        if (gdk_error_trap_pop () != 0 || device == NULL)
+        {
+            g_critical ("Unable to open device %s", device_list[n].name);
+            break;
+        }
+
+        /* look for the Synaptics Off property */
+        gdk_error_trap_push ();
+        props = XListDeviceProperties (xdisplay, device, &nprops);
+        if (gdk_error_trap_pop () == 0
+            && props != NULL)
+        {
+            for (i = 0; !have_synaptics && i < nprops; i++)
+                have_synaptics = props[i] == touchpad_off_prop;
+
+            XFree (props);
+        }
+
+        XCloseDevice (xdisplay, device);
+
+        if (have_synaptics)
+            break;
+    }
+
+    XFreeDeviceList (device_list);
+
+    start_stop_daemon:
+
+    if (have_synaptics)
+    {
+        if (helper->syndaemon_pid == 0)
+        {
+            if (!g_spawn_async (NULL, args, NULL, G_SPAWN_SEARCH_PATH,
+                                NULL, NULL, &helper->syndaemon_pid, &error))
+            {
+                g_critical ("Spawning syndaemon failed: %s", error->message);
+                g_error_free (error);
+            }
+
+            xfsettings_dbg (XFSD_DEBUG_POINTERS, "Started syndaemon with pid %d",
+                            helper->syndaemon_pid);
+        }
+    }
+    else
+    {
+        /* stop the daemon */
+        xfce_pointers_helper_syndaemon_stop (helper);
     }
 }
 
@@ -778,9 +911,10 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
 
 
 static void
-xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
-                                               const gchar   *property_name,
-                                               const GValue  *value)
+xfce_pointers_helper_channel_property_changed (XfconfChannel      *channel,
+                                               const gchar        *property_name,
+                                               const GValue       *value,
+                                               XfcePointersHelper *helper)
 {
     Display      *xdisplay = GDK_DISPLAY ();
     XDeviceInfo  *device_list, *device_info;
@@ -791,6 +925,13 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
 
     if (G_UNLIKELY (property_name == NULL))
          return;
+
+    /* check the daemon status */
+    if (strcmp (property_name, "/DisableTouchpadWhileTyping") == 0)
+    {
+        xfce_pointers_helper_syndaemon_check (helper);
+        return;
+    }
 
     /* split the property name (+1 so skip the first slash in the name) */
     names = g_strsplit (property_name + 1, "/", -1);
@@ -890,11 +1031,14 @@ xfce_pointers_helper_event_filter (GdkXEvent *xevent,
     XDevicePresenceNotifyEvent *dpn_event = xevent;
     XfcePointersHelper         *helper = XFCE_POINTERS_HELPER (user_data);
 
-    /* update on device changes */
-    if (event->type == helper->device_presence_event_type
-        && dpn_event->devchange == DeviceAdded)
+    if (event->type == helper->device_presence_event_type)
     {
-        xfce_pointers_helper_restore_devices (helper, &dpn_event->deviceid);
+        /* restore device settings */
+        if (dpn_event->devchange == DeviceAdded)
+            xfce_pointers_helper_restore_devices (helper, &dpn_event->deviceid);
+
+        /* check if we need to launch syndaemon */
+        xfce_pointers_helper_syndaemon_check (helper);
     }
 
     return GDK_FILTER_CONTINUE;
