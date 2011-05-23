@@ -589,6 +589,7 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
 static gint
 mouse_settings_device_get_int_property (XDevice *device,
                                         Atom     prop,
+                                        guint    offset,
                                         gint    *horiz)
 {
     Display *xdisplay = gdk_x11_display_get_xdisplay (display);
@@ -604,11 +605,11 @@ mouse_settings_device_get_int_property (XDevice *device,
     {
         if (type == XA_INTEGER)
         {
-            if (n_items > 0)
-                val = data[0];
+            if (n_items > offset)
+                val = data[offset];
 
-            if (n_items > 1 && horiz != NULL)
-                *horiz = data[1];
+            if (n_items > 1 + offset && horiz != NULL)
+                *horiz = data[offset + 1];
         }
 
         XFree (data);
@@ -789,19 +790,19 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                 for (i = 0; i < nprops; i++)
                 {
                     if (props[i] == device_enabled_prop)
-                        is_enabled = mouse_settings_device_get_int_property (device, props[i], NULL);
+                        is_enabled = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
                     else if (props[i] == synaptics_prop)
                         is_synaptics = TRUE;
                     else if (props[i] == wacom_prop)
                         is_wacom = TRUE;
                     else if (props[i] == synaptics_tap_prop)
-                        synaptics_tap_to_click = mouse_settings_device_get_int_property (device, props[i], NULL);
+                        synaptics_tap_to_click = mouse_settings_device_get_int_property (device, props[i], 4, NULL);
                     else if (props[i] == synaptics_edge_scroll_prop)
-                        synaptics_edge_scroll = mouse_settings_device_get_int_property (device, props[i], &synaptics_edge_hscroll);
+                        synaptics_edge_scroll = mouse_settings_device_get_int_property (device, props[i], 0, &synaptics_edge_hscroll);
                     else if (props[i] == synaptics_two_scroll_prop)
-                        synaptics_two_scroll = mouse_settings_device_get_int_property (device, props[i], &synaptics_two_hscroll);
+                        synaptics_two_scroll = mouse_settings_device_get_int_property (device, props[i], 0, &synaptics_two_hscroll);
                     else if (props[i] == wacom_rotation_prop)
-                        wacom_rotation = mouse_settings_device_get_int_property (device, props[i], NULL);
+                        wacom_rotation = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
                 }
 
                 XFree (props);
