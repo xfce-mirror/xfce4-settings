@@ -142,7 +142,8 @@ static gchar *
 mouse_settings_format_value_px (GtkScale *scale,
                                 gdouble   value)
 {
-   return g_strdup_printf ("%g px", value);
+   /* pixel value for some of the scales in the dialog */
+   return g_strdup_printf (_("%g px"), value);
 }
 
 
@@ -151,7 +152,8 @@ static gchar *
 mouse_settings_format_value_ms (GtkScale *scale,
                                 gdouble   value)
 {
-   return g_strdup_printf ("%g ms", value);
+   /* miliseconds value for some of the scales in the dialog */
+   return g_strdup_printf (_("%g ms"), value);
 }
 
 
