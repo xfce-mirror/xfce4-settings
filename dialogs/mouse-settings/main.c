@@ -665,7 +665,6 @@ mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
                                    GtkBuilder  *builder)
 {
     XDevice      *device;
-    Display      *xdisplay = GDK_DISPLAY ();
     GtkTreeIter   iter;
     GtkTreeModel *model;
     gint          rotation = 0;
@@ -685,6 +684,43 @@ mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
             prop = g_strconcat ("/", name, "/Properties/Wacom_Rotation", NULL);
             xfconf_channel_set_int (pointers_channel, prop, rotation);
             g_free (prop);
+        }
+
+        XCloseDevice (GDK_DISPLAY (), device);
+    }
+
+    g_free (name);
+}
+
+
+
+static void
+mouse_settings_wacom_set_mode (GtkComboBox *combobox,
+                               GtkBuilder  *builder)
+{
+    XDevice      *device;
+    Display      *xdisplay = GDK_DISPLAY ();
+    GtkTreeIter   iter;
+    GtkTreeModel *model;
+    gchar        *mode = NULL;
+    gchar        *name = NULL;
+    gchar        *prop;
+
+    if (locked > 0)
+        return;
+
+    if (mouse_settings_device_get_selected (builder, &device, &name))
+    {
+        if (gtk_combo_box_get_active_iter (combobox, &iter))
+        {
+            model = gtk_combo_box_get_model (combobox);
+            gtk_tree_model_get (model, &iter, 0, &mode, -1);
+
+            prop = g_strconcat ("/", name, "/Mode", NULL);
+            xfconf_channel_set_string (pointers_channel, prop, mode);
+            g_free (prop);
+
+            g_free (mode);
         }
 
         XCloseDevice (xdisplay, device);
@@ -843,6 +879,30 @@ mouse_settings_synaptics_set_scrolling (GtkWidget  *widget,
                                   G_TYPE_INT, &two_scroll[0],
                                   G_TYPE_INT, &two_scroll[1],
                                   G_TYPE_INVALID);
+        g_free (prop);
+    }
+
+    g_free (name);
+}
+
+
+
+
+static void
+mouse_settings_device_set_enabled (GtkToggleButton *button,
+                                   GtkBuilder      *builder)
+{
+    gchar *name = NULL;
+    gchar *prop;
+
+    if (locked > 0)
+        return;
+
+    if (mouse_settings_device_get_selected (builder, NULL, &name))
+    {
+        prop = g_strconcat ("/", name, "/Properties/Device_Enabled", NULL);
+        xfconf_channel_set_int (pointers_channel, prop,
+                                gtk_toggle_button_get_active (button));
         g_free (prop);
     }
 
@@ -1094,43 +1154,6 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 
     /* unlock */
     locked--;
-}
-
-
-
-static void
-mouse_settings_wacom_set_mode (GtkComboBox *combobox,
-                               GtkBuilder  *builder)
-{
-    XDevice      *device;
-    Display      *xdisplay = GDK_DISPLAY ();
-    GtkTreeIter   iter;
-    GtkTreeModel *model;
-    gchar        *mode = NULL;
-    gchar        *name = NULL;
-    gchar        *prop;
-
-    if (locked > 0)
-        return;
-
-    if (mouse_settings_device_get_selected (builder, &device, &name))
-    {
-        if (gtk_combo_box_get_active_iter (combobox, &iter))
-        {
-            model = gtk_combo_box_get_model (combobox);
-            gtk_tree_model_get (model, &iter, 0, &mode, -1);
-
-            prop = g_strconcat ("/", name, "/Mode", NULL);
-            xfconf_channel_set_string (pointers_channel, prop, mode);
-            g_free (prop);
-
-            g_free (mode);
-        }
-
-        XCloseDevice (xdisplay, device);
-    }
-
-    g_free (name);
 }
 
 
@@ -1552,6 +1575,10 @@ main (gint argc, gchar **argv)
             mouse_settings_device_populate_store (builder, TRUE);
 
             /* connect signals */
+            object = gtk_builder_get_object (builder, "device-enabled");
+            g_signal_connect (G_OBJECT (object), "toggled",
+                              G_CALLBACK (mouse_settings_device_set_enabled), builder);
+
             object = gtk_builder_get_object (builder, "device-acceleration-scale");
             g_signal_connect_swapped (G_OBJECT (object), "value-changed",
                                       G_CALLBACK (mouse_settings_device_save), builder);
