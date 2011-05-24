@@ -443,9 +443,6 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
 
                     /* Escape the comment because tooltips are markup, not text */
                     comment_escaped = theme_comment ? g_markup_escape_text (theme_comment, -1) : NULL;
-
-                    /* Close theme index file */
-                    xfce_rc_close (index_file);
                 }
                 else
                 {
@@ -462,6 +459,8 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                                     COLUMN_THEME_COMMENT, comment_escaped, -1);
 
                 /* Cleanup */
+                if (G_LIKELY (index_file != NULL))
+                    xfce_rc_close (index_file);
                 g_free (comment_escaped);
 
                 /* Check if this is the active theme, if so, select it */
