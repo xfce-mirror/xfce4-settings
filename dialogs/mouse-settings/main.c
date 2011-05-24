@@ -743,7 +743,6 @@ mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
     gulong     n, n_items, bytes_after;
     guchar    *data;
     gboolean   tap_to_click;
-    gboolean   left_handed;
     GPtrArray *array;
     gint       res;
     GObject   *object;
@@ -767,12 +766,9 @@ mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
                 object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
                 tap_to_click = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
 
-                object = gtk_builder_get_object (builder, "device-left-handed");
-                left_handed = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
-
                 /* format: RT, RB, LT, LB, F1, F2, F3 */
-                data[4] = tap_to_click ? (left_handed ? 3 : 1) : 0;
-                data[5] = tap_to_click ? (left_handed ? 1 : 3) : 0;
+                data[4] = tap_to_click ? 1 : 0;
+                data[5] = tap_to_click ? 3 : 0;
                 data[6] = tap_to_click ? 2 : 0;
 
                 array = g_ptr_array_sized_new (n_items);
