@@ -888,8 +888,14 @@ static void
 mouse_settings_device_set_enabled (GtkToggleButton *button,
                                    GtkBuilder      *builder)
 {
-    gchar *name = NULL;
-    gchar *prop;
+    gchar    *name = NULL;
+    gchar    *prop;
+    gboolean  enabled;
+    GObject  *object;
+
+    enabled = gtk_toggle_button_get_active (button);
+    object = gtk_builder_get_object (builder, "device-notebook");
+    gtk_widget_set_sensitive (GTK_WIDGET (object), enabled);
 
     if (locked > 0)
         return;
@@ -897,8 +903,7 @@ mouse_settings_device_set_enabled (GtkToggleButton *button,
     if (mouse_settings_device_get_selected (builder, NULL, &name))
     {
         prop = g_strconcat ("/", name, "/Properties/Device_Enabled", NULL);
-        xfconf_channel_set_int (pointers_channel, prop,
-                                gtk_toggle_button_get_active (button));
+        xfconf_channel_set_int (pointers_channel, prop, enabled);
         g_free (prop);
     }
 
@@ -1098,6 +1103,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 
     object = gtk_builder_get_object (builder, "device-notebook");
     gtk_notebook_set_show_tabs (GTK_NOTEBOOK (object), is_synaptics || is_wacom);
+    gtk_widget_set_sensitive (GTK_WIDGET (object), is_enabled == 1);
 
     /* synaptics options */
     object = gtk_builder_get_object (builder, "synaptics-tab");
