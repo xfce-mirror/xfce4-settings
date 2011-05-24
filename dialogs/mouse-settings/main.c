@@ -1,7 +1,6 @@
-/* $Id$ */
 /*
- *  Copyright (c) 2008 Nick Schermer <nick@xfce.org>
- *                     Jannis Pohlmann <jannis@xfce.org>
+ *  Copyright (c) 2008-2011 Nick Schermer <nick@xfce.org>
+ *  Copyright (c) 2008      Jannis Pohlmann <jannis@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -79,9 +78,6 @@ XfconfChannel *pointers_channel;
 
 /* lock counter to avoid signals during updates */
 static gint locked = 0;
-
-/* the display for this window */
-static GdkDisplay *display;
 
 /* device update id */
 static guint timeout_id = 0;
@@ -592,16 +588,18 @@ mouse_settings_device_get_int_property (XDevice *device,
                                         guint    offset,
                                         gint    *horiz)
 {
-    Display *xdisplay = gdk_x11_display_get_xdisplay (display);
     Atom     type;
     gint     format;
     gulong   n_items, bytes_after;
     guchar  *data;
     gint     val = -1;
+    gint     res;
 
-    if (XGetDeviceProperty (xdisplay, device, prop, 0, 1000, False,
-                            AnyPropertyType, &type, &format,
-                            &n_items, &bytes_after, &data) == Success)
+    gdk_error_trap_push ();
+    res = XGetDeviceProperty (GDK_DISPLAY (), device, prop, 0, 1000, False,
+                              AnyPropertyType, &type, &format,
+                              &n_items, &bytes_after, &data);
+    if (gdk_error_trap_pop () == 0 && res == Success)
     {
         if (type == XA_INTEGER)
         {
@@ -620,11 +618,244 @@ mouse_settings_device_get_int_property (XDevice *device,
 
 
 
+static gboolean
+mouse_settings_device_get_selected (GtkBuilder  *builder,
+                                    XDevice    **device,
+                                    gchar      **xfconf_name)
+{
+    GObject      *combobox;
+    GtkTreeIter   iter;
+    gboolean      found = FALSE;
+    gulong        xid;
+    GtkTreeModel *model;
+
+    /* get the selected item */
+    combobox = gtk_builder_get_object (builder, "device-combobox");
+    found = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combobox), &iter);
+    if (found)
+    {
+        /* get the device id  */
+        model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+        gtk_tree_model_get (model, &iter, COLUMN_DEVICE_XID, &xid, -1);
+
+        if (xfconf_name != NULL)
+            gtk_tree_model_get (model, &iter, COLUMN_DEVICE_XFCONF_NAME, xfconf_name, -1);
+
+        if (device != NULL)
+        {
+            /* open the device */
+            gdk_error_trap_push ();
+            *device = XOpenDevice (GDK_DISPLAY (), xid);
+            if (gdk_error_trap_pop () != 0 || *device == NULL)
+            {
+                g_critical ("Unable to open device %ld", xid);
+                *device = NULL;
+                found = FALSE;
+            }
+        }
+    }
+
+    return found;
+}
+
+
+
+static void
+mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
+                                   GtkBuilder  *builder)
+{
+    XDevice      *device;
+    Display      *xdisplay = GDK_DISPLAY ();
+    GtkTreeIter   iter;
+    GtkTreeModel *model;
+    gint          rotation = 0;
+    gchar        *name = NULL;
+    gchar        *prop;
+
+    if (locked > 0)
+        return;
+
+    if (mouse_settings_device_get_selected (builder, &device, &name))
+    {
+        if (gtk_combo_box_get_active_iter (combobox, &iter))
+        {
+            model = gtk_combo_box_get_model (combobox);
+            gtk_tree_model_get (model, &iter, 0, &rotation, -1);
+
+            prop = g_strconcat ("/", name, "/Properties/Wacom_Rotation", NULL);
+            xfconf_channel_set_int (pointers_channel, prop, rotation);
+            g_free (prop);
+        }
+
+        XCloseDevice (xdisplay, device);
+    }
+
+    g_free (name);
+}
+
+
+
+static void
+mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
+{
+    Display   *xdisplay = GDK_DISPLAY ();
+    XDevice   *device;
+    gchar     *name = NULL;
+    Atom       tap_ation_prop;
+    Atom       type;
+    gint       format;
+    gulong     n, n_items, bytes_after;
+    guchar    *data;
+    gboolean   tap_to_click;
+    gboolean   left_handed;
+    GPtrArray *array;
+    gint       res;
+    GObject   *object;
+    gchar     *prop;
+    GValue    *val;
+
+    if (mouse_settings_device_get_selected (builder, &device, &name))
+    {
+        gdk_error_trap_push ();
+        tap_ation_prop = XInternAtom (xdisplay, "Synaptics Tap Action", True);
+        res = XGetDeviceProperty (xdisplay, device, tap_ation_prop, 0, 1000, False,
+                                  AnyPropertyType, &type, &format,
+                                  &n_items, &bytes_after, &data);
+        if (gdk_error_trap_pop () == 0
+            && res == Success)
+        {
+            if (type == XA_INTEGER
+                && format == 8
+                && n_items >= 7)
+            {
+                object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
+                tap_to_click = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
+
+                object = gtk_builder_get_object (builder, "device-left-handed");
+                left_handed = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
+
+                /* format: RT, RB, LT, LB, F1, F2, F3 */
+                data[4] = tap_to_click ? (left_handed ? 3 : 1) : 0;
+                data[5] = tap_to_click ? (left_handed ? 1 : 3) : 0;
+                data[6] = tap_to_click ? 2 : 0;
+
+                array = g_ptr_array_sized_new (n_items);
+                for (n = 0; n < n_items; n++)
+                {
+                    val = g_new0 (GValue, 1);
+                    g_value_init (val, G_TYPE_INT);
+                    g_value_set_int (val, data[n]);
+                    g_ptr_array_add (array, val);
+                }
+
+                prop = g_strconcat ("/", name, "/Properties/Synaptics_Tap_Action", NULL);
+                xfconf_channel_set_arrayv (pointers_channel, prop, array);
+                g_free (prop);
+
+                xfconf_array_free (array);
+            }
+
+            XFree (data);
+        }
+    }
+
+    g_free (name);
+}
+
+
+
+static void
+mouse_settings_synaptics_hscroll_sensitive (GtkBuilder *builder)
+{
+    gboolean  sensitive = FALSE;
+    GObject  *object;
+
+    object = gtk_builder_get_object (builder, "synaptics-scroll-edge");
+    if (gtk_widget_get_sensitive (GTK_WIDGET (object))
+        && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)))
+        sensitive = TRUE;
+
+    object = gtk_builder_get_object (builder, "synaptics-scroll-two");
+    if (gtk_widget_get_sensitive (GTK_WIDGET (object))
+        && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)))
+        sensitive = TRUE;
+
+    object = gtk_builder_get_object (builder, "synaptics-scroll-horiz");
+    gtk_widget_set_sensitive (GTK_WIDGET (object), sensitive);
+}
+
+
+
+static void
+mouse_settings_synaptics_set_scrolling (GtkWidget  *widget,
+                                        GtkBuilder *builder)
+{
+    gint      edge_scroll[3] = { 0, 0, 0 };
+    gint      two_scroll[2] = { 0, 0 };
+    GObject  *object;
+    gboolean  horizontal = FALSE;
+    gchar    *name = NULL, *prop;
+
+    if (locked > 0)
+        return;
+
+    /*  skip double event if a radio button is toggled */
+    if (GTK_IS_RADIO_BUTTON (widget)
+        && !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)))
+        return;
+
+    mouse_settings_synaptics_hscroll_sensitive (builder);
+
+    object = gtk_builder_get_object (builder, "synaptics-scroll-horiz");
+    if (gtk_widget_get_sensitive (GTK_WIDGET (object)))
+        horizontal = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
+
+    object = gtk_builder_get_object (builder, "synaptics-scroll-edge");
+    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object))
+        && gtk_widget_get_sensitive (GTK_WIDGET (object)))
+    {
+        edge_scroll[0] = TRUE;
+        edge_scroll[1] = horizontal;
+    }
+
+    object = gtk_builder_get_object (builder, "synaptics-scroll-two");
+    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object))
+        && gtk_widget_get_sensitive (GTK_WIDGET (object)))
+    {
+        two_scroll[0] = TRUE;
+        two_scroll[1] = horizontal;
+    }
+
+    if (mouse_settings_device_get_selected (builder, NULL, &name))
+    {
+        /* 3 values: vertical, horizontal, corner. */
+        prop = g_strconcat ("/", name, "/Properties/Synaptics_Edge_Scrolling", NULL);
+        xfconf_channel_set_array (pointers_channel, prop,
+                                  G_TYPE_INT, &edge_scroll[0],
+                                  G_TYPE_INT, &edge_scroll[1],
+                                  G_TYPE_INT, &edge_scroll[2],
+                                  G_TYPE_INVALID);
+        g_free (prop);
+
+        /* 2 values: vertical, horizontal. */
+        prop = g_strconcat ("/", name, "/Properties/Synaptics_Two-Finger_Scrolling", NULL);
+        xfconf_channel_set_array (pointers_channel, prop,
+                                  G_TYPE_INT, &two_scroll[0],
+                                  G_TYPE_INT, &two_scroll[1],
+                                  G_TYPE_INVALID);
+        g_free (prop);
+    }
+
+    g_free (name);
+}
+
+
+
 static void
 mouse_settings_device_selection_changed (GtkBuilder *builder)
 {
     gint               nbuttons = 0;
-    Display           *xdisplay;
+    Display           *xdisplay = GDK_DISPLAY ();
     XDevice           *device;
     XDeviceInfo       *device_info;
     XFeedbackState    *states, *pt;
@@ -638,11 +869,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gdouble            acceleration = -1.00;
     gint               threshold = -1;
     GObject           *object;
-    GtkTreeModel      *model;
-    GObject           *combobox;
     gint               ndevices;
-    GtkTreeIter        iter;
-    gulong             xid;
     Atom               synaptics_prop;
     Atom               wacom_prop;
     Atom               synaptics_tap_prop;
@@ -667,150 +894,128 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     locked++;
 
     /* get the selected item */
-    combobox = gtk_builder_get_object (builder, "device-combobox");
-    if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combobox), &iter))
+    if (mouse_settings_device_get_selected (builder, &device, NULL))
     {
-        /* get device id and number of buttons */
-        model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
-        gtk_tree_model_get (model, &iter, COLUMN_DEVICE_XID, &xid, -1);
-
-        /* get the x display */
-        xdisplay = gdk_x11_display_get_xdisplay (display);
-
-        /* open the device */
         gdk_error_trap_push ();
-        device = XOpenDevice (xdisplay, xid);
-        if (gdk_error_trap_pop () != 0 || device == NULL)
+        device_info = XListInputDevices (xdisplay, &ndevices);
+        if (gdk_error_trap_pop () == 0 && device_info != NULL)
         {
-            g_critical ("Unable to open device %ld", xid);
+            /* find mode and number of buttons */
+            for (i = 0; i < ndevices; i++)
+            {
+                if (device_info[i].id != device->device_id)
+                    continue;
+
+                any = device_info[i].inputclassinfo;
+                for (n = 0; n < device_info[i].num_classes; n++)
+                {
+                    if (any->class == ButtonClass)
+                        nbuttons = ((XButtonInfoPtr) any)->num_buttons;
+                    else if (any->class == ValuatorClass)
+                        wacom_mode = ((XValuatorInfoPtr) any)->mode == Absolute ? 0 : 1;
+
+                    any = (XAnyClassPtr) ((gchar *) any + any->length);
+                }
+
+                break;
+            }
+
+            XFreeDeviceList (device_info);
+        }
+
+        /* get the button mapping */
+        if (nbuttons > 0)
+        {
+            buttonmap = g_new0 (guchar, nbuttons);
+            gdk_error_trap_push ();
+            XGetDeviceButtonMapping (xdisplay, device, buttonmap, nbuttons);
+            if (gdk_error_trap_pop () != 0)
+                g_critical ("Failed to get button map");
+
+            /* figure out the position of the first and second/third button in the map */
+            for (i = 0; i < nbuttons; i++)
+            {
+                if (buttonmap[i] == 1)
+                    id_1 = i;
+                else if (buttonmap[i] == (nbuttons < 3 ? 2 : 3))
+                    id_3 = i;
+                else if (buttonmap[i] == 4)
+                    id_4 = i;
+                else if (buttonmap[i] == 5)
+                    id_5 = i;
+            }
+
+            g_free (buttonmap);
         }
         else
         {
-            gdk_error_trap_push ();
-            device_info = XListInputDevices (xdisplay, &ndevices);
-            if (gdk_error_trap_pop () == 0 && device_info != NULL)
-            {
-                /* find mode and number of buttons */
-                for (i = 0; i < ndevices; i++)
-                {
-                    if (device_info[i].id != xid)
-                        continue;
-
-                    any = device_info[i].inputclassinfo;
-                    for (n = 0; n < device_info[i].num_classes; n++)
-                    {
-                        if (any->class == ButtonClass)
-                            nbuttons = ((XButtonInfoPtr) any)->num_buttons;
-                        else if (any->class == ValuatorClass)
-                            wacom_mode = ((XValuatorInfoPtr) any)->mode == Absolute ? 0 : 1;
-
-                        any = (XAnyClassPtr) ((gchar *) any + any->length);
-                    }
-
-                    break;
-                }
-
-                XFreeDeviceList (device_info);
-            }
-            else
-            {
-                g_message ("error %p", device_info);
-            }
-
-            /* get the button mapping */
-            if (nbuttons > 0)
-            {
-                buttonmap = g_new0 (guchar, nbuttons);
-                gdk_error_trap_push ();
-                XGetDeviceButtonMapping (xdisplay, device, buttonmap, nbuttons);
-                if (gdk_error_trap_pop () != 0)
-                    g_critical ("Failed to get button map");
-
-                /* figure out the position of the first and second/third button in the map */
-                for (i = 0; i < nbuttons; i++)
-                {
-                    if (buttonmap[i] == 1)
-                        id_1 = i;
-                    else if (buttonmap[i] == (nbuttons < 3 ? 2 : 3))
-                        id_3 = i;
-                    else if (buttonmap[i] == 4)
-                        id_4 = i;
-                    else if (buttonmap[i] == 5)
-                        id_5 = i;
-                }
-
-                g_free (buttonmap);
-            }
-            else
-            {
-                g_critical ("Device has no buttons");
-            }
-
-            /* get the feedback states for this device */
-            gdk_error_trap_push ();
-            states = XGetFeedbackControl (xdisplay, device, &nstates);
-            if (gdk_error_trap_pop () != 0 || states == NULL)
-            {
-                 g_critical ("Failed to get feedback states");
-            }
-            else
-            {
-                /* get the pointer feedback class */
-                for (pt = states, i = 0; i < nstates; i++)
-                {
-                    if (pt->class == PtrFeedbackClass)
-                    {
-                        /* get the state */
-                        state = (XPtrFeedbackState *) pt;
-                        acceleration = (gdouble) state->accelNum / (gdouble) state->accelDenom;
-                        threshold = state->threshold;
-                    }
-
-                    /* advance the offset */
-                    pt = (XFeedbackState *) ((gchar *) pt + pt->length);
-                }
-
-                XFreeFeedbackList (states);
-            }
-
-            /* wacom and synaptics specific properties */
-            device_enabled_prop = XInternAtom (xdisplay, "Device Enabled", True);
-            synaptics_prop = XInternAtom (xdisplay, "Synaptics Off", True);
-            wacom_prop = XInternAtom (xdisplay, "Wacom Tool Type", True);
-            synaptics_tap_prop = XInternAtom (xdisplay, "Synaptics Tap Action", True);
-            synaptics_edge_scroll_prop = XInternAtom (xdisplay, "Synaptics Edge Scrolling", True);
-            synaptics_two_scroll_prop = XInternAtom (xdisplay, "Synaptics Two-Finger Scrolling", True);
-            wacom_rotation_prop = XInternAtom (xdisplay, "Wacom Rotation", True);
-
-            /* check if this is a synaptics or wacom device */
-            gdk_error_trap_push ();
-            props = XListDeviceProperties (xdisplay, device, &nprops);
-            if (gdk_error_trap_pop () == 0 && props != NULL)
-            {
-                for (i = 0; i < nprops; i++)
-                {
-                    if (props[i] == device_enabled_prop)
-                        is_enabled = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
-                    else if (props[i] == synaptics_prop)
-                        is_synaptics = TRUE;
-                    else if (props[i] == wacom_prop)
-                        is_wacom = TRUE;
-                    else if (props[i] == synaptics_tap_prop)
-                        synaptics_tap_to_click = mouse_settings_device_get_int_property (device, props[i], 4, NULL);
-                    else if (props[i] == synaptics_edge_scroll_prop)
-                        synaptics_edge_scroll = mouse_settings_device_get_int_property (device, props[i], 0, &synaptics_edge_hscroll);
-                    else if (props[i] == synaptics_two_scroll_prop)
-                        synaptics_two_scroll = mouse_settings_device_get_int_property (device, props[i], 0, &synaptics_two_hscroll);
-                    else if (props[i] == wacom_rotation_prop)
-                        wacom_rotation = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
-                }
-
-                XFree (props);
-            }
-
-            /* close the device */
-            XCloseDevice (xdisplay, device);
+            g_critical ("Device has no buttons");
         }
+
+        /* get the feedback states for this device */
+        gdk_error_trap_push ();
+        states = XGetFeedbackControl (xdisplay, device, &nstates);
+        if (gdk_error_trap_pop () != 0 || states == NULL)
+        {
+             g_critical ("Failed to get feedback states");
+        }
+        else
+        {
+            /* get the pointer feedback class */
+            for (pt = states, i = 0; i < nstates; i++)
+            {
+                if (pt->class == PtrFeedbackClass)
+                {
+                    /* get the state */
+                    state = (XPtrFeedbackState *) pt;
+                    acceleration = (gdouble) state->accelNum / (gdouble) state->accelDenom;
+                    threshold = state->threshold;
+                }
+
+                /* advance the offset */
+                pt = (XFeedbackState *) ((gchar *) pt + pt->length);
+            }
+
+            XFreeFeedbackList (states);
+        }
+
+        /* wacom and synaptics specific properties */
+        device_enabled_prop = XInternAtom (xdisplay, "Device Enabled", True);
+        synaptics_prop = XInternAtom (xdisplay, "Synaptics Off", True);
+        wacom_prop = XInternAtom (xdisplay, "Wacom Tool Type", True);
+        synaptics_tap_prop = XInternAtom (xdisplay, "Synaptics Tap Action", True);
+        synaptics_edge_scroll_prop = XInternAtom (xdisplay, "Synaptics Edge Scrolling", True);
+        synaptics_two_scroll_prop = XInternAtom (xdisplay, "Synaptics Two-Finger Scrolling", True);
+        wacom_rotation_prop = XInternAtom (xdisplay, "Wacom Rotation", True);
+
+        /* check if this is a synaptics or wacom device */
+        gdk_error_trap_push ();
+        props = XListDeviceProperties (xdisplay, device, &nprops);
+        if (gdk_error_trap_pop () == 0 && props != NULL)
+        {
+            for (i = 0; i < nprops; i++)
+            {
+                if (props[i] == device_enabled_prop)
+                    is_enabled = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
+                else if (props[i] == synaptics_prop)
+                    is_synaptics = TRUE;
+                else if (props[i] == wacom_prop)
+                    is_wacom = TRUE;
+                else if (props[i] == synaptics_tap_prop)
+                    synaptics_tap_to_click = mouse_settings_device_get_int_property (device, props[i], 4, NULL);
+                else if (props[i] == synaptics_edge_scroll_prop)
+                    synaptics_edge_scroll = mouse_settings_device_get_int_property (device, props[i], 0, &synaptics_edge_hscroll);
+                else if (props[i] == synaptics_two_scroll_prop)
+                    synaptics_two_scroll = mouse_settings_device_get_int_property (device, props[i], 0, &synaptics_two_hscroll);
+                else if (props[i] == wacom_rotation_prop)
+                    wacom_rotation = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
+            }
+
+            XFree (props);
+        }
+
+        /* close the device */
+        XCloseDevice (xdisplay, device);
     }
 
     /* update button order */
@@ -848,6 +1053,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         gtk_widget_set_sensitive (GTK_WIDGET (object), synaptics_tap_to_click != -1);
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), synaptics_tap_to_click > 0);
 
+        object = gtk_builder_get_object (builder, "synaptics-scroll-no");
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), synaptics_edge_scroll == -1 && synaptics_two_scroll == -1);
+
         object = gtk_builder_get_object (builder, "synaptics-scroll-edge");
         gtk_widget_set_sensitive (GTK_WIDGET (object), synaptics_edge_scroll != -1);
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), synaptics_edge_scroll > 0);
@@ -857,10 +1065,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), synaptics_two_scroll > 0);
 
         object = gtk_builder_get_object (builder, "synaptics-scroll-horiz");
-        gtk_widget_set_sensitive (GTK_WIDGET (object), synaptics_two_hscroll != -1 || synaptics_edge_hscroll != 1);
+        mouse_settings_synaptics_hscroll_sensitive (builder);
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object),
-                                      (synaptics_edge_scroll == 1 && synaptics_edge_hscroll == 1)
-                                      || (synaptics_two_scroll == 1 && synaptics_two_hscroll == 1));
+                                      synaptics_edge_hscroll == 1 || synaptics_two_hscroll == 1);
     }
 
     /* wacom options */
@@ -887,6 +1094,43 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 
     /* unlock */
     locked--;
+}
+
+
+
+static void
+mouse_settings_wacom_set_mode (GtkComboBox *combobox,
+                               GtkBuilder  *builder)
+{
+    XDevice      *device;
+    Display      *xdisplay = GDK_DISPLAY ();
+    GtkTreeIter   iter;
+    GtkTreeModel *model;
+    gchar        *mode = NULL;
+    gchar        *name = NULL;
+    gchar        *prop;
+
+    if (locked > 0)
+        return;
+
+    if (mouse_settings_device_get_selected (builder, &device, &name))
+    {
+        if (gtk_combo_box_get_active_iter (combobox, &iter))
+        {
+            model = gtk_combo_box_get_model (combobox);
+            gtk_tree_model_get (model, &iter, 0, &mode, -1);
+
+            prop = g_strconcat ("/", name, "/Mode", NULL);
+            xfconf_channel_set_string (pointers_channel, prop, mode);
+            g_free (prop);
+
+            g_free (mode);
+        }
+
+        XCloseDevice (xdisplay, device);
+    }
+
+    g_free (name);
 }
 
 
@@ -989,7 +1233,6 @@ static void
 mouse_settings_device_populate_store (GtkBuilder *builder,
                                       gboolean    create_store)
 {
-    Display         *xdisplay;
     XDeviceInfo     *device_list, *device_info;
     gint             ndevices;
     gint             i;
@@ -1029,12 +1272,9 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
         gtk_list_store_clear (store);
     }
 
-    /* get the x display */
-    xdisplay = gdk_x11_display_get_xdisplay (display);
-
     /* get all the registered devices */
     gdk_error_trap_push ();
-    device_list = XListInputDevices (xdisplay, &ndevices);
+    device_list = XListInputDevices (GDK_DISPLAY (), &ndevices);
     if (gdk_error_trap_pop () != 0 || device_list == NULL)
     {
         g_message ("No devices found");
@@ -1191,13 +1431,8 @@ mouse_settings_event_filter (GdkXEvent *xevent,
 static void
 mouse_settings_create_event_filter (GtkBuilder *builder)
 {
-    Display     *xdisplay;
+    Display     *xdisplay = GDK_DISPLAY ();
     XEventClass  event_class;
-
-    /* get the default display and root window */
-    xdisplay = gdk_x11_display_get_xdisplay (display);
-    if (G_UNLIKELY (!xdisplay))
-        return;
 
     /* monitor device change events */
     gdk_error_trap_push ();
@@ -1227,6 +1462,9 @@ main (gint argc, gchar **argv)
     GObject           *object;
     XExtensionVersion *version = NULL;
     gchar             *syndaemon;
+    guint              i;
+    const gchar       *synaptics_scroll[] = { "synaptics-scroll-no", "synaptics-scroll-edge",
+                                              "synaptics-scroll-two", "synaptics-scroll-horiz" };
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -1310,9 +1548,6 @@ main (gint argc, gchar **argv)
             /* lock */
             locked++;
 
-            /* set the working display for this instance */
-            display = gdk_display_get_default ();
-
             /* populate the devices combobox */
             mouse_settings_device_populate_store (builder, TRUE);
 
@@ -1349,6 +1584,25 @@ main (gint argc, gchar **argv)
             g_free (syndaemon);
             xfconf_g_property_bind (pointers_channel, "/DisableTouchpadWhileTyping",
                                     G_TYPE_BOOLEAN, G_OBJECT (object), "active");
+
+            object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
+            g_signal_connect_swapped (G_OBJECT (object), "toggled",
+                                      G_CALLBACK (mouse_settings_synaptics_set_tap_to_click), builder);
+
+            for (i = 0; i < G_N_ELEMENTS (synaptics_scroll); i++)
+            {
+                object = gtk_builder_get_object (builder, synaptics_scroll[i]);
+                g_signal_connect (G_OBJECT (object), "toggled",
+                                  G_CALLBACK (mouse_settings_synaptics_set_scrolling), builder);
+            }
+
+            object = gtk_builder_get_object (builder, "wacom-mode");
+            g_signal_connect (G_OBJECT (object), "changed",
+                              G_CALLBACK (mouse_settings_wacom_set_mode), builder);
+
+            object = gtk_builder_get_object (builder, "wacom-rotation");
+            g_signal_connect (G_OBJECT (object), "changed",
+                              G_CALLBACK (mouse_settings_wacom_set_rotation), builder);
 
 
 
