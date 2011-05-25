@@ -1,3 +1,32 @@
+4.9.0
+=====
+- Depend on Gtk+ 2.20 and Glib 2.24.
+- Merge xfce4-settings-helper into xfsettingsd.
+- Add support to xfsettingsd for pointing device properties.
+- Rework the mouse dialog and add support for basic synaptics
+  and wacom settings.
+- Add option to enable assistive technologies during login.
+- Add fontconfig monitoring (bug #5011).
+- Improved debugging with XFSETTINGSD_DEBUG=1.
+
+4.8.2
+=====
+- Fix invalid desktop size when disabling a monitor (bug #7413).
+- Fix expiration of sticky, slow, bounce and mouse keys (bug #6305).
+- Set sensitivity of custom dpi spinner.
+- Dynamically allocate the filename (bug #7521).
+- Do not show an error if spawning fails (bug #7574).
+- Remove unused code and variables.
+- Fix segfault if pointer has no feedback states and free memory.
+- Start using the gsd clipboard manager again (bug #7588).
+- Updated translations: tr, ro, pt_BR, zh_CN, nl.
+
+4.8.1
+=====
+- Don't test for "default" output in xfce_randr_populate (bug #7092).
+- Fix double free when setting workspace names (bug #7174).
+- Updated translations: Turkish.
+
 4.8.0
 =====
 - Dispatch primary clipboard restoration (bug #6819).
