@@ -1,4 +1,3 @@
-/* $Id$ */
 /*
  *  xfce4-settings-manager
  *
