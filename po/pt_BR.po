@@ -1,17 +1,18 @@
-# Portuguese translations for xfce package.
+# Brazilian Portuguese translation for xfce 4-settings.
 # Copyright (C) 2008 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
 # Vladimir Melo <vmelo@gnome.org>, 2008, 2010.
 # Henrique P Machado <zehrique@gmail.com>, 2008.
-# Og Maciel <ogmaciel@gnome.org>, 2008, 2009, 2010.
+# Og Maciel <ogmaciel@gnome.org>, 2008 - 2010.
+# Sérgio Cipolla <secipolla@gmail.com>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-26 10:12+0000\n"
-"PO-Revision-Date: 2011-05-26 11:04-0300\n"
+"PO-Revision-Date: 2011-05-26 11:21-0300\n"
 "Last-Translator: Sérgio Cipolla <secipolla@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -184,11 +185,11 @@ msgstr "_Usar emulação do mouse"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "msec"
-msgstr "mseg"
+msgstr "ms"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "pixels/sec"
-msgstr "pixels/seg"
+msgstr "px/s"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:86
@@ -469,7 +470,7 @@ msgstr "Defina as configurações e a disposição da tela"
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Display"
-msgstr "Vídeo"
+msgstr "Monitor"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "R_esolution:"
@@ -493,7 +494,7 @@ msgstr "_Usar esta saída"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Both displays cloned"
-msgstr "Ambas as telas clonadas"
+msgstr "Ambos os monitores clonados"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Display settings"
@@ -501,11 +502,11 @@ msgstr "Configurações do monitor"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Several displays are available. Use:\n"
-msgstr "Várias telas estão disponíveis. Usar:\n"
+msgstr "Vários monitores estão disponíveis. Usar:\n"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Use both displays to show the same contents"
-msgstr "Usar ambas as telas exibindo o mesmo conteúdo"
+msgstr "Usar ambos os monitores exibindo o mesmo conteúdo"
 
 #: ../dialogs/display-settings/main.c:68
 msgid "Normal"
@@ -577,7 +578,7 @@ msgstr "Incapaz de iniciar a execução da configuração do driver proprietári
 #: ../dialogs/display-settings/xfce-randr.c:257
 #, c-format
 msgid "This system is using RandR %d.%d. For the display settings to work version 1.2 is required at least"
-msgstr "Este sistema está usando o RandR %d.%d. Para que a configuração de vídeo funcione é necessário pelo menos a versão 1.2"
+msgstr "Este sistema está usando o RandR %d.%d. Para que a configuração do monitor funcione é necessário pelo menos a versão 1.2"
 
 #: ../dialogs/display-settings/xfce-randr.c:536
 msgid "Laptop"
@@ -593,7 +594,7 @@ msgstr "Televisão"
 
 #: ../dialogs/display-settings/xfce-randr.c:564
 msgid "Digital display"
-msgstr "Vídeo digital"
+msgstr "Monitor digital"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
@@ -700,7 +701,7 @@ msgstr "_Velocidade de repetição:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Select keyboard layout and variant"
-msgstr "Selecionar disposição do teclado e variações"
+msgstr "Selecionar disposição do teclado e variantes"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Show _blinking"
@@ -785,7 +786,7 @@ msgstr "Disposição"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
 msgid "Variant"
-msgstr "Variação"
+msgstr "Variante"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
 msgid "Shortcut command may not be empty."
@@ -963,7 +964,7 @@ msgstr "L_imiar:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "O fator o qual a velocidade do ponteiro aumentará quando o mouse é movido"
+msgstr "O fator pelo qual a velocidade do ponteiro aumentará quando o mouse é movido"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "The mouse pointer cannot move farther than this distance between two clicks for them to be considered a double click"
@@ -1290,7 +1291,7 @@ msgid "Settings Manager"
 msgstr "Gerenciador de Configurações"
 
 #~ msgid "Feedback"
-#~ msgstr "Feedback"
+#~ msgstr "Resposta"
 
 #~ msgid "Mouse"
 #~ msgstr "Mouse"
@@ -1328,14 +1329,14 @@ msgstr "Gerenciador de Configurações"
 #~ msgstr "Tela %d"
 
 #~ msgid "RandR extension missing on display \"%s\""
-#~ msgstr "Extensão do RandR não encontrada no vídeo \"%s\""
+#~ msgstr "Extensão do RandR não encontrada no monitor \"%s\""
 
 #~ msgid ""
 #~ "The Resize and Rotate extension (RandR) is not enabled on this display. "
 #~ "Try to enable it and run the dialog again."
 #~ msgstr ""
 #~ "A extensão Redimensionar e Rotacionar (RandR) não está habilitada neste "
-#~ "vídeo. Tente habilitá-la e execute o diálogo novamente."
+#~ "monitor. Tente habilitá-la e execute o diálogo novamente."
 
 #~ msgid "Failed to use the RandR extension"
 #~ msgstr "Falha ao usar a extensão RandR"
@@ -1344,7 +1345,7 @@ msgstr "Gerenciador de Configurações"
 #~ msgstr "Segundo monitor"
 
 #~ msgid "Second digital display"
-#~ msgstr "Segundo vídeo digital"
+#~ msgstr "Segundo monitor digital"
 
 #~ msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
 #~ msgstr ""
@@ -1433,7 +1434,7 @@ msgstr "Gerenciador de Configurações"
 #~ "in milliseconds"
 #~ msgstr ""
 #~ "O período que você tem que aguardar antes dos atalhos de teclado serem "
-#~ "aceitos novamente, em milisegundos"
+#~ "aceitos novamente, em milissegundos"
 
 #~ msgid ""
 #~ "When enabled, the Shift, Ctrl and Alt keys stay \"selected\" until you "
@@ -1496,7 +1497,7 @@ msgstr "Gerenciador de Configurações"
 #~ msgstr "Configurações de Teclado"
 
 #~ msgid "The length of the cursor blink cycle in milliseconds"
-#~ msgstr "A duração do ciclo de intermitência do cursor em milisegundos"
+#~ msgstr "A duração do ciclo de intermitência do cursor em milissegundos"
 
 #~ msgid "Xfce 4 Keyboard Settings"
 #~ msgstr "Configurações de Teclado do Xfce 4"
@@ -1604,7 +1605,7 @@ msgstr "Gerenciador de Configurações"
 #~ msgstr "Altere a aparência da sua área de trabalho XFCE"
 
 #~ msgid "<b>Single Display</b>"
-#~ msgstr "<b>Estilo</b>"
+#~ msgstr "<b>Um monitor</b>"
 
 #~ msgid "C_lone"
 #~ msgstr "nenhum"
