@@ -108,6 +108,32 @@ dbus_connection_filter_func (DBusConnection     *connection,
 
 
 
+static gint
+daemonize (void)
+{
+#ifdef HAVE_DAEMON
+    return daemon (1, 1);
+#else
+    pid_t pid;
+
+    pid = fork ();
+    if (pid < 0)
+        return -1;
+
+    if (pid > 0)
+        _exit (EXIT_SUCCESS);
+
+#ifdef HAVE_SETSID
+    if (setsid () < 0)
+        return -1;
+#endif
+
+    return 0;
+#endif
+}
+
+
+
 gint
 main (gint argc, gchar **argv)
 {
@@ -124,7 +150,6 @@ main (gint argc, gchar **argv)
     GObject              *displays_helper;
 #endif
     GObject              *workspaces_helper;
-    pid_t                 pid;
     guint                 i;
     const gint            signums[] = { SIGQUIT, SIGTERM };
     DBusConnection       *dbus_connection;
@@ -216,18 +241,10 @@ main (gint argc, gchar **argv)
     /* daemonize the process */
     if (!opt_no_daemon)
     {
-        /* try to fork the process */
-        pid = fork ();
-
-        if (G_UNLIKELY (pid == -1))
+        if (daemonize () == -1)
         {
             /* show message and continue in normal mode */
             g_warning ("Failed to fork the process: %s. Continuing in non-daemon mode.", g_strerror (errno));
-        }
-        else if (pid > 0)
-        {
-            /* succesfully created a fork */
-            _exit (EXIT_SUCCESS);
         }
     }
 
@@ -254,7 +271,7 @@ main (gint argc, gchar **argv)
         {
             g_object_unref (G_OBJECT (clipboard_daemon));
             clipboard_daemon = NULL;
-            
+
             g_printerr (G_LOG_DOMAIN ": %s\n", "Another clipboard manager is already running.");
         }
     }
