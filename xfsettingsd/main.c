@@ -204,7 +204,8 @@ main (gint argc, gchar **argv)
         result = dbus_bus_request_name (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, NULL);
         if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER)
         {
-            g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance is already running. Leaving...");
+            g_print (G_LOG_DOMAIN ": %s\n", _("Fallback startup in not needed, xfsettingsd is already running. Leaving..."));
+            dbus_connection_unref (dbus_connection);
             return EXIT_SUCCESS;
         }
 
