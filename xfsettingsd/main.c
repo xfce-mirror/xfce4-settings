@@ -49,6 +49,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 
+#include "debug.h"
 #include "accessibility.h"
 #include "pointers.h"
 #include "keyboards.h"
@@ -204,7 +205,7 @@ main (gint argc, gchar **argv)
         result = dbus_bus_request_name (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, NULL);
         if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER)
         {
-            g_print (G_LOG_DOMAIN ": %s\n", _("Fallback startup in not needed, xfsettingsd is already running. Leaving..."));
+            xfsettings_dbg (XFSD_DEBUG_XSETTINGS, "Another instance is already running. Leaving.");
             dbus_connection_unref (dbus_connection);
             return EXIT_SUCCESS;
         }
