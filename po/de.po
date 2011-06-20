@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-26 10:12+0000\n"
+"POT-Creation-Date: 2011-06-20 16:13+0000\n"
 "PO-Revision-Date: 2010-02-19 18:52+0100\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -38,11 +38,13 @@ msgid "Accessibility"
 msgstr "Barrierefreiheit"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
-#, fuzzy
 msgid ""
 "Assistive technologies will be available the\n"
 "next time you login"
-msgstr "Die Systemvorgaben werden wiederhergestellt, wenn Sie sich das nächste Mal anmelden."
+msgstr ""
+"Barrierefreiheitsfunktionen stehen bei\n"
+"\r\n"
+"der nächsten Anmeldung zur Verfügung,"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Bounce Keys"
@@ -57,8 +59,9 @@ msgid "Disable sticky keys if _two keys are pressed"
 msgstr "Haftende Tasten deaktivieren, wenn zwei Tasten gedrückt werden"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#, fuzzy
 msgid "If enabled, the session manager will start the required applications for screen readers and magnifiers"
-msgstr ""
+msgstr "Falls aktiviert wird die Sitzungsverwaltung die erforderlichen Programme für Bildschirmleser und Bildschirmlupe starten."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
@@ -78,7 +81,7 @@ msgstr "Mausemulation"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "No AT-SPI provider was found on your system"
-msgstr ""
+msgstr "Es wurde kein AT-SPI Anbieter auf Ihrem System gefunden"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "R_epeat interval:"
@@ -162,11 +165,11 @@ msgstr "_Beschleunigungsdauer:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "_Assistive Technologies"
-msgstr ""
+msgstr "B_arrierefreiheit"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "_Enable assistive technologies"
-msgstr ""
+msgstr "Barrierefreiheitsfunktionen einschalten"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "_Lock sticky keys"
@@ -206,7 +209,7 @@ msgstr "SOCKET-NUMMER"
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:76
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Versionsinformation"
@@ -216,7 +219,7 @@ msgstr "Versionsinformation"
 #: ../dialogs/display-settings/main.c:1040
 #: ../dialogs/keyboard-settings/main.c:63
 #: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:147 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Geben Sie »%s --help« ein, um Informationen über die Verwendung zu erhalten."
@@ -226,7 +229,7 @@ msgstr "Geben Sie »%s --help« ein, um Informationen über die Verwendung zu er
 #: ../dialogs/display-settings/main.c:1059
 #: ../dialogs/keyboard-settings/main.c:79
 #: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:163 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "Das Entwicklungsteam von Xfce. Alle Rechte vorbehalten."
 
@@ -235,7 +238,7 @@ msgstr "Das Entwicklungsteam von Xfce. Alle Rechte vorbehalten."
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:164 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Bitte melden Sie Fehler an <%s>"
@@ -806,15 +809,15 @@ msgstr "GERÄTENAME"
 
 #. pixel value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:142
-#, c-format
+#, c-format, fuzzy
 msgid "%g px"
-msgstr ""
+msgstr "%g Pixel"
 
 #. miliseconds value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:152
-#, c-format
+#, c-format, fuzzy
 msgid "%g ms"
-msgstr ""
+msgstr "%g Millisekunden"
 
 #. sort the names but keep Default on top
 #: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
@@ -823,7 +826,6 @@ msgid "Default"
 msgstr "Standard"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
-#, fuzzy
 msgid "Buttons"
 msgstr "Reihenfolge der Tasten"
 
@@ -853,18 +855,16 @@ msgid "D_istance:"
 msgstr "_Abstand:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
-#, fuzzy
 msgid "De_vice:"
-msgstr "_Geräte"
+msgstr "_Gerät:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-#, fuzzy
 msgid "Di_sabled"
-msgstr "Aktiviert"
+msgstr "Dea_ktiviert"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Disable to_uchpad while typing"
-msgstr ""
+msgstr "To_uchpad während des Schreibens deaktivieren"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Double Click"
@@ -876,16 +876,15 @@ msgstr "Ziehen und Ablegen"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Edge scro_lling"
-msgstr ""
+msgstr "Bild_lauf am Rand"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-#, fuzzy
 msgid "Enable hori_zontal scrolling"
-msgstr "_Kantenglättung verwenden"
+msgstr "Horizontalen Bildlauf einschalten"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 #, fuzzy
@@ -914,7 +913,6 @@ msgid "Pen (absolute)"
 msgstr "Stift (absolut)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
-#, fuzzy
 msgid "Pointer Speed"
 msgstr "Zeigergeschwindigkeit"
 
@@ -923,9 +921,8 @@ msgid "Preview"
 msgstr "Vorschau"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
-#, fuzzy
 msgid "Reset to De_faults"
-msgstr "Standardwerte setzen"
+msgstr "Auf Vorgaben zurücksetzen"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 #, fuzzy
@@ -933,22 +930,21 @@ msgid "Reverse scroll d_irection"
 msgstr "M_ausrad invertieren"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
-#, fuzzy
 msgid "Scrolling"
-msgstr "String"
+msgstr "Bildlauf"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
-#, fuzzy
 msgid "Set the acceleration and sensitivity for the selected device to the default values"
-msgstr "Setzt die Werte für Beschleunigung und den Schwellwert für das ausgewählte Gerät zurück auf die Standardwerte"
+msgstr "Setzt die Werte für Beschleunigung und den Schwellwert für das ausgewählte Gerät auf die Standardwerte zurück"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Size"
 msgstr "Größe"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#, fuzzy
 msgid "T_ap touchpad to click"
-msgstr ""
+msgstr "Mausklicks per Touchp_ad einschalten"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 #, fuzzy
@@ -956,12 +952,14 @@ msgid "T_heme"
 msgstr "_Mausthema"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#, fuzzy
 msgid "T_ouchpad"
-msgstr ""
+msgstr "T_ouchpad"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#, fuzzy
 msgid "Table_t"
-msgstr ""
+msgstr "Table_t"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 #, fuzzy
@@ -998,7 +996,7 @@ msgstr "Die Höchstdauer in Millisekunden zwischen zwei Mausklicks, sodass sie n
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Two-_finger scrolling"
-msgstr ""
+msgstr "Bildlauf mit zwei _Fingern"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "When selected, the scroll wheel will work in the opposite direction"
@@ -1024,11 +1022,11 @@ msgstr "_Geräte"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "_Enable this device"
-msgstr ""
+msgstr "Di_eses Gerät einschalten"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "_General"
-msgstr ""
+msgstr "All_gemein"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 #, fuzzy
@@ -1036,18 +1034,17 @@ msgid "_Left-handed"
 msgstr "_Linkshändig"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
-#, fuzzy
 msgid "_Right-handed"
 msgstr "_Rechtshändig"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
-#, fuzzy
 msgid "_Rotation:"
 msgstr "_Drehung:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#, fuzzy
 msgid "_Sensitivity:"
-msgstr ""
+msgstr "_Empfindlichkeit"
 
 #: ../xfce4-settings-editor/main_window.c:157
 msgid "Channel"
@@ -1249,14 +1246,14 @@ msgstr "Zurückschnellende Tasten"
 #: ../xfsettingsd/keyboard-shortcuts.c:244
 #, fuzzy, c-format
 msgid "Failed to launch shortcut \"%s\""
-msgstr "Kann »%s« nicht starten"
+msgstr "Verknüpfung »%s« konnte nicht gestartet werden"
 
-#: ../xfsettingsd/main.c:77
+#: ../xfsettingsd/main.c:78
 #, fuzzy
 msgid "Do not fork to the background"
 msgstr "Im Debugmodus starten (nicht im Hintergrund laufen)"
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Ersetzen laufender XSETTINGS-Dienste erzwingen (falls vorhanden)"
 
