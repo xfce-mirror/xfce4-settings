@@ -456,6 +456,7 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
             }
 
             if(xfce_rc_read_bool_entry(rcfile, "Hidden", FALSE)
+               || xfce_rc_read_bool_entry(rcfile, "NoDisplay", FALSE)
                || xfce_rc_read_bool_entry(rcfile,
                                           "X-XfceSettingsManagerHidden",
                                           FALSE))
