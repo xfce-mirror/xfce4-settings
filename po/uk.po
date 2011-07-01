@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-25 17:35+0000\n"
+"POT-Creation-Date: 2011-07-01 10:13+0000\n"
 "PO-Revision-Date: 2009-01-26 16:20+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -14,8 +14,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -204,7 +204,7 @@ msgstr "ID сокета"
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:76
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Інформація про версію"
@@ -214,7 +214,7 @@ msgstr "Інформація про версію"
 #: ../dialogs/display-settings/main.c:1040
 #: ../dialogs/keyboard-settings/main.c:63
 #: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:147 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Наберіть '%s --help' для використання."
@@ -224,7 +224,7 @@ msgstr "Наберіть '%s --help' для використання."
 #: ../dialogs/display-settings/main.c:1059
 #: ../dialogs/keyboard-settings/main.c:79
 #: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:163 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "Команда розробників Xfce. Всі права застережено."
 
@@ -233,7 +233,7 @@ msgstr "Команда розробників Xfce. Всі права засте
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:164 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Звіти про помилки для <%s>."
@@ -639,7 +639,7 @@ msgid "Shell Scripts"
 msgstr "Скрипти Shell"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "Appli_cation Shortcuts"
+msgid "A_pplication Shortcuts"
 msgstr "_Ярлики програм"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
@@ -685,60 +685,60 @@ msgid "Repeat _speed:"
 msgstr "Швидк_ість повтору:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Reset to _Defaults"
+msgstr "Відновити _типові"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Select keyboard layout and variant"
 msgstr "Вибрати розкладку клавіатури і варіант розміщення клавіш"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
 msgstr "Показувати бл_имання"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
 msgstr "Визначитись чи розкладки клавіатури будуть контролюватись через діалог властивостей, чи через X сервер"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Визначитись чи потрібне блимання текстового курсору"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Затримка в мілісекундах між послідовним блиманням курсору"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Частота при якій генеруються символи при натисканні"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Час в мілісекундах перед тим як натиснута клавіша почне повторюватись"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Typing Settings"
 msgstr "Параметри вводу"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to _test the settings above:"
 msgstr "Використовуйте це поле для т_естування призначених вище властивостей:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
 msgstr "Коли вибрано, натискання і утримування клавіші імітує той самий символ знову і знову"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Enable key repeat"
 msgstr "Д_озволити повторення клавіш"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Layout"
 msgstr "Розкла_дка"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Repeat delay:"
 msgstr "Затримка по_вторення:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Reset to Defaults"
-msgstr "С_кинути на типові"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -1222,11 +1222,11 @@ msgstr "Спеціальні клавіші"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Неможливо запустити відсилач \"%s\""
 
-#: ../xfsettingsd/main.c:77
+#: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
 msgstr "Не переходити у фоновий режим"
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Замінити запущену службу xsettings (якщо наявна)"
 
@@ -1256,13 +1256,13 @@ msgstr "Налаштувати Вашу стільницю"
 msgid "_Overview"
 msgstr "_Огляд"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:600
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:616
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:601
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:617
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Неможливо запустити \"%s\""
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:663
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
 msgid "Failed to open the documentation"
 msgstr "Невдача при спробі відкрити документацію"
 
@@ -1273,6 +1273,9 @@ msgstr "Графічний менеджер параметрів для Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Менеджер параметрів"
+
+#~ msgid "_Reset to Defaults"
+#~ msgstr "С_кинути на типові"
 
 #~ msgid "Feedback"
 #~ msgstr "Відгук"
