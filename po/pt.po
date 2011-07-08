@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-26 04:12+0000\n"
+"POT-Creation-Date: 2011-07-08 10:13+0000\n"
 "PO-Revision-Date: 2010-11-09 16:14+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "Language-Team: \n"
@@ -206,7 +206,7 @@ msgstr "ID de \"SOCKET\""
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:76
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Informações da versão"
@@ -216,7 +216,7 @@ msgstr "Informações da versão"
 #: ../dialogs/display-settings/main.c:1040
 #: ../dialogs/keyboard-settings/main.c:63
 #: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:147 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Digite \"%s --help\" para informações de utilização"
@@ -226,7 +226,7 @@ msgstr "Digite \"%s --help\" para informações de utilização"
 #: ../dialogs/display-settings/main.c:1059
 #: ../dialogs/keyboard-settings/main.c:79
 #: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:163 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "A equipa de desenvolvimento do Xfce. Todos os direitos reservados."
 
@@ -235,7 +235,7 @@ msgstr "A equipa de desenvolvimento do Xfce. Todos os direitos reservados."
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:164 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Por favor, reporte os erros para <%s>."
@@ -641,8 +641,8 @@ msgid "Shell Scripts"
 msgstr "\"Scripts\" Shell"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "Appli_cation Shortcuts"
-msgstr "Atalhos de apli_cações"
+msgid "A_pplication Shortcuts"
+msgstr "Atalhos de ap_licações"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Be_havior"
@@ -687,60 +687,60 @@ msgid "Repeat _speed:"
 msgstr "_Velocidade da repetição:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Reset to _Defaults"
+msgstr "Repor omis_sões"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Select keyboard layout and variant"
 msgstr "Seleccione a disposição e variantes do teclado"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
 msgstr "_Mostrar intermitência"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
 msgstr "Especifica se a disposição do teclado é controlada por este diálogo de definições ou pelo servidor X"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Especifica se o cursor de texto deve ou não piscar"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "O atraso, em milissegundos, entre intermitências sucessivas de cursor"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "A cadência a que as teclas de atalho são geradas enquanto uma tecla é pressionada"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "O tempo, em milissegundos, antes que uma tecla pressionada inicie a repetição"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Typing Settings"
 msgstr "Definições de digitação"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to _test the settings above:"
 msgstr "Utilize esta área para _testar as definições acima:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
 msgstr "Quando seleccionado, pressionar uma tecla e mantê-la pressionada emite o mesmo carácter eternamente"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Enable key repeat"
 msgstr "_Ligar repetição de tecla"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Layout"
 msgstr "_Disposição"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Repeat delay:"
 msgstr "Atraso de _repetição:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Reset to Defaults"
-msgstr "_Repor omissões"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -1224,11 +1224,11 @@ msgstr "Teclas saltitantes"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Falha ao iniciar o atalho \"%s\""
 
-#: ../xfsettingsd/main.c:77
+#: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
 msgstr "Não enviar para segundo plano"
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Substituir o serviço xsettings em execução (se existente)"
 
@@ -1258,13 +1258,13 @@ msgstr "Personalizar o seu ambiente"
 msgid "_Overview"
 msgstr "_Visão geral"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:600
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:616
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:601
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:617
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Incapaz de iniciar \"%s\""
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:663
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
 msgid "Failed to open the documentation"
 msgstr "Falha ao abrir a documentação"
 
@@ -1275,6 +1275,9 @@ msgstr "Gestor gráfico de definições do Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Gestor de definições"
+
+#~ msgid "_Reset to Defaults"
+#~ msgstr "_Repor omissões"
 
 #~ msgid "Feedback"
 #~ msgstr "Retorno"
