@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-10 04:13+0000\n"
+"POT-Creation-Date: 2011-07-13 22:13+0000\n"
 "PO-Revision-Date: 2010-06-05 17:46+0200\n"
 "Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
 "Language-Team: Croatian <>\n"
@@ -202,7 +202,7 @@ msgstr ""
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:76
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Inforemacija o verziji"
@@ -212,7 +212,7 @@ msgstr "Inforemacija o verziji"
 #: ../dialogs/display-settings/main.c:1040
 #: ../dialogs/keyboard-settings/main.c:63
 #: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:147 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Upiši '%s --help' za upotrebu"
@@ -222,7 +222,7 @@ msgstr "Upiši '%s --help' za upotrebu"
 #: ../dialogs/display-settings/main.c:1059
 #: ../dialogs/keyboard-settings/main.c:79
 #: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:163 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce razvojni tim.Sva prava pridržana."
 
@@ -231,7 +231,7 @@ msgstr "Xfce razvojni tim.Sva prava pridržana."
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:164 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Prijavite probleme u <%s>."
@@ -637,8 +637,8 @@ msgid "Shell Scripts"
 msgstr "Skripte ljuske"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "Appli_cation Shortcuts"
-msgstr "Prečaci progra_ma"
+msgid "A_pplication Shortcuts"
+msgstr "P_rečaci programa"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Be_havior"
@@ -683,60 +683,60 @@ msgid "Repeat _speed:"
 msgstr "Brzina _ponavljanja"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Reset to _Defaults"
+msgstr "Vrati na _zadano"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Select keyboard layout and variant"
 msgstr "Odaberi raspored tipkovnice i inačicu"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Odgoda,u milisekundama,između treptaja pokazivača"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Vrijeme,u milisekundama,preije nego pritisnuta tipka počne ponavljati"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Typing Settings"
 msgstr "Postavke tipkanja"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to _test the settings above:"
 msgstr "Koristite ovo područje za _test gornjih postavki"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Enable key repeat"
 msgstr "_Omogući ponavljanje tipke"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Layout"
 msgstr "_Raspored"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Repeat delay:"
 msgstr "_Odgoda ponavljanja"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Reset to Defaults"
-msgstr "_Vrati na zadano"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -1220,11 +1220,11 @@ msgstr ""
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Neuspješno pokretanje prečaca \"%s\""
 
-#: ../xfsettingsd/main.c:77
+#: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
 msgstr ""
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
 msgstr ""
 
@@ -1254,13 +1254,13 @@ msgstr "Prilagodite vašu radnu površinu"
 msgid "_Overview"
 msgstr "_Pregled"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:600
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:616
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:601
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:617
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Ne mogu pokrenuti \"%s\""
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:663
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
 msgid "Failed to open the documentation"
 msgstr "Neuspjelo otvaranje dokumentacije"
 
@@ -1271,6 +1271,9 @@ msgstr "Grafički upravitelj postavkama za Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Upravitelj postavki"
+
+#~ msgid "_Reset to Defaults"
+#~ msgstr "_Vrati na zadano"
 
 #~ msgid "Mouse"
 #~ msgstr "Miš"
