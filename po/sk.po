@@ -2,12 +2,12 @@
 # Copyright (C) 2009 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 # Tomáš Vadina <kyberdev@gmail.com>, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-11 10:13+0000\n"
+"POT-Creation-Date: 2011-07-18 04:14+0000\n"
 "PO-Revision-Date: 2011-06-11 23:14+0100\n"
 "Last-Translator: Tomáš Vadina <kyberdev@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -191,26 +191,22 @@ msgstr "pixely/s"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:38 ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
 msgstr "Soket správcu nastavení"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:38 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43
-#: ../xfsettingsd/main.c:76
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Informácie o verzii"
@@ -219,10 +215,8 @@ msgstr "Informácie o verzii"
 #: ../dialogs/appearance-settings/main.c:826
 #: ../dialogs/display-settings/main.c:1040
 #: ../dialogs/keyboard-settings/main.c:63
-#: ../dialogs/mouse-settings/main.c:1504
-#: ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:147
-#: ../xfce4-settings-manager/main.c:57
+#: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Informácie o použití získate príkazom '%s --help'"
@@ -231,10 +225,8 @@ msgstr "Informácie o použití získate príkazom '%s --help'"
 #: ../dialogs/appearance-settings/main.c:845
 #: ../dialogs/display-settings/main.c:1059
 #: ../dialogs/keyboard-settings/main.c:79
-#: ../dialogs/mouse-settings/main.c:1523
-#: ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:163
-#: ../xfce4-settings-manager/main.c:70
+#: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "Vývojársky tím Xfce. Všetky práva vyhradené."
 
@@ -242,10 +234,8 @@ msgstr "Vývojársky tím Xfce. Všetky práva vyhradené."
 #: ../dialogs/appearance-settings/main.c:846
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1524
-#: ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:164
-#: ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Prosím, chyby nahláste na <%s>."
@@ -651,7 +641,7 @@ msgid "Shell Scripts"
 msgstr "Shellové skripty"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "Appli_cation Shortcuts"
+msgid "A_pplication Shortcuts"
 msgstr "Použitie _skratiek"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
@@ -697,60 +687,60 @@ msgid "Repeat _speed:"
 msgstr "Rýchlosť _opakovania:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Reset to _Defaults"
+msgstr "Obnoviť pr_edvolené"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Select keyboard layout and variant"
 msgstr "Vyberte rozloženie a variant klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
 msgstr "Zobraziť _blikajúci kurzor"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
 msgstr "Určuje, či sa bude rozloženie klávesnice riadiť nastavením v tomto dialógovom okne alebo nastavením X servera"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Určite, či bude textový kurzor blikať"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Oneskorenie v milisekundách medzi bliknutiami kurzora"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Frekvencia generovania kódov klávesy pri jej trvalom stlačení"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Čas v milisekundách pred začatím opakovania stlačenej klávesy"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Typing Settings"
 msgstr "Nastavenia písania"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to _test the settings above:"
 msgstr "Použi_te túto oblasť pre vyskúšanie nastavení:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
 msgstr "Ak vyberiete túto voľbu, bude sa stlačením a držaním klávesy jej zasielanie neustále opakovať"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Enable key repeat"
 msgstr "Povoliť opakovani_e klávesy"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Layout"
 msgstr "_Rozloženie"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Repeat delay:"
 msgstr "Onesko_renie opakovania:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Reset to Defaults"
-msgstr "Obnoviť pr_edvolené"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -827,8 +817,7 @@ msgid "%g ms"
 msgstr "%g ms"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:372
-#: ../dialogs/mouse-settings/main.c:374
+#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
 #: ../dialogs/mouse-settings/main.c:434
 msgid "Default"
 msgstr "Predvolené"
@@ -1235,11 +1224,11 @@ msgstr "Zdvojené klávesy"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Spustenie skratky \"%s\" zlyhalo"
 
-#: ../xfsettingsd/main.c:77
+#: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
 msgstr "Nepresúvať do pozadia"
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Nahradiť spusteného démona služby xsettings (ak existuje)"
 
@@ -1269,13 +1258,13 @@ msgstr "Prispôsobte si pracovné prostredie"
 msgid "_Overview"
 msgstr "Pre_hľad"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:600
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:616
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:601
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:617
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nie je možné spustiť '%s'"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:663
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
 msgid "Failed to open the documentation"
 msgstr "Nepodarilo sa otvoriť dokumentáciu"
 
@@ -1287,6 +1276,9 @@ msgstr "Grafický správca nastavení pre prostredie Xfce 4"
 msgid "Settings Manager"
 msgstr "Správca nastavení"
 
+#~ msgid "_Reset to Defaults"
+#~ msgstr "Obnoviť pr_edvolené"
+
 #~ msgid "Feedback"
 #~ msgstr "Odozva"
 
@@ -1296,7 +1288,6 @@ msgstr "Správca nastavení"
 #~ msgid "Re_set to Defaults"
 #~ msgstr "_Obnoviť východzie"
 
-#, fuzzy
 #~ msgid "NVIDIA Settings"
 #~ msgstr "Nastavenia"
 
@@ -1325,12 +1316,8 @@ msgstr "Správca nastavení"
 #~ msgid "RandR extension missing on display \"%s\""
 #~ msgstr "Na displeji „%s“ chýba rozšírenie RandR"
 
-#~ msgid ""
-#~ "The Resize and Rotate extension (RandR) is not enabled on this display. "
-#~ "Try to enable it and run the dialog again."
-#~ msgstr ""
-#~ "Rozšírenie pre rotáciu a zmenu veľkosti (RandR) nie je na tomto displeji "
-#~ "povolené. Povolte ho a znovu spustite dialógové okno."
+#~ msgid "The Resize and Rotate extension (RandR) is not enabled on this display. Try to enable it and run the dialog again."
+#~ msgstr "Rozšírenie pre rotáciu a zmenu veľkosti (RandR) nie je na tomto displeji povolené. Povolte ho a znovu spustite dialógové okno."
 
 #~ msgid "Failed to use the RandR extension"
 #~ msgstr "Použitie rozšírenia RandR zlyhalo"
