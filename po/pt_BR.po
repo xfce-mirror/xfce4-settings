@@ -6,12 +6,12 @@
 # Henrique P Machado <zehrique@gmail.com>, 2008.
 # Og Maciel <ogmaciel@gnome.org>, 2008 - 2010.
 # Sérgio Cipolla <secipolla@gmail.com>, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-26 10:12+0000\n"
+"POT-Creation-Date: 2011-07-20 10:13+0000\n"
 "PO-Revision-Date: 2011-05-26 11:36-0300\n"
 "Last-Translator: Sérgio Cipolla <secipolla@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -194,26 +194,22 @@ msgstr "px/s"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:38 ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
 msgstr "Socket do gerenciador de configurações"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:38 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43
-#: ../xfsettingsd/main.c:76
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Informações da versão"
@@ -222,10 +218,8 @@ msgstr "Informações da versão"
 #: ../dialogs/appearance-settings/main.c:826
 #: ../dialogs/display-settings/main.c:1040
 #: ../dialogs/keyboard-settings/main.c:63
-#: ../dialogs/mouse-settings/main.c:1504
-#: ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:147
-#: ../xfce4-settings-manager/main.c:57
+#: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Digite \"%s --help\" para informações de uso."
@@ -234,10 +228,8 @@ msgstr "Digite \"%s --help\" para informações de uso."
 #: ../dialogs/appearance-settings/main.c:845
 #: ../dialogs/display-settings/main.c:1059
 #: ../dialogs/keyboard-settings/main.c:79
-#: ../dialogs/mouse-settings/main.c:1523
-#: ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:163
-#: ../xfce4-settings-manager/main.c:70
+#: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "A equipe de desenvolvimento do Xfce. Todos os direitos reservados."
 
@@ -245,10 +237,8 @@ msgstr "A equipe de desenvolvimento do Xfce. Todos os direitos reservados."
 #: ../dialogs/appearance-settings/main.c:846
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1524
-#: ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:164
-#: ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Por favor relate os erros para <%s>."
@@ -654,7 +644,7 @@ msgid "Shell Scripts"
 msgstr "Scripts em Shell"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "Appli_cation Shortcuts"
+msgid "A_pplication Shortcuts"
 msgstr "Atalhos de apli_cativos"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
@@ -700,60 +690,60 @@ msgid "Repeat _speed:"
 msgstr "_Velocidade de repetição:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Reset to _Defaults"
+msgstr "Restaurar para o _padrão"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Select keyboard layout and variant"
 msgstr "Selecionar disposição do teclado e variantes"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
 msgstr "Mostrar in_termitência"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
 msgstr "Especifica se a disposição do teclado é controlada através deste diálogo de configuração ou pelo servidor X"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Especifica se o cursor de texto deve ou não piscar"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "O tempo em milissegundos entre piscadas sucessivas do cursor"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "A taxa na qual os toques na tecla são gerados enquanto uma tecla é pressionada"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "O tempo em milissegundos antes que uma tecla pressionada inicie a repetição"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Typing Settings"
 msgstr "Configurações de digitação"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to _test the settings above:"
 msgstr "Use esta área para _testar as configurações acima:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
 msgstr "Quando selecionado, pressionar uma tecla e mantê-la pressionada emite o mesmo caractere novamente"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Enable key repeat"
 msgstr "_Habilitar repetição de tecla"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Layout"
 msgstr "_Disposição"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Repeat delay:"
 msgstr "Atraso de _repetição:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Reset to Defaults"
-msgstr "Restaurar _padrões"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -830,8 +820,7 @@ msgid "%g ms"
 msgstr "%g ms"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:372
-#: ../dialogs/mouse-settings/main.c:374
+#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
 #: ../dialogs/mouse-settings/main.c:434
 msgid "Default"
 msgstr "Padrão"
@@ -1238,11 +1227,11 @@ msgstr "Teclas de repercussão"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Falhou ao inicar a execução do atalho \"%s\""
 
-#: ../xfsettingsd/main.c:77
+#: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
 msgstr "Não bifurcar para o segundo plano"
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Substituir o daemon xsettings em execução (se houver algum)"
 
@@ -1272,13 +1261,13 @@ msgstr "Personalize o seu ambiente Xfce"
 msgid "_Overview"
 msgstr "_Visão Geral"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:600
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:616
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:601
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:617
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Não foi possível iniciar \"%s\""
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:663
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
 msgid "Failed to open the documentation"
 msgstr "Falha ao abrir a documentação"
 
@@ -1289,6 +1278,9 @@ msgstr "Gerenciador de Configurações Gráficas do Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Gerenciador de Configurações"
+
+#~ msgid "_Reset to Defaults"
+#~ msgstr "Restaurar _padrões"
 
 #~ msgid "Feedback"
 #~ msgstr "Resposta"
@@ -1310,8 +1302,7 @@ msgstr "Gerenciador de Configurações"
 #~ "Try %s --help to see a full list of available command line options.\n"
 #~ msgstr ""
 #~ "%s: %s\n"
-#~ "Tente %s --help para ver uma lista completa dos comandos de linha de "
-#~ "comando disponíveis.\n"
+#~ "Tente %s --help para ver uma lista completa dos comandos de linha de comando disponíveis.\n"
 
 #~ msgid "Active"
 #~ msgstr "Ativo"
@@ -1331,12 +1322,8 @@ msgstr "Gerenciador de Configurações"
 #~ msgid "RandR extension missing on display \"%s\""
 #~ msgstr "Extensão do RandR não encontrada no monitor \"%s\""
 
-#~ msgid ""
-#~ "The Resize and Rotate extension (RandR) is not enabled on this display. "
-#~ "Try to enable it and run the dialog again."
-#~ msgstr ""
-#~ "A extensão Redimensionar e Rotacionar (RandR) não está habilitada neste "
-#~ "monitor. Tente habilitá-la e execute o diálogo novamente."
+#~ msgid "The Resize and Rotate extension (RandR) is not enabled on this display. Try to enable it and run the dialog again."
+#~ msgstr "A extensão Redimensionar e Rotacionar (RandR) não está habilitada neste monitor. Tente habilitá-la e execute o diálogo novamente."
 
 #~ msgid "Failed to use the RandR extension"
 #~ msgstr "Falha ao usar a extensão RandR"
@@ -1348,8 +1335,7 @@ msgstr "Gerenciador de Configurações"
 #~ msgstr "Segundo monitor digital"
 
 #~ msgid "Property \"<b>%s</b>\" cannot be reset because it is locked"
-#~ msgstr ""
-#~ "A propriedade \"<b>%s</b>\" não pode ser reiniciada porque está bloqueada"
+#~ msgstr "A propriedade \"<b>%s</b>\" não pode ser reiniciada porque está bloqueada"
 
 #~ msgid "<b>Bounce Keys</b>"
 #~ msgstr "<b>Teclas de repercussão</b>"
@@ -1429,42 +1415,20 @@ msgstr "Gerenciador de Configurações"
 #~ msgid "D_ebounce time:"
 #~ msgstr "Tempo d_e repercussão:"
 
-#~ msgid ""
-#~ "The amount of time you have to wait before keystrokes are accepted again, "
-#~ "in milliseconds"
-#~ msgstr ""
-#~ "O período que você tem que aguardar antes dos atalhos de teclado serem "
-#~ "aceitos novamente, em milissegundos"
+#~ msgid "The amount of time you have to wait before keystrokes are accepted again, in milliseconds"
+#~ msgstr "O período que você tem que aguardar antes dos atalhos de teclado serem aceitos novamente, em milissegundos"
 
-#~ msgid ""
-#~ "When enabled, the Shift, Ctrl and Alt keys stay \"selected\" until you "
-#~ "press them again"
-#~ msgstr ""
-#~ "Quando habilitado, as teclas Shift, Ctrl e Alt ficam \"selecionadas\" até "
-#~ "você pressioná-las novamente"
+#~ msgid "When enabled, the Shift, Ctrl and Alt keys stay \"selected\" until you press them again"
+#~ msgstr "Quando habilitado, as teclas Shift, Ctrl e Alt ficam \"selecionadas\" até você pressioná-las novamente"
 
-#~ msgid ""
-#~ "When enabled, you can press and release the Shift, Ctrl and Alt keys, and "
-#~ "then press another key to get a key combo"
-#~ msgstr ""
-#~ "Quando habilitado, você pode pressionar e liberar as teclas Shift, Ctrl e "
-#~ "Alt, e então pressionar outra tecla para obter uma combinação de teclas"
+#~ msgid "When enabled, you can press and release the Shift, Ctrl and Alt keys, and then press another key to get a key combo"
+#~ msgstr "Quando habilitado, você pode pressionar e liberar as teclas Shift, Ctrl e Alt, e então pressionar outra tecla para obter uma combinação de teclas"
 
-#~ msgid ""
-#~ "When enabled, you must hold the key for a specific amount of time before "
-#~ "the keystroke will be accepted. This helps prevent accidental key strokes"
-#~ msgstr ""
-#~ "Quando habilitado, você deve segurar a tecla por um período específico "
-#~ "antes que o atalho de teclado seja aceito. Isto ajuda a prevenir atalhos "
-#~ "de teclado acidentais"
+#~ msgid "When enabled, you must hold the key for a specific amount of time before the keystroke will be accepted. This helps prevent accidental key strokes"
+#~ msgstr "Quando habilitado, você deve segurar a tecla por um período específico antes que o atalho de teclado seja aceito. Isto ajuda a prevenir atalhos de teclado acidentais"
 
-#~ msgid ""
-#~ "When enabled, you must wait a specific amount of time before the next "
-#~ "keystroke can be accepted. This prevents accidental multiple key strokes"
-#~ msgstr ""
-#~ "Quando habilitado, você deve aguardar um período antes que o próximo "
-#~ "atalho de teclado seja aceito. Isto previne múltiplos atalhos de teclado "
-#~ "acidentais"
+#~ msgid "When enabled, you must wait a specific amount of time before the next keystroke can be accepted. This prevents accidental multiple key strokes"
+#~ msgstr "Quando habilitado, você deve aguardar um período antes que o próximo atalho de teclado seja aceito. Isto previne múltiplos atalhos de teclado acidentais"
 
 #~ msgid "Xfce 4 Accessibility Settings"
 #~ msgstr "Configurações de Acessibilidade do Xfce 4"
@@ -1473,16 +1437,10 @@ msgstr "Gerenciador de Configurações"
 #~ msgstr "Configurações da Aparência"
 
 #~ msgid "Enable or disable input feedback sounds (i.e. button clicks)"
-#~ msgstr ""
-#~ "Habilitar ou desabilitar sons de feedback de entrada (i.e. cliques de "
-#~ "botão)"
+#~ msgstr "Habilitar ou desabilitar sons de feedback de entrada (i.e. cliques de botão)"
 
-#~ msgid ""
-#~ "Whether menu accelerators can be changed by pressing a key over the menu "
-#~ "item"
-#~ msgstr ""
-#~ "Os aceleradores de menu podem ser alterados ao pressionar uma tecla pelo "
-#~ "item de menu"
+#~ msgid "Whether menu accelerators can be changed by pressing a key over the menu item"
+#~ msgstr "Os aceleradores de menu podem ser alterados ao pressionar uma tecla pelo item de menu"
 
 #~ msgid "Xfce 4 Appearance Settings"
 #~ msgstr "Configurações da Aparência do Xfce 4"
@@ -1508,12 +1466,8 @@ msgstr "Gerenciador de Configurações"
 #~ msgid "Re_set to default"
 #~ msgstr "Re_staurar padrões"
 
-#~ msgid ""
-#~ "The pointer will go 'acceleration' times as fast when it travels more "
-#~ "than 'threshold' pixels in a short time"
-#~ msgstr ""
-#~ "O ponteiro acelerará tantas vezes mais rápido quando percorrer mais que o "
-#~ "limiar de pixels em um tempo curto"
+#~ msgid "The pointer will go 'acceleration' times as fast when it travels more than 'threshold' pixels in a short time"
+#~ msgstr "O ponteiro acelerará tantas vezes mais rápido quando percorrer mais que o limiar de pixels em um tempo curto"
 
 #~ msgid "_Threshold:"
 #~ msgstr "_Limiar:"
@@ -1521,12 +1475,8 @@ msgstr "Gerenciador de Configurações"
 #~ msgid "Xfce 4 Mouse Settings"
 #~ msgstr "Configurações de Mouse do Xfce 4"
 
-#~ msgid ""
-#~ "This shortcut is already being used by <b>another window manager action</"
-#~ "b>. Which action do you want to use?"
-#~ msgstr ""
-#~ "Este atalho já está em uso por <b>outra ação do gerenciador de janela</"
-#~ "b>. Qual ação você deseja usar?"
+#~ msgid "This shortcut is already being used by <b>another window manager action</b>. Which action do you want to use?"
+#~ msgstr "Este atalho já está em uso por <b>outra ação do gerenciador de janela</b>. Qual ação você deseja usar?"
 
 #~ msgid "Use %s"
 #~ msgstr "Usar %s"
@@ -1534,22 +1484,14 @@ msgstr "Gerenciador de Configurações"
 #~ msgid "Keep the other one"
 #~ msgstr "Manter o outro"
 
-#~ msgid ""
-#~ "The shortcut is already being used for the command <b>%s</b>. Which "
-#~ "action do you want to use?"
-#~ msgstr ""
-#~ "O atalho já está em uso pelo comando <b>%s</b>. Qual ação você deseja "
-#~ "usar?"
+#~ msgid "The shortcut is already being used for the command <b>%s</b>. Which action do you want to use?"
+#~ msgstr "O atalho já está em uso pelo comando <b>%s</b>. Qual ação você deseja usar?"
 
 #~ msgid "Keep %s"
 #~ msgstr "Manter %s"
 
-#~ msgid ""
-#~ "The shortcut is already being used by a <b>window manager action</b>. "
-#~ "Which action do you want to use?"
-#~ msgstr ""
-#~ "O atalho já está em uso por uma <b>ação do gerenciador de janelas</b>. "
-#~ "Qual ação você deseja usar?"
+#~ msgid "The shortcut is already being used by a <b>window manager action</b>. Which action do you want to use?"
+#~ msgstr "O atalho já está em uso por uma <b>ação do gerenciador de janelas</b>. Qual ação você deseja usar?"
 
 #~ msgid "Conflicting actions for %s"
 #~ msgstr "Ações em conflito para %s"
@@ -1641,8 +1583,7 @@ msgstr "Gerenciador de Configurações"
 #~ msgstr "Tema de ícones"
 
 #~ msgid "Please select the UI-theme you want to use"
-#~ msgstr ""
-#~ "Por favor selecione o tema da interface de usuário que deseja utilizar"
+#~ msgstr "Por favor selecione o tema da interface de usuário que deseja utilizar"
 
 #~ msgid "Please select the icon-theme you want to use:"
 #~ msgstr "Por favor selecione o tema de ícones que deseja utiliza:"
