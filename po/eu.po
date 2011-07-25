@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-02 16:12+0000\n"
+"POT-Creation-Date: 2011-07-25 10:13+0000\n"
 "PO-Revision-Date: 2010-02-10 22:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: Basque <kde-i18n-doc@kde.org>\n"
@@ -202,7 +202,7 @@ msgstr "SOCKET IDa"
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:76
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Bertsio argibideak"
@@ -212,7 +212,7 @@ msgstr "Bertsio argibideak"
 #: ../dialogs/display-settings/main.c:1040
 #: ../dialogs/keyboard-settings/main.c:63
 #: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:147 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Idatzi '%s --help' erabilerarentzat."
@@ -222,7 +222,7 @@ msgstr "Idatzi '%s --help' erabilerarentzat."
 #: ../dialogs/display-settings/main.c:1059
 #: ../dialogs/keyboard-settings/main.c:79
 #: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:163 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce garapen taldea. Eskubide guztiak erreserbatuta."
 
@@ -231,7 +231,7 @@ msgstr "Xfce garapen taldea. Eskubide guztiak erreserbatuta."
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:164 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Programa-erroreen berri eman <%s>-ra."
@@ -637,8 +637,8 @@ msgid "Shell Scripts"
 msgstr "Shell script-ak"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "Appli_cation Shortcuts"
-msgstr "Apli_kazio lasterbideak"
+msgid "A_pplication Shortcuts"
+msgstr "A_plikazio lasterbideak"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Be_havior"
@@ -683,60 +683,60 @@ msgid "Repeat _speed:"
 msgstr "Errepikatze _abiadura :"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Reset to _Defaults"
+msgstr "Berrezarri lehenetsia_n"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Select keyboard layout and variant"
 msgstr "Hautatu teklatu ingurune eta aldagaia"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
 msgstr "Ikusi _keinuak"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
 msgstr "Zehaztu teklatu ingurunea ezarpen kudeatzailearen bidez edo X zerbitzariaren bidez kudeatuko den"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Hautatu kurtsoreak keinu egien duen ala ez"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Denbora, milisegundutan, kurtsorearen jarraituko keinuen artean"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Tekla bat sakatzean tekla-sakatzeak sortuko diren tasa"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Denbora, milisegundotan, tekla sakatua egotean errepikatzen hasteko"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Typing Settings"
 msgstr "Idazte ezarpenak"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to _test the settings above:"
 msgstr "Erabili eremu hau aurreko ezarpenak proba_tzeko:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
 msgstr "Hautaturik dagoenean, tekla bat sakatu eta mantenduaz karaktere berdina behin eta berriz sortuko du"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Enable key repeat"
 msgstr "_Gaitu tekla errepikatzea"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Layout"
 msgstr "_Diseinua"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Repeat delay:"
 msgstr "_Errepikatze atzerapena:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Reset to Defaults"
-msgstr "_Berrezarri lehenespenak"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -966,7 +966,7 @@ msgstr "De_nbora:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Tr_acking mode:"
-msgstr ""
+msgstr "S_egimendu modua:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click"
@@ -1220,11 +1220,11 @@ msgstr "Tekla errepikapena"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Huts \"%s\" laster-marka abiaraztean."
 
-#: ../xfsettingsd/main.c:77
+#: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
 msgstr "Hasi arazpen moduan (ez pasa atzeko-planora)"
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Ordeztu martxan dagoen xsettings deabrua (balego)"
 
@@ -1254,13 +1254,13 @@ msgstr "Pertsonalizatu zure mahaigaina"
 msgid "_Overview"
 msgstr "_Ikuspegi orokorra"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:600
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:616
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:601
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:617
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Ezin da\"%s\" abiarazi"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:663
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
 msgid "Failed to open the documentation"
 msgstr "Huts dokumentazioa irekitzean"
 
@@ -1271,6 +1271,9 @@ msgstr "Xfce 4 ezarpen kudeatzaile grafikoa"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Ezarpen kudeatzailea"
+
+#~ msgid "_Reset to Defaults"
+#~ msgstr "_Berrezarri lehenespenak"
 
 #~ msgid "Feedback"
 #~ msgstr "Berrelikadura"
