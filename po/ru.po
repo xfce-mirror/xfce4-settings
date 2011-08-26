@@ -7,19 +7,19 @@
 # Dmitrij Smirnov <other@igus.lv>, 2011.
 # Alexandr Boltris <alex@altlinux.org>, 2011.
 # Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-23 10:37+0000\n"
+"POT-Creation-Date: 2011-08-26 10:40+0000\n"
 "PO-Revision-Date: 2011-08-23 15:41+0300\n"
 "Last-Translator: Artem Zolochevskiy <artem.zolochevskiy@gmail.com>\n"
 "Language-Team: Russian\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
@@ -170,28 +170,23 @@ msgstr "пикселей/с"
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:100
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "Сокет диспетчера настроек"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:100
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "ID сокета"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
 #: ../dialogs/display-settings/main.c:104
-#: ../dialogs/keyboard-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43
-#: ../xfce4-settings-helper/main.c:74
-#: ../xfce4-settings-manager/main.c:40
-#: ../xfsettingsd/main.c:52
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
+#: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Информация о версии"
 
@@ -199,10 +194,8 @@ msgstr "Информация о версии"
 #: ../dialogs/appearance-settings/main.c:827
 #: ../dialogs/display-settings/main.c:1041
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1187
-#: ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:160
-#: ../xfce4-settings-manager/main.c:58
+#: ../dialogs/mouse-settings/main.c:1187 ../xfce4-settings-editor/main.c:63
+#: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Наберите '%s --help' для информации об использовании."
@@ -211,10 +204,8 @@ msgstr "Наберите '%s --help' для информации об испол
 #: ../dialogs/appearance-settings/main.c:846
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1206
-#: ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:176
-#: ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:82
+#: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "Команда разработчиков Xfce. Все права защищены."
 
@@ -222,10 +213,8 @@ msgstr "Команда разработчиков Xfce. Все права защ
 #: ../dialogs/appearance-settings/main.c:847
 #: ../dialogs/display-settings/main.c:1061
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1207
-#: ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:177
-#: ../xfce4-settings-manager/main.c:72
+#: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:83
+#: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Об ошибках сообщайте на <%s>."
@@ -437,7 +426,7 @@ msgstr "Восстановить предыдущие настройки"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid "The previous configuration will be restored in 10 seconds if you do not reply to this question."
-msgstr "Предыдущие настройки будут восстановлены через 10 секунд если вы не ответите на этот вопрос. "
+msgstr "Предыдущие настройки будут восстановлены через 10 секунд если вы не ответите на этот вопрос."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -516,7 +505,7 @@ msgstr "Минимальный интерфейс для настройки вн
 #: ../dialogs/display-settings/main.c:172
 #, c-format
 msgid "The previous configuration will be restored in %i seconds if you do not reply to this question."
-msgstr "Предыдущие настройки будут восстановлены через %i сек. если вы не ответите на этот вопрос. "
+msgstr "Предыдущие настройки будут восстановлены через %i сек. если вы не ответите на этот вопрос."
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:506
@@ -795,8 +784,7 @@ msgid "DEVICE NAME"
 msgstr "ИМЯ УСТРОЙСТВА"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:355
-#: ../dialogs/mouse-settings/main.c:357
+#: ../dialogs/mouse-settings/main.c:355 ../dialogs/mouse-settings/main.c:357
 #: ../dialogs/mouse-settings/main.c:417
 msgid "Default"
 msgstr "Стандартный"
@@ -986,7 +974,7 @@ msgstr "_Сбросить"
 
 #: ../xfce4-settings-editor/main_window.c:1075
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr "Возврат значения канала к первоначальному состоянию немедленно удалит его текущие настройки. "
+msgstr "Возврат значения канала к первоначальному состоянию немедленно удалит его текущие настройки."
 
 #: ../xfce4-settings-editor/main_window.c:1076
 #, c-format
@@ -1106,8 +1094,7 @@ msgstr "«Прыгающие» клавиши выключены"
 msgid "Bounce keys"
 msgstr "«Прыгающие» клавиши"
 
-#: ../xfce4-settings-helper/main.c:75
-#: ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:75 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Запустить в режиме отладки (не переходить в фоновый режим)"
 
