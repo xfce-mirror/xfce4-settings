@@ -7,12 +7,12 @@
 # Dmitrij Smirnov <other@igus.lv>, 2011.
 # Alexandr Boltris <alex@altlinux.org>, 2011.
 # Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-17 10:14+0000\n"
+"POT-Creation-Date: 2011-08-26 04:14+0000\n"
 "PO-Revision-Date: 2011-08-23 14:43+0300\n"
 "Last-Translator: Artem Zolochevskiy <artem.zolochevskiy@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -194,26 +194,22 @@ msgstr "пикселей/с"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:38 ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
 msgstr "Сокет диспетчера настроек"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:86
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:38 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
 msgstr "ID сокета"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43
-#: ../xfsettingsd/main.c:77
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Информация о версии"
@@ -222,10 +218,8 @@ msgstr "Информация о версии"
 #: ../dialogs/appearance-settings/main.c:826
 #: ../dialogs/display-settings/main.c:1040
 #: ../dialogs/keyboard-settings/main.c:63
-#: ../dialogs/mouse-settings/main.c:1504
-#: ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173
-#: ../xfce4-settings-manager/main.c:57
+#: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Наберите '%s --help' для информации об использовании."
@@ -234,10 +228,8 @@ msgstr "Наберите '%s --help' для информации об испол
 #: ../dialogs/appearance-settings/main.c:845
 #: ../dialogs/display-settings/main.c:1059
 #: ../dialogs/keyboard-settings/main.c:79
-#: ../dialogs/mouse-settings/main.c:1523
-#: ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189
-#: ../xfce4-settings-manager/main.c:70
+#: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "Команда разработчиков Xfce. Все права защищены."
 
@@ -245,10 +237,8 @@ msgstr "Команда разработчиков Xfce. Все права защ
 #: ../dialogs/appearance-settings/main.c:846
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1524
-#: ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190
-#: ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Об ошибках сообщайте на <%s>."
@@ -460,7 +450,7 @@ msgstr "Восстановить предыдущие настройки"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid "The previous configuration will be restored in 10 seconds if you do not reply to this question."
-msgstr "Предыдущие настройки будут восстановлены через 10 секунд если вы не ответите на этот вопрос. "
+msgstr "Предыдущие настройки будут восстановлены через 10 секунд если вы не ответите на этот вопрос."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -539,7 +529,7 @@ msgstr "Минимальный интерфейс для настройки вн
 #: ../dialogs/display-settings/main.c:171
 #, c-format
 msgid "The previous configuration will be restored in %i seconds if you do not reply to this question."
-msgstr "Предыдущие настройки будут восстановлены через %i сек. если вы не ответите на этот вопрос. "
+msgstr "Предыдущие настройки будут восстановлены через %i сек. если вы не ответите на этот вопрос."
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:505
@@ -830,8 +820,7 @@ msgid "%g ms"
 msgstr "%g мс"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:372
-#: ../dialogs/mouse-settings/main.c:374
+#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
 #: ../dialogs/mouse-settings/main.c:434
 msgid "Default"
 msgstr "Стандартный"
@@ -1113,7 +1102,7 @@ msgstr "_Сбросить"
 
 #: ../xfce4-settings-editor/main_window.c:1079
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr "Возврат значения канала к первоначальному состоянию немедленно удалит его текущие настройки. "
+msgstr "Возврат значения канала к первоначальному состоянию немедленно удалит его текущие настройки."
 
 #: ../xfce4-settings-editor/main_window.c:1080
 #, c-format
