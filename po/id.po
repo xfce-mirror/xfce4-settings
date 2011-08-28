@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-02 04:13+0000\n"
+"POT-Creation-Date: 2011-08-28 10:13+0000\n"
 "PO-Revision-Date: 2010-06-26 09:43-0400\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
@@ -203,7 +203,7 @@ msgstr "ID SOKET"
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:76
+#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Informasi versi"
@@ -213,7 +213,7 @@ msgstr "Informasi versi"
 #: ../dialogs/display-settings/main.c:1040
 #: ../dialogs/keyboard-settings/main.c:63
 #: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:147 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Ketikkan '%s --help' untuk bantuan."
@@ -223,7 +223,7 @@ msgstr "Ketikkan '%s --help' untuk bantuan."
 #: ../dialogs/display-settings/main.c:1059
 #: ../dialogs/keyboard-settings/main.c:79
 #: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:163 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "Tim pengembang Xfce. Hak cipta dilindungi undang-undang."
 
@@ -232,7 +232,7 @@ msgstr "Tim pengembang Xfce. Hak cipta dilindungi undang-undang."
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
 #: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:164 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Silakan laporkan kutu ke <%s>."
@@ -638,8 +638,8 @@ msgid "Shell Scripts"
 msgstr "Skrip Shell"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "Appli_cation Shortcuts"
-msgstr "Ja_lan Pintas Aplikasi"
+msgid "A_pplication Shortcuts"
+msgstr "Jalan _Pintas Aplikasi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Be_havior"
@@ -684,60 +684,60 @@ msgid "Repeat _speed:"
 msgstr "Kecepatan _pengulangan"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Reset to _Defaults"
+msgstr "Set Ulang ke Stan_dar"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Select keyboard layout and variant"
 msgstr "Pilih tata letak dan jenis papan ketik"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
 msgstr "Tampilkan _kedipan"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
 msgstr "Tentukan apakah tata letak papan ketik dikendalikan oleh dialog pengaturan ini, atau oleh server X"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Tentukan apakah kursor teks berkedip atau tidak"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Jeda, dalam milidetik, antara kedipan kursor berturut-turut"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Kecepatan penekanan tombol yang dihasilkan ketika tombol ditekan"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Waktu, dalam milidetik, sebelum kunci yang ditekan mulai mengulang"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Typing Settings"
 msgstr "Pengaturan Pengetikan"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to _test the settings above:"
 msgstr "Gunakan area ini untuk _mengetes pengaturan di atas:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
 msgstr "Ketika terpilih, menekan dan menahan tombol akan memancarkan karakter yang sama berulang kali"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Enable key repeat"
 msgstr "_Aktifkan pengulangan kunci"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Layout"
 msgstr "_Tata letak"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Repeat delay:"
 msgstr "_Jeda pengulangan:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Reset to Defaults"
-msgstr "Set U_lang ke Standar"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
@@ -1221,11 +1221,11 @@ msgstr "Tombol pantul"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Gagal menjalankan jalan pintas \"%s\""
 
-#: ../xfsettingsd/main.c:77
+#: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
 msgstr "Jangan cabangkan di latar belakang"
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Ganti jurik xsettings yang berjalan (jika ada)"
 
@@ -1255,13 +1255,13 @@ msgstr "Sesuaikan desktop anda"
 msgid "_Overview"
 msgstr "_Ringkasan"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:600
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:616
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:601
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:617
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Tak dapat menjalankan \"%s\""
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:663
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
 msgid "Failed to open the documentation"
 msgstr "Gagal membuka dokumentasi"
 
@@ -1272,6 +1272,9 @@ msgstr "Manajer Pengaturan Grafis untuk Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Manajer Pengaturan"
+
+#~ msgid "_Reset to Defaults"
+#~ msgstr "Set U_lang ke Standar"
 
 #~ msgid "Feedback"
 #~ msgstr "Umpan Balik"
