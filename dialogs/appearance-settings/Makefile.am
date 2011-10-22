@@ -5,6 +5,7 @@ INCLUDES = \
 	-DDATADIR=\"$(datadir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
+	-DHELPERDIR=\"$(HELPER_PATH_PREFIX)/xfce4/settings\" \
 	-DG_LOG_DOMAIN=\"xfce4-appearance-settings\" \
 	$(PLATFORM_CPPFLAGS)
 
@@ -31,6 +32,9 @@ xfce4_appearance_settings_LDADD = \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS)
 
+xfce4_appearance_scriptsdir = $(HELPER_PATH_PREFIX)/xfce4/settings
+xfce4_appearance_scripts_SCRIPTS = appearance-install-theme
+
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
@@ -49,6 +53,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
+	appearance-install-theme \
 	appearance-dialog.glade
 
 DISTCLEANFILES = \

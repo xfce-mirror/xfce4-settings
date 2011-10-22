@@ -63,7 +63,7 @@ AC_PROG_LIBTOOL()
 dnl **********************************
 dnl *** Check for standard headers ***
 dnl **********************************
-AC_CHECK_HEADERS([errno.h memory.h math.h stdlib.h string.h unistd.h signal.h time.h sys/types.h])
+AC_CHECK_HEADERS([errno.h memory.h math.h stdlib.h string.h unistd.h signal.h time.h sys/types.h sys/wait.h])
 AC_CHECK_FUNCS([daemon setsid])
 
 dnl ******************************
@@ -181,6 +181,16 @@ if test x"$enable_sound_settings" = x"yes"; then
   ENABLE_SOUND_SETTINGS=1
 fi
 AC_SUBST(ENABLE_SOUND_SETTINGS)
+
+dnl ******************************
+dnl *** Set helper path prefix ***
+dnl ******************************
+AC_ARG_WITH([helper-path-prefix],
+            [AC_HELP_STRING([--with-helper-path-prefix=PATH],
+                            [Path prefix under which helper executables will be installed (default: $libdir)])],
+            [HELPER_PATH_PREFIX="$withval"],
+            [HELPER_PATH_PREFIX="$libdir"])
+AC_SUBST([HELPER_PATH_PREFIX])
 
 dnl ***********************************
 dnl *** Check for debugging support ***

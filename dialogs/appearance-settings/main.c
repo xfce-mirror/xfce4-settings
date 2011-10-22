@@ -27,6 +27,9 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#endif
 
 #include <glib.h>
 #include <gtk/gtk.h>
@@ -76,6 +79,11 @@ static const gchar* xft_hint_styles_array[] =
 static const gchar* xft_rgba_array[] =
 {
     "none", "rgb", "bgr", "vrgb", "vbgr"
+};
+
+static const GtkTargetEntry theme_drop_targets[] =
+{
+  { "text/uri-list", 0, 0 }
 };
 
 /* Option entries */
@@ -669,6 +677,67 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
 }
 
 static void
+cb_theme_uri_dropped (GtkWidget        *widget,
+                      GdkDragContext   *drag_context,
+                      gint              x,
+                      gint              y,
+                      GtkSelectionData *data,
+                      guint             info,
+                      guint             timestamp)
+{
+    gchar     **uris;
+    gchar      *argv[3];
+    guint       i;
+    GError     *error = NULL;
+    gint        status;
+    GtkWidget  *toplevel;
+    gchar      *filename;
+
+    uris = gtk_selection_data_get_uris (data);
+    if (uris != NULL)
+    {
+        argv[0] = HELPERDIR G_DIR_SEPARATOR_S "appearance-install-theme";
+        argv[2] = NULL;
+
+        toplevel = gtk_widget_get_toplevel (widget);
+
+        for (i = 0; uris[i] != NULL; i++)
+        {
+            filename = g_filename_from_uri (uris[i], NULL, NULL);
+            if (filename == NULL)
+                continue;
+
+            argv[1] = filename;
+
+            if (g_spawn_sync (NULL, argv, NULL, 0, NULL, NULL, NULL, NULL, &status, &error)
+                && status > 0)
+            {
+                switch (WEXITSTATUS (status))
+                {
+                    case 1:
+
+                        break;
+
+                    default:
+                        g_set_error_literal (&error, 0, 0, _("An unknown error occured"));
+                        break;
+                }
+            }
+
+            if (error != NULL)
+            {
+                xfce_dialog_show_error (GTK_WINDOW (toplevel), error, _("Failed to install theme"));
+                g_clear_error (&error);
+            }
+
+            g_free (filename);
+        }
+
+        g_strfreev (uris);
+    }
+}
+
+static void
 appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 {
     GObject          *object, *object2;
@@ -696,6 +765,11 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_icon_theme_tree_selection_changed), NULL);
 
+    gtk_drag_dest_set (GTK_WIDGET (object), GTK_DEST_DEFAULT_ALL,
+                       theme_drop_targets, G_N_ELEMENTS (theme_drop_targets),
+                       GDK_ACTION_COPY);
+    g_signal_connect (G_OBJECT (object), "drag-data-received", G_CALLBACK (cb_theme_uri_dropped), NULL);
+
     /* Gtk (UI) themes */
     object = gtk_builder_get_object (builder, "gtk_theme_treeview");
 
@@ -714,6 +788,11 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (object));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_ui_theme_tree_selection_changed), NULL);
+
+    gtk_drag_dest_set (GTK_WIDGET (object), GTK_DEST_DEFAULT_ALL,
+                       theme_drop_targets, G_N_ELEMENTS (theme_drop_targets),
+                       GDK_ACTION_COPY);
+    g_signal_connect (G_OBJECT (object), "drag-data-received", G_CALLBACK (cb_theme_uri_dropped), NULL);
 
     /* Subpixel (rgba) hinting Combo */
     object = gtk_builder_get_object (builder, "xft_rgba_store");
