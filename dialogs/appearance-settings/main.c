@@ -690,51 +690,79 @@ cb_theme_uri_dropped (GtkWidget        *widget,
     guint       i;
     GError     *error = NULL;
     gint        status;
-    GtkWidget  *toplevel;
+    GtkWidget  *toplevel = gtk_widget_get_toplevel (widget);
     gchar      *filename;
+    GdkCursor  *cursor;
+    GdkWindow  *gdkwindow;
 
     uris = gtk_selection_data_get_uris (data);
-    if (uris != NULL)
+    if (uris == NULL)
+        return;
+
+    argv[0] = HELPERDIR G_DIR_SEPARATOR_S "appearance-install-theme";
+    argv[2] = NULL;
+
+    /* inform the user we are installing the theme */
+    gdkwindow = gtk_widget_get_window (widget);
+    cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget), GDK_WATCH);
+    gdk_window_set_cursor (gdkwindow, cursor);
+
+    /* iterate main loop to show cursor */
+    while (gtk_events_pending ())
+        gtk_main_iteration ();
+
+    for (i = 0; uris[i] != NULL; i++)
     {
-        argv[0] = HELPERDIR G_DIR_SEPARATOR_S "appearance-install-theme";
-        argv[2] = NULL;
+        filename = g_filename_from_uri (uris[i], NULL, NULL);
+        if (filename == NULL)
+            continue;
 
-        toplevel = gtk_widget_get_toplevel (widget);
+        argv[1] = filename;
 
-        for (i = 0; uris[i] != NULL; i++)
+        if (g_spawn_sync (NULL, argv, NULL, 0, NULL, NULL, NULL, NULL, &status, &error)
+            && status > 0)
         {
-            filename = g_filename_from_uri (uris[i], NULL, NULL);
-            if (filename == NULL)
-                continue;
-
-            argv[1] = filename;
-
-            if (g_spawn_sync (NULL, argv, NULL, 0, NULL, NULL, NULL, NULL, &status, &error)
-                && status > 0)
+            switch (WEXITSTATUS (status))
             {
-                switch (WEXITSTATUS (status))
-                {
-                    case 1:
+                case 2:
+                    g_set_error (&error, G_SPAWN_ERROR, 0,
+                        _("File is larger then %d MB, installation aborted"), 50);
+                    break;
 
-                        break;
+                case 3:
+                    g_set_error_literal (&error, G_SPAWN_ERROR, 0,
+                        _("Failed to create temporary directory"));
+                    break;
 
-                    default:
-                        g_set_error_literal (&error, 0, 0, _("An unknown error occured"));
-                        break;
-                }
+                case 4:
+                    g_set_error_literal (&error, G_SPAWN_ERROR, 0,
+                        _("Failed to extract archive"));
+                    break;
+
+                case 5:
+                    g_set_error_literal (&error, G_SPAWN_ERROR, 0,
+                        _("Unknown format, only archives and directories are supported"));
+                    break;
+
+                default:
+                    g_set_error (&error, G_SPAWN_ERROR,
+                        0, _("An unknown error, exit code is %d"), WEXITSTATUS (status));
+                    break;
             }
-
-            if (error != NULL)
-            {
-                xfce_dialog_show_error (GTK_WINDOW (toplevel), error, _("Failed to install theme"));
-                g_clear_error (&error);
-            }
-
-            g_free (filename);
         }
 
-        g_strfreev (uris);
+        if (error != NULL)
+        {
+            xfce_dialog_show_error (GTK_WINDOW (toplevel), error, _("Failed to install theme"));
+            g_clear_error (&error);
+        }
+
+        g_free (filename);
     }
+
+    g_strfreev (uris);
+    gdk_window_set_cursor (gdkwindow, NULL);
+    gdk_cursor_unref (cursor);
 }
 
 static void

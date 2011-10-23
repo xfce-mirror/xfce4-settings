@@ -1,3 +1,108 @@
 #!/bin/sh
+#
+# Copyright (C) 2011 Nick Schermer <nick@xfce.org>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-exit 0
+dndfilename="$1"
+retval=0
+
+installtheme()
+{
+    file="$1"
+    suffix="$2"
+
+    basedir=${file#$tmpdir/}
+    themedir=${basedir%/$suffix}
+    themename=`basename "$themedir"`
+    themetype=`dirname "$suffix"`
+    src="$tmpdir/$themedir/$themetype"
+
+    dest="$HOME/.themes/$themename"
+    if test ! -d "$dest/$themetype"; then
+        # move theme to the users' theme directory
+        mkdir -p "$dest" && mv "$src" "$dest"
+    fi
+}
+
+# leave if no file is provided
+if test -z "$dndfilename" -o -z "$HOME"; then
+    # 1: common error, should never happen
+    exit 1
+fi
+
+# check file size, abort if bigger then 50Mb, only works for files
+if test x"`which stat 2>/dev/null`" != x""; then
+    dndsize=`stat -c %s "$dndfilename"`
+    if test "$dndsize" -gt 52428800; then
+        # 2: File too big
+        exit 2
+    fi
+fi
+
+# provide tempdir to extract the tarball or folder
+# we try $XDG_CACHE_HOME because it is more likely this is on the
+# same partition, so moving the theme after extract is faster
+if test x"`which mktemp 2>/dev/null`" != x""; then
+    tmpdir=`TMPDIR="$XDG_CACHE_HOME" mktemp -d`
+else
+    tmpdir="/tmp/tmp.$$.$RANDOM"
+    mkdir "$tmpdir"
+fi
+if test ! -d "$tmpdir"; then
+    # 3: Failed to create temp directory
+    exit 3
+fi
+
+# check if uri is directory or file
+if test -d "$dndfilename"; then
+    cp -r "$dndfilename" "$tmpdir" || retval=1
+elif test -f "$dndfilename"; then
+    case "$dndfilename" in
+        *.tar.gz|*.tar.Z|*.tgz|*.tar.bz2|*.tbz2|*.tbz|*.tar)
+            # extract the archive
+            tar -C "$tmpdir" -xf "$dndfilename" || retval=4
+        ;;
+        *.zip)
+            # extract the archive
+            unzip -d "$tmpdir" "$dndfilename" || retval=4
+        ;;
+        *)
+            # 5: unknow file format
+            retval=5
+        ;;
+    esac
+fi
+
+# detect theme type and move it to the correct location if
+# extracting or copying succeeded
+if test "$retval" -eq 0; then
+    # install gtk-2.0 themes
+    suffix="gtk-2.0/gtkrc"
+    find "$tmpdir" -path "$tmpdir/*/$suffix" -type f | while read file; do
+        installtheme "$file" "$suffix"
+    done
+
+    # install xfwm4 themes
+    suffix="xfwm4/themerc"
+    find "$tmpdir" -path "$tmpdir/*/$suffix" -type f | while read file; do
+        installtheme "$file" "$suffix"
+    done
+fi
+
+# cleanup
+rm -rf "$tmpdir"
+
+exit $retval
