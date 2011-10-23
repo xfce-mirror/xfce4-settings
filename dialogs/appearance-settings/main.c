@@ -683,17 +683,21 @@ cb_theme_uri_dropped (GtkWidget        *widget,
                       gint              y,
                       GtkSelectionData *data,
                       guint             info,
-                      guint             timestamp)
+                      guint             timestamp,
+                      GtkBuilder       *builder)
 {
-    gchar     **uris;
-    gchar      *argv[3];
-    guint       i;
-    GError     *error = NULL;
-    gint        status;
-    GtkWidget  *toplevel = gtk_widget_get_toplevel (widget);
-    gchar      *filename;
-    GdkCursor  *cursor;
-    GdkWindow  *gdkwindow;
+    gchar        **uris;
+    gchar         *argv[3];
+    guint          i;
+    GError        *error = NULL;
+    gint           status;
+    GtkWidget     *toplevel = gtk_widget_get_toplevel (widget);
+    gchar         *filename;
+    GdkCursor     *cursor;
+    GdkWindow     *gdkwindow;
+    gboolean       something_installed = FALSE;
+    GObject       *object;
+    GtkTreeModel  *model;
 
     uris = gtk_selection_data_get_uris (data);
     if (uris == NULL)
@@ -756,6 +760,10 @@ cb_theme_uri_dropped (GtkWidget        *widget,
             xfce_dialog_show_error (GTK_WINDOW (toplevel), error, _("Failed to install theme"));
             g_clear_error (&error);
         }
+        else
+        {
+            something_installed = TRUE;
+        }
 
         g_free (filename);
     }
@@ -763,6 +771,21 @@ cb_theme_uri_dropped (GtkWidget        *widget,
     g_strfreev (uris);
     gdk_window_set_cursor (gdkwindow, NULL);
     gdk_cursor_unref (cursor);
+
+    if (something_installed)
+    {
+        /* reload icon theme treeview */
+        object = gtk_builder_get_object (builder, "icon_theme_treeview");
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
+        gtk_list_store_clear (GTK_LIST_STORE (model));
+        appearance_settings_load_icon_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+
+        /* reload gtk theme treeview */
+        object = gtk_builder_get_object (builder, "gtk_theme_treeview");
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
+        gtk_list_store_clear (GTK_LIST_STORE (model));
+        appearance_settings_load_ui_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+    }
 }
 
 static void
@@ -796,7 +819,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_drag_dest_set (GTK_WIDGET (object), GTK_DEST_DEFAULT_ALL,
                        theme_drop_targets, G_N_ELEMENTS (theme_drop_targets),
                        GDK_ACTION_COPY);
-    g_signal_connect (G_OBJECT (object), "drag-data-received", G_CALLBACK (cb_theme_uri_dropped), NULL);
+    g_signal_connect (G_OBJECT (object), "drag-data-received", G_CALLBACK (cb_theme_uri_dropped), builder);
 
     /* Gtk (UI) themes */
     object = gtk_builder_get_object (builder, "gtk_theme_treeview");
@@ -820,7 +843,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_drag_dest_set (GTK_WIDGET (object), GTK_DEST_DEFAULT_ALL,
                        theme_drop_targets, G_N_ELEMENTS (theme_drop_targets),
                        GDK_ACTION_COPY);
-    g_signal_connect (G_OBJECT (object), "drag-data-received", G_CALLBACK (cb_theme_uri_dropped), NULL);
+    g_signal_connect (G_OBJECT (object), "drag-data-received", G_CALLBACK (cb_theme_uri_dropped), builder);
 
     /* Subpixel (rgba) hinting Combo */
     object = gtk_builder_get_object (builder, "xft_rgba_store");
