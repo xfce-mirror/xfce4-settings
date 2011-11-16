@@ -58,7 +58,8 @@ AC_PROG_INTLTOOL([0.31], [no-xml])
 dnl **************************
 dnl *** Initialize libtool ***
 dnl **************************
-AC_PROG_LIBTOOL()
+LT_PREREQ([2.2.6])
+LT_INIT([disable-static])
 
 dnl **********************************
 dnl *** Check for standard headers ***
