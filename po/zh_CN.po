@@ -658,7 +658,7 @@ msgstr "ATI 设置"
 
 #: ../dialogs/display-settings/main.c:1119
 msgid "Unable to launch the proprietary driver settings"
-msgstr "无法启动专用驱动设置"
+msgstr "未能启动非自由驱动设置"
 
 #. 1.2 is required
 #: ../dialogs/display-settings/xfce-randr.c:257
@@ -666,7 +666,9 @@ msgstr "无法启动专用驱动设置"
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "您的系统使用的是 RandR %d.%d。显示设置依赖 1.2 以上版本才能正常工作"
+msgstr ""
+"此系统正在使用 RandR %d.%d。要显示设置"
+"能工作至少需要 1.2 版"
 
 #: ../dialogs/display-settings/xfce-randr.c:536
 msgid "Laptop"
@@ -682,7 +684,7 @@ msgstr "电视"
 
 #: ../dialogs/display-settings/xfce-randr.c:564
 msgid "Digital display"
-msgstr "电子显示板"
+msgstr "数字显示"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
@@ -699,11 +701,11 @@ msgstr "快捷键命令"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:130
 msgid "Shortcut:"
-msgstr "快捷键:"
+msgstr "快捷键："
 
 #: ../dialogs/keyboard-settings/command-dialog.c:140
 msgid "Command:"
-msgstr "命令:"
+msgstr "命令："
 
 #: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Use _startup notification"
@@ -711,7 +713,7 @@ msgstr "使用启动通知(_S)"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:207
 msgid "The command may not be empty."
-msgstr "命令不能为空"
+msgstr "命令不能为空。"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:227
 msgid "Select command"
@@ -719,7 +721,7 @@ msgstr "选择命令"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:235
 msgid "All Files"
-msgstr "全部文件"
+msgstr "所有文件"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:240
 msgid "Executable Files"
@@ -751,7 +753,7 @@ msgstr "行为(_H)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 msgid "Blink _delay:"
-msgstr "闪烁延迟(_D):"
+msgstr "闪烁延迟(_D)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 msgid "Cursor"
@@ -759,7 +761,7 @@ msgstr "光标"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 msgid "Define _shortcuts for launching applications:"
-msgstr "定义应用程序快捷键(_S)"
+msgstr "定义启动应用程序的快捷键(_S)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
@@ -777,7 +779,7 @@ msgstr "键盘布局"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Keyboard layout selection"
-msgstr "键盘布局选择"
+msgstr "键盘布局选择器"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Keyboard model"
@@ -785,55 +787,59 @@ msgstr "键盘型号"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Repeat _speed:"
-msgstr "重复速度(_S)"
+msgstr "重复速度(_S)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Reset to _Defaults"
-msgstr "恢复默认设置(_D)"
+msgstr "重置为默认(_D)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Select keyboard layout and variant"
-msgstr "选择键盘布局"
+msgstr "选择键盘布局和变体"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
-msgstr "显示闪烁光标(_B)"
+msgstr "显示闪烁(_B)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
-msgstr "指定由本设置或者 X 服务器控制键盘布局"
+msgstr ""
+"指定是由此设置对话框还是由 X 服务器控制"
+"键盘布局"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Specify whether or not the text cursor blinks"
-msgstr "指定字符光标是否闪烁"
+msgstr "指定文本光标是否闪烁"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "光标闪烁延迟（毫秒）"
+msgstr "以毫秒计的光标连续闪烁间的延迟"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "按键重复频率"
+msgstr "按住按键时产生的按键重复频率"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "按键重复延迟（毫秒）"
+msgstr "以毫秒计的按键开始重复的时间"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Typing Settings"
-msgstr "击键设置"
+msgstr "输入设置"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to _test the settings above:"
-msgstr "这个区域用来测试以上设定(_T):"
+msgstr "使用此区域测试以上设置(_T)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid ""
 "When selected, pressing and holding down a key emits the same character over "
 "and over again"
-msgstr "选择该选项后，按下并保持一个按键会一直重复该字符"
+msgstr ""
+"选中后，按住一个按键不放会一直重复释放"
+"此字符"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Enable key repeat"
@@ -845,24 +851,24 @@ msgstr "布局(_L)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Repeat delay:"
-msgstr "重复延迟(_R):"
+msgstr "重复延迟(_R)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Use system defaults"
-msgstr "使用系统默认设置(_U)"
+msgstr "使用系统默认(_U)"
 
 #: ../dialogs/keyboard-settings/main.c:69
 msgid "Unable to initialize GTK+."
-msgstr "无法初始化 GTK+。"
+msgstr "未能初始化 GTK+。"
 
 #: ../dialogs/keyboard-settings/main.c:89
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
-msgstr "由于 %s 无法联接 xfconf 后台。"
+msgstr "无法与 xfconf 守护进程连接。原因：%s"
 
 #: ../dialogs/keyboard-settings/main.c:100
 msgid "Could not create the settings dialog."
-msgstr "无法创建设置对话框。"
+msgstr "未能创建设置对话框。"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:295
 msgid "Command"
@@ -878,7 +884,7 @@ msgstr "布局"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
 msgid "Variant"
-msgstr "变化"
+msgstr "变体"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
 msgid "Shortcut command may not be empty."
@@ -887,17 +893,19 @@ msgstr "快捷键命令不能为空"
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
 msgid "Reset to Defaults"
-msgstr "恢复默认设置"
+msgstr "重置为默认"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
-msgstr "所有快捷键将被重设为默认值，您确定吗？"
+msgstr ""
+"这会把所有快捷键重置为它们的默认值，"
+"您真的要这样做吗？"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
 msgid "The system defaults will be restored next time you log in."
-msgstr "你下次登入时将恢复系统默认设置"
+msgstr "在您下次登录时将恢复系统默认"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
 msgid "Warning"
@@ -940,7 +948,7 @@ msgstr "顺时针"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
-msgstr "设置定位设备（比如鼠标）行为和外观"
+msgstr "配置定位设备行为和外观"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Counterclockwise"
@@ -948,15 +956,15 @@ msgstr "逆时针"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Cursor _size:"
-msgstr "光标大小(_S):"
+msgstr "光标大小(_S)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "D_istance:"
-msgstr "距离(_I):"
+msgstr "距离(_I)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "De_vice:"
-msgstr "设备(_V):"
+msgstr "设备(_V)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "Di_sabled"
@@ -964,7 +972,7 @@ msgstr "已禁用(_S)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Disable to_uchpad while typing"
-msgstr "打字时禁用触摸板(_U)"
+msgstr "输入时禁用触摸板(_U)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Double Click"
@@ -984,15 +992,15 @@ msgstr "启用水平滚动(_Z)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "General"
-msgstr "通用"
+msgstr "一般"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Half (left-handed)"
-msgstr "一半 (习惯左手)"
+msgstr "一半(左撇子)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Mouse (relative)"
-msgstr "鼠标 (相对)"
+msgstr "鼠标(相对)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
@@ -1001,15 +1009,15 @@ msgstr "鼠标和触摸板"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "None (right-handed)"
-msgstr "无 (习惯右手)"
+msgstr "无(右撇子)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Pen (absolute)"
-msgstr "笔 (绝对)"
+msgstr "笔(绝对)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Pointer Speed"
-msgstr "指针速度"
+msgstr "光标速度"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Preview"
@@ -1017,7 +1025,7 @@ msgstr "预览"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Reset to De_faults"
-msgstr "恢复默认设置(_F)"
+msgstr "重置为默认(_F)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Reverse scroll d_irection"
@@ -1031,7 +1039,8 @@ msgstr "滚动"
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
-msgstr "将所选设备的加速和阈值恢复成默认值"
+msgstr ""
+"将选中的设备的加速和灵敏度设置为默认值"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Size"
@@ -1051,11 +1060,11 @@ msgstr "触摸板(_O)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Table_t"
-msgstr "平板(_T)"
+msgstr "手写板(_T)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Th_reshold:"
-msgstr "阈值(_R):"
+msgstr "阈值(_R)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid ""
