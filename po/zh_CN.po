@@ -391,11 +391,12 @@ msgstr "无"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too small"
-msgstr "如果字体太大或太小就改变显示器的分辨率"
+msgstr ""
+"如果字体太大或太小则忽略显示器的分辨率"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "Rendering"
-msgstr "字体渲染"
+msgstr "渲染"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Select a default font"
@@ -403,11 +404,11 @@ msgstr "选择默认字体"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid "Show images in _menus"
-msgstr "在菜单中显示图像(_M)"
+msgstr "在菜单中显示图片(_M)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Show images on _buttons"
-msgstr "在按钮上显示图像(_B)"
+msgstr "在按钮上显示图片(_B)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Slight"
@@ -415,29 +416,31 @@ msgstr "略微"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Specify what should be displayed in toolbar items"
-msgstr "指定在工具条上显示什么"
+msgstr "指定在工具栏项目中该显示什么"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "指定是否在菜单项旁边显示图标"
+msgstr "指定是否在菜单中项目的旁边显示图标"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "指定是否在按钮文字旁边显示图标"
+msgstr "指定是否在按钮中文字的旁边显示图标"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
-msgstr "指定是否在鼠标点击以及其他用户事件时播放事件声音"
+msgstr ""
+"指定在鼠标点击和其它用户输入时是否播放"
+"事件声音"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "St_yle"
-msgstr "风格(_Y)"
+msgstr "样式(_Y)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Sub-_pixel order:"
-msgstr "次像素次序(_P):"
+msgstr "次像素次序(_P)："
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Text"
@@ -447,7 +450,9 @@ msgstr "文字"
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
-msgstr "显示用户界面时用该字体做默认字体"
+msgstr ""
+"此字体将作为绘制用户界面文字所用的"
+"默认字体"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "_Fonts"
@@ -455,7 +460,7 @@ msgstr "字体(_F)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "_Hinting:"
-msgstr "提示(_H):"
+msgstr "提示(_H)："
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "_Icons"
@@ -467,7 +472,7 @@ msgstr "设置(_S)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "_Toolbar Style"
-msgstr "工具栏风格(_T)"
+msgstr "工具栏样式(_T)"
 
 #: ../dialogs/appearance-settings/main.c:733
 #, c-format
@@ -480,11 +485,11 @@ msgstr "无法创建临时目录"
 
 #: ../dialogs/appearance-settings/main.c:743
 msgid "Failed to extract archive"
-msgstr "无法提取归档"
+msgstr "无法提取归档文件"
 
 #: ../dialogs/appearance-settings/main.c:748
 msgid "Unknown format, only archives and directories are supported"
-msgstr "未知格式，仅支持归档和目录"
+msgstr "未知格式，仅支持归档文件和目录"
 
 #: ../dialogs/appearance-settings/main.c:753
 #, c-format
@@ -513,7 +518,7 @@ msgstr "竖直 BGR"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "<big><b>您是否要保存此设置？</b></big>"
+msgstr "<big><b>您愿意保存此配置吗？</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid "Confirmation"
@@ -521,22 +526,24 @@ msgstr "确认"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Keep this configuration"
-msgstr "保存此设置"
+msgstr "保存此配置"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Restore the previous configuration"
-msgstr "恢复原来设置"
+msgstr "恢复先前的配置"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid ""
 "The previous configuration will be restored in 10 seconds if you do not "
 "reply to this question."
-msgstr "如果您不对此问题做出确认，原来的设置将会在 10 秒钟之后被恢复。"
+msgstr ""
+"如果您不答复此问题，先前的配置将在 10 "
+"秒内恢复。"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Configure screen settings and layout"
-msgstr "设置屏幕参数及布局"
+msgstr "配置屏幕设置和布局"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
@@ -545,19 +552,19 @@ msgstr "显示"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "R_esolution:"
-msgstr "分辨率(_E):"
+msgstr "分辨率(_E)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "Ref_lection:"
-msgstr "反光率(_L):"
+msgstr "反光率(_L)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
-msgstr "刷新频率(_R):"
+msgstr "刷新频率(_R)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Ro_tation:"
-msgstr "旋转(_T):"
+msgstr "旋转(_T)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "_Use this output"
@@ -573,11 +580,11 @@ msgstr "显示设置"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Several displays are available. Use:\n"
-msgstr "多个显示均可用。使用:\n"
+msgstr "多个显示器可用。使用：\n"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Use both displays to show the same contents"
-msgstr "多头显示相同的内容"
+msgstr "使用两个显示器显示相同内容"
 
 #: ../dialogs/display-settings/main.c:68
 msgid "Normal"
@@ -605,14 +612,16 @@ msgstr "竖直"
 
 #: ../dialogs/display-settings/main.c:104
 msgid "Minimal interface to set up an external output"
-msgstr "用以设置外部输出的界面"
+msgstr "设置外部输出的最小界面"
 
 #: ../dialogs/display-settings/main.c:171
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
 "reply to this question."
-msgstr "如果您不对此问题做出确认，原来的设置将会在 %i 秒钟之后被恢复。"
+msgstr ""
+"如果您不答复此问题，先前的配置将在 %i "
+"秒内恢复。"
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:505
@@ -623,17 +632,20 @@ msgstr "%.1f Hz"
 #: ../dialogs/display-settings/main.c:651
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
-msgstr "最后一个活动输出不能被禁用，否则整个系统将不可用。"
+msgstr ""
+"绝不能禁用上一个活动输出，否则系统将"
+"不可用。"
 
 #: ../dialogs/display-settings/main.c:653
 msgid "Selected output not disabled"
-msgstr "选择未被禁用的输出"
+msgstr "未禁用选中的输出"
 
 #: ../dialogs/display-settings/main.c:1072
 #: ../dialogs/display-settings/xfce-randr.c:249
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr "无法取得 RandR 扩展模块的版本号"
+msgstr ""
+"未能查问正在使用的 RandR 扩展的版本"
 
 #: ../dialogs/display-settings/main.c:1073
 #: ../dialogs/display-settings/main.c:1109
