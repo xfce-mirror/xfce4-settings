@@ -7,6 +7,9 @@ SUBDIRS = \
 	mouse-settings
 
 if HAVE_XRANDR
-SUBDIRS += \
-	display-settings
+SUBDIRS += display-settings
+endif
+
+if HAVE_ACCOUNTSSERVICE
+SUBDIRS += user-settings
 endif

@@ -122,6 +122,12 @@ dnl ***********************************
 XDT_CHECK_OPTIONAL_PACKAGE([XRANDR], [xrandr], [1.2.0],
                            [xrandr], [Xrandr support])
 
+dnl ********************************************
+dnl *** Optional support for accountsservice ***
+dnl ********************************************
+XDT_CHECK_OPTIONAL_PACKAGE([ACCOUNTSSERVICE], [accountsservice], [0.6.11],
+                           [accountsservice], [User editing support])
+
 dnl ***********************************
 dnl *** Optional support for hwdata ***
 dnl ***********************************
@@ -225,6 +231,7 @@ dialogs/accessibility-settings/Makefile
 dialogs/display-settings/Makefile
 dialogs/keyboard-settings/Makefile
 dialogs/mouse-settings/Makefile
+dialogs/user-settings/Makefile
 xfsettingsd/Makefile
 xfce4-settings-manager/Makefile
 xfce4-settings-editor/Makefile
@@ -242,6 +249,11 @@ if test x"$XRANDR_FOUND" = x"yes"; then
 echo "* Xrandr support:            yes"
 else
 echo "* Xrandr support:            no"
+fi
+if test x"$ACCOUNTSSERVICE_FOUND" = x"yes"; then
+echo "* User editing support:      yes"
+else
+echo "* User editing support:      no"
 fi
 if test x"$LIBNOTIFY_FOUND" = x"yes"; then
 echo "* Libnotify support:         yes"
