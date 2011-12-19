@@ -19,8 +19,9 @@ xfce4_user_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(EXO_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
-	$(XFCONF_CFLAGS) \
 	$(ACCOUNTSSERVICE_CFLAGS) \
+	$(GIO_CFLAGS) \
+	$(GIO_UNIX_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfce4_user_settings_LDFLAGS = \
@@ -32,7 +33,8 @@ xfce4_user_settings_LDADD = \
 	$(EXO_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(ACCOUNTSSERVICE_LIBS) \
-	$(XFCONF_LIBS)
+	$(GIO_LIBS) \
+	$(GIO_UNIX_LIBS)
 
 if MAINTAINER_MODE
 

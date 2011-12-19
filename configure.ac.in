@@ -64,7 +64,8 @@ LT_INIT([disable-static])
 dnl **********************************
 dnl *** Check for standard headers ***
 dnl **********************************
-AC_CHECK_HEADERS([errno.h memory.h math.h stdlib.h string.h unistd.h signal.h time.h sys/types.h sys/wait.h])
+AC_CHECK_HEADERS([errno.h memory.h math.h stdlib.h string.h unistd.h \
+                  signal.h time.h sys/types.h sys/wait.h utmp.h pwd.h])
 AC_CHECK_FUNCS([daemon setsid])
 
 dnl ******************************
@@ -127,6 +128,8 @@ dnl *** Optional support for accountsservice ***
 dnl ********************************************
 XDT_CHECK_OPTIONAL_PACKAGE([ACCOUNTSSERVICE], [accountsservice], [0.6.11],
                            [accountsservice], [User editing support])
+XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0],
+                           [2.24.0], [gio-unix], [GIO UNIX features])
 
 dnl ***********************************
 dnl *** Optional support for hwdata ***
