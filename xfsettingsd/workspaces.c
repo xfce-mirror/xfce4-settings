@@ -575,5 +575,10 @@ xfce_workspaces_helper_prop_changed (XfconfChannel        *channel,
                                      XfceWorkspacesHelper *helper)
 {
     g_return_if_fail (XFCE_IS_WORKSPACES_HELPER (helper));
-    xfce_workspaces_helper_set_names (helper, TRUE);
+
+    if (helper->wait_for_wm_timeout_id == 0)
+    {
+        /* only set the names if the initial start is not running anymore */
+        xfce_workspaces_helper_set_names (helper, TRUE);
+    }
 }
