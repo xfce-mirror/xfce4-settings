@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-30 09:54+0000\n"
+"POT-Creation-Date: 2011-12-31 10:18+0000\n"
 "PO-Revision-Date: 2009-01-30 20:57+0200\n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
@@ -503,10 +503,11 @@ msgstr "Arşiv çıkartılamadı"
 #: ../dialogs/appearance-settings/main.c:748
 #, fuzzy
 msgid "Unknown format, only archives and directories are supported"
-msgstr "Bilinmeyen format, sadece arşiv dosyaları ve dizinler desteklenmektedir"
+msgstr ""
+"Bilinmeyen format, sadece arşiv dosyaları ve dizinler desteklenmektedir"
 
 #: ../dialogs/appearance-settings/main.c:753
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Bilinmeyen hata, çıkış kodu %d"
 
@@ -553,7 +554,8 @@ msgstr "Önceki ayarları geri yükle"
 msgid ""
 "The previous configuration will be restored in 10 seconds if you do not "
 "reply to this question."
-msgstr "Bu soruya cevap vermezseniz önceki ayarlar 10 saniye içinde geri yüklenecek"
+msgstr ""
+"Bu soruya cevap vermezseniz önceki ayarlar 10 saniye içinde geri yüklenecek"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -624,12 +626,10 @@ msgid "Right"
 msgstr "Sağ"
 
 #: ../dialogs/display-settings/main.c:80
-#, fuzzy
 msgid "Horizontal"
 msgstr "Yatay"
 
 #: ../dialogs/display-settings/main.c:81
-#, fuzzy
 msgid "Vertical"
 msgstr "Dikey"
 
@@ -639,15 +639,16 @@ msgid "Minimal interface to set up an external output"
 msgstr "Harici çıktıları ayarlamak için minimal bir arayüz"
 
 #: ../dialogs/display-settings/main.c:171
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
 "reply to this question."
-msgstr "Bu soruya cevap vermezseniz önceki ayarlar %i saniye içinde geri yüklenecek"
+msgstr ""
+"Bu soruya cevap vermezseniz önceki ayarlar %i saniye içinde geri yüklenecek"
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:505
-#, c-format, fuzzy
+#, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
@@ -655,10 +656,11 @@ msgstr "%.1f Hz"
 #, fuzzy
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
-msgstr "Son aktif çıktı pasif duruma getirilmemelidir, aksi halde sistem kullanılamaz olacaktır."
+msgstr ""
+"Son aktif çıktı pasif duruma getirilmemelidir, aksi halde sistem "
+"kullanılamaz olacaktır."
 
 #: ../dialogs/display-settings/main.c:653
-#, fuzzy
 msgid "Selected output not disabled"
 msgstr "Seçilen çıktı etkisizleştirilmedi"
 
@@ -675,9 +677,8 @@ msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce 4 Görüntü Ayarları başlatılamadı"
 
 #: ../dialogs/display-settings/main.c:1104
-#, fuzzy
 msgid "ATI Settings"
-msgstr "Ayarlar"
+msgstr "ATI Ayarları"
 
 #: ../dialogs/display-settings/main.c:1119
 #, fuzzy
@@ -714,7 +715,6 @@ msgstr "Sayısal görüntü"
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
 #: ../dialogs/display-settings/display-name.c:269
-#, fuzzy
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Bilinmeyen"
@@ -783,9 +783,8 @@ msgid "Blink _delay:"
 msgstr "Yanıp sönme _gecikmesi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#, fuzzy
 msgid "Cursor"
-msgstr "<b>İmleç</b>"
+msgstr "İmleç"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 msgid "Define _shortcuts for launching applications:"
@@ -802,18 +801,16 @@ msgid "Keyboard"
 msgstr "Klavye"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#, fuzzy
 msgid "Keyboard layout"
-msgstr "<b>Klavye yerleşimi</b>"
+msgstr "Klavye yerleşimi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Keyboard layout selection"
 msgstr "Klavye yerleşimi seçimi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
-#, fuzzy
 msgid "Keyboard model"
-msgstr "<b>Klavye modeli</b>"
+msgstr "Klavye modeli"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Repeat _speed:"
@@ -856,9 +853,8 @@ msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Basılan tuş yinelenmeden önce geçecek sürenin milisaniye olarak değeri"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
-#, fuzzy
 msgid "Typing Settings"
-msgstr "<b>Yazma Ayarları</b>"
+msgstr "Yazma Ayarları"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Use this area to _test the settings above:"
@@ -954,13 +950,13 @@ msgstr "SÜRÜCÜ İSMİ"
 
 #. pixel value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:142
-#, c-format, fuzzy
+#, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:152
-#, c-format, fuzzy
+#, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
@@ -971,12 +967,10 @@ msgid "Default"
 msgstr "Öntanımlı"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
-#, fuzzy
 msgid "Buttons"
-msgstr "<b>Buton Düzeni</b>"
+msgstr "Tuş Düzeni"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
-#, fuzzy
 msgid "Clockwise"
 msgstr "Saat yönünde"
 
@@ -986,43 +980,36 @@ msgid "Configure pointer device behavior and appearance"
 msgstr "Fare davranışını ve görünümünü yapılandırır"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
-#, fuzzy
 msgid "Counterclockwise"
 msgstr "Saat yönü tersinde"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
-#, fuzzy
 msgid "Cursor _size:"
 msgstr "İmleç B_oyutu:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
-#, fuzzy
 msgid "D_istance:"
-msgstr "_Uzaklık"
+msgstr "_Uzaklık:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
-#, fuzzy
 msgid "De_vice:"
-msgstr "Sürü_cüler"
+msgstr "Ay_gıt:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-#, fuzzy
 msgid "Di_sabled"
-msgstr "Etkinleştirilmiş"
+msgstr "Etkisizleştirilmiş"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Disable to_uchpad while typing"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
-#, fuzzy
 msgid "Double Click"
-msgstr "<b>Çift Tıklama</b>"
+msgstr "Çift Tıklama"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
-#, fuzzy
 msgid "Drag and Drop"
-msgstr "<b>Sürükle ve Bırak</b>"
+msgstr "Sürükle ve Bırak"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Edge scro_lling"
@@ -1034,7 +1021,6 @@ msgid "Enable hori_zontal scrolling"
 msgstr "Yumuşatm_ayı etkinleştir"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-#, fuzzy
 msgid "General"
 msgstr "Genel"
 
@@ -1063,14 +1049,12 @@ msgid "Pen (absolute)"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
-#, fuzzy
 msgid "Pointer Speed"
 msgstr "İşaretçi Hızı"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
-#, fuzzy
 msgid "Preview"
-msgstr "<b>Önizleme</b>"
+msgstr "Önizleme"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 #, fuzzy
@@ -1083,7 +1067,6 @@ msgid "Reverse scroll d_irection"
 msgstr "Ters Ka_ydırma yönü"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
-#, fuzzy
 msgid "Scrolling"
 msgstr "Kaydırma"
 
@@ -1095,7 +1078,6 @@ msgid ""
 msgstr "İvme ve eşik değerlerini öntanımlı olana döndür"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
-#, fuzzy
 msgid "Size"
 msgstr "Boyut"
 
@@ -1104,7 +1086,6 @@ msgid "T_ap touchpad to click"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
-#, fuzzy
 msgid "T_heme"
 msgstr "_Tema"
 
@@ -1188,12 +1169,10 @@ msgid "_Behavior"
 msgstr "_Davranış"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
-#, fuzzy
 msgid "_Devices"
-msgstr "Sürü_cüler"
+msgstr "_Aygıtlar"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
-#, fuzzy
 msgid "_Enable this device"
 msgstr "Bu aygıtı _etkinleştir"
 
@@ -1217,9 +1196,8 @@ msgid "_Rotation:"
 msgstr "Dön_dürme:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
-#, fuzzy
 msgid "_Sensitivity:"
-msgstr "_Duyarlılık"
+msgstr "_Duyarlılık:"
 
 #: ../xfce4-settings-editor/main_window.c:157
 msgid "Channel"
@@ -1248,25 +1226,25 @@ msgstr "Boş"
 
 #: ../xfce4-settings-editor/main_window.c:698
 #: ../xfce4-settings-editor/main_window.c:890
-#, fuzzy
 msgid "This property name is not valid."
 msgstr "Bu özellik ismi geçersiz."
 
 #: ../xfce4-settings-editor/main_window.c:925
 #: ../xfce4-settings-editor/main_window.c:1078
-#, fuzzy
 msgid "Reset"
 msgstr "Sıfırla"
 
 #: ../xfce4-settings-editor/main_window.c:926
 #, fuzzy
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr "Bir özelliği sıfırlamak bu kişiye özel ayarları kalıcı olarak ortadan kaldıracaktır."
+msgstr ""
+"Bir özelliği sıfırlamak bu kişiye özel ayarları kalıcı olarak ortadan "
+"kaldıracaktır."
 
 #: ../xfce4-settings-editor/main_window.c:927
-#, fuzzy, c-format
+#, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
-msgstr "\"<b>%s</b>\" özelliğini sıfırlamak istediğinize emin misiniz?"
+msgstr "\"%s\" özelliğini sıfırlamak istediğinize emin misiniz?"
 
 #: ../xfce4-settings-editor/main_window.c:983
 #, c-format
@@ -1274,36 +1252,39 @@ msgid "Property names must start with a '/' character"
 msgstr "Özellik isimleri '/' karakteriyle başlamalı"
 
 #: ../xfce4-settings-editor/main_window.c:992
-#, c-format, fuzzy
+#, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Kök eleman ('/') geçerli bir özellik ismi değil"
 
 #: ../xfce4-settings-editor/main_window.c:1006
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr "Özellik isimleri sadece ASCII karakterleri olan A-Z, a-z, 0-9, '_', '-', '<' ve '>' ve  '/' ayırıcısını içerebilir"
+msgstr ""
+"Özellik isimleri sadece ASCII karakterleri olan A-Z, a-z, 0-9, '_', '-', '<' "
+"ve '>' ve  '/' ayırıcısını içerebilir"
 
 #: ../xfce4-settings-editor/main_window.c:1015
-#, c-format, fuzzy
+#, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Özellik isimleri ardarda iki veya daha fazla '/' karakteri içeremez"
 
 #: ../xfce4-settings-editor/main_window.c:1026
-#, c-format, fuzzy
+#, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Özellik isimleri '/' karakteriyle bitemez"
 
 #: ../xfce4-settings-editor/main_window.c:1045
-#, fuzzy
 msgid "_Reset"
 msgstr "_Sıfırla"
 
 #: ../xfce4-settings-editor/main_window.c:1079
 #, fuzzy
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr "Bir kanalı sıfırlamak bu kişiye özel ayarları kalıcı olarak ortadan kaldıracaktır."
+msgstr ""
+"Bir kanalı sıfırlamak bu kişiye özel ayarları kalıcı olarak ortadan "
+"kaldıracaktır."
 
 #: ../xfce4-settings-editor/main_window.c:1080
 #, fuzzy, c-format
@@ -1320,7 +1301,6 @@ msgid "Settings Editor"
 msgstr "Ayarlar Düzenleyicisi"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
-#, fuzzy
 msgid "Boolean"
 msgstr "Boolean"
 
@@ -1329,7 +1309,6 @@ msgid "Customize settings stored by Xfconf"
 msgstr "Özelleştirilen ayarlar Xfconf tarafından kaydedildi"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
-#, fuzzy
 msgid "Double"
 msgstr "Double"
 
@@ -1346,12 +1325,10 @@ msgid "Enabled"
 msgstr "Etkinleştirilmiş"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-#, fuzzy
 msgid "Int"
 msgstr "Int"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
-#, fuzzy
 msgid "Int64"
 msgstr "Int64"
 
@@ -1364,12 +1341,10 @@ msgid "New property"
 msgstr "Yeni özellik"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-#, fuzzy
 msgid "Reset property"
-msgstr "Özelliği sıfırla / sil"
+msgstr "Özelliği sıfırla "
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
-#, fuzzy
 msgid "String"
 msgstr "String"
 
@@ -1378,12 +1353,10 @@ msgid "Type:"
 msgstr "Tür:"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
-#, fuzzy
 msgid "Unsigned Int"
 msgstr "Unsigned Int"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
-#, fuzzy
 msgid "Unsigned Int64"
 msgstr "Unsigned Int64"
 
@@ -1432,7 +1405,7 @@ msgid "Bounce keys"
 msgstr "Tutuklu tuşlar"
 
 #: ../xfsettingsd/keyboard-shortcuts.c:244
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Kısayol \"%s\" başlatılamadı"
 
@@ -1451,7 +1424,6 @@ msgid "Workspace %d"
 msgstr "Çalışma Alanı %d"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
-#, fuzzy
 msgid "The Xfce Settings Daemon"
 msgstr "Xfce Ayarlar Yöneticisi"
 
@@ -1479,9 +1451,8 @@ msgid "Unable to start \"%s\""
 msgstr "Başlaması olanaksız: \"%s\""
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
-#, fuzzy
 msgid "Failed to open the documentation"
-msgstr "Dökümantasyonun açılmasında bir sorun oluştu."
+msgstr "Dökümantasyonun açılmasında bir sorun oluştu"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Graphical Settings Manager for Xfce 4"
