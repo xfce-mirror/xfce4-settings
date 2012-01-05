@@ -248,6 +248,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   GObject              *net_cursor_blink_check;
   GObject              *net_cursor_blink_box;
   GObject              *kbd_shortcuts_view;
+  GObject              *xkb_numlock;
   GObject              *button;
 #ifdef HAVE_LIBXKLAVIER
   GObject              *xkb_use_system_default_checkbutton;
@@ -270,6 +271,10 @@ xfce_keyboard_settings_constructed (GObject *object)
 
   xkb_key_repeat_delay = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_delay");
   xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Delay", G_TYPE_INT, xkb_key_repeat_delay, "value");
+
+  xkb_numlock = gtk_builder_get_object (GTK_BUILDER (settings), "restore_numlock");
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (xkb_numlock), TRUE);
+  xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/RestoreNumlock", G_TYPE_BOOLEAN, xkb_numlock, "active");
 
   /* XSETTINGS */
   net_cursor_blink_check = gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_check");
@@ -357,6 +362,7 @@ xfce_keyboard_settings_constructed (GObject *object)
 
   gtk_cell_layout_clear (GTK_CELL_LAYOUT (xkb_model_combo));
   renderer = gtk_cell_renderer_text_new ();
+  g_object_set (renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (xkb_model_combo), renderer, TRUE);
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (xkb_model_combo), renderer, "text", 0);
 
