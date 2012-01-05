@@ -73,7 +73,7 @@ struct _XfceKeyboardsHelper
 
 
 
-G_DEFINE_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, G_TYPE_OBJECT);
+G_DEFINE_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, G_TYPE_OBJECT)
 
 
 
@@ -227,14 +227,26 @@ xfce_keyboards_helper_restore_numlock_state (XfconfChannel *channel)
     Display      *dpy;
     gboolean      state;
 
-    dpy = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
-    state = xfconf_channel_get_bool (channel, "/Default/Numlock", FALSE);
+    if (xfconf_channel_has_property (channel, "/Default/Numlock")
+        && xfconf_channel_get_bool (channel, "/Default/RestoreNumlock", TRUE))
+    {
+        state = xfconf_channel_get_bool (channel, "/Default/Numlock", FALSE);
 
-    numlock_mask = XkbKeysymToModifiers (dpy, XK_Num_Lock);
+        gdk_error_trap_push ();
 
-    XkbLockModifiers (dpy, XkbUseCoreKbd, numlock_mask, state ? numlock_mask : 0);
+        dpy = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+        numlock_mask = XkbKeysymToModifiers (dpy, XK_Num_Lock);
+        XkbLockModifiers (dpy, XkbUseCoreKbd, numlock_mask, state ? numlock_mask : 0);
 
-    xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set numlock %s", state ? "on" : "off");
+        if (gdk_error_trap_pop () != 0)
+            g_critical ("Failed to change numlock modifier");
+
+        xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set numlock %s", state ? "on" : "off");
+    }
+    else
+    {
+        xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "don't set numlock");
+    }
 }
 
 
@@ -246,10 +258,16 @@ xfce_keyboards_helper_save_numlock_state (XfconfChannel *channel)
     Bool     numlock_state;
     Atom     numlock;
 
+    gdk_error_trap_push ();
+
     dpy = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
     numlock = XInternAtom(dpy, "Num Lock", False);
-
     XkbGetNamedIndicator (dpy, numlock, NULL, &numlock_state, NULL, NULL);
+
+    if (gdk_error_trap_pop () != 0)
+        g_critical ("Failed to get numlock state");
+
+    xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "save numlock %s", numlock_state ? "on" : "off");
 
     xfconf_channel_set_bool (channel, "/Default/Numlock", numlock_state);
 }
