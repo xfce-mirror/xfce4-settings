@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-02 11:08+0000\n"
+"POT-Creation-Date: 2012-01-06 06:36+0000\n"
 "PO-Revision-Date: 2011-06-11 23:14+0100\n"
 "Last-Translator: Tomáš Vadina <kyberdev@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -768,39 +768,48 @@ msgid "Edit keyboard settings and application shortcuts"
 msgstr "Úprava nastavení klávesnice a klávesových skratiek"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "General"
+msgstr "Všeobecné"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Keyboard"
 msgstr "Klávesnica"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Keyboard layout"
 msgstr "Rozloženie klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Keyboard layout selection"
 msgstr "Výber rozloženia klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Keyboard model"
 msgstr "Model klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Repeat _speed:"
 msgstr "Rýchlosť _opakovania:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Reset to _Defaults"
 msgstr "Obnoviť pr_edvolené"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Restore num l_ock state on startup"
+msgstr "Obnoviť stav num l_ocku pri spustení"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Select keyboard layout and variant"
 msgstr "Vyberte rozloženie a variant klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Show _blinking"
 msgstr "Zobraziť _blikajúci kurzor"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
@@ -808,31 +817,27 @@ msgstr ""
 "Určuje, či sa bude rozloženie klávesnice riadiť nastavením v tomto "
 "dialógovom okne alebo nastavením X servera"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Určite, či bude textový kurzor blikať"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Oneskorenie v milisekundách medzi bliknutiami kurzora"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Frekvencia generovania kódov klávesy pri jej trvalom stlačení"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Čas v milisekundách pred začatím opakovania stlačenej klávesy"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Typing Settings"
 msgstr "Nastavenia písania"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "Use this area to _test the settings above:"
-msgstr "Použi_te túto oblasť pre vyskúšanie nastavení:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid ""
 "When selected, pressing and holding down a key emits the same character over "
 "and over again"
@@ -840,19 +845,23 @@ msgstr ""
 "Ak vyberiete túto voľbu, bude sa stlačením a držaním klávesy jej zasielanie "
 "neustále opakovať"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Enable key repeat"
 msgstr "Povoliť opakovani_e klávesy"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Layout"
 msgstr "_Rozloženie"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Repeat delay:"
 msgstr "Onesko_renie opakovania:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+msgid "_Test area:"
+msgstr "Oblasť pre _testovanie:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Use system defaults"
 msgstr "Po_užiť predvolené nastavenie systému"
 
@@ -869,32 +878,32 @@ msgstr "Zlyhalo pripojenie na démona xfconf. Dôvod: %s"
 msgid "Could not create the settings dialog."
 msgstr "Nie je možné vytvoriť dialógové okno nastavení."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:295
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
 msgid "Command"
 msgstr "Príkaz"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
 msgid "Shortcut"
 msgstr "Skratka"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:374
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
 msgid "Layout"
 msgstr "Rozvrhnutie"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
 msgid "Variant"
 msgstr "Variant"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
 msgid "Shortcut command may not be empty."
 msgstr "Klávesová skratka príkazu nemôže byť prázdna."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
 msgid "Reset to Defaults"
 msgstr "Obnoviť predvolené"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -902,12 +911,12 @@ msgstr ""
 "Touto akciou nastavíte všetky klávesové skratky na predvolené hodnoty. "
 "Naozaj si želáte pokračovať?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Predvolené nastavenie systému bude obnovené pri nasledujúcom prihlásení."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
 msgid "Warning"
 msgstr "Varovanie"
 
@@ -989,10 +998,6 @@ msgstr "Posun o_krajom"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Enable hori_zontal scrolling"
 msgstr "Povoliť vodo_rovný posun"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-msgid "General"
-msgstr "Všeobecné"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Half (left-handed)"
@@ -1370,7 +1375,7 @@ msgstr "Nepresúvať do pozadia"
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Nahradiť spusteného démona služby xsettings (ak existuje)"
 
-#: ../xfsettingsd/workspaces.c:365
+#: ../xfsettingsd/workspaces.c:385
 #, c-format
 msgid "Workspace %d"
 msgstr "Pracovná plocha %d"
@@ -1413,6 +1418,9 @@ msgstr "Grafický správca nastavení pre prostredie Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Správca nastavení"
+
+#~ msgid "Use this area to _test the settings above:"
+#~ msgstr "Použi_te túto oblasť pre vyskúšanie nastavení:"
 
 #~ msgid "_Reset to Defaults"
 #~ msgstr "Obnoviť pr_edvolené"
