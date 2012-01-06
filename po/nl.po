@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-24 10:07+0000\n"
+"POT-Creation-Date: 2012-01-06 06:36+0000\n"
 "PO-Revision-Date: 2011-09-08 22:32+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -782,39 +782,48 @@ msgid "Edit keyboard settings and application shortcuts"
 msgstr "Toetsenbordinstellingen en toepassingsneltoetsen bewerken"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "General"
+msgstr "Algemeen"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Keyboard"
 msgstr "Toetsenbord"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Keyboard layout"
 msgstr "Toetsenbordindeling"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Keyboard layout selection"
 msgstr "Selectie van toetsenbordindeling"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Keyboard model"
 msgstr "Toetsenbordmodel"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Repeat _speed:"
 msgstr "Herhalings_snelheid:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Reset to _Defaults"
 msgstr "_Standaardwaarden herstellen"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Restore num l_ock state on startup"
+msgstr "Herstel de numlock-status bij opstarten"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Select keyboard layout and variant"
 msgstr "Toetsenbordindeling en -variant selecteren"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Show _blinking"
 msgstr "Knipperend _weergeven"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
@@ -822,35 +831,31 @@ msgstr ""
 "Geeft aan of de toetsenbordindeling wordt beheerd met dit dialoogvenster, of "
 "door de X-server"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Geef aan of de tekstaanwijzer moet knipperen"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr ""
 "De vertraging in milliseconden tussen het opeenvolgend geknipper van de "
 "aanwijzer"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr ""
 "De snelheid waarmee toetsaanslagen worden gegenereerd terwijl een toets "
 "wordt ingedrukt"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "De tijd, in milliseconden, voordat een ingedrukte toets herhaald wordt"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Typing Settings"
 msgstr "Tik-instellingen"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "Use this area to _test the settings above:"
-msgstr "Gebruik dit gebied om bovenstaande instellingen te _beproeven"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid ""
 "When selected, pressing and holding down a key emits the same character over "
 "and over again"
@@ -858,19 +863,23 @@ msgstr ""
 "Inschakelen om het ingedrukt houden van een toets te interpreteren als het "
 "keer op keer indrukken van die toets"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Enable key repeat"
 msgstr "Toetsherhaling _inschakelen"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Layout"
 msgstr "Inde_ling"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Repeat delay:"
 msgstr "_Vertraging voor herhaling:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+msgid "_Test area:"
+msgstr "Proefgebied:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Use system defaults"
 msgstr "Standaardinstellingen gebr_uiken"
 
@@ -887,32 +896,32 @@ msgstr "Kan geen verbinding maken met de xfconf-achtergronddienst. Reden: %s"
 msgid "Could not create the settings dialog."
 msgstr "Kon geen dialoogvenster voor instellingen maken"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:295
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
 msgid "Command"
 msgstr "Opdracht"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
 msgid "Shortcut"
 msgstr "Sneltoets"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:374
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
 msgid "Layout"
 msgstr "Indeling"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
 msgid "Variant"
 msgstr "Variant"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
 msgid "Shortcut command may not be empty."
 msgstr "Sneltoetsopdracht mag niet leeg zijn."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
 msgid "Reset to Defaults"
 msgstr "Standaardwaarden herstellen"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -920,13 +929,13 @@ msgstr ""
 "Deze optie zal de standaardwaarden van alle sneltoetsen terugzetten. Wilt u "
 "dit doen?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "De standaardinstellingen zullen worden hersteld, de volgende keer dat u zich "
 "aanmeldt."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
 msgid "Warning"
 msgstr "Waarschuwing"
 
@@ -1008,10 +1017,6 @@ msgstr "B_laderen via de rand"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Enable hori_zontal scrolling"
 msgstr "Hori_zontaal bladeren inschakelen"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-msgid "General"
-msgstr "Algemeen"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Half (left-handed)"
@@ -1398,7 +1403,7 @@ msgid "Replace running xsettings daemon (if any)"
 msgstr ""
 "Draaiende xsettings-achtergronddienst vervangen (indien van toepassing)"
 
-#: ../xfsettingsd/workspaces.c:365
+#: ../xfsettingsd/workspaces.c:385
 #, c-format
 msgid "Workspace %d"
 msgstr "Werkblad %d"
@@ -1441,6 +1446,9 @@ msgstr "Beheerder grafische instellingen voor Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Instellingenbeheerder"
+
+#~ msgid "Use this area to _test the settings above:"
+#~ msgstr "Gebruik dit gebied om bovenstaande instellingen te _beproeven"
 
 #~ msgid "_Reset to Defaults"
 #~ msgstr "Stardaardinstellingen he_rstellen"
