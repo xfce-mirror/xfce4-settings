@@ -43,7 +43,7 @@ struct Vendor
 };
 
 /* This list of vendor codes derived from lshw
- * 
+ *
  * http://ezix.org/project/wiki/HardwareLiSter
  *
  * Note: we now prefer to use data coming from hwdata (and shipped with
@@ -51,7 +51,7 @@ struct Vendor
  * http://git.fedorahosted.org/git/?p=hwdata.git;a=blob_plain;f=pnp.ids;hb=HEAD
  * All contributions to the list of vendors should go there.
  */
-static const struct Vendor vendors[] = 
+static const struct Vendor vendors[] =
 {
     { "AIC", "AG Neovo" },
     { "ACR", "Acer" },
@@ -284,7 +284,7 @@ make_display_name (const MonitorInfo *info)
 	width_mm = -1;
 	height_mm = -1;
     }
-    
+
     if (width_mm != -1 && height_mm != -1)
     {
 	double d = sqrt (width_mm * width_mm + height_mm * height_mm);

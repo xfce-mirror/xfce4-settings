@@ -1029,7 +1029,7 @@ xfce_xsettings_helper_timestamp_predicate (Display  *xdisplay,
 
 
 
-Time     
+Time
 xfce_xsettings_get_server_time (Display *xdisplay,
                                 Window   window)
 {
@@ -1060,7 +1060,7 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
     gchar                atom_name[64];
     Atom                 selection_atom;
     gint                 n_screens, n;
-    
+
     XfceXSettingsScreen *screen;
     Time                 timestamp;
     XClientMessageEvent  xev;

@@ -35,9 +35,9 @@ static gboolean opt_version = FALSE;
 static gchar   *opt_dialog = NULL;
 
 static GOptionEntry option_entries[] = {
-    { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, 
+    { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version,
       N_("Version information"), NULL },
-    { "dialog", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_dialog, 
+    { "dialog", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_dialog,
       N_("Settings dialog to show"), NULL },
     { NULL }
 };
@@ -75,7 +75,7 @@ main(int argc,
 
     if(G_UNLIKELY(!xfconf_init (&error))) {
         if(G_LIKELY(error != NULL)) {
-            g_error("%s: Failed to initialize xfconf: %s.\n", G_LOG_DOMAIN, 
+            g_error("%s: Failed to initialize xfconf: %s.\n", G_LOG_DOMAIN,
                     error->message);
             g_error_free(error);
         } else {
@@ -90,7 +90,7 @@ main(int argc,
                      G_CALLBACK(gtk_main_quit), NULL);
 
     if(opt_dialog != NULL) {
-        xfce_settings_manager_dialog_show_dialog(XFCE_SETTINGS_MANAGER_DIALOG(dialog), 
+        xfce_settings_manager_dialog_show_dialog(XFCE_SETTINGS_MANAGER_DIALOG(dialog),
                                                  opt_dialog);
     }
 

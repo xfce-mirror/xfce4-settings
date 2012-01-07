@@ -26,6 +26,7 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
+#include <libxfce4ui/libxfce4ui.h>
 #include <xfconf/xfconf.h>
 
 #include "xfce-keyboard-settings.h"
@@ -39,6 +40,18 @@ static GOptionEntry    entries[] = {
   { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
   { NULL }
 };
+
+
+
+static void
+keyboard_settings_dialog_response (GtkWidget *dialog,
+                                   gint       response_id)
+{
+    if (response_id == GTK_RESPONSE_HELP)
+        xfce_dialog_show_help (GTK_WINDOW (dialog), "xfce4-settings", "keyboard", NULL);
+    else
+        gtk_main_quit ();
+}
 
 
 
@@ -110,15 +123,14 @@ main (int    argc,
       dialog = xfce_keyboard_settings_create_dialog (settings);
       gtk_window_set_default_size (GTK_WINDOW (dialog), 450, -1);
 
-      gtk_widget_show (GTK_WIDGET (dialog));
-      g_signal_connect (dialog, "response", G_CALLBACK (gtk_main_quit), NULL);
+      g_signal_connect (dialog, "response",
+          G_CALLBACK (keyboard_settings_dialog_response), NULL);
+      gtk_window_present (GTK_WINDOW (dialog));
 
       /* To prevent the settings dialog to be saved in the session */
       gdk_set_sm_client_id ("FAKE ID");
 
       gtk_main ();
-
-      gtk_widget_destroy (GTK_WIDGET (dialog));
     }
   else
     {

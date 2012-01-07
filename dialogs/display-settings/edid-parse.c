@@ -42,7 +42,7 @@ static int
 get_bits (int in, int begin, int end)
 {
     int mask = (1 << (end - begin + 1)) - 1;
-    
+
     return (in >> begin) & mask;
 }
 
@@ -58,14 +58,14 @@ static int
 decode_vendor_and_product_identification (const uchar *edid, MonitorInfo *info)
 {
     int is_model_year;
-    
+
     /* Manufacturer Code */
     info->manufacturer_code[0]  = get_bits (edid[0x08], 2, 6);
     info->manufacturer_code[1]  = get_bits (edid[0x08], 0, 1) << 3;
     info->manufacturer_code[1] |= get_bits (edid[0x09], 5, 7);
     info->manufacturer_code[2]  = get_bits (edid[0x09], 0, 4);
     info->manufacturer_code[3]  = '\0';
-    
+
     info->manufacturer_code[0] += 'A' - 1;
     info->manufacturer_code[1] += 'A' - 1;
     info->manufacturer_code[2] += 'A' - 1;
@@ -127,7 +127,7 @@ decode_display_parameters (const uchar *edid, MonitorInfo *info)
     if (info->is_digital)
     {
 	int bits;
-	
+
 	static const int bit_depth[8] =
 	{
 	    -1, 6, 8, 10, 12, 14, 16, -1
@@ -142,7 +142,7 @@ decode_display_parameters (const uchar *edid, MonitorInfo *info)
 	info->connector.digital.bits_per_primary = bit_depth[bits];
 
 	bits = get_bits (edid[0x14], 0, 3);
-	
+
 	if (bits <= 5)
 	    info->connector.digital.interface = interfaces[bits];
 	else
@@ -151,7 +151,7 @@ decode_display_parameters (const uchar *edid, MonitorInfo *info)
     else
     {
 	int bits = get_bits (edid[0x14], 5, 6);
-	
+
 	static const double levels[][3] =
 	{
 	    { 0.7,   0.3,    1.0 },
@@ -183,7 +183,7 @@ decode_display_parameters (const uchar *edid, MonitorInfo *info)
     else if (edid[0x16] == 0)
     {
 	info->width_mm = -1;
-	info->height_mm = -1; 
+	info->height_mm = -1;
 	info->aspect_ratio = 100.0 / (edid[0x15] + 99);
     }
     else if (edid[0x15] == 0)
@@ -271,7 +271,7 @@ decode_color_characteristics (const uchar *edid, MonitorInfo *info)
 static int
 decode_established_timings (const uchar *edid, MonitorInfo *info)
 {
-    static const Timing established[][8] = 
+    static const Timing established[][8] =
     {
 	{
 	    { 800, 600, 60 },
@@ -325,7 +325,7 @@ static int
 decode_standard_timings (const uchar *edid, MonitorInfo *info)
 {
     int i;
-    
+
     for (i = 0; i < 8; i++)
     {
 	int first = edid[0x26 + 2 * i];
@@ -349,7 +349,7 @@ decode_standard_timings (const uchar *edid, MonitorInfo *info)
 	    info->standard[i].frequency = get_bits (second, 0, 5) + 60;
 	}
     }
-    
+
     return TRUE;
 }
 
@@ -425,7 +425,7 @@ decode_detailed_timing (const uchar *timing,
 	TWO_WAY_RIGHT_ON_EVEN, TWO_WAY_LEFT_ON_EVEN,
 	FOUR_WAY_INTERLEAVED, SIDE_BY_SIDE
     };
-    
+
     detailed->pixel_clock = (timing[0x00] | timing[0x01] << 8) * 10000;
     detailed->h_addr = timing[0x02] | ((timing[0x04] & 0xf0) << 4);
     detailed->h_blank = timing[0x03] | ((timing[0x04] & 0x0f) << 8);
@@ -482,9 +482,9 @@ decode_descriptors (const uchar *edid, MonitorInfo *info)
 {
     int i;
     int timing_idx;
-    
+
     timing_idx = 0;
-    
+
     for (i = 0; i < 4; ++i)
     {
 	int idx = 0x36 + i * 18;
@@ -524,7 +524,7 @@ decode_edid (const uchar *edid)
     MonitorInfo *info = g_new0 (MonitorInfo, 1);
 
     decode_check_sum (edid, info);
-    
+
     if (decode_header (edid)
 	&& decode_vendor_and_product_identification (edid, info)
 	&& decode_edid_version (edid, info)

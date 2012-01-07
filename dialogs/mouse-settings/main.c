@@ -1476,6 +1476,18 @@ mouse_settings_create_event_filter (GtkBuilder *builder)
 
 
 
+static void
+mouse_settings_dialog_response (GtkWidget *dialog,
+                                gint       response_id)
+{
+    if (response_id == GTK_RESPONSE_HELP)
+        xfce_dialog_show_help (GTK_WINDOW (dialog), "xfce4-settings", "mouse", NULL);
+    else
+        gtk_main_quit ();
+}
+
+
+
 gint
 main (gint argc, gchar **argv)
 {
@@ -1687,8 +1699,9 @@ main (gint argc, gchar **argv)
                 /* unlock */
                 locked--;
 
-                gtk_widget_show (GTK_WIDGET (dialog));
-                g_signal_connect (dialog, "response", G_CALLBACK (gtk_main_quit), NULL);
+                g_signal_connect (dialog, "response",
+                    G_CALLBACK (mouse_settings_dialog_response), NULL);
+                gtk_window_present (GTK_WINDOW (dialog));
 
                 /* To prevent the settings dialog to be saved in the session */
                 gdk_set_sm_client_id ("FAKE ID");

@@ -73,7 +73,7 @@ struct _XfceSettingsManagerDialog
     const gchar *default_subtitle;
     const gchar *default_icon;
 
-    gchar *help_file;
+    gchar *help_page;
 
     GPid last_pid;
 };
@@ -92,7 +92,7 @@ enum
     COL_SNOTIFY,
 #ifdef ENABLE_PLUGGABLE_DIALOGS
     COL_PLUGGABLE,
-    COL_HELP_FILE,
+    COL_HELP_PAGE,
 #endif
     COL_DIALOG_NAME,
     N_COLS
@@ -157,7 +157,7 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     dialog->socket = NULL;
     dialog->last_pid = -1;
 
-    dialog->help_file = NULL;
+    dialog->help_page = NULL;
 #endif
 
     dialog->default_title = _("Settings");
@@ -181,11 +181,11 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 
     dialog->content_frame = gtk_vbox_new(FALSE, 0);
     gtk_widget_show(dialog->content_frame);
-    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), 
+    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox),
                       dialog->content_frame);
 
     dialog->scrollwin = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(dialog->scrollwin), 
+    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(dialog->scrollwin),
                                         GTK_SHADOW_IN);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(dialog->scrollwin),
                                    GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -214,41 +214,41 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
                      NULL);
 
     render = gtk_cell_renderer_pixbuf_new();
-    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(dialog->icon_view), render, 
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(dialog->icon_view), render,
                                FALSE);
     gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(dialog->icon_view), render,
                                   "icon-name", COL_ICON_NAME);
-    g_object_set(render, "stock-size", GTK_ICON_SIZE_DIALOG, 
+    g_object_set(render, "stock-size", GTK_ICON_SIZE_DIALOG,
                  "follow-state", TRUE, NULL);
 
     render = xfce_text_renderer_new();
     gtk_cell_layout_pack_end(GTK_CELL_LAYOUT(dialog->icon_view), render, TRUE);
     gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(dialog->icon_view), render,
                                   "text", COL_NAME);
-    g_object_set(render, "follow-state", TRUE, "follow-prelit", TRUE, 
+    g_object_set(render, "follow-state", TRUE, "follow-prelit", TRUE,
                  "wrap-width", 128, NULL);
 
 #ifdef ENABLE_PLUGGABLE_DIALOGS
     /* Create client frame to contain the socket scroll window */
     dialog->client_frame = gtk_frame_new (NULL);
-    gtk_frame_set_shadow_type(GTK_FRAME(dialog->client_frame), 
+    gtk_frame_set_shadow_type(GTK_FRAME(dialog->client_frame),
                               GTK_SHADOW_NONE);
     gtk_widget_hide(dialog->client_frame);
-    gtk_container_add(GTK_CONTAINER(dialog->content_frame), 
+    gtk_container_add(GTK_CONTAINER(dialog->content_frame),
                       dialog->client_frame);
 
     /* Create scroll window to contain the socket viewport */
     scrollwin = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrollwin), 
+    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrollwin),
                                         GTK_SHADOW_NONE);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrollwin), 
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrollwin),
                                    GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     gtk_widget_show(scrollwin);
     gtk_container_add(GTK_CONTAINER(dialog->client_frame), scrollwin);
 
     /* Create socket viewport */
     dialog->socket_viewport = gtk_viewport_new(NULL, NULL);
-    gtk_viewport_set_shadow_type(GTK_VIEWPORT(dialog->socket_viewport), 
+    gtk_viewport_set_shadow_type(GTK_VIEWPORT(dialog->socket_viewport),
                                  GTK_SHADOW_NONE);
     gtk_widget_show(dialog->socket_viewport);
     gtk_container_add(GTK_CONTAINER(scrollwin), dialog->socket_viewport);
@@ -270,21 +270,21 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
     /* Create back button which takes the user back to the overview */
     dialog->back_button = gtk_button_new_with_mnemonic(_("_Overview"));
     gtk_button_set_image(GTK_BUTTON(dialog->back_button),
-                         gtk_image_new_from_stock(GTK_STOCK_GO_BACK, 
+                         gtk_image_new_from_stock(GTK_STOCK_GO_BACK,
                                                   GTK_ICON_SIZE_BUTTON));
-    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->action_area), 
+    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->action_area),
                       dialog->back_button);
     gtk_widget_set_sensitive(dialog->back_button, FALSE);
     gtk_widget_show(dialog->back_button);
 
-    g_signal_connect(dialog->back_button, "clicked", 
+    g_signal_connect(dialog->back_button, "clicked",
                      G_CALLBACK(xfce_settings_manager_dialog_back_button_clicked),
                      dialog);
 #endif
 
     /* Create help button */
     dialog->help_button = gtk_button_new_from_stock(GTK_STOCK_HELP);
-    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->action_area), 
+    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->action_area),
                       dialog->help_button);
     gtk_widget_hide(dialog->help_button);
 
@@ -302,8 +302,8 @@ static void
 xfce_settings_manager_dialog_finalize(GObject *obj)
 {
     XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG(obj);
-    
-    g_free (dialog->help_file);
+
+    g_free (dialog->help_page);
     g_object_unref(dialog->ls);
 
     G_OBJECT_CLASS(xfce_settings_manager_dialog_parent_class)->finalize(obj);
@@ -329,10 +329,10 @@ xfce_settings_manager_dialog_reset_view(XfceSettingsManagerDialog *dialog,
         gtk_widget_set_sensitive(dialog->back_button, FALSE);
 
         /* Use default help url */
-        g_free(dialog->help_file);
-        dialog->help_file = NULL;
+        g_free(dialog->help_page);
+        dialog->help_page = NULL;
 #endif
-        
+
         /* Show the help button */
         gtk_widget_show(dialog->help_button);
     } else {
@@ -389,18 +389,18 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
     gint i, icon_size;
     GList *dialog_name_list = NULL;
 
-    dialog->ls = gtk_list_store_new(N_COLS, 
-                                    G_TYPE_STRING, 
+    dialog->ls = gtk_list_store_new(N_COLS,
                                     G_TYPE_STRING,
-                                    G_TYPE_STRING, 
                                     G_TYPE_STRING,
-                                    G_TYPE_BOOLEAN, 
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING,
+                                    G_TYPE_BOOLEAN,
 #ifdef ENABLE_PLUGGABLE_DIALOGS
-                                    G_TYPE_BOOLEAN, 
-                                    G_TYPE_STRING, 
+                                    G_TYPE_BOOLEAN,
+                                    G_TYPE_STRING,
 #endif
                                     G_TYPE_STRING);
-    
+
     dirs = xfce_resource_lookup_all(XFCE_RESOURCE_DATA, "applications/");
     if(!dirs)
         return;
@@ -510,7 +510,7 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                                COL_SNOTIFY, xfce_rc_read_bool_entry(rcfile, "StartupNotify", FALSE),
 #ifdef ENABLE_PLUGGABLE_DIALOGS
                                COL_PLUGGABLE, xfce_rc_read_bool_entry(rcfile, "X-XfcePluggable", FALSE),
-                               COL_HELP_FILE, xfce_rc_read_entry(rcfile, "X-XfceHelpFile", FALSE),
+                               COL_HELP_PAGE, xfce_rc_read_entry(rcfile, "X-XfceHelpPage", FALSE),
 #endif
                                COL_DIALOG_NAME, dialog_name,
                                -1);
@@ -543,7 +543,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
     gboolean snotify = FALSE;
 #ifdef ENABLE_PLUGGABLE_DIALOGS
     gboolean pluggable = FALSE;
-    gchar *help_file, *command;
+    gchar *help_page, *command;
 #endif
     GError *error = NULL;
 
@@ -558,7 +558,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
                        COL_SNOTIFY, &snotify,
 #ifdef ENABLE_PLUGGABLE_DIALOGS
                        COL_PLUGGABLE, &pluggable,
-                       COL_HELP_FILE, &help_file,
+                       COL_HELP_PAGE, &help_page,
 #endif
                        -1);
 
@@ -576,13 +576,13 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
         xfce_settings_manager_dialog_reset_view(dialog, FALSE);
 
         /* If the dialog supports help, show the help button */
-        if(help_file) {
+        if(help_page) {
             gtk_widget_show (dialog->help_button);
 
             /* Replace the current help url */
-            g_free(dialog->help_file);
-            dialog->help_file = g_strdup(help_file);
-        } 
+            g_free(dialog->help_page);
+            dialog->help_page = g_strdup(help_page);
+        }
 
         /* Build the dialog command */
         command = g_strdup_printf("%s --socket-id=%d", exec,
@@ -620,7 +620,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
 #ifdef ENABLE_PLUGGABLE_DIALOGS
     }
 
-    g_free(help_file);
+    g_free(help_page);
 #endif
     g_free(exec);
     g_free(name);
@@ -639,33 +639,13 @@ xfce_settings_manager_dialog_back_button_clicked(GtkWidget *button,
 }
 #endif
 
-static void 
+static void
 xfce_settings_manager_dialog_help_button_clicked(GtkWidget *button,
                                                  XfceSettingsManagerDialog *dialog)
 {
-    GError *error = NULL;
-    gchar  *command;
-
-    /* Open absolute filenames with exo-open and relative filenames with xfhelp4 */
-    if(dialog->help_file) {
-        if(g_path_is_absolute(dialog->help_file))
-            command = g_strconcat("exo-open ", dialog->help_file, NULL);
-        else
-            command = g_strconcat("xfhelp4 ", dialog->help_file, NULL);
-    } else {
-        /* TODO: Maybe use xfce4-settings-manager.html or something similar here */
-        command = g_strconcat("xfhelp4 ", "xfce4-settings.html", NULL);
-    }
-
-    /* Try to open the documentation */
-    if(!gdk_spawn_command_line_on_screen(gtk_widget_get_screen(button), 
-                                         command, &error))
-    {
-        xfce_dialog_show_error (NULL, error, _("Failed to open the documentation"));
-        g_error_free(error);
-    }
-
-    g_free(command);
+    xfce_dialog_show_help (GTK_WINDOW (dialog), "xfce4-settings",
+                           dialog->help_page ? dialog->help_page : "manager",
+                           NULL);
 }
 
 static void
@@ -709,7 +689,7 @@ xfce_settings_manager_dialog_plug_added(GtkSocket *socket,
 {
     g_return_if_fail(XFCE_IS_SETTINGS_MANAGER_DIALOG(dialog));
 
-    g_timeout_add(250, (GSourceFunc) xfce_settings_manager_dialog_show_client, 
+    g_timeout_add(250, (GSourceFunc) xfce_settings_manager_dialog_show_client,
                   dialog);
 }
 
@@ -730,15 +710,15 @@ xfce_settings_manager_dialog_recreate_socket(XfceSettingsManagerDialog *dialog)
     dialog->socket = gtk_socket_new();
     gtk_widget_show(dialog->socket);
     gtk_container_add(GTK_CONTAINER(dialog->socket_viewport), dialog->socket);
-    
+
     /* Handle newly added plugs in a callback */
-    g_signal_connect(dialog->socket, "plug-added", 
+    g_signal_connect(dialog->socket, "plug-added",
                      G_CALLBACK(xfce_settings_manager_dialog_plug_added),
                      dialog);
 
     /* Add plug-removed callback to be able to re-use the socket when plugs
      * are removed */
-    g_signal_connect(dialog->socket, "plug-removed", 
+    g_signal_connect(dialog->socket, "plug-removed",
                      G_CALLBACK(xfce_settings_manager_dialog_plug_removed),
                      dialog);
 
@@ -754,15 +734,15 @@ xfce_settings_manager_dialog_compute_default_size (XfceSettingsManagerDialog *di
     GdkRectangle screen_size;
     GdkScreen *screen;
     gint monitor;
-  
+
     screen = gtk_widget_get_screen(GTK_WIDGET(dialog));
-  
+
     gtk_widget_realize(GTK_WIDGET(dialog));
     monitor = gdk_screen_get_monitor_at_window(screen, GTK_WIDGET(dialog)->window);
     gtk_widget_unrealize(GTK_WIDGET(dialog));
-  
+
     gdk_screen_get_monitor_geometry (screen, monitor, &screen_size);
-  
+
     *width = MIN(screen_size.width * 2.0 / 3, WINDOW_MAX_WIDTH);
     *height = MIN(screen_size.height * 2.0 / 3, WINDOW_MAX_HEIGHT);
 }
@@ -832,7 +812,7 @@ xfce_settings_manager_dialog_new(void)
 
 
 
-void 
+void
 xfce_settings_manager_dialog_show_dialog (XfceSettingsManagerDialog *dialog,
                                           const gchar *dialog_name)
 {
@@ -845,7 +825,7 @@ xfce_settings_manager_dialog_show_dialog (XfceSettingsManagerDialog *dialog,
   g_return_if_fail (dialog_name != NULL);
 
   model = exo_icon_view_get_model(EXO_ICON_VIEW(dialog->icon_view));
-  
+
   if(G_LIKELY(gtk_tree_model_get_iter_first(model, &iter))) {
       do {
           gtk_tree_model_get(model, &iter, COL_DIALOG_NAME, &name, -1);

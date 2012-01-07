@@ -20,7 +20,7 @@
 #include <config.h>
 #endif
 
-static const gchar *rgba_image_none_xpm[] = 
+static const gchar *rgba_image_none_xpm[] =
 {
     "18 15 1 1",
     " 	c None",
@@ -41,7 +41,7 @@ static const gchar *rgba_image_none_xpm[] =
     "                  "
 };
 
-static const gchar *rgba_image_rgb_xpm[] = 
+static const gchar *rgba_image_rgb_xpm[] =
 {
     "18 15 4 1",
     " 	c None",
@@ -65,7 +65,7 @@ static const gchar *rgba_image_rgb_xpm[] =
     ".....+++++@@@@@   "
 };
 
-static const gchar *rgba_image_bgr_xpm[] = 
+static const gchar *rgba_image_bgr_xpm[] =
 {
     "18 15 4 1",
     " 	c None",
@@ -89,7 +89,7 @@ static const gchar *rgba_image_bgr_xpm[] =
     ".....+++++@@@@@   "
 };
 
-static const gchar *rgba_image_vrgb_xpm[] = 
+static const gchar *rgba_image_vrgb_xpm[] =
 {
     "18 15 4 1",
     " 	c None",
@@ -113,7 +113,7 @@ static const gchar *rgba_image_vrgb_xpm[] =
     "@@@@@@@@@@@@@@@   "
 };
 
-static const gchar *rgba_image_vbgr_xpm[] = 
+static const gchar *rgba_image_vbgr_xpm[] =
 {
     "18 15 4 1",
     " 	c None",

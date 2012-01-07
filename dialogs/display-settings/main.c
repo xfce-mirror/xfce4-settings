@@ -830,7 +830,10 @@ display_settings_dialog_response (GtkDialog  *dialog,
                                   gint        response_id,
                                   GtkBuilder *builder)
 {
-    gtk_main_quit ();
+    if (response_id == GTK_RESPONSE_HELP)
+        xfce_dialog_show_help (GTK_WINDOW (dialog), "xfce4-settings", "display", NULL);
+    else
+        gtk_main_quit ();
 }
 
 
@@ -1150,10 +1153,11 @@ main (gint argc, gchar **argv)
 
                 if (G_UNLIKELY (opt_socket_id == 0))
                 {
-                    g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_dialog_response), builder);
+                    g_signal_connect (G_OBJECT (dialog), "response",
+                        G_CALLBACK (display_settings_dialog_response), builder);
 
                     /* Show the dialog */
-                    gtk_widget_show (dialog);
+                    gtk_window_present (GTK_WINDOW (dialog));
                 }
                 else
                 {
@@ -1207,7 +1211,8 @@ main (gint argc, gchar **argv)
 
                 /* Build the minimal dialog */
                 dialog = (GtkWidget *) gtk_builder_get_object (builder, "dialog1");
-                g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (display_settings_minimal_dialog_response), builder);
+                g_signal_connect (G_OBJECT (dialog), "response",
+                    G_CALLBACK (display_settings_minimal_dialog_response), builder);
 
                 /* Set the radio buttons captions */
                 first_screen_radio =
@@ -1232,7 +1237,7 @@ main (gint argc, gchar **argv)
                 g_free (screen_name);
 
                 /* Show the minimal dialog and start the main loop */
-                gtk_widget_show (dialog);
+                gtk_window_present (GTK_WINDOW (dialog));
                 gtk_main ();
             }
             else
