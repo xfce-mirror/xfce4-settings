@@ -74,6 +74,7 @@ struct _XfceSettingsManagerDialog
     const gchar *default_icon;
 
     gchar *help_page;
+    gchar *help_component;
 
     GPid last_pid;
 };
@@ -93,6 +94,7 @@ enum
 #ifdef ENABLE_PLUGGABLE_DIALOGS
     COL_PLUGGABLE,
     COL_HELP_PAGE,
+    COL_HELP_COMPONENT,
 #endif
     COL_DIALOG_NAME,
     N_COLS
@@ -156,8 +158,6 @@ xfce_settings_manager_dialog_init(XfceSettingsManagerDialog *dialog)
 #ifdef ENABLE_PLUGGABLE_DIALOGS
     dialog->socket = NULL;
     dialog->last_pid = -1;
-
-    dialog->help_page = NULL;
 #endif
 
     dialog->default_title = _("Settings");
@@ -304,6 +304,7 @@ xfce_settings_manager_dialog_finalize(GObject *obj)
     XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG(obj);
 
     g_free (dialog->help_page);
+    g_free (dialog->help_component);
     g_object_unref(dialog->ls);
 
     G_OBJECT_CLASS(xfce_settings_manager_dialog_parent_class)->finalize(obj);
@@ -331,6 +332,8 @@ xfce_settings_manager_dialog_reset_view(XfceSettingsManagerDialog *dialog,
         /* Use default help url */
         g_free(dialog->help_page);
         dialog->help_page = NULL;
+        g_free(dialog->help_component);
+        dialog->help_component = NULL;
 #endif
 
         /* Show the help button */
@@ -397,6 +400,7 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                                     G_TYPE_BOOLEAN,
 #ifdef ENABLE_PLUGGABLE_DIALOGS
                                     G_TYPE_BOOLEAN,
+                                    G_TYPE_STRING,
                                     G_TYPE_STRING,
 #endif
                                     G_TYPE_STRING);
@@ -510,7 +514,8 @@ xfce_settings_manager_dialog_create_liststore(XfceSettingsManagerDialog *dialog)
                                COL_SNOTIFY, xfce_rc_read_bool_entry(rcfile, "StartupNotify", FALSE),
 #ifdef ENABLE_PLUGGABLE_DIALOGS
                                COL_PLUGGABLE, xfce_rc_read_bool_entry(rcfile, "X-XfcePluggable", FALSE),
-                               COL_HELP_PAGE, xfce_rc_read_entry(rcfile, "X-XfceHelpPage", FALSE),
+                               COL_HELP_PAGE, xfce_rc_read_entry(rcfile, "X-XfceHelpPage", NULL),
+                               COL_HELP_COMPONENT, xfce_rc_read_entry(rcfile, "X-XfceHelpComponent", NULL),
 #endif
                                COL_DIALOG_NAME, dialog_name,
                                -1);
@@ -544,6 +549,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
 #ifdef ENABLE_PLUGGABLE_DIALOGS
     gboolean pluggable = FALSE;
     gchar *help_page, *command;
+    gchar *help_component;
 #endif
     GError *error = NULL;
 
@@ -559,6 +565,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
 #ifdef ENABLE_PLUGGABLE_DIALOGS
                        COL_PLUGGABLE, &pluggable,
                        COL_HELP_PAGE, &help_page,
+                       COL_HELP_COMPONENT, &help_component,
 #endif
                        -1);
 
@@ -576,13 +583,13 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
         xfce_settings_manager_dialog_reset_view(dialog, FALSE);
 
         /* If the dialog supports help, show the help button */
-        if(help_page) {
-            gtk_widget_show (dialog->help_button);
+        gtk_widget_set_visible (dialog->help_button, help_page != NULL);
 
-            /* Replace the current help url */
-            g_free(dialog->help_page);
-            dialog->help_page = g_strdup(help_page);
-        }
+        /* Replace the current help url */
+        g_free(dialog->help_page);
+        dialog->help_page = g_strdup(help_page);
+        g_free(dialog->help_component);
+        dialog->help_component = g_strdup(help_component);
 
         /* Build the dialog command */
         command = g_strdup_printf("%s --socket-id=%d", exec,
@@ -621,6 +628,7 @@ xfce_settings_manager_dialog_item_activated(ExoIconView *iconview,
     }
 
     g_free(help_page);
+    g_free(help_component);
 #endif
     g_free(exec);
     g_free(name);
@@ -643,7 +651,8 @@ static void
 xfce_settings_manager_dialog_help_button_clicked(GtkWidget *button,
                                                  XfceSettingsManagerDialog *dialog)
 {
-    xfce_dialog_show_help (GTK_WINDOW (dialog), "xfce4-settings",
+    xfce_dialog_show_help (GTK_WINDOW (dialog),
+                           dialog->help_component ? dialog->help_component : "xfce4-settings",
                            dialog->help_page ? dialog->help_page : "manager",
                            NULL);
 }
