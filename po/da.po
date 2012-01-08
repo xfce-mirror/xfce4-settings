@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-24 10:07+0000\n"
+"POT-Creation-Date: 2012-01-08 19:03+0000\n"
 "PO-Revision-Date: 2010-01-19 21:40+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
@@ -229,50 +229,50 @@ msgstr "pixels i sekundet"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
 msgstr "Sokkel til håndtering af indstillinger"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
 msgstr "SOKKEL-ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:98
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
 #: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Versionsinformation"
 
-#: ../dialogs/accessibility-settings/main.c:180
-#: ../dialogs/appearance-settings/main.c:956
-#: ../dialogs/display-settings/main.c:1040
-#: ../dialogs/keyboard-settings/main.c:63
-#: ../dialogs/mouse-settings/main.c:1504 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/accessibility-settings/main.c:192
+#: ../dialogs/appearance-settings/main.c:966
+#: ../dialogs/display-settings/main.c:1043
+#: ../dialogs/keyboard-settings/main.c:76
+#: ../dialogs/mouse-settings/main.c:1516 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Tast '%s --help' for brug."
 
-#: ../dialogs/accessibility-settings/main.c:199
-#: ../dialogs/appearance-settings/main.c:975
-#: ../dialogs/display-settings/main.c:1059
-#: ../dialogs/keyboard-settings/main.c:79
-#: ../dialogs/mouse-settings/main.c:1523 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/accessibility-settings/main.c:211
+#: ../dialogs/appearance-settings/main.c:985
+#: ../dialogs/display-settings/main.c:1062
+#: ../dialogs/keyboard-settings/main.c:92
+#: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce-udviklingsholdet. Alle rettigheder forbeholdes."
 
-#: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:976
-#: ../dialogs/display-settings/main.c:1060
-#: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1524 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/accessibility-settings/main.c:212
+#: ../dialogs/appearance-settings/main.c:986
+#: ../dialogs/display-settings/main.c:1063
+#: ../dialogs/keyboard-settings/main.c:93
+#: ../dialogs/mouse-settings/main.c:1536 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -646,22 +646,22 @@ msgstr ""
 msgid "Selected output not disabled"
 msgstr "Valgte uddata er ikke slået fra"
 
-#: ../dialogs/display-settings/main.c:1072
+#: ../dialogs/display-settings/main.c:1075
 #: ../dialogs/display-settings/xfce-randr.c:249
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Kunne ikke forespørge hvilken version af RandR-udvidelsen er ibrug"
 
-#: ../dialogs/display-settings/main.c:1073
-#: ../dialogs/display-settings/main.c:1109
+#: ../dialogs/display-settings/main.c:1076
+#: ../dialogs/display-settings/main.c:1112
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Kunne ikke starte skærmindstillingerne til Xfce"
 
-#: ../dialogs/display-settings/main.c:1104
+#: ../dialogs/display-settings/main.c:1107
 msgid "ATI Settings"
 msgstr "ATI-indstillinger"
 
-#: ../dialogs/display-settings/main.c:1119
+#: ../dialogs/display-settings/main.c:1122
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kunne ikke starte den lukkede skærmprogramsindstilling."
 
@@ -774,39 +774,48 @@ msgid "Edit keyboard settings and application shortcuts"
 msgstr "Redigér tastaturindstillinger og programgenveje"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "General"
+msgstr "Generelt"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Keyboard"
 msgstr "Tastatur"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Keyboard layout"
 msgstr "Tastaturlayout"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Keyboard layout selection"
 msgstr "Valg af tastaturlayout"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Keyboard model"
 msgstr "Tastaturmodel"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Repeat _speed:"
 msgstr "Gentagelse_shastighed:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Reset to _Defaults"
 msgstr "Nulstil til stan_dardindstillinger"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Restore num l_ock state on startup"
+msgstr "Genskab numl_ocktilstand ved opstart"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Select keyboard layout and variant"
 msgstr "Vælg tastaturlayout og -variant"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Show _blinking"
 msgstr "Vis _blinkende"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
@@ -814,31 +823,27 @@ msgstr ""
 "Angives om tastaturlayoutet er kontrolleret med denne indstillingsdialog "
 "eller af X-serveren"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Angiv om tekstmarkøren skal blinke eller ej"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Forsinkelsen i millisekunder mellem efterfølgende markørblink"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Frekvensen med hvilken et tastaturtryk dannes med en tast trykket"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Tiden i millisekunder før en trykket tast begynder at gentage sig selv"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Typing Settings"
 msgstr "Tasteindstillinger"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "Use this area to _test the settings above:"
-msgstr "Brug dette område til at af_prøve de ovenstående indstillinger:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid ""
 "When selected, pressing and holding down a key emits the same character over "
 "and over again"
@@ -846,61 +851,65 @@ msgstr ""
 "Når afkrydset vil nedtrykning og holdning af en tast medføre, at tasten vil "
 "sende det samme tegn igen og igen"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Enable key repeat"
 msgstr "_Aktivér tastgentagelse"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Layout"
 msgstr "_Layout"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Repeat delay:"
 msgstr "_Gentagelsesforsinkelse:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+msgid "_Test area:"
+msgstr "_Testområde:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Use system defaults"
 msgstr "Br_ug systemstandarder"
 
-#: ../dialogs/keyboard-settings/main.c:69
+#: ../dialogs/keyboard-settings/main.c:82
 msgid "Unable to initialize GTK+."
 msgstr "Kunne ikke klargøre GTK+."
 
-#: ../dialogs/keyboard-settings/main.c:89
+#: ../dialogs/keyboard-settings/main.c:102
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Kunne ikke forbinde til xfconf-dæmon. Årsag: %s"
 
-#: ../dialogs/keyboard-settings/main.c:100
+#: ../dialogs/keyboard-settings/main.c:113
 msgid "Could not create the settings dialog."
 msgstr "Kunne ikke oprette indstillingsdialogen."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:295
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
 msgid "Command"
 msgstr "Kommando"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
 msgid "Shortcut"
 msgstr "Genvej"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:374
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
 msgid "Layout"
 msgstr "Layout"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
 msgid "Variant"
 msgstr "Variant"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
 msgid "Shortcut command may not be empty."
 msgstr "Genvejskommando må ikke være tom."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
 msgid "Reset to Defaults"
 msgstr "Nulstil til standardindstillinger"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -908,11 +917,11 @@ msgstr ""
 "Dette vil nulstille alle genvejene til deres standardværdier. Vil du "
 "virkelig gøre dette?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
 msgid "The system defaults will be restored next time you log in."
 msgstr "Systemstandarder vil blive genskabt, når du logger ind næste gang."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -994,10 +1003,6 @@ msgstr "Hjørne_rulning"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Enable hori_zontal scrolling"
 msgstr "Aktivér _horisontal rulning"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-msgid "General"
-msgstr "Generelt"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Half (left-handed)"
@@ -1385,7 +1390,7 @@ msgstr "Undlad at forgrene til baggrunden"
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Erstat kørende  xsettings-dæmon (hvis nogen)"
 
-#: ../xfsettingsd/workspaces.c:365
+#: ../xfsettingsd/workspaces.c:385
 #, c-format
 msgid "Workspace %d"
 msgstr "Arbejdsområde %d"
@@ -1411,15 +1416,11 @@ msgstr "Tilpas dit skrivebord"
 msgid "_Overview"
 msgstr "_Overblik"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:601
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:617
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:608
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:624
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kunne ikke starte \"%s\""
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
-msgid "Failed to open the documentation"
-msgstr "Kunne ikke åbne dokumentationen"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Graphical Settings Manager for Xfce 4"
@@ -1428,6 +1429,12 @@ msgstr "Grafisk indstillingshåndtering til Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Indstillingshåndtering"
+
+#~ msgid "Use this area to _test the settings above:"
+#~ msgstr "Brug dette område til at af_prøve de ovenstående indstillinger:"
+
+#~ msgid "Failed to open the documentation"
+#~ msgstr "Kunne ikke åbne dokumentationen"
 
 #~ msgid "_Reset to Defaults"
 #~ msgstr "Nul_stil til standardindstillinger"
