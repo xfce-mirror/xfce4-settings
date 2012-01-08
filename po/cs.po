@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-01 22:54+0000\n"
-"PO-Revision-Date: 2012-01-02 01:51+0100\n"
+"POT-Creation-Date: 2012-01-08 19:03+0000\n"
+"PO-Revision-Date: 2012-01-09 00:40+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech\n"
 "Language: \n"
@@ -189,7 +189,7 @@ msgstr "pixely/s"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38
+#: ../dialogs/keyboard-settings/main.c:39
 #: ../dialogs/mouse-settings/main.c:97
 msgid "Settings manager socket"
 msgstr "Soket správce nastavení"
@@ -197,7 +197,7 @@ msgstr "Soket správce nastavení"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:38
+#: ../dialogs/keyboard-settings/main.c:39
 #: ../dialogs/mouse-settings/main.c:97
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
@@ -205,7 +205,7 @@ msgstr "SOCKET ID"
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39
+#: ../dialogs/keyboard-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:98
 #: ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77
@@ -213,11 +213,11 @@ msgstr "SOCKET ID"
 msgid "Version information"
 msgstr "Informace o verzi"
 
-#: ../dialogs/accessibility-settings/main.c:180
-#: ../dialogs/appearance-settings/main.c:956
-#: ../dialogs/display-settings/main.c:1040
-#: ../dialogs/keyboard-settings/main.c:63
-#: ../dialogs/mouse-settings/main.c:1504
+#: ../dialogs/accessibility-settings/main.c:192
+#: ../dialogs/appearance-settings/main.c:966
+#: ../dialogs/display-settings/main.c:1043
+#: ../dialogs/keyboard-settings/main.c:76
+#: ../dialogs/mouse-settings/main.c:1516
 #: ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173
 #: ../xfce4-settings-manager/main.c:57
@@ -225,22 +225,22 @@ msgstr "Informace o verzi"
 msgid "Type '%s --help' for usage."
 msgstr "Informace o použití získáte příkazem '%s --help'"
 
-#: ../dialogs/accessibility-settings/main.c:199
-#: ../dialogs/appearance-settings/main.c:975
-#: ../dialogs/display-settings/main.c:1059
-#: ../dialogs/keyboard-settings/main.c:79
-#: ../dialogs/mouse-settings/main.c:1523
+#: ../dialogs/accessibility-settings/main.c:211
+#: ../dialogs/appearance-settings/main.c:985
+#: ../dialogs/display-settings/main.c:1062
+#: ../dialogs/keyboard-settings/main.c:92
+#: ../dialogs/mouse-settings/main.c:1535
 #: ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189
 #: ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
 msgstr "Vývojářský tým Xfce. Všechna práva vyhrazena."
 
-#: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:976
-#: ../dialogs/display-settings/main.c:1060
-#: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1524
+#: ../dialogs/accessibility-settings/main.c:212
+#: ../dialogs/appearance-settings/main.c:986
+#: ../dialogs/display-settings/main.c:1063
+#: ../dialogs/keyboard-settings/main.c:93
+#: ../dialogs/mouse-settings/main.c:1536
 #: ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190
 #: ../xfce4-settings-manager/main.c:71
@@ -576,22 +576,22 @@ msgstr "Poslední aktivní výstup nelze zakázat, systém by byl nepoužitelný
 msgid "Selected output not disabled"
 msgstr "Vybraný výstup není zakázaný"
 
-#: ../dialogs/display-settings/main.c:1072
+#: ../dialogs/display-settings/main.c:1075
 #: ../dialogs/display-settings/xfce-randr.c:249
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nelze zjistit používanou verzi rozšíření RandR"
 
-#: ../dialogs/display-settings/main.c:1073
-#: ../dialogs/display-settings/main.c:1109
+#: ../dialogs/display-settings/main.c:1076
+#: ../dialogs/display-settings/main.c:1112
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nelze spustit nastavení displeje Xfce"
 
-#: ../dialogs/display-settings/main.c:1104
+#: ../dialogs/display-settings/main.c:1107
 msgid "ATI Settings"
 msgstr "Nastavení grafické karty ATI"
 
-#: ../dialogs/display-settings/main.c:1119
+#: ../dialogs/display-settings/main.c:1122
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nelze spustit nastavení proprietárního ovladače"
 
@@ -700,133 +700,142 @@ msgid "Edit keyboard settings and application shortcuts"
 msgstr "Úprava nastavení klávesnice a klávesových zkratek"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "General"
+msgstr "Obecné"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Keyboard"
 msgstr "Klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Keyboard layout"
 msgstr "Rozložení klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Keyboard layout selection"
 msgstr "Výběr rozložení klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Keyboard model"
 msgstr "Model klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Repeat _speed:"
 msgstr "Rychlo_st opakování:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Reset to _Defaults"
 msgstr "Obnovit _výchozí"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Restore num l_ock state on startup"
+msgstr "Obnovit stav přepínače numlock po spuštění"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Select keyboard layout and variant"
 msgstr "Vyberte rozložení a variantu klávesnice"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Show _blinking"
 msgstr "Povolit _blikání"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
 msgstr "Určujte, zda se bude rozložení klávesnice řídit nastavením v tomto dialogovém okně nebo nastavením X serveru"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Určete, zda bude textový kurzor blikat"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Prodleva v milisekundách mezi bliknutími kurzoru"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Frekvence generování kódů klávesy při jejím trvalém stisku"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Čas v milisekundách před zahájením opakování stisknuté klávesy"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Typing Settings"
 msgstr "Nastavení psaní"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "Use this area to _test the settings above:"
-msgstr "Tuto oblast použijte pro _vyzkoušení nastavení:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "When selected, pressing and holding down a key emits the same character over and over again"
 msgstr "Vyberete-li tuto volbu, bude se stisknutím a držením klávesy její zasílání neustále opakovat"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Enable key repeat"
 msgstr "_Povolit opakování klávesy"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "_Layout"
 msgstr "_Rozložení"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Repeat delay:"
 msgstr "Zpož_dění opakování:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+msgid "_Test area:"
+msgstr "_Testovací oblast:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Use system defaults"
 msgstr "_Použít výchozí nastavení systému"
 
-#: ../dialogs/keyboard-settings/main.c:69
+#: ../dialogs/keyboard-settings/main.c:82
 msgid "Unable to initialize GTK+."
 msgstr "Nelze inicializovat GTK+."
 
-#: ../dialogs/keyboard-settings/main.c:89
+#: ../dialogs/keyboard-settings/main.c:102
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Připojení ke službě xfconf se nezdařilo. Důvod: %s"
 
-#: ../dialogs/keyboard-settings/main.c:100
+#: ../dialogs/keyboard-settings/main.c:113
 msgid "Could not create the settings dialog."
 msgstr "Nelze vytvořit dialogové okno nastavení."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:295
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
 msgid "Command"
 msgstr "Příkaz"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
 msgid "Shortcut"
 msgstr "Klávesová zkratka"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:374
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
 msgid "Layout"
 msgstr "Rozložení"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:375
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
 msgid "Variant"
 msgstr "Varianta"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:851
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
 msgid "Shortcut command may not be empty."
 msgstr "Klávesová zkratka příkazu nemůže zůstat prázdná."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:959
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:960
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
 msgid "Reset to Defaults"
 msgstr "Obnovit výchozí"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:961
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
 msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
 msgstr "Touto akcí nastavíte všechny klávesové zkratky na výchozí hodnoty. Opravdu chcete pokračovat?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1026
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
 msgid "The system defaults will be restored next time you log in."
 msgstr "Výchozí nastavení systému budou obnovena po příštím přihlášení."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1028
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
 msgid "Warning"
 msgstr "Varování"
 
@@ -909,10 +918,6 @@ msgstr "Posouvání na okrajích"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Enable hori_zontal scrolling"
 msgstr "Povolit _vodorovné posouvání"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-msgid "General"
-msgstr "Obecné"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Half (left-handed)"
@@ -1293,15 +1298,11 @@ msgstr "Přízpůsobte si své pracovní prostředí"
 msgid "_Overview"
 msgstr "_Přehled"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:601
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:617
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:608
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:624
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nelze spustit „%s“"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:664
-msgid "Failed to open the documentation"
-msgstr "Otevření dokumentace se nezdařilo"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Graphical Settings Manager for Xfce 4"
@@ -1310,6 +1311,12 @@ msgstr "Grafický správce nastavení pro prostředí Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Správce nastavení"
+
+#~ msgid "Use this area to _test the settings above:"
+#~ msgstr "Tuto oblast použijte pro _vyzkoušení nastavení:"
+
+#~ msgid "Failed to open the documentation"
+#~ msgstr "Otevření dokumentace se nezdařilo"
 
 #~ msgid "_Reset to Defaults"
 #~ msgstr "O_bnovit výchozí"
