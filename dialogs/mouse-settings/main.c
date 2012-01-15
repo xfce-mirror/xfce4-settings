@@ -1102,7 +1102,6 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), is_enabled > 0);
 
     object = gtk_builder_get_object (builder, "device-notebook");
-    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (object), is_synaptics || is_wacom);
     gtk_widget_set_sensitive (GTK_WIDGET (object), is_enabled == 1);
 
     /* synaptics options */
