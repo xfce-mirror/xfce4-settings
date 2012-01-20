@@ -85,7 +85,7 @@ main (gint argc, gchar **argv)
     }
 
     window = g_object_new (XFCE_TYPE_MIME_WINDOW, NULL);
-    gtk_window_set_default_size (GTK_WINDOW (window), 400, 500);
+    gtk_window_set_default_size (GTK_WINDOW (window), 550, 400);
     g_signal_connect (G_OBJECT (window), "response",
         G_CALLBACK (gtk_main_quit), NULL);
     gtk_window_present (GTK_WINDOW (window));
