@@ -139,6 +139,12 @@ dnl **************************************
 XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [0.1.3],
                            [libnotify], [Notification support])
 
+dnl *********************
+dnl *** Mime settings ***
+dnl *********************
+XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.24],
+                           [gio-unix], [Mime settings])
+
 dnl ************************************
 dnl *** Optional support for Xcursor ***
 dnl ************************************
@@ -224,6 +230,7 @@ dialogs/appearance-settings/Makefile
 dialogs/accessibility-settings/Makefile
 dialogs/display-settings/Makefile
 dialogs/keyboard-settings/Makefile
+dialogs/mime-settings/Makefile
 dialogs/mouse-settings/Makefile
 xfsettingsd/Makefile
 xfce4-settings-manager/Makefile
@@ -267,6 +274,11 @@ if test x"$LIBXKLAVIER_FOUND" = x"yes"; then
 echo "* Libxklavier support:       yes"
 else
 echo "* Libxklavier support:       no"
+fi
+if test x"$GIO_UNIX_FOUND" = x"yes"; then
+echo "* Mime settings (gio-unix):  yes"
+else
+echo "* Mime settings (gio-unix):  no"
 fi
 echo
 
