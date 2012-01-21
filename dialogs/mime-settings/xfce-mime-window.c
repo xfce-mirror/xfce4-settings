@@ -289,6 +289,8 @@ xfce_mime_window_mime_user (void)
     XfceRc      *rc;
     guint        i;
     gchar      **mimes;
+    guint        n;
+    const gchar *groups[] = { "Added Associations", "Default Applications" };
 
     table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 
@@ -301,12 +303,15 @@ xfce_mime_window_mime_user (void)
 
     if (G_LIKELY (rc != NULL))
     {
-        mimes = xfce_rc_get_entries (rc, "Default Applications");
-        if (G_LIKELY (mimes != NULL))
+        for (n = 0; n < G_N_ELEMENTS (groups); n++)
         {
-            for (i = 0; mimes[i] != NULL; i++)
-                g_hash_table_insert (table, mimes[i], mimes[i]);
-            g_free (mimes);
+            mimes = xfce_rc_get_entries (rc, groups[n]);
+            if (G_LIKELY (mimes != NULL))
+            {
+                for (i = 0; mimes[i] != NULL; i++)
+                    g_hash_table_insert (table, mimes[i], mimes[i]);
+                g_free (mimes);
+            }
         }
 
         xfce_rc_close (rc);
