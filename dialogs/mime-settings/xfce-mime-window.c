@@ -218,10 +218,16 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_tree_view_column_set_clickable (column, TRUE);
     gtk_tree_view_column_set_sort_indicator (column, TRUE);
     gtk_tree_view_column_set_resizable (column, TRUE);
-    gtk_tree_view_column_set_expand (column, TRUE);
     g_signal_connect (G_OBJECT (column), "clicked",
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
+    /* HACK, wont work in gtk3 */
+    /* give the first column some initial size that doesn't restrict anything
+     * later. Expanding this column will resize the view when a setting
+     * is changed */
+    column->resized_width = 300;
+    column->use_resized_width = TRUE;
 
     renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (column), renderer, TRUE);
@@ -233,6 +239,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     column = gtk_tree_view_column_new ();
     gtk_tree_view_column_set_title (column, _("Status"));
     gtk_tree_view_column_set_clickable (column, TRUE);
+    gtk_tree_view_column_set_resizable (column, TRUE);
     g_signal_connect (G_OBJECT (column), "clicked",
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
