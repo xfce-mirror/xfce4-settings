@@ -127,6 +127,12 @@ xfce_mime_window_class_init (XfceMimeWindowClass *klass)
 
     gobject_class = G_OBJECT_CLASS (klass);
     gobject_class->finalize = xfce_mime_window_finalize;
+
+    gtk_rc_parse_string ("style \"mime-statusbar-internal\" {\n"
+                         "  GtkStatusbar::shadow-type = GTK_SHADOW_NONE\n"
+                         "}\n"
+                         "widget \"*.mime-statusbar\" "
+                         "style \"mime-statusbar-internal\"\n");
 }
 
 
@@ -139,6 +145,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     GtkWidget         *hbox;
     GtkWidget         *label;
     GtkWidget         *entry;
+    GtkWidget         *align;
     GtkWidget         *scroll;
     GtkWidget         *statusbar;
     GtkWidget         *treeview;
@@ -154,6 +161,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
 
     gtk_window_set_title (GTK_WINDOW (window), _("MIME Type Editor"));
     gtk_window_set_icon_name (GTK_WINDOW (window), "application-default-icon");
+    gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_NORMAL);
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (window),
         _("Associate applications with MIME types"));
 
@@ -161,13 +169,18 @@ xfce_mime_window_init (XfceMimeWindow *window)
     area = gtk_dialog_get_action_area (GTK_DIALOG (window));
     gtk_widget_hide (area);
 
-    vbox = gtk_vbox_new (FALSE, 2);
+    vbox = gtk_vbox_new (FALSE, 0);
     area = gtk_dialog_get_content_area (GTK_DIALOG (window));
     gtk_box_pack_start (GTK_BOX (area), vbox, TRUE, TRUE, 0);
     gtk_widget_show (vbox);
 
-    hbox = gtk_hbox_new (FALSE, 6);
-    gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, TRUE, 0);
+    align = gtk_alignment_new (0.00, 0.00, 1.00, 1.00);
+    gtk_alignment_set_padding (GTK_ALIGNMENT (align), 4, 0, 6, 6);
+    gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, TRUE, 0);
+    gtk_widget_show (align);
+
+    hbox = gtk_hbox_new (FALSE, 12);
+    gtk_container_add (GTK_CONTAINER (align), hbox);
     gtk_widget_show (hbox);
 
     label = gtk_label_new_with_mnemonic (_("_Filter:"));
@@ -191,9 +204,11 @@ xfce_mime_window_init (XfceMimeWindow *window)
                                     GTK_POLICY_ALWAYS);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll), GTK_SHADOW_ETCHED_IN);
     gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
+    gtk_container_set_border_width (GTK_CONTAINER (scroll), 6);
     gtk_widget_show (scroll);
 
     window->statusbar = statusbar = gtk_statusbar_new ();
+    gtk_widget_set_name (statusbar, "mime-statusbar");
     gtk_box_pack_start (GTK_BOX (vbox), statusbar, FALSE, TRUE, 0);
     gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (statusbar), TRUE);
     window->desc_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "desc");
