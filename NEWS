@@ -1,3 +1,16 @@
+4.9.1
+=====
+- Use daemon() for xfsettingsd if available.
+- Hide the xfconfd-already running message completely.
+- Excluded items with NoDisplay=true in the settings dialog.
+- Remove duplicated accelerators (bug #7734).
+- Add theme dnd-installation by dropping in a treeview.
+- Drop AC_LIBTOOL in favor of LT_PREREQ and LT_INIT.
+- Wait for the window manager before setting workspace names.
+- Add option to disable numlock restoring (bug #8302).
+- Add Help button and make existing buttons work with wiki.
+- Add new MIME Type editor.
+
 4.9.0
 =====
 - Depend on Gtk+ 2.20 and Glib 2.24.
