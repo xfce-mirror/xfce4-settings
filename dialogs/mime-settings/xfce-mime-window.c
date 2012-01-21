@@ -498,15 +498,51 @@ xfce_mime_window_row_visible_func (GtkTreeModel *model,
 
 
 static void
+xfce_mime_window_set_filter_model (XfceMimeWindow *window,
+                                   GtkTreePath    *filter_path,
+                                   const gchar    *app_name,
+                                   gboolean        user_set)
+{
+    GtkTreePath *path;
+    GtkTreeIter  filter_iter;
+    GtkTreeIter  mime_iter;
+
+    if (!gtk_tree_model_get_iter (window->filter_model, &filter_iter, filter_path))
+        return;
+
+    gtk_tree_model_filter_convert_iter_to_child_iter (
+        GTK_TREE_MODEL_FILTER (window->filter_model),
+        &mime_iter, &filter_iter);
+
+    gtk_list_store_set (GTK_LIST_STORE (window->mime_model), &mime_iter,
+                        COLUMN_MIME_DEFAULT, app_name,
+                        COLUMN_MIME_STATUS, user_set ? _("User Set") : _("Default"),
+                        COLUMN_MIME_ATTRS, user_set ? window->attrs_bold : NULL,
+                        -1);
+
+    gtk_tree_model_filter_convert_child_iter_to_iter (
+        GTK_TREE_MODEL_FILTER (window->filter_model),
+        &filter_iter, &mime_iter);
+
+    /* scroll */
+    path = gtk_tree_model_get_path (window->filter_model, &filter_iter);
+    if (G_LIKELY (path != NULL))
+    {
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->treeview), path, NULL, FALSE);
+        gtk_tree_path_free (path);
+    }
+}
+
+
+
+static void
 xfce_mime_window_set_default_for_type (XfceMimeWindow *window,
                                        GAppInfo       *app_info,
                                        const gchar    *mime_type,
                                        GtkTreePath    *filter_path)
 {
-    GAppInfo    *app_default;
-    GError      *error = NULL;
-    GtkTreeIter  mime_iter;
-    GtkTreeIter  filter_iter;
+    GAppInfo *app_default;
+    GError   *error = NULL;
 
     g_return_if_fail (G_IS_APP_INFO (app_info));
     g_return_if_fail (XFCE_IS_MIME_WINDOW (window));
@@ -519,18 +555,8 @@ xfce_mime_window_set_default_for_type (XfceMimeWindow *window,
     {
         if (g_app_info_set_as_default_for_type (app_info, mime_type, &error))
         {
-            if (gtk_tree_model_get_iter (window->filter_model, &filter_iter, filter_path))
-            {
-                gtk_tree_model_filter_convert_iter_to_child_iter (
-                    GTK_TREE_MODEL_FILTER (window->filter_model),
-                    &mime_iter, &filter_iter);
-
-                gtk_list_store_set (GTK_LIST_STORE (window->mime_model), &mime_iter,
-                                    COLUMN_MIME_DEFAULT, g_app_info_get_name (app_info),
-                                    COLUMN_MIME_STATUS, _("User Set"),
-                                    COLUMN_MIME_ATTRS, window->attrs_bold,
-                                    -1);
-            }
+            xfce_mime_window_set_filter_model (window, filter_path,
+                                               g_app_info_get_name (app_info), TRUE);
         }
         else
         {
@@ -723,8 +749,6 @@ xfce_mime_window_reset_response (GtkWidget       *dialog,
 {
     GAppInfo    *app_default;
     const gchar *app_name;
-    GtkTreeIter  filter_iter;
-    GtkTreeIter  mime_iter;
 
     gtk_widget_destroy (dialog);
 
@@ -740,18 +764,7 @@ xfce_mime_window_reset_response (GtkWidget       *dialog,
         else
           app_name = NULL;
 
-        if (gtk_tree_model_get_iter (data->window->filter_model, &filter_iter, data->filter_path))
-        {
-            gtk_tree_model_filter_convert_iter_to_child_iter (
-                GTK_TREE_MODEL_FILTER (data->window->filter_model),
-                &mime_iter, &filter_iter);
-
-            gtk_list_store_set (GTK_LIST_STORE (data->window->mime_model), &mime_iter,
-                                COLUMN_MIME_DEFAULT, app_name,
-                                COLUMN_MIME_STATUS, _("Default"),
-                                COLUMN_MIME_ATTRS, NULL,
-                                -1);
-        }
+        xfce_mime_window_set_filter_model (data->window, data->filter_path, app_name, FALSE);
 
         if (app_default != NULL)
             g_object_unref (app_default);
