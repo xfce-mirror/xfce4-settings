@@ -43,6 +43,11 @@ static void     xfce_mime_chooser_row_activated     (GtkTreeView       *tree_vie
                                                      GtkTreePath       *path,
                                                      GtkTreeViewColumn *column,
                                                      XfceMimeChooser   *chooser);
+static gboolean xfce_mime_chooser_row_can_select    (GtkTreeSelection  *selection,
+                                                     GtkTreeModel      *model,
+                                                     GtkTreePath       *path,
+                                                     gboolean           path_currently_selected,
+                                                     gpointer           data);
 static void     xfce_mime_chooser_update_accept     (XfceMimeChooser   *chooser);
 static void     xfce_mime_chooser_notify_expanded   (GtkExpander       *expander,
                                                      GParamSpec        *pspec,
@@ -172,6 +177,8 @@ xfce_mime_chooser_init (XfceMimeChooser *chooser)
     chooser->treeview = treeview;
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+    gtk_tree_selection_set_select_function (selection,
+        xfce_mime_chooser_row_can_select, NULL, NULL);
     g_signal_connect_swapped (G_OBJECT (selection), "changed",
         G_CALLBACK (xfce_mime_chooser_update_accept), chooser);
 
@@ -264,6 +271,32 @@ xfce_mime_chooser_row_activated (GtkTreeView       *tree_view,
 {
     if (gtk_widget_is_sensitive (chooser->button))
         gtk_dialog_response (GTK_DIALOG (chooser), GTK_RESPONSE_YES);
+}
+
+
+
+static gboolean
+xfce_mime_chooser_row_can_select (GtkTreeSelection  *selection,
+                                  GtkTreeModel      *model,
+                                  GtkTreePath       *path,
+                                  gboolean           path_currently_selected,
+                                  gpointer           data)
+{
+    gboolean    permitted = TRUE;
+    GtkTreeIter iter;
+    GValue      value = { 0, };
+
+    /* we can always change the selection if the path is already selected */
+    if (G_UNLIKELY (!path_currently_selected))
+    {
+        /* check if there's an application for the path */
+        gtk_tree_model_get_iter (model, &iter, path);
+        gtk_tree_model_get_value (model, &iter, CHOOSER_COLUMN_APP_INFO, &value);
+        permitted = (g_value_get_object (&value) != NULL);
+        g_value_unset (&value);
+    }
+
+    return permitted;
 }
 
 
