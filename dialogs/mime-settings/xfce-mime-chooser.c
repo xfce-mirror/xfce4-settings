@@ -38,13 +38,17 @@
 
 
 
-static void     xfce_mime_chooser_finalize          (GObject          *object);
-static void     xfce_mime_chooser_update_accept     (XfceMimeChooser  *chooser);
-static void     xfce_mime_chooser_notify_expanded   (GtkExpander      *expander,
-                                                     GParamSpec       *pspec,
-                                                     XfceMimeChooser  *chooser);
-static void     xfce_mime_chooser_browse_command    (GtkWidget        *button,
-                                                     XfceMimeChooser  *chooser);
+static void     xfce_mime_chooser_finalize          (GObject           *object);
+static void     xfce_mime_chooser_row_activated     (GtkTreeView       *tree_view,
+                                                     GtkTreePath       *path,
+                                                     GtkTreeViewColumn *column,
+                                                     XfceMimeChooser   *chooser);
+static void     xfce_mime_chooser_update_accept     (XfceMimeChooser   *chooser);
+static void     xfce_mime_chooser_notify_expanded   (GtkExpander       *expander,
+                                                     GParamSpec        *pspec,
+                                                     XfceMimeChooser   *chooser);
+static void     xfce_mime_chooser_browse_command    (GtkWidget         *button,
+                                                     XfceMimeChooser   *chooser);
 
 
 
@@ -59,6 +63,7 @@ struct _XfceMimeChooser
 
     GtkTreeStore *model;
 
+    GtkWidget    *button;
     GtkWidget    *image;
     GtkWidget    *label;
     GtkWidget    *treeview;
@@ -122,10 +127,10 @@ xfce_mime_chooser_init (XfceMimeChooser *chooser)
 
     gtk_dialog_add_button (GTK_DIALOG (chooser),
                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-    button = gtk_dialog_add_button (GTK_DIALOG (chooser),
-                                    GTK_STOCK_OPEN, GTK_RESPONSE_YES);
+    chooser->button = gtk_dialog_add_button (GTK_DIALOG (chooser),
+                                             GTK_STOCK_OPEN, GTK_RESPONSE_YES);
     gtk_dialog_set_default_response (GTK_DIALOG (chooser), GTK_RESPONSE_YES);
-    gtk_widget_set_sensitive (button, FALSE);
+    gtk_widget_set_sensitive (chooser->button, FALSE);
 
     vbox = gtk_vbox_new (FALSE, 6);
     area = gtk_dialog_get_content_area (GTK_DIALOG (chooser));
@@ -161,6 +166,8 @@ xfce_mime_chooser_init (XfceMimeChooser *chooser)
     gtk_tree_view_set_show_expanders (GTK_TREE_VIEW (treeview), FALSE);
     gtk_tree_view_set_level_indentation (GTK_TREE_VIEW (treeview), 24);
     gtk_container_add (GTK_CONTAINER (scroll), treeview);
+    g_signal_connect (G_OBJECT (treeview), "row-activated",
+        G_CALLBACK (xfce_mime_chooser_row_activated), chooser);
     gtk_widget_show (treeview);
     chooser->treeview = treeview;
 
@@ -245,6 +252,18 @@ xfce_mime_chooser_get_selected (XfceMimeChooser *chooser)
     }
 
     return app_info;
+}
+
+
+
+static void
+xfce_mime_chooser_row_activated (GtkTreeView       *tree_view,
+                                 GtkTreePath       *path,
+                                 GtkTreeViewColumn *column,
+                                 XfceMimeChooser   *chooser)
+{
+    if (gtk_widget_is_sensitive (chooser->button))
+        gtk_dialog_response (GTK_DIALOG (chooser), GTK_RESPONSE_YES);
 }
 
 
