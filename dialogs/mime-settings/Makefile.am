@@ -1,8 +1,7 @@
 
 INCLUDES = \
 	-I${top_srcdir} \
-	-DDATADIR=\"$(datadir)\" \
-	-DSRCDIR=\"$(top_srcdir)\" \
+	-DBINDIR=\"$(bindir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-mime-settings\" \
 	$(PLATFORM_CPPFLAGS)
@@ -12,6 +11,8 @@ bin_PROGRAMS = \
 
 xfce4_mime_settings_SOURCES = \
 	main.c \
+	xfce-mime-chooser.c \
+	xfce-mime-chooser.h \
 	xfce-mime-window.c \
 	xfce-mime-window.h
 

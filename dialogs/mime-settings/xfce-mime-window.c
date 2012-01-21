@@ -31,6 +31,8 @@
 #include <gio/gdesktopappinfo.h>
 
 #include "xfce-mime-window.h"
+#include "xfce-mime-chooser.h"
+
 
 
 static void     xfce_mime_window_finalize          (GObject              *object);
@@ -253,10 +255,12 @@ xfce_mime_window_init (XfceMimeWindow *window)
     renderer = gtk_cell_renderer_combo_new ();
     g_signal_connect (G_OBJECT (renderer), "editing-started",
         G_CALLBACK (xfce_mime_window_combo_populate), window);
-    g_object_set (renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (column), renderer, TRUE);
-    g_object_set (renderer, "text-column", COLUMN_APP_NAME,
-                  "has-entry", FALSE, "editable", TRUE, NULL);
+    g_object_set (renderer,
+                  "text-column", COLUMN_APP_NAME,
+                  "ellipsize", PANGO_ELLIPSIZE_END,
+                  "has-entry", FALSE,
+                  "editable", TRUE, NULL);
     gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (column), renderer,
                                     "attributes", COLUMN_MIME_ATTRS,
                                     "text", COLUMN_MIME_DEFAULT, NULL);
@@ -309,7 +313,7 @@ xfce_mime_window_mime_user (void)
             if (G_LIKELY (mimes != NULL))
             {
                 for (i = 0; mimes[i] != NULL; i++)
-                    g_hash_table_insert (table, mimes[i], mimes[i]);
+                    g_hash_table_insert (table, mimes[i], GINT_TO_POINTER (TRUE));
                 g_free (mimes);
             }
         }
@@ -572,19 +576,65 @@ xfce_mime_window_combo_unref_data (gpointer user_data)
 
 
 static void
+xfce_mime_window_chooser_response (GtkWidget       *chooser,
+                                   gint             response_id,
+                                   MimeChangedData *data)
+{
+    GAppInfo    *app_info;
+    GtkTreeIter  iter;
+    GError      *error = NULL;
+
+    gtk_widget_hide (chooser);
+
+    if (response_id == GTK_RESPONSE_YES)
+    {
+        if (!gtk_tree_model_get_iter (data->window->mime_model, &iter, data->path))
+            return;
+
+        app_info = xfce_mime_chooser_get_app_info (XFCE_MIME_CHOOSER (chooser));
+        if (G_LIKELY (app_info != NULL))
+        {
+            if (g_app_info_set_as_default_for_type (app_info, data->mime_type, &error))
+            {
+                gtk_list_store_set (GTK_LIST_STORE (data->window->mime_model), &iter,
+                                    COLUMN_MIME_DEFAULT, g_app_info_get_name (app_info),
+                                    COLUMN_MIME_STATUS, _("User Set"),
+                                    COLUMN_MIME_ATTRS, data->window->attrs_bold,
+                                    -1);
+            }
+            else
+            {
+                xfce_dialog_show_error (GTK_WINDOW (data->window), error,
+                    _("Failed to set application \"%s\" for mime type \"%s\"."),
+                    g_app_info_get_name (app_info), data->mime_type);
+                g_error_free (error);
+            }
+
+            g_object_unref (G_OBJECT (app_info));
+        }
+    }
+
+    xfce_mime_window_combo_unref_data (data);
+
+    gtk_widget_destroy (chooser);
+}
+
+
+
+static void
 xfce_mime_window_reset_response (GtkWidget       *dialog,
                                  gint             response_id,
                                  MimeChangedData *data)
 {
-    GAppInfo       *app_default;
-    const gchar    *app_name;
-    GtkTreeIter     mime_iter;
+    GAppInfo    *app_default;
+    const gchar *app_name;
+    GtkTreeIter  iter;
 
     gtk_widget_destroy (dialog);
 
     if (response_id == GTK_RESPONSE_YES)
     {
-        if (!gtk_tree_model_get_iter (data->window->mime_model, &mime_iter, data->path))
+        if (!gtk_tree_model_get_iter (data->window->mime_model, &iter, data->path))
             return;
 
         /* reset the user's default */
@@ -597,7 +647,7 @@ xfce_mime_window_reset_response (GtkWidget       *dialog,
         else
           app_name = NULL;
 
-        gtk_list_store_set (GTK_LIST_STORE (data->window->mime_model), &mime_iter,
+        gtk_list_store_set (GTK_LIST_STORE (data->window->mime_model), &iter,
                             COLUMN_MIME_DEFAULT, app_name,
                             COLUMN_MIME_STATUS, _("Default"),
                             COLUMN_MIME_ATTRS, NULL,
@@ -660,7 +710,16 @@ xfce_mime_window_combo_changed (GtkWidget       *combo,
     }
     else if (type == APP_TYPE_CHOOSER)
     {
-        g_message ("todo");
+        dialog = g_object_new (XFCE_TYPE_MIME_CHOOSER, NULL);
+        gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+        xfce_mime_chooser_set_mime_type (XFCE_MIME_CHOOSER (dialog), data->mime_type);
+
+        /* ref data */
+        data->ref_count++;
+
+        g_signal_connect (G_OBJECT (dialog), "response",
+            G_CALLBACK (xfce_mime_window_chooser_response), data);
+        gtk_window_present (GTK_WINDOW (dialog));
     }
     else if (type == APP_TYPE_RESET)
     {
