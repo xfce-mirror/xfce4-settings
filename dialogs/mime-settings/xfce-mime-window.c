@@ -233,7 +233,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
     column = gtk_tree_view_column_new ();
     gtk_tree_view_column_set_title (column, _("Status"));
     gtk_tree_view_column_set_clickable (column, TRUE);
-    gtk_tree_view_column_set_resizable (column, TRUE);
     g_signal_connect (G_OBJECT (column), "clicked",
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
@@ -583,6 +582,7 @@ xfce_mime_window_chooser_response (GtkWidget       *chooser,
     GAppInfo    *app_info;
     GtkTreeIter  iter;
     GError      *error = NULL;
+    GAppInfo    *app_default;
 
     gtk_widget_hide (chooser);
 
@@ -592,7 +592,10 @@ xfce_mime_window_chooser_response (GtkWidget       *chooser,
             return;
 
         app_info = xfce_mime_chooser_get_app_info (XFCE_MIME_CHOOSER (chooser));
-        if (G_LIKELY (app_info != NULL))
+        app_default = g_app_info_get_default_for_type (data->mime_type, FALSE);
+
+        if (app_info != NULL
+            && (app_default == NULL || !g_app_info_equal (app_default, app_info)))
         {
             if (g_app_info_set_as_default_for_type (app_info, data->mime_type, &error))
             {
@@ -609,9 +612,12 @@ xfce_mime_window_chooser_response (GtkWidget       *chooser,
                     g_app_info_get_name (app_info), data->mime_type);
                 g_error_free (error);
             }
-
-            g_object_unref (G_OBJECT (app_info));
         }
+
+        if (app_info != NULL)
+          g_object_unref (G_OBJECT (app_info));
+        if (app_default != NULL)
+          g_object_unref (G_OBJECT (app_default));
     }
 
     xfce_mime_window_combo_unref_data (data);
@@ -673,8 +679,9 @@ xfce_mime_window_combo_changed (GtkWidget       *combo,
     GAppInfo       *app_info;
     GError         *error = NULL;
     GtkTreeIter     mime_iter;
-    GtkWidget *dialog;
-    gchar *primary;
+    GtkWidget      *dialog;
+    gchar          *primary;
+    GAppInfo       *app_default;
 
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
     if (!gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combo), &iter))
@@ -687,25 +694,33 @@ xfce_mime_window_combo_changed (GtkWidget       *combo,
     if (type == APP_TYPE_APP
         && app_info != NULL)
     {
-        if (g_app_info_set_as_default_for_type (app_info, data->mime_type, &error))
+        /* only change if it differs from the default */
+        app_default = g_app_info_get_default_for_type (data->mime_type, FALSE);
+        if (app_default == NULL || !g_app_info_equal (app_default, app_info))
         {
-            if (gtk_tree_model_get_iter (window->mime_model, &mime_iter, data->path))
+            /* set the new mime handler */
+            if (g_app_info_set_as_default_for_type (app_info, data->mime_type, &error))
             {
-                gtk_list_store_set (GTK_LIST_STORE (window->mime_model), &mime_iter,
-                                    COLUMN_MIME_DEFAULT, g_app_info_get_name (app_info),
-                                    COLUMN_MIME_STATUS, _("User Set"),
-                                    COLUMN_MIME_ATTRS, window->attrs_bold,
-                                    -1);
+                if (gtk_tree_model_get_iter (window->mime_model, &mime_iter, data->path))
+                {
+                    gtk_list_store_set (GTK_LIST_STORE (window->mime_model), &mime_iter,
+                                        COLUMN_MIME_DEFAULT, g_app_info_get_name (app_info),
+                                        COLUMN_MIME_STATUS, _("User Set"),
+                                        COLUMN_MIME_ATTRS, window->attrs_bold,
+                                        -1);
+                }
+            }
+            else
+            {
+                xfce_dialog_show_error (GTK_WINDOW (window), error,
+                    _("Failed to set application \"%s\" for mime type \"%s\"."),
+                    g_app_info_get_name (app_info), data->mime_type);
+                g_error_free (error);
             }
         }
-        else
-        {
-            xfce_dialog_show_error (GTK_WINDOW (window), error,
-                _("Failed to set application \"%s\" for mime type \"%s\"."),
-                g_app_info_get_name (app_info), data->mime_type);
-            g_error_free (error);
-        }
 
+        if (app_default != NULL)
+            g_object_unref (app_default);
         g_object_unref (app_info);
     }
     else if (type == APP_TYPE_CHOOSER)
