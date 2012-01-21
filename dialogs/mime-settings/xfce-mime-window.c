@@ -152,10 +152,10 @@ xfce_mime_window_init (XfceMimeWindow *window)
 
     n_mime_types = xfce_mime_window_mime_model (window);
 
-    gtk_window_set_title (GTK_WINDOW (window), _("Mime Type Editor"));
+    gtk_window_set_title (GTK_WINDOW (window), _("MIME Type Editor"));
     gtk_window_set_icon_name (GTK_WINDOW (window), "application-default-icon");
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (window),
-        _("Configure the application accossiated with a mime type"));
+        _("Associate applications with MIME types"));
 
     /* don't act like a dialog, hide the button box */
     area = gtk_dialog_get_action_area (GTK_DIALOG (window));
@@ -221,7 +221,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
         G_CALLBACK (xfce_mime_window_selection_changed), window);
 
     column = gtk_tree_view_column_new ();
-    gtk_tree_view_column_set_title (column, _("Mime Type"));
+    gtk_tree_view_column_set_title (column, _("MIME Type"));
     gtk_tree_view_column_set_clickable (column, TRUE);
     gtk_tree_view_column_set_sort_indicator (column, TRUE);
     gtk_tree_view_column_set_resizable (column, TRUE);
@@ -449,8 +449,8 @@ xfce_mime_window_statusbar_count (XfceMimeWindow *window,
 
     gtk_statusbar_pop (GTK_STATUSBAR (window->statusbar), window->count_id);
 
-    msg = g_strdup_printf (ngettext ("%d mime type found",
-                                     "%d mime types found",
+    msg = g_strdup_printf (ngettext ("%d MIME type found",
+                                     "%d MIME types found",
                                      n_mime_types), n_mime_types);
     gtk_statusbar_push (GTK_STATUSBAR (window->statusbar), window->count_id, msg);
     g_free (msg);
