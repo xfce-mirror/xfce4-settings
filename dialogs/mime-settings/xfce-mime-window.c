@@ -97,6 +97,7 @@ enum
 {
     COLUMN_APP_NAME,
     COLUMN_APP_INFO,
+    COLUMN_APP_GICON,
     COLUMN_APP_TYPE,
     N_APP_COLUMNS
 };
@@ -784,6 +785,8 @@ xfce_mime_window_combo_populate (GtkCellRenderer *renderer,
     GtkListStore    *model;
     GAppInfo        *app_info;
     MimeChangedData *data;
+    GtkCellRenderer *iconrenderer;
+    gint             size = 0;
 
     if (!gtk_tree_model_get_iter_from_string (window->filter_model, &filter_iter, path_string))
         return;
@@ -793,6 +796,7 @@ xfce_mime_window_combo_populate (GtkCellRenderer *renderer,
     model = gtk_list_store_new (N_APP_COLUMNS,
                                 G_TYPE_STRING,
                                 G_TYPE_APP_INFO,
+                                G_TYPE_ICON,
                                 G_TYPE_UINT);
 
     gtk_tree_model_get (window->mime_model, &iter, COLUMN_MIME_TYPE, &mime_type, -1);
@@ -807,6 +811,7 @@ xfce_mime_window_combo_populate (GtkCellRenderer *renderer,
         gtk_list_store_insert_with_values (model, NULL, n++,
                                            COLUMN_APP_NAME, g_app_info_get_name (app_info),
                                            COLUMN_APP_INFO, app_info,
+                                           COLUMN_APP_GICON, g_app_info_get_icon (app_info),
                                            COLUMN_APP_TYPE, APP_TYPE_APP,
                                            -1);
         g_object_unref (app_info);
@@ -814,6 +819,7 @@ xfce_mime_window_combo_populate (GtkCellRenderer *renderer,
 
     if (n != 0)
     {
+        gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &size, NULL);
         gtk_list_store_insert_with_values (model, NULL, n++,
                                            COLUMN_APP_TYPE, APP_TYPE_SEPARATOR,
                                            -1);
@@ -842,6 +848,15 @@ xfce_mime_window_combo_populate (GtkCellRenderer *renderer,
         (GClosureNotify) xfce_mime_window_combo_unref_data, 0);
     gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (editable),
         xfce_mime_window_combo_row_separator_func, NULL, NULL);
+
+    iconrenderer = gtk_cell_renderer_pixbuf_new ();
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (editable), iconrenderer, FALSE);
+    gtk_cell_layout_reorder (GTK_CELL_LAYOUT (editable), iconrenderer, 0);
+    g_object_set (G_OBJECT (iconrenderer),
+                  "stock-size", GTK_ICON_SIZE_MENU,
+                  "width", size, NULL);
+    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (editable), iconrenderer,
+                                   "gicon", COLUMN_APP_GICON);
 
     g_list_free (app_infos);
     g_object_unref (G_OBJECT (model));
