@@ -29,6 +29,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <gio/gdesktopappinfo.h>
+#include <xfconf/xfconf.h>
 
 #include "xfce-mime-window.h"
 #include "xfce-mime-chooser.h"
@@ -36,6 +37,8 @@
 
 
 static void     xfce_mime_window_finalize          (GObject              *object);
+static gboolean xfce_mime_window_delete_event      (GtkWidget            *widget,
+                                                    GdkEventAny          *event);
 static gint     xfce_mime_window_mime_model        (XfceMimeWindow       *window);
 static void     xfce_mime_window_filter_changed    (GtkEntry             *entry,
                                                     XfceMimeWindow       *window);
@@ -71,6 +74,8 @@ struct _XfceMimeWindowClass
 struct _XfceMimeWindow
 {
     XfceTitledDialog  __parent__;
+
+    XfconfChannel *channel;
 
     GtkWidget     *treeview;
 
@@ -124,10 +129,14 @@ G_DEFINE_TYPE (XfceMimeWindow, xfce_mime_window, XFCE_TYPE_TITLED_DIALOG)
 static void
 xfce_mime_window_class_init (XfceMimeWindowClass *klass)
 {
-    GObjectClass *gobject_class;
+    GObjectClass   *gobject_class;
+    GtkWidgetClass *gtkwidget_class;
 
     gobject_class = G_OBJECT_CLASS (klass);
     gobject_class->finalize = xfce_mime_window_finalize;
+
+    gtkwidget_class = GTK_WIDGET_CLASS (klass);
+    gtkwidget_class->delete_event = xfce_mime_window_delete_event;
 
     gtk_rc_parse_string ("style \"mime-statusbar-internal\" {\n"
                          "  GtkStatusbar::shadow-type = GTK_SHADOW_NONE\n"
@@ -155,6 +164,8 @@ xfce_mime_window_init (XfceMimeWindow *window)
     GtkTreeViewColumn *column;
     GtkCellRenderer   *renderer;
 
+    window->channel = xfconf_channel_new ("xfce4-mime-settings");
+
     window->attrs_bold = pango_attr_list_new ();
     pango_attr_list_insert (window->attrs_bold, pango_attr_weight_new (PANGO_WEIGHT_BOLD));
 
@@ -165,6 +176,11 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_NORMAL);
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (window),
         _("Associate applications with MIME types"));
+
+    /* restore old user size */
+    gtk_window_set_default_size (GTK_WINDOW (window),
+        xfconf_channel_get_int (window->channel, "/last/window-width", 550),
+        xfconf_channel_get_int (window->channel, "/last/window-height", 400));
 
     /* don't act like a dialog, hide the button box */
     area = gtk_dialog_get_action_area (GTK_DIALOG (window));
@@ -225,6 +241,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (window->filter_model));
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), TRUE);
     gtk_tree_view_set_headers_clickable (GTK_TREE_VIEW (treeview), TRUE);
+    gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (treeview), TRUE);
     gtk_tree_view_set_enable_search (GTK_TREE_VIEW (treeview), FALSE);
     gtk_container_add (GTK_CONTAINER (scroll), treeview);
     gtk_widget_show (treeview);
@@ -241,16 +258,17 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_tree_view_column_set_clickable (column, TRUE);
     gtk_tree_view_column_set_sort_indicator (column, TRUE);
     gtk_tree_view_column_set_resizable (column, TRUE);
+    gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
     g_signal_connect (G_OBJECT (column), "clicked",
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-    /* HACK, wont work in gtk3 */
-    /* give the first column some initial size that doesn't restrict anything
-     * later. Expanding this column will resize the view when a setting
-     * is changed */
-    column->resized_width = 300;
+    /* HACK */
+    /* https://bugzilla.gnome.org/show_bug.cgi?id=668428 */
     column->use_resized_width = TRUE;
+    column->resized_width = xfconf_channel_get_int (window->channel,
+                                                    "/last/mime-width",
+                                                    300);
 
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (column), renderer, FALSE);
@@ -269,9 +287,16 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_tree_view_column_set_title (column, _("Status"));
     gtk_tree_view_column_set_clickable (column, TRUE);
     gtk_tree_view_column_set_resizable (column, TRUE);
+    gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
     g_signal_connect (G_OBJECT (column), "clicked",
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
+    /* HACK */
+    column->use_resized_width = TRUE;
+    column->resized_width = xfconf_channel_get_int (window->channel,
+                                                    "/last/status-width",
+                                                    75);
 
     renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (column), renderer, FALSE);
@@ -283,9 +308,16 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_tree_view_column_set_title (column, _("Default Application"));
     gtk_tree_view_column_set_clickable (column, TRUE);
     gtk_tree_view_column_set_resizable (column, TRUE);
+    gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
     g_signal_connect (G_OBJECT (column), "clicked",
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
+    /* HACK */
+    column->use_resized_width = TRUE;
+    column->resized_width = xfconf_channel_get_int (window->channel,
+                                                    "/last/default-width",
+                                                    100);
 
     renderer = gtk_cell_renderer_combo_new ();
     g_signal_connect (G_OBJECT (renderer), "editing-started",
@@ -312,10 +344,52 @@ xfce_mime_window_finalize (GObject *object)
 
     g_object_unref (G_OBJECT (window->filter_model));
     g_object_unref (G_OBJECT (window->mime_model));
+    g_object_unref (G_OBJECT (window->channel));
 
     pango_attr_list_unref (window->attrs_bold);
 
     (*G_OBJECT_CLASS (xfce_mime_window_parent_class)->finalize) (object);
+}
+
+
+
+static gboolean
+xfce_mime_window_delete_event (GtkWidget   *widget,
+                               GdkEventAny *event)
+{
+    XfceMimeWindow    *window = XFCE_MIME_WINDOW (widget);
+    gint               width, height;
+    GtkTreeViewColumn *column;
+    guint              i;
+    const gchar       *columns[] = { "mime", "status", "default" };
+    gchar              prop[32];
+    GdkWindowState     state;
+
+    g_return_val_if_fail (XFCONF_IS_CHANNEL (window->channel), FALSE);
+
+    /* don't save the state for full-screen windows */
+    state = gdk_window_get_state (GTK_WIDGET (window)->window);
+    if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
+    {
+        /* save window size */
+        gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
+        xfconf_channel_set_int (window->channel, "/last/window-width", width),
+        xfconf_channel_set_int (window->channel, "/last/window-height", height);
+
+        /* save column positions */
+        for (i = 0; i < G_N_ELEMENTS (columns); i++)
+        {
+            column = gtk_tree_view_get_column (GTK_TREE_VIEW (window->treeview), i);
+            g_snprintf (prop, sizeof (prop), "/last/%s-width", columns[i]);
+            xfconf_channel_set_int (window->channel, prop,
+                                    gtk_tree_view_column_get_width (column));
+        }
+    }
+
+    if (GTK_WIDGET_CLASS (xfce_mime_window_parent_class)->delete_event != NULL)
+        return (*GTK_WIDGET_CLASS (xfce_mime_window_parent_class)->delete_event) (widget, event);
+    else
+        return FALSE;
 }
 
 

@@ -28,6 +28,7 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
 
 #include "xfce-mime-window.h"
 
@@ -76,7 +77,7 @@ main (gint argc, gchar **argv)
     if (G_UNLIKELY (opt_version))
     {
         g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
-        g_print ("%s\n", "Copyright (c) 2008-2011");
+        g_print ("%s\n", "Copyright (c) 2008-2012");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
         g_print ("\n");
@@ -84,13 +85,20 @@ main (gint argc, gchar **argv)
         return EXIT_SUCCESS;
     }
 
+    if (!xfconf_init (&error))
+    {
+        g_critical ("Failed to initialize xfconf: %s", error->message);
+        g_error_free (error);
+    }
+
     window = g_object_new (XFCE_TYPE_MIME_WINDOW, NULL);
-    gtk_window_set_default_size (GTK_WINDOW (window), 550, 400);
     g_signal_connect (G_OBJECT (window), "response",
         G_CALLBACK (gtk_main_quit), NULL);
     gtk_window_present (GTK_WINDOW (window));
 
     gtk_main ();
+
+    xfconf_shutdown ();
 
     return EXIT_SUCCESS;
 }

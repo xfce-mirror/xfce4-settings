@@ -21,6 +21,7 @@ xfce4_mime_settings_CFLAGS = \
 	$(GIO_CFLAGS) \
 	$(GIO_UNIX_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
+	$(XFCONF_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfce4_mime_settings_LDFLAGS = \
@@ -31,7 +32,8 @@ xfce4_mime_settings_LDADD = \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(GIO_LIBS) \
-	$(GIO_UNIX_LIBS)
+	$(GIO_UNIX_LIBS) \
+	$(XFCONF_LIBS)
 
 desktopdir = $(datadir)/applications
 desktop_in_files = xfce4-mime-settings.desktop.in
