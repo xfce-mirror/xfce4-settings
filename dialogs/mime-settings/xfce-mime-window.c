@@ -93,6 +93,7 @@ enum
     COLUMN_MIME_TYPE,
     COLUMN_MIME_STATUS,
     COLUMN_MIME_DEFAULT,
+    COLUMN_MIME_GICON,
     COLUMN_MIME_ATTRS,
     N_MIME_COLUMNS
 };
@@ -251,6 +252,12 @@ xfce_mime_window_init (XfceMimeWindow *window)
     column->resized_width = 300;
     column->use_resized_width = TRUE;
 
+    renderer = gtk_cell_renderer_pixbuf_new ();
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (column), renderer, FALSE);
+    g_object_set (renderer, "stock-size", GTK_ICON_SIZE_MENU, NULL);
+    gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (column), renderer,
+                                    "gicon", COLUMN_MIME_GICON, NULL);
+
     renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (column), renderer, TRUE);
     g_object_set (renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
@@ -371,6 +378,7 @@ xfce_mime_window_mime_model (XfceMimeWindow *window)
                                 G_TYPE_STRING,
                                 G_TYPE_STRING,
                                 G_TYPE_STRING,
+                                G_TYPE_ICON,
                                 PANGO_TYPE_ATTR_LIST);
 
     /* get sorted list of known mime types */
@@ -402,6 +410,7 @@ xfce_mime_window_mime_model (XfceMimeWindow *window)
                                            COLUMN_MIME_TYPE, mime_type,
                                            COLUMN_MIME_DEFAULT, app_name,
                                            COLUMN_MIME_STATUS, status,
+                                           COLUMN_MIME_GICON, g_content_type_get_icon (mime_type),
                                            COLUMN_MIME_ATTRS,
                                                is_user_set ? window->attrs_bold : NULL,
                                            -1);
