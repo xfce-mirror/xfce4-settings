@@ -5,20 +5,20 @@
 # Chris K. Zhang <plutino@gmail.com>, 2009.
 # Aron Xu <aronmalache@163.com>, 2009.
 # Hunt Xu <huntxu@live.cn>, 2009, 2010.
-# Chipong Luo <chipong_l@yahoo.com>, 2011.
-# 
+# Chipong Luo <chipong_l@yahoo.com>, 2011, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-17 08:21+0000\n"
+"POT-Creation-Date: 2012-01-23 08:18+0000\n"
 "PO-Revision-Date: 2010-11-27 21:48+0800\n"
 "Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n@xfce.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -226,16 +226,16 @@ msgstr "套接字 ID"
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
-#: ../xfce4-settings-manager/main.c:39
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
+#: ../dialogs/mouse-settings/main.c:98 ../xfce4-settings-editor/main.c:43
+#: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "版本信息"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
-#: ../dialogs/keyboard-settings/main.c:76
+#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1515 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
@@ -245,7 +245,7 @@ msgstr "输入 ‘%s --help’ 获取用法。"
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
-#: ../dialogs/keyboard-settings/main.c:92
+#: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1534 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
@@ -254,7 +254,7 @@ msgstr "Xfce 开发团队。保留所有权利。"
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
-#: ../dialogs/keyboard-settings/main.c:93
+#: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
@@ -687,26 +687,32 @@ msgid "Select command"
 msgstr "选择命令"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:235
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:386
 msgid "All Files"
 msgstr "所有文件"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:391
 msgid "Executable Files"
 msgstr "可执行文件"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:255
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:406
 msgid "Perl Scripts"
 msgstr "Perl 脚本"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:261
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:412
 msgid "Python Scripts"
 msgstr "Python 脚本"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:418
 msgid "Ruby Scripts"
 msgstr "Ruby 脚本"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:273
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:424
 msgid "Shell Scripts"
 msgstr "Shell 脚本"
 
@@ -881,6 +887,134 @@ msgstr "在您下次登录时将恢复系统默认"
 msgid "Warning"
 msgstr "警告"
 
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:128
+msgid "Select Application"
+msgstr "选择应用程序"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:204
+msgid "Use a c_ustom command:"
+msgstr "选择自定义命令(_U)："
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:205
+msgid ""
+"Use a custom command for an application that is not available from the above "
+"application list."
+msgstr ""
+"为以上应用程序列表中没有的应用程序使用自定义命令。"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:223
+msgid "_Browse..."
+msgstr "浏览(_B)..."
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:376
+msgid "Select an Application"
+msgstr "选择默认字体"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:526
+msgid "None available"
+msgstr "无可用的"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:573
+msgid "Recommended Applications"
+msgstr "推荐的应用程序"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:591
+msgid "Other Applications"
+msgstr "其它应用程序"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:611
+#, c-format
+msgid "Open <i>%s</i> and other files of type \"%s\" with:"
+msgstr ""
+"用此打开 <i>%s</i> 和其它类型 “%s” 的文件："
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:647
+#, c-format
+msgid "Failed to add new application \"%s\""
+msgstr "无法添加新应用程序 “%s”"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:174
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+msgid "MIME Type Editor"
+msgstr "MIME 类型编辑器"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:178
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
+msgid "Associate applications with MIME types"
+msgstr "绑定应用程序与 MIME 类型"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:203
+msgid "_Filter:"
+msgstr "过滤器(_F)："
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:211
+msgid "Clear filter"
+msgstr "清除过滤器"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:257
+msgid "MIME Type"
+msgstr "MIME 类型"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:287
+msgid "Status"
+msgstr "状态"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:308
+msgid "Default Application"
+msgstr "默认应用程序"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
+#: ../dialogs/mime-settings/xfce-mime-window.c:602
+msgid "User Set"
+msgstr "用户设置"
+
+#. sort the names but keep Default on top
+#: ../dialogs/mime-settings/xfce-mime-window.c:481
+#: ../dialogs/mime-settings/xfce-mime-window.c:602
+#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
+#: ../dialogs/mouse-settings/main.c:434
+msgid "Default"
+msgstr "默认"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:550
+#, c-format
+msgid "%d MIME type found"
+msgid_plural "%d MIME types found"
+msgstr[0] "找到了 %d 个 MIME 类型"
+msgstr[1] "找到了 %d 个 MIME 类型"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:647
+#, c-format
+msgid "Failed to set application \"%s\" for mime type \"%s\"."
+msgstr ""
+"无法为 mime 类型 “%2$s” 设置应用程序 “%1$s”。"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:904
+#, c-format
+msgid ""
+"Are you sure you want to reset content type \"%s\" to its default value?"
+msgstr "您确定要重置内容类型 “%s” 为其默认值吗？"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:908
+msgid "Question"
+msgstr "问题"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:911
+msgid ""
+"This will remove your custom mime-association and restore the system-wide "
+"default."
+msgstr ""
+"此会移除您的自定义 mime 绑定并恢复系统范围的默认值。"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:915
+#: ../dialogs/mime-settings/xfce-mime-window.c:986
+msgid "Reset to Default"
+msgstr "重置为默认"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:981
+msgid "Choose Application..."
+msgstr "选择应用程序..."
+
 #: ../dialogs/mouse-settings/main.c:96
 msgid "Active device in the dialog"
 msgstr "激活对话框中的设备"
@@ -900,12 +1034,6 @@ msgstr "%g 像素"
 #, c-format
 msgid "%g ms"
 msgstr "%g 毫秒"
-
-#. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
-msgid "Default"
-msgstr "默认"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "B_uttons and Feedback"
@@ -1176,8 +1304,8 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
-"属性名称只能包含 ASCII 字符：A 至 Z、a 至 z、0 至 9、‘_’、‘-’、‘<’ 和 ‘>’，此"
-"外 ‘/’ 作为分隔符"
+"属性名称只能包含 ASCII 字符：A 至 Z、a 至 z、0 "
+"至 9、‘_’、‘-’、‘<’ 和 ‘>’，此外 ‘/’ 作为分隔符"
 
 #: ../xfce4-settings-editor/main_window.c:1015
 #, c-format
@@ -1354,8 +1482,8 @@ msgstr "自定义桌面"
 msgid "_Overview"
 msgstr "概览(_O)"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:608
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:624
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:578
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:594
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "未能启动 “%s”"
@@ -1367,12 +1495,3 @@ msgstr "Xfce 4 的图形设置管理器"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "设置管理器"
-
-#~ msgid "_General"
-#~ msgstr "一般(_G)"
-
-#~ msgid "Failed to open the documentation"
-#~ msgstr "无法打开此文档"
-
-#~ msgid "Use this area to _test the settings above:"
-#~ msgstr "使用此区域测试以上设置(_T)："
