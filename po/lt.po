@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-16 09:05+0200\n"
-"PO-Revision-Date: 2012-01-16 09:07+0200\n"
+"POT-Creation-Date: 2012-01-24 13:18+0000\n"
+"PO-Revision-Date: 2012-01-24 18:05+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>\n"
 "Language-Team: Lietuvių <>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2)\n"
 
@@ -244,16 +244,16 @@ msgstr "LIZDO ID"
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
-#: ../xfce4-settings-manager/main.c:39
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
+#: ../dialogs/mouse-settings/main.c:98 ../xfce4-settings-editor/main.c:43
+#: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Versijos infomacija"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
-#: ../dialogs/keyboard-settings/main.c:76
+#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1515 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
 #, c-format
@@ -263,7 +263,7 @@ msgstr "Bandykite „%s –help“, jei norite išsamesnės informacijos."
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
-#: ../dialogs/keyboard-settings/main.c:92
+#: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1534 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
 msgid "The Xfce development team. All rights reserved."
@@ -272,7 +272,7 @@ msgstr "Xfce kūrėjų komanda. Visos teisės saugomos."
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
-#: ../dialogs/keyboard-settings/main.c:93
+#: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
 #, c-format
@@ -723,26 +723,32 @@ msgid "Select command"
 msgstr "Pasirinkti komandą"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:235
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:386
 msgid "All Files"
 msgstr "Visi failai"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:391
 msgid "Executable Files"
 msgstr "Vykdomi failai"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:255
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:406
 msgid "Perl Scripts"
 msgstr "Perl scenarijai"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:261
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:412
 msgid "Python Scripts"
 msgstr "Python scenarijai"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:418
 msgid "Ruby Scripts"
 msgstr "Ruby scenarijai"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:273
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:424
 msgid "Shell Scripts"
 msgstr "Shell scenarijai"
 
@@ -923,6 +929,135 @@ msgstr "Sistemos numatytieji bus atstatyti kitą kart prisijungus."
 msgid "Warning"
 msgstr "Įspėjimas"
 
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:128
+msgid "Select Application"
+msgstr "Pasirinkite programą"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:204
+msgid "Use a c_ustom command:"
+msgstr "Naudoti _pasirinktinę komandą:"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:205
+msgid ""
+"Use a custom command for an application that is not available from the above "
+"application list."
+msgstr ""
+"Naudoti pasirinktinę komandą programai, kuri nepasiekiama iš aukščiau "
+"pateikto programų sąrašo."
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:223
+msgid "_Browse..."
+msgstr "_Naršyti..."
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:376
+msgid "Select an Application"
+msgstr "Pasirinkite programą"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:526
+msgid "None available"
+msgstr "Neprieinama"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:573
+msgid "Recommended Applications"
+msgstr "Rekomenduojamos programos"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:591
+msgid "Other Applications"
+msgstr "Kitos programos"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:611
+#, c-format
+msgid "Open <i>%s</i> and other files of type \"%s\" with:"
+msgstr "Atverti <i>%s<i/> ir kitus „%s“ tipo failus su:"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:647
+#, c-format
+msgid "Failed to add new application \"%s\""
+msgstr "Nepavyko pridėti naujos programos „%s“"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:174
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+msgid "MIME Type Editor"
+msgstr "MIME tipų redaktorius"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:178
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
+msgid "Associate applications with MIME types"
+msgstr "Susiekite programas su MIME tipais"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:203
+msgid "_Filter:"
+msgstr "_Filtras:"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:211
+msgid "Clear filter"
+msgstr "Išvalyti filtrą"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:257
+msgid "MIME Type"
+msgstr "MIME tipas"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:287
+msgid "Status"
+msgstr "Būsena"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:308
+msgid "Default Application"
+msgstr "Numatytoji programa"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
+msgid "User Set"
+msgstr "Naudotojo nustatyta"
+
+#. sort the names but keep Default on top
+#: ../dialogs/mime-settings/xfce-mime-window.c:481
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
+#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
+#: ../dialogs/mouse-settings/main.c:434
+msgid "Default"
+msgstr "Numatyta"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:550
+#, c-format
+msgid "%d MIME type found"
+msgid_plural "%d MIME types found"
+msgstr[0] "Rastas %d MIME tipas "
+msgstr[1] "Rasti %d MIME tipai"
+msgstr[2] "Rasta %d MIME tipų"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:649
+#, c-format
+msgid "Failed to set application \"%s\" for mime type \"%s\"."
+msgstr "Nepavyko nustatyti programą „%s“ mime tipui „%s“."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:906
+#, c-format
+msgid ""
+"Are you sure you want to reset content type \"%s\" to its default value?"
+msgstr "Ar tikrai norite turinio tipą „%s“ į jo numatytąją reikšmę?"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:910
+msgid "Question"
+msgstr "Klausimas"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:913
+msgid ""
+"This will remove your custom mime-association and restore the system-wide "
+"default."
+msgstr ""
+"Bus pašalintos jūsų pasirinkti mime susiejimai ir atstatyti sistemos "
+"numatytieji."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:917
+#: ../dialogs/mime-settings/xfce-mime-window.c:988
+msgid "Reset to Default"
+msgstr "Atstatyti numatytuosius"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:983
+msgid "Choose Application..."
+msgstr "Pasirinkite programą..."
+
 #: ../dialogs/mouse-settings/main.c:96
 msgid "Active device in the dialog"
 msgstr "Aktyvus įrenginys dialoge"
@@ -942,12 +1077,6 @@ msgstr "%g px"
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
-
-#. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
-msgid "Default"
-msgstr "Numatyta"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "B_uttons and Feedback"
@@ -1403,8 +1532,8 @@ msgstr "Derinti darbastalį"
 msgid "_Overview"
 msgstr "_Apžvalga"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:608
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:624
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:578
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:594
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nepavyko paleisti „%s“"
