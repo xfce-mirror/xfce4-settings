@@ -54,6 +54,7 @@ struct _XfceSettingsManagerDialog
 
     GtkListStore   *store;
 
+    GtkWidget      *category_viewport;
     GtkWidget      *category_scroll;
     GtkWidget      *category_box;
     GList          *category_iconviews;
@@ -87,6 +88,8 @@ enum
 
 
 static void xfce_settings_manager_dialog_finalize    (GObject                   *object);
+static void xfce_settings_manager_dialog_style_set   (GtkWidget                 *widget,
+                                                      GtkStyle                  *old_style);
 static void xfce_settings_manager_dialog_response    (GtkDialog                 *widget,
                                                       gint                       response_id);
 static void xfce_settings_manager_dialog_set_title   (XfceSettingsManagerDialog *dialog,
@@ -107,9 +110,13 @@ xfce_settings_manager_dialog_class_init (XfceSettingsManagerDialogClass *klass)
 {
     GObjectClass   *gobject_class;
     GtkDialogClass *gtkdialog_class;
+    GtkWidgetClass *gtkwiget_class;
 
     gobject_class = G_OBJECT_CLASS (klass);
     gobject_class->finalize = xfce_settings_manager_dialog_finalize;
+
+    gtkwiget_class = GTK_WIDGET_CLASS (klass);
+    gtkwiget_class->style_set = xfce_settings_manager_dialog_style_set;
 
     gtkdialog_class = GTK_DIALOG_CLASS (klass);
     gtkdialog_class->response = xfce_settings_manager_dialog_response;
@@ -162,10 +169,9 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_container_set_border_width (GTK_CONTAINER (scroll), 6);
     gtk_widget_show (scroll);
 
-    viewport = gtk_viewport_new (NULL, NULL);
+    viewport = dialog->category_viewport = gtk_viewport_new (NULL, NULL);
     gtk_container_add (GTK_CONTAINER (scroll), viewport);
     gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
-    gtk_widget_modify_bg (viewport, GTK_STATE_NORMAL, &viewport->style->white);
     gtk_widget_show (viewport);
 
     dialog->category_box = vbox = gtk_vbox_new (FALSE, 6);
@@ -187,7 +193,6 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     dialog->socket_viewport = viewport = gtk_viewport_new (NULL, NULL);
     gtk_container_add (GTK_CONTAINER (scroll), viewport);
     gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
-    gtk_widget_modify_bg (viewport, GTK_STATE_NORMAL, &viewport->style->white);
     gtk_widget_show (viewport);
 
     xfce_settings_manager_dialog_menu_reload (dialog);
@@ -213,6 +218,22 @@ xfce_settings_manager_dialog_finalize (GObject *object)
     g_object_unref (G_OBJECT (dialog->store));
 
     G_OBJECT_CLASS (xfce_settings_manager_dialog_parent_class)->finalize (object);
+}
+
+
+
+static void
+xfce_settings_manager_dialog_style_set (GtkWidget *widget,
+                                        GtkStyle  *old_style)
+{
+    XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG (widget);
+
+    GTK_WIDGET_CLASS (xfce_settings_manager_dialog_parent_class)->style_set (widget, old_style);
+
+    /* set viewport to color icon view uses for background */
+    gtk_widget_modify_bg (dialog->category_viewport,
+                          GTK_STATE_NORMAL,
+                          &widget->style->base[GTK_STATE_NORMAL]);
 }
 
 
@@ -547,6 +568,11 @@ xfce_settings_manager_dialog_item_activated (ExoIconView               *iconview
 
         if (pluggable)
         {
+            /* fake startup notification */
+            cursor = gdk_cursor_new (GDK_WATCH);
+            gdk_window_set_cursor (GTK_WIDGET (dialog)->window, cursor);
+            gdk_cursor_unref (cursor);
+
             /* create fresh socket */
             socket = gtk_socket_new ();
             gtk_container_add (GTK_CONTAINER (dialog->socket_viewport), socket);
@@ -561,16 +587,10 @@ xfce_settings_manager_dialog_item_activated (ExoIconView               *iconview
 
             /* spawn dialog with socket argument */
             cmd = g_strdup_printf ("%s --socket-id=%d", command, gtk_socket_get_id (GTK_SOCKET (socket)));
-            if (xfce_spawn_command_line_on_screen (screen, cmd, FALSE, FALSE, &error))
+            if (!xfce_spawn_command_line_on_screen (screen, cmd, FALSE, FALSE, &error))
             {
-                /* fake startup notification */
-                cursor = gdk_cursor_new (GDK_WATCH);
-                gdk_window_set_cursor (GTK_WIDGET (dialog)->window, cursor);
-                gdk_cursor_unref (cursor);
-            }
-            else
-            {
-                /* meh... */
+                gdk_window_set_cursor (GTK_WIDGET (dialog)->window, NULL);
+
                 xfce_dialog_show_error (GTK_WINDOW (dialog), error,
                                         _("Unable to start \"%s\""), command);
                 g_error_free (error);
