@@ -28,6 +28,7 @@
 #include <gtk/gtk.h>
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
+#include <garcon/garcon.h>
 
 #include "xfce-settings-manager-dialog.h"
 
@@ -84,10 +85,10 @@ main(int argc,
         return EXIT_FAILURE;
     }
 
+    garcon_set_environment ("XFCE");
+
     dialog = xfce_settings_manager_dialog_new();
     gtk_widget_show(dialog);
-    g_signal_connect(G_OBJECT(dialog), "response",
-                     G_CALLBACK(gtk_main_quit), NULL);
 
     if(opt_dialog != NULL) {
         xfce_settings_manager_dialog_show_dialog(XFCE_SETTINGS_MANAGER_DIALOG(dialog),

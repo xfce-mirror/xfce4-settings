@@ -1,5 +1,3 @@
-# $Id$
-
 INCLUDES = \
 	-I${top_srcdir} \
 	-DDATADIR=\"$(datadir)\" \
@@ -23,6 +21,7 @@ xfce4_settings_manager_CFLAGS = \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
+	$(GARCON_CFLAGS) \
 	$(EXO_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
@@ -35,7 +34,11 @@ xfce4_settings_manager_LDADD = \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
-	$(EXO_LIBS)
+	$(EXO_LIBS) \
+	$(GARCON_LIBS)
+
+menudir = $(sysconfdir)/xdg/menus
+menu_DATA = xfce-settings-manager.menu
 
 desktopdir = $(datadir)/applications
 desktop_in_files = xfce-settings-manager.desktop.in
@@ -44,7 +47,8 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
-	$(desktop_in_files)
+	$(desktop_in_files) \
+	$(menu_DATA)
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
