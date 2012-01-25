@@ -636,9 +636,11 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
                                            GarconMenuDirectory       *directory)
 {
     GtkTreeModel    *filter;
-    GtkWidget       *frame;
-    GtkWidget       *label;
+    GtkWidget       *alignment;
     GtkWidget       *iconview;
+    GtkWidget       *label;
+    GtkWidget       *separator;
+    GtkWidget       *vbox;
     PangoAttrList   *attrs;
     GtkCellRenderer *render;
 
@@ -648,22 +650,33 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
         xfce_settings_manager_dialog_filter_category,
         g_object_ref (directory), g_object_unref);
 
-    frame = gtk_frame_new (NULL);
-    gtk_box_pack_start (GTK_BOX (dialog->category_box), frame, FALSE, TRUE, 0);
-    gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
-    gtk_container_set_resize_mode (GTK_CONTAINER (frame), GTK_RESIZE_IMMEDIATE);
-    gtk_widget_show (frame);
+    vbox = gtk_vbox_new (FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (dialog->category_box), vbox, FALSE, TRUE, 0);
+    gtk_widget_show (vbox);
 
+    /* create a label for the category title */
     label = gtk_label_new (garcon_menu_directory_get_name (directory));
     attrs = pango_attr_list_new ();
     pango_attr_list_insert (attrs, pango_attr_weight_new (PANGO_WEIGHT_BOLD));
     gtk_label_set_attributes (GTK_LABEL (label), attrs);
     pango_attr_list_unref (attrs);
-    gtk_frame_set_label_widget (GTK_FRAME (frame), label);
+    gtk_misc_set_alignment (GTK_MISC (label), 0.0f, 0.5f);
+    gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, TRUE, 0);
     gtk_widget_show (label);
 
+    /* separate title and content using a horizontal line */
+    separator = gtk_hseparator_new ();
+    gtk_box_pack_start (GTK_BOX (vbox), separator, FALSE, TRUE, 0);
+    gtk_widget_show (separator);
+
+    /* use an alignment to separate the category content from the title */
+    alignment = gtk_alignment_new (0.0f, 0.0f, 1.0f, 1.0f);
+    gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
+    gtk_container_add (GTK_CONTAINER (vbox), alignment);
+    gtk_widget_show (alignment);
+
     iconview = exo_icon_view_new_with_model (GTK_TREE_MODEL (filter));
-    gtk_container_add (GTK_CONTAINER (frame), iconview);
+    gtk_container_add (GTK_CONTAINER (alignment), iconview);
     exo_icon_view_set_orientation (EXO_ICON_VIEW (iconview), GTK_ORIENTATION_HORIZONTAL);
     exo_icon_view_set_margin (EXO_ICON_VIEW (iconview), 0);
     exo_icon_view_set_single_click (EXO_ICON_VIEW (iconview), TRUE);
