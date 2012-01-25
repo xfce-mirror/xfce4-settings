@@ -54,6 +54,8 @@ struct _XfceSettingsManagerDialog
 
     GtkListStore   *store;
 
+    GtkWidget      *search_entry;
+
     GtkWidget      *category_viewport;
     GtkWidget      *category_scroll;
     GtkWidget      *category_box;
@@ -87,17 +89,20 @@ enum
 
 
 
-static void xfce_settings_manager_dialog_finalize    (GObject                   *object);
-static void xfce_settings_manager_dialog_style_set   (GtkWidget                 *widget,
-                                                      GtkStyle                  *old_style);
-static void xfce_settings_manager_dialog_response    (GtkDialog                 *widget,
-                                                      gint                       response_id);
-static void xfce_settings_manager_dialog_set_title   (XfceSettingsManagerDialog *dialog,
-                                                      const gchar               *title,
-                                                      const gchar               *icon_name,
-                                                      const gchar               *subtitle);
-static void xfce_settings_manager_dialog_go_back     (XfceSettingsManagerDialog *dialog);
-static void xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog);
+static void xfce_settings_manager_dialog_finalize     (GObject                   *object);
+static void xfce_settings_manager_dialog_style_set    (GtkWidget                 *widget,
+                                                       GtkStyle                  *old_style);
+static void xfce_settings_manager_dialog_response     (GtkDialog                 *widget,
+                                                       gint                       response_id);
+static void xfce_settings_manager_dialog_header_style (GtkWidget                 *header,
+                                                       GtkStyle                  *old_style,
+                                                       GtkWidget                 *ebox);
+static void xfce_settings_manager_dialog_set_title    (XfceSettingsManagerDialog *dialog,
+                                                       const gchar               *title,
+                                                       const gchar               *icon_name,
+                                                       const gchar               *subtitle);
+static void xfce_settings_manager_dialog_go_back      (XfceSettingsManagerDialog *dialog);
+static void xfce_settings_manager_dialog_menu_reload  (XfceSettingsManagerDialog *dialog);
 
 
 
@@ -129,10 +134,15 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 {
     GtkWidget *scroll;
     GtkWidget *dialog_vbox;
-    GtkWidget *bbox;
     GtkWidget *viewport;
-    GtkWidget *vbox;
     gchar     *path;
+    GtkWidget *hbox;
+    GtkWidget *entry;
+    GtkWidget *align;
+    GList     *children;
+    GtkWidget *header;
+    GtkWidget *ebox;
+    GtkWidget *bbox;
 
     dialog->store = gtk_list_store_new (N_COLUMNS,
                                         G_TYPE_STRING,
@@ -147,12 +157,10 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 
     gtk_window_set_default_size (GTK_WINDOW (dialog), 640, 500);
     xfce_settings_manager_dialog_set_title (dialog, NULL, NULL, NULL);
-    dialog_vbox = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 
     dialog->button_back = xfce_gtk_button_new_mixed (GTK_STOCK_GO_BACK, _("_All Settings"));
     bbox = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
     gtk_container_add (GTK_CONTAINER (bbox), dialog->button_back);
-    gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (bbox), dialog->button_back, TRUE);
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
     gtk_widget_show (dialog->button_back);
     g_signal_connect_swapped (G_OBJECT (dialog->button_back), "clicked",
@@ -162,10 +170,45 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
                                                  GTK_STOCK_HELP, GTK_RESPONSE_HELP);
     gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
 
+    /* add box at start of the main box */
+    hbox = gtk_hbox_new (FALSE, 0);
+    dialog_vbox = gtk_bin_get_child (GTK_BIN (dialog));
+    gtk_box_pack_start (GTK_BOX (dialog_vbox), hbox, FALSE, TRUE, 0);
+    gtk_box_reorder_child (GTK_BOX (dialog_vbox), hbox, 0);
+    gtk_widget_show (hbox);
+
+    /* move the xfce-header in the hbox */
+    children = gtk_container_get_children (GTK_CONTAINER (dialog_vbox));
+    header = g_list_nth_data (children, 1);
+    g_object_ref (G_OBJECT (header));
+    gtk_container_remove (GTK_CONTAINER (dialog_vbox), header);
+    gtk_box_pack_start (GTK_BOX (hbox), header, TRUE, TRUE, 0);
+    g_object_unref (G_OBJECT (header));
+    g_list_free (children);
+
+    ebox = gtk_event_box_new ();
+    gtk_box_pack_start (GTK_BOX (hbox), ebox, FALSE, TRUE, 0);
+    g_signal_connect (header, "style-set",
+        G_CALLBACK (xfce_settings_manager_dialog_header_style), ebox);
+    gtk_widget_show (ebox);
+
+    align = gtk_alignment_new (0.0f, 1.0f, 0.0f, 0.0f);
+    gtk_container_add (GTK_CONTAINER (ebox), align);
+    gtk_container_set_border_width (GTK_CONTAINER (align), 6);
+    gtk_widget_show (align);
+
+    dialog->search_entry = entry = gtk_entry_new ();
+    gtk_container_add (GTK_CONTAINER (align), entry);
+    gtk_entry_set_icon_from_stock (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_FIND);
+    gtk_entry_set_icon_sensitive (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, FALSE);
+    gtk_widget_show (entry);
+
+    dialog_vbox = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+
     dialog->category_scroll = scroll = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll), GTK_SHADOW_ETCHED_IN);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-    gtk_container_add (GTK_CONTAINER (dialog_vbox), scroll);
+    gtk_box_pack_start (GTK_BOX (dialog_vbox), scroll, TRUE, TRUE, 0);
     gtk_container_set_border_width (GTK_CONTAINER (scroll), 6);
     gtk_widget_show (scroll);
 
@@ -174,11 +217,11 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
     gtk_widget_show (viewport);
 
-    dialog->category_box = vbox = gtk_vbox_new (FALSE, 6);
-    gtk_container_add (GTK_CONTAINER (viewport), vbox);
-    gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
-    gtk_widget_show (vbox);
-    gtk_widget_set_size_request (vbox,
+    dialog->category_box = gtk_vbox_new (FALSE, 6);
+    gtk_container_add (GTK_CONTAINER (viewport), dialog->category_box);
+    gtk_container_set_border_width (GTK_CONTAINER (dialog->category_box), 6);
+    gtk_widget_show (dialog->category_box);
+    gtk_widget_set_size_request (dialog->category_box,
                                  TEXT_WIDTH   /* text */
                                  + ICON_WIDTH /* icon */
                                  + (5 * 6)    /* borders */, -1);
@@ -187,7 +230,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     dialog->socket_scroll = scroll = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll), GTK_SHADOW_NONE);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-    gtk_container_add (GTK_CONTAINER (dialog_vbox), scroll);
+    gtk_box_pack_start (GTK_BOX (dialog_vbox), scroll, TRUE, TRUE, 0);
     gtk_container_set_border_width (GTK_CONTAINER (scroll), 0);
 
     dialog->socket_viewport = viewport = gtk_viewport_new (NULL, NULL);
@@ -260,6 +303,17 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
     {
         gtk_main_quit ();
     }
+}
+
+
+
+static void
+xfce_settings_manager_dialog_header_style (GtkWidget *header,
+                                           GtkStyle  *old_style,
+                                           GtkWidget *ebox)
+{
+    /* use the header background */
+    gtk_widget_modify_bg (ebox, GTK_STATE_NORMAL, &header->style->base[GTK_STATE_NORMAL]);
 }
 
 
@@ -465,6 +519,7 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
 
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
     gtk_widget_set_sensitive (dialog->button_help, TRUE);
+    gtk_widget_set_sensitive (dialog->search_entry, TRUE);
 
     socket = gtk_bin_get_child (GTK_BIN (dialog->socket_viewport));
     if (G_LIKELY (socket != NULL))
@@ -496,6 +551,7 @@ xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
     /* button sensitivity */
     gtk_widget_set_sensitive (dialog->button_back, TRUE);
     gtk_widget_set_sensitive (dialog->button_help, dialog->help_page != NULL);
+    gtk_widget_set_sensitive (dialog->search_entry, FALSE);
 
     /* plug startup complete */
     gdk_window_set_cursor (GTK_WIDGET (dialog)->window, NULL);
