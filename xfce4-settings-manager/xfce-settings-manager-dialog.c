@@ -574,13 +574,9 @@ xfce_settings_manager_dialog_plug_removed (GtkWidget                 *socket,
 
 
 static void
-xfce_settings_manager_dialog_item_activated (ExoIconView               *iconview,
-                                             GtkTreePath               *path,
-                                             XfceSettingsManagerDialog *dialog)
+xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
+                                    GarconMenuItem            *item)
 {
-    GtkTreeModel   *model;
-    GtkTreeIter     iter;
-    GarconMenuItem *item;
     const gchar    *command;
     gboolean        snotify;
     GdkScreen      *screen;
@@ -593,78 +589,94 @@ xfce_settings_manager_dialog_item_activated (ExoIconView               *iconview
     GtkWidget      *socket;
     GdkCursor      *cursor;
 
+    g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+
+    screen = gtk_window_get_screen (GTK_WINDOW (dialog));
+    command = garcon_menu_item_get_command (item);
+
+    /* we need to read some more info from the desktop
+     *  file that is not supported by garcon */
+    desktop_file = garcon_menu_item_get_file (item);
+    filename = g_file_get_path (desktop_file);
+    g_object_unref (desktop_file);
+
+    rc = xfce_rc_simple_open (filename, TRUE);
+    g_free (filename);
+    if (G_LIKELY (rc != NULL))
+    {
+        pluggable = xfce_rc_read_bool_entry (rc, "X-XfcePluggable", FALSE);
+        if (pluggable)
+        {
+            dialog->help_page = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpPage", NULL));
+            dialog->help_component = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpComponent", NULL));
+        }
+
+        xfce_rc_close (rc);
+    }
+
+    if (pluggable)
+    {
+        /* fake startup notification */
+        cursor = gdk_cursor_new (GDK_WATCH);
+        gdk_window_set_cursor (GTK_WIDGET (dialog)->window, cursor);
+        gdk_cursor_unref (cursor);
+
+        /* create fresh socket */
+        socket = gtk_socket_new ();
+        gtk_container_add (GTK_CONTAINER (dialog->socket_viewport), socket);
+        g_signal_connect (G_OBJECT (socket), "plug-added",
+            G_CALLBACK (xfce_settings_manager_dialog_plug_added), dialog);
+        g_signal_connect (G_OBJECT (socket), "plug-removed",
+            G_CALLBACK (xfce_settings_manager_dialog_plug_removed), dialog);
+        gtk_widget_show (socket);
+
+        /* for info when the plug is attached */
+        dialog->socket_item = g_object_ref (item);
+
+        /* spawn dialog with socket argument */
+        cmd = g_strdup_printf ("%s --socket-id=%d", command, gtk_socket_get_id (GTK_SOCKET (socket)));
+        if (!xfce_spawn_command_line_on_screen (screen, cmd, FALSE, FALSE, &error))
+        {
+            gdk_window_set_cursor (GTK_WIDGET (dialog)->window, NULL);
+
+            xfce_dialog_show_error (GTK_WINDOW (dialog), error,
+                                    _("Unable to start \"%s\""), command);
+            g_error_free (error);
+        }
+        g_free (cmd);
+    }
+    else
+    {
+        snotify = garcon_menu_item_supports_startup_notification (item);
+        if (!xfce_spawn_command_line_on_screen (screen, command, FALSE, snotify, &error))
+        {
+            xfce_dialog_show_error (GTK_WINDOW (dialog), error,
+                                    _("Unable to start \"%s\""), command);
+            g_error_free (error);
+        }
+    }
+}
+
+
+
+static void
+xfce_settings_manager_dialog_item_activated (ExoIconView               *iconview,
+                                             GtkTreePath               *path,
+                                             XfceSettingsManagerDialog *dialog)
+{
+    GtkTreeModel   *model;
+    GtkTreeIter     iter;
+    GarconMenuItem *item;
+
     model = exo_icon_view_get_model (iconview);
     if (gtk_tree_model_get_iter (model, &iter, path))
     {
         gtk_tree_model_get (model, &iter, COLUMN_MENU_ITEM, &item, -1);
         g_assert (GARCON_IS_MENU_ITEM (item));
 
-        screen = gtk_window_get_screen (GTK_WINDOW (dialog));
-        command = garcon_menu_item_get_command (item);
+        xfce_settings_manager_dialog_spawn (dialog, item);
 
-        /* we need to read some more info from the desktop
-         *  file that is not supported by garcon */
-        desktop_file = garcon_menu_item_get_file (item);
-        filename = g_file_get_path (desktop_file);
-        g_object_unref (desktop_file);
-
-        rc = xfce_rc_simple_open (filename, TRUE);
-        g_free (filename);
-        if (G_LIKELY (rc != NULL))
-        {
-            pluggable = xfce_rc_read_bool_entry (rc, "X-XfcePluggable", FALSE);
-            if (pluggable)
-            {
-                dialog->help_page = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpPage", NULL));
-                dialog->help_component = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpComponent", NULL));
-            }
-
-            xfce_rc_close (rc);
-        }
-
-        if (pluggable)
-        {
-            /* fake startup notification */
-            cursor = gdk_cursor_new (GDK_WATCH);
-            gdk_window_set_cursor (GTK_WIDGET (dialog)->window, cursor);
-            gdk_cursor_unref (cursor);
-
-            /* create fresh socket */
-            socket = gtk_socket_new ();
-            gtk_container_add (GTK_CONTAINER (dialog->socket_viewport), socket);
-            g_signal_connect (G_OBJECT (socket), "plug-added",
-                G_CALLBACK (xfce_settings_manager_dialog_plug_added), dialog);
-            g_signal_connect (G_OBJECT (socket), "plug-removed",
-                G_CALLBACK (xfce_settings_manager_dialog_plug_removed), dialog);
-            gtk_widget_show (socket);
-
-            /* for info when the plug is attached */
-            dialog->socket_item = g_object_ref (item);
-
-            /* spawn dialog with socket argument */
-            cmd = g_strdup_printf ("%s --socket-id=%d", command, gtk_socket_get_id (GTK_SOCKET (socket)));
-            if (!xfce_spawn_command_line_on_screen (screen, cmd, FALSE, FALSE, &error))
-            {
-                gdk_window_set_cursor (GTK_WIDGET (dialog)->window, NULL);
-
-                xfce_dialog_show_error (GTK_WINDOW (dialog), error,
-                                        _("Unable to start \"%s\""), command);
-                g_error_free (error);
-            }
-            g_free (cmd);
-        }
-        else
-        {
-            snotify = garcon_menu_item_supports_startup_notification (item);
-            if (!xfce_spawn_command_line_on_screen (screen, command, FALSE, snotify, &error))
-            {
-                xfce_dialog_show_error (GTK_WINDOW (dialog), error,
-                                        _("Unable to start \"%s\""), command);
-                g_error_free (error);
-            }
-
-            g_object_unref (G_OBJECT (item));
-        }
+        g_object_unref (G_OBJECT (item));
     }
 }
 
@@ -888,9 +900,41 @@ xfce_settings_manager_dialog_new (void)
 
 
 
-void
+gboolean
 xfce_settings_manager_dialog_show_dialog (XfceSettingsManagerDialog *dialog,
                                           const gchar               *dialog_name)
 {
+    GtkTreeModel   *model = GTK_TREE_MODEL (dialog->store);
+    GtkTreeIter     iter;
+    GarconMenuItem *item;
+    const gchar    *desktop_id;
+    gchar          *name;
+    gboolean        found = FALSE;
 
+    g_return_val_if_fail (XFCE_IS_SETTINGS_MANAGER_DIALOG (dialog), FALSE);
+
+    name = g_strdup_printf ("%s.desktop", dialog_name);
+
+    if (gtk_tree_model_get_iter_first (model, &iter))
+    {
+        do
+        {
+             gtk_tree_model_get (model, &iter, COLUMN_MENU_ITEM, &item, -1);
+             g_assert (GARCON_IS_MENU_ITEM (item));
+
+             desktop_id = garcon_menu_item_get_desktop_id (item);
+             if (g_strcmp0 (desktop_id, name) == 0)
+             {
+                  xfce_settings_manager_dialog_spawn (dialog, item);
+                  found = TRUE;
+             }
+
+             g_object_unref (G_OBJECT (item));
+        }
+        while (!found && gtk_tree_model_iter_next (model, &iter));
+    }
+
+    g_free (name);
+
+    return found;
 }

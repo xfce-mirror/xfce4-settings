@@ -91,8 +91,11 @@ main(int argc,
     gtk_widget_show(dialog);
 
     if(opt_dialog != NULL) {
-        xfce_settings_manager_dialog_show_dialog(XFCE_SETTINGS_MANAGER_DIALOG(dialog),
-                                                 opt_dialog);
+        if (!xfce_settings_manager_dialog_show_dialog(XFCE_SETTINGS_MANAGER_DIALOG(dialog),
+                                                 opt_dialog))
+        {
+            g_message ("Dialog \"%s\" not found.", opt_dialog);
+        }
     }
 
     /* To prevent the settings dialog to be saved in the session */
