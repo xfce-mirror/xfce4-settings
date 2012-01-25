@@ -20,7 +20,6 @@ xfce4_settings_manager_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
-	$(XFCONF_CFLAGS) \
 	$(GARCON_CFLAGS) \
 	$(EXO_CFLAGS) \
 	$(PLATFORM_CFLAGS)
@@ -33,7 +32,6 @@ xfce4_settings_manager_LDADD = \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
-	$(XFCONF_LIBS) \
 	$(EXO_LIBS) \
 	$(GARCON_LIBS)
 

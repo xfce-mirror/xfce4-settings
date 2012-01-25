@@ -34,7 +34,6 @@
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
-#include <xfconf/xfconf.h>
 #include <garcon/garcon.h>
 #include <exo/exo.h>
 

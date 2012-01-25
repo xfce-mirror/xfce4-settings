@@ -26,7 +26,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 #include <garcon/garcon.h>
 
@@ -35,78 +34,66 @@
 static gboolean opt_version = FALSE;
 static gchar   *opt_dialog = NULL;
 
-static GOptionEntry option_entries[] = {
-    { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version,
-      N_("Version information"), NULL },
-    { "dialog", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_dialog,
-      N_("Settings dialog to show"), NULL },
+static GOptionEntry option_entries[] =
+{
+    { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+    { "dialog", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_dialog, N_("Settings dialog to show"), NULL },
     { NULL }
 };
+
+
 
 int
 main(int argc,
      char **argv)
 {
     GtkWidget *dialog;
-    GError *error = NULL;
+    GError    *error = NULL;
 
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
-    if(!gtk_init_with_args(&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error)) {
-        if(G_LIKELY(error)) {
-            g_print("%s: %s.\n", G_LOG_DOMAIN, error->message);
-            g_print(_("Type '%s --help' for usage."), G_LOG_DOMAIN);
-            g_print("\n");
+    if (!gtk_init_with_args (&argc, &argv, NULL, option_entries, GETTEXT_PACKAGE, &error))
+    {
+        if (G_LIKELY (error != NULL))
+        {
+            g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
+            g_print (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
+            g_print ("\n");
 
-            g_error_free(error);
-        } else {
-            g_error("Unable to open display.");
+            g_error_free (error);
+        }
+        else
+        {
+            g_error ("Unable to open display.");
         }
         return EXIT_FAILURE;
     }
 
-    if(G_UNLIKELY(opt_version)) {
-        g_print("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string());
-        g_print("%s\n", "Copyright (c) 2008-2011");
-        g_print("\t%s\n\n", _("The Xfce development team. All rights reserved."));
-        g_print(_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
-        g_print("\n");
+    if (G_UNLIKELY (opt_version))
+    {
+        g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string());
+        g_print ("%s\n", "Copyright (c) 2008-2011");
+        g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
+        g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
+        g_print ("\n");
         return EXIT_SUCCESS;
-    }
-
-    if(G_UNLIKELY(!xfconf_init (&error))) {
-        if(G_LIKELY(error != NULL)) {
-            g_error("%s: Failed to initialize xfconf: %s.\n", G_LOG_DOMAIN,
-                    error->message);
-            g_error_free(error);
-        } else {
-            g_error("Failed to initialize xfconf.");
-        }
-        return EXIT_FAILURE;
     }
 
     garcon_set_environment ("XFCE");
 
-    dialog = xfce_settings_manager_dialog_new();
-    gtk_widget_show(dialog);
+    dialog = xfce_settings_manager_dialog_new ();
+    gtk_window_present (GTK_WINDOW (dialog));
 
-    if(opt_dialog != NULL) {
-        if (!xfce_settings_manager_dialog_show_dialog(XFCE_SETTINGS_MANAGER_DIALOG(dialog),
-                                                 opt_dialog))
-        {
-            g_message ("Dialog \"%s\" not found.", opt_dialog);
-        }
+    if (opt_dialog != NULL
+        && !xfce_settings_manager_dialog_show_dialog (XFCE_SETTINGS_MANAGER_DIALOG(dialog), opt_dialog))
+    {
+        g_message ("Dialog \"%s\" not found.", opt_dialog);
     }
 
     /* To prevent the settings dialog to be saved in the session */
     gdk_set_sm_client_id ("FAKE ID");
 
     gtk_main();
-
-    if(GTK_IS_WIDGET(dialog))
-        gtk_widget_destroy(dialog);
-
-    xfconf_shutdown();
 
     return EXIT_SUCCESS;
 }
