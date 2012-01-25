@@ -699,6 +699,40 @@ xfce_settings_manager_dialog_filter_category (GtkTreeModel *model,
 
 
 static void
+xfce_settings_manager_dialog_selection_changed (ExoIconView               *iconview,
+                                                XfceSettingsManagerDialog *dialog)
+{
+    GtkAllocation *alloc = &GTK_WIDGET (iconview)->allocation;
+    GtkTreePath   *path;
+    gint           row, row_height;
+    gdouble        rows;
+    GtkAdjustment *adjustment;
+    gdouble        lower, upper;
+
+    if (gtk_widget_has_focus (GTK_WIDGET (iconview))
+        && exo_icon_view_get_cursor (iconview, &path, NULL))
+    {
+        /* get item row */
+        row = exo_icon_view_get_item_row (iconview, path);
+        gtk_tree_path_free (path);
+
+        /* estinated row height */
+        rows = alloc->height / 56;
+        row_height = alloc->height / MAX (1.0, (gint) rows);
+
+        /* selected item boundries */
+        lower = alloc->y + row_height * row;
+        upper = alloc->y + row_height * (row + 1);
+
+        /* scroll so item is visible */
+        adjustment = gtk_viewport_get_vadjustment (GTK_VIEWPORT (dialog->category_viewport));
+        gtk_adjustment_clamp_page (adjustment, lower, upper);
+    }
+}
+
+
+
+static void
 xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
                                            GarconMenuDirectory       *directory)
 {
@@ -765,6 +799,8 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
         G_CALLBACK (xfce_settings_manager_dialog_iconview_keynav_failed), dialog);
     g_signal_connect (G_OBJECT (iconview), "item-activated",
         G_CALLBACK (xfce_settings_manager_dialog_item_activated), dialog);
+    g_signal_connect (G_OBJECT (iconview), "selection-changed",
+        G_CALLBACK (xfce_settings_manager_dialog_selection_changed), dialog);
 
     render = gtk_cell_renderer_pixbuf_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (iconview), render, FALSE);
