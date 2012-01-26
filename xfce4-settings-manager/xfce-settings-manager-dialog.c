@@ -401,14 +401,27 @@ xfce_settings_manager_dialog_iconview_keynav_failed (ExoIconView               *
 
     if (direction == GTK_DIR_UP || direction == GTK_DIR_DOWN)
     {
+        /* find this category in the list */
         li = g_list_find_custom (dialog->categories, current_view,
             xfce_settings_manager_dialog_iconview_find);
-        if (direction == GTK_DIR_DOWN)
-            li = g_list_next (li);
-        else
-            li = g_list_previous (li);
 
-        /* leave there is no view obove or below this one */
+        /* find the next of previous visible item */
+        for (; li != NULL; )
+        {
+            if (direction == GTK_DIR_DOWN)
+                li = g_list_next (li);
+            else
+                li = g_list_previous (li);
+
+            if (li != NULL)
+            {
+                category = li->data;
+                if (gtk_widget_get_visible (category->box))
+                    break;
+            }
+        }
+
+        /* leave there is no view above or below this one */
         if (li == NULL)
             return FALSE;
 
