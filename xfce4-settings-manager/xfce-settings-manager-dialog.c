@@ -653,6 +653,8 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
     GList          *li;
     DialogCategory *category;
     GtkTreePath    *path;
+    gint            n_visible_items;
+    GtkTreeModel   *model;
 
     if (event->keyval == GDK_Escape)
     {
@@ -662,6 +664,22 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
     }
     else if (event->keyval == GDK_Return)
     {
+        /* count visible children */
+        n_visible_items = 0;
+        for (li = dialog->categories; li != NULL; li = li->next)
+        {
+            category = li->data;
+            if (gtk_widget_get_visible (category->box))
+            {
+                model = exo_icon_view_get_model (EXO_ICON_VIEW (category->iconview));
+                n_visible_items += gtk_tree_model_iter_n_children (model, NULL);
+
+                /* stop searching if there are more then 1 items */
+                if (n_visible_items > 1)
+                    break;
+            }
+        }
+
         for (li = dialog->categories; li != NULL; li = li->next)
         {
             category = li->data;
@@ -670,12 +688,21 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
             if (!gtk_widget_get_visible (category->box))
                 continue;
 
-            /* select first item */
-            path = gtk_tree_path_new_first ();
-            exo_icon_view_set_cursor (EXO_ICON_VIEW (category->iconview), path, NULL, FALSE);
-            gtk_tree_path_free (path);
 
-            gtk_widget_grab_focus (category->iconview);
+            path = gtk_tree_path_new_first ();
+            if (n_visible_items == 1)
+            {
+                /* activate this one item */
+                exo_icon_view_item_activated (EXO_ICON_VIEW (category->iconview), path);
+            }
+            else
+            {
+                /* select first item in view */
+                exo_icon_view_set_cursor (EXO_ICON_VIEW (category->iconview),
+                                          path, NULL, FALSE);
+                gtk_widget_grab_focus (category->iconview);
+            }
+            gtk_tree_path_free (path);
             break;
         }
 
