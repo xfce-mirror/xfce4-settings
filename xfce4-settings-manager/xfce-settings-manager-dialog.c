@@ -332,6 +332,7 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
     }
     else
     {
+        gtk_widget_destroy (GTK_WIDGET (widget));
         gtk_main_quit ();
     }
 }
@@ -687,7 +688,6 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
             /* find the first visible category */
             if (!gtk_widget_get_visible (category->box))
                 continue;
-
 
             path = gtk_tree_path_new_first ();
             if (n_visible_items == 1)
