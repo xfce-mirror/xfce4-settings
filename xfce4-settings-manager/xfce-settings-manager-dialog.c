@@ -578,7 +578,10 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
 
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
     gtk_widget_set_sensitive (dialog->button_help, TRUE);
+
     gtk_widget_set_sensitive (dialog->filter_entry, TRUE);
+    gtk_entry_set_text (GTK_ENTRY (dialog->filter_entry), "");
+    gtk_widget_grab_focus (dialog->filter_entry);
 
     socket = gtk_bin_get_child (GTK_BIN (dialog->socket_viewport));
     if (G_LIKELY (socket != NULL))
