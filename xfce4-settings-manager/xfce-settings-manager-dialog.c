@@ -953,6 +953,16 @@ xfce_settings_manager_dialog_selection_changed (ExoIconView               *iconv
 
 
 
+static gboolean
+xfce_settings_manager_start_search (GtkWidget                 *iconview,
+                                    XfceSettingsManagerDialog *dialog)
+{
+    gtk_widget_grab_focus (dialog->filter_entry);
+    return TRUE;
+}
+
+
+
 static void
 xfce_settings_manager_dialog_category_free (gpointer data)
 {
@@ -1038,6 +1048,8 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
         G_CALLBACK (xfce_settings_manager_dialog_item_activated), dialog);
     g_signal_connect (G_OBJECT (iconview), "selection-changed",
         G_CALLBACK (xfce_settings_manager_dialog_selection_changed), dialog);
+    g_signal_connect (G_OBJECT (iconview), "start-interactive-search",
+        G_CALLBACK (xfce_settings_manager_start_search), dialog);
 
     render = gtk_cell_renderer_pixbuf_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (iconview), render, FALSE);
