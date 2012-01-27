@@ -1157,7 +1157,7 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
     gchar               *item_text;
     gchar               *normalized;
     gchar               *filter_text;
-    DialogCategory      *cateogry;
+    DialogCategory      *category;
 
     g_return_if_fail (XFCE_IS_SETTINGS_MANAGER_DIALOG (dialog));
     g_return_if_fail (GARCON_IS_MENU (dialog->menu));
@@ -1167,9 +1167,9 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
         for (li = dialog->categories; li != NULL; li = lnext)
         {
             lnext = li->next;
-            cateogry = li->data;
+            category = li->data;
 
-            gtk_widget_destroy (cateogry->box);
+            gtk_widget_destroy (category->box);
         }
 
         g_assert (dialog->categories == NULL);
