@@ -993,7 +993,10 @@ xfce_settings_manager_start_search (GtkWidget                 *iconview,
 static void
 xfce_settings_manager_dialog_category_free (gpointer data)
 {
-    DialogCategory *category = data;
+    DialogCategory            *category = data;
+    XfceSettingsManagerDialog *dialog = category->dialog;
+
+    dialog->categories = g_list_remove (dialog->categories, category);
 
     g_object_unref (G_OBJECT (category->directory));
     g_slice_free (DialogCategory, category);
@@ -1147,15 +1150,32 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
 {
     GError              *error = NULL;
     GList               *elements, *li;
+    GList               *lnext;
     GarconMenuDirectory *directory;
     GList               *items, *lp;
     gint                 i = 0;
     gchar               *item_text;
     gchar               *normalized;
     gchar               *filter_text;
+    DialogCategory      *cateogry;
 
     g_return_if_fail (XFCE_IS_SETTINGS_MANAGER_DIALOG (dialog));
     g_return_if_fail (GARCON_IS_MENU (dialog->menu));
+
+    if (dialog->categories != NULL)
+    {
+        for (li = dialog->categories; li != NULL; li = lnext)
+        {
+            lnext = li->next;
+            cateogry = li->data;
+
+            gtk_widget_destroy (cateogry->box);
+        }
+
+        g_assert (dialog->categories == NULL);
+
+        gtk_list_store_clear (GTK_LIST_STORE (dialog->store));
+    }
 
     if (garcon_menu_load (dialog->menu, NULL, &error))
     {
