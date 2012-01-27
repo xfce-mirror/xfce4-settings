@@ -125,6 +125,8 @@ static void     xfce_settings_manager_dialog_entry_clear     (GtkWidget         
                                                               GtkEntryIconPosition       icon_pos,
                                                               GdkEvent                  *event);
 static void     xfce_settings_manager_dialog_menu_reload     (XfceSettingsManagerDialog *dialog);
+static void     xfce_settings_manager_dialog_scroll_to_item  (GtkWidget                 *iconview,
+                                                              XfceSettingsManagerDialog *dialog);
 
 
 
@@ -466,6 +468,7 @@ xfce_settings_manager_dialog_iconview_keynav_failed (ExoIconView               *
             {
                 /* move cursor, grab-focus will handle the selection */
                 exo_icon_view_set_cursor (new_view, sel_path, NULL, FALSE);
+                xfce_settings_manager_dialog_scroll_to_item (GTK_WIDGET (new_view), dialog);
                 gtk_tree_path_free (sel_path);
 
                 gtk_widget_grab_focus (GTK_WIDGET (new_view));
@@ -542,6 +545,7 @@ xfce_settings_manager_dialog_iconview_focus (GtkWidget                 *iconview
         {
            path = gtk_tree_path_new_from_indices (0, -1);
            exo_icon_view_set_cursor (EXO_ICON_VIEW (iconview), path, NULL, FALSE);
+           xfce_settings_manager_dialog_scroll_to_item (iconview, dialog);
         }
 
         exo_icon_view_select_path (EXO_ICON_VIEW (iconview), path);
@@ -920,24 +924,24 @@ xfce_settings_manager_dialog_filter_category (GtkTreeModel *model,
 
 
 static void
-xfce_settings_manager_dialog_selection_changed (ExoIconView               *iconview,
-                                                XfceSettingsManagerDialog *dialog)
+xfce_settings_manager_dialog_scroll_to_item (GtkWidget                 *iconview,
+                                             XfceSettingsManagerDialog *dialog)
 {
-    GtkAllocation *alloc = &GTK_WIDGET (iconview)->allocation;
+    GtkAllocation *alloc;
     GtkTreePath   *path;
     gint           row, row_height;
     gdouble        rows;
     GtkAdjustment *adjustment;
     gdouble        lower, upper;
 
-    if (gtk_widget_has_focus (GTK_WIDGET (iconview))
-        && exo_icon_view_get_cursor (iconview, &path, NULL))
+    if (exo_icon_view_get_cursor (EXO_ICON_VIEW (iconview), &path, NULL))
     {
         /* get item row */
-        row = exo_icon_view_get_item_row (iconview, path);
+        row = exo_icon_view_get_item_row (EXO_ICON_VIEW (iconview), path);
         gtk_tree_path_free (path);
 
         /* estinated row height */
+        alloc = &iconview->allocation;
         rows = alloc->height / 56;
         row_height = alloc->height / MAX (1.0, (gint) rows);
 
@@ -949,6 +953,25 @@ xfce_settings_manager_dialog_selection_changed (ExoIconView               *iconv
         adjustment = gtk_viewport_get_vadjustment (GTK_VIEWPORT (dialog->category_viewport));
         gtk_adjustment_clamp_page (adjustment, lower, upper);
     }
+}
+
+
+
+static gboolean
+xfce_settings_manager_dialog_key_press_event (GtkWidget                 *iconview,
+                                              GdkEventKey               *event,
+                                              XfceSettingsManagerDialog *dialog)
+{
+    gboolean result;
+
+    /* let exo handle the selection first */
+    result = GTK_WIDGET_CLASS (G_OBJECT_GET_CLASS (iconview))->key_press_event (iconview, event);
+
+    /* make sure the selected item is visible */
+    if (result)
+        xfce_settings_manager_dialog_scroll_to_item (iconview, dialog);
+
+    return result;
 }
 
 
@@ -1046,8 +1069,8 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
         G_CALLBACK (xfce_settings_manager_dialog_iconview_keynav_failed), dialog);
     g_signal_connect (G_OBJECT (iconview), "item-activated",
         G_CALLBACK (xfce_settings_manager_dialog_item_activated), dialog);
-    g_signal_connect (G_OBJECT (iconview), "selection-changed",
-        G_CALLBACK (xfce_settings_manager_dialog_selection_changed), dialog);
+    g_signal_connect (G_OBJECT (iconview), "key-press-event",
+        G_CALLBACK (xfce_settings_manager_dialog_key_press_event), dialog);
     g_signal_connect (G_OBJECT (iconview), "start-interactive-search",
         G_CALLBACK (xfce_settings_manager_start_search), dialog);
 
