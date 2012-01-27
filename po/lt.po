@@ -3,21 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-24 13:18+0000\n"
+"POT-Creation-Date: 2012-01-27 05:06+0000\n"
 "PO-Revision-Date: 2012-01-24 18:05+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>\n"
 "Language-Team: Lietuvių <>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2)\n"
+"Language: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -255,7 +254,7 @@ msgstr "Versijos infomacija"
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1515 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Bandykite „%s –help“, jei norite išsamesnės informacijos."
@@ -265,7 +264,7 @@ msgstr "Bandykite „%s –help“, jei norite išsamesnės informacijos."
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1534 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce kūrėjų komanda. Visos teisės saugomos."
 
@@ -274,7 +273,7 @@ msgstr "Xfce kūrėjų komanda. Visos teisės saugomos."
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Prašome apie ydas pranešti į <%s>."
@@ -1515,25 +1514,24 @@ msgstr "Darbalaukis %d"
 msgid "The Xfce Settings Daemon"
 msgstr "Xfce nustatymų demonas"
 
-#: ../xfce4-settings-manager/main.c:41
+#: ../xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Nustatymų dialogas kurį rodyti"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:163
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:184
+msgid "_All Settings"
+msgstr "_Visi nustatymai"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:364
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:164
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
 msgid "Customize your desktop"
 msgstr "Derinti darbastalį"
 
-#. Create back button which takes the user back to the overview
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:271
-msgid "_Overview"
-msgstr "_Apžvalga"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:578
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:594
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:850
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:861
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nepavyko paleisti „%s“"
@@ -1545,3 +1543,6 @@ msgstr "Grafinė nustatymų tvarkyklė skirta Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Nustatymų tvarkyklė"
+
+#~ msgid "_Overview"
+#~ msgstr "_Apžvalga"
