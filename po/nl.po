@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-22 09:06+0000\n"
+"POT-Creation-Date: 2012-01-27 10:54+0000\n"
 "PO-Revision-Date: 2011-09-08 22:32+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -248,7 +248,7 @@ msgstr "CONTACTPUNT ID"
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:39
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:98 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
@@ -257,9 +257,9 @@ msgstr "Versie-informatie"
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
-#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:61
+#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1515 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Tik '%s -- help' voor gebruiksinformatie."
@@ -267,18 +267,18 @@ msgstr "Tik '%s -- help' voor gebruiksinformatie."
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
-#: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:80
+#: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1534 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "De Xfce-ontwikkelploeg. Alle rechten voorbehouden."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
-#: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:81
+#: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Gelieve fouten te melden aan <%s>."
@@ -957,7 +957,9 @@ msgstr "Gebruik een aangepaste opdracht:"
 msgid ""
 "Use a custom command for an application that is not available from the above "
 "application list."
-msgstr "Gebruik een aangepaste opdracht voor een toepassing die niet beschikbaar is in bovenstaande toepassingenlijst."
+msgstr ""
+"Gebruik een aangepaste opdracht voor een toepassing die niet beschikbaar is "
+"in bovenstaande toepassingenlijst."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
@@ -989,62 +991,62 @@ msgstr "Open <i>%s</i> en andere bestanden van het type \"%s\" met:"
 msgid "Failed to add new application \"%s\""
 msgstr "Kon nieuwe toepassing \"%s\" niet toevoegen"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:162
+#: ../dialogs/mime-settings/xfce-mime-window.c:174
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "MIME Type Editor"
 msgstr "MIME-typebewerker"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:166
+#: ../dialogs/mime-settings/xfce-mime-window.c:178
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Associate applications with MIME types"
 msgstr "Verbind toepassingen met MIME-types"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:186
+#: ../dialogs/mime-settings/xfce-mime-window.c:203
 msgid "_Filter:"
 msgstr "_Filter:"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:194
+#: ../dialogs/mime-settings/xfce-mime-window.c:211
 msgid "Clear filter"
 msgstr "Verwijder filter"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:239
+#: ../dialogs/mime-settings/xfce-mime-window.c:257
 msgid "MIME Type"
 msgstr "MIME-type"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:262
+#: ../dialogs/mime-settings/xfce-mime-window.c:287
 msgid "Status"
 msgstr "Status"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:276
+#: ../dialogs/mime-settings/xfce-mime-window.c:308
 msgid "Default Application"
 msgstr "Standaardtoepassing"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:397
-#: ../dialogs/mime-settings/xfce-mime-window.c:519
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
 msgid "User Set"
 msgstr "Ingesteld door gebruiker"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:399
-#: ../dialogs/mime-settings/xfce-mime-window.c:519
+#: ../dialogs/mime-settings/xfce-mime-window.c:481
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
 #: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
 #: ../dialogs/mouse-settings/main.c:434
 msgid "Default"
 msgstr "Standaard"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:467
+#: ../dialogs/mime-settings/xfce-mime-window.c:550
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d MIME-type gevonden"
 msgstr[1] "%d MIME-types gevonden"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:564
+#: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Kon toepassing \"%s\" niet instellen voor MIME-type \"%s\"."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:821
+#: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
 msgid ""
 "Are you sure you want to reset content type \"%s\" to its default value?"
@@ -1052,22 +1054,24 @@ msgstr ""
 "Weet u zeker dat u kanaal \"%s\" en al zijn eigenschappen wilt terugzetten "
 "op de standaardwaarden?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:825
+#: ../dialogs/mime-settings/xfce-mime-window.c:910
 msgid "Question"
 msgstr "Vraag"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:828
+#: ../dialogs/mime-settings/xfce-mime-window.c:913
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr "Dit zal uw aangepaste MIME-verbinding verwijderen en de systeembrede standaard herstellen."
+msgstr ""
+"Dit zal uw aangepaste MIME-verbinding verwijderen en de systeembrede "
+"standaard herstellen."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:832
-#: ../dialogs/mime-settings/xfce-mime-window.c:903
+#: ../dialogs/mime-settings/xfce-mime-window.c:917
+#: ../dialogs/mime-settings/xfce-mime-window.c:988
 msgid "Reset to Default"
 msgstr "Terugzetten op standaardwaarde"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:898
+#: ../dialogs/mime-settings/xfce-mime-window.c:983
 msgid "Choose Application..."
 msgstr "Kies toepassing..."
 
@@ -1538,25 +1542,24 @@ msgstr "Werkblad %d"
 msgid "The Xfce Settings Daemon"
 msgstr "De achtergronddienst voor Xfce-Instellingen"
 
-#: ../xfce4-settings-manager/main.c:41
+#: ../xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Dialoogvenster om weer te geven"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:163
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:184
+msgid "_All Settings"
+msgstr "Alle instellingen"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:364
 msgid "Settings"
 msgstr "Instellingen"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:164
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
 msgid "Customize your desktop"
 msgstr "Pas uw werkomgeving aan"
 
-#. Create back button which takes the user back to the overview
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:271
-msgid "_Overview"
-msgstr "_Overzicht"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:578
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:594
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:850
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:861
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kon \"%s\" niet starten"
@@ -1568,6 +1571,9 @@ msgstr "Beheerder grafische instellingen voor Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Instellingenbeheerder"
+
+#~ msgid "_Overview"
+#~ msgstr "_Overzicht"
 
 #~ msgid "_General"
 #~ msgstr "_Algemeen"
