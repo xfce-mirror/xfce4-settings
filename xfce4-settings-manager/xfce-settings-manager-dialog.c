@@ -676,12 +676,16 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
     GtkTreePath    *path;
     gint            n_visible_items;
     GtkTreeModel   *model;
+    const gchar    *text;
 
     if (event->keyval == GDK_Escape)
     {
-        gtk_entry_set_text (GTK_ENTRY (entry), "");
-
-        return TRUE;
+        text = gtk_entry_get_text (GTK_ENTRY (entry));
+        if (text != NULL && *text != '\0')
+        {
+            gtk_entry_set_text (GTK_ENTRY (entry), "");
+            return TRUE;
+        }
     }
     else if (event->keyval == GDK_Return)
     {
