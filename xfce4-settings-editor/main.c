@@ -33,7 +33,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 
-#include "main_window.h"
+#include "xfce-settings-editor-dialog.h"
 
 /* option entries */
 static gboolean opt_version = FALSE;
@@ -47,8 +47,8 @@ static GOptionEntry option_entries[] =
 gint
 main(gint argc, gchar **argv)
 {
-    GtkDialog      *dialog;
-    GError         *error = NULL;
+    GtkWidget *dialog;
+    GError    *error = NULL;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -96,16 +96,10 @@ main(gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    /* We don't want a gradient on our toolbar */
-    gtk_rc_parse_string ("style \"xfce-no-shadow\"\n"
-                         "{\n"
-                           "GtkToolbar::shadow-type = GTK_SHADOW_NONE\n"
-                         "}\n"
-                         "class \"*\" style \"xfce-no-shadow\"\n");
+    dialog = xfce_settings_editor_dialog_new ();
+    gtk_window_present (GTK_WINDOW (dialog));
 
-    dialog = xfce4_settings_editor_main_window_new();
-
-    gtk_dialog_run (dialog);
+    gtk_main ();
 
     /* shutdown xfconf */
     xfconf_shutdown ();
