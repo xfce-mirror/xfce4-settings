@@ -503,6 +503,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
     gdk_error_trap_push ();
 
+    saved_outputs = NULL;
+
     /* get the default display */
     display = gdk_display_get_default ();
     xdisplay = gdk_x11_display_get_xdisplay (display);
