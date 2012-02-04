@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-15 00:33+0000\n"
-"PO-Revision-Date: 2012-01-15 10:41+0800\n"
+"POT-Creation-Date: 2012-02-04 04:30+0000\n"
+"PO-Revision-Date: 2012-02-04 17:19+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: chinese-l10n <chinese-l10n@googlegroups.com>\n"
 "Language: \n"
@@ -207,6 +207,7 @@ msgstr "SOCKET ID"
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:40
+#: ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:98
 #: ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77
@@ -218,10 +219,11 @@ msgstr "版本資訊"
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76
-#: ../dialogs/mouse-settings/main.c:1516
+#: ../dialogs/mime-settings/main.c:62
+#: ../dialogs/mouse-settings/main.c:1515
 #: ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173
-#: ../xfce4-settings-manager/main.c:57
+#: ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "輸入 '%s --help' 以了解用法。"
@@ -230,10 +232,11 @@ msgstr "輸入 '%s --help' 以了解用法。"
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92
-#: ../dialogs/mouse-settings/main.c:1535
+#: ../dialogs/mime-settings/main.c:81
+#: ../dialogs/mouse-settings/main.c:1534
 #: ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189
-#: ../xfce4-settings-manager/main.c:70
+#: ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 開發團隊。保留所有權利。"
 
@@ -241,10 +244,11 @@ msgstr "Xfce 開發團隊。保留所有權利。"
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93
-#: ../dialogs/mouse-settings/main.c:1536
+#: ../dialogs/mime-settings/main.c:82
+#: ../dialogs/mouse-settings/main.c:1535
 #: ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190
-#: ../xfce4-settings-manager/main.c:71
+#: ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "請回報錯誤至 <%s>。"
@@ -652,26 +656,32 @@ msgid "Select command"
 msgstr "選取指令"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:235
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:386
 msgid "All Files"
 msgstr "所有檔案"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:391
 msgid "Executable Files"
 msgstr "可執行檔"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:255
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:406
 msgid "Perl Scripts"
 msgstr "Perl 指令稿"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:261
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:412
 msgid "Python Scripts"
 msgstr "Python 指令稿"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:418
 msgid "Ruby Scripts"
 msgstr "Ruby 指令稿"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:273
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:424
 msgid "Shell Scripts"
 msgstr "Shell 指令稿"
 
@@ -701,7 +711,7 @@ msgid "Edit keyboard settings and application shortcuts"
 msgstr "編輯鍵盤設定值與應用程式捷徑"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "General"
 msgstr "一般"
 
@@ -840,6 +850,126 @@ msgstr "下次您登入時將還原系統預設值。"
 msgid "Warning"
 msgstr "警告"
 
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:128
+msgid "Select Application"
+msgstr "選取應用程式"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:204
+msgid "Use a c_ustom command:"
+msgstr "使用自訂指令(_U)："
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:205
+msgid "Use a custom command for an application that is not available from the above application list."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:223
+msgid "_Browse..."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:376
+msgid "Select an Application"
+msgstr "選取應用程式"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:526
+msgid "None available"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:573
+msgid "Recommended Applications"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:591
+msgid "Other Applications"
+msgstr "其他應用程式"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:611
+#, c-format
+msgid "Open <i>%s</i> and other files of type \"%s\" with:"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:647
+#, c-format
+msgid "Failed to add new application \"%s\""
+msgstr "無法加入新的應用程式「%s」"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:174
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+msgid "MIME Type Editor"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:178
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
+msgid "Associate applications with MIME types"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:203
+msgid "_Filter:"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:211
+msgid "Clear filter"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:257
+msgid "MIME Type"
+msgstr "MIME 類型"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:287
+msgid "Status"
+msgstr "狀態"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:308
+msgid "Default Application"
+msgstr "預設應用程式"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
+msgid "User Set"
+msgstr "使用者設定"
+
+#. sort the names but keep Default on top
+#: ../dialogs/mime-settings/xfce-mime-window.c:481
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
+#: ../dialogs/mouse-settings/main.c:372
+#: ../dialogs/mouse-settings/main.c:374
+#: ../dialogs/mouse-settings/main.c:434
+msgid "Default"
+msgstr "預設"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:550
+#, c-format
+msgid "%d MIME type found"
+msgid_plural "%d MIME types found"
+msgstr[0] "找到 %d 個 MIME 類型"
+msgstr[1] "找到 %d 個 MIME 類型"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:649
+#, c-format
+msgid "Failed to set application \"%s\" for mime type \"%s\"."
+msgstr "無法為 MIME 類型「%2$s」設定應用程式「%1$s」。"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:906
+#, c-format
+msgid "Are you sure you want to reset content type \"%s\" to its default value?"
+msgstr "您確定要重設內容類型「%s」為其預設值？"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:910
+msgid "Question"
+msgstr "問題"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:913
+msgid "This will remove your custom mime-association and restore the system-wide default."
+msgstr "這會移除您自訂的 mime 關聯，且還原至系統域的預設值。"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:917
+#: ../dialogs/mime-settings/xfce-mime-window.c:988
+msgid "Reset to Default"
+msgstr "重設為預設值"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:983
+msgid "Choose Application..."
+msgstr "選擇應用程式..."
+
 #: ../dialogs/mouse-settings/main.c:96
 msgid "Active device in the dialog"
 msgstr "對話窗內活動中的裝置"
@@ -860,194 +990,187 @@ msgstr "%g px"
 msgid "%g ms"
 msgstr "%g ms"
 
-#. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:372
-#: ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
-msgid "Default"
-msgstr "預設"
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+msgid "B_uttons and Feedback"
+msgstr "按鈕與回饋(_U)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 msgid "Buttons"
 msgstr "按鈕"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Clockwise"
 msgstr "順時針"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
 msgstr "調整指標裝置行為與外觀"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Counterclockwise"
 msgstr "逆時針"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Cursor _size:"
 msgstr "游標大小(_S)："
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "D_istance:"
 msgstr "距離(_I)："
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "De_vice:"
 msgstr "裝置(_V)："
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Di_sabled"
 msgstr "已停用(_S)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Disable to_uchpad while typing"
 msgstr "打字時停用觸控板(_U)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Double Click"
 msgstr "雙擊滑鼠"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Drag and Drop"
 msgstr "拖與放"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Edge scro_lling"
 msgstr "邊緣捲動(_L)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "Enable hori_zontal scrolling"
 msgstr "啟用水平捲動(_Z)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Half (left-handed)"
 msgstr "一半 (慣用左手)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Mouse (relative)"
 msgstr "滑鼠 (相對)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse and Touchpad"
 msgstr "滑鼠與觸控板"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "None (right-handed)"
 msgstr "無 (慣用右手)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Pen (absolute)"
 msgstr "數位筆 (絕對)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Pointer Speed"
 msgstr "指標速度"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Preview"
 msgstr "預覽"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Reset to De_faults"
 msgstr "重設為預設值(_F)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Reverse scroll d_irection"
 msgstr "反轉捲軸方向(_I)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "Scrolling"
 msgstr "捲動"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Set the acceleration and sensitivity for the selected device to the default values"
 msgstr "將所選的裝置其加速度與靈敏度設為預設值"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Size"
 msgstr "大小"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "T_ap touchpad to click"
 msgstr "輕觸觸控板來點擊(_A)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "T_heme"
 msgstr "主題(_H)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "T_ouchpad"
 msgstr "觸控板(_O)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Table_t"
 msgstr "平板(_T)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Th_reshold:"
 msgstr "閾值(_R)："
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "當滑鼠移動時將根據該因素增加速度"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "The mouse pointer cannot move farther than this distance between two clicks for them to be considered a double click"
 msgstr "在雙點的情況下，兩個滑鼠點擊動作之間其滑鼠指標無法移動比這還多的距離，否則無法被判讀為雙點滑鼠"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "The number of pixels the pointer must move before a drag operation will start"
 msgstr "在拖曳動作開始前，指標一定要移動的像素量"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "The number of pixels the pointer must move in a short time before it starts accelerating"
 msgstr "在開始加速前，指標一定要在一段短時間內移動的像素量"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Ti_me:"
 msgstr "時間(_M)："
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Tr_acking mode:"
 msgstr "追蹤模式(_A)："
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click"
 msgstr "少於此時間 (單位為毫秒) 的兩個滑鼠點擊將被視為雙擊滑鼠"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Two-_finger scrolling"
 msgstr "兩指捲動(_F)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "當選取時，滑鼠滾輪將會以反方向運作"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "當選取時，當鍵盤使用時會停用觸控板"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "_Acceleration:"
 msgstr "加速(_A)："
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "_Behavior"
 msgstr "行為(_B)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "_Devices"
 msgstr "裝置(_D)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "_Enable this device"
 msgstr "啟用這個裝置(_E)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
-msgid "_General"
-msgstr "一般(_G)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "_Left-handed"
@@ -1282,25 +1405,24 @@ msgstr "工作區 %d"
 msgid "The Xfce Settings Daemon"
 msgstr "Xfce 4 設定值幕後程式"
 
-#: ../xfce4-settings-manager/main.c:41
+#: ../xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "要顯示的設定值對話窗"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:163
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:186
+msgid "_All Settings"
+msgstr "所有設定值(_S)"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
 msgid "Settings"
 msgstr "設定值"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:164
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:368
 msgid "Customize your desktop"
 msgstr "自訂您的桌面"
 
-#. Create back button which takes the user back to the overview
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:271
-msgid "_Overview"
-msgstr "概覽(_O)"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:608
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:624
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:858
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:869
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "無法啟動「%s」"
@@ -1312,6 +1434,12 @@ msgstr "Xfce 4 的圖形設定值管理員"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "設定值管理員"
+
+#~ msgid "_General"
+#~ msgstr "一般(_G)"
+
+#~ msgid "_Overview"
+#~ msgstr "概覽(_O)"
 
 #~ msgid "Use this area to _test the settings above:"
 #~ msgstr "使用此區域來測試上方的設定值(_T)："
