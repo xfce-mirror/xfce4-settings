@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-02 11:54+0000\n"
+"POT-Creation-Date: 2012-02-08 12:54+0000\n"
 "PO-Revision-Date: 2010-11-09 16:14+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "Language-Team: \n"
@@ -953,7 +953,9 @@ msgstr "_Utilizar um comando personalizado"
 msgid ""
 "Use a custom command for an application that is not available from the above "
 "application list."
-msgstr "Utilizar um comando personalizado para uma aplicação não disponível na lista acima exibida."
+msgstr ""
+"Utilizar um comando personalizado para uma aplicação não disponível na lista "
+"acima exibida."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
@@ -1041,7 +1043,7 @@ msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Falha ao definir a aplicação \"%s\" para o tipo MIME \"%s\"."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr ""
@@ -1055,7 +1057,7 @@ msgstr "Questão"
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr ""
+msgstr "Vai remover a associação personalizada e restaurar as definições gerais do sistema."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
@@ -1307,63 +1309,180 @@ msgstr "_Rotação"
 msgid "_Sensitivity:"
 msgstr "_Sensibilidade:"
 
-#: ../xfce4-settings-editor/main_window.c:157
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+msgid "Settings Editor"
+msgstr "Editor de definições"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:185
+msgid "Customize settings stored by Xfconf"
+msgstr "Personalizar definições armazenadas pelo Xfconf"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:230
 msgid "Channel"
 msgstr "Canal"
 
-#: ../xfce4-settings-editor/main_window.c:170
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:264
 msgid "Property"
 msgstr "Propriedade"
 
-#: ../xfce4-settings-editor/main_window.c:173
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:271
 msgid "Type"
 msgstr "Tipo"
 
-#: ../xfce4-settings-editor/main_window.c:176
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:278
 msgid "Locked"
 msgstr "Bloqueado"
 
-#: ../xfce4-settings-editor/main_window.c:179
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:285
 msgid "Value"
 msgstr "Valor"
 
-#: ../xfce4-settings-editor/main_window.c:310
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:302
+msgid "New property"
+msgstr "Nova propriedade"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:313
+msgid "Edit selected property"
+msgstr "Editar propriedade selecionada"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:321
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1026
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1369
+msgid "_Reset"
+msgstr "_Repor"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
+msgid "Reset selected property"
+msgstr "Repor propriedade selecionada"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:448
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:539
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:658
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Empty"
 msgstr "Vazio"
 
-#: ../xfce4-settings-editor/main_window.c:698
-#: ../xfce4-settings-editor/main_window.c:890
-msgid "This property name is not valid."
-msgstr "Este nome de propriedade é inválido."
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
+msgid "Array"
+msgstr "\"Array\""
 
-#: ../xfce4-settings-editor/main_window.c:925
-#: ../xfce4-settings-editor/main_window.c:1078
-msgid "Reset"
-msgstr "Repor"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+msgid "String"
+msgstr "\"String\""
 
-#: ../xfce4-settings-editor/main_window.c:926
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
+msgid "Integer"
+msgstr "Inteiro"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+msgid "Boolean"
+msgstr "Booleano"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:470
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+msgid "Double"
+msgstr "Duplo"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
+msgid "_Reset Channel"
+msgstr "_Repor canal"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr ""
+"A reposição de um canal irá remover permanentemente as definições "
+"personalizadas."
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
+#, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr ""
+"Tem certeza que quer repor o canal \"%s\" e todas as suas propriedades?"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
+msgid "reset"
+msgstr "repor"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
+#, c-format
+msgid "Monitor %s"
+msgstr "Monitorizar %s"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
+msgid "Watch an Xfconf channel for property changes"
+msgstr "Monitorizar as alterações das propriedades de um canal Xfconf"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
+#, c-format
+msgid "start monitoring channel \"%s\""
+msgstr "iniciar monitorização do canal \"%s\""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
+msgid "_Monitor"
+msgstr "_Monitorizar"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr ""
 "A reposição de uma propriedade irá remover permanentemente as definições "
 "personalizadas."
 
-#: ../xfce4-settings-editor/main_window.c:927
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Tem certeza que quer repor a propriedade \"%s\"?"
 
-#: ../xfce4-settings-editor/main_window.c:983
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+msgid "Int"
+msgstr "Int"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+msgid "Unsigned Int"
+msgstr "Int não assinado"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+msgid "Int64"
+msgstr "Int64"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
+msgid "Unsigned Int64"
+msgstr "Int64 não assinado"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+msgid "New Property"
+msgstr "Nova propriedade"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:154
+msgid "_Property:"
+msgstr "_Propriedade"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:169
+msgid "_Type:"
+msgstr "_Tipo:"
+
+#. strings
+#. integers
+#. bool
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:200
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:211
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:223
+msgid "_Value:"
+msgstr "_Valor:"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Os nomes das propriedades devem começar com \"/\""
 
-#: ../xfce4-settings-editor/main_window.c:992
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "O elemento \"root\" \"(/)\" não é um nome de propriedade válido"
 
-#: ../xfce4-settings-editor/main_window.c:1006
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:408
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1372,110 +1491,25 @@ msgstr ""
 "Os nomes das propriedades apenas podem incluir os caracteres A-Z, a-z, 0-9, "
 "'_', '-', '<' e '>', bem como \"/\" como separador"
 
-#: ../xfce4-settings-editor/main_window.c:1015
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:421
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
 "Os nomes de propriedades não podem ter dois ou mais caracteres \"/\" "
 "consecutivos"
 
-#: ../xfce4-settings-editor/main_window.c:1026
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:435
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Os nomes de propriedades não podem terminar com  \"/\""
 
-#: ../xfce4-settings-editor/main_window.c:1045
-msgid "_Reset"
-msgstr "_Repor"
-
-#: ../xfce4-settings-editor/main_window.c:1079
-msgid "Resetting a channel will permanently remove those custom settings."
-msgstr ""
-"A reposição de um canal irá remover permanentemente as definições "
-"personalizadas."
-
-#: ../xfce4-settings-editor/main_window.c:1080
-#, c-format
-msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr ""
-"Tem certeza que quer repor o canal \"%s\" e todas as suas propriedades?"
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:648
+msgid "Edit Property"
+msgstr "Editar propriedade"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Editor gráfico de definições para o Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
-msgid "Settings Editor"
-msgstr "Editor de definições"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
-msgid "Boolean"
-msgstr "Booleano"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
-msgid "Customize settings stored by Xfconf"
-msgstr "Personalizar definições armazenadas pelo Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
-msgid "Double"
-msgstr "Duplo"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
-msgid "Edit Property"
-msgstr "Editar propriedade"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
-msgid "Edit property"
-msgstr "Editar propriedade"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
-msgid "Enabled"
-msgstr "Activo"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-msgid "Int"
-msgstr "Int"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
-msgid "Int64"
-msgstr "Int64"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
-msgid "Name:"
-msgstr "Nome:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
-msgid "New property"
-msgstr "Nova propriedade"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-msgid "Reset property"
-msgstr "Repor propriedade"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
-msgid "String"
-msgstr "\"String\""
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
-msgid "Type:"
-msgstr "Tipo:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
-msgid "Unsigned Int"
-msgstr "Int não assinado"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
-msgid "Unsigned Int64"
-msgstr "Int64 não assinado"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
-msgid "Value:"
-msgstr "Valor:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
-msgid "Xfconf channels"
-msgstr "Canais Xfconf"
 
 #: ../xfsettingsd/accessibility.c:390
 msgid "Sticky keys are enabled"
@@ -1540,9 +1574,8 @@ msgid "Settings dialog to show"
 msgstr "Diálogo de definições a mostrar"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:186
-#, fuzzy
 msgid "_All Settings"
-msgstr "_Definições"
+msgstr "Tod_as as definições"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
 msgid "Settings"
@@ -1565,6 +1598,18 @@ msgstr "Gestor gráfico de definições do Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Gestor de definições"
+
+#~ msgid "This property name is not valid."
+#~ msgstr "Este nome de propriedade é inválido."
+
+#~ msgid "Enabled"
+#~ msgstr "Activo"
+
+#~ msgid "Name:"
+#~ msgstr "Nome:"
+
+#~ msgid "Xfconf channels"
+#~ msgstr "Canais Xfconf"
 
 #~ msgid "_Overview"
 #~ msgstr "_Visão geral"
