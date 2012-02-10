@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-03 11:06+0000\n"
+"POT-Creation-Date: 2012-02-10 05:30+0000\n"
 "PO-Revision-Date: 2010-06-26 09:43-0400\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
@@ -942,7 +942,9 @@ msgstr "Gunakan perintah s_uai:"
 msgid ""
 "Use a custom command for an application that is not available from the above "
 "application list."
-msgstr "Gunakan perintah suai untuk aplikasi yang tidak tersedia dari senarai aplikasi di atas."
+msgstr ""
+"Gunakan perintah suai untuk aplikasi yang tidak tersedia dari senarai "
+"aplikasi di atas."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
@@ -1044,7 +1046,9 @@ msgstr "Pertanyaan"
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr "Ini akan menghapus asosiasi mime sesuai anda dan mengembalikan standar seluruh sistem"
+msgstr ""
+"Ini akan menghapus asosiasi mime sesuai anda dan mengembalikan standar "
+"seluruh sistem"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
@@ -1294,62 +1298,179 @@ msgstr "_Rotasi:"
 msgid "_Sensitivity:"
 msgstr "_Sensitivitas:"
 
-#: ../xfce4-settings-editor/main_window.c:157
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+msgid "Settings Editor"
+msgstr "Penyunting Pengaturan"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:185
+msgid "Customize settings stored by Xfconf"
+msgstr "Sesuaikan pengaturan yang disimpan oleh Xfconf"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:230
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../xfce4-settings-editor/main_window.c:170
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:264
 msgid "Property"
 msgstr "Properti"
 
-#: ../xfce4-settings-editor/main_window.c:173
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:271
 msgid "Type"
 msgstr "Tipe"
 
-#: ../xfce4-settings-editor/main_window.c:176
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:278
 msgid "Locked"
 msgstr "Terkunci"
 
-#: ../xfce4-settings-editor/main_window.c:179
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:285
 msgid "Value"
 msgstr "Nilai"
 
-#: ../xfce4-settings-editor/main_window.c:310
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:302
+msgid "New property"
+msgstr "Properti baru"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:313
+msgid "Edit selected property"
+msgstr "Sunting properti terpilih"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:321
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1026
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1369
+msgid "_Reset"
+msgstr "_Atur Ulang"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
+msgid "Reset selected property"
+msgstr "Atur ulang properti terpilih"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:448
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:539
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:658
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Empty"
 msgstr "Kosong"
 
-#: ../xfce4-settings-editor/main_window.c:698
-#: ../xfce4-settings-editor/main_window.c:890
-msgid "This property name is not valid."
-msgstr "Nama properti ini tidak sah."
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
+msgid "Array"
+msgstr "Jajaran"
 
-#: ../xfce4-settings-editor/main_window.c:925
-#: ../xfce4-settings-editor/main_window.c:1078
-msgid "Reset"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+msgid "String"
+msgstr "Benang"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
+msgid "Integer"
+msgstr "Integer"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+msgid "Boolean"
+msgstr "Boolean"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:470
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+msgid "Double"
+msgstr "Ganda"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
+msgid "_Reset Channel"
+msgstr "Atur Ulang Kanal"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr ""
+"Mengatur ulang kanal akan secara permanen menghapus pengaturan suainya."
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
+#, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr ""
+"Apakah anda yakin ingin mengatur ulang kanal \"%s\"? dan semua propertinya?"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
+#, fuzzy
+msgid "reset"
 msgstr "Atur Ulang"
 
-#: ../xfce4-settings-editor/main_window.c:926
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
+#, c-format
+msgid "Monitor %s"
+msgstr "Monitor %s"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
+msgid "Watch an Xfconf channel for property changes"
+msgstr "Pantau kanal Xfconf untuk perubahan properti"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
+#, c-format
+msgid "start monitoring channel \"%s\""
+msgstr "mulai pantau kanal \"%s\""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
+msgid "_Monitor"
+msgstr "_Monitor"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr ""
 "Mengatur ulang properti akan secara permanen menghapus pengaturan suainya."
 
-#: ../xfce4-settings-editor/main_window.c:927
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Apakah anda yakin ingin mengatur ulang properti \"%s\"?"
 
-#: ../xfce4-settings-editor/main_window.c:983
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+msgid "Int"
+msgstr "Int"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+msgid "Unsigned Int"
+msgstr "Int Tak Ditugaskan"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+msgid "Int64"
+msgstr "Int64"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
+msgid "Unsigned Int64"
+msgstr "Int64 Tak Ditugaskan"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+msgid "New Property"
+msgstr "Properti Baru"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:154
+msgid "_Property:"
+msgstr "_Properti:"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:169
+msgid "_Type:"
+msgstr "_Tipe:"
+
+#. strings
+#. integers
+#. bool
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:200
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:211
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:223
+msgid "_Value:"
+msgstr "_Nilai:"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Nama properti harus dimulai dengan karakter '/'"
 
-#: ../xfce4-settings-editor/main_window.c:992
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Elemen root ('/') bukan mana properti yang sah"
 
-#: ../xfce4-settings-editor/main_window.c:1006
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:408
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1358,108 +1479,24 @@ msgstr ""
 "Nama properti hanya termasuk karakter ASCII A-Z, a-z, 0-9, '_', '-', '<' dan "
 "'>', begitu juga '/' sebagai pemisah"
 
-#: ../xfce4-settings-editor/main_window.c:1015
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:421
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
 "Nama properti tak dapat berisi dua atau lebih karakter '/' yang berurutan"
 
-#: ../xfce4-settings-editor/main_window.c:1026
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:435
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Nama properti tak dapat diakhiri dengan karakter '/'"
 
-#: ../xfce4-settings-editor/main_window.c:1045
-msgid "_Reset"
-msgstr "_Atur Ulang"
-
-#: ../xfce4-settings-editor/main_window.c:1079
-msgid "Resetting a channel will permanently remove those custom settings."
-msgstr ""
-"Mengatur ulang kanal akan secara permanen menghapus pengaturan suainya."
-
-#: ../xfce4-settings-editor/main_window.c:1080
-#, c-format
-msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr ""
-"Apakah anda yakin ingin mengatur ulang kanal \"%s\"? dan semua propertinya?"
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:648
+msgid "Edit Property"
+msgstr "Sunting Properti"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Penyunting pengaturan grafis untuk Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
-msgid "Settings Editor"
-msgstr "Penyunting Pengaturan"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
-msgid "Boolean"
-msgstr "Boolean"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
-msgid "Customize settings stored by Xfconf"
-msgstr "Sesuaikan pengaturan yang disimpan oleh Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
-msgid "Double"
-msgstr "Ganda"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
-msgid "Edit Property"
-msgstr "Sunting Properti"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
-msgid "Edit property"
-msgstr "Sunting properti"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
-msgid "Enabled"
-msgstr "Aktifkan"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-msgid "Int"
-msgstr "Int"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
-msgid "Int64"
-msgstr "Int64"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
-msgid "Name:"
-msgstr "Nama:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
-msgid "New property"
-msgstr "Properti baru"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-msgid "Reset property"
-msgstr "Atur ulang properti"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
-msgid "String"
-msgstr "Benang"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
-msgid "Type:"
-msgstr "Tipe:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
-msgid "Unsigned Int"
-msgstr "Int Tak Ditugaskan"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
-msgid "Unsigned Int64"
-msgstr "Int64 Tak Ditugaskan"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
-msgid "Value:"
-msgstr "Nilai:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
-msgid "Xfconf channels"
-msgstr "Kanal Xfconf"
 
 #: ../xfsettingsd/accessibility.c:390
 msgid "Sticky keys are enabled"
@@ -1548,6 +1585,18 @@ msgstr "Manajer Pengaturan Grafis untuk Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Manajer Pengaturan"
+
+#~ msgid "This property name is not valid."
+#~ msgstr "Nama properti ini tidak sah."
+
+#~ msgid "Enabled"
+#~ msgstr "Aktifkan"
+
+#~ msgid "Name:"
+#~ msgstr "Nama:"
+
+#~ msgid "Xfconf channels"
+#~ msgstr "Kanal Xfconf"
 
 #~ msgid "Use this area to _test the settings above:"
 #~ msgstr "Gunakan area ini untuk _mengetes pengaturan di atas:"
