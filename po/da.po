@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-22 09:06+0000\n"
+"POT-Creation-Date: 2012-02-10 17:06+0000\n"
 "PO-Revision-Date: 2010-01-19 21:40+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
@@ -243,7 +243,7 @@ msgstr "SOKKEL-ID"
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:39
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:98 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
@@ -252,9 +252,9 @@ msgstr "Versionsinformation"
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
-#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:61
+#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1515 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Tast '%s --help' for brug."
@@ -262,18 +262,18 @@ msgstr "Tast '%s --help' for brug."
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
-#: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:80
+#: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1534 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce-udviklingsholdet. Alle rettigheder forbeholdes."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
-#: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:81
+#: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapportér venligst fejl til <%s>."
@@ -975,62 +975,62 @@ msgstr "Åbn <i>%s</i> og andre filer af typen \"%s\" med:"
 msgid "Failed to add new application \"%s\""
 msgstr "Kunne ikke føje nyt prgram\"%s\" til"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:162
+#: ../dialogs/mime-settings/xfce-mime-window.c:174
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "MIME Type Editor"
 msgstr "Redigering af MIME-type"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:166
+#: ../dialogs/mime-settings/xfce-mime-window.c:178
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Associate applications with MIME types"
 msgstr "Tilknyt programmer med MIME-typer"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:186
+#: ../dialogs/mime-settings/xfce-mime-window.c:203
 msgid "_Filter:"
 msgstr "_Filter:"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:194
+#: ../dialogs/mime-settings/xfce-mime-window.c:211
 msgid "Clear filter"
 msgstr "Ryd filter"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:239
+#: ../dialogs/mime-settings/xfce-mime-window.c:257
 msgid "MIME Type"
 msgstr "MIME-type"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:262
+#: ../dialogs/mime-settings/xfce-mime-window.c:287
 msgid "Status"
 msgstr "Status"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:276
+#: ../dialogs/mime-settings/xfce-mime-window.c:308
 msgid "Default Application"
 msgstr "Standardprogram"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:397
-#: ../dialogs/mime-settings/xfce-mime-window.c:519
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
 msgid "User Set"
-msgstr ""
+msgstr "Indstil bruger"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:399
-#: ../dialogs/mime-settings/xfce-mime-window.c:519
+#: ../dialogs/mime-settings/xfce-mime-window.c:481
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
 #: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
 #: ../dialogs/mouse-settings/main.c:434
 msgid "Default"
 msgstr "Standard"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:467
+#: ../dialogs/mime-settings/xfce-mime-window.c:550
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d MIME-type fundet"
 msgstr[1] "%d MIME-typer fundet"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:564
+#: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr ""
+msgstr "Kunne ikke indstille program \"%s\" til mime-type \"%s\"."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:821
+#: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, fuzzy, c-format
 msgid ""
 "Are you sure you want to reset content type \"%s\" to its default value?"
@@ -1038,22 +1038,22 @@ msgstr ""
 "Er du sikker på, at du vil nulstille kanalen \"%s\" og alle dens "
 "indstillinger?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:825
+#: ../dialogs/mime-settings/xfce-mime-window.c:910
 msgid "Question"
 msgstr "Spørgsmål"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:828
+#: ../dialogs/mime-settings/xfce-mime-window.c:913
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:832
-#: ../dialogs/mime-settings/xfce-mime-window.c:903
+#: ../dialogs/mime-settings/xfce-mime-window.c:917
+#: ../dialogs/mime-settings/xfce-mime-window.c:988
 msgid "Reset to Default"
 msgstr "Nulstil til standardindstillinger"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:898
+#: ../dialogs/mime-settings/xfce-mime-window.c:983
 msgid "Choose Application..."
 msgstr "Vælg program..."
 
@@ -1296,63 +1296,182 @@ msgstr "Ro_tation:"
 msgid "_Sensitivity:"
 msgstr "_Følsomhed:"
 
-#: ../xfce4-settings-editor/main_window.c:157
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+msgid "Settings Editor"
+msgstr "Indstillingsredigering"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:185
+msgid "Customize settings stored by Xfconf"
+msgstr "Tilpas indstillinger gemt af Xfconf"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:230
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../xfce4-settings-editor/main_window.c:170
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:264
 msgid "Property"
 msgstr "Egenskab"
 
-#: ../xfce4-settings-editor/main_window.c:173
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:271
 msgid "Type"
 msgstr "Type"
 
-#: ../xfce4-settings-editor/main_window.c:176
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:278
 msgid "Locked"
 msgstr "Låst"
 
-#: ../xfce4-settings-editor/main_window.c:179
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:285
 msgid "Value"
 msgstr "Værdi"
 
-#: ../xfce4-settings-editor/main_window.c:310
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:302
+msgid "New property"
+msgstr "Ny egenskab"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:313
+msgid "Edit selected property"
+msgstr "Redigér vlagte egenskab"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:321
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1026
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1369
+msgid "_Reset"
+msgstr "_Nulstil"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
+msgid "Reset selected property"
+msgstr "Nulstil valgte egenskab"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:448
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:539
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:658
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Empty"
 msgstr "Tom"
 
-#: ../xfce4-settings-editor/main_window.c:698
-#: ../xfce4-settings-editor/main_window.c:890
-msgid "This property name is not valid."
-msgstr "Dette egenskabsnavn er ugyldigt."
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
+msgid "Array"
+msgstr "Tabel"
 
-#: ../xfce4-settings-editor/main_window.c:925
-#: ../xfce4-settings-editor/main_window.c:1078
-msgid "Reset"
-msgstr "Nulstil"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+msgid "String"
+msgstr "Streng"
 
-#: ../xfce4-settings-editor/main_window.c:926
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
+msgid "Integer"
+msgstr "Heltal"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+msgid "Boolean"
+msgstr "Boolesk"
+
+# Number with decimal
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:470
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+msgid "Double"
+msgstr "Double"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
+msgid "_Reset Channel"
+msgstr "_Nulstil kanal"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr ""
+"Nulstilling af en kanal vil for bestandigt fjerne disse tilpassede "
+"indstillinger."
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
+#, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr ""
+"Er du sikker på, at du vil nulstille kanalen \"%s\" og alle dens "
+"indstillinger?"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
+msgid "reset"
+msgstr "nulstil"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
+#, c-format
+msgid "Monitor %s"
+msgstr "Overvåg %s"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
+msgid "Watch an Xfconf channel for property changes"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
+#, c-format
+msgid "start monitoring channel \"%s\""
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
+msgid "_Monitor"
+msgstr "_Overvåg"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr ""
 "Nulstilling af en egenskab vil fjerne disse tilpassede indstillinger for "
 "bestandig."
 
-#: ../xfce4-settings-editor/main_window.c:927
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Er du sikker på, at du vil nulstille egenskab \"%s\"?"
 
-#: ../xfce4-settings-editor/main_window.c:983
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+msgid "Int"
+msgstr "Int"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+msgid "Unsigned Int"
+msgstr "Int uden fortegn"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+msgid "Int64"
+msgstr "Int64"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
+msgid "Unsigned Int64"
+msgstr "Int64 uden fortegn"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+msgid "New Property"
+msgstr "Ny egenskab"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:154
+msgid "_Property:"
+msgstr "_Egenskab"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:169
+msgid "_Type:"
+msgstr "_Type:"
+
+#. strings
+#. integers
+#. bool
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:200
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:211
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:223
+msgid "_Value:"
+msgstr "_Værdi:"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Egenskabsnavne skal begynde med '/'"
 
-#: ../xfce4-settings-editor/main_window.c:992
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Rodelementet ('/') er ikke et gyldigt egenskabsnavn"
 
-#: ../xfce4-settings-editor/main_window.c:1006
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:408
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1361,111 +1480,24 @@ msgstr ""
 "Egenskabsnavne kan kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '_', '-', '<' "
 "og '>', samt '/' som en adskiller"
 
-#: ../xfce4-settings-editor/main_window.c:1015
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:421
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
 "Egenskabsnavne kan ikke indeholde to eller flere tegn af '/' i rækkefølge"
 
-#: ../xfce4-settings-editor/main_window.c:1026
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:435
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Egenskabsnavne kan ikke afsluttes med '/'"
 
-#: ../xfce4-settings-editor/main_window.c:1045
-msgid "_Reset"
-msgstr "_Nulstil"
-
-#: ../xfce4-settings-editor/main_window.c:1079
-msgid "Resetting a channel will permanently remove those custom settings."
-msgstr ""
-"Nulstilling af en kanal vil for bestandigt fjerne disse tilpassede "
-"indstillinger."
-
-#: ../xfce4-settings-editor/main_window.c:1080
-#, c-format
-msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr ""
-"Er du sikker på, at du vil nulstille kanalen \"%s\" og alle dens "
-"indstillinger?"
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:648
+msgid "Edit Property"
+msgstr "Redigér egenskab"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Grafisk indstillingredigering til Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
-msgid "Settings Editor"
-msgstr "Indstillingsredigering"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
-msgid "Boolean"
-msgstr "Boolesk"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
-msgid "Customize settings stored by Xfconf"
-msgstr "Tilpas indstillinger gemt af Xfconf"
-
-# Number with decimal
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
-msgid "Double"
-msgstr "Double"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
-msgid "Edit Property"
-msgstr "Redigér egenskab"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
-msgid "Edit property"
-msgstr "Redigér egenskab"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
-msgid "Enabled"
-msgstr "Aktiveret"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-msgid "Int"
-msgstr "Int"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
-msgid "Int64"
-msgstr "Int64"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
-msgid "Name:"
-msgstr "Navn:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
-msgid "New property"
-msgstr "Ny egenskab"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-msgid "Reset property"
-msgstr "Nulstil egenskab"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
-msgid "String"
-msgstr "Streng"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
-msgid "Type:"
-msgstr "Type:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
-msgid "Unsigned Int"
-msgstr "Int uden fortegn"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
-msgid "Unsigned Int64"
-msgstr "Int64 uden fortegn"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
-msgid "Value:"
-msgstr "Værdi:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
-msgid "Xfconf channels"
-msgstr "Kanaler til Xfconf"
 
 #: ../xfsettingsd/accessibility.c:390
 msgid "Sticky keys are enabled"
@@ -1525,25 +1557,24 @@ msgstr "Arbejdsområde %d"
 msgid "The Xfce Settings Daemon"
 msgstr "Håndteringstjenesten til Xfce"
 
-#: ../xfce4-settings-manager/main.c:41
+#: ../xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Indstillingsdialog til visning"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:163
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:186
+msgid "_All Settings"
+msgstr "_Alle indstillinger"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:164
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:368
 msgid "Customize your desktop"
 msgstr "Tilpas dit skrivebord"
 
-#. Create back button which takes the user back to the overview
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:271
-msgid "_Overview"
-msgstr "_Overblik"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:578
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:594
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:858
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:869
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kunne ikke starte \"%s\""
@@ -1555,6 +1586,21 @@ msgstr "Grafisk indstillingshåndtering til Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Indstillingshåndtering"
+
+#~ msgid "This property name is not valid."
+#~ msgstr "Dette egenskabsnavn er ugyldigt."
+
+#~ msgid "Enabled"
+#~ msgstr "Aktiveret"
+
+#~ msgid "Name:"
+#~ msgstr "Navn:"
+
+#~ msgid "Xfconf channels"
+#~ msgstr "Kanaler til Xfconf"
+
+#~ msgid "_Overview"
+#~ msgstr "_Overblik"
 
 #~ msgid "_General"
 #~ msgstr "_Generelt"
