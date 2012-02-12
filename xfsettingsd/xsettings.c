@@ -615,7 +615,7 @@ xfce_xsettings_helper_notify_xft_update (GString      *resource,
 
             /* special case for dpi */
             if (strcmp (name, "Xft.dpi:") == 0)
-                num = CLAMP (num, DPI_LOW_REASONABLE, DPI_HIGH_REASONABLE) * 1024;
+                num = CLAMP (num, DPI_LOW_REASONABLE, DPI_HIGH_REASONABLE);
 
             g_snprintf  (s, sizeof (s), "%d", num);
             str = s;
