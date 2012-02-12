@@ -958,7 +958,9 @@ xfce_keyboard_settings_delete_button_clicked (XfceKeyboardSettings *settings)
 static void
 xfce_keyboard_settings_reset_button_clicked (XfceKeyboardSettings *settings)
 {
-  gint response;
+  gint          response;
+  GObject      *view;
+  GtkListStore *store;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
 
@@ -971,7 +973,15 @@ xfce_keyboard_settings_reset_button_clicked (XfceKeyboardSettings *settings)
                                   NULL);
 
   if (G_LIKELY (response == GTK_RESPONSE_YES))
-    xfce_shortcuts_provider_reset_to_defaults (settings->priv->provider);
+    {
+      view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
+
+      /* Clear out all the previous entries */
+      store = GTK_LIST_STORE (gtk_tree_view_get_model (GTK_TREE_VIEW (view)));
+      gtk_list_store_clear (store);
+
+      xfce_shortcuts_provider_reset_to_defaults (settings->priv->provider);
+    }
 }
 
 
