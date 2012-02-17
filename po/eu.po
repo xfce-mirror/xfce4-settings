@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-16 05:18+0000\n"
+"POT-Creation-Date: 2012-02-17 06:00+0000\n"
 "PO-Revision-Date: 2010-02-10 22:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: Basque <kde-i18n-doc@kde.org>\n"
@@ -239,18 +239,18 @@ msgstr "SOCKET IDa"
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
-#: ../xfce4-settings-manager/main.c:39
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
+#: ../dialogs/mouse-settings/main.c:98 ../xfce4-settings-editor/main.c:43
+#: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Bertsio argibideak"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
-#: ../dialogs/keyboard-settings/main.c:76
+#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1515 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Idatzi '%s --help' erabilerarentzat."
@@ -258,18 +258,18 @@ msgstr "Idatzi '%s --help' erabilerarentzat."
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
-#: ../dialogs/keyboard-settings/main.c:92
+#: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1534 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce garapen taldea. Eskubide guztiak erreserbatuta."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
-#: ../dialogs/keyboard-settings/main.c:93
+#: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Programa-erroreen berri eman <%s>-ra."
@@ -720,26 +720,32 @@ msgid "Select command"
 msgstr "Hautatu komandoa"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:235
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:386
 msgid "All Files"
 msgstr "Fitxategi denak"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:391
 msgid "Executable Files"
 msgstr "Fitxategi exekutagarriak"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:255
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:406
 msgid "Perl Scripts"
 msgstr "Perl script-ak"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:261
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:412
 msgid "Python Scripts"
 msgstr "Python script-ak"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:418
 msgid "Ruby Scripts"
 msgstr "Ruby script-ak"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:273
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:424
 msgid "Shell Scripts"
 msgstr "Shell script-ak"
 
@@ -899,12 +905,12 @@ msgstr "Aldagaia"
 msgid "Shortcut command may not be empty."
 msgstr "Lasterbide komandoak ezin  du hutsi egon."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
 msgid "Reset to Defaults"
 msgstr "Berrezarri lehenetsian"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -912,13 +918,138 @@ msgstr ""
 "Honek laster-tekla guztiak bere lehenetsiriko balioetara ezarriko ditu. "
 "Benetan hau egin nahi duzula?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
 msgstr "Sistema lehenespenak berrezarriko dira saio hasten duzun hurrengoan."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
 msgid "Warning"
 msgstr "Abisua"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:128
+msgid "Select Application"
+msgstr "Hautatu aplikazioa"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:204
+msgid "Use a c_ustom command:"
+msgstr "Erabili pertsonalizat_utako komandoa"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:205
+msgid ""
+"Use a custom command for an application that is not available from the above "
+"application list."
+msgstr "Erabili pertsonalizatutako komando bat behekoz zerrendan agertzen ez de aplikazio batentzat."
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:223
+msgid "_Browse..."
+msgstr "_Arakatu..."
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:376
+msgid "Select an Application"
+msgstr "Hautatu aplikazio bat"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:526
+msgid "None available"
+msgstr "Batez erabilgarri"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:573
+msgid "Recommended Applications"
+msgstr "Gomendatutako aplikazioak"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:591
+msgid "Other Applications"
+msgstr "Beste aplikazioak"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:611
+#, c-format
+msgid "Open <i>%s</i> and other files of type \"%s\" with:"
+msgstr "Ireki <i>%s</i> eta \"%s\" motako fitxategiak honekin:"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:647
+#, c-format
+msgid "Failed to add new application \"%s\""
+msgstr "Huts \"%s\" aplikazio berria gehitzean."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:174
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+msgid "MIME Type Editor"
+msgstr "MIME mota editorea"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:178
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
+msgid "Associate applications with MIME types"
+msgstr "Lotu MIME motak aplikazioekin."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:203
+msgid "_Filter:"
+msgstr "_Iragazkia:"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:211
+msgid "Clear filter"
+msgstr "Garbitu iragazkia"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:257
+msgid "MIME Type"
+msgstr "MIME mota"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:287
+msgid "Status"
+msgstr "Egoera"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:308
+msgid "Default Application"
+msgstr "Lehenetsitako aplikazioa"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
+msgid "User Set"
+msgstr "Erabiltzaile ezarpenak"
+
+#. sort the names but keep Default on top
+#: ../dialogs/mime-settings/xfce-mime-window.c:481
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
+#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
+#: ../dialogs/mouse-settings/main.c:434
+msgid "Default"
+msgstr "Lehenetsia"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:550
+#, c-format
+msgid "%d MIME type found"
+msgid_plural "%d MIME types found"
+msgstr[0] "MIME mota %d topatu da"
+msgstr[1] "%d MIME mota topatu dira"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:649
+#, c-format
+msgid "Failed to set application \"%s\" for mime type \"%s\"."
+msgstr "Huts \"%s\" aplikazioa \"%s\" MIME motarentzat ezartzerakoan."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:906
+#, c-format
+msgid ""
+"Are you sure you want to reset content type \"%s\" to its default value?"
+msgstr ""
+"Ziur zaude \"%s\" kanala eta dituen propietateak berrabiarazi nahi duzula?"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:910
+msgid "Question"
+msgstr "Galdera"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:913
+msgid ""
+"This will remove your custom mime-association and restore the system-wide "
+"default."
+msgstr "Honek zure pertsonalizatutako mime-lotura ezabatu eta sistemaren lehenespena berrezarriko du."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:917
+#: ../dialogs/mime-settings/xfce-mime-window.c:988
+msgid "Reset to Default"
+msgstr "Berrezarri lehenetsian"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:983
+msgid "Choose Application..."
+msgstr "Hautatu aplikazioa..."
 
 #: ../dialogs/mouse-settings/main.c:96
 msgid "Active device in the dialog"
@@ -939,12 +1070,6 @@ msgstr "%g px"
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
-
-#. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
-msgid "Default"
-msgstr "Lehenetsia"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "B_uttons and Feedback"
@@ -1167,63 +1292,187 @@ msgstr "Bi_raketa:"
 msgid "_Sensitivity:"
 msgstr "_Sentikortasuna:"
 
-#: ../xfce4-settings-editor/main_window.c:157
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+msgid "Settings Editor"
+msgstr "Ezarpen editorea"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:185
+msgid "Customize settings stored by Xfconf"
+msgstr "Xfconf-ek gordetako ezarpenak pertsonlizatu"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:230
 msgid "Channel"
 msgstr "Kanala"
 
-#: ../xfce4-settings-editor/main_window.c:170
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:264
 msgid "Property"
 msgstr "Propietatea"
 
-#: ../xfce4-settings-editor/main_window.c:173
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:271
 msgid "Type"
 msgstr "Mota"
 
-#: ../xfce4-settings-editor/main_window.c:176
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:278
 msgid "Locked"
 msgstr "Blokeatuta"
 
-#: ../xfce4-settings-editor/main_window.c:179
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:285
 msgid "Value"
 msgstr "Balioa"
 
-#: ../xfce4-settings-editor/main_window.c:310
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:302
+msgid "New property"
+msgstr "Propietate berria"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:313
+#, fuzzy
+msgid "Edit selected property"
+msgstr "Editatu propietatea"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:321
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1026
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1369
+msgid "_Reset"
+msgstr "Be_rrezarri"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
+#, fuzzy
+msgid "Reset selected property"
+msgstr "Berrezarri propietatea"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:448
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:539
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:658
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Empty"
 msgstr "Hutsik"
 
-#: ../xfce4-settings-editor/main_window.c:698
-#: ../xfce4-settings-editor/main_window.c:890
-msgid "This property name is not valid."
-msgstr "Propietate izen baliogabea."
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
+msgid "Array"
+msgstr ""
 
-#: ../xfce4-settings-editor/main_window.c:925
-#: ../xfce4-settings-editor/main_window.c:1078
-msgid "Reset"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+msgid "String"
+msgstr "Katea"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
+msgid "Integer"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+msgid "Boolean"
+msgstr "Boolearra"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:470
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+msgid "Double"
+msgstr "Bikoitza"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
+#, fuzzy
+msgid "_Reset Channel"
+msgstr "Kanala"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr "Kanal bat berrezartzean pertsonalizazioak betirako galduko dira."
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
+#, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr ""
+"Ziur zaude \"%s\" kanala eta dituen propietateak berrabiarazi nahi duzula?"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
+#, fuzzy
+msgid "reset"
 msgstr "Berrezarri"
 
-#: ../xfce4-settings-editor/main_window.c:926
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
+#, fuzzy, c-format
+msgid "Monitor %s"
+msgstr "Monitorea"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
+msgid "Watch an Xfconf channel for property changes"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
+#, c-format
+msgid "start monitoring channel \"%s\""
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
+#, fuzzy
+msgid "_Monitor"
+msgstr "Monitorea"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr ""
 "Propietate bat berrezartzean betirako galtzen dira pertsonalizatutako "
 "ezarpenak."
 
-#: ../xfce4-settings-editor/main_window.c:927
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Ziur zaude \"%s\" propietatea berrabiarazi nahi duzula?"
 
-#: ../xfce4-settings-editor/main_window.c:983
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+msgid "Int"
+msgstr "Int"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+msgid "Unsigned Int"
+msgstr "Sinatu-gabeko int"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+msgid "Int64"
+msgstr "Int64"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
+msgid "Unsigned Int64"
+msgstr "Sinatu-gabeko int64"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+#, fuzzy
+msgid "New Property"
+msgstr "Propietate berria"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:154
+#, fuzzy
+msgid "_Property:"
+msgstr "Propietatea"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:169
+#, fuzzy
+msgid "_Type:"
+msgstr "Mota:"
+
+#. strings
+#. integers
+#. bool
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:200
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:211
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:223
+#, fuzzy
+msgid "_Value:"
+msgstr "Balioa:"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Propietate izenak '/' karaktereaz hasi behar dira"
 
-#: ../xfce4-settings-editor/main_window.c:992
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Erro elementua ('/') ez da propietate izen erabilgarri bat"
 
-#: ../xfce4-settings-editor/main_window.c:1006
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:408
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1232,106 +1481,23 @@ msgstr ""
 "Propietate izeneko A-Z, a-z, 0-9, '_', '-', '<' eta '> ASCII karaktereak eta "
 "'/' bereizle gisa bakarrik eduki ditzakete."
 
-#: ../xfce4-settings-editor/main_window.c:1015
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:421
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Propietate izenek zin dute '/' baino gehiago jarraian eduki"
 
-#: ../xfce4-settings-editor/main_window.c:1026
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:435
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Propietate izenak ezin dira '/' karaktereaz amaitu"
 
-#: ../xfce4-settings-editor/main_window.c:1045
-msgid "_Reset"
-msgstr "Be_rrezarri"
-
-#: ../xfce4-settings-editor/main_window.c:1079
-msgid "Resetting a channel will permanently remove those custom settings."
-msgstr "Kanal bat berrezartzean pertsonalizazioak betirako galduko dira."
-
-#: ../xfce4-settings-editor/main_window.c:1080
-#, c-format
-msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr ""
-"Ziur zaude \"%s\" kanala eta dituen propietateak berrabiarazi nahi duzula?"
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:648
+msgid "Edit Property"
+msgstr "Editatu propietatea"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Xfconf-ren ezarpen editore grafikoa"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
-msgid "Settings Editor"
-msgstr "Ezarpen editorea"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
-msgid "Boolean"
-msgstr "Boolearra"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
-msgid "Customize settings stored by Xfconf"
-msgstr "Xfconf-ek gordetako ezarpenak pertsonlizatu"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
-msgid "Double"
-msgstr "Bikoitza"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
-msgid "Edit Property"
-msgstr "Editatu propietatea"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
-msgid "Edit property"
-msgstr "Editatu propietatea"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
-msgid "Enabled"
-msgstr "Gaituta"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-msgid "Int"
-msgstr "Int"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
-msgid "Int64"
-msgstr "Int64"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
-msgid "Name:"
-msgstr "Izena:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
-msgid "New property"
-msgstr "Propietate berria"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-msgid "Reset property"
-msgstr "Berrezarri propietatea"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
-msgid "String"
-msgstr "Katea"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
-msgid "Type:"
-msgstr "Mota:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
-msgid "Unsigned Int"
-msgstr "Sinatu-gabeko int"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
-msgid "Unsigned Int64"
-msgstr "Sinatu-gabeko int64"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
-msgid "Value:"
-msgstr "Balioa:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
-msgid "Xfconf channels"
-msgstr "Xfconf kanalak"
 
 #: ../xfsettingsd/accessibility.c:390
 msgid "Sticky keys are enabled"
@@ -1391,25 +1557,25 @@ msgstr "%d idazmahaia"
 msgid "The Xfce Settings Daemon"
 msgstr "Xfce ezarpen deabrua"
 
-#: ../xfce4-settings-manager/main.c:41
+#: ../xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Erakutsiko den ezarpen elkarrizketa"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:163
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:186
+#, fuzzy
+msgid "_All Settings"
+msgstr "_Ezarpenak"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:164
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:368
 msgid "Customize your desktop"
 msgstr "Pertsonalizatu zure mahaigaina"
 
-#. Create back button which takes the user back to the overview
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:271
-msgid "_Overview"
-msgstr "_Ikuspegi orokorra"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:608
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:624
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:858
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:869
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Ezin da\"%s\" abiarazi"
@@ -1421,6 +1587,21 @@ msgstr "Xfce 4 ezarpen kudeatzaile grafikoa"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Ezarpen kudeatzailea"
+
+#~ msgid "This property name is not valid."
+#~ msgstr "Propietate izen baliogabea."
+
+#~ msgid "Enabled"
+#~ msgstr "Gaituta"
+
+#~ msgid "Name:"
+#~ msgstr "Izena:"
+
+#~ msgid "Xfconf channels"
+#~ msgstr "Xfconf kanalak"
+
+#~ msgid "_Overview"
+#~ msgstr "_Ikuspegi orokorra"
 
 #~ msgid "Use this area to _test the settings above:"
 #~ msgstr "Erabili eremu hau aurreko ezarpenak proba_tzeko:"
