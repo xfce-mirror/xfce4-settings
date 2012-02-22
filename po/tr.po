@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-30 20:06+0000\n"
+"POT-Creation-Date: 2012-02-22 14:42+0000\n"
 "PO-Revision-Date: 2009-01-30 20:57+0200\n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
@@ -63,7 +63,9 @@ msgstr "Eğer i_ki tuş basılmışsa, yapışkan tuşları çalıştırma"
 msgid ""
 "If enabled, the session manager will start the required applications for "
 "screen readers and magnifiers"
-msgstr "Etkinleştirildiği taktirde oturum yöneticisi ekran okuyucuları ve büyüteçleri için gerekli uygulamarı başlatacak"
+msgstr ""
+"Etkinleştirildiği taktirde oturum yöneticisi ekran okuyucuları ve "
+"büyüteçleri için gerekli uygulamarı başlatacak"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
@@ -935,12 +937,12 @@ msgstr "Varyans"
 msgid "Shortcut command may not be empty."
 msgstr "Kısayol komutu boşta olmayabilir."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
 msgid "Reset to Defaults"
 msgstr "Öntanımlı Ayarlara Dön"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -948,13 +950,13 @@ msgstr ""
 "Bu, tüm kısayolları ilk değerlerine döndürecek. Bunu yapmak istediğinizden "
 "emin misiniz?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Sistem öntanımlı ayarları sisteme tekrar giriş yaptığınızda geri "
 "yüklenecektir."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
 msgid "Warning"
 msgstr "Uyarı"
 
@@ -1055,7 +1057,7 @@ msgid "Default"
 msgstr "Öntanımlı"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:550
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d MIME tipi bulundu"
@@ -1345,64 +1347,190 @@ msgstr "Dön_dürme:"
 msgid "_Sensitivity:"
 msgstr "_Duyarlılık:"
 
-#: ../xfce4-settings-editor/main_window.c:157
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+msgid "Settings Editor"
+msgstr "Ayarlar Düzenleyicisi"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:185
+msgid "Customize settings stored by Xfconf"
+msgstr "Özelleştirilen ayarlar Xfconf tarafından kaydedildi"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:230
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../xfce4-settings-editor/main_window.c:170
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:264
 msgid "Property"
 msgstr "Özellik"
 
-#: ../xfce4-settings-editor/main_window.c:173
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:271
 msgid "Type"
 msgstr "Tür:"
 
-#: ../xfce4-settings-editor/main_window.c:176
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:278
 msgid "Locked"
 msgstr "Kilitli"
 
-#: ../xfce4-settings-editor/main_window.c:179
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:285
 msgid "Value"
 msgstr "Değer"
 
-#: ../xfce4-settings-editor/main_window.c:310
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:302
+msgid "New property"
+msgstr "Yeni özellik"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:313
+#, fuzzy
+msgid "Edit selected property"
+msgstr "Özelliği düzenle"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:321
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1026
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1369
+msgid "_Reset"
+msgstr "_Sıfırla"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
+#, fuzzy
+msgid "Reset selected property"
+msgstr "Özelliği sıfırla "
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:448
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:539
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:658
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Empty"
 msgstr "Boş"
 
-#: ../xfce4-settings-editor/main_window.c:698
-#: ../xfce4-settings-editor/main_window.c:890
-msgid "This property name is not valid."
-msgstr "Bu özellik ismi geçersiz."
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
+msgid "Array"
+msgstr ""
 
-#: ../xfce4-settings-editor/main_window.c:925
-#: ../xfce4-settings-editor/main_window.c:1078
-msgid "Reset"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+msgid "String"
+msgstr "String"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
+msgid "Integer"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+msgid "Boolean"
+msgstr "Boolean"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:470
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+msgid "Double"
+msgstr "Double"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
+#, fuzzy
+msgid "_Reset Channel"
+msgstr "Kanal"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
+#, fuzzy
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr ""
+"Bir kanalı sıfırlamak bu kişiye özel ayarları kalıcı olarak ortadan "
+"kaldıracaktır."
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
+#, fuzzy, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr "\"<b>%s</b>\" özelliğini sıfırlamak istediğinize emin misiniz?"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
+#, fuzzy
+msgid "reset"
 msgstr "Sıfırla"
 
-#: ../xfce4-settings-editor/main_window.c:926
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
+#, fuzzy, c-format
+msgid "Monitor %s"
+msgstr "Ekran"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
+msgid "Watch an Xfconf channel for property changes"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
+#, c-format
+msgid "start monitoring channel \"%s\""
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
+#, fuzzy
+msgid "_Monitor"
+msgstr "Ekran"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 #, fuzzy
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr ""
 "Bir özelliği sıfırlamak bu kişiye özel ayarları kalıcı olarak ortadan "
 "kaldıracaktır."
 
-#: ../xfce4-settings-editor/main_window.c:927
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "\"%s\" özelliğini sıfırlamak istediğinize emin misiniz?"
 
-#: ../xfce4-settings-editor/main_window.c:983
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+msgid "Int"
+msgstr "Int"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+msgid "Unsigned Int"
+msgstr "Unsigned Int"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+msgid "Int64"
+msgstr "Int64"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
+msgid "Unsigned Int64"
+msgstr "Unsigned Int64"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+#, fuzzy
+msgid "New Property"
+msgstr "Yeni özellik"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:154
+#, fuzzy
+msgid "_Property:"
+msgstr "Özellik"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:169
+#, fuzzy
+msgid "_Type:"
+msgstr "Tür:"
+
+#. strings
+#. integers
+#. bool
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:200
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:211
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:223
+#, fuzzy
+msgid "_Value:"
+msgstr "Değer:"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Özellik isimleri '/' karakteriyle başlamalı"
 
-#: ../xfce4-settings-editor/main_window.c:992
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Kök eleman ('/') geçerli bir özellik ismi değil"
 
-#: ../xfce4-settings-editor/main_window.c:1006
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:408
 #, fuzzy, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1411,108 +1539,23 @@ msgstr ""
 "Özellik isimleri sadece ASCII karakterleri olan A-Z, a-z, 0-9, '_', '-', '<' "
 "ve '>' ve  '/' ayırıcısını içerebilir"
 
-#: ../xfce4-settings-editor/main_window.c:1015
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:421
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Özellik isimleri ardarda iki veya daha fazla '/' karakteri içeremez"
 
-#: ../xfce4-settings-editor/main_window.c:1026
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:435
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Özellik isimleri '/' karakteriyle bitemez"
 
-#: ../xfce4-settings-editor/main_window.c:1045
-msgid "_Reset"
-msgstr "_Sıfırla"
-
-#: ../xfce4-settings-editor/main_window.c:1079
-#, fuzzy
-msgid "Resetting a channel will permanently remove those custom settings."
-msgstr ""
-"Bir kanalı sıfırlamak bu kişiye özel ayarları kalıcı olarak ortadan "
-"kaldıracaktır."
-
-#: ../xfce4-settings-editor/main_window.c:1080
-#, fuzzy, c-format
-msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr "\"<b>%s</b>\" özelliğini sıfırlamak istediğinize emin misiniz?"
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:648
+msgid "Edit Property"
+msgstr "Özelliği Düzenle"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Xfconf için grafik ayarlar düzenleyicisi"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
-msgid "Settings Editor"
-msgstr "Ayarlar Düzenleyicisi"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
-msgid "Boolean"
-msgstr "Boolean"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
-msgid "Customize settings stored by Xfconf"
-msgstr "Özelleştirilen ayarlar Xfconf tarafından kaydedildi"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
-msgid "Double"
-msgstr "Double"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
-msgid "Edit Property"
-msgstr "Özelliği Düzenle"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
-msgid "Edit property"
-msgstr "Özelliği düzenle"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
-msgid "Enabled"
-msgstr "Etkinleştirilmiş"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-msgid "Int"
-msgstr "Int"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
-msgid "Int64"
-msgstr "Int64"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
-msgid "Name:"
-msgstr "İsim:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
-msgid "New property"
-msgstr "Yeni özellik"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-msgid "Reset property"
-msgstr "Özelliği sıfırla "
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
-msgid "String"
-msgstr "String"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
-msgid "Type:"
-msgstr "Tür:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
-msgid "Unsigned Int"
-msgstr "Unsigned Int"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
-msgid "Unsigned Int64"
-msgstr "Unsigned Int64"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
-msgid "Value:"
-msgstr "Değer:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
-msgid "Xfconf channels"
-msgstr "Xfconf kanalları"
 
 #: ../xfsettingsd/accessibility.c:390
 msgid "Sticky keys are enabled"
@@ -1603,6 +1646,18 @@ msgstr "Xfce 4 İçin Grafik Ayarları Yöneticisi"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Ayarlar Yöneticisi"
+
+#~ msgid "This property name is not valid."
+#~ msgstr "Bu özellik ismi geçersiz."
+
+#~ msgid "Enabled"
+#~ msgstr "Etkinleştirilmiş"
+
+#~ msgid "Name:"
+#~ msgstr "İsim:"
+
+#~ msgid "Xfconf channels"
+#~ msgstr "Xfconf kanalları"
 
 #~ msgid "Use this area to _test the settings above:"
 #~ msgstr "Yu_karıdaki ayarları denemek için bu alanı kullanın:"
