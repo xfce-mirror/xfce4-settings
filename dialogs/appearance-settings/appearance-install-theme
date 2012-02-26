@@ -16,6 +16,20 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+# appearance-install-theme <theme-package>
+# return value:
+# 1: common error, should never happen
+# 2: File too big
+# 3: Failed to create temp directory
+# 4: Failed to extract archive
+# 5: Unknown file format
+# theme-package can be a tar-file zip-file or a directory
+# the following themes types are supported:
+# - Gtk-2
+# - Gtk-3
+# - Xfwm
+# - Icons
+
 dndfilename="$1"
 retval=0
 
@@ -26,15 +40,45 @@ installtheme()
 
     basedir=${file#$tmpdir/}
     themedir=${basedir%/$suffix}
-    themename=`basename "$themedir"`
+    themename=${3:-`basename "$themedir"`}
     themetype=`dirname "$suffix"`
-    src="$tmpdir/$themedir/$themetype"
+    themesrc=`dirname "$basedir"`
+    src="$tmpdir/$themesrc"
 
     dest="$HOME/.themes/$themename"
     if test ! -d "$dest/$themetype"; then
         # move theme to the users' theme directory
         mkdir -p "$dest" && mv "$src" "$dest"
     fi
+}
+
+installicontheme()
+{
+    file="$1"
+    suffix="$2"
+
+    basedir=${file#$tmpdir/}
+    themedir=${basedir%/$suffix}
+    themename=${3:-`basename "$themedir"`}
+    src="$tmpdir/$themedir"
+
+    dest="$HOME/.icons"
+    if test ! -d "$dest/$themename"; then
+        # move theme to the users' theme directory
+        mkdir -p "$dest" && mv "$src" "$dest"
+    fi
+}
+
+detectthemes()
+{
+    suffix="$1"
+
+    if test -f "$tmpdir/$suffix"; then
+        installtheme "$tmpdir/$suffix" "$suffix" "$pkgname"
+    fi
+    find "$tmpdir" -path "$tmpdir/*/$suffix" -type f | while read file; do
+        installtheme "$file" "$suffix"
+    done
 }
 
 # leave if no file is provided
@@ -56,7 +100,7 @@ fi
 # we try $XDG_CACHE_HOME because it is more likely this is on the
 # same partition, so moving the theme after extract is faster
 if test x"`which mktemp 2>/dev/null`" != x""; then
-    tmpdir=`TMPDIR="$XDG_CACHE_HOME" mktemp -d`
+    tmpdir=`TMPDIR="${XDG_CACHE_HOME:-$TMPDIR}" mktemp -d`
 else
     tmpdir="/tmp/tmp.$$.$RANDOM"
     mkdir "$tmpdir"
@@ -69,15 +113,18 @@ fi
 # check if uri is directory or file
 if test -d "$dndfilename"; then
     cp -r "$dndfilename" "$tmpdir" || retval=1
+    pkgname=`basename "$dndfilename"`
 elif test -f "$dndfilename"; then
     case "$dndfilename" in
-        *.tar.gz|*.tar.Z|*.tgz|*.tar.bz2|*.tbz2|*.tbz|*.tar)
+        *.tar.gz|*.tar.Z|*.tgz|*.tar.bz2|*.tbz2|*.tbz|*.tar|*.tar.xz|*.txz)
             # extract the archive
             tar -C "$tmpdir" -xf "$dndfilename" || retval=4
+            pkgname=`basename "${dndfilename%.*}" .tar`
         ;;
         *.zip)
             # extract the archive
-            unzip -d "$tmpdir" "$dndfilename" || retval=4
+            unzip -qq -d "$tmpdir" "$dndfilename" || retval=4
+            pkgname=`basename "$dndfilename" .zip`
         ;;
         *)
             # 5: unknow file format
@@ -90,15 +137,26 @@ fi
 # extracting or copying succeeded
 if test "$retval" -eq 0; then
     # install gtk-2.0 themes
-    suffix="gtk-2.0/gtkrc"
-    find "$tmpdir" -path "$tmpdir/*/$suffix" -type f | while read file; do
-        installtheme "$file" "$suffix"
-    done
+    detectthemes "gtk-2.0/gtkrc"
+
+    # install gtk-3.0 themes
+    detectthemes "gtk-3.0/gtkrc"
 
     # install xfwm4 themes
-    suffix="xfwm4/themerc"
+    detectthemes "xfwm4/themerc"
+
+    # install icon themes
+    suffix="index.theme"
+    section="Icon Theme"
+    if test -f "$tmpdir/$suffix"; then
+        if grep -q -i "^\\[$section\\]" "$tmpdir/$suffix"; then
+            installicontheme "$tmpdir/$suffix" "$suffix" "$pkgname"
+        fi
+    fi
     find "$tmpdir" -path "$tmpdir/*/$suffix" -type f | while read file; do
-        installtheme "$file" "$suffix"
+        if grep -q -i "^\\[$section\\]" "$file"; then
+            installicontheme "$file" "$suffix"
+        fi
     done
 fi
 
