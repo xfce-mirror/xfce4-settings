@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-08 01:18+0000\n"
+"POT-Creation-Date: 2012-02-27 11:42+0000\n"
 "PO-Revision-Date: 2010-11-27 21:48+0800\n"
 "Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n@xfce.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -868,22 +869,22 @@ msgstr "变体"
 msgid "Shortcut command may not be empty."
 msgstr "快捷键命令不能为空"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
 msgid "Reset to Defaults"
 msgstr "重置为默认"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
 msgstr "这会把所有快捷键重置为它们的默认值，您真的要这样做吗？"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
 msgstr "在您下次登录时将恢复系统默认"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
 msgid "Warning"
 msgstr "警告"
 
@@ -979,7 +980,6 @@ msgstr "默认"
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "找到了 %d 个 MIME 类型"
-msgstr[1] "找到了 %d 个 MIME 类型"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
@@ -1305,7 +1305,7 @@ msgstr "字符串"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
 msgid "Integer"
-msgstr "整形"
+msgstr "整型"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
@@ -1315,7 +1315,7 @@ msgstr "真假值"
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:470
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
 msgid "Double"
-msgstr "双倍"
+msgstr "双精度"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
 msgid "_Reset Channel"
