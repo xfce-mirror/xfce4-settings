@@ -136,6 +136,7 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     GtkListStore    *store;
     guint            i;
     GtkCellRenderer *render;
+    GtkWidget       *save_button;
 
     gtk_window_set_title (GTK_WINDOW (dialog), _("New Property"));
     gtk_window_set_default_size (GTK_WINDOW (dialog), 300, 200);
@@ -143,6 +144,9 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
                             GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                             GTK_STOCK_SAVE, GTK_RESPONSE_OK, NULL);
     gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+
+    save_button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+    gtk_widget_set_sensitive (save_button, FALSE);
 
     table = gtk_table_new (5, 2, FALSE);
     content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
