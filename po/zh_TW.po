@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 04:30+0000\n"
-"PO-Revision-Date: 2012-02-04 17:22+0800\n"
+"POT-Creation-Date: 2012-03-10 09:12+0000\n"
+"PO-Revision-Date: 2012-03-10 17:56+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: chinese-l10n <chinese-l10n@googlegroups.com>\n"
 "Language: \n"
@@ -833,20 +833,20 @@ msgstr "類型"
 msgid "Shortcut command may not be empty."
 msgstr "捷徑指令不能是空白的。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
 msgid "Reset to Defaults"
 msgstr "重設為預設值"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
 msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
 msgstr "這會將所有捷徑設定回它們的預設值。您真的想要這麼做嗎？"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
 msgstr "下次您登入時將還原系統預設值。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
 msgid "Warning"
 msgstr "警告"
 
@@ -1188,164 +1188,196 @@ msgstr "旋轉(_R)："
 msgid "_Sensitivity:"
 msgstr "靈敏度(_S)："
 
-#: ../xfce4-settings-editor/main_window.c:157
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+msgid "Settings Editor"
+msgstr "設定值編輯器"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:185
+msgid "Customize settings stored by Xfconf"
+msgstr "自訂 Xfconf 儲存的設定值"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:230
 msgid "Channel"
 msgstr "通道"
 
-#: ../xfce4-settings-editor/main_window.c:170
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:264
 msgid "Property"
 msgstr "屬性"
 
-#: ../xfce4-settings-editor/main_window.c:173
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:271
 msgid "Type"
 msgstr "類型"
 
-#: ../xfce4-settings-editor/main_window.c:176
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:278
 msgid "Locked"
 msgstr "鎖上"
 
-#: ../xfce4-settings-editor/main_window.c:179
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:285
 msgid "Value"
 msgstr "值"
 
-#: ../xfce4-settings-editor/main_window.c:310
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
-msgid "Empty"
-msgstr "空"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:302
+msgid "New property"
+msgstr "新增屬性"
 
-#: ../xfce4-settings-editor/main_window.c:698
-#: ../xfce4-settings-editor/main_window.c:890
-msgid "This property name is not valid."
-msgstr "此屬性名稱無效。"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:313
+msgid "Edit selected property"
+msgstr "編輯所選的屬性"
 
-#: ../xfce4-settings-editor/main_window.c:925
-#: ../xfce4-settings-editor/main_window.c:1078
-msgid "Reset"
-msgstr "重設"
-
-#: ../xfce4-settings-editor/main_window.c:926
-msgid "Resetting a property will permanently remove those custom settings."
-msgstr "重設屬性將永久移除那些自訂過的設定值。"
-
-#: ../xfce4-settings-editor/main_window.c:927
-#, c-format
-msgid "Are you sure you want to reset property \"%s\"?"
-msgstr "您確定要重設屬性「%s」嗎？"
-
-#: ../xfce4-settings-editor/main_window.c:983
-#, c-format
-msgid "Property names must start with a '/' character"
-msgstr "屬性名稱必須以 '/' 字元作開頭"
-
-#: ../xfce4-settings-editor/main_window.c:992
-#, c-format
-msgid "The root element ('/') is not a valid property name"
-msgstr "根元素 ('/') 不是有效的屬性名稱"
-
-#: ../xfce4-settings-editor/main_window.c:1006
-#, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "屬性名稱只能包含 ASCII 字元 A-Z、a-z、0-9、'_'、'-'、'<'、'>'，而 '/' 作為分隔符"
-
-#: ../xfce4-settings-editor/main_window.c:1015
-#, c-format
-msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "屬性名稱無法擁有兩個或多個連續的 '/' 字元"
-
-#: ../xfce4-settings-editor/main_window.c:1026
-#, c-format
-msgid "Property names cannot end with a '/' character"
-msgstr "屬性名稱無法以 '/' 字元作結尾"
-
-#: ../xfce4-settings-editor/main_window.c:1045
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:321
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1026
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1369
 msgid "_Reset"
 msgstr "重設(_R)"
 
-#: ../xfce4-settings-editor/main_window.c:1079
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
+msgid "Reset selected property"
+msgstr "重設所選的屬性"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:448
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:539
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:658
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+msgid "Empty"
+msgstr "空"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
+msgid "Array"
+msgstr "陣列"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+msgid "String"
+msgstr "字串"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
+msgid "Integer"
+msgstr "整數"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+msgid "Boolean"
+msgstr "真假值"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:470
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+msgid "Double"
+msgstr "倍精度"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
+msgid "_Reset Channel"
+msgstr "重設通道(_R)"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "重設通道將永久移除那些自訂過的設定值。"
 
-#: ../xfce4-settings-editor/main_window.c:1080
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "您確定要重設「%s」通道與其全部屬性？"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
-msgid "Graphical settings editor for Xfconf"
-msgstr "Xfconf 的圖形化設定值編輯器"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
+msgid "reset"
+msgstr "重設"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
-msgid "Settings Editor"
-msgstr "設定值編輯器"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
+#, c-format
+msgid "Monitor %s"
+msgstr "螢幕  %s"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
-msgid "Boolean"
-msgstr "真假值"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
+msgid "Watch an Xfconf channel for property changes"
+msgstr "監看 Xfconf 通道以瞭解屬性變動"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
-msgid "Customize settings stored by Xfconf"
-msgstr "自訂 Xfconf 儲存的設定值"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
+#, c-format
+msgid "start monitoring channel \"%s\""
+msgstr "停止監視「%s」通道"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
-msgid "Double"
-msgstr "倍精度"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
+msgid "_Monitor"
+msgstr "螢幕(_M)"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
-msgid "Edit Property"
-msgstr "編輯屬性"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
+msgid "Resetting a property will permanently remove those custom settings."
+msgstr "重設屬性將永久移除那些自訂過的設定值。"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
-msgid "Edit property"
-msgstr "編輯屬性"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
+#, c-format
+msgid "Are you sure you want to reset property \"%s\"?"
+msgstr "您確定要重設屬性「%s」嗎？"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
-msgid "Enabled"
-msgstr "啟用"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Int"
 msgstr "整數"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
-msgid "Int64"
-msgstr "整數64"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
-msgid "Name:"
-msgstr "名稱："
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
-msgid "New property"
-msgstr "新增屬性"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-msgid "Reset property"
-msgstr "重設屬性"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
-msgid "String"
-msgstr "字串"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
-msgid "Type:"
-msgstr "類型："
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
 msgid "Unsigned Int"
 msgstr "無負號整數"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+msgid "Int64"
+msgstr "整數64"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
 msgid "Unsigned Int64"
 msgstr "無負號整數64"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
-msgid "Value:"
-msgstr "值："
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
+msgid "New Property"
+msgstr "新增屬性"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
-msgid "Xfconf channels"
-msgstr "Xfconf 通道"
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
+msgid "_Property:"
+msgstr "屬性(_P)："
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:173
+msgid "_Type:"
+msgstr "類型(_T)："
+
+#. strings
+#. integers
+#. bool
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:204
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:215
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:227
+msgid "_Value:"
+msgstr "值(_V)："
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "屬性名稱必須以 '/' 字元作開頭"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "根元素 ('/') 不是有效的屬性名稱"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
+#, c-format
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "屬性名稱只能包含 ASCII 字元 A-Z、a-z、0-9、'_'、'-'、'<'、'>'，而 '/' 作為分隔符"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "屬性名稱無法擁有兩個或多個連續的 '/' 字元"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "屬性名稱無法以 '/' 字元作結尾"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
+msgid "Edit Property"
+msgstr "編輯屬性"
+
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
+msgid "Graphical settings editor for Xfconf"
+msgstr "Xfconf 的圖形化設定值編輯器"
 
 #: ../xfsettingsd/accessibility.c:390
 msgid "Sticky keys are enabled"
@@ -1434,6 +1466,18 @@ msgstr "Xfce 4 的圖形設定值管理員"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "設定值管理員"
+
+#~ msgid "This property name is not valid."
+#~ msgstr "此屬性名稱無效。"
+
+#~ msgid "Enabled"
+#~ msgstr "啟用"
+
+#~ msgid "Name:"
+#~ msgstr "名稱："
+
+#~ msgid "Xfconf channels"
+#~ msgstr "Xfconf 通道"
 
 #~ msgid "_General"
 #~ msgstr "一般(_G)"
