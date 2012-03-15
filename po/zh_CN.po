@@ -6,11 +6,12 @@
 # Aron Xu <aronmalache@163.com>, 2009.
 # Hunt Xu <huntxu@live.cn>, 2009, 2010.
 # Chipong Luo <chipong.luo@yahoo.com>, 2011, 2012. 
+#: ../xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-10 05:33+0000\n"
+"POT-Creation-Date: 2012-03-15 05:15+0000\n"
 "PO-Revision-Date: 2010-11-27 21:48+0800\n"
 "Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
@@ -18,6 +19,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -216,7 +218,7 @@ msgstr "版本信息"
 #: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
-msgstr "键入 ‘%s --help’ 获取使用说明"
+msgstr "键入 ‘%s --help’ 获取用法。"
 
 #: ../dialogs/accessibility-settings/main.c:162
 #: ../dialogs/appearance-settings/main.c:846
@@ -225,7 +227,7 @@ msgstr "键入 ‘%s --help’ 获取使用说明"
 #: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:82
 #: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
-msgstr "Xfce 开发团队，版权所有"
+msgstr "Xfce 开发团队。保留所有版权。"
 
 #: ../dialogs/accessibility-settings/main.c:163
 #: ../dialogs/appearance-settings/main.c:847
@@ -347,7 +349,7 @@ msgstr "无"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too small"
-msgstr "如果字体太大或太小就忽视检测到的屏幕分辨率"
+msgstr "如果字体太大或太小就忽略检测到的屏幕分辨率"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "Rendering"
@@ -483,11 +485,11 @@ msgstr "反光率(_L)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
-msgstr "刷新频率(_R)："
+msgstr "刷新率(_R)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Ro_tation:"
-msgstr "旋转(_T)："
+msgstr "旋转度(_T)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "_Use this output"
@@ -563,12 +565,12 @@ msgstr "未禁用选中的输出"
 #: ../dialogs/display-settings/xfce-randr.c:250
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr "无法取得正在使用的 RandR 扩展的版本号"
+msgstr "未能取得正在使用的 RandR 扩展的版本号"
 
 #: ../dialogs/display-settings/main.c:1074
 #: ../dialogs/display-settings/main.c:1110
 msgid "Unable to start the Xfce Display Settings"
-msgstr "无法启动 Xfce 显示设置"
+msgstr "未能启动 Xfce 显示设置"
 
 #: ../dialogs/display-settings/main.c:1105
 msgid "ATI Settings"
@@ -576,7 +578,7 @@ msgstr "ATI 设置"
 
 #: ../dialogs/display-settings/main.c:1120
 msgid "Unable to launch the proprietary driver settings"
-msgstr "无法启动非自由驱动设置"
+msgstr "未能启动非自由驱动设置"
 
 #. 1.2 is required
 #: ../dialogs/display-settings/xfce-randr.c:258
@@ -771,7 +773,7 @@ msgstr "使用系统默认(_U)"
 
 #: ../dialogs/keyboard-settings/main.c:70
 msgid "Unable to initialize GTK+."
-msgstr "无法初始化 GTK+。"
+msgstr "未能初始化 GTK+。"
 
 #: ../dialogs/keyboard-settings/main.c:90
 #, c-format
@@ -780,7 +782,7 @@ msgstr "无法与 xfconf 守护进程连接。原因："
 
 #: ../dialogs/keyboard-settings/main.c:101
 msgid "Could not create the settings dialog."
-msgstr "无法创建设置对话框。"
+msgstr "未能创建设置对话框。"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:296
 msgid "Command"
@@ -945,11 +947,11 @@ msgstr "距离(_D)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "_Left handed"
-msgstr "习惯左手(_L)"
+msgstr "左撇子(_L)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "_Right handed"
-msgstr "习惯右手(_R)"
+msgstr "右撇子(_R)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "_Theme"
@@ -1044,7 +1046,7 @@ msgstr "您确定要重置频道 “%s” 和它的所有属性吗？"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
-msgstr "Xfconf 的图形界面设置编辑器"
+msgstr "Xfconf 的图形设置编辑器"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 #: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
@@ -1185,7 +1187,7 @@ msgstr "概览(_O)"
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:616
 #, c-format
 msgid "Unable to start \"%s\""
-msgstr "无法启动 “%s”"
+msgstr "未能启动 “%s”"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:663
 msgid "Failed to open the documentation"
@@ -1214,4 +1216,4 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s: %s\n"
-"试试 %s --help 看看完整的可用命令行选项列表。\n"
+"试试 %s --help 看看可用命令行选项的完整列表。\n"
