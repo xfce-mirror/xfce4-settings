@@ -24,6 +24,9 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 #include <glib.h>
 #include <gdk/gdkx.h>
@@ -613,7 +616,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                     continue;
 
                 /* calculate the refresh rate */
-                rate = (gfloat) mode_info->dotClock / ((gfloat) mode_info->hTotal * (gfloat) mode_info->vTotal);
+                rate = rint ((gdouble) mode_info->dotClock / ((gdouble) mode_info->hTotal * (gdouble) mode_info->vTotal));
 
                 /* find the mode corresponding to the saved values */
                 if (((int) rate == (int) output_rate)

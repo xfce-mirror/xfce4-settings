@@ -71,7 +71,8 @@ xfsettingsd_LDADD = \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
 	$(LIBNOTIFY_LIBS) \
-	$(FONTCONFIG_LIBS)
+	$(FONTCONFIG_LIBS) \
+	-lm
 
 #
 # Optional support for the display settings
