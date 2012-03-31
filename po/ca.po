@@ -2,7 +2,7 @@
 # Copyright (C) 2008 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008-2012.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
@@ -11,10 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2012-03-31 19:30+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
-"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Catalan\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -168,28 +168,23 @@ msgstr "píxels/s"
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:100
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "Settings manager socket"
 msgstr "Sòcol del gestor de paràmetres"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:87
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:100
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:100
 msgid "SOCKET ID"
 msgstr "SÒCOL ID"
 
 #: ../dialogs/accessibility-settings/main.c:45
 #: ../dialogs/appearance-settings/main.c:88
 #: ../dialogs/display-settings/main.c:104
-#: ../dialogs/keyboard-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:101
-#: ../xfce4-settings-editor/main.c:43
-#: ../xfce4-settings-helper/main.c:74
-#: ../xfce4-settings-manager/main.c:40
-#: ../xfsettingsd/main.c:52
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:101
+#: ../xfce4-settings-editor/main.c:43 ../xfce4-settings-helper/main.c:74
+#: ../xfce4-settings-manager/main.c:40 ../xfsettingsd/main.c:52
 msgid "Version information"
 msgstr "Informació de la versió"
 
@@ -197,10 +192,8 @@ msgstr "Informació de la versió"
 #: ../dialogs/appearance-settings/main.c:827
 #: ../dialogs/display-settings/main.c:1041
 #: ../dialogs/keyboard-settings/main.c:64
-#: ../dialogs/mouse-settings/main.c:1187
-#: ../xfce4-settings-editor/main.c:63
-#: ../xfce4-settings-helper/main.c:160
-#: ../xfce4-settings-manager/main.c:58
+#: ../dialogs/mouse-settings/main.c:1187 ../xfce4-settings-editor/main.c:63
+#: ../xfce4-settings-helper/main.c:160 ../xfce4-settings-manager/main.c:58
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Feu «%s --help» per veure l'ús."
@@ -209,10 +202,8 @@ msgstr "Feu «%s --help» per veure l'ús."
 #: ../dialogs/appearance-settings/main.c:846
 #: ../dialogs/display-settings/main.c:1060
 #: ../dialogs/keyboard-settings/main.c:80
-#: ../dialogs/mouse-settings/main.c:1206
-#: ../xfce4-settings-editor/main.c:82
-#: ../xfce4-settings-helper/main.c:176
-#: ../xfce4-settings-manager/main.c:71
+#: ../dialogs/mouse-settings/main.c:1206 ../xfce4-settings-editor/main.c:82
+#: ../xfce4-settings-helper/main.c:176 ../xfce4-settings-manager/main.c:71
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
@@ -220,10 +211,8 @@ msgstr "The Xfce development team. All rights reserved."
 #: ../dialogs/appearance-settings/main.c:847
 #: ../dialogs/display-settings/main.c:1061
 #: ../dialogs/keyboard-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1207
-#: ../xfce4-settings-editor/main.c:83
-#: ../xfce4-settings-helper/main.c:177
-#: ../xfce4-settings-manager/main.c:72
+#: ../dialogs/mouse-settings/main.c:1207 ../xfce4-settings-editor/main.c:83
+#: ../xfce4-settings-helper/main.c:177 ../xfce4-settings-manager/main.c:72
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Envieu els errors a <%s>."
@@ -629,7 +618,6 @@ msgid "Shell Scripts"
 msgstr "Seqüències de shell"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-#, fuzzy
 msgid "Appli_cation Shortcuts"
 msgstr "Dre_ceres d'aplicacions"
 
@@ -794,8 +782,7 @@ msgid "DEVICE NAME"
 msgstr "NOM DEL DISPOSITIU"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:355
-#: ../dialogs/mouse-settings/main.c:357
+#: ../dialogs/mouse-settings/main.c:355 ../dialogs/mouse-settings/main.c:357
 #: ../dialogs/mouse-settings/main.c:417
 msgid "Default"
 msgstr "Per defecte"
@@ -1105,8 +1092,7 @@ msgstr "El rebot de tecles està desactivat"
 msgid "Bounce keys"
 msgstr "Rebot de tecles"
 
-#: ../xfce4-settings-helper/main.c:75
-#: ../xfsettingsd/main.c:64
+#: ../xfce4-settings-helper/main.c:75 ../xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr "Inicia en mode de depuració (no bifurca el procés al segon pla)"
 
@@ -1281,7 +1267,6 @@ msgstr ""
 #~ msgstr "Tipus personalitzats"
 
 #~ msgid "%d MIME type found"
-
 #~ msgid_plural "%d MIME types found"
 #~ msgstr[0] "S'ha trobat %d tipus «MIME»"
 #~ msgstr[1] "S'han trobat %d tipus «MIME»"
