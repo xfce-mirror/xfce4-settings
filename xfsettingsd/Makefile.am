@@ -29,6 +29,7 @@ xfsettingsd_SOURCES = \
 	keyboard-layout.h \
 	pointers.c \
 	pointers.h \
+	pointers-defines.h \
 	workspaces.c \
 	workspaces.h \
 	xsettings.c \
