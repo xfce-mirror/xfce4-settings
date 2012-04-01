@@ -616,10 +616,10 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                     continue;
 
                 /* calculate the refresh rate */
-                rate = rint ((gdouble) mode_info->dotClock / ((gdouble) mode_info->hTotal * (gdouble) mode_info->vTotal));
+                rate = (gdouble) mode_info->dotClock / ((gdouble) mode_info->hTotal * (gdouble) mode_info->vTotal);
 
                 /* find the mode corresponding to the saved values */
-                if (((int) rate == (int) output_rate)
+                if (rint (rate) == rint (output_rate)
                     && (g_strcmp0 (mode_info->name, str_value) == 0))
                 {
                     pending->mode = mode_info->id;
