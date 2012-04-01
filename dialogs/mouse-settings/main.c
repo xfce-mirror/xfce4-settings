@@ -31,11 +31,7 @@
 #include <math.h>
 #endif
 
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <X11/extensions/XI.h>
-#include <X11/extensions/XInput.h>
-#include <X11/extensions/XIproto.h>
+#include <xfsettingsd/pointers-defines.h>
 #ifdef HAVE_XCURSOR
 #include <X11/Xcursor/Xcursor.h>
 #endif /* !HAVE_XCURSOR */
@@ -48,20 +44,6 @@
 #include <libxfce4ui/libxfce4ui.h>
 
 #include "mouse-dialog_ui.h"
-
-/* test if the required version of inputproto (1.4.2) is available */
-#if XI_Add_DevicePresenceNotify_Major >= 1 && defined (DeviceRemoved)
-#define HAS_DEVICE_HOTPLUGGING
-#else
-#undef HAS_DEVICE_HOTPLUGGING
-#endif
-#ifndef IsXExtensionPointer
-#define IsXExtensionPointer 4
-#endif
-
-/* Xi 1.4 is required */
-#define MIN_XI_VERS_MAJOR 1
-#define MIN_XI_VERS_MINOR 4
 
 /* settings */
 #ifdef HAVE_XCURSOR
@@ -82,7 +64,7 @@ static gint locked = 0;
 /* device update id */
 static guint timeout_id = 0;
 
-#ifdef HAS_DEVICE_HOTPLUGGING
+#ifdef DEVICE_HOTPLUGGING
 /* event id for device add/remove */
 static gint device_presence_event_type = 0;
 #endif
@@ -582,6 +564,7 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
 
 
 
+#ifdef DEVICE_PROPERTIES
 static gint
 mouse_settings_device_get_int_property (XDevice *device,
                                         Atom     prop,
@@ -615,6 +598,7 @@ mouse_settings_device_get_int_property (XDevice *device,
 
     return val;
 }
+#endif
 
 
 
@@ -660,6 +644,7 @@ mouse_settings_device_get_selected (GtkBuilder  *builder,
 
 
 
+#ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
                                    GtkBuilder  *builder)
@@ -691,9 +676,11 @@ mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
 
     g_free (name);
 }
+#endif
 
 
 
+#ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_wacom_set_mode (GtkComboBox *combobox,
                                GtkBuilder  *builder)
@@ -728,9 +715,11 @@ mouse_settings_wacom_set_mode (GtkComboBox *combobox,
 
     g_free (name);
 }
+#endif
 
 
 
+#ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
 {
@@ -793,9 +782,11 @@ mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
 
     g_free (name);
 }
+#endif
 
 
 
+#ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_synaptics_hscroll_sensitive (GtkBuilder *builder)
 {
@@ -815,9 +806,11 @@ mouse_settings_synaptics_hscroll_sensitive (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "synaptics-scroll-horiz");
     gtk_widget_set_sensitive (GTK_WIDGET (object), sensitive);
 }
+#endif
 
 
 
+#ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_synaptics_set_scrolling (GtkWidget  *widget,
                                         GtkBuilder *builder)
@@ -880,10 +873,11 @@ mouse_settings_synaptics_set_scrolling (GtkWidget  *widget,
 
     g_free (name);
 }
+#endif
 
 
 
-
+#ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_device_set_enabled (GtkToggleButton *button,
                                    GtkBuilder      *builder)
@@ -909,6 +903,7 @@ mouse_settings_device_set_enabled (GtkToggleButton *button,
 
     g_free (name);
 }
+#endif
 
 
 
@@ -931,6 +926,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gint               threshold = -1;
     GObject           *object;
     gint               ndevices;
+    gboolean           is_synaptics = FALSE;
+    gboolean           is_wacom = FALSE;
+#ifdef DEVICE_PROPERTIES
     Atom               synaptics_prop;
     Atom               wacom_prop;
     Atom               synaptics_tap_prop;
@@ -939,8 +937,6 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     Atom               device_enabled_prop;
     Atom               wacom_rotation_prop;
     gint               is_enabled = -1;
-    gboolean           is_synaptics = FALSE;
-    gboolean           is_wacom = FALSE;
     gint               synaptics_tap_to_click = -1;
     gint               synaptics_edge_scroll = -1;
     gint               synaptics_edge_hscroll = -1;
@@ -950,6 +946,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     Atom              *props;
     gint               nprops;
     gint               wacom_mode = -1;
+#endif
 
     /* lock the dialog */
     locked++;
@@ -972,8 +969,10 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                 {
                     if (any->class == ButtonClass)
                         nbuttons = ((XButtonInfoPtr) any)->num_buttons;
+#ifdef DEVICE_PROPERTIES
                     else if (any->class == ValuatorClass)
                         wacom_mode = ((XValuatorInfoPtr) any)->mode == Absolute ? 0 : 1;
+#endif
 
                     any = (XAnyClassPtr) ((gchar *) any + any->length);
                 }
@@ -1040,6 +1039,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
             XFreeFeedbackList (states);
         }
 
+#ifdef DEVICE_PROPERTIES
         /* wacom and synaptics specific properties */
         device_enabled_prop = XInternAtom (xdisplay, "Device Enabled", True);
         synaptics_prop = XInternAtom (xdisplay, "Synaptics Off", True);
@@ -1074,6 +1074,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 
             XFree (props);
         }
+#endif
 
         /* close the device */
         XCloseDevice (xdisplay, device);
@@ -1098,16 +1099,21 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gtk_widget_set_sensitive (GTK_WIDGET (object), threshold != -1);
 
     object = gtk_builder_get_object (builder, "device-enabled");
+#ifdef DEVICE_PROPERTIES
     gtk_widget_set_sensitive (GTK_WIDGET (object), is_enabled != -1);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), is_enabled > 0);
 
     object = gtk_builder_get_object (builder, "device-notebook");
     gtk_widget_set_sensitive (GTK_WIDGET (object), is_enabled == 1);
+#else
+    gtk_widget_set_visible (GTK_WIDGET (object), FALSE);
+#endif
 
     /* synaptics options */
     object = gtk_builder_get_object (builder, "synaptics-tab");
     gtk_widget_set_visible (GTK_WIDGET (object), is_synaptics);
 
+#ifdef DEVICE_PROPERTIES
     if (is_synaptics)
     {
         object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
@@ -1130,11 +1136,13 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object),
                                       synaptics_edge_hscroll == 1 || synaptics_two_hscroll == 1);
     }
+#endif
 
     /* wacom options */
     object = gtk_builder_get_object (builder, "wacom-tab");
     gtk_widget_set_visible (GTK_WIDGET (object), is_wacom);
 
+#ifdef DEVICE_PROPERTIES
     if (is_wacom)
     {
         object = gtk_builder_get_object (builder, "wacom-mode");
@@ -1152,6 +1160,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
             wacom_rotation = 0;
         gtk_combo_box_set_active (GTK_COMBO_BOX (object), wacom_rotation);
     }
+#endif
 
     /* unlock */
     locked--;
@@ -1432,7 +1441,7 @@ mouse_settings_device_reset (GtkWidget  *button,
 
 
 
-#ifdef HAS_DEVICE_HOTPLUGGING
+#ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 mouse_settings_event_filter (GdkXEvent *xevent,
                              GdkEvent  *gdk_event,
@@ -1497,10 +1506,12 @@ main (gint argc, gchar **argv)
     GError            *error = NULL;
     GObject           *object;
     XExtensionVersion *version = NULL;
+#ifdef DEVICE_PROPERTIES
     gchar             *syndaemon;
     guint              i;
     const gchar       *synaptics_scroll[] = { "synaptics-scroll-no", "synaptics-scroll-edge",
                                               "synaptics-scroll-two", "synaptics-scroll-horiz" };
+#endif
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -1588,9 +1599,11 @@ main (gint argc, gchar **argv)
             mouse_settings_device_populate_store (builder, TRUE);
 
             /* connect signals */
+#ifdef DEVICE_PROPERTIES
             object = gtk_builder_get_object (builder, "device-enabled");
             g_signal_connect (G_OBJECT (object), "toggled",
                               G_CALLBACK (mouse_settings_device_set_enabled), builder);
+#endif
 
             object = gtk_builder_get_object (builder, "device-acceleration-scale");
             g_signal_connect_swapped (G_OBJECT (object), "value-changed",
@@ -1618,6 +1631,7 @@ main (gint argc, gchar **argv)
             g_signal_connect (G_OBJECT (object), "clicked",
                               G_CALLBACK (mouse_settings_device_reset), builder);
 
+#ifdef DEVICE_PROPERTIES
             object = gtk_builder_get_object (builder, "synaptics-disable-while-type");
             syndaemon = g_find_program_in_path ("syndaemon");
             gtk_widget_set_sensitive (GTK_WIDGET (object), syndaemon != NULL);
@@ -1643,8 +1657,7 @@ main (gint argc, gchar **argv)
             object = gtk_builder_get_object (builder, "wacom-rotation");
             g_signal_connect (G_OBJECT (object), "changed",
                               G_CALLBACK (mouse_settings_wacom_set_rotation), builder);
-
-
+#endif
 
 #ifdef HAVE_XCURSOR
             /* populate the themes treeview */
@@ -1685,7 +1698,7 @@ main (gint argc, gchar **argv)
             g_signal_connect (G_OBJECT (object), "format-value",
                               G_CALLBACK (mouse_settings_format_value_px), NULL);
 
-#ifdef HAS_DEVICE_HOTPLUGGING
+#ifdef DEVICE_HOTPLUGGING
             /* create the event filter for device monitoring */
             mouse_settings_create_event_filter (builder);
 #endif

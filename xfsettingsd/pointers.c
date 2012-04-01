@@ -30,13 +30,6 @@
 #include <string.h>
 #endif
 
-
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <X11/extensions/XI.h>
-#include <X11/extensions/XInput.h>
-#include <X11/extensions/XIproto.h>
-
 #include <glib.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
@@ -47,26 +40,12 @@
 
 #include "debug.h"
 #include "pointers.h"
-
+#include "pointers-defines.h"
 
 
 #define MAX_DENOMINATOR (100.00)
 
 #define XFCONF_TYPE_G_VALUE_ARRAY (dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE))
-
-/* Xi 1.4 is required */
-#define MIN_XI_VERS_MAJOR 1
-#define MIN_XI_VERS_MINOR 4
-
-/* test if the required version of inputproto (1.4.2) is available */
-#if XI_Add_DevicePresenceNotify_Major >= 1 && defined (DeviceRemoved)
-#define HAS_DEVICE_HOTPLUGGING
-#else
-#undef HAS_DEVICE_HOTPLUGGING
-#endif
-#ifndef IsXExtensionPointer
-#define IsXExtensionPointer 4
-#endif
 
 
 
@@ -79,7 +58,7 @@ static void             xfce_pointers_helper_channel_property_changed (XfconfCha
                                                                        const gchar        *property_name,
                                                                        const GValue       *value,
                                                                        XfcePointersHelper *helper);
-#ifdef HAS_DEVICE_HOTPLUGGING
+#ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn  xfce_pointers_helper_event_filter             (GdkXEvent          *xevent,
                                                                        GdkEvent           *gdk_event,
                                                                        gpointer            user_data);
@@ -99,9 +78,11 @@ struct _XfcePointersHelper
     /* xfconf channel */
     XfconfChannel *channel;
 
+#ifdef DEVICE_PROPERTIES
     GPid           syndaemon_pid;
+#endif
 
-#ifdef HAS_DEVICE_HOTPLUGGING
+#ifdef DEVICE_HOTPLUGGING
     /* device presence event type */
     gint           device_presence_event_type;
 #endif
@@ -137,11 +118,9 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 {
     XExtensionVersion *version = NULL;
     Display           *xdisplay;
-#ifdef HAS_DEVICE_HOTPLUGGING
+#ifdef DEVICE_HOTPLUGGING
     XEventClass        event_class;
 #endif
-
-    helper->syndaemon_pid = 0;
 
     /* get the default display */
     xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
@@ -180,7 +159,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         /* launch syndaemon if required */
         xfce_pointers_helper_syndaemon_check (helper);
 
-#ifdef HAS_DEVICE_HOTPLUGGING
+#ifdef DEVICE_HOTPLUGGING
         if (G_LIKELY (xdisplay != NULL))
         {
             /* monitor device changes */
@@ -213,6 +192,7 @@ xfce_pointers_helper_finalize (GObject *object)
 static void
 xfce_pointers_helper_syndaemon_stop (XfcePointersHelper *helper)
 {
+#ifdef DEVICE_PROPERTIES
     if (helper->syndaemon_pid != 0)
     {
         xfsettings_dbg (XFSD_DEBUG_POINTERS, "Killed syndaemon with pid %d",
@@ -222,6 +202,7 @@ xfce_pointers_helper_syndaemon_stop (XfcePointersHelper *helper)
         g_spawn_close_pid (helper->syndaemon_pid);
         helper->syndaemon_pid = 0;
     }
+#endif
 }
 
 
@@ -229,6 +210,7 @@ xfce_pointers_helper_syndaemon_stop (XfcePointersHelper *helper)
 static void
 xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
 {
+#ifdef DEVICE_PROPERTIES
     Display     *xdisplay = GDK_DISPLAY ();
     XDeviceInfo *device_list;
     XDevice     *device;
@@ -309,6 +291,7 @@ xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
         /* stop the daemon */
         xfce_pointers_helper_syndaemon_stop (helper);
     }
+#endif
 }
 
 
@@ -632,6 +615,7 @@ xfce_pointers_helper_device_xfconf_name (const gchar *name)
 
 
 
+#ifdef DEVICE_PROPERTIES
 static void
 xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
                                       XDevice      *device,
@@ -799,6 +783,7 @@ xfce_pointers_helper_change_properties (gpointer key,
                                           pointer_data->xdisplay,
                                           prop_name, value);
 }
+#endif
 
 
 
@@ -816,8 +801,10 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
     gboolean         reverse_scrolling;
     gint             threshold;
     gdouble          acceleration;
+#ifdef DEVICE_PROPERTIES
     GHashTable      *props;
     XfcePointerData  pointer_data;
+#endif
     const gchar     *mode;
 
     gdk_error_trap_push ();
@@ -885,6 +872,7 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
         if (mode != NULL)
             xfce_pointers_helper_change_mode (device_info, device, xdisplay, mode);
 
+#ifdef DEVICE_PROPERTIES
         /* set device properties */
         g_snprintf (prop, sizeof (prop), "/%s/Properties", device_name);
         props = xfconf_channel_get_properties (helper->channel, prop);
@@ -900,6 +888,7 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
 
             g_hash_table_destroy (props);
         }
+#endif
 
         g_free (device_name);
         XCloseDevice (xdisplay, device);
@@ -988,11 +977,13 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel      *channel,
                     xfce_pointers_helper_change_feedback (device_info, device, xdisplay,
                                                           -2, g_value_get_double (value));
                 }
+#ifdef DEVICE_PROPERTIES
                 else if (strcmp (names[1], "Properties") == 0)
                 {
                     xfce_pointers_helper_change_property (device_info, device, xdisplay,
                                                           names[2], value);
                 }
+#endif
                 else if (strcmp (names[1], "Mode") == 0)
                 {
                     xfce_pointers_helper_change_mode (device_info, device, xdisplay,
@@ -1021,7 +1012,7 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel      *channel,
 
 
 
-#ifdef HAS_DEVICE_HOTPLUGGING
+#ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_pointers_helper_event_filter (GdkXEvent *xevent,
                                    GdkEvent  *gdk_event,
