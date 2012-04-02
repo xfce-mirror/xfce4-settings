@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-08 19:03+0000\n"
+"POT-Creation-Date: 2012-04-01 20:36+0000\n"
 "PO-Revision-Date: 2011-05-26 11:36-0300\n"
 "Last-Translator: Sérgio Cipolla <secipolla@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -236,32 +236,32 @@ msgstr "px/s"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Socket do gerenciador de configurações"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43 ../xfsettingsd/main.c:77
-#: ../xfce4-settings-manager/main.c:39
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
+#: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
+#: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Informações da versão"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
-#: ../dialogs/keyboard-settings/main.c:76
-#: ../dialogs/mouse-settings/main.c:1516 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:57
+#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
+#: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Digite \"%s --help\" para informações de uso."
@@ -269,18 +269,18 @@ msgstr "Digite \"%s --help\" para informações de uso."
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
-#: ../dialogs/keyboard-settings/main.c:92
-#: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:70
+#: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
+#: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "A equipe de desenvolvimento do Xfce. Todos os direitos reservados."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
-#: ../dialogs/keyboard-settings/main.c:93
-#: ../dialogs/mouse-settings/main.c:1536 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:71
+#: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
+#: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Por favor relate os erros para <%s>."
@@ -734,26 +734,32 @@ msgid "Select command"
 msgstr "Selecionar comando"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:235
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:386
 msgid "All Files"
 msgstr "Todos os arquivos"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:391
 msgid "Executable Files"
 msgstr "Arquivos executáveis"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:255
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:406
 msgid "Perl Scripts"
 msgstr "Scripts em Perl"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:261
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:412
 msgid "Python Scripts"
 msgstr "Scripts em Python"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:418
 msgid "Ruby Scripts"
 msgstr "Scripts em Ruby"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:273
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:424
 msgid "Shell Scripts"
 msgstr "Scripts em Shell"
 
@@ -783,7 +789,7 @@ msgid "Edit keyboard settings and application shortcuts"
 msgstr "Edite configurações de teclado e atalhos de aplicativos"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "General"
 msgstr "Geral"
 
@@ -916,12 +922,12 @@ msgstr "Variante"
 msgid "Shortcut command may not be empty."
 msgstr "O comando de atalho não pode ser vazio."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
 msgid "Reset to Defaults"
 msgstr "Restaurar para o padrão"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -929,136 +935,260 @@ msgstr ""
 "Isto restaurará todos os atalhos para os seus valores padrão. Você realmente "
 "deseja fazer isso?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "O padrão do sistema será restaurado na próxima vez que você iniciar a sessão."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
 msgid "Warning"
 msgstr "Aviso"
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:128
+msgid "Select Application"
+msgstr "Selecionar aplicativo"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:204
+msgid "Use a c_ustom command:"
+msgstr "Usar _um comando personalizado:"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:205
+msgid ""
+"Use a custom command for an application that is not available from the above "
+"application list."
+msgstr "Usa um comando personalizado para um aplicativo que não está disponível na lista de aplicativos acima."
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:223
+msgid "_Browse..."
+msgstr "_Navegar..."
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:376
+msgid "Select an Application"
+msgstr "Selecione um aplicativo"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:526
+msgid "None available"
+msgstr "Nenhum disponível"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:573
+msgid "Recommended Applications"
+msgstr "Aplicativos recomendados"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:591
+msgid "Other Applications"
+msgstr "Outros aplicativos"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:611
+#, c-format
+msgid "Open <i>%s</i> and other files of type \"%s\" with:"
+msgstr "Abrir <i>%s</i> e outros arquivos do tipo \"%s\" com:"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:647
+#, c-format
+msgid "Failed to add new application \"%s\""
+msgstr "Falhou ao adicionar o novo aplicativo \"%s\""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:174
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+msgid "MIME Type Editor"
+msgstr "Editor de tipos MIME"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:178
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
+msgid "Associate applications with MIME types"
+msgstr "Associa aplicativos com tipos MIME"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:203
+msgid "_Filter:"
+msgstr "_Filtro:"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:211
+msgid "Clear filter"
+msgstr "Limpar filtro"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:257
+msgid "MIME Type"
+msgstr "Tipo MIME"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:287
+msgid "Status"
+msgstr "Status"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:308
+msgid "Default Application"
+msgstr "Aplicativo padrão"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
+msgid "User Set"
+msgstr "Conjunto do usuário"
+
+#. sort the names but keep Default on top
+#: ../dialogs/mime-settings/xfce-mime-window.c:481
+#: ../dialogs/mime-settings/xfce-mime-window.c:604
+#: ../dialogs/mouse-settings/main.c:354 ../dialogs/mouse-settings/main.c:356
+#: ../dialogs/mouse-settings/main.c:416
+msgid "Default"
+msgstr "Padrão"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:550
+#, c-format
+msgid "%d MIME type found"
+msgid_plural "%d MIME types found"
+msgstr[0] "%d tipo MIME encontrado"
+msgstr[1] "%d tipos MIME encontrados"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:649
+#, c-format
+msgid "Failed to set application \"%s\" for mime type \"%s\"."
+msgstr "Falha ao definir o aplicativo \"%s\" para o tipo MIME \"%s\"."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:906
+#, c-format
+msgid ""
+"Are you sure you want to reset content type \"%s\" to its default value?"
+msgstr ""
+"Tem certeza que quer restaurar o canal \\\"%s\\\" e todas as suas "
+"propriedades?"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:910
+msgid "Question"
+msgstr "Pergunta"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:913
+msgid ""
+"This will remove your custom mime-association and restore the system-wide "
+"default."
+msgstr "Isto irá remover sua associação MIME personalizada e restaurar para os valores padrões do sistema."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:917
+#: ../dialogs/mime-settings/xfce-mime-window.c:988
+msgid "Reset to Default"
+msgstr "Restaurar para o padrão"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:983
+msgid "Choose Application..."
+msgstr "Escolher aplicativo..."
+
+#: ../dialogs/mouse-settings/main.c:78
 msgid "Active device in the dialog"
 msgstr "Dispositivo ativo no diálogo"
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "DEVICE NAME"
 msgstr "DEVICE NAME"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:142
+#: ../dialogs/mouse-settings/main.c:124
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:152
+#: ../dialogs/mouse-settings/main.c:134
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
-#. sort the names but keep Default on top
-#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
-msgid "Default"
-msgstr "Padrão"
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+msgid "B_uttons and Feedback"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 msgid "Buttons"
 msgstr "Botões"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Clockwise"
 msgstr "Sentido horário"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
 msgstr "Configure o comportamento e a aparência do dispositivo de ponteiro"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Counterclockwise"
 msgstr "Sentido anti-horário"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Cursor _size:"
 msgstr "Tamanho do cur_sor:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "D_istance:"
 msgstr "D_istância:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "De_vice:"
 msgstr "Dispositi_vo:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Di_sabled"
 msgstr "De_sabilitado"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Disable to_uchpad while typing"
 msgstr "Desabilitar o to_uchpad durante a digitação"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Double Click"
 msgstr "Clique duplo"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Drag and Drop"
 msgstr "Arrastar e soltar"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Edge scro_lling"
 msgstr "Ro_lagem de borda"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "Enable hori_zontal scrolling"
 msgstr "Habilitar rolagem hori_zontal"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Half (left-handed)"
 msgstr "Metade (canhoto)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Mouse (relative)"
 msgstr "Mouse (relativo)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse and Touchpad"
 msgstr "Mouse e touchpad"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "None (right-handed)"
 msgstr "Nenhum (destro)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Pen (absolute)"
 msgstr "Caneta (absoluto)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Pointer Speed"
 msgstr "Velocidade do ponteiro"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Preview"
 msgstr "Visualização"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Reset to De_faults"
 msgstr "Restaurar _padrões"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Reverse scroll d_irection"
 msgstr "Reverter a d_ireção da rolagem"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "Scrolling"
 msgstr "Rolagem"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
@@ -1066,37 +1196,37 @@ msgstr ""
 "Definir a aceleração e a sensibilidade para o dispositivo selecionado para "
 "os valores padrão"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Size"
 msgstr "Tamanho"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "T_ap touchpad to click"
 msgstr "Cutuc_ar o touchpad para clicar"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "T_heme"
 msgstr "_Tema"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "T_ouchpad"
 msgstr "T_ouchpad"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Table_t"
 msgstr "Table_t"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Th_reshold:"
 msgstr "L_imiar:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr ""
 "O fator pelo qual a velocidade do ponteiro aumentará quando o mouse é movido"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
@@ -1104,14 +1234,14 @@ msgstr ""
 "O ponteiro do mouse não pode se mover mais do que que essa distância entre "
 "os dois cliques para serem considerados um clique duplo"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid ""
 "The number of pixels the pointer must move before a drag operation will start"
 msgstr ""
 "O número de pixels que o ponteiro deve se mover antes que a operação de "
 "arrastar inicie"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
@@ -1119,15 +1249,15 @@ msgstr ""
 "O número de pixels que o ponteiro deve se mover em um curto tempo antes que "
 "a aceleração inicie"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Ti_me:"
 msgstr "Te_mpo:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Tr_acking mode:"
 msgstr "Modo de r_astreamento:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
@@ -1135,40 +1265,36 @@ msgstr ""
 "Dois cliques do mouse em menos que esse tempo (em milissegundos) serão "
 "considerados um clique duplo"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Two-_finger scrolling"
 msgstr "_Rolagem com dois dedos"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Quando selecionado, a roda de rolagem funcionará na direção oposta"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr ""
 "Quando selecionado, o touchpad será desabilitado enquanto o teclado estiver "
 "sendo usado"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "_Acceleration:"
 msgstr "_Aceleração:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "_Behavior"
 msgstr "_Comportamento"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "_Devices"
 msgstr "_Dispositivos"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "_Enable this device"
 msgstr "_Habilitar este dispositivo"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
-msgid "_General"
-msgstr "_Geral"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "_Left-handed"
@@ -1186,63 +1312,190 @@ msgstr "_Rotação:"
 msgid "_Sensitivity:"
 msgstr "_Sensibilidade"
 
-#: ../xfce4-settings-editor/main_window.c:157
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+msgid "Settings Editor"
+msgstr "Editor de Configurações"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:185
+msgid "Customize settings stored by Xfconf"
+msgstr "Configurações personalizadas armazenadas pelo Xfconf"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:230
 msgid "Channel"
 msgstr "Canal"
 
-#: ../xfce4-settings-editor/main_window.c:170
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:264
 msgid "Property"
 msgstr "Propriedade"
 
-#: ../xfce4-settings-editor/main_window.c:173
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:271
 msgid "Type"
 msgstr "Tipo"
 
-#: ../xfce4-settings-editor/main_window.c:176
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:278
 msgid "Locked"
 msgstr "Bloqueado"
 
-#: ../xfce4-settings-editor/main_window.c:179
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:285
 msgid "Value"
 msgstr "Valor"
 
-#: ../xfce4-settings-editor/main_window.c:310
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:6
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:302
+msgid "New property"
+msgstr "Nova propriedade"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:313
+#, fuzzy
+msgid "Edit selected property"
+msgstr "Editar propriedade"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:321
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1026
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1369
+msgid "_Reset"
+msgstr "_Restaurar"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
+#, fuzzy
+msgid "Reset selected property"
+msgstr "Restaurar propriedade"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:448
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:539
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:658
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Empty"
 msgstr "Vazio"
 
-#: ../xfce4-settings-editor/main_window.c:698
-#: ../xfce4-settings-editor/main_window.c:890
-msgid "This property name is not valid."
-msgstr "Este nome de propriedade não é válido."
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
+msgid "Array"
+msgstr ""
 
-#: ../xfce4-settings-editor/main_window.c:925
-#: ../xfce4-settings-editor/main_window.c:1078
-msgid "Reset"
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+msgid "String"
+msgstr "Texto"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
+msgid "Integer"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+msgid "Boolean"
+msgstr "Booleano"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:470
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+msgid "Double"
+msgstr "Duplo"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
+#, fuzzy
+msgid "_Reset Channel"
+msgstr "Canal"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr ""
+"A restauração de um canal removerá permanentemente as configurações "
+"personalizadas."
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
+#, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr ""
+"Tem certeza que quer restaurar o canal \\\"%s\\\" e todas as suas "
+"propriedades?"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
+#, fuzzy
+msgid "reset"
 msgstr "Restaurar"
 
-#: ../xfce4-settings-editor/main_window.c:926
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
+#, fuzzy, c-format
+msgid "Monitor %s"
+msgstr "Monitor"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
+msgid "Watch an Xfconf channel for property changes"
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
+#, c-format
+msgid "start monitoring channel \"%s\""
+msgstr ""
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
+#, fuzzy
+msgid "_Monitor"
+msgstr "Monitor"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr ""
 "A restauração de uma propriedade removerá permanentemente as configurações "
 "personalizadas."
 
-#: ../xfce4-settings-editor/main_window.c:927
+#: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Tem certeza que quer restaurar a propriedade \\\"%s\\\"?"
 
-#: ../xfce4-settings-editor/main_window.c:983
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+msgid "Int"
+msgstr "Int"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+msgid "Unsigned Int"
+msgstr "Int não assinado"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+msgid "Int64"
+msgstr "Int64"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
+msgid "Unsigned Int64"
+msgstr "Int64 não assinado"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
+#, fuzzy
+msgid "New Property"
+msgstr "Nova propriedade"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
+#, fuzzy
+msgid "_Property:"
+msgstr "Propriedade"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:173
+#, fuzzy
+msgid "_Type:"
+msgstr "Tipo:"
+
+#. strings
+#. integers
+#. bool
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:204
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:215
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:227
+#, fuzzy
+msgid "_Value:"
+msgstr "Valor:"
+
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Nomes de propriedade devem iniciar com um caractere \\\"/\\\""
 
-#: ../xfce4-settings-editor/main_window.c:992
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "O elemento raiz (\\\"/\\\") não é um nome de propriedade válido"
 
-#: ../xfce4-settings-editor/main_window.c:1006
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1251,111 +1504,25 @@ msgstr ""
 "Nomes de propriedade podem incluir os caracteres ASCII A-Z, a-z, 0-9, \\\"_\\"
 "\", \\\"-\\\", \\\"<\\\" e \\\">\\\", assim como \\\"/\\\" como um separador"
 
-#: ../xfce4-settings-editor/main_window.c:1015
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
 "Nomes de propriedades não podem ter dois ou mais caracteres \\\"/\\\" "
 "consecutivos."
 
-#: ../xfce4-settings-editor/main_window.c:1026
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Nomes de propriedade não podem terminar com um caractere \\\"/\\\""
 
-#: ../xfce4-settings-editor/main_window.c:1045
-msgid "_Reset"
-msgstr "_Restaurar"
-
-#: ../xfce4-settings-editor/main_window.c:1079
-msgid "Resetting a channel will permanently remove those custom settings."
-msgstr ""
-"A restauração de um canal removerá permanentemente as configurações "
-"personalizadas."
-
-#: ../xfce4-settings-editor/main_window.c:1080
-#, c-format
-msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr ""
-"Tem certeza que quer restaurar o canal \\\"%s\\\" e todas as suas "
-"propriedades?"
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
+msgid "Edit Property"
+msgstr "Editar propriedade"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Editor de configurações gráficas para o Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:13
-msgid "Settings Editor"
-msgstr "Editor de Configurações"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:1
-msgid "Boolean"
-msgstr "Booleano"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:2
-msgid "Customize settings stored by Xfconf"
-msgstr "Configurações personalizadas armazenadas pelo Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:3
-msgid "Double"
-msgstr "Duplo"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:4
-msgid "Edit Property"
-msgstr "Editar propriedade"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:5
-msgid "Edit property"
-msgstr "Editar propriedade"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:7
-msgid "Enabled"
-msgstr "Habilitado"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:8
-msgid "Int"
-msgstr "Int"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:9
-msgid "Int64"
-msgstr "Int64"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:10
-msgid "Name:"
-msgstr "Nome:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:11
-msgid "New property"
-msgstr "Nova propriedade"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:12
-msgid "Reset property"
-msgstr "Restaurar propriedade"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:14
-msgid "String"
-msgstr "Texto"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:15
-msgid "Type:"
-msgstr "Tipo:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:16
-msgid "Unsigned Int"
-msgstr "Int não assinado"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:17
-msgid "Unsigned Int64"
-msgstr "Int64 não assinado"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:18
-msgid "Value:"
-msgstr "Valor:"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.glade.h:19
-msgid "Xfconf channels"
-msgstr "Canais do xfconf"
 
 #: ../xfsettingsd/accessibility.c:390
 msgid "Sticky keys are enabled"
@@ -1415,25 +1582,25 @@ msgstr "Espaço de trabalho %d"
 msgid "The Xfce Settings Daemon"
 msgstr "O Daemon de Configurações do Xfce"
 
-#: ../xfce4-settings-manager/main.c:41
+#: ../xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Diálogo de configurações para mostrar"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:163
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:186
+#, fuzzy
+msgid "_All Settings"
+msgstr "Con_figurações"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
 msgid "Settings"
 msgstr "Configurações"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:164
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:368
 msgid "Customize your desktop"
 msgstr "Personalize o seu ambiente Xfce"
 
-#. Create back button which takes the user back to the overview
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:271
-msgid "_Overview"
-msgstr "_Visão Geral"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:608
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:624
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:858
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:869
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Não foi possível iniciar \"%s\""
@@ -1445,6 +1612,24 @@ msgstr "Gerenciador de Configurações Gráficas do Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Gerenciador de Configurações"
+
+#~ msgid "_General"
+#~ msgstr "_Geral"
+
+#~ msgid "This property name is not valid."
+#~ msgstr "Este nome de propriedade não é válido."
+
+#~ msgid "Enabled"
+#~ msgstr "Habilitado"
+
+#~ msgid "Name:"
+#~ msgstr "Nome:"
+
+#~ msgid "Xfconf channels"
+#~ msgstr "Canais do xfconf"
+
+#~ msgid "_Overview"
+#~ msgstr "_Visão Geral"
 
 #~ msgid "Use this area to _test the settings above:"
 #~ msgstr "Use esta área para _testar as configurações acima:"
