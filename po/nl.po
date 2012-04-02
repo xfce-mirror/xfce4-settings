@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-05 15:18+0000\n"
+"POT-Creation-Date: 2012-04-02 08:12+0000\n"
 "PO-Revision-Date: 2011-09-08 22:32+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -201,7 +201,7 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "_Acceleration delay:"
-msgstr "Vertraging voor ver_snelling"
+msgstr "Vertraging voor ver_snelling:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "_Assistive Technologies"
@@ -234,14 +234,14 @@ msgstr "pixels/sec"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Contactpunt voor instellingenbeheer"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "CONTACTPUNT ID"
 
@@ -249,7 +249,7 @@ msgstr "CONTACTPUNT ID"
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:98 ../xfce4-settings-editor/main.c:43
+#: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Versie-informatie"
@@ -258,17 +258,17 @@ msgstr "Versie-informatie"
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1515 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
-msgstr "Tik '%s -- help' voor gebruiksinformatie."
+msgstr "Tik '%s --help' voor een gebruiksaanwijzing."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1534 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "De Xfce-ontwikkelploeg. Alle rechten voorbehouden."
@@ -277,7 +277,7 @@ msgstr "De Xfce-ontwikkelploeg. Alle rechten voorbehouden."
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -297,7 +297,7 @@ msgstr ""
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
-msgstr "Weergave"
+msgstr "Uiterlijk"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 #: ../dialogs/display-settings/main.c:82
@@ -310,7 +310,7 @@ msgstr "Beide horizontaal"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid "Custom _DPI setting:"
-msgstr "Aangepaste _DPI-instellingen:"
+msgstr "Aangepaste _DPI-instelling:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
@@ -428,7 +428,7 @@ msgstr "Licht"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Specify what should be displayed in toolbar items"
-msgstr "Geef aan wat wordt weergegeven in werkbalkonderdelen"
+msgstr "Geef op wat er moet worden weergegeven in werkbalkelementen"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Specify whether icons should be displayed next to items in menus"
@@ -722,7 +722,7 @@ msgstr "Opdracht:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Use _startup notification"
-msgstr "Gebruik _opstartnotificatie"
+msgstr "Gebruik _opstartmelding"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:207
 msgid "The command may not be empty."
@@ -785,7 +785,7 @@ msgstr "_Sneltoetsen kiezen voor het starten van toepassingen:"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Edit keyboard settings and application shortcuts"
-msgstr "Toetsenbordinstellingen en toepassingsneltoetsen bewerken"
+msgstr "Toetsenbordinstellingen en toepassingssneltoetsen bewerken"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
@@ -922,12 +922,12 @@ msgstr "Variant"
 msgid "Shortcut command may not be empty."
 msgstr "Sneltoetsopdracht mag niet leeg zijn."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
 msgid "Reset to Defaults"
 msgstr "Standaardwaarden herstellen"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -935,13 +935,13 @@ msgstr ""
 "Deze optie zal de standaardwaarden van alle sneltoetsen terugzetten. Wilt u "
 "dit doen?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "De standaardinstellingen zullen worden hersteld, de volgende keer dat u zich "
 "aanmeldt."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
 msgid "Warning"
 msgstr "Waarschuwing"
 
@@ -1029,8 +1029,8 @@ msgstr "Ingesteld door gebruiker"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:481
 #: ../dialogs/mime-settings/xfce-mime-window.c:604
-#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
+#: ../dialogs/mouse-settings/main.c:354 ../dialogs/mouse-settings/main.c:356
+#: ../dialogs/mouse-settings/main.c:416
 msgid "Default"
 msgstr "Standaard"
 
@@ -1044,7 +1044,7 @@ msgstr[1] "%d MIME-types gevonden"
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr "Kon toepassing \"%s\" niet instellen voor MIME-type \"%s\"."
+msgstr "Kon toepassing '%s' niet instellen voor MIME-type '%s'."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
@@ -1075,22 +1075,22 @@ msgstr "Terugzetten op standaardwaarde"
 msgid "Choose Application..."
 msgstr "Kies toepassing..."
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "Active device in the dialog"
 msgstr "Actieve apparaat in het dialoogvenster"
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "DEVICE NAME"
 msgstr "APPARAATNAAM"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:142
+#: ../dialogs/mouse-settings/main.c:124
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:152
+#: ../dialogs/mouse-settings/main.c:134
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
@@ -1110,7 +1110,7 @@ msgstr "Met de klok mee"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
-msgstr "Gedrag en weergave van muisaanwijzer instellen"
+msgstr "Gedrag en weergave van muispijlapparaat instellen"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Counterclockwise"
@@ -1228,7 +1228,7 @@ msgstr "_Drempelwaarde:"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "Versnellingsfactor van de muispijl"
+msgstr "De versnellingsfactor bij beweging van de muispijl"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid ""
@@ -1241,7 +1241,7 @@ msgstr ""
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid ""
 "The number of pixels the pointer must move before a drag operation will start"
-msgstr "Het aantal pixels dat de muispijl moet bewegen alvorens te slepen"
+msgstr "Het aantal pixels dat de muispijl moet bewegen alvorens te beginnen met slepen"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid ""
@@ -1273,7 +1273,7 @@ msgstr "Bladeren met twee vingers"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr "Indien ingeschakeld, zal het bladerwiel de andere kant op gaan"
+msgstr "Indien gekozen, zal het bladerwiel de andere kant op gaan"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid ""
@@ -1355,7 +1355,7 @@ msgstr "Gekozen eigenschap bewerken"
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1026
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1369
 msgid "_Reset"
-msgstr "_Opnieuw instellen"
+msgstr "Terug_zetten op standaardwaarden"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
 msgid "Reset selected property"
@@ -1393,7 +1393,7 @@ msgstr "Double"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
 msgid "_Reset Channel"
-msgstr "Kanaal terugzetten op standaardwaarden"
+msgstr "Kanaal terug_zetten op standaardwaarden"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
 msgid "Resetting a channel will permanently remove those custom settings."
@@ -1410,7 +1410,7 @@ msgstr ""
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
 msgid "reset"
-msgstr "Terugzetten op standaardwaarden"
+msgstr "terugzetten op standaardwaarden"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
 #, c-format
@@ -1424,11 +1424,11 @@ msgstr "Bekijk een Xfconf-kanaal op eigenschapwijzigingen"
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
 #, c-format
 msgid "start monitoring channel \"%s\""
-msgstr "Begin met bewaken van kanaal \"%s\""
+msgstr "Begin met bewaken van kanaal '%s'"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
 msgid "_Monitor"
-msgstr "Bewaken"
+msgstr "Be_waken"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 msgid "Resetting a property will permanently remove those custom settings."
@@ -1439,7 +1439,7 @@ msgstr ""
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
-msgstr "Weet u zeker dat u de eigenschap \"%s\" opnieuw wilt instellen?"
+msgstr "Weet u zeker dat u de eigenschap '%s' opnieuw wilt instellen?"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Int"
@@ -1457,38 +1457,38 @@ msgstr "Int64"
 msgid "Unsigned Int64"
 msgstr "Unsigned Int64"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
 msgid "New Property"
 msgstr "Nieuwe eigenschap"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:154
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
 msgid "_Property:"
 msgstr "Eigenschap:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:169
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:173
 msgid "_Type:"
-msgstr "Type:"
+msgstr "_Type:"
 
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:200
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:211
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:223
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:204
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:215
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:227
 msgid "_Value:"
-msgstr "Waarde:"
+msgstr "_Waarde:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Namen van eigenschappen moeten beginnen met een '/'"
+msgstr "Namen van eigenschappen moeten beginnen met het teken '/'"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Het root-element ('/') is geen geldige naam voor een eigenschap"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:408
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1497,17 +1497,17 @@ msgstr ""
 "Namen van eigenschappen mogen alleen bestaan uit de tekens A-Z, a-z, 0-9, "
 "'_', '-', '<' en '>', en '/' als scheidingsteken"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:421
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Namen van eigenschappen mogen geen opeenvolgende '/'-tekens bevatten"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:435
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Namen van eigenschappen mogen niet met een '/' eindigen"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:648
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
 msgid "Edit Property"
 msgstr "Eigenschap bewerken"
 
@@ -1554,7 +1554,7 @@ msgstr "Kaatstoetsen"
 #: ../xfsettingsd/keyboard-shortcuts.c:244
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
-msgstr "Kon sneltoets \"%s\" niet starten"
+msgstr "Kon sneltoets '%s' niet starten"
 
 #: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
@@ -1580,7 +1580,7 @@ msgstr "Dialoogvenster om weer te geven"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:186
 msgid "_All Settings"
-msgstr "Alle instellingen"
+msgstr "_Alle instellingen"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
 msgid "Settings"
@@ -1594,7 +1594,7 @@ msgstr "Pas uw werkomgeving aan"
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:869
 #, c-format
 msgid "Unable to start \"%s\""
-msgstr "Kon \"%s\" niet starten"
+msgstr "Kan '%s' niet starten"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Graphical Settings Manager for Xfce 4"
