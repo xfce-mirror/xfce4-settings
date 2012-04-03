@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-11 10:30+0000\n"
+"POT-Creation-Date: 2012-04-03 19:00+0000\n"
 "PO-Revision-Date: 2011-02-26 11:48+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: Italian Translation Team <xfce-it-translators@googlegroups.com>\n"
@@ -258,14 +258,14 @@ msgstr "pixel/sec"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Socket del gestore delle impostazioni"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
@@ -273,7 +273,7 @@ msgstr "SOCKET ID"
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:98 ../xfce4-settings-editor/main.c:43
+#: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Informazioni di versione"
@@ -282,7 +282,7 @@ msgstr "Informazioni di versione"
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1515 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -292,7 +292,7 @@ msgstr "Digitare \"%s --help\" per le modalità d'uso"
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1534 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
@@ -301,7 +301,7 @@ msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -968,12 +968,12 @@ msgstr "Variante"
 msgid "Shortcut command may not be empty."
 msgstr "Il comando scorciatoia non dovrebbe essere vuoto."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:965
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:966
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
 msgid "Reset to Defaults"
 msgstr "Ripristina predefiniti"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -981,13 +981,13 @@ msgstr ""
 "In questo modo verranno ripristinate tutte le scorciatoie ai rispettivi "
 "valori predefiniti. Continuare davvero?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1032
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Le impostazioni predefinite di sistema verranno ripristinate al prossimo "
 "accesso."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1034
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
 msgid "Warning"
 msgstr "Avvertimento"
 
@@ -1075,8 +1075,8 @@ msgstr "Impostato dall'utente"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:481
 #: ../dialogs/mime-settings/xfce-mime-window.c:604
-#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
+#: ../dialogs/mouse-settings/main.c:354 ../dialogs/mouse-settings/main.c:356
+#: ../dialogs/mouse-settings/main.c:416
 msgid "Default"
 msgstr "Predefinito"
 
@@ -1120,29 +1120,29 @@ msgstr "Ripristina predefiniti"
 msgid "Choose Application..."
 msgstr "Seleziona applicazione..."
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "Active device in the dialog"
 msgstr "Dispositivo attivo nella finestra"
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "DEVICE NAME"
 msgstr "NOME DISPOSITIVO"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:142
+#: ../dialogs/mouse-settings/main.c:124
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:152
+#: ../dialogs/mouse-settings/main.c:134
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "B_uttons and Feedback"
-msgstr ""
+msgstr "P_ulsanti e feedback"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 msgid "Buttons"
@@ -1192,11 +1192,11 @@ msgstr "Drag and Drop"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Edge scro_lling"
-msgstr ""
+msgstr "Sco_rrimento al bordo"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "Enable hori_zontal scrolling"
-msgstr ""
+msgstr "Attiva lo scorrimento oriz_zontale"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Half (left-handed)"
@@ -1217,7 +1217,7 @@ msgstr "Nessuno (destri)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Pen (absolute)"
-msgstr ""
+msgstr "Penna (assoluto)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Pointer Speed"
@@ -1254,7 +1254,7 @@ msgstr "Dimensione"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "T_ap touchpad to click"
-msgstr ""
+msgstr "T_occo del touchpad per fare clic"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "T_heme"
@@ -1312,7 +1312,7 @@ msgstr "Te_mpo:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Tr_acking mode:"
-msgstr ""
+msgstr "Modalità pu_ntamento:"
 
 # tooltip
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
@@ -1325,7 +1325,7 @@ msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Two-_finger scrolling"
-msgstr ""
+msgstr "Scorrimento a due _dita"
 
 # tooltip
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
@@ -1512,38 +1512,38 @@ msgstr "Intero 64"
 msgid "Unsigned Int64"
 msgstr "Intero 64 senza segno"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
 msgid "New Property"
 msgstr "Nuova proprietà"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:154
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
 msgid "_Property:"
 msgstr "P_roprietà:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:169
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:173
 msgid "_Type:"
 msgstr "_Tipo:"
 
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:200
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:211
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:223
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:204
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:215
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:227
 msgid "_Value:"
 msgstr "_Valore:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Il nome di una proprietà deve iniziare con il carattere \"/\""
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "L'elemento radice (\"/\") non è un nome di proprietà valido"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:408
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1552,19 +1552,19 @@ msgstr ""
 "I nomi delle proprietà possono contenere solamente i caratteri ASCII A-Z, a-"
 "z, 0-9, '_', '-', '<', '>' e  '/' come separatore"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:421
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
 "I nomi delle proprietà non possono contenere due o più caratteri \"/\" "
 "consecutivi"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:435
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "I nomi delle proprietà non possono terminare con il carattere \"/\""
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:648
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
 msgid "Edit Property"
 msgstr "Modifica proprietà"
 
