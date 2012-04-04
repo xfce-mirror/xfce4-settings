@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 0.0.1-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-31 09:48+0000\n"
+"POT-Creation-Date: 2012-04-04 18:12+0000\n"
 "PO-Revision-Date: 2009-01-30 20:57+0200\n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
@@ -205,9 +205,8 @@ msgid "_Assistive Technologies"
 msgstr "_Yardımcı Teknolojiler"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
-#, fuzzy
 msgid "_Enable assistive technologies"
-msgstr "_Yardımcı Teknolojileri Etkinleştir"
+msgstr "_Yardımcı teknolojileri etkinleştir"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "_Lock sticky keys"
@@ -232,14 +231,14 @@ msgstr "piksel/saniye"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Ayarlar yöneticisi soketi"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOKET KİMLİĞİ"
 
@@ -247,7 +246,7 @@ msgstr "SOKET KİMLİĞİ"
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:98 ../xfce4-settings-editor/main.c:43
+#: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "Sürüm bilgisi"
@@ -256,7 +255,7 @@ msgstr "Sürüm bilgisi"
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1515 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -266,7 +265,7 @@ msgstr "Kullanım kılavuzu için \"%s --help\" yazın."
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1534 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce geliştirici takımı. Tüm hakları saklıdır."
@@ -275,7 +274,7 @@ msgstr "Xfce geliştirici takımı. Tüm hakları saklıdır."
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1535 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -493,12 +492,10 @@ msgid "File is larger then %d MB, installation aborted"
 msgstr "Dosya %d MB 'tan büyük, "
 
 #: ../dialogs/appearance-settings/main.c:738
-#, fuzzy
 msgid "Failed to create temporary directory"
 msgstr "Geçici dizin oluşturulamadı"
 
 #: ../dialogs/appearance-settings/main.c:743
-#, fuzzy
 msgid "Failed to extract archive"
 msgstr "Arşiv çıkartılamadı"
 
@@ -513,9 +510,8 @@ msgid "An unknown error, exit code is %d"
 msgstr "Bilinmeyen hata, çıkış kodu %d"
 
 #: ../dialogs/appearance-settings/main.c:760
-#, fuzzy
 msgid "Failed to install theme"
-msgstr "Tema yüklenemedi."
+msgstr "Tema yüklenemedi"
 
 #: ../dialogs/appearance-settings/main.c:856
 msgid "RGB"
@@ -546,7 +542,6 @@ msgid "Keep this configuration"
 msgstr "Bu yapılandırmayı koru"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
-#, fuzzy
 msgid "Restore the previous configuration"
 msgstr "Önceki ayarları geri yükle"
 
@@ -585,7 +580,6 @@ msgid "Ro_tation:"
 msgstr "Dön_dürme:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-#, fuzzy
 msgid "_Use this output"
 msgstr "B_u çıktıyı kullan"
 
@@ -595,14 +589,13 @@ msgid "Both displays cloned"
 msgstr "İki ekran da aynalandı"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-#, fuzzy
 msgid "Display settings"
-msgstr "Görüntü Ayarları"
+msgstr "Görüntü ayarları"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 #, fuzzy
 msgid "Several displays are available. Use:\n"
-msgstr "Bir kaç görüntü cihazı kullanılabilir.:\n"
+msgstr "Bir kaç görüntü cihazı kullanılabilir. Kullan:\n"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 #, fuzzy
@@ -776,7 +769,6 @@ msgid "Shell Scripts"
 msgstr "Kabuk Betikleri"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-#, fuzzy
 msgid "A_pplication Shortcuts"
 msgstr "Uy_gulama Kısayolları"
 
@@ -828,7 +820,6 @@ msgid "Repeat _speed:"
 msgstr "Yineleme _hızı:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
-#, fuzzy
 msgid "Reset to _Defaults"
 msgstr "Öntanımlı Ayarlara Dön"
 
@@ -1003,7 +994,7 @@ msgstr "Diğer Uygulamalar"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:611
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
-msgstr ""
+msgstr "<i>%s</i> ve \"%s\" biçimindeki diğer dosyaları şu program ile aç:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:647
 #, fuzzy, c-format
@@ -1052,8 +1043,8 @@ msgstr ""
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:481
 #: ../dialogs/mime-settings/xfce-mime-window.c:604
-#: ../dialogs/mouse-settings/main.c:372 ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
+#: ../dialogs/mouse-settings/main.c:354 ../dialogs/mouse-settings/main.c:356
+#: ../dialogs/mouse-settings/main.c:416
 msgid "Default"
 msgstr "Öntanımlı"
 
@@ -1067,7 +1058,7 @@ msgstr[1] "%d MIME tipi bulundu"
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr ""
+msgstr "\"%s\" mime türü için \"%s\" uygulaması ayarlanamadı."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, fuzzy, c-format
@@ -1098,22 +1089,22 @@ msgstr "Öntanımlı Ayarlara Dön"
 msgid "Choose Application..."
 msgstr "Uygulama Seç..."
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "Active device in the dialog"
 msgstr "Menüdeki etkin aygıt"
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "DEVICE NAME"
 msgstr "SÜRÜCÜ İSMİ"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:142
+#: ../dialogs/mouse-settings/main.c:124
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:152
+#: ../dialogs/mouse-settings/main.c:134
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
@@ -1455,12 +1446,12 @@ msgstr "\"<b>%s</b>\" özelliğini sıfırlamak istediğinize emin misiniz?"
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
 #, fuzzy
 msgid "reset"
-msgstr "Sıfırla"
+msgstr "sıfırla"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
 #, fuzzy, c-format
 msgid "Monitor %s"
-msgstr "Ekran"
+msgstr "Ekran %s"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
 #, fuzzy
@@ -1508,12 +1499,12 @@ msgstr "Unsigned Int64"
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
 #, fuzzy
 msgid "New Property"
-msgstr "Yeni özellik"
+msgstr "Yeni Özellik"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
 #, fuzzy
 msgid "_Property:"
-msgstr "Özellik"
+msgstr "Özellik:"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:173
 #, fuzzy
