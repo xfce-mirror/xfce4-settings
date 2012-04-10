@@ -2,21 +2,22 @@
 # Polskie tłumaczenia dla pakietu xfce-settings.
 # Copyright (C) 2009 The Xfce development team.
 # This file is distributed under the same license as the xfce-settings package.
-# Piotr Sokół <psokol@jabster.pl>, 2009, 2011.
-# 
+# Piotr Sokół <psokol@jabster.pl>, 2009, 2011, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.7.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-06 04:51+0000\n"
-"PO-Revision-Date: 2011-01-05 11:53+0100\n"
+"POT-Creation-Date: 2012-04-09 13:21+0000\n"
+"PO-Revision-Date: 2012-04-10 16:51+0200\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
-"Language-Team: Polish <>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: polski <>\n"
 "Language: \n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2));\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bits\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n"
+"%100<10 || n%100>=20)) ? 1 : 2));\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -33,14 +34,13 @@ msgstr "_Opóźnienie:"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
-msgstr "Dostępność"
+msgstr "Ułatwienia dostępu"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
-#, fuzzy
 msgid ""
 "Assistive technologies will be available the\n"
 "next time you login"
-msgstr "Ustawienia systemowe zostaną przywrócone po następnym zalogowaniu."
+msgstr "Ułatwienia dostępu będą dostępne po następnym zalogowaniu"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Bounce Keys"
@@ -48,7 +48,7 @@ msgstr "Odskakujące klawisze"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Configure keyboard and mouse accessibility"
-msgstr "Konfiguruje dostępność interfejsów klawiatury i myszy"
+msgstr "Konfiguruje ułatwienia dostępu interfejsów klawiatury i myszy"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Disable sticky keys if _two keys are pressed"
@@ -59,6 +59,8 @@ msgid ""
 "If enabled, the session manager will start the required applications for "
 "screen readers and magnifiers"
 msgstr ""
+"Uruchamia  za pośrednictwem menedżera sesji programy wymagane przez czytniki "
+"ekranu i narzędzia powiększające ekran"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
@@ -203,7 +205,7 @@ msgstr "_Ułatwienia dostępu"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "_Enable assistive technologies"
-msgstr ""
+msgstr "_Włączenie"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "_Lock sticky keys"
@@ -279,7 +281,7 @@ msgstr "Proszę zgłaszać błędy na adres <%s>."
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
-msgstr "Ulepsza dostępność klawiatury i myszy"
+msgstr "Konfiguruje ułatwienia dostępu interfejsów klawiatury i myszy"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 msgid ""
@@ -674,7 +676,7 @@ msgstr "Monitor"
 
 #: ../dialogs/display-settings/xfce-randr.c:560
 msgid "Television"
-msgstr "Telewizja"
+msgstr "Telewizor"
 
 #: ../dialogs/display-settings/xfce-randr.c:564
 msgid "Digital display"
@@ -745,7 +747,7 @@ msgstr "Skrypty powłoki"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
 msgid "A_pplication Shortcuts"
-msgstr "_Skróty aplikacji"
+msgstr "_Skróty klawiszowe"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Be_havior"
@@ -800,7 +802,7 @@ msgstr "Przywróć _domyślne"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Restore num l_ock state on startup"
-msgstr "Przywracanie stanu klawiszy numerycznych na starcie"
+msgstr "Przywracanie stanu klawiatury _numerycznej po uruchomieniu"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Select keyboard layout and variant"
@@ -924,20 +926,18 @@ msgid "Warning"
 msgstr "Ostrzeżenie"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
-#, fuzzy
 msgid "Select Application"
-msgstr "Wybór pliku"
+msgstr "Wybór programu"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:204
-#, fuzzy
 msgid "Use a c_ustom command:"
-msgstr "Wybór pliku"
+msgstr "_Własne polecenie:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid ""
 "Use a custom command for an application that is not available from the above "
 "application list."
-msgstr ""
+msgstr "Używa własnego polecenia niedostępnego na powyższej liście"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
@@ -945,7 +945,7 @@ msgstr "Przeglądaj..."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:376
 msgid "Select an Application"
-msgstr "Wybór aplikacji"
+msgstr "Wybór programu"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:526
 msgid "None available"
@@ -953,16 +953,16 @@ msgstr "Niedostępne"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:573
 msgid "Recommended Applications"
-msgstr "Zalecane aplikacje"
+msgstr "Zalecane programy"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:591
 msgid "Other Applications"
-msgstr "Inne aplikacje"
+msgstr "Inne programy"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:611
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
-msgstr "Otwórz <i>%s</i> i inne pliki typu \"%s\", za pomocą:"
+msgstr "Otwieranie pliku <i>%s</i> i innych plików typu „%s”, przy użyciu:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:647
 #, c-format
@@ -977,15 +977,15 @@ msgstr "Edytor typów MIME"
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Associate applications with MIME types"
-msgstr "Powiąż aplikacje z typem MIME"
+msgstr "Powiązuje typy MIME z programami"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:203
 msgid "_Filter:"
-msgstr "Filtr:"
+msgstr "_Wyszukiwanie:"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:211
 msgid "Clear filter"
-msgstr "Wyczyść filtr"
+msgstr "Czyści wyszukiwany ciąg"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:257
 msgid "MIME Type"
@@ -993,17 +993,16 @@ msgstr "Typ MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:287
 msgid "Status"
-msgstr "Status"
+msgstr "Stan"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:308
-#, fuzzy
 msgid "Default Application"
-msgstr "_Domyślna"
+msgstr "Domyślny program"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:479
 #: ../dialogs/mime-settings/xfce-mime-window.c:604
 msgid "User Set"
-msgstr ""
+msgstr "Wybór użytkownika"
 
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:481
@@ -1017,20 +1016,20 @@ msgstr "Domyślny"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Odnaleziono %d typ MIME"
+msgstr[1] "Odnaleziono %d typy MIME"
+msgstr[2] "Odnaleziono %d typów MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr ""
+msgstr "Nie udało się przypisać program „%s” do typu MIME „%s”."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Are you sure you want to reset content type \"%s\" to its default value?"
-msgstr "Wyzerować kanał „%s” wraz ze wszystkimi jego właściwościami?"
+msgstr "Przywrócić domyślną zawartość typu „%s”?"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:910
 msgid "Question"
@@ -1044,13 +1043,12 @@ msgstr ""
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
-#, fuzzy
 msgid "Reset to Default"
-msgstr "Przywracanie wartości domyślnych"
+msgstr "Przywróć domyślny"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:983
 msgid "Choose Application..."
-msgstr ""
+msgstr "Wybierz program..."
 
 #: ../dialogs/mouse-settings/main.c:78
 msgid "Active device in the dialog"
@@ -1082,16 +1080,16 @@ msgstr "Przyciski"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Clockwise"
-msgstr ""
+msgstr "Zgodnie z ruchem wskazówek zegara"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
-msgstr "Konfiguruje zachowanie i wygląd kursora myszy"
+msgstr "Konfiguruje zachowanie i wygląd kursora urządzenia wskazującego"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Counterclockwise"
-msgstr ""
+msgstr "Przeciwnie do ruchu wskazówek zegara"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Cursor _size:"
@@ -1106,9 +1104,8 @@ msgid "De_vice:"
 msgstr "_Urządzenie:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-#, fuzzy
 msgid "Di_sabled"
-msgstr "Włączony"
+msgstr "_Wyłączone"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Disable to_uchpad while typing"
@@ -1136,9 +1133,8 @@ msgid "Half (left-handed)"
 msgstr "_Leworęczny"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
-#, fuzzy
 msgid "Mouse (relative)"
-msgstr "Emulacja myszy"
+msgstr "Mysz (układ względny)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
@@ -1151,7 +1147,7 @@ msgstr "Brak (układ praworęczny)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Pen (absolute)"
-msgstr ""
+msgstr "Pióro (układ bezwzględny)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Pointer Speed"
@@ -1186,7 +1182,7 @@ msgstr "Rozmiar"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "T_ap touchpad to click"
-msgstr ""
+msgstr "Klikanie _stuknięciem w panel"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "T_heme"
@@ -1240,7 +1236,7 @@ msgstr "_Czas:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Tr_acking mode:"
-msgstr ""
+msgstr "_Tryb śledzenia:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid ""
@@ -1339,7 +1335,6 @@ msgid "_Reset"
 msgstr "_Wyzeruj"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
-#, fuzzy
 msgid "Reset selected property"
 msgstr "Przywraca domyślną wartość lub usuwa właściwość"
 
@@ -1352,7 +1347,7 @@ msgstr "Pusty"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
 msgid "Array"
-msgstr ""
+msgstr "Tablicowy"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
@@ -1361,7 +1356,7 @@ msgstr "Tekstowy"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
 msgid "Integer"
-msgstr ""
+msgstr "Całkowity"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
@@ -1374,9 +1369,8 @@ msgid "Double"
 msgstr "Podwójnej precyzji"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
-#, fuzzy
 msgid "_Reset Channel"
-msgstr "Kanał"
+msgstr "_Wyzeruj kanał"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
 msgid "Resetting a channel will permanently remove those custom settings."
@@ -1390,28 +1384,26 @@ msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Wyzerować kanał „%s” wraz ze wszystkimi jego właściwościami?"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
-#, fuzzy
 msgid "reset"
-msgstr "Wyzeruj"
+msgstr "wyzerowano"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
-#, fuzzy, c-format
+#, c-format
 msgid "Monitor %s"
-msgstr "Monitor"
+msgstr "Obserwowanie kanału %s"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
 msgid "Watch an Xfconf channel for property changes"
-msgstr ""
+msgstr "Śledzi zmiany właściwości kanału Xfconf"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
 #, c-format
 msgid "start monitoring channel \"%s\""
-msgstr ""
+msgstr "rozpoczęto obserwowanie kanału „%s”"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
-#, fuzzy
 msgid "_Monitor"
-msgstr "Monitor"
+msgstr "_Obserwuj"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 msgid "Resetting a property will permanently remove those custom settings."
@@ -1441,9 +1433,8 @@ msgid "Unsigned Int64"
 msgstr "Całkowity 64-bitowy bez znaku"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
-#, fuzzy
 msgid "New Property"
-msgstr "Tworzy nową właściwość"
+msgstr "Nowa właściwość"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
 msgid "_Property:"
