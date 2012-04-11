@@ -650,7 +650,7 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
         /* { xfconf name}, { xft name } */
         { "/Xft/Antialias", "Xft.antialias:" },
         { "/Xft/Hinting", "Xft.hinting:" },
-        { "/Xft/HintStyle", "Xft.hintstyle" },
+        { "/Xft/HintStyle", "Xft.hintstyle:" },
         { "/Xft/RGBA", "Xft.rgba:" },
         { "/Xft/Lcdfilter", "Xft.lcdfilter:" },
         { "/Xft/DPI", "Xft.dpi:" }
