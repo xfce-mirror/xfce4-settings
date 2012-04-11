@@ -499,7 +499,8 @@ xfce_xsettings_helper_prop_changed (XfconfChannel       *channel,
     }
 
     if (helper->notify_xft_idle_id == 0
-        && g_str_has_prefix (prop_name, "/Xft/"))
+        && (g_str_has_prefix (prop_name, "/Xft/")
+            || g_str_has_prefix (prop_name, "/Gtk/CursorTheme")))
     {
         helper->notify_xft_idle_id = g_idle_add (xfce_xsettings_helper_notify_xft_idle, helper);
     }
@@ -587,6 +588,8 @@ xfce_xsettings_helper_notify_xft_update (GString      *resource,
     gchar        s[64];
     gint         num;
 
+    g_return_if_fail (g_str_has_suffix (name, ":"));
+
     /* remove the old property */
     found = strstr (resource->str, name);
     if (found != NULL)
@@ -645,6 +648,7 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
     GString      *resource;
     XfceXSetting *setting;
     guint         i;
+    GValue        bool_val = { 0, };
     const gchar  *props[][2] =
     {
         /* { xfconf name}, { xft name } */
@@ -653,7 +657,9 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
         { "/Xft/HintStyle", "Xft.hintstyle:" },
         { "/Xft/RGBA", "Xft.rgba:" },
         { "/Xft/Lcdfilter", "Xft.lcdfilter:" },
-        { "/Xft/DPI", "Xft.dpi:" }
+        { "/Xft/DPI", "Xft.dpi:" },
+        { "/Gtk/CursorThemeName", "Xcursor.theme:" },
+        { "/Gtk/CursorThemeSize", "Xcursor.size:" }
     };
 
     g_return_if_fail (XFCE_IS_XSETTINGS_HELPER (helper));
@@ -678,6 +684,12 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
                                                      setting->value);
         }
     }
+
+    /* set for Xcursor.theme */
+    g_value_init (&bool_val, G_TYPE_BOOLEAN);
+    g_value_set_boolean (&bool_val, TRUE);
+    xfce_xsettings_helper_notify_xft_update (resource, "Xcursor.theme_core:", &bool_val);
+    g_value_unset (&bool_val);
 
     gdk_error_trap_push ();
 
