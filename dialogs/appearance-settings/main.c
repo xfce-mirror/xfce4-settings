@@ -730,7 +730,7 @@ cb_theme_uri_dropped (GtkWidget        *widget,
             {
                 case 2:
                     g_set_error (&error, G_SPAWN_ERROR, 0,
-                        _("File is larger then %d MB, installation aborted"), 50);
+                        _("File is larger than %d MB, installation aborted"), 50);
                     break;
 
                 case 3:

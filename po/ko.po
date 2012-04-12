@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings.xfce-4-8\n"
-"Report-Msgid-Bugs-To: xfce-i18n <xfce-i18n@xfce.org>\n"
-"POT-Creation-Date: 2012-02-20 15:54+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-12 22:46+0200\n"
 "PO-Revision-Date: 2012-02-26 14:57+0900\n"
 "Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
@@ -21,21 +21,25 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
-msgid "Acceleration _profile:"
-msgstr "가속 프로파일(_P):"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
-msgid "Acceleration _time:"
-msgstr "가속 시간(_T):"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
-msgid "Acceptance _delay:"
-msgstr "허용 지연(_D):"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
 msgstr "접근성"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
+msgid "Configure keyboard and mouse accessibility"
+msgstr "키보드와 마우스 접근성 설정"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+msgid "_Enable assistive technologies"
+msgstr "보조 기술 활성화(_E)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+msgid ""
+"If enabled, the session manager will start the required applications for "
+"screen readers and magnifiers"
+msgstr ""
+"활성화했다면, 세션 관리자는 화면 리더와 화면 돋보기를 위해 필요한 프로그램을 "
+"시작할 것입니다"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
@@ -44,186 +48,210 @@ msgid ""
 msgstr "다음 로그인 시 보조 기술을 사용 할 수 있을 것입니다."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
-msgid "Bounce Keys"
-msgstr "탄력 키"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
-msgid "Configure keyboard and mouse accessibility"
-msgstr "키보드와 마우스 접근성 설정"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
-msgid "Disable sticky keys if _two keys are pressed"
-msgstr "두 키가 눌렸을 경우 끈적이 키를 비활성화(_T)"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
-msgid "If enabled, the session manager will start the required applications for screen readers and magnifiers"
-msgstr "활성화했다면, 세션 관리자는 화면 리더와 화면 돋보기를 위해 필요한 프로그램을 시작할 것입니다"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
-msgid "K_eystroke delay:"
-msgstr "키 누름 지연(_E):"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
-msgid "Keyboa_rd"
-msgstr "키보드(_R)"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
-msgid "Maximum _speed:"
-msgstr "최대 속도(_S):"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
-msgid "Mouse Emulation"
-msgstr "마우스 에뮬레이션"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "No AT-SPI provider was found on your system"
 msgstr "AT-SPI 제공자를 시스템에서 찾을 수 없습니다"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
-msgid "R_epeat interval:"
-msgstr "반복 주기(_E):"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
-msgid "Slow Keys"
-msgstr "느린 키"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
-msgid "Sticky Keys"
-msgstr "끈적이 키"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
-msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "키 입력이 발생하는데 필요한 밀리세컨드 단위의 시간의 양"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
-msgid "The amount of time, in milliseconds, that must elapse before a keystroke will be accepted"
-msgstr "키 누름을' 허용하기 위해 반드시 초과해야 할 밀리세컨드 단위의 시간의 양"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
-msgid "The maximum pointer speed after acceleration"
-msgstr "가속 후 최대 포인터 속도"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
-msgid "The ramp used to reach maximum pointer speed"
-msgstr "경사판은 최대 포인터 속도에 도달하게 하는데 사용합니다"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
-msgid "The time, in milliseconds, between repeated motion events"
-msgstr "반복 움직임이 발생하는 사이의 밀리세컨드 단위의 시간"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
-msgid "The time, in milliseconds, between the initial key press and first repeated motion event"
-msgstr "최초 키 입력과 처음 반복된 움직임이 발생한 사이의 밀리세컨드 단위의 시간"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
-msgid "The time, in milliseconds, to get to maximum speed"
-msgstr "최대 속도를 얻기 위한 밀리세컨드 단위의 시간 "
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
-msgid "To help prevent accidental keystrokes, slow keys requires that a key is held for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "갑작스런 키 입력을 막아보기위해, 느린 키에서는 키 입력을 수락하기 전의 최소한의 특정 시간동안 키 누름을 유지하는 것을 필요로 합니다"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
-msgid "To help prevent accidental multiple keystrokes, bounce keys imposes a minimum delay between keystrokes"
-msgstr "갑작스런 다중 키입력을 막아보기위해, 탄력 키에서는 키 누름간의 최소한의 지연 시간을 사용합니다"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
-msgid "Use _bounce keys"
-msgstr "탄력 키 사용(_B)"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
-msgid "Use _sticky keys"
-msgstr "끈적이 키 사용(_S)"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
-msgid "Use slow _keys"
-msgstr "느린 키 사용(_K)"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
-msgid "When selected, modifier keys (such as Control, Alt, and Shift) do not need to be held down (they can be pressed and then released) when multiple keys would normally need to be pressed at the same time"
-msgstr "이 것을 선택했을 때, 여러 키가 보통 동시에 눌릴 필요가 있을 경우, 수정 키(Control, Alt, Shift 같은 것들)는 누른 상태로 유지(눌렀다 땔 수 있습니다)할 필요가 없습니다."
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
-msgid "When selected, modifier keys (such as Control, Alt, and Shift) will remain locked in the pressed state until pressed again"
-msgstr "이 것을 선택했을 때, 수정 키(Control, Alt, Shift 같은 것들)는 다시 눌리기 전에 눌린 상태가 잠긴 채로 유지 것입니다"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
-msgid "When selected, the \"sticky keys\" feature will be disabled if two keys are pressed simultaneously"
-msgstr "이 것을 선택했을 때, 두 키가 동시에 눌렸을 경우 \"끈적이 키\" 기능을 비활성화 할 것입니다"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
-msgid "When selected, the mouse pointer can be controlled using the keyboard number pad"
-msgstr "이 것을 선택했을 때, 마우스 포인터를 키보드 숫자패드를 사용하여 조종할 수 있습니다"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
-msgid "_Acceleration delay:"
-msgstr "가속 지연시간(_A):"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "_Assistive Technologies"
 msgstr "보조 기술(_A)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
-msgid "_Enable assistive technologies"
-msgstr "보조 기술 활성화(_E)"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+msgid "Use _sticky keys"
+msgstr "끈적이 키 사용(_S)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) do not need "
+"to be held down (they can be pressed and then released) when multiple keys "
+"would normally need to be pressed at the same time"
+msgstr ""
+"이 것을 선택했을 때, 여러 키가 보통 동시에 눌릴 필요가 있을 경우, 수정 키"
+"(Control, Alt, Shift 같은 것들)는 누른 상태로 유지(눌렀다 땔 수 있습니다)할 "
+"필요가 없습니다."
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
 msgstr "끈적이 키 잠금(_L)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
-msgid "_Mouse"
-msgstr "마우스(_M)"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) will remain "
+"locked in the pressed state until pressed again"
+msgstr ""
+"이 것을 선택했을 때, 수정 키(Control, Alt, Shift 같은 것들)는 다시 눌리기 전"
+"에 눌린 상태가 잠긴 채로 유지 것입니다"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+msgid "Disable sticky keys if _two keys are pressed"
+msgstr "두 키가 눌렸을 경우 끈적이 키를 비활성화(_T)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+msgid ""
+"When selected, the \"sticky keys\" feature will be disabled if two keys are "
+"pressed simultaneously"
+msgstr ""
+"이 것을 선택했을 때, 두 키가 동시에 눌렸을 경우 \"끈적이 키\" 기능을 비활성"
+"화 할 것입니다"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+msgid "Sticky Keys"
+msgstr "끈적이 키"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+msgid "Use slow _keys"
+msgstr "느린 키 사용(_K)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+msgid ""
+"To help prevent accidental keystrokes, slow keys requires that a key is held "
+"for a certain minimum amount of time before the keystroke will be accepted"
+msgstr ""
+"갑작스런 키 입력을 막아보기위해, 느린 키에서는 키 입력을 수락하기 전의 최소한"
+"의 특정 시간동안 키 누름을 유지하는 것을 필요로 합니다"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+msgid "Acceptance _delay:"
+msgstr "허용 지연(_D):"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+msgid ""
+"The amount of time, in milliseconds, that must elapse before a keystroke "
+"will be accepted"
+msgstr ""
+"키 누름을' 허용하기 위해 반드시 초과해야 할 밀리세컨드 단위의 시간의 양"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+msgid "Slow Keys"
+msgstr "느린 키"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+msgid "Use _bounce keys"
+msgstr "탄력 키 사용(_B)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+msgid ""
+"To help prevent accidental multiple keystrokes, bounce keys imposes a "
+"minimum delay between keystrokes"
+msgstr ""
+"갑작스런 다중 키입력을 막아보기위해, 탄력 키에서는 키 누름간의 최소한의 지연 "
+"시간을 사용합니다"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+msgid "K_eystroke delay:"
+msgstr "키 누름 지연(_E):"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+msgid "The amount of time, in milliseconds, required between keystrokes"
+msgstr "키 입력이 발생하는데 필요한 밀리세컨드 단위의 시간의 양"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+msgid "Bounce Keys"
+msgstr "탄력 키"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+msgid "Keyboa_rd"
+msgstr "키보드(_R)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid "_Use mouse emulation"
 msgstr "마우스 흉내 사용(_U)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+msgid ""
+"When selected, the mouse pointer can be controlled using the keyboard number "
+"pad"
+msgstr ""
+"이 것을 선택했을 때, 마우스 포인터를 키보드 숫자패드를 사용하여 조종할 수 있"
+"습니다"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+msgid "R_epeat interval:"
+msgstr "반복 주기(_E):"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+msgid "_Acceleration delay:"
+msgstr "가속 지연시간(_A):"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+msgid "Acceleration _time:"
+msgstr "가속 시간(_T):"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+msgid "Maximum _speed:"
+msgstr "최대 속도(_S):"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+msgid "Acceleration _profile:"
+msgstr "가속 프로파일(_P):"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "msec"
 msgstr "msec"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "pixels/sec"
 msgstr "pixels/sec"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+msgid ""
+"The time, in milliseconds, between the initial key press and first repeated "
+"motion event"
+msgstr ""
+"최초 키 입력과 처음 반복된 움직임이 발생한 사이의 밀리세컨드 단위의 시간"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+msgid "The time, in milliseconds, between repeated motion events"
+msgstr "반복 움직임이 발생하는 사이의 밀리세컨드 단위의 시간"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+msgid "The ramp used to reach maximum pointer speed"
+msgstr "경사판은 최대 포인터 속도에 도달하게 하는데 사용합니다"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+msgid "The maximum pointer speed after acceleration"
+msgstr "가속 후 최대 포인터 속도"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+msgid "The time, in milliseconds, to get to maximum speed"
+msgstr "최대 속도를 얻기 위한 밀리세컨드 단위의 시간 "
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+msgid "Mouse Emulation"
+msgstr "마우스 에뮬레이션"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+msgid "_Mouse"
+msgstr "마우스(_M)"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "설정 관리자 소켓"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
-#: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:40
-#: ../dialogs/mime-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:98
-#: ../xfce4-settings-editor/main.c:43
-#: ../xfsettingsd/main.c:77
-#: ../xfce4-settings-manager/main.c:39
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
+#: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
+#: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
 msgid "Version information"
 msgstr "버전 정보"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
-#: ../dialogs/keyboard-settings/main.c:76
-#: ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1515
-#: ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173
-#: ../xfce4-settings-manager/main.c:60
+#: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
+#: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
+#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "사용방법을 보려면 '%s --help'를 입력합니다."
@@ -231,24 +259,18 @@ msgstr "사용방법을 보려면 '%s --help'를 입력합니다."
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
-#: ../dialogs/keyboard-settings/main.c:92
-#: ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1534
-#: ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189
-#: ../xfce4-settings-manager/main.c:76
+#: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
+#: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
+#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 개발 팀. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
-#: ../dialogs/keyboard-settings/main.c:93
-#: ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1535
-#: ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190
-#: ../xfce4-settings-manager/main.c:77
+#: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
+#: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
+#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "<%s> 로 버그를 알려주시기 바랍니다."
@@ -258,177 +280,202 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "키보드와 마우스의 접근성을 향상합니다"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-msgid "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "안티 에일리어싱 또는 글꼴 다듬기를 통해 화면의 본문 글씨의 모양을 더 보기 좋게 할 수 있습니다"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
-msgid "Appearance"
-msgstr "모양새"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-#: ../dialogs/display-settings/main.c:82
-msgid "Both"
-msgstr "둘다"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
-msgid "Both Horizontal"
-msgstr "둘 다 수평으로"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
-msgid "Custom _DPI setting:"
-msgstr "사용자 정의 DPI 설정(_D):"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
-msgid "Customize the look of your desktop"
-msgstr "데스트톱 모양 사용자 정의"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
-msgid "DPI"
-msgstr "DPI"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
-msgid "Default Fon_t"
-msgstr "기본 글꼴(_T)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
-msgid "Enable _anti-aliasing"
-msgstr "안티 에일리어싱 활성화(_A)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
-msgid "Enable _event sounds"
-msgstr "이벤트 소리 활성화(_E)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
-msgid "Enable e_ditable accelerators"
-msgstr "편집 가능한 가속기 활성화(_D)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
-msgid "Enable i_nput feedback sounds"
-msgstr "입력 반응 소리 활성화(_N)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
-msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "전역 이벤트 소리 활성화 또는 비활성화 (\"Canberra\" 지원이 필요합니다)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
-msgid "Event sounds"
-msgstr "이벤트 소리"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
-msgid "Font quality on a TFT or LCD screen can be greatly improved by choosing the correct sub-pixel order of the screen"
-msgstr "TFT나 LCD화면의 글꼴 품질은 올바른 화면상 서브픽셀 순서를 선택함에 따라 상당히 향상됩니다"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
-msgid "Full"
-msgstr "완전히"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
-msgid "Icons"
-msgstr "아이콘"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
-msgid "If selected, keyboard shortcuts for menu items can be changed by hovering the mouse over the menu item and pressing the new key combination for the shortcut"
-msgstr "만약 이 것을 선택한다면 메뉴 항목을 위한 바로 가기 키는 메뉴 항목에 마우스를 올려다 놓고 바로 가기 키를 설정하기 위해 새로운 키 조합을 눌러서 바꿀 수 있습니다"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
-msgid "Many fonts contain information that provides extra hints as to how best draw the font; pick whichever looks best according to personal preference"
-msgstr "수많은 글꼴은 글꼴을 가장 좋게 그려내게 하는 특별한 힌트 정보를 보유하고 있습니다. 개인 기본 설정에 따라 가장 좋게 보이는 것을 골라냅니다"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-msgid "Medium"
-msgstr "적당히"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
-msgid "Menus and Buttons"
-msgstr "메뉴와 단추"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:852
 #: ../dialogs/display-settings/main.c:79
 msgid "None"
 msgstr "없음"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
-msgid "Override the detected monitor resolution if fonts look too large or too small"
-msgstr "글꼴이 너무 커보이거나 너무 작아보인다면 감지된 모니터 해상도를 우선 적용합니다"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
-msgid "Rendering"
-msgstr "렌더링"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
-msgid "Select a default font"
-msgstr "기본 글꼴 선택"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
-msgid "Show images in _menus"
-msgstr "메뉴에 그림 표시(_M)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
-msgid "Show images on _buttons"
-msgstr "단추에 그림 표시(_B)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "Slight"
 msgstr "조금"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
-msgid "Specify what should be displayed in toolbar items"
-msgstr "도구 막대 항목에 표시할 것을 정합니다."
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+msgid "Medium"
+msgstr "적당히"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
-msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "메뉴의 항목 옆에 표시할 아이콘을 정합니다"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "Full"
+msgstr "완전히"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
-msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "단추의 글씨 옆에 표시할 아이콘을 정합니다"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
+msgid "Icons"
+msgstr "아이콘"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
-msgid "Specify whether mouse clicks and other user input will cause event sounds to play"
-msgstr "마우스 누름과 기타 사용자 입력시 이벤트 소리를 재생할지 정합니다"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
-msgid "St_yle"
-msgstr "방식(_Y)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
-msgid "Sub-_pixel order:"
-msgstr "서브픽셀 순서(_P):"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 msgid "Text"
 msgstr "본문"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
-msgid "This font will be used as the default font used when drawing user interface text"
-msgstr "이 글꼴은 사용자 인터페이스 본문을 나타낼 때 기본 글꼴로 사용할 것입니다"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+#: ../dialogs/display-settings/main.c:82
+msgid "Both"
+msgstr "둘다"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
-msgid "_Fonts"
-msgstr "글꼴(_F)"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+msgid "Both Horizontal"
+msgstr "둘 다 수평으로"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
-msgid "_Hinting:"
-msgstr "힌팅(_H):"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
+msgid "Appearance"
+msgstr "모양새"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
+msgid "Customize the look of your desktop"
+msgstr "데스트톱 모양 사용자 정의"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+msgid "St_yle"
+msgstr "방식(_Y)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 msgid "_Icons"
 msgstr "아이콘(_I)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
-msgid "_Settings"
-msgstr "설정(_S)"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr ""
+"이 글꼴은 사용자 인터페이스 본문을 나타낼 때 기본 글꼴로 사용할 것입니다"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+msgid "Select a default font"
+msgstr "기본 글꼴 선택"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+msgid "Default Fon_t"
+msgstr "기본 글꼴(_T)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw "
+"the font; pick whichever looks best according to personal preference"
+msgstr ""
+"수많은 글꼴은 글꼴을 가장 좋게 그려내게 하는 특별한 힌트 정보를 보유하고 있습"
+"니다. 개인 기본 설정에 따라 가장 좋게 보이는 것을 골라냅니다"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr ""
+"TFT나 LCD화면의 글꼴 품질은 올바른 화면상 서브픽셀 순서를 선택함에 따라 상당"
+"히 향상됩니다"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid "Sub-_pixel order:"
+msgstr "서브픽셀 순서(_P):"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid "_Hinting:"
+msgstr "힌팅(_H):"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Enable _anti-aliasing"
+msgstr "안티 에일리어싱 활성화(_A)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr ""
+"안티 에일리어싱 또는 글꼴 다듬기를 통해 화면의 본문 글씨의 모양을 더 보기 좋"
+"게 할 수 있습니다"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+msgid "Rendering"
+msgstr "렌더링"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+msgid "Custom _DPI setting:"
+msgstr "사용자 정의 DPI 설정(_D):"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too small"
+msgstr ""
+"글꼴이 너무 커보이거나 너무 작아보인다면 감지된 모니터 해상도를 우선 적용합니"
+"다"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+msgid "DPI"
+msgstr "DPI"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+msgid "_Fonts"
+msgstr "글꼴(_F)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+msgid "Specify what should be displayed in toolbar items"
+msgstr "도구 막대 항목에 표시할 것을 정합니다."
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "_Toolbar Style"
 msgstr "툴바 유형(_T)"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+msgid "Show images on _buttons"
+msgstr "단추에 그림 표시(_B)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "단추의 글씨 옆에 표시할 아이콘을 정합니다"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+msgid "Show images in _menus"
+msgstr "메뉴에 그림 표시(_M)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "메뉴의 항목 옆에 표시할 아이콘을 정합니다"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+msgid "Enable e_ditable accelerators"
+msgstr "편집 가능한 가속기 활성화(_D)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+msgid ""
+"If selected, keyboard shortcuts for menu items can be changed by hovering "
+"the mouse over the menu item and pressing the new key combination for the "
+"shortcut"
+msgstr ""
+"만약 이 것을 선택한다면 메뉴 항목을 위한 바로 가기 키는 메뉴 항목에 마우스를 "
+"올려다 놓고 바로 가기 키를 설정하기 위해 새로운 키 조합을 눌러서 바꿀 수 있습"
+"니다"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+msgid "Menus and Buttons"
+msgstr "메뉴와 단추"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+msgid "Enable _event sounds"
+msgstr "이벤트 소리 활성화(_E)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr "전역 이벤트 소리 활성화 또는 비활성화 (\"Canberra\" 지원이 필요합니다)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+msgid "Enable i_nput feedback sounds"
+msgstr "입력 반응 소리 활성화(_N)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+msgid ""
+"Specify whether mouse clicks and other user input will cause event sounds to "
+"play"
+msgstr "마우스 누름과 기타 사용자 입력시 이벤트 소리를 재생할지 정합니다"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+msgid "Event sounds"
+msgstr "이벤트 소리"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+msgid "_Settings"
+msgstr "설정(_S)"
+
 #: ../dialogs/appearance-settings/main.c:733
 #, c-format
-msgid "File is larger then %d MB, installation aborted"
+msgid "File is larger than %d MB, installation aborted"
 msgstr "파일이 %d MB 보다 커서 설치를 중단했습니다"
 
 #: ../dialogs/appearance-settings/main.c:738
@@ -469,66 +516,68 @@ msgid "Vertical BGR"
 msgstr "수직 BGR"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
-msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "<big><b>이 설정을 유지하시렵니까?</b></big>"
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid "Confirmation"
 msgstr "확인"
 
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr "<big><b>이 설정을 유지하시렵니까?</b></big>"
+
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
+msgid ""
+"The previous configuration will be restored in 10 seconds if you do not "
+"reply to this question."
+msgstr "이 질문에 응답하지 않으면 10초 이후 이전 설정으로 복원합니다."
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Keep this configuration"
 msgstr "이 설정 유지"
 
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid "Restore the previous configuration"
 msgstr "이전 설정 복원"
 
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
-msgid "The previous configuration will be restored in 10 seconds if you do not reply to this question."
-msgstr "이 질문에 응답하지 않으면 10초 이후 이전 설정으로 복원합니다."
-
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-msgid "Configure screen settings and layout"
-msgstr "화면 설정과 배치 설정"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:2
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Display"
 msgstr "디스플레이"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+msgid "Configure screen settings and layout"
+msgstr "화면 설정과 배치 설정"
+
 #: ../dialogs/display-settings/display-dialog.glade.h:3
-msgid "R_esolution:"
-msgstr "해상도(_E):"
+msgid "_Use this output"
+msgstr "이 배치 사용(_U)"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "Ref_lection:"
 msgstr "뒤집기(_L):"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
-msgid "Refresh _rate:"
-msgstr "재생율(_R):"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Ro_tation:"
 msgstr "회전(_T):"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:6
+msgid "Refresh _rate:"
+msgstr "재생율(_R):"
+
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "_Use this output"
-msgstr "이 배치 사용(_U)"
+msgid "R_esolution:"
+msgstr "해상도(_E):"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
-msgid "Both displays cloned"
-msgstr "두 디스플레이 복제함"
-
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Display settings"
 msgstr "디스플레이 설정"
 
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Several displays are available. Use:\n"
 msgstr "여러 디스플레이를 사용할 수 있습니다. 다음을 사용합니다:\n"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
+msgid "Both displays cloned"
+msgstr "두 디스플레이 복제함"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Use both displays to show the same contents"
@@ -564,17 +613,23 @@ msgstr "외부 출력을 설정하기 위한 최소한의 인터페이스"
 
 #: ../dialogs/display-settings/main.c:171
 #, c-format
-msgid "The previous configuration will be restored in %i seconds if you do not reply to this question."
+msgid ""
+"The previous configuration will be restored in %i seconds if you do not "
+"reply to this question."
 msgstr "이 질문에 응답하지 않으면 %i 초 이후 이전 설정으로 복원합니다."
 
-#. Insert the moddisplay-settings/main.c:505
+#. Insert the mode
+#: ../dialogs/display-settings/main.c:505
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
 #: ../dialogs/display-settings/main.c:651
-msgid "The last active output must not be disabled, the system would be unusable."
-msgstr "최근 활성화된 출력을 비활성화 하면 안됩니다. 시스템이 사용 불가능하게 될 것입니다."
+msgid ""
+"The last active output must not be disabled, the system would be unusable."
+msgstr ""
+"최근 활성화된 출력을 비활성화 하면 안됩니다. 시스템이 사용 불가능하게 될 것입"
+"니다."
 
 #: ../dialogs/display-settings/main.c:653
 msgid "Selected output not disabled"
@@ -602,8 +657,12 @@ msgstr "상업용 드라이버 설정을 실행할 수 없습니다"
 #. 1.2 is required
 #: ../dialogs/display-settings/xfce-randr.c:257
 #, c-format
-msgid "This system is using RandR %d.%d. For the display settings to work version 1.2 is required at least"
-msgstr "이 시스템은 RandR %d.%d을(를) 사용하고 있습니다. 디스플레이 설정을 동작하려면 적어도 1.2 이상의 버전이 필요합니다"
+msgid ""
+"This system is using RandR %d.%d. For the display settings to work version "
+"1.2 is required at least"
+msgstr ""
+"이 시스템은 RandR %d.%d을(를) 사용하고 있습니다. 디스플레이 설정을 동작하려"
+"면 적어도 1.2 이상의 버전이 필요합니다"
 
 #: ../dialogs/display-settings/xfce-randr.c:536
 msgid "Laptop"
@@ -685,119 +744,126 @@ msgid "Shell Scripts"
 msgstr "쉘 스크립트"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "A_pplication Shortcuts"
-msgstr "프로그램 바로 가기(_P)"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
-msgid "Be_havior"
-msgstr "동작(_H)"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
-msgid "Blink _delay:"
-msgstr "깜빡임 지연시간(_D):"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-msgid "Cursor"
-msgstr "커서"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-msgid "Define _shortcuts for launching applications:"
-msgstr "프로그램 실행을 위한 바로 가기 정의(_S):"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "키보드 설정과 프로그램 바로 가기 편집"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
-msgid "General"
-msgstr "일반"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Keyboard"
-msgstr "키보드"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
-msgid "Keyboard layout"
-msgstr "키보드 배치"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Keyboard layout selection"
 msgstr "키보드 배치 선택"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
-msgid "Keyboard model"
-msgstr "키보드 모델"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
-msgid "Repeat _speed:"
-msgstr "반복 속도(_S):"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
-msgid "Reset to _Defaults"
-msgstr "기본으로 초기화(_D)"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
-msgid "Restore num l_ock state on startup"
-msgstr "시작히 num lock 상태 복구(_O)"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Select keyboard layout and variant"
 msgstr "키보드 배치 및 변형 선택"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
-msgid "Show _blinking"
-msgstr "깜빡임 표시(_B)"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
+msgid "Keyboard"
+msgstr "키보드"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
-msgid "Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server"
-msgstr "키보드 배치를 설정 대화상자에서 제어할지 X 서버에서 제어할지를 정합니다"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
+msgid "Edit keyboard settings and application shortcuts"
+msgstr "키보드 설정과 프로그램 바로 가기 편집"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
-msgid "Specify whether or not the text cursor blinks"
-msgstr "본문 커서를 깜빡이게 할지 여부를 정합니다"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Restore num l_ock state on startup"
+msgstr "시작히 num lock 상태 복구(_O)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
-msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "커서가 완전히 깜빡이는데 걸리는 밀리세컨드 단위 시간입니다"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+msgid "General"
+msgstr "일반"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
-msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "키가 눌려있는 동안 발생하는 키 누름의 시간당 발생 비율입니다"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "키 입력 반복을 시작하기 전 밀리세컨드 단위 시간입니다"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
-msgid "Typing Settings"
-msgstr "입력 설정"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
-msgid "When selected, pressing and holding down a key emits the same character over and over again"
-msgstr "이 것을 선택했을 때, 키를 누른채로 유지하고 있으면 같은 문자를 계속 반복해서 입력합니다"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "_Enable key repeat"
 msgstr "키 반복 활성화(_E)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Layout"
-msgstr "배치(_L)"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+msgid ""
+"When selected, pressing and holding down a key emits the same character over "
+"and over again"
+msgstr ""
+"이 것을 선택했을 때, 키를 누른채로 유지하고 있으면 같은 문자를 계속 반복해서 "
+"입력합니다"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "_Repeat delay:"
 msgstr "반복 지연(_R):"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr "키 입력 반복을 시작하기 전 밀리세컨드 단위 시간입니다"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+msgid "Repeat _speed:"
+msgstr "반복 속도(_S):"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr "키가 눌려있는 동안 발생하는 키 누름의 시간당 발생 비율입니다"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+msgid "Typing Settings"
+msgstr "입력 설정"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Show _blinking"
+msgstr "깜빡임 표시(_B)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid "Specify whether or not the text cursor blinks"
+msgstr "본문 커서를 깜빡이게 할지 여부를 정합니다"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+msgid "Blink _delay:"
+msgstr "깜빡임 지연시간(_D):"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr "커서가 완전히 깜빡이는데 걸리는 밀리세컨드 단위 시간입니다"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+msgid "Cursor"
+msgstr "커서"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "_Test area:"
 msgstr "테스트 영역(_T):"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+msgid "Be_havior"
+msgstr "동작(_H)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+msgid "Define _shortcuts for launching applications:"
+msgstr "프로그램 실행을 위한 바로 가기 정의(_S):"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+msgid "Reset to _Defaults"
+msgstr "기본으로 초기화(_D)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+msgid "A_pplication Shortcuts"
+msgstr "프로그램 바로 가기(_P)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Use system defaults"
 msgstr "시스템 기본값 사용(_U)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+msgid ""
+"Specifies whether the keyboard layout is controlled with this settings "
+"dialog, or by the X server"
+msgstr ""
+"키보드 배치를 설정 대화상자에서 제어할지 X 서버에서 제어할지를 정합니다"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+msgid "Keyboard model"
+msgstr "키보드 모델"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+msgid "Keyboard layout"
+msgstr "키보드 배치"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+msgid "_Layout"
+msgstr "배치(_L)"
 
 #: ../dialogs/keyboard-settings/main.c:82
 msgid "Unable to initialize GTK+."
@@ -838,8 +904,12 @@ msgid "Reset to Defaults"
 msgstr "기본으로 초기화"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
-msgid "This will reset all shortcuts to their default values. Do you really want to do this?"
-msgstr "이 동작은 모든 바로 가기를 기본값으로 초기화 할 것입니다. 이 동작을 정말로 행하시렵니까?"
+msgid ""
+"This will reset all shortcuts to their default values. Do you really want to "
+"do this?"
+msgstr ""
+"이 동작은 모든 바로 가기를 기본값으로 초기화 할 것입니다. 이 동작을 정말로 행"
+"하시렵니까?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
@@ -858,7 +928,9 @@ msgid "Use a c_ustom command:"
 msgstr "사용자 정의 명령을 사용합니다(_U):"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
-msgid "Use a custom command for an application that is not available from the above application list."
+msgid ""
+"Use a custom command for an application that is not available from the above "
+"application list."
 msgstr "프로그램 목록에 없는 프로그램에 대해 사용자정의 명령을 사용합니다."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
@@ -892,12 +964,12 @@ msgid "Failed to add new application \"%s\""
 msgstr "새로운 \"%s\"프로그램을 추가하는데 실패했습니다."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:174
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
 msgstr "MIME 형식 편집기"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate applications with MIME types"
 msgstr "MIME 형식에 프로그램 연결하기"
 
@@ -929,9 +1001,8 @@ msgstr "사용자 셋"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:481
 #: ../dialogs/mime-settings/xfce-mime-window.c:604
-#: ../dialogs/mouse-settings/main.c:372
-#: ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
+#: ../dialogs/mouse-settings/main.c:354 ../dialogs/mouse-settings/main.c:356
+#: ../dialogs/mouse-settings/main.c:416
 msgid "Default"
 msgstr "기본"
 
@@ -939,7 +1010,7 @@ msgstr "기본"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] "%d개의 MIME 형식을 찾았습니다	"
+msgstr[0] "%d개의 MIME 형식을 찾았습니다\t"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
@@ -948,7 +1019,8 @@ msgstr "\"%s\"프로그램을 MIME 형식 \"%s\"에 대해 설정하는데 실�
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
-msgid "Are you sure you want to reset content type \"%s\" to its default value?"
+msgid ""
+"Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "내용 형식 \"%s\"와(과) 이의 기본값을 초기화 하시렵니까?"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:910
@@ -956,8 +1028,12 @@ msgid "Question"
 msgstr "질문"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:913
-msgid "This will remove your custom mime-association and restore the system-wide default."
-msgstr "이는 사용자정의 MIME 연결을 제거할 것이며 시스템 기본 설정으로 복구할 것입니다."
+msgid ""
+"This will remove your custom mime-association and restore the system-wide "
+"default."
+msgstr ""
+"이는 사용자정의 MIME 연결을 제거할 것이며 시스템 기본 설정으로 복구할 것입니"
+"다."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
@@ -968,226 +1044,243 @@ msgstr "기본값으로 초기화"
 msgid "Choose Application..."
 msgstr "프로그램을 선택하십시오..."
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "Active device in the dialog"
 msgstr "대화상자에 활성화 된 장리"
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "DEVICE NAME"
 msgstr "DEVICE NAME"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:142
+#: ../dialogs/mouse-settings/main.c:124
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:152
+#: ../dialogs/mouse-settings/main.c:134
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
-msgid "B_uttons and Feedback"
-msgstr "단추와 반응(_U)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
-msgid "Buttons"
-msgstr "단추"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
-msgid "Clockwise"
-msgstr "시계방향"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
-msgid "Configure pointer device behavior and appearance"
-msgstr "포인터 장치 동작과 표시 설정"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
-msgid "Counterclockwise"
-msgstr "시계 반대방향"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
-msgid "Cursor _size:"
-msgstr "커서 크기(_S):"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
-msgid "D_istance:"
-msgstr "거리(_I):"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-msgid "De_vice:"
-msgstr "장치(_V):"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-msgid "Di_sabled"
-msgstr "비활성화(_S)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
-msgid "Disable to_uchpad while typing"
-msgstr "입력하는 동안 터치패드 비활성화(_U)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
-msgid "Double Click"
-msgstr "두번 누르기"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
-msgid "Drag and Drop"
-msgstr "끌어 놓기"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-msgid "Edge scro_lling"
-msgstr "모서리 스크롤(_L)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-msgid "Enable hori_zontal scrolling"
-msgstr "수평 스크롤 활성화(_Z)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
-msgid "Half (left-handed)"
-msgstr "절반 (왼손잡이)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
-msgid "Mouse (relative)"
-msgstr "마우스 (상대적)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse and Touchpad"
 msgstr "마우스와 터치패드"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
-msgid "None (right-handed)"
-msgstr "없음 (오른손잡이)"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
+msgid "Configure pointer device behavior and appearance"
+msgstr "포인터 장치 동작과 표시 설정"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
-msgid "Pen (absolute)"
-msgstr "펜 (절대적)"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "De_vice:"
+msgstr "장치(_V):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
-msgid "Pointer Speed"
-msgstr "포인터 속도"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+msgid "_Enable this device"
+msgstr "이 장치 활성화(_E)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
-msgid "Preview"
-msgstr "미리보기"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+msgid "_Right-handed"
+msgstr "오른손잡이(_R)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
-msgid "Reset to De_faults"
-msgstr "기본값으로 초기화(_F)"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+msgid "_Left-handed"
+msgstr "왼손잡이(_L)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Reverse scroll d_irection"
 msgstr "스크롤 방향 뒤집기(_I)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
-msgid "Scrolling"
-msgstr "스크롤"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr "이 것을 선택했을 때, 스크롤 휠은 반대로 동작할 것입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
-msgid "Set the acceleration and sensitivity for the selected device to the default values"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+msgid "Buttons"
+msgstr "단추"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+msgid "_Acceleration:"
+msgstr "가속(_A):"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr "마우스가 움직였을 때 포인터의 이동속도를 증가할 계수입니다"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr ""
+"가속을 시작하기 전 짧은 시간동안 포인터가 반드시 움직여야 할 픽셀의 수 입니다"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid "_Sensitivity:"
+msgstr "민감도(_S):"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "Reset to De_faults"
+msgstr "기본값으로 초기화(_F)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+msgid ""
+"Set the acceleration and sensitivity for the selected device to the default "
+"values"
 msgstr "선택한 장치에 대해 가속값과 민감도를 기본값으로 설정합니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
-msgid "Size"
-msgstr "크기"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+msgid "Pointer Speed"
+msgstr "포인터 속도"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+msgid "B_uttons and Feedback"
+msgstr "단추와 반응(_U)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+msgid "Disable to_uchpad while typing"
+msgstr "입력하는 동안 터치패드 비활성화(_U)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+msgid ""
+"When selected, the touchpad will be disabled when the keyboard is being used"
+msgstr ""
+"이 것을 선택했을 때, 키보드가 사용중일 때 터치패드는 비활성화 될 것입니다"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "T_ap touchpad to click"
 msgstr "누르기 위해 터치패드를 가볍게 두드림(_A)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
-msgid "T_heme"
-msgstr "테마(_H)"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "Di_sabled"
+msgstr "비활성화(_S)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid "Edge scro_lling"
+msgstr "모서리 스크롤(_L)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+msgid "Two-_finger scrolling"
+msgstr "두 손가락 스크롤(_F)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+msgid "Enable hori_zontal scrolling"
+msgstr "수평 스크롤 활성화(_Z)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+msgid "Scrolling"
+msgstr "스크롤"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "T_ouchpad"
 msgstr "터치패드(_O)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+msgid "Tr_acking mode:"
+msgstr "트래킹 모드(_A):"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+msgid "_Rotation:"
+msgstr "회전(_R):"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Table_t"
 msgstr "태블릿(_T)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+msgid "_Devices"
+msgstr "장치(_D)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Th_reshold:"
 msgstr "임계값(_R):"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
-msgid "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "마우스가 움직였을 때 포인터의 이동속도를 증가할 계수입니다"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
-msgid "The mouse pointer cannot move farther than this distance between two clicks for them to be considered a double click"
-msgstr "두번 누르기로 간주하기 위해 두번 누르는 동안 마우스 포인터는 이 거리보다 더 멀리 움직일 수 없습니다"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
-msgid "The number of pixels the pointer must move before a drag operation will start"
+msgid ""
+"The number of pixels the pointer must move before a drag operation will start"
 msgstr "끌기 동작을 시작하기 전 포인터가 반드시 움직여야 할 픽셀의 수 입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
-msgid "The number of pixels the pointer must move in a short time before it starts accelerating"
-msgstr "가속을 시작하기 전 짧은 시간동안 포인터가 반드시 움직여야 할 픽셀의 수 입니다"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+msgid "Drag and Drop"
+msgstr "끌어 놓기"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Ti_me:"
 msgstr "시간(_M):"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+msgid ""
+"Two mouse clicks in less than this length of time (in milliseconds) will be "
+"considered a double click"
+msgstr ""
+"이 시간 (밀리초) 동안 마우스 단추를 두번 누르면 두번 누른 것으로 간주할 것입"
+"니다"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+msgid "D_istance:"
+msgstr "거리(_I):"
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
-msgid "Tr_acking mode:"
-msgstr "트래킹 모드(_A):"
+msgid ""
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
+msgstr ""
+"두번 누르기로 간주하기 위해 두번 누르는 동안 마우스 포인터는 이 거리보다 더 "
+"멀리 움직일 수 없습니다"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
-msgid "Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click"
-msgstr "이 시간 (밀리초) 동안 마우스 단추를 두번 누르면 두번 누른 것으로 간주할 것입니다"
+msgid "Double Click"
+msgstr "두번 누르기"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
-msgid "Two-_finger scrolling"
-msgstr "두 손가락 스크롤(_F)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
-msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr "이 것을 선택했을 때, 스크롤 휠은 반대로 동작할 것입니다"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
-msgid "When selected, the touchpad will be disabled when the keyboard is being used"
-msgstr "이 것을 선택했을 때, 키보드가 사용중일 때 터치패드는 비활성화 될 것입니다"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
-msgid "_Acceleration:"
-msgstr "가속(_A):"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "_Behavior"
 msgstr "동작(_B)"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+msgid "Cursor _size:"
+msgstr "커서 크기(_S):"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+msgid "Size"
+msgstr "크기"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+msgid "Preview"
+msgstr "미리보기"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+msgid "T_heme"
+msgstr "테마(_H)"
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
-msgid "_Devices"
-msgstr "장치(_D)"
+msgid "Pen (absolute)"
+msgstr "펜 (절대적)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
-msgid "_Enable this device"
-msgstr "이 장치 활성화(_E)"
+msgid "Mouse (relative)"
+msgstr "마우스 (상대적)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
-msgid "_Left-handed"
-msgstr "왼손잡이(_L)"
+msgid "None (right-handed)"
+msgstr "없음 (오른손잡이)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
-msgid "_Right-handed"
-msgstr "오른손잡이(_R)"
+msgid "Half (left-handed)"
+msgstr "절반 (왼손잡이)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
-msgid "_Rotation:"
-msgstr "회전(_R):"
+msgid "Clockwise"
+msgstr "시계방향"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
-msgid "_Sensitivity:"
-msgstr "민감도(_S):"
+msgid "Counterclockwise"
+msgstr "시계 반대방향"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
 msgstr "설정 편집기"
 
@@ -1323,57 +1416,61 @@ msgstr "64비트 정수"
 msgid "Unsigned Int64"
 msgstr "비부호화 64비트 정수"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
 msgid "New Property"
 msgstr "새 속성"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:154
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
 msgid "_Property:"
 msgstr "속성(_P):"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:169
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:173
 msgid "_Type:"
 msgstr "형식(_T):"
 
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:200
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:211
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:223
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:204
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:215
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:227
 msgid "_Value:"
 msgstr "값(_V):"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "속성 이름은 반드시 '/' 문자로 시작해야 합니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "루트 요소 ('/')는 유효한 속성 이름이 아닙니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:408
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "속성 이름은 A-Z, a-z, 0-9, '_', '-', '<', '>', 그리고 구분 기호로 사용하는 '/'와 같은 것을 포함한 ASCII 문자만 포함합니다."
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"속성 이름은 A-Z, a-z, 0-9, '_', '-', '<', '>', 그리고 구분 기호로 사용하는 "
+"'/'와 같은 것을 포함한 ASCII 문자만 포함합니다."
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:421
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "속성 이름은 둘 이상의 연속된 '/' 문자를 가질 수 없습니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:435
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "속성 이름은 '/' 문자로 끝날 수 없습니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:648
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
 msgid "Edit Property"
 msgstr "속성 편집"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 msgid "Graphical settings editor for Xfconf"
 msgstr "Xfconf 그래픽 설정 편집기"
 
@@ -1458,10 +1555,9 @@ msgid "Unable to start \"%s\""
 msgstr "\"\"%s\"을(를) 시작할 수 없습니다"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Xfce 4 그래픽 설정 관리자"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "설정 관리자"
 
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Graphical Settings Manager for Xfce 4"
+msgstr "Xfce 4 그래픽 설정 관리자"
