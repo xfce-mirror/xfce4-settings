@@ -3,20 +3,21 @@
 # Copyright (C) 2009 The Xfce development team.
 # This file is distributed under the same license as the xfce-settings package.
 # Piotr Sokół <psokol@jabster.pl>, 2009, 2011, 2012.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.7.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-12 04:36+0000\n"
-"PO-Revision-Date: 2012-04-10 16:51+0200\n"
+"PO-Revision-Date: 2012-04-12 11:16+0200\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bits\n"
 "Language: \n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2));\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n"
+"%100<10 || n%100>=20)) ? 1 : 2));\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -285,8 +286,7 @@ msgstr "Konfiguruje ułatwienia dostępu interfejsów klawiatury i myszy"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr ""
-"Włącza antyaliasing czcionek w celu poprawy wyglądu tekstu na monitorze"
+msgstr "Wygładza czcionki w celu poprawy wyglądu tekstu na ekranie"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
@@ -347,7 +347,7 @@ msgstr "Dzwięki zdarzeń"
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
-msgstr "Określa rozmieszczenie subpikseli wyświetlacza TFT lub LCD"
+msgstr "Określa rozmieszczenie podpikseli wyświetlacza TFT lub LCD"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "Full"
@@ -371,8 +371,8 @@ msgid ""
 "Many fonts contain information that provides extra hints as to how best draw "
 "the font; pick whichever looks best according to personal preference"
 msgstr ""
-"Określa metodę wygładzania czcionek, umożliwiającą poprawienie ich wyglądu "
-"na ekranie"
+"Określa metodę przyciągania czcionek krawędzi czcionek do siatki (np. "
+"pikseli matrycy ekranu), umożliwiającą poprawienie ich wyglądu na ekranie"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Medium"
@@ -393,7 +393,7 @@ msgid ""
 "Override the detected monitor resolution if fonts look too large or too small"
 msgstr ""
 "Określa rozdzielczość czcionek wyrażoną w ilości punktów na cal, niezależnie "
-"od rozdzielczości monitora"
+"od rozdzielczości ekranu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "Rendering"
@@ -437,11 +437,11 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "St_yle"
-msgstr "Mo_tyw"
+msgstr "_Styl"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Sub-_pixel order:"
-msgstr "Układ su_bpikseli:"
+msgstr "Układ po_dpikseli:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Text"
@@ -461,7 +461,7 @@ msgstr "Czci_onki"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "_Hinting:"
-msgstr "_Wygładzanie podpikselowe:"
+msgstr "_Przyciąganie do siatki:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "_Icons"
@@ -566,9 +566,8 @@ msgid "Ro_tation:"
 msgstr "_Orientacja:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-#, fuzzy
 msgid "_Use this output"
-msgstr "Wypisuje bardziej szczegółowe komunikaty"
+msgstr "_Użyj tego wyjścia"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Both displays cloned"
@@ -631,10 +630,12 @@ msgstr "%.1f Hz"
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
+"Ostanie aktywne wyjście nie może być wyłączone. Komputer nie będzie zdatny "
+"do użycia."
 
 #: ../dialogs/display-settings/main.c:653
 msgid "Selected output not disabled"
-msgstr ""
+msgstr "Zaznaczone wyjście nie jest wyłączone"
 
 #: ../dialogs/display-settings/main.c:1075
 #: ../dialogs/display-settings/xfce-randr.c:249
@@ -1038,7 +1039,7 @@ msgstr "Pytanie"
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr ""
+msgstr "Zostanie przywrócone domyślne przypisanie typu MIME."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
