@@ -1,7 +1,6 @@
 INCLUDES = \
 	-I${top_srcdir} \
-	-DDATADIR=\"$(datadir)\" \
-	-DSRCDIR=\"$(top_srcdir)\" \
+	-DMENUFILE=\"$(sysconfdir)/xdg/menus/xfce-settings-manager.menu\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-settings-manager\" \
 	$(PLATFORM_CPPFLAGS)

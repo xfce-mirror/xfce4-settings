@@ -177,7 +177,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
                                         G_TYPE_STRING);
 
     path = xfce_resource_lookup (XFCE_RESOURCE_CONFIG, "menus/xfce-settings-manager.menu");
-    dialog->menu = garcon_menu_new_for_path (path);
+    dialog->menu = garcon_menu_new_for_path (path != NULL ? path : MENUFILE);
     g_free (path);
 
     gtk_window_set_default_size (GTK_WINDOW (dialog), 640, 500);
