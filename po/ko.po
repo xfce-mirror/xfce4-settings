@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings.xfce-4-8\n"
-"Report-Msgid-Bugs-To: xfce-i18n <xfce-i18n@xfce.org>\n"
-"POT-Creation-Date: 2012-02-20 15:54+0000\n"
-"PO-Revision-Date: 2012-02-26 14:57+0900\n"
-"Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-13 20:51+0000\n"
+"PO-Revision-Date: 2012-04-14 08:01+0900\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,7 @@ msgstr "키 입력이 발생하는데 필요한 밀리세컨드 단위의 시간
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "The amount of time, in milliseconds, that must elapse before a keystroke will be accepted"
-msgstr "키 누름을' 허용하기 위해 반드시 초과해야 할 밀리세컨드 단위의 시간의 양"
+msgstr "키 누름을 허용하기 위해 반드시 초과해야 할 밀리세컨드 단위의 시간의 양"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The maximum pointer speed after acceleration"
@@ -191,7 +191,7 @@ msgstr "pixels/sec"
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
 #: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "설정 관리자 소켓"
 
@@ -199,7 +199,7 @@ msgstr "설정 관리자 소켓"
 #: ../dialogs/appearance-settings/main.c:94
 #: ../dialogs/display-settings/main.c:102
 #: ../dialogs/keyboard-settings/main.c:39
-#: ../dialogs/mouse-settings/main.c:97
+#: ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
@@ -208,7 +208,7 @@ msgstr "SOCKET ID"
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/keyboard-settings/main.c:40
 #: ../dialogs/mime-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:98
+#: ../dialogs/mouse-settings/main.c:80
 #: ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77
 #: ../xfce4-settings-manager/main.c:39
@@ -220,7 +220,7 @@ msgstr "버전 정보"
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76
 #: ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1515
+#: ../dialogs/mouse-settings/main.c:1526
 #: ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173
 #: ../xfce4-settings-manager/main.c:60
@@ -233,7 +233,7 @@ msgstr "사용방법을 보려면 '%s --help'를 입력합니다."
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92
 #: ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1534
+#: ../dialogs/mouse-settings/main.c:1545
 #: ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189
 #: ../xfce4-settings-manager/main.c:76
@@ -245,7 +245,7 @@ msgstr "Xfce 개발 팀. All rights reserved."
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93
 #: ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1535
+#: ../dialogs/mouse-settings/main.c:1546
 #: ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190
 #: ../xfce4-settings-manager/main.c:77
@@ -428,7 +428,7 @@ msgstr "툴바 유형(_T)"
 
 #: ../dialogs/appearance-settings/main.c:733
 #, c-format
-msgid "File is larger then %d MB, installation aborted"
+msgid "File is larger than %d MB, installation aborted"
 msgstr "파일이 %d MB 보다 커서 설치를 중단했습니다"
 
 #: ../dialogs/appearance-settings/main.c:738
@@ -567,7 +567,8 @@ msgstr "외부 출력을 설정하기 위한 최소한의 인터페이스"
 msgid "The previous configuration will be restored in %i seconds if you do not reply to this question."
 msgstr "이 질문에 응답하지 않으면 %i 초 이후 이전 설정으로 복원합니다."
 
-#. Insert the moddisplay-settings/main.c:505
+#. Insert the mode
+#: ../dialogs/display-settings/main.c:505
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
@@ -929,9 +930,9 @@ msgstr "사용자 셋"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:481
 #: ../dialogs/mime-settings/xfce-mime-window.c:604
-#: ../dialogs/mouse-settings/main.c:372
-#: ../dialogs/mouse-settings/main.c:374
-#: ../dialogs/mouse-settings/main.c:434
+#: ../dialogs/mouse-settings/main.c:354
+#: ../dialogs/mouse-settings/main.c:356
+#: ../dialogs/mouse-settings/main.c:416
 msgid "Default"
 msgstr "기본"
 
@@ -939,7 +940,7 @@ msgstr "기본"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] "%d개의 MIME 형식을 찾았습니다	"
+msgstr[0] "%d개의 MIME 형식을 찾았습니다\t"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
@@ -968,22 +969,22 @@ msgstr "기본값으로 초기화"
 msgid "Choose Application..."
 msgstr "프로그램을 선택하십시오..."
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "Active device in the dialog"
 msgstr "대화상자에 활성화 된 장리"
 
-#: ../dialogs/mouse-settings/main.c:96
+#: ../dialogs/mouse-settings/main.c:78
 msgid "DEVICE NAME"
 msgstr "DEVICE NAME"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:142
+#: ../dialogs/mouse-settings/main.c:124
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:152
+#: ../dialogs/mouse-settings/main.c:134
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
@@ -1323,53 +1324,53 @@ msgstr "64비트 정수"
 msgid "Unsigned Int64"
 msgstr "비부호화 64비트 정수"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
 msgid "New Property"
 msgstr "새 속성"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:154
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
 msgid "_Property:"
 msgstr "속성(_P):"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:169
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:173
 msgid "_Type:"
 msgstr "형식(_T):"
 
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:200
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:211
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:223
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:204
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:215
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:227
 msgid "_Value:"
 msgstr "값(_V):"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "속성 이름은 반드시 '/' 문자로 시작해야 합니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "루트 요소 ('/')는 유효한 속성 이름이 아닙니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:408
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
 #, c-format
 msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
 msgstr "속성 이름은 A-Z, a-z, 0-9, '_', '-', '<', '>', 그리고 구분 기호로 사용하는 '/'와 같은 것을 포함한 ASCII 문자만 포함합니다."
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:421
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "속성 이름은 둘 이상의 연속된 '/' 문자를 가질 수 없습니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:435
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "속성 이름은 '/' 문자로 끝날 수 없습니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:648
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
 msgid "Edit Property"
 msgstr "속성 편집"
 
