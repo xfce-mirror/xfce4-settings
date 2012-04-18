@@ -172,7 +172,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     n_mime_types = xfce_mime_window_mime_model (window);
 
     gtk_window_set_title (GTK_WINDOW (window), _("MIME Type Editor"));
-    gtk_window_set_icon_name (GTK_WINDOW (window), "application-default-icon");
+    gtk_window_set_icon_name (GTK_WINDOW (window), "application-x-executable");
     gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_NORMAL);
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (window),
         _("Associate applications with MIME types"));

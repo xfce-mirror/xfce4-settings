@@ -126,7 +126,7 @@ xfce_mime_chooser_init (XfceMimeChooser *chooser)
                                          PANGO_TYPE_ATTR_LIST);
 
     gtk_window_set_title (GTK_WINDOW (chooser), _("Select Application"));
-    gtk_window_set_icon_name (GTK_WINDOW (chooser), "application-default-icon");
+    gtk_window_set_icon_name (GTK_WINDOW (chooser), "application-x-executable");
     gtk_window_set_default_size (GTK_WINDOW (chooser), 400, 350);
     gtk_window_set_modal (GTK_WINDOW (chooser), TRUE);
 
