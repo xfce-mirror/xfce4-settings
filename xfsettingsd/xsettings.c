@@ -725,7 +725,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
     gsize        value_len, value_len_pad;
     const gchar *str = NULL;
     guchar      *needle;
-    CARD16       type = -1;
+    guchar       type = 0;
     gint         num;
 
     name_len = strlen (name) - 1 /* -1 for the xfconf slash */;
@@ -786,7 +786,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
      */
 
     /* setting type */
-    *(CARD16 *)needle++ = type;
+    *needle++ = type;
 
     /* unused */
     *needle++ = 0;
