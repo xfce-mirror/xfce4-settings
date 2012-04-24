@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
-"Report-Msgid-Bugs-To: <xfce-i18n@xfce.org>\n"
-"POT-Creation-Date: 2012-04-20 08:06+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-22 23:21+0000\n"
 "PO-Revision-Date: 2010-11-27 21:48+0800\n"
 "Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n-cn@xfce.org>\n"
@@ -96,13 +96,13 @@ msgstr "粘滞键"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "以毫秒计的两次按键所需的时间量"
+msgstr "以毫秒计的两次按键间所需的时间"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr "以毫秒计的接受按键前必须经过的时间量"
+msgstr "以毫秒计的接受按键前必须经过的时间"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "The maximum pointer speed after acceleration"
@@ -114,7 +114,7 @@ msgstr "到达最大光标速度的缓冲"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "The time, in milliseconds, between repeated motion events"
-msgstr "以毫秒计的重复移动事件的时间"
+msgstr "以毫秒计的重复移动事件间的时间"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid ""
@@ -130,7 +130,7 @@ msgstr "以毫秒计的到达最大速度的时间"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held "
 "for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "为防止意外按键，慢速键需要在按住一个键一段最短时间之后才接受此按键"
+msgstr "为防止意外按键，慢速键的要求是，在按住一个键经过一段最短时间后才接受此按键"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid ""
@@ -156,7 +156,7 @@ msgid ""
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
 msgstr ""
-"选中后，在多个按键通常需要同时按下时，转义键(比如 Ctrl、Alt 和 Shift)不需要一"
+"选中后，通常在多个按键需要同时按下时，转义键(比如 Ctrl、Alt 和 Shift)不需要一"
 "直按住(可以按住它们后再松开)。"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
@@ -269,7 +269,7 @@ msgstr "改善键盘和鼠标的辅助功能"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "反锯齿或平滑字体会改善屏幕上文字的外观"
+msgstr "抗锯齿或平滑字体会改善屏幕上文字的外观"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
@@ -304,7 +304,7 @@ msgstr "默认字体(_T)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "Enable _anti-aliasing"
-msgstr "启用反锯齿(_A)"
+msgstr "启用抗锯齿(_A)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Enable _event sounds"
@@ -471,7 +471,7 @@ msgstr "未知格式，仅支持归档文件和目录"
 #: ../dialogs/appearance-settings/main.c:753
 #, c-format
 msgid "An unknown error, exit code is %d"
-msgstr "位置错误，退出代码 %d"
+msgstr "未知错误，退出代码是 %d"
 
 #: ../dialogs/appearance-settings/main.c:760
 msgid "Failed to install theme"
@@ -495,7 +495,7 @@ msgstr "竖直 BGR"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "<big><b>您想要保存此配置吗？</b></big>"
+msgstr "<big><b>您想要保留此配置吗？</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid "Confirmation"
@@ -503,7 +503,7 @@ msgstr "确认"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Keep this configuration"
-msgstr "保存此配置"
+msgstr "保留此配置"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Restore the previous configuration"
@@ -535,7 +535,7 @@ msgstr "反光率(_L)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
-msgstr "刷新频率(_R)："
+msgstr "刷新率(_R)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Ro_tation:"
@@ -636,7 +636,7 @@ msgstr "未能启动非自由驱动设置"
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "此系统正在使用 RandR %d.%d。要显示设置能工作至少需要 1.2 版"
+msgstr "此系统正在使用 RandR %d.%d。若要使用显示设置，至少需要 1.2 版"
 
 #: ../dialogs/display-settings/xfce-randr.c:536
 msgid "Laptop"
@@ -735,7 +735,7 @@ msgstr "光标"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 msgid "Define _shortcuts for launching applications:"
-msgstr "定义启动应用程序的快捷键(_S)"
+msgstr "定义启动应用程序的快捷键(_S)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
@@ -774,7 +774,7 @@ msgstr "重置为默认(_D)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Restore num l_ock state on startup"
-msgstr "在启动时恢复数字锁定键状态(_O)"
+msgstr "启动时恢复数字键状态(_O)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Select keyboard layout and variant"
@@ -867,7 +867,7 @@ msgstr "变体"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
 msgid "Shortcut command may not be empty."
-msgstr "快捷键命令不能为空"
+msgstr "快捷键命令不能为空。"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
@@ -882,7 +882,7 @@ msgstr "这会把所有快捷键重置为它们的默认值，您真的要这样
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
-msgstr "在您下次登录时将恢复系统默认"
+msgstr "在您下次登录时将恢复系统默认。"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
 msgid "Warning"
@@ -900,7 +900,7 @@ msgstr "使用自定义命令(_U)："
 msgid ""
 "Use a custom command for an application that is not available from the above "
 "application list."
-msgstr "为以上应用程序列表中没有的应用程序使用自定义命令。"
+msgstr "为以上应用程序列表中没有列出的应用程序使用自定义命令。"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
@@ -940,7 +940,7 @@ msgstr "MIME 类型编辑器"
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Associate applications with MIME types"
-msgstr "绑定应用程序与 MIME 类型"
+msgstr "应用程序与 MIME 类型绑定"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:203
 msgid "_Filter:"
@@ -1000,7 +1000,7 @@ msgstr "问题"
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr "此会移除您的自定义 mime 绑定并恢复系统范围的默认值。"
+msgstr "这样会移除您的自定义 mime 绑定并恢复系统范围的默认。"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
@@ -1133,7 +1133,7 @@ msgstr "滚动"
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
-msgstr "将选中的设备的加速和灵敏度设置为默认值"
+msgstr "将选中设备的加速和灵敏度设置为默认值"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Size"
@@ -1201,7 +1201,7 @@ msgstr "两指滚动(_F)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr "选中后，鼠标滚轮反向工作"
+msgstr "选中后，鼠标滚轮将反向工作"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid ""
@@ -1507,7 +1507,7 @@ msgstr "设置"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:368
 msgid "Customize your desktop"
-msgstr "自定义桌面"
+msgstr "自定义您的桌面"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:858
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:869
