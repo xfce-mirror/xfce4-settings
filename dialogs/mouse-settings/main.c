@@ -803,6 +803,11 @@ mouse_settings_synaptics_hscroll_sensitive (GtkBuilder *builder)
         && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)))
         sensitive = TRUE;
 
+    object = gtk_builder_get_object (builder, "synaptics-scroll-circ");
+    if (gtk_widget_get_sensitive (GTK_WIDGET (object))
+        && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)))
+        sensitive = TRUE;
+
     object = gtk_builder_get_object (builder, "synaptics-scroll-horiz");
     gtk_widget_set_sensitive (GTK_WIDGET (object), sensitive);
 }
@@ -817,6 +822,8 @@ mouse_settings_synaptics_set_scrolling (GtkWidget  *widget,
 {
     gint      edge_scroll[3] = { 0, 0, 0 };
     gint      two_scroll[2] = { 0, 0 };
+    gint      circ_scroll = 0;
+    gint      circ_trigger = 0;
     GObject  *object;
     gboolean  horizontal = FALSE;
     gchar    *name = NULL, *prop;
@@ -851,6 +858,18 @@ mouse_settings_synaptics_set_scrolling (GtkWidget  *widget,
         two_scroll[1] = horizontal;
     }
 
+    object = gtk_builder_get_object (builder, "synaptics-scroll-circ");
+    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object))
+        && gtk_widget_get_sensitive (GTK_WIDGET (object)))
+    {
+        circ_scroll = TRUE;
+        if (horizontal)
+        {
+            circ_trigger = 3;
+            edge_scroll[1] = TRUE;
+        }
+    }
+
     if (mouse_settings_device_get_selected (builder, NULL, &name))
     {
         /* 3 values: vertical, horizontal, corner. */
@@ -868,6 +887,16 @@ mouse_settings_synaptics_set_scrolling (GtkWidget  *widget,
                                   G_TYPE_INT, &two_scroll[0],
                                   G_TYPE_INT, &two_scroll[1],
                                   G_TYPE_INVALID);
+        g_free (prop);
+
+        /* 1 value: circular. */
+        prop = g_strconcat ("/", name, "/Properties/Synaptics_Circular_Scrolling", NULL);
+        xfconf_channel_set_int (pointers_channel, prop, circ_scroll);
+        g_free (prop);
+
+        /* 1 value: location. */
+        prop = g_strconcat ("/", name, "/Properties/Synaptics_Circular_Scrolling_Trigger", NULL);
+        xfconf_channel_set_int (pointers_channel, prop, circ_trigger);
         g_free (prop);
     }
 
@@ -934,6 +963,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     Atom               synaptics_tap_prop;
     Atom               synaptics_edge_scroll_prop;
     Atom               synaptics_two_scroll_prop;
+    Atom               synaptics_circ_scroll_prop;
     Atom               device_enabled_prop;
     Atom               wacom_rotation_prop;
     gint               is_enabled = -1;
@@ -942,6 +972,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gint               synaptics_edge_hscroll = -1;
     gint               synaptics_two_scroll = -1;
     gint               synaptics_two_hscroll = -1;
+    gint               synaptics_circ_scroll = -1;
     gint               wacom_rotation = -1;
     Atom              *props;
     gint               nprops;
@@ -1047,6 +1078,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         synaptics_tap_prop = XInternAtom (xdisplay, "Synaptics Tap Action", True);
         synaptics_edge_scroll_prop = XInternAtom (xdisplay, "Synaptics Edge Scrolling", True);
         synaptics_two_scroll_prop = XInternAtom (xdisplay, "Synaptics Two-Finger Scrolling", True);
+        synaptics_circ_scroll_prop = XInternAtom (xdisplay, "Synaptics Circular Scrolling", True);
         wacom_rotation_prop = XInternAtom (xdisplay, "Wacom Rotation", True);
 
         /* check if this is a synaptics or wacom device */
@@ -1068,6 +1100,8 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                     synaptics_edge_scroll = mouse_settings_device_get_int_property (device, props[i], 0, &synaptics_edge_hscroll);
                 else if (props[i] == synaptics_two_scroll_prop)
                     synaptics_two_scroll = mouse_settings_device_get_int_property (device, props[i], 0, &synaptics_two_hscroll);
+                else if (props[i] == synaptics_circ_scroll_prop)
+                    synaptics_circ_scroll = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
                 else if (props[i] == wacom_rotation_prop)
                     wacom_rotation = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
             }
@@ -1121,7 +1155,8 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), synaptics_tap_to_click > 0);
 
         object = gtk_builder_get_object (builder, "synaptics-scroll-no");
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), synaptics_edge_scroll == -1 && synaptics_two_scroll == -1);
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object),
+                                      synaptics_edge_scroll == -1 && synaptics_two_scroll == -1 && synaptics_circ_scroll == -1);
 
         object = gtk_builder_get_object (builder, "synaptics-scroll-edge");
         gtk_widget_set_sensitive (GTK_WIDGET (object), synaptics_edge_scroll != -1);
@@ -1130,6 +1165,10 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         object = gtk_builder_get_object (builder, "synaptics-scroll-two");
         gtk_widget_set_sensitive (GTK_WIDGET (object), synaptics_two_scroll != -1);
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), synaptics_two_scroll > 0);
+
+        object = gtk_builder_get_object (builder, "synaptics-scroll-circ");
+        gtk_widget_set_sensitive (GTK_WIDGET (object), synaptics_circ_scroll != -1);
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), synaptics_circ_scroll > 0);
 
         object = gtk_builder_get_object (builder, "synaptics-scroll-horiz");
         mouse_settings_synaptics_hscroll_sensitive (builder);
@@ -1510,7 +1549,8 @@ main (gint argc, gchar **argv)
     gchar             *syndaemon;
     guint              i;
     const gchar       *synaptics_scroll[] = { "synaptics-scroll-no", "synaptics-scroll-edge",
-                                              "synaptics-scroll-two", "synaptics-scroll-horiz" };
+                                              "synaptics-scroll-two", "synaptics-scroll-circ",
+                                              "synaptics-scroll-horiz" };
 #endif
 
     /* setup translation domain */

@@ -567,6 +567,23 @@
                                             <property name="position">2</property>
                                           </packing>
                                         </child>
+                                        <child>
+                                          <object class="GtkRadioButton" id="synaptics-scroll-circ">
+                                            <property name="label" translatable="yes">C_ircular scrolling</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">False</property>
+                                            <property name="use_action_appearance">False</property>
+                                            <property name="use_underline">True</property>
+                                            <property name="draw_indicator">True</property>
+                                            <property name="group">synaptics-scroll-no</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">True</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
                                       </object>
                                       <packing>
                                         <property name="expand">True</property>
