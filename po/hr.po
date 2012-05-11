@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-16 12:06+0000\n"
+"POT-Creation-Date: 2012-05-11 18:30+0000\n"
 "PO-Revision-Date: 2010-06-05 17:46+0200\n"
 "Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
 "Language-Team: Croatian <>\n"
@@ -58,7 +58,9 @@ msgstr ""
 msgid ""
 "If enabled, the session manager will start the required applications for "
 "screen readers and magnifiers"
-msgstr "Ako je omogučeno, upravitelj sesije će pokrenuti potrebne aplikacije za čitaće zaslona i povečalo"
+msgstr ""
+"Ako je omogučeno, upravitelj sesije će pokrenuti potrebne aplikacije za "
+"čitaće zaslona i povečalo"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "K_eystroke delay:"
@@ -233,7 +235,7 @@ msgstr "Inforemacija o verziji"
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/mouse-settings/main.c:1597 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -243,7 +245,7 @@ msgstr "Upiši '%s --help' za upotrebu"
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/mouse-settings/main.c:1616 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce razvojni tim.Sva prava pridržana."
@@ -252,7 +254,7 @@ msgstr "Xfce razvojni tim.Sva prava pridržana."
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/mouse-settings/main.c:1617 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -750,7 +752,7 @@ msgid "Edit keyboard settings and application shortcuts"
 msgstr "Uredi postavke tipkovnice i prečace programa"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "General"
 msgstr "Općenito"
 
@@ -1053,203 +1055,211 @@ msgid "Buttons"
 msgstr "Dugmad"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Circular scrolling"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Clockwise"
 msgstr "U smjeru kazaljke na satu"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Counterclockwise"
 msgstr "Obrnuto od smjera kazaljke na satu"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Cursor _size:"
 msgstr "Veličina _pokazivača:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "D_istance:"
 msgstr "U_daljenost"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "De_vice:"
 msgstr "Ur_eđaj:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-msgid "Di_sabled"
-msgstr "On_emogućeno"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Disable to_uchpad while typing"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+msgid "Disabled"
+msgstr "Onemogućeno"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Double Click"
 msgstr "Dvoklik"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Drag and Drop"
 msgstr "Povuci i ispusti"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-msgid "Edge scro_lling"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "Edge scrolling"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Enable hori_zontal scrolling"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Half (left-handed)"
 msgstr "Polovica (ljevak)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Mouse (relative)"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse and Touchpad"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "None (right-handed)"
 msgstr "Nijedan (dešnjak)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Pen (absolute)"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Pointer Speed"
 msgstr "Bzina pokazivača"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Preview"
 msgstr "Pregled"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Reset to De_faults"
 msgstr "Vrati na za_dano"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "Reverse scroll d_irection"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+msgid "Scro_lling mode:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Scrolling"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Size"
 msgstr "Veličina"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "T_ap touchpad to click"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "T_heme"
 msgstr "T_ema"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "T_ouchpad"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Table_t"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Th_reshold:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid ""
 "The number of pixels the pointer must move before a drag operation will start"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Ti_me:"
 msgstr "Vr_ijeme:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Tr_acking mode:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
-msgid "Two-_finger scrolling"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+msgid "Two-finger scrolling"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "_Acceleration:"
 msgstr "_Ubrzanje"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "_Behavior"
 msgstr "_Ponašanje"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "_Devices"
 msgstr "_Uređaji"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "_Enable this device"
 msgstr "_Omogućite ovaj uređaj"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "_Left-handed"
 msgstr "_Ljevoruki"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "_Right-handed"
 msgstr "_Desnoruki"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "_Rotation:"
 msgstr "_Rotacija:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "_Sensitivity:"
 msgstr "_Osjetljivost:"
 
