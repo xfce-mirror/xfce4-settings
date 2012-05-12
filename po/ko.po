@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings.xfce-4-8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-13 20:51+0000\n"
-"PO-Revision-Date: 2012-04-14 08:01+0900\n"
+"POT-Creation-Date: 2012-05-12 05:12+0000\n"
+"PO-Revision-Date: 2012-05-12 16:19+0900\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
 "Language: ko\n"
@@ -220,7 +220,7 @@ msgstr "버전 정보"
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76
 #: ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1526
+#: ../dialogs/mouse-settings/main.c:1597
 #: ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173
 #: ../xfce4-settings-manager/main.c:60
@@ -233,7 +233,7 @@ msgstr "사용방법을 보려면 '%s --help'를 입력합니다."
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92
 #: ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1545
+#: ../dialogs/mouse-settings/main.c:1616
 #: ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189
 #: ../xfce4-settings-manager/main.c:76
@@ -245,7 +245,7 @@ msgstr "Xfce 개발 팀. All rights reserved."
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93
 #: ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1546
+#: ../dialogs/mouse-settings/main.c:1617
 #: ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190
 #: ../xfce4-settings-manager/main.c:77
@@ -711,7 +711,7 @@ msgid "Edit keyboard settings and application shortcuts"
 msgstr "키보드 설정과 프로그램 바로 가기를 편집합니다"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "General"
 msgstr "일반"
 
@@ -998,192 +998,200 @@ msgid "Buttons"
 msgstr "단추"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Circular scrolling"
+msgstr "순환 스크롤"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Clockwise"
 msgstr "시계방향"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
 msgstr "포인터 장치 동작과 표시 설정"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Counterclockwise"
 msgstr "시계 반대방향"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Cursor _size:"
 msgstr "커서 크기(_S):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "D_istance:"
 msgstr "거리(_I):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "De_vice:"
 msgstr "장치(_V):"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-msgid "Di_sabled"
-msgstr "비활성화(_S)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Disable to_uchpad while typing"
 msgstr "입력하는 동안 터치패드 비활성화(_U)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+msgid "Disabled"
+msgstr "비활성화"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Double Click"
 msgstr "두번 누르기"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Drag and Drop"
 msgstr "끌어 놓기"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-msgid "Edge scro_lling"
-msgstr "모서리 스크롤(_L)"
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "Edge scrolling"
+msgstr "가장자리 스크롤"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Enable hori_zontal scrolling"
 msgstr "수평 스크롤 활성화(_Z)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Half (left-handed)"
 msgstr "절반 (왼손잡이)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Mouse (relative)"
 msgstr "마우스 (상대적)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse and Touchpad"
 msgstr "마우스와 터치패드"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "None (right-handed)"
 msgstr "없음 (오른손잡이)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Pen (absolute)"
 msgstr "펜 (절대적)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Pointer Speed"
 msgstr "포인터 속도"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Preview"
 msgstr "미리보기"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Reset to De_faults"
 msgstr "기본값으로 초기화(_F)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "Reverse scroll d_irection"
 msgstr "스크롤 방향 뒤집기(_I)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+msgid "Scro_lling mode:"
+msgstr "스크롤 모드(_L):"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Scrolling"
 msgstr "스크롤"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Set the acceleration and sensitivity for the selected device to the default values"
 msgstr "선택한 장치에 대해 가속값과 민감도를 기본값으로 설정합니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Size"
 msgstr "크기"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "T_ap touchpad to click"
 msgstr "누르기 위해 터치패드를 가볍게 두드림(_A)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "T_heme"
 msgstr "테마(_H)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "T_ouchpad"
 msgstr "터치패드(_O)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Table_t"
 msgstr "태블릿(_T)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Th_reshold:"
 msgstr "임계값(_R):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "마우스가 움직였을 때 포인터의 이동속도를 증가할 계수입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "The mouse pointer cannot move farther than this distance between two clicks for them to be considered a double click"
 msgstr "두번 누르기로 간주하기 위해 두번 누르는 동안 마우스 포인터는 이 거리보다 더 멀리 움직일 수 없습니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "The number of pixels the pointer must move before a drag operation will start"
 msgstr "끌기 동작을 시작하기 전 포인터가 반드시 움직여야 할 픽셀의 수 입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "The number of pixels the pointer must move in a short time before it starts accelerating"
 msgstr "가속을 시작하기 전 짧은 시간동안 포인터가 반드시 움직여야 할 픽셀의 수 입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Ti_me:"
 msgstr "시간(_M):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Tr_acking mode:"
 msgstr "트래킹 모드(_A):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click"
 msgstr "이 시간 (밀리초) 동안 마우스 단추를 두번 누르면 두번 누른 것으로 간주할 것입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
-msgid "Two-_finger scrolling"
-msgstr "두 손가락 스크롤(_F)"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+msgid "Two-finger scrolling"
+msgstr "두 손가락 스크롤"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "이 것을 선택했을 때, 스크롤 휠은 반대로 동작할 것입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "이 것을 선택했을 때, 키보드가 사용중일 때 터치패드는 비활성화 될 것입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "_Acceleration:"
 msgstr "가속(_A):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "_Behavior"
 msgstr "동작(_B)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "_Devices"
 msgstr "장치(_D)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "_Enable this device"
 msgstr "이 장치 활성화(_E)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "_Left-handed"
 msgstr "왼손잡이(_L)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "_Right-handed"
 msgstr "오른손잡이(_R)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "_Rotation:"
 msgstr "회전(_R):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "_Sensitivity:"
 msgstr "민감도(_S):"
 
