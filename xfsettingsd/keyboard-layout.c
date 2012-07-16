@@ -48,10 +48,14 @@ static void xfce_keyboard_layout_helper_process_xmodmap           (void);
 static void xfce_keyboard_layout_helper_set_model                 (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_layout                (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_variant               (XfceKeyboardLayoutHelper      *helper);
+static void xfce_keyboard_layout_helper_set_grpkey                (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_channel_property_changed  (XfconfChannel                 *channel,
                                                                    const gchar                   *property_name,
                                                                    const GValue                  *value,
                                                                    XfceKeyboardLayoutHelper      *helper);
+static gchar* xfce_keyboard_layout_get_option                     (gchar                        **options,
+                                                                   gchar                         *option_name,
+                                                                   gchar                        **other_options);
 
 struct _XfceKeyboardLayoutHelperClass
 {
@@ -106,6 +110,7 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     xfce_keyboard_layout_helper_set_model (helper);
     xfce_keyboard_layout_helper_set_layout (helper);
     xfce_keyboard_layout_helper_set_variant (helper);
+    xfce_keyboard_layout_helper_set_grpkey (helper);
 
     xfce_keyboard_layout_helper_process_xmodmap ();
 }
@@ -202,6 +207,96 @@ xfce_keyboard_layout_helper_set_variant (XfceKeyboardLayoutHelper *helper)
 #endif /* HAVE_LIBXKLAVIER */
 }
 
+/**
+ * @options - Xkl config options (array of strings terminated in NULL)
+ * @option_name the name of the xkb option to look for (e.g., "grp:")
+ * @_other_options if not NULL, will be set to the input option string
+ *                 excluding @option_name. Needs to be freed with g_free().
+ * @return the string in @options array corresponding to @option_name,
+ *         or NULL if not found
+ */
+static gchar*
+xfce_keyboard_layout_get_option(gchar **options,
+                                gchar *option_name,
+                                gchar **_other_options)
+{
+    gchar **iter;
+    gchar  *option_value  = NULL;
+    gchar  *other_options = NULL;
+
+    for (iter = options; iter && *iter; iter++)
+    {
+        if (g_str_has_prefix(*iter, option_name))
+        {
+            option_value = *iter;
+        }
+        else if (_other_options)
+        {
+            gchar *tmp = other_options;
+            if (other_options)
+            {
+                other_options = g_strconcat(other_options, ",", *iter, NULL);
+            }
+            else
+            {
+                other_options = g_strdup(*iter);
+            }
+            g_free(tmp);
+        }
+    }
+
+    *_other_options = other_options;
+    return option_value;
+}
+
+static void
+xfce_keyboard_layout_helper_set_grpkey (XfceKeyboardLayoutHelper *helper)
+{
+#ifdef HAVE_LIBXKLAVIER
+    if (!helper->xkb_disable_settings)
+    {
+        gchar *grpkey;
+        gchar *xkl_grpkey;
+        gchar *other_options;
+
+        xkl_grpkey = xfce_keyboard_layout_get_option (helper->config->options,
+                                                      "grp:", &other_options);
+
+        grpkey = xfconf_channel_get_string (helper->channel, "/Default/XkbOptions/Group",
+                                            xkl_grpkey);
+        if (g_strcmp0 (grpkey, xkl_grpkey) != 0)
+        {
+            gchar *options_string;
+            if (other_options == NULL)
+            {
+                options_string = g_strdup (grpkey);
+            }
+            else
+            {
+                if (strlen(grpkey) != 0)
+                {
+                    options_string = g_strconcat (grpkey, ",", other_options, NULL);
+                }
+                else
+                {
+                    options_string = strdup(other_options);
+                }
+            }
+
+            g_strfreev (helper->config->options);
+            helper->config->options = g_strsplit(options_string, ",", 0);
+            xkl_config_rec_activate (helper->config, helper->engine);
+
+            xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set grpkey to \"%s\"", grpkey);
+            g_free(options_string);
+        }
+
+        g_free (other_options);
+        g_free (grpkey);
+    }
+#endif /* HAVE_LIBXKLAVIER */
+}
+
 static void
 xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channel,
                                                const gchar               *property_name,
@@ -217,6 +312,7 @@ xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channe
         xfce_keyboard_layout_helper_set_model (helper);
         xfce_keyboard_layout_helper_set_layout (helper);
         xfce_keyboard_layout_helper_set_variant (helper);
+        xfce_keyboard_layout_helper_set_grpkey (helper);
     }
     else if (strcmp (property_name, "/Default/XkbModel") == 0)
     {
@@ -229,6 +325,10 @@ xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channe
     else if (strcmp (property_name, "/Default/XkbVariant") == 0)
     {
         xfce_keyboard_layout_helper_set_variant (helper);
+    }
+    else if (strcmp (property_name, "/Default/XkbOptions/Group") == 0)
+    {
+        xfce_keyboard_layout_helper_set_grpkey (helper);
     }
 
     xfce_keyboard_layout_helper_process_xmodmap ();
