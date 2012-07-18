@@ -56,6 +56,11 @@ static void xfce_keyboard_layout_helper_channel_property_changed  (XfconfChannel
 static gchar* xfce_keyboard_layout_get_option                     (gchar                        **options,
                                                                    gchar                         *option_name,
                                                                    gchar                        **other_options);
+static GdkFilterReturn handle_xevent                              (GdkXEvent                     *xev,
+                                                                   GdkEvent                      *event,
+                                                                   XfceKeyboardLayoutHelper      *helper);
+static void xfce_keyboard_layout_reset_xkl_config                 (XklEngine                     *xklengine,
+                                                                   XfceKeyboardLayoutHelper      *helper);
 
 struct _XfceKeyboardLayoutHelperClass
 {
@@ -103,6 +108,11 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     helper->engine = xkl_engine_get_instance (GDK_DISPLAY ());
     helper->config = xkl_config_rec_new ();
     xkl_config_rec_get_from_server (helper->config, helper->engine);
+
+    gdk_window_add_filter (NULL, (GdkFilterFunc) handle_xevent, helper);
+    g_signal_connect (helper->engine, "X-new-device",
+                      G_CALLBACK (xfce_keyboard_layout_reset_xkl_config), helper);
+    xkl_engine_start_listen (helper->engine, XKLL_TRACK_KEYBOARD_STATE);
 #endif /* HAVE_LIBXKLAVIER */
 
     /* load settings */
@@ -332,4 +342,33 @@ xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channe
     }
 
     xfce_keyboard_layout_helper_process_xmodmap ();
+}
+
+static GdkFilterReturn
+handle_xevent (GdkXEvent * xev, GdkEvent * event, XfceKeyboardLayoutHelper *helper)
+{
+#ifdef HAVE_LIBXKLAVIER
+    XEvent *xevent = (XEvent *) xev;
+    xkl_engine_filter_events (helper->engine, xevent);
+#endif /* HAVE_LIBXKLAVIER */
+
+    return GDK_FILTER_CONTINUE;
+}
+
+static void
+xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
+                                       XfceKeyboardLayoutHelper *helper)
+{
+    if (!helper->xkb_disable_settings)
+    {
+        xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT,
+                        "New keyboard detected; restoring XKB settings.");
+
+        xfce_keyboard_layout_helper_set_model (helper);
+        xfce_keyboard_layout_helper_set_layout (helper);
+        xfce_keyboard_layout_helper_set_variant (helper);
+        xfce_keyboard_layout_helper_set_grpkey (helper);
+
+        xfce_keyboard_layout_helper_process_xmodmap ();
+    }
 }
