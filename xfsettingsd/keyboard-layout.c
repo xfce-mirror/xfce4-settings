@@ -151,6 +151,8 @@ xfce_keyboard_layout_helper_process_xmodmap (void)
             g_error_free (error);
         }
     }
+
+    g_free ((gchar*) xmodmap_path);
 }
 
 static void
