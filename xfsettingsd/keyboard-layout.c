@@ -44,6 +44,7 @@
 #include "debug.h"
 #include "keyboard-layout.h"
 
+static void xfce_keyboard_layout_helper_finalize                  (GObject                       *object);
 static void xfce_keyboard_layout_helper_process_xmodmap           (void);
 static void xfce_keyboard_layout_helper_set_model                 (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_layout                (XfceKeyboardLayoutHelper      *helper);
@@ -89,7 +90,10 @@ G_DEFINE_TYPE (XfceKeyboardLayoutHelper, xfce_keyboard_layout_helper, G_TYPE_OBJ
 static void
 xfce_keyboard_layout_helper_class_init (XfceKeyboardLayoutHelperClass *klass)
 {
+    GObjectClass *gobject_class;
 
+    gobject_class = G_OBJECT_CLASS (klass);
+    gobject_class->finalize = xfce_keyboard_layout_helper_finalize;
 }
 
 static void
@@ -125,6 +129,20 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     xfce_keyboard_layout_helper_process_xmodmap ();
 }
 
+static void
+xfce_keyboard_layout_helper_finalize (GObject *object)
+{
+    XfceKeyboardLayoutHelper *helper = XFCE_KEYBOARD_LAYOUT_HELPER (object);
+
+#ifdef HAVE_LIBXKLAVIER
+    xkl_engine_stop_listen (helper->engine, XKLL_TRACK_KEYBOARD_STATE);
+    gdk_window_remove_filter (NULL, (GdkFilterFunc) handle_xevent, helper);
+    g_object_unref (helper->config);
+    g_object_unref (helper->engine);
+#endif /* HAVE_LIBXKLAVIER */
+
+    G_OBJECT_CLASS (xfce_keyboard_layout_helper_parent_class)->finalize (object);
+}
 
 
 static void
@@ -228,9 +246,9 @@ xfce_keyboard_layout_helper_set_variant (XfceKeyboardLayoutHelper *helper)
  *         or NULL if not found
  */
 static gchar*
-xfce_keyboard_layout_get_option(gchar **options,
-                                gchar *option_name,
-                                gchar **_other_options)
+xfce_keyboard_layout_get_option (gchar **options,
+                                 gchar *option_name,
+                                 gchar **_other_options)
 {
     gchar **iter;
     gchar  *option_value  = NULL;
