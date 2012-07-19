@@ -182,11 +182,18 @@ xfce_keyboard_layout_helper_set_model (XfceKeyboardLayoutHelper *helper)
     if (!helper->xkb_disable_settings)
     {
         xkbmodel = xfconf_channel_get_string (helper->channel, "/Default/XkbModel", helper->config->model);
-        g_free (helper->config->model);
-        helper->config->model = xkbmodel;
-        xkl_config_rec_activate (helper->config, helper->engine);
+        if (g_strcmp0 (helper->config->model, xkbmodel) != 0)
+        {
+            g_free (helper->config->model);
+            helper->config->model = xkbmodel;
+            xkl_config_rec_activate (helper->config, helper->engine);
 
-        xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set model to \"%s\"", xkbmodel);
+            xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set model to \"%s\"", xkbmodel);
+        }
+        else
+        {
+            g_free (xkbmodel);
+        }
     }
 #endif /* HAVE_LIBXKLAVIER */
 }
@@ -202,13 +209,17 @@ xfce_keyboard_layout_helper_set_layout (XfceKeyboardLayoutHelper *helper)
     {
         default_layouts  = g_strjoinv(",", helper->config->layouts);
         val_layout  = xfconf_channel_get_string (helper->channel, "/Default/XkbLayout",  default_layouts);
-        layouts = g_strsplit_set (val_layout, ",", 0);
-        g_strfreev(helper->config->layouts);
-        helper->config->layouts = layouts;
-        xkl_config_rec_activate (helper->config, helper->engine);
-        g_free (default_layouts);
+        if (g_strcmp0 (default_layouts, val_layout) != 0)
+        {
+            layouts = g_strsplit_set (val_layout, ",", 0);
+            g_strfreev(helper->config->layouts);
+            helper->config->layouts = layouts;
+            xkl_config_rec_activate (helper->config, helper->engine);
 
-        xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set layouts to \"%s\"", val_layout);
+            xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set layouts to \"%s\"", val_layout);
+        }
+
+        g_free (default_layouts);
         g_free (val_layout);
     }
 #endif /* HAVE_LIBXKLAVIER */
@@ -225,13 +236,18 @@ xfce_keyboard_layout_helper_set_variant (XfceKeyboardLayoutHelper *helper)
     {
         default_variants  = g_strjoinv(",", helper->config->variants);
         val_variant  = xfconf_channel_get_string (helper->channel, "/Default/XkbVariant",  default_variants);
-        variants = g_strsplit_set (val_variant, ",", 0);
-        g_strfreev(helper->config->variants);
-        helper->config->variants = variants;
-        xkl_config_rec_activate (helper->config, helper->engine);
-        g_free (default_variants);
 
-        xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set variant to \"%s\"", val_variant);
+        if (g_strcmp0 (default_variants, val_variant) != 0)
+        {
+            variants = g_strsplit_set (val_variant, ",", 0);
+            g_strfreev(helper->config->variants);
+            helper->config->variants = variants;
+            xkl_config_rec_activate (helper->config, helper->engine);
+
+            xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set variant to \"%s\"", val_variant);
+        }
+
+        g_free (default_variants);
         g_free (val_variant);
     }
 #endif /* HAVE_LIBXKLAVIER */
@@ -383,6 +399,11 @@ xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
     {
         xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT,
                         "New keyboard detected; restoring XKB settings.");
+
+#ifdef HAVE_LIBXKLAVIER
+        xkl_config_rec_reset (helper->config);
+        xkl_config_rec_get_from_server (helper->config, helper->engine);
+#endif /* HAVE_LIBXKLAVIER */
 
         xfce_keyboard_layout_helper_set_model (helper);
         xfce_keyboard_layout_helper_set_layout (helper);
