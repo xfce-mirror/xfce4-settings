@@ -1677,7 +1677,7 @@ xfce_keyboard_settings_layout_activate_cb (GtkTreeView       *tree_view,
                                            GtkTreeViewColumn *column,
                                            GtkDialog         *dialog)
 {
-  gtk_dialog_response (dialog, 1);
+  gtk_dialog_response (dialog, GTK_RESPONSE_OK);
 }
 
 
@@ -1719,6 +1719,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
       xkl_config_registry_foreach_layout (settings->priv->xkl_registry,
           (ConfigItemProcessFunc) xfce_keyboard_settings_add_layout_to_list, settings);
       g_signal_connect (GTK_TREE_VIEW (layout_selection_view), "row-activated", G_CALLBACK (xfce_keyboard_settings_layout_activate_cb), keyboard_layout_selection_dialog);
+      gtk_dialog_set_default_response (GTK_DIALOG (keyboard_layout_selection_dialog), GTK_RESPONSE_OK);
     }
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (layout_selection_view));
@@ -1831,7 +1832,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
   val_layout = NULL;
   gtk_widget_show (GTK_WIDGET (keyboard_layout_selection_dialog));
   result = gtk_dialog_run (GTK_DIALOG (keyboard_layout_selection_dialog));
-  if (result)
+  if (result == GTK_RESPONSE_OK)
     {
       gtk_tree_selection_get_selected (selection, &model, &iter);
       gtk_tree_model_get (model, &iter, XKB_AVAIL_LAYOUTS_TREE_ID, &layout,
