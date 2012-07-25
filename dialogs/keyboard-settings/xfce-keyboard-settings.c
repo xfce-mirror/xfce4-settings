@@ -468,13 +468,16 @@ xfce_keyboard_settings_finalize (GObject *object)
   XfceKeyboardSettings *settings = XFCE_KEYBOARD_SETTINGS (object);
 
 #ifdef HAVE_LIBXKLAVIER
-  xkl_config_rec_reset (settings->priv->xkl_rec_config);
   /* Stop xklavier engine */
 #ifdef HAVE_LIBXKLAVIER5
   xkl_engine_stop_listen (settings->priv->xkl_engine, XKLL_TRACK_KEYBOARD_STATE);
 #else
   xkl_engine_stop_listen (settings->priv->xkl_engine);
 #endif /* HAVE_LIBXKLAVIER5 */
+
+  g_object_unref (settings->priv->xkl_rec_config);
+  g_object_unref (settings->priv->xkl_registry);
+  g_object_unref (settings->priv->xkl_engine);
 #endif /* HAVE_LIBXKLAVIER */
 
   g_object_unref (G_OBJECT (settings->priv->provider));
@@ -1172,6 +1175,11 @@ xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
           g_free (variants);
           variants = tmp;
         }
+      else
+        {
+          g_free (val_layout);
+          g_free (val_variant);
+        }
     }
 
   xfconf_channel_set_string (settings->priv->keyboard_layout_channel,
@@ -1265,6 +1273,8 @@ xfce_keyboard_settings_init_layout (XfceKeyboardSettings *settings)
   g_strfreev (variants);
   g_free (default_layouts);
   g_free (default_variants);
+  g_free (val_layout);
+  g_free (val_variant);
 }
 
 
@@ -1498,6 +1508,8 @@ xfce_keyboard_settings_edit_layout_button_cb (GtkWidget            *widget,
       g_strfreev (strings);
     }
   g_free (layout);
+  g_free (current_layout);
+  g_free (current_variant);
 }
 
 
@@ -1732,12 +1744,11 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
 
       if (gtk_tree_model_get_iter_first (model, &iter))
         {
+          gchar *tmp_layout;
           found = FALSE;
 
           do
             {
-              gchar *tmp_layout;
-
               gtk_tree_model_get (model, &iter, XKB_AVAIL_LAYOUTS_TREE_ID, &tmp_layout, -1);
               path = gtk_tree_model_get_path (model, &iter);
 
@@ -1797,9 +1808,14 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
               }
 
               gtk_tree_path_free (path);
+              path = NULL;
               g_free (tmp_layout);
+              tmp_layout = NULL;
             }
           while (gtk_tree_model_iter_next (model, &iter));
+          g_free (tmp_layout);
+          if (path)
+            gtk_tree_path_free (path);
 
           if (!found)
             {
@@ -1812,6 +1828,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
                   gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (layout_selection_view),
                                                 path, NULL,
                                                 TRUE, 0.5, 0);
+                  gtk_tree_path_free (path);
                 }
             }
         }
@@ -1826,6 +1843,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
           gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (layout_selection_view),
                                         path, NULL,
                                         TRUE, 0.5, 0);
+          gtk_tree_path_free (path);
         }
     }
 
@@ -1859,6 +1877,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
       g_free (variant);
       g_free (layout_desc);
       g_free (variant_desc);
+      gtk_tree_path_free (path);
     }
 
   gtk_widget_hide (GTK_WIDGET (keyboard_layout_selection_dialog));
