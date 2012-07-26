@@ -381,6 +381,12 @@ xfce_keyboard_settings_constructed (GObject *object)
   /* Keyboard model combo */
   list_store = gtk_list_store_new (XKB_MODEL_COMBO_NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), 0, GTK_SORT_ASCENDING);
+
+  gtk_list_store_append (list_store, &iter);
+  gtk_list_store_set (list_store, &iter,
+                      XKB_MODEL_COMBO_DESCRIPTION, "-",
+                      XKB_MODEL_COMBO_MODELS, "", -1);
+
   xkl_config_registry_foreach_model (settings->priv->xkl_registry,
                                      xfce_keyboard_settings_add_model_to_combo,
                                      list_store);
@@ -1315,6 +1321,12 @@ xfce_keyboard_settings_init_model (XfceKeyboardSettings *settings)
 
   xkbmodel = xfconf_channel_get_string (settings->priv->keyboard_layout_channel, "/Default/XkbModel", settings->priv->xkl_rec_config->model);
   item = gtk_tree_model_get_iter_first (model, &iter);
+
+  if (xkbmodel == NULL || *xkbmodel == 0)
+  {
+      gtk_combo_box_set_active_iter (GTK_COMBO_BOX (view), &iter);
+      return;
+  }
 
   while (item && !found)
     {
