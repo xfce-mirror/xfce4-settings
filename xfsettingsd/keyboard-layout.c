@@ -83,6 +83,7 @@ struct _XfceKeyboardLayoutHelper
     XklEngine         *engine;
     XklConfigRegistry *registry;
     XklConfigRec      *config;
+    gchar             *system_keyboard_model;
 #endif /* HAVE_LIBXKLAVIER */
 };
 
@@ -113,6 +114,7 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     helper->engine = xkl_engine_get_instance (GDK_DISPLAY ());
     helper->config = xkl_config_rec_new ();
     xkl_config_rec_get_from_server (helper->config, helper->engine);
+    helper->system_keyboard_model = g_strdup (helper->config->model);
 
     gdk_window_add_filter (NULL, (GdkFilterFunc) handle_xevent, helper);
     g_signal_connect (helper->engine, "X-new-device",
@@ -141,6 +143,7 @@ xfce_keyboard_layout_helper_finalize (GObject *object)
     gdk_window_remove_filter (NULL, (GdkFilterFunc) handle_xevent, helper);
     g_object_unref (helper->config);
     g_object_unref (helper->engine);
+    g_free (helper->system_keyboard_model);
 #endif /* HAVE_LIBXKLAVIER */
 
     G_OBJECT_CLASS (xfce_keyboard_layout_helper_parent_class)->finalize (object);
@@ -183,7 +186,14 @@ xfce_keyboard_layout_helper_set_model (XfceKeyboardLayoutHelper *helper)
 
     if (!helper->xkb_disable_settings)
     {
-        xkbmodel = xfconf_channel_get_string (helper->channel, "/Default/XkbModel", helper->config->model);
+        xkbmodel = xfconf_channel_get_string (helper->channel, "/Default/XkbModel", NULL);
+        if (!xkbmodel || !*xkbmodel)
+        {
+            /* If xkb model is not set by user, we want to try to use the system default */
+            g_free (xkbmodel);
+            xkbmodel = g_strdup (helper->system_keyboard_model);
+        }
+
         if (g_strcmp0 (helper->config->model, xkbmodel) != 0)
         {
             g_free (helper->config->model);
@@ -409,15 +419,39 @@ static void
 xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
                                        XfceKeyboardLayoutHelper *helper)
 {
+#ifdef HAVE_LIBXKLAVIER
     if (!helper->xkb_disable_settings)
     {
+        gchar *xfconf_model;
+
         xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT,
                         "New keyboard detected; restoring XKB settings.");
 
-#ifdef HAVE_LIBXKLAVIER
         xkl_config_rec_reset (helper->config);
         xkl_config_rec_get_from_server (helper->config, helper->engine);
-#endif /* HAVE_LIBXKLAVIER */
+
+        xfconf_model = xfconf_channel_get_string (helper->channel, "/Default/XkbModel", NULL);
+        if (xfconf_model && *xfconf_model &&
+            g_strcmp0 (xfconf_model, helper->config->model) != 0 &&
+            g_strcmp0 (helper->system_keyboard_model, helper->config->model) != 0)
+        {
+            /* We get X-new-device notifications multiple times for a single keyboard device (why?);
+               if keyboard model is set in user preferences,
+               we'll reset the default to the user preference when first notified
+               and we don't want to use that as a system default the next time
+               the user tries to reset keyboard model to the default in xfce4-keyboard-settings.
+
+               The above conditional says: if user set the keyboard model and that's the one
+               we see here, don't assume it's the system default since it was us who set it
+               on the previous notification.
+             */
+            g_free (helper->system_keyboard_model);
+            helper->system_keyboard_model = g_strdup (helper->config->model);
+            xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT,
+                            "system default keyboard model reset: %s",
+                            helper->system_keyboard_model);
+        }
+        g_free (xfconf_model);
 
         xfce_keyboard_layout_helper_set_model (helper);
         xfce_keyboard_layout_helper_set_layout (helper);
@@ -427,4 +461,5 @@ xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
 
         xfce_keyboard_layout_helper_process_xmodmap ();
     }
+#endif /* HAVE_LIBXKLAVIER */
 }
