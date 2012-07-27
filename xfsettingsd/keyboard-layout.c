@@ -50,12 +50,13 @@ static void xfce_keyboard_layout_helper_set_model                 (XfceKeyboardL
 static void xfce_keyboard_layout_helper_set_layout                (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_variant               (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_grpkey                (XfceKeyboardLayoutHelper      *helper);
+static void xfce_keyboard_layout_helper_set_composekey            (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_channel_property_changed  (XfconfChannel                 *channel,
                                                                    const gchar                   *property_name,
                                                                    const GValue                  *value,
                                                                    XfceKeyboardLayoutHelper      *helper);
 static gchar* xfce_keyboard_layout_get_option                     (gchar                        **options,
-                                                                   gchar                         *option_name,
+                                                                   const gchar                         *option_name,
                                                                    gchar                        **other_options);
 static GdkFilterReturn handle_xevent                              (GdkXEvent                     *xev,
                                                                    GdkEvent                      *event,
@@ -125,6 +126,7 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     xfce_keyboard_layout_helper_set_layout (helper);
     xfce_keyboard_layout_helper_set_variant (helper);
     xfce_keyboard_layout_helper_set_grpkey (helper);
+    xfce_keyboard_layout_helper_set_composekey (helper);
 
     xfce_keyboard_layout_helper_process_xmodmap ();
 }
@@ -263,7 +265,7 @@ xfce_keyboard_layout_helper_set_variant (XfceKeyboardLayoutHelper *helper)
  */
 static gchar*
 xfce_keyboard_layout_get_option (gchar **options,
-                                 gchar *option_name,
+                                 const gchar *option_name,
                                  gchar **_other_options)
 {
     gchar **iter;
@@ -296,32 +298,34 @@ xfce_keyboard_layout_get_option (gchar **options,
 }
 
 static void
-xfce_keyboard_layout_helper_set_grpkey (XfceKeyboardLayoutHelper *helper)
+xfce_keyboard_layout_helper_set_option (XfceKeyboardLayoutHelper *helper,
+                                        const gchar *xkb_option_name,
+                                        const gchar *xfconf_option_name)
 {
 #ifdef HAVE_LIBXKLAVIER
     if (!helper->xkb_disable_settings)
     {
-        gchar *grpkey;
-        gchar *xkl_grpkey;
+        gchar *option_value;
+        gchar *xkl_option_value;
         gchar *other_options;
 
-        xkl_grpkey = xfce_keyboard_layout_get_option (helper->config->options,
-                                                      "grp:", &other_options);
+        xkl_option_value = xfce_keyboard_layout_get_option (helper->config->options,
+                                                            xkb_option_name, &other_options);
 
-        grpkey = xfconf_channel_get_string (helper->channel, "/Default/XkbOptions/Group",
-                                            xkl_grpkey);
-        if (g_strcmp0 (grpkey, xkl_grpkey) != 0)
+        option_value = xfconf_channel_get_string (helper->channel, xfconf_option_name,
+                                                  xkl_option_value);
+        if (g_strcmp0 (option_value, xkl_option_value) != 0)
         {
             gchar *options_string;
             if (other_options == NULL)
             {
-                options_string = g_strdup (grpkey);
+                options_string = g_strdup (option_value);
             }
             else
             {
-                if (strlen(grpkey) != 0)
+                if (strlen(option_value) != 0)
                 {
-                    options_string = g_strconcat (grpkey, ",", other_options, NULL);
+                    options_string = g_strconcat (option_value, ",", other_options, NULL);
                 }
                 else
                 {
@@ -333,14 +337,27 @@ xfce_keyboard_layout_helper_set_grpkey (XfceKeyboardLayoutHelper *helper)
             helper->config->options = g_strsplit(options_string, ",", 0);
             xkl_config_rec_activate (helper->config, helper->engine);
 
-            xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set grpkey to \"%s\"", grpkey);
+            xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set %s to \"%s\"",
+                            xkb_option_name, option_value);
             g_free(options_string);
         }
 
         g_free (other_options);
-        g_free (grpkey);
+        g_free (option_value);
     }
 #endif /* HAVE_LIBXKLAVIER */
+}
+
+static void
+xfce_keyboard_layout_helper_set_grpkey (XfceKeyboardLayoutHelper *helper)
+{
+    xfce_keyboard_layout_helper_set_option (helper, "grp:", "/Default/XkbOptions/Group");
+}
+
+static void
+xfce_keyboard_layout_helper_set_composekey (XfceKeyboardLayoutHelper *helper)
+{
+    xfce_keyboard_layout_helper_set_option (helper, "compose:", "/Default/XkbOptions/Compose");
 }
 
 static void
@@ -376,6 +393,10 @@ xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channe
     {
         xfce_keyboard_layout_helper_set_grpkey (helper);
     }
+    else if (strcmp (property_name, "/Default/XkbOptions/Compose") == 0)
+    {
+        xfce_keyboard_layout_helper_set_composekey (helper);
+    }
 
     xfce_keyboard_layout_helper_process_xmodmap ();
 }
@@ -409,6 +430,7 @@ xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
         xfce_keyboard_layout_helper_set_layout (helper);
         xfce_keyboard_layout_helper_set_variant (helper);
         xfce_keyboard_layout_helper_set_grpkey (helper);
+        xfce_keyboard_layout_helper_set_composekey (helper);
 
         xfce_keyboard_layout_helper_process_xmodmap ();
     }

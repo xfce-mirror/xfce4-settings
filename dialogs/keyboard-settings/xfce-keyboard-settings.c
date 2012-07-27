@@ -77,6 +77,13 @@ enum
 
 enum
 {
+    XKB_COMPOSEKEY_COMBO_DESCRIPTION = 0,
+    XKB_COMPOSEKEY_COMBO_KEYS,
+    XKB_COMPOSEKEY_COMBO_NUM_COLUMNS
+};
+
+enum
+{
     XKB_TREE_LAYOUTS = 0,
     XKB_TREE_LAYOUTS_NAMES,
     XKB_TREE_VARIANTS,
@@ -154,6 +161,13 @@ static void                      xfce_keyboard_settings_add_grpkey_to_combo   (X
                                                                                gpointer                   user_data);
 static void                      xfce_keyboard_settings_init_grpkey           (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_grpkey_changed_cb     (GtkComboBox               *combo,
+                                                                               XfceKeyboardSettings      *settings);
+
+static void                      xfce_keyboard_settings_add_compkey_to_combo  (XklConfigRegistry         *config_registry,
+                                                                               const XklConfigItem       *config_item,
+                                                                               gpointer                   user_data);
+static void                      xfce_keyboard_settings_init_compkey          (XfceKeyboardSettings      *settings);
+static void                      xfce_keyboard_settings_compkey_changed_cb    (GtkComboBox               *combo,
                                                                                XfceKeyboardSettings      *settings);
 
 static void                      xfce_keyboard_settings_update_layout_buttons (XfceKeyboardSettings      *settings);
@@ -281,6 +295,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   GObject              *xkb_tab_layout_vbox;
   GObject              *xkb_model_combo;
   GObject              *xkb_grpkey_combo;
+  GObject              *xkb_compkey_combo;
   GObject              *xkb_layout_view;
   GObject              *xkb_layout_add_button;
   GObject              *xkb_layout_edit_button;
@@ -433,6 +448,35 @@ xfce_keyboard_settings_constructed (GObject *object)
   xfce_keyboard_settings_init_grpkey (settings);
   g_signal_connect (G_OBJECT (xkb_grpkey_combo), "changed",
                     G_CALLBACK (xfce_keyboard_settings_grpkey_changed_cb),
+                    settings);
+
+  /* Compose key combo */
+  list_store = gtk_list_store_new (XKB_COMPOSEKEY_COMBO_NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), 0, GTK_SORT_ASCENDING);
+
+  gtk_list_store_append (list_store, &iter);
+  gtk_list_store_set (list_store, &iter,
+                      XKB_COMPOSEKEY_COMBO_DESCRIPTION, "-",
+                      XKB_COMPOSEKEY_COMBO_KEYS, "", -1);
+
+  xkl_config_registry_foreach_option (settings->priv->xkl_registry,
+                                      "Compose key",
+                                      xfce_keyboard_settings_add_compkey_to_combo,
+                                      list_store);
+
+  xkb_compkey_combo = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_composekey_combo");
+  gtk_combo_box_set_model (GTK_COMBO_BOX (xkb_compkey_combo), GTK_TREE_MODEL (list_store));
+  g_object_unref (G_OBJECT (list_store));
+
+  gtk_cell_layout_clear (GTK_CELL_LAYOUT (xkb_compkey_combo));
+  renderer = gtk_cell_renderer_text_new ();
+  g_object_set (renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (xkb_compkey_combo), renderer, TRUE);
+  gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (xkb_compkey_combo), renderer, "text", 0);
+
+  xfce_keyboard_settings_init_compkey (settings);
+  g_signal_connect (G_OBJECT (xkb_compkey_combo), "changed",
+                    G_CALLBACK (xfce_keyboard_settings_compkey_changed_cb),
                     settings);
 
   /* Keyboard layout/variant treeview */
@@ -1083,6 +1127,7 @@ xfce_keyboard_settings_update_sensitive (GtkToggleButton *toggle, XfceKeyboardSe
   GObject  *xkb_model_frame;
   GObject  *xkb_layout_frame;
   GObject  *xkb_grpkey_frame;
+  GObject  *xkb_compkey_frame;
   gboolean  active;
 
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), FALSE);
@@ -1091,10 +1136,12 @@ xfce_keyboard_settings_update_sensitive (GtkToggleButton *toggle, XfceKeyboardSe
   xkb_model_frame = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_model_frame");
   xkb_layout_frame = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_frame");
   xkb_grpkey_frame = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_grpkey_frame");
+  xkb_compkey_frame = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_composekey_frame");
 
   gtk_widget_set_sensitive (GTK_WIDGET (xkb_model_frame), !active);
   gtk_widget_set_sensitive (GTK_WIDGET (xkb_layout_frame), !active);
   gtk_widget_set_sensitive (GTK_WIDGET (xkb_grpkey_frame), !active);
+  gtk_widget_set_sensitive (GTK_WIDGET (xkb_compkey_frame), !active);
 
   return active;
 }
@@ -1410,6 +1457,69 @@ xfce_keyboard_settings_init_grpkey (XfceKeyboardSettings *settings)
 
 
 static void
+xfce_keyboard_settings_add_compkey_to_combo (XklConfigRegistry    *config_registry,
+                                           const XklConfigItem  *config_item,
+                                           gpointer              user_data)
+{
+  GtkListStore *store = GTK_LIST_STORE (user_data);
+  GtkTreeIter   iter;
+  gchar        *compkey_name;
+
+  compkey_name = xfce_keyboard_settings_xkb_description ((XklConfigItem *) config_item);
+
+  gtk_list_store_append (store, &iter);
+  gtk_list_store_set (store, &iter,
+                      XKB_COMPOSEKEY_COMBO_DESCRIPTION, compkey_name,
+                      XKB_COMPOSEKEY_COMBO_KEYS, config_item->name, -1);
+  g_free (compkey_name);
+}
+
+
+
+static void
+xfce_keyboard_settings_init_compkey (XfceKeyboardSettings *settings)
+{
+  GObject      *view;
+  GtkTreeModel *model;
+  GtkTreeIter   iter;
+  gchar        *id;
+  gchar        *xkbcompkey;
+  gboolean      item;
+  gboolean      found = FALSE;
+
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_composekey_combo");
+  model = gtk_combo_box_get_model (GTK_COMBO_BOX (view));
+
+  // FIXME: get the default value from xklavier?
+  xkbcompkey = xfconf_channel_get_string (settings->priv->keyboard_layout_channel, "/Default/XkbOptions/Compose", NULL);
+  item = gtk_tree_model_get_iter_first (model, &iter);
+
+  if (xkbcompkey == NULL || *xkbcompkey == 0)
+  {
+      gtk_combo_box_set_active_iter (GTK_COMBO_BOX (view), &iter);
+      return;
+  }
+
+  while (item && !found)
+  {
+      gtk_tree_model_get (model, &iter, XKB_COMPOSEKEY_COMBO_KEYS, &id, -1);
+      found = !strcmp (id, xkbcompkey);
+      g_free (id);
+
+      if (found)
+      {
+          gtk_combo_box_set_active_iter (GTK_COMBO_BOX (view), &iter);
+          break;
+      }
+      item = gtk_tree_model_iter_next (model, &iter);
+  }
+
+  g_free (xkbcompkey);
+}
+
+
+
+static void
 xfce_keyboard_settings_row_activated_cb (GtkTreeView          *tree_view,
                                          GtkTreePath          *path,
                                          GtkTreeViewColumn    *column,
@@ -1450,6 +1560,24 @@ xfce_keyboard_settings_grpkey_changed_cb (GtkComboBox          *combo,
   xfconf_channel_set_string (settings->priv->keyboard_layout_channel,
                              "/Default/XkbOptions/Group", xkbgrpkey);
   g_free (xkbgrpkey);
+}
+
+
+
+static void
+xfce_keyboard_settings_compkey_changed_cb (GtkComboBox          *combo,
+                                           XfceKeyboardSettings *settings)
+{
+  GtkTreeModel *model;
+  GtkTreeIter   iter;
+  gchar        *xkbcompkey;
+
+  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combo), &iter);
+  model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
+  gtk_tree_model_get (model, &iter, XKB_COMPOSEKEY_COMBO_KEYS, &xkbcompkey, -1);
+  xfconf_channel_set_string (settings->priv->keyboard_layout_channel,
+                             "/Default/XkbOptions/Compose", xkbcompkey);
+  g_free (xkbcompkey);
 }
 
 
