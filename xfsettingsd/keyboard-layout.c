@@ -362,7 +362,7 @@ xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channe
     }
     else if (strcmp (property_name, "/Default/XkbModel") == 0)
     {
-        xfce_keyboard_layout_helper_set_layout (helper);
+        xfce_keyboard_layout_helper_set_model (helper);
     }
     else if (strcmp (property_name, "/Default/XkbLayout") == 0)
     {
