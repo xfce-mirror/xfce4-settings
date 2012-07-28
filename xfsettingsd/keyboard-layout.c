@@ -46,6 +46,8 @@
 
 static void xfce_keyboard_layout_helper_finalize                  (GObject                       *object);
 static void xfce_keyboard_layout_helper_process_xmodmap           (void);
+
+#ifdef HAVE_LIBXKLAVIER
 static void xfce_keyboard_layout_helper_set_model                 (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_layout                (XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_helper_set_variant               (XfceKeyboardLayoutHelper      *helper);
@@ -63,6 +65,7 @@ static GdkFilterReturn handle_xevent                              (GdkXEvent    
                                                                    XfceKeyboardLayoutHelper      *helper);
 static void xfce_keyboard_layout_reset_xkl_config                 (XklEngine                     *xklengine,
                                                                    XfceKeyboardLayoutHelper      *helper);
+#endif /* HAVE_LIBXKLAVIER */
 
 struct _XfceKeyboardLayoutHelperClass
 {
@@ -107,10 +110,12 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     /* open the channel */
     helper->channel = xfconf_channel_get ("keyboard-layout");
 
+    helper->xkb_disable_settings = xfconf_channel_get_bool (helper->channel, "/Default/XkbDisable", TRUE);
+
+#ifdef HAVE_LIBXKLAVIER
     /* monitor channel changes */
     g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_keyboard_layout_helper_channel_property_changed), helper);
 
-#ifdef HAVE_LIBXKLAVIER
     helper->engine = xkl_engine_get_instance (GDK_DISPLAY ());
     helper->config = xkl_config_rec_new ();
     xkl_config_rec_get_from_server (helper->config, helper->engine);
@@ -120,15 +125,14 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     g_signal_connect (helper->engine, "X-new-device",
                       G_CALLBACK (xfce_keyboard_layout_reset_xkl_config), helper);
     xkl_engine_start_listen (helper->engine, XKLL_TRACK_KEYBOARD_STATE);
-#endif /* HAVE_LIBXKLAVIER */
 
     /* load settings */
-    helper->xkb_disable_settings = xfconf_channel_get_bool (helper->channel, "/Default/XkbDisable", TRUE);
     xfce_keyboard_layout_helper_set_model (helper);
     xfce_keyboard_layout_helper_set_layout (helper);
     xfce_keyboard_layout_helper_set_variant (helper);
     xfce_keyboard_layout_helper_set_grpkey (helper);
     xfce_keyboard_layout_helper_set_composekey (helper);
+#endif /* HAVE_LIBXKLAVIER */
 
     xfce_keyboard_layout_helper_process_xmodmap ();
 }
@@ -136,9 +140,9 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
 static void
 xfce_keyboard_layout_helper_finalize (GObject *object)
 {
+#ifdef HAVE_LIBXKLAVIER
     XfceKeyboardLayoutHelper *helper = XFCE_KEYBOARD_LAYOUT_HELPER (object);
 
-#ifdef HAVE_LIBXKLAVIER
     xkl_engine_stop_listen (helper->engine, XKLL_TRACK_KEYBOARD_STATE);
     gdk_window_remove_filter (NULL, (GdkFilterFunc) handle_xevent, helper);
     g_object_unref (helper->config);
@@ -178,10 +182,11 @@ xfce_keyboard_layout_helper_process_xmodmap (void)
     g_free ((gchar*) xmodmap_path);
 }
 
+#ifdef HAVE_LIBXKLAVIER
+
 static void
 xfce_keyboard_layout_helper_set_model (XfceKeyboardLayoutHelper *helper)
 {
-#ifdef HAVE_LIBXKLAVIER
     gchar *xkbmodel;
 
     if (!helper->xkb_disable_settings)
@@ -207,7 +212,6 @@ xfce_keyboard_layout_helper_set_model (XfceKeyboardLayoutHelper *helper)
             g_free (xkbmodel);
         }
     }
-#endif /* HAVE_LIBXKLAVIER */
 }
 
 static void
@@ -216,7 +220,6 @@ xfce_keyboard_layout_helper_set (XfceKeyboardLayoutHelper *helper,
                                  gchar ***xkl_config_option,
                                  const gchar *debug_name)
 {
-#ifdef HAVE_LIBXKLAVIER
     gchar *xfconf_values, *xkl_values;
     gchar **values;
 
@@ -239,7 +242,6 @@ xfce_keyboard_layout_helper_set (XfceKeyboardLayoutHelper *helper,
         g_free (xfconf_values);
         g_free (xkl_values);
     }
-#endif /* HAVE_LIBXKLAVIER */
 }
 
 static void
@@ -305,7 +307,6 @@ xfce_keyboard_layout_helper_set_option (XfceKeyboardLayoutHelper *helper,
                                         const gchar *xkb_option_name,
                                         const gchar *xfconf_option_name)
 {
-#ifdef HAVE_LIBXKLAVIER
     if (!helper->xkb_disable_settings)
     {
         gchar *option_value;
@@ -348,7 +349,6 @@ xfce_keyboard_layout_helper_set_option (XfceKeyboardLayoutHelper *helper,
         g_free (other_options);
         g_free (option_value);
     }
-#endif /* HAVE_LIBXKLAVIER */
 }
 
 static void
@@ -407,10 +407,8 @@ xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channe
 static GdkFilterReturn
 handle_xevent (GdkXEvent * xev, GdkEvent * event, XfceKeyboardLayoutHelper *helper)
 {
-#ifdef HAVE_LIBXKLAVIER
     XEvent *xevent = (XEvent *) xev;
     xkl_engine_filter_events (helper->engine, xevent);
-#endif /* HAVE_LIBXKLAVIER */
 
     return GDK_FILTER_CONTINUE;
 }
@@ -419,7 +417,6 @@ static void
 xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
                                        XfceKeyboardLayoutHelper *helper)
 {
-#ifdef HAVE_LIBXKLAVIER
     if (!helper->xkb_disable_settings)
     {
         gchar *xfconf_model;
@@ -461,5 +458,5 @@ xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
 
         xfce_keyboard_layout_helper_process_xmodmap ();
     }
-#endif /* HAVE_LIBXKLAVIER */
 }
+#endif /* HAVE_LIBXKLAVIER */
