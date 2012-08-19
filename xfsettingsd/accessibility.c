@@ -127,7 +127,7 @@ xfce_accessibility_helper_init (XfceAccessibilityHelper *helper)
         g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_accessibility_helper_channel_property_changed), helper);
 
         /* restore the xbd configuration */
-        xfce_accessibility_helper_set_xkb (helper, XkbStickyKeysMask | XkbSlowKeysMask | XkbBounceKeysMask | XkbMouseKeysMask);
+        xfce_accessibility_helper_set_xkb (helper, XkbStickyKeysMask | XkbSlowKeysMask | XkbBounceKeysMask | XkbMouseKeysMask | XkbAccessXKeysMask);
 
 #ifdef HAVE_LIBNOTIFY
         /* setup a connection with the notification daemon */
@@ -188,7 +188,8 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
         if (HAS_FLAG (mask, XkbStickyKeysMask) ||
                 HAS_FLAG (mask, XkbSlowKeysMask) ||
                 HAS_FLAG (mask, XkbBounceKeysMask) ||
-                HAS_FLAG (mask, XkbMouseKeysMask))
+                HAS_FLAG (mask, XkbMouseKeysMask) ||
+                HAS_FLAG (mask, XkbAccessXKeysMask))
           SET_FLAG (mask, XkbAccessXTimeoutMask);
 
         /* add the mouse keys values mask if needed */
@@ -197,6 +198,27 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
 
         /* load the xkb controls into the structure */
         XkbGetControls (GDK_DISPLAY (), mask, xkb);
+
+        /* AccessXKeys */
+        if (HAS_FLAG (mask, XkbAccessXKeysMask))
+        {
+            if (xfconf_channel_get_bool (helper->channel, "/AccessXKeys", FALSE))
+            {
+                SET_FLAG (xkb->ctrls->enabled_ctrls, XkbAccessXKeysMask);
+                UNSET_FLAG (xkb->ctrls->axt_ctrls_mask, XkbAccessXKeysMask);
+                UNSET_FLAG (xkb->ctrls->axt_ctrls_values, XkbAccessXKeysMask);
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "AccessXKeys enabled");
+            }
+            else
+            {
+                UNSET_FLAG (xkb->ctrls->enabled_ctrls, XkbAccessXKeysMask);
+                SET_FLAG (xkb->ctrls->axt_ctrls_mask, XkbAccessXKeysMask);
+                UNSET_FLAG (xkb->ctrls->axt_ctrls_values, XkbAccessXKeysMask);
+
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "AccessXKeys disabled");
+            }
+        }
 
         /* Sticky keys */
         if (HAS_FLAG (mask, XkbStickyKeysMask))
