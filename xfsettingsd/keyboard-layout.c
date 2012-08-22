@@ -225,14 +225,14 @@ xfce_keyboard_layout_helper_set (XfceKeyboardLayoutHelper *helper,
 
     if (!helper->xkb_disable_settings)
     {
-        xfconf_values  = g_strjoinv(",", *xkl_config_option);
+        xfconf_values  = g_strjoinv (",", *xkl_config_option);
         xkl_values  = xfconf_channel_get_string (helper->channel,
                                                  xfconf_option_name, xfconf_values);
 
         if (g_strcmp0 (xfconf_values, xkl_values) != 0)
         {
             values = g_strsplit_set (xkl_values, ",", 0);
-            g_strfreev(*xkl_config_option);
+            g_strfreev (*xkl_config_option);
             *xkl_config_option = values;
             xkl_config_rec_activate (helper->config, helper->engine);
 
@@ -279,7 +279,7 @@ xfce_keyboard_layout_get_option (gchar **options,
 
     for (iter = options; iter && *iter; iter++)
     {
-        if (g_str_has_prefix(*iter, option_name))
+        if (g_str_has_prefix (*iter, option_name))
         {
             option_value = *iter;
         }
@@ -288,13 +288,13 @@ xfce_keyboard_layout_get_option (gchar **options,
             gchar *tmp = other_options;
             if (other_options)
             {
-                other_options = g_strconcat(other_options, ",", *iter, NULL);
+                other_options = g_strconcat (other_options, ",", *iter, NULL);
             }
             else
             {
-                other_options = g_strdup(*iter);
+                other_options = g_strdup (*iter);
             }
-            g_free(tmp);
+            g_free (tmp);
         }
     }
 
@@ -327,23 +327,23 @@ xfce_keyboard_layout_helper_set_option (XfceKeyboardLayoutHelper *helper,
             }
             else
             {
-                if (strlen(option_value) != 0)
+                if (strlen (option_value) != 0)
                 {
                     options_string = g_strconcat (option_value, ",", other_options, NULL);
                 }
                 else
                 {
-                    options_string = strdup(other_options);
+                    options_string = strdup (other_options);
                 }
             }
 
             g_strfreev (helper->config->options);
-            helper->config->options = g_strsplit(options_string, ",", 0);
+            helper->config->options = g_strsplit (options_string, ",", 0);
             xkl_config_rec_activate (helper->config, helper->engine);
 
             xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "set %s to \"%s\"",
                             xkb_option_name, option_value);
-            g_free(options_string);
+            g_free (options_string);
         }
 
         g_free (other_options);

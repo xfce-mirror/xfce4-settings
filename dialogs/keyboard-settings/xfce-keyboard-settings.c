@@ -1175,7 +1175,7 @@ xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
                       XKB_TREE_LAYOUTS, &val_layout,
                       XKB_TREE_VARIANTS, &val_variant, -1);
   if (val_variant == NULL)
-      val_variant = g_strdup("");
+      val_variant = g_strdup ("");
 
   if (val_layout)
     {
@@ -1199,7 +1199,7 @@ xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings)
                           XKB_TREE_LAYOUTS, &val_layout,
                           XKB_TREE_VARIANTS, &val_variant, -1);
       if (val_variant == NULL)
-          val_variant = g_strdup("");
+          val_variant = g_strdup ("");
 
       if (val_layout)
         {
@@ -1601,7 +1601,7 @@ static void
 xfce_keyboard_settings_up_layout_button_cb (GtkWidget *widget,
                                             XfceKeyboardSettings *settings)
 {
-    xfce_keyboard_settings_layout_move(widget, settings, MOVE_LAYOUT_UP);
+    xfce_keyboard_settings_layout_move (widget, settings, MOVE_LAYOUT_UP);
 }
 
 
@@ -1610,7 +1610,7 @@ static void
 xfce_keyboard_settings_down_layout_button_cb (GtkWidget *widget,
                                               XfceKeyboardSettings *settings)
 {
-    xfce_keyboard_settings_layout_move(widget, settings, MOVE_LAYOUT_DOWN);
+    xfce_keyboard_settings_layout_move (widget, settings, MOVE_LAYOUT_DOWN);
 }
 
 
