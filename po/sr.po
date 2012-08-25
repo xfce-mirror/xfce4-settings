@@ -3,16 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 05:27+0000\n"
+"POT-Creation-Date: 2012-08-25 05:03+0000\n"
 "PO-Revision-Date: 2012-06-20 08:03+0200\n"
 "Last-Translator: salepetronije <salepetronije@gmail.com>\n"
 "Language-Team: српски <xfce-i18n@xfce.org>\n"
-"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 msgid "Acceleration _profile:"
@@ -245,7 +244,7 @@ msgstr "Подаци о издању"
 #: ../dialogs/appearance-settings/main.c:966
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
+#: ../dialogs/mouse-settings/main.c:1597 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -255,7 +254,7 @@ msgstr "Упишите „%s --help“ за коришћење."
 #: ../dialogs/appearance-settings/main.c:985
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
+#: ../dialogs/mouse-settings/main.c:1616 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "ИксФЦЕ развојна дружина. Сва права су задржана."
@@ -264,7 +263,7 @@ msgstr "ИксФЦЕ развојна дружина. Сва права су з�
 #: ../dialogs/appearance-settings/main.c:986
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
+#: ../dialogs/mouse-settings/main.c:1617 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -757,61 +756,77 @@ msgid "Blink _delay:"
 msgstr "Кашњење _трептања:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+msgid "Change layout option"
+msgstr "Измени  могућности распореда"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Compose key"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 msgid "Cursor"
 msgstr "Курсор"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "Define _shortcuts for launching applications:"
 msgstr "Одреди _пречицу за покретање програма:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "Уредите подешавања тастатуре и пречица програма"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "General"
 msgstr "Опште"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Keyboard"
 msgstr "Тастатура"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Keyboard layout"
 msgstr "Распоред тастатуре"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Keyboard layout selection"
 msgstr "Избор распореда тастатуре"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Keyboard model"
 msgstr "Модел тастатуре"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Move currently selected item down by one row"
+msgstr "Помери тренутно одабрану ставку један ред ниже"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid "Move currently selected item up by one row"
+msgstr "Помери тренутно одабрану ставку један ред више"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Repeat _speed:"
 msgstr "_Брзина понављања:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Reset to _Defaults"
 msgstr "Врати на _задате вредности"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Restore num l_ock state on startup"
 msgstr "Поврати стање закључавања _нумеричких тастера при покретању"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "Select keyboard layout and variant"
 msgstr "Одабери варијанту и распоред тастатуре"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Show _blinking"
 msgstr "Прикажи _трептање"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
@@ -819,30 +834,30 @@ msgstr ""
 "Одреди да ли се распоред тастатуре подешава дијалогом подешавања, или Икс "
 "сервером"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Одреди да ли курсор трепће"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Кашњење у милисекундама између наредних трептаја курсора"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr ""
 "Учесталост по којој се притисци тастатуре понављају док се држи тастер "
 "притиснут"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr ""
 "Време у милисекундама, пре него што притиснути тастер почиње са понављањем"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "Typing Settings"
 msgstr "Подешавање куцања"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid ""
 "When selected, pressing and holding down a key emits the same character over "
 "and over again"
@@ -850,23 +865,23 @@ msgstr ""
 "Када је изабрано, притисак и држање тастера ће исписивати исти знак у "
 "недоглед"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Enable key repeat"
 msgstr "_Омогући понављање тастера"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "_Layout"
 msgstr "_Распоред"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Repeat delay:"
 msgstr "Кашњење _понављања:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "_Test area:"
 msgstr "_Место за пробу:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "_Use system defaults"
 msgstr "_Користи задате вредности"
 
@@ -883,32 +898,32 @@ msgstr "Нисам успео да се повежем са хфконф дем�
 msgid "Could not create the settings dialog."
 msgstr "Нисам успео да направим дијалог подешавања."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:396
 msgid "Command"
 msgstr "Наредба"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:401
 msgid "Shortcut"
 msgstr "Пречица"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:473
 msgid "Layout"
 msgstr "Распоред"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:474
 msgid "Variant"
 msgstr "Подврста"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:957
 msgid "Shortcut command may not be empty."
 msgstr "Наредба пречице не може бити празна."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1067
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1068
 msgid "Reset to Defaults"
 msgstr "Врати на задате вредности"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1069
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -916,11 +931,11 @@ msgstr ""
 "Ово ће вратити све пречице на њихове подразумеване вредности. Да ли то "
 "сигурно желите?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1148
 msgid "The system defaults will be restored next time you log in."
 msgstr "Почетне вредности са система ће бити враћене при следећој пријави."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1150
 msgid "Warning"
 msgstr "Упозорење"
 
@@ -1082,7 +1097,7 @@ msgstr "Тастери"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Circular scrolling"
-msgstr ""
+msgstr "Кружно премицање"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Clockwise"
@@ -1115,19 +1130,19 @@ msgstr "Онемогући до_дирну плочицу за време куц
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Disabled"
-msgstr ""
+msgstr "Онемогућено"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Double Click"
-msgstr ""
+msgstr "Дупли клик"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Drag and Drop"
-msgstr ""
+msgstr "Превуци и спусти"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "Edge scrolling"
-msgstr ""
+msgstr "Премицање ивицама"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Enable hori_zontal scrolling"
@@ -1261,8 +1276,7 @@ msgstr "Ако је одабрано, точкић миша ће радити у
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr ""
-"Кад је одабрано, додирна плочица ће бити онемогућена док се користи "
-"тастатура"
+"Кад је одабрано, додирна плочица ће бити онемогућена док се користи тастатура"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "_Acceleration:"
@@ -1380,8 +1394,7 @@ msgstr "_Врати канал на задате вредности"
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr ""
-"Враћање канала на задате вредности ће трајно уклонити прилагођена "
-"подешавања."
+"Враћање канала на задате вредности ће трајно уклонити прилагођена подешавања."
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
 #, c-format
@@ -1495,39 +1508,39 @@ msgstr "Уредите особине"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Графички уређивач подешења за Иксфконф"
 
-#: ../xfsettingsd/accessibility.c:390
+#: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr "Лепљиви тастери су омогућени"
 
-#: ../xfsettingsd/accessibility.c:392
+#: ../xfsettingsd/accessibility.c:414
 msgid "Sticky keys are disabled"
 msgstr "Лепљиви тастери су онемогућени"
 
-#: ../xfsettingsd/accessibility.c:394
+#: ../xfsettingsd/accessibility.c:416
 msgid "Sticky keys"
 msgstr "Лепљиви тастери"
 
-#: ../xfsettingsd/accessibility.c:399
+#: ../xfsettingsd/accessibility.c:421
 msgid "Slow keys are enabled"
 msgstr "Спори тастери су омогућени"
 
-#: ../xfsettingsd/accessibility.c:401
+#: ../xfsettingsd/accessibility.c:423
 msgid "Slow keys are disabled"
 msgstr "Спори тастери су онемогућени"
 
-#: ../xfsettingsd/accessibility.c:403
+#: ../xfsettingsd/accessibility.c:425
 msgid "Slow keys"
 msgstr "Спори тастери"
 
-#: ../xfsettingsd/accessibility.c:408
+#: ../xfsettingsd/accessibility.c:430
 msgid "Bounce keys are enabled"
 msgstr "Одскочни тастери су омогућени"
 
-#: ../xfsettingsd/accessibility.c:410
+#: ../xfsettingsd/accessibility.c:432
 msgid "Bounce keys are disabled"
 msgstr "Одскочни тастери су онемогућени"
 
-#: ../xfsettingsd/accessibility.c:412
+#: ../xfsettingsd/accessibility.c:434
 msgid "Bounce keys"
 msgstr "Одскочни тастери"
 
@@ -1582,4 +1595,3 @@ msgstr "Графички уређивач подшавања за ИксФЦЕ 4
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Уређивач подешавања"
-
