@@ -93,15 +93,29 @@ signal_handler (gint signum,
 
 
 static DBusHandlerResult
-dbus_connection_filter_func (DBusConnection     *connection,
-                             DBusMessage        *message,
-                             void               *user_data)
+dbus_connection_filter_func (DBusConnection *connection,
+                             DBusMessage    *message,
+                             void           *user_data)
 {
+    gchar *name, *old, *new;
+
     if (dbus_message_is_signal (message, DBUS_INTERFACE_DBUS, "NameOwnerChanged"))
     {
-        g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
-        gtk_main_quit ();
-        return DBUS_HANDLER_RESULT_HANDLED;
+        /* double check if it is really org.xfce.SettingsDaemon
+         * being replaced, see bug 9273 */
+        if (dbus_message_get_args (message, NULL,
+                                   DBUS_TYPE_STRING, &name,
+                                   DBUS_TYPE_STRING, &old,
+                                   DBUS_TYPE_STRING, &new,
+                                   DBUS_TYPE_INVALID))
+        {
+            if (g_strcmp0 (name, XFSETTINGS_DBUS_NAME) == 0)
+            {
+                g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
+                gtk_main_quit ();
+                return DBUS_HANDLER_RESULT_HANDLED;
+            }
+        }
     }
 
     return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
