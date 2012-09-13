@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-15 02:45+0000\n"
+"POT-Creation-Date: 2012-09-13 14:30+0000\n"
 "PO-Revision-Date: 2011-02-26 11:48+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: Italian Translation Team <xfce-it-translators@googlegroups.com>\n"
@@ -283,7 +283,7 @@ msgstr "Informazioni di versione"
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1597 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
+#: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Digitare \"%s --help\" per le modalità d'uso"
@@ -293,7 +293,7 @@ msgstr "Digitare \"%s --help\" per le modalità d'uso"
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1616 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
+#: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
 
@@ -302,7 +302,7 @@ msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1617 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
+#: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Segnalare i problemi a <%s>."
@@ -816,62 +816,82 @@ msgstr "C_omportamento"
 msgid "Blink _delay:"
 msgstr "I_ntervallo di intermittenza"
 
+# Automatically copied. Please review and remove fuzzy flag.
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+msgid "Change layout option"
+msgstr "Opzioni di modifica della disposizione"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Compose key"
+msgstr "Composizione chiave"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 msgid "Cursor"
 msgstr "Cursore"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "Define _shortcuts for launching applications:"
 msgstr "Definizione delle _scorciatoie per avviare le applicazioni:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "Configurazione della tastiera e delle scorciatoie per le applicazioni"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "General"
 msgstr "Generali"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Keyboard"
 msgstr "Tastiera"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Keyboard layout"
 msgstr "Mappatura tastiera"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Keyboard layout selection"
 msgstr "Selezione della mappatura della tastiera"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Keyboard model"
 msgstr "Modello tastiera"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Move currently selected item down by one row"
+msgstr "Sposta l'elemento selezionato una riga sotto"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid "Move currently selected item up by one row"
+msgstr "Sposta l'elemento selezionato una riga sopra"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Repeat _speed:"
 msgstr "_Velocità di ripetizione:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Reset to _Defaults"
 msgstr "Ripristina _predefiniti"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Restore num l_ock state on startup"
 msgstr "Ripsristina lo stato di num l_ock all'avvio"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "Select keyboard layout and variant"
 msgstr "Selezionare la mappatura e la variante della tastiera"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Show _blinking"
 msgstr "Mostra in_termittenza"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
@@ -880,34 +900,34 @@ msgstr ""
 "delle impostazioni o dal server X"
 
 # tooltip
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Specifica se il cursore di testo lampeggia"
 
 # tooltip
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr ""
 "Il ritardo, in millisecondi, tra i lampeggiamenti successivi del cursore"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr ""
 "La velocità con cui le digitazioni sono generate mentre un tasto è premuto"
 
 # tooltip
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr ""
 "Il tempo, in millisecondi, trascorso il quale un tasto premuto inizia a "
 "ripetersi"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "Typing Settings"
 msgstr "Impostazioni di digitazione"
 
 # tooltip
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid ""
 "When selected, pressing and holding down a key emits the same character over "
 "and over again"
@@ -915,23 +935,23 @@ msgstr ""
 "Se selezionata, mantenendo premuto un tasto verrà digitato continuamente lo "
 "stesso carattere"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Enable key repeat"
 msgstr "Abilita la rip_etizione del tasto"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "_Layout"
 msgstr "_Mappatura"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Repeat delay:"
 msgstr "_Ritardo di ripetizione:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "_Test area:"
 msgstr "_Area di prova"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "_Use system defaults"
 msgstr "_Usa predefiniti di sistema"
 
@@ -948,32 +968,32 @@ msgstr "Impossibile connettersi al demone di xfconf. Motivo: %s"
 msgid "Could not create the settings dialog."
 msgstr "Impossibile creare la finestra delle impostazioni."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:396
 msgid "Command"
 msgstr "Comando"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:401
 msgid "Shortcut"
 msgstr "Scorciatoia"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:473
 msgid "Layout"
 msgstr "Mappatura"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:474
 msgid "Variant"
 msgstr "Variante"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:957
 msgid "Shortcut command may not be empty."
 msgstr "Il comando scorciatoia non dovrebbe essere vuoto."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1067
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1068
 msgid "Reset to Defaults"
 msgstr "Ripristina predefiniti"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1069
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -981,13 +1001,13 @@ msgstr ""
 "In questo modo verranno ripristinate tutte le scorciatoie ai rispettivi "
 "valori predefiniti. Continuare davvero?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1148
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Le impostazioni predefinite di sistema verranno ripristinate al prossimo "
 "accesso."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1150
 msgid "Warning"
 msgstr "Avvertimento"
 
@@ -1580,39 +1600,39 @@ msgstr "Modifica proprietà"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Editor grafico delle impostazioni per Xfconf"
 
-#: ../xfsettingsd/accessibility.c:390
+#: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr "I tasti appiccicosi sono abilitati"
 
-#: ../xfsettingsd/accessibility.c:392
+#: ../xfsettingsd/accessibility.c:414
 msgid "Sticky keys are disabled"
 msgstr "I tasti appiccicosi sono disabilitati"
 
-#: ../xfsettingsd/accessibility.c:394
+#: ../xfsettingsd/accessibility.c:416
 msgid "Sticky keys"
 msgstr "Tasti appiccicosi"
 
-#: ../xfsettingsd/accessibility.c:399
+#: ../xfsettingsd/accessibility.c:421
 msgid "Slow keys are enabled"
 msgstr "I tasti lenti sono abilitati"
 
-#: ../xfsettingsd/accessibility.c:401
+#: ../xfsettingsd/accessibility.c:423
 msgid "Slow keys are disabled"
 msgstr "I tasti lenti sono disabilitati"
 
-#: ../xfsettingsd/accessibility.c:403
+#: ../xfsettingsd/accessibility.c:425
 msgid "Slow keys"
 msgstr "Tasti lenti"
 
-#: ../xfsettingsd/accessibility.c:408
+#: ../xfsettingsd/accessibility.c:430
 msgid "Bounce keys are enabled"
 msgstr "I tasti elastici sono abilitati"
 
-#: ../xfsettingsd/accessibility.c:410
+#: ../xfsettingsd/accessibility.c:432
 msgid "Bounce keys are disabled"
 msgstr "I tasti elastici sono disabilitati"
 
-#: ../xfsettingsd/accessibility.c:412
+#: ../xfsettingsd/accessibility.c:434
 msgid "Bounce keys"
 msgstr "Tasti elastici"
 
@@ -1667,30 +1687,6 @@ msgstr "Gestore delle impostazioni grafico per Xfce4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Gestore delle impostazioni"
-
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#, fuzzy
-msgid "Change layout option"
-msgstr "Modifica le opzioni di disposizione"
-
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-#, fuzzy
-msgid "Compose key"
-msgstr "Posizione del tasto di composizione"
-
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
-#, fuzzy
-msgid "Move currently selected item down by one row"
-msgstr "Sposta alla riga inferiore l'elemento selezionato "
-
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
-#, fuzzy
-msgid "Move currently selected item up by one row"
-msgstr "Sposta alla riga superiore l'elemento selezionato "
 
 #~ msgid "This property name is not valid."
 #~ msgstr "Questo nome di proprietà non è valido."
