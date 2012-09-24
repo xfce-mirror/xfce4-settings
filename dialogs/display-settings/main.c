@@ -233,7 +233,123 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
     return ((response_id == 2) ? TRUE : FALSE);
 }
 
+static void
+display_setting_positions_changed (GtkComboBox *combobox,
+                                     GtkBuilder  *builder)
+{
+    gint value;
 
+    if (!display_setting_combo_box_get_value (combobox, &value))
+        return;
+}
+
+static void
+display_setting_positions_populate (GtkBuilder *builder)
+{
+    GtkTreeModel *model;
+    GObject      *combobox;
+    GtkTreeIter   iter;
+
+    /* Get the positions combo box store and clear it */
+    combobox = gtk_builder_get_object (builder, "randr-position");
+    model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+    gtk_list_store_clear (GTK_LIST_STORE (model));
+    
+    /* Only make the combobox interactive if there is more than one output */
+    if (display_settings_get_n_active_outputs () > 1)
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+        return;
+    }
+    else
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+    
+    /* Disconnect the "changed" signal to avoid triggering the confirmation
+     * dialog */
+    g_object_disconnect (combobox, "any_signal::changed",
+                         display_setting_positions_changed,
+                         builder, NULL);
+    
+    /* Insert left-of */
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                        COLUMN_COMBO_NAME, _("left of"),
+                        COLUMN_COMBO_VALUE, "left", -1);
+
+    /* Insert right-of */
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                        COLUMN_COMBO_NAME, _("right of"),
+                        COLUMN_COMBO_VALUE, "right", -1);
+
+    
+    /* Reconnect the signal */
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_positions_changed), builder);
+}
+
+static void
+display_setting_active_displays_changed (GtkComboBox *combobox,
+                                     GtkBuilder  *builder)
+{
+    gint value;
+
+    if (!display_setting_combo_box_get_value (combobox, &value))
+        return;
+}
+
+static void
+display_setting_active_displays_populate (GtkBuilder *builder)
+{
+    GtkTreeModel *model;
+    GObject      *combobox;
+    gchar         *name;
+    guint         n;
+    GtkTreeIter   iter;
+    
+    /* Get the active-displays combo box store and clear it */
+    combobox = gtk_builder_get_object (builder, "randr-active-displays");
+    model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+    gtk_list_store_clear (GTK_LIST_STORE (model));
+    
+    /* Only make the combobox interactive if there is more than one output */
+    if (display_settings_get_n_active_outputs () > 1)
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+        return;
+    }
+    else
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+    
+    /* Disconnect the "changed" signal to avoid triggering the confirmation
+     * dialog */
+    g_object_disconnect (combobox, "any_signal::changed",
+                         display_setting_active_displays_changed,
+                         builder, NULL);
+
+    /* Insert all active displays */
+    for (n = 0; n < display_settings_get_n_active_outputs (); n++)
+    {
+        if (n != xfce_randr->active_output)
+        {
+        /* Get a friendly name for the output */
+        name = xfce_randr_friendly_name (xfce_randr,
+                                         xfce_randr->resources->outputs[n],
+                                         xfce_randr->output_info[n]->name);
+        /* Insert display name */
+        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                            COLUMN_COMBO_NAME, _(name),
+                            COLUMN_COMBO_VALUE, n, -1);
+        g_free (name);
+
+        }
+    }
+
+    
+
+    /* Reconnect the signal */
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_active_displays_changed), builder);
+}
 
 static void
 display_setting_reflections_changed (GtkComboBox *combobox,
@@ -618,6 +734,88 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 
 
 static void
+display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
+                                GtkBuilder      *builder)
+{
+    GObject *positions, *active_displays;
+
+    if (!xfce_randr)
+        return;
+
+    if (xfce_randr->noutput <= 1)
+        return;
+
+    positions = gtk_builder_get_object (builder, "randr-positions");
+    active_displays = gtk_builder_get_object (builder, "active-displays");
+
+    if (gtk_toggle_button_get_active (togglebutton))
+    {
+        /* Activate mirror-mode */
+        
+        /* Disable the position comboboxes FIXME */
+        gtk_widget_set_sensitive (GTK_WIDGET (positions), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (active_displays), FALSE);
+    }
+    else
+    {
+        /* Deactivate mirror-mode */
+
+        /* Re-enable the position comboboxes FIXME */
+        gtk_widget_set_sensitive (GTK_WIDGET (positions), TRUE);
+        gtk_widget_set_sensitive (GTK_WIDGET (active_displays), TRUE);
+    }
+}
+
+
+static void
+display_setting_mirror_displays_populate (GtkBuilder *builder)
+{
+    GObject *check;
+
+    if (!xfce_randr)
+        return;
+
+    if (xfce_randr->noutput <= 1)
+        return;
+
+    check = gtk_builder_get_object (builder, "mirror-displays");
+    
+    /* Only make the check interactive if there is more than one output */
+    if (display_settings_get_n_active_outputs () > 1)
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (check), TRUE);
+        return;
+    }
+    else
+        gtk_widget_set_sensitive (GTK_WIDGET (check), FALSE);
+    
+    /* Unbind any existing property, and rebind it */
+    if (bound_to_channel)
+    {
+        xfconf_g_property_unbind_all (check);
+        bound_to_channel = FALSE;
+    }
+
+    /* Disconnect the "toggled" signal to avoid writing the config again */
+    g_object_disconnect (check, "any_signal::toggled",
+                         display_setting_mirror_displays_toggled,
+                         builder, NULL);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check),
+                                  XFCE_RANDR_MODE (xfce_randr) != None);
+
+    
+    /* Reconnect the signal */
+    g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled),
+                      builder);
+
+    /* Write the correct RandR value to xfconf */
+    
+    bound_to_channel = TRUE;
+}
+
+
+
+static void
 display_setting_output_toggled (GtkToggleButton *togglebutton,
                                 GtkBuilder      *builder)
 {
@@ -717,7 +915,10 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         xfce_randr->active_output = active_id;
 
         /* Update the combo boxes */
+        display_setting_positions_populate (builder);
+        display_setting_active_displays_populate (builder);
         display_setting_output_status_populate (builder);
+        display_setting_mirror_displays_populate (builder);
         display_setting_resolutions_populate (builder);
         display_setting_refresh_rates_populate (builder);
         display_setting_rotations_populate (builder);
@@ -845,7 +1046,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     GtkCellRenderer  *renderer;
     GtkTreeSelection *selection;
     GObject          *combobox;
-    GObject          *label, *check;
+    GObject          *label, *check, *mirror;
 
     /* Get the treeview */
     treeview = gtk_builder_get_object (builder, "randr-outputs");
@@ -868,13 +1069,19 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     /* Setup the combo boxes */
     check = gtk_builder_get_object (builder, "output-on");
+    mirror = gtk_builder_get_object (builder, "mirror-displays");
     if (xfce_randr->noutput > 1)
     {
         gtk_widget_show (GTK_WIDGET (check));
         g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
+        gtk_widget_show (GTK_WIDGET (mirror));
+        g_signal_connect (G_OBJECT (mirror), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled), builder);
     }
     else
+    {
         gtk_widget_hide (GTK_WIDGET (check));
+        gtk_widget_hide (GTK_WIDGET (mirror));
+    }
 
     label = gtk_builder_get_object (builder, "label-reflection");
     gtk_widget_show (GTK_WIDGET (label));
@@ -883,6 +1090,14 @@ display_settings_dialog_new (GtkBuilder *builder)
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     gtk_widget_show (GTK_WIDGET (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_reflections_changed), builder);
+
+    combobox = gtk_builder_get_object (builder, "randr-position");
+    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_positions_changed), builder);
+
+    combobox = gtk_builder_get_object (builder, "randr-active-displays");
+    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_active_displays_changed), builder);
 
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
