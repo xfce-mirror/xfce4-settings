@@ -259,7 +259,6 @@ display_setting_positions_populate (GtkBuilder *builder)
     if (display_settings_get_n_active_outputs () > 1)
     {
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
-        return;
     }
     else
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
@@ -315,7 +314,6 @@ display_setting_active_displays_populate (GtkBuilder *builder)
     if (display_settings_get_n_active_outputs () > 1)
     {
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
-        return;
     }
     else
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
@@ -344,8 +342,6 @@ display_setting_active_displays_populate (GtkBuilder *builder)
 
         }
     }
-
-    
 
     /* Reconnect the signal */
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_active_displays_changed), builder);
@@ -745,14 +741,14 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     if (xfce_randr->noutput <= 1)
         return;
 
-    positions = gtk_builder_get_object (builder, "randr-positions");
-    active_displays = gtk_builder_get_object (builder, "active-displays");
+    positions = gtk_builder_get_object (builder, "randr-position");
+    active_displays = gtk_builder_get_object (builder, "randr-active-displays");
 
     if (gtk_toggle_button_get_active (togglebutton))
     {
         /* Activate mirror-mode */
         
-        /* Disable the position comboboxes FIXME */
+        /* Disable the position comboboxes */
         gtk_widget_set_sensitive (GTK_WIDGET (positions), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (active_displays), FALSE);
     }
@@ -760,7 +756,7 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     {
         /* Deactivate mirror-mode */
 
-        /* Re-enable the position comboboxes FIXME */
+        /* Re-enable the position comboboxes */
         gtk_widget_set_sensitive (GTK_WIDGET (positions), TRUE);
         gtk_widget_set_sensitive (GTK_WIDGET (active_displays), TRUE);
     }
