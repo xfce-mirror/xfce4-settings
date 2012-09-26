@@ -141,7 +141,23 @@ display_settings_get_n_active_outputs (void)
     return count;
 }
 
+static gboolean
+display_setting_combo_box_get_str (GtkComboBox *combobox,
+                                   gchar       **str)
+{
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
 
+    if (gtk_combo_box_get_active_iter (combobox, &iter))
+    {
+        model = gtk_combo_box_get_model (combobox);
+        gtk_tree_model_get (model, &iter, COLUMN_COMBO_VALUE, str, -1);
+
+        return TRUE;
+    }
+
+    return FALSE;
+}
 
 static gboolean
 display_setting_combo_box_get_value (GtkComboBox *combobox,
@@ -249,10 +265,45 @@ static void
 display_setting_positions_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
-    gint value;
+    /* This part is incomplete.  We should check if the display combobox is 
+       also already selected, then move on with working with the specific 
+       displays. */
+    RRMode old_mode;
+    gchar *value;
 
-    if (!display_setting_combo_box_get_value (combobox, &value))
+    if (!display_setting_combo_box_get_str (combobox, &value))
         return;
+        
+    /* Extend Left */
+    if (g_strcmp0(value, "left") == 0)
+    {
+    
+    }
+    
+    /* Extend Right */
+    if (g_strcmp0(value, "right") == 0)
+    {
+    
+    }
+
+    /* Set new resolution */
+    old_mode = XFCE_RANDR_MODE (xfce_randr);
+    //XFCE_RANDR_MODE (xfce_randr) = value;
+
+    /* Apply the changes */
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+
+    /* Ask user confirmation */
+    if (!display_setting_timed_confirmation (builder))
+    {
+        XFCE_RANDR_MODE (xfce_randr) = old_mode;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
+    }
+    
 }
 
 static void
@@ -645,8 +696,6 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     /* Reconnect the signal */
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_refresh_rates_changed), builder);
 }
-
-
 
 static void
 display_setting_resolutions_changed (GtkComboBox *combobox,
