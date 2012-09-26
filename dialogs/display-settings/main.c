@@ -299,8 +299,40 @@ display_setting_positions_changed (GtkComboBox *combobox,
                 }
             }
             break;
-        case XFCE_RANDR_PLACEMENT_UP:
-        case XFCE_RANDR_PLACEMENT_DOWN:
+        case XFCE_RANDR_PLACEMENT_UP: // Extend Above
+            /* Walk all supported modes of current display */
+            modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
+            for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
+            {
+                /* Find the current mode. */
+                if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
+                {
+                    /* Change active output to secondary display. */
+                    xfce_randr->active_output = selected_display;
+                    /* Move the secondary display to the above the primary display. */
+                    XFCE_RANDR_POS_Y (xfce_randr) = modes[n].height;
+                    break;
+                }
+            }
+            break;
+        case XFCE_RANDR_PLACEMENT_DOWN: // Extend Below
+            /* Change active output to secondary display. */
+            xfce_randr->active_output = selected_display;
+            
+            /* Find the current mode. */
+            modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
+            for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
+            {
+                if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
+                {
+                    /* Change active output to primary display. */
+                    xfce_randr->active_output = current_display;
+                    /* Move the primary display to the below the secondary display. */
+                    XFCE_RANDR_POS_Y (xfce_randr) = modes[n].height;
+                    break;
+                }
+            }
+            break;
         default:
             break;
     }
@@ -352,6 +384,18 @@ display_setting_positions_populate (GtkBuilder *builder)
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                         COLUMN_COMBO_NAME, _("right of"),
                         COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_RIGHT, -1);
+                        
+    /* Insert above */
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                        COLUMN_COMBO_NAME, _("above"),
+                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_UP, -1);
+                        
+    /* Insert below */
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                        COLUMN_COMBO_NAME, _("below"),
+                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_DOWN, -1);
 
     
     /* Reconnect the signal */
@@ -755,8 +799,6 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     GtkTreeIter    iter;
     XfceRRMode   *modes;
     
-    g_print("get resolutions");
-
     /* Get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
