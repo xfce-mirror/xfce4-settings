@@ -1140,90 +1140,6 @@ screen_on_event (GdkXEvent *xevent,
 }
 
 
-
-static void
-display_settings_minimal_dialog_response (GtkDialog  *dialog,
-                                          gint        response_id,
-                                          GtkBuilder *builder)
-{
-    GObject    *first_screen_radio;
-    GObject    *second_screen_radio;
-    XfceRRMode *mode1, *mode2;
-    gboolean    use_first_screen;
-    gboolean    use_second_screen;
-    guint       first, second;
-    gint        m, n, found;
-
-    if (response_id == 1)
-    {
-        /* TODO: handle correctly more than 2 outputs? */
-        first = 0;
-        second = 1;
-
-        first_screen_radio = gtk_builder_get_object (builder, "radiobutton1");
-        second_screen_radio = gtk_builder_get_object (builder, "radiobutton2");
-
-        use_first_screen =
-            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (first_screen_radio));
-        use_second_screen =
-            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (second_screen_radio));
-
-        if (use_first_screen)
-        {
-            xfce_randr->mode[first] = xfce_randr_preferred_mode (xfce_randr, first);
-            xfce_randr->mode[second] = None;
-        }
-        else if (use_second_screen)
-        {
-            xfce_randr->mode[second] = xfce_randr_preferred_mode (xfce_randr, second);
-            xfce_randr->mode[first] = None;
-        }
-        else
-        {
-            if (xfce_randr->clone_modes[0] != None)
-            {
-                xfce_randr->mode[first] = xfce_randr->clone_modes[0];
-                xfce_randr->mode[second] = xfce_randr->clone_modes[0];
-            }
-            else
-            {
-                found = FALSE;
-                /* No clone mode available, try to find a "similar" mode */
-                for (n = 0; n < xfce_randr->output_info[first]->nmode; ++n)
-                {
-                    mode1 = &xfce_randr->modes[first][n];
-                    for (m = 0; m < xfce_randr->output_info[second]->nmode; ++m)
-                    {
-                        mode2 = &xfce_randr->modes[second][m];
-                        /* "similar" means same resolution */
-                        if (mode1->width == mode2->width
-                            && mode1->height == mode2->height)
-                        {
-                            xfce_randr->mode[first] = mode1->id;
-                            xfce_randr->mode[second] = mode2->id;
-                            found = TRUE;
-                            break;
-                        }
-                    }
-
-                    if (found)
-                        break;
-                }
-            }
-        }
-        /* Save the two outputs and apply */
-        xfce_randr_save_output (xfce_randr, "MinimalAutoConfig", display_channel,
-                                first);
-        xfce_randr_save_output (xfce_randr, "MinimalAutoConfig", display_channel,
-                                second);
-        xfce_randr_apply (xfce_randr, "MinimalAutoConfig", display_channel);
-    }
-
-    gtk_main_quit ();
-}
-
-
-
 gint
 main (gint argc, gchar **argv)
 {
@@ -1235,7 +1151,6 @@ main (gint argc, gchar **argv)
     GError      *error = NULL;
     gboolean     succeeded = TRUE;
     gint         event_base, error_base;
-    guint        first, second;
     gchar       *command;
     const gchar *alternative = NULL;
     const gchar *alternative_icon = NULL;
@@ -1407,45 +1322,15 @@ main (gint argc, gchar **argv)
             if (xfce_randr->noutput < 2)
                 goto cleanup;
 
-            /* TODO: handle correctly more than 2 outputs? */
-            first = 0;
-            second = 1;
-
             builder = gtk_builder_new ();
 
             if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
                                              minimal_display_dialog_ui_length, &error) != 0)
             {
-                GObject    *first_screen_radio;
-                GObject    *second_screen_radio;
-                gchar      *screen_name;
 
                 /* Build the minimal dialog */
-                dialog = (GtkWidget *) gtk_builder_get_object (builder, "dialog1");
-                g_signal_connect (G_OBJECT (dialog), "response",
-                    G_CALLBACK (display_settings_minimal_dialog_response), builder);
-
-                /* Set the radio buttons captions */
-                first_screen_radio =
-                    gtk_builder_get_object (builder, "radiobutton1");
-                second_screen_radio =
-                    gtk_builder_get_object (builder, "radiobutton2");
-
-                screen_name =
-                    xfce_randr_friendly_name (xfce_randr,
-                                              xfce_randr->resources->outputs[first],
-                                              xfce_randr->output_info[first]->name);
-                gtk_button_set_label (GTK_BUTTON (first_screen_radio),
-                                      screen_name);
-                g_free (screen_name);
-
-                screen_name =
-                    xfce_randr_friendly_name (xfce_randr,
-                                              xfce_randr->resources->outputs[second],
-                                              xfce_randr->output_info[second]->name);
-                gtk_button_set_label (GTK_BUTTON (second_screen_radio),
-                                      screen_name);
-                g_free (screen_name);
+                dialog = (GtkWidget *) gtk_builder_get_object (builder, "dialog");
+                g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
 
                 /* Show the minimal dialog and start the main loop */
                 gtk_window_present (GTK_WINDOW (dialog));
