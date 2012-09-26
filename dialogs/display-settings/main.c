@@ -142,24 +142,6 @@ display_settings_get_n_active_outputs (void)
 }
 
 static gboolean
-display_setting_combo_box_get_str (GtkComboBox *combobox,
-                                   gchar       **str)
-{
-    GtkTreeModel *model;
-    GtkTreeIter   iter;
-
-    if (gtk_combo_box_get_active_iter (combobox, &iter))
-    {
-        model = gtk_combo_box_get_model (combobox);
-        gtk_tree_model_get (model, &iter, COLUMN_COMBO_VALUE, str, -1);
-
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
-static gboolean
 display_setting_combo_box_get_value (GtkComboBox *combobox,
                                      gint        *value)
 {
@@ -268,41 +250,70 @@ display_setting_positions_changed (GtkComboBox *combobox,
     /* This part is incomplete.  We should check if the display combobox is 
        also already selected, then move on with working with the specific 
        displays. */
-    RRMode old_mode;
-    gchar *value;
+    gint value, current_display, selected_display, n;
+    GObject *display_combobox;
+    XfceRRMode   *modes;
+    
+    display_combobox = gtk_builder_get_object(builder, "randr-active-displays");
 
-    if (!display_setting_combo_box_get_str (combobox, &value))
+    if (!display_setting_combo_box_get_value (combobox, &value))
         return;
         
-    /* Extend Left */
-    if (g_strcmp0(value, "left") == 0)
-    {
+    if (!display_setting_combo_box_get_value (GTK_COMBO_BOX(display_combobox), &selected_display))
+        return;
+        
+    if (selected_display == -1) return;
     
+    /* Store the Current Display */
+    current_display = xfce_randr->active_output;
+    
+    /* FIXME: Extend Left (Move primary screen right/make secondary primary) */
+    if (value == 0)
+    {
+        /* Walk all supported modes of current display */
+        modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
+        for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
+        {
+            /* Find the current mode. */
+            if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
+            {
+                /* Change active output to secondary display. */
+                xfce_randr->active_output = selected_display;
+                /* Move the secondary display to the right of the primary display. */
+                XFCE_RANDR_POS_X (xfce_randr) = modes[n].width;
+                break;
+            }
+        }
     }
     
     /* Extend Right */
-    if (g_strcmp0(value, "right") == 0)
+    if (value == 1)
     {
-    
+        /* Change active output to secondary display. */
+        xfce_randr->active_output = selected_display;
+        
+        /* Find the current mode. */
+        modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
+        for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
+        {
+            if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
+            {
+                /* Change active output to primary display. */
+                xfce_randr->active_output = current_display;
+                /* Move the primary display to the right of the secondary display. */
+                XFCE_RANDR_POS_X (xfce_randr) = modes[n].width;
+                break;
+            }
+        }
     }
-
-    /* Set new resolution */
-    old_mode = XFCE_RANDR_MODE (xfce_randr);
-    //XFCE_RANDR_MODE (xfce_randr) = value;
-
+    
+    /* Restore the current display to the primary display. */
+    xfce_randr->active_output = current_display;
+    
     /* Apply the changes */
     xfce_randr_save_output (xfce_randr, "Default", display_channel,
                             xfce_randr->active_output);
     xfce_randr_apply (xfce_randr, "Default", display_channel);
-
-    /* Ask user confirmation */
-    if (!display_setting_timed_confirmation (builder))
-    {
-        XFCE_RANDR_MODE (xfce_randr) = old_mode;
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                xfce_randr->active_output);
-        xfce_randr_apply (xfce_randr, "Default", display_channel);
-    }
     
 }
 
@@ -336,13 +347,13 @@ display_setting_positions_populate (GtkBuilder *builder)
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                         COLUMN_COMBO_NAME, _("left of"),
-                        COLUMN_COMBO_VALUE, "left", -1);
+                        COLUMN_COMBO_VALUE, 0, -1);
 
     /* Insert right-of */
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                         COLUMN_COMBO_NAME, _("right of"),
-                        COLUMN_COMBO_VALUE, "right", -1);
+                        COLUMN_COMBO_VALUE, 1, -1);
 
     
     /* Reconnect the signal */
@@ -354,9 +365,14 @@ display_setting_active_displays_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
     gint value;
+    GObject *position_combobox;
 
     if (!display_setting_combo_box_get_value (combobox, &value))
         return;
+        
+    position_combobox = gtk_builder_get_object(builder, "randr-position");
+    
+    display_setting_positions_changed (GTK_COMBO_BOX(position_combobox), builder);
 }
 
 static void
@@ -740,6 +756,8 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     gchar         *name;
     GtkTreeIter    iter;
     XfceRRMode   *modes;
+    
+    g_print("get resolutions");
 
     /* Get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-resolution");
