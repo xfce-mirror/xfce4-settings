@@ -247,7 +247,7 @@ static void
 display_setting_positions_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
-    gint value, current_display, selected_display, n;
+    gint value, current_display, selected_display, selected_x, selected_y, n;
     GObject *display_combobox;
     XfceRRMode   *modes;
     
@@ -275,6 +275,15 @@ display_setting_positions_changed (GtkComboBox *combobox,
                 {
                     /* Change active output to secondary display. */
                     xfce_randr->active_output = selected_display;
+                    
+                    /* Move the primary to where the secondary is... */
+                    selected_x = XFCE_RANDR_POS_X (xfce_randr);
+                    selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+                    xfce_randr->active_output = current_display;
+                    XFCE_RANDR_POS_X (xfce_randr) = selected_x;
+                    XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+                    
+                    xfce_randr->active_output = selected_display;
                     /* Move the secondary display to the right of the primary display. */
                     XFCE_RANDR_POS_X (xfce_randr) = modes[n].width;
                     break;
@@ -293,6 +302,15 @@ display_setting_positions_changed (GtkComboBox *combobox,
                 {
                     /* Change active output to primary display. */
                     xfce_randr->active_output = current_display;
+                    
+                    /* Move the secondary to where the primary is... */
+                    selected_x = XFCE_RANDR_POS_X (xfce_randr);
+                    selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+                    xfce_randr->active_output = selected_display;
+                    XFCE_RANDR_POS_X (xfce_randr) = selected_x;
+                    XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+                    
+                    xfce_randr->active_output = current_display;
                     /* Move the primary display to the right of the secondary display. */
                     XFCE_RANDR_POS_X (xfce_randr) = modes[n].width;
                     break;
@@ -308,6 +326,15 @@ display_setting_positions_changed (GtkComboBox *combobox,
                 if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
                 {
                     /* Change active output to secondary display. */
+                    xfce_randr->active_output = selected_display;
+                    
+                    /* Move the primary to where the secondary is... */
+                    selected_x = XFCE_RANDR_POS_X (xfce_randr);
+                    selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+                    xfce_randr->active_output = current_display;
+                    XFCE_RANDR_POS_X (xfce_randr) = selected_x;
+                    XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+                    
                     xfce_randr->active_output = selected_display;
                     /* Move the secondary display to the above the primary display. */
                     XFCE_RANDR_POS_Y (xfce_randr) = modes[n].height;
@@ -326,6 +353,15 @@ display_setting_positions_changed (GtkComboBox *combobox,
                 if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
                 {
                     /* Change active output to primary display. */
+                    xfce_randr->active_output = current_display;
+                    
+                    /* Move the secondary to where the primary is... */
+                    selected_x = XFCE_RANDR_POS_X (xfce_randr);
+                    selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+                    xfce_randr->active_output = selected_display;
+                    XFCE_RANDR_POS_X (xfce_randr) = selected_x;
+                    XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+                    
                     xfce_randr->active_output = current_display;
                     /* Move the primary display to the below the secondary display. */
                     XFCE_RANDR_POS_Y (xfce_randr) = modes[n].height;
