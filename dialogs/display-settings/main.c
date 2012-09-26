@@ -247,9 +247,6 @@ static void
 display_setting_positions_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
-    /* This part is incomplete.  We should check if the display combobox is 
-       also already selected, then move on with working with the specific 
-       displays. */
     gint value, current_display, selected_display, n;
     GObject *display_combobox;
     XfceRRMode   *modes;
@@ -267,44 +264,45 @@ display_setting_positions_changed (GtkComboBox *combobox,
     /* Store the Current Display */
     current_display = xfce_randr->active_output;
     
-    /* FIXME: Extend Left (Move primary screen right/make secondary primary) */
-    if (value == 0)
-    {
-        /* Walk all supported modes of current display */
-        modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
-        for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
-        {
+    switch (value) {
+        case XFCE_RANDR_PLACEMENT_LEFT: // Extend Left FIXME
+            /* Walk all supported modes of current display */
+            modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
+            for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
+            {
+                /* Find the current mode. */
+                if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
+                {
+                    /* Change active output to secondary display. */
+                    xfce_randr->active_output = selected_display;
+                    /* Move the secondary display to the right of the primary display. */
+                    XFCE_RANDR_POS_X (xfce_randr) = modes[n].width;
+                    break;
+                }
+            }
+            break;
+        case XFCE_RANDR_PLACEMENT_RIGHT: // Extend Right
+            /* Change active output to secondary display. */
+            xfce_randr->active_output = selected_display;
+            
             /* Find the current mode. */
-            if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
+            modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
+            for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
             {
-                /* Change active output to secondary display. */
-                xfce_randr->active_output = selected_display;
-                /* Move the secondary display to the right of the primary display. */
-                XFCE_RANDR_POS_X (xfce_randr) = modes[n].width;
-                break;
+                if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
+                {
+                    /* Change active output to primary display. */
+                    xfce_randr->active_output = current_display;
+                    /* Move the primary display to the right of the secondary display. */
+                    XFCE_RANDR_POS_X (xfce_randr) = modes[n].width;
+                    break;
+                }
             }
-        }
-    }
-    
-    /* Extend Right */
-    if (value == 1)
-    {
-        /* Change active output to secondary display. */
-        xfce_randr->active_output = selected_display;
-        
-        /* Find the current mode. */
-        modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
-        for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
-        {
-            if (modes[n].id == XFCE_RANDR_MODE (xfce_randr))
-            {
-                /* Change active output to primary display. */
-                xfce_randr->active_output = current_display;
-                /* Move the primary display to the right of the secondary display. */
-                XFCE_RANDR_POS_X (xfce_randr) = modes[n].width;
-                break;
-            }
-        }
+            break;
+        case XFCE_RANDR_PLACEMENT_UP:
+        case XFCE_RANDR_PLACEMENT_DOWN:
+        default:
+            break;
     }
     
     /* Restore the current display to the primary display. */
@@ -347,13 +345,13 @@ display_setting_positions_populate (GtkBuilder *builder)
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                         COLUMN_COMBO_NAME, _("left of"),
-                        COLUMN_COMBO_VALUE, 0, -1);
+                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_LEFT, -1);
 
     /* Insert right-of */
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                         COLUMN_COMBO_NAME, _("right of"),
-                        COLUMN_COMBO_VALUE, 1, -1);
+                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_RIGHT, -1);
 
     
     /* Reconnect the signal */
