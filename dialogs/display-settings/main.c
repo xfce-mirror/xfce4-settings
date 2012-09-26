@@ -265,7 +265,7 @@ display_setting_positions_changed (GtkComboBox *combobox,
     current_display = xfce_randr->active_output;
     
     switch (value) {
-        case XFCE_RANDR_PLACEMENT_LEFT: // Extend Left FIXME
+        case XFCE_RANDR_PLACEMENT_LEFT: // Extend Left
             /* Walk all supported modes of current display */
             modes = XFCE_RANDR_SUPPORTED_MODES (xfce_randr);
             for (n = 0; n < XFCE_RANDR_OUTPUT_INFO (xfce_randr)->nmode; ++n)
@@ -337,6 +337,12 @@ display_setting_positions_changed (GtkComboBox *combobox,
             break;
     }
     
+    /* Apply and save changes to secondary display */
+    xfce_randr->active_output = selected_display;
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+    
     /* Restore the current display to the primary display. */
     xfce_randr->active_output = current_display;
     
@@ -344,6 +350,8 @@ display_setting_positions_changed (GtkComboBox *combobox,
     xfce_randr_save_output (xfce_randr, "Default", display_channel,
                             xfce_randr->active_output);
     xfce_randr_apply (xfce_randr, "Default", display_channel);
+    
+    
     
 }
 
