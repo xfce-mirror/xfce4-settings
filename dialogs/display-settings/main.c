@@ -112,6 +112,18 @@ static gboolean       bound_to_channel = FALSE;
 /* Pointer to the used randr structure */
 XfceRandr *xfce_randr = NULL;
 
+static void
+display_settings_minimal_extend_left_toggled (GtkToggleButton *button,
+                                              GtkBuilder *builder);
+                                              
+static void
+display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
+                                              GtkBuilder *builder);
+                                              
+static void
+display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
+                                              GtkBuilder *builder);
+
 
 
 static guint
@@ -1113,6 +1125,99 @@ display_settings_dialog_new (GtkBuilder *builder)
     return GTK_WIDGET (gtk_builder_get_object (builder, "display-dialog"));
 }
 
+static void
+display_settings_minimal_extend_left_toggled (GtkToggleButton *button,
+                                              GtkBuilder *builder)
+{
+    GObject *mirror_displays;
+    GObject *extend_right;
+    
+    mirror_displays = gtk_builder_get_object(builder, "mirror");
+    extend_right = gtk_builder_get_object(builder, "extend_right");
+    
+    g_object_disconnect (mirror_displays, "any_signal::toggled",
+                         display_settings_minimal_mirror_displays_toggled,
+                         builder, NULL);
+                         
+    g_object_disconnect (extend_right, "any_signal::toggled",
+                         display_settings_minimal_extend_right_toggled,
+                         builder, NULL);
+    
+    /* Since this signal will only be called when a toggle button is activated. */
+    gtk_toggle_button_set_active (button, TRUE);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(mirror_displays), FALSE);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_right), FALSE);
+
+    /* Reconnect the signals */
+    g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
+                      builder);
+                      
+    g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled),
+                      builder);
+}
+
+static void
+display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
+                                              GtkBuilder *builder)
+{
+    GObject *extend_left;
+    GObject *extend_right;
+    
+    extend_left = gtk_builder_get_object(builder, "extend_left");
+    extend_right = gtk_builder_get_object(builder, "extend_right");
+    
+    g_object_disconnect (extend_left, "any_signal::toggled",
+                         display_settings_minimal_extend_left_toggled,
+                         builder, NULL);
+                         
+    g_object_disconnect (extend_right, "any_signal::toggled",
+                         display_settings_minimal_extend_right_toggled,
+                         builder, NULL);
+    
+    /* Since this signal will only be called when a toggle button is activated. */
+    gtk_toggle_button_set_active (button, TRUE);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_left), FALSE);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_right), FALSE);
+
+    /* Reconnect the signals */
+    g_signal_connect (extend_left, "toggled", G_CALLBACK (display_settings_minimal_extend_left_toggled),
+                      builder);
+                      
+    g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled),
+                      builder);
+}
+
+static void
+display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
+                                              GtkBuilder *builder)
+{
+    GObject *mirror_displays;
+    GObject *extend_left;
+    
+    mirror_displays = gtk_builder_get_object(builder, "mirror");
+    extend_left = gtk_builder_get_object(builder, "extend_left");
+    
+    g_object_disconnect (mirror_displays, "any_signal::toggled",
+                         display_settings_minimal_mirror_displays_toggled,
+                         builder, NULL);
+                         
+    g_object_disconnect (extend_left, "any_signal::toggled",
+                         display_settings_minimal_extend_left_toggled,
+                         builder, NULL);
+    
+    /* Since this signal will only be called when a toggle button is activated. */
+    gtk_toggle_button_set_active (button, TRUE);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(mirror_displays), FALSE);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_left), FALSE);
+
+    /* Reconnect the signals */
+    g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
+                      builder);
+                      
+    g_signal_connect (extend_left, "toggled", G_CALLBACK (display_settings_minimal_extend_left_toggled),
+                      builder);
+}
+
 
 
 static GdkFilterReturn
@@ -1327,10 +1432,24 @@ main (gint argc, gchar **argv)
             if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
                                              minimal_display_dialog_ui_length, &error) != 0)
             {
+                GObject *extend_left;
+                GObject *mirror_displays;
+                GObject *extend_right;
 
                 /* Build the minimal dialog */
                 dialog = (GtkWidget *) gtk_builder_get_object (builder, "dialog");
                 g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+                
+                extend_left = gtk_builder_get_object (builder, "extend_left");
+                mirror_displays = gtk_builder_get_object (builder, "mirror");
+                extend_right = gtk_builder_get_object (builder, "extend_right");
+                
+                g_signal_connect (extend_left, "toggled", G_CALLBACK (display_settings_minimal_extend_left_toggled),
+                      builder);
+                g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
+                      builder);
+                g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled),
+                      builder);
 
                 /* Show the minimal dialog and start the main loop */
                 gtk_window_present (GTK_WINDOW (dialog));
