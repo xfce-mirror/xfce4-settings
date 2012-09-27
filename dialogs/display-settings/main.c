@@ -498,6 +498,86 @@ display_setting_active_displays_populate (GtkBuilder *builder)
 }
 
 static void
+display_setting_guess_positioning (GtkBuilder *builder)
+{
+    GObject *position_combo, *display_combo;
+    gint current_x, current_y, index;
+    guint n, current_display;
+    
+    current_display = xfce_randr->active_output;
+    current_x = XFCE_RANDR_POS_X (xfce_randr);
+    current_y = XFCE_RANDR_POS_Y (xfce_randr);
+    
+    position_combo = gtk_builder_get_object(builder, "randr-position");
+    display_combo = gtk_builder_get_object(builder, "randr-active-displays");
+    
+    g_object_disconnect (position_combo, "any_signal::changed",
+                         display_setting_positions_changed,
+                         builder, NULL);
+                         
+    g_object_disconnect (display_combo, "any_signal::changed",
+                         display_setting_active_displays_changed,
+                         builder, NULL);
+                         
+    index = 0;
+    
+    for (n = 0; n < display_settings_get_n_active_outputs (); n++)
+    {
+        if (n != current_display)
+        {
+            xfce_randr->active_output = n;
+            
+            /* Check for mirror */
+            if ( (XFCE_RANDR_POS_X (xfce_randr) == current_x) && 
+                 (XFCE_RANDR_POS_Y (xfce_randr) == current_y) ) {
+                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 0 );
+                gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), index );
+                break;       
+            }
+            
+            /* Check for Left Of */
+            if ( (XFCE_RANDR_POS_Y (xfce_randr) == current_y) &&
+                 (XFCE_RANDR_POS_X (xfce_randr) > current_x) ) {
+                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 1 );
+                gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), index );
+                break;
+            }
+            
+            /* Check for Right Of */
+            if ( (XFCE_RANDR_POS_Y (xfce_randr) == current_y) &&
+                 (XFCE_RANDR_POS_X (xfce_randr) < current_x) ) {
+                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 2 );
+                gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), index );
+                break;
+            }
+            
+            /* Check for Above */
+            if ( (XFCE_RANDR_POS_X (xfce_randr) == current_x) &&
+                 (XFCE_RANDR_POS_Y (xfce_randr) > current_y) ) {
+                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 3 );
+                gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), index );
+                break;
+            }
+            
+            /* Check for Below */
+            if ( (XFCE_RANDR_POS_X (xfce_randr) == current_x) &&
+                 (XFCE_RANDR_POS_Y (xfce_randr) < current_y) ) {
+                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 4 );
+                gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), index );
+                break;
+            }
+            
+            index++;
+        }
+    }
+    
+    xfce_randr->active_output = current_display;
+    
+    g_signal_connect (G_OBJECT (position_combo), "changed", G_CALLBACK (display_setting_positions_changed), builder);
+    g_signal_connect (G_OBJECT (display_combo), "changed", G_CALLBACK (display_setting_active_displays_changed), builder);
+}
+
+static void
 display_setting_reflections_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
@@ -1061,6 +1141,7 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         /* Update the combo boxes */
         display_setting_positions_populate (builder);
         display_setting_active_displays_populate (builder);
+        display_setting_guess_positioning (builder);
         display_setting_output_status_populate (builder);
         display_setting_mirror_displays_populate (builder);
         display_setting_resolutions_populate (builder);
