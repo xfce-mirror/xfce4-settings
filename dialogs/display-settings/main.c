@@ -426,7 +426,6 @@ display_setting_positions_populate (GtkBuilder *builder)
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                         COLUMN_COMBO_NAME, _("Below"),
                         COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_DOWN, -1);
-
     
     /* Reconnect the signal */
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_positions_changed), builder);
