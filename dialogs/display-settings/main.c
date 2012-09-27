@@ -1379,6 +1379,9 @@ display_settings_minimal_extend_left_toggled (GtkToggleButton *button,
     GObject *mirror_displays;
     GObject *extend_right;
     
+    gint selected_x, selected_y;
+    XfceRRMode   *current_mode;
+    
     mirror_displays = gtk_builder_get_object(builder, "mirror");
     extend_right = gtk_builder_get_object(builder, "extend_right");
     
@@ -1389,11 +1392,49 @@ display_settings_minimal_extend_left_toggled (GtkToggleButton *button,
     g_object_disconnect (extend_right, "any_signal::toggled",
                          display_settings_minimal_extend_right_toggled,
                          builder, NULL);
+                         
+    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), FALSE );
+    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), FALSE );
     
     /* Since this signal will only be called when a toggle button is activated. */
     gtk_toggle_button_set_active (button, TRUE);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(mirror_displays), FALSE);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_right), FALSE);
+    
+    /* Change active output to secondary display. */
+    xfce_randr->active_output = 1;
+    
+    current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output, XFCE_RANDR_MODE (xfce_randr));
+    
+    /* Change active output to primary display. */
+    xfce_randr->active_output = 0;
+    
+    /* Move the secondary to where the primary is... */
+    selected_x = XFCE_RANDR_POS_X (xfce_randr);
+    selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+    xfce_randr->active_output = 1;
+    XFCE_RANDR_POS_X (xfce_randr) = selected_x;
+    XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+    
+    /* Move the primary display to the right of the secondary display. */
+    xfce_randr->active_output = 0;
+    XFCE_RANDR_POS_X (xfce_randr) = current_mode->width;
+    
+    /* Save changes to secondary display */
+    xfce_randr->active_output = 1;
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+
+    /* Save changes to primary display */
+    xfce_randr->active_output = 0;
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+                            
+    /* Apply all changes */
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+    
+    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), TRUE );
+    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), TRUE );
 
     /* Reconnect the signals */
     g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
@@ -1410,6 +1451,8 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
     GObject *extend_left;
     GObject *extend_right;
     
+    gint selected_x, selected_y;
+    
     extend_left = gtk_builder_get_object(builder, "extend_left");
     extend_right = gtk_builder_get_object(builder, "extend_right");
     
@@ -1420,11 +1463,39 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
     g_object_disconnect (extend_right, "any_signal::toggled",
                          display_settings_minimal_extend_right_toggled,
                          builder, NULL);
+                         
+    gtk_widget_set_sensitive( GTK_WIDGET(extend_left), FALSE );
+    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), FALSE );
     
     /* Since this signal will only be called when a toggle button is activated. */
     gtk_toggle_button_set_active (button, TRUE);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_left), FALSE);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_right), FALSE);
+    
+    xfce_randr->active_output = 0;
+    
+    selected_x = XFCE_RANDR_POS_X (xfce_randr);
+    selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+    
+    xfce_randr->active_output = 1;
+    XFCE_RANDR_POS_X (xfce_randr) = selected_x;
+    XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+    
+    /* Save changes to secondary display */
+    xfce_randr->active_output = 1;
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+
+    /* Save changes to primary display */
+    xfce_randr->active_output = 0;
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+                            
+    /* Apply all changes */
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+    
+    gtk_widget_set_sensitive( GTK_WIDGET(extend_left), TRUE );
+    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), TRUE );
 
     /* Reconnect the signals */
     g_signal_connect (extend_left, "toggled", G_CALLBACK (display_settings_minimal_extend_left_toggled),
@@ -1441,6 +1512,10 @@ display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
     GObject *mirror_displays;
     GObject *extend_left;
     
+    gint selected_x, selected_y;
+    
+    XfceRRMode   *current_mode;
+    
     mirror_displays = gtk_builder_get_object(builder, "mirror");
     extend_left = gtk_builder_get_object(builder, "extend_left");
     
@@ -1451,11 +1526,48 @@ display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
     g_object_disconnect (extend_left, "any_signal::toggled",
                          display_settings_minimal_extend_left_toggled,
                          builder, NULL);
+                         
+    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), FALSE );
+    gtk_widget_set_sensitive( GTK_WIDGET(extend_left), FALSE );
     
     /* Since this signal will only be called when a toggle button is activated. */
     gtk_toggle_button_set_active (button, TRUE);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(mirror_displays), FALSE);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_left), FALSE);
+    
+    xfce_randr->active_output = 0;
+    
+    current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output, XFCE_RANDR_MODE (xfce_randr));
+            
+    /* Change active output to secondary display. */
+    xfce_randr->active_output = 1;
+    
+    /* Move the primary to where the secondary is... */
+    selected_x = XFCE_RANDR_POS_X (xfce_randr);
+    selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+    xfce_randr->active_output = 0;
+    XFCE_RANDR_POS_X (xfce_randr) = selected_x;
+    XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+    
+    /* Move the secondary display to the right of the primary display. */
+    xfce_randr->active_output = 1;
+    XFCE_RANDR_POS_X (xfce_randr) = current_mode->width;
+    
+    /* Save changes to secondary display */
+    xfce_randr->active_output = 1;
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+
+    /* Save changes to primary display */
+    xfce_randr->active_output = 0;
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+                            
+    /* Apply all changes */
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+    
+    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), TRUE );
+    gtk_widget_set_sensitive( GTK_WIDGET(extend_left), TRUE );
 
     /* Reconnect the signals */
     g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
@@ -1497,7 +1609,7 @@ main (gint argc, gchar **argv)
 {
     GtkBuilder  *builder;
     GdkDisplay  *display;
-    GtkWidget   *dialog;
+    GtkWidget   *dialog, *cancel;
     GtkWidget   *plug;
     GObject     *plug_child;
     GError      *error = NULL;
@@ -1610,7 +1722,7 @@ main (gint argc, gchar **argv)
         if (xfce_titled_dialog_get_type () == 0)
             return EXIT_FAILURE;
 
-        if (!minimal)
+        if ( (display_settings_get_n_active_outputs () == 1) || !minimal)
         {
             /* Load the Gtk user-interface file */
             builder = gtk_builder_new ();
@@ -1685,7 +1797,9 @@ main (gint argc, gchar **argv)
 
                 /* Build the minimal dialog */
                 dialog = (GtkWidget *) gtk_builder_get_object (builder, "dialog");
+                cancel = (GtkWidget *) gtk_builder_get_object (builder, "cancel_button");
                 g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+                g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
                 
                 extend_left = gtk_builder_get_object (builder, "extend_left");
                 mirror_displays = gtk_builder_get_object (builder, "mirror");
