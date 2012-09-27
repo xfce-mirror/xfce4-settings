@@ -344,6 +344,15 @@ display_setting_positions_changed (GtkComboBox *combobox,
             XFCE_RANDR_POS_Y (xfce_randr) = current_mode->height;
             break;
             
+        case XFCE_RANDR_PLACEMENT_MIRROR: // Mirror Display
+            selected_x = XFCE_RANDR_POS_X (xfce_randr);
+            selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+            
+            xfce_randr->active_output = selected_display;
+            XFCE_RANDR_POS_X (xfce_randr) = selected_x;
+            XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+            break;
+            
         default:
             break;
     }
@@ -388,28 +397,34 @@ display_setting_positions_populate (GtkBuilder *builder)
                          display_setting_positions_changed,
                          builder, NULL);
     
+    /* Insert mirror */
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                        COLUMN_COMBO_NAME, _("Mirror"),
+                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_MIRROR, -1);
+    
     /* Insert left-of */
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("left of"),
+                        COLUMN_COMBO_NAME, _("Left of"),
                         COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_LEFT, -1);
 
     /* Insert right-of */
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("right of"),
+                        COLUMN_COMBO_NAME, _("Right of"),
                         COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_RIGHT, -1);
                         
     /* Insert above */
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("above"),
+                        COLUMN_COMBO_NAME, _("Above"),
                         COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_UP, -1);
                         
     /* Insert below */
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("below"),
+                        COLUMN_COMBO_NAME, _("Below"),
                         COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_DOWN, -1);
 
     

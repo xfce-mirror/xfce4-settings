@@ -34,6 +34,7 @@
 #define XFCE_RANDR_POS_Y(randr)           (randr->position[randr->active_output].y)
 #define XFCE_RANDR_ROTATIONS_MASK         (RR_Rotate_0|RR_Rotate_90|RR_Rotate_180|RR_Rotate_270)
 #define XFCE_RANDR_REFLECTIONS_MASK       (RR_Reflect_X|RR_Reflect_Y)
+#define XFCE_RANDR_PLACEMENT_MIRROR       -1
 #define XFCE_RANDR_PLACEMENT_UP           0
 #define XFCE_RANDR_PLACEMENT_RIGHT        1
 #define XFCE_RANDR_PLACEMENT_DOWN         2
