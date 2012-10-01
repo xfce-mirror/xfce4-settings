@@ -247,7 +247,7 @@ static void
 display_setting_positions_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
-    gint value, current_display, selected_display, selected_x, selected_y;
+    gint value, current_display, selected_display, selected_x, selected_y, old_x1, old_y1, old_x2, old_y2;
     GObject *display_combobox;
     XfceRRMode   *current_mode;
     
@@ -275,9 +275,18 @@ display_setting_positions_changed (GtkComboBox *combobox,
             /* Move the primary to where the secondary is... */
             selected_x = XFCE_RANDR_POS_X (xfce_randr);
             selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+            
             xfce_randr->active_output = current_display;
+            
+            /* Save positions to be able to restore */
+            old_x2 = selected_x; old_y2 = selected_y;
+            old_x1 = XFCE_RANDR_POS_X (xfce_randr);
+            old_y1 = XFCE_RANDR_POS_Y (xfce_randr);
+            
             XFCE_RANDR_POS_X (xfce_randr) = selected_x;
             XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+            
+
             
             /* Move the secondary display to the right of the primary display. */
             xfce_randr->active_output = selected_display;
@@ -297,6 +306,12 @@ display_setting_positions_changed (GtkComboBox *combobox,
             selected_x = XFCE_RANDR_POS_X (xfce_randr);
             selected_y = XFCE_RANDR_POS_Y (xfce_randr);
             xfce_randr->active_output = selected_display;
+            
+            /* Save positions to be able to restore */
+            old_x1 = selected_x; old_y1 = selected_y;
+            old_x2 = XFCE_RANDR_POS_X (xfce_randr);
+            old_y2 = XFCE_RANDR_POS_Y (xfce_randr);
+            
             XFCE_RANDR_POS_X (xfce_randr) = selected_x;
             XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
             
@@ -315,6 +330,12 @@ display_setting_positions_changed (GtkComboBox *combobox,
             selected_x = XFCE_RANDR_POS_X (xfce_randr);
             selected_y = XFCE_RANDR_POS_Y (xfce_randr);
             xfce_randr->active_output = current_display;
+            
+            /* Save positions to be able to restore */
+            old_x2 = selected_x; old_y2 = selected_y;
+            old_x1 = XFCE_RANDR_POS_X (xfce_randr);
+            old_y1 = XFCE_RANDR_POS_Y (xfce_randr);
+            
             XFCE_RANDR_POS_X (xfce_randr) = selected_x;
             XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
             
@@ -336,6 +357,12 @@ display_setting_positions_changed (GtkComboBox *combobox,
             selected_x = XFCE_RANDR_POS_X (xfce_randr);
             selected_y = XFCE_RANDR_POS_Y (xfce_randr);
             xfce_randr->active_output = selected_display;
+            
+            /* Save positions to be able to restore */
+            old_x1 = selected_x; old_y1 = selected_y;
+            old_x2 = XFCE_RANDR_POS_X (xfce_randr);
+            old_y2 = XFCE_RANDR_POS_Y (xfce_randr);
+            
             XFCE_RANDR_POS_X (xfce_randr) = selected_x;
             XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
             
@@ -369,6 +396,26 @@ display_setting_positions_changed (GtkComboBox *combobox,
                             
     /* Apply all changes */
     xfce_randr_apply (xfce_randr, "Default", display_channel);
+    
+    /* Ask user confirmation */
+    if (!display_setting_timed_confirmation (builder))
+    {
+        /* Restore the primary display */
+        xfce_randr->active_output = current_display;
+        XFCE_RANDR_POS_X (xfce_randr) = old_x1;
+        XFCE_RANDR_POS_Y (xfce_randr) = old_y1;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            xfce_randr->active_output);
+
+        /* Restore the secondary display */
+        xfce_randr->active_output = selected_display;
+        XFCE_RANDR_POS_X (xfce_randr) = old_x2;
+        XFCE_RANDR_POS_Y (xfce_randr) = old_y2;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                xfce_randr->active_output);
+        
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
+    }
 }
 
 static void
