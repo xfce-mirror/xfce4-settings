@@ -247,9 +247,9 @@ static void
 display_setting_positions_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
-    gint value, current_display, selected_display, selected_x, selected_y, old_x1, old_y1, old_x2, old_y2;
+    gint value, current_display, current_x, current_y, selected_display, selected_x, selected_y;
     GObject *display_combobox;
-    XfceRRMode   *current_mode;
+    XfceRRMode   *current_mode, *selected_mode;
     
     display_combobox = gtk_builder_get_object(builder, "randr-active-displays");
 
@@ -262,120 +262,65 @@ display_setting_positions_changed (GtkComboBox *combobox,
     /* Skip if the display combobox hasn't made a selection yet */
     if (selected_display == -1) return;
     
-    /* Store the Current Display */
+    /* Store the currently active display's position and mode */
     current_display = xfce_randr->active_output;
+    current_mode = xfce_randr_find_mode_by_id (xfce_randr, current_display, XFCE_RANDR_MODE (xfce_randr));
+    current_x = XFCE_RANDR_POS_X (xfce_randr);
+    current_y = XFCE_RANDR_POS_Y (xfce_randr);
+    
+    /* Store the selected display's position and mode */
+    xfce_randr->active_output = selected_display;
+    selected_mode = xfce_randr_find_mode_by_id (xfce_randr, selected_display, XFCE_RANDR_MODE (xfce_randr));
+    selected_x = XFCE_RANDR_POS_X (xfce_randr);
+    selected_y = XFCE_RANDR_POS_Y (xfce_randr);
     
     switch (value) {
         case XFCE_RANDR_PLACEMENT_LEFT: // Extend Left
-            current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output, XFCE_RANDR_MODE (xfce_randr));
+            /* Move the selected display to the right of the currently active display. */
+            XFCE_RANDR_POS_X (xfce_randr) = current_mode->width;
             
-            /* Change active output to secondary display. */
-            xfce_randr->active_output = selected_display;
-            
-            /* Move the primary to where the secondary is... */
-            selected_x = XFCE_RANDR_POS_X (xfce_randr);
-            selected_y = XFCE_RANDR_POS_Y (xfce_randr);
-            
+            /* Move the currently active display to where the selected was */
             xfce_randr->active_output = current_display;
-            
-            /* Save positions to be able to restore */
-            old_x2 = selected_x; old_y2 = selected_y;
-            old_x1 = XFCE_RANDR_POS_X (xfce_randr);
-            old_y1 = XFCE_RANDR_POS_Y (xfce_randr);
-            
             XFCE_RANDR_POS_X (xfce_randr) = selected_x;
             XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
-            
 
-            
-            /* Move the secondary display to the right of the primary display. */
-            xfce_randr->active_output = selected_display;
-            XFCE_RANDR_POS_X (xfce_randr) = current_mode->width;
             break;
             
         case XFCE_RANDR_PLACEMENT_RIGHT: // Extend Right
-            /* Change active output to secondary display. */
-            xfce_randr->active_output = selected_display;
+			/* Move the selected display to where the currently active one is */
+            XFCE_RANDR_POS_X (xfce_randr) = current_x;
+            XFCE_RANDR_POS_Y (xfce_randr) = current_y;
             
-            current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output, XFCE_RANDR_MODE (xfce_randr));
-            
-            /* Change active output to primary display. */
+            /* Move the currently active display to the right of the selected display. */
             xfce_randr->active_output = current_display;
+            XFCE_RANDR_POS_X (xfce_randr) = selected_mode->width;
             
-            /* Move the secondary to where the primary is... */
-            selected_x = XFCE_RANDR_POS_X (xfce_randr);
-            selected_y = XFCE_RANDR_POS_Y (xfce_randr);
-            xfce_randr->active_output = selected_display;
-            
-            /* Save positions to be able to restore */
-            old_x1 = selected_x; old_y1 = selected_y;
-            old_x2 = XFCE_RANDR_POS_X (xfce_randr);
-            old_y2 = XFCE_RANDR_POS_Y (xfce_randr);
-            
-            XFCE_RANDR_POS_X (xfce_randr) = selected_x;
-            XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
-            
-            /* Move the primary display to the right of the secondary display. */
-            xfce_randr->active_output = current_display;
-            XFCE_RANDR_POS_X (xfce_randr) = current_mode->width;
             break;
             
         case XFCE_RANDR_PLACEMENT_UP: // Extend Above
-            current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output, XFCE_RANDR_MODE (xfce_randr));
+            /* Move the selected display above the currently active display. */
+            XFCE_RANDR_POS_Y (xfce_randr) = current_mode->height;
 
-            /* Change active output to secondary display. */
-            xfce_randr->active_output = selected_display;
-            
-            /* Move the primary to where the secondary is... */
-            selected_x = XFCE_RANDR_POS_X (xfce_randr);
-            selected_y = XFCE_RANDR_POS_Y (xfce_randr);
+            /* Move the currently active display to where the selected was */
             xfce_randr->active_output = current_display;
-            
-            /* Save positions to be able to restore */
-            old_x2 = selected_x; old_y2 = selected_y;
-            old_x1 = XFCE_RANDR_POS_X (xfce_randr);
-            old_y1 = XFCE_RANDR_POS_Y (xfce_randr);
-            
             XFCE_RANDR_POS_X (xfce_randr) = selected_x;
             XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
-            
-            /* Move the secondary display to the above the primary display. */
-            xfce_randr->active_output = selected_display;
-            XFCE_RANDR_POS_Y (xfce_randr) = current_mode->height;
+
             break;
             
         case XFCE_RANDR_PLACEMENT_DOWN: // Extend Below
-            /* Change active output to secondary display. */
-            xfce_randr->active_output = selected_display;
+        	/* Move the selected display to where the currently active one is */
+            XFCE_RANDR_POS_X (xfce_randr) = current_x;
+            XFCE_RANDR_POS_Y (xfce_randr) = current_y;
             
-            current_mode = xfce_randr_find_mode_by_id (xfce_randr, xfce_randr->active_output, XFCE_RANDR_MODE (xfce_randr));
-            
-            /* Change active output to primary display. */
+            /* Move the currently active display below the selected display. */
             xfce_randr->active_output = current_display;
+            XFCE_RANDR_POS_Y (xfce_randr) = selected_mode->height;
             
-            /* Move the secondary to where the primary is... */
-            selected_x = XFCE_RANDR_POS_X (xfce_randr);
-            selected_y = XFCE_RANDR_POS_Y (xfce_randr);
-            xfce_randr->active_output = selected_display;
-            
-            /* Save positions to be able to restore */
-            old_x1 = selected_x; old_y1 = selected_y;
-            old_x2 = XFCE_RANDR_POS_X (xfce_randr);
-            old_y2 = XFCE_RANDR_POS_Y (xfce_randr);
-            
-            XFCE_RANDR_POS_X (xfce_randr) = selected_x;
-            XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
-            
-            /* Move the primary display to the below the secondary display. */
-            xfce_randr->active_output = current_display;
-            XFCE_RANDR_POS_Y (xfce_randr) = current_mode->height;
             break;
             
         case XFCE_RANDR_PLACEMENT_MIRROR: // Mirror Display
-            selected_x = XFCE_RANDR_POS_X (xfce_randr);
-            selected_y = XFCE_RANDR_POS_Y (xfce_randr);
-            
-            xfce_randr->active_output = selected_display;
+
             XFCE_RANDR_POS_X (xfce_randr) = selected_x;
             XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
             break;
@@ -384,15 +329,13 @@ display_setting_positions_changed (GtkComboBox *combobox,
             break;
     }
     
-    /* Save changes to secondary display */
-    xfce_randr->active_output = selected_display;
+    /* Save changes to currently active display */
     xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                            xfce_randr->active_output);
-
-    /* Save changes to primary display */
-    xfce_randr->active_output = current_display;
+                            current_display);
+    
+    /* Save changes to selected display */
     xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                            xfce_randr->active_output);
+                            selected_display);
                             
     /* Apply all changes */
     xfce_randr_apply (xfce_randr, "Default", display_channel);
@@ -400,19 +343,19 @@ display_setting_positions_changed (GtkComboBox *combobox,
     /* Ask user confirmation */
     if (!display_setting_timed_confirmation (builder))
     {
-        /* Restore the primary display */
+        /* Restore the currently active display */
         xfce_randr->active_output = current_display;
-        XFCE_RANDR_POS_X (xfce_randr) = old_x1;
-        XFCE_RANDR_POS_Y (xfce_randr) = old_y1;
+        XFCE_RANDR_POS_X (xfce_randr) = current_x;
+        XFCE_RANDR_POS_Y (xfce_randr) = current_y;
         xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                            xfce_randr->active_output);
+                            current_display);
 
-        /* Restore the secondary display */
+        /* Restore the selected display */
         xfce_randr->active_output = selected_display;
-        XFCE_RANDR_POS_X (xfce_randr) = old_x2;
-        XFCE_RANDR_POS_Y (xfce_randr) = old_y2;
+        XFCE_RANDR_POS_X (xfce_randr) = selected_x;
+        XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
         xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                xfce_randr->active_output);
+                                selected_display);
         
         xfce_randr_apply (xfce_randr, "Default", display_channel);
     }
