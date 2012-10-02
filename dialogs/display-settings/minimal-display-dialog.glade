@@ -160,13 +160,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="cancel_button">
-                <property name="label">gtk-close</property>
+              <object class="GtkButton" id="advanced_button">
+                <property name="label" translatable="yes">Advanced</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_action_appearance">False</property>
-                <property name="use_stock">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -175,12 +174,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="advanced_button">
-                <property name="label" translatable="yes">Advanced</property>
+              <object class="GtkButton" id="cancel_button">
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_action_appearance">False</property>
+                <property name="use_stock">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
