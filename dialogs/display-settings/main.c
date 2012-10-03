@@ -321,8 +321,8 @@ display_setting_positions_changed (GtkComboBox *combobox,
             
         case XFCE_RANDR_PLACEMENT_MIRROR: // Mirror Display
 
-            XFCE_RANDR_POS_X (xfce_randr) = selected_x;
-            XFCE_RANDR_POS_Y (xfce_randr) = selected_y;
+            XFCE_RANDR_POS_X (xfce_randr) = current_x;
+            XFCE_RANDR_POS_Y (xfce_randr) = current_y;
             break;
             
         default:
