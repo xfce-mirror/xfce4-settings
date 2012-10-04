@@ -1367,158 +1367,86 @@ display_settings_dialog_new (GtkBuilder *builder)
 
 static void
 display_settings_minimal_only_display1_toggled (GtkToggleButton *button,
-                                              GtkBuilder *builder)
+                                                GtkBuilder      *builder)
 {
-    GObject *mirror_displays, *extend_right, *only_display2;
+    GObject *buttons;
     
-    mirror_displays = gtk_builder_get_object(builder, "mirror");
-    extend_right = gtk_builder_get_object(builder, "extend_right");
-    only_display2 = gtk_builder_get_object(builder, "display2");
-
-    /* Lock everything in the dialog to prevent bad things from happening */
-    g_object_disconnect (mirror_displays, "any_signal::toggled",
-                         display_settings_minimal_mirror_displays_toggled,
-                         builder, NULL);
-    g_object_disconnect (extend_right, "any_signal::toggled",
-                         display_settings_minimal_extend_right_toggled,
-                         builder, NULL);
-    g_object_disconnect (only_display2, "any_signal::toggled",
-                         display_settings_minimal_only_display2_toggled,
-                         builder, NULL);
-                         
-    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), FALSE );
-    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), FALSE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display2), FALSE );
-
-    gtk_toggle_button_set_active (button, TRUE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(mirror_displays), FALSE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_right), FALSE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(only_display2), FALSE);
+    if ( !gtk_toggle_button_get_active(button) ) 
+        return;
     
     if (!xfce_randr)
         return;
 
     if (xfce_randr->noutput <= 1)
         return;
+        
+    buttons = gtk_builder_get_object(builder, "buttons");
+    gtk_widget_set_sensitive( GTK_WIDGET(buttons), FALSE );
 
-    if (gtk_toggle_button_get_active (button))
-    {
-		/* Put Display1 in its preferred mode and deactivate Display2 */
-        XFCE_RANDR_MODE (xfce_randr) = xfce_randr_preferred_mode (xfce_randr, 0);
-        xfce_randr->active_output = 1;
-        XFCE_RANDR_MODE (xfce_randr) = None;
-        /* Apply the changes */
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,0);
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,1);
-        xfce_randr_apply (xfce_randr, "Default", display_channel);
-    }
+	/* Put Display1 in its preferred mode and deactivate Display2 */
+    XFCE_RANDR_MODE (xfce_randr) = xfce_randr_preferred_mode (xfce_randr, 0);
+    xfce_randr->active_output = 1;
+    XFCE_RANDR_MODE (xfce_randr) = None;
     
-    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), TRUE );
-    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), TRUE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display2), TRUE );
-
-    /* Reconnect the signals */
-    g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
-                      builder);
-    g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled),
-                      builder);
-    g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled),
-                      builder);
+    /* Apply the changes */
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,0);
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,1);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+    
+    gtk_widget_set_sensitive( GTK_WIDGET(buttons), TRUE );
 }
 
 static void
 display_settings_minimal_only_display2_toggled (GtkToggleButton *button,
-                                              GtkBuilder *builder)
+                                                GtkBuilder      *builder)
 {
-    GObject *mirror_displays, *extend_right, *only_display1;
+    GObject *buttons;
     
-    mirror_displays = gtk_builder_get_object(builder, "mirror");
-    extend_right = gtk_builder_get_object(builder, "extend_right");
-    only_display1 = gtk_builder_get_object(builder, "display1");
-
-    /* Lock everything in the dialog to prevent bad things from happening */
-    g_object_disconnect (mirror_displays, "any_signal::toggled",
-                         display_settings_minimal_mirror_displays_toggled,
-                         builder, NULL);
-    g_object_disconnect (extend_right, "any_signal::toggled",
-                         display_settings_minimal_extend_right_toggled,
-                         builder, NULL);
-    g_object_disconnect (only_display1, "any_signal::toggled",
-                         display_settings_minimal_only_display1_toggled,
-                         builder, NULL);
-                         
-    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), FALSE );
-    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), FALSE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display1), FALSE );
-
-    gtk_toggle_button_set_active (button, TRUE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(mirror_displays), FALSE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_right), FALSE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(only_display1), FALSE);
+    if ( !gtk_toggle_button_get_active(button) ) 
+        return;
     
     if (!xfce_randr)
         return;
 
     if (xfce_randr->noutput <= 1)
         return;
+        
+    buttons = gtk_builder_get_object(builder, "buttons");
+    gtk_widget_set_sensitive( GTK_WIDGET(buttons), FALSE );
 
-    if (gtk_toggle_button_get_active (button))
-    {
-        /* Put Display2 in its preferred mode and deactivate Display1 */
-        XFCE_RANDR_MODE (xfce_randr) = xfce_randr_preferred_mode (xfce_randr, 1);
-        xfce_randr->active_output = 0;
-        XFCE_RANDR_MODE (xfce_randr) = None;
-        /* Apply the changes */
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,0);
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,1);
-        xfce_randr_apply (xfce_randr, "Default", display_channel);
-    }
+    /* Put Display2 in its preferred mode and deactivate Display1 */
+    XFCE_RANDR_MODE (xfce_randr) = xfce_randr_preferred_mode (xfce_randr, 1);
+    xfce_randr->active_output = 0;
+    XFCE_RANDR_MODE (xfce_randr) = None;
     
-    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), TRUE );
-    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), TRUE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display1), TRUE );
-
-    /* Reconnect the signals */
-    g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
-                      builder);
-    g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled),
-                      builder);
-    g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled),
-                      builder);
+    /* Apply the changes */
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,0);
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,1);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+    
+    gtk_widget_set_sensitive( GTK_WIDGET(buttons), TRUE );
 }
 
 static void
 display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
-                                              GtkBuilder *builder)
+                                                  GtkBuilder      *builder)
 {
-    GObject *extend_right, *only_display1, *only_display2;
+    GObject *buttons;
     
     gint selected_x, selected_y;
     guint n;
+
+    if ( !gtk_toggle_button_get_active(button) ) 
+        return;
     
-    only_display1 = gtk_builder_get_object(builder, "display1");
-    only_display2 = gtk_builder_get_object(builder, "display2");
-    extend_right = gtk_builder_get_object(builder, "extend_right");
+    if (!xfce_randr)
+        return;
 
-    /* Lock everything in the dialog to prevent bad things from happening */
-    g_object_disconnect (only_display1, "any_signal::toggled",
-                         display_settings_minimal_only_display1_toggled,
-                         builder, NULL);
-    g_object_disconnect (only_display2, "any_signal::toggled",
-                         display_settings_minimal_only_display2_toggled,
-                         builder, NULL);
-    g_object_disconnect (extend_right, "any_signal::toggled",
-                         display_settings_minimal_extend_right_toggled,
-                         builder, NULL);
-                         
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display1), FALSE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display2), FALSE );
-    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), FALSE );
-
-    gtk_toggle_button_set_active (button, TRUE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(only_display1), FALSE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(only_display2), FALSE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(extend_right), FALSE);
+    if (xfce_randr->noutput <= 1)
+        return;
+        
+    buttons = gtk_builder_get_object(builder, "buttons");
+    gtk_widget_set_sensitive( GTK_WIDGET(buttons), FALSE );
 
 	/* Activate all inactive displays */
 	for (n = 0; n < xfce_randr->noutput; ++n)
@@ -1544,51 +1472,30 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
     /* Apply all changes */
     xfce_randr_apply (xfce_randr, "Default", display_channel);
     
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display1), TRUE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display2), TRUE );
-    gtk_widget_set_sensitive( GTK_WIDGET(extend_right), TRUE );
-
-    /* Reconnect the signals */
-    g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled),
-                      builder);
-    g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled),
-                      builder);
-    g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled),
-                      builder);
+    gtk_widget_set_sensitive( GTK_WIDGET(buttons), TRUE );
 }
 
 static void
 display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
                                               GtkBuilder *builder)
 {
-    GObject *mirror_displays, *only_display1, *only_display2;
+    GObject *buttons;
+
     guint n;
-    
+        
     XfceRRMode   *current_mode;
     
-    mirror_displays = gtk_builder_get_object(builder, "mirror");
-    only_display1 = gtk_builder_get_object(builder, "display1");
-    only_display2 = gtk_builder_get_object(builder, "display2");
-
-    /* Lock everything in the dialog to prevent bad things from happening */
-    g_object_disconnect (mirror_displays, "any_signal::toggled",
-                         display_settings_minimal_mirror_displays_toggled,
-                         builder, NULL);
-    g_object_disconnect (only_display1, "any_signal::toggled",
-                         display_settings_minimal_only_display1_toggled,
-                         builder, NULL);
-    g_object_disconnect (only_display2, "any_signal::toggled",
-                         display_settings_minimal_only_display2_toggled,
-                         builder, NULL);
-                         
-    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), FALSE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display1), FALSE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display2), FALSE );
+    if ( !gtk_toggle_button_get_active(button) ) 
+        return;
     
-    gtk_toggle_button_set_active (button, TRUE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(mirror_displays), FALSE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(only_display1), FALSE);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(only_display2), FALSE);
+    if (!xfce_randr)
+        return;
+
+    if (xfce_randr->noutput <= 1)
+        return;
+        
+    buttons = gtk_builder_get_object(builder, "buttons");
+    gtk_widget_set_sensitive( GTK_WIDGET(buttons), FALSE );
 
 	/* Activate all inactive displays */
 	for (n = 0; n < xfce_randr->noutput; ++n)
@@ -1620,17 +1527,7 @@ display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
     /* Apply all changes */
     xfce_randr_apply (xfce_randr, "Default", display_channel);
 
-    /* Unlock the dialog and reconnect the signals */    
-    gtk_widget_set_sensitive( GTK_WIDGET(mirror_displays), TRUE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display1), TRUE );
-    gtk_widget_set_sensitive( GTK_WIDGET(only_display2), TRUE );
-
-    g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
-                      builder);
-    g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled),
-                      builder);
-    g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled),
-                      builder);
+    gtk_widget_set_sensitive( GTK_WIDGET(buttons), TRUE );
 }
 
 
