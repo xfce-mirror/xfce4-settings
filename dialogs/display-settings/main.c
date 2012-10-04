@@ -60,6 +60,13 @@ enum
     N_COMBO_COLUMNS
 };
 
+typedef struct {
+    GtkBuilder *builder;
+    GdkDisplay  *display;
+    gint event_base;
+    GError *error;
+} minimal_advanced_context;
+
 
 
 /* Xrandr rotation name conversion */
@@ -1556,15 +1563,158 @@ screen_on_event (GdkXEvent *xevent,
     return GDK_FILTER_CONTINUE;
 }
 
+static void
+display_settings_show_main_dialog (GdkDisplay  *display,
+                                   gint event_base,
+                                   GError *error)
+{
+    GtkBuilder  *builder;
+    GtkWidget   *dialog;
+    
+    GtkWidget   *plug;
+    GObject     *plug_child;
+
+    /* Load the Gtk user-interface file */
+    builder = gtk_builder_new ();
+    if (gtk_builder_add_from_string (builder, display_dialog_ui,
+                                     display_dialog_ui_length, &error) != 0)
+    {
+        /* Build the dialog */
+        dialog = display_settings_dialog_new (builder);
+        XFCE_RANDR_EVENT_BASE (xfce_randr) = event_base;
+        /* Set up notifications */
+        XRRSelectInput (gdk_x11_display_get_xdisplay (display),
+                        GDK_WINDOW_XID (gdk_get_default_root_window ()),
+                        RRScreenChangeNotifyMask);
+        gdk_x11_register_standard_event_type (display,
+                                              event_base,
+                                              RRNotify + 1);
+        gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
+
+        if (G_UNLIKELY (opt_socket_id == 0))
+        {
+            g_signal_connect (G_OBJECT (dialog), "response",
+                G_CALLBACK (display_settings_dialog_response), builder);
+
+            /* Show the dialog */
+            gtk_window_present (GTK_WINDOW (dialog));
+        }
+        else
+        {
+            /* Create plug widget */
+            plug = gtk_plug_new (opt_socket_id);
+            g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+            gtk_widget_show (plug);
+
+            /* Get plug child widget */
+            plug_child = gtk_builder_get_object (builder, "plug-child");
+            gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
+            gtk_widget_show (GTK_WIDGET (plug_child));
+        }
+
+        /* To prevent the settings dialog to be saved in the session */
+        gdk_set_sm_client_id ("FAKE ID");
+
+        /* Enter the main loop */
+        gtk_main ();
+
+        gtk_widget_destroy (dialog);
+    }
+    else
+    {
+        g_error ("Failed to load the UI file: %s.", error->message);
+        g_error_free (error);
+    }
+
+    gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, builder);
+
+    /* Release the builder */
+    g_object_unref (G_OBJECT (builder));
+}
+
+static void
+display_settings_minimal_advanced_clicked(GtkButton *button,
+                                          minimal_advanced_context *context)
+{
+    GtkWidget *dialog;
+    
+    dialog = (GtkWidget *) gtk_builder_get_object (context->builder, "dialog");
+    gtk_widget_hide( dialog );
+    
+    display_settings_show_main_dialog( context->display, context->event_base, context->error );
+    
+    gtk_main_quit();
+}
+
+static void
+display_settings_show_minimal_dialog (GdkDisplay  *display,
+                                      gint event_base,
+                                      GError *error)
+{
+    GtkBuilder  *builder;
+    GtkWidget   *dialog, *cancel;
+
+    builder = gtk_builder_new ();
+
+    if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
+                                     minimal_display_dialog_ui_length, &error) != 0)
+    {
+        GObject *only_display1;
+        GObject *only_display2;
+        GObject *mirror_displays;
+        GObject *extend_right;
+        GObject *advanced;
+        minimal_advanced_context context;
+        
+        context.builder = builder;
+        context.display = display;
+        context.event_base = event_base;
+        context.error = error;
+
+        /* Build the minimal dialog */
+        dialog = (GtkWidget *) gtk_builder_get_object (builder, "dialog");
+        cancel = (GtkWidget *) gtk_builder_get_object (builder, "cancel_button");
+        
+        g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+        g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
+        
+        only_display1 = gtk_builder_get_object (builder, "display1");
+        mirror_displays = gtk_builder_get_object (builder, "mirror");
+        extend_right = gtk_builder_get_object (builder, "extend_right");
+        only_display2 = gtk_builder_get_object (builder, "display2");
+        advanced = gtk_builder_get_object (builder, "advanced_button");
+        
+        g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled),
+              builder);
+        g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
+              builder);
+        g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled),
+              builder);
+        g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled),
+              builder);
+        g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked), 
+              (gpointer*)&context);
+
+        /* Show the minimal dialog and start the main loop */
+        gtk_window_present (GTK_WINDOW (dialog));
+        gtk_main ();
+    }
+    else
+    {
+        g_error ("Failed to load the UI file: %s.", error->message);
+        g_error_free (error);
+    }
+
+    g_object_unref (G_OBJECT (builder));
+}
+
 
 gint
 main (gint argc, gchar **argv)
 {
-    GtkBuilder  *builder;
     GdkDisplay  *display;
-    GtkWidget   *dialog, *cancel;
-    GtkWidget   *plug;
-    GObject     *plug_child;
+    
+    
     GError      *error = NULL;
     gboolean     succeeded = TRUE;
     gint         event_base, error_base;
@@ -1677,109 +1827,14 @@ main (gint argc, gchar **argv)
 
         if ( (display_settings_get_n_active_outputs () == 1) || !minimal)
         {
-            /* Load the Gtk user-interface file */
-            builder = gtk_builder_new ();
-            if (gtk_builder_add_from_string (builder, display_dialog_ui,
-                                             display_dialog_ui_length, &error) != 0)
-            {
-                /* Build the dialog */
-                dialog = display_settings_dialog_new (builder);
-                XFCE_RANDR_EVENT_BASE (xfce_randr) = event_base;
-                /* Set up notifications */
-                XRRSelectInput (gdk_x11_display_get_xdisplay (display),
-                                GDK_WINDOW_XID (gdk_get_default_root_window ()),
-                                RRScreenChangeNotifyMask);
-                gdk_x11_register_standard_event_type (display,
-                                                      event_base,
-                                                      RRNotify + 1);
-                gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
-
-                if (G_UNLIKELY (opt_socket_id == 0))
-                {
-                    g_signal_connect (G_OBJECT (dialog), "response",
-                        G_CALLBACK (display_settings_dialog_response), builder);
-
-                    /* Show the dialog */
-                    gtk_window_present (GTK_WINDOW (dialog));
-                }
-                else
-                {
-                    /* Create plug widget */
-                    plug = gtk_plug_new (opt_socket_id);
-                    g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
-                    gtk_widget_show (plug);
-
-                    /* Get plug child widget */
-                    plug_child = gtk_builder_get_object (builder, "plug-child");
-                    gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
-                    gtk_widget_show (GTK_WIDGET (plug_child));
-                }
-
-                /* To prevent the settings dialog to be saved in the session */
-                gdk_set_sm_client_id ("FAKE ID");
-
-                /* Enter the main loop */
-                gtk_main ();
-
-                gtk_widget_destroy (dialog);
-            }
-            else
-            {
-                g_error ("Failed to load the UI file: %s.", error->message);
-                g_error_free (error);
-            }
-
-            gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, builder);
-
-            /* Release the builder */
-            g_object_unref (G_OBJECT (builder));
+            display_settings_show_main_dialog( display, event_base, error );
         }
         else
         {
             if (xfce_randr->noutput < 2)
                 goto cleanup;
 
-            builder = gtk_builder_new ();
-
-            if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
-                                             minimal_display_dialog_ui_length, &error) != 0)
-            {
-                GObject *only_display1;
-                GObject *only_display2;
-                GObject *mirror_displays;
-                GObject *extend_right;
-
-                /* Build the minimal dialog */
-                dialog = (GtkWidget *) gtk_builder_get_object (builder, "dialog");
-                cancel = (GtkWidget *) gtk_builder_get_object (builder, "cancel_button");
-                g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
-                g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
-                
-                only_display1 = gtk_builder_get_object (builder, "display1");
-                mirror_displays = gtk_builder_get_object (builder, "mirror");
-                extend_right = gtk_builder_get_object (builder, "extend_right");
-                only_display2 = gtk_builder_get_object (builder, "display2");
-                
-                g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled),
-                      builder);
-                g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
-                      builder);
-                g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled),
-                      builder);
-                g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled),
-                      builder);
-
-                /* Show the minimal dialog and start the main loop */
-                gtk_window_present (GTK_WINDOW (dialog));
-                gtk_main ();
-            }
-            else
-            {
-                g_error ("Failed to load the UI file: %s.", error->message);
-                g_error_free (error);
-            }
-
-            g_object_unref (G_OBJECT (builder));
+            display_settings_show_minimal_dialog ( display, event_base, error );
         }
 
         cleanup:
