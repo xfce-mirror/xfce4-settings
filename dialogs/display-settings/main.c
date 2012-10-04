@@ -65,7 +65,7 @@ enum
 /* Xrandr rotation name conversion */
 static const XfceRotation rotation_names[] =
 {
-    { RR_Rotate_0,   N_("Normal") },
+    { RR_Rotate_0,   N_("None") },
     { RR_Rotate_90,  N_("Left") },
     { RR_Rotate_180, N_("Inverted") },
     { RR_Rotate_270, N_("Right") }
