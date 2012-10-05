@@ -19,6 +19,7 @@ xfce4_display_settings_SOURCES = \
 	confirmation-dialog_ui.h \
 	display-dialog_ui.h \
 	minimal-display-dialog_ui.h \
+	identity-popup_ui.h \
 	display-name.c \
 	edid-parse.c \
 	edid.h
@@ -49,7 +50,8 @@ if MAINTAINER_MODE
 BUILT_SOURCES = \
 	confirmation-dialog_ui.h \
 	display-dialog_ui.h \
-	minimal-display-dialog_ui.h
+	minimal-display-dialog_ui.h \
+	identity-popup_ui.h
 
 confirmation-dialog_ui.h: confirmation-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=confirmation_dialog_ui $< >$@
@@ -59,6 +61,9 @@ display-dialog_ui.h: display-dialog.glade
 
 minimal-display-dialog_ui.h: minimal-display-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=minimal_display_dialog_ui $< >$@
+	
+identity-popup_ui.h: identity-popup.glade
+	exo-csource --static --strip-comments --strip-content --name=identity_popup_ui $< >$@
 
 endif
 
@@ -72,7 +77,8 @@ EXTRA_DIST = \
 	$(desktop_in_files) \
 	confirmation-dialog.glade \
 	display-dialog.glade \
-	minimal-display-dialog.glade
+	minimal-display-dialog.glade \
+	identity-popup.glade
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

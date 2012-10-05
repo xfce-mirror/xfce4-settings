@@ -44,6 +44,7 @@
 #include "display-dialog_ui.h"
 #include "confirmation-dialog_ui.h"
 #include "minimal-display-dialog_ui.h"
+#include "identity-popup_ui.h"
 
 enum
 {
@@ -66,6 +67,13 @@ typedef struct {
     gint event_base;
     GError *error;
 } minimal_advanced_context;
+
+typedef struct {
+    GtkWidget *display1;
+    GtkWidget *display2;
+    GtkWidget *display3;
+    GtkWidget *display4;
+} identity_popup_store;
 
 
 
@@ -119,6 +127,8 @@ static gboolean       bound_to_channel = FALSE;
 /* Pointer to the used randr structure */
 XfceRandr *xfce_randr = NULL;
 
+identity_popup_store display_popups;
+
 static void
 display_settings_minimal_only_display1_toggled (GtkToggleButton *button,
                                               GtkBuilder *builder);
@@ -167,6 +177,24 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
     }
 
     return FALSE;
+}
+
+static void
+display_setting_hide_identity_popups(void)
+{
+    if (GTK_IS_WIDGET(display_popups.display1)) gtk_widget_hide(display_popups.display1);
+    if (GTK_IS_WIDGET(display_popups.display2)) gtk_widget_hide(display_popups.display2);
+    if (GTK_IS_WIDGET(display_popups.display3)) gtk_widget_hide(display_popups.display3);
+    if (GTK_IS_WIDGET(display_popups.display4)) gtk_widget_hide(display_popups.display4);
+}
+
+static void
+display_setting_show_identity_popups(void)
+{
+    if (GTK_IS_WIDGET(display_popups.display1)) gtk_widget_show(display_popups.display1);
+    if (GTK_IS_WIDGET(display_popups.display2)) gtk_widget_show(display_popups.display2);
+    if (GTK_IS_WIDGET(display_popups.display3)) gtk_widget_show(display_popups.display3);
+    if (GTK_IS_WIDGET(display_popups.display4)) gtk_widget_show(display_popups.display4);
 }
 
 static gboolean
@@ -230,6 +258,13 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
         confirmation_dialog->count = 10;
 
         dialog = gtk_builder_get_object (builder, "dialog1");
+        
+        g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_hide_identity_popups),
+                      NULL);
+                      
+        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_show_identity_popups),
+                      NULL);
+        
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
         source_id = g_timeout_add_seconds (1, (GSourceFunc) display_settings_update_time_label,
                                            confirmation_dialog);
@@ -955,7 +990,109 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
 }
 
+static GtkWidget*
+display_setting_identify_display (gint display_id,
+                                   GError *error)
+{
+    GtkBuilder *builder;
+    GtkWidget *popup;
+    
+    GObject *display_name, *display_details;
+    
+    gchar *name;
+    
+    gint active_output;
+    XfceRRMode   *current_mode;
+    
+    gint screen_pos_x, screen_pos_y;
+    gint window_width, window_height, screen_width, screen_height;
+    
+    builder = gtk_builder_new ();
+    if (gtk_builder_add_from_string (builder, identity_popup_ui,
+                                     identity_popup_ui_length, &error) != 0)
+    {
+        popup = (GtkWidget *) gtk_builder_get_object(builder, "popup");
+        display_name = gtk_builder_get_object(builder, "display_name");
+        display_details = gtk_builder_get_object(builder, "display_details");
+        
+        if ( display_settings_get_n_active_outputs() != 1 )
+        {
+            active_output = xfce_randr->active_output;
+            xfce_randr->active_output = display_id;
+            current_mode = xfce_randr_find_mode_by_id (xfce_randr, display_id, XFCE_RANDR_MODE (xfce_randr));
+            screen_pos_x = XFCE_RANDR_POS_X (xfce_randr);
+            screen_pos_y = XFCE_RANDR_POS_Y (xfce_randr);
+            screen_width = current_mode->width;
+            screen_height = current_mode->height;
+            xfce_randr->active_output = active_output;
+        }
+        else
+        {
+            screen_pos_x = 0;
+            screen_pos_y = 0;
+            screen_width = gdk_screen_width();
+            screen_height = gdk_screen_height();
+        }
+        
+        /* Get a friendly name for the output */
+        name = xfce_randr_friendly_name (xfce_randr,
+                                         xfce_randr->resources->outputs[display_id],
+                                         xfce_randr->output_info[display_id]->name);
+                                         
+        gtk_label_set_markup (GTK_LABEL(display_name),
+                              g_strdup_printf("<big><b>%s: %s</b></big>", _("Display"), name) );
+                              
+        gtk_label_set_markup (GTK_LABEL(display_details),
+                              g_strdup_printf("%s: %i x %i", _("Resolution"), screen_width, screen_height) );
+                              
+                
+        gtk_window_get_size(GTK_WINDOW(popup), &window_width, &window_height);
+        
+        gtk_window_move( GTK_WINDOW(popup), 
+                         screen_pos_x + (screen_width - window_width)/2,
+                         screen_pos_y + screen_height - window_height );
+        
+        gtk_window_present (GTK_WINDOW (popup));
+    }
+    
+    /* Release the builder */
+    g_object_unref (G_OBJECT (builder));
+    
+    return popup;
+}
 
+static void
+display_setting_populate_identity_popups(GtkBuilder *builder)
+{
+    guint n;
+    
+    GError *error=NULL;
+    
+    if (GTK_IS_WIDGET(display_popups.display1)) gtk_widget_destroy(display_popups.display1);
+    if (GTK_IS_WIDGET(display_popups.display2)) gtk_widget_destroy(display_popups.display2);
+    if (GTK_IS_WIDGET(display_popups.display3)) gtk_widget_destroy(display_popups.display3);
+    if (GTK_IS_WIDGET(display_popups.display4)) gtk_widget_destroy(display_popups.display4);
+    
+    for (n = 0; n < display_settings_get_n_active_outputs (); n++)
+    {
+        switch (n) {
+            case 0:
+                display_popups.display1 = display_setting_identify_display(n, error);
+                break;
+            case 1:
+                display_popups.display2 = display_setting_identify_display(n, error);
+                break;
+            case 2:
+                display_popups.display3 = display_setting_identify_display(n, error);
+                break;
+            case 3:
+                display_popups.display4 = display_setting_identify_display(n, error);
+                break;
+            default:
+                break;
+        }
+    }
+}
 
 static void
 display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
@@ -1169,6 +1306,7 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         display_setting_refresh_rates_populate (builder);
         display_setting_rotations_populate (builder);
         display_setting_reflections_populate (builder);
+        display_setting_populate_identity_popups (builder);
         
         mirror_displays = gtk_builder_get_object(builder, "mirror-displays");
         if (gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(mirror_displays) )) {
@@ -1611,6 +1749,12 @@ display_settings_show_main_dialog (GdkDisplay  *display,
             gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
             gtk_widget_show (GTK_WIDGET (plug_child));
         }
+        
+        g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_hide_identity_popups),
+                      NULL);
+                      
+        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_show_identity_popups),
+                      NULL);
 
         /* To prevent the settings dialog to be saved in the session */
         gdk_set_sm_client_id ("FAKE ID");
@@ -1825,7 +1969,7 @@ main (gint argc, gchar **argv)
         if (xfce_titled_dialog_get_type () == 0)
             return EXIT_FAILURE;
 
-        if ( (display_settings_get_n_active_outputs () == 1) || !minimal)
+        if (!minimal)
         {
             display_settings_show_main_dialog( display, event_base, error );
         }
