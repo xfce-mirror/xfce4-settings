@@ -1017,46 +1017,33 @@ display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, g
     gint radius;
     
     radius = 15;
+    cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
 
     /* Compositing is not available, so just set the background color. */
     if (!supports_alpha)
     {
         cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
-        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
         cairo_paint (cr);
-    }
-    
-    /* The radius is tiny, don't bother drawing rounded corners. */
-    else if (radius < 0.1) {
-        cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.9);
-        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-        cairo_paint (cr);
-        cairo_rectangle(cr, 0, 0, popup->allocation.width, popup->allocation.height);
     }
     
     /* Draw rounded corners. FIXME Does not work with xfce compositor off. */
     else
     {
         cairo_set_source_rgba(cr, 0, 0, 0, 0);
-        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
         cairo_paint (cr);
         
+        /* Draw a filled rounded rectangle with outline */
+        cairo_set_line_width(cr, 1.0);
+        cairo_move_to(cr, 0.5, popup->allocation.height+0.5);
+        cairo_line_to(cr, 0.5, radius+0.5);
+        cairo_arc(cr, radius+0.5, radius+0.5, radius, 3.14, 3.0*3.14/2.0);
+        cairo_line_to(cr, popup->allocation.width-0.5 - radius, 0.5);
+        cairo_arc(cr, popup->allocation.width-0.5 - radius, radius+0.5, radius, 3.0*3.14/2.0, 0.0);
+        cairo_line_to(cr, popup->allocation.width-0.5, popup->allocation.height+0.5);
         cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.9);
-
-        cairo_move_to(cr, 0, radius);
-        cairo_arc(cr, radius, radius, radius, 3.14, 3.0*3.14/2.0);
-        cairo_line_to(cr, popup->allocation.width - radius, 0);
-        cairo_arc(cr, popup->allocation.width - radius, radius, radius, 3.0*3.14/2.0, 0.0);
-        //cairo_line_to(cr, popup->allocation.width, popup->allocation.height - radius);
-        cairo_line_to(cr, popup->allocation.width, popup->allocation.height);
-        //cairo_arc(cr, popup->allocation.width - radius, popup->allocation.height - radius, radius, 0.0, 3.14/2.0);
-        //cairo_line_to(cr, radius, popup->allocation.height);
-        cairo_line_to(cr, 0, popup->allocation.height);
-        //cairo_arc(cr, radius, popup->allocation.height - radius, radius, 3.14/2.0, 3.14);
-        cairo_stroke_preserve(cr);
-        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-        cairo_fill(cr);
-        cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
+        cairo_fill_preserve(cr);
+        cairo_set_source_rgba(cr, 1.0, 1.0, 1.0,0.7);
+        cairo_stroke(cr);
         cairo_close_path(cr);
     }    
     
