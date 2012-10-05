@@ -1074,6 +1074,7 @@ display_setting_identify_display (gint display_id,
                                      identity_popup_ui_length, &error) != 0)
     {
         popup = (GtkWidget *) gtk_builder_get_object(builder, "popup");
+        gtk_widget_set_name(GTK_WIDGET(popup),"XfceDisplayDialogPopup");
         
         gtk_widget_set_app_paintable(popup, TRUE);
         g_signal_connect( G_OBJECT(popup), "expose-event", G_CALLBACK(display_setting_identity_popup_expose), NULL );
