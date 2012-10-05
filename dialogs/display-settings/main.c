@@ -128,6 +128,7 @@ static gboolean       bound_to_channel = FALSE;
 XfceRandr *xfce_randr = NULL;
 
 identity_popup_store display_popups;
+gboolean supports_alpha = FALSE;
 
 static void
 display_settings_minimal_only_display1_toggled (GtkToggleButton *button,
@@ -990,6 +991,80 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
 }
 
+static void
+display_setting_screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer userdata)
+{
+    GdkScreen *screen = gtk_widget_get_screen(widget);
+    GdkColormap *colormap = gdk_screen_get_rgba_colormap(screen);
+    
+    if (!colormap)
+    {
+        colormap = gdk_screen_get_rgb_colormap(screen);
+        supports_alpha = FALSE;
+    }
+    else
+    {
+        supports_alpha = TRUE;
+    }
+    
+    gtk_widget_set_colormap(widget, colormap);
+}
+
+static gboolean
+display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, gpointer userdata)
+{
+    cairo_t *cr = gdk_cairo_create(popup->window);
+    gint radius;
+    
+    radius = 15;
+
+    /* Compositing is not available, so just set the background color. */
+    if (!supports_alpha)
+    {
+        cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
+        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+        cairo_paint (cr);
+    }
+    
+    /* The radius is tiny, don't bother drawing rounded corners. */
+    else if (radius < 0.1) {
+        cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.9);
+        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+        cairo_paint (cr);
+        cairo_rectangle(cr, 0, 0, popup->allocation.width, popup->allocation.height);
+    }
+    
+    /* Draw rounded corners. FIXME Does not work with xfce compositor off. */
+    else
+    {
+        cairo_set_source_rgba(cr, 0, 0, 0, 0);
+        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+        cairo_paint (cr);
+        
+        cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.9);
+
+        cairo_move_to(cr, 0, radius);
+        cairo_arc(cr, radius, radius, radius, 3.14, 3.0*3.14/2.0);
+        cairo_line_to(cr, popup->allocation.width - radius, 0);
+        cairo_arc(cr, popup->allocation.width - radius, radius, radius, 3.0*3.14/2.0, 0.0);
+        //cairo_line_to(cr, popup->allocation.width, popup->allocation.height - radius);
+        cairo_line_to(cr, popup->allocation.width, popup->allocation.height);
+        //cairo_arc(cr, popup->allocation.width - radius, popup->allocation.height - radius, radius, 0.0, 3.14/2.0);
+        //cairo_line_to(cr, radius, popup->allocation.height);
+        cairo_line_to(cr, 0, popup->allocation.height);
+        //cairo_arc(cr, radius, popup->allocation.height - radius, radius, 3.14/2.0, 3.14);
+        cairo_stroke_preserve(cr);
+        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+        cairo_fill(cr);
+        cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
+        cairo_close_path(cr);
+    }    
+    
+    cairo_destroy (cr);
+    
+    return FALSE;
+}
+
 static GtkWidget*
 display_setting_identify_display (gint display_id,
                                    GError *error)
@@ -1012,6 +1087,11 @@ display_setting_identify_display (gint display_id,
                                      identity_popup_ui_length, &error) != 0)
     {
         popup = (GtkWidget *) gtk_builder_get_object(builder, "popup");
+        
+        gtk_widget_set_app_paintable(popup, TRUE);
+        g_signal_connect( G_OBJECT(popup), "expose-event", G_CALLBACK(display_setting_identity_popup_expose), NULL );
+        g_signal_connect( G_OBJECT(popup), "screen-changed", G_CALLBACK(display_setting_screen_changed), NULL );
+        
         display_name = gtk_builder_get_object(builder, "display_name");
         display_details = gtk_builder_get_object(builder, "display_details");
         
@@ -1040,10 +1120,10 @@ display_setting_identify_display (gint display_id,
                                          xfce_randr->output_info[display_id]->name);
                                          
         gtk_label_set_markup (GTK_LABEL(display_name),
-                              g_strdup_printf("<big><b>%s: %s</b></big>", _("Display"), name) );
+                              g_strdup_printf("<span foreground='#FFFFFF'><big><b>%s: %s</b></big></span>", _("Display"), name) );
                               
         gtk_label_set_markup (GTK_LABEL(display_details),
-                              g_strdup_printf("%s: %i x %i", _("Resolution"), screen_width, screen_height) );
+                              g_strdup_printf("<span foreground='#FFFFFF'>%s: %i x %i</span>", _("Resolution"), screen_width, screen_height) );
                               
                 
         gtk_window_get_size(GTK_WINDOW(popup), &window_width, &window_height);
@@ -1051,6 +1131,8 @@ display_setting_identify_display (gint display_id,
         gtk_window_move( GTK_WINDOW(popup), 
                          screen_pos_x + (screen_width - window_width)/2,
                          screen_pos_y + screen_height - window_height );
+                         
+        display_setting_screen_changed(GTK_WIDGET(popup), NULL, NULL);
         
         gtk_window_present (GTK_WINDOW (popup));
     }
