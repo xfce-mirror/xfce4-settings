@@ -1969,15 +1969,12 @@ main (gint argc, gchar **argv)
         if (xfce_titled_dialog_get_type () == 0)
             return EXIT_FAILURE;
 
-        if (!minimal)
+        if (xfce_randr->noutput <= 1 || !minimal)
         {
             display_settings_show_main_dialog( display, event_base, error );
         }
         else
         {
-            if (xfce_randr->noutput < 2)
-                goto cleanup;
-
             display_settings_show_minimal_dialog ( display, event_base, error );
         }
 
