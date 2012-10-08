@@ -1061,7 +1061,7 @@ display_setting_identity_display (gint display_id,
     
     GObject *display_name, *display_details;
     
-    gchar *name, *color_hex;
+    gchar *name, *color_hex, *name_label, *details_label;
     
     gint active_output;
     XfceRRMode   *current_mode;
@@ -1108,13 +1108,14 @@ display_setting_identity_display (gint display_id,
                                          xfce_randr->output_info[display_id]->name);
         color_hex = "#FFFFFF";
         if ((has_selection)) color_hex = "#D20000";
-  
-        gtk_label_set_markup (GTK_LABEL(display_name),
-                              g_markup_printf_escaped("<span foreground='%s'><big><b>%s %s</b></big></span>", color_hex, _("Display:"), name) );
 
-        gtk_label_set_markup (GTK_LABEL(display_details),
-                              g_markup_printf_escaped("<span foreground='%s'>%s %i x %i</span>", color_hex, _("Resolution:"), screen_width, screen_height) );
-                              
+        name_label = g_markup_printf_escaped("<span foreground='%s'><big><b>%s %s</b></big></span>", color_hex, _("Display:"), name);
+        gtk_label_set_markup (GTK_LABEL(display_name), name_label);
+        g_free (name_label);
+
+        details_label = g_markup_printf_escaped("<span foreground='%s'>%s %i x %i</span>", color_hex, _("Resolution:"), screen_width, screen_height);
+        gtk_label_set_markup (GTK_LABEL(display_details), details_label);
+        g_free (details_label);
                 
         gtk_window_get_size(GTK_WINDOW(popup), &window_width, &window_height);
         
@@ -1390,26 +1391,28 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
             gtk_widget_set_sensitive( GTK_WIDGET(display_combo), FALSE );
         }
         
+        if (display_settings_get_n_active_outputs() > 1) {
         switch (active_id) {
             case 0:
-				gtk_widget_destroy(display_popups.display1);
+                if (GTK_IS_WIDGET(display_popups.display1)) gtk_widget_destroy(display_popups.display1);
                 display_popups.display1 = display_setting_identity_display(active_id, error, has_selection);
                 break;
             case 1:
-				gtk_widget_destroy(display_popups.display2);
+                if (GTK_IS_WIDGET(display_popups.display2)) gtk_widget_destroy(display_popups.display2);
                 display_popups.display2 = display_setting_identity_display(active_id, error, has_selection);
                 break;
             case 2:
-				gtk_widget_destroy(display_popups.display3);
+                if (GTK_IS_WIDGET(display_popups.display3)) gtk_widget_destroy(display_popups.display3);
                 display_popups.display3 = display_setting_identity_display(active_id, error, has_selection);
                 break;
             case 3:
-				gtk_widget_destroy(display_popups.display4);
+                if (GTK_IS_WIDGET(display_popups.display4)) gtk_widget_destroy(display_popups.display4);
                 display_popups.display4 = display_setting_identity_display(active_id, error, has_selection);
                 break;
             default:
                 break;
         }
+		}
     }
 }
 
