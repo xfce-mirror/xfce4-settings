@@ -1022,7 +1022,7 @@ display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, g
     /* Compositing is not available, so just set the background color. */
     if (!supports_alpha)
     {
-        cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
+        cairo_set_source_rgb(cr, 0.1, 0.1, 0.1);
         cairo_paint (cr);
     }
     
@@ -1040,7 +1040,7 @@ display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, g
         cairo_line_to(cr, popup->allocation.width-0.5 - radius, 0.5);
         cairo_arc(cr, popup->allocation.width-0.5 - radius, radius+0.5, radius, 3.0*3.14/2.0, 0.0);
         cairo_line_to(cr, popup->allocation.width-0.5, popup->allocation.height+0.5);
-        cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.9);
+        cairo_set_source_rgba(cr, 0.1, 0.1, 0.1, 0.9);
         cairo_fill_preserve(cr);
         cairo_set_source_rgba(cr, 1.0, 1.0, 1.0,0.7);
         cairo_stroke(cr);
@@ -1053,15 +1053,15 @@ display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, g
 }
 
 static GtkWidget*
-display_setting_identify_display (gint display_id,
-                                   GError *error)
+display_setting_identity_display (gint display_id,
+                                   GError *error, gboolean has_selection)
 {
     GtkBuilder *builder;
     GtkWidget *popup;
     
     GObject *display_name, *display_details;
     
-    gchar *name;
+    gchar *name, *color_hex;
     
     gint active_output;
     XfceRRMode   *current_mode;
@@ -1106,12 +1106,14 @@ display_setting_identify_display (gint display_id,
         name = xfce_randr_friendly_name (xfce_randr,
                                          xfce_randr->resources->outputs[display_id],
                                          xfce_randr->output_info[display_id]->name);
-                                         
+        color_hex = "#FFFFFF";
+        if ((has_selection)) color_hex = "#D20000";
+  
         gtk_label_set_markup (GTK_LABEL(display_name),
-                              g_strdup_printf("<span foreground='#FFFFFF'><big><b>%s: %s</b></big></span>", _("Display"), name) );
-                              
+                              g_strdup_printf("<span foreground='%s'><big><b>%s: %s</b></big></span>", color_hex, _("Display"), name) );
+
         gtk_label_set_markup (GTK_LABEL(display_details),
-                              g_strdup_printf("<span foreground='#FFFFFF'>%s: %i x %i</span>", _("Resolution"), screen_width, screen_height) );
+                              g_strdup_printf("<span foreground='%s'>%s: %i x %i</span>", color_hex, _("Resolution"), screen_width, screen_height) );
                               
                 
         gtk_window_get_size(GTK_WINDOW(popup), &window_width, &window_height);
@@ -1132,7 +1134,7 @@ display_setting_identify_display (gint display_id,
 }
 
 static void
-display_setting_populate_identity_popups(GtkBuilder *builder)
+display_setting_identity_popups_populate(GtkBuilder *builder)
 {
     guint n;
     
@@ -1147,16 +1149,16 @@ display_setting_populate_identity_popups(GtkBuilder *builder)
     {
         switch (n) {
             case 0:
-                display_popups.display1 = display_setting_identify_display(n, error);
+                display_popups.display1 = display_setting_identity_display(n, error, FALSE);
                 break;
             case 1:
-                display_popups.display2 = display_setting_identify_display(n, error);
+                display_popups.display2 = display_setting_identity_display(n, error, FALSE);
                 break;
             case 2:
-                display_popups.display3 = display_setting_identify_display(n, error);
+                display_popups.display3 = display_setting_identity_display(n, error, FALSE);
                 break;
             case 3:
-                display_popups.display4 = display_setting_identify_display(n, error);
+                display_popups.display4 = display_setting_identity_display(n, error, FALSE);
                 break;
             default:
                 break;
@@ -1355,6 +1357,7 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
     gboolean      has_selection;
     gint          active_id;
     GObject *mirror_displays, *position_combo, *display_combo;
+    GError *error=NULL;
 
     /* Get the selection */
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
@@ -1376,7 +1379,7 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         display_setting_refresh_rates_populate (builder);
         display_setting_rotations_populate (builder);
         display_setting_reflections_populate (builder);
-        display_setting_populate_identity_popups (builder);
+        display_setting_identity_popups_populate (builder);
         
         mirror_displays = gtk_builder_get_object(builder, "mirror-displays");
         if (gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(mirror_displays) )) {
@@ -1385,6 +1388,27 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
             
             gtk_widget_set_sensitive( GTK_WIDGET(position_combo), FALSE );
             gtk_widget_set_sensitive( GTK_WIDGET(display_combo), FALSE );
+        }
+        
+        switch (active_id) {
+            case 0:
+				gtk_widget_destroy(display_popups.display1);
+                display_popups.display1 = display_setting_identity_display(active_id, error, has_selection);
+                break;
+            case 1:
+				gtk_widget_destroy(display_popups.display2);
+                display_popups.display2 = display_setting_identity_display(active_id, error, has_selection);
+                break;
+            case 2:
+				gtk_widget_destroy(display_popups.display3);
+                display_popups.display3 = display_setting_identity_display(active_id, error, has_selection);
+                break;
+            case 3:
+				gtk_widget_destroy(display_popups.display4);
+                display_popups.display4 = display_setting_identity_display(active_id, error, has_selection);
+                break;
+            default:
+                break;
         }
     }
 }
