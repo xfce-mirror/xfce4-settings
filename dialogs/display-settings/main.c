@@ -1110,10 +1110,10 @@ display_setting_identity_display (gint display_id,
         if ((has_selection)) color_hex = "#D20000";
   
         gtk_label_set_markup (GTK_LABEL(display_name),
-                              g_strdup_printf("<span foreground='%s'><big><b>%s: %s</b></big></span>", color_hex, _("Display"), name) );
+                              g_markup_printf_escaped("<span foreground='%s'><big><b>%s %s</b></big></span>", color_hex, _("Display:"), name) );
 
         gtk_label_set_markup (GTK_LABEL(display_details),
-                              g_strdup_printf("<span foreground='%s'>%s: %i x %i</span>", color_hex, _("Resolution"), screen_width, screen_height) );
+                              g_markup_printf_escaped("<span foreground='%s'>%s %i x %i</span>", color_hex, _("Resolution:"), screen_width, screen_height) );
                               
                 
         gtk_window_get_size(GTK_WINDOW(popup), &window_width, &window_height);
