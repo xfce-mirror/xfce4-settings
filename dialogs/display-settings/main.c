@@ -997,14 +997,14 @@ display_setting_screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointe
     GdkScreen *screen = gtk_widget_get_screen(widget);
     GdkColormap *colormap = gdk_screen_get_rgba_colormap(screen);
     
-    if (!colormap)
+    if (gdk_screen_is_composited(screen))
     {
-        colormap = gdk_screen_get_rgb_colormap(screen);
-        supports_alpha = FALSE;
+        supports_alpha = TRUE;
     }
     else
     {
-        supports_alpha = TRUE;
+        colormap = gdk_screen_get_rgb_colormap(screen);
+        supports_alpha = FALSE;
     }
     
     gtk_widget_set_colormap(widget, colormap);
@@ -1026,7 +1026,7 @@ display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, g
         cairo_paint (cr);
     }
     
-    /* Draw rounded corners. FIXME Does not work with xfce compositor off. */
+    /* Draw rounded corners. */
     else
     {
         cairo_set_source_rgba(cr, 0, 0, 0, 0);
