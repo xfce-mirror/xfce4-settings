@@ -108,7 +108,8 @@ static GtkCellEditable *xfce_settings_cell_renderer_start_editing (GtkCellRender
                                                                    GdkRectangle         *background_area,
                                                                    GdkRectangle         *cell_area,
                                                                    GtkCellRendererState  flags);
-
+static void             xfce_settings_strv_to_string              (const GValue         *src_value,
+                                                                   GValue               *dest_value);
 
 
 G_DEFINE_TYPE (XfceSettingsCellRenderer, xfce_settings_cell_renderer, GTK_TYPE_CELL_RENDERER)
@@ -158,6 +159,9 @@ xfce_settings_cell_renderer_class_init (XfceSettingsCellRendererClass *klass)
                                                     G_TYPE_VALUE);
 
     edit_data_quark = g_quark_from_static_string ("path");
+
+    g_value_register_transform_func (G_TYPE_STRV, G_TYPE_STRING,
+                                     xfce_settings_strv_to_string);
 }
 
 
@@ -282,7 +286,8 @@ xfce_settings_cell_renderer_prepare (XfceSettingsCellRenderer *renderer)
     const GValue *value = &renderer->cell_value;
     GValue        str_value = { 0, };
 
-    if (G_VALUE_TYPE (value) == xfce_settings_array_type ())
+    if (G_VALUE_TYPE (value) == xfce_settings_array_type ()
+        || G_VALUE_TYPE (value) == G_TYPE_STRV)
         goto transform_value;
 
     switch (G_VALUE_TYPE (value))
@@ -610,6 +615,34 @@ xfce_settings_array_to_string (const GValue *src_value,
 
     g_value_take_string (dest_value, g_string_free (str, FALSE));
 }
+
+
+
+static void
+xfce_settings_strv_to_string (const GValue *src_value,
+                              GValue       *dest_value)
+{
+    gchar   **array = g_value_get_boxed (src_value);
+    GString  *str;
+    guint     i;
+
+    g_return_if_fail (G_VALUE_HOLDS_STRING (dest_value));
+    g_return_if_fail (array != NULL);
+
+    str = g_string_new ("[ ");
+
+    for (i = 0; array[i] != NULL; i++)
+    {
+        if (i > 0)
+          g_string_append (str, ", ");
+        g_string_append_printf (str, "\"%s\"", array[i]);
+    }
+
+    g_string_append (str, " ]");
+
+    g_value_take_string (dest_value, g_string_free (str, FALSE));
+}
+
 
 
 
