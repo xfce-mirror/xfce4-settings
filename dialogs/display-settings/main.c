@@ -1011,21 +1011,63 @@ display_setting_screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointe
 }
 
 static gboolean
-display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, gpointer userdata)
+display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, gpointer has_selection)
 {
     cairo_t *cr = gdk_cairo_create(popup->window);
     gint radius;
+    gboolean selected = GPOINTER_TO_INT(has_selection);
+    cairo_pattern_t *vertical_gradient, *innerstroke_gradient, *selected_gradient, *selected_innerstroke_gradient;
     
-    radius = 15;
+    radius = 10;
     cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-
+    
+    /* Create the various gradients */
+	vertical_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
+	cairo_pattern_add_color_stop_rgb(vertical_gradient, 0, 0.25, 0.25, 0.25);
+	cairo_pattern_add_color_stop_rgb(vertical_gradient, 0.24, 0.15, 0.15, 0.15);
+	cairo_pattern_add_color_stop_rgb(vertical_gradient, 0.6, 0.0, 0.0, 0.0);
+	
+	innerstroke_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
+	cairo_pattern_add_color_stop_rgb(innerstroke_gradient, 0, 0.35, 0.35, 0.35);
+	cairo_pattern_add_color_stop_rgb(innerstroke_gradient, 0.4, 0.25, 0.25, 0.25);
+	cairo_pattern_add_color_stop_rgb(innerstroke_gradient, 0.7, 0.15, 0.15, 0.15);
+	cairo_pattern_add_color_stop_rgb(innerstroke_gradient, 0.85, 0.0, 0.0, 0.0);
+	
+	selected_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
+	cairo_pattern_add_color_stop_rgb(selected_gradient, 0, 0.05, 0.25, 0.45);
+	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.4, 0.05, 0.15, 0.25);
+	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.6, 0.05, 0.10, 0.20);
+	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.8, 0.0, 0.05, 0.05);
+	
+	selected_innerstroke_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
+	cairo_pattern_add_color_stop_rgb(selected_innerstroke_gradient, 0, 0.15, 0.45, 0.75);
+	cairo_pattern_add_color_stop_rgb(selected_innerstroke_gradient, 0.7, 0.0, 0.15, 0.25);
+	cairo_pattern_add_color_stop_rgb(selected_innerstroke_gradient, 0.85, 0.0, 0.0, 0.0);
+	
     /* Compositing is not available, so just set the background color. */
     if (!supports_alpha)
     {
-        cairo_set_source_rgb(cr, 0.1, 0.1, 0.1);
+		/* Draw a filled rectangle with outline */
+		cairo_set_line_width(cr, 1.0);
+        cairo_set_source(cr, vertical_gradient);
+        if (selected) cairo_set_source(cr, selected_gradient);
         cairo_paint (cr);
-        cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
-        cairo_rectangle(cr, 0, 0, popup->allocation.width, popup->allocation.height);
+        cairo_set_source_rgb(cr, 0.0, 0.0, 0.0);
+        cairo_rectangle(cr, 0.5, 0.5, popup->allocation.width-0.5, popup->allocation.height-0.5);
+        cairo_stroke(cr);
+        
+        /* Draw the inner stroke */
+        cairo_set_source_rgb(cr, 0.35, 0.35, 0.35);
+        if (selected) cairo_set_source_rgb(cr, 0.15, 0.45, 0.75);
+        cairo_move_to(cr, 1.5, 1.5);
+        cairo_line_to(cr, popup->allocation.width-1, 1.5);
+        cairo_stroke(cr);
+        cairo_set_source(cr, innerstroke_gradient);
+        if (selected) cairo_set_source(cr, selected_innerstroke_gradient);
+        cairo_move_to(cr, 1.5, 1.5);
+        cairo_line_to(cr, 1.5, popup->allocation.height-1.0);
+        cairo_move_to(cr, popup->allocation.width-1.5, 1.5);
+        cairo_line_to(cr, popup->allocation.width-1.5, popup->allocation.height-1.0);
         cairo_stroke(cr);
     }
     
@@ -1043,14 +1085,35 @@ display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, g
         cairo_line_to(cr, popup->allocation.width-0.5 - radius, 0.5);
         cairo_arc(cr, popup->allocation.width-0.5 - radius, radius+0.5, radius, 3.0*3.14/2.0, 0.0);
         cairo_line_to(cr, popup->allocation.width-0.5, popup->allocation.height+0.5);
-        cairo_set_source_rgba(cr, 0.1, 0.1, 0.1, 0.9);
+        cairo_set_source(cr, vertical_gradient);
+        if (selected) cairo_set_source(cr, selected_gradient);
         cairo_fill_preserve(cr);
-        cairo_set_source_rgba(cr, 1.0, 1.0, 1.0,0.7);
+		cairo_set_source_rgb(cr, 0.05, 0.05, 0.05);
         cairo_stroke(cr);
+        
+        /* Draw the inner stroke */
+        cairo_set_source_rgb(cr, 0.35, 0.35, 0.35);
+        if (selected) cairo_set_source_rgb(cr, 0.15, 0.45, 0.75);
+        cairo_arc(cr, radius+1.5, radius+1.5, radius, 3.14, 3.0*3.14/2.0);
+        cairo_line_to(cr, popup->allocation.width-1.5 - radius, 1.5);
+        cairo_arc(cr, popup->allocation.width-1.5 - radius, radius+1.5, radius, 3.0*3.14/2.0, 0.0);
+        cairo_stroke(cr);
+        cairo_set_source(cr, innerstroke_gradient);
+        if (selected) cairo_set_source(cr, selected_innerstroke_gradient);
+        cairo_move_to(cr, 1.5, radius+1.0);
+        cairo_line_to(cr, 1.5, popup->allocation.height-1.0);
+        cairo_move_to(cr, popup->allocation.width-1.5, radius+1.0);
+        cairo_line_to(cr, popup->allocation.width-1.5, popup->allocation.height-1.0);
+        cairo_stroke(cr);
+        
         cairo_close_path(cr);
     }    
     
     cairo_destroy (cr);
+    cairo_pattern_destroy(vertical_gradient);
+    cairo_pattern_destroy(innerstroke_gradient);
+    cairo_pattern_destroy(selected_gradient);
+    cairo_pattern_destroy(selected_innerstroke_gradient);
     
     return FALSE;
 }
@@ -1080,7 +1143,7 @@ display_setting_identity_display (gint display_id,
         gtk_widget_set_name(GTK_WIDGET(popup),"XfceDisplayDialogPopup");
         
         gtk_widget_set_app_paintable(popup, TRUE);
-        g_signal_connect( G_OBJECT(popup), "expose-event", G_CALLBACK(display_setting_identity_popup_expose), NULL );
+        g_signal_connect( G_OBJECT(popup), "expose-event", G_CALLBACK(display_setting_identity_popup_expose), GINT_TO_POINTER(has_selection) );
         g_signal_connect( G_OBJECT(popup), "screen-changed", G_CALLBACK(display_setting_screen_changed), NULL );
         
         display_name = gtk_builder_get_object(builder, "display_name");
@@ -1109,14 +1172,14 @@ display_setting_identity_display (gint display_id,
         name = xfce_randr_friendly_name (xfce_randr,
                                          xfce_randr->resources->outputs[display_id],
                                          xfce_randr->output_info[display_id]->name);
-        color_hex = "#FFFFFF";
-        if ((has_selection)) color_hex = "#D20000";
+        color_hex = "#D0D0D0";
+        if ((has_selection)) color_hex = "#FFFFFF";
 
         name_label = g_markup_printf_escaped("<span foreground='%s'><big><b>%s %s</b></big></span>", color_hex, _("Display:"), name);
         gtk_label_set_markup (GTK_LABEL(display_name), name_label);
         g_free (name_label);
 
-        details_label = g_markup_printf_escaped("<span foreground='%s'>%s %i x %i</span>", color_hex, _("Resolution:"), screen_width, screen_height);
+        details_label = g_markup_printf_escaped("<span foreground='#ABABAB'>%s %i x %i</span>", _("Resolution:"), screen_width, screen_height);
         gtk_label_set_markup (GTK_LABEL(display_details), details_label);
         g_free (details_label);
                 
