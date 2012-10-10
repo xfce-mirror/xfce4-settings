@@ -1024,6 +1024,9 @@ display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, g
     {
         cairo_set_source_rgb(cr, 0.1, 0.1, 0.1);
         cairo_paint (cr);
+        cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
+        cairo_rectangle(cr, 0, 0, popup->allocation.width, popup->allocation.height);
+        cairo_stroke(cr);
     }
     
     /* Draw rounded corners. */
