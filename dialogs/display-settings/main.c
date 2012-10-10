@@ -1034,10 +1034,10 @@ display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, g
 	cairo_pattern_add_color_stop_rgb(innerstroke_gradient, 0.85, 0.0, 0.0, 0.0);
 	
 	selected_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
-	cairo_pattern_add_color_stop_rgb(selected_gradient, 0, 0.05, 0.25, 0.45);
-	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.4, 0.05, 0.15, 0.25);
+	cairo_pattern_add_color_stop_rgb(selected_gradient, 0, 0.05, 0.20, 0.46);
+	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.4, 0.05, 0.12, 0.25);
 	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.6, 0.05, 0.10, 0.20);
-	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.8, 0.0, 0.05, 0.05);
+	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.8, 0.0, 0.02, 0.05);
 	
 	selected_innerstroke_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
 	cairo_pattern_add_color_stop_rgb(selected_innerstroke_gradient, 0, 0.15, 0.45, 0.75);
