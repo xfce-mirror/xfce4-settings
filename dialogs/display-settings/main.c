@@ -1172,14 +1172,14 @@ display_setting_identity_display (gint display_id,
         name = xfce_randr_friendly_name (xfce_randr,
                                          xfce_randr->resources->outputs[display_id],
                                          xfce_randr->output_info[display_id]->name);
-        color_hex = "#D0D0D0";
-        if ((has_selection)) color_hex = "#FFFFFF";
+        color_hex = "#FFFFFF";
+        if ((has_selection)) color_hex = "#EDEDFF";
 
         name_label = g_markup_printf_escaped("<span foreground='%s'><big><b>%s %s</b></big></span>", color_hex, _("Display:"), name);
         gtk_label_set_markup (GTK_LABEL(display_name), name_label);
         g_free (name_label);
 
-        details_label = g_markup_printf_escaped("<span foreground='#ABABAB'>%s %i x %i</span>", _("Resolution:"), screen_width, screen_height);
+        details_label = g_markup_printf_escaped("<span foreground='%s'>%s %i x %i</span>", color_hex, _("Resolution:"), screen_width, screen_height);
         gtk_label_set_markup (GTK_LABEL(display_details), details_label);
         g_free (details_label);
                 
