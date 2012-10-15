@@ -527,6 +527,7 @@ display_setting_guess_positioning (GtkBuilder *builder)
 {
     GObject *position_combo, *display_combo;
     gint current_x, current_y, cb_index;
+    XfceOutputRelation rel;
     guint n;
     
     current_x = xfce_randr->position[active_output].x;
@@ -552,7 +553,7 @@ display_setting_guess_positioning (GtkBuilder *builder)
             /* Check for mirror */
             if ( (xfce_randr->position[n].x == current_x) && 
                  (xfce_randr->position[n].y == current_y) ) {
-                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 0 );
+                rel = XFCE_RANDR_PLACEMENT_MIRROR;
                 gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), cb_index );
                 break;       
             }
@@ -560,7 +561,7 @@ display_setting_guess_positioning (GtkBuilder *builder)
             /* Check for Left Of */
             if ( (xfce_randr->position[n].y == current_y) &&
                  (xfce_randr->position[n].x > current_x) ) {
-                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 1 );
+                rel = XFCE_RANDR_PLACEMENT_LEFT;
                 gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), cb_index );
                 break;
             }
@@ -568,7 +569,7 @@ display_setting_guess_positioning (GtkBuilder *builder)
             /* Check for Right Of */
             if ( (xfce_randr->position[n].y == current_y) &&
                  (xfce_randr->position[n].x < current_x) ) {
-                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 2 );
+                rel = XFCE_RANDR_PLACEMENT_RIGHT;
                 gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), cb_index );
                 break;
             }
@@ -576,7 +577,7 @@ display_setting_guess_positioning (GtkBuilder *builder)
             /* Check for Above */
             if ( (xfce_randr->position[n].x == current_x) &&
                  (xfce_randr->position[n].y > current_y) ) {
-                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 3 );
+                rel = XFCE_RANDR_PLACEMENT_UP;
                 gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), cb_index );
                 break;
             }
@@ -584,7 +585,7 @@ display_setting_guess_positioning (GtkBuilder *builder)
             /* Check for Below */
             if ( (xfce_randr->position[n].x == current_x) &&
                  (xfce_randr->position[n].y < current_y) ) {
-                gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 4 );
+                rel = XFCE_RANDR_PLACEMENT_DOWN;
                 gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), cb_index );
                 break;
             }
@@ -592,7 +593,17 @@ display_setting_guess_positioning (GtkBuilder *builder)
             cb_index++;
         }
     }
-    
+
+    /* set the correct index for the position combobox */
+    for (n = 0; n < G_N_ELEMENTS (relation_names); n++)
+    {
+        if (rel == relation_names[n].relation)
+        {
+            gtk_combo_box_set_active (GTK_COMBO_BOX (position_combo), n);
+            break;
+        }
+    }
+
     g_signal_connect (G_OBJECT (position_combo), "changed", G_CALLBACK (display_setting_positions_changed), builder);
     g_signal_connect (G_OBJECT (display_combo), "changed", G_CALLBACK (display_setting_active_displays_changed), builder);
 }
