@@ -24,16 +24,8 @@
 #ifndef __XFCE_RANDR_H__
 #define __XFCE_RANDR_H__
 
-#define XFCE_RANDR_EVENT_BASE(randr)      (randr->event_base)
-#define XFCE_RANDR_MODE(randr)            (randr->mode[randr->active_output])
-#define XFCE_RANDR_SUPPORTED_MODES(randr) (randr->modes[randr->active_output])
-#define XFCE_RANDR_ROTATION(randr)        (randr->rotation[randr->active_output])
-#define XFCE_RANDR_ROTATIONS(randr)       (randr->rotations[randr->active_output])
-#define XFCE_RANDR_OUTPUT_INFO(randr)     (randr->output_info[randr->active_output])
-#define XFCE_RANDR_POS_X(randr)           (randr->position[randr->active_output].x)
-#define XFCE_RANDR_POS_Y(randr)           (randr->position[randr->active_output].y)
-#define XFCE_RANDR_ROTATIONS_MASK         (RR_Rotate_0|RR_Rotate_90|RR_Rotate_180|RR_Rotate_270)
-#define XFCE_RANDR_REFLECTIONS_MASK       (RR_Reflect_X|RR_Reflect_Y)
+#define XFCE_RANDR_ROTATIONS_MASK             (RR_Rotate_0|RR_Rotate_90|RR_Rotate_180|RR_Rotate_270)
+#define XFCE_RANDR_REFLECTIONS_MASK           (RR_Reflect_X|RR_Reflect_Y)
 
 /* check for randr 1.3 or better */
 #if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 3)
@@ -104,9 +96,6 @@ struct _XfceRandr
 
     /* screen resource for this display */
     XRRScreenResources  *resources;
-
-    /* the active selected layout */
-    guint                active_output;
 
     /* number of connected outputs */
     guint                noutput;
