@@ -83,6 +83,8 @@ struct _XfceRRCrtc
     RRMode    mode;
     Rotation  rotation;
     Rotation  rotations;
+    gint      width;
+    gint      height;
     gint      x;
     gint      y;
     gint      noutput;
@@ -210,6 +212,8 @@ xfce_displays_helper_list_crtcs (Display            *xdisplay,
         crtcs[n].mode = crtc_info->mode;
         crtcs[n].rotation = crtc_info->rotation;
         crtcs[n].rotations = crtc_info->rotations;
+        crtcs[n].width = crtc_info->width;
+        crtcs[n].height = crtc_info->height;
         crtcs[n].x = crtc_info->x;
         crtcs[n].y = crtc_info->y;
 
@@ -561,71 +565,6 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             continue;
         }
 
-        /* resolution */
-        g_snprintf (property, sizeof (property), "/%s/%s/Resolution",
-                    scheme, output->info->name);
-        value = g_hash_table_lookup (saved_outputs, property);
-        if (value == NULL || !G_VALUE_HOLDS_STRING (value))
-            str_value = "";
-        else
-            str_value = g_value_get_string (value);
-
-        /* refresh rate */
-        g_snprintf (property, sizeof (property), "/%s/%s/RefreshRate", scheme,
-                    output->info->name);
-        value = g_hash_table_lookup (saved_outputs, property);
-        if (G_VALUE_HOLDS_DOUBLE (value))
-            output_rate = g_value_get_double (value);
-        else
-            output_rate = 0.0;
-
-        /* check mode validity */
-        valid_mode = None;
-        for (m = 0; m < output->info->nmode; ++m)
-        {
-            /* walk all modes */
-            for (l = 0; l < resources->nmode; ++l)
-            {
-                /* get the mode info */
-                XRRModeInfo *mode_info = &resources->modes[l];
-
-                /* does the mode info match the mode we seek? */
-                if (mode_info->id != output->info->modes[m])
-                    continue;
-
-                /* calculate the refresh rate */
-                rate = (gdouble) mode_info->dotClock / ((gdouble) mode_info->hTotal * (gdouble) mode_info->vTotal);
-
-                /* find the mode corresponding to the saved values */
-                if (rint (rate) == rint (output_rate)
-                    && (g_strcmp0 (mode_info->name, str_value) == 0))
-                {
-                    valid_mode = mode_info->id;
-                    break;
-                }
-            }
-            /* found it */
-            if (valid_mode != None)
-                break;
-        }
-
-        if (valid_mode == None)
-        {
-            /* unsupported mode, abort for this output */
-            g_warning ("Unknown mode '%s @ %.1f' for output %s, aborting.",
-                       str_value, output_rate, output->info->name);
-            continue;
-        }
-        else if (crtc->mode != valid_mode)
-        {
-            if (crtc->mode == None)
-                ++nactive;
-
-            /* update CRTC mode */
-            crtc->mode = valid_mode;
-            crtc->changed = TRUE;
-        }
-
         /* rotation */
         g_snprintf (property, sizeof (property), "/%s/%s/Rotation", scheme,
                     output->info->name);
@@ -676,6 +615,81 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             crtc->changed = TRUE;
         }
 
+        /* resolution */
+        g_snprintf (property, sizeof (property), "/%s/%s/Resolution",
+                    scheme, output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (value == NULL || !G_VALUE_HOLDS_STRING (value))
+            str_value = "";
+        else
+            str_value = g_value_get_string (value);
+
+        /* refresh rate */
+        g_snprintf (property, sizeof (property), "/%s/%s/RefreshRate", scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_DOUBLE (value))
+            output_rate = g_value_get_double (value);
+        else
+            output_rate = 0.0;
+
+        /* check mode validity */
+        valid_mode = None;
+        for (m = 0; m < output->info->nmode; ++m)
+        {
+            /* walk all modes */
+            for (l = 0; l < resources->nmode; ++l)
+            {
+                /* does the mode info match the mode we seek? */
+                if (resources->modes[l].id != output->info->modes[m])
+                    continue;
+
+                /* calculate the refresh rate */
+                rate = (gdouble) resources->modes[l].dotClock /
+                        ((gdouble) resources->modes[l].hTotal * (gdouble) resources->modes[l].vTotal);
+
+                /* find the mode corresponding to the saved values */
+                if (rint (rate) == rint (output_rate)
+                    && (g_strcmp0 (resources->modes[l].name, str_value) == 0))
+                {
+                    valid_mode = resources->modes[l].id;
+                    break;
+                }
+            }
+            /* found it */
+            if (valid_mode != None)
+                break;
+        }
+
+        if (valid_mode == None)
+        {
+            /* unsupported mode, abort for this output */
+            g_warning ("Unknown mode '%s @ %.1f' for output %s, aborting.",
+                       str_value, output_rate, output->info->name);
+            continue;
+        }
+        else if (crtc->mode != valid_mode)
+        {
+            if (crtc->mode == None)
+                ++nactive;
+
+            /* update CRTC mode */
+            crtc->mode = valid_mode;
+            crtc->changed = TRUE;
+
+            /* recompute dimensions according to the selected rotation */
+            if ((crtc->rotation & (RR_Rotate_90|RR_Rotate_270)) != 0)
+            {
+                crtc->width = resources->modes[l].height;
+                crtc->height = resources->modes[l].width;
+            }
+            else
+            {
+                crtc->width = resources->modes[l].width;
+                crtc->height = resources->modes[l].height;
+            }
+        }
+
         /* position, x */
         g_snprintf (property, sizeof (property), "/%s/%s/Position/X", scheme,
                     output->info->name);
@@ -724,23 +738,9 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     /* second loop, normalization and global settings */
     for (m = 0; m < resources->ncrtc; ++m)
     {
-        gint mode_height = 0, mode_width = 0;
-
         /* ignore disabled outputs for size computations */
         if (crtcs[m].mode == None)
             continue;
-
-        for (l = 0; l < resources->nmode; ++l)
-        {
-            /* does the mode info match the mode we seek? */
-            if (resources->modes[l].id != crtcs[m].mode)
-                continue;
-
-            /* store the dimensions */
-            mode_height = resources->modes[l].height;
-            mode_width = resources->modes[l].width;
-            break;
-        }
 
         /* normalize positions to ensure the upper left corner is at (0,0) */
         if (min_x || min_y)
@@ -751,17 +751,12 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         }
 
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Normalized CRTC %lu: size=%dx%d, pos=%dx%d.",
-                        crtcs[m].id, mode_width, mode_height, crtcs[m].x, crtcs[m].y);
+                        crtcs[m].id, crtcs[m].width, crtcs[m].height, crtcs[m].x, crtcs[m].y);
 
         /* calculate the total screen size */
-        if ((crtcs[m].rotation & (RR_Rotate_90|RR_Rotate_270)) != 0)
-            xfce_displays_helper_process_screen_size (mode_height, mode_width,
-                                                      crtcs[m].x, crtcs[m].y, &width,
-                                                      &height, &mm_width, &mm_height);
-        else
-            xfce_displays_helper_process_screen_size (mode_width, mode_height,
-                                                      crtcs[m].x, crtcs[m].y, &width,
-                                                      &height, &mm_width, &mm_height);
+        xfce_displays_helper_process_screen_size (crtcs[m].width, crtcs[m].height,
+                                                  crtcs[m].x, crtcs[m].y, &width,
+                                                  &height, &mm_width, &mm_height);
 
         /* disable the CRTC, it will be reenabled after size calculation */
         if (xfce_displays_helper_disable_crtc (xdisplay, resources, crtcs[m].id) == RRSetConfigSuccess)
