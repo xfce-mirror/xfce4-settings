@@ -34,11 +34,6 @@
 #define XFCE_RANDR_POS_Y(randr)           (randr->position[randr->active_output].y)
 #define XFCE_RANDR_ROTATIONS_MASK         (RR_Rotate_0|RR_Rotate_90|RR_Rotate_180|RR_Rotate_270)
 #define XFCE_RANDR_REFLECTIONS_MASK       (RR_Reflect_X|RR_Reflect_Y)
-#define XFCE_RANDR_PLACEMENT_UP           0
-#define XFCE_RANDR_PLACEMENT_RIGHT        1
-#define XFCE_RANDR_PLACEMENT_DOWN         2
-#define XFCE_RANDR_PLACEMENT_LEFT         3
-#define XFCE_RANDR_PLACEMENT_MIRROR       4
 
 /* check for randr 1.3 or better */
 #if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 3)
@@ -50,13 +45,24 @@
 typedef struct _XfceRandr          XfceRandr;
 typedef struct _XfceOutputPosition XfceOutputPosition;
 typedef struct _XfceRRMode         XfceRRMode;
+typedef struct _XfceRelation       XfceRelation;
 typedef struct _XfceRotation       XfceRotation;
 typedef enum   _XfceOutputStatus   XfceOutputStatus;
+typedef enum   _XfceOutputRelation XfceOutputRelation;
 
 enum _XfceOutputStatus
 {
     XFCE_OUTPUT_STATUS_PRIMARY,
     XFCE_OUTPUT_STATUS_SECONDARY
+};
+
+enum _XfceOutputRelation
+{
+    XFCE_RANDR_PLACEMENT_MIRROR,
+    XFCE_RANDR_PLACEMENT_UP,
+    XFCE_RANDR_PLACEMENT_DOWN,
+    XFCE_RANDR_PLACEMENT_RIGHT,
+    XFCE_RANDR_PLACEMENT_LEFT
 };
 
 struct _XfceOutputPosition
@@ -71,6 +77,12 @@ struct _XfceRRMode
     guint   width;
     guint   height;
     gdouble rate;
+};
+
+struct _XfceRelation
+{
+    XfceOutputRelation  relation;
+    const gchar        *name;
 };
 
 struct _XfceRotation

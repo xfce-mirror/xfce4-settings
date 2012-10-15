@@ -77,6 +77,18 @@ typedef struct {
 
 
 
+/* Xrandr relation name conversion */
+static const XfceRelation relation_names[] =
+{
+    { XFCE_RANDR_PLACEMENT_MIRROR,   N_("Same as") },
+    { XFCE_RANDR_PLACEMENT_UP, N_("Above") },
+    { XFCE_RANDR_PLACEMENT_DOWN, N_("Below") },
+    { XFCE_RANDR_PLACEMENT_RIGHT, N_("Right of") },
+    { XFCE_RANDR_PLACEMENT_LEFT,  N_("Left of") }
+};
+
+
+
 /* Xrandr rotation name conversion */
 static const XfceRotation rotation_names[] =
 {
@@ -413,6 +425,7 @@ display_setting_positions_populate (GtkBuilder *builder)
     GtkTreeModel *model;
     GObject      *combobox;
     GtkTreeIter   iter;
+    guint         n;
 
     /* Get the positions combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-position");
@@ -433,35 +446,14 @@ display_setting_positions_populate (GtkBuilder *builder)
                          display_setting_positions_changed,
                          builder, NULL);
     
-    /* Insert mirror */
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("Mirror"),
-                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_MIRROR, -1);
-    
-    /* Insert left-of */
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("Left of"),
-                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_LEFT, -1);
-
-    /* Insert right-of */
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("Right of"),
-                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_RIGHT, -1);
-                        
-    /* Insert above */
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("Above"),
-                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_UP, -1);
-                        
-    /* Insert below */
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        COLUMN_COMBO_NAME, _("Below"),
-                        COLUMN_COMBO_VALUE, XFCE_RANDR_PLACEMENT_DOWN, -1);
+    /* Try to insert the relations */
+    for (n = 0; n < G_N_ELEMENTS (relation_names); n++)
+    {
+        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                            COLUMN_COMBO_NAME, _(relation_names[n].name),
+                            COLUMN_COMBO_VALUE, relation_names[n].relation, -1);
+    }
     
     /* Reconnect the signal */
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_positions_changed), builder);
