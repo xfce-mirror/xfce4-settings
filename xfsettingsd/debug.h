@@ -32,6 +32,7 @@ typedef enum
    XFSD_DEBUG_WORKSPACES         = 1 << 6,
    XFSD_DEBUG_ACCESSIBILITY      = 1 << 7,
    XFSD_DEBUG_POINTERS           = 1 << 8,
+   XFSD_DEBUG_DISPLAYS           = 1 << 9,
 }
 XfsdDebugDomain;
 

@@ -40,6 +40,7 @@ static const GDebugKey dbg_keys[] =
     { "workspaces", XFSD_DEBUG_WORKSPACES },
     { "accessibility", XFSD_DEBUG_ACCESSIBILITY },
     { "pointers", XFSD_DEBUG_POINTERS },
+    { "displays", XFSD_DEBUG_DISPLAYS },
 };
 
 
