@@ -537,6 +537,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
                 crtc->mode = None;
                 crtc->noutput = 0;
+                crtc->changed = TRUE;
             }
 
             continue;
