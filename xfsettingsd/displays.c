@@ -739,28 +739,28 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     for (m = 0; m < resources->ncrtc; ++m)
     {
         /* ignore disabled outputs for size computations */
-        if (crtcs[m].mode == None)
-            continue;
-
-        /* normalize positions to ensure the upper left corner is at (0,0) */
-        if (min_x || min_y)
+        if (crtcs[m].mode != None)
         {
-            crtcs[m].x -= min_x;
-            crtcs[m].y -= min_y;
-            crtcs[m].changed = TRUE;
+            /* normalize positions to ensure the upper left corner is at (0,0) */
+            if (min_x || min_y)
+            {
+                crtcs[m].x -= min_x;
+                crtcs[m].y -= min_y;
+                crtcs[m].changed = TRUE;
+            }
+
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Normalized CRTC %lu: size=%dx%d, pos=%dx%d.",
+                            crtcs[m].id, crtcs[m].width, crtcs[m].height, crtcs[m].x, crtcs[m].y);
+
+            /* calculate the total screen size */
+            xfce_displays_helper_process_screen_size (crtcs[m].width, crtcs[m].height,
+                                                      crtcs[m].x, crtcs[m].y, &width,
+                                                      &height, &mm_width, &mm_height);
         }
 
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Normalized CRTC %lu: size=%dx%d, pos=%dx%d.",
-                        crtcs[m].id, crtcs[m].width, crtcs[m].height, crtcs[m].x, crtcs[m].y);
-
-        /* calculate the total screen size */
-        xfce_displays_helper_process_screen_size (crtcs[m].width, crtcs[m].height,
-                                                  crtcs[m].x, crtcs[m].y, &width,
-                                                  &height, &mm_width, &mm_height);
-
-        /* disable the CRTC, it will be reenabled after size calculation */
+        /* disable the CRTC, it will be reenabled after size calculation, unless the user disabled it */
         if (xfce_displays_helper_disable_crtc (xdisplay, resources, crtcs[m].id) == RRSetConfigSuccess)
-            crtcs[m].changed = TRUE;
+            crtcs[m].changed = (crtcs[m].mode != None);
         else
             g_warning ("Failed to disable CRTC %lu.", crtc->id);
 
