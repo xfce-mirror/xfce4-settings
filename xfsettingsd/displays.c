@@ -234,6 +234,26 @@ xfce_displays_helper_list_crtcs (Display            *xdisplay,
 
 
 
+static XfceRRCrtc *
+xfce_displays_helper_find_crtc_by_id (XRRScreenResources *resources,
+                                      XfceRRCrtc         *crtcs,
+                                      RRCrtc              id)
+{
+    gint n;
+
+    g_assert (resources && crtcs);
+
+    for (n = 0; n < resources->ncrtc; ++n)
+    {
+        if (crtcs[n].id == id)
+            return &crtcs[n];
+    }
+
+    return NULL;
+}
+
+
+
 static void
 xfce_displays_helper_cleanup_crtc (XfceRRCrtc *crtc)
 {
@@ -262,18 +282,22 @@ xfce_displays_helper_free_output (XfceRROutput *output)
 
 static GPtrArray *
 xfce_displays_helper_list_outputs (Display            *xdisplay,
-                                   XRRScreenResources *resources)
+                                   XRRScreenResources *resources,
+                                   XfceRRCrtc         *crtcs,
+                                   gint               *nactive)
 {
     GPtrArray     *outputs;
     XRROutputInfo *info;
     XfceRROutput  *output;
+    XfceRRCrtc    *crtc;
     gint           n;
 
-    g_assert (xdisplay && resources);
+    g_assert (xdisplay && resources && nactive);
 
     outputs = g_ptr_array_new ();
 
     /* get all connected outputs */
+    *nactive = 0;
     for (n = 0; n < resources->noutput; ++n)
     {
         info = XRRGetOutputInfo (xdisplay, resources, resources->outputs[n]);
@@ -288,31 +312,23 @@ xfce_displays_helper_list_outputs (Display            *xdisplay,
         output->id = resources->outputs[n];
         output->info = info;
 
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Detected output %lu %s.", output->id,
+                        output->info->name);
+
+        /* track active outputs */
+        crtc = xfce_displays_helper_find_crtc_by_id (resources, crtcs,
+                                                     output->info->crtc);
+        if (crtc && crtc->mode != None)
+        {
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "%s is active.", output->info->name);
+            ++(*nactive);
+        }
+
         /* cache it */
         g_ptr_array_add (outputs, output);
     }
 
     return outputs;
-}
-
-
-
-static XfceRRCrtc *
-xfce_displays_helper_find_crtc_by_id (XRRScreenResources *resources,
-                                      XfceRRCrtc         *crtcs,
-                                      RRCrtc              id)
-{
-    gint n;
-
-    g_assert (resources && crtcs);
-
-    for (n = 0; n < resources->ncrtc; ++n)
-    {
-        if (crtcs[n].id == id)
-            return &crtcs[n];
-    }
-
-    return NULL;
 }
 
 
@@ -437,7 +453,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     gint                min_width, min_height, max_width, max_height;
     gint                mm_width, mm_height, width, height;
     gint                x, y, min_x, min_y;
-    gint                l, m, int_value;
+    gint                l, m, int_value, nactive;
     guint               n;
     GValue             *value;
     const gchar        *str_value;
@@ -474,7 +490,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     crtcs = xfce_displays_helper_list_crtcs (xdisplay, resources);
 
     /* then all connected outputs */
-    connected_outputs = xfce_displays_helper_list_outputs (xdisplay, resources);
+    connected_outputs = xfce_displays_helper_list_outputs (xdisplay, resources,
+                                                           crtcs, &nactive);
 
     /* finally the list of saved outputs from xfconf */
     g_snprintf (property, sizeof (property), "/%s", scheme);
@@ -521,18 +538,19 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         crtc = xfce_displays_helper_find_usable_crtc (resources, crtcs, output);
         if (!crtc)
         {
-            g_warning ("No available CRTC for output %s, aborting.", output->info->name);
+            g_warning ("No available CRTC for %s, aborting.", output->info->name);
             continue;
         }
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "CRTC %lu assigned to output %s.",
-                        crtc->id, output->info->name);
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "CRTC %lu assigned to %s.", crtc->id,
+                        output->info->name);
 
         /* disable inactive outputs */
         if (!g_value_get_boolean (value))
         {
             if (crtc->mode != None)
             {
-                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Output %s will be disabled by configuration.",
+                --nactive;
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "%s will be disabled by configuration.",
                                 output->info->name);
 
                 crtc->mode = None;
@@ -600,6 +618,9 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         }
         else if (crtc->mode != valid_mode)
         {
+            if (crtc->mode == None)
+                ++nactive;
+
             /* update CRTC mode */
             crtc->mode = valid_mode;
             crtc->changed = TRUE;
@@ -688,6 +709,15 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         xfce_displays_helper_set_outputs (crtc, output->id);
     }
 
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Total %d active output(s).", nactive);
+
+    /* safety check */
+    if (nactive < 1)
+    {
+        g_critical ("Stored Xfconf properties disable all outputs, aborting.");
+        goto err_cleanup;
+    }
+
     /* grab server to prevent clients from thinking no output is enabled */
     XGrabServer (xdisplay);
 
@@ -698,10 +728,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
         /* ignore disabled outputs for size computations */
         if (crtcs[m].mode == None)
-        {
-            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "CRTC %lu is disabled.", crtcs[m].id);
             continue;
-        }
 
         for (l = 0; l < resources->nmode; ++l)
         {
