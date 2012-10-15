@@ -550,7 +550,7 @@ display_setting_guess_positioning (GtkBuilder *builder)
         if (n != active_output)
         {
             /* Check for mirror */
-            if ( (xfce_randr->position[n].x == current_x) && 
+            if ( (xfce_randr->position[n].x == current_x) &&
                  (xfce_randr->position[n].y == current_y) ) {
                 gtk_combo_box_set_active( GTK_COMBO_BOX(position_combo), 0 );
                 gtk_combo_box_set_active( GTK_COMBO_BOX(display_combo), cb_index );
