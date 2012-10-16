@@ -68,13 +68,6 @@ typedef struct {
     GError *error;
 } minimal_advanced_context;
 
-typedef struct {
-    GtkWidget *display1;
-    GtkWidget *display2;
-    GtkWidget *display3;
-    GtkWidget *display4;
-} identity_popup_store;
-
 
 
 /* Xrandr relation name conversion */
@@ -142,7 +135,9 @@ static guint active_output;
 /* Pointer to the used randr structure */
 XfceRandr *xfce_randr = NULL;
 
-identity_popup_store display_popups;
+/* Used to identify the display */
+static GHashTable *display_popups;
+
 gboolean supports_alpha = FALSE;
 
 static void
@@ -196,21 +191,25 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
 }
 
 static void
-display_setting_hide_identity_popups(void)
+display_setting_toggle_identity_popup (gpointer   key,
+                                       GtkWidget *value,
+                                       gpointer   show)
 {
-    if (GTK_IS_WIDGET(display_popups.display1)) gtk_widget_hide(display_popups.display1);
-    if (GTK_IS_WIDGET(display_popups.display2)) gtk_widget_hide(display_popups.display2);
-    if (GTK_IS_WIDGET(display_popups.display3)) gtk_widget_hide(display_popups.display3);
-    if (GTK_IS_WIDGET(display_popups.display4)) gtk_widget_hide(display_popups.display4);
+    if (!GPOINTER_TO_INT (show))
+        gtk_widget_hide (value);
+    else
+        gtk_widget_show (value);
 }
 
-static void
-display_setting_show_identity_popups(void)
+static gboolean
+display_setting_toggle_identity_popups (GtkWidget *widget,
+                                        GdkEvent  *event,
+                                        gpointer   show)
 {
-    if (GTK_IS_WIDGET(display_popups.display1)) gtk_widget_show(display_popups.display1);
-    if (GTK_IS_WIDGET(display_popups.display2)) gtk_widget_show(display_popups.display2);
-    if (GTK_IS_WIDGET(display_popups.display3)) gtk_widget_show(display_popups.display3);
-    if (GTK_IS_WIDGET(display_popups.display4)) gtk_widget_show(display_popups.display4);
+    g_hash_table_foreach (display_popups,
+                          (GHFunc) display_setting_toggle_identity_popup,
+                          show);
+    return FALSE;
 }
 
 static gboolean
@@ -275,11 +274,11 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
 
         dialog = gtk_builder_get_object (builder, "dialog1");
         
-        g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_hide_identity_popups),
-                      NULL);
+        g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_toggle_identity_popups),
+                      GINT_TO_POINTER (FALSE));
                       
-        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_show_identity_popups),
-                      NULL);
+        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_toggle_identity_popups),
+                      GINT_TO_POINTER (TRUE));
         
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
         source_id = g_timeout_add_seconds (1, (GSourceFunc) display_settings_update_time_label,
@@ -1006,11 +1005,13 @@ display_setting_screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointe
 }
 
 static gboolean
-display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, gpointer has_selection)
+display_setting_identity_popup_expose (GtkWidget      *popup,
+                                       GdkEventExpose *event,
+                                       GtkBuilder     *builder)
 {
     cairo_t *cr = gdk_cairo_create(popup->window);
     gint radius;
-    gboolean selected = GPOINTER_TO_INT(has_selection);
+    gboolean selected = (g_hash_table_lookup (display_popups, GINT_TO_POINTER (active_output)) == popup);
     cairo_pattern_t *vertical_gradient, *innerstroke_gradient, *selected_gradient, *selected_innerstroke_gradient;
     
     radius = 10;
@@ -1113,16 +1114,16 @@ display_setting_identity_popup_expose(GtkWidget *popup, GdkEventExpose *event, g
     return FALSE;
 }
 
-static GtkWidget*
-display_setting_identity_display (gint display_id,
-                                   GError *error, gboolean has_selection)
+
+static GtkWidget *
+display_setting_identity_display (gint display_id)
 {
     GtkBuilder *builder;
     GtkWidget *popup;
     
     GObject *display_name, *display_details;
     
-    gchar *name, *color_hex, *name_label, *details_label;
+    gchar *name, *color_hex = "#FFFFFF", *name_label, *details_label;
     
     XfceRRMode   *current_mode;
     
@@ -1131,13 +1132,13 @@ display_setting_identity_display (gint display_id,
     
     builder = gtk_builder_new ();
     if (gtk_builder_add_from_string (builder, identity_popup_ui,
-                                     identity_popup_ui_length, &error) != 0)
+                                     identity_popup_ui_length, NULL) != 0)
     {
         popup = (GtkWidget *) gtk_builder_get_object(builder, "popup");
         gtk_widget_set_name(GTK_WIDGET(popup),"XfceDisplayDialogPopup");
         
         gtk_widget_set_app_paintable(popup, TRUE);
-        g_signal_connect( G_OBJECT(popup), "expose-event", G_CALLBACK(display_setting_identity_popup_expose), GINT_TO_POINTER(has_selection) );
+        g_signal_connect( G_OBJECT(popup), "expose-event", G_CALLBACK(display_setting_identity_popup_expose), builder );
         g_signal_connect( G_OBJECT(popup), "screen-changed", G_CALLBACK(display_setting_screen_changed), NULL );
         
         display_name = gtk_builder_get_object(builder, "display_name");
@@ -1164,8 +1165,6 @@ display_setting_identity_display (gint display_id,
         name = xfce_randr_friendly_name (xfce_randr,
                                          xfce_randr->resources->outputs[display_id],
                                          xfce_randr->output_info[display_id]->name);
-        color_hex = "#FFFFFF";
-        if ((has_selection)) color_hex = "#EDEDFF";
 
         name_label = g_markup_printf_escaped("<span foreground='%s'><big><b>%s %s</b></big></span>", color_hex, _("Display:"), name);
         gtk_label_set_markup (GTK_LABEL(display_name), name_label);
@@ -1193,35 +1192,23 @@ display_setting_identity_display (gint display_id,
 }
 
 static void
-display_setting_identity_popups_populate(GtkBuilder *builder)
+display_setting_identity_popups_populate (void)
 {
     guint n;
-    
-    GError *error=NULL;
-    
-    if (GTK_IS_WIDGET(display_popups.display1)) gtk_widget_destroy(display_popups.display1);
-    if (GTK_IS_WIDGET(display_popups.display2)) gtk_widget_destroy(display_popups.display2);
-    if (GTK_IS_WIDGET(display_popups.display3)) gtk_widget_destroy(display_popups.display3);
-    if (GTK_IS_WIDGET(display_popups.display4)) gtk_widget_destroy(display_popups.display4);
-    
-    for (n = 0; n < display_settings_get_n_active_outputs (); n++)
+
+    g_assert (xfce_randr);
+
+    display_popups = g_hash_table_new_full (g_direct_hash,
+                                            g_direct_equal,
+                                            NULL,
+                                            (GDestroyNotify) gtk_widget_destroy);
+
+    for (n = 0; n < xfce_randr->noutput; ++n)
     {
-        switch (n) {
-            case 0:
-                display_popups.display1 = display_setting_identity_display(n, error, FALSE);
-                break;
-            case 1:
-                display_popups.display2 = display_setting_identity_display(n, error, FALSE);
-                break;
-            case 2:
-                display_popups.display3 = display_setting_identity_display(n, error, FALSE);
-                break;
-            case 3:
-                display_popups.display4 = display_setting_identity_display(n, error, FALSE);
-                break;
-            default:
-                break;
-        }
+        if (xfce_randr->mode[n] != None)
+            g_hash_table_insert (display_popups,
+                                 GINT_TO_POINTER (n),
+                                 display_setting_identity_display (n));
     }
 }
 
@@ -1408,9 +1395,9 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
     GtkTreeModel *model;
     GtkTreeIter   iter;
     gboolean      has_selection;
-    gint          active_id;
+    gint          active_id, previous_id;
     GObject *mirror_displays, *position_combo, *display_combo;
-    GError *error=NULL;
+    GtkWidget *popup;
 
     /* Get the selection */
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
@@ -1420,6 +1407,7 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         gtk_tree_model_get (model, &iter, COLUMN_OUTPUT_ID, &active_id, -1);
 
         /* Get the new active screen or output */
+        previous_id = active_output;
         active_output = active_id;
 
         /* Update the combo boxes */
@@ -1432,7 +1420,6 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         display_setting_refresh_rates_populate (builder);
         display_setting_rotations_populate (builder);
         display_setting_reflections_populate (builder);
-        display_setting_identity_popups_populate (builder);
         
         mirror_displays = gtk_builder_get_object(builder, "mirror-displays");
         if (gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(mirror_displays) )) {
@@ -1443,28 +1430,13 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
             gtk_widget_set_sensitive( GTK_WIDGET(display_combo), FALSE );
         }
         
-        if (display_settings_get_n_active_outputs() > 1) {
-        switch (active_id) {
-            case 0:
-                if (GTK_IS_WIDGET(display_popups.display1)) gtk_widget_destroy(display_popups.display1);
-                display_popups.display1 = display_setting_identity_display(active_id, error, has_selection);
-                break;
-            case 1:
-                if (GTK_IS_WIDGET(display_popups.display2)) gtk_widget_destroy(display_popups.display2);
-                display_popups.display2 = display_setting_identity_display(active_id, error, has_selection);
-                break;
-            case 2:
-                if (GTK_IS_WIDGET(display_popups.display3)) gtk_widget_destroy(display_popups.display3);
-                display_popups.display3 = display_setting_identity_display(active_id, error, has_selection);
-                break;
-            case 3:
-                if (GTK_IS_WIDGET(display_popups.display4)) gtk_widget_destroy(display_popups.display4);
-                display_popups.display4 = display_setting_identity_display(active_id, error, has_selection);
-                break;
-            default:
-                break;
-        }
-		}
+        /* redraw the two (old active, new active) popups */
+        popup = g_hash_table_lookup (display_popups, GINT_TO_POINTER (previous_id));
+        if (popup)
+            gtk_widget_queue_draw (popup);
+        popup = g_hash_table_lookup (display_popups, GINT_TO_POINTER (active_id));
+        if (popup)
+            gtk_widget_queue_draw (popup);
     }
 }
 
@@ -1603,6 +1575,9 @@ display_settings_dialog_new (GtkBuilder *builder)
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 1, "", renderer, "text", COLUMN_OUTPUT_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+
+    /* Identification popups */
+    display_setting_identity_popups_populate ();
 
     /* Treeview selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
@@ -1839,6 +1814,10 @@ screen_on_event (GdkXEvent *xevent,
     {
         xfce_randr_reload (xfce_randr);
         display_settings_treeview_populate (builder);
+
+        /* recreate the identify display popups */
+        g_hash_table_destroy (display_popups);
+        display_setting_identity_popups_populate ();
     }
 
     /* Pass the event on to GTK+ */
@@ -1894,11 +1873,11 @@ display_settings_show_main_dialog (GdkDisplay  *display,
             gtk_widget_show (GTK_WIDGET (plug_child));
         }
         
-        g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_hide_identity_popups),
-                      NULL);
+        g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_toggle_identity_popups),
+                      GINT_TO_POINTER (FALSE));
                       
-        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_show_identity_popups),
-                      NULL);
+        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_toggle_identity_popups),
+                      GINT_TO_POINTER (TRUE));
 
         /* To prevent the settings dialog to be saved in the session */
         gdk_set_sm_client_id ("FAKE ID");
