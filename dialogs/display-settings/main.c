@@ -1952,6 +1952,7 @@ display_settings_show_minimal_dialog (GdkDisplay  *display,
         GObject *mirror_displays;
         GObject *extend_right;
         GObject *advanced;
+        GObject *fake_button;
         minimal_advanced_context context;
         
         context.builder = builder;
@@ -1971,6 +1972,36 @@ display_settings_show_minimal_dialog (GdkDisplay  *display,
         extend_right = gtk_builder_get_object (builder, "extend_right");
         only_display2 = gtk_builder_get_object (builder, "display2");
         advanced = gtk_builder_get_object (builder, "advanced_button");
+        fake_button = gtk_builder_get_object (builder, "fake_button");
+        
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(fake_button), TRUE);
+        
+        //
+        if ( display_settings_get_n_active_outputs() == 1 )
+        {
+            gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(only_display1),
+                                         xfce_randr->mode[0] != None);
+            gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(only_display2),
+                                         xfce_randr->mode[1] != None);
+        }
+        else
+        {
+            /* Check for mirror */
+            if ( (xfce_randr->position[0].x == xfce_randr->position[1].x ) && 
+                 (xfce_randr->position[0].y == xfce_randr->position[1].y) ) {
+                gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(mirror_displays),
+                                             TRUE);
+            }
+            
+            /* Check for Extend Right */
+            if ( (xfce_randr->position[0].y == xfce_randr->position[1].y) &&
+                 (xfce_randr->position[0].x < xfce_randr->position[1].x) ) {
+                gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(extend_right),
+                                             TRUE);
+            }
+        }
+
+        //
         
         g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled),
               builder);
