@@ -1452,6 +1452,7 @@ display_settings_treeview_populate (GtkBuilder *builder)
     gchar            *name;
     GdkPixbuf        *display_icon, *lucent_display_icon;
     GtkTreeSelection *selection;
+    gboolean          selected = FALSE;
 
     /* Create a new list store */
     store = gtk_list_store_new (N_OUTPUT_COLUMNS,
@@ -1508,6 +1509,11 @@ display_settings_treeview_populate (GtkBuilder *builder)
         if (m == active_output)
             gtk_tree_selection_select_iter (selection, &iter);
     }
+
+    /* If nothing was selected the active output is no longer valid,
+     * select the last display in the list. */
+    if (!selected)
+        gtk_tree_selection_select_iter (selection, &iter);
 
     /* Release the store */
     g_object_unref (G_OBJECT (store));
