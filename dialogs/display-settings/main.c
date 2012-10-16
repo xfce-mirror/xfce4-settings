@@ -1507,7 +1507,10 @@ display_settings_treeview_populate (GtkBuilder *builder)
 
         /* Select active output */
         if (m == active_output)
+        {
             gtk_tree_selection_select_iter (selection, &iter);
+            selected = TRUE;
+        }
     }
 
     /* If nothing was selected the active output is no longer valid,
