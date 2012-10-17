@@ -790,8 +790,6 @@ xfce_randr_get_positions (XfceRandr *randr,
     g_return_val_if_fail (randr != NULL && x != NULL && y != NULL, FALSE);
     g_return_val_if_fail (output < randr->noutput, FALSE);
 
-    xfce_randr_update_positions (randr, output);
-
     *x = randr->priv->position[output].x;
     *y = randr->priv->position[output].y;
     return TRUE;
