@@ -385,7 +385,7 @@ static void
 display_setting_positions_populate (GtkBuilder *builder)
 {
     GtkTreeModel *model;
-    GObject      *combobox, *mirror_displays;
+    GObject      *combobox, *label, *mirror_displays;
     GtkTreeIter   iter;
     guint         n;
 
@@ -393,6 +393,19 @@ display_setting_positions_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-position");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
+
+    label = gtk_builder_get_object (builder, "label-position");
+    if (xfce_randr->noutput > 1)
+    {
+        gtk_widget_show (GTK_WIDGET (label));
+        gtk_widget_show (GTK_WIDGET (combobox));
+    }
+    else
+    {
+        gtk_widget_hide (GTK_WIDGET (label));
+        gtk_widget_hide (GTK_WIDGET (combobox));
+        return;
+    }
 
     /* Only make the combobox interactive if there is more than one output,
        and if they are not in mirror mode */
@@ -454,6 +467,14 @@ display_setting_active_displays_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-active-displays");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
      gtk_list_store_clear (GTK_LIST_STORE (model));
+
+    if (xfce_randr->noutput > 1)
+        gtk_widget_show (GTK_WIDGET (combobox));
+    else
+    {
+        gtk_widget_hide (GTK_WIDGET (combobox));
+        return;
+    }
 
     /* Only make the combobox interactive if there is more than one output,
        and if they are not in mirror mode */
@@ -1179,6 +1200,14 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
 
     check = gtk_builder_get_object (builder, "mirror-displays");
 
+    if (xfce_randr->noutput > 1)
+        gtk_widget_show (GTK_WIDGET (check));
+    else
+    {
+        gtk_widget_hide (GTK_WIDGET (check));
+        return;
+    }
+
     /* Can outputs be cloned? */
     if (display_settings_get_n_active_outputs () > 1)
         mode = xfce_randr_clonable_mode (xfce_randr);
@@ -1268,10 +1297,15 @@ display_setting_output_status_populate (GtkBuilder *builder)
     if (!xfce_randr)
         return;
 
-    if (xfce_randr->noutput <= 1)
-        return;
-
     check = gtk_builder_get_object (builder, "output-on");
+
+    if (xfce_randr->noutput > 1)
+        gtk_widget_show (GTK_WIDGET (check));
+    else
+    {
+        gtk_widget_hide (GTK_WIDGET (check));
+        return;
+    }
 
     /* Disconnect the "toggled" signal to avoid writing the config again */
     g_object_disconnect (check, "any_signal::toggled",
@@ -1471,12 +1505,12 @@ display_settings_dialog_new (GtkBuilder *builder)
     /* Setup the combo boxes */
     check = gtk_builder_get_object (builder, "output-on");
     mirror = gtk_builder_get_object (builder, "mirror-displays");
+    g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
+    g_signal_connect (G_OBJECT (mirror), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled), builder);
     if (xfce_randr->noutput > 1)
     {
         gtk_widget_show (GTK_WIDGET (check));
-        g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
         gtk_widget_show (GTK_WIDGET (mirror));
-        g_signal_connect (G_OBJECT (mirror), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled), builder);
     }
     else
     {
