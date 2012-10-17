@@ -1039,8 +1039,8 @@ display_setting_identity_display (gint display_id)
                 screen_pos_x = 0;
                 screen_pos_y = 0;
             }
-            screen_width = current_mode->width;
-            screen_height = current_mode->height;
+            screen_width = xfce_randr_mode_width (current_mode, xfce_randr->rotation[display_id]);
+            screen_height = xfce_randr_mode_height (current_mode, xfce_randr->rotation[display_id]);
         }
         else
         {
