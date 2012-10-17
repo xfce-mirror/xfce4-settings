@@ -1020,7 +1020,7 @@ display_setting_identity_display (gint display_id)
         display_name = gtk_builder_get_object (builder, "display_name");
         display_details = gtk_builder_get_object (builder, "display_details");
 
-        if (display_settings_get_n_active_outputs() != 1)
+        if (display_settings_get_n_active_outputs() > 1)
         {
             current_mode = xfce_randr_find_mode_by_id (xfce_randr, display_id,
                                                        xfce_randr->mode[display_id]);
@@ -1110,8 +1110,11 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
         /* Activate mirror-mode */
 
         /* Apply mirror settings to each monitor */
-        for (n = 0; n < display_settings_get_n_active_outputs (); n++)
+        for (n = 0; n < xfce_randr->noutput; n++)
         {
+            if (xfce_randr->mode[n] == None)
+                continue;
+
             xfce_randr->relation[n] = XFCE_RANDR_PLACEMENT_MIRROR;
             xfce_randr->related_to[n] = active_output;
 
@@ -1792,7 +1795,7 @@ display_settings_show_minimal_dialog (GdkDisplay  *display,
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
 
         //
-        if ( display_settings_get_n_active_outputs () == 1 )
+        if (xfce_randr->noutput > 1)
         {
             gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1),
                                          xfce_randr->mode[0] != None);
