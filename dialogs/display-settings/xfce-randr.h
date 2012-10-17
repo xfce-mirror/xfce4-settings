@@ -35,10 +35,8 @@
 #endif
 
 typedef struct _XfceRandr          XfceRandr;
-typedef struct _XfceOutputPosition XfceOutputPosition;
+typedef struct _XfceRandrPrivate   XfceRandrPrivate;
 typedef struct _XfceRRMode         XfceRRMode;
-typedef struct _XfceRelation       XfceRelation;
-typedef struct _XfceRotation       XfceRotation;
 typedef enum   _XfceOutputStatus   XfceOutputStatus;
 typedef enum   _XfceOutputRelation XfceOutputRelation;
 
@@ -57,12 +55,6 @@ enum _XfceOutputRelation
     XFCE_RANDR_PLACEMENT_LEFT
 };
 
-struct _XfceOutputPosition
-{
-    gint x;
-    gint y;
-};
-
 struct _XfceRRMode
 {
     RRMode  id;
@@ -71,38 +63,10 @@ struct _XfceRRMode
     gdouble rate;
 };
 
-struct _XfceRelation
-{
-    XfceOutputRelation  relation;
-    const gchar        *name;
-};
-
-struct _XfceRotation
-{
-    Rotation     rotation;
-    const gchar *name;
-};
-
 struct _XfceRandr
 {
-    /* xrandr 1.3 capable */
-    gint                 has_1_3;
-
-    /* display for this randr config */
-    GdkDisplay          *display;
-
-    /* event base for notifications */
-    gint                 event_base;
-
-    /* screen resource for this display */
-    XRRScreenResources  *resources;
-
     /* number of connected outputs */
     guint                noutput;
-
-    /* cache for the output/mode info */
-    XRROutputInfo      **output_info;
-    XfceRRMode         **modes;
 
     /* modes common to all connected outputs */
     RRMode              *clone_modes;
@@ -111,45 +75,58 @@ struct _XfceRandr
     RRMode              *mode;
     Rotation            *rotation;
     Rotation            *rotations;
-    XfceOutputPosition  *position;
+    XfceOutputRelation  *relation;
+    guint               *related_to;
     XfceOutputStatus    *status;
+    gchar              **friendly_name;
+
+    /* implementation details */
+    XfceRandrPrivate    *priv;
 };
 
 
 
-XfceRandr  *xfce_randr_new             (GdkDisplay    *display,
-                                        GError       **error);
+XfceRandr        *xfce_randr_new             (GdkDisplay      *display,
+                                              GError         **error);
 
-void        xfce_randr_free            (XfceRandr     *randr);
+void              xfce_randr_free            (XfceRandr        *randr);
 
-void        xfce_randr_reload          (XfceRandr     *randr);
+void              xfce_randr_reload          (XfceRandr        *randr);
 
-void        xfce_randr_save_output     (XfceRandr     *randr,
-                                        const gchar   *scheme,
-                                        XfconfChannel *channel,
-                                        guint          output);
+void              xfce_randr_save_output     (XfceRandr        *randr,
+                                              const gchar      *scheme,
+                                              XfconfChannel    *channel,
+                                              guint             output,
+                                              gint              rel_changed);
 
-void        xfce_randr_save_all        (XfceRandr     *randr,
-                                        const gchar   *scheme,
-                                        XfconfChannel *channel);
+void              xfce_randr_apply           (XfceRandr        *randr,
+                                              const gchar      *scheme,
+                                              XfconfChannel    *channel);
 
-void        xfce_randr_apply           (XfceRandr     *randr,
-                                        const gchar   *scheme,
-                                        XfconfChannel *channel);
+void              xfce_randr_load            (XfceRandr        *randr,
+                                              const gchar      *scheme,
+                                              XfconfChannel    *channel);
 
-void        xfce_randr_load            (XfceRandr     *randr,
-                                        const gchar   *scheme,
-                                        XfconfChannel *channel);
+const XfceRRMode *xfce_randr_find_mode_by_id (XfceRandr        *randr,
+                                              guint             output,
+                                              RRMode            id);
 
-gchar      *xfce_randr_friendly_name   (XfceRandr     *randr,
-                                        RROutput       output,
-                                        const gchar   *name);
+RRMode            xfce_randr_preferred_mode  (XfceRandr        *randr,
+                                              guint             output);
 
-XfceRRMode *xfce_randr_find_mode_by_id (XfceRandr     *randr,
-                                        guint          output,
-                                        RRMode         id);
+const XfceRRMode *xfce_randr_get_modes       (XfceRandr        *randr,
+                                              guint             output,
+                                              gint             *nmode);
 
-RRMode      xfce_randr_preferred_mode  (XfceRandr     *randr,
-                                        guint          output);
+gboolean          xfce_randr_get_positions   (XfceRandr        *randr,
+                                              guint             output,
+                                              gint             *x,
+                                              gint             *y);
+
+guint             xfce_randr_mode_width      (const XfceRRMode *mode,
+                                              Rotation          rot);
+
+guint             xfce_randr_mode_height     (const XfceRRMode *mode,
+                                              Rotation          rot);
 
 #endif /* !__XFCE_RANDR_H__ */

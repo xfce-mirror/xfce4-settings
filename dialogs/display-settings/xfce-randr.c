@@ -34,6 +34,41 @@
 #include "xfce-randr.h"
 #include "edid.h"
 
+
+
+typedef struct _XfceOutputPosition XfceOutputPosition;
+
+
+
+struct _XfceOutputPosition
+{
+    gint x;
+    gint y;
+};
+
+
+
+struct _XfceRandrPrivate
+{
+    /* xrandr 1.3 capable */
+    gint                 has_1_3;
+
+    GdkDisplay          *display;
+    XRRScreenResources  *resources;
+
+    /* cache for the output/mode info */
+    XRROutputInfo      **output_info;
+    XfceRRMode         **modes;
+    XfceOutputPosition  *position;
+};
+
+
+
+static gchar *xfce_randr_friendly_name (XfceRandr *randr,
+                                        guint      output);
+
+
+
 static void
 xfce_randr_list_clone_modes (XfceRandr *randr)
 {
@@ -44,7 +79,7 @@ xfce_randr_list_clone_modes (XfceRandr *randr)
     clone_modes = g_array_new (TRUE, FALSE, sizeof (RRMode));
 
     /* walk all available modes */
-    for (n = 0; n < randr->resources->nmode; ++n)
+    for (n = 0; n < randr->priv->resources->nmode; ++n)
     {
         candidate = TRUE;
         /* walk all connected outputs */
@@ -52,9 +87,9 @@ xfce_randr_list_clone_modes (XfceRandr *randr)
         {
             found = FALSE;
             /* walk supported modes from this output */
-            for (l = 0; l < randr->output_info[m]->nmode; ++l)
+            for (l = 0; l < randr->priv->output_info[m]->nmode; ++l)
             {
-                if (randr->resources->modes[n].id == randr->output_info[m]->modes[l])
+                if (randr->priv->resources->modes[n].id == randr->priv->output_info[m]->modes[l])
                 {
                     found = TRUE;
                     break;
@@ -67,7 +102,7 @@ xfce_randr_list_clone_modes (XfceRandr *randr)
 
         /* common to all outputs, can be used for clone mode */
         if (candidate)
-            clone_modes = g_array_append_val (clone_modes, randr->resources->modes[n].id);
+            clone_modes = g_array_append_val (clone_modes, randr->priv->resources->modes[n].id);
     }
 
     /* return a "normal" array (last value -> None) */
@@ -86,13 +121,13 @@ xfce_randr_get_safe_rotations (XfceRandr *randr,
     gint         n;
 
     g_return_val_if_fail (num_output < randr->noutput, RR_Rotate_0);
-    g_return_val_if_fail (randr->output_info[num_output]->ncrtc > 0, RR_Rotate_0);
+    g_return_val_if_fail (randr->priv->output_info[num_output]->ncrtc > 0, RR_Rotate_0);
 
     rot = XFCE_RANDR_ROTATIONS_MASK | XFCE_RANDR_REFLECTIONS_MASK;
-    for (n = 0; n < randr->output_info[num_output]->ncrtc; ++n)
+    for (n = 0; n < randr->priv->output_info[num_output]->ncrtc; ++n)
     {
-        crtc_info = XRRGetCrtcInfo (xdisplay, randr->resources,
-                                    randr->output_info[num_output]->crtcs[n]);
+        crtc_info = XRRGetCrtcInfo (xdisplay, randr->priv->resources,
+                                    randr->priv->output_info[num_output]->crtcs[n]);
         rot &= crtc_info->rotations;
         XRRFreeCrtcInfo (crtc_info);
     }
@@ -142,6 +177,107 @@ xfce_randr_list_supported_modes (XRRScreenResources *resources,
 
 
 static void
+xfce_randr_guess_relations (XfceRandr *randr)
+{
+    guint n, m;
+
+    /* walk the connected outputs */
+    for (n = 0; n < randr->noutput; ++n)
+    {
+        /* ignore relations for inactive outputs */
+        if (randr->mode[n] == None)
+            continue;
+
+        for (m = 0; m < randr->noutput; ++m)
+        {
+            /* additionally ignore itself */
+            if (randr->mode[m] == None || m == n)
+                continue;
+
+            /* horizontal scale */
+            if (randr->priv->position[n].x == randr->priv->position[m].x)
+            {
+                if (randr->priv->position[n].y == randr->priv->position[m].y)
+                    randr->relation[n] = XFCE_RANDR_PLACEMENT_MIRROR;
+                else if (randr->priv->position[n].y > randr->priv->position[m].y)
+                    randr->relation[n] = XFCE_RANDR_PLACEMENT_DOWN;
+                else
+                    randr->relation[n] = XFCE_RANDR_PLACEMENT_UP;
+
+                randr->related_to[n] = m;
+                break;
+            }
+
+            /* vertical scale */
+            if (randr->priv->position[n].y == randr->priv->position[m].y)
+            {
+                if (randr->priv->position[n].x == randr->priv->position[m].x)
+                    randr->relation[n] = XFCE_RANDR_PLACEMENT_MIRROR;
+                else if (randr->priv->position[n].x > randr->priv->position[m].x)
+                    randr->relation[n] = XFCE_RANDR_PLACEMENT_RIGHT;
+                else
+                    randr->relation[n] = XFCE_RANDR_PLACEMENT_LEFT;
+
+                randr->related_to[n] = m;
+                break;
+            }
+        }
+    }
+}
+
+
+
+static void
+xfce_randr_update_positions (XfceRandr *randr,
+                             guint      output)
+{
+    const XfceRRMode *cmode, *rmode;
+    guint             rel;
+    gint              x, y;
+
+    rel = randr->related_to[output];
+    /* ignore relations for inactive outputs */
+    if (randr->mode[output] == None || randr->mode[rel] == None)
+        return;
+
+    /* modes of the two related outputs */
+    cmode = xfce_randr_find_mode_by_id (randr, output, randr->mode[output]);
+    rmode = xfce_randr_find_mode_by_id (randr, rel, randr->mode[rel]);
+
+    /* coordinates of the related_to output */
+    x = randr->priv->position[rel].x;
+    y = randr->priv->position[rel].y;
+
+    switch (randr->relation[output])
+    {
+        case XFCE_RANDR_PLACEMENT_LEFT:
+            randr->priv->position[output].x = x;
+            randr->priv->position[output].y = y;
+            randr->priv->position[rel].x = x + xfce_randr_mode_width (cmode, randr->rotation[output]);
+            break;
+        case XFCE_RANDR_PLACEMENT_RIGHT:
+            randr->priv->position[output].x = x + xfce_randr_mode_width (rmode, randr->rotation[rel]);
+            randr->priv->position[output].y = y;
+            break;
+        case XFCE_RANDR_PLACEMENT_UP:
+            randr->priv->position[output].x = x;
+            randr->priv->position[output].y = y;
+            randr->priv->position[rel].y = y + xfce_randr_mode_height (cmode, randr->rotation[output]);
+            break;
+        case XFCE_RANDR_PLACEMENT_DOWN:
+            randr->priv->position[output].x = x;
+            randr->priv->position[output].y = y + xfce_randr_mode_height (rmode, randr->rotation[rel]);
+            break;
+        default:
+            randr->priv->position[output].x = x;
+            randr->priv->position[output].y = y;
+            break;
+    }
+}
+
+
+
+static void
 xfce_randr_populate (XfceRandr *randr,
                      Display   *xdisplay,
                      GdkWindow *root_window)
@@ -153,17 +289,18 @@ xfce_randr_populate (XfceRandr *randr,
     guint          m;
 
     g_return_if_fail (randr != NULL);
-    g_return_if_fail (randr->resources != NULL);
+    g_return_if_fail (randr->priv != NULL);
+    g_return_if_fail (randr->priv->resources != NULL);
 
     /* prepare the temporary cache */
     outputs = g_ptr_array_new ();
 
     /* walk the outputs */
-    for (n = 0; n < randr->resources->noutput; ++n)
+    for (n = 0; n < randr->priv->resources->noutput; ++n)
     {
         /* get the output info */
-        output_info = XRRGetOutputInfo (xdisplay, randr->resources,
-                                        randr->resources->outputs[n]);
+        output_info = XRRGetOutputInfo (xdisplay, randr->priv->resources,
+                                        randr->priv->resources->outputs[n]);
 
         /* forget about disconnected outputs */
         if (output_info->connection != RR_Connected)
@@ -178,39 +315,42 @@ xfce_randr_populate (XfceRandr *randr,
 
     /* migrate the temporary cache */
     randr->noutput = outputs->len;
-    randr->output_info = (XRROutputInfo **) g_ptr_array_free (outputs, FALSE);
+    randr->priv->output_info = (XRROutputInfo **) g_ptr_array_free (outputs, FALSE);
 
     /* allocate final space for the settings */
     randr->mode = g_new0 (RRMode, randr->noutput);
-    randr->modes = g_new0 (XfceRRMode *, randr->noutput);
+    randr->priv->modes = g_new0 (XfceRRMode *, randr->noutput);
+    randr->priv->position = g_new0 (XfceOutputPosition, randr->noutput);
     randr->rotation = g_new0 (Rotation, randr->noutput);
     randr->rotations = g_new0 (Rotation, randr->noutput);
-    randr->position = g_new0 (XfceOutputPosition, randr->noutput);
+    randr->relation = g_new0 (XfceOutputRelation, randr->noutput);
+    randr->related_to = g_new0 (guint, randr->noutput);
     randr->status = g_new0 (XfceOutputStatus, randr->noutput);
+    randr->friendly_name = g_new0 (gchar *, randr->noutput);
 
     /* walk the connected outputs */
     for (m = 0; m < randr->noutput; ++m)
     {
         /* fill in supported modes */
-        randr->modes[m] = xfce_randr_list_supported_modes (randr->resources, randr->output_info[m]);
+        randr->priv->modes[m] = xfce_randr_list_supported_modes (randr->priv->resources, randr->priv->output_info[m]);
 
 #ifdef HAS_RANDR_ONE_POINT_THREE
         /* find the primary screen if supported */
-        if (randr->has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->resources->outputs[m])
+        if (randr->priv->has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->priv->resources->outputs[m])
             randr->status[m] = XFCE_OUTPUT_STATUS_PRIMARY;
         else
 #endif
             randr->status[m] = XFCE_OUTPUT_STATUS_SECONDARY;
 
-        if (randr->output_info[m]->crtc != None)
+        if (randr->priv->output_info[m]->crtc != None)
         {
-            crtc_info = XRRGetCrtcInfo (xdisplay, randr->resources,
-                                        randr->output_info[m]->crtc);
+            crtc_info = XRRGetCrtcInfo (xdisplay, randr->priv->resources,
+                                        randr->priv->output_info[m]->crtc);
             randr->mode[m] = crtc_info->mode;
             randr->rotation[m] = crtc_info->rotation;
             randr->rotations[m] = crtc_info->rotations;
-            randr->position[m].x = crtc_info->x;
-            randr->position[m].y = crtc_info->y;
+            randr->priv->position[m].x = crtc_info->x;
+            randr->priv->position[m].y = crtc_info->y;
             XRRFreeCrtcInfo (crtc_info);
         }
         else
@@ -220,10 +360,16 @@ xfce_randr_populate (XfceRandr *randr,
             randr->rotation[m] = RR_Rotate_0;
             randr->rotations[m] = xfce_randr_get_safe_rotations (randr, xdisplay, m);
         }
+
+        /* fill in the name used by the UI */
+        randr->friendly_name[m] = xfce_randr_friendly_name (randr, m);
     }
 
     /* clone modes: same RRModes present for all outputs */
     xfce_randr_list_clone_modes (randr);
+
+    /* calculate relations from positions */
+    xfce_randr_guess_relations (randr);
 }
 
 
@@ -261,17 +407,18 @@ xfce_randr_new (GdkDisplay  *display,
 
     /* allocate the structure */
     randr = g_slice_new0 (XfceRandr);
+    randr->priv = g_slice_new0 (XfceRandrPrivate);
 
-    randr->has_1_3 = (major > 1 || (major == 1 && minor >= 3));
+    randr->priv->has_1_3 = (major > 1 || (major == 1 && minor >= 3));
 
     /* set display */
-    randr->display = display;
+    randr->priv->display = display;
 
     /* get the root window */
     root_window = gdk_get_default_root_window ();
 
     /* get the screen resource */
-    randr->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
+    randr->priv->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
 
     xfce_randr_populate (randr, xdisplay, root_window);
 
@@ -288,24 +435,29 @@ xfce_randr_cleanup (XfceRandr *randr)
     /* free the output/mode info cache */
     for (n = 0; n < randr->noutput; ++n)
     {
-        if (G_LIKELY (randr->output_info[n]))
-            XRRFreeOutputInfo (randr->output_info[n]);
-        if (G_LIKELY (randr->modes[n]))
-            g_free (randr->modes[n]);
+        if (G_LIKELY (randr->priv->output_info[n]))
+            XRRFreeOutputInfo (randr->priv->output_info[n]);
+        if (G_LIKELY (randr->priv->modes[n]))
+            g_free (randr->priv->modes[n]);
+        if (G_LIKELY (randr->friendly_name[n]))
+            g_free (randr->friendly_name[n]);
     }
 
     /* free the screen resources */
-    XRRFreeScreenResources (randr->resources);
+    XRRFreeScreenResources (randr->priv->resources);
 
     /* free the settings */
+    g_free (randr->friendly_name);
     g_free (randr->clone_modes);
     g_free (randr->mode);
-    g_free (randr->modes);
+    g_free (randr->priv->modes);
     g_free (randr->rotation);
     g_free (randr->rotations);
     g_free (randr->status);
-    g_free (randr->position);
-    g_free (randr->output_info);
+    g_free (randr->relation);
+    g_free (randr->related_to);
+    g_free (randr->priv->position);
+    g_free (randr->priv->output_info);
 }
 
 
@@ -316,6 +468,7 @@ xfce_randr_free (XfceRandr *randr)
     xfce_randr_cleanup (randr);
 
     /* free the structure */
+    g_slice_free (XfceRandrPrivate, randr->priv);
     g_slice_free (XfceRandr, randr);
 }
 
@@ -330,7 +483,7 @@ xfce_randr_reload (XfceRandr *randr)
     xfce_randr_cleanup (randr);
 
     /* get the x display */
-    xdisplay = gdk_x11_display_get_xdisplay (randr->display);
+    xdisplay = gdk_x11_display_get_xdisplay (randr->priv->display);
 
     /* get the root window */
     root_window = gdk_get_default_root_window ();
@@ -340,11 +493,11 @@ xfce_randr_reload (XfceRandr *randr)
     /* xfce_randr_reload() is only called after a xrandr notification, which
        means that X is aware of the new hardware already. So, if possible,
        do not reprobe the hardware again. */
-    if (randr->has_1_3)
-        randr->resources = XRRGetScreenResourcesCurrent (xdisplay, GDK_WINDOW_XID (root_window));
+    if (randr->priv->has_1_3)
+        randr->priv->resources = XRRGetScreenResourcesCurrent (xdisplay, GDK_WINDOW_XID (root_window));
     else
 #endif
-    randr->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
+    randr->priv->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
 
     /* repopulate */
     xfce_randr_populate (randr, xdisplay, root_window);
@@ -356,7 +509,8 @@ void
 xfce_randr_save_output (XfceRandr     *randr,
                         const gchar   *scheme,
                         XfconfChannel *channel,
-                        guint          output)
+                        guint          output,
+                        gint           rel_changed)
 {
     gchar             property[512];
     gchar            *str_value;
@@ -368,19 +522,16 @@ xfce_randr_save_output (XfceRandr     *randr,
     g_return_if_fail (output < randr->noutput);
 
     /* save the device name */
-    str_value = xfce_randr_friendly_name (randr, randr->resources->outputs[output],
-                                          randr->output_info[output]->name);
     g_snprintf (property, sizeof (property), "/%s/%s", scheme,
-                randr->output_info[output]->name);
-    xfconf_channel_set_string (channel, property, str_value);
-    g_free (str_value);
+                randr->priv->output_info[output]->name);
+    xfconf_channel_set_string (channel, property, randr->friendly_name[output]);
 
     /* find the resolution and refresh rate */
     mode = xfce_randr_find_mode_by_id (randr, output, randr->mode[output]);
 
     /* if no resolution was found, mark it as inactive and stop */
     g_snprintf (property, sizeof (property), "/%s/%s/Active", scheme,
-                randr->output_info[output]->name);
+                randr->priv->output_info[output]->name);
     xfconf_channel_set_bool (channel, property, mode != NULL);
 
     if (mode == NULL)
@@ -389,13 +540,13 @@ xfce_randr_save_output (XfceRandr     *randr,
     /* save the resolution */
     str_value = g_strdup_printf ("%dx%d", mode->width, mode->height);
     g_snprintf (property, sizeof (property), "/%s/%s/Resolution", scheme,
-                randr->output_info[output]->name);
+                randr->priv->output_info[output]->name);
     xfconf_channel_set_string (channel, property, str_value);
     g_free (str_value);
 
     /* save the refresh rate */
     g_snprintf (property, sizeof (property), "/%s/%s/RefreshRate", scheme,
-                randr->output_info[output]->name);
+                randr->priv->output_info[output]->name);
     xfconf_channel_set_double (channel, property, mode->rate);
 
     /* convert the rotation into degrees */
@@ -409,7 +560,7 @@ xfce_randr_save_output (XfceRandr     *randr,
 
     /* save the rotation in degrees */
     g_snprintf (property, sizeof (property), "/%s/%s/Rotation", scheme,
-                randr->output_info[output]->name);
+                randr->priv->output_info[output]->name);
     xfconf_channel_set_int (channel, property, degrees);
 
     /* convert the reflection into a string */
@@ -423,41 +574,28 @@ xfce_randr_save_output (XfceRandr     *randr,
 
     /* save the reflection string */
     g_snprintf (property, sizeof (property), "/%s/%s/Reflection", scheme,
-                randr->output_info[output]->name);
+                randr->priv->output_info[output]->name);
     xfconf_channel_set_string (channel, property, str_value);
 
 #ifdef HAS_RANDR_ONE_POINT_THREE
     /* is it the primary output? */
     g_snprintf (property, sizeof (property), "/%s/%s/Primary", scheme,
-                randr->output_info[output]->name);
+                randr->priv->output_info[output]->name);
     xfconf_channel_set_bool (channel, property,
                              randr->status[output] == XFCE_OUTPUT_STATUS_PRIMARY);
 #endif
 
+    /* update positions according to the current relations */
+    if (rel_changed)
+        xfce_randr_update_positions (randr, output);
+
     /* save the position */
     g_snprintf (property, sizeof (property), "/%s/%s/Position/X", scheme,
-                randr->output_info[output]->name);
-    xfconf_channel_set_int (channel, property, MAX (randr->position[output].x, 0));
+                randr->priv->output_info[output]->name);
+    xfconf_channel_set_int (channel, property, MAX (randr->priv->position[output].x, 0));
     g_snprintf (property, sizeof (property), "/%s/%s/Position/Y", scheme,
-                randr->output_info[output]->name);
-    xfconf_channel_set_int (channel, property, MAX (randr->position[output].y, 0));
-}
-
-
-
-void
-xfce_randr_save_all (XfceRandr     *randr,
-                     const gchar   *scheme,
-                     XfconfChannel *channel)
-{
-    guint        n;
-
-    g_return_if_fail (randr != NULL && scheme != NULL);
-    g_return_if_fail (XFCONF_IS_CHANNEL (channel));
-
-    /* save connected outputs */
-    for (n = 0; n < randr->noutput; ++n)
-        xfce_randr_save_output (randr, scheme, channel, n);
+                randr->priv->output_info[output]->name);
+    xfconf_channel_set_int (channel, property, MAX (randr->priv->position[output].y, 0));
 }
 
 
@@ -518,17 +656,15 @@ xfce_randr_read_edid_data (Display  *xdisplay,
 
 
 
-gchar *
-xfce_randr_friendly_name (XfceRandr   *randr,
-                          RROutput     output,
-                          const gchar *name)
+static gchar *
+xfce_randr_friendly_name (XfceRandr *randr,
+                          guint      output)
 {
     Display     *xdisplay;
     MonitorInfo *info = NULL;
     guint8      *edid_data;
     gchar       *friendly_name = NULL;
-
-    g_return_val_if_fail (randr != NULL && output != None && name != NULL, g_strdup ("<null>"));
+    const gchar *name = randr->priv->output_info[output]->name;
 
     /* special case, a laptop */
     if (g_str_has_prefix (name, "LVDS")
@@ -536,8 +672,8 @@ xfce_randr_friendly_name (XfceRandr   *randr,
         return g_strdup (_("Laptop"));
 
     /* otherwise, get the vendor & size */
-    xdisplay = gdk_x11_display_get_xdisplay (randr->display);
-    edid_data = xfce_randr_read_edid_data (xdisplay, output);
+    xdisplay = gdk_x11_display_get_xdisplay (randr->priv->display);
+    edid_data = xfce_randr_read_edid_data (xdisplay, randr->priv->resources->outputs[output]);
 
     if (edid_data)
         info = decode_edid (edid_data);
@@ -569,7 +705,7 @@ xfce_randr_friendly_name (XfceRandr   *randr,
 
 
 
-XfceRRMode *
+const XfceRRMode *
 xfce_randr_find_mode_by_id (XfceRandr *randr,
                             guint      output,
                             RRMode     id)
@@ -582,10 +718,10 @@ xfce_randr_find_mode_by_id (XfceRandr *randr,
     if (id == None)
         return NULL;
 
-    for (n = 0; n < randr->output_info[output]->nmode; ++n)
+    for (n = 0; n < randr->priv->output_info[output]->nmode; ++n)
     {
-        if (randr->modes[output][n].id == id)
-            return &randr->modes[output][n];
+        if (randr->priv->modes[output][n].id == id)
+            return &randr->priv->modes[output][n];
     }
 
     return NULL;
@@ -607,24 +743,84 @@ xfce_randr_preferred_mode (XfceRandr *randr,
 
     best_mode = None;
     best_dist = 0;
-    for (n = 0; n < randr->output_info[output]->nmode; ++n)
+    for (n = 0; n < randr->priv->output_info[output]->nmode; ++n)
     {
-        if (n < randr->output_info[output]->npreferred)
+        if (n < randr->priv->output_info[output]->npreferred)
             dist = 0;
-        else if (randr->output_info[output]->mm_height != 0)
+        else if (randr->priv->output_info[output]->mm_height != 0)
             dist = (1000 * gdk_screen_height () / gdk_screen_height_mm () -
-                1000 * randr->modes[output][n].height /
-                    randr->output_info[output]->mm_height);
+                1000 * randr->priv->modes[output][n].height /
+                    randr->priv->output_info[output]->mm_height);
         else
-            dist = gdk_screen_height () - randr->modes[output][n].height;
+            dist = gdk_screen_height () - randr->priv->modes[output][n].height;
 
         dist = ABS (dist);
 
         if (best_mode == None || dist < best_dist)
         {
-            best_mode = randr->modes[output][n].id;
+            best_mode = randr->priv->modes[output][n].id;
             best_dist = dist;
         }
     }
     return best_mode;
+}
+
+
+
+const XfceRRMode *
+xfce_randr_get_modes (XfceRandr *randr,
+                      guint      output,
+                      gint      *nmode)
+{
+    g_return_val_if_fail (randr != NULL && nmode != NULL, NULL);
+    g_return_val_if_fail (output < randr->noutput, NULL);
+
+    *nmode = randr->priv->output_info[output]->nmode;
+    return randr->priv->modes[output];
+}
+
+
+
+gboolean
+xfce_randr_get_positions (XfceRandr *randr,
+                          guint      output,
+                          gint      *x,
+                          gint      *y)
+{
+    g_return_val_if_fail (randr != NULL && x != NULL && y != NULL, FALSE);
+    g_return_val_if_fail (output < randr->noutput, FALSE);
+
+    xfce_randr_update_positions (randr, output);
+
+    *x = randr->priv->position[output].x;
+    *y = randr->priv->position[output].y;
+    return TRUE;
+}
+
+
+
+guint
+xfce_randr_mode_width (const XfceRRMode *mode,
+                       Rotation          rot)
+{
+    g_return_val_if_fail (mode != NULL, 0);
+
+    if ((rot & (RR_Rotate_90|RR_Rotate_270)) != 0)
+        return mode->height;
+    else
+        return mode->width;
+}
+
+
+
+guint
+xfce_randr_mode_height (const XfceRRMode *mode,
+                        Rotation          rot)
+{
+    g_return_val_if_fail (mode != NULL, 0);
+
+    if ((rot & (RR_Rotate_90|RR_Rotate_270)) != 0)
+        return mode->width;
+    else
+        return mode->height;
 }
