@@ -1474,10 +1474,6 @@ display_settings_treeview_populate (GtkBuilder *builder)
 
     lucent_display_icon = NULL;
 
-    /* Save the current status of all outputs, if the user doesn't change
-     * anything after, it means she's happy with that. */
-    xfce_randr_save_all (xfce_randr, "Default", display_channel);
-
     /* Walk all the connected outputs */
     for (m = 0; m < xfce_randr->noutput; ++m)
     {
