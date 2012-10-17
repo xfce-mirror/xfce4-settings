@@ -1154,38 +1154,49 @@ static void
 display_setting_mirror_displays_populate (GtkBuilder *builder)
 {
     GObject *check;
+    RRMode   mode = None;
+    guint    n;
+    gint     cloned = TRUE;
 
     if (!xfce_randr)
         return;
 
-    if (xfce_randr->noutput <= 1)
-        return;
-
     check = gtk_builder_get_object (builder, "mirror-displays");
 
-    /* Only make the check interactive if there is more than one output */
-    if (display_settings_get_n_active_outputs () > 1)
+    /* Can outputs be cloned? */
+    if (xfce_randr->noutput > 1)
+        mode = xfce_randr_clonable_mode (xfce_randr);
+
+    gtk_widget_set_sensitive (GTK_WIDGET (check), mode != None);
+    if (mode == None)
     {
-        gtk_widget_set_sensitive (GTK_WIDGET (check), TRUE);
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), FALSE);
         return;
     }
-    else
-        gtk_widget_set_sensitive (GTK_WIDGET (check), FALSE);
 
     /* Disconnect the "toggled" signal to avoid writing the config again */
     g_object_disconnect (check, "any_signal::toggled",
                          display_setting_mirror_displays_toggled,
                          builder, NULL);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check),
-                                  xfce_randr->mode[active_output] != None);
 
+    /* Check if mirror settings are on */
+    for (n = 0; n < xfce_randr->noutput; n++)
+    {
+        if (xfce_randr->mode[n] == None)
+            continue;
+
+        cloned &= (xfce_randr->mode[n] == mode &&
+                   xfce_randr->relation[n] == XFCE_RANDR_PLACEMENT_MIRROR);
+
+        if (!cloned)
+            break;
+    }
+
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), cloned);
 
     /* Reconnect the signal */
     g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled),
                       builder);
-
-    /* Write the correct RandR value to xfconf */
-
 }
 
 
