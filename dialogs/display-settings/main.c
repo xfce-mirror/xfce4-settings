@@ -163,21 +163,19 @@ static GHashTable *display_popups;
 
 gboolean supports_alpha = FALSE;
 
-static void
-display_settings_minimal_only_display1_toggled (GtkToggleButton *button,
-                                              GtkBuilder *builder);
-                                              
-static void
-display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
-                                              GtkBuilder *builder);
-                                              
-static void
-display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
-                                              GtkBuilder *builder);
-                                              
-static void
-display_settings_minimal_only_display2_toggled (GtkToggleButton *button,
-                                              GtkBuilder *builder);
+
+
+static void display_settings_minimal_only_display1_toggled   (GtkToggleButton *button,
+                                                              GtkBuilder      *builder);
+
+static void display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
+                                                              GtkBuilder      *builder);
+
+static void display_settings_minimal_extend_right_toggled    (GtkToggleButton *button,
+                                                              GtkBuilder      *builder);
+
+static void display_settings_minimal_only_display2_toggled   (GtkToggleButton *button,
+                                                              GtkBuilder      *builder);
 
 
 static guint
@@ -296,13 +294,13 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
         confirmation_dialog->count = 10;
 
         dialog = gtk_builder_get_object (builder, "dialog1");
-        
+
         g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_toggle_identity_popups),
-                      GINT_TO_POINTER (FALSE));
-                      
+                          GINT_TO_POINTER (FALSE));
+
         g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_toggle_identity_popups),
-                      GINT_TO_POINTER (TRUE));
-        
+                          GINT_TO_POINTER (TRUE));
+
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
         source_id = g_timeout_add_seconds (1, (GSourceFunc) display_settings_update_time_label,
                                            confirmation_dialog);
@@ -395,21 +393,17 @@ display_setting_positions_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-position");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
-    
+
     /* Only make the combobox interactive if there is more than one output */
-    if (display_settings_get_n_active_outputs () > 1)
-    {
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
-    }
-    else
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
-    
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox),
+                              display_settings_get_n_active_outputs () > 1);
+
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
     g_object_disconnect (combobox, "any_signal::changed",
                          display_setting_positions_changed,
                          builder, NULL);
-    
+
     /* Try to insert the relations */
     for (n = 0; n < G_N_ELEMENTS (relation_names); n++)
     {
@@ -422,24 +416,24 @@ display_setting_positions_populate (GtkBuilder *builder)
         if (relation_names[n].relation == xfce_randr->relation[active_output])
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
     }
-    
+
     /* Reconnect the signal */
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_positions_changed), builder);
 }
 
 static void
 display_setting_active_displays_changed (GtkComboBox *combobox,
-                                     GtkBuilder  *builder)
+                                         GtkBuilder  *builder)
 {
-    gint value;
     GObject *position_combobox;
+    gint     value;
 
     if (!display_setting_combo_box_get_value (combobox, &value))
         return;
-        
-    position_combobox = gtk_builder_get_object(builder, "randr-position");
-    
-    display_setting_positions_changed (GTK_COMBO_BOX(position_combobox), builder);
+
+    position_combobox = gtk_builder_get_object (builder, "randr-position");
+
+    display_setting_positions_changed (GTK_COMBO_BOX (position_combobox), builder);
 }
 
 static void
@@ -456,12 +450,8 @@ display_setting_active_displays_populate (GtkBuilder *builder)
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
     /* Only make the combobox interactive if there is more than one output */
-    if (display_settings_get_n_active_outputs () > 1)
-    {
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
-    }
-    else
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox),
+                              display_settings_get_n_active_outputs () > 1);
 
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
@@ -871,22 +861,22 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 }
 
 static void
-display_setting_screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer userdata)
+display_setting_screen_changed (GtkWidget *widget,
+                                GdkScreen *old_screen,
+                                gpointer   userdata)
 {
-    GdkScreen *screen = gtk_widget_get_screen(widget);
-    GdkColormap *colormap = gdk_screen_get_rgba_colormap(screen);
-    
-    if (gdk_screen_is_composited(screen))
-    {
+    GdkScreen   *screen = gtk_widget_get_screen (widget);
+    GdkColormap *colormap = gdk_screen_get_rgba_colormap (screen);
+
+    if (gdk_screen_is_composited (screen))
         supports_alpha = TRUE;
-    }
     else
     {
-        colormap = gdk_screen_get_rgb_colormap(screen);
+        colormap = gdk_screen_get_rgb_colormap (screen);
         supports_alpha = FALSE;
     }
-    
-    gtk_widget_set_colormap(widget, colormap);
+
+    gtk_widget_set_colormap (widget, colormap);
 }
 
 static gboolean
@@ -894,108 +884,113 @@ display_setting_identity_popup_expose (GtkWidget      *popup,
                                        GdkEventExpose *event,
                                        GtkBuilder     *builder)
 {
-    cairo_t *cr = gdk_cairo_create(popup->window);
-    gint radius;
-    gboolean selected = (g_hash_table_lookup (display_popups, GINT_TO_POINTER (active_output)) == popup);
+    cairo_t         *cr = gdk_cairo_create (popup->window);
     cairo_pattern_t *vertical_gradient, *innerstroke_gradient, *selected_gradient, *selected_innerstroke_gradient;
-    
+    gint             radius;
+    gboolean         selected = (g_hash_table_lookup (display_popups, GINT_TO_POINTER (active_output)) == popup);
+
     radius = 10;
     cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-    
+
     /* Create the various gradients */
-	vertical_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
-	cairo_pattern_add_color_stop_rgb(vertical_gradient, 0, 0.25, 0.25, 0.25);
-	cairo_pattern_add_color_stop_rgb(vertical_gradient, 0.24, 0.15, 0.15, 0.15);
-	cairo_pattern_add_color_stop_rgb(vertical_gradient, 0.6, 0.0, 0.0, 0.0);
-	
-	innerstroke_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
-	cairo_pattern_add_color_stop_rgb(innerstroke_gradient, 0, 0.35, 0.35, 0.35);
-	cairo_pattern_add_color_stop_rgb(innerstroke_gradient, 0.4, 0.25, 0.25, 0.25);
-	cairo_pattern_add_color_stop_rgb(innerstroke_gradient, 0.7, 0.15, 0.15, 0.15);
-	cairo_pattern_add_color_stop_rgb(innerstroke_gradient, 0.85, 0.0, 0.0, 0.0);
-	
-	selected_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
-	cairo_pattern_add_color_stop_rgb(selected_gradient, 0, 0.05, 0.20, 0.46);
-	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.4, 0.05, 0.12, 0.25);
-	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.6, 0.05, 0.10, 0.20);
-	cairo_pattern_add_color_stop_rgb(selected_gradient, 0.8, 0.0, 0.02, 0.05);
-	
-	selected_innerstroke_gradient = cairo_pattern_create_linear(0, 0, 0, popup->allocation.height);
-	cairo_pattern_add_color_stop_rgb(selected_innerstroke_gradient, 0, 0.15, 0.45, 0.75);
-	cairo_pattern_add_color_stop_rgb(selected_innerstroke_gradient, 0.7, 0.0, 0.15, 0.25);
-	cairo_pattern_add_color_stop_rgb(selected_innerstroke_gradient, 0.85, 0.0, 0.0, 0.0);
-	
+    vertical_gradient = cairo_pattern_create_linear (0, 0, 0, popup->allocation.height);
+    cairo_pattern_add_color_stop_rgb (vertical_gradient, 0, 0.25, 0.25, 0.25);
+    cairo_pattern_add_color_stop_rgb (vertical_gradient, 0.24, 0.15, 0.15, 0.15);
+    cairo_pattern_add_color_stop_rgb (vertical_gradient, 0.6, 0.0, 0.0, 0.0);
+
+    innerstroke_gradient = cairo_pattern_create_linear (0, 0, 0, popup->allocation.height);
+    cairo_pattern_add_color_stop_rgb (innerstroke_gradient, 0, 0.35, 0.35, 0.35);
+    cairo_pattern_add_color_stop_rgb (innerstroke_gradient, 0.4, 0.25, 0.25, 0.25);
+    cairo_pattern_add_color_stop_rgb (innerstroke_gradient, 0.7, 0.15, 0.15, 0.15);
+    cairo_pattern_add_color_stop_rgb (innerstroke_gradient, 0.85, 0.0, 0.0, 0.0);
+
+    selected_gradient = cairo_pattern_create_linear (0, 0, 0, popup->allocation.height);
+    cairo_pattern_add_color_stop_rgb (selected_gradient, 0, 0.05, 0.20, 0.46);
+    cairo_pattern_add_color_stop_rgb (selected_gradient, 0.4, 0.05, 0.12, 0.25);
+    cairo_pattern_add_color_stop_rgb (selected_gradient, 0.6, 0.05, 0.10, 0.20);
+    cairo_pattern_add_color_stop_rgb (selected_gradient, 0.8, 0.0, 0.02, 0.05);
+
+    selected_innerstroke_gradient = cairo_pattern_create_linear (0, 0, 0, popup->allocation.height);
+    cairo_pattern_add_color_stop_rgb (selected_innerstroke_gradient, 0, 0.15, 0.45, 0.75);
+    cairo_pattern_add_color_stop_rgb (selected_innerstroke_gradient, 0.7, 0.0, 0.15, 0.25);
+    cairo_pattern_add_color_stop_rgb (selected_innerstroke_gradient, 0.85, 0.0, 0.0, 0.0);
+
     /* Compositing is not available, so just set the background color. */
     if (!supports_alpha)
     {
-		/* Draw a filled rectangle with outline */
-		cairo_set_line_width(cr, 1.0);
-        cairo_set_source(cr, vertical_gradient);
-        if (selected) cairo_set_source(cr, selected_gradient);
+        /* Draw a filled rectangle with outline */
+        cairo_set_line_width (cr, 1.0);
+        cairo_set_source (cr, vertical_gradient);
+        if (selected)
+            cairo_set_source (cr, selected_gradient);
         cairo_paint (cr);
-        cairo_set_source_rgb(cr, 0.0, 0.0, 0.0);
-        cairo_rectangle(cr, 0.5, 0.5, popup->allocation.width-0.5, popup->allocation.height-0.5);
-        cairo_stroke(cr);
-        
+        cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+        cairo_rectangle (cr, 0.5, 0.5, popup->allocation.width-0.5, popup->allocation.height-0.5);
+        cairo_stroke (cr);
+
         /* Draw the inner stroke */
-        cairo_set_source_rgb(cr, 0.35, 0.35, 0.35);
-        if (selected) cairo_set_source_rgb(cr, 0.15, 0.45, 0.75);
-        cairo_move_to(cr, 1.5, 1.5);
-        cairo_line_to(cr, popup->allocation.width-1, 1.5);
-        cairo_stroke(cr);
-        cairo_set_source(cr, innerstroke_gradient);
-        if (selected) cairo_set_source(cr, selected_innerstroke_gradient);
-        cairo_move_to(cr, 1.5, 1.5);
-        cairo_line_to(cr, 1.5, popup->allocation.height-1.0);
-        cairo_move_to(cr, popup->allocation.width-1.5, 1.5);
-        cairo_line_to(cr, popup->allocation.width-1.5, popup->allocation.height-1.0);
-        cairo_stroke(cr);
+        cairo_set_source_rgb (cr, 0.35, 0.35, 0.35);
+        if (selected)
+            cairo_set_source_rgb (cr, 0.15, 0.45, 0.75);
+        cairo_move_to (cr, 1.5, 1.5);
+        cairo_line_to (cr, popup->allocation.width-1, 1.5);
+        cairo_stroke (cr);
+        cairo_set_source (cr, innerstroke_gradient);
+        if (selected)
+            cairo_set_source (cr, selected_innerstroke_gradient);
+        cairo_move_to (cr, 1.5, 1.5);
+        cairo_line_to (cr, 1.5, popup->allocation.height-1.0);
+        cairo_move_to (cr, popup->allocation.width-1.5, 1.5);
+        cairo_line_to (cr, popup->allocation.width-1.5, popup->allocation.height-1.0);
+        cairo_stroke (cr);
     }
-    
     /* Draw rounded corners. */
     else
     {
-        cairo_set_source_rgba(cr, 0, 0, 0, 0);
+        cairo_set_source_rgba (cr, 0, 0, 0, 0);
         cairo_paint (cr);
-        
+
         /* Draw a filled rounded rectangle with outline */
-        cairo_set_line_width(cr, 1.0);
-        cairo_move_to(cr, 0.5, popup->allocation.height+0.5);
-        cairo_line_to(cr, 0.5, radius+0.5);
-        cairo_arc(cr, radius+0.5, radius+0.5, radius, 3.14, 3.0*3.14/2.0);
-        cairo_line_to(cr, popup->allocation.width-0.5 - radius, 0.5);
-        cairo_arc(cr, popup->allocation.width-0.5 - radius, radius+0.5, radius, 3.0*3.14/2.0, 0.0);
-        cairo_line_to(cr, popup->allocation.width-0.5, popup->allocation.height+0.5);
-        cairo_set_source(cr, vertical_gradient);
-        if (selected) cairo_set_source(cr, selected_gradient);
-        cairo_fill_preserve(cr);
-		cairo_set_source_rgb(cr, 0.05, 0.05, 0.05);
-        cairo_stroke(cr);
-        
+        cairo_set_line_width (cr, 1.0);
+        cairo_move_to (cr, 0.5, popup->allocation.height+0.5);
+        cairo_line_to (cr, 0.5, radius+0.5);
+        cairo_arc (cr, radius+0.5, radius+0.5, radius, 3.14, 3.0*3.14/2.0);
+        cairo_line_to (cr, popup->allocation.width-0.5 - radius, 0.5);
+        cairo_arc (cr, popup->allocation.width-0.5 - radius, radius+0.5, radius, 3.0*3.14/2.0, 0.0);
+        cairo_line_to (cr, popup->allocation.width-0.5, popup->allocation.height+0.5);
+        cairo_set_source (cr, vertical_gradient);
+        if (selected)
+            cairo_set_source (cr, selected_gradient);
+        cairo_fill_preserve (cr);
+        cairo_set_source_rgb (cr, 0.05, 0.05, 0.05);
+        cairo_stroke (cr);
+
         /* Draw the inner stroke */
-        cairo_set_source_rgb(cr, 0.35, 0.35, 0.35);
-        if (selected) cairo_set_source_rgb(cr, 0.15, 0.45, 0.75);
-        cairo_arc(cr, radius+1.5, radius+1.5, radius, 3.14, 3.0*3.14/2.0);
-        cairo_line_to(cr, popup->allocation.width-1.5 - radius, 1.5);
-        cairo_arc(cr, popup->allocation.width-1.5 - radius, radius+1.5, radius, 3.0*3.14/2.0, 0.0);
-        cairo_stroke(cr);
-        cairo_set_source(cr, innerstroke_gradient);
-        if (selected) cairo_set_source(cr, selected_innerstroke_gradient);
-        cairo_move_to(cr, 1.5, radius+1.0);
-        cairo_line_to(cr, 1.5, popup->allocation.height-1.0);
-        cairo_move_to(cr, popup->allocation.width-1.5, radius+1.0);
-        cairo_line_to(cr, popup->allocation.width-1.5, popup->allocation.height-1.0);
-        cairo_stroke(cr);
-        
-        cairo_close_path(cr);
-    }    
-    
+        cairo_set_source_rgb (cr, 0.35, 0.35, 0.35);
+        if (selected)
+            cairo_set_source_rgb (cr, 0.15, 0.45, 0.75);
+        cairo_arc (cr, radius+1.5, radius+1.5, radius, 3.14, 3.0*3.14/2.0);
+        cairo_line_to (cr, popup->allocation.width-1.5 - radius, 1.5);
+        cairo_arc (cr, popup->allocation.width-1.5 - radius, radius+1.5, radius, 3.0*3.14/2.0, 0.0);
+        cairo_stroke (cr);
+        cairo_set_source (cr, innerstroke_gradient);
+        if (selected)
+            cairo_set_source (cr, selected_innerstroke_gradient);
+        cairo_move_to (cr, 1.5, radius+1.0);
+        cairo_line_to (cr, 1.5, popup->allocation.height-1.0);
+        cairo_move_to (cr, popup->allocation.width-1.5, radius+1.0);
+        cairo_line_to (cr, popup->allocation.width-1.5, popup->allocation.height-1.0);
+        cairo_stroke (cr);
+
+        cairo_close_path (cr);
+    }
+
     cairo_destroy (cr);
-    cairo_pattern_destroy(vertical_gradient);
-    cairo_pattern_destroy(innerstroke_gradient);
-    cairo_pattern_destroy(selected_gradient);
-    cairo_pattern_destroy(selected_innerstroke_gradient);
-    
+    cairo_pattern_destroy (vertical_gradient);
+    cairo_pattern_destroy (innerstroke_gradient);
+    cairo_pattern_destroy (selected_gradient);
+    cairo_pattern_destroy (selected_innerstroke_gradient);
+
     return FALSE;
 }
 
@@ -1003,33 +998,29 @@ display_setting_identity_popup_expose (GtkWidget      *popup,
 static GtkWidget *
 display_setting_identity_display (gint display_id)
 {
-    GtkBuilder *builder;
-    GtkWidget *popup;
-    
-    GObject *display_name, *display_details;
-    
-    gchar *color_hex = "#FFFFFF", *name_label, *details_label;
-    
-    const XfceRRMode   *current_mode;
-    
-    gint screen_pos_x, screen_pos_y;
-    gint window_width, window_height, screen_width, screen_height;
-    
+    GtkBuilder       *builder;
+    GtkWidget        *popup;
+    GObject          *display_name, *display_details;
+    const XfceRRMode *current_mode;
+    gchar            *color_hex = "#FFFFFF", *name_label, *details_label;
+    gint              screen_pos_x, screen_pos_y;
+    gint              window_width, window_height, screen_width, screen_height;
+
     builder = gtk_builder_new ();
     if (gtk_builder_add_from_string (builder, identity_popup_ui,
                                      identity_popup_ui_length, NULL) != 0)
     {
-        popup = (GtkWidget *) gtk_builder_get_object(builder, "popup");
-        gtk_widget_set_name(GTK_WIDGET(popup),"XfceDisplayDialogPopup");
-        
-        gtk_widget_set_app_paintable(popup, TRUE);
-        g_signal_connect( G_OBJECT(popup), "expose-event", G_CALLBACK(display_setting_identity_popup_expose), builder );
-        g_signal_connect( G_OBJECT(popup), "screen-changed", G_CALLBACK(display_setting_screen_changed), NULL );
-        
-        display_name = gtk_builder_get_object(builder, "display_name");
-        display_details = gtk_builder_get_object(builder, "display_details");
-        
-        if ( display_settings_get_n_active_outputs() != 1 )
+        popup = GTK_WIDGET (gtk_builder_get_object (builder, "popup"));
+        gtk_widget_set_name (popup, "XfceDisplayDialogPopup");
+
+        gtk_widget_set_app_paintable (popup, TRUE);
+        g_signal_connect (G_OBJECT (popup), "expose-event", G_CALLBACK (display_setting_identity_popup_expose), builder);
+        g_signal_connect (G_OBJECT (popup), "screen-changed", G_CALLBACK (display_setting_screen_changed), NULL);
+
+        display_name = gtk_builder_get_object (builder, "display_name");
+        display_details = gtk_builder_get_object (builder, "display_details");
+
+        if (display_settings_get_n_active_outputs() != 1)
         {
             current_mode = xfce_randr_find_mode_by_id (xfce_randr, display_id,
                                                        xfce_randr->mode[display_id]);
@@ -1046,33 +1037,34 @@ display_setting_identity_display (gint display_id)
         {
             screen_pos_x = 0;
             screen_pos_y = 0;
-            screen_width = gdk_screen_width();
-            screen_height = gdk_screen_height();
+            screen_width = gdk_screen_width ();
+            screen_height = gdk_screen_height ();
         }
-        
-        name_label = g_markup_printf_escaped("<span foreground='%s'><big><b>%s %s</b></big></span>",
-                                             color_hex, _("Display:"), xfce_randr->friendly_name[display_id]);
-        gtk_label_set_markup (GTK_LABEL(display_name), name_label);
+
+        name_label = g_markup_printf_escaped ("<span foreground='%s'><big><b>%s %s</b></big></span>",
+                                              color_hex, _("Display:"), xfce_randr->friendly_name[display_id]);
+        gtk_label_set_markup (GTK_LABEL (display_name), name_label);
         g_free (name_label);
 
-        details_label = g_markup_printf_escaped("<span foreground='%s'>%s %i x %i</span>", color_hex, _("Resolution:"), screen_width, screen_height);
-        gtk_label_set_markup (GTK_LABEL(display_details), details_label);
+        details_label = g_markup_printf_escaped ("<span foreground='%s'>%s %i x %i</span>", color_hex,
+                                                 _("Resolution:"), screen_width, screen_height);
+        gtk_label_set_markup (GTK_LABEL (display_details), details_label);
         g_free (details_label);
-                
-        gtk_window_get_size(GTK_WINDOW(popup), &window_width, &window_height);
-        
-        gtk_window_move( GTK_WINDOW(popup), 
+
+        gtk_window_get_size (GTK_WINDOW(popup), &window_width, &window_height);
+
+        gtk_window_move (GTK_WINDOW (popup),
                          screen_pos_x + (screen_width - window_width)/2,
-                         screen_pos_y + screen_height - window_height );
-                         
-        display_setting_screen_changed(GTK_WIDGET(popup), NULL, NULL);
-        
+                         screen_pos_y + screen_height - window_height);
+
+        display_setting_screen_changed (GTK_WIDGET (popup), NULL, NULL);
+
         gtk_window_present (GTK_WINDOW (popup));
     }
-    
+
     /* Release the builder */
     g_object_unref (G_OBJECT (builder));
-    
+
     return popup;
 }
 
@@ -1099,24 +1091,24 @@ display_setting_identity_popups_populate (void)
 
 static void
 display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
-                                GtkBuilder      *builder)
+                                         GtkBuilder      *builder)
 {
     GObject *positions, *active_displays;
-    guint n;
+    guint    n;
 
     if (!xfce_randr)
         return;
 
     if (xfce_randr->noutput <= 1)
         return;
-        
+
     positions = gtk_builder_get_object (builder, "randr-position");
     active_displays = gtk_builder_get_object (builder, "randr-active-displays");
 
     if (gtk_toggle_button_get_active (togglebutton))
     {
         /* Activate mirror-mode */
-        
+
         /* Apply mirror settings to each monitor */
         for (n = 0; n < display_settings_get_n_active_outputs (); n++)
         {
@@ -1126,9 +1118,9 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
             xfce_randr_save_output (xfce_randr, "Default", display_channel,
                                     n, TRUE);
         }
-        
+
         xfce_randr_apply (xfce_randr, "Default", display_channel);
-        
+
         /* Disable the position comboboxes */
         gtk_widget_set_sensitive (GTK_WIDGET (positions), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (active_displays), FALSE);
@@ -1156,7 +1148,7 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
         return;
 
     check = gtk_builder_get_object (builder, "mirror-displays");
-    
+
     /* Only make the check interactive if there is more than one output */
     if (display_settings_get_n_active_outputs () > 1)
     {
@@ -1165,7 +1157,7 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
     }
     else
         gtk_widget_set_sensitive (GTK_WIDGET (check), FALSE);
-    
+
     /* Disconnect the "toggled" signal to avoid writing the config again */
     g_object_disconnect (check, "any_signal::toggled",
                          display_setting_mirror_displays_toggled,
@@ -1173,13 +1165,13 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check),
                                   xfce_randr->mode[active_output] != None);
 
-    
+
     /* Reconnect the signal */
     g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled),
                       builder);
 
     /* Write the correct RandR value to xfconf */
-    
+
 }
 
 
@@ -1259,10 +1251,10 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
 {
     GtkTreeModel *model;
     GtkTreeIter   iter;
+    GObject      *mirror_displays, *position_combo, *display_combo;
+    GtkWidget    *popup;
     gboolean      has_selection;
     gint          active_id, previous_id;
-    GObject *mirror_displays, *position_combo, *display_combo;
-    GtkWidget *popup;
 
     /* Get the selection */
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
@@ -1284,16 +1276,17 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         display_setting_refresh_rates_populate (builder);
         display_setting_rotations_populate (builder);
         display_setting_reflections_populate (builder);
-        
-        mirror_displays = gtk_builder_get_object(builder, "mirror-displays");
-        if (gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(mirror_displays) )) {
-            position_combo = gtk_builder_get_object(builder, "randr-position");
-            display_combo = gtk_builder_get_object(builder, "randr-active-displays");
-            
-            gtk_widget_set_sensitive( GTK_WIDGET(position_combo), FALSE );
-            gtk_widget_set_sensitive( GTK_WIDGET(display_combo), FALSE );
+
+        mirror_displays = gtk_builder_get_object (builder, "mirror-displays");
+        if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (mirror_displays)))
+        {
+            position_combo = gtk_builder_get_object (builder, "randr-position");
+            display_combo = gtk_builder_get_object (builder, "randr-active-displays");
+
+            gtk_widget_set_sensitive (GTK_WIDGET (position_combo), FALSE);
+            gtk_widget_set_sensitive (GTK_WIDGET (display_combo), FALSE);
         }
-        
+
         /* redraw the two (old active, new active) popups */
         popup = g_hash_table_lookup (display_popups, GINT_TO_POINTER (previous_id));
         if (popup)
@@ -1500,29 +1493,29 @@ display_settings_minimal_only_display1_toggled (GtkToggleButton *button,
                                                 GtkBuilder      *builder)
 {
     GObject *buttons;
-    
-    if ( !gtk_toggle_button_get_active(button) ) 
+
+    if (!gtk_toggle_button_get_active (button))
         return;
-    
+
     if (!xfce_randr)
         return;
 
     if (xfce_randr->noutput <= 1)
         return;
-        
-    buttons = gtk_builder_get_object(builder, "buttons");
-    gtk_widget_set_sensitive( GTK_WIDGET(buttons), FALSE );
 
-	/* Put Display1 in its preferred mode and deactivate Display2 */
+    buttons = gtk_builder_get_object (builder, "buttons");
+    gtk_widget_set_sensitive (GTK_WIDGET(buttons), FALSE);
+
+    /* Put Display1 in its preferred mode and deactivate Display2 */
     xfce_randr->mode[0] = xfce_randr_preferred_mode (xfce_randr, 0);
     xfce_randr->mode[1] = None;
-    
+
     /* Apply the changes */
     xfce_randr_save_output (xfce_randr, "Default", display_channel, 0, FALSE);
     xfce_randr_save_output (xfce_randr, "Default", display_channel, 1, FALSE);
     xfce_randr_apply (xfce_randr, "Default", display_channel);
-    
-    gtk_widget_set_sensitive( GTK_WIDGET(buttons), TRUE );
+
+    gtk_widget_set_sensitive (GTK_WIDGET(buttons), TRUE);
 }
 
 static void
@@ -1530,29 +1523,29 @@ display_settings_minimal_only_display2_toggled (GtkToggleButton *button,
                                                 GtkBuilder      *builder)
 {
     GObject *buttons;
-    
-    if ( !gtk_toggle_button_get_active(button) ) 
+
+    if (!gtk_toggle_button_get_active(button) )
         return;
-    
+
     if (!xfce_randr)
         return;
 
     if (xfce_randr->noutput <= 1)
         return;
-        
-    buttons = gtk_builder_get_object(builder, "buttons");
-    gtk_widget_set_sensitive( GTK_WIDGET(buttons), FALSE );
+
+    buttons = gtk_builder_get_object (builder, "buttons");
+    gtk_widget_set_sensitive (GTK_WIDGET(buttons), FALSE);
 
     /* Put Display2 in its preferred mode and deactivate Display1 */
     xfce_randr->mode[1] = xfce_randr_preferred_mode (xfce_randr, 1);
     xfce_randr->mode[0] = None;
-    
+
     /* Apply the changes */
     xfce_randr_save_output (xfce_randr, "Default", display_channel, 0, FALSE);
     xfce_randr_save_output (xfce_randr, "Default", display_channel, 1, FALSE);
     xfce_randr_apply (xfce_randr, "Default", display_channel);
-    
-    gtk_widget_set_sensitive( GTK_WIDGET(buttons), TRUE );
+
+    gtk_widget_set_sensitive (GTK_WIDGET(buttons), TRUE);
 }
 
 static void
@@ -1560,23 +1553,23 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
                                                   GtkBuilder      *builder)
 {
     GObject *buttons;
-    
+
     guint n;
 
-    if ( !gtk_toggle_button_get_active(button) ) 
+    if (!gtk_toggle_button_get_active(button))
         return;
-    
+
     if (!xfce_randr)
         return;
 
     if (xfce_randr->noutput <= 1)
         return;
-        
-    buttons = gtk_builder_get_object(builder, "buttons");
-    gtk_widget_set_sensitive( GTK_WIDGET(buttons), FALSE );
 
-	/* Activate all inactive displays */
-	for (n = 0; n < xfce_randr->noutput; ++n)
+    buttons = gtk_builder_get_object (builder, "buttons");
+    gtk_widget_set_sensitive (GTK_WIDGET(buttons), FALSE);
+
+    /* Activate all inactive displays */
+    for (n = 0; n < xfce_randr->noutput; ++n)
     {
         if (xfce_randr->mode[n] == None)
         {
@@ -1584,42 +1577,41 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
         }
     }
 
-	/* Save changes to primary display */
+    /* Save changes to primary display */
     xfce_randr_save_output (xfce_randr, "Default", display_channel, 0, FALSE);
-    
+
     /* Save changes to secondary display */
     xfce_randr->relation[1] = XFCE_RANDR_PLACEMENT_MIRROR;
     xfce_randr->related_to[1] = 0;
     xfce_randr_save_output (xfce_randr, "Default", display_channel, 1, TRUE);
-                            
+
     /* Apply all changes */
     xfce_randr_apply (xfce_randr, "Default", display_channel);
-    
-    gtk_widget_set_sensitive( GTK_WIDGET(buttons), TRUE );
+
+    gtk_widget_set_sensitive (GTK_WIDGET(buttons), TRUE);
 }
 
 static void
 display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
-                                              GtkBuilder *builder)
+                                               GtkBuilder      *builder)
 {
     GObject *buttons;
+    guint    n;
 
-    guint n;
-    
-    if ( !gtk_toggle_button_get_active(button) ) 
+    if (!gtk_toggle_button_get_active(button))
         return;
-    
+
     if (!xfce_randr)
         return;
 
     if (xfce_randr->noutput <= 1)
         return;
-        
-    buttons = gtk_builder_get_object(builder, "buttons");
-    gtk_widget_set_sensitive( GTK_WIDGET(buttons), FALSE );
 
-	/* Activate all inactive displays */
-	for (n = 0; n < xfce_randr->noutput; ++n)
+    buttons = gtk_builder_get_object (builder, "buttons");
+    gtk_widget_set_sensitive (GTK_WIDGET (buttons), FALSE);
+
+    /* Activate all inactive displays */
+    for (n = 0; n < xfce_randr->noutput; ++n)
     {
         if (xfce_randr->mode[n] == None)
         {
@@ -1627,25 +1619,22 @@ display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
         }
     }
 
-    
     /* (Re)set Display1 to 0x0 */
     xfce_randr->relation[0] = 0;
     xfce_randr->related_to[0] = 0;
-    
-    /* Move Display2 right of Display2 */
+
+    /* Move Display2 right of Display1 */
     xfce_randr->relation[1] = XFCE_RANDR_PLACEMENT_RIGHT;
     xfce_randr->related_to[1] = 0;
 
-    /* Move the secondary display to the right of the primary display. */
-    
     /* Save changes to both displays */
     xfce_randr_save_output (xfce_randr, "Default", display_channel, 0, FALSE);
     xfce_randr_save_output (xfce_randr, "Default", display_channel, 1, TRUE);
-                            
+
     /* Apply all changes */
     xfce_randr_apply (xfce_randr, "Default", display_channel);
 
-    gtk_widget_set_sensitive( GTK_WIDGET(buttons), TRUE );
+    gtk_widget_set_sensitive (GTK_WIDGET (buttons), TRUE);
 }
 
 
@@ -1680,13 +1669,11 @@ screen_on_event (GdkXEvent *xevent,
 
 static void
 display_settings_show_main_dialog (GdkDisplay  *display,
-                                   gint event_base,
-                                   GError *error)
+                                   gint         event_base,
+                                   GError      *error)
 {
     GtkBuilder  *builder;
-    GtkWidget   *dialog;
-    
-    GtkWidget   *plug;
+    GtkWidget   *dialog, *plug;
     GObject     *plug_child;
 
     /* Load the Gtk user-interface file */
@@ -1726,12 +1713,12 @@ display_settings_show_main_dialog (GdkDisplay  *display,
             gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
             gtk_widget_show (GTK_WIDGET (plug_child));
         }
-        
+
         g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_toggle_identity_popups),
-                      GINT_TO_POINTER (FALSE));
-                      
+                          GINT_TO_POINTER (FALSE));
+
         g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_toggle_identity_popups),
-                      GINT_TO_POINTER (TRUE));
+                          GINT_TO_POINTER (TRUE));
 
         /* To prevent the settings dialog to be saved in the session */
         gdk_set_sm_client_id ("FAKE ID");
@@ -1754,98 +1741,90 @@ display_settings_show_main_dialog (GdkDisplay  *display,
 }
 
 static void
-display_settings_minimal_advanced_clicked(GtkButton *button,
+display_settings_minimal_advanced_clicked(GtkButton                *button,
                                           minimal_advanced_context *context)
 {
     GtkWidget *dialog;
-    
-    dialog = (GtkWidget *) gtk_builder_get_object (context->builder, "dialog");
-    gtk_widget_hide( dialog );
-    
-    display_settings_show_main_dialog( context->display, context->event_base, context->error );
-    
-    gtk_main_quit();
+
+    dialog = GTK_WIDGET (gtk_builder_get_object (context->builder, "dialog"));
+    gtk_widget_hide (dialog);
+
+    display_settings_show_main_dialog (context->display, context->event_base, context->error);
+
+    gtk_main_quit ();
 }
 
 static void
 display_settings_show_minimal_dialog (GdkDisplay  *display,
-                                      gint event_base,
-                                      GError *error)
+                                      gint         event_base,
+                                      GError      *error)
 {
-    GtkBuilder  *builder;
-    GtkWidget   *dialog, *cancel;
+    GtkBuilder               *builder;
+    GtkWidget                *dialog, *cancel;
+    GObject                  *only_display1, *only_display2, *mirror_displays;
+    GObject                  *extend_right, *advanced, *fake_button;
+    minimal_advanced_context  context;
 
     builder = gtk_builder_new ();
 
     if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
                                      minimal_display_dialog_ui_length, &error) != 0)
     {
-        GObject *only_display1;
-        GObject *only_display2;
-        GObject *mirror_displays;
-        GObject *extend_right;
-        GObject *advanced;
-        GObject *fake_button;
-        minimal_advanced_context context;
-        
         context.builder = builder;
         context.display = display;
         context.event_base = event_base;
         context.error = error;
 
         /* Build the minimal dialog */
-        dialog = (GtkWidget *) gtk_builder_get_object (builder, "dialog");
-        cancel = (GtkWidget *) gtk_builder_get_object (builder, "cancel_button");
-        
+        dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
+        cancel = GTK_WIDGET (gtk_builder_get_object (builder, "cancel_button"));
+
         g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
         g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
-        
+
         only_display1 = gtk_builder_get_object (builder, "display1");
         mirror_displays = gtk_builder_get_object (builder, "mirror");
         extend_right = gtk_builder_get_object (builder, "extend_right");
         only_display2 = gtk_builder_get_object (builder, "display2");
         advanced = gtk_builder_get_object (builder, "advanced_button");
         fake_button = gtk_builder_get_object (builder, "fake_button");
-        
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(fake_button), TRUE);
-        
+
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
+
         //
-        if ( display_settings_get_n_active_outputs() == 1 )
+        if ( display_settings_get_n_active_outputs () == 1 )
         {
-            gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(only_display1),
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1),
                                          xfce_randr->mode[0] != None);
-            gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(only_display2),
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display2),
                                          xfce_randr->mode[1] != None);
         }
         else
         {
             /* Check for mirror */
-            if ( xfce_randr->relation[1] == XFCE_RANDR_PLACEMENT_MIRROR &&
-                 xfce_randr->related_to[1] == 0) {
-                gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(mirror_displays),
-                                             TRUE);
-            }
-            
+            if (xfce_randr->relation[1] == XFCE_RANDR_PLACEMENT_MIRROR &&
+                xfce_randr->related_to[1] == 0)
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mirror_displays),
+                                              TRUE);
+
             /* Check for Extend Right */
-            if ( xfce_randr->relation[1] == XFCE_RANDR_PLACEMENT_RIGHT &&
-                 xfce_randr->related_to[1] == 0) {
-                gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(extend_right),
-                                             TRUE);
-            }
+            if (xfce_randr->relation[1] == XFCE_RANDR_PLACEMENT_RIGHT &&
+                xfce_randr->related_to[1] == 0)
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_right),
+                                              TRUE);
         }
 
         //
-        
         g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled),
-              builder);
+                          builder);
         g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
-              builder);
+                          builder);
         g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled),
-              builder);
+                          builder);
         g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled),
-              builder);
-        g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked), 
-              (gpointer*)&context);
+                          builder);
+        g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked),
+                          (gpointer*)&context);
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));
@@ -1865,8 +1844,6 @@ gint
 main (gint argc, gchar **argv)
 {
     GdkDisplay  *display;
-    
-    
     GError      *error = NULL;
     gboolean     succeeded = TRUE;
     gint         event_base, error_base;
