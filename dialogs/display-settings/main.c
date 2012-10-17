@@ -385,7 +385,7 @@ static void
 display_setting_positions_populate (GtkBuilder *builder)
 {
     GtkTreeModel *model;
-    GObject      *combobox;
+    GObject      *combobox, *mirror_displays;
     GtkTreeIter   iter;
     guint         n;
 
@@ -394,9 +394,15 @@ display_setting_positions_populate (GtkBuilder *builder)
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
-    /* Only make the combobox interactive if there is more than one output */
-    gtk_widget_set_sensitive (GTK_WIDGET (combobox),
-                              display_settings_get_n_active_outputs () > 1);
+    /* Only make the combobox interactive if there is more than one output,
+       and if they are not in mirror mode */
+    mirror_displays = gtk_builder_get_object (builder, "mirror-displays");
+    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (mirror_displays)) ||
+        display_settings_get_n_active_outputs () <= 1)
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        return;
+    }
 
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
@@ -440,18 +446,24 @@ static void
 display_setting_active_displays_populate (GtkBuilder *builder)
 {
     GtkTreeModel *model;
-    GObject      *combobox;
+    GObject      *combobox, *mirror_displays;
     guint         n;
     GtkTreeIter   iter;
 
     /* Get the active-displays combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-active-displays");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
-    gtk_list_store_clear (GTK_LIST_STORE (model));
+     gtk_list_store_clear (GTK_LIST_STORE (model));
 
-    /* Only make the combobox interactive if there is more than one output */
-    gtk_widget_set_sensitive (GTK_WIDGET (combobox),
-                              display_settings_get_n_active_outputs () > 1);
+    /* Only make the combobox interactive if there is more than one output,
+       and if they are not in mirror mode */
+    mirror_displays = gtk_builder_get_object (builder, "mirror-displays");
+    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (mirror_displays)) ||
+        display_settings_get_n_active_outputs () <= 1)
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        return;
+    }
 
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
@@ -1100,11 +1112,15 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     if (!xfce_randr)
         return;
 
-    if (xfce_randr->noutput <= 1)
-        return;
-
     positions = gtk_builder_get_object (builder, "randr-position");
     active_displays = gtk_builder_get_object (builder, "randr-active-displays");
+
+    if (display_settings_get_n_active_outputs () <= 1)
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (positions), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (active_displays), FALSE);
+        return;
+    }
 
     if (gtk_toggle_button_get_active (togglebutton))
     {
@@ -1164,7 +1180,7 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
     check = gtk_builder_get_object (builder, "mirror-displays");
 
     /* Can outputs be cloned? */
-    if (xfce_randr->noutput > 1)
+    if (display_settings_get_n_active_outputs () > 1)
         mode = xfce_randr_clonable_mode (xfce_randr);
 
     gtk_widget_set_sensitive (GTK_WIDGET (check), mode != None);
@@ -1276,7 +1292,6 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
 {
     GtkTreeModel *model;
     GtkTreeIter   iter;
-    GObject      *mirror_displays, *position_combo, *display_combo;
     GtkWidget    *popup;
     gboolean      has_selection;
     gint          active_id, previous_id;
@@ -1301,16 +1316,6 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         display_setting_refresh_rates_populate (builder);
         display_setting_rotations_populate (builder);
         display_setting_reflections_populate (builder);
-
-        mirror_displays = gtk_builder_get_object (builder, "mirror-displays");
-        if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (mirror_displays)))
-        {
-            position_combo = gtk_builder_get_object (builder, "randr-position");
-            display_combo = gtk_builder_get_object (builder, "randr-active-displays");
-
-            gtk_widget_set_sensitive (GTK_WIDGET (position_combo), FALSE);
-            gtk_widget_set_sensitive (GTK_WIDGET (display_combo), FALSE);
-        }
 
         /* redraw the two (old active, new active) popups */
         popup = g_hash_table_lookup (display_popups, GINT_TO_POINTER (previous_id));
