@@ -69,48 +69,6 @@ static gchar *xfce_randr_friendly_name (XfceRandr *randr,
 
 
 
-static void
-xfce_randr_list_clone_modes (XfceRandr *randr)
-{
-    GArray *clone_modes;
-    gint    l, n, candidate, found;
-    guint   m;
-
-    clone_modes = g_array_new (TRUE, FALSE, sizeof (RRMode));
-
-    /* walk all available modes */
-    for (n = 0; n < randr->priv->resources->nmode; ++n)
-    {
-        candidate = TRUE;
-        /* walk all connected outputs */
-        for (m = 0; m < randr->noutput; ++m)
-        {
-            found = FALSE;
-            /* walk supported modes from this output */
-            for (l = 0; l < randr->priv->output_info[m]->nmode; ++l)
-            {
-                if (randr->priv->resources->modes[n].id == randr->priv->output_info[m]->modes[l])
-                {
-                    found = TRUE;
-                    break;
-                }
-            }
-
-            /* if it is not present in one output, forget it */
-            candidate &= found;
-        }
-
-        /* common to all outputs, can be used for clone mode */
-        if (candidate)
-            clone_modes = g_array_append_val (clone_modes, randr->priv->resources->modes[n].id);
-    }
-
-    /* return a "normal" array (last value -> None) */
-    randr->clone_modes = (RRMode *) g_array_free (clone_modes, FALSE);
-}
-
-
-
 static Rotation
 xfce_randr_get_safe_rotations (XfceRandr *randr,
                                Display   *xdisplay,
@@ -365,9 +323,6 @@ xfce_randr_populate (XfceRandr *randr,
         randr->friendly_name[m] = xfce_randr_friendly_name (randr, m);
     }
 
-    /* clone modes: same RRModes present for all outputs */
-    xfce_randr_list_clone_modes (randr);
-
     /* calculate relations from positions */
     xfce_randr_guess_relations (randr);
 }
@@ -448,7 +403,6 @@ xfce_randr_cleanup (XfceRandr *randr)
 
     /* free the settings */
     g_free (randr->friendly_name);
-    g_free (randr->clone_modes);
     g_free (randr->mode);
     g_free (randr->priv->modes);
     g_free (randr->rotation);
@@ -763,6 +717,46 @@ xfce_randr_preferred_mode (XfceRandr *randr,
         }
     }
     return best_mode;
+}
+
+
+
+RRMode
+xfce_randr_clonable_mode (XfceRandr *randr)
+{
+    gint  l, n, candidate, found;
+    guint m;
+
+    g_return_val_if_fail (randr != NULL, None);
+
+    /* walk all available modes */
+    for (n = 0; n < randr->priv->resources->nmode; ++n)
+    {
+        candidate = TRUE;
+        /* walk all connected outputs */
+        for (m = 0; m < randr->noutput; ++m)
+        {
+            found = FALSE;
+            /* walk supported modes from this output */
+            for (l = 0; l < randr->priv->output_info[m]->nmode; ++l)
+            {
+                if (randr->priv->resources->modes[n].id == randr->priv->output_info[m]->modes[l])
+                {
+                    found = TRUE;
+                    break;
+                }
+            }
+
+            /* if it is not present in one output, forget it */
+            candidate &= found;
+        }
+
+        /* common to all outputs, can be used for clone mode */
+        if (candidate)
+            return randr->priv->resources->modes[n].id;
+    }
+
+    return None;
 }
 
 

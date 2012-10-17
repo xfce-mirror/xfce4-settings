@@ -1095,6 +1095,7 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
 {
     GObject *positions, *active_displays;
     guint    n;
+    RRMode   mode;
 
     if (!xfce_randr)
         return;
@@ -1107,14 +1108,16 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
 
     if (gtk_toggle_button_get_active (togglebutton))
     {
-        /* Activate mirror-mode */
-
-        /* Apply mirror settings to each monitor */
+        /* Activate mirror-mode with a single mode for all of them */
+        mode = xfce_randr_clonable_mode (xfce_randr);
+        /* Apply mirror settings to each output */
         for (n = 0; n < xfce_randr->noutput; n++)
         {
             if (xfce_randr->mode[n] == None)
                 continue;
 
+            if (mode != None)
+                xfce_randr->mode[n] = mode;
             xfce_randr->relation[n] = XFCE_RANDR_PLACEMENT_MIRROR;
             xfce_randr->related_to[n] = active_output;
 
@@ -1130,7 +1133,15 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     }
     else
     {
-        /* Deactivate mirror-mode */
+        /* Deactivate mirror-mode, use the preferred mode of each output */
+        for (n = 0; n < xfce_randr->noutput; n++)
+        {
+            xfce_randr->mode[n] = xfce_randr_preferred_mode (xfce_randr, n);
+            xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                    n, TRUE);
+        }
+
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
 
         /* Re-enable the position comboboxes */
         gtk_widget_set_sensitive (GTK_WIDGET (positions), TRUE);

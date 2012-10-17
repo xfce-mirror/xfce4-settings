@@ -68,9 +68,6 @@ struct _XfceRandr
     /* number of connected outputs */
     guint                noutput;
 
-    /* modes common to all connected outputs */
-    RRMode              *clone_modes;
-
     /* selected settings for all connected outputs */
     RRMode              *mode;
     Rotation            *rotation;
@@ -113,6 +110,8 @@ const XfceRRMode *xfce_randr_find_mode_by_id (XfceRandr        *randr,
 
 RRMode            xfce_randr_preferred_mode  (XfceRandr        *randr,
                                               guint             output);
+
+RRMode            xfce_randr_clonable_mode   (XfceRandr        *randr);
 
 const XfceRRMode *xfce_randr_get_modes       (XfceRandr        *randr,
                                               guint             output,
