@@ -169,26 +169,19 @@ xfce_displays_helper_process_screen_size (gint  mode_width,
                                           gint *mm_width,
                                           gint *mm_height)
 {
-    gdouble dpi = 0;
-
     g_assert (width && height && mm_width && mm_height);
 
     *width = MAX (*width, crtc_pos_x + mode_width);
     *height = MAX (*height, crtc_pos_y + mode_height);
 
-    dpi = 25.4 * gdk_screen_height ();
-    dpi /= gdk_screen_height_mm ();
-
-    if (dpi <= 0)
-    {
-        *mm_width = gdk_screen_width_mm ();
-        *mm_height = gdk_screen_height_mm ();
-    }
-    else
-    {
-        *mm_width = 25.4 * (*width) / dpi;
-        *mm_height = 25.4 * (*height) / dpi;
-    }
+    /* The 'physical size' of an X screen is meaningless if that screen
+     * can consist of many monitors. So just pick a size that make the
+     * dpi 96.
+     *
+     * Firefox and Evince apparently believe what X tells them.
+     */
+    *mm_width = (*width / 96.0) * 25.4 + 0.5;
+    *mm_height = (*height / 96.0) * 25.4 + 0.5;
 }
 
 
