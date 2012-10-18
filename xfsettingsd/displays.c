@@ -821,6 +821,7 @@ err_cleanup:
     /* free the screen resources */
     XRRFreeScreenResources (resources);
 
+    gdk_flush ();
     gdk_error_trap_pop ();
 }
 
