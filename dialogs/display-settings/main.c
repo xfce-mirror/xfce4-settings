@@ -416,6 +416,7 @@ display_setting_positions_populate (GtkBuilder *builder)
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
         return;
     }
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
@@ -466,7 +467,7 @@ display_setting_active_displays_populate (GtkBuilder *builder)
     /* Get the active-displays combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-active-displays");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
-     gtk_list_store_clear (GTK_LIST_STORE (model));
+    gtk_list_store_clear (GTK_LIST_STORE (model));
 
     if (xfce_randr->noutput > 1)
         gtk_widget_show (GTK_WIDGET (combobox));
@@ -485,6 +486,7 @@ display_setting_active_displays_populate (GtkBuilder *builder)
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
         return;
     }
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
     /* Disconnect the "changed" signal to avoid triggering the confirmation
      * dialog */
@@ -1218,6 +1220,7 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), FALSE);
         return;
     }
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), TRUE);
 
     /* Disconnect the "toggled" signal to avoid writing the config again */
     g_object_disconnect (check, "any_signal::toggled",
