@@ -200,6 +200,8 @@ xfce_displays_helper_list_crtcs (Display            *xdisplay,
     crtcs = g_new0 (XfceRRCrtc, resources->ncrtc);
     for (n = 0; n < resources->ncrtc; ++n)
     {
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Detected CRTC %lu.", resources->crtcs[n]);
+
         crtcs[n].id = resources->crtcs[n];
         crtc_info = XRRGetCrtcInfo (xdisplay, resources, resources->crtcs[n]);
         crtcs[n].mode = crtc_info->mode;
@@ -463,6 +465,9 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     GPtrArray          *connected_outputs;
     GHashTable         *saved_outputs;
     XfceRROutput       *output;
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    RROutput            primary = None;
+#endif
 
     gdk_error_trap_push ();
 
@@ -522,7 +527,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                         output->info->name);
             value = g_hash_table_lookup (saved_outputs, property);
             if (G_VALUE_HOLDS_BOOLEAN (value) && g_value_get_boolean (value))
-                XRRSetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window), output->id);
+                primary = output->id;
         }
 #endif
 
@@ -788,6 +793,11 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                 g_warning ("Failed to configure CRTC %lu.", crtcs[m].id);
         }
     }
+
+#ifdef HAS_RANDR_ONE_POINT_THREE
+        if (helper->has_1_3)
+            XRRSetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window), primary);
+#endif
 
     /* release the grab, changes are done */
     gdk_x11_display_ungrab (display);
