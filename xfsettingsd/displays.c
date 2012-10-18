@@ -726,7 +726,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     }
 
     /* grab server to prevent clients from thinking no output is enabled */
-    XGrabServer (xdisplay);
+    gdk_x11_display_grab (display);
 
     /* second loop, normalization and global settings */
     for (m = 0; m < resources->ncrtc; ++m)
@@ -786,7 +786,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     }
 
     /* release the grab, changes are done */
-    XUngrabServer (xdisplay);
+    gdk_x11_display_ungrab (display);
 
 err_cleanup:
     /* Free the xfconf properties */
