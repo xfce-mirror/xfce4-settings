@@ -676,18 +676,18 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             /* update CRTC mode */
             crtc->mode = valid_mode;
             crtc->changed = TRUE;
+        }
 
-            /* recompute dimensions according to the selected rotation */
-            if ((crtc->rotation & (RR_Rotate_90|RR_Rotate_270)) != 0)
-            {
-                crtc->width = resources->modes[l].height;
-                crtc->height = resources->modes[l].width;
-            }
-            else
-            {
-                crtc->width = resources->modes[l].width;
-                crtc->height = resources->modes[l].height;
-            }
+        /* recompute dimensions according to the selected rotation */
+        if ((crtc->rotation & (RR_Rotate_90|RR_Rotate_270)) != 0)
+        {
+            crtc->width = resources->modes[l].height;
+            crtc->height = resources->modes[l].width;
+        }
+        else
+        {
+            crtc->width = resources->modes[l].width;
+            crtc->height = resources->modes[l].height;
         }
 
         /* position, x */
