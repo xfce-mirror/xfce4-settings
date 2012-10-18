@@ -1220,7 +1220,6 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), FALSE);
         return;
     }
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), TRUE);
 
     /* Disconnect the "toggled" signal to avoid writing the config again */
     g_object_disconnect (check, "any_signal::toggled",
