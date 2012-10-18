@@ -412,6 +412,10 @@ xfce_displays_helper_set_outputs (XfceRRCrtc *crtc,
 
     g_assert (crtc);
 
+    for (n = 0; n < crtc->noutput; ++n)
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "CRTC %lu, output list[%d] -> %lu.", crtc->id, n,
+                        crtc->outputs[n]);
+
     /* check if the output is already present */
     for (n = 0; n < crtc->noutput; ++n)
     {
@@ -430,9 +434,8 @@ xfce_displays_helper_set_outputs (XfceRRCrtc *crtc,
     crtc->outputs [crtc->noutput++] = output;
     crtc->changed = TRUE;
 
-    for (n = 0; n < crtc->noutput; ++n)
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "CRTC %lu, output list: %d -> %lu.", crtc->id, n,
-                        crtc->outputs[n]);
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "CRTC %lu, output list[%d] -> %lu.", crtc->id,
+                    crtc->noutput - 1, crtc->outputs[crtc->noutput - 1]);
 }
 
 
@@ -759,9 +762,6 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 
     }
 
-    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Desktop dimensions: %dx%d (px), %dx%d (mm).",
-                    width, height, mm_width, mm_height);
-
     /* set the screen size only if it's really needed and valid */
     if (width >= min_width && width <= max_width
         && height >= min_height && height <= max_height
@@ -769,8 +769,12 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
             || height != gdk_screen_height ()
             || mm_width != gdk_screen_width_mm ()
             || mm_height != gdk_screen_height_mm ()))
+    {
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applying desktop dimensions: %dx%d (px), %dx%d (mm).",
+                        width, height, mm_width, mm_height);
         XRRSetScreenSize (xdisplay, GDK_WINDOW_XID (root_window),
                           width, height, mm_width, mm_height);
+    }
 
     /* final loop, apply crtc changes */
     for (m = 0; m < resources->ncrtc; ++m)
