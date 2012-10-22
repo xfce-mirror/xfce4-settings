@@ -488,7 +488,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                                 &min_width, &min_height, &max_width, &max_height))
     {
         g_critical ("Unable to get the range of screen sizes, aborting.");
-        goto err_cleanup;
+        goto err_abort;
     }
 
     /* get all existing CRTCs */
@@ -818,6 +818,7 @@ err_cleanup:
     }
     g_free (crtcs);
 
+err_abort:
     /* free the screen resources */
     XRRFreeScreenResources (resources);
 
