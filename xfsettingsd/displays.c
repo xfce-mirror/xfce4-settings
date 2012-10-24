@@ -450,6 +450,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     Display            *xdisplay;
     GdkWindow          *root_window;
     XRRScreenResources *resources;
+    XRRCrtcInfo        *crtc_info;
     XfceRRCrtc         *crtcs, *crtc;
     gchar               property[512];
     gint                min_width, min_height, max_width, max_height;
@@ -736,35 +737,47 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     /* grab server to prevent clients from thinking no output is enabled */
     gdk_x11_display_grab (display);
 
-    /* second loop, normalization and global settings */
+    /* second loop, normalization and screen size calculation */
     for (m = 0; m < resources->ncrtc; ++m)
     {
         /* ignore disabled outputs for size computations */
-        if (crtcs[m].mode != None)
+        if (crtcs[m].mode == None)
+            continue;
+
+        /* normalize positions to ensure the upper left corner is at (0,0) */
+        if (min_x || min_y)
         {
-            /* normalize positions to ensure the upper left corner is at (0,0) */
-            if (min_x || min_y)
-            {
-                crtcs[m].x -= min_x;
-                crtcs[m].y -= min_y;
-                crtcs[m].changed = TRUE;
-            }
-
-            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Normalized CRTC %lu: size=%dx%d, pos=%dx%d.",
-                            crtcs[m].id, crtcs[m].width, crtcs[m].height, crtcs[m].x, crtcs[m].y);
-
-            /* calculate the total screen size */
-            xfce_displays_helper_process_screen_size (crtcs[m].width, crtcs[m].height,
-                                                      crtcs[m].x, crtcs[m].y, &width,
-                                                      &height, &mm_width, &mm_height);
+            crtcs[m].x -= min_x;
+            crtcs[m].y -= min_y;
+            crtcs[m].changed = TRUE;
         }
 
-        /* disable the CRTC, it will be reenabled after size calculation, unless the user disabled it */
-        if (xfce_displays_helper_disable_crtc (xdisplay, resources, crtcs[m].id) == RRSetConfigSuccess)
-            crtcs[m].changed = (crtcs[m].mode != None);
-        else
-            g_warning ("Failed to disable CRTC %lu.", crtc->id);
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Normalized CRTC %lu: size=%dx%d, pos=%dx%d.",
+                        crtcs[m].id, crtcs[m].width, crtcs[m].height, crtcs[m].x, crtcs[m].y);
 
+        /* calculate the total screen size */
+        xfce_displays_helper_process_screen_size (crtcs[m].width, crtcs[m].height,
+                                                  crtcs[m].x, crtcs[m].y, &width,
+                                                  &height, &mm_width, &mm_height);
+    }
+
+    /* disable CRTCs that won't fit in the new screen */
+    for (m = 0; m < resources->ncrtc; ++m)
+    {
+        /* The CRTC needs to be disabled if its previous mode won't fit in the new screen.
+           It will be reenabled with its new mode (known to fit) after the screen size is
+           changed, unless the user disabled it (no need to reenable it then). */
+        crtc_info = XRRGetCrtcInfo (xdisplay, resources, crtcs[m].id);
+        if ((crtc_info->x + crtc_info->width > (guint) width) ||
+            (crtc_info->y + crtc_info->height > (guint) height))
+        {
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "CRTC %lu must be temporarily disabled.", crtcs[m].id);
+            if (xfce_displays_helper_disable_crtc (xdisplay, resources, crtcs[m].id) == RRSetConfigSuccess)
+                crtcs[m].changed = (crtcs[m].mode != None);
+            else
+                g_warning ("Failed to temporarily disable CRTC %lu.", crtc->id);
+        }
+        XRRFreeCrtcInfo (crtc_info);
     }
 
     /* set the screen size only if it's really needed and valid */
