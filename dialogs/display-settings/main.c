@@ -243,14 +243,15 @@ display_settings_update_time_label (ConfirmationDialog *confirmation_dialog)
     else
     {
         GObject *label;
-        gchar   *string;
+        gchar   *label_string;
 
-        string = g_strdup_printf (_("The previous configuration will be restored in %i"
-                                    " seconds if you do not reply to this question."),
-                                  confirmation_dialog->count);
+        label_string = g_strdup_printf (_("The previous configuration will be restored in %i"
+                                          " seconds if you do not reply to this question."),
+                                        confirmation_dialog->count);
 
         label = gtk_builder_get_object (confirmation_dialog->builder, "label2");
-        gtk_label_set_text (GTK_LABEL (label), string);
+        gtk_label_set_text (GTK_LABEL (label), label_string);
+        g_free (label_string);
 
         return TRUE;
     }
