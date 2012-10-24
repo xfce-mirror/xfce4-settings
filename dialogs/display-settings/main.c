@@ -61,13 +61,6 @@ enum
     N_COMBO_COLUMNS
 };
 
-typedef struct {
-    GtkBuilder *builder;
-    GdkDisplay  *display;
-    gint event_base;
-    GError *error;
-} minimal_advanced_context;
-
 
 
 typedef struct _XfceRelation XfceRelation;
@@ -1755,13 +1748,12 @@ screen_on_event (GdkXEvent *xevent,
 }
 
 static void
-display_settings_show_main_dialog (GdkDisplay  *display,
-                                   gint         event_base,
-                                   GError      *error)
+display_settings_show_main_dialog (GdkDisplay *display)
 {
     GtkBuilder  *builder;
     GtkWidget   *dialog, *plug;
     GObject     *plug_child;
+    GError      *error = NULL;
 
     /* Load the Gtk user-interface file */
     builder = gtk_builder_new ();
@@ -1770,13 +1762,12 @@ display_settings_show_main_dialog (GdkDisplay  *display,
     {
         /* Build the dialog */
         dialog = display_settings_dialog_new (builder);
-        randr_event_base = event_base;
         /* Set up notifications */
         XRRSelectInput (gdk_x11_display_get_xdisplay (display),
                         GDK_WINDOW_XID (gdk_get_default_root_window ()),
                         RRScreenChangeNotifyMask);
         gdk_x11_register_standard_event_type (display,
-                                              event_base,
+                                              randr_event_base,
                                               RRNotify + 1);
         gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
 
@@ -1828,40 +1819,33 @@ display_settings_show_main_dialog (GdkDisplay  *display,
 }
 
 static void
-display_settings_minimal_advanced_clicked(GtkButton                *button,
-                                          minimal_advanced_context *context)
+display_settings_minimal_advanced_clicked (GtkButton  *button,
+                                           GtkBuilder *builder)
 {
     GtkWidget *dialog;
 
-    dialog = GTK_WIDGET (gtk_builder_get_object (context->builder, "dialog"));
+    dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
     gtk_widget_hide (dialog);
 
-    display_settings_show_main_dialog (context->display, context->event_base, context->error);
+    display_settings_show_main_dialog (gdk_display_get_default ());
 
     gtk_main_quit ();
 }
 
 static void
-display_settings_show_minimal_dialog (GdkDisplay  *display,
-                                      gint         event_base,
-                                      GError      *error)
+display_settings_show_minimal_dialog (GdkDisplay *display)
 {
-    GtkBuilder               *builder;
-    GtkWidget                *dialog, *cancel;
-    GObject                  *only_display1, *only_display2, *mirror_displays;
-    GObject                  *extend_right, *advanced, *fake_button, *label;
-    minimal_advanced_context  context;
+    GtkBuilder *builder;
+    GtkWidget  *dialog, *cancel;
+    GObject    *only_display1, *only_display2, *mirror_displays;
+    GObject    *extend_right, *advanced, *fake_button, *label;
+    GError     *error = NULL;
 
     builder = gtk_builder_new ();
 
     if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
                                      minimal_display_dialog_ui_length, &error) != 0)
     {
-        context.builder = builder;
-        context.display = display;
-        context.event_base = event_base;
-        context.error = error;
-
         /* Build the minimal dialog */
         dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
         cancel = GTK_WIDGET (gtk_builder_get_object (builder, "cancel_button"));
@@ -1925,7 +1909,7 @@ display_settings_show_minimal_dialog (GdkDisplay  *display,
         g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled),
                           builder);
         g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked),
-                          (gpointer*)&context);
+                          builder);
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));
@@ -1947,7 +1931,7 @@ main (gint argc, gchar **argv)
     GdkDisplay  *display;
     GError      *error = NULL;
     gboolean     succeeded = TRUE;
-    gint         event_base, error_base;
+    gint         error_base;
     gchar       *command;
     const gchar *alternative = NULL;
     const gchar *alternative_icon = NULL;
@@ -1993,7 +1977,7 @@ main (gint argc, gchar **argv)
     display = gdk_display_get_default ();
 
     /* Check if the randr extension is avaible on the system */
-    if (!XRRQueryExtension (gdk_x11_display_get_xdisplay (display), &event_base, &error_base))
+    if (!XRRQueryExtension (gdk_x11_display_get_xdisplay (display), &randr_event_base, &error_base))
     {
         g_set_error (&error, 0, 0, _("Unable to query the version of the RandR extension being used"));
         xfce_dialog_show_error (NULL, error, _("Unable to start the Xfce Display Settings"));
@@ -2056,16 +2040,11 @@ main (gint argc, gchar **argv)
             return EXIT_FAILURE;
 
         if (xfce_randr->noutput <= 1 || !minimal)
-        {
-            display_settings_show_main_dialog( display, event_base, error );
-        }
+            display_settings_show_main_dialog (display);
         else
-        {
-            display_settings_show_minimal_dialog ( display, event_base, error );
-        }
+            display_settings_show_minimal_dialog (display);
 
-        cleanup:
-
+cleanup:
         /* Release the channel */
         g_object_unref (G_OBJECT (display_channel));
     }
