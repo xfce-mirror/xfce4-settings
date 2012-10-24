@@ -412,11 +412,9 @@ display_setting_positions_populate (GtkBuilder *builder)
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
-    /* Disconnect the "changed" signal to avoid triggering the confirmation
-     * dialog */
-    g_object_disconnect (combobox, "any_signal::changed",
-                         display_setting_positions_changed,
-                         builder, NULL);
+    /* Block the "changed" signal to avoid triggering the confirmation dialog */
+    g_signal_handlers_block_by_func (combobox, display_setting_positions_changed,
+                                     builder);
 
     /* Try to insert the relations */
     for (n = 0; n < G_N_ELEMENTS (relation_names); n++)
@@ -431,8 +429,9 @@ display_setting_positions_populate (GtkBuilder *builder)
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
     }
 
-    /* Reconnect the signal */
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_positions_changed), builder);
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (combobox, display_setting_positions_changed,
+                                       builder);
 }
 
 static void
@@ -482,11 +481,9 @@ display_setting_active_displays_populate (GtkBuilder *builder)
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
-    /* Disconnect the "changed" signal to avoid triggering the confirmation
-     * dialog */
-    g_object_disconnect (combobox, "any_signal::changed",
-                         display_setting_active_displays_changed,
-                         builder, NULL);
+    /* Block the "changed" signal to avoid triggering the confirmation dialog */
+    g_signal_handlers_block_by_func (combobox, display_setting_active_displays_changed,
+                                     builder);
 
     /* Insert all active displays */
     for (n = 0; n < xfce_randr->noutput; ++n)
@@ -505,8 +502,9 @@ display_setting_active_displays_populate (GtkBuilder *builder)
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
     }
 
-    /* Reconnect the signal */
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_active_displays_changed), builder);
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (combobox, display_setting_active_displays_changed,
+                                       builder);
 }
 
 
@@ -571,11 +569,9 @@ display_setting_reflections_populate (GtkBuilder *builder)
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
-    /* Disconnect the "changed" signal to avoid triggering the confirmation
-     * dialog */
-    g_object_disconnect (combobox, "any_signal::changed",
-                         display_setting_reflections_changed,
-                         builder, NULL);
+    /* Block the "changed" signal to avoid triggering the confirmation dialog */
+    g_signal_handlers_block_by_func (combobox, display_setting_reflections_changed,
+                                     builder);
 
     /* Load only supported reflections */
     reflections = xfce_randr->rotations[active_output] & XFCE_RANDR_REFLECTIONS_MASK;
@@ -601,8 +597,9 @@ display_setting_reflections_populate (GtkBuilder *builder)
         }
     }
 
-    /* Reconnect the signal */
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_reflections_changed), builder);
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (combobox, display_setting_reflections_changed,
+                                       builder);
 }
 
 
@@ -662,11 +659,9 @@ display_setting_rotations_populate (GtkBuilder *builder)
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
-    /* Disconnect the "changed" signal to avoid triggering the confirmation
-     * dialog */
-    g_object_disconnect (combobox, "any_signal::changed",
-                         display_setting_rotations_changed,
-                         builder, NULL);
+    /* Block the "changed" signal to avoid triggering the confirmation dialog */
+    g_signal_handlers_block_by_func (combobox, display_setting_rotations_changed,
+                                     builder);
 
     /* Load only supported rotations */
     rotations = xfce_randr->rotations[active_output] & XFCE_RANDR_ROTATIONS_MASK;
@@ -692,8 +687,9 @@ display_setting_rotations_populate (GtkBuilder *builder)
         }
     }
 
-    /* Reconnect the signal */
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (combobox, display_setting_rotations_changed,
+                                       builder);
 }
 
 
@@ -753,11 +749,9 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
-    /* Disconnect the "changed" signal to avoid triggering the confirmation
-     * dialog */
-    g_object_disconnect (combobox, "any_signal::changed",
-                         display_setting_refresh_rates_changed,
-                         builder, NULL);
+    /* Block the "changed" signal to avoid triggering the confirmation dialog */
+    g_signal_handlers_block_by_func (combobox, display_setting_refresh_rates_changed,
+                                     builder);
 
     /* Fetch the selected resolution */
     res_combobox = gtk_builder_get_object (builder, "randr-resolution");
@@ -794,8 +788,9 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
         gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
 
-    /* Reconnect the signal */
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_refresh_rates_changed), builder);
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (combobox, display_setting_refresh_rates_changed,
+                                       builder);
 }
 
 static void
@@ -856,11 +851,9 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
 
-    /* Disconnect the "changed" signal to avoid triggering the confirmation
-     * dialog */
-    g_object_disconnect (combobox, "any_signal::changed",
-                         display_setting_resolutions_changed,
-                         builder, NULL);
+    /* Block the "changed" signal to avoid triggering the confirmation dialog */
+    g_signal_handlers_block_by_func (combobox, display_setting_resolutions_changed,
+                                     builder);
 
     /* Walk all supported modes */
     modes = xfce_randr_get_modes (xfce_randr, active_output, &nmode);
@@ -885,8 +878,9 @@ display_setting_resolutions_populate (GtkBuilder *builder)
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
     }
 
-    /* Reconnect the signal */
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (combobox, display_setting_resolutions_changed,
+                                       builder);
 }
 
 static void
@@ -1215,10 +1209,9 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
         return;
     }
 
-    /* Disconnect the "toggled" signal to avoid writing the config again */
-    g_object_disconnect (check, "any_signal::toggled",
-                         display_setting_mirror_displays_toggled,
-                         builder, NULL);
+    /* Block the "changed" signal to avoid triggering the confirmation dialog */
+    g_signal_handlers_block_by_func (check, display_setting_mirror_displays_toggled,
+                                     builder);
 
     /* Check if mirror settings are on */
     for (n = 0; n < xfce_randr->noutput; n++)
@@ -1235,9 +1228,9 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
 
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), cloned);
 
-    /* Reconnect the signal */
-    g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled),
-                      builder);
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (check, display_setting_mirror_displays_toggled,
+                                       builder);
 }
 
 
@@ -1268,13 +1261,12 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
                                         " be unusable."),
                                       _("Selected output not disabled"));
             /* Set it back to active */
-            g_object_disconnect (togglebutton, "any_signal::toggled",
-                                 display_setting_output_toggled,
-                                 builder, NULL);
+            g_signal_handlers_block_by_func (togglebutton, display_setting_output_toggled,
+                                             builder);
             gtk_toggle_button_set_active (togglebutton, TRUE);
-            g_signal_connect (G_OBJECT (togglebutton), "toggled",
-                              G_CALLBACK (display_setting_output_toggled),
-                              builder);
+            /* Unblock the signal */
+            g_signal_handlers_unblock_by_func (togglebutton, display_setting_output_toggled,
+                                               builder);
             return;
         }
         xfce_randr->mode[active_output] = None;
@@ -1314,15 +1306,14 @@ display_setting_output_status_populate (GtkBuilder *builder)
         return;
     }
 
-    /* Disconnect the "toggled" signal to avoid writing the config again */
-    g_object_disconnect (check, "any_signal::toggled",
-                         display_setting_output_toggled,
-                         builder, NULL);
+    /* Block the "changed" signal to avoid triggering the confirmation dialog */
+    g_signal_handlers_block_by_func (check, display_setting_output_toggled,
+                                     builder);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check),
                                   xfce_randr->mode[active_output] != None);
-    /* Reconnect the signal */
-    g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled),
-                      builder);
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (check, display_setting_output_toggled,
+                                       builder);
 }
 
 
