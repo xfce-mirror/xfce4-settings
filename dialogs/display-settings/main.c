@@ -1246,41 +1246,52 @@ static void
 display_setting_output_toggled (GtkToggleButton *togglebutton,
                                 GtkBuilder      *builder)
 {
+    RRMode old_mode;
+
     if (!xfce_randr)
         return;
 
     if (xfce_randr->noutput <= 1)
         return;
 
+    old_mode = xfce_randr->mode[active_output];
+
     if (gtk_toggle_button_get_active (togglebutton))
-    {
         xfce_randr->mode[active_output] =
             xfce_randr_preferred_mode (xfce_randr, active_output);
-        /* Apply the changes */
-        xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                active_output, FALSE);
-        xfce_randr_apply (xfce_randr, "Default", display_channel);
-    }
     else
     {
-        /* Prevents the user from disabling everything… */
-        if (display_settings_get_n_active_outputs () > 1)
-        {
-            xfce_randr->mode[active_output] = None;
-            /* Apply the changes */
-            xfce_randr_save_output (xfce_randr, "Default", display_channel,
-                                    active_output, FALSE);
-            xfce_randr_apply (xfce_randr, "Default", display_channel);
-        }
-        else
+        if (display_settings_get_n_active_outputs () == 1)
         {
             xfce_dialog_show_warning (NULL,
                                       _("The last active output must not be disabled, the system would"
                                         " be unusable."),
                                       _("Selected output not disabled"));
             /* Set it back to active */
+            g_object_disconnect (togglebutton, "any_signal::toggled",
+                                 display_setting_output_toggled,
+                                 builder, NULL);
             gtk_toggle_button_set_active (togglebutton, TRUE);
+            g_signal_connect (G_OBJECT (togglebutton), "toggled",
+                              G_CALLBACK (display_setting_output_toggled),
+                              builder);
+            return;
         }
+        xfce_randr->mode[active_output] = None;
+    }
+
+    /* Apply the changes */
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            active_output, FALSE);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+
+    /* Ask user confirmation */
+    if (!display_setting_timed_confirmation (builder))
+    {
+        xfce_randr->mode[active_output] = old_mode;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                active_output, FALSE);
+        xfce_randr_apply (xfce_randr, "Default", display_channel);
     }
 }
 
