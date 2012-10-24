@@ -149,7 +149,7 @@ static GOptionEntry option_entries[] =
 /* Global xfconf channel */
 static XfconfChannel *display_channel;
 
-/* output currently selected in the treeview */
+/* output currently selected in the iconview */
 static guint active_output;
 
 /* Pointer to the used randr structure */
@@ -1323,19 +1323,27 @@ display_setting_output_status_populate (GtkBuilder *builder)
 
 
 static void
-display_settings_treeview_selection_changed (GtkTreeSelection *selection,
+display_settings_iconview_selection_changed (GtkIconView *iconview,
                                              GtkBuilder       *builder)
 {
     GtkTreeModel *model;
+    GtkTreePath  *path = NULL;
     GtkTreeIter   iter;
     GtkWidget    *popup;
-    gboolean      has_selection;
     gint          active_id, previous_id;
+    GList        *selected_items;
+    guint        n;
 
-    /* Get the selection */
-    has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
-    if (G_LIKELY (has_selection))
+    model = gtk_icon_view_get_model(iconview);
+    
+    selected_items = gtk_icon_view_get_selected_items (GTK_ICON_VIEW (iconview));
+    
+    if (g_list_length(selected_items) != 0)
     {
+        path = selected_items->data;
+    
+        gtk_tree_model_get_iter(model, &iter, path);
+    
         /* Get the output info */
         gtk_tree_model_get (model, &iter, COLUMN_OUTPUT_ID, &active_id, -1);
 
@@ -1361,19 +1369,30 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
         if (popup)
             gtk_widget_queue_draw (popup);
     }
+    else
+    {
+        gtk_tree_model_get_iter_first(model, &iter);
+        for (n=0; n<active_output; n++)
+        gtk_tree_model_iter_next(model, &iter);
+        path = gtk_tree_model_get_path(model, &iter);
+        gtk_icon_view_select_path(GTK_ICON_VIEW(iconview), path);
+    }
+    
+    /* Release the path */
+    gtk_tree_path_free(path);
 }
 
 
 
 static void
-display_settings_treeview_populate (GtkBuilder *builder)
+display_settings_iconview_populate (GtkBuilder *builder)
 {
     guint             m;
     GtkListStore     *store;
-    GObject          *treeview;
+    GObject          *iconview;
     GtkTreeIter       iter;
     GdkPixbuf        *display_icon, *lucent_display_icon;
-    GtkTreeSelection *selection;
+    GtkTreePath      *path = NULL;
     gboolean          selected = FALSE;
 
     /* Create a new list store */
@@ -1382,10 +1401,9 @@ display_settings_treeview_populate (GtkBuilder *builder)
                                 GDK_TYPE_PIXBUF, /* COLUMN_OUTPUT_ICON */
                                 G_TYPE_INT);   /* COLUMN_OUTPUT_ID */
 
-    /* Set the treeview model */
-    treeview = gtk_builder_get_object (builder, "randr-outputs");
-    gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+    /* Set the iconview model */
+    iconview = gtk_builder_get_object (builder, "randr-outputs");
+    gtk_icon_view_set_model (GTK_ICON_VIEW (iconview), GTK_TREE_MODEL (store));
 
     /* Get the display icon */
     display_icon =
@@ -1419,7 +1437,8 @@ display_settings_treeview_populate (GtkBuilder *builder)
         /* Select active output */
         if (m == active_output)
         {
-            gtk_tree_selection_select_iter (selection, &iter);
+            path = gtk_tree_model_get_path(GTK_TREE_MODEL (store), &iter);
+            gtk_icon_view_select_path(GTK_ICON_VIEW(iconview), path);
             selected = TRUE;
         }
     }
@@ -1427,7 +1446,10 @@ display_settings_treeview_populate (GtkBuilder *builder)
     /* If nothing was selected the active output is no longer valid,
      * select the last display in the list. */
     if (!selected)
-        gtk_tree_selection_select_iter (selection, &iter);
+    {
+        path = gtk_tree_model_get_path(GTK_TREE_MODEL (store), &iter);
+        gtk_icon_view_select_path(GTK_ICON_VIEW(iconview), path);
+    }
 
     /* Release the store */
     g_object_unref (G_OBJECT (store));
@@ -1436,6 +1458,9 @@ display_settings_treeview_populate (GtkBuilder *builder)
     g_object_unref (display_icon);
     if (lucent_display_icon != NULL)
         g_object_unref (lucent_display_icon);
+        
+    /* Release the path */
+    gtk_tree_path_free(path);
 }
 
 
@@ -1476,33 +1501,29 @@ display_settings_dialog_response (GtkDialog  *dialog,
 static GtkWidget *
 display_settings_dialog_new (GtkBuilder *builder)
 {
-    GObject          *treeview;
+    GObject          *iconview;
     GtkCellRenderer  *renderer;
-    GtkTreeSelection *selection;
     GObject          *combobox;
     GObject          *label, *check, *mirror;
 
-    /* Get the treeview */
-    treeview = gtk_builder_get_object (builder, "randr-outputs");
-    gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_OUTPUT_NAME);
+    /* Get the iconview */
+    iconview = gtk_builder_get_object (builder, "randr-outputs");
+    gtk_icon_view_set_text_column (GTK_ICON_VIEW (iconview), COLUMN_OUTPUT_NAME);
+    gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (iconview), COLUMN_OUTPUT_ICON);
 
     /* Icon renderer */
     renderer = gtk_cell_renderer_pixbuf_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 0, "", renderer, "pixbuf", COLUMN_OUTPUT_ICON, NULL);
     g_object_set (G_OBJECT (renderer), "stock-size", GTK_ICON_SIZE_DND, NULL);
 
     /* Text renderer */
     renderer = gtk_cell_renderer_text_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview), 1, "", renderer, "text", COLUMN_OUTPUT_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
     /* Identification popups */
     display_setting_identity_popups_populate ();
 
-    /* Treeview selection */
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-    gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_treeview_selection_changed), builder);
+    /* Iconview selection */
+    g_signal_connect (GTK_ICON_VIEW(iconview), "selection-changed", G_CALLBACK (display_settings_iconview_selection_changed), builder);
 
     /* Setup the combo boxes */
     check = gtk_builder_get_object (builder, "output-on");
@@ -1548,8 +1569,8 @@ display_settings_dialog_new (GtkBuilder *builder)
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
 
-    /* Populate the treeview */
-    display_settings_treeview_populate (builder);
+    /* Populate the iconview */
+    display_settings_iconview_populate (builder);
 
     return GTK_WIDGET (gtk_builder_get_object (builder, "display-dialog"));
 }
@@ -1722,7 +1743,7 @@ screen_on_event (GdkXEvent *xevent,
     if (event_num == RRScreenChangeNotify)
     {
         xfce_randr_reload (xfce_randr);
-        display_settings_treeview_populate (builder);
+        display_settings_iconview_populate (builder);
 
         /* recreate the identify display popups */
         g_hash_table_destroy (display_popups);
