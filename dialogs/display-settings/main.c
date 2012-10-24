@@ -1849,7 +1849,7 @@ display_settings_show_minimal_dialog (GdkDisplay  *display,
     GtkBuilder               *builder;
     GtkWidget                *dialog, *cancel;
     GObject                  *only_display1, *only_display2, *mirror_displays;
-    GObject                  *extend_right, *advanced, *fake_button;
+    GObject                  *extend_right, *advanced, *fake_button, *label;
     minimal_advanced_context  context;
 
     builder = gtk_builder_new ();
@@ -1878,30 +1878,44 @@ display_settings_show_minimal_dialog (GdkDisplay  *display,
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
 
-        //
+        label = gtk_builder_get_object (builder, "label1");
+        gtk_label_set_text (GTK_LABEL (label), xfce_randr->friendly_name[0]);
+
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1),
+                                      xfce_randr->mode[0] != None);
+
         if (xfce_randr->noutput > 1)
         {
-            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1),
-                                         xfce_randr->mode[0] != None);
+            label = gtk_builder_get_object (builder, "label4");
+            gtk_label_set_text (GTK_LABEL (label), xfce_randr->friendly_name[1]);
             gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display2),
-                                         xfce_randr->mode[1] != None);
+                                          xfce_randr->mode[1] != None);
+
+            if (xfce_randr->mode[0] != None && xfce_randr->mode[1] != None)
+            {
+                /* Check for mirror */
+                if ((xfce_randr->relation[1] == XFCE_RANDR_PLACEMENT_MIRROR &&
+                    xfce_randr->related_to[1] == 0) || (xfce_randr->related_to[0] == 1 &&
+                    xfce_randr->relation[0] == XFCE_RANDR_PLACEMENT_MIRROR))
+                    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mirror_displays),
+                                                  TRUE);
+
+                /* Check for Extend Right */
+                if ((xfce_randr->relation[1] == XFCE_RANDR_PLACEMENT_RIGHT &&
+                    xfce_randr->related_to[1] == 0) || (xfce_randr->related_to[0] == 1 &&
+                    xfce_randr->relation[1] == XFCE_RANDR_PLACEMENT_LEFT))
+                    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_right),
+                                                  TRUE);
+            }
         }
         else
         {
-            /* Check for mirror */
-            if (xfce_randr->relation[1] == XFCE_RANDR_PLACEMENT_MIRROR &&
-                xfce_randr->related_to[1] == 0)
-                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mirror_displays),
-                                              TRUE);
-
-            /* Check for Extend Right */
-            if (xfce_randr->relation[1] == XFCE_RANDR_PLACEMENT_RIGHT &&
-                xfce_randr->related_to[1] == 0)
-                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_right),
-                                              TRUE);
+            /* Only one output, disable other buttons */
+            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), FALSE);
+            gtk_widget_set_sensitive (GTK_WIDGET (extend_right), FALSE);
+            gtk_widget_set_sensitive (GTK_WIDGET (only_display2), FALSE);
         }
 
-        //
         g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled),
                           builder);
         g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
