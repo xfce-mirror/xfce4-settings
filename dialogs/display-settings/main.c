@@ -1400,12 +1400,11 @@ display_settings_iconview_populate (GtkBuilder *builder)
     /* Set the iconview model */
     iconview = gtk_builder_get_object (builder, "randr-outputs");
     gtk_icon_view_set_model (GTK_ICON_VIEW (iconview), GTK_TREE_MODEL (store));
-    gtk_icon_view_set_item_width (GTK_ICON_VIEW (iconview), 48*2);
 
     /* Get the display icon */
     display_icon =
         gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), "display-icon",
-                                  48,
+                                  32,
                                   GTK_ICON_LOOKUP_GENERIC_FALLBACK,
                                   NULL);
 
