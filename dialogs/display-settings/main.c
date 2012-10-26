@@ -205,24 +205,21 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
 }
 
 static void
-display_setting_toggle_identity_popup (gpointer   key,
+display_setting_show_identity_popup (gpointer   key,
                                        GtkWidget *value,
-                                       gpointer   show)
+                                       gpointer   userdata)
 {
-    if (!GPOINTER_TO_INT (show))
-        gtk_widget_hide (value);
-    else
-        gtk_widget_show (value);
+    gtk_widget_show (value);
 }
 
 static gboolean
-display_setting_toggle_identity_popups (GtkWidget *widget,
+display_setting_show_identity_popups (GtkWidget *widget,
                                         GdkEvent  *event,
-                                        gpointer   show)
+                                        gpointer   userdata)
 {
     g_hash_table_foreach (display_popups,
-                          (GHFunc) display_setting_toggle_identity_popup,
-                          show);
+                          (GHFunc) display_setting_show_identity_popup,
+                          NULL);
     return FALSE;
 }
 
@@ -289,11 +286,7 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
 
         dialog = gtk_builder_get_object (builder, "dialog1");
 
-        g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_toggle_identity_popups),
-                          GINT_TO_POINTER (FALSE));
-
-        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_toggle_identity_popups),
-                          GINT_TO_POINTER (TRUE));
+        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_show_identity_popups), NULL);
 
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
         source_id = g_timeout_add_seconds (1, (GSourceFunc) display_settings_update_time_label,
@@ -1774,11 +1767,7 @@ display_settings_show_main_dialog (GdkDisplay *display)
             gtk_widget_show (GTK_WIDGET (plug_child));
         }
 
-        g_signal_connect (G_OBJECT (dialog), "focus-out-event", G_CALLBACK (display_setting_toggle_identity_popups),
-                          GINT_TO_POINTER (FALSE));
-
-        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_toggle_identity_popups),
-                          GINT_TO_POINTER (TRUE));
+        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_show_identity_popups), NULL);
 
         /* To prevent the settings dialog to be saved in the session */
         gdk_set_sm_client_id ("FAKE ID");
