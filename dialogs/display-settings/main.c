@@ -204,25 +204,6 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
     return FALSE;
 }
 
-static void
-display_setting_show_identity_popup (gpointer   key,
-                                       GtkWidget *value,
-                                       gpointer   userdata)
-{
-    gtk_widget_show (value);
-}
-
-static gboolean
-display_setting_show_identity_popups (GtkWidget *widget,
-                                        GdkEvent  *event,
-                                        gpointer   userdata)
-{
-    g_hash_table_foreach (display_popups,
-                          (GHFunc) display_setting_show_identity_popup,
-                          NULL);
-    return FALSE;
-}
-
 static gboolean
 display_settings_update_time_label (ConfirmationDialog *confirmation_dialog)
 {
@@ -285,8 +266,6 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
         confirmation_dialog->count = 10;
 
         dialog = gtk_builder_get_object (builder, "dialog1");
-
-        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_show_identity_popups), NULL);
 
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
         source_id = g_timeout_add_seconds (1, (GSourceFunc) display_settings_update_time_label,
@@ -1766,8 +1745,6 @@ display_settings_show_main_dialog (GdkDisplay *display)
             gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
             gtk_widget_show (GTK_WIDGET (plug_child));
         }
-
-        g_signal_connect (G_OBJECT (dialog), "focus-in-event", G_CALLBACK (display_setting_show_identity_popups), NULL);
 
         /* To prevent the settings dialog to be saved in the session */
         gdk_set_sm_client_id ("FAKE ID");
