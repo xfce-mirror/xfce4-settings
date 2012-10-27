@@ -73,7 +73,15 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @INTLTOOL_DESKTOP_RULE@
 
+iconsdir = $(datadir)/icons/hicolor/128x128/devices
+icons_DATA = \
+	xfce-display-extend.png \
+	xfce-display-external.png \
+	xfce-display-internal.png \
+	xfce-display-mirror.png
+
 EXTRA_DIST = \
+	$(icons_DATA) \
 	$(desktop_in_files) \
 	confirmation-dialog.glade \
 	display-dialog.glade \

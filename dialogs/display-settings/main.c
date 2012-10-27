@@ -1781,6 +1781,25 @@ display_settings_minimal_advanced_clicked (GtkButton  *button,
 }
 
 static void
+display_settings_minimal_load_icon (GtkBuilder  *builder,
+                                    const gchar *img_name,
+                                    const gchar *icon_name)
+{
+    GObject      *dialog;
+    GtkImage     *img;
+    GtkIconTheme *icon_theme;
+    GdkPixbuf    *icon;
+
+    dialog = gtk_builder_get_object (builder, "dialog");
+    img = GTK_IMAGE (gtk_builder_get_object (builder, img_name));
+    g_return_if_fail (dialog && img);
+
+    icon_theme = gtk_icon_theme_get_for_screen (gtk_window_get_screen (GTK_WINDOW (dialog)));
+    icon = gtk_icon_theme_load_icon (icon_theme, icon_name, 128, 0, NULL);
+    gtk_image_set_from_pixbuf (GTK_IMAGE (img), icon);
+}
+
+static void
 display_settings_show_minimal_dialog (GdkDisplay *display)
 {
     GtkBuilder *builder;
@@ -1800,6 +1819,11 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
 
         g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
         g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
+
+        display_settings_minimal_load_icon (builder, "image1", "xfce-display-internal");
+        display_settings_minimal_load_icon (builder, "image2", "xfce-display-mirror");
+        display_settings_minimal_load_icon (builder, "image3", "xfce-display-extend");
+        display_settings_minimal_load_icon (builder, "image4", "xfce-display-external");
 
         only_display1 = gtk_builder_get_object (builder, "display1");
         mirror_displays = gtk_builder_get_object (builder, "mirror");
