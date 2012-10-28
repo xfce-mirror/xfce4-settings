@@ -129,7 +129,8 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
     version = XGetExtensionVersion (xdisplay, INAME);
 
     /* check for Xi */
-    if (version == NULL || !version->present)
+    if (version == NULL || ((long) version) == NoSuchExtension
+        || !version->present)
     {
         g_critical ("XI is not present.");
     }
