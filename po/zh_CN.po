@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-14 22:57+0000\n"
+"POT-Creation-Date: 2012-11-01 04:48+0000\n"
 "PO-Revision-Date: 2010-11-27 21:48+0800\n"
 "Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n-cn@xfce.org>\n"
@@ -213,21 +213,21 @@ msgstr "像素/秒"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "设置管理器套接字"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "套接字 ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:103
+#: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
@@ -236,29 +236,29 @@ msgstr "版本信息"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
-#: ../dialogs/display-settings/main.c:1043
+#: ../dialogs/display-settings/main.c:1922
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1597 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
+#: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "输入 ‘%s --help’ 获取用法。"
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
-#: ../dialogs/display-settings/main.c:1062
+#: ../dialogs/display-settings/main.c:1941
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1616 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
+#: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发团队。保留所有权利。"
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
-#: ../dialogs/display-settings/main.c:1063
+#: ../dialogs/display-settings/main.c:1942
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1617 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
+#: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "请向 <%s> 报告缺陷。"
@@ -278,7 +278,7 @@ msgid "Appearance"
 msgstr "外观"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:116
 msgid "Both"
 msgstr "都用"
 
@@ -367,7 +367,8 @@ msgstr "菜单和按钮"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:852
-#: ../dialogs/display-settings/main.c:79
+#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:113
 msgid "None"
 msgstr "无"
 
@@ -527,70 +528,114 @@ msgid "Display"
 msgstr "显示"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
+#, fuzzy
+msgid "Mirror displays"
+msgstr "数字显示"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+#, fuzzy
+msgid "Position:"
+msgstr "旋转(_T)："
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "R_esolution:"
 msgstr "分辨率(_E)："
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Ref_lection:"
 msgstr "反光率(_L)："
 
-#: ../dialogs/display-settings/display-dialog.glade.h:5
+#: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "Refresh _rate:"
 msgstr "刷新率(_R)："
 
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "Ro_tation:"
 msgstr "旋转(_T)："
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "_Use this output"
-msgstr "使用此输出(_U)"
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "Use this output"
+msgstr "使用此输出"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
-msgid "Both displays cloned"
-msgstr "显示相同内容"
+msgid "Advanced"
+msgstr "高级"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-msgid "Display settings"
-msgstr "显示设置"
+#, fuzzy
+msgid "Displays"
+msgstr "显示"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
-msgid "Several displays are available. Use:\n"
-msgstr "若干显示器可用。使用：\n"
+msgid "Extend to the right"
+msgstr ""
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
+#, fuzzy
+msgid "Mirror Displays"
+msgstr "显示"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
-msgid "Use both displays to show the same contents"
-msgstr "使用两个显示器显示相同内容"
+#, fuzzy
+msgid "Only Display 1"
+msgstr "显示"
 
-#: ../dialogs/display-settings/main.c:68
-msgid "Normal"
-msgstr "正常"
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
+#, fuzzy
+msgid "Only Display 2"
+msgstr "显示"
 
-#: ../dialogs/display-settings/main.c:69
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
+msgid "radiobutton"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:90
+msgid "Same as"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:91
+msgid "Above"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:92
+msgid "Below"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:93
+#, fuzzy
+msgid "Right of"
+msgstr "右"
+
+#: ../dialogs/display-settings/main.c:94
+#, fuzzy
+msgid "Left of"
+msgstr "左"
+
+#: ../dialogs/display-settings/main.c:103
 msgid "Left"
 msgstr "左"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/main.c:104
 msgid "Inverted"
 msgstr "翻转"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:105
 msgid "Right"
 msgstr "右"
 
-#: ../dialogs/display-settings/main.c:80
+#: ../dialogs/display-settings/main.c:114
 msgid "Horizontal"
 msgstr "水平"
 
-#: ../dialogs/display-settings/main.c:81
+#: ../dialogs/display-settings/main.c:115
 msgid "Vertical"
 msgstr "竖直"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:138
 msgid "Minimal interface to set up an external output"
 msgstr "设置外部输出的最小界面"
 
-#: ../dialogs/display-settings/main.c:171
+#: ../dialogs/display-settings/main.c:226
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -598,60 +643,69 @@ msgid ""
 msgstr "如果您不答复此问题，先前的配置将在 %i 秒内恢复。"
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:505
+#: ../dialogs/display-settings/main.c:747
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:651
+#: ../dialogs/display-settings/main.c:1040
+#, fuzzy
+msgid "Display:"
+msgstr "显示"
+
+#: ../dialogs/display-settings/main.c:1045
+msgid "Resolution:"
+msgstr "分辨率："
+
+#: ../dialogs/display-settings/main.c:1232
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "绝不能禁用上一个活动输出，否则系统将不可用。"
 
-#: ../dialogs/display-settings/main.c:653
+#: ../dialogs/display-settings/main.c:1234
 msgid "Selected output not disabled"
 msgstr "未禁用选中的输出"
 
-#: ../dialogs/display-settings/main.c:1075
-#: ../dialogs/display-settings/xfce-randr.c:249
+#: ../dialogs/display-settings/main.c:1954
+#: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "未能查询正在使用的 RandR 扩展的版本"
 
-#: ../dialogs/display-settings/main.c:1076
-#: ../dialogs/display-settings/main.c:1112
+#: ../dialogs/display-settings/main.c:1955
+#: ../dialogs/display-settings/main.c:1991
 msgid "Unable to start the Xfce Display Settings"
 msgstr "未能启动 Xfce 显示设置"
 
-#: ../dialogs/display-settings/main.c:1107
+#: ../dialogs/display-settings/main.c:1986
 msgid "ATI Settings"
 msgstr "ATI 设置"
 
-#: ../dialogs/display-settings/main.c:1122
+#: ../dialogs/display-settings/main.c:2001
 msgid "Unable to launch the proprietary driver settings"
 msgstr "未能启动非自由驱动设置"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:257
+#: ../dialogs/display-settings/xfce-randr.c:358
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "此系统正在使用 RandR %d.%d。若要使用显示设置，至少需要 1.2 版"
 
-#: ../dialogs/display-settings/xfce-randr.c:536
+#: ../dialogs/display-settings/xfce-randr.c:626
 msgid "Laptop"
 msgstr "笔记本电脑"
 
-#: ../dialogs/display-settings/xfce-randr.c:557
+#: ../dialogs/display-settings/xfce-randr.c:647
 msgid "Monitor"
 msgstr "显示器"
 
-#: ../dialogs/display-settings/xfce-randr.c:560
+#: ../dialogs/display-settings/xfce-randr.c:650
 msgid "Television"
 msgstr "电视"
 
-#: ../dialogs/display-settings/xfce-randr.c:564
+#: ../dialogs/display-settings/xfce-randr.c:654
 msgid "Digital display"
 msgstr "数字显示"
 
@@ -730,110 +784,130 @@ msgstr "行为(_H)"
 msgid "Blink _delay:"
 msgstr "闪烁延时(_D)："
 
+# Automatically copied. Please review and remove fuzzy flag.
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+msgid "Change layout option"
+msgstr "更改布局选项"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Compose key"
+msgstr "组合键"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 msgid "Cursor"
 msgstr "光标"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "Define _shortcuts for launching applications:"
 msgstr "定义启动应用程序的快捷键(_S)："
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "编辑键盘设置和应用程序快捷键"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "General"
 msgstr "一般"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Keyboard"
 msgstr "键盘"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Keyboard layout"
 msgstr "键盘布局"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "Keyboard layout selection"
 msgstr "键盘布局选择器"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Keyboard model"
 msgstr "键盘型号"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Move currently selected item down by one row"
+msgstr "将当前选中的项目下移一行"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid "Move currently selected item up by one row"
+msgstr "将当前选中的项目上移一行"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Repeat _speed:"
 msgstr "重复速度(_S)："
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Reset to _Defaults"
 msgstr "重置为默认(_D)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Restore num l_ock state on startup"
 msgstr "启动时恢复数字键状态(_O)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "Select keyboard layout and variant"
 msgstr "选择键盘布局和变体"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Show _blinking"
 msgstr "显示闪烁(_B)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
 msgstr "指定是由此设置对话框还是由 X 服务器控制键盘布局"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Specify whether or not the text cursor blinks"
 msgstr "指定文字光标是否闪烁"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "以毫秒计的光标连续闪烁间的延时"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "按住按键时产生的按键重复频率"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "以毫秒计的按键开始重复的时间"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "Typing Settings"
 msgstr "输入设置"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid ""
 "When selected, pressing and holding down a key emits the same character over "
 "and over again"
 msgstr "选中后，按住一个按键不放会一直重复释放此字符"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Enable key repeat"
 msgstr "启用按键重复(_E)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "_Layout"
 msgstr "布局(_L)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Repeat delay:"
 msgstr "重复延时(_R)："
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "_Test area:"
 msgstr "测试区域(_T)："
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "_Use system defaults"
 msgstr "使用系统默认(_U)"
 
@@ -850,42 +924,42 @@ msgstr "无法与 xfconf 守护进程连接。原因：%s"
 msgid "Could not create the settings dialog."
 msgstr "未能创建设置对话框。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:396
 msgid "Command"
 msgstr "命令"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:401
 msgid "Shortcut"
 msgstr "快捷键"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:473
 msgid "Layout"
 msgstr "布局"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:474
 msgid "Variant"
 msgstr "变体"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:957
 msgid "Shortcut command may not be empty."
 msgstr "快捷键命令不能为空。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1067
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1068
 msgid "Reset to Defaults"
 msgstr "重置为默认"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1069
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
 msgstr "这会把所有快捷键重置为它们的默认值，您真的要这样做吗？"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1148
 msgid "The system defaults will be restored next time you log in."
 msgstr "在您下次登录时将恢复系统默认。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1150
 msgid "Warning"
 msgstr "警告"
 
@@ -1041,7 +1115,6 @@ msgid "Buttons"
 msgstr "按钮"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
-#, fuzzy
 msgid "Circular scrolling"
 msgstr "循环滚动"
 
@@ -1445,39 +1518,39 @@ msgstr "编辑属性"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Xfconf 的图形设置编辑器"
 
-#: ../xfsettingsd/accessibility.c:390
+#: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr "已启用粘滞键"
 
-#: ../xfsettingsd/accessibility.c:392
+#: ../xfsettingsd/accessibility.c:414
 msgid "Sticky keys are disabled"
 msgstr "已禁用粘滞键"
 
-#: ../xfsettingsd/accessibility.c:394
+#: ../xfsettingsd/accessibility.c:416
 msgid "Sticky keys"
 msgstr "粘滞键"
 
-#: ../xfsettingsd/accessibility.c:399
+#: ../xfsettingsd/accessibility.c:421
 msgid "Slow keys are enabled"
 msgstr "已启用慢速键"
 
-#: ../xfsettingsd/accessibility.c:401
+#: ../xfsettingsd/accessibility.c:423
 msgid "Slow keys are disabled"
 msgstr "已禁用慢速按键"
 
-#: ../xfsettingsd/accessibility.c:403
+#: ../xfsettingsd/accessibility.c:425
 msgid "Slow keys"
 msgstr "慢速键"
 
-#: ../xfsettingsd/accessibility.c:408
+#: ../xfsettingsd/accessibility.c:430
 msgid "Bounce keys are enabled"
 msgstr "已启用反弹键"
 
-#: ../xfsettingsd/accessibility.c:410
+#: ../xfsettingsd/accessibility.c:432
 msgid "Bounce keys are disabled"
 msgstr "已禁用反弹键"
 
-#: ../xfsettingsd/accessibility.c:412
+#: ../xfsettingsd/accessibility.c:434
 msgid "Bounce keys"
 msgstr "反弹键"
 
@@ -1533,26 +1606,17 @@ msgstr "Xfce 4 的图形设置管理器"
 msgid "Settings Manager"
 msgstr "设置管理器"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#, fuzzy
-msgid "Change layout option"
-msgstr "更改布局选项："
+#~ msgid "Both displays cloned"
+#~ msgstr "显示相同内容"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-#, fuzzy
-msgid "Compose key"
-msgstr "组合键位置："
+#~ msgid "Display settings"
+#~ msgstr "显示设置"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
-#, fuzzy
-msgid "Move currently selected item down by one row"
-msgstr "将当前选中的项目下移一行"
+#~ msgid "Several displays are available. Use:\n"
+#~ msgstr "若干显示器可用。使用：\n"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
-#, fuzzy
-msgid "Move currently selected item up by one row"
-msgstr "将当前选中的项目上移一行"
+#~ msgid "Use both displays to show the same contents"
+#~ msgstr "使用两个显示器显示相同内容"
+
+#~ msgid "Normal"
+#~ msgstr "正常"
