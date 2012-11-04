@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-25 10:24+0000\n"
+"POT-Creation-Date: 2012-11-04 02:21+0000\n"
 "PO-Revision-Date: 2012-05-13 11:37-0600\n"
 "Last-Translator: Sergio García <oigres200@gmail.com>\n"
 "Language-Team: Spanish/ES <xfce-i18n@xfce.org>\n"
@@ -230,21 +230,21 @@ msgstr "píxeles/seg"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Socket del administrador de configuración"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "ID de SOCKET"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:103
+#: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
@@ -253,29 +253,29 @@ msgstr "Información de versión"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
-#: ../dialogs/display-settings/main.c:1043
+#: ../dialogs/display-settings/main.c:1922
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1597 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
+#: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Escriba «%s --help» para instrucciones de uso."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
-#: ../dialogs/display-settings/main.c:1062
+#: ../dialogs/display-settings/main.c:1941
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1616 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
+#: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "El equipo de desarrollo de Xfce. Todos los derechos reservados."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
-#: ../dialogs/display-settings/main.c:1063
+#: ../dialogs/display-settings/main.c:1942
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1617 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
+#: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Por favor, informe de fallos a <%s>"
@@ -297,7 +297,7 @@ msgid "Appearance"
 msgstr "Apariencia"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-#: ../dialogs/display-settings/main.c:82
+#: ../dialogs/display-settings/main.c:116
 msgid "Both"
 msgstr "Ambos"
 
@@ -393,7 +393,8 @@ msgstr "Menús y botones"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:852
-#: ../dialogs/display-settings/main.c:79
+#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:113
 msgid "None"
 msgstr "Ninguno"
 
@@ -568,70 +569,106 @@ msgid "Display"
 msgstr "Pantalla"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
+msgid "Mirror displays"
+msgstr "Pantallas espejo"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "Position:"
+msgstr "Posisión:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "R_esolution:"
 msgstr "R_esolución:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Ref_lection:"
 msgstr "Reflexión:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:5
+#: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "Refresh _rate:"
 msgstr "Frecuencia de _actualización:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "Ro_tation:"
 msgstr "Ro_tación:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "_Use this output"
-msgstr "_Usar esta salida"
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "Use this output"
+msgstr "Usar esta salida"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
-msgid "Both displays cloned"
-msgstr "Ambas pantallas clonadas"
+msgid "Advanced"
+msgstr "Avanzado"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-msgid "Display settings"
-msgstr "Configuración de pantalla"
+msgid "Displays"
+msgstr "Pantallas"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
-msgid "Several displays are available. Use:\n"
-msgstr "Están disponibles varias pantallas. Usar:\n"
+msgid "Extend to the right"
+msgstr "Extender a la derecha"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
+msgid "Mirror Displays"
+msgstr "Pantallas espejo"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
-msgid "Use both displays to show the same contents"
-msgstr "Usar ambas pantallas para mostrar el mismo contenido"
+msgid "Only Display 1"
+msgstr "Solo en la pantalla 1"
 
-#: ../dialogs/display-settings/main.c:68
-msgid "Normal"
-msgstr "Normal"
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
+msgid "Only Display 2"
+msgstr "Solo en la pantalla 2"
 
-#: ../dialogs/display-settings/main.c:69
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
+msgid "radiobutton"
+msgstr "radiobotón"
+
+#: ../dialogs/display-settings/main.c:90
+msgid "Same as"
+msgstr "Igual que"
+
+#: ../dialogs/display-settings/main.c:91
+msgid "Above"
+msgstr "Encima"
+
+#: ../dialogs/display-settings/main.c:92
+msgid "Below"
+msgstr "Debajo"
+
+#: ../dialogs/display-settings/main.c:93
+msgid "Right of"
+msgstr "Derecha de"
+
+#: ../dialogs/display-settings/main.c:94
+msgid "Left of"
+msgstr "Izquierda de"
+
+#: ../dialogs/display-settings/main.c:103
 msgid "Left"
 msgstr "Izquierda"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/main.c:104
 msgid "Inverted"
 msgstr "Invertido"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:105
 msgid "Right"
 msgstr "Derecha"
 
-#: ../dialogs/display-settings/main.c:80
+#: ../dialogs/display-settings/main.c:114
 msgid "Horizontal"
 msgstr "Horizontal"
 
-#: ../dialogs/display-settings/main.c:81
+#: ../dialogs/display-settings/main.c:115
 msgid "Vertical"
 msgstr "Vertical"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:138
 msgid "Minimal interface to set up an external output"
 msgstr "Interfaz mínima para configurar un dispositivo externo"
 
-#: ../dialogs/display-settings/main.c:171
+#: ../dialogs/display-settings/main.c:226
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -641,43 +678,51 @@ msgstr ""
 "esta pregunta."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:505
+#: ../dialogs/display-settings/main.c:747
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:651
+#: ../dialogs/display-settings/main.c:1040
+msgid "Display:"
+msgstr "Pantalla:"
+
+#: ../dialogs/display-settings/main.c:1045
+msgid "Resolution:"
+msgstr "Resolución:"
+
+#: ../dialogs/display-settings/main.c:1232
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
 "El último dispositivo de salida activo no debe estar deshabilitado, de otra "
 "manera el sistema no será utilizable."
 
-#: ../dialogs/display-settings/main.c:653
+#: ../dialogs/display-settings/main.c:1234
 msgid "Selected output not disabled"
 msgstr "Dispositivo de salida seleccionado no desactivado"
 
-#: ../dialogs/display-settings/main.c:1075
-#: ../dialogs/display-settings/xfce-randr.c:249
+#: ../dialogs/display-settings/main.c:1954
+#: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "No se pudo obtener la versión de la extensión RandR en uso"
 
-#: ../dialogs/display-settings/main.c:1076
-#: ../dialogs/display-settings/main.c:1112
+#: ../dialogs/display-settings/main.c:1955
+#: ../dialogs/display-settings/main.c:1991
 msgid "Unable to start the Xfce Display Settings"
 msgstr "No se pudo mostrar la configuración de pantalla de Xfce"
 
-#: ../dialogs/display-settings/main.c:1107
+#: ../dialogs/display-settings/main.c:1986
 msgid "ATI Settings"
 msgstr "Configuración de ATI"
 
-#: ../dialogs/display-settings/main.c:1122
+#: ../dialogs/display-settings/main.c:2001
 msgid "Unable to launch the proprietary driver settings"
 msgstr "No se pudieron abrir las configuraciones del controlador propietario"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:257
+#: ../dialogs/display-settings/xfce-randr.c:358
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -686,19 +731,19 @@ msgstr ""
 "El sistema está usando RandR %d.%d. Para que funcione la configuración de "
 "pantalla es necesaria al menos la versión 1.2"
 
-#: ../dialogs/display-settings/xfce-randr.c:536
+#: ../dialogs/display-settings/xfce-randr.c:626
 msgid "Laptop"
 msgstr "Portátil"
 
-#: ../dialogs/display-settings/xfce-randr.c:557
+#: ../dialogs/display-settings/xfce-randr.c:647
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../dialogs/display-settings/xfce-randr.c:560
+#: ../dialogs/display-settings/xfce-randr.c:650
 msgid "Television"
 msgstr "Televisión"
 
-#: ../dialogs/display-settings/xfce-randr.c:564
+#: ../dialogs/display-settings/xfce-randr.c:654
 msgid "Digital display"
 msgstr "Pantalla digital"
 
@@ -1640,6 +1685,21 @@ msgstr "Gestor gráfico de configuración para Xfce 4"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Administrador de configuración"
+
+#~ msgid "Both displays cloned"
+#~ msgstr "Ambas pantallas clonadas"
+
+#~ msgid "Display settings"
+#~ msgstr "Configuración de pantalla"
+
+#~ msgid "Several displays are available. Use:\n"
+#~ msgstr "Están disponibles varias pantallas. Usar:\n"
+
+#~ msgid "Use both displays to show the same contents"
+#~ msgstr "Usar ambas pantallas para mostrar el mismo contenido"
+
+#~ msgid "Normal"
+#~ msgstr "Normal"
 
 #~ msgid "This property name is not valid."
 #~ msgstr "Este nombre para la propiedad es inválido"
