@@ -1119,7 +1119,7 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
                 xfce_randr->mode[n] = mode;
             xfce_randr->relation[n] = XFCE_RANDR_PLACEMENT_MIRROR;
             xfce_randr->related_to[n] = active_output;
-
+            xfce_randr->rotation[n] = RR_Rotate_0;
             xfce_randr_save_output (xfce_randr, "Default", display_channel,
                                     n, TRUE);
         }
