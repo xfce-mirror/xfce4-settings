@@ -134,6 +134,12 @@ AC_ARG_WITH([pnp-ids-path],
 PNP_IDS=$with_pnp_ids_path
 AC_SUBST(PNP_IDS)
 
+dnl ***********************************
+dnl *** Optional support for UPower ***
+dnl ***********************************
+XDT_CHECK_OPTIONAL_PACKAGE([UPOWERGLIB], [upower-glib], [0.9.8],
+                           [upower-glib], [UPower support])
+
 dnl **************************************
 dnl *** Optional support for Libnotify ***
 dnl **************************************
@@ -250,6 +256,11 @@ if test x"$XRANDR_FOUND" = x"yes"; then
 echo "* Xrandr support:            yes"
 else
 echo "* Xrandr support:            no"
+fi
+if test x"$UPOWERGLIB_FOUND" = x"yes"; then
+echo "* UPower support:            yes"
+else
+echo "* UPower support:            no"
 fi
 if test x"$LIBNOTIFY_FOUND" = x"yes"; then
 echo "* Libnotify support:         yes"

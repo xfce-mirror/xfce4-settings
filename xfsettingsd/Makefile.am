@@ -88,6 +88,18 @@ xfsettingsd_CFLAGS += \
 
 xfsettingsd_LDADD += \
 	$(XRANDR_LIBS)
+
+if HAVE_UPOWERGLIB
+xfsettingsd_SOURCES += \
+	displays-upower.c \
+	displays-upower.h
+
+xfsettingsd_CFLAGS += \
+	$(UPOWERGLIB_CFLAGS)
+
+xfsettingsd_LDADD += \
+	$(UPOWERGLIB_LIBS)
+endif
 endif
 
 settingsdir = $(sysconfdir)/xdg/xfce4/xfconf/xfce-perchannel-xml
