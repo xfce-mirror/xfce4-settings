@@ -816,6 +816,9 @@ xfce_displays_helper_get_topleftmost_pos (XfceRRCrtc         *crtc,
 {
     g_assert (XFCE_IS_DISPLAYS_HELPER (helper) && crtc);
 
+    if (crtc->mode == None)
+        return;
+
     /* used to normalize positions later */
     helper->min_x = MIN (helper->min_x, crtc->x);
     helper->min_y = MIN (helper->min_y, crtc->y);
