@@ -1,6 +1,6 @@
 /*
  *  Copyright (c) 2008 Nick Schermer <nick@xfce.org>
- *  Copyright (C) 2010 Lionel Le Folgoc <lionel@lefolgoc.net>
+ *  Copyright (C) 2010-2012 Lionel Le Folgoc <lionel@lefolgoc.net>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -37,6 +37,9 @@
 
 #include "debug.h"
 #include "displays.h"
+#ifdef HAVE_UPOWERGLIB
+#include "displays-upower.h"
+#endif
 
 /* check for randr 1.3 or better */
 #if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 3)
@@ -69,6 +72,8 @@ static XfceRRCrtc      *xfce_displays_helper_find_crtc_by_id                (Xfc
 static void             xfce_displays_helper_free_crtc                      (XfceRRCrtc              *crtc);
 static XfceRRCrtc      *xfce_displays_helper_find_usable_crtc               (XfceDisplaysHelper      *helper,
                                                                              RROutput                 output);
+static void             xfce_displays_helper_get_topleftmost_pos            (XfceRRCrtc              *crtc,
+                                                                             XfceDisplaysHelper      *helper);
 static void             xfce_displays_helper_normalize_crtc                 (XfceRRCrtc              *crtc,
                                                                              XfceDisplaysHelper      *helper);
 static Status           xfce_displays_helper_disable_crtc                   (XfceDisplaysHelper      *helper,
@@ -79,12 +84,18 @@ static void             xfce_displays_helper_apply_crtc                     (Xfc
                                                                              XfceDisplaysHelper      *helper);
 static void             xfce_displays_helper_set_outputs                    (XfceRRCrtc              *crtc,
                                                                              RROutput                 output);
+static void             xfce_displays_helper_apply_all                      (XfceDisplaysHelper      *helper);
 static void             xfce_displays_helper_channel_apply                  (XfceDisplaysHelper      *helper,
                                                                              const gchar             *scheme);
 static void             xfce_displays_helper_channel_property_changed       (XfconfChannel           *channel,
                                                                              const gchar             *property_name,
                                                                              const GValue            *value,
                                                                              XfceDisplaysHelper      *helper);
+#ifdef HAVE_UPOWERGLIB
+static void             xfce_displays_helper_toggle_internal                (XfceDisplaysUPower      *power,
+                                                                             gboolean                 lid_is_closed,
+                                                                             XfceDisplaysHelper      *helper);
+#endif
 
 
 
@@ -104,6 +115,11 @@ struct _XfceDisplaysHelper
 #ifdef HAS_RANDR_ONE_POINT_THREE
     gint                has_1_3;
     gint                primary;
+#endif
+
+#ifdef HAVE_UPOWERGLIB
+    XfceDisplaysUPower *power;
+    gint                phandler;
 #endif
 
     GdkDisplay         *display;
@@ -166,6 +182,10 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
     gint major = 0, minor = 0;
     gint error_base, err;
 
+#ifdef HAVE_UPOWERGLIB
+    helper->power = NULL;
+    helper->phandler = 0;
+#endif
     helper->resources = NULL;
     helper->crtcs = NULL;
     helper->handler = 0;
@@ -208,6 +228,14 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
             gdk_window_add_filter (helper->root_window,
                                    xfce_displays_helper_screen_on_event,
                                    helper);
+
+#ifdef HAVE_UPOWERGLIB
+            helper->power = g_object_new (XFCE_TYPE_DISPLAYS_UPOWER, NULL);
+            helper->phandler = g_signal_connect (G_OBJECT (helper->power),
+                                                 "lid-changed",
+                                                 G_CALLBACK (xfce_displays_helper_toggle_internal),
+                                                 helper);
+#endif
 
             /* open the channel */
             helper->channel = xfconf_channel_get ("displays");
@@ -254,6 +282,16 @@ xfce_displays_helper_dispose (GObject *object)
                                      helper->handler);
         helper->handler = 0;
     }
+
+#ifdef HAVE_UPOWERGLIB
+    if (helper->phandler > 0)
+    {
+        g_signal_handler_disconnect (G_OBJECT (helper->power),
+                                     helper->phandler);
+        g_object_unref (helper->power);
+        helper->phandler = 0;
+    }
+#endif
 
     gdk_window_remove_filter (helper->root_window,
                               xfce_displays_helper_screen_on_event,
@@ -352,7 +390,6 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
 
         /*TODO: check that there is still one output enabled */
         /*TODO: e.g. reenable LVDS1 when VGA1 is diconnected. */
-        /*TODO: also, disable LVDS1 when the lid is closed (needs upower though :/) */
     }
 
     /* Pass the event on to GTK+ */
@@ -637,10 +674,6 @@ xfce_displays_helper_load_from_xfconf (XfceDisplaysHelper *helper,
         crtc->changed = TRUE;
     }
 
-    /* used to normalize positions later */
-    helper->min_x = MIN (helper->min_x, crtc->x);
-    helper->min_y = MIN (helper->min_y, crtc->y);
-
     xfce_displays_helper_set_outputs (crtc, output);
 
 next_output:
@@ -773,6 +806,19 @@ xfce_displays_helper_find_usable_crtc (XfceDisplaysHelper *helper,
 
     /* none available */
     return NULL;
+}
+
+
+
+static void
+xfce_displays_helper_get_topleftmost_pos (XfceRRCrtc         *crtc,
+                                          XfceDisplaysHelper *helper)
+{
+    g_assert (XFCE_IS_DISPLAYS_HELPER (helper) && crtc);
+
+    /* used to normalize positions later */
+    helper->min_x = MIN (helper->min_x, crtc->x);
+    helper->min_y = MIN (helper->min_y, crtc->y);
 }
 
 
@@ -922,6 +968,43 @@ xfce_displays_helper_set_outputs (XfceRRCrtc *crtc,
 
 
 static void
+xfce_displays_helper_apply_all (XfceDisplaysHelper *helper)
+{
+    g_assert (XFCE_IS_DISPLAYS_HELPER (helper) && helper->crtcs);
+
+    /* normalization and screen size calculation */
+    g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_get_topleftmost_pos, helper);
+    g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_normalize_crtc, helper);
+
+    gdk_error_trap_push ();
+
+    /* grab server to prevent clients from thinking no output is enabled */
+    gdk_x11_display_grab (helper->display);
+
+    /* disable CRTCs that won't fit in the new screen */
+    g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_workaround_crtc_size, helper);
+
+    /* set the screen size only if it's really needed and valid */
+    xfce_displays_helper_set_screen_size (helper);
+
+    /* final loop, apply crtc changes */
+    g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_apply_crtc, helper);
+
+#ifdef HAS_RANDR_ONE_POINT_THREE
+        if (helper->has_1_3)
+            XRRSetOutputPrimary (helper->xdisplay, GDK_WINDOW_XID (helper->root_window),
+                                 helper->primary);
+#endif
+
+    /* release the grab, changes are done */
+    gdk_x11_display_ungrab (helper->display);
+    gdk_flush ();
+    gdk_error_trap_pop ();
+}
+
+
+
+static void
 xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
                                     const gchar        *scheme)
 {
@@ -962,36 +1045,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
         goto err_cleanup;
     }
 
-    /* second loop, normalization and screen size calculation */
-    g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_normalize_crtc, helper);
-
-    gdk_error_trap_push ();
-
-    /* grab server to prevent clients from thinking no output is enabled */
-    gdk_x11_display_grab (helper->display);
-
-    /* disable CRTCs that won't fit in the new screen */
-    g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_workaround_crtc_size, helper);
-
-    /* set the screen size only if it's really needed and valid */
-    xfce_displays_helper_set_screen_size (helper);
-
-    /* final loop, apply crtc changes */
-    g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_apply_crtc, helper);
-
-#ifdef HAS_RANDR_ONE_POINT_THREE
-        if (helper->has_1_3)
-            XRRSetOutputPrimary (helper->xdisplay, GDK_WINDOW_XID (helper->root_window),
-                                 helper->primary);
-#endif
-
-    /* release the grab, changes are done */
-    gdk_x11_display_ungrab (helper->display);
-    gdk_flush ();
-    gdk_error_trap_pop ();
-
-    /* refresh the cache (better safe than sorry) */
-    xfce_displays_helper_reload (helper);
+    /* apply settings */
+    xfce_displays_helper_apply_all (helper);
 
 err_cleanup:
     /* Free the xfconf properties */
@@ -1016,3 +1071,145 @@ xfce_displays_helper_channel_property_changed (XfconfChannel      *channel,
         xfconf_channel_reset_property (channel, "/Schemes/Apply", FALSE);
     }
 }
+
+
+
+#ifdef HAVE_UPOWERGLIB
+static void
+xfce_displays_helper_toggle_internal (XfceDisplaysUPower *power,
+                                      gboolean            lid_is_closed,
+                                      XfceDisplaysHelper *helper)
+{
+    GHashTable    *saved_outputs;
+    XfceRRCrtc    *crtc = NULL;
+    XRROutputInfo *info;
+    RROutput       lvds = None;
+    gboolean       active = FALSE;
+    RRMode         best_mode;
+    gint           best_dist, dist, n, m;
+
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Lid is %s, toggling internal output.",
+                    XFSD_LID_STR (lid_is_closed));
+
+    for (n = 0; n < helper->resources->noutput; ++n)
+    {
+        gdk_error_trap_push ();
+        info = XRRGetOutputInfo (helper->xdisplay, helper->resources,
+                                 helper->resources->outputs[n]);
+
+        /* Try to find the internal display */
+        if (info && (info->connection == RR_Connected)
+            && (g_str_has_prefix (info->name, "LVDS")
+                || strcmp (info->name, "PANEL") == 0))
+        {
+            lvds = helper->resources->outputs[n];
+            break;
+        }
+
+        XRRFreeOutputInfo (info);
+        gdk_flush ();
+        gdk_error_trap_pop ();
+    }
+
+    if (lvds == None)
+        return;
+
+    /* Get the associated CRTC */
+    if (info->crtc != None)
+        crtc = xfce_displays_helper_find_crtc_by_id (helper, info->crtc);
+
+    /* Is LVDS active? */
+    active = crtc && crtc->mode != None;
+    helper->mm_width = helper->mm_height = helper->width = helper->height = 0;
+    helper->min_x = helper->min_y = 32768;
+
+    if (active && lid_is_closed)
+    {
+        /* if active and the lid is closed, deactivate it */
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "%s will be disabled (lid closed event).", info->name);
+        crtc->mode = None;
+        crtc->noutput = 0;
+        crtc->changed = TRUE;
+
+    }
+    else if (!active && !lid_is_closed)
+    {
+        /* re-activate it because the user opened the lid */
+        saved_outputs = xfconf_channel_get_properties (helper->channel, "/Default");
+        if (saved_outputs)
+        {
+            /* try to load user saved settings */
+            active = xfce_displays_helper_load_from_xfconf (helper, "Default",
+                                                            saved_outputs, lvds);
+            g_hash_table_destroy (saved_outputs);
+            if (!active)
+            {
+                /* inactive, because of invalid or inexistent settings,
+                 * so set up a mode manually */
+                if (info->crtc == None)
+                    crtc = xfce_displays_helper_find_usable_crtc (helper, lvds);
+
+                if (!crtc)
+                {
+                    g_warning ("No available CRTC for %s (lid opened event).", info->name);
+                    goto lid_abort;
+                }
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "CRTC %lu assigned to %s (lid opened event).",
+                                crtc->id, info->name);
+
+                /* find the preferred mode */
+                best_mode = None;
+                best_dist = 0;
+                for (n = 0; n < info->nmode; ++n)
+                {
+                    /* walk all modes */
+                    for (m = 0; m < helper->resources->nmode; ++m)
+                    {
+                        /* does the mode info match the mode we seek? */
+                        if (helper->resources->modes[m].id != info->modes[n])
+                            continue;
+
+                        if (n < info->npreferred)
+                            dist = 0;
+                        else if (info->mm_height != 0)
+                            dist = (1000 * gdk_screen_height () / gdk_screen_height_mm () -
+                                    1000 * helper->resources->modes[m].height / info->mm_height);
+                        else
+                            dist = gdk_screen_height () - helper->resources->modes[m].height;
+
+                        dist = ABS (dist);
+
+                        if (best_mode == None || dist < best_dist)
+                        {
+                            best_mode = helper->resources->modes[m].id;
+                            best_dist = dist;
+                        }
+                    }
+                }
+                /* bad luck */
+                if (best_mode == None)
+                {
+                    g_warning ("No available mode for %s (lid opened event).", info->name);
+                    goto lid_abort;
+                }
+                /* set the mode found */
+                crtc->mode = best_mode;
+                xfce_displays_helper_set_outputs (crtc, lvds);
+                crtc->changed = TRUE;
+            }
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "%s will be re-enabled (lid opened event).", info->name);
+        }
+    }
+    else
+        goto lid_abort;
+
+    /* apply settings */
+    xfce_displays_helper_apply_all (helper);
+
+lid_abort:
+    /* wasn't freed because of the break */
+    XRRFreeOutputInfo (info);
+    gdk_flush ();
+    gdk_error_trap_pop ();
+}
+#endif
