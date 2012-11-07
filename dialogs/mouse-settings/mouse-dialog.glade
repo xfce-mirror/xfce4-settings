@@ -42,6 +42,39 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-revert-to-saved</property>
   </object>
+  <object class="GtkListStore" id="synaptics-scroll-store">
+    <columns>
+      <!-- column-name title -->
+      <column type="gchararray"/>
+      <!-- column-name sensitive -->
+      <column type="gboolean"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Disabled</col>
+        <col id="1">True</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Edge scrolling</col>
+        <col id="1">True</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Two-finger scrolling</col>
+        <col id="1">True</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Circular scrolling</col>
+        <col id="1">True</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="theme-cursor-size">
+    <property name="lower">16</property>
+    <property name="upper">48</property>
+    <property name="value">24</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">11</property>
+  </object>
   <object class="XfceTitledDialog" id="mouse-dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Mouse and Touchpad</property>
@@ -60,21 +93,6 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="button1">
-                <property name="label">gtk-close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-help</property>
                 <property name="use_action_appearance">False</property>
@@ -88,6 +106,21 @@
                 <property name="fill">False</property>
                 <property name="position">0</property>
                 <property name="secondary">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-close</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -150,10 +183,10 @@
                 <child>
                   <object class="GtkCheckButton" id="device-enabled">
                     <property name="label" translatable="yes">_Enable this device</property>
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="use_underline">True</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -197,11 +230,11 @@
                                         <property name="spacing">12</property>
                                         <child>
                                           <object class="GtkRadioButton" id="device-right-handed">
-                                            <property name="label" translatable="yes">_Right-handed</property>
+                                            <property name="label" translatable="yes">Ri_ght-handed</property>
+                                            <property name="use_action_appearance">False</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
-                                            <property name="use_action_appearance">False</property>
                                             <property name="use_underline">True</property>
                                             <property name="active">True</property>
                                             <property name="draw_indicator">True</property>
@@ -214,11 +247,11 @@
                                         </child>
                                         <child>
                                           <object class="GtkRadioButton" id="device-left-handed">
-                                            <property name="label" translatable="yes">_Left-handed</property>
+                                            <property name="label" translatable="yes">Le_ft-handed</property>
+                                            <property name="use_action_appearance">False</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
-                                            <property name="use_action_appearance">False</property>
                                             <property name="use_underline">True</property>
                                             <property name="draw_indicator">True</property>
                                             <property name="group">device-right-handed</property>
@@ -239,11 +272,11 @@
                                     <child>
                                       <object class="GtkCheckButton" id="device-reverse-scrolling">
                                         <property name="label" translatable="yes">Reverse scroll d_irection</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="tooltip_text" translatable="yes">When selected, the scroll wheel will work in the opposite direction</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -299,7 +332,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">_Acceleration:</property>
+                                        <property name="label" translatable="yes">Acceleratio_n:</property>
                                         <property name="use_underline">True</property>
                                         <property name="mnemonic_widget">device-acceleration-scale</property>
                                       </object>
@@ -346,7 +379,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">_Sensitivity:</property>
+                                        <property name="label" translatable="yes">Sensitivit_y:</property>
                                         <property name="use_underline">True</property>
                                         <property name="mnemonic_widget">device-threshold-scale</property>
                                       </object>
@@ -365,12 +398,12 @@
                                         <property name="yscale">0</property>
                                         <child>
                                           <object class="GtkButton" id="device-reset-feedback">
-                                            <property name="label" translatable="yes">Reset to De_faults</property>
+                                            <property name="label" translatable="yes">_Reset to Defaults</property>
+                                            <property name="use_action_appearance">False</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">True</property>
                                             <property name="tooltip_text" translatable="yes">Set the acceleration and sensitivity for the selected device to the default values</property>
-                                            <property name="use_action_appearance">False</property>
                                             <property name="image">image5</property>
                                             <property name="use_underline">True</property>
                                           </object>
@@ -441,12 +474,12 @@
                                     <property name="spacing">6</property>
                                     <child>
                                       <object class="GtkCheckButton" id="synaptics-disable-while-type">
-                                        <property name="label" translatable="yes">Disable to_uchpad while typing</property>
+                                        <property name="label" translatable="yes">Disable touchpad _while typing</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="tooltip_text" translatable="yes">When selected, the touchpad will be disabled when the keyboard is being used</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -458,11 +491,11 @@
                                     </child>
                                     <child>
                                       <object class="GtkCheckButton" id="synaptics-tap-to-click">
-                                        <property name="label" translatable="yes">T_ap touchpad to click</property>
+                                        <property name="label" translatable="yes">Tap touchpad to clic_k</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -521,7 +554,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="xalign">0</property>
-                                            <property name="label" translatable="yes">Scro_lling mode:</property>
+                                            <property name="label" translatable="yes">Scrolling _mode:</property>
                                             <property name="use_underline">True</property>
                                             <property name="mnemonic_widget">synaptics-scroll</property>
                                           </object>
@@ -539,8 +572,8 @@
                                             <child>
                                               <object class="GtkCellRendererText" id="cellrenderertext3"/>
                                               <attributes>
-                                                <attribute name="text">0</attribute>
                                                 <attribute name="sensitive">1</attribute>
+                                                <attribute name="text">0</attribute>
                                               </attributes>
                                             </child>
                                           </object>
@@ -560,10 +593,10 @@
                                     <child>
                                       <object class="GtkCheckButton" id="synaptics-scroll-horiz">
                                         <property name="label" translatable="yes">Enable hori_zontal scrolling</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -643,7 +676,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">Tr_acking mode:</property>
+                                        <property name="label" translatable="yes">Trac_king mode:</property>
                                         <property name="use_underline">True</property>
                                         <property name="mnemonic_widget">wacom-mode</property>
                                       </object>
@@ -733,7 +766,7 @@
                       <object class="GtkLabel" id="wacom-label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Table_t</property>
+                        <property name="label" translatable="yes">Tab_let</property>
                         <property name="use_underline">True</property>
                       </object>
                       <packing>
@@ -1007,7 +1040,7 @@
                                   <object class="GtkLabel" id="label21">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Cursor _size:</property>
+                                    <property name="label" translatable="yes">Cursor si_ze:</property>
                                     <property name="use_underline">True</property>
                                     <property name="mnemonic_widget">spin1</property>
                                   </object>
@@ -1117,7 +1150,7 @@
               <object class="GtkLabel" id="label3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">T_heme</property>
+                <property name="label" translatable="yes">_Theme</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -1135,42 +1168,9 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button1</action-widget>
       <action-widget response="-11">button2</action-widget>
+      <action-widget response="0">button1</action-widget>
     </action-widgets>
-  </object>
-  <object class="GtkAdjustment" id="theme-cursor-size">
-    <property name="lower">16</property>
-    <property name="upper">48</property>
-    <property name="value">24</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">11</property>
-  </object>
-  <object class="GtkListStore" id="synaptics-scroll-store">
-    <columns>
-      <!-- column-name title -->
-      <column type="gchararray"/>
-      <!-- column-name sensitive -->
-      <column type="gboolean"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Disabled</col>
-        <col id="1">True</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Edge scrolling</col>
-        <col id="1">True</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Two-finger scrolling</col>
-        <col id="1">True</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Circular scrolling</col>
-        <col id="1">True</col>
-      </row>
-    </data>
   </object>
   <object class="GtkListStore" id="wacom-mode-store">
     <columns>

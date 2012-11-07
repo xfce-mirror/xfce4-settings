@@ -183,7 +183,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_window_set_default_size (GTK_WINDOW (dialog), 640, 500);
     xfce_settings_manager_dialog_set_title (dialog, NULL, NULL, NULL);
 
-    dialog->button_back = xfce_gtk_button_new_mixed (GTK_STOCK_GO_BACK, _("_All Settings"));
+    dialog->button_back = xfce_gtk_button_new_mixed (GTK_STOCK_GO_BACK, _("All _Settings"));
     bbox = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
     gtk_container_add (GTK_CONTAINER (bbox), dialog->button_back);
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
