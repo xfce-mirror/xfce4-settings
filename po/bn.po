@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-12 22:46+0200\n"
+"POT-Creation-Date: 2012-11-20 17:53+0100\n"
 "PO-Revision-Date: 2010-02-23 16:45+0600\n"
 "Last-Translator: Sadia Afroz <sadia@ankur.org.bd>\n"
 "Language-Team: Bengali <ankur-bd-l10n@googlegroups.com>\n"
@@ -47,11 +47,12 @@ msgid "No AT-SPI provider was found on your system"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
-msgid "_Assistive Technologies"
+msgid "Assistive _Technologies"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
-msgid "Use _sticky keys"
+#, fuzzy
+msgid "_Use sticky keys"
 msgstr "স্টিকি কী ব্যবহার (_s)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
@@ -77,7 +78,8 @@ msgstr ""
 "অবস্থায় আবদ্ধ থাকবে যতক্ষণ না পুনরায় চাপ দেয়া হয়"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
-msgid "Disable sticky keys if _two keys are pressed"
+#, fuzzy
+msgid "Disable sticky keys if two keys are _pressed"
 msgstr "দুটো কী চাপা হলে স্টিকি কী নিষ্ক্রিয় করা হবে (_t)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
@@ -166,11 +168,13 @@ msgid "_Acceleration delay:"
 msgstr "এক্সিলারেশন বিলম্ব: (_A)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
-msgid "Acceleration _time:"
+#, fuzzy
+msgid "Acceleration t_ime:"
 msgstr "এক্সিলারেশন সময়: (_t)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
-msgid "Maximum _speed:"
+#, fuzzy
+msgid "Ma_ximum speed:"
 msgstr "সর্বোচ্চ গতি: (_s)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
@@ -217,21 +221,21 @@ msgstr "মাউস (_M)"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "সেটিংস ব্যবস্থাপক সকেট"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:103
+#: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
@@ -240,29 +244,29 @@ msgstr "সংস্করণ তথ্যাবলী"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
-#: ../dialogs/display-settings/main.c:1043
+#: ../dialogs/display-settings/main.c:1926
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
+#: ../dialogs/mouse-settings/main.c:1597 ../xfce4-settings-editor/main.c:63
+#: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "ব্যবহারের জন্য '%s --সহায়তা' টাইপ করুন।"
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
-#: ../dialogs/display-settings/main.c:1062
+#: ../dialogs/display-settings/main.c:1945
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
+#: ../dialogs/mouse-settings/main.c:1616 ../xfce4-settings-editor/main.c:82
+#: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce ডেভেলপমেন্ট টিম। সকল অধিকার সংরক্ষিত।"
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
-#: ../dialogs/display-settings/main.c:1063
+#: ../dialogs/display-settings/main.c:1946
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
+#: ../dialogs/mouse-settings/main.c:1617 ../xfce4-settings-editor/main.c:83
+#: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "অনুগ্রহ করে বাগগুলো <%s>-এ রিপোর্ট করুন।"
@@ -272,59 +276,24 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "কীবোর্ড ও মাউসের স্বাচ্ছন্দ্যকরণ উন্নত করুন"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:852
-#: ../dialogs/display-settings/main.c:79
-msgid "None"
-msgstr "কোনটি না"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
-msgid "Slight"
-msgstr "সামান্য"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-msgid "Medium"
-msgstr "মাধ্যম"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
-msgid "Full"
-msgstr "পূর্ণ"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
-msgid "Icons"
-msgstr "আইকন"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
-msgid "Text"
-msgstr "টেক্সট"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
-#: ../dialogs/display-settings/main.c:82
-msgid "Both"
-msgstr "উভয়"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
-msgid "Both Horizontal"
-msgstr "উভয়ই অনুভূমিক"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
 msgstr "অবয়ব"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
 msgstr "আপনার ডেস্কটপের অবয়ব স্বনির্ধারণ করুন"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 msgid "St_yle"
 msgstr "শৈলী (_y)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
 msgid "_Icons"
 msgstr "আইকন (_I)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
@@ -332,15 +301,15 @@ msgstr ""
 "ব্যবহারকারী ইন্টারফেস টেক্সট অঙ্কনের সময় এই ফন্টটি পূর্বনির্ধারিত ফন্ট হিসেবে ব্যবহৃত "
 "হবে"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 msgid "Select a default font"
 msgstr "পূর্বনির্ধারিত ফন্ট নির্বাচন করুন"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid "Default Fon_t"
 msgstr "পূর্বনির্ধারিত ফন্ট (_t)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw "
 "the font; pick whichever looks best according to personal preference"
@@ -348,7 +317,7 @@ msgstr ""
 "অনেক ফন্টেই এমন কিছু তথ্য থাকে যা বাড়তি ইঙ্গিত প্রদান করে যেমন ফন্টটিকে কিভাবে "
 "সবচেয়ে ভালোভাবে আঁকা যায়; ব্যক্তিগত পছন্দ অনুযায়ী সর্বোত্তম অবয়বটিকে পছন্দ করুন"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
@@ -356,75 +325,77 @@ msgstr ""
 "পর্দার জন্য সঠিক সাব-পিক্সেলের বিন্যাস নির্বাচন করার মাধ্যমে TFT বা LCD পর্দার "
 "ফন্টের গুণগত মান অনেকাংশে উন্নত করা যায়"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Sub-_pixel order:"
 msgstr "সাব-পিক্সেলের বিন্যাস: (_p)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
-msgid "_Hinting:"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+#, fuzzy
+msgid "Hintin_g:"
 msgstr "ইঙ্গিতপূর্ণ: (_H)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-msgid "Enable _anti-aliasing"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#, fuzzy
+msgid "_Enable anti-aliasing"
 msgstr "অ্যান্টিএলিয়াসিং সক্রিয় (_a)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "অ্যান্টিএলিয়াসিং, বা ফন্ট মসৃনকরণ, পর্দায় টেক্সটের অবয়ব উন্নত করতে পারে"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Rendering"
 msgstr "রেন্ডারিং"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Custom _DPI setting:"
 msgstr "স্বনির্ধারিত DPI সেটিং: (_D)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too small"
 msgstr "ফন্ট অত্যধিক বড় বা ছোট লাগলে সনাক্তকৃত মনিটর রেজল্যুশন উপেক্ষা করুন"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "DPI"
 msgstr "DPI"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "_Fonts"
 msgstr "ফন্ট (_F)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Specify what should be displayed in toolbar items"
 msgstr "টুলবার আইটেমে কি প্রদর্শিত হওয়া উচিত সুনির্দিষ্টভাবে উল্লেখ করুন"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "_Toolbar Style"
 msgstr "টুলবারের শৈলী (_T)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Show images on _buttons"
 msgstr "বোতামে ছবি প্রদর্শন (_b)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr ""
 "বোতামের টেক্সটের সাথে আইকন প্রদর্শিত হওয়া উচিত কিনা তা সুনির্দিষ্টভাবে উল্লেখ করুন"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Show images in _menus"
 msgstr "মেনুতে ছবি প্রদর্শন (_m)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr ""
 "মেনুর আইটেমের সাথে আইকন প্রদর্শিত হওয়া উচিত কিনা তা সুনির্দিষ্টভাবে উল্লেখ করুন"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Enable e_ditable accelerators"
 msgstr "সম্পাদনাযোগ্য এক্সিলারেটর সক্রিয় (_d)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
@@ -434,24 +405,25 @@ msgstr ""
 "সমাবেশ চাপার ফলে মেনু আইটেমের জন্য নির্ধারিত কীবোর্ড শর্টকাট পরিবর্তিত করা যেতে "
 "পারে "
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Menus and Buttons"
 msgstr "মেনু ও বোতাম"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Enable _event sounds"
 msgstr "ইভেন্ট সাউন্ড সক্রিয় (_e)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr ""
 "সার্বজনীনভাবে ইভেন্ট সাউন্ড সক্রিয় বা নিষ্ক্রিয় (\"Canberra\" সাপোর্ট আবশ্যকীয়)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
-msgid "Enable i_nput feedback sounds"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#, fuzzy
+msgid "Enable input feedbac_k sounds"
 msgstr "ইনপুট ফিডব্যাক সাউন্ড সক্রিয় (_n)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
@@ -459,13 +431,50 @@ msgstr ""
 "মাউস ক্লিক এবং অন্যান্য ব্যবহারকারী ইনপুটের জন্য ইভেন্ট সাউন্ড চালান হবে কিনা তা "
 "সুনির্দিষ্টভাবে উল্লেখ করুন"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Event sounds"
 msgstr "ইভেন্ট সাউন্ড"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#, fuzzy
+msgid "Setti_ngs"
+msgstr "সেটিংসমূহ"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/main.c:852
+#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:113
+msgid "None"
+msgstr "কোনটি না"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+msgid "Slight"
+msgstr "সামান্য"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+msgid "Medium"
+msgstr "মাধ্যম"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+msgid "Full"
+msgstr "পূর্ণ"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+msgid "Icons"
+msgstr "আইকন"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+msgid "Text"
+msgstr "টেক্সট"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/display-settings/main.c:116
+msgid "Both"
+msgstr "উভয়"
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
-msgid "_Settings"
-msgstr "সেটিংসমূহ (_S)"
+msgid "Both Horizontal"
+msgstr "উভয়ই অনুভূমিক"
 
 #: ../dialogs/appearance-settings/main.c:733
 #, c-format
@@ -516,21 +525,21 @@ msgid "Confirmation"
 msgstr "সংস্করণ তথ্যাবলী"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
-msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr ""
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
-msgid ""
-"The previous configuration will be restored in 10 seconds if you do not "
-"reply to this question."
-msgstr ""
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Keep this configuration"
 msgstr ""
 
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Restore the previous configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
+msgid ""
+"The previous configuration will be restored in 10 seconds if you do not "
+"reply to this question."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
@@ -545,74 +554,126 @@ msgstr "পর্দার সেটিংসমূহ ও বহির্বি
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 #, fuzzy
-msgid "_Use this output"
-msgstr "বাগাড়ম্বর আউটপুট"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:4
-#, fuzzy
 msgid "Ref_lection:"
 msgstr "রেজল্যুশন: (_e)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:5
+#: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "Ro_tation:"
 msgstr "আবর্তন: (_t)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
 msgstr "রিফ্রেশ হার: (_r)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
+#: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "R_esolution:"
 msgstr "রেজল্যুশন: (_e)"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+#, fuzzy
+msgid "P_osition:"
+msgstr "আবর্তন: (_t)"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:8
+#, fuzzy
+msgid "_Use this output"
+msgstr "বাগাড়ম্বর আউটপুট"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "_Mirror displays"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid "Configure _new displays when connected"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid ""
+"Automatically show the \"minimal dialog\" to quickly configure newly "
+"connected displays."
+msgstr ""
+
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 #, fuzzy
-msgid "Display settings"
+msgid "Displays"
 msgstr "প্রদর্শন"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-msgid "Several displays are available. Use:\n"
-msgstr ""
+#, fuzzy
+msgid "Only Display 1"
+msgstr "প্রদর্শন"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
+#, fuzzy
+msgid "Mirror Displays"
+msgstr "প্রদর্শন"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
-msgid "Both displays cloned"
+msgid "Extend to the right"
 msgstr ""
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
-msgid "Use both displays to show the same contents"
+#, fuzzy
+msgid "Only Display 2"
+msgstr "প্রদর্শন"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
+msgid "Advanced"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:68
-msgid "Normal"
-msgstr "সাধারণ"
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
+msgid "radiobutton"
+msgstr ""
 
-#: ../dialogs/display-settings/main.c:69
+#: ../dialogs/display-settings/main.c:90
+msgid "Same as"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:91
+msgid "Above"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:92
+msgid "Below"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:93
+#, fuzzy
+msgid "Right of"
+msgstr "ডান"
+
+#: ../dialogs/display-settings/main.c:94
+#, fuzzy
+msgid "Left of"
+msgstr "বাম"
+
+#: ../dialogs/display-settings/main.c:103
 msgid "Left"
 msgstr "বাম"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/main.c:104
 msgid "Inverted"
 msgstr "উল্টানো"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:105
 msgid "Right"
 msgstr "ডান"
 
-#: ../dialogs/display-settings/main.c:80
+#: ../dialogs/display-settings/main.c:114
 #, fuzzy
 msgid "Horizontal"
 msgstr "উভয়ই অনুভূমিক"
 
-#: ../dialogs/display-settings/main.c:81
+#: ../dialogs/display-settings/main.c:115
 #, fuzzy
 msgid "Vertical"
 msgstr "উল্লম্ব RGB"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:138
 msgid "Minimal interface to set up an external output"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:171
+#: ../dialogs/display-settings/main.c:226
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -620,43 +681,53 @@ msgid ""
 msgstr ""
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:505
+#: ../dialogs/display-settings/main.c:747
 #, c-format
 msgid "%.1f Hz"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:651
+#: ../dialogs/display-settings/main.c:1040
+#, fuzzy
+msgid "Display:"
+msgstr "প্রদর্শন"
+
+#: ../dialogs/display-settings/main.c:1045
+#, fuzzy
+msgid "Resolution:"
+msgstr "রেজল্যুশন: (_e)"
+
+#: ../dialogs/display-settings/main.c:1232
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:653
+#: ../dialogs/display-settings/main.c:1234
 msgid "Selected output not disabled"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1075
-#: ../dialogs/display-settings/xfce-randr.c:249
+#: ../dialogs/display-settings/main.c:1958
+#: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "ব্যবহৃত RandR বর্ধিতাংশের সংস্করণ জিজ্ঞাসা করতে ব্যর্থ"
 
-#: ../dialogs/display-settings/main.c:1076
-#: ../dialogs/display-settings/main.c:1112
+#: ../dialogs/display-settings/main.c:1959
+#: ../dialogs/display-settings/main.c:1995
 #, fuzzy
 msgid "Unable to start the Xfce Display Settings"
 msgstr "যেকোন পরিবর্তন প্রয়োগ করে নতুন প্রদর্শন সেটিংসমূহ পরীক্ষা করুন"
 
-#: ../dialogs/display-settings/main.c:1107
+#: ../dialogs/display-settings/main.c:1990
 #, fuzzy
 msgid "ATI Settings"
 msgstr "সেটিংসমূহ"
 
-#: ../dialogs/display-settings/main.c:1122
+#: ../dialogs/display-settings/main.c:2005
 msgid "Unable to launch the proprietary driver settings"
 msgstr ""
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:257
+#: ../dialogs/display-settings/xfce-randr.c:358
 #, fuzzy, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -665,19 +736,19 @@ msgstr ""
 "এই সিস্টেমটি RandR %d.%d ব্যবহার করছে। প্রদর্শন সেটিংসমূহের কাজ করার জন্য অন্ততপক্ষে "
 "১.১ সংস্করণ আবশ্যকীয়"
 
-#: ../dialogs/display-settings/xfce-randr.c:536
+#: ../dialogs/display-settings/xfce-randr.c:626
 msgid "Laptop"
 msgstr "ল্যাপটপ"
 
-#: ../dialogs/display-settings/xfce-randr.c:557
+#: ../dialogs/display-settings/xfce-randr.c:647
 msgid "Monitor"
 msgstr "মনিটর"
 
-#: ../dialogs/display-settings/xfce-randr.c:560
+#: ../dialogs/display-settings/xfce-randr.c:650
 msgid "Television"
 msgstr "টেলিভিশন"
 
-#: ../dialogs/display-settings/xfce-randr.c:564
+#: ../dialogs/display-settings/xfce-randr.c:654
 msgid "Digital display"
 msgstr "ডিজিটাল প্রদর্শন"
 
@@ -767,7 +838,7 @@ msgid "Restore num l_ock state on startup"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "General"
 msgstr ""
 
@@ -791,7 +862,8 @@ msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "কোন চাপ দেয়া কী পুনরাবৃত্ত হওয়ার পূর্বের সময়, মিলিসেকেন্ডে"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
-msgid "Repeat _speed:"
+#, fuzzy
+msgid "Repe_at speed:"
 msgstr "পুনরাবৃত্ত গতি: (_s)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
@@ -827,11 +899,13 @@ msgid "_Test area:"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
-msgid "Be_havior"
-msgstr "আচরণ (_h)"
+#, fuzzy
+msgid "Beha_vior"
+msgstr "আচরণ (_B)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "Define _shortcuts for launching applications:"
+#, fuzzy
+msgid "Define shortcuts for la_unching applications:"
 msgstr "অ্যাপ্লিকেশন চালুকরণের জন্য শর্টকাট নির্ধারণ করুন: (_s)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
@@ -857,14 +931,36 @@ msgstr ""
 "উল্লেখ করে"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
-msgid "Keyboard model"
+#, fuzzy
+msgid "_Keyboard model"
 msgstr "কীবোর্ডের মডেল"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
-msgid "Keyboard layout"
-msgstr "কীবোর্ডের লেআউট"
+msgid "Change la_yout option"
+msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+msgid "Co_mpose key"
+msgstr ""
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#, fuzzy
+msgid "Move currently selected item up by one row"
+msgstr "বর্তমানে নির্বাচিত আইটেম এক সারি উপরে উঠানো হবে"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#, fuzzy
+msgid "Move currently selected item down by one row"
+msgstr "বর্তমানে নির্বাচিত আইটেম এক সারি নীচে নামানো হবে"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#, fuzzy
+msgid "Key_board layout"
+msgstr "কীবোর্ডের লেআউট"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "_Layout"
 msgstr "বহির্বিন্যাস (_L)"
 
@@ -881,32 +977,32 @@ msgstr "xfconf ডিমনের সাথে সংযুক্ত করত�
 msgid "Could not create the settings dialog."
 msgstr "সেটিংস ডায়ালগ তৈরি করা যায়নি।"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:396
 msgid "Command"
 msgstr "কমান্ড "
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:401
 msgid "Shortcut"
 msgstr "শর্টকাট"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:473
 msgid "Layout"
 msgstr "বহির্বিন্যাস"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:474
 msgid "Variant"
 msgstr "ভেরিয়েন্ট"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:957
 msgid "Shortcut command may not be empty."
 msgstr "শর্টকাট কমান্ড ফাঁকা নাও হতে পারে।"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1067
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1068
 msgid "Reset to Defaults"
 msgstr "পূর্বনির্ধারিততে পুনঃনির্ধারণ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1069
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -914,11 +1010,11 @@ msgstr ""
 "এর মাধ্যমে সকল শর্টকাট তার পূর্বনির্ধারিত মানে পুনঃনির্ধারিত হবে। আপনি কি সত্যিই এটা "
 "করতে চান?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1148
 msgid "The system defaults will be restored next time you log in."
 msgstr "পরবর্তী সময়ে আপনি লগইন করলে সিস্টেম ডিফল্ট পুনরায় সংরক্ষিত হবে।"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1150
 msgid "Warning"
 msgstr "সতর্কীকরণ"
 
@@ -1076,166 +1172,174 @@ msgid "%g ms"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+#, fuzzy
+msgid "Disabled"
+msgstr "সক্রিয়"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+msgid "Edge scrolling"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Two-finger scrolling"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+msgid "Circular scrolling"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Configure pointer device behavior and appearance"
 msgstr "পয়েন্টার ডিভাইসের আচরণ ও অবয়ব কনফিগার"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 #, fuzzy
 msgid "De_vice:"
 msgstr "ডিভাইস (_v)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "_Enable this device"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 #, fuzzy
-msgid "_Right-handed"
+msgid "Ri_ght-handed"
 msgstr "ডান হাতি (_R)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 #, fuzzy
-msgid "_Left-handed"
+msgid "Le_ft-handed"
 msgstr "বাম হাতি"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 #, fuzzy
 msgid "Reverse scroll d_irection"
 msgstr "স্ক্রল অভিমুখ বিপরীত করা হবে (_v)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "নির্বাচিত করা হলে, স্ক্রল চাকা বিপরীত অভিমুখে কাজ করবে"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 #, fuzzy
 msgid "Buttons"
 msgstr "বোতামের বিন্যাস"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
-msgid "_Acceleration:"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#, fuzzy
+msgid "Acceleratio_n:"
 msgstr "এক্সিলারেশন: (_A)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "যে পরিস্থিতিতে পয়েন্টারের গতি মাউস সরানোর সাথে সাথে বৃদ্ধি পায়"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr ""
 "এক্সিলারেটিং শুরু করার আগে স্বল্পতম সময়ে পয়েন্টারকে যে সংখ্যক পিক্সেল সরাতে হবে"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-msgid "_Sensitivity:"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+msgid "Sensitivit_y:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-#, fuzzy
-msgid "Reset to De_faults"
-msgstr "পূর্বনির্ধারিততে পুনঃনির্ধারণ"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+msgid "_Reset to Defaults"
+msgstr "পূর্বনির্ধারিততে পুনঃনির্ধারণ (_R)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 #, fuzzy
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "নির্বাচিত ডিভাইসের জন্য এক্সিলারেশন ও সীমার মান পূর্বনির্ধারিততে নির্ধারণ করুন"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Pointer Speed"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "B_uttons and Feedback"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
-msgid "Disable to_uchpad while typing"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "Disable touchpad _while typing"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 #, fuzzy
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr ""
 "নির্বাচিত করার সময়, কীবোর্ড নাম্বার প্যাড ব্যবহার করে মাউস পয়েন্টার কন্ট্রোল করা যাবে"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
-msgid "T_ap touchpad to click"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
-#, fuzzy
-msgid "Di_sabled"
-msgstr "সক্রিয়"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
-msgid "Edge scro_lling"
-msgstr ""
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
-msgid "Two-_finger scrolling"
+msgid "Tap touchpad to clic_k"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+msgid "Scrolling _mode:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 #, fuzzy
 msgid "Enable hori_zontal scrolling"
 msgstr "অ্যান্টিএলিয়াসিং সক্রিয় (_a)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Scrolling"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "T_ouchpad"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
-msgid "Tr_acking mode:"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
-#, fuzzy
-msgid "_Rotation:"
-msgstr "আবর্তন: (_t)"
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
-msgid "Table_t"
+msgid "Trac_king mode:"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 #, fuzzy
+msgid "_Rotation:"
+msgstr "আবর্তন: (_t)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+msgid "Tab_let"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#, fuzzy
 msgid "_Devices"
 msgstr "ডিভাইস (_v)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 #, fuzzy
 msgid "Th_reshold:"
 msgstr "সীমা: (_h)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid ""
 "The number of pixels the pointer must move before a drag operation will start"
 msgstr "টানার অপারেশন শুরু করার আগে পয়েন্টারকে যে সংখ্যক পিক্সেল সরাতে হবে"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Drag and Drop"
 msgstr "টেনে এনে ছেড়ে দেয়া"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Ti_me:"
 msgstr "সময়: (_m)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
@@ -1243,12 +1347,12 @@ msgstr ""
 "দুটো মাউস ক্লিকের মধ্যে এর চাইতে স্বল্প দৈর্ঘ্যের (মিলিসেকেন্ডে) সময় ব্যবধান থাকলে "
 "একে ডবল ক্লিক হিসেবে বিবেচনা করা হবে"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 #, fuzzy
 msgid "D_istance:"
 msgstr "দুরত্ব: (_D)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
@@ -1256,56 +1360,56 @@ msgstr ""
 "ডবল ক্লিক হিসেবে বিবেচনাকৃত দুটো ক্লিকের মধ্যবর্তী সময়ে মাউস পয়েন্টার এর চাইতে বেশী "
 "দূরত্বে সরানো যায়না"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Double Click"
 msgstr "ডবল ক্লিক"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "_Behavior"
 msgstr "আচরণ (_B)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 #, fuzzy
-msgid "Cursor _size:"
+msgid "Cursor si_ze:"
 msgstr "কার্সারের আকার: (_S)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "Size"
 msgstr "আকার"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Preview"
 msgstr "প্রাকদর্শন"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 #, fuzzy
-msgid "T_heme"
+msgid "_Theme"
 msgstr "থীম (_T)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "Pen (absolute)"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 #, fuzzy
 msgid "Mouse (relative)"
 msgstr "মাউস অনুকরণ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 #, fuzzy
 msgid "None (right-handed)"
 msgstr "ডান হাতি (_R)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 #, fuzzy
 msgid "Half (left-handed)"
 msgstr "বাম হাতি"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "Clockwise"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "Counterclockwise"
 msgstr ""
 
@@ -1514,39 +1618,39 @@ msgstr "বৈশিষ্ট্য সম্পাদনা"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Xfconf-র জন্য গ্রাফিকাল সেটিংস সম্পাদক"
 
-#: ../xfsettingsd/accessibility.c:390
+#: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr "স্টিকি কী সক্রিয়"
 
-#: ../xfsettingsd/accessibility.c:392
+#: ../xfsettingsd/accessibility.c:414
 msgid "Sticky keys are disabled"
 msgstr "স্টিকি কী নিষ্ক্রিয়"
 
-#: ../xfsettingsd/accessibility.c:394
+#: ../xfsettingsd/accessibility.c:416
 msgid "Sticky keys"
 msgstr "স্টিকি কী"
 
-#: ../xfsettingsd/accessibility.c:399
+#: ../xfsettingsd/accessibility.c:421
 msgid "Slow keys are enabled"
 msgstr "ধীর কী সক্রিয়"
 
-#: ../xfsettingsd/accessibility.c:401
+#: ../xfsettingsd/accessibility.c:423
 msgid "Slow keys are disabled"
 msgstr "ধীর কী নিষ্ক্রিয়"
 
-#: ../xfsettingsd/accessibility.c:403
+#: ../xfsettingsd/accessibility.c:425
 msgid "Slow keys"
 msgstr "ধীর কী"
 
-#: ../xfsettingsd/accessibility.c:408
+#: ../xfsettingsd/accessibility.c:430
 msgid "Bounce keys are enabled"
 msgstr "লাফানো কী সক্রিয়"
 
-#: ../xfsettingsd/accessibility.c:410
+#: ../xfsettingsd/accessibility.c:432
 msgid "Bounce keys are disabled"
 msgstr "লাফানো কী নিষ্ক্রিয়"
 
-#: ../xfsettingsd/accessibility.c:412
+#: ../xfsettingsd/accessibility.c:434
 msgid "Bounce keys"
 msgstr "লাফানো কী"
 
@@ -1580,7 +1684,7 @@ msgstr "যে সেটিংস ডায়ালগ প্রদর্শন �
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:186
 #, fuzzy
-msgid "_All Settings"
+msgid "All _Settings"
 msgstr "সেটিংসমূহ (_S)"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
@@ -1605,23 +1709,25 @@ msgstr "সেটিংস ব্যবস্থাপক"
 msgid "Graphical Settings Manager for Xfce 4"
 msgstr "Xfce 4-এর জন্য গ্রাফিকাল সেটিংস ব্যবস্থাপক"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
-#, fuzzy
-msgid "Move currently selected item down by one row"
-msgstr "বর্তমানে নির্বাচিত আইটেম এক সারি নীচে নামানো হবে"
+#~ msgid "_Settings"
+#~ msgstr "সেটিংসমূহ (_S)"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 #, fuzzy
-msgid "Move currently selected item up by one row"
-msgstr "বর্তমানে নির্বাচিত আইটেম এক সারি উপরে উঠানো হবে"
+#~ msgid "Display settings"
+#~ msgstr "প্রদর্শন"
+
+#~ msgid "Normal"
+#~ msgstr "সাধারণ"
+
+#~ msgid "Be_havior"
+#~ msgstr "আচরণ (_h)"
+
+#, fuzzy
+#~ msgid "Reset to De_faults"
+#~ msgstr "পূর্বনির্ধারিততে পুনঃনির্ধারণ"
 
 #~ msgid "Use this area to _test the settings above:"
 #~ msgstr "উপরোক্ত সেটিংসমূহ পরীক্ষা করার জন্য এই ক্ষেত্রটি ব্যবহার করুন: (_t)"
-
-#~ msgid "_Reset to Defaults"
-#~ msgstr "পূর্বনির্ধারিততে পুনঃনির্ধারণ (_R)"
 
 #~ msgid "Feedback"
 #~ msgstr "মন্তব্য"

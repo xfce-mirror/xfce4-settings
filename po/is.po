@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings.master.xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-12 22:46+0200\n"
+"POT-Creation-Date: 2012-11-20 17:53+0100\n"
 "PO-Revision-Date: 2010-05-03 09:54+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <rglug@rglug.org>\n"
@@ -45,12 +45,12 @@ msgid "No AT-SPI provider was found on your system"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
-msgid "_Assistive Technologies"
+msgid "Assistive _Technologies"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 #, fuzzy
-msgid "Use _sticky keys"
+msgid "_Use sticky keys"
 msgstr "Klístraðir lyklar"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
@@ -72,7 +72,7 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
-msgid "Disable sticky keys if _two keys are pressed"
+msgid "Disable sticky keys if two keys are _pressed"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
@@ -160,11 +160,11 @@ msgid "_Acceleration delay:"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
-msgid "Acceleration _time:"
+msgid "Acceleration t_ime:"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
-msgid "Maximum _speed:"
+msgid "Ma_ximum speed:"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
@@ -212,21 +212,21 @@ msgstr "Mús"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:103
+#: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
@@ -235,29 +235,29 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
-#: ../dialogs/display-settings/main.c:1043
+#: ../dialogs/display-settings/main.c:1926
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
+#: ../dialogs/mouse-settings/main.c:1597 ../xfce4-settings-editor/main.c:63
+#: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
-#: ../dialogs/display-settings/main.c:1062
+#: ../dialogs/display-settings/main.c:1945
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
+#: ../dialogs/mouse-settings/main.c:1616 ../xfce4-settings-editor/main.c:82
+#: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
-#: ../dialogs/display-settings/main.c:1063
+#: ../dialogs/display-settings/main.c:1946
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
+#: ../dialogs/mouse-settings/main.c:1617 ../xfce4-settings-editor/main.c:83
+#: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr ""
@@ -267,189 +267,190 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:852
-#: ../dialogs/display-settings/main.c:79
-msgid "None"
-msgstr "Ekkert"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
-#, fuzzy
-msgid "Slight"
-msgstr "Hægri"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-msgid "Medium"
-msgstr ""
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
-msgid "Full"
-msgstr ""
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
-msgid "Icons"
-msgstr ""
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
-msgid "Text"
-msgstr ""
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
-#: ../dialogs/display-settings/main.c:82
-msgid "Both"
-msgstr ""
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
-msgid "Both Horizontal"
-msgstr ""
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
 msgstr "Útlit"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 msgid "St_yle"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
 msgid "_Icons"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 msgid "Select a default font"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 #, fuzzy
 msgid "Default Fon_t"
 msgstr "Sjálfgefið"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw "
 "the font; pick whichever looks best according to personal preference"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Sub-_pixel order:"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
-msgid "_Hinting:"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+msgid "Hintin_g:"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-msgid "Enable _anti-aliasing"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+msgid "_Enable anti-aliasing"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Rendering"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Custom _DPI setting:"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too small"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "DPI"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "_Fonts"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Specify what should be displayed in toolbar items"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "_Toolbar Style"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Show images on _buttons"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Show images in _menus"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Enable e_ditable accelerators"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Menus and Buttons"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Enable _event sounds"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
-msgid "Enable i_nput feedback sounds"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+msgid "Enable input feedbac_k sounds"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Event sounds"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 #, fuzzy
-msgid "_Settings"
+msgid "Setti_ngs"
 msgstr "Stillingar"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/main.c:852
+#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:113
+msgid "None"
+msgstr "Ekkert"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#, fuzzy
+msgid "Slight"
+msgstr "Hægri"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+msgid "Medium"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+msgid "Full"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+msgid "Icons"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+msgid "Text"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/display-settings/main.c:116
+msgid "Both"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+msgid "Both Horizontal"
+msgstr ""
 
 #: ../dialogs/appearance-settings/main.c:733
 #, c-format
@@ -498,21 +499,21 @@ msgid "Confirmation"
 msgstr ""
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
-msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr ""
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
-msgid ""
-"The previous configuration will be restored in 10 seconds if you do not "
-"reply to this question."
-msgstr ""
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Keep this configuration"
 msgstr ""
 
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Restore the previous configuration"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr ""
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
+msgid ""
+"The previous configuration will be restored in 10 seconds if you do not "
+"reply to this question."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
@@ -527,72 +528,123 @@ msgid "Configure screen settings and layout"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
-msgid "_Use this output"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "Ref_lection:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:5
+#: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "Ro_tation:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
+#: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "R_esolution:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+msgid "P_osition:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:8
+msgid "_Use this output"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "_Mirror displays"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid "Configure _new displays when connected"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid ""
+"Automatically show the \"minimal dialog\" to quickly configure newly "
+"connected displays."
 msgstr ""
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 #, fuzzy
-msgid "Display settings"
+msgid "Displays"
 msgstr "Skjár"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-msgid "Several displays are available. Use:\n"
-msgstr ""
+#, fuzzy
+msgid "Only Display 1"
+msgstr "Skjár"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
+#, fuzzy
+msgid "Mirror Displays"
+msgstr "Skjár"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
-msgid "Both displays cloned"
+msgid "Extend to the right"
 msgstr ""
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
-msgid "Use both displays to show the same contents"
+#, fuzzy
+msgid "Only Display 2"
+msgstr "Skjár"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
+msgid "Advanced"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:68
-msgid "Normal"
-msgstr "Venjulegt"
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
+msgid "radiobutton"
+msgstr ""
 
-#: ../dialogs/display-settings/main.c:69
+#: ../dialogs/display-settings/main.c:90
+msgid "Same as"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:91
+msgid "Above"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:92
+msgid "Below"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:93
+#, fuzzy
+msgid "Right of"
+msgstr "Hægri"
+
+#: ../dialogs/display-settings/main.c:94
+#, fuzzy
+msgid "Left of"
+msgstr "Vinstri"
+
+#: ../dialogs/display-settings/main.c:103
 msgid "Left"
 msgstr "Vinstri"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/main.c:104
 msgid "Inverted"
 msgstr "Viðsnúið"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:105
 msgid "Right"
 msgstr "Hægri"
 
-#: ../dialogs/display-settings/main.c:80
+#: ../dialogs/display-settings/main.c:114
 msgid "Horizontal"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:81
+#: ../dialogs/display-settings/main.c:115
 #, fuzzy
 msgid "Vertical"
 msgstr "Lóðrétt RGB"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:138
 msgid "Minimal interface to set up an external output"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:171
+#: ../dialogs/display-settings/main.c:226
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -600,61 +652,70 @@ msgid ""
 msgstr ""
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:505
+#: ../dialogs/display-settings/main.c:747
 #, c-format
 msgid "%.1f Hz"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:651
+#: ../dialogs/display-settings/main.c:1040
+#, fuzzy
+msgid "Display:"
+msgstr "Skjár"
+
+#: ../dialogs/display-settings/main.c:1045
+msgid "Resolution:"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:1232
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:653
+#: ../dialogs/display-settings/main.c:1234
 msgid "Selected output not disabled"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1075
-#: ../dialogs/display-settings/xfce-randr.c:249
+#: ../dialogs/display-settings/main.c:1958
+#: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1076
-#: ../dialogs/display-settings/main.c:1112
+#: ../dialogs/display-settings/main.c:1959
+#: ../dialogs/display-settings/main.c:1995
 msgid "Unable to start the Xfce Display Settings"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1107
+#: ../dialogs/display-settings/main.c:1990
 #, fuzzy
 msgid "ATI Settings"
 msgstr "Stillingar"
 
-#: ../dialogs/display-settings/main.c:1122
+#: ../dialogs/display-settings/main.c:2005
 msgid "Unable to launch the proprietary driver settings"
 msgstr ""
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:257
+#: ../dialogs/display-settings/xfce-randr.c:358
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr ""
 
-#: ../dialogs/display-settings/xfce-randr.c:536
+#: ../dialogs/display-settings/xfce-randr.c:626
 msgid "Laptop"
 msgstr "Fartölva"
 
-#: ../dialogs/display-settings/xfce-randr.c:557
+#: ../dialogs/display-settings/xfce-randr.c:647
 msgid "Monitor"
 msgstr "Skjár"
 
-#: ../dialogs/display-settings/xfce-randr.c:560
+#: ../dialogs/display-settings/xfce-randr.c:650
 msgid "Television"
 msgstr "Sjónvarp"
 
-#: ../dialogs/display-settings/xfce-randr.c:564
+#: ../dialogs/display-settings/xfce-randr.c:654
 msgid "Digital display"
 msgstr "Stafrænn skjár"
 
@@ -750,7 +811,7 @@ msgid "Restore num l_ock state on startup"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "General"
 msgstr ""
 
@@ -773,7 +834,7 @@ msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
-msgid "Repeat _speed:"
+msgid "Repe_at speed:"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
@@ -810,11 +871,11 @@ msgid "_Test area:"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
-msgid "Be_havior"
+msgid "Beha_vior"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "Define _shortcuts for launching applications:"
+msgid "Define shortcuts for la_unching applications:"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
@@ -839,15 +900,31 @@ msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 #, fuzzy
-msgid "Keyboard model"
+msgid "_Keyboard model"
 msgstr "Lyklaborð"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
-#, fuzzy
-msgid "Keyboard layout"
-msgstr "Lyklaborð"
+msgid "Change la_yout option"
+msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+msgid "Co_mpose key"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+msgid "Move currently selected item up by one row"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+msgid "Move currently selected item down by one row"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#, fuzzy
+msgid "Key_board layout"
+msgstr "Lyklaborð"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 #, fuzzy
 msgid "_Layout"
 msgstr "Útlit"
@@ -865,47 +942,47 @@ msgstr ""
 msgid "Could not create the settings dialog."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:396
 #, fuzzy
 msgid "Command"
 msgstr "Skipun"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:401
 #, fuzzy
 msgid "Shortcut"
 msgstr "Flýtilykill"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:473
 #, fuzzy
 msgid "Layout"
 msgstr "Útlit"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:474
 #, fuzzy
 msgid "Variant"
 msgstr "Tilbrigði"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:957
 msgid "Shortcut command may not be empty."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1067
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1068
 #, fuzzy
 msgid "Reset to Defaults"
 msgstr "Endurvekja sjálfgefnar stillingar"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1069
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1148
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1150
 #, fuzzy
 msgid "Warning"
 msgstr "Aðvörun"
@@ -1061,212 +1138,220 @@ msgid "%g ms"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+msgid "Disabled"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+msgid "Edge scrolling"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Two-finger scrolling"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+msgid "Circular scrolling"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Configure pointer device behavior and appearance"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "De_vice:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "_Enable this device"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
-msgid "_Right-handed"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
-msgid "_Left-handed"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
-msgid "Reverse scroll d_irection"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr ""
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-msgid "Buttons"
+msgid "Ri_ght-handed"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
-msgid "_Acceleration:"
+msgid "Le_ft-handed"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+msgid "Reverse scroll d_irection"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid "Buttons"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "Acceleratio_n:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-msgid "_Sensitivity:"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+msgid "Sensitivit_y:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 #, fuzzy
-msgid "Reset to De_faults"
+msgid "_Reset to Defaults"
 msgstr "Endurvekja sjálfgefnar stillingar"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Pointer Speed"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "B_uttons and Feedback"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
-msgid "Disable to_uchpad while typing"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "Disable touchpad _while typing"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
-msgid "T_ap touchpad to click"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
-msgid "Di_sabled"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
-msgid "Edge scro_lling"
-msgstr ""
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
-msgid "Two-_finger scrolling"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
-msgid "Enable hori_zontal scrolling"
+msgid "Tap touchpad to clic_k"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
-msgid "Scrolling"
+msgid "Scrolling _mode:"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
-msgid "T_ouchpad"
+msgid "Enable hori_zontal scrolling"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
-msgid "Tr_acking mode:"
+msgid "Scrolling"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
-msgid "_Rotation:"
+msgid "T_ouchpad"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
-msgid "Table_t"
+msgid "Trac_king mode:"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
-msgid "_Devices"
+msgid "_Rotation:"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
-msgid "Th_reshold:"
+msgid "Tab_let"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+msgid "_Devices"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+msgid "Th_reshold:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid ""
 "The number of pixels the pointer must move before a drag operation will start"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Drag and Drop"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Ti_me:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "D_istance:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Double Click"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "_Behavior"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
-msgid "Cursor _size:"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
-msgid "Size"
-msgstr ""
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
-msgid "Preview"
+msgid "Cursor si_ze:"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
-msgid "T_heme"
+msgid "Size"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
-msgid "Pen (absolute)"
+msgid "Preview"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
-msgid "Mouse (relative)"
+msgid "_Theme"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
-msgid "None (right-handed)"
+msgid "Pen (absolute)"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
-msgid "Half (left-handed)"
+msgid "Mouse (relative)"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
-msgid "Clockwise"
+msgid "None (right-handed)"
 msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+msgid "Half (left-handed)"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+msgid "Clockwise"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "Counterclockwise"
 msgstr ""
 
@@ -1481,41 +1566,41 @@ msgstr "Eiginleiki"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Grafískur stillingastjóri fyrir Xfconf"
 
-#: ../xfsettingsd/accessibility.c:390
+#: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr ""
 
-#: ../xfsettingsd/accessibility.c:392
+#: ../xfsettingsd/accessibility.c:414
 msgid "Sticky keys are disabled"
 msgstr ""
 
-#: ../xfsettingsd/accessibility.c:394
+#: ../xfsettingsd/accessibility.c:416
 #, fuzzy
 msgid "Sticky keys"
 msgstr "Klístraðir lyklar"
 
-#: ../xfsettingsd/accessibility.c:399
+#: ../xfsettingsd/accessibility.c:421
 msgid "Slow keys are enabled"
 msgstr ""
 
-#: ../xfsettingsd/accessibility.c:401
+#: ../xfsettingsd/accessibility.c:423
 msgid "Slow keys are disabled"
 msgstr ""
 
-#: ../xfsettingsd/accessibility.c:403
+#: ../xfsettingsd/accessibility.c:425
 #, fuzzy
 msgid "Slow keys"
 msgstr "Hægir lyklar"
 
-#: ../xfsettingsd/accessibility.c:408
+#: ../xfsettingsd/accessibility.c:430
 msgid "Bounce keys are enabled"
 msgstr ""
 
-#: ../xfsettingsd/accessibility.c:410
+#: ../xfsettingsd/accessibility.c:432
 msgid "Bounce keys are disabled"
 msgstr ""
 
-#: ../xfsettingsd/accessibility.c:412
+#: ../xfsettingsd/accessibility.c:434
 #, fuzzy
 msgid "Bounce keys"
 msgstr "Skoppandi lyklar"
@@ -1548,7 +1633,7 @@ msgstr ""
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:186
 #, fuzzy
-msgid "_All Settings"
+msgid "All _Settings"
 msgstr "Stillingar"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
@@ -1575,7 +1660,18 @@ msgid "Graphical Settings Manager for Xfce 4"
 msgstr ""
 
 #, fuzzy
-#~ msgid "_Reset to Defaults"
+#~ msgid "_Settings"
+#~ msgstr "Stillingar"
+
+#, fuzzy
+#~ msgid "Display settings"
+#~ msgstr "Skjár"
+
+#~ msgid "Normal"
+#~ msgstr "Venjulegt"
+
+#, fuzzy
+#~ msgid "Reset to De_faults"
 #~ msgstr "Endurvekja sjálfgefnar stillingar"
 
 #, fuzzy

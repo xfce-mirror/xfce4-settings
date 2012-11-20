@@ -1515,6 +1515,10 @@ display_settings_dialog_new (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-rotation");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
+    
+    check = gtk_builder_get_object (builder, "minimal-autoshow");
+    xfconf_g_property_bind (display_channel, "/Notify", G_TYPE_BOOLEAN, check,
+                            "active");
 
     /* Populate the treeview */
     display_settings_treeview_populate (builder);

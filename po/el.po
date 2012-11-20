@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-19 15:18+0000\n"
+"POT-Creation-Date: 2012-11-20 17:53+0100\n"
 "PO-Revision-Date: 2012-08-22 19:57+0300\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά, Σύγχρονα <opensuse-translation-el@opensuse.org>\n"
@@ -23,21 +23,23 @@ msgstr ""
 "X-Generator: Lokalize 0.2\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
-msgid "Acceleration _profile:"
-msgstr "_Προφίλ επιτάχυνσης:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
-msgid "Acceleration _time:"
-msgstr "Χρόνος _επιτάχυνσης:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
-msgid "Acceptance _delay:"
-msgstr "Καθυστέρηση _αποδοχής:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
 msgstr "Προσβασιμότητα"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
+msgid "Configure keyboard and mouse accessibility"
+msgstr "Ρύθμιση προσβασιμότητας πληκτρολογίου και ποντικιού"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+msgid "_Enable assistive technologies"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+msgid ""
+"If enabled, the session manager will start the required applications for "
+"screen readers and magnifiers"
+msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 #, fuzzy
@@ -49,128 +51,19 @@ msgstr ""
 "συνδεθείτε."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
-msgid "Bounce Keys"
-msgstr "Πλήκτρα αναπήδησης"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
-msgid "Configure keyboard and mouse accessibility"
-msgstr "Ρύθμιση προσβασιμότητας πληκτρολογίου και ποντικιού"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
-msgid "Disable sticky keys if _two keys are pressed"
-msgstr "Απενεργοποίηση κολλώδων πλήκτρων εάν πα_τηθούν δύο πλήκτρα"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
-msgid ""
-"If enabled, the session manager will start the required applications for "
-"screen readers and magnifiers"
-msgstr ""
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
-msgid "K_eystroke delay:"
-msgstr "Καθ_υστέρηση πατήματος πλήκτρου:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
-msgid "Keyboa_rd"
-msgstr "Πληκτ_ρολόγιο"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
-msgid "Maximum _speed:"
-msgstr "Μέγι_στη ταχύτητα:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
-msgid "Mouse Emulation"
-msgstr "Εξομοίωση ποντικιού"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "No AT-SPI provider was found on your system"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
-msgid "R_epeat interval:"
-msgstr "Μεσοδιάστημα _επανάληψης:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
-msgid "Slow Keys"
-msgstr "Αργά πλήκτρα"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
-msgid "Sticky Keys"
-msgstr "Κολλώδη πλήκτρα"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
-msgid "The amount of time, in milliseconds, required between keystrokes"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+msgid "Assistive _Technologies"
 msgstr ""
-"Ο συνολικός χρόνος, σε χιλιοστά δευτερολέπτου, που απαιτείται ανάμεσα στο "
-"πάτημα πλήκτρων"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
-msgid ""
-"The amount of time, in milliseconds, that must elapse before a keystroke "
-"will be accepted"
-msgstr ""
-"Ο συνολικός χρόνος, σε χιλιοστά δευτερολέπτου, που πρέπει να περάσει πριν "
-"την αποδοχή ενός πατήματος πλήκτρου"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
-msgid "The maximum pointer speed after acceleration"
-msgstr "Η μέγιστη ταχύτητα του κέρσορα μετά την επιτάχυνση"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
-msgid "The ramp used to reach maximum pointer speed"
-msgstr ""
-"H ράμπα που χρησιμοποιείται για να επιτευχθεί η μέγιστη ταχύτητα του κέρσορα."
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
-msgid "The time, in milliseconds, between repeated motion events"
-msgstr ""
-"Ο χρόνος, σε χιλιοστά δευτερολέπτου, ανάμεσα σε επαναλαμβανόμενα γεγονότα "
-"κίνησης"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
-msgid ""
-"The time, in milliseconds, between the initial key press and first repeated "
-"motion event"
-msgstr ""
-"Ο χρόνος, σε χιλιοστά δευτερολέπτου ανάμεσα στο αρχικό πάτημα ενός πλήκτρου "
-"και στο πρώτο επαναλαμβανόμενο γεγονός κίνησης "
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
-msgid "The time, in milliseconds, to get to maximum speed"
-msgstr ""
-"Ο χρόνος, σε χιλιοστά δευτερολέπτου, για να φτάσει στην μέγιστη ταχύτητα"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
-msgid ""
-"To help prevent accidental keystrokes, slow keys requires that a key is held "
-"for a certain minimum amount of time before the keystroke will be accepted"
-msgstr ""
-"Για την βοήθεια αποφυγής ατυχών πατημάτων πλήκτρων, τα αργά πλήκτρα απαιτούν "
-"ένα πλήκτρο να κρατιέται για μία ελάχιστη διάρκεια χρόνου πριν το πάτημα του "
-"πλήκτρου γίνει αποδεκτό."
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
-msgid ""
-"To help prevent accidental multiple keystrokes, bounce keys imposes a "
-"minimum delay between keystrokes"
-msgstr ""
-"Για την βοήθεια αποφυγής ατυχών πολλαπλών πατημάτων πλήκτρων, τα πλήκτρα "
-"αναπήδησης απαιτούν μία ελάχιστη διάρκεια χρόνου ανάμεσα στο πάτημα των "
-"πλήκτρων"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
-msgid "Use _bounce keys"
-msgstr "Χρήση αναπή_δησης πλήκτρων"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
-msgid "Use _sticky keys"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#, fuzzy
+msgid "_Use sticky keys"
 msgstr "Χρήση _κολλώδη πλήκτρων"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
-msgid "Use slow _keys"
-msgstr "Χρήση αρ_γών πλήκτρων"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
@@ -181,7 +74,11 @@ msgstr ""
 "να αφήνονται) όταν πολλαπλά πλήκτρα κανονικά χρειάζονται να πατηθούν την "
 "ίδια στιγμή."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+msgid "_Lock sticky keys"
+msgstr "Κ_λείδωμα κολλώδη πλήκτρων"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -189,7 +86,12 @@ msgstr ""
 "Όταν επιλεχθεί, πλήκτρα εναλλαγής (όπως το Control, Alt και to Shift) θα "
 "παραμείνουν κλειδωμένα στην πατημένη κατάσταση μέχρι να ξαναπατηθούν"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#, fuzzy
+msgid "Disable sticky keys if two keys are _pressed"
+msgstr "Απενεργοποίηση κολλώδων πλήκτρων εάν πα_τηθούν δύο πλήκτρα"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
@@ -197,7 +99,75 @@ msgstr ""
 "Όταν επιλεχθεί, το χαρακτηριστικό των \"κολλώδη πλήκτρων\" θα "
 "απενεργοποιηθεί εάν δύο πλήκτρα πατηθούν ταυτόχρονα"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+msgid "Sticky Keys"
+msgstr "Κολλώδη πλήκτρα"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+msgid "Use slow _keys"
+msgstr "Χρήση αρ_γών πλήκτρων"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+msgid ""
+"To help prevent accidental keystrokes, slow keys requires that a key is held "
+"for a certain minimum amount of time before the keystroke will be accepted"
+msgstr ""
+"Για την βοήθεια αποφυγής ατυχών πατημάτων πλήκτρων, τα αργά πλήκτρα απαιτούν "
+"ένα πλήκτρο να κρατιέται για μία ελάχιστη διάρκεια χρόνου πριν το πάτημα του "
+"πλήκτρου γίνει αποδεκτό."
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+msgid "Acceptance _delay:"
+msgstr "Καθυστέρηση _αποδοχής:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+msgid ""
+"The amount of time, in milliseconds, that must elapse before a keystroke "
+"will be accepted"
+msgstr ""
+"Ο συνολικός χρόνος, σε χιλιοστά δευτερολέπτου, που πρέπει να περάσει πριν "
+"την αποδοχή ενός πατήματος πλήκτρου"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+msgid "Slow Keys"
+msgstr "Αργά πλήκτρα"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+msgid "Use _bounce keys"
+msgstr "Χρήση αναπή_δησης πλήκτρων"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+msgid ""
+"To help prevent accidental multiple keystrokes, bounce keys imposes a "
+"minimum delay between keystrokes"
+msgstr ""
+"Για την βοήθεια αποφυγής ατυχών πολλαπλών πατημάτων πλήκτρων, τα πλήκτρα "
+"αναπήδησης απαιτούν μία ελάχιστη διάρκεια χρόνου ανάμεσα στο πάτημα των "
+"πλήκτρων"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+msgid "K_eystroke delay:"
+msgstr "Καθ_υστέρηση πατήματος πλήκτρου:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+msgid "The amount of time, in milliseconds, required between keystrokes"
+msgstr ""
+"Ο συνολικός χρόνος, σε χιλιοστά δευτερολέπτου, που απαιτείται ανάμεσα στο "
+"πάτημα πλήκτρων"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+msgid "Bounce Keys"
+msgstr "Πλήκτρα αναπήδησης"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+msgid "Keyboa_rd"
+msgstr "Πληκτ_ρολόγιο"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+msgid "_Use mouse emulation"
+msgstr "Χρήση ε_ξομείωσης ποντικιού"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
@@ -205,55 +175,89 @@ msgstr ""
 "Όταν επιλεχθεί, ο δείκτης του ποντικιού μπορεί να ελεχθεί χρησιμοποιώντας το "
 "αριθμητικό πληκτρολόγιο"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+msgid "R_epeat interval:"
+msgstr "Μεσοδιάστημα _επανάληψης:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "_Acceleration delay:"
 msgstr "Επιτάχυνση κ_αθυστέρησης:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
-msgid "_Assistive Technologies"
-msgstr ""
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#, fuzzy
+msgid "Acceleration t_ime:"
+msgstr "Χρόνος _επιτάχυνσης:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
-msgid "_Enable assistive technologies"
-msgstr ""
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#, fuzzy
+msgid "Ma_ximum speed:"
+msgstr "Μέγι_στη ταχύτητα:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
-msgid "_Lock sticky keys"
-msgstr "Κ_λείδωμα κολλώδη πλήκτρων"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+msgid "Acceleration _profile:"
+msgstr "_Προφίλ επιτάχυνσης:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
-msgid "_Mouse"
-msgstr "_Ποντίκι"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
-msgid "_Use mouse emulation"
-msgstr "Χρήση ε_ξομείωσης ποντικιού"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "msec"
 msgstr "msec"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "pixels/sec"
 msgstr "εικονοστοιχεία/δεπτ"
 
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+msgid ""
+"The time, in milliseconds, between the initial key press and first repeated "
+"motion event"
+msgstr ""
+"Ο χρόνος, σε χιλιοστά δευτερολέπτου ανάμεσα στο αρχικό πάτημα ενός πλήκτρου "
+"και στο πρώτο επαναλαμβανόμενο γεγονός κίνησης "
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+msgid "The time, in milliseconds, between repeated motion events"
+msgstr ""
+"Ο χρόνος, σε χιλιοστά δευτερολέπτου, ανάμεσα σε επαναλαμβανόμενα γεγονότα "
+"κίνησης"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+msgid "The ramp used to reach maximum pointer speed"
+msgstr ""
+"H ράμπα που χρησιμοποιείται για να επιτευχθεί η μέγιστη ταχύτητα του κέρσορα."
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+msgid "The maximum pointer speed after acceleration"
+msgstr "Η μέγιστη ταχύτητα του κέρσορα μετά την επιτάχυνση"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+msgid "The time, in milliseconds, to get to maximum speed"
+msgstr ""
+"Ο χρόνος, σε χιλιοστά δευτερολέπτου, για να φτάσει στην μέγιστη ταχύτητα"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+msgid "Mouse Emulation"
+msgstr "Εξομοίωση ποντικιού"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+msgid "_Mouse"
+msgstr "_Ποντίκι"
+
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Ρυθμίσεις διαχειριστή υποδoχής"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:136
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "ID ΥΠΟΔΟΧΗΣ"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:103
+#: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
@@ -262,29 +266,29 @@ msgstr "Πληροφορίες έκδοσης"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
-#: ../dialogs/display-settings/main.c:1043
+#: ../dialogs/display-settings/main.c:1926
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1597 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
+#: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Πληκτρολόγησε  '%s --help'  για χρήση."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
-#: ../dialogs/display-settings/main.c:1062
+#: ../dialogs/display-settings/main.c:1945
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1616 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
+#: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "H ομάδα ανάπτυξης Xfce. Όλα τα δικαιώματα είναι δεσμευμένα."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
-#: ../dialogs/display-settings/main.c:1063
+#: ../dialogs/display-settings/main.c:1946
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1617 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
+#: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Παρακαλώ αναφέρετε τα σφάλματα στο <%s>."
@@ -294,70 +298,49 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "Βελτίωση προσβασιμότητας πληκτρολογίου και ποντικιού"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-msgid ""
-"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr ""
-"Η εξομάλυνση της γραμματοσειράς μπορεί να βελτιώσει την εμφάνιση του "
-"κειμένου στην οθόνη"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
 msgstr "Εμφάνιση"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-#: ../dialogs/display-settings/main.c:82
-msgid "Both"
-msgstr "Και τα δύο"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
-msgid "Both Horizontal"
-msgstr "Και τα δύο οριζόντια"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
-msgid "Custom _DPI setting:"
-msgstr "Προσαρμοσμένη ρύθμιση _DPI:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
 msgstr "Προσαρμογή της εμφάνισης της επιφάνειας εργασίας"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
-msgid "DPI"
-msgstr "DPI"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+msgid "St_yle"
+msgstr "Εμ_φάνιση"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "_Icons"
+msgstr "Ε_ικονίδια"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr ""
+"Αυτή η γραμματοσειρά θα χρησιμοποιηθεί ως η προκαθορισμένη γραμματοσειρά "
+"όταν σχεδιάζεται κείμενο διεπαφής χρήστη"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
+msgid "Select a default font"
+msgstr "Επιλογή προεπιλεγμένης γραμματοσειράς"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid "Default Fon_t"
 msgstr "Προεπιλεγμένη γρ_αμματοσειρά"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
-msgid "Enable _anti-aliasing"
-msgstr "Ενεργοποίηση ε_ξομάλυνσης"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
-msgid "Enable _event sounds"
-msgstr "_Ενεργοποίηση ήχων συμβάντων"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
-msgid "Enable e_ditable accelerators"
-msgstr "Ενεργοποίηση ε_πεξεργάσιμων συντομεύσεων"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
-msgid "Enable i_nput feedback sounds"
-msgstr "Ε_νεργοποίηση ήχων επιβεβαίωσης εισαγωγής"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
-msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw "
+"the font; pick whichever looks best according to personal preference"
 msgstr ""
-"Καθολική ενεργοποίηση ή απενεργοποίηση συμβάντων ήχου (απαιτείται η "
-"υποστήριξη της βιβλιοθήκης \"Canberra\")"
+"Πολλές γραμματοσειρές περιέχουν πληροφορίες που παρέχουν περισσότερα hints "
+"όπως πως να σχεδιάζει καλύτερα την γραμματοσειρά, επέλεξε όποια φαίνεται "
+"καλύτερη σύμφωνα με τις προσωπικες σου προτιμήσεις."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
-msgid "Event sounds"
-msgstr "Ηχητικές ενέργειες"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
@@ -365,15 +348,84 @@ msgstr ""
 "Η ποιότητα της γραμματοσειράς σε μία οθόνη TFT ή LCD μπορεί να βελτιωθεί "
 "σημαντικά επιλέγοντας το σωστό υπο-πίξελ σύμφωνα με την οθόνη"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+msgid "Sub-_pixel order:"
+msgstr "Σειρά υπό-_πίξελ:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+#, fuzzy
+msgid "Hintin_g:"
+msgstr "_Εξομάλυνση (γραμμάτων):"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#, fuzzy
+msgid "_Enable anti-aliasing"
+msgstr "Ενεργοποίηση ε_ξομάλυνσης"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr ""
+"Η εξομάλυνση της γραμματοσειράς μπορεί να βελτιώσει την εμφάνιση του "
+"κειμένου στην οθόνη"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+msgid "Rendering"
+msgstr "Απεικόνιση"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+msgid "Custom _DPI setting:"
+msgstr "Προσαρμοσμένη ρύθμιση _DPI:"
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
-msgid "Full"
-msgstr "Πλήρες"
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too small"
+msgstr ""
+"Προσπέρασε την επιλεγμένη ανάλυση οθόνης εάν η γραμματοσειρά εμφανίζεται "
+"πολύ μεγάλη ή πολύ μικρή"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
-msgid "Icons"
-msgstr "Εικονίδια"
+msgid "DPI"
+msgstr "DPI"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid "_Fonts"
+msgstr "_Γραμματοσειρές"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid "Specify what should be displayed in toolbar items"
+msgstr ""
+"Καθορισμός τι θα πρέπει να εμφανίζεται στα αντικείμενα της εργαλειοθήκης"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "_Toolbar Style"
+msgstr "_Στυλ εργαλειοθήκης"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+msgid "Show images on _buttons"
+msgstr "Εμφάνιση εικόνων στα κουμ_πιά"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr ""
+"Καθορισμός εάν τα εικονίδια θα πρέπει να εμφανίζονται δίπλα από το κείμενο "
+"των κουμπιών"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+msgid "Show images in _menus"
+msgstr "Εμφάνιση εικόνων στα _μενού"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr ""
+"Καθορισμός εάν τα εικονίδια θα πρέπει να εμφανίζονται δίπλα από τα "
+"αντικείμενα στα μενού"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+msgid "Enable e_ditable accelerators"
+msgstr "Ενεργοποίηση ε_πεξεργάσιμων συντομεύσεων"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
@@ -383,74 +435,26 @@ msgstr ""
 "μπορούν να αλλαχθούν περνώντας το ποντίκι επάνω από το αντικείμενο του μενού "
 "και πατώντας το συνδυασμό πλήκτρων για την συντόμευση."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
-msgid ""
-"Many fonts contain information that provides extra hints as to how best draw "
-"the font; pick whichever looks best according to personal preference"
-msgstr ""
-"Πολλές γραμματοσειρές περιέχουν πληροφορίες που παρέχουν περισσότερα hints "
-"όπως πως να σχεδιάζει καλύτερα την γραμματοσειρά, επέλεξε όποια φαίνεται "
-"καλύτερη σύμφωνα με τις προσωπικες σου προτιμήσεις."
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-msgid "Medium"
-msgstr "Μεσαίο"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Menus and Buttons"
 msgstr "Εργαλειοθήκες και πλήκτρα"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
-#: ../dialogs/appearance-settings/main.c:852
-#: ../dialogs/display-settings/main.c:79
-msgid "None"
-msgstr "Κανένα"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
-msgid ""
-"Override the detected monitor resolution if fonts look too large or too small"
-msgstr ""
-"Προσπέρασε την επιλεγμένη ανάλυση οθόνης εάν η γραμματοσειρά εμφανίζεται "
-"πολύ μεγάλη ή πολύ μικρή"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
-msgid "Rendering"
-msgstr "Απεικόνιση"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
-msgid "Select a default font"
-msgstr "Επιλογή προεπιλεγμένης γραμματοσειράς"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
-msgid "Show images in _menus"
-msgstr "Εμφάνιση εικόνων στα _μενού"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
-msgid "Show images on _buttons"
-msgstr "Εμφάνιση εικόνων στα κουμ_πιά"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
-msgid "Slight"
-msgstr "Ελαφρύ"
+msgid "Enable _event sounds"
+msgstr "_Ενεργοποίηση ήχων συμβάντων"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
-msgid "Specify what should be displayed in toolbar items"
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr ""
-"Καθορισμός τι θα πρέπει να εμφανίζεται στα αντικείμενα της εργαλειοθήκης"
+"Καθολική ενεργοποίηση ή απενεργοποίηση συμβάντων ήχου (απαιτείται η "
+"υποστήριξη της βιβλιοθήκης \"Canberra\")"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
-msgid "Specify whether icons should be displayed next to items in menus"
-msgstr ""
-"Καθορισμός εάν τα εικονίδια θα πρέπει να εμφανίζονται δίπλα από τα "
-"αντικείμενα στα μενού"
+#, fuzzy
+msgid "Enable input feedbac_k sounds"
+msgstr "Ε_νεργοποίηση ήχων επιβεβαίωσης εισαγωγής"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
-msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr ""
-"Καθορισμός εάν τα εικονίδια θα πρέπει να εμφανίζονται δίπλα από το κείμενο "
-"των κουμπιών"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
@@ -458,45 +462,50 @@ msgstr ""
 "Καθορισμός εάν τα κλικς του ποντικιού ή οποιας άλλη συσκευής εισόδου θα "
 "προκαλέσει ηχητικά συμβάντα για παίξιμο"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+msgid "Event sounds"
+msgstr "Ηχητικές ενέργειες"
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
-msgid "St_yle"
-msgstr "Εμ_φάνιση"
+#, fuzzy
+msgid "Setti_ngs"
+msgstr "Ρυθμίσεις"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
-msgid "Sub-_pixel order:"
-msgstr "Σειρά υπό-_πίξελ:"
+#: ../dialogs/appearance-settings/main.c:852
+#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:113
+msgid "None"
+msgstr "Κανένα"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+msgid "Slight"
+msgstr "Ελαφρύ"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+msgid "Medium"
+msgstr "Μεσαίο"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+msgid "Full"
+msgstr "Πλήρες"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+msgid "Icons"
+msgstr "Εικονίδια"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Text"
 msgstr "Κείμενο"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
-msgid ""
-"This font will be used as the default font used when drawing user interface "
-"text"
-msgstr ""
-"Αυτή η γραμματοσειρά θα χρησιμοποιηθεί ως η προκαθορισμένη γραμματοσειρά "
-"όταν σχεδιάζεται κείμενο διεπαφής χρήστη"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
-msgid "_Fonts"
-msgstr "_Γραμματοσειρές"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
-msgid "_Hinting:"
-msgstr "_Εξομάλυνση (γραμμάτων):"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
-msgid "_Icons"
-msgstr "Ε_ικονίδια"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
-msgid "_Settings"
-msgstr "Ρυ_θμίσεις"
+#: ../dialogs/display-settings/main.c:116
+msgid "Both"
+msgstr "Και τα δύο"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
-msgid "_Toolbar Style"
-msgstr "_Στυλ εργαλειοθήκης"
+msgid "Both Horizontal"
+msgstr "Και τα δύο οριζόντια"
 
 #: ../dialogs/appearance-settings/main.c:733
 #, c-format
@@ -541,20 +550,20 @@ msgid "Vertical BGR"
 msgstr "Κάθετο BGR"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
-msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "<big><b>θέλετε να κρατήσετε αυτές τις ρυθμίσεις;</b></big>"
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid "Keep this configuration"
 msgstr "Διατήρηση αυτών των ρυθμίσεων"
 
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Restore the previous configuration"
 msgstr "Επαναφορά προηγούμενων ρυθμίσεων"
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr "<big><b>θέλετε να κρατήσετε αυτές τις ρυθμίσεις;</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid ""
@@ -566,79 +575,132 @@ msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-msgid "Configure screen settings and layout"
-msgstr "Ρύθμιση επιλογών οθόνης και διάταξης"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:2
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Display"
 msgstr "Οθόνη"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
-msgid "R_esolution:"
-msgstr "Ανάλ_υση:"
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+msgid "Configure screen settings and layout"
+msgstr "Ρύθμιση επιλογών οθόνης και διάταξης"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "Ref_lection:"
 msgstr "_Αντανάκλαση:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "Ro_tation:"
+msgstr "Περισ_τροφή:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
 msgstr "_Ρυθμός ανανέωσης:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
-msgid "Ro_tation:"
-msgstr "Περισ_τροφή:"
+msgid "R_esolution:"
+msgstr "Ανάλ_υση:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
+#, fuzzy
+msgid "P_osition:"
+msgstr "Περισ_τροφή:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Use this output"
 msgstr "_Χρήση αυτής της εξόδου"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "_Mirror displays"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid "Configure _new displays when connected"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid ""
+"Automatically show the \"minimal dialog\" to quickly configure newly "
+"connected displays."
+msgstr ""
+
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
-msgid "Both displays cloned"
-msgstr "Κλωνοποίηση και των δυο οθονών"
+#, fuzzy
+msgid "Displays"
+msgstr "Οθόνη"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-msgid "Display settings"
-msgstr "Ρυθμίσεις οθόνης"
+#, fuzzy
+msgid "Only Display 1"
+msgstr "Οθόνη"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
-msgid "Several displays are available. Use:\n"
-msgstr "Είναι διαθέσιμες αρκετές οθόνες. Χρήση:\n"
+#, fuzzy
+msgid "Mirror Displays"
+msgstr "Οθόνη"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
+msgid "Extend to the right"
+msgstr ""
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
-msgid "Use both displays to show the same contents"
-msgstr "Χρήση και των δυο οθονών για την εμφάνιση του ίδιου περιεχομένου"
+#, fuzzy
+msgid "Only Display 2"
+msgstr "Οθόνη"
 
-#: ../dialogs/display-settings/main.c:68
-msgid "Normal"
-msgstr "Κανονικά"
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
+msgid "Advanced"
+msgstr ""
 
-#: ../dialogs/display-settings/main.c:69
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
+msgid "radiobutton"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:90
+msgid "Same as"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:91
+msgid "Above"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:92
+msgid "Below"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:93
+#, fuzzy
+msgid "Right of"
+msgstr "Δεξιά"
+
+#: ../dialogs/display-settings/main.c:94
+#, fuzzy
+msgid "Left of"
+msgstr "Αριστερά"
+
+#: ../dialogs/display-settings/main.c:103
 msgid "Left"
 msgstr "Αριστερά"
 
-#: ../dialogs/display-settings/main.c:70
+#: ../dialogs/display-settings/main.c:104
 msgid "Inverted"
 msgstr "Αντίστροφα"
 
-#: ../dialogs/display-settings/main.c:71
+#: ../dialogs/display-settings/main.c:105
 msgid "Right"
 msgstr "Δεξιά"
 
-#: ../dialogs/display-settings/main.c:80
+#: ../dialogs/display-settings/main.c:114
 msgid "Horizontal"
 msgstr "Οριζόντια"
 
-#: ../dialogs/display-settings/main.c:81
+#: ../dialogs/display-settings/main.c:115
 msgid "Vertical"
 msgstr "Κάθετα"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:138
 msgid "Minimal interface to set up an external output"
 msgstr "Ελάχιστες ρυθμίσεις για τη λειτουργία μιας εξωτερικής οθόνης"
 
-#: ../dialogs/display-settings/main.c:171
+#: ../dialogs/display-settings/main.c:226
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -648,44 +710,54 @@ msgstr ""
 "απαντήσετε σε αυτή την ερώτηση."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:505
+#: ../dialogs/display-settings/main.c:747
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:651
+#: ../dialogs/display-settings/main.c:1040
+#, fuzzy
+msgid "Display:"
+msgstr "Οθόνη"
+
+#: ../dialogs/display-settings/main.c:1045
+#, fuzzy
+msgid "Resolution:"
+msgstr "Ανάλ_υση:"
+
+#: ../dialogs/display-settings/main.c:1232
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
 "Η τελευταία ενεργή έξοδος δεν πρέπει απενεργοποιηθεί, το σύστημα θα γίνει "
 "άχρηστο."
 
-#: ../dialogs/display-settings/main.c:653
+#: ../dialogs/display-settings/main.c:1234
 msgid "Selected output not disabled"
 msgstr "Η επιλεγμένη έξοδος δεν είναι απενεργοποιημένη"
 
-#: ../dialogs/display-settings/main.c:1075
-#: ../dialogs/display-settings/xfce-randr.c:249
+#: ../dialogs/display-settings/main.c:1958
+#: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr ""
 "Αδυναμία αναζήτησης της έκδοσης της επέκτασης που χρησιμοποιεί το RandR"
 
-#: ../dialogs/display-settings/main.c:1076
-#: ../dialogs/display-settings/main.c:1112
+#: ../dialogs/display-settings/main.c:1959
+#: ../dialogs/display-settings/main.c:1995
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Αδύνατη η εκκίνηση των ρυθμίσεων οθόνης του XFCE"
 
-#: ../dialogs/display-settings/main.c:1107
+#: ../dialogs/display-settings/main.c:1990
 msgid "ATI Settings"
 msgstr "Ρυθμίσεις ATI"
 
-#: ../dialogs/display-settings/main.c:1122
+#: ../dialogs/display-settings/main.c:2005
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Αδύνατη η εκκίνηση των ρυθμίσεων του ιδιόκτητου προγράμματος οδήγησης"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:257
+#: ../dialogs/display-settings/xfce-randr.c:358
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -694,19 +766,19 @@ msgstr ""
 "Το σύστημα χρησιμοποιεί RandR %d.%d. Για να δουλέψουν οι ρυθμίσεις οθόνης "
 "χρειάζεται τουλάχιστον η έκδοση 1.2"
 
-#: ../dialogs/display-settings/xfce-randr.c:536
+#: ../dialogs/display-settings/xfce-randr.c:626
 msgid "Laptop"
 msgstr "Φορητός υπολογιστής"
 
-#: ../dialogs/display-settings/xfce-randr.c:557
+#: ../dialogs/display-settings/xfce-randr.c:647
 msgid "Monitor"
 msgstr "Οθόνη"
 
-#: ../dialogs/display-settings/xfce-randr.c:560
+#: ../dialogs/display-settings/xfce-randr.c:650
 msgid "Television"
 msgstr "Τηλεόραση"
 
-#: ../dialogs/display-settings/xfce-randr.c:564
+#: ../dialogs/display-settings/xfce-randr.c:654
 msgid "Digital display"
 msgstr "Ψηφιακή οθόνη"
 
@@ -774,108 +846,37 @@ msgid "Shell Scripts"
 msgstr "Δέσμες ενεργειών κέλυφους"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "A_pplication Shortcuts"
-msgstr "Σ_υντομεύσεις Εφαρμογών"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
-msgid "Be_havior"
-msgstr "Συμπερι_φορά"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
-msgid "Blink _delay:"
-msgstr "Κα_θυστέρηση αναβόσβησης:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-msgid "Cursor"
-msgstr "Δρομέας"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-msgid "Define _shortcuts for launching applications:"
-msgstr "Καθορισμός _συντομεύσεων για την εκκίνηση των εφαρμογών:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "Επεξεργασία ρυθμίσεων πληκτρολογίου και συντομεύσεων εφαρμογών"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
-msgid "General"
-msgstr "Γενικά"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Keyboard"
-msgstr "Πληκτρολόγιο"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
-msgid "Keyboard layout"
-msgstr "Διάταξη πληκτρολογίου"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Keyboard layout selection"
 msgstr "Επιλογή διάταξης πληκτρολογίου"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
-msgid "Keyboard model"
-msgstr "Μοντέλο πληκτρολογίου"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
-msgid "Repeat _speed:"
-msgstr "Τα_χύτητα επανάληψης:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
-#, fuzzy
-msgid "Reset to _Defaults"
-msgstr "Επαναφορά στις προεπιλογές"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
-msgid "Restore num l_ock state on startup"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Select keyboard layout and variant"
 msgstr "Επιλογή διάταξης πληκτρολογίου και παραλλαγής"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
-msgid "Show _blinking"
-msgstr "Ανα_βοσβήσιμο"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
+msgid "Keyboard"
+msgstr "Πληκτρολόγιο"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
-msgid ""
-"Specifies whether the keyboard layout is controlled with this settings "
-"dialog, or by the X server"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
+msgid "Edit keyboard settings and application shortcuts"
+msgstr "Επεξεργασία ρυθμίσεων πληκτρολογίου και συντομεύσεων εφαρμογών"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Restore num l_ock state on startup"
 msgstr ""
-"Καθορισμός εάν η διάταξη του πληκτρολογίου ελέγχεται με τις ρυθμίσεις "
-"διαλόγου ή από τον διακομιστή γραφικών Χ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
-msgid "Specify whether or not the text cursor blinks"
-msgstr "Καθορισμός ή όχι εάν ο δείκτης κειμένου αναβοσβήνει"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+msgid "General"
+msgstr "Γενικά"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
-msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr ""
-"Η καθυστέρησης, σε χιλιοστά δευτερολέπτου, ανάμεσα σε επιτυχημένα "
-"αναβοσβήματα του δείκτη"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+msgid "_Enable key repeat"
+msgstr "Ενεργοποίηση _επανάληψης πλήκτρου"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
-msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr ""
-"Ο ρυθμός κατά τον οποίο πατήματα πλήκτρων παράγονται όσο ένα πλήκτρο είναι "
-"πατημένο."
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr ""
-"Ο χρόνος, σε χιλιοστά δευτερολέπτου, πριν την έναρξη της επανάληψης ενός "
-"πατημένου πλήκτρου"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
-msgid "Typing Settings"
-msgstr "Ρυθμίσεις πληκτρολόγησης"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 msgid ""
 "When selected, pressing and holding down a key emits the same character over "
 "and over again"
@@ -883,25 +884,125 @@ msgstr ""
 "Όταν επιλεχθεί, πατώντας και κρατώντας κάτω ένα πλήκτρο παράγει τον ίδιο "
 "χαρακτήρα ξανά και ξανά"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
-msgid "_Enable key repeat"
-msgstr "Ενεργοποίηση _επανάληψης πλήκτρου"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Layout"
-msgstr "_Διάταξη"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "_Repeat delay:"
 msgstr "Κα_θυστέρηση επανάληψης:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr ""
+"Ο χρόνος, σε χιλιοστά δευτερολέπτου, πριν την έναρξη της επανάληψης ενός "
+"πατημένου πλήκτρου"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#, fuzzy
+msgid "Repe_at speed:"
+msgstr "Τα_χύτητα επανάληψης:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr ""
+"Ο ρυθμός κατά τον οποίο πατήματα πλήκτρων παράγονται όσο ένα πλήκτρο είναι "
+"πατημένο."
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+msgid "Typing Settings"
+msgstr "Ρυθμίσεις πληκτρολόγησης"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Show _blinking"
+msgstr "Ανα_βοσβήσιμο"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid "Specify whether or not the text cursor blinks"
+msgstr "Καθορισμός ή όχι εάν ο δείκτης κειμένου αναβοσβήνει"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+msgid "Blink _delay:"
+msgstr "Κα_θυστέρηση αναβόσβησης:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr ""
+"Η καθυστέρησης, σε χιλιοστά δευτερολέπτου, ανάμεσα σε επιτυχημένα "
+"αναβοσβήματα του δείκτη"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+msgid "Cursor"
+msgstr "Δρομέας"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "_Test area:"
 msgstr "_Δοκιμαστική περιοχή:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#, fuzzy
+msgid "Beha_vior"
+msgstr "Σ_υμπεριφορά"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#, fuzzy
+msgid "Define shortcuts for la_unching applications:"
+msgstr "Καθορισμός _συντομεύσεων για την εκκίνηση των εφαρμογών:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#, fuzzy
+msgid "Reset to _Defaults"
+msgstr "Επαναφορά στις προεπιλογές"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+msgid "A_pplication Shortcuts"
+msgstr "Σ_υντομεύσεις Εφαρμογών"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Use system defaults"
 msgstr "_Χρήση προεπιλεγμένων"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+msgid ""
+"Specifies whether the keyboard layout is controlled with this settings "
+"dialog, or by the X server"
+msgstr ""
+"Καθορισμός εάν η διάταξη του πληκτρολογίου ελέγχεται με τις ρυθμίσεις "
+"διαλόγου ή από τον διακομιστή γραφικών Χ"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#, fuzzy
+msgid "_Keyboard model"
+msgstr "Μοντέλο πληκτρολογίου"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#, fuzzy
+msgid "Change la_yout option"
+msgstr "Συνδυασμός αλλαγής διάταξης"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#, fuzzy
+msgid "Co_mpose key"
+msgstr "Πλήκτρο σύνθεσης"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#, fuzzy
+msgid "Move currently selected item up by one row"
+msgstr "Μετακίνηση του επιλεγμένου αντικειμένου μια γραμμή επάνω"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#, fuzzy
+msgid "Move currently selected item down by one row"
+msgstr "Μετακίνηση του επιλεγμένου αντικειμένου μια γραμμή κάτω"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#, fuzzy
+msgid "Key_board layout"
+msgstr "Διάταξη πληκτρολογίου"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+msgid "_Layout"
+msgstr "_Διάταξη"
 
 #: ../dialogs/keyboard-settings/main.c:82
 msgid "Unable to initialize GTK+."
@@ -916,32 +1017,32 @@ msgstr "Αποτυχία με την σύνδεση του δαίμονα xfconf
 msgid "Could not create the settings dialog."
 msgstr "Αδυναμία στην δημιουργία της ρύθμισης διαλόγου."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:300
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:396
 msgid "Command"
 msgstr "Εντολή"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:305
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:401
 msgid "Shortcut"
 msgstr "Συντόμευση"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:380
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:473
 msgid "Layout"
 msgstr "Διάταξη"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:381
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:474
 msgid "Variant"
 msgstr "Παραλλαγή"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:857
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:957
 msgid "Shortcut command may not be empty."
 msgstr "Η συντόμευση της εντολής πιθανά να μην είναι άδεια."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:967
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:968
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1067
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1068
 msgid "Reset to Defaults"
 msgstr "Επαναφορά στις προεπιλογές"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1069
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -949,13 +1050,13 @@ msgstr ""
 "Αυτό θα επαναφέρει όλες τις συντομεύσεις στις αρχικές τιμές. Θέλετε "
 "πραγματικά να το κάνετε αυτό;"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1148
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Η επαναφορά στις προεπιλογές θα επανέλθουν την επόμενη φορά που θα "
 "συνδεθείτε."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1150
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
@@ -1004,12 +1105,12 @@ msgid "Failed to add new application \"%s\""
 msgstr "Αδυναμία εκκίνησης του  \"%s\""
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:174
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
 msgstr "Επεξεργαστής Τύπου MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate applications with MIME types"
 msgstr "Συσχετισμός εφαρμογών με τύπους MIME"
 
@@ -1107,120 +1208,95 @@ msgid "%g ms"
 msgstr "%g ms"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
-msgid "B_uttons and Feedback"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
-msgid "Buttons"
-msgstr "Πλήκτρα"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
-msgid "Circular scrolling"
-msgstr "Κυκλική κύλιση"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
-msgid "Clockwise"
-msgstr "Δεξιόστροφα"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
-msgid "Configure pointer device behavior and appearance"
-msgstr "Ρύθμιση συμπεριφοράς και εμφάνισης της συσκευής δείκτη"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
-msgid "Counterclockwise"
-msgstr "Αριστερόστροφα"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
-msgid "Cursor _size:"
-msgstr "Μέγεθος _δείκτη:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-msgid "D_istance:"
-msgstr "Α_πόσταση:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-msgid "De_vice:"
-msgstr "Συ_σκευή:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
-msgid "Disable to_uchpad while typing"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Disabled"
 msgstr "Απενεργοποιημένα"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
-msgid "Double Click"
-msgstr "Διπλό κλικ"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-msgid "Drag and Drop"
-msgstr "Μεταφορά και απόθεση"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 #, fuzzy
 msgid "Edge scrolling"
 msgstr "Κύλιση"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
-#, fuzzy
-msgid "Enable hori_zontal scrolling"
-msgstr "Ενεργοποίηση ε_ξομάλυνσης"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Two-finger scrolling"
+msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
-#, fuzzy
-msgid "Half (left-handed)"
-msgstr "_Δεξιόχειρες"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+msgid "Circular scrolling"
+msgstr "Κυκλική κύλιση"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
-#, fuzzy
-msgid "Mouse (relative)"
-msgstr "Εξομοίωση ποντικιού"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
 msgstr "Ποντίκι και Touchpad"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
+msgid "Configure pointer device behavior and appearance"
+msgstr "Ρύθμιση συμπεριφοράς και εμφάνισης της συσκευής δείκτη"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+msgid "De_vice:"
+msgstr "Συ_σκευή:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+msgid "_Enable this device"
+msgstr "_Ενεργοποίηση της συσκευής"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 #, fuzzy
-msgid "None (right-handed)"
+msgid "Ri_ght-handed"
 msgstr "Α_ριστερόχειρες"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
-msgid "Pen (absolute)"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
-msgid "Pointer Speed"
-msgstr "Ταχύτητα Δείκτη"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
-msgid "Preview"
-msgstr "Προεπισκόπηση"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 #, fuzzy
-msgid "Reset to De_faults"
-msgstr "Επαναφορά στις προεπιλογές"
+msgid "Le_ft-handed"
+msgstr "_Δεξιόχειρες"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 #, fuzzy
 msgid "Reverse scroll d_irection"
 msgstr "Αντίστροφη _διεύθυνση κύλισης"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr ""
+"Όταν επιλεχθεί, η κύλιση της ροδέλας θα πρέπει να δουλέψει από την αντίθετη "
+"διεύθυνση"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid "Buttons"
+msgstr "Πλήκτρα"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #, fuzzy
-msgid "Scro_lling mode:"
-msgstr "Κύλιση"
+msgid "Acceleratio_n:"
+msgstr "Επιτά_χυνση:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
-msgid "Scrolling"
-msgstr "Κύλιση"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr ""
+"Ο παράγοντας στον οποίο η ταχύτητα του δείκτη θα αυξηθεί όσο το ποντίκι "
+"κινείται."
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr ""
+"Ο αριθμός των πίξελ που πρέπει να κινηθεί ο δείκτης σε ένα μικρό διάστημα "
+"χρόνου πριν ξεκινήσει η επιτάχυνση"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#, fuzzy
+msgid "Sensitivit_y:"
+msgstr "_Ευαισθησία:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+msgid "_Reset to Defaults"
+msgstr "Επανα_φορά στις προεπιλογές"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 #, fuzzy
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
@@ -1229,25 +1305,64 @@ msgstr ""
 "Θέσε την επιτάχυνση και το κατώφλι για την επιλογή της συσκευσής στις "
 "προκαθορισμένες τιμές"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
-msgid "Size"
-msgstr "Μέγεθος"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+msgid "Pointer Speed"
+msgstr "Ταχύτητα Δείκτη"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
-msgid "T_ap touchpad to click"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+msgid "B_uttons and Feedback"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
-msgid "T_heme"
-msgstr "_Θέμα"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "Disable touchpad _while typing"
+msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#, fuzzy
+msgid ""
+"When selected, the touchpad will be disabled when the keyboard is being used"
+msgstr ""
+"Όταν επιλεχθεί, ο δείκτης του ποντικιού μπορεί να ελεχθεί χρησιμοποιώντας το "
+"αριθμητικό πληκτρολόγιο"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+msgid "Tap touchpad to clic_k"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#, fuzzy
+msgid "Scrolling _mode:"
+msgstr "Κύλιση"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#, fuzzy
+msgid "Enable hori_zontal scrolling"
+msgstr "Ενεργοποίηση ε_ξομάλυνσης"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+msgid "Scrolling"
+msgstr "Κύλιση"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "T_ouchpad"
 msgstr "T_ouchpad"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
-msgid "Table_t"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#, fuzzy
+msgid "Trac_king mode:"
+msgstr "Κύλιση"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+msgid "_Rotation:"
+msgstr "Περισ_τροφή:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+msgid "Tab_let"
 msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+msgid "_Devices"
+msgstr "Συ_σκεύες"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 #, fuzzy
@@ -1256,43 +1371,20 @@ msgstr "Κατώ_φλι:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid ""
-"The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr ""
-"Ο παράγοντας στον οποίο η ταχύτητα του δείκτη θα αυξηθεί όσο το ποντίκι "
-"κινείται."
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
-msgid ""
-"The mouse pointer cannot move farther than this distance between two clicks "
-"for them to be considered a double click"
-msgstr ""
-"Ο δείκτης του ποντικιού δεν μπορεί να κινηθεί παραπάνω από την απόσταση "
-"μεταξύ των δύο κλικς για να θεωρηθεί ένα διπλό κλικ"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
-msgid ""
 "The number of pixels the pointer must move before a drag operation will start"
 msgstr ""
 "Ο αριθμός των πίξελ που πρέπει να κινηθεί ο δείκτης πριν μία διεργασία σύρε "
 "θα ξεκινήσει"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
-msgid ""
-"The number of pixels the pointer must move in a short time before it starts "
-"accelerating"
-msgstr ""
-"Ο αριθμός των πίξελ που πρέπει να κινηθεί ο δείκτης σε ένα μικρό διάστημα "
-"χρόνου πριν ξεκινήσει η επιτάχυνση"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+msgid "Drag and Drop"
+msgstr "Μεταφορά και απόθεση"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Ti_me:"
 msgstr "_Χρόνος:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
-msgid "Tr_acking mode:"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
@@ -1300,58 +1392,73 @@ msgstr ""
 "Δύο κλικ ποντικιού σε λιγότερο από το μέγεθος αυτού του χρόνου (σε χιλιοστά "
 "δευτερολέπτου) που θα πρέπει να θεωρηθεί ένα διπλό κλικ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
-msgid "Two-finger scrolling"
-msgstr ""
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+msgid "D_istance:"
+msgstr "Α_πόσταση:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
-msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr ""
-"Όταν επιλεχθεί, η κύλιση της ροδέλας θα πρέπει να δουλέψει από την αντίθετη "
-"διεύθυνση"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
-#, fuzzy
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid ""
-"When selected, the touchpad will be disabled when the keyboard is being used"
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
 msgstr ""
-"Όταν επιλεχθεί, ο δείκτης του ποντικιού μπορεί να ελεχθεί χρησιμοποιώντας το "
-"αριθμητικό πληκτρολόγιο"
+"Ο δείκτης του ποντικιού δεν μπορεί να κινηθεί παραπάνω από την απόσταση "
+"μεταξύ των δύο κλικς για να θεωρηθεί ένα διπλό κλικ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
-msgid "_Acceleration:"
-msgstr "Επιτά_χυνση:"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+msgid "Double Click"
+msgstr "Διπλό κλικ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "_Behavior"
 msgstr "Σ_υμπεριφορά"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#, fuzzy
+msgid "Cursor si_ze:"
+msgstr "Μέγεθος _δείκτη:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+msgid "Size"
+msgstr "Μέγεθος"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+msgid "Preview"
+msgstr "Προεπισκόπηση"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#, fuzzy
+msgid "_Theme"
+msgstr "_Θέμα"
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
-msgid "_Devices"
-msgstr "Συ_σκεύες"
+msgid "Pen (absolute)"
+msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
-msgid "_Enable this device"
-msgstr "_Ενεργοποίηση της συσκευής"
+#, fuzzy
+msgid "Mouse (relative)"
+msgstr "Εξομοίωση ποντικιού"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
-msgid "_Left-handed"
-msgstr "_Δεξιόχειρες"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
-msgid "_Right-handed"
+#, fuzzy
+msgid "None (right-handed)"
 msgstr "Α_ριστερόχειρες"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#, fuzzy
+msgid "Half (left-handed)"
+msgstr "_Δεξιόχειρες"
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
-msgid "_Rotation:"
-msgstr "Περισ_τροφή:"
+msgid "Clockwise"
+msgstr "Δεξιόστροφα"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
-msgid "_Sensitivity:"
-msgstr "_Ευαισθησία:"
+msgid "Counterclockwise"
+msgstr "Αριστερόστροφα"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
 msgstr "Επεξεργαστής ρυθμίσεων"
 
@@ -1554,43 +1661,43 @@ msgstr ""
 msgid "Edit Property"
 msgstr "Επεξεργασία ιδιότητας"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 msgid "Graphical settings editor for Xfconf"
 msgstr "Γραφικός επεξεργαστής ρυθμίσεων για το xfconf"
 
-#: ../xfsettingsd/accessibility.c:390
+#: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr "Τα κολλώδη πλήκτρα είναι ενεργοποιημένα"
 
-#: ../xfsettingsd/accessibility.c:392
+#: ../xfsettingsd/accessibility.c:414
 msgid "Sticky keys are disabled"
 msgstr "Τα κολλώδη πλήκτρα είναι απενεργοποιημένα"
 
-#: ../xfsettingsd/accessibility.c:394
+#: ../xfsettingsd/accessibility.c:416
 msgid "Sticky keys"
 msgstr "Κολλώδη πλήκτρα"
 
-#: ../xfsettingsd/accessibility.c:399
+#: ../xfsettingsd/accessibility.c:421
 msgid "Slow keys are enabled"
 msgstr "Τα αργά πλήκτρα είναι ενεργοποιημένα"
 
-#: ../xfsettingsd/accessibility.c:401
+#: ../xfsettingsd/accessibility.c:423
 msgid "Slow keys are disabled"
 msgstr "Τα αργά πλήκτρα είναι απενεργοποιημένα"
 
-#: ../xfsettingsd/accessibility.c:403
+#: ../xfsettingsd/accessibility.c:425
 msgid "Slow keys"
 msgstr "Αργά πλήκτρα"
 
-#: ../xfsettingsd/accessibility.c:408
+#: ../xfsettingsd/accessibility.c:430
 msgid "Bounce keys are enabled"
 msgstr "Τα πλήκτρα αναπήδησης είναι ενεργοποιημένα"
 
-#: ../xfsettingsd/accessibility.c:410
+#: ../xfsettingsd/accessibility.c:432
 msgid "Bounce keys are disabled"
 msgstr "Τα πλήκτρα αναπήδησης είναι απενεργοποιημένα"
 
-#: ../xfsettingsd/accessibility.c:412
+#: ../xfsettingsd/accessibility.c:434
 msgid "Bounce keys"
 msgstr "Πλήκτρα αναπήδησης"
 
@@ -1623,7 +1730,8 @@ msgid "Settings dialog to show"
 msgstr "Ρυθμίσεις διαλόγου προς εμφάνιση"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:186
-msgid "_All Settings"
+#, fuzzy
+msgid "All _Settings"
 msgstr "_Όλες οι Ρυθμίσεις"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:366
@@ -1641,44 +1749,42 @@ msgid "Unable to start \"%s\""
 msgstr "Αδυναμία εκκίνησης του  \"%s\""
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Γραφικός διαχειριστής ρυθμίσεων για το xfce 4"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Διαχειριστής Ρυθμίσεων"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#, fuzzy
-msgid "Change layout option"
-msgstr "Συνδυασμός αλλαγής διάταξης"
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Graphical Settings Manager for Xfce 4"
+msgstr "Γραφικός διαχειριστής ρυθμίσεων για το xfce 4"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-#, fuzzy
-msgid "Compose key"
-msgstr "Πλήκτρο σύνθεσης"
+#~ msgid "_Settings"
+#~ msgstr "Ρυ_θμίσεις"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
-#, fuzzy
-msgid "Move currently selected item down by one row"
-msgstr "Μετακίνηση του επιλεγμένου αντικειμένου μια γραμμή κάτω"
+#~ msgid "Both displays cloned"
+#~ msgstr "Κλωνοποίηση και των δυο οθονών"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#~ msgid "Display settings"
+#~ msgstr "Ρυθμίσεις οθόνης"
+
+#~ msgid "Several displays are available. Use:\n"
+#~ msgstr "Είναι διαθέσιμες αρκετές οθόνες. Χρήση:\n"
+
+#~ msgid "Use both displays to show the same contents"
+#~ msgstr "Χρήση και των δυο οθονών για την εμφάνιση του ίδιου περιεχομένου"
+
+#~ msgid "Normal"
+#~ msgstr "Κανονικά"
+
+#~ msgid "Be_havior"
+#~ msgstr "Συμπερι_φορά"
+
 #, fuzzy
-msgid "Move currently selected item up by one row"
-msgstr "Μετακίνηση του επιλεγμένου αντικειμένου μια γραμμή επάνω"
+#~ msgid "Reset to De_faults"
+#~ msgstr "Επαναφορά στις προεπιλογές"
 
 #~ msgid "Use this area to _test the settings above:"
 #~ msgstr ""
 #~ "Χρησιμοποιείσ_τε αυτή την περιοχή για να δοκιμάσετε τις παραπάνω "
 #~ "ρυθμίσεις:"
-
-#~ msgid "_Reset to Defaults"
-#~ msgstr "Επανα_φορά στις προεπιλογές"
 
 #~ msgid "Feedback"
 #~ msgstr "Σχόλια"
