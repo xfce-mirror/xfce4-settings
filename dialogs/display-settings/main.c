@@ -31,6 +31,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
+#include <gdk/gdkkeysyms.h>
 
 #include <xfconf/xfconf.h>
 #include <exo/exo.h>
@@ -1770,6 +1771,19 @@ display_settings_show_main_dialog (GdkDisplay *display)
     g_object_unref (G_OBJECT (builder));
 }
 
+static gboolean
+display_settings_minimal_dialog_key_press_event(GtkWidget *widget, 
+                                                GdkEventKey *event, 
+                                                gpointer user_data)
+{
+    if (event->keyval == GDK_Escape)
+    {
+        gtk_main_quit();
+        return TRUE;
+    }
+    return FALSE;
+}
+
 static void
 display_settings_minimal_advanced_clicked (GtkButton  *button,
                                            GtkBuilder *builder)
@@ -1821,6 +1835,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
         cancel = GTK_WIDGET (gtk_builder_get_object (builder, "cancel_button"));
 
+        g_signal_connect (dialog, "key-press-event", G_CALLBACK (display_settings_minimal_dialog_key_press_event), NULL);
         g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
         g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
 
