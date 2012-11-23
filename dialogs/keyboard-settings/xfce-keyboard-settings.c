@@ -947,7 +947,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
   /* Create command dialog */
   command_dialog = command_dialog_new (NULL, NULL, FALSE);
 
-  /* Run command dialog until a vaild (non-empty) command is entered or the dialog is cancelled */
+  /* Run command dialog until a valid (non-empty) command is entered or the dialog is cancelled */
   do
     {
       response = command_dialog_run (COMMAND_DIALOG (command_dialog), GTK_WIDGET (button));
