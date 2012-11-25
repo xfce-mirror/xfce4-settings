@@ -2,43 +2,43 @@
 # Copyright (C) 2008 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 # Michal Várady <miko.vaji@gmail.com>, 2008-2012.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-20 17:53+0100\n"
+"POT-Creation-Date: 2012-11-25 11:57+0000\n"
 "PO-Revision-Date: 2012-02-19 01:21+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
+msgid "Acceleration _profile:"
+msgstr "_Profil akcelerace:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
+msgid "Acceleration t_ime:"
+msgstr "_Doba akcelerace:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+msgid "Acceptance _delay:"
+msgstr "_Zpoždění akcelerace:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
 msgstr "Přístupnost"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
-msgid "Configure keyboard and mouse accessibility"
-msgstr "Konfigurace přístupnosti klávesnice a myši"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
-msgid "_Enable assistive technologies"
-msgstr "_ Povolit technologie usnadnění"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
-msgid ""
-"If enabled, the session manager will start the required applications for "
-"screen readers and magnifiers"
-msgstr ""
-"Pokud je tato položka povolena, správce relací spustí požadované aplikace "
-"pro čtení a zvětšování obrazovky"
-
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+msgid "Assistive _Technologies"
+msgstr "_Technologie usnadnění"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid ""
 "Assistive technologies will be available the\n"
 "next time you login"
@@ -46,19 +46,117 @@ msgstr ""
 "Technologie usnadnění budou dostupné po\n"
 "příštím přihlášení"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+msgid "Bounce Keys"
+msgstr "Zdvojené klávesy"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+msgid "Configure keyboard and mouse accessibility"
+msgstr "Konfigurace přístupnosti klávesnice a myši"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+msgid "Disable sticky keys if two keys are _pressed"
+msgstr "Zakáza_t lepicí klávesy při stisku dvou kláves"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+msgid ""
+"If enabled, the session manager will start the required applications for "
+"screen readers and magnifiers"
+msgstr ""
+"Pokud je tato položka povolena, správce relací spustí požadované aplikace "
+"pro čtení a zvětšování obrazovky"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+msgid "K_eystroke delay:"
+msgstr "Zpož_dění stisku kláves:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+msgid "Keyboa_rd"
+msgstr "Kláve_snice"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+msgid "Ma_ximum speed:"
+msgstr "Maximální _rychlost:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+msgid "Mouse Emulation"
+msgstr "Emulace myši"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "No AT-SPI provider was found on your system"
 msgstr "Na tomto systému nebyl nalezen žádný poskytovatel AT-SPI"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
-msgid "Assistive _Technologies"
-msgstr "_Technologie usnadnění"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+msgid "R_epeat interval:"
+msgstr "I_nterval opakování:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
-msgid "_Use sticky keys"
-msgstr "Použít _lepicí klávesy"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+msgid "Slow Keys"
+msgstr "Pomalé klávesy"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+msgid "Sticky Keys"
+msgstr "Lepicí klávesy"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+msgid "The amount of time, in milliseconds, required between keystrokes"
+msgstr "Doba v milisekundách mezi dvěma stisky kláves"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+msgid ""
+"The amount of time, in milliseconds, that must elapse before a keystroke "
+"will be accepted"
+msgstr "Doba v milisekundách, která musí uběhnout před přijetím stisku klávesy"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+msgid "The maximum pointer speed after acceleration"
+msgstr "Maximální rychlost ukazatele po zrychlení"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+msgid "The ramp used to reach maximum pointer speed"
+msgstr "Rampa použitá k dosažení maximální rychlost ukazatele"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+msgid "The time, in milliseconds, between repeated motion events"
+msgstr "Doba v milisekundách mezi dvěma opakovanými událostmi pohybu"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+msgid ""
+"The time, in milliseconds, between the initial key press and first repeated "
+"motion event"
+msgstr ""
+"Doba v milisekundách mezi stisknutím první klávesy a první opakovanou "
+"událostí pohybu"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+msgid "The time, in milliseconds, to get to maximum speed"
+msgstr "Doba v milisekundách pro získání nejvyšší rychlosti"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+msgid ""
+"To help prevent accidental keystrokes, slow keys requires that a key is held "
+"for a certain minimum amount of time before the keystroke will be accepted"
+msgstr ""
+"Funkce pomalé klávesy pomáhá předejít náhodným stiskům kláves tak, že "
+"požadovaná klávesa musí být před přijetím stisknuta po určitou dobu"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+msgid ""
+"To help prevent accidental multiple keystrokes, bounce keys imposes a "
+"minimum delay between keystrokes"
+msgstr ""
+"Funkce zdvojené klávesy pomáhá předejít náhodným opakovaným stiskům kláves "
+"nastavením minimální doby mezi stiskem kláves"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+msgid "Use _bounce keys"
+msgstr "Použít _zdvojené klávesy"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+msgid "Use slow _keys"
+msgstr "Použít pomalé _klávesy"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
@@ -68,11 +166,7 @@ msgstr ""
 "držet (pouze je stiskněte a poté uvolněte), narozdíl od běžného stavu, kdy "
 "je nutné je stisknout najednou"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
-msgid "_Lock sticky keys"
-msgstr "_Uzamknout lepicí klávesy"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -80,11 +174,7 @@ msgstr ""
 "Vyberete-li tuto volbu, klávesy modifikátorů (Control, Alt a Shift) zůstanou "
 "ve stisknutém stavu, dokud je opětovně nestisknete"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
-msgid "Disable sticky keys if two keys are _pressed"
-msgstr "Zakáza_t lepicí klávesy při stisku dvou kláves"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
@@ -92,69 +182,7 @@ msgstr ""
 "Vyberete-li tuto volbu, bude funkce lepicí klávesy po stisknutí dvou kláves "
 "najednou zakázána"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
-msgid "Sticky Keys"
-msgstr "Lepicí klávesy"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
-msgid "Use slow _keys"
-msgstr "Použít pomalé _klávesy"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
-msgid ""
-"To help prevent accidental keystrokes, slow keys requires that a key is held "
-"for a certain minimum amount of time before the keystroke will be accepted"
-msgstr ""
-"Funkce pomalé klávesy pomáhá předejít náhodným stiskům kláves tak, že "
-"požadovaná klávesa musí být před přijetím stisknuta po určitou dobu"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
-msgid "Acceptance _delay:"
-msgstr "_Zpoždění akcelerace:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
-msgid ""
-"The amount of time, in milliseconds, that must elapse before a keystroke "
-"will be accepted"
-msgstr "Doba v milisekundách, která musí uběhnout před přijetím stisku klávesy"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
-msgid "Slow Keys"
-msgstr "Pomalé klávesy"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
-msgid "Use _bounce keys"
-msgstr "Použít _zdvojené klávesy"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
-msgid ""
-"To help prevent accidental multiple keystrokes, bounce keys imposes a "
-"minimum delay between keystrokes"
-msgstr ""
-"Funkce zdvojené klávesy pomáhá předejít náhodným opakovaným stiskům kláves "
-"nastavením minimální doby mezi stiskem kláves"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
-msgid "K_eystroke delay:"
-msgstr "Zpož_dění stisku kláves:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
-msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "Doba v milisekundách mezi dvěma stisky kláves"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
-msgid "Bounce Keys"
-msgstr "Zdvojené klávesy"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
-msgid "Keyboa_rd"
-msgstr "Kláve_snice"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
-msgid "_Use mouse emulation"
-msgstr "_Použít emulaci myši"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number "
 "pad"
@@ -162,83 +190,55 @@ msgstr ""
 "Vyberete-li tuto volbu, bude možné ovládat ukazatel myši numerickou "
 "klávesnicí"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
-msgid "R_epeat interval:"
-msgstr "I_nterval opakování:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "_Acceleration delay:"
 msgstr "Zpoždění při _akceleraci:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
-msgid "Acceleration t_ime:"
-msgstr "_Doba akcelerace:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
-msgid "Ma_ximum speed:"
-msgstr "Maximální _rychlost:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
-msgid "Acceleration _profile:"
-msgstr "_Profil akcelerace:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
-msgid "msec"
-msgstr "ms"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
-msgid "pixels/sec"
-msgstr "pixely/s"
-
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
-msgid ""
-"The time, in milliseconds, between the initial key press and first repeated "
-"motion event"
-msgstr ""
-"Doba v milisekundách mezi stisknutím první klávesy a první opakovanou "
-"událostí pohybu"
+msgid "_Enable assistive technologies"
+msgstr "_ Povolit technologie usnadnění"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
-msgid "The time, in milliseconds, between repeated motion events"
-msgstr "Doba v milisekundách mezi dvěma opakovanými událostmi pohybu"
+msgid "_Lock sticky keys"
+msgstr "_Uzamknout lepicí klávesy"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
-msgid "The ramp used to reach maximum pointer speed"
-msgstr "Rampa použitá k dosažení maximální rychlost ukazatele"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
-msgid "The maximum pointer speed after acceleration"
-msgstr "Maximální rychlost ukazatele po zrychlení"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
-msgid "The time, in milliseconds, to get to maximum speed"
-msgstr "Doba v milisekundách pro získání nejvyšší rychlosti"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
-msgid "Mouse Emulation"
-msgstr "Emulace myši"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "_Mouse"
 msgstr "_Myš"
 
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+msgid "_Use mouse emulation"
+msgstr "_Použít emulaci myši"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+msgid "_Use sticky keys"
+msgstr "Použít _lepicí klávesy"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+msgid "msec"
+msgstr "ms"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+msgid "pixels/sec"
+msgstr "pixely/s"
+
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:136
+#: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Soket správce nastavení"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
-#: ../dialogs/display-settings/main.c:136
+#: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:138
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:39
@@ -247,7 +247,7 @@ msgstr "Informace o verzi"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:966
-#: ../dialogs/display-settings/main.c:1926
+#: ../dialogs/display-settings/main.c:1941
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1597 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:60
@@ -257,7 +257,7 @@ msgstr "Informace o použití získáte příkazem '%s --help'"
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
-#: ../dialogs/display-settings/main.c:1945
+#: ../dialogs/display-settings/main.c:1960
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1616 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:76
@@ -266,7 +266,7 @@ msgstr "Vývojářský tým Xfce. Všechna práva vyhrazena."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:986
-#: ../dialogs/display-settings/main.c:1946
+#: ../dialogs/display-settings/main.c:1961
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1617 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:77
@@ -279,49 +279,64 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "Vylepšete přístupnost klávesnice a myši"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr "Vyhlazování zlepšuje vzhled textu na obrazovce"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
 msgstr "Vzhled"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+#: ../dialogs/display-settings/main.c:117
+msgid "Both"
+msgstr "Obojí"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "Both Horizontal"
+msgstr "Obojí vodorovně"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
+msgid "Custom _DPI setting:"
+msgstr "Vlastní nastavení rozlišení _DPI:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
 msgstr "Nastavení vzhledu vašeho pracovního prostředí"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-msgid "St_yle"
-msgstr "St_yl"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
-msgid "_Icons"
-msgstr "_Ikony"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
-msgid ""
-"This font will be used as the default font used when drawing user interface "
-"text"
-msgstr ""
-"Toto písmo bude použito jako výchozí pro vykreslení textu uživatelského "
-"rozhraní"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
-msgid "Select a default font"
-msgstr "Vybrat výchozí písmo"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+msgid "DPI"
+msgstr "DPI"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 msgid "Default Fon_t"
 msgstr "Vý_chozí písmo"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
-msgid ""
-"Many fonts contain information that provides extra hints as to how best draw "
-"the font; pick whichever looks best according to personal preference"
-msgstr ""
-"Mnohá písma obsahují informaci poskytující dodatečné informace o nejlepším "
-"způsobu pro vykreslení písma. Nejlepší vzhled vyberte podle svých osobních "
-"priorit"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
+msgid "Enable _event sounds"
+msgstr "Povolit z_vuky událostí"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+msgid "Enable e_ditable accelerators"
+msgstr "Povolit úp_ravy klávesových zkratek"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+msgid "Enable input feedbac_k sounds"
+msgstr "Povolit _ozvučení vstupních událostí"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr ""
+"Globálně povolí nebo zakáže zvuky událostí (vyžaduje podporu knihovny "
+"„Canberra“)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+msgid "Event sounds"
+msgstr "Zvuky událostí"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
@@ -329,75 +344,19 @@ msgstr ""
 "Na obrazovkách TFT nebo LCD lze zvýšit kvalitu písem volbou správného pořadí "
 "barevných složek pixelů vaší obrazovky"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
-msgid "Sub-_pixel order:"
-msgstr "_Pořadí subpixelů:"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+msgid "Full"
+msgstr "Úplný"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "Hintin_g:"
 msgstr "_Hinting:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
-msgid "_Enable anti-aliasing"
-msgstr "Povolit vyhl_azování"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
-msgid ""
-"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "Vyhlazování zlepšuje vzhled textu na obrazovce"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
-msgid "Rendering"
-msgstr "Vykreslování"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
-msgid "Custom _DPI setting:"
-msgstr "Vlastní nastavení rozlišení _DPI:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
-msgid ""
-"Override the detected monitor resolution if fonts look too large or too small"
-msgstr ""
-"Obejít rozlišení nalezeného monitoru v případě, že je písmo příliš velké "
-"nebo malé"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
-msgid "DPI"
-msgstr "DPI"
+msgid "Icons"
+msgstr "Ikony"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
-msgid "_Fonts"
-msgstr "_Písma"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
-msgid "Specify what should be displayed in toolbar items"
-msgstr "Zvolte položky zobrazené mezi položkami panelu nástrojů"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-msgid "_Toolbar Style"
-msgstr "_Styl panelu nástrojů"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
-msgid "Show images on _buttons"
-msgstr "Zobrazovat obrázky na _tlačítkách"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
-msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "Zvolte, zda budou na tlačítkách zobrazeny ikony"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
-msgid "Show images in _menus"
-msgstr "Zobrazovat obrázky v _nabídkách"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
-msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "Zvolte, zda budou vedle položek nabídek zobrazeny ikony"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
-msgid "Enable e_ditable accelerators"
-msgstr "Povolit úp_ravy klávesových zkratek"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
@@ -406,73 +365,114 @@ msgstr ""
 "Vyberete-li, můžete změnit klávesové zkratky položek nabídky přejetím "
 "kurzoru myši nad položku nabídky a stiskem nové klávesové zkratky"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw "
+"the font; pick whichever looks best according to personal preference"
+msgstr ""
+"Mnohá písma obsahují informaci poskytující dodatečné informace o nejlepším "
+"způsobu pro vykreslení písma. Nejlepší vzhled vyberte podle svých osobních "
+"priorit"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Medium"
+msgstr "Střední"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Menus and Buttons"
 msgstr "Nabídky a tlačítka"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/main.c:852
+#: ../dialogs/display-settings/main.c:103
+#: ../dialogs/display-settings/main.c:114
+msgid "None"
+msgstr "Žádné"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too small"
+msgstr ""
+"Obejít rozlišení nalezeného monitoru v případě, že je písmo příliš velké "
+"nebo malé"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+msgid "Rendering"
+msgstr "Vykreslování"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+msgid "Select a default font"
+msgstr "Vybrat výchozí písmo"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+msgid "Setti_ngs"
+msgstr "_Nastavení"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+msgid "Show images in _menus"
+msgstr "Zobrazovat obrázky v _nabídkách"
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
-msgid "Enable _event sounds"
-msgstr "Povolit z_vuky událostí"
+msgid "Show images on _buttons"
+msgstr "Zobrazovat obrázky na _tlačítkách"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
-msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr ""
-"Globálně povolí nebo zakáže zvuky událostí (vyžaduje podporu knihovny "
-"„Canberra“)"
+msgid "Slight"
+msgstr "Mírný"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
-msgid "Enable input feedbac_k sounds"
-msgstr "Povolit _ozvučení vstupních událostí"
+msgid "Specify what should be displayed in toolbar items"
+msgstr "Zvolte položky zobrazené mezi položkami panelu nástrojů"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "Zvolte, zda budou vedle položek nabídek zobrazeny ikony"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "Zvolte, zda budou na tlačítkách zobrazeny ikony"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to "
 "play"
 msgstr "Zvolte, zda budou kliknutí myši a jiné uživatelské vstupy ozvučeny"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
-msgid "Event sounds"
-msgstr "Zvuky událostí"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
-msgid "Setti_ngs"
-msgstr "_Nastavení"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
-#: ../dialogs/appearance-settings/main.c:852
-#: ../dialogs/display-settings/main.c:102
-#: ../dialogs/display-settings/main.c:113
-msgid "None"
-msgstr "Žádné"
+msgid "St_yle"
+msgstr "St_yl"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
-msgid "Slight"
-msgstr "Mírný"
+msgid "Sub-_pixel order:"
+msgstr "_Pořadí subpixelů:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
-msgid "Medium"
-msgstr "Střední"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
-msgid "Full"
-msgstr "Úplný"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
-msgid "Icons"
-msgstr "Ikony"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Text"
 msgstr "Text"
 
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr ""
+"Toto písmo bude použito jako výchozí pro vykreslení textu uživatelského "
+"rozhraní"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+msgid "_Enable anti-aliasing"
+msgstr "Povolit vyhl_azování"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+msgid "_Fonts"
+msgstr "_Písma"
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
-#: ../dialogs/display-settings/main.c:116
-msgid "Both"
-msgstr "Obojí"
+msgid "_Icons"
+msgstr "_Ikony"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
-msgid "Both Horizontal"
-msgstr "Obojí vodorovně"
+msgid "_Toolbar Style"
+msgstr "_Styl panelu nástrojů"
 
 #: ../dialogs/appearance-settings/main.c:733
 #, c-format
@@ -517,20 +517,20 @@ msgid "Vertical BGR"
 msgstr "Svislé BGR"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr "<big><b>Chcete ponechat toto nastavení?</b></big>"
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Keep this configuration"
 msgstr "Ponechat stávající nastavení"
 
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:3
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Restore the previous configuration"
 msgstr "Obnovit předchozí nastavení"
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
-msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "<big><b>Chcete ponechat toto nastavení?</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid ""
@@ -540,126 +540,126 @@ msgstr ""
 "Neodpovíte-li na tuto otázku, bude předchozí nastavení obnoveno za 10 sekund."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-msgid "Display"
-msgstr "Displej"
+msgid ""
+"Automatically show the \"minimal dialog\" to quickly configure newly "
+"connected displays."
+msgstr "Automaticky zobrazit malé dialogové okno pro rychlou konfiguraci nově připojených displejů."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+msgid "Configure _new displays when connected"
+msgstr "Po připojení konfigurovat _nově připojené displeje"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Configure screen settings and layout"
 msgstr "Konfiguruje nastavení obrazovky a rozložení"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
-msgid "Ref_lection:"
-msgstr "Od_raz:"
-
 #: ../dialogs/display-settings/display-dialog.glade.h:4
-msgid "Ro_tation:"
-msgstr "O_točení:"
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+msgid "Display"
+msgstr "Displej"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
-msgid "Refresh _rate:"
-msgstr "Obnovovací f_rekvence:"
+msgid "P_osition:"
+msgstr "_Umístění:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "R_esolution:"
 msgstr "Rozliš_ení:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "P_osition:"
-msgstr "_Umístění:"
+msgid "Ref_lection:"
+msgstr "Od_raz:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
-msgid "_Use this output"
-msgstr "_Použít tento výstup"
+msgid "Refresh _rate:"
+msgstr "Obnovovací f_rekvence:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "Ro_tation:"
+msgstr "O_točení:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "_Mirror displays"
 msgstr "_Převrátit displeje"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
-msgid "Configure _new displays when connected"
-msgstr ""
-
 #: ../dialogs/display-settings/display-dialog.glade.h:11
-msgid ""
-"Automatically show the \"minimal dialog\" to quickly configure newly "
-"connected displays."
-msgstr ""
+msgid "_Use this output"
+msgstr "_Použít tento výstup"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Displays"
 msgstr "Displej"
 
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
-msgid "Only Display 1"
-msgstr "Pouze Displej 1"
-
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
-msgid "Mirror Displays"
-msgstr "Převrátit displeje"
-
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
 msgid "Extend to the right"
 msgstr "Rozšířit doprava"
 
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
+msgid "Mirror Displays"
+msgstr "Převrátit displeje"
+
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
-msgid "Only Display 2"
-msgstr "Pouze Displej 2"
+msgid "Only Display 1"
+msgstr "Pouze Displej 1"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
-msgid "Advanced"
-msgstr "Pokročilé"
+msgid "Only Display 2"
+msgstr "Pouze Displej 2"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
 msgstr "radiobutton"
 
-#: ../dialogs/display-settings/main.c:90
+#: ../dialogs/display-settings/main.c:91
 msgid "Same as"
 msgstr "Stejně jako"
 
-#: ../dialogs/display-settings/main.c:91
+#: ../dialogs/display-settings/main.c:92
 msgid "Above"
 msgstr "výše"
 
-#: ../dialogs/display-settings/main.c:92
+#: ../dialogs/display-settings/main.c:93
 msgid "Below"
 msgstr "níže"
 
-#: ../dialogs/display-settings/main.c:93
+#: ../dialogs/display-settings/main.c:94
 msgid "Right of"
 msgstr "Napravo od"
 
-#: ../dialogs/display-settings/main.c:94
+#: ../dialogs/display-settings/main.c:95
 msgid "Left of"
 msgstr "Nalevo od"
 
-#: ../dialogs/display-settings/main.c:103
+#: ../dialogs/display-settings/main.c:104
 msgid "Left"
 msgstr "Doleva"
 
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:105
 msgid "Inverted"
 msgstr "Otočené"
 
-#: ../dialogs/display-settings/main.c:105
+#: ../dialogs/display-settings/main.c:106
 msgid "Right"
 msgstr "Doprava"
 
-#: ../dialogs/display-settings/main.c:114
+#: ../dialogs/display-settings/main.c:115
 msgid "Horizontal"
 msgstr "Vodorovně"
 
-#: ../dialogs/display-settings/main.c:115
+#: ../dialogs/display-settings/main.c:116
 msgid "Vertical"
 msgstr "Svisle"
 
-#: ../dialogs/display-settings/main.c:138
+#: ../dialogs/display-settings/main.c:139
 msgid "Minimal interface to set up an external output"
 msgstr "Minimální rozhraní pro nastavení externího výstupu"
 
-#: ../dialogs/display-settings/main.c:226
+#: ../dialogs/display-settings/main.c:227
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -668,44 +668,44 @@ msgstr ""
 "Neodpovíte-li na tuto otázku, bude předchozí nastavení obnoveno za %i sekund."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:747
+#: ../dialogs/display-settings/main.c:748
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1040
+#: ../dialogs/display-settings/main.c:1041
 msgid "Display:"
 msgstr "Displej:"
 
-#: ../dialogs/display-settings/main.c:1045
+#: ../dialogs/display-settings/main.c:1046
 msgid "Resolution:"
 msgstr "Rozlišení:"
 
-#: ../dialogs/display-settings/main.c:1232
+#: ../dialogs/display-settings/main.c:1233
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Poslední aktivní výstup nelze zakázat, systém by byl nepoužitelný."
 
-#: ../dialogs/display-settings/main.c:1234
+#: ../dialogs/display-settings/main.c:1235
 msgid "Selected output not disabled"
 msgstr "Vybraný výstup není zakázaný"
 
-#: ../dialogs/display-settings/main.c:1958
+#: ../dialogs/display-settings/main.c:1973
 #: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nelze zjistit používanou verzi rozšíření RandR"
 
-#: ../dialogs/display-settings/main.c:1959
-#: ../dialogs/display-settings/main.c:1995
+#: ../dialogs/display-settings/main.c:1974
+#: ../dialogs/display-settings/main.c:2010
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nelze spustit nastavení displeje Xfce"
 
-#: ../dialogs/display-settings/main.c:1990
+#: ../dialogs/display-settings/main.c:2005
 msgid "ATI Settings"
 msgstr "Nastavení grafické karty ATI"
 
-#: ../dialogs/display-settings/main.c:2005
+#: ../dialogs/display-settings/main.c:2020
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nelze spustit nastavení proprietárního ovladače"
 
@@ -799,109 +799,89 @@ msgid "Shell Scripts"
 msgstr "Shellové skripty"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "Keyboard layout selection"
-msgstr "Výběr rozložení klávesnice"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
-msgid "Select keyboard layout and variant"
-msgstr "Vyberte rozložení a variantu klávesnice"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
-msgid "Keyboard"
-msgstr "Klávesnice"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "Úprava nastavení klávesnice a klávesových zkratek"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-msgid "Restore num l_ock state on startup"
-msgstr "Obnovit stav přepínače numlock po spuštění"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
-msgid "General"
-msgstr "Obecné"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-msgid "_Enable key repeat"
-msgstr "_Povolit opakování klávesy"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-msgid ""
-"When selected, pressing and holding down a key emits the same character over "
-"and over again"
-msgstr ""
-"Vyberete-li tuto volbu, bude se stisknutím a držením klávesy její zasílání "
-"neustále opakovat"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
-msgid "_Repeat delay:"
-msgstr "Zpož_dění opakování:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
-msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "Čas v milisekundách před zahájením opakování stisknuté klávesy"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
-msgid "Repe_at speed:"
-msgstr "Rychlo_st opakování:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
-msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "Frekvence generování kódů klávesy při jejím trvalém stisku"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
-msgid "Typing Settings"
-msgstr "Nastavení psaní"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
-msgid "Show _blinking"
-msgstr "Povolit _blikání"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
-msgid "Specify whether or not the text cursor blinks"
-msgstr "Určete, zda bude textový kurzor blikat"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
-msgid "Blink _delay:"
-msgstr "Rychlostí _blikání:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
-msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Prodleva v milisekundách mezi bliknutími kurzoru"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
-msgid "Cursor"
-msgstr "Kurzor"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
-msgid "_Test area:"
-msgstr "_Testovací oblast:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
-msgid "Beha_vior"
-msgstr "_Chování"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "Define shortcuts for la_unching applications:"
-msgstr "Definujte klávesové _zkratky pro spouštění aplikací:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
-msgid "Reset to _Defaults"
-msgstr "Obnovit _výchozí"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "A_pplication Shortcuts"
 msgstr "Klá_vesové zkratky aplikace"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
-msgid "_Use system defaults"
-msgstr "_Použít výchozí nastavení systému"
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
+msgid "Beha_vior"
+msgstr "_Chování"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+msgid "Blink _delay:"
+msgstr "Rychlostí _blikání:"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+msgid "Change la_yout option"
+msgstr "Volba změny rozložení"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Co_mpose key"
+msgstr "Klávesa pro _skládání"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+msgid "Cursor"
+msgstr "Kurzor"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+msgid "Define shortcuts for la_unching applications:"
+msgstr "Definujte klávesové _zkratky pro spouštění aplikací:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
+msgid "Edit keyboard settings and application shortcuts"
+msgstr "Úprava nastavení klávesnice a klávesových zkratek"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+msgid "General"
+msgstr "Obecné"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+msgid "Key_board layout"
+msgstr "_Rozložení klávesnice"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
+msgid "Keyboard"
+msgstr "Klávesnice"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "Keyboard layout selection"
+msgstr "Výběr rozložení klávesnice"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+msgid "Move currently selected item down by one row"
+msgstr "Přesunout vybranou položku dolů o jeden řádek"
+
+# Automatically copied. Please review and remove fuzzy flag.
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+msgid "Move currently selected item up by one row"
+msgstr "Přesunout vybranou položku nahoru o jeden řádek"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid "Repe_at speed:"
+msgstr "Rychlo_st opakování:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+msgid "Reset to _Defaults"
+msgstr "Obnovit _výchozí"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+msgid "Restore num l_ock state on startup"
+msgstr "Obnovit stav přepínače numlock po spuštění"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+msgid "Select keyboard layout and variant"
+msgstr "Vyberte rozložení a variantu klávesnice"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+msgid "Show _blinking"
+msgstr "Povolit _blikání"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
@@ -909,37 +889,57 @@ msgstr ""
 "Určujte, zda se bude rozložení klávesnice řídit nastavením v tomto "
 "dialogovém okně nebo nastavením X serveru"
 
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+msgid "Specify whether or not the text cursor blinks"
+msgstr "Určete, zda bude textový kurzor blikat"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr "Prodleva v milisekundách mezi bliknutími kurzoru"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr "Frekvence generování kódů klávesy při jejím trvalém stisku"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr "Čas v milisekundách před zahájením opakování stisknuté klávesy"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+msgid "Typing Settings"
+msgstr "Nastavení psaní"
+
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+msgid ""
+"When selected, pressing and holding down a key emits the same character over "
+"and over again"
+msgstr ""
+"Vyberete-li tuto volbu, bude se stisknutím a držením klávesy její zasílání "
+"neustále opakovat"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+msgid "_Enable key repeat"
+msgstr "_Povolit opakování klávesy"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Keyboard model"
 msgstr "_Model klávesnice"
 
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
-msgid "Change la_yout option"
-msgstr "Volba změny rozložení"
-
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-msgid "Co_mpose key"
-msgstr "Klávesa pro _skládání"
-
-# Automatically copied. Please review and remove fuzzy flag.
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
-msgid "Move currently selected item up by one row"
-msgstr "Přesunout vybranou položku nahoru o jeden řádek"
-
-# Automatically copied. Please review and remove fuzzy flag.
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
-msgid "Move currently selected item down by one row"
-msgstr "Přesunout vybranou položku dolů o jeden řádek"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
-msgid "Key_board layout"
-msgstr "_Rozložení klávesnice"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "_Layout"
 msgstr "_Rozložení"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+msgid "_Repeat delay:"
+msgstr "Zpož_dění opakování:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+msgid "_Test area:"
+msgstr "_Testovací oblast:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+msgid "_Use system defaults"
+msgstr "_Použít výchozí nastavení systému"
 
 #: ../dialogs/keyboard-settings/main.c:82
 msgid "Unable to initialize GTK+."
@@ -1042,12 +1042,12 @@ msgid "Failed to add new application \"%s\""
 msgstr "Přidání nové aplikace \"%s\" se nezdařilo"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:174
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "MIME Type Editor"
 msgstr "Editor typů MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Associate applications with MIME types"
 msgstr "Asociace aplikací s typy MIME"
 
@@ -1145,174 +1145,155 @@ msgid "%g ms"
 msgstr "%g ms"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
-msgid "Disabled"
-msgstr "Zakázáno"
+msgid "Acceleratio_n:"
+msgstr "A_kcelerace:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
-msgid "Edge scrolling"
-msgstr "Posouvání na okrajích"
+msgid "B_uttons and Feedback"
+msgstr "_Tlačítka a odezva"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
-msgid "Two-finger scrolling"
-msgstr "Posouvání dvěma prsty"
+msgid "Buttons"
+msgstr "Tlačítka"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Circular scrolling"
 msgstr "Kruhové posouvání"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
-msgid "Mouse and Touchpad"
-msgstr "Myš a touchpad"
+msgid "Clockwise"
+msgstr "Ve směru hodinových ručiček"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Configure pointer device behavior and appearance"
 msgstr "Konfiguruje chování a vzhled ukazatele zařízení"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+msgid "Counterclockwise"
+msgstr "Proti směru hodinových ručiček"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+msgid "Cursor si_ze:"
+msgstr "Velikost _kurzoru:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+msgid "D_istance:"
+msgstr "_Vzdálenost:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "De_vice:"
 msgstr "Zaříz_ení"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-msgid "_Enable this device"
-msgstr "P_ovolit toto zařízení"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-msgid "Ri_ght-handed"
-msgstr "_Pravou rukou"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
-msgid "Le_ft-handed"
-msgstr "_Levou rukou"
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
-msgid "Reverse scroll d_irection"
-msgstr "Otočit smě_r posouvání"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
-msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr "Vyberete-li tuto volbu, bude kolečko myši pracovat obráceně"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-msgid "Buttons"
-msgstr "Tlačítka"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-msgid "Acceleratio_n:"
-msgstr "A_kcelerace:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
-msgid ""
-"The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "Faktor, při kterém ukazatel myši zvýší rychlost při pohybu"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
-msgid ""
-"The number of pixels the pointer must move in a short time before it starts "
-"accelerating"
-msgstr ""
-"Počet pixelů, o které se ukazatel musí v krátkém časovém úseku posunout před "
-"zahájením akcelerace"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
-msgid "Sensitivit_y:"
-msgstr "Citlivo_st::"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
-msgid "_Reset to Defaults"
-msgstr "O_bnovit výchozí"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
-msgid ""
-"Set the acceleration and sensitivity for the selected device to the default "
-"values"
-msgstr "Nastaví akceleraci a citlivost pro vybrané zařízení na výchozí hodnoty"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
-msgid "Pointer Speed"
-msgstr "Rychlost ukazatele"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
-msgid "B_uttons and Feedback"
-msgstr "_Tlačítka a odezva"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Disable touchpad _while typing"
 msgstr "Zakázat to_uchpad při psaní"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
-msgid ""
-"When selected, the touchpad will be disabled when the keyboard is being used"
-msgstr ""
-"Vyberete-li tuto volbu, bude touchpad během používání klávesnice zakázán"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+msgid "Disabled"
+msgstr "Zakázáno"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
-msgid "Tap touchpad to clic_k"
-msgstr "_Kliknout klepnutím na touchpad"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid "Double Click"
+msgstr "Dvojité kliknutí"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
-msgid "Scrolling _mode:"
-msgstr "Režim po_souvání:"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "Drag and Drop"
+msgstr "Táhnout a pustit"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+msgid "Edge scrolling"
+msgstr "Posouvání na okrajích"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Enable hori_zontal scrolling"
 msgstr "Povolit _vodorovné posouvání"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+msgid "Half (left-handed)"
+msgstr "Půlka (levou rukou)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+msgid "Le_ft-handed"
+msgstr "_Levou rukou"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+msgid "Mouse (relative)"
+msgstr "Myš (relativní)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
+msgid "Mouse and Touchpad"
+msgstr "Myš a touchpad"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "None (right-handed)"
+msgstr "Žádný (pravou rukou)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid "Pen (absolute)"
+msgstr "Pero (absolutní)"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+msgid "Pointer Speed"
+msgstr "Rychlost ukazatele"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+msgid "Preview"
+msgstr "Náhled"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+msgid "Reverse scroll d_irection"
+msgstr "Otočit smě_r posouvání"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+msgid "Ri_ght-handed"
+msgstr "_Pravou rukou"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Scrolling"
 msgstr "Posouvání"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+msgid "Scrolling _mode:"
+msgstr "Režim po_souvání:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+msgid "Sensitivit_y:"
+msgstr "Citlivo_st::"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+msgid ""
+"Set the acceleration and sensitivity for the selected device to the default "
+"values"
+msgstr "Nastaví akceleraci a citlivost pro vybrané zařízení na výchozí hodnoty"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+msgid "Size"
+msgstr "Velikost"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "T_ouchpad"
 msgstr "T_ouchpad"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
-msgid "Trac_king mode:"
-msgstr "Sledov_ací režim:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
-msgid "_Rotation:"
-msgstr "O_točení:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Tab_let"
 msgstr "Tab_let"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
-msgid "_Devices"
-msgstr "Z_ařízení"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+msgid "Tap touchpad to clic_k"
+msgstr "_Kliknout klepnutím na touchpad"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Th_reshold:"
 msgstr "_Práh:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
-msgid ""
-"The number of pixels the pointer must move before a drag operation will start"
-msgstr "Počet pixelů, o které se ukazatel musí posunout před zahájením tažení"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
-msgid "Drag and Drop"
-msgstr "Táhnout a pustit"
-
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
-msgid "Ti_me:"
-msgstr "Ča_s:"
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr "Faktor, při kterém ukazatel myši zvýší rychlost při pohybu"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
-msgid ""
-"Two mouse clicks in less than this length of time (in milliseconds) will be "
-"considered a double click"
-msgstr ""
-"Nejdelší povolená doba mezi dvěma kliknutími v milisekundách stále "
-"považovaná za dvojité kliknutí"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
-msgid "D_istance:"
-msgstr "_Vzdálenost:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
@@ -1320,56 +1301,75 @@ msgstr ""
 "Nejvyšši povolená vzdálenost mezi dvěma kliknutími v pixelech stále "
 "považovaná za dvojité kliknutí"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+msgid ""
+"The number of pixels the pointer must move before a drag operation will start"
+msgstr "Počet pixelů, o které se ukazatel musí posunout před zahájením tažení"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr ""
+"Počet pixelů, o které se ukazatel musí v krátkém časovém úseku posunout před "
+"zahájením akcelerace"
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
-msgid "Double Click"
-msgstr "Dvojité kliknutí"
+msgid "Ti_me:"
+msgstr "Ča_s:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+msgid "Trac_king mode:"
+msgstr "Sledov_ací režim:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+msgid ""
+"Two mouse clicks in less than this length of time (in milliseconds) will be "
+"considered a double click"
+msgstr ""
+"Nejdelší povolená doba mezi dvěma kliknutími v milisekundách stále "
+"považovaná za dvojité kliknutí"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+msgid "Two-finger scrolling"
+msgstr "Posouvání dvěma prsty"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr "Vyberete-li tuto volbu, bude kolečko myši pracovat obráceně"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+msgid ""
+"When selected, the touchpad will be disabled when the keyboard is being used"
+msgstr ""
+"Vyberete-li tuto volbu, bude touchpad během používání klávesnice zakázán"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "_Behavior"
 msgstr "_Chování"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
-msgid "Cursor si_ze:"
-msgstr "Velikost _kurzoru:"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+msgid "_Devices"
+msgstr "Z_ařízení"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
-msgid "Size"
-msgstr "Velikost"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+msgid "_Enable this device"
+msgstr "P_ovolit toto zařízení"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
-msgid "Preview"
-msgstr "Náhled"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+msgid "_Reset to Defaults"
+msgstr "O_bnovit výchozí"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+msgid "_Rotation:"
+msgstr "O_točení:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "_Theme"
 msgstr "_Motiv"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
-msgid "Pen (absolute)"
-msgstr "Pero (absolutní)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
-msgid "Mouse (relative)"
-msgstr "Myš (relativní)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
-msgid "None (right-handed)"
-msgstr "Žádný (pravou rukou)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
-msgid "Half (left-handed)"
-msgstr "Půlka (levou rukou)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
-msgid "Clockwise"
-msgstr "Ve směru hodinových ručiček"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
-msgid "Counterclockwise"
-msgstr "Proti směru hodinových ručiček"
-
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 msgid "Settings Editor"
 msgstr "Editor nastavení"
 
@@ -1561,7 +1561,7 @@ msgstr "Názvy vlastností nemohou končit znakem '/'"
 msgid "Edit Property"
 msgstr "Úprava vlastnosti"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Graphical settings editor for Xfconf"
 msgstr "Grafický editor nastavení služby Xfconf"
 
@@ -1646,12 +1646,12 @@ msgid "Unable to start \"%s\""
 msgstr "Nelze spustit „%s“"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Settings Manager"
-msgstr "Správce nastavení"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Graphical Settings Manager for Xfce 4"
 msgstr "Grafický správce nastavení pro prostředí Xfce 4"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Settings Manager"
+msgstr "Správce nastavení"
 
 #~ msgid "_Settings"
 #~ msgstr "_Nastavení"
