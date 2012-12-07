@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings 4.7.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 06:45+0000\n"
-"PO-Revision-Date: 2012-11-27 12:50+0100\n"
+"POT-Creation-Date: 2012-12-07 12:51+0000\n"
+"PO-Revision-Date: 2012-12-07 17:17+0000\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: polski <>\n"
 "Language: \n"
@@ -364,8 +364,8 @@ msgid ""
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr ""
-"Umożliwia zmianę klawiszy skrótów w menu programów umieszczając kursor myszy "
-"nad elementem menu i wciskając nową kombinację klawiszy"
+"Umożliwia modyfikowanie klawiszy skrótów w menu programów umieszczając "
+"kursor myszy nad elementem menu i wciskając nową kombinację klawiszy"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid ""
@@ -542,50 +542,44 @@ msgid ""
 msgstr "Poprzednia konfiguracja zostanie przywrócona w przeciągu 10 sekund."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
-msgid ""
-"Automatically show the \"minimal dialog\" to quickly configure newly "
-"connected displays."
-msgstr "Wyświetla okno podstawowych ustawień w czasie podłączania ekranów"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:2
 msgid "Configure _new displays when connected"
 msgstr "Konfigurowanie p_odłączanych ekranów"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Configure screen settings and layout"
 msgstr "Konfiguruje ustawienia i układ ekranu"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:3
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Display"
 msgstr "Ekran"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:5
+#: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "P_osition:"
 msgstr "P_ołożenie:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "R_esolution:"
 msgstr "_Rozdzielczość:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
+#: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Ref_lection:"
 msgstr "_Odbicie:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "Refresh _rate:"
 msgstr "Częstotliwość _odświeżania:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "Ro_tation:"
 msgstr "_Orientacja:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "_Mirror displays"
 msgstr "_Ten sam obraz na wszystkich ekranach"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "_Use this output"
 msgstr "_Użycie tego ekranu"
 
@@ -595,7 +589,7 @@ msgstr "Zaawansowane"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Displays"
-msgstr "Wyświetlanie"
+msgstr "Ekrany"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Extend to the right"
@@ -603,7 +597,7 @@ msgstr "Rozszerz do prawej"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
 msgid "Mirror Displays"
-msgstr "Wyświetlanie lustrzane"
+msgstr "Wyświetlaj ten sam obraz"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Only Display 1"
@@ -619,7 +613,7 @@ msgstr "Pole jednokrotnego wyboru"
 
 #: ../dialogs/display-settings/main.c:91
 msgid "Same as"
-msgstr "Tak samo jak"
+msgstr "Takie same jak"
 
 #: ../dialogs/display-settings/main.c:92
 msgid "Above"
@@ -659,7 +653,7 @@ msgstr "Pionowo"
 
 #: ../dialogs/display-settings/main.c:139
 msgid "Minimal interface to set up an external output"
-msgstr "Minimalny interfejs do skonfigurowania zewnętrznego wyjścia"
+msgstr "Otwiera okno podstawowej konfiguracji ekranów"
 
 #: ../dialogs/display-settings/main.c:227
 #, c-format
@@ -702,7 +696,7 @@ msgstr "Nie można uzyskać wersji używanego rozszerzenia RandR"
 #: ../dialogs/display-settings/main.c:1974
 #: ../dialogs/display-settings/main.c:2010
 msgid "Unable to start the Xfce Display Settings"
-msgstr "Nie można uruchomić preferencji ekranu"
+msgstr "Nie można uruchomić programu konfiguracyjnego ekranów"
 
 #: ../dialogs/display-settings/main.c:2005
 msgid "ATI Settings"
@@ -765,7 +759,7 @@ msgstr "_Powiadamianie o uruchomieniu"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:207
 msgid "The command may not be empty."
-msgstr "Polecenie nie może być puste."
+msgstr "Pole polecenia nie może być puste."
 
 #: ../dialogs/keyboard-settings/command-dialog.c:227
 msgid "Select command"
@@ -1663,6 +1657,11 @@ msgstr "Konfiguruje ustawienia środowiska graficznego Xfce"
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Menedżer ustawień"
+
+#~ msgid ""
+#~ "Automatically show the \"minimal dialog\" to quickly configure newly "
+#~ "connected displays."
+#~ msgstr "Wyświetla okno podstawowych ustawień w czasie podłączania ekranów"
 
 #~ msgid "_Settings"
 #~ msgstr "_Ustawienia"
