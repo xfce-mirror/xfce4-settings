@@ -25,9 +25,11 @@
             <property name="row_spacing">3</property>
             <child>
               <object class="GtkLabel" id="label1">
+                <property name="width_request">128</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Only Display 1</property>
+                <property name="ellipsize">middle</property>
               </object>
               <packing>
                 <property name="top_attach">1</property>
@@ -38,9 +40,12 @@
             </child>
             <child>
               <object class="GtkLabel" id="label2">
+                <property name="width_request">128</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Mirror Displays</property>
                 <property name="label" translatable="yes">Mirror Displays</property>
+                <property name="ellipsize">middle</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -53,9 +58,12 @@
             </child>
             <child>
               <object class="GtkLabel" id="label3">
+                <property name="width_request">128</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Extend to the right</property>
                 <property name="label" translatable="yes">Extend to the right</property>
+                <property name="ellipsize">middle</property>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -68,9 +76,11 @@
             </child>
             <child>
               <object class="GtkLabel" id="label4">
+                <property name="width_request">128</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Only Display 2</property>
+                <property name="ellipsize">middle</property>
               </object>
               <packing>
                 <property name="left_attach">3</property>

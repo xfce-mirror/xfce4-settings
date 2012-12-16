@@ -1855,6 +1855,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
 
         label = gtk_builder_get_object (builder, "label1");
         gtk_label_set_text (GTK_LABEL (label), xfce_randr->friendly_name[0]);
+        gtk_widget_set_tooltip_text(GTK_WIDGET(label), xfce_randr->friendly_name[0]);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1),
                                       xfce_randr->mode[0] != None);
@@ -1863,6 +1864,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         {
             label = gtk_builder_get_object (builder, "label4");
             gtk_label_set_text (GTK_LABEL (label), xfce_randr->friendly_name[1]);
+            gtk_widget_set_tooltip_text(GTK_WIDGET(label), xfce_randr->friendly_name[1]);
             gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display2),
                                           xfce_randr->mode[1] != None);
 
