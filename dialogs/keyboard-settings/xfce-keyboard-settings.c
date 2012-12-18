@@ -130,6 +130,7 @@ static void                      xfce_keyboard_settings_shortcut_removed      (X
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_add_button_clicked    (XfceKeyboardSettings      *settings,
                                                                                GtkButton                 *button);
+static void                      xfce_keyboard_settings_edit_button_clicked   (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_delete_button_clicked (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_reset_button_clicked  (XfceKeyboardSettings      *settings);
 
@@ -404,6 +405,10 @@ xfce_keyboard_settings_constructed (GObject *object)
   /* Connect to add button */
   button = gtk_builder_get_object (GTK_BUILDER (settings), "add_shortcut_button");
   g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfce_keyboard_settings_add_button_clicked), settings);
+
+  /* Connect to edit button */
+  button = gtk_builder_get_object (GTK_BUILDER (settings), "edit_shortcut_button");
+  g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfce_keyboard_settings_edit_button_clicked), settings);
 
   /* Connect to remove button */
   button = gtk_builder_get_object (GTK_BUILDER (settings), "delete_shortcut_button");
@@ -1005,6 +1010,162 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
 
   /* Destroy the shortcut dialog */
   gtk_widget_destroy (command_dialog);
+}
+
+
+
+static void
+xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
+{
+  GtkTreeSelection *selection;
+  GtkTreeModel     *model;
+  GtkTreeIter       iter;
+  GObject          *view;
+  GList            *rows;
+  GList            *row_iter;
+  GList            *row_references = NULL;
+
+  DBG ("edit!");
+
+  g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
+
+  view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (view));
+  rows = gtk_tree_selection_get_selected_rows (selection, &model);
+
+  for (row_iter = g_list_first (rows); row_iter != NULL; row_iter = g_list_next (row_iter))
+    row_references = g_list_append (row_references, gtk_tree_row_reference_new (model, row_iter->data));
+
+  for (row_iter = g_list_first (row_references); row_iter != NULL; row_iter = g_list_next (row_iter))
+    {
+      GtkTreePath *path;
+
+      path = gtk_tree_row_reference_get_path (row_iter->data);
+
+      /* Conver tree path to tree iter */
+      if (G_LIKELY (gtk_tree_model_get_iter (model, &iter, path)))
+        {
+          GtkWidget *command_dialog;
+          gboolean  finished;
+          gboolean  snotify;
+          gchar    *shortcut;
+          gchar    *command;
+          gint      response;
+
+          /* Read row values */
+          gtk_tree_model_get (model, &iter,
+                              SHORTCUT_COLUMN, &shortcut,
+                              COMMAND_COLUMN, &command,
+                              SNOTIFY_COLUMN, &snotify,
+                              -1);
+
+          DBG ("Edit shortcut %s / command %s", shortcut, command);
+
+          /* Create command dialog */
+          command_dialog = command_dialog_new (shortcut, command, snotify);
+
+          /* Run command dialog until a valid (non-empty) command is entered or the dialog is cancelled */
+          do
+            {
+              response = command_dialog_run (COMMAND_DIALOG (command_dialog), GTK_WIDGET (view));
+
+              if (G_UNLIKELY (response == GTK_RESPONSE_OK &&
+                              g_utf8_strlen (command_dialog_get_command (COMMAND_DIALOG (command_dialog)), -1) == 0))
+                xfce_dialog_show_error (GTK_WINDOW (command_dialog), NULL, _("Shortcut command may not be empty."));
+              else
+                finished = TRUE;
+            }
+          while (!finished);
+
+          /* Abort if the dialog was cancelled */
+          if (G_UNLIKELY (response == GTK_RESPONSE_OK))
+            {
+              const gchar *new_command;
+              GtkWidget   *shortcut_dialog;
+              gboolean     new_snotify;
+              GObject     *parent;
+
+              /* Get the command */
+              new_command = command_dialog_get_command (COMMAND_DIALOG (command_dialog));
+              new_snotify = command_dialog_get_snotify (COMMAND_DIALOG (command_dialog));
+
+              /* Hide the command dialog */
+              gtk_widget_hide (command_dialog);
+
+              /* Create shortcut dialog */
+              shortcut_dialog =
+                xfce_shortcut_dialog_new ("commands",
+                                          new_command,
+                                          new_command);
+
+              g_signal_connect (shortcut_dialog, "validate-shortcut",
+                                G_CALLBACK (xfce_keyboard_settings_validate_shortcut),
+                                settings);
+
+              /* Try to keep the window above as it grabs the keyboard, we don't
+               * want users to wonder why the keyboard does not work in another
+               * window */
+              gtk_window_set_keep_above (GTK_WINDOW (shortcut_dialog), TRUE);
+
+              /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
+              parent =
+                gtk_builder_get_object (GTK_BUILDER (settings),
+                                        "keyboard-shortcuts-dialog");
+              response =
+                xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (shortcut_dialog),
+                                          GTK_WIDGET (parent));
+
+              /* Only continue if the shortcut dialog succeeded */
+              if (G_LIKELY (response == GTK_RESPONSE_OK))
+                {
+                  const gchar *new_shortcut;
+                  gboolean     test_new_shortcut;
+
+                  /* Get shortcut */
+                  new_shortcut =
+                    xfce_shortcut_dialog_get_shortcut (XFCE_SHORTCUT_DIALOG (shortcut_dialog));
+
+                  if (g_strcmp0 (command, new_command) != 0
+                      || (test_new_shortcut = (g_strcmp0 (shortcut, new_shortcut) != 0))
+                      || snotify != new_snotify)
+                    {
+                      /* Remove the row because we add new one from the
+                       * shortcut-added signal */
+                      gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+
+                      if (test_new_shortcut)
+                        /* Remove old keyboard shortcut via xfconf */
+                        xfce_shortcuts_provider_reset_shortcut (settings->priv->provider,
+                                                                shortcut);
+
+                      /* Save settings */
+                      xfce_shortcuts_provider_set_shortcut (settings->priv->provider,
+                                                            new_shortcut,
+                                                            new_command,
+                                                            new_snotify);
+                    }
+
+                }
+
+              /* Destroy the shortcut dialog */
+              gtk_widget_destroy (shortcut_dialog);
+            }
+
+          g_free (shortcut);
+          g_free (command);
+          gtk_widget_destroy (command_dialog);
+        }
+
+      gtk_tree_path_free (path);
+    }
+
+  /* Free row reference list */
+  g_list_foreach (row_references, (GFunc) gtk_tree_row_reference_free, NULL);
+  g_list_free (row_references);
+
+  /* Free row list */
+  g_list_foreach (rows, (GFunc) gtk_tree_path_free, NULL);
+  g_list_free (rows);
 }
 
 
