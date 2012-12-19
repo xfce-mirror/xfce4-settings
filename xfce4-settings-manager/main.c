@@ -28,6 +28,7 @@
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 #include <garcon/garcon.h>
+#include <xfconf/xfconf.h>
 
 #include "xfce-settings-manager-dialog.h"
 
@@ -79,6 +80,16 @@ main(int argc,
         return EXIT_SUCCESS;
     }
 
+    /* initialize xfconf */
+    if (G_UNLIKELY (!xfconf_init (&error)))
+    {
+        /* print error and leave */
+        g_critical ("Failed to connect to Xfconf daemon: %s", error->message);
+        g_error_free (error);
+
+        return EXIT_FAILURE;
+    }
+
     garcon_set_environment ("XFCE");
 
     dialog = xfce_settings_manager_dialog_new ();
@@ -94,6 +105,8 @@ main(int argc,
     gdk_set_sm_client_id ("FAKE ID");
 
     gtk_main();
+
+    xfconf_shutdown ();
 
     return EXIT_SUCCESS;
 }

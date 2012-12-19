@@ -35,6 +35,7 @@
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
+#include <xfconf/xfconf.h>
 #include <garcon/garcon.h>
 #include <exo/exo.h>
 
@@ -55,6 +56,7 @@ struct _XfceSettingsManagerDialog
 {
     XfceTitledDialog __parent__;
 
+    XfconfChannel  *channel;
     GarconMenu     *menu;
 
     GtkListStore   *store;
@@ -156,17 +158,19 @@ xfce_settings_manager_dialog_class_init (XfceSettingsManagerDialogClass *klass)
 static void
 xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 {
-    GtkWidget *scroll;
-    GtkWidget *dialog_vbox;
-    GtkWidget *viewport;
-    gchar     *path;
-    GtkWidget *hbox;
-    GtkWidget *entry;
     GtkWidget *align;
-    GList     *children;
-    GtkWidget *header;
-    GtkWidget *ebox;
     GtkWidget *bbox;
+    GtkWidget *dialog_vbox;
+    GtkWidget *ebox;
+    GtkWidget *entry;
+    GtkWidget *hbox;
+    GtkWidget *header;
+    GtkWidget *scroll;
+    GtkWidget *viewport;
+    GList     *children;
+    gchar     *path;
+
+    dialog->channel = xfconf_channel_get ("xfce4-settings-manager");
 
     dialog->store = gtk_list_store_new (N_COLUMNS,
                                         G_TYPE_STRING,
@@ -180,7 +184,9 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     dialog->menu = garcon_menu_new_for_path (path != NULL ? path : MENUFILE);
     g_free (path);
 
-    gtk_window_set_default_size (GTK_WINDOW (dialog), 640, 500);
+    gtk_window_set_default_size (GTK_WINDOW (dialog),
+      xfconf_channel_get_int (dialog->channel, "/last/window-width", 640),
+      xfconf_channel_get_int (dialog->channel, "/last/window-height", 500));
     xfce_settings_manager_dialog_set_title (dialog, NULL, NULL, NULL);
 
     dialog->button_back = xfce_gtk_button_new_mixed (GTK_STOCK_GO_BACK, _("All _Settings"));
@@ -334,6 +340,20 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
     }
     else
     {
+        GdkWindowState state;
+        gint           width, height;
+
+        /* Don't save the state for full-screen windows */
+        state = gdk_window_get_state (GTK_WIDGET (widget)->window);
+
+        if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
+        {
+            /* Save window size */
+            gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
+            xfconf_channel_set_int (dialog->channel, "/last/window-width", width),
+            xfconf_channel_set_int (dialog->channel, "/last/window-height", height);
+        }
+
         gtk_widget_destroy (GTK_WIDGET (widget));
         gtk_main_quit ();
     }
