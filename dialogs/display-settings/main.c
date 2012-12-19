@@ -114,7 +114,7 @@ static const XfceRotation reflection_names[] =
     { 0,                         N_("None") },
     { RR_Reflect_X,              N_("Horizontal") },
     { RR_Reflect_Y,              N_("Vertical") },
-    { RR_Reflect_X|RR_Reflect_Y, N_("Both") }
+    { RR_Reflect_X|RR_Reflect_Y, N_("Horizontal and Vertical") }
 };
 
 
@@ -1516,7 +1516,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-rotation");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
-    
+
     check = gtk_builder_get_object (builder, "minimal-autoshow");
     xfconf_g_property_bind (display_channel, "/Notify", G_TYPE_BOOLEAN, check,
                             "active");
@@ -1772,8 +1772,8 @@ display_settings_show_main_dialog (GdkDisplay *display)
 }
 
 static gboolean
-display_settings_minimal_dialog_key_press_event(GtkWidget *widget, 
-                                                GdkEventKey *event, 
+display_settings_minimal_dialog_key_press_event(GtkWidget *widget,
+                                                GdkEventKey *event,
                                                 gpointer user_data)
 {
     if (event->keyval == GDK_Escape)

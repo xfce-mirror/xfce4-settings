@@ -21,6 +21,21 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-close</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-help</property>
                 <property name="use_action_appearance">False</property>
@@ -34,21 +49,6 @@
                 <property name="fill">False</property>
                 <property name="position">0</property>
                 <property name="secondary">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="button1">
-                <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -646,8 +646,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-11">button2</action-widget>
       <action-widget response="0">button1</action-widget>
+      <action-widget response="-11">button2</action-widget>
     </action-widgets>
   </object>
   <object class="GtkListStore" id="liststore1">
@@ -683,10 +683,10 @@
         <col id="0" translatable="yes">Text</col>
       </row>
       <row>
-        <col id="0" translatable="yes">Both</col>
+        <col id="0" translatable="yes">Text under icons</col>
       </row>
       <row>
-        <col id="0" translatable="yes">Both Horizontal</col>
+        <col id="0" translatable="yes">Text next to icons</col>
       </row>
     </data>
   </object>
