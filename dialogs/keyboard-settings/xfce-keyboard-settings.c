@@ -789,7 +789,7 @@ xfce_keyboard_settings_validate_shortcut (XfceShortcutDialog   *dialog,
   if (G_UNLIKELY (g_utf8_collate (shortcut, "Return") == 0 || g_utf8_collate (shortcut, "space") == 0))
     return FALSE;
 
-  DBG ("shortcut = %s", shortcut);
+  DBG ("Validating shortcut = %s", shortcut);
 
   property = g_strconcat (CUSTOM_BASE_PROPERTY, "/", shortcut, NULL);
   info = xfce_keyboard_settings_get_shortcut_info (settings, shortcut, property);
@@ -805,9 +805,23 @@ xfce_keyboard_settings_validate_shortcut (XfceShortcutDialog   *dialog,
                                                 FALSE);
 
       if (G_UNLIKELY (response == GTK_RESPONSE_ACCEPT))
+        {
+        /* We want to use the shortcut with the new owner */
+        DBG ("We want to use %s with %s", shortcut,
+             xfce_shortcut_dialog_get_action_name (dialog));
         xfce_shortcuts_provider_reset_shortcut (info->provider, shortcut);
+
+        /*Remove the shortcut manually from the treeview */
+        xfce_keyboard_settings_shortcut_removed (settings->priv->provider,
+                                                 shortcut,
+                                                 settings);
+        }
       else
-        accepted = FALSE;
+        {
+          /* We want to keep the old owner */
+          DBG ("We want to keep using %s with %s", shortcut, info->shortcut->command);
+          accepted = FALSE;
+        }
 
       xfce_keyboard_settings_free_shortcut_info (info);
     }
@@ -899,6 +913,8 @@ xfce_keyboard_settings_shortcut_added (XfceShortcutsProvider *provider,
       gtk_accelerator_parse (sc->shortcut, &keyval, &modifiers);
       label = gtk_accelerator_get_label (keyval, modifiers);
 
+      DBG ("Add shortcut %s for command %s", shortcut, sc->command);
+
       gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                           SHORTCUT_COLUMN, shortcut,
                           COMMAND_COLUMN, sc->command,
@@ -950,6 +966,8 @@ xfce_keyboard_settings_shortcut_removed (XfceShortcutsProvider *provider,
 
   view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
+
+  DBG ("Remove shortcut %s from treeview", shortcut);
 
   gtk_tree_model_foreach (model, (GtkTreeModelForeachFunc) _xfce_keyboard_settings_remove_shortcut,
                           (gpointer) shortcut);
@@ -1013,6 +1031,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
           shortcut = xfce_shortcut_dialog_get_shortcut (XFCE_SHORTCUT_DIALOG (shortcut_dialog));
 
           /* Save the new shortcut to xfconf */
+          DBG ("Save shortcut %s with command %s to Xfconf", shortcut, command);
           xfce_shortcuts_provider_set_shortcut (settings->priv->provider, shortcut, command, snotify);
         }
 
