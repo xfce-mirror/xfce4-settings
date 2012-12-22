@@ -728,14 +728,17 @@ xfce_keyboard_settings_edit_command (XfceKeyboardSettings *settings,
   /* Convert tree path to tree iter */
   if (G_LIKELY (gtk_tree_model_get_iter (model, &iter, path)))
     {
+      gchar *shortcut_label;
+
       /* Read shortcut and current command from the activated row */
       gtk_tree_model_get (model, &iter,
                           COMMAND_COLUMN, &command,
                           SHORTCUT_COLUMN, &shortcut,
+                          SHORTCUT_LABEL_COLUMN, &shortcut_label,
                           SNOTIFY_COLUMN, &snotify, -1);
 
       /* Request a new command from the user */
-      dialog = command_dialog_new (shortcut, command, snotify);
+      dialog = command_dialog_new (shortcut_label, command, snotify);
       response = command_dialog_run (COMMAND_DIALOG (dialog), GTK_WIDGET (tree_view));
 
       if (G_LIKELY (response == GTK_RESPONSE_OK))
@@ -760,6 +763,7 @@ xfce_keyboard_settings_edit_command (XfceKeyboardSettings *settings,
       gtk_widget_destroy (dialog);
 
       /* Free strings */
+      g_free (shortcut_label);
       g_free (shortcut);
       g_free (command);
     }

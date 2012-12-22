@@ -120,6 +120,21 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_widget_grab_default (button);
   gtk_widget_show (button);
 
+  if (!shortcut)
+    {
+      const gchar *explanation;
+      gchar       *explanation_markup;
+
+      label = gtk_label_new (NULL);
+
+      explanation = _("Enter the command you want to trigger with a shortcut.");
+      explanation_markup = g_strdup_printf ("<i>%s</i>", explanation);
+      gtk_label_set_markup (GTK_LABEL (label), explanation_markup);
+      gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
+                          label, FALSE, FALSE, 0);
+      gtk_widget_show (label);
+    }
+
   table = gtk_table_new (3, 2, FALSE);
   gtk_table_set_row_spacings (GTK_TABLE (table), 6);
   gtk_table_set_col_spacings (GTK_TABLE (table), 12);
@@ -127,15 +142,18 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), table);
   gtk_widget_show (table);
 
-  label = gtk_label_new (_("Shortcut:"));
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
-  gtk_widget_show (label);
+  if (shortcut)
+    {
+      label = gtk_label_new (_("Shortcut:"));
+      gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+      gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+      gtk_widget_show (label);
 
-  label = gtk_label_new (shortcut);
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-  gtk_table_attach (GTK_TABLE (table), label, 1, 2, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
-  gtk_widget_show (label);
+      label = gtk_label_new (shortcut);
+      gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+      gtk_table_attach (GTK_TABLE (table), label, 1, 2, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+      gtk_widget_show (label);
+    }
 
   label = gtk_label_new (_("Command:"));
   gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
