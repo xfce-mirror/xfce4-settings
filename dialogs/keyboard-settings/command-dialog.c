@@ -97,10 +97,12 @@ command_dialog_create_contents (CommandDialog *dialog,
                                 const gchar   *action,
                                 gboolean       snotify)
 {
+  GtkWidget *alignment;
   GtkWidget *button;
-  GtkWidget *table;
-  GtkWidget *label;
+  GtkWidget *content_box;
   GtkWidget *hbox;
+  GtkWidget *label;
+  GtkWidget *table;
 
   /* Set dialog title and icon */
   gtk_window_set_title (GTK_WINDOW (dialog), _("Shortcut Command"));
@@ -120,6 +122,19 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_widget_grab_default (button);
   gtk_widget_show (button);
 
+  /* Set the main box layout */
+  alignment = gtk_alignment_new (0, 0, 1, 1);
+  gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 6, 12, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (alignment), 0);
+  gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
+                                    alignment);
+  gtk_widget_show (alignment);
+
+  content_box = gtk_vbox_new (FALSE, 6);
+  gtk_container_set_border_width (GTK_CONTAINER (content_box), 6);
+  gtk_container_add (GTK_CONTAINER (alignment), content_box);
+  gtk_widget_show (content_box);
+
   if (!shortcut)
     {
       /* No shortcut passed, means that we are creating a new one */
@@ -132,8 +147,7 @@ command_dialog_create_contents (CommandDialog *dialog,
       explanation = _("Enter the command you want to trigger with a shortcut.");
       explanation_markup = g_strdup_printf ("<i>%s</i>", explanation);
       gtk_label_set_markup (GTK_LABEL (label), explanation_markup);
-      gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
-                          label, FALSE, FALSE, 0);
+      gtk_box_pack_start (GTK_BOX (content_box), label, FALSE, FALSE, 0);
       gtk_widget_show (label);
     }
 
@@ -141,7 +155,7 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_table_set_row_spacings (GTK_TABLE (table), 6);
   gtk_table_set_col_spacings (GTK_TABLE (table), 12);
   gtk_container_set_border_width (GTK_CONTAINER (table), 6);
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), table);
+  gtk_container_add (GTK_CONTAINER (content_box), table);
   gtk_widget_show (table);
 
   if (shortcut)
