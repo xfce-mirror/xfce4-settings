@@ -122,6 +122,8 @@ command_dialog_create_contents (CommandDialog *dialog,
 
   if (!shortcut)
     {
+      /* No shortcut passed, means that we are creating a new one */
+
       const gchar *explanation;
       gchar       *explanation_markup;
 
@@ -144,6 +146,8 @@ command_dialog_create_contents (CommandDialog *dialog,
 
   if (shortcut)
     {
+      /* We are editing an existing shortcut */
+
       label = gtk_label_new (_("Shortcut:"));
       gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
       gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
