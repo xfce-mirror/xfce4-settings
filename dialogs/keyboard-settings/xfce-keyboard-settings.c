@@ -662,12 +662,6 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
       /* Request a new shortcut from the user */
       dialog = xfce_shortcut_dialog_new ("commands", command, command);
       g_signal_connect (dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
-
-      /* Try to keep the window above as it grabs the keyboard, we don't
-       * want users to wonder why the keyboard does not work in another
-       * window */
-      gtk_window_set_keep_above (GTK_WINDOW (dialog), TRUE);
-
       response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (dialog), gtk_widget_get_toplevel (GTK_WIDGET (tree_view)));
 
       if (G_LIKELY (response == GTK_RESPONSE_OK))
@@ -979,11 +973,6 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
       /* Create shortcut dialog */
       shortcut_dialog = xfce_shortcut_dialog_new ("commands", command, command);
       g_signal_connect (shortcut_dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
-
-      /* Try to keep the window above as it grabs the keyboard, we don't
-       * want users to wonder why the keyboard does not work in another
-       * window */
-      gtk_window_set_keep_above (GTK_WINDOW (shortcut_dialog), TRUE);
 
       /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
       parent = gtk_builder_get_object (GTK_BUILDER (settings), "keyboard-shortcuts-dialog");
