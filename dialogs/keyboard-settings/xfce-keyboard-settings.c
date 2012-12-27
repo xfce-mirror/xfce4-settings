@@ -1084,12 +1084,14 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
           GtkWidget *command_dialog;
           gboolean  finished;
           gboolean  snotify;
+          gchar    *shortcut_label;
           gchar    *shortcut;
           gchar    *command;
           gint      response;
 
           /* Read row values */
           gtk_tree_model_get (model, &iter,
+                              SHORTCUT_LABEL_COLUMN, &shortcut_label,
                               SHORTCUT_COLUMN, &shortcut,
                               COMMAND_COLUMN, &command,
                               SNOTIFY_COLUMN, &snotify,
@@ -1098,7 +1100,7 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
           DBG ("Edit shortcut %s / command %s", shortcut, command);
 
           /* Create command dialog */
-          command_dialog = command_dialog_new (shortcut, command, snotify);
+          command_dialog = command_dialog_new (shortcut_label, command, snotify);
 
           /* Run command dialog until a valid (non-empty) command is entered or the dialog is cancelled */
           do
@@ -1187,6 +1189,7 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
               gtk_widget_destroy (shortcut_dialog);
             }
 
+          g_free (shortcut_label);
           g_free (shortcut);
           g_free (command);
           gtk_widget_destroy (command_dialog);
