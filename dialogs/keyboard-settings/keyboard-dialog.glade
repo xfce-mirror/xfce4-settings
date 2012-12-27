@@ -8,6 +8,11 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-revert-to-saved</property>
   </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-revert-to-saved</property>
+  </object>
   <object class="XfceTitledDialog" id="keyboard-layout-selection-dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Keyboard layout selection</property>
@@ -113,21 +118,6 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="button2">
-                <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-help</property>
                 <property name="use_action_appearance">False</property>
@@ -141,6 +131,21 @@
                 <property name="fill">False</property>
                 <property name="position">0</property>
                 <property name="secondary">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button2">
+                <property name="label">gtk-close</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -596,6 +601,21 @@
                               </packing>
                             </child>
                             <child>
+                              <object class="GtkButton" id="delete_shortcut_button">
+                                <property name="label">gtk-remove</property>
+                                <property name="use_action_appearance">False</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="use_stock">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkButton" id="reset_shortcuts_button">
                                 <property name="label" translatable="yes">Reset to _Defaults</property>
                                 <property name="use_action_appearance">False</property>
@@ -608,21 +628,7 @@
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">False</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="delete_shortcut_button">
-                                <property name="label">gtk-remove</property>
-                                <property name="use_action_appearance">False</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="use_stock">True</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
+                                <property name="padding">15</property>
                                 <property name="position">3</property>
                               </packing>
                             </child>
@@ -1020,8 +1026,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button2</action-widget>
       <action-widget response="-11">button1</action-widget>
+      <action-widget response="0">button2</action-widget>
     </action-widgets>
   </object>
   <object class="GtkAdjustment" id="net_cursor_blink_time">
@@ -1030,12 +1036,6 @@
     <property name="value">1000</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
-  </object>
-  <object class="GtkSizeGroup" id="sizegroup1">
-    <widgets>
-      <widget name="add_shortcut_button"/>
-      <widget name="delete_shortcut_button"/>
-    </widgets>
   </object>
   <object class="GtkAdjustment" id="xkb_key_repeat_delay">
     <property name="lower">10</property>
@@ -1051,4 +1051,5 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
+  <object class="GtkSizeGroup" id="sizegroup1"/>
 </interface>
