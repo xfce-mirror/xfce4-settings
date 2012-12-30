@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-20 11:09+0000\n"
+"POT-Creation-Date: 2012-12-30 17:15+0000\n"
 "PO-Revision-Date: 2011-09-08 22:32+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -760,56 +760,61 @@ msgid "Unknown"
 msgstr "Onbekend"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:106
+#: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
 msgstr "Opdracht voor sneltoets"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:130
+#: ../dialogs/keyboard-settings/command-dialog.c:147
+msgid "Enter the command you want to trigger with a shortcut."
+msgstr "Voer de opdracht in die u wil uitvoeren met een sneltoets."
+
+#. We are editing an existing shortcut
+#: ../dialogs/keyboard-settings/command-dialog.c:165
 msgid "Shortcut:"
 msgstr "Sneltoets:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:140
+#: ../dialogs/keyboard-settings/command-dialog.c:176
 msgid "Command:"
 msgstr "Opdracht:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:160
+#: ../dialogs/keyboard-settings/command-dialog.c:196
 msgid "Use _startup notification"
 msgstr "Gebruik _opstartmelding"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:207
+#: ../dialogs/keyboard-settings/command-dialog.c:243
 msgid "The command may not be empty."
 msgstr "De opdracht mag niet leeg zijn."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:227
+#: ../dialogs/keyboard-settings/command-dialog.c:263
 msgid "Select command"
 msgstr "Opdracht selecteren"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:235
+#: ../dialogs/keyboard-settings/command-dialog.c:271
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:386
 msgid "All Files"
 msgstr "Alle bestanden"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/keyboard-settings/command-dialog.c:276
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:391
 msgid "Executable Files"
 msgstr "Uitvoerbare bestanden"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:255
+#: ../dialogs/keyboard-settings/command-dialog.c:291
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:406
 msgid "Perl Scripts"
 msgstr "Perl-scripts"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:261
+#: ../dialogs/keyboard-settings/command-dialog.c:297
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:412
 msgid "Python Scripts"
 msgstr "Python-scripts"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/keyboard-settings/command-dialog.c:303
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:418
 msgid "Ruby Scripts"
 msgstr "Ruby-scripts"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:273
+#: ../dialogs/keyboard-settings/command-dialog.c:309
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:424
 msgid "Shell Scripts"
 msgstr "Shell-scripts"
@@ -974,32 +979,33 @@ msgstr "Kan geen verbinding maken met de xfconf-achtergronddienst. Reden: %s"
 msgid "Could not create the settings dialog."
 msgstr "Kon geen dialoogvenster voor instellingen maken"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:396
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
 msgid "Command"
 msgstr "Opdracht"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:401
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
 msgstr "Sneltoets"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:473
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
 msgid "Layout"
 msgstr "Indeling"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:474
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Variant"
 msgstr "Variant"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:963
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
 msgid "Shortcut command may not be empty."
 msgstr "Sneltoetsopdracht mag niet leeg zijn."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1078
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1079
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
 msgid "Reset to Defaults"
 msgstr "Standaardwaarden herstellen"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1080
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -1007,13 +1013,13 @@ msgstr ""
 "Deze optie zal de standaardwaarden van alle sneltoetsen terugzetten. Wilt u "
 "dit doen?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1159
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "De standaardinstellingen zullen worden hersteld, de volgende keer dat u zich "
 "aanmeldt."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1161
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1355
 msgid "Warning"
 msgstr "Waarschuwing"
 
