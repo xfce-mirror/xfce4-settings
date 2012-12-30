@@ -120,8 +120,7 @@ static gboolean                  xfce_keyboard_settings_validate_shortcut     (X
                                                                                const gchar               *shortcut,
                                                                                XfceKeyboardSettings      *settings);
 static XfceKeyboardShortcutInfo *xfce_keyboard_settings_get_shortcut_info     (XfceKeyboardSettings      *settings,
-                                                                               const gchar               *shortcut,
-                                                                               const gchar               *ignore_property);
+                                                                               const gchar               *shortcut);
 static void                      xfce_keyboard_settings_free_shortcut_info    (XfceKeyboardShortcutInfo  *info);
 static void                      xfce_keyboard_settings_shortcut_added        (XfceShortcutsProvider     *provider,
                                                                                const gchar               *shortcut,
@@ -777,7 +776,6 @@ xfce_keyboard_settings_validate_shortcut (XfceShortcutDialog   *dialog,
                                           XfceKeyboardSettings *settings)
 {
   XfceKeyboardShortcutInfo *info;
-  gchar                    *property;
   gboolean                  accepted = TRUE;
   gint                      response;
 
@@ -795,9 +793,7 @@ xfce_keyboard_settings_validate_shortcut (XfceShortcutDialog   *dialog,
 
   DBG ("Validating shortcut = %s", shortcut);
 
-  property = g_strconcat (CUSTOM_BASE_PROPERTY, "/", shortcut, NULL);
-  info = xfce_keyboard_settings_get_shortcut_info (settings, shortcut, property);
-  g_free (property);
+  info = xfce_keyboard_settings_get_shortcut_info (settings, shortcut);
 
   if (G_UNLIKELY (info != NULL))
     {
@@ -838,8 +834,7 @@ xfce_keyboard_settings_validate_shortcut (XfceShortcutDialog   *dialog,
 
 static XfceKeyboardShortcutInfo *
 xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
-                                          const gchar          *shortcut,
-                                          const gchar          *ignore_property)
+                                          const gchar          *shortcut)
 {
   XfceKeyboardShortcutInfo *info = NULL;
   GList                    *iter;
@@ -849,7 +844,7 @@ xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), FALSE);
   g_return_val_if_fail (shortcut != NULL, FALSE);
 
-  DBG ("shortcut = %s, ignore_property = %s", shortcut, ignore_property);
+  DBG ("Looking for shortcut info for %s", shortcut);
 
   providers = xfce_shortcuts_provider_get_providers ();
 
@@ -864,7 +859,6 @@ xfce_keyboard_settings_get_shortcut_info (XfceKeyboardSettings *settings,
 
           if (G_LIKELY (sc != NULL))
             {
-              /* Check ignore_property and change shortcut info struct */
               info = g_new0 (XfceKeyboardShortcutInfo, 1);
               info->provider = g_object_ref (iter->data);
               info->shortcut = sc;
