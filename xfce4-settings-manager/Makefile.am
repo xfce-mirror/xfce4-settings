@@ -1,4 +1,4 @@
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I${top_srcdir} \
 	-DMENUFILE=\"$(sysconfdir)/xdg/menus/xfce-settings-manager.menu\" \
 	-DLOCALEDIR=\"$(localedir)\" \
