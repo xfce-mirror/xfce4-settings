@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-28 17:06+0000\n"
+"POT-Creation-Date: 2013-01-17 13:15+0000\n"
 "PO-Revision-Date: 2011-02-26 11:48+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: Italian Translation Team <xfce-it-translators@googlegroups.com>\n"
@@ -595,7 +595,7 @@ msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "Configure _new displays when connected"
-msgstr "Configura _nuovo dispositivo alla connessione"
+msgstr "Configura il _nuovo schermo quando connesso"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -649,7 +649,7 @@ msgstr "Estendi a destra"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
 msgid "Mirror Displays"
-msgstr "Specchia schermi"
+msgstr "Schermi duplicati"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Only Display 1"
@@ -802,56 +802,61 @@ msgid "Unknown"
 msgstr "Sconosciuto"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:106
+#: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
 msgstr "Comando scorciatoia"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:130
+#: ../dialogs/keyboard-settings/command-dialog.c:147
+msgid "Enter the command you want to trigger with a shortcut."
+msgstr ""
+
+#. We are editing an existing shortcut
+#: ../dialogs/keyboard-settings/command-dialog.c:165
 msgid "Shortcut:"
 msgstr "Scorciatoia:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:140
+#: ../dialogs/keyboard-settings/command-dialog.c:176
 msgid "Command:"
 msgstr "Comando:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:160
+#: ../dialogs/keyboard-settings/command-dialog.c:196
 msgid "Use _startup notification"
 msgstr "Usa la _notifica di avvio"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:207
+#: ../dialogs/keyboard-settings/command-dialog.c:243
 msgid "The command may not be empty."
 msgstr "Il comando non dovrebbe essere vuoto."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:227
+#: ../dialogs/keyboard-settings/command-dialog.c:263
 msgid "Select command"
 msgstr "Selezionare il comando"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:235
+#: ../dialogs/keyboard-settings/command-dialog.c:271
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:386
 msgid "All Files"
 msgstr "Tutti i file"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/keyboard-settings/command-dialog.c:276
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:391
 msgid "Executable Files"
 msgstr "File eseguibili"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:255
+#: ../dialogs/keyboard-settings/command-dialog.c:291
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:406
 msgid "Perl Scripts"
 msgstr "Script di Perl"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:261
+#: ../dialogs/keyboard-settings/command-dialog.c:297
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:412
 msgid "Python Scripts"
 msgstr "Script di Python"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/keyboard-settings/command-dialog.c:303
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:418
 msgid "Ruby Scripts"
 msgstr "Script di Ruby"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:273
+#: ../dialogs/keyboard-settings/command-dialog.c:309
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:424
 msgid "Shell Scripts"
 msgstr "Script per la Shell"
@@ -871,7 +876,7 @@ msgstr "I_ntervallo di intermittenza"
 # Automatically copied. Please review and remove fuzzy flag.
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 msgid "Change la_yout option"
-msgstr "Modifica _opzioni disposizione"
+msgstr "Modifica le opzioni di disp_osizione"
 
 # Automatically copied. Please review and remove fuzzy flag.
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
@@ -1020,32 +1025,33 @@ msgstr "Impossibile connettersi al demone di xfconf. Motivo: %s"
 msgid "Could not create the settings dialog."
 msgstr "Impossibile creare la finestra delle impostazioni."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:396
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
 msgid "Command"
 msgstr "Comando"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:401
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
 msgstr "Scorciatoia"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:473
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
 msgid "Layout"
 msgstr "Mappatura"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:474
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Variant"
 msgstr "Variante"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:957
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
 msgid "Shortcut command may not be empty."
 msgstr "Il comando scorciatoia non dovrebbe essere vuoto."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1067
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1068
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
 msgid "Reset to Defaults"
 msgstr "Ripristina predefiniti"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1069
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -1053,13 +1059,13 @@ msgstr ""
 "In questo modo verranno ripristinate tutte le scorciatoie ai rispettivi "
 "valori predefiniti. Continuare davvero?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1148
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Le impostazioni predefinite di sistema verranno ripristinate al prossimo "
 "accesso."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1150
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1355
 msgid "Warning"
 msgstr "Avvertimento"
 
