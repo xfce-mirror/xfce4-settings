@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-21 19:15+0000\n"
+"POT-Creation-Date: 2013-01-18 16:00+0000\n"
 "PO-Revision-Date: 2010-06-05 17:46+0200\n"
 "Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
 "Language-Team: Croatian <>\n"
@@ -426,11 +426,11 @@ msgstr "Tekst"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Text next to icons"
-msgstr ""
+msgstr "Tekst poslije ikona"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Text under icons"
-msgstr ""
+msgstr "Tekst ispod ikona"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid ""
@@ -725,56 +725,61 @@ msgid "Unknown"
 msgstr "Nepoznato"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:106
+#: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
 msgstr "Naredba prečaca"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:130
+#: ../dialogs/keyboard-settings/command-dialog.c:147
+msgid "Enter the command you want to trigger with a shortcut."
+msgstr "Unesite naredbu koju želite pokrenuti prečacem."
+
+#. We are editing an existing shortcut
+#: ../dialogs/keyboard-settings/command-dialog.c:165
 msgid "Shortcut:"
 msgstr "Prečac:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:140
+#: ../dialogs/keyboard-settings/command-dialog.c:176
 msgid "Command:"
 msgstr "Naredba:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:160
+#: ../dialogs/keyboard-settings/command-dialog.c:196
 msgid "Use _startup notification"
 msgstr "Koristite _obavijest pokretanja"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:207
+#: ../dialogs/keyboard-settings/command-dialog.c:243
 msgid "The command may not be empty."
 msgstr "Naredba ne može biti prazna."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:227
+#: ../dialogs/keyboard-settings/command-dialog.c:263
 msgid "Select command"
 msgstr "Odaberite naredbu"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:235
+#: ../dialogs/keyboard-settings/command-dialog.c:271
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:386
 msgid "All Files"
 msgstr "Sve datoteke"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:240
+#: ../dialogs/keyboard-settings/command-dialog.c:276
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:391
 msgid "Executable Files"
 msgstr "Izvršne datoteke"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:255
+#: ../dialogs/keyboard-settings/command-dialog.c:291
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:406
 msgid "Perl Scripts"
 msgstr "Perl Scripte"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:261
+#: ../dialogs/keyboard-settings/command-dialog.c:297
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:412
 msgid "Python Scripts"
 msgstr "Python Scripte"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/keyboard-settings/command-dialog.c:303
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:418
 msgid "Ruby Scripts"
 msgstr "Ruby Scripte"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:273
+#: ../dialogs/keyboard-settings/command-dialog.c:309
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:424
 msgid "Shell Scripts"
 msgstr "Skripte ljuske"
@@ -930,32 +935,33 @@ msgstr ""
 msgid "Could not create the settings dialog."
 msgstr "Ne mogu napraviti dijalog postavki."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:396
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
 msgid "Command"
 msgstr "Naredba"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:401
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
 msgstr "Prečac"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:473
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
 msgid "Layout"
 msgstr "Raspored"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:474
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Variant"
 msgstr "Inačica"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:963
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
 msgid "Shortcut command may not be empty."
 msgstr "Naredba prečaca ne može biti prazna."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1078
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1079
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
 msgid "Reset to Defaults"
 msgstr "Vrati na zadano"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1080
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to "
 "do this?"
@@ -963,11 +969,11 @@ msgstr ""
 "Ovo će vratiti sve prečace na njihove zadane vrijednosti.Želite li doista to "
 "učiniti?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1159
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
 msgid "The system defaults will be restored next time you log in."
 msgstr "Zadane postavke sustava biti će obnovljene kada se idući put prijavite"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1161
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1355
 msgid "Warning"
 msgstr "Upozorenje"
 
@@ -1195,7 +1201,7 @@ msgstr "Lje_voruki"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Mouse (relative)"
-msgstr ""
+msgstr "Miš (relativno)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
@@ -1208,7 +1214,7 @@ msgstr "Nijedan (dešnjak)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Pen (absolute)"
-msgstr ""
+msgstr "Olovka (apsolutno)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Pointer Speed"
