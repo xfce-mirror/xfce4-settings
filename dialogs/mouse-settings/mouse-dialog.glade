@@ -42,6 +42,13 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-revert-to-saved</property>
   </object>
+  <object class="GtkAdjustment" id="synaptics-disable-duration">
+    <property name="lower">0.10000000000000001</property>
+    <property name="upper">4</property>
+    <property name="value">2</property>
+    <property name="step_increment">0.10000000000000001</property>
+    <property name="page_increment">1</property>
+  </object>
   <object class="GtkListStore" id="synaptics-scroll-store">
     <columns>
       <!-- column-name title -->
@@ -75,6 +82,32 @@
     <property name="step_increment">1</property>
     <property name="page_increment">11</property>
   </object>
+  <object class="GtkListStore" id="wacom-rotation-store">
+    <columns>
+      <!-- column-name rotation -->
+      <column type="gint"/>
+      <!-- column-name title -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">0</col>
+        <col id="1" translatable="yes">None (right-handed)</col>
+      </row>
+      <row>
+        <col id="0">3</col>
+        <col id="1" translatable="yes">Half (left-handed)</col>
+      </row>
+      <row>
+        <col id="0">1</col>
+        <col id="1" translatable="yes">Clockwise</col>
+      </row>
+      <row>
+        <col id="0">2</col>
+        <col id="1" translatable="yes">Counterclockwise</col>
+      </row>
+    </data>
+  </object>
   <object class="XfceTitledDialog" id="mouse-dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Mouse and Touchpad</property>
@@ -93,6 +126,21 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-close</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-help</property>
                 <property name="use_action_appearance">False</property>
@@ -106,21 +154,6 @@
                 <property name="fill">False</property>
                 <property name="position">0</property>
                 <property name="secondary">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="button1">
-                <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -490,6 +523,54 @@
                                       </packing>
                                     </child>
                                     <child>
+                                      <object class="GtkAlignment" id="alignment8">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="left_padding">18</property>
+                                        <child>
+                                          <object class="GtkHBox" id="synaptics-disable-duration-box">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="spacing">12</property>
+                                            <child>
+                                              <object class="GtkLabel" id="label5">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="label" translatable="yes">Duratio_n:</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="mnemonic_widget">synaptics-disable-duration-scale</property>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">True</property>
+                                                <property name="position">0</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <object class="GtkHScale" id="synaptics-disable-duration-scale">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="update_policy">delayed</property>
+                                                <property name="adjustment">synaptics-disable-duration</property>
+                                                <property name="round_digits">1</property>
+                                                <property name="value_pos">right</property>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">True</property>
+                                                <property name="fill">True</property>
+                                                <property name="position">1</property>
+                                              </packing>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
                                       <object class="GtkCheckButton" id="synaptics-tap-to-click">
                                         <property name="label" translatable="yes">Tap touchpad to clic_k</property>
                                         <property name="use_action_appearance">False</property>
@@ -502,7 +583,7 @@
                                       <packing>
                                         <property name="expand">True</property>
                                         <property name="fill">True</property>
-                                        <property name="position">1</property>
+                                        <property name="position">2</property>
                                       </packing>
                                     </child>
                                   </object>
@@ -1168,8 +1249,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-11">button2</action-widget>
       <action-widget response="0">button1</action-widget>
+      <action-widget response="-11">button2</action-widget>
     </action-widgets>
   </object>
   <object class="GtkListStore" id="wacom-mode-store">
@@ -1187,32 +1268,6 @@
       <row>
         <col id="0">RELATIVE</col>
         <col id="1" translatable="yes">Mouse (relative)</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="wacom-rotation-store">
-    <columns>
-      <!-- column-name rotation -->
-      <column type="gint"/>
-      <!-- column-name title -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0">0</col>
-        <col id="1" translatable="yes">None (right-handed)</col>
-      </row>
-      <row>
-        <col id="0">3</col>
-        <col id="1" translatable="yes">Half (left-handed)</col>
-      </row>
-      <row>
-        <col id="0">1</col>
-        <col id="1" translatable="yes">Clockwise</col>
-      </row>
-      <row>
-        <col id="0">2</col>
-        <col id="1" translatable="yes">Counterclockwise</col>
       </row>
     </data>
   </object>

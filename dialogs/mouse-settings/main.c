@@ -136,6 +136,18 @@ mouse_settings_format_value_ms (GtkScale *scale,
 
 
 
+#ifdef DEVICE_PROPERTIES
+static gchar *
+mouse_settings_format_value_s (GtkScale *scale,
+                               gdouble   value)
+{
+   /* seconds value for some of the scales in the dialog */
+   return g_strdup_printf (_("%.1f s"), value);
+}
+#endif
+
+
+
 
 #ifdef HAVE_XCURSOR
 static GdkPixbuf *
@@ -1582,6 +1594,8 @@ main (gint argc, gchar **argv)
     XExtensionVersion *version = NULL;
 #ifdef DEVICE_PROPERTIES
     gchar             *syndaemon;
+    GObject           *synaptics_disable_while_type;
+    GObject           *synaptics_disable_duration_table;
 #endif
 
     /* setup translation domain */
@@ -1703,12 +1717,26 @@ main (gint argc, gchar **argv)
                               G_CALLBACK (mouse_settings_device_reset), builder);
 
 #ifdef DEVICE_PROPERTIES
-            object = gtk_builder_get_object (builder, "synaptics-disable-while-type");
+            synaptics_disable_while_type = gtk_builder_get_object (builder, "synaptics-disable-while-type");
             syndaemon = g_find_program_in_path ("syndaemon");
             gtk_widget_set_sensitive (GTK_WIDGET (object), syndaemon != NULL);
             g_free (syndaemon);
             xfconf_g_property_bind (pointers_channel, "/DisableTouchpadWhileTyping",
-                                    G_TYPE_BOOLEAN, G_OBJECT (object), "active");
+                                    G_TYPE_BOOLEAN, G_OBJECT (synaptics_disable_while_type), "active");
+
+            synaptics_disable_duration_table = gtk_builder_get_object (builder, "synaptics-disable-duration-box");
+
+            g_object_bind_property (G_OBJECT (synaptics_disable_while_type), "active",
+                                    G_OBJECT (synaptics_disable_duration_table), "sensitive",
+                                    G_BINDING_SYNC_CREATE);
+
+            object = gtk_builder_get_object (builder, "synaptics-disable-duration-scale");
+            g_signal_connect (G_OBJECT (object), "format-value",
+                              G_CALLBACK (mouse_settings_format_value_s), NULL);
+
+            object = gtk_builder_get_object (builder, "synaptics-disable-duration");
+            xfconf_g_property_bind (pointers_channel, "/DisableTouchpadDuration",
+                                    G_TYPE_DOUBLE, G_OBJECT (object), "value");
 
             object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
             g_signal_connect_swapped (G_OBJECT (object), "toggled",

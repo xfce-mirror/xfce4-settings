@@ -221,7 +221,9 @@ xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
     Atom        *props;
     gint         i, nprops;
     gboolean     have_synaptics = FALSE;
-    gchar       *args[] = { "syndaemon", "-i", "2.0", "-K", "-R", NULL };
+    gdouble      disable_duration;
+    gchar        disable_duration_string[64];
+    gchar       *args[] = { "syndaemon", "-i", disable_duration_string, "-K", "-R", NULL };
     GError      *error = NULL;
 
     /* only stop a running daemon */
@@ -272,25 +274,26 @@ xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
 
     start_stop_daemon:
 
+    /* stop the daemon in any case */
+    xfce_pointers_helper_syndaemon_stop (helper);
+
     if (have_synaptics)
     {
-        if (helper->syndaemon_pid == 0)
-        {
-            if (!g_spawn_async (NULL, args, NULL, G_SPAWN_SEARCH_PATH,
-                                NULL, NULL, &helper->syndaemon_pid, &error))
-            {
-                g_critical ("Spawning syndaemon failed: %s", error->message);
-                g_error_free (error);
-            }
+        disable_duration = xfconf_channel_get_double (helper->channel,
+                                                      "/DisableTouchpadDuration",
+                                                      2.0);
+        g_snprintf (disable_duration_string, sizeof (disable_duration_string),
+                    "%.1f", disable_duration);
 
-            xfsettings_dbg (XFSD_DEBUG_POINTERS, "Started syndaemon with pid %d",
-                            helper->syndaemon_pid);
+        if (!g_spawn_async (NULL, args, NULL, G_SPAWN_SEARCH_PATH,
+                            NULL, NULL, &helper->syndaemon_pid, &error))
+        {
+            g_critical ("Spawning syndaemon failed: %s", error->message);
+            g_error_free (error);
         }
-    }
-    else
-    {
-        /* stop the daemon */
-        xfce_pointers_helper_syndaemon_stop (helper);
+
+        xfsettings_dbg (XFSD_DEBUG_POINTERS, "Started syndaemon with pid %d",
+                        helper->syndaemon_pid);
     }
 #endif
 }
@@ -917,7 +920,8 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel      *channel,
          return;
 
     /* check the daemon status */
-    if (strcmp (property_name, "/DisableTouchpadWhileTyping") == 0)
+    if ((strcmp (property_name, "/DisableTouchpadWhileTyping") == 0) ||
+        (strcmp (property_name, "/DisableTouchpadDuration") == 0))
     {
         xfce_pointers_helper_syndaemon_check (helper);
         return;
