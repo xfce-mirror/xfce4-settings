@@ -161,8 +161,8 @@ msgid ""
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
 msgstr ""
-"이 항목을 선택하면, 여러 키가 보통 동시에 눌릴 필요가 있을 경우, 수정 키"
-"(Control, Alt, Shift 같은 것)는 누른 상태로 유지(눌렀다 땔 수 있습니다)할 필"
+"이 항목을 선택하면, 보통 여러 키를 동시에 눌러야 할 경우, 키 조합"
+"(Control, Alt, Shift 같은 키)을 누른 상태로 유지(눌렀다 땔 수 있습니다)할 필"
 "요가 없습니다."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
@@ -170,8 +170,8 @@ msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr ""
-"이 항목을 선택하면, 수정 키(Control, Alt, Shift 같은 것)는 다시 눌리기 전에 "
-"눌린 상태가 잠긴 채로 유지합니다"
+"이 항목을 선택하면, 키 조합(Control, Alt, Shift 같은 키)을 다시 누르기 전에 "
+"잠긴 눌린 상태를 유지합니다"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid ""
@@ -361,7 +361,7 @@ msgid ""
 "the font; pick whichever looks best according to personal preference"
 msgstr ""
 "수많은 글꼴은 글꼴을 가장 좋게 그려내게 하는 특별한 힌트 정보를 보유하고 있습"
-"니다. 개인 기본 설정에 따라 가장 좋게 보이는 것을 고르십시오"
+"니다. 개인 기본 설정에 따라 가장 좋게 보이는 모습을 고르십시오"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "Medium"
@@ -411,7 +411,7 @@ msgstr "조금"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Specify what should be displayed in toolbar items"
-msgstr "도구 모음 항목에 표시할 것을 정합니다"
+msgstr "도구 모음 항목에 표시할 방식을 설정합니다"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Specify whether icons should be displayed next to items in menus"
@@ -1079,12 +1079,12 @@ msgstr "기본"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] "%d개의 MIME 형식을 찾았습니다\t"
+msgstr[0] "MIME 형식 %d개를 찾았습니다\t"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr "\"%s\"프로그램을 MIME 형식 \"%s\"에 대해 설정하는데 실패했습니다."
+msgstr "\"%s\"프로그램을 \"%s\" MIME 형식에 대해 설정하는데 실패했습니다."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
@@ -1101,7 +1101,7 @@ msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr ""
-"이는 사용자정의 MIME 연결을 제거할 것이며 시스템 기본 설정으로 복구합니다."
+"사용자정의 MIME 연결을 제거할 것이며 시스템 기본 설정으로 복구합니다."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
@@ -1538,7 +1538,7 @@ msgid ""
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
 "속성 이름은 A-Z, a-z, 0-9, '_', '-', '<', '>', 그리고 구분 기호로 사용하는 "
-"'/'와 같은 것을 포함한 ASCII 문자만 포함합니다."
+"'/'와 같은 문자를 포함한 ASCII 문자만 포함합니다."
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
 #, c-format
