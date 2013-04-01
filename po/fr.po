@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 04:27+0000\n"
+"POT-Creation-Date: 2013-04-01 13:27+0000\n"
 "PO-Revision-Date: 2012-12-07 14:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <i18n-xfce@xfce.org>\n"
@@ -228,21 +228,21 @@ msgid "pixels/sec"
 msgstr "pixels par seconde"
 
 #: ../dialogs/accessibility-settings/main.c:43
-#: ../dialogs/appearance-settings/main.c:94
+#: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Socket du gestionnaire de paramètres"
 
 #: ../dialogs/accessibility-settings/main.c:43
-#: ../dialogs/appearance-settings/main.c:94
+#: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "ID SOCKET"
 
 #: ../dialogs/accessibility-settings/main.c:44
-#: ../dialogs/appearance-settings/main.c:95
+#: ../dialogs/appearance-settings/main.c:96
 #: ../dialogs/display-settings/main.c:138
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
@@ -251,7 +251,7 @@ msgid "Version information"
 msgstr "Information sur la version"
 
 #: ../dialogs/accessibility-settings/main.c:192
-#: ../dialogs/appearance-settings/main.c:966
+#: ../dialogs/appearance-settings/main.c:1006
 #: ../dialogs/display-settings/main.c:1943
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
@@ -261,7 +261,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Tapez « %s --help » pour plus d'aide."
 
 #: ../dialogs/accessibility-settings/main.c:211
-#: ../dialogs/appearance-settings/main.c:985
+#: ../dialogs/appearance-settings/main.c:1025
 #: ../dialogs/display-settings/main.c:1962
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
@@ -270,7 +270,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "L'équipe de développement Xfce. Tous droits réservés."
 
 #: ../dialogs/accessibility-settings/main.c:212
-#: ../dialogs/appearance-settings/main.c:986
+#: ../dialogs/appearance-settings/main.c:1026
 #: ../dialogs/display-settings/main.c:1963
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
@@ -383,7 +383,7 @@ msgid "Menus and Buttons"
 msgstr "Menus et boutons"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-#: ../dialogs/appearance-settings/main.c:852
+#: ../dialogs/appearance-settings/main.c:892
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/display-settings/main.c:114
 msgid "None"
@@ -483,45 +483,52 @@ msgstr "_Icônes"
 msgid "_Toolbar Style"
 msgstr "S_tyle de la barre d'outils"
 
-#: ../dialogs/appearance-settings/main.c:733
+#: ../dialogs/appearance-settings/main.c:355
+#, c-format
+msgid ""
+"Warning: this icon theme has no cache file. You can create this by running "
+"<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
+msgstr "Attention : ce thème d'icônes a pas de fichier cache. Vous pouvez créer en exécutant <i>gtk-update-icon-cache %s/%s/</i> dans un émulateur de terminal."
+
+#: ../dialogs/appearance-settings/main.c:765
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Le fichier dépasse %d Mo. Installation annulée."
 
-#: ../dialogs/appearance-settings/main.c:738
+#: ../dialogs/appearance-settings/main.c:770
 msgid "Failed to create temporary directory"
 msgstr "La création d'un dossier temporaire a échoué"
 
-#: ../dialogs/appearance-settings/main.c:743
+#: ../dialogs/appearance-settings/main.c:775
 msgid "Failed to extract archive"
 msgstr "L'extraction de l'archive a échoué"
 
-#: ../dialogs/appearance-settings/main.c:748
+#: ../dialogs/appearance-settings/main.c:780
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Format inconnu, seuls les répertoires et archives sont pris en charge"
 
-#: ../dialogs/appearance-settings/main.c:753
+#: ../dialogs/appearance-settings/main.c:785
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Erreur inconnue, le code de sortie est %d"
 
-#: ../dialogs/appearance-settings/main.c:760
+#: ../dialogs/appearance-settings/main.c:792
 msgid "Failed to install theme"
 msgstr "Échec de l'installation du thème"
 
-#: ../dialogs/appearance-settings/main.c:856
+#: ../dialogs/appearance-settings/main.c:896
 msgid "RGB"
 msgstr "RVB"
 
-#: ../dialogs/appearance-settings/main.c:860
+#: ../dialogs/appearance-settings/main.c:900
 msgid "BGR"
 msgstr "BVR"
 
-#: ../dialogs/appearance-settings/main.c:864
+#: ../dialogs/appearance-settings/main.c:904
 msgid "Vertical RGB"
 msgstr "RVB vertical"
 
-#: ../dialogs/appearance-settings/main.c:868
+#: ../dialogs/appearance-settings/main.c:908
 msgid "Vertical BGR"
 msgstr "BVR vertical"
 
