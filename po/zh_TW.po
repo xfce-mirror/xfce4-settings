@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-18 07:03+0000\n"
-"PO-Revision-Date: 2013-03-18 18:47+0800\n"
+"POT-Creation-Date: 2013-04-18 13:21+0000\n"
+"PO-Revision-Date: 2013-04-18 22:47+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: chinese-l10n <chinese-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -213,21 +213,21 @@ msgid "pixels/sec"
 msgstr "像素/秒"
 
 #: ../dialogs/accessibility-settings/main.c:43
-#: ../dialogs/appearance-settings/main.c:94
+#: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "設定值管理員 socket"
 
 #: ../dialogs/accessibility-settings/main.c:43
-#: ../dialogs/appearance-settings/main.c:94
+#: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
-#: ../dialogs/appearance-settings/main.c:95
+#: ../dialogs/appearance-settings/main.c:96
 #: ../dialogs/display-settings/main.c:138
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
@@ -236,7 +236,7 @@ msgid "Version information"
 msgstr "版本資訊"
 
 #: ../dialogs/accessibility-settings/main.c:192
-#: ../dialogs/appearance-settings/main.c:966
+#: ../dialogs/appearance-settings/main.c:1006
 #: ../dialogs/display-settings/main.c:1943
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
@@ -246,7 +246,7 @@ msgid "Type '%s --help' for usage."
 msgstr "輸入 '%s --help' 以了解用法。"
 
 #: ../dialogs/accessibility-settings/main.c:211
-#: ../dialogs/appearance-settings/main.c:985
+#: ../dialogs/appearance-settings/main.c:1025
 #: ../dialogs/display-settings/main.c:1962
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
@@ -255,7 +255,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 開發團隊。保留所有權利。"
 
 #: ../dialogs/accessibility-settings/main.c:212
-#: ../dialogs/appearance-settings/main.c:986
+#: ../dialogs/appearance-settings/main.c:1026
 #: ../dialogs/display-settings/main.c:1963
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
@@ -361,7 +361,7 @@ msgid "Menus and Buttons"
 msgstr "選單與按鈕"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-#: ../dialogs/appearance-settings/main.c:852
+#: ../dialogs/appearance-settings/main.c:892
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/display-settings/main.c:114
 msgid "None"
@@ -456,45 +456,54 @@ msgstr "圖示(_I)"
 msgid "_Toolbar Style"
 msgstr "工具列樣式(_T)"
 
-#: ../dialogs/appearance-settings/main.c:733
+#: ../dialogs/appearance-settings/main.c:355
+#, c-format
+msgid ""
+"Warning: this icon theme has no cache file. You can create this by running "
+"<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
+msgstr ""
+"警告：此圖示主題沒有快取檔。您可以在終端機模擬器中執行 <i>gtk-update-icon-"
+"cache %s/%s/</i> 來製作快取。"
+
+#: ../dialogs/appearance-settings/main.c:765
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "檔案大於 %d MB，安裝已中止"
 
-#: ../dialogs/appearance-settings/main.c:738
+#: ../dialogs/appearance-settings/main.c:770
 msgid "Failed to create temporary directory"
 msgstr "無法建立暫存目錄"
 
-#: ../dialogs/appearance-settings/main.c:743
+#: ../dialogs/appearance-settings/main.c:775
 msgid "Failed to extract archive"
 msgstr "無法抽出封存檔"
 
-#: ../dialogs/appearance-settings/main.c:748
+#: ../dialogs/appearance-settings/main.c:780
 msgid "Unknown format, only archives and directories are supported"
 msgstr "未知格式，僅支援封存檔與目錄"
 
-#: ../dialogs/appearance-settings/main.c:753
+#: ../dialogs/appearance-settings/main.c:785
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "未知錯誤，離開代碼為 %d"
 
-#: ../dialogs/appearance-settings/main.c:760
+#: ../dialogs/appearance-settings/main.c:792
 msgid "Failed to install theme"
 msgstr "無法安裝主題"
 
-#: ../dialogs/appearance-settings/main.c:856
+#: ../dialogs/appearance-settings/main.c:896
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:860
+#: ../dialogs/appearance-settings/main.c:900
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:864
+#: ../dialogs/appearance-settings/main.c:904
 msgid "Vertical RGB"
 msgstr "垂直 RGB"
 
-#: ../dialogs/appearance-settings/main.c:868
+#: ../dialogs/appearance-settings/main.c:908
 msgid "Vertical BGR"
 msgstr "垂直 BGR"
 
