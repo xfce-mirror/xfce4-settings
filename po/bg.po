@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-15 13:06+0000\n"
-"PO-Revision-Date: 2013-01-16 23:26+0200\n"
-"Last-Translator: Cybercop <cybercop_montana@abv.bg>\n"
+"POT-Creation-Date: 2013-04-27 08:36+0000\n"
+"PO-Revision-Date: 2013-04-27 14:44+0200\n"
+"Last-Translator: Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg>\n"
 "Language-Team: Bulgarian\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -187,7 +187,7 @@ msgid "pixels/sec"
 msgstr "пиксела/сек"
 
 #: ../dialogs/accessibility-settings/main.c:43
-#: ../dialogs/appearance-settings/main.c:94
+#: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39
 #: ../dialogs/mouse-settings/main.c:79
@@ -195,7 +195,7 @@ msgid "Settings manager socket"
 msgstr "Гнездо на мениджъра на настройките"
 
 #: ../dialogs/accessibility-settings/main.c:43
-#: ../dialogs/appearance-settings/main.c:94
+#: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39
 #: ../dialogs/mouse-settings/main.c:79
@@ -203,7 +203,7 @@ msgid "SOCKET ID"
 msgstr "Гнездо ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
-#: ../dialogs/appearance-settings/main.c:95
+#: ../dialogs/appearance-settings/main.c:96
 #: ../dialogs/display-settings/main.c:138
 #: ../dialogs/keyboard-settings/main.c:40
 #: ../dialogs/mime-settings/main.c:40
@@ -215,11 +215,11 @@ msgid "Version information"
 msgstr "Информация за версията"
 
 #: ../dialogs/accessibility-settings/main.c:192
-#: ../dialogs/appearance-settings/main.c:966
+#: ../dialogs/appearance-settings/main.c:1006
 #: ../dialogs/display-settings/main.c:1943
 #: ../dialogs/keyboard-settings/main.c:76
 #: ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1597
+#: ../dialogs/mouse-settings/main.c:1611
 #: ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187
 #: ../xfce4-settings-manager/main.c:61
@@ -228,11 +228,11 @@ msgid "Type '%s --help' for usage."
 msgstr "Напишете '%s --help' за показване на потребителско ръководство"
 
 #: ../dialogs/accessibility-settings/main.c:211
-#: ../dialogs/appearance-settings/main.c:985
+#: ../dialogs/appearance-settings/main.c:1025
 #: ../dialogs/display-settings/main.c:1962
 #: ../dialogs/keyboard-settings/main.c:92
 #: ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1616
+#: ../dialogs/mouse-settings/main.c:1630
 #: ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203
 #: ../xfce4-settings-manager/main.c:77
@@ -240,11 +240,11 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Екипът по разрабоката на Xfce. Всички права са запазени."
 
 #: ../dialogs/accessibility-settings/main.c:212
-#: ../dialogs/appearance-settings/main.c:986
+#: ../dialogs/appearance-settings/main.c:1026
 #: ../dialogs/display-settings/main.c:1963
 #: ../dialogs/keyboard-settings/main.c:93
 #: ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1617
+#: ../dialogs/mouse-settings/main.c:1631
 #: ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204
 #: ../xfce4-settings-manager/main.c:78
@@ -335,7 +335,7 @@ msgid "Menus and Buttons"
 msgstr "Менюта и бутони"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-#: ../dialogs/appearance-settings/main.c:852
+#: ../dialogs/appearance-settings/main.c:892
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/display-settings/main.c:114
 msgid "None"
@@ -425,45 +425,50 @@ msgstr "Икони"
 msgid "_Toolbar Style"
 msgstr "Стил на лентата с инструменти"
 
-#: ../dialogs/appearance-settings/main.c:733
+#: ../dialogs/appearance-settings/main.c:355
+#, c-format
+msgid "Warning: this icon theme has no cache file. You can create this by running <i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
+msgstr "Внимание: Тази тема за икони няма кеш файл. Вие може да създадете такъв, като стартирате <i>gtk-update-icon-cache %s/%s/</i> в терминал."
+
+#: ../dialogs/appearance-settings/main.c:765
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Файлът е по- голям от %d МБ, инсталацията е отхвърлена"
 
-#: ../dialogs/appearance-settings/main.c:738
+#: ../dialogs/appearance-settings/main.c:770
 msgid "Failed to create temporary directory"
 msgstr "Неуспех при създаване на временна директория"
 
-#: ../dialogs/appearance-settings/main.c:743
+#: ../dialogs/appearance-settings/main.c:775
 msgid "Failed to extract archive"
 msgstr "Неуспех при извличане на архив"
 
-#: ../dialogs/appearance-settings/main.c:748
+#: ../dialogs/appearance-settings/main.c:780
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Неизвестен формат. Поддържат се само архиви и директории"
 
-#: ../dialogs/appearance-settings/main.c:753
+#: ../dialogs/appearance-settings/main.c:785
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Неизвестна грешка, изходен код %d"
 
-#: ../dialogs/appearance-settings/main.c:760
+#: ../dialogs/appearance-settings/main.c:792
 msgid "Failed to install theme"
 msgstr "Неуспех при инсталирането на тема"
 
-#: ../dialogs/appearance-settings/main.c:856
+#: ../dialogs/appearance-settings/main.c:896
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:860
+#: ../dialogs/appearance-settings/main.c:900
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:864
+#: ../dialogs/appearance-settings/main.c:904
 msgid "Vertical RGB"
 msgstr "Вертикален RGB"
 
-#: ../dialogs/appearance-settings/main.c:868
+#: ../dialogs/appearance-settings/main.c:908
 msgid "Vertical BGR"
 msgstr "Вертикален BGR"
 
@@ -777,7 +782,7 @@ msgid "Edit keyboard settings and application shortcuts"
 msgstr "Редактиране на настройките на клавиатурата и клавишните комбинации"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "General"
 msgstr "Общи"
 
@@ -1007,9 +1012,9 @@ msgstr "Потребителски"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:481
 #: ../dialogs/mime-settings/xfce-mime-window.c:604
-#: ../dialogs/mouse-settings/main.c:354
-#: ../dialogs/mouse-settings/main.c:356
-#: ../dialogs/mouse-settings/main.c:416
+#: ../dialogs/mouse-settings/main.c:366
+#: ../dialogs/mouse-settings/main.c:368
+#: ../dialogs/mouse-settings/main.c:428
 msgid "Default"
 msgstr "Стандартен"
 
@@ -1067,6 +1072,12 @@ msgstr "%g пиксела"
 #, c-format
 msgid "%g ms"
 msgstr "%g мсек"
+
+#. seconds value for some of the scales in the dialog
+#: ../dialogs/mouse-settings/main.c:145
+#, c-format
+msgid "%.1f s"
+msgstr "%.1f s"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "Acceleratio_n:"
@@ -1126,151 +1137,155 @@ msgid "Drag and Drop"
 msgstr "Влачене и Пускане"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+msgid "Duratio_n:"
+msgstr "Продължителност:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Edge scrolling"
 msgstr "Краища на превъртане"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Enable hori_zontal scrolling"
 msgstr "Включване на хоризонтално превъртане"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Half (left-handed)"
 msgstr "Наполовина (за лява ръка)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Le_ft-handed"
 msgstr "За лява ръка"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Mouse (relative)"
 msgstr "Мишка (относително)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse and Touchpad"
 msgstr "Мишка и тъчпад"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "None (right-handed)"
 msgstr "Без (за дясна ръка)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Pen (absolute)"
 msgstr "Писалка (абсолютно)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "Pointer Speed"
 msgstr "Скорост на показалеца"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Preview"
 msgstr "Преглед"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Reverse scroll d_irection"
 msgstr "Обръщане на посоката на превъртане"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Ri_ght-handed"
 msgstr "За дясна ръка"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Scrolling"
 msgstr "Превъртане"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Scrolling _mode:"
 msgstr "Режим на превъртане:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Sensitivit_y:"
 msgstr "_Чувствителност:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Set the acceleration and sensitivity for the selected device to the default values"
 msgstr "Задаване на ускорение и чувствителност за избраното устройство в стойности по подразбиране"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Size"
 msgstr "Размер"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "T_ouchpad"
 msgstr "Тъчпад"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Tab_let"
 msgstr "Таблет"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Tap touchpad to clic_k"
 msgstr "Натиснете тъчпада за да кликнете"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Th_reshold:"
 msgstr "Праг:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Коефициент, по който да бъде умножена стойността на показалеца, при движение на мишката"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "The mouse pointer cannot move farther than this distance between two clicks for them to be considered a double click"
 msgstr "За да се счита за двойно кликване, показалецът на мишката не трябва да се премества между две кликвания на по- голямо от зададеното разстояние"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "The number of pixels the pointer must move before a drag operation will start"
 msgstr "Брой пиксели, което трябва да измине показалецът, преди началото на преместване на обекта"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "The number of pixels the pointer must move in a short time before it starts accelerating"
 msgstr "Брой пиксели, което трябва за кратко време да измине показалецът на мишката, за да започне ускорение"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "Ti_me:"
 msgstr "Време:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Trac_king mode:"
 msgstr "Режим на проследяване: "
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click"
 msgstr "Две кликвания на мишката  с интервал по- малък от този (в милисекуни) ще се считат за двойно кликване"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Two-finger scrolling"
 msgstr "Превъртане с два пръста"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Когато е избрано, колелото на мишката ще работи в обратна посока"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Когато е избрано, тъчпада ще се заключва, когато ползвате клавиатурата"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "_Behavior"
 msgstr "_Поведение"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "_Devices"
 msgstr "Устройства"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "_Enable this device"
 msgstr "Включване на това устройство"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "_Reset to Defaults"
 msgstr "Възстановяване на настройките по подразбиране"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "_Rotation:"
 msgstr "Завъртане:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid "_Theme"
 msgstr "Тема"
 
@@ -1563,8 +1578,8 @@ msgstr "Мениджър на настройките"
 #~ "Automatically show the \"minimal dialog\" to quickly configure newly "
 #~ "connected displays."
 #~ msgstr ""
-#~ "Автоматично показване на \"минимален диалог\" за бърза настройка "
-#~ "на включени нови дисплеи."
+#~ "Автоматично показване на \"минимален диалог\" за бърза настройка на "
+#~ "включени нови дисплеи."
 
 #~ msgid "_Settings"
 #~ msgstr "_Настройки"
