@@ -1,227 +1,208 @@
-# Hungarian translation of xfce4-settings
-# Copyright (C) 2009, 2010, 2012. Free Software Foundation, Inc.
-# This file is distributed under the same license as the xfce4-settings package.
-#
-# SZERVÁC Attila <sas@321>, 2004-2009.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2009, 2010, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2009-2010,2012
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-settings\n"
+"Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 09:06+0000\n"
-"PO-Revision-Date: 2012-04-21 04:52+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-02 23:16+0200\n"
+"PO-Revision-Date: 2013-11-19 15:08+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/xfce/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
-msgid "Acceleration _profile:"
-msgstr "Gyorsítási _profil:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
-msgid "Acceleration _time:"
-msgstr "Gyorsítási i_dő:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
-msgid "Acceptance _delay:"
-msgstr "Elf_ogadás késleltetése:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
 msgstr "Akadálymentesítés"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
+msgid "Configure keyboard and mouse accessibility"
+msgstr "Billentyűzet és egér akadálymentesítésének beállítása"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+msgid "_Enable assistive technologies"
+msgstr "Akadálymentesítés _engedélyezése"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+msgid ""
+"If enabled, the session manager will start the required applications for "
+"screen readers and magnifiers"
+msgstr "A munkamenet-kezelő elindítsa-e a képernyő-olvasáshoz és -nagyításhoz szükséges alkalmazásokat"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
 "Assistive technologies will be available the\n"
 "next time you login"
-msgstr ""
-"Az akadálymentesítés a következő bejelentkezéskor\n"
-"lesz elérhető."
+msgstr "Az akadálymentesítés a következő bejelentkezéskor\nlesz elérhető."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
-msgid "Bounce Keys"
-msgstr "Billentyűszűrés"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
-msgid "Configure keyboard and mouse accessibility"
-msgstr "Billentyűzet és egér akadálymentesítésének beállítása"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
-msgid "Disable sticky keys if _two keys are pressed"
-msgstr "Ragadós billentyűk kikap_csolása két billentyű megnyomásakor"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
-msgid ""
-"If enabled, the session manager will start the required applications for "
-"screen readers and magnifiers"
-msgstr ""
-"A munkamenet-kezelő elindítsa-e a képernyő-olvasáshoz és -nagyításhoz "
-"szükséges alkalmazásokat"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
-msgid "K_eystroke delay:"
-msgstr "Billentyűleütés _késleltetése:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
-msgid "Keyboa_rd"
-msgstr "Bille_ntyűzet"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
-msgid "Maximum _speed:"
-msgstr "Maximális _sebesség:"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
-msgid "Mouse Emulation"
-msgstr "Egéremuláció"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "No AT-SPI provider was found on your system"
 msgstr "Nem található AT-SPI szolgáltató a rendszeren"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
-msgid "R_epeat interval:"
-msgstr "Ismétlési idő_köz:"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+msgid "_Assistive Technologies"
+msgstr "_Akadálymentesítés"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
-msgid "Slow Keys"
-msgstr "Lassú billentyűk"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+msgid "Use _sticky keys"
+msgstr "_Ragadós billentyűk használata"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) do not need "
+"to be held down (they can be pressed and then released) when multiple keys "
+"would normally need to be pressed at the same time"
+msgstr "A módosítóbillentyűket (például: Ctrl, Alt, Shift) nem kell lenyomva tartani, amikor normális esetben több billentyű egyidejű lenyomása lenne szükséges, azaz a kombinációkat alkotó billentyűk egymás után is lenyomhatók"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+msgid "_Lock sticky keys"
+msgstr "Ragadós billentyűk _zárolása"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) will remain "
+"locked in the pressed state until pressed again"
+msgstr "A módosítóbillentyűk (például: Ctrl, Alt, Shift) lenyomott állapotban maradnak az ismételt megnyomásukig"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+msgid "Disable sticky keys if _two keys are pressed"
+msgstr "Ragadós billentyűk kikap_csolása két billentyű megnyomásakor"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+msgid ""
+"When selected, the \"sticky keys\" feature will be disabled if two keys are "
+"pressed simultaneously"
+msgstr "A Ragadós billentyűk szolgáltatás kikapcsolása két billentyű egyidejű lenyomásakor"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Sticky Keys"
 msgstr "Ragadós billentyűk"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
-msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "A billentyűleütések között ennyi időnek kell eltelnie ezredmásodpercben"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+msgid "Use slow _keys"
+msgstr "_Lassú billentyűk használata"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+msgid ""
+"To help prevent accidental keystrokes, slow keys requires that a key is held"
+" for a certain minimum amount of time before the keystroke will be accepted"
+msgstr "A véletlen billentyűleütések elkerülése érdekében a lassú billentyűk szolgáltatás megköveteli a billentyű elfogadása előtt a megadott minimális ideig való lenyomva tartását"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+msgid "Acceptance _delay:"
+msgstr "Elf_ogadás késleltetése:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "A billentyűleütés elfogadásáig ennyi időnek kell eltelnie ezredmásodpercben"
 
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+msgid "Slow Keys"
+msgstr "Lassú billentyűk"
+
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
-msgid "The maximum pointer speed after acceleration"
-msgstr "A mutató maximális sebessége gyorsítás után"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
-msgid "The ramp used to reach maximum pointer speed"
-msgstr "A maximális mutatósebesség elérése ennyi lépésben"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
-msgid "The time, in milliseconds, between repeated motion events"
-msgstr "Az ismételt mozgási események közötti idő ezredmásodpercben"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
-msgid ""
-"The time, in milliseconds, between the initial key press and first repeated "
-"motion event"
-msgstr ""
-"Az első billentyűlenyomás és az első ismételt mozgási esemény közti idő "
-"ezredmásodpercben"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
-msgid "The time, in milliseconds, to get to maximum speed"
-msgstr "A maximális sebesség elérése ennyi idő alatt, ezredmásodpercben"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
-msgid ""
-"To help prevent accidental keystrokes, slow keys requires that a key is held "
-"for a certain minimum amount of time before the keystroke will be accepted"
-msgstr ""
-"A véletlen billentyűleütések elkerülése érdekében a lassú billentyűk "
-"szolgáltatás megköveteli a billentyű elfogadása előtt a megadott minimális "
-"ideig való lenyomva tartását"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
-msgid ""
-"To help prevent accidental multiple keystrokes, bounce keys imposes a "
-"minimum delay between keystrokes"
-msgstr ""
-"A véletlen billentyűismétlések elkerülése érdekében a billentyűszűrés "
-"minimális késleltetést kényszerít ki a billentyűleütések között"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid "Use _bounce keys"
 msgstr "Billentyűszűrés _használata"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
-msgid "Use _sticky keys"
-msgstr "_Ragadós billentyűk használata"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
-msgid "Use slow _keys"
-msgstr "_Lassú billentyűk használata"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
-"When selected, modifier keys (such as Control, Alt, and Shift) do not need "
-"to be held down (they can be pressed and then released) when multiple keys "
-"would normally need to be pressed at the same time"
-msgstr ""
-"A módosítóbillentyűket (például: Ctrl, Alt, Shift) nem kell lenyomva "
-"tartani, amikor normális esetben több billentyű egyidejű lenyomása lenne "
-"szükséges, azaz a kombinációkat alkotó billentyűk egymás után is lenyomhatók"
+"To help prevent accidental multiple keystrokes, bounce keys imposes a "
+"minimum delay between keystrokes"
+msgstr "A véletlen billentyűismétlések elkerülése érdekében a billentyűszűrés minimális késleltetést kényszerít ki a billentyűleütések között"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
-msgid ""
-"When selected, modifier keys (such as Control, Alt, and Shift) will remain "
-"locked in the pressed state until pressed again"
-msgstr ""
-"A módosítóbillentyűk (például: Ctrl, Alt, Shift) lenyomott állapotban "
-"maradnak az ismételt megnyomásukig"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+msgid "K_eystroke delay:"
+msgstr "Billentyűleütés _késleltetése:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
-msgid ""
-"When selected, the \"sticky keys\" feature will be disabled if two keys are "
-"pressed simultaneously"
-msgstr ""
-"A Ragadós billentyűk szolgáltatás kikapcsolása két billentyű egyidejű "
-"lenyomásakor"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+msgid "The amount of time, in milliseconds, required between keystrokes"
+msgstr "A billentyűleütések között ennyi időnek kell eltelnie ezredmásodpercben"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
-msgid ""
-"When selected, the mouse pointer can be controlled using the keyboard number "
-"pad"
-msgstr "Az egérmutató a billentyűzet számmezejének segítségével lesz irányítható"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+msgid "Bounce Keys"
+msgstr "Billentyűszűrés"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
-msgid "_Acceleration delay:"
-msgstr "Gy_orsítás késleltetése:"
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+msgid "Keyboa_rd"
+msgstr "Bille_ntyűzet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
-msgid "_Assistive Technologies"
-msgstr "_Akadálymentesítés"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
-msgid "_Enable assistive technologies"
-msgstr "Akadálymentesítés _engedélyezése"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
-msgid "_Lock sticky keys"
-msgstr "Ragadós billentyűk _zárolása"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
-msgid "_Mouse"
-msgstr "_Egér"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid "_Use mouse emulation"
 msgstr "Egérem_uláció használata"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+msgid ""
+"When selected, the mouse pointer can be controlled using the keyboard number"
+" pad"
+msgstr "Az egérmutató a billentyűzet számmezejének segítségével lesz irányítható"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+msgid "R_epeat interval:"
+msgstr "Ismétlési idő_köz:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+msgid "_Acceleration delay:"
+msgstr "Gy_orsítás késleltetése:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+msgid "Acceleration _time:"
+msgstr "Gyorsítási i_dő:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+msgid "Maximum _speed:"
+msgstr "Maximális _sebesség:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+msgid "Acceleration _profile:"
+msgstr "Gyorsítási _profil:"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "msec"
 msgstr "em"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "pixels/sec"
 msgstr "képpont/mp"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+msgid ""
+"The time, in milliseconds, between the initial key press and first repeated "
+"motion event"
+msgstr "Az első billentyűlenyomás és az első ismételt mozgási esemény közti idő ezredmásodpercben"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+msgid "The time, in milliseconds, between repeated motion events"
+msgstr "Az ismételt mozgási események közötti idő ezredmásodpercben"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+msgid "The ramp used to reach maximum pointer speed"
+msgstr "A maximális mutatósebesség elérése ennyi lépésben"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+msgid "The maximum pointer speed after acceleration"
+msgstr "A mutató maximális sebessége gyorsítás után"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+msgid "The time, in milliseconds, to get to maximum speed"
+msgstr "A maximális sebesség elérése ennyi idő alatt, ezredmásodpercben"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+msgid "Mouse Emulation"
+msgstr "Egéremuláció"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+msgid "_Mouse"
+msgstr "_Egér"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:94
@@ -251,7 +232,7 @@ msgstr "Verzióinformációk"
 #: ../dialogs/display-settings/main.c:1043
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1526 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:173 ../xfce4-settings-manager/main.c:60
+#: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Segítségért adja ki az „%s --help” parancsot."
@@ -261,7 +242,7 @@ msgstr "Segítségért adja ki az „%s --help” parancsot."
 #: ../dialogs/display-settings/main.c:1062
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1545 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:189 ../xfce4-settings-manager/main.c:76
+#: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:76
 msgid "The Xfce development team. All rights reserved."
 msgstr "Az Xfce fejlesztőcsapata. Minden jog fenntartva."
 
@@ -270,7 +251,7 @@ msgstr "Az Xfce fejlesztőcsapata. Minden jog fenntartva."
 #: ../dialogs/display-settings/main.c:1063
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1546 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:190 ../xfce4-settings-manager/main.c:77
+#: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:77
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "A hibákat ide jelentse: <%s>."
@@ -280,199 +261,187 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "Billentyűzet és egér akadálymentesítésének javítása"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-msgid "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "Az élsimítás javíthatja a képernyőn látható szöveg megjelenését"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
-msgid "Appearance"
-msgstr "Megjelenés"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
-#: ../dialogs/display-settings/main.c:82
-msgid "Both"
-msgstr "Mindkettő"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
-msgid "Both Horizontal"
-msgstr "Mindkettő vízszintesen"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
-msgid "Custom _DPI setting:"
-msgstr "Egyéni _DPI beállítás:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
-msgid "Customize the look of your desktop"
-msgstr "Az asztali környezet megjelenésének személyre szabása"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
-msgid "DPI"
-msgstr "DPI"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
-msgid "Default Fon_t"
-msgstr "_Alapértelmezett betűkészlet"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
-msgid "Enable _anti-aliasing"
-msgstr "Élsi_mítás engedélyezése"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
-msgid "Enable _event sounds"
-msgstr "Esemény_hangok engedélyezése"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
-msgid "Enable e_ditable accelerators"
-msgstr "Szerkeszthető gy_orsbillentyűk engedélyezése"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
-msgid "Enable i_nput feedback sounds"
-msgstr "Be_vitelt visszajelző hangok engedélyezése"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
-msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr ""
-"Eseményhangok globális engedélyezése vagy letiltása („Canberra” támogatást "
-"igényel)"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
-msgid "Event sounds"
-msgstr "Eseményhangok"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
-msgid ""
-"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
-"correct sub-pixel order of the screen"
-msgstr ""
-"A TFT vagy LCD képernyőn megjelenő betűkészletek minősége jelentősen "
-"javítható a képernyő megfelelő képponton belüli sorrendjének kiválasztásával"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
-msgid "Full"
-msgstr "Teljes"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
-msgid "Icons"
-msgstr "Ikonok"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
-msgid ""
-"If selected, keyboard shortcuts for menu items can be changed by hovering "
-"the mouse over the menu item and pressing the new key combination for the "
-"shortcut"
-msgstr ""
-"A menüelemek gyorsbillentyűi módosíthatók az egérrel a menüre mutatva és az "
-"új gyorsbillentyű-kombináció lenyomásával"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
-msgid ""
-"Many fonts contain information that provides extra hints as to how best draw "
-"the font; pick whichever looks best according to personal preference"
-msgstr ""
-"Számos betűkészlet információkat tartalmaz, amelyek a betűkészlet legjobb "
-"kirajzolásához további tanácsokat adnak; válassza ki a beállított "
-"betűkészlettel a legszebb eredményt adó lehetőséget"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
-msgid "Medium"
-msgstr "Közepes"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
-msgid "Menus and Buttons"
-msgstr "Menük és gombok"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 #: ../dialogs/appearance-settings/main.c:852
 #: ../dialogs/display-settings/main.c:79
 msgid "None"
 msgstr "Nincs"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
-msgid "Override the detected monitor resolution if fonts look too large or too small"
-msgstr ""
-"Az észlelt monitorfelbontás felülbírálása, ha a betűk túl nagynak vagy túl "
-"kicsinek tűnnek"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
-msgid "Rendering"
-msgstr "Megjelenítés"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
-msgid "Select a default font"
-msgstr "Válasszon alapértelmezett betűkészletet"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
-msgid "Show images in _menus"
-msgstr "Képek megjelenítése a _menükben"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
-msgid "Show images on _buttons"
-msgstr "Képek megjelenítése a _gombokon"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "Slight"
 msgstr "Enyhe"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
-msgid "Specify what should be displayed in toolbar items"
-msgstr "Hogyan jelenjenek meg az eszköztárelemek"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
+msgid "Medium"
+msgstr "Közepes"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
-msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "Megjelenjenek-e ikonok a menüelemek mellett"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
+msgid "Full"
+msgstr "Teljes"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
-msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "Megjelenjenek-e ikonok a gombokon a szöveg mellett?"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
+msgid "Icons"
+msgstr "Ikonok"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
-msgid ""
-"Specify whether mouse clicks and other user input will cause event sounds to "
-"play"
-msgstr ""
-"Az egérkattintás és más felhasználói bevitel hatására hallatsszanak-e az "
-"eseményhangok?"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
-msgid "St_yle"
-msgstr "Stíl_us"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
-msgid "Sub-_pixel order:"
-msgstr "Képp_onton belüli sorrend:"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 msgid "Text"
 msgstr "Szöveg"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
-msgid ""
-"This font will be used as the default font used when drawing user interface "
-"text"
-msgstr ""
-"Ez a betűkészlet lesz az alapértelmezett a felhasználói felület szövegének "
-"rajzolásakor"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
+#: ../dialogs/display-settings/main.c:82
+msgid "Both"
+msgstr "Mindkettő"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
-msgid "_Fonts"
-msgstr "Betűkés_zletek"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
+msgid "Both Horizontal"
+msgstr "Mindkettő vízszintesen"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
-msgid "_Hinting:"
-msgstr "_Hinting:"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
+msgid "Appearance"
+msgstr "Megjelenés"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
+msgid "Customize the look of your desktop"
+msgstr "Az asztali környezet megjelenésének személyre szabása"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
+msgid "St_yle"
+msgstr "Stíl_us"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 msgid "_Icons"
 msgstr "I_konok"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
-msgid "_Settings"
-msgstr "B_eállítások"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr "Ez a betűkészlet lesz az alapértelmezett a felhasználói felület szövegének rajzolásakor"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+msgid "Select a default font"
+msgstr "Válasszon alapértelmezett betűkészletet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+msgid "Default Fon_t"
+msgstr "_Alapértelmezett betűkészlet"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw"
+" the font; pick whichever looks best according to personal preference"
+msgstr "Számos betűkészlet információkat tartalmaz, amelyek a betűkészlet legjobb kirajzolásához további tanácsokat adnak; válassza ki a beállított betűkészlettel a legszebb eredményt adó lehetőséget"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr "A TFT vagy LCD képernyőn megjelenő betűkészletek minősége jelentősen javítható a képernyő megfelelő képponton belüli sorrendjének kiválasztásával"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid "Sub-_pixel order:"
+msgstr "Képp_onton belüli sorrend:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid "_Hinting:"
+msgstr "_Hinting:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Enable _anti-aliasing"
+msgstr "Élsi_mítás engedélyezése"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr "Az élsimítás javíthatja a képernyőn látható szöveg megjelenését"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+msgid "Rendering"
+msgstr "Megjelenítés"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+msgid "Custom _DPI setting:"
+msgstr "Egyéni _DPI beállítás:"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too "
+"small"
+msgstr "Az észlelt monitorfelbontás felülbírálása, ha a betűk túl nagynak vagy túl kicsinek tűnnek"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+msgid "DPI"
+msgstr "DPI"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+msgid "_Fonts"
+msgstr "Betűkés_zletek"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+msgid "Specify what should be displayed in toolbar items"
+msgstr "Hogyan jelenjenek meg az eszköztárelemek"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "_Toolbar Style"
 msgstr "_Eszköztár stílusa"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+msgid "Show images on _buttons"
+msgstr "Képek megjelenítése a _gombokon"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "Megjelenjenek-e ikonok a gombokon a szöveg mellett?"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+msgid "Show images in _menus"
+msgstr "Képek megjelenítése a _menükben"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "Megjelenjenek-e ikonok a menüelemek mellett"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+msgid "Enable e_ditable accelerators"
+msgstr "Szerkeszthető gy_orsbillentyűk engedélyezése"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+msgid ""
+"If selected, keyboard shortcuts for menu items can be changed by hovering "
+"the mouse over the menu item and pressing the new key combination for the "
+"shortcut"
+msgstr "A menüelemek gyorsbillentyűi módosíthatók az egérrel a menüre mutatva és az új gyorsbillentyű-kombináció lenyomásával"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+msgid "Menus and Buttons"
+msgstr "Menük és gombok"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+msgid "Enable _event sounds"
+msgstr "Esemény_hangok engedélyezése"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr "Eseményhangok globális engedélyezése vagy letiltása („Canberra” támogatást igényel)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+msgid "Enable i_nput feedback sounds"
+msgstr "Be_vitelt visszajelző hangok engedélyezése"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+msgid ""
+"Specify whether mouse clicks and other user input will cause event sounds to"
+" play"
+msgstr "Az egérkattintás és más felhasználói bevitel hatására hallatsszanak-e az eseményhangok?"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+msgid "Event sounds"
+msgstr "Eseményhangok"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+msgid "_Settings"
+msgstr "B_eállítások"
 
 #: ../dialogs/appearance-settings/main.c:733
 #, c-format
@@ -517,70 +486,68 @@ msgid "Vertical BGR"
 msgstr "Függőleges BGR"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
-msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "<big><b>Meg szeretné tartani ezeket a beállításokat?</b></big>"
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid "Confirmation"
 msgstr "Megerősítés"
 
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:2
+msgid "<big><b>Would you like to keep this configuration?</b></big>"
+msgstr "<big><b>Meg szeretné tartani ezeket a beállításokat?</b></big>"
+
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
-msgid "Keep this configuration"
-msgstr "Ezen beállítások megtartása"
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
-msgid "Restore the previous configuration"
-msgstr "A korábbi beállítások visszaállítása"
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid ""
 "The previous configuration will be restored in 10 seconds if you do not "
 "reply to this question."
-msgstr ""
-"Ha nem válaszol 10 másodpercen belül, akkor visszaállnak a korábbi "
-"beállítások."
+msgstr "Ha nem válaszol 10 másodpercen belül, akkor visszaállnak a korábbi beállítások."
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:4
+msgid "Keep this configuration"
+msgstr "Ezen beállítások megtartása"
+
+#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
+msgid "Restore the previous configuration"
+msgstr "A korábbi beállítások visszaállítása"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
-msgid "Configure screen settings and layout"
-msgstr "Képernyő-beállítások és -elrendezés megadása"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:2
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Display"
 msgstr "Kijelző"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+msgid "Configure screen settings and layout"
+msgstr "Képernyő-beállítások és -elrendezés megadása"
+
 #: ../dialogs/display-settings/display-dialog.glade.h:3
-msgid "R_esolution:"
-msgstr "_Felbontás:"
+msgid "_Use this output"
+msgstr "Ezen _kimenet használata"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "Ref_lection:"
 msgstr "_Tükrözés:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
-msgid "Refresh _rate:"
-msgstr "F_rissítési sebesség:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Ro_tation:"
 msgstr "Elf_orgatás:"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:6
+msgid "Refresh _rate:"
+msgstr "F_rissítési sebesség:"
+
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "_Use this output"
-msgstr "Ezen _kimenet használata"
+msgid "R_esolution:"
+msgstr "_Felbontás:"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
-msgid "Both displays cloned"
-msgstr "Mindkét kijelző klónozva"
-
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Display settings"
 msgstr "Kijelzőbeállítások"
 
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Several displays are available. Use:\n"
 msgstr "Több kijelző is elérhető. Használandó:\n"
+
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
+msgid "Both displays cloned"
+msgstr "Mindkét kijelző klónozva"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Use both displays to show the same contents"
@@ -628,10 +595,9 @@ msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
 #: ../dialogs/display-settings/main.c:651
-msgid "The last active output must not be disabled, the system would be unusable."
-msgstr ""
-"Az utolsó aktív kimenet nem kapcsolható ki, a rendszer használhatatlanná "
-"válna."
+msgid ""
+"The last active output must not be disabled, the system would be unusable."
+msgstr "Az utolsó aktív kimenet nem kapcsolható ki, a rendszer használhatatlanná válna."
 
 #: ../dialogs/display-settings/main.c:653
 msgid "Selected output not disabled"
@@ -662,9 +628,7 @@ msgstr "A zárt illesztőprogram beállítója nem indítható"
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr ""
-"Ez a rendszer a RandR %d.%d verzióját használja. A kijelzőbeállítások "
-"működéséhez legalább az 1.2 verzió szükséges"
+msgstr "Ez a rendszer a RandR %d.%d verzióját használja. A kijelzőbeállítások működéséhez legalább az 1.2 verzió szükséges"
 
 #: ../dialogs/display-settings/xfce-randr.c:536
 msgid "Laptop"
@@ -746,123 +710,123 @@ msgid "Shell Scripts"
 msgstr "Shell-parancsfájlok"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
-msgid "A_pplication Shortcuts"
-msgstr "Alkalmazás-gyo_rsbillentyűk"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
-msgid "Be_havior"
-msgstr "_Viselkedés"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
-msgid "Blink _delay:"
-msgstr "Villogás késl_eltetése:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-msgid "Cursor"
-msgstr "Kurzor"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-msgid "Define _shortcuts for launching applications:"
-msgstr "_Gyorsbillentyűk megadása alkalmazások indításához:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "Billentyűzet-beállítások és alkalmazás-gyorsbillentyűk szerkesztése"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
-msgid "General"
-msgstr "Általános"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Keyboard"
-msgstr "Billentyűzet"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
-msgid "Keyboard layout"
-msgstr "Billentyűzetkiosztás"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "Keyboard layout selection"
 msgstr "Válasszon billentyűzetkiosztást"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
-msgid "Keyboard model"
-msgstr "Billentyűzetmodell"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
-msgid "Repeat _speed:"
-msgstr "_Ismétlési sebesség:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
-msgid "Reset to _Defaults"
-msgstr "Alapértelmezések _visszaállítása"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
-msgid "Restore num l_ock state on startup"
-msgstr "Num l_ock állapotának visszaállítása indításkor"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Select keyboard layout and variant"
 msgstr "Válassza ki a billentyűzetkiosztást és -változatot"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
+msgid "Keyboard"
+msgstr "Billentyűzet"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
+msgid "Edit keyboard settings and application shortcuts"
+msgstr "Billentyűzet-beállítások és alkalmazás-gyorsbillentyűk szerkesztése"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+msgid "Restore num l_ock state on startup"
+msgstr "Num l_ock állapotának visszaállítása indításkor"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+msgid "General"
+msgstr "Általános"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+msgid "_Enable key repeat"
+msgstr "Billentyűis_métlés engedélyezése"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+msgid ""
+"When selected, pressing and holding down a key emits the same character over"
+" and over again"
+msgstr "Egy billentyű lenyomva tartásakor ugyanaz a karakter ismétlődik újra és újra"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+msgid "_Repeat delay:"
+msgstr "Ismétlés _késleltetése:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr "A lenyomott billentyű ennyi ezredmásodperc után kezd ismételni"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+msgid "Repeat _speed:"
+msgstr "_Ismétlési sebesség:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr "Billentyűleütések előállításának sebessége billentyű lenyomva tartásakor"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+msgid "Typing Settings"
+msgstr "Gépelési beállítások"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
 msgstr "Vill_ogjon"
 
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+msgid "Specify whether or not the text cursor blinks"
+msgstr "A szövegkurzor villogjon-e?"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+msgid "Blink _delay:"
+msgstr "Villogás késl_eltetése:"
+
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr "Késleltetés ezredmásodpercben a kurzor egymást követő villogásai között"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+msgid "Cursor"
+msgstr "Kurzor"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+msgid "_Test area:"
+msgstr "_Tesztterület:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+msgid "Be_havior"
+msgstr "_Viselkedés"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+msgid "Define _shortcuts for launching applications:"
+msgstr "_Gyorsbillentyűk megadása alkalmazások indításához:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+msgid "Reset to _Defaults"
+msgstr "Alapértelmezések _visszaállítása"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+msgid "A_pplication Shortcuts"
+msgstr "Alkalmazás-gyo_rsbillentyűk"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+msgid "_Use system defaults"
+msgstr "Re_ndszer alapértelmezéseinek használata"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
 msgstr "A billentyűzetkiosztást ez a beállítóablak vagy az X kiszolgáló vezérelje"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
-msgid "Specify whether or not the text cursor blinks"
-msgstr "A szövegkurzor villogjon-e?"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
-msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Késleltetés ezredmásodpercben a kurzor egymást követő villogásai között"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
-msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "Billentyűleütések előállításának sebessége billentyű lenyomva tartásakor"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
-msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "A lenyomott billentyű ennyi ezredmásodperc után kezd ismételni"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
-msgid "Typing Settings"
-msgstr "Gépelési beállítások"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
-msgid ""
-"When selected, pressing and holding down a key emits the same character over "
-"and over again"
-msgstr "Egy billentyű lenyomva tartásakor ugyanaz a karakter ismétlődik újra és újra"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
-msgid "_Enable key repeat"
-msgstr "Billentyűis_métlés engedélyezése"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid "_Layout"
-msgstr "Elren_dezés"
-
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
-msgid "_Repeat delay:"
-msgstr "Ismétlés _késleltetése:"
+msgid "Keyboard model"
+msgstr "Billentyűzetmodell"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
-msgid "_Test area:"
-msgstr "_Tesztterület:"
+msgid "Keyboard layout"
+msgstr "Billentyűzetkiosztás"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-msgid "_Use system defaults"
-msgstr "Re_ndszer alapértelmezéseinek használata"
+msgid "_Layout"
+msgstr "Elren_dezés"
 
 #: ../dialogs/keyboard-settings/main.c:82
 msgid "Unable to initialize GTK+."
@@ -904,17 +868,13 @@ msgstr "Alapértelmezések visszaállítása"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:969
 msgid ""
-"This will reset all shortcuts to their default values. Do you really want to "
-"do this?"
-msgstr ""
-"Ez minden gyorsbillentyűt visszaállít az alapértelmezett értékére. Valóban "
-"ezt szeretné?"
+"This will reset all shortcuts to their default values. Do you really want to"
+" do this?"
+msgstr "Ez minden gyorsbillentyűt visszaállít az alapértelmezett értékére. Valóban ezt szeretné?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1042
 msgid "The system defaults will be restored next time you log in."
-msgstr ""
-"A rendszer alapértelmezései a következő bejelentkezéskor lesznek "
-"visszaállítva."
+msgstr "A rendszer alapértelmezései a következő bejelentkezéskor lesznek visszaállítva."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1044
 msgid "Warning"
@@ -930,11 +890,9 @@ msgstr "_Egyéni parancs használata:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid ""
-"Use a custom command for an application that is not available from the above "
-"application list."
-msgstr ""
-"Egyéni parancs használata a fenti alkalmazáslistából el nem érhető "
-"alkalmazáshoz."
+"Use a custom command for an application that is not available from the above"
+" application list."
+msgstr "Egyéni parancs használata a fenti alkalmazáslistából el nem érhető alkalmazáshoz."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
@@ -967,12 +925,12 @@ msgid "Failed to add new application \"%s\""
 msgstr "Nem vehető fel az új alkalmazás: „%s”"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:174
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
 msgstr "MIME-típus szerkesztő"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate applications with MIME types"
 msgstr "Alkalmazások társítása MIME-típusokhoz"
 
@@ -1024,9 +982,7 @@ msgstr "A(z) „%s” alkalmazás beállítása sikertelen ehhez a MIME-típusho
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
-msgstr ""
-"Biztos, hogy visszaállítja a tartalomtípust („%s”) az alapértelmezett "
-"értékre?"
+msgstr "Biztos, hogy visszaállítja a tartalomtípust („%s”) az alapértelmezett értékre?"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:910
 msgid "Question"
@@ -1036,9 +992,7 @@ msgstr "Kérdés"
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr ""
-"Ez eltávolítja az egyéni MIME-társítást és helyreállítja a rendszerszintű "
-"alapértelmezést."
+msgstr "Ez eltávolítja az egyéni MIME-társítást és helyreállítja a rendszerszintű alapértelmezést."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
@@ -1070,219 +1024,217 @@ msgid "%g ms"
 msgstr "%g ms"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
-msgid "B_uttons and Feedback"
-msgstr "G_ombok és visszajelzés"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
-msgid "Buttons"
-msgstr "Gombok"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
-msgid "Clockwise"
-msgstr "Óra járása szerinti"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
-msgid "Configure pointer device behavior and appearance"
-msgstr "Mutatóeszköz viselkedésének és megjelenésének beállítása"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
-msgid "Counterclockwise"
-msgstr "Óra járásával ellentétes"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
-msgid "Cursor _size:"
-msgstr "K_urzorméret:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
-msgid "D_istance:"
-msgstr "Tá_volság:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
-msgid "De_vice:"
-msgstr "_Eszköz:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
-msgid "Di_sabled"
-msgstr "_Letiltva"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
-msgid "Disable to_uchpad while typing"
-msgstr "É_rintőtábla letiltása gépelés közben"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
-msgid "Double Click"
-msgstr "Dupla kattintás"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
-msgid "Drag and Drop"
-msgstr "Fogd és vidd"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
-msgid "Edge scro_lling"
-msgstr "_Görgetés a szélen"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-msgid "Enable hori_zontal scrolling"
-msgstr "_Vízszintes görgetés engedélyezése"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
-msgid "Half (left-handed)"
-msgstr "Fél (balkezes)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
-msgid "Mouse (relative)"
-msgstr "Egér (relatív)"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Mouse and Touchpad"
 msgstr "Egér és érintőtábla"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
-msgid "None (right-handed)"
-msgstr "Nincs (jobbkezes)"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
+msgid "Configure pointer device behavior and appearance"
+msgstr "Mutatóeszköz viselkedésének és megjelenésének beállítása"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
-msgid "Pen (absolute)"
-msgstr "Toll (abszolút)"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "De_vice:"
+msgstr "_Eszköz:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
-msgid "Pointer Speed"
-msgstr "Mutató sebessége"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+msgid "_Enable this device"
+msgstr "Eszkö_z engedélyezése"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
-msgid "Preview"
-msgstr "Előnézet"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+msgid "_Right-handed"
+msgstr "J_obbkezes"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
-msgid "Reset to De_faults"
-msgstr "Alapértelmezések _visszaállítása"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+msgid "_Left-handed"
+msgstr "B_alkezes"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Reverse scroll d_irection"
 msgstr "Görgetési irány megf_ordítása"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
-msgid "Scrolling"
-msgstr "Görgetés"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr "A görgő az ellentétes irányba működjön"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+msgid "Buttons"
+msgstr "Gombok"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+msgid "_Acceleration:"
+msgstr "_Gyorsítás:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr "A mutató sebességének növelése az egér mozgatásakor ezzel a tényezővel"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr "A mutatónak rövid idő alatt ennyi képpontot kell mozognia a gyorsulás megkezdéséhez"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+msgid "_Sensitivity:"
+msgstr "Érzéke_nység:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+msgid "Reset to De_faults"
+msgstr "Alapértelmezések _visszaállítása"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
-msgstr ""
-"A kiválasztott eszköz gyorsításának és érzékenységének alapértelmezettre "
-"állítása"
+msgstr "A kiválasztott eszköz gyorsításának és érzékenységének alapértelmezettre állítása"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
-msgid "Size"
-msgstr "Méret"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+msgid "Pointer Speed"
+msgstr "Mutató sebessége"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+msgid "B_uttons and Feedback"
+msgstr "G_ombok és visszajelzés"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+msgid "Disable to_uchpad while typing"
+msgstr "É_rintőtábla letiltása gépelés közben"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+msgid ""
+"When selected, the touchpad will be disabled when the keyboard is being used"
+msgstr "Az érintőtábla letiltása a billentyűzet használatakor"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "T_ap touchpad to click"
 msgstr "_Koppintás az érintőtáblán a kattintáshoz"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
-msgid "T_heme"
-msgstr "Té_ma"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "Di_sabled"
+msgstr "_Letiltva"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid "Edge scro_lling"
+msgstr "_Görgetés a szélen"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+msgid "Two-_finger scrolling"
+msgstr "_Kétujjas görgetés"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+msgid "Enable hori_zontal scrolling"
+msgstr "_Vízszintes görgetés engedélyezése"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+msgid "Scrolling"
+msgstr "Görgetés"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "T_ouchpad"
 msgstr "É_rintőtábla"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+msgid "Tr_acking mode:"
+msgstr "Kö_vetési mód:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+msgid "_Rotation:"
+msgstr "Elf_orgatás:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Table_t"
 msgstr "_Táblagép"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+msgid "_Devices"
+msgstr "_Eszközök"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Th_reshold:"
 msgstr "_Küszöbérték:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
-msgid "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "A mutató sebességének növelése az egér mozgatásakor ezzel a tényezővel"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid ""
-"The mouse pointer cannot move farther than this distance between two clicks "
-"for them to be considered a double click"
-msgstr ""
-"Az egérmutató nem mozgatható ennél a távolságnál messzebb két kattintás "
-"között, hogy azok dupla kattintásnak számítsanak"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
-msgid "The number of pixels the pointer must move before a drag operation will start"
+"The number of pixels the pointer must move before a drag operation will "
+"start"
 msgstr "A mutatónak ennyi képpontot kell mozognia a húzási művelet megkezdéséhez"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
-msgid ""
-"The number of pixels the pointer must move in a short time before it starts "
-"accelerating"
-msgstr ""
-"A mutatónak rövid idő alatt ennyi képpontot kell mozognia a gyorsulás "
-"megkezdéséhez"
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+msgid "Drag and Drop"
+msgstr "Fogd és vidd"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Ti_me:"
 msgstr "I_dő:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
-msgid "Tr_acking mode:"
-msgstr "Kö_vetési mód:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Ennyi ezredmásodpercen belüli két egérkattintás dupla kattintásnak számít"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+msgid "D_istance:"
+msgstr "Tá_volság:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+msgid ""
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
+msgstr "Az egérmutató nem mozgatható ennél a távolságnál messzebb két kattintás között, hogy azok dupla kattintásnak számítsanak"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+msgid "Double Click"
+msgstr "Dupla kattintás"
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
-msgid "Two-_finger scrolling"
-msgstr "_Kétujjas görgetés"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
-msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr "A görgő az ellentétes irányba működjön"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
-msgid "When selected, the touchpad will be disabled when the keyboard is being used"
-msgstr "Az érintőtábla letiltása a billentyűzet használatakor"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
-msgid "_Acceleration:"
-msgstr "_Gyorsítás:"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "_Behavior"
 msgstr "_Viselkedés"
 
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+msgid "Cursor _size:"
+msgstr "K_urzorméret:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+msgid "Size"
+msgstr "Méret"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+msgid "Preview"
+msgstr "Előnézet"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+msgid "T_heme"
+msgstr "Té_ma"
+
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
-msgid "_Devices"
-msgstr "_Eszközök"
+msgid "Pen (absolute)"
+msgstr "Toll (abszolút)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
-msgid "_Enable this device"
-msgstr "Eszkö_z engedélyezése"
+msgid "Mouse (relative)"
+msgstr "Egér (relatív)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
-msgid "_Left-handed"
-msgstr "B_alkezes"
+msgid "None (right-handed)"
+msgstr "Nincs (jobbkezes)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
-msgid "_Right-handed"
-msgstr "J_obbkezes"
+msgid "Half (left-handed)"
+msgstr "Fél (balkezes)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
-msgid "_Rotation:"
-msgstr "Elf_orgatás:"
+msgid "Clockwise"
+msgstr "Óra járása szerinti"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
-msgid "_Sensitivity:"
-msgstr "Érzéke_nység:"
+msgid "Counterclockwise"
+msgstr "Óra járásával ellentétes"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
 msgstr "Beállításszerkesztő"
 
@@ -1454,9 +1406,7 @@ msgstr "A gyökérelem („/”) nem érvényes tulajdonságnév"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"A tulajdonságnevek csak a következő ASCII karaktereket tartalmazhatják: A-Z, "
-"a-z, 0-9, „_”, „-”, „<” és „>”, valamint elválasztóként „/”"
+msgstr "A tulajdonságnevek csak a következő ASCII karaktereket tartalmazhatják: A-Z, a-z, 0-9, „_”, „-”, „<” és „>”, valamint elválasztóként „/”"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
 #, c-format
@@ -1472,7 +1422,7 @@ msgstr "A tulajdonságnevek nem végződhetnek „/” karakterre"
 msgid "Edit Property"
 msgstr "Tulajdonság szerkesztése"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 msgid "Graphical settings editor for Xfconf"
 msgstr "Grafikus beállításszerkesztő az Xfconf-hoz"
 
@@ -1557,56 +1507,9 @@ msgid "Unable to start \"%s\""
 msgstr "Nem indítható: „%s”"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Grafikus beállításkezelő az Xfce környezethez"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Settings Manager"
 msgstr "Beállításkezelő"
 
-#~ msgid "This property name is not valid."
-#~ msgstr "Ez a tulajdonságnév érvénytelen."
-
-#~ msgid "Enabled"
-#~ msgstr "Engedélyezve"
-
-#~ msgid "Name:"
-#~ msgstr "Név:"
-
-#~ msgid "Xfconf channels"
-#~ msgstr "Xfconf csatornák"
-
-#~ msgid "_Overview"
-#~ msgstr "Á_ttekintés"
-
-#~ msgid "Use this area to _test the settings above:"
-#~ msgstr "Ezen a _területen tesztelheti a fenti beállításokat:"
-
-#~ msgid "_Reset to Defaults"
-#~ msgstr "_Alapértelmezések visszaállítása"
-
-#~ msgid "Feedback"
-#~ msgstr "Visszajelzés"
-
-#~ msgid "Mouse"
-#~ msgstr "Egér"
-
-#~ msgid "Re_set to Defaults"
-#~ msgstr "_Alapértelmezések visszaállítása"
-
-#~ msgid "NVIDIA Settings"
-#~ msgstr "NVIDIA beállítások"
-
-#~ msgid "The video driver does not support video outputs"
-#~ msgstr "A video-illesztőprogram nem támogatja a videokimeneteket"
-
-#~ msgid "Verbose output"
-#~ msgstr "Részletes kimenet"
-
-#~ msgid ""
-#~ "%s: %s\n"
-#~ "Try %s --help to see a full list of available command line options.\n"
-#~ msgstr ""
-#~ "%s: %s\n"
-#~ "Az elérhető kapcsolók listájáért adja ki az %s --help parancsot.\n"
-
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Graphical Settings Manager for Xfce 4"
+msgstr "Grafikus beállításkezelő az Xfce környezethez"
