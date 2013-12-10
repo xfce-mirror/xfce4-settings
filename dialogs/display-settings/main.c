@@ -1707,6 +1707,35 @@ screen_on_event (GdkXEvent *xevent,
 }
 
 static void
+set_display_popups_visible(gboolean visible)
+{
+    GHashTableIter iter;
+    gpointer key, value;
+    GtkWidget *popup;
+
+    g_hash_table_iter_init (&iter, display_popups);
+    while (g_hash_table_iter_next (&iter, &key, &value))
+    {
+        popup = (GtkWidget *) value;
+        gtk_widget_set_visible(popup, visible);
+    }
+}
+
+static gboolean
+focus_out_event (GtkWidget *widget, GdkEventFocus *event, gpointer data)
+{
+    set_display_popups_visible(FALSE);
+    return TRUE;
+}
+
+static gboolean
+focus_in_event (GtkWidget *widget, GdkEventFocus *event, gpointer data)
+{
+    set_display_popups_visible(TRUE);
+    return TRUE;
+}
+
+static void
 display_settings_show_main_dialog (GdkDisplay *display)
 {
     GtkBuilder  *builder;
@@ -1729,6 +1758,10 @@ display_settings_show_main_dialog (GdkDisplay *display)
                                               randr_event_base,
                                               RRNotify + 1);
         gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
+        
+        /* Show/Hide the helper popups when the dialog is shown/hidden */
+        g_signal_connect(G_OBJECT(dialog), "focus-out-event", G_CALLBACK (focus_out_event), builder);
+        g_signal_connect(G_OBJECT(dialog), "focus-in-event", G_CALLBACK (focus_in_event), builder);
 
         if (G_UNLIKELY (opt_socket_id == 0))
         {
