@@ -154,6 +154,7 @@ static gint randr_event_base;
 
 /* Used to identify the display */
 static GHashTable *display_popups;
+gboolean show_popups = FALSE;
 
 gboolean supports_alpha = FALSE;
 
@@ -1440,6 +1441,42 @@ display_settings_dialog_response (GtkDialog  *dialog,
         gtk_main_quit ();
 }
 
+static void
+set_display_popups_visible(gboolean visible)
+{
+    GHashTableIter iter;
+    gpointer key, value;
+    GtkWidget *popup;
+
+    g_hash_table_iter_init (&iter, display_popups);
+    while (g_hash_table_iter_next (&iter, &key, &value))
+    {
+        popup = (GtkWidget *) value;
+        gtk_widget_set_visible(popup, visible);
+    }
+}
+
+static gboolean
+focus_out_event (GtkWidget *widget, GdkEventFocus *event, gpointer data)
+{
+    set_display_popups_visible(FALSE);
+    return TRUE;
+}
+
+static gboolean
+focus_in_event (GtkWidget *widget, GdkEventFocus *event, gpointer data)
+{
+    set_display_popups_visible(TRUE && show_popups);
+    return TRUE;
+}
+
+static void
+on_identify_displays_toggled (GtkWidget *widget, GtkBuilder *builder)
+{
+    show_popups = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
+    set_display_popups_visible (show_popups);
+}
+
 
 
 static GtkWidget *
@@ -1449,7 +1486,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     GtkCellRenderer  *renderer;
     GtkTreeSelection *selection;
     GObject          *combobox;
-    GObject          *label, *check, *mirror;
+    GObject          *label, *check, *mirror, *identify;
 
     /* Get the treeview */
     treeview = gtk_builder_get_object (builder, "randr-outputs");
@@ -1467,6 +1504,9 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     /* Identification popups */
     display_setting_identity_popups_populate ();
+    identify = gtk_builder_get_object (builder, "identify-displays");
+    g_signal_connect (G_OBJECT (identify), "toggled", G_CALLBACK (on_identify_displays_toggled), builder);
+    set_display_popups_visible (show_popups);
 
     /* Treeview selection */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
@@ -1704,35 +1744,6 @@ screen_on_event (GdkXEvent *xevent,
 
     /* Pass the event on to GTK+ */
     return GDK_FILTER_CONTINUE;
-}
-
-static void
-set_display_popups_visible(gboolean visible)
-{
-    GHashTableIter iter;
-    gpointer key, value;
-    GtkWidget *popup;
-
-    g_hash_table_iter_init (&iter, display_popups);
-    while (g_hash_table_iter_next (&iter, &key, &value))
-    {
-        popup = (GtkWidget *) value;
-        gtk_widget_set_visible(popup, visible);
-    }
-}
-
-static gboolean
-focus_out_event (GtkWidget *widget, GdkEventFocus *event, gpointer data)
-{
-    set_display_popups_visible(FALSE);
-    return TRUE;
-}
-
-static gboolean
-focus_in_event (GtkWidget *widget, GdkEventFocus *event, gpointer data)
-{
-    set_display_popups_visible(TRUE);
-    return TRUE;
 }
 
 static void
