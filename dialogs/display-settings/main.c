@@ -1632,8 +1632,8 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
                                                   GtkBuilder      *builder)
 {
     GObject *buttons;
-
-    guint n;
+    guint    n;
+    RRMode   mode;
 
     if (!gtk_toggle_button_get_active(button))
         return;
@@ -1646,23 +1646,23 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
 
     buttons = gtk_builder_get_object (builder, "buttons");
     gtk_widget_set_sensitive (GTK_WIDGET(buttons), FALSE);
-
-    /* Activate all inactive displays */
+    
+    /* Activate mirror-mode with a single mode for all of them */
+    mode = xfce_randr_clonable_mode (xfce_randr);
+    /* Configure each available display for mirroring */
     for (n = 0; n < xfce_randr->noutput; ++n)
     {
         if (xfce_randr->mode[n] == None)
-        {
-            xfce_randr->mode[n] = xfce_randr_preferred_mode (xfce_randr, n);
-        }
+            continue;
+
+        if (mode != None)
+            xfce_randr->mode[n] = mode;
+        xfce_randr->relation[n] = XFCE_RANDR_PLACEMENT_MIRROR;
+        xfce_randr->related_to[n] = 0;
+        xfce_randr->rotation[n] = RR_Rotate_0;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                n, TRUE);
     }
-
-    /* Save changes to primary display */
-    xfce_randr_save_output (xfce_randr, "Default", display_channel, 0, FALSE);
-
-    /* Save changes to secondary display */
-    xfce_randr->relation[1] = XFCE_RANDR_PLACEMENT_MIRROR;
-    xfce_randr->related_to[1] = 0;
-    xfce_randr_save_output (xfce_randr, "Default", display_channel, 1, TRUE);
 
     /* Apply all changes */
     xfce_randr_apply (xfce_randr, "Default", display_channel);
