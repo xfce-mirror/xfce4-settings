@@ -1869,6 +1869,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
     GObject    *only_display1, *only_display2, *mirror_displays;
     GObject    *extend_right, *advanced, *fake_button, *label;
     GError     *error = NULL;
+    RRMode      mode;
 
     builder = gtk_builder_new ();
 
@@ -1911,6 +1912,12 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
             gtk_widget_set_tooltip_text(GTK_WIDGET(label), xfce_randr->friendly_name[1]);
             gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display2),
                                           xfce_randr->mode[1] != None);
+                                          
+            /* Can outputs be cloned? */
+            if (display_settings_get_n_active_outputs () > 1)
+                mode = xfce_randr_clonable_mode (xfce_randr);
+
+            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), mode != None);
 
             if (xfce_randr->mode[0] != None && xfce_randr->mode[1] != None)
             {
