@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2010
+# Walter Cheuk <wwycheuk@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:46+0200\n"
-"PO-Revision-Date: 2013-07-07 05:27+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"POT-Creation-Date: 2014-01-26 00:30+0100\n"
+"PO-Revision-Date: 2014-01-26 11:02+0000\n"
+"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +61,7 @@ msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
-msgstr "當選取時，一般需要同時按下按鍵的多按鍵功能其按鍵修飾鍵 (像是 Ctrl、Alt、Shift) 不需要一直按著不放 (它們可以被按壓然後放開)"
+msgstr "當選取時，通常要同時按下超過一個按鍵的功能修飾鍵 (例如 Ctrl、Alt、Shift) 不需要一直按着不放 (可以按一下然後放開)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
@@ -70,7 +71,7 @@ msgstr "鎖定相黏鍵(_L)"
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "當選取時，修飾鍵 (像是 Ctrl、Alt、Shift) 在按壓狀態時將維持上鎖直到您再度按壓為止"
+msgstr "當選取時，修飾鍵 (例如 Ctrl、Alt、Shift) 在按了一下之後會維持在「按下」狀態，直到再按為止"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Disable sticky keys if two keys are _pressed"
@@ -80,7 +81,7 @@ msgstr "若按下兩個按鍵的話則停用相黏鍵(_P)"
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "當選取時，若兩個按鍵被同時按壓的話，「相黏鍵」功能將停用"
+msgstr "當選取時，若同時按下兩個按鍵的話，會停用「相黏鍵」功能"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Sticky Keys"
@@ -94,7 +95,7 @@ msgstr "使用緩速鍵(_K)"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "協助防止產生按鍵效果的意外，緩速鍵需要該按鍵至少要被按壓一小段時間後才會接受其按鍵效果"
+msgstr "為了防止出現不想要的按鍵，「緩速鍵」需要按下一小段時間才會接受其按鍵效果"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
@@ -104,7 +105,7 @@ msgstr "接受前延遲(_D)："
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr "在按鍵效果被接受之前所要經過的時間，單位為毫秒"
+msgstr "接受按鍵效果所要經過的時間，單位為毫秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "Slow Keys"
@@ -118,7 +119,7 @@ msgstr "使用彈回鍵(_B)"
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
-msgstr "協助防止產生多個按鍵效果的意外，彈回鍵讓按鍵效果間都至少需要一小段延遲時間"
+msgstr "為了防止出現不想要的多重按鍵，「彈回鍵」讓按鍵生效前需要至少一段延遲時間"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
@@ -164,11 +165,11 @@ msgstr "最大速度(_X)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "Acceleration _profile:"
-msgstr "加速度個人設定檔(_P)："
+msgstr "加速度設定組合(_P)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "msec"
-msgstr "微秒"
+msgstr "毫秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "pixels/sec"
@@ -190,7 +191,7 @@ msgstr "達到最大指標速度的斜率"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "The maximum pointer speed after acceleration"
-msgstr "加速度後的最大指標速度"
+msgstr "加速後的最大指標速度"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "The time, in milliseconds, to get to maximum speed"
@@ -229,7 +230,7 @@ msgstr "版本資訊"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1943
+#: ../dialogs/display-settings/main.c:1994
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -239,7 +240,7 @@ msgstr "輸入 '%s --help' 以了解用法。"
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:1962
+#: ../dialogs/display-settings/main.c:2013
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -248,7 +249,7 @@ msgstr "Xfce 開發團隊。保留所有權利。"
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:1963
+#: ../dialogs/display-settings/main.c:2014
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -296,7 +297,7 @@ msgstr "預設字型(_T)"
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr "許多字型包含提供額外微調指示的資訊，比如說繪製該字型的最佳方式該怎麼做；請依照個人偏好挑選看起來最舒爽的那一項"
+msgstr "許多字型包含提供額外修飾指示的資訊，比如說繪製該字型的最佳方式該怎麼做；請依照個人偏好挑選看起來最舒爽的那一項"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid ""
@@ -306,11 +307,11 @@ msgstr "在 TFT 或 LCD 顯示器上的字型品質可以藉由選擇顯示器�
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Sub-_pixel order:"
-msgstr "次像素順序(_P)："
+msgstr "次像素排序(_P)："
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 msgid "Hintin_g:"
-msgstr "微調(_G)："
+msgstr "修飾(_G)："
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 msgid "_Enable anti-aliasing"
@@ -319,7 +320,7 @@ msgstr "啟用防鋸齒(_E)"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "防鋸齒或稱字型平滑，可以改善畫面中文字的外觀"
+msgstr "防鋸齒或稱字型平滑化，可以改善畫面中文字的外觀"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Rendering"
@@ -556,6 +557,10 @@ msgstr "讓顯示器鏡像顯示(_M)"
 msgid "Configure _new displays when connected"
 msgstr "當連接時設定新的顯示器(_N)"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Identify Displays"
+msgstr "識別顯示器"
+
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
 msgstr "顯示器"
@@ -632,7 +637,7 @@ msgstr "水平與垂直"
 msgid "Minimal interface to set up an external output"
 msgstr "設置外部輸出的最小介面"
 
-#: ../dialogs/display-settings/main.c:227
+#: ../dialogs/display-settings/main.c:228
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -640,44 +645,44 @@ msgid ""
 msgstr "若您無法回應此提問，將於 %i 秒內還原成之前的組態。"
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:748
+#: ../dialogs/display-settings/main.c:749
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1041
+#: ../dialogs/display-settings/main.c:1042
 msgid "Display:"
 msgstr "顯示器："
 
-#: ../dialogs/display-settings/main.c:1046
+#: ../dialogs/display-settings/main.c:1047
 msgid "Resolution:"
 msgstr "解析度："
 
-#: ../dialogs/display-settings/main.c:1233
+#: ../dialogs/display-settings/main.c:1234
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "無法停用最後一個活動中的輸出，否則系統將無法使用。"
 
-#: ../dialogs/display-settings/main.c:1235
+#: ../dialogs/display-settings/main.c:1236
 msgid "Selected output not disabled"
 msgstr "選取的輸出未停用"
 
-#: ../dialogs/display-settings/main.c:1975
+#: ../dialogs/display-settings/main.c:2026
 #: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "無法查詢正在使用中的 RandR 擴展版本"
 
-#: ../dialogs/display-settings/main.c:1976
-#: ../dialogs/display-settings/main.c:2012
+#: ../dialogs/display-settings/main.c:2027
+#: ../dialogs/display-settings/main.c:2063
 msgid "Unable to start the Xfce Display Settings"
 msgstr "無法啟動 Xfce 顯示設定值"
 
-#: ../dialogs/display-settings/main.c:2007
+#: ../dialogs/display-settings/main.c:2058
 msgid "ATI Settings"
 msgstr "ATI 設定值"
 
-#: ../dialogs/display-settings/main.c:2022
+#: ../dialogs/display-settings/main.c:2073
 msgid "Unable to launch the proprietary driver settings"
 msgstr "無法啟動專有驅動程式設定值"
 
@@ -882,7 +887,7 @@ msgstr "指定鍵盤配置是否由此設定值對話窗來控制，或是由 X 
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Keyboard model"
-msgstr "鍵盤模組(_K)"
+msgstr "鍵盤型號(_K)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Change la_yout option"
@@ -1287,7 +1292,7 @@ msgstr "時間(_M)："
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
-msgstr "少於此時間 (單位為毫秒) 的兩個滑鼠點擊將被視為雙擊滑鼠"
+msgstr "相距少於此時間 (單位為毫秒) 的兩個滑鼠點擊會被視為雙擊滑鼠"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "D_istance:"
@@ -1297,7 +1302,7 @@ msgstr "距離(_I)："
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
-msgstr "在雙點的情況下，兩個滑鼠點擊動作之間其滑鼠指標無法移動比這還多的距離，否則無法被判讀為雙點滑鼠"
+msgstr "在兩個滑鼠點擊動作之間，指標不移動超過此距離才會判斷為雙擊"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "Double Click"
