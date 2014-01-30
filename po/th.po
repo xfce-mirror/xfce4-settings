@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:46+0200\n"
-"PO-Revision-Date: 2013-09-20 15:58+0000\n"
+"POT-Creation-Date: 2014-01-26 00:30+0100\n"
+"PO-Revision-Date: 2014-01-30 14:23+0000\n"
 "Last-Translator: theppitak <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/projects/p/xfce/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -229,7 +229,7 @@ msgstr "ข้อมูลรุ่น"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1943
+#: ../dialogs/display-settings/main.c:1994
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -239,7 +239,7 @@ msgstr "สั่ง '%s --help' เพื่อดูวิธีใช้"
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:1962
+#: ../dialogs/display-settings/main.c:2013
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -248,7 +248,7 @@ msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:1963
+#: ../dialogs/display-settings/main.c:2014
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -556,6 +556,10 @@ msgstr "จอแสดงผลแสดงเห_มือนกัน"
 msgid "Configure _new displays when connected"
 msgstr "ตั้งค่า_จอแสดงผลจอใหม่เมื่อมีการเชื่อมต่อ"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Identify Displays"
+msgstr "ระบุจอแสดงผล"
+
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
 msgstr "จอแสดงผล"
@@ -632,7 +636,7 @@ msgstr "แนวนอนและแนวตั้ง"
 msgid "Minimal interface to set up an external output"
 msgstr "ส่วนติดต่อฉบับย่อสำหรับตั้งค่าจอแสดงผลภายนอก"
 
-#: ../dialogs/display-settings/main.c:227
+#: ../dialogs/display-settings/main.c:228
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -640,44 +644,44 @@ msgid ""
 msgstr "จะเรียกคืนค่าตั้งเดิมภายใน %i วินาที ถ้าคุณไม่ตอบคำถามนี้"
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:748
+#: ../dialogs/display-settings/main.c:749
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1041
+#: ../dialogs/display-settings/main.c:1042
 msgid "Display:"
 msgstr "จอแสดงผล:"
 
-#: ../dialogs/display-settings/main.c:1046
+#: ../dialogs/display-settings/main.c:1047
 msgid "Resolution:"
 msgstr "ความละเอียด:"
 
-#: ../dialogs/display-settings/main.c:1233
+#: ../dialogs/display-settings/main.c:1234
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "ห้ามปิดจอแสดงผลที่เปิดใช้งานอันสุดท้าย มิฉะนั้นระบบจะใช้การไม่ได้"
 
-#: ../dialogs/display-settings/main.c:1235
+#: ../dialogs/display-settings/main.c:1236
 msgid "Selected output not disabled"
 msgstr "จะไม่ปิดจอแสดงผลที่เลือก"
 
-#: ../dialogs/display-settings/main.c:1975
+#: ../dialogs/display-settings/main.c:2026
 #: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "ไม่สามารถสอบถามรุ่นของส่วนขยาย RandR ที่กำลังใช้อยู่ได้"
 
-#: ../dialogs/display-settings/main.c:1976
-#: ../dialogs/display-settings/main.c:2012
+#: ../dialogs/display-settings/main.c:2027
+#: ../dialogs/display-settings/main.c:2063
 msgid "Unable to start the Xfce Display Settings"
 msgstr "ไม่สามารถเปิดทำงานโปรแกรมตั้งค่าจอแสดงผลของ Xfce"
 
-#: ../dialogs/display-settings/main.c:2007
+#: ../dialogs/display-settings/main.c:2058
 msgid "ATI Settings"
 msgstr "ค่าตั้งของ ATI"
 
-#: ../dialogs/display-settings/main.c:2022
+#: ../dialogs/display-settings/main.c:2073
 msgid "Unable to launch the proprietary driver settings"
 msgstr "ไม่สามารถเรียกทำงานโปรแกรมตั้งค่าของไดรเวอร์เชิงพาณิชย์"
 
