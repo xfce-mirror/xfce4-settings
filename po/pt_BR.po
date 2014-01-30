@@ -5,15 +5,16 @@
 # Translators:
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008
 # Henrique P. Machado <zehrique@gmail.com>, 2008
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2014
 # secipolla <secipolla@gmail.com>, 2011
 # Vladimir Melo <vmelo@gnome.org>, 2008,2010
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:46+0200\n"
-"PO-Revision-Date: 2013-11-19 13:19+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
+"POT-Creation-Date: 2014-01-26 00:30+0100\n"
+"PO-Revision-Date: 2014-01-30 22:34+0000\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/xfce/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -232,7 +233,7 @@ msgstr "Informações da versão"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1943
+#: ../dialogs/display-settings/main.c:1994
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -242,7 +243,7 @@ msgstr "Digite \"%s --help\" para informações de uso."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:1962
+#: ../dialogs/display-settings/main.c:2013
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -251,7 +252,7 @@ msgstr "A equipe de desenvolvimento do Xfce. Todos os direitos reservados."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:1963
+#: ../dialogs/display-settings/main.c:2014
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -559,6 +560,10 @@ msgstr "_Espelhar monitores"
 msgid "Configure _new displays when connected"
 msgstr "Configurar _novos monitores quando conectados"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Identify Displays"
+msgstr "Identificar monitores"
+
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
 msgstr "Monitores"
@@ -635,7 +640,7 @@ msgstr "Horizontal e vertical"
 msgid "Minimal interface to set up an external output"
 msgstr "Interface mínima para configurar uma saída externa"
 
-#: ../dialogs/display-settings/main.c:227
+#: ../dialogs/display-settings/main.c:228
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -643,44 +648,44 @@ msgid ""
 msgstr "A configuração anterior será restaurada em %i segundos se você não responder a esta questão."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:748
+#: ../dialogs/display-settings/main.c:749
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1041
+#: ../dialogs/display-settings/main.c:1042
 msgid "Display:"
 msgstr "Monitor:"
 
-#: ../dialogs/display-settings/main.c:1046
+#: ../dialogs/display-settings/main.c:1047
 msgid "Resolution:"
 msgstr "Resolução:"
 
-#: ../dialogs/display-settings/main.c:1233
+#: ../dialogs/display-settings/main.c:1234
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "A última saída ativa não deve ser desabilitada pois o sistema ficaria inutilizável."
 
-#: ../dialogs/display-settings/main.c:1235
+#: ../dialogs/display-settings/main.c:1236
 msgid "Selected output not disabled"
 msgstr "Saída selecionada não desabilitada"
 
-#: ../dialogs/display-settings/main.c:1975
+#: ../dialogs/display-settings/main.c:2026
 #: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Não foi possível consultar a versão da extensão do RandR sendo usada"
 
-#: ../dialogs/display-settings/main.c:1976
-#: ../dialogs/display-settings/main.c:2012
+#: ../dialogs/display-settings/main.c:2027
+#: ../dialogs/display-settings/main.c:2063
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Não foi possível iniciar as configurações de monitor do Xfce"
 
-#: ../dialogs/display-settings/main.c:2007
+#: ../dialogs/display-settings/main.c:2058
 msgid "ATI Settings"
 msgstr "Configurações ATI"
 
-#: ../dialogs/display-settings/main.c:2022
+#: ../dialogs/display-settings/main.c:2073
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Não foi possível iniciar a configuração do driver proprietário"
 
