@@ -79,6 +79,7 @@ struct _XfceSettingsManagerDialog
 
     gchar          *help_page;
     gchar          *help_component;
+    gchar          *help_version;
 };
 
 typedef struct
@@ -290,6 +291,7 @@ xfce_settings_manager_dialog_finalize (GObject *object)
 
     g_free (dialog->help_page);
     g_free (dialog->help_component);
+    g_free (dialog->help_version);
 
     g_free (dialog->filter_text);
 
@@ -334,9 +336,11 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
         else
             help_component = "xfce4-settings";
 
-        xfce_dialog_show_help (GTK_WINDOW (widget),
-                               help_component,
-                               dialog->help_page, NULL);
+        xfce_dialog_show_help_with_version (GTK_WINDOW (widget),
+                                            help_component,
+                                            dialog->help_page,
+                                            NULL,
+                                            dialog->help_version);
     }
     else
     {
@@ -599,6 +603,8 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
     dialog->help_page = NULL;
     g_free (dialog->help_component);
     dialog->help_component = NULL;
+    g_free (dialog->help_version);
+    dialog->help_version = NULL;
 
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
     gtk_widget_set_sensitive (dialog->button_help, TRUE);
@@ -844,6 +850,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         {
             dialog->help_page = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpPage", NULL));
             dialog->help_component = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpComponent", NULL));
+            dialog->help_version = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpVersion", NULL));
         }
 
         xfce_rc_close (rc);
