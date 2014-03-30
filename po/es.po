@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2014
 # Pablo Lezaeta <prflr88@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-26 00:30+0100\n"
-"PO-Revision-Date: 2014-03-28 05:52+0000\n"
-"Last-Translator: Pablo Lezaeta <prflr88@gmail.com>\n"
+"PO-Revision-Date: 2014-03-30 04:10+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,17 +169,17 @@ msgstr "_Perfil de aceleración:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "msec"
-msgstr "mseg"
+msgstr "ms"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "pixels/sec"
-msgstr "píxeles/seg"
+msgstr "píxeles/s"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
-msgstr "El tiempo en milisegundos entre que se pulsa la tecla inicial y el primer evento de movimiento repetido"
+msgstr "El tiempo en milisegundos entre la pulsación de tecla inicial y el primer evento de movimiento repetido"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "The time, in milliseconds, between repeated motion events"
@@ -254,7 +255,7 @@ msgstr "El equipo de desarrollo de Xfce. Todos los derechos reservados."
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Informe de fallos a <%s>"
+msgstr "Informe de errores a <%s>."
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -302,15 +303,15 @@ msgstr "Muchos tipos de letra contienen información que que dan pistas adiciona
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
-msgstr "La calidad de las letras en pantallas TFT o LCD puede mejorar mucho eligiendo el orden correcto de sub-píxel de su pantalla"
+msgstr "La calidad de las letras en pantallas TFT o LCD puede mejorar al elegir el orden de subpíxeles adecuado para la pantalla"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Sub-_pixel order:"
-msgstr "Orden de sub_píxel:"
+msgstr "Orden de sub_píxeles:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 msgid "Hintin_g:"
-msgstr "_Sugerir:"
+msgstr "_Optimización de formas:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 msgid "_Enable anti-aliasing"
@@ -319,7 +320,7 @@ msgstr "Activar _suavizado de bordes"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "El suavizado de letras, o anti-alias, puede mejorar la apariencia del texto en la pantalla"
+msgstr "El suavizado de bordes, o «antialiasing», puede mejorar la apariencia del texto en la pantalla"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Rendering"
@@ -474,7 +475,7 @@ msgstr "Error desconocido, el código de salida es %d"
 
 #: ../dialogs/appearance-settings/main.c:792
 msgid "Failed to install theme"
-msgstr "No se pudo instalar tema"
+msgstr "No se pudo instalar el tema"
 
 #: ../dialogs/appearance-settings/main.c:896
 msgid "RGB"
@@ -506,13 +507,13 @@ msgstr "Restaurar la configuración anterior"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "\t\r\n<big><b>¿Le gustaría preservar esta configuración?</b></big>"
+msgstr "\t\n<big><b>¿Quiere conservar esta configuración?</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid ""
 "The previous configuration will be restored in 10 seconds if you do not "
 "reply to this question."
-msgstr "La configuración anterior será reestablecida en 10 segundos si no responde a esta pregunta."
+msgstr "La configuración anterior se restablecerá en 10 segundos si no responde a esta pregunta."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -630,7 +631,7 @@ msgstr "Vertical"
 
 #: ../dialogs/display-settings/main.c:117
 msgid "Horizontal and Vertical"
-msgstr "Horizontal y Vertical"
+msgstr "Horizontal y vertical"
 
 #: ../dialogs/display-settings/main.c:139
 msgid "Minimal interface to set up an external output"
@@ -703,7 +704,7 @@ msgstr "Monitor"
 
 #: ../dialogs/display-settings/xfce-randr.c:650
 msgid "Television"
-msgstr "Televisión"
+msgstr "Televisor"
 
 #: ../dialogs/display-settings/xfce-randr.c:654
 msgid "Digital display"
@@ -720,11 +721,11 @@ msgstr "Dispositivo desconocido"
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
-msgstr "Comando de atajo"
+msgstr "Orden de atajo"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:147
 msgid "Enter the command you want to trigger with a shortcut."
-msgstr "Escriba el comando que quiere desencadenar con un atajo."
+msgstr "Escriba la orden que quiere que se ejecute al pulsar un atajo."
 
 #. We are editing an existing shortcut
 #: ../dialogs/keyboard-settings/command-dialog.c:165
@@ -733,7 +734,7 @@ msgstr "Atajo:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:176
 msgid "Command:"
-msgstr "Comando:"
+msgstr "Orden:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:196
 msgid "Use _startup notification"
@@ -741,11 +742,11 @@ msgstr "Utilizar la notificación al inicio"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:243
 msgid "The command may not be empty."
-msgstr "El comando no debe estar vacío."
+msgstr "La orden no debe estar vacía."
 
 #: ../dialogs/keyboard-settings/command-dialog.c:263
 msgid "Select command"
-msgstr "Seleccionar comando"
+msgstr "Seleccione la orden"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:271
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:386
@@ -797,7 +798,7 @@ msgstr "Edite la configuración del teclado y los atajos de aplicación"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 msgid "Restore num l_ock state on startup"
-msgstr "Restaurar estado de bl_oq. núm al inicio"
+msgstr "Restaurar estado de Bl_oq Núm al inicio"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
@@ -927,7 +928,7 @@ msgstr "No se pudo crear el diálogo de configuración."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
 msgid "Command"
-msgstr "Comando"
+msgstr "Orden"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
@@ -944,7 +945,7 @@ msgstr "Variante"
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
 msgid "Shortcut command may not be empty."
-msgstr "El comando de atajo no puede estar vacío."
+msgstr "La orden del atajo no puede estar vacía."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
@@ -971,13 +972,13 @@ msgstr "Seleccionar aplicación"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:204
 msgid "Use a c_ustom command:"
-msgstr "Usar un comando pe_rsonalizado:"
+msgstr "Usar una orden pe_rsonalizada:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
-msgstr "Utilizar un comando personalizado para una aplicación que no se encuentre disponible en la lista de aplicaciones superior."
+msgstr "Use una orden personalizada para una aplicación que no se encuentre disponible en la lista de aplicaciones anterior."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
@@ -1056,8 +1057,8 @@ msgstr "Predeterminado"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] "%d tipo MIME encontrado"
-msgstr[1] "%d tipos MIME encontrados"
+msgstr[0] "Se encontró %d tipo MIME"
+msgstr[1] "Se encontraron %d tipos MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
