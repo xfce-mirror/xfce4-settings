@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# haarek <haarektrans@gmail.com>, 2014
 # Terje Uriansrud <terje@uriansrud.net>, 2008-2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:46+0200\n"
-"PO-Revision-Date: 2013-11-19 13:19+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
-"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/xfce/language/nb/)\n"
+"POT-Creation-Date: 2014-01-26 00:30+0100\n"
+"PO-Revision-Date: 2014-04-28 15:41+0000\n"
+"Last-Translator: haarek <haarektrans@gmail.com>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/xfce4-settings/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,7 +30,7 @@ msgstr "Sett opp tilgjengelighet for tastatur og mus"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
 msgid "_Enable assistive technologies"
-msgstr ""
+msgstr "_Aktiver hjelpemidler"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 msgid ""
@@ -41,7 +42,7 @@ msgstr ""
 msgid ""
 "Assistive technologies will be available the\n"
 "next time you login"
-msgstr ""
+msgstr "Hjelpemidler vil være tilgjengelig\nved neste innlogging"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "No AT-SPI provider was found on your system"
@@ -49,11 +50,11 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive _Technologies"
-msgstr ""
+msgstr "_Hjelpemidler"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "_Use sticky keys"
-msgstr ""
+msgstr "_Bruk trege taster"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid ""
@@ -74,7 +75,7 @@ msgstr "I bruk vil valgtaster (som Ctrl, Alt og Shift) forbli låste inntil valg
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Disable sticky keys if two keys are _pressed"
-msgstr ""
+msgstr "Deaktiver trege taster hvis _to taster trykkes"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid ""
@@ -229,7 +230,7 @@ msgstr "Versjonsinformasjon"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1943
+#: ../dialogs/display-settings/main.c:1994
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -239,7 +240,7 @@ msgstr "Skriv '%s --help' for bruksinstruksjoner."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:1962
+#: ../dialogs/display-settings/main.c:2013
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -248,7 +249,7 @@ msgstr "Xfce utviklingsteam. Alle rettigheter reservert."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:1963
+#: ../dialogs/display-settings/main.c:2014
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -437,7 +438,7 @@ msgstr "Tekst"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Text under icons"
-msgstr ""
+msgstr "Tekst under ikoner"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Text next to icons"
@@ -474,7 +475,7 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/main.c:792
 msgid "Failed to install theme"
-msgstr ""
+msgstr "Klarte ikke å installere tema"
 
 #: ../dialogs/appearance-settings/main.c:896
 msgid "RGB"
@@ -556,6 +557,10 @@ msgstr ""
 msgid "Configure _new displays when connected"
 msgstr ""
 
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Identify Displays"
+msgstr ""
+
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
 msgstr ""
@@ -578,7 +583,7 @@ msgstr ""
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "Advanced"
-msgstr ""
+msgstr "Avansert"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
@@ -632,7 +637,7 @@ msgstr ""
 msgid "Minimal interface to set up an external output"
 msgstr "Minimalt grensesnitt for å sette opp ekstern skjerm"
 
-#: ../dialogs/display-settings/main.c:227
+#: ../dialogs/display-settings/main.c:228
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -640,44 +645,44 @@ msgid ""
 msgstr "Forrige konfigurasjon vil ble gjenopprettet om %i sekunder hvis du ikke svarer på dette spørsmålet."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:748
+#: ../dialogs/display-settings/main.c:749
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1041
+#: ../dialogs/display-settings/main.c:1042
 msgid "Display:"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1046
+#: ../dialogs/display-settings/main.c:1047
 msgid "Resolution:"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1233
+#: ../dialogs/display-settings/main.c:1234
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Den siste aktive skjermen må ikke deaktiveres, dette fører til at system ikke vil virke korrekt."
 
-#: ../dialogs/display-settings/main.c:1235
+#: ../dialogs/display-settings/main.c:1236
 msgid "Selected output not disabled"
 msgstr "Valgte skjerm ikke deaktivert"
 
-#: ../dialogs/display-settings/main.c:1975
+#: ../dialogs/display-settings/main.c:2026
 #: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Klarte ikke finne versjonen av RandR utvidlesen som benyttes"
 
-#: ../dialogs/display-settings/main.c:1976
-#: ../dialogs/display-settings/main.c:2012
+#: ../dialogs/display-settings/main.c:2027
+#: ../dialogs/display-settings/main.c:2063
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Kan ikke starte Xfce Skjerminnstillinger"
 
-#: ../dialogs/display-settings/main.c:2007
+#: ../dialogs/display-settings/main.c:2058
 msgid "ATI Settings"
 msgstr "ATI Innstillinger"
 
-#: ../dialogs/display-settings/main.c:2022
+#: ../dialogs/display-settings/main.c:2073
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kan ikke starte innstillinger for proprietære drivere"
 
@@ -798,7 +803,7 @@ msgstr ""
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "General"
-msgstr ""
+msgstr "Generelt"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "_Enable key repeat"
@@ -852,7 +857,7 @@ msgstr "Markør"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "_Test area:"
-msgstr ""
+msgstr "_Testområde:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Beha_vior"
@@ -977,7 +982,7 @@ msgstr ""
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
-msgstr ""
+msgstr "_Bla gjennom ..."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:376
 msgid "Select an Application"
@@ -1067,7 +1072,7 @@ msgstr ""
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:910
 msgid "Question"
-msgstr ""
+msgstr "Spørsmål"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:913
 msgid ""
@@ -1112,7 +1117,7 @@ msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktivert"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 msgid "Edge scrolling"
@@ -1136,11 +1141,11 @@ msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Clockwise"
-msgstr ""
+msgstr "Med klokken"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "Counterclockwise"
-msgstr ""
+msgstr "Mot klokken"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
@@ -1211,7 +1216,7 @@ msgstr ""
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Pointer Speed"
-msgstr ""
+msgstr "Pekerhastighet"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "B_uttons and Feedback"
