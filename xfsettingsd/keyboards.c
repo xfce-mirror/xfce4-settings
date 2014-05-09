@@ -54,6 +54,13 @@ static void xfce_keyboards_helper_channel_property_changed  (XfconfChannel      
                                                              XfceKeyboardsHelper      *helper);
 static void xfce_keyboards_helper_restore_numlock_state     (XfconfChannel            *channel);
 static void xfce_keyboards_helper_save_numlock_state        (XfconfChannel            *channel);
+static gboolean xfce_keyboards_helper_device_is_keyboard    (XID xid);
+static void xfce_keyboards_helper_set_all_settings          (XfceKeyboardsHelper      *helper);
+#ifdef DEVICE_HOTPLUGGING
+static GdkFilterReturn  xfce_keyboards_helper_event_filter  (GdkXEvent                *xevent,
+                                                             GdkEvent                 *gdk_event,
+                                                             gpointer                 user_data);
+#endif
 
 
 
@@ -69,6 +76,12 @@ struct _XfceKeyboardsHelper
 
     /* xfconf channel */
     XfconfChannel *channel;
+
+#ifdef DEVICE_HOTPLUGGING
+    /* device presence event type */
+    gint device_presence_event_type;
+#endif
+
 };
 
 
@@ -93,11 +106,18 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
 {
     gint dummy;
     gint marjor_ver, minor_ver;
+    Display *xdisplay;
+#ifdef DEVICE_HOTPLUGGING
+    XEventClass event_class;
+#endif
 
     /* init */
     helper->channel = NULL;
 
-    if (XkbQueryExtension (GDK_DISPLAY (), &dummy, &dummy, &dummy, &marjor_ver, &minor_ver))
+    /* get the default display */
+    xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
+
+    if (XkbQueryExtension (xdisplay, &dummy, &dummy, &dummy, &marjor_ver, &minor_ver))
     {
         xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "initialized xkb %d.%d", marjor_ver, minor_ver);
 
@@ -108,10 +128,24 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
         g_signal_connect (G_OBJECT (helper->channel), "property-changed",
             G_CALLBACK (xfce_keyboards_helper_channel_property_changed), helper);
 
-        /* load settings */
-        xfce_keyboards_helper_set_auto_repeat_mode (helper);
-        xfce_keyboards_helper_set_repeat_rate (helper);
-        xfce_keyboards_helper_restore_numlock_state (helper->channel);
+#ifdef DEVICE_HOTPLUGGING
+        if (G_LIKELY (xdisplay != NULL))
+        {
+            /* monitor device changes */
+            gdk_error_trap_push ();
+            DevicePresence (xdisplay, helper->device_presence_event_type, event_class);
+            XSelectExtensionEvent (xdisplay, RootWindow (xdisplay, DefaultScreen (xdisplay)), &event_class, 1);
+
+            /* add an event filter */
+            if (gdk_error_trap_pop () == 0)
+                gdk_window_add_filter (NULL, xfce_keyboards_helper_event_filter, helper);
+            else
+                g_warning ("Failed to create device filter");
+        }
+#endif
+
+        /* load keyboard settings */
+        xfce_keyboards_helper_set_all_settings (helper);
     }
     else
     {
@@ -271,3 +305,74 @@ xfce_keyboards_helper_save_numlock_state (XfconfChannel *channel)
 
     xfconf_channel_set_bool (channel, "/Default/Numlock", numlock_state);
 }
+
+
+
+static void
+xfce_keyboards_helper_set_all_settings (XfceKeyboardsHelper *helper)
+{
+        xfce_keyboards_helper_set_auto_repeat_mode (helper);
+        xfce_keyboards_helper_set_repeat_rate (helper);
+        xfce_keyboards_helper_restore_numlock_state (helper->channel);
+}
+
+
+
+#ifdef DEVICE_HOTPLUGGING
+static gboolean
+xfce_keyboards_helper_device_is_keyboard (XID xid)
+{
+    XDeviceInfo *device;
+    gboolean device_found;
+    XDeviceInfo *device_list;
+    Atom         keyboard_type;
+    gint         n, ndevices;
+    Display     *xdisplay = GDK_DISPLAY ();
+
+    keyboard_type = XInternAtom (xdisplay, XI_KEYBOARD, True);
+    device_list = XListInputDevices(xdisplay, &ndevices);
+    device_found = FALSE;
+    for (n = 0; n < ndevices; n++)
+    {
+        device = &device_list[n];
+        /* look for a keyboard that matches this XID */
+        if (device->type == keyboard_type &&
+            device->id == xid)
+        {
+            device_found = TRUE;
+            break;
+        }
+    }
+    XFreeDeviceList(device_list);
+
+    return device_found;
+}
+#endif
+
+
+
+#ifdef DEVICE_HOTPLUGGING
+static GdkFilterReturn
+xfce_keyboards_helper_event_filter (GdkXEvent *xevent,
+                                    GdkEvent  *gdk_event,
+                                    gpointer   user_data)
+{
+    XEvent                     *event = xevent;
+    XDevicePresenceNotifyEvent *dpn_event = xevent;
+    XfceKeyboardsHelper        *helper = XFCE_KEYBOARDS_HELPER (user_data);
+
+    if (G_UNLIKELY (event->type != helper->device_presence_event_type))
+        return GDK_FILTER_CONTINUE;
+
+    if (G_LIKELY (dpn_event->devchange != DeviceAdded))
+        return GDK_FILTER_CONTINUE;
+
+    if (!xfce_keyboards_helper_device_is_keyboard(dpn_event->deviceid))
+        return GDK_FILTER_CONTINUE;
+
+    /* New keyboard added. Need to reapply settings. */
+    xfce_keyboards_helper_set_all_settings (helper);
+
+    return GDK_FILTER_CONTINUE;
+}
+#endif

@@ -19,6 +19,8 @@
  *  by Olivier Fourdan.
  */
 
+#include <X11/extensions/XInput.h>
+
 #ifndef __KEYBOARDS_H__
 #define __KEYBOARDS_H__
 
@@ -31,6 +33,16 @@ typedef struct _XfceKeyboardsHelper      XfceKeyboardsHelper;
 #define XFCE_IS_KEYBOARDS_HELPER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_KEYBOARDS_HELPER))
 #define XFCE_IS_KEYBOARDS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_KEYBOARDS_HELPER))
 #define XFCE_KEYBOARDS_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_KEYBOARDS_HELPER, XfceKeyboardsHelperClass))
+
+/* test if the required version of inputproto (1.4.2) is available */
+#undef DEVICE_HOTPLUGGING
+#ifdef XI_Add_DevicePresenceNotify_Major
+#  if XI_Add_DevicePresenceNotify_Major >= 1 && defined (DeviceRemoved)
+#    define DEVICE_HOTPLUGGING
+#  else
+#    undef DEVICE_HOTPLUGGING
+#  endif
+#endif
 
 GType xfce_keyboards_helper_get_type (void) G_GNUC_CONST;
 
