@@ -6,15 +6,15 @@
 # Automatically generated, 2010
 # Hezy Amiel <open@hezyamiel.com>, 2010
 # koby vurgaft <slipperygate@gmail.com>, 2012
-# Yaron Shahrabani <sh.yaron@gmail.com>, 2012-2013
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2012-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:46+0200\n"
-"PO-Revision-Date: 2013-11-06 08:19+0000\n"
+"POT-Creation-Date: 2014-01-26 00:30+0100\n"
+"PO-Revision-Date: 2014-05-27 10:13+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew (http://www.transifex.com/projects/p/xfce/language/he/)\n"
+"Language-Team: Hebrew (http://www.transifex.com/projects/p/xfce4-settings/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -232,7 +232,7 @@ msgstr "Version information"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1943
+#: ../dialogs/display-settings/main.c:1994
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -242,7 +242,7 @@ msgstr "Type '%s --help' for usage."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:1962
+#: ../dialogs/display-settings/main.c:2013
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -251,7 +251,7 @@ msgstr "צוות הפיתוח של Xfce. כל הזכויות שמורות."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:1963
+#: ../dialogs/display-settings/main.c:2014
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -559,6 +559,10 @@ msgstr "_שכפול התצוגה"
 msgid "Configure _new displays when connected"
 msgstr "הגדרת _צגים חדשים בעת חיבורם"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Identify Displays"
+msgstr "זיהוי צגים"
+
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
 msgstr "תצוגות"
@@ -635,7 +639,7 @@ msgstr "אופקי ואנכי"
 msgid "Minimal interface to set up an external output"
 msgstr "מנשק מינימלי ליצירת קלט חיצוני"
 
-#: ../dialogs/display-settings/main.c:227
+#: ../dialogs/display-settings/main.c:228
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -643,44 +647,44 @@ msgid ""
 msgstr "התצורה הקודמת תשוחזר תוך %i שניות אם השאלה לא תיענה."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:748
+#: ../dialogs/display-settings/main.c:749
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f הרץ"
 
-#: ../dialogs/display-settings/main.c:1041
+#: ../dialogs/display-settings/main.c:1042
 msgid "Display:"
 msgstr "תצוגה:"
 
-#: ../dialogs/display-settings/main.c:1046
+#: ../dialogs/display-settings/main.c:1047
 msgid "Resolution:"
 msgstr "רזולוציה:"
 
-#: ../dialogs/display-settings/main.c:1233
+#: ../dialogs/display-settings/main.c:1234
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "אסור לבטל את הפלט הפעיל האחרון , המערכת תהפוך לבלתי שמישה."
 
-#: ../dialogs/display-settings/main.c:1235
+#: ../dialogs/display-settings/main.c:1236
 msgid "Selected output not disabled"
 msgstr "הפלט הנבחר אינו מוצג"
 
-#: ../dialogs/display-settings/main.c:1975
+#: ../dialogs/display-settings/main.c:2026
 #: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "לא ניתן לתשאל מהי גרסת הרחבת ה־RandR שבשימוש"
 
-#: ../dialogs/display-settings/main.c:1976
-#: ../dialogs/display-settings/main.c:2012
+#: ../dialogs/display-settings/main.c:2027
+#: ../dialogs/display-settings/main.c:2063
 msgid "Unable to start the Xfce Display Settings"
 msgstr "לא ניתן להריץ את מנהל הגדרות התצוגה של Xfce"
 
-#: ../dialogs/display-settings/main.c:2007
+#: ../dialogs/display-settings/main.c:2058
 msgid "ATI Settings"
 msgstr "הגדרות ATI"
 
-#: ../dialogs/display-settings/main.c:2022
+#: ../dialogs/display-settings/main.c:2073
 msgid "Unable to launch the proprietary driver settings"
 msgstr "לא ניתן להריץ את ההגדרות של מנהל ההתקן הקנייני"
 
@@ -1061,7 +1065,7 @@ msgstr[1] "%d סוגי MIME נמצאו"
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr ""
+msgstr "הגדרת היישום „%s“ עבור הטיפוס „%s“ נכשלה."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
@@ -1436,12 +1440,12 @@ msgstr "צג %s"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
 msgid "Watch an Xfconf channel for property changes"
-msgstr ""
+msgstr "מעקב אחר ערוץ ה־Xfconf למציאת שינויים במאפיינים"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
 #, c-format
 msgid "start monitoring channel \"%s\""
-msgstr ""
+msgstr "להתחיל לעקוב אחרי הערוץ „%s“"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
 msgid "_Monitor"
@@ -1575,7 +1579,7 @@ msgstr "לא לפצל לרקע"
 
 #: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
-msgstr ""
+msgstr "החלפת הסוכן הפעיל ל־xsettings (אם יש כזה)"
 
 #: ../xfsettingsd/workspaces.c:385
 #, c-format
