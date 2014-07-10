@@ -7,15 +7,16 @@
 # jc1 <jc1.quebecos@gmail.com>, 2013-2014
 # fevrier <jean-philippe.guerard@tigreraye.org>, 2014
 # Maximilian Schleiss <maximilian@xfce.org>, 2008
-# m8t <mmassonnet@xfce.org>, 2009
-# Urides <urien.desterres@gmail.com>, 2014
+# Mike Massonnet <mmassonnet@xfce.org>, 2009
+# Urien Desterres <urien.desterres@gmail.com>, 2014
+# Yannick Le Guen <leguen.yannick@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-26 00:30+0100\n"
-"PO-Revision-Date: 2014-05-16 19:15+0000\n"
-"Last-Translator: fevrier <jean-philippe.guerard@tigreraye.org>\n"
+"POT-Creation-Date: 2014-07-10 06:30+0200\n"
+"PO-Revision-Date: 2014-07-10 19:13+0000\n"
+"Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/xfce4-settings/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +66,7 @@ msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
-msgstr "Lorsqu'elles sont sélectionnées, les touches de modification (comme Ctrl, Alt et Shift) n'ont pas besoin d'être enfoncée (elles peuvent être pressées puis relâchées) lorsque plusieurs touches ont normalement besoin d'être pressé en même temps"
+msgstr "Si activé, les touches de modification (comme Ctrl, Alt et Maj) n'ont pas besoin d'être enfoncées (elles peuvent être pressées puis relâchées) lorsque plusieurs touches ont normalement besoin d'être pressées en même temps"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
@@ -75,7 +76,7 @@ msgstr "_Verrouiller les touches collantes"
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "Si activé, les touches modificatrices (comme Contrôle, Alt ou Maj) restent bloquées jusqu'à leur prochaine pression."
+msgstr "Si activé, les touches de modification (comme Ctrl, Alt ou Maj) resteront bloquées jusqu'à leur prochaine pression."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Disable sticky keys if two keys are _pressed"
@@ -85,7 +86,7 @@ msgstr "Désactiver les _touches collantes si deux touches sont pressées"
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "Si activé, la fonction « touches collantes » sera désactivée jusqu'à la pression simultanée de deux touches"
+msgstr "Si activé, la fonction « touches collantes » sera désactivée si deux touches sont pressées en même temps"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Sticky Keys"
@@ -99,7 +100,7 @@ msgstr "Utiliser les touches _lentes"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "Pour éviter les frappes accidentelles, les touches lentes nécessitent qu'une touche reste enfoncée un certain temps pour qu'elle soit acceptée."
+msgstr "Pour éviter les frappes accidentelles, les touches lentes nécessitent qu'une touche reste enfoncée un certain temps avant d'être acceptée"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
@@ -123,7 +124,7 @@ msgstr "Utiliser les touches _répétées"
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
-msgstr "Pour éviter les frappes accidentelles, les touches répétées imposent un délai minimum entre chaque frappe."
+msgstr "Pour éviter les frappes accidentelles, les touches répétées imposent un délai minimum entre chaque frappe"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
@@ -149,7 +150,7 @@ msgstr "É_mulation de la souris par le pavé numérique"
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
-msgstr "Si activé, le pointeur peut être contrôlé avec le pavé numérique."
+msgstr "Si activé, le pointeur peut être contrôlé avec le pavé numérique"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "R_epeat interval:"
@@ -165,7 +166,7 @@ msgstr "_Temps d'accélération :"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "Ma_ximum speed:"
-msgstr "Vitesse _maximum :"
+msgstr "Vitesse _maximale :"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "Acceleration _profile:"
@@ -211,40 +212,40 @@ msgstr "_Souris"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Socket du gestionnaire de paramètres"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "ID SOCKET"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:96
-#: ../dialogs/display-settings/main.c:138
+#: ../dialogs/display-settings/main.c:121
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:40
 msgid "Version information"
-msgstr "Information sur la version"
+msgstr "Informations sur la version"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1994
+#: ../dialogs/display-settings/main.c:2950
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
 #, c-format
 msgid "Type '%s --help' for usage."
-msgstr "Tapez « %s --help » pour plus d'aide."
+msgstr "Taper « %s --help » pour plus d'aide."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:2013
+#: ../dialogs/display-settings/main.c:2969
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -253,13 +254,13 @@ msgstr "L'équipe de développement Xfce. Tous droits réservés."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:2014
+#: ../dialogs/display-settings/main.c:2970
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "S'il vous plaît signaler les bogues à <%s>."
+msgstr "Veuillez signaler les bogues à <%s>."
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -287,11 +288,11 @@ msgstr "_Icônes"
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
-msgstr "Cette police sera utilisée comme police par défaut utilisée lors de l'élaboration du texte de l'interface utilisateur"
+msgstr "Cette police sera utilisée comme police par défaut pour afficher le texte de l'interface utilisateur"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 msgid "Select a default font"
-msgstr "Sélectionnez une police par défaut"
+msgstr "Sélectionner une police par défaut"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid "Default Fon_t"
@@ -301,13 +302,13 @@ msgstr "P_olice par défaut"
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr "De nombreuses polices contiennent des informations permettant d'obtenir un meilleur rendu du texte ; choisir celui qui semble le mieux selon vos préférences personnelles"
+msgstr "De nombreuses polices contiennent des informations permettant d'obtenir un meilleur rendu du texte ; choisir celui qui correspond le mieux à vos préférences personnelles"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
-msgstr "Qualité de police sur un écran TFT ou LCD peut être grandement améliorée par le choix de l'ordre du sous-pixel correct de l'écran"
+msgstr "La qualité de police sur un écran TFT ou LCD peut être grandement améliorée en choisissant l'ordre de sous-pixellisation adéquat de l'écran"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Sub-_pixel order:"
@@ -324,7 +325,7 @@ msgstr "Activer l'_anti-crénelage"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "L'anti-crénelage, ou lissage des polices, peut améliorer le rendu du texte à l'écran."
+msgstr "L'anti-crénelage, ou lissage des polices, peut améliorer le rendu du texte à l'écran"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Rendering"
@@ -338,7 +339,7 @@ msgstr "Paramètre _DPI personnalisé :"
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
-msgstr "Modifier la résolution de l'écran si le texte apparaît trop grand ou trop petit."
+msgstr "Modifier la résolution de l'écran si le texte apparaît trop grand ou trop petit"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "DPI"
@@ -381,7 +382,7 @@ msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr "S'ils sont sélectionnés, les raccourcis clavier des éléments du menu peuvent être modifiés en passant la souris sur l'élément du menu en appuyant sur la nouvelle combinaison de touches pour le raccourci"
+msgstr "S'ils sont sélectionnés, les raccourcis clavier des éléments du menu peuvent être modifiés en passant la souris sur l'élément du menu et en appuyant sur la nouvelle combinaison de touches"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Menus and Buttons"
@@ -393,7 +394,7 @@ msgstr "_Activer les sons des évènements"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "Activer ou désactiver les sons des évènements globalement (requiert « Canberra »)"
+msgstr "Activer ou désactiver les sons des évènements de façon globale (requiert « Canberra »)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Enable input feedbac_k sounds"
@@ -411,12 +412,11 @@ msgstr "Sons des évènements"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "Setti_ngs"
-msgstr "Paramétres"
+msgstr "Paramètres"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/appearance-settings/main.c:892
-#: ../dialogs/display-settings/main.c:103
-#: ../dialogs/display-settings/main.c:114
+#: ../dialogs/display-settings/main.c:87 ../dialogs/display-settings/main.c:98
 msgid "None"
 msgstr "Aucun"
 
@@ -546,22 +546,18 @@ msgid "R_esolution:"
 msgstr "_Résolution :"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "P_osition:"
-msgstr "P_osition :"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Use this output"
 msgstr "_Utiliser cette sortie"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
 msgstr "Écrans en _miroir"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Configure _new displays when connected"
 msgstr "Configurer les nouveaux écrans lorsqu'ils sont connectés"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Identify Displays"
 msgstr "Identifier les écrans"
 
@@ -593,55 +589,35 @@ msgstr "Avancé"
 msgid "radiobutton"
 msgstr "bouton radio"
 
-#: ../dialogs/display-settings/main.c:91
-msgid "Same as"
-msgstr "Identique à"
-
-#: ../dialogs/display-settings/main.c:92
-msgid "Above"
-msgstr "Au-dessus"
-
-#: ../dialogs/display-settings/main.c:93
-msgid "Below"
-msgstr "Au-dessous"
-
-#: ../dialogs/display-settings/main.c:94
-msgid "Right of"
-msgstr "À droite de"
-
-#: ../dialogs/display-settings/main.c:95
-msgid "Left of"
-msgstr "À gauche de"
-
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:88
 msgid "Left"
 msgstr "Gauche"
 
-#: ../dialogs/display-settings/main.c:105
+#: ../dialogs/display-settings/main.c:89
 msgid "Inverted"
 msgstr "Inversé"
 
-#: ../dialogs/display-settings/main.c:106
+#: ../dialogs/display-settings/main.c:90
 msgid "Right"
 msgstr "Droite"
 
-#: ../dialogs/display-settings/main.c:115
+#: ../dialogs/display-settings/main.c:99
 msgid "Horizontal"
 msgstr "Horizontale"
 
-#: ../dialogs/display-settings/main.c:116
+#: ../dialogs/display-settings/main.c:100
 msgid "Vertical"
 msgstr "Verticale"
 
-#: ../dialogs/display-settings/main.c:117
+#: ../dialogs/display-settings/main.c:101
 msgid "Horizontal and Vertical"
 msgstr "Horizontale et verticale"
 
-#: ../dialogs/display-settings/main.c:139
+#: ../dialogs/display-settings/main.c:122
 msgid "Minimal interface to set up an external output"
 msgstr "Interface minimale pour configurer la sortie externe"
 
-#: ../dialogs/display-settings/main.c:228
+#: ../dialogs/display-settings/main.c:247
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -649,68 +625,92 @@ msgid ""
 msgstr "La configuration précédente sera restaurée dans %i secondes si vous ne répondez pas à cette question."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:749
+#: ../dialogs/display-settings/main.c:532
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1042
+#: ../dialogs/display-settings/main.c:818
 msgid "Display:"
 msgstr "Moniteur :"
 
-#: ../dialogs/display-settings/main.c:1047
+#: ../dialogs/display-settings/main.c:823
 msgid "Resolution:"
 msgstr "_Résolution :"
 
-#: ../dialogs/display-settings/main.c:1234
+#: ../dialogs/display-settings/main.c:1003
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "La dernière sortie active ne doit pas être désactivée, le système pourrait devenir instable."
 
-#: ../dialogs/display-settings/main.c:1236
+#: ../dialogs/display-settings/main.c:1005
 msgid "Selected output not disabled"
 msgstr "La sortie sélectionnée n'est pas désactivée"
 
-#: ../dialogs/display-settings/main.c:2026
-#: ../dialogs/display-settings/xfce-randr.c:350
+#: ../dialogs/display-settings/main.c:2140
+msgid ""
+"Select a monitor to change its properties; drag it to rearrange its "
+"placement."
+msgstr "Sélectionner un moniteur pour changer ses propriétés ; le faire glisser pour modifier son emplacement."
+
+#: ../dialogs/display-settings/main.c:2177
+#: ../dialogs/display-settings/main.c:2251
+#, c-format
+msgid "(%i, %i)"
+msgstr "(%i, %i)"
+
+#. Translators:  this is the feature where what you see on your laptop's
+#. * screen is the same as your external monitor.  Here, "Mirror" is being
+#. * used as an adjective, not as a verb.  For example, the Spanish
+#. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
+#: ../dialogs/display-settings/main.c:2283
+msgid "Mirror Screens"
+msgstr "Écrans miroir"
+
+#: ../dialogs/display-settings/main.c:2481
+msgid "(Disabled)"
+msgstr "(Désactivé)"
+
+#: ../dialogs/display-settings/main.c:2982
+#: ../dialogs/display-settings/xfce-randr.c:274
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Impossible de déterminer la version de l'extension RandR utilisée"
 
-#: ../dialogs/display-settings/main.c:2027
-#: ../dialogs/display-settings/main.c:2063
+#: ../dialogs/display-settings/main.c:2983
+#: ../dialogs/display-settings/main.c:3019
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Impossible de lancer la fenêtre de configuration des écrans"
 
-#: ../dialogs/display-settings/main.c:2058
+#: ../dialogs/display-settings/main.c:3014
 msgid "ATI Settings"
 msgstr "Paramètres ATI"
 
-#: ../dialogs/display-settings/main.c:2073
+#: ../dialogs/display-settings/main.c:3029
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Impossible de lancer les paramètres du pilote propriétaire"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Ce système utilise RandR %d.%d. Pour que les paramètres d'affichage fonctionnent la version 1.2 au moins est nécessaire"
 
-#: ../dialogs/display-settings/xfce-randr.c:626
+#: ../dialogs/display-settings/xfce-randr.c:544
 msgid "Laptop"
 msgstr "Portable"
 
-#: ../dialogs/display-settings/xfce-randr.c:647
+#: ../dialogs/display-settings/xfce-randr.c:565
 msgid "Monitor"
 msgstr "Moniteur"
 
-#: ../dialogs/display-settings/xfce-randr.c:650
+#: ../dialogs/display-settings/xfce-randr.c:568
 msgid "Television"
 msgstr "Téléviseur"
 
-#: ../dialogs/display-settings/xfce-randr.c:654
+#: ../dialogs/display-settings/xfce-randr.c:572
 msgid "Digital display"
 msgstr "Écran numérique"
 
