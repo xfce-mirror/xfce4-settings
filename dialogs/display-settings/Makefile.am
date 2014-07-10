@@ -22,7 +22,11 @@ xfce4_display_settings_SOURCES = \
 	identity-popup_ui.h \
 	display-name.c \
 	edid-parse.c \
-	edid.h
+	edid.h \
+	scrollarea.c \
+	scrollarea.h \
+	foo-marshal.c \
+	foo-marshal.h
 
 xfce4_display_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -43,7 +47,8 @@ xfce4_display_settings_LDADD = \
 	$(XFCONF_LIBS) \
 	$(EXO_LIBS) \
 	$(LIBX11_LIBS) -lm \
-	$(XRANDR_LIBS)
+	$(XRANDR_LIBS) \
+	$(GLIB_LIBS)
 
 if MAINTAINER_MODE
 

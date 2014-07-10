@@ -36,17 +36,6 @@
 
 
 
-typedef struct _XfceOutputPosition XfceOutputPosition;
-
-
-
-struct _XfceOutputPosition
-{
-    gint x;
-    gint y;
-};
-
-
 
 struct _XfceRandrPrivate
 {
@@ -59,13 +48,13 @@ struct _XfceRandrPrivate
     /* cache for the output/mode info */
     XRROutputInfo      **output_info;
     XfceRRMode         **modes;
-    XfceOutputPosition  *position;
 };
 
 
 
 static gchar *xfce_randr_friendly_name (XfceRandr *randr,
-                                        guint      output);
+                                        guint      output,
+                                        guint      output_rr_id);
 
 
 
@@ -140,99 +129,26 @@ xfce_randr_guess_relations (XfceRandr *randr)
     guint n, m;
 
     /* walk the connected outputs */
-    for (n = 0; n < randr->noutput; ++n)
+    for (n=0; n < randr->noutput; ++n)
     {
         /* ignore relations for inactive outputs */
         if (randr->mode[n] == None)
             continue;
 
-        for (m = 0; m < randr->noutput; ++m)
+        for (m=0; m < randr->noutput; ++m)
         {
             /* additionally ignore itself */
             if (randr->mode[m] == None || m == n)
                 continue;
 
-            /* horizontal scale */
-            if (randr->priv->position[n].x == randr->priv->position[m].x)
+            if (randr->position[n].x == randr->position[m].x &&
+                randr->position[n].y == randr->position[m].y)
             {
-                if (randr->priv->position[n].y == randr->priv->position[m].y)
-                    randr->relation[n] = XFCE_RANDR_PLACEMENT_MIRROR;
-                else if (randr->priv->position[n].y > randr->priv->position[m].y)
-                    randr->relation[n] = XFCE_RANDR_PLACEMENT_DOWN;
-                else
-                    randr->relation[n] = XFCE_RANDR_PLACEMENT_UP;
-
-                randr->related_to[n] = m;
-                break;
-            }
-
-            /* vertical scale */
-            if (randr->priv->position[n].y == randr->priv->position[m].y)
-            {
-                if (randr->priv->position[n].x == randr->priv->position[m].x)
-                    randr->relation[n] = XFCE_RANDR_PLACEMENT_MIRROR;
-                else if (randr->priv->position[n].x > randr->priv->position[m].x)
-                    randr->relation[n] = XFCE_RANDR_PLACEMENT_RIGHT;
-                else
-                    randr->relation[n] = XFCE_RANDR_PLACEMENT_LEFT;
-
-                randr->related_to[n] = m;
-                break;
+                randr->mirrored[n] = TRUE;
             }
         }
     }
 }
-
-
-
-static void
-xfce_randr_update_positions (XfceRandr *randr,
-                             guint      output)
-{
-    const XfceRRMode *cmode, *rmode;
-    guint             rel;
-    gint              x, y;
-
-    rel = randr->related_to[output];
-    /* ignore relations for inactive outputs */
-    if (randr->mode[output] == None || randr->mode[rel] == None)
-        return;
-
-    /* modes of the two related outputs */
-    cmode = xfce_randr_find_mode_by_id (randr, output, randr->mode[output]);
-    rmode = xfce_randr_find_mode_by_id (randr, rel, randr->mode[rel]);
-
-    /* coordinates of the related_to output */
-    x = randr->priv->position[rel].x;
-    y = randr->priv->position[rel].y;
-
-    switch (randr->relation[output])
-    {
-        case XFCE_RANDR_PLACEMENT_LEFT:
-            randr->priv->position[output].x = x;
-            randr->priv->position[output].y = y;
-            randr->priv->position[rel].x = x + xfce_randr_mode_width (cmode, randr->rotation[output]);
-            break;
-        case XFCE_RANDR_PLACEMENT_RIGHT:
-            randr->priv->position[output].x = x + xfce_randr_mode_width (rmode, randr->rotation[rel]);
-            randr->priv->position[output].y = y;
-            break;
-        case XFCE_RANDR_PLACEMENT_UP:
-            randr->priv->position[output].x = x;
-            randr->priv->position[output].y = y;
-            randr->priv->position[rel].y = y + xfce_randr_mode_height (cmode, randr->rotation[output]);
-            break;
-        case XFCE_RANDR_PLACEMENT_DOWN:
-            randr->priv->position[output].x = x;
-            randr->priv->position[output].y = y + xfce_randr_mode_height (rmode, randr->rotation[rel]);
-            break;
-        default:
-            randr->priv->position[output].x = x;
-            randr->priv->position[output].y = y;
-            break;
-    }
-}
-
 
 
 static void
@@ -240,11 +156,12 @@ xfce_randr_populate (XfceRandr *randr,
                      Display   *xdisplay,
                      GdkWindow *root_window)
 {
-    GPtrArray     *outputs;
-    XRROutputInfo *output_info;
-    XRRCrtcInfo   *crtc_info;
-    gint           n;
-    guint          m;
+    GPtrArray      *outputs;
+    XRROutputInfo  *output_info;
+    XRRCrtcInfo    *crtc_info;
+    gint            n;
+    guint           m, connected;
+    guint          *output_ids = NULL;
 
     g_return_if_fail (randr != NULL);
     g_return_if_fail (randr->priv != NULL);
@@ -252,8 +169,10 @@ xfce_randr_populate (XfceRandr *randr,
 
     /* prepare the temporary cache */
     outputs = g_ptr_array_new ();
+    output_ids = g_malloc0 (randr->priv->resources->noutput * sizeof (guint));
 
     /* walk the outputs */
+    connected = 0;
     for (n = 0; n < randr->priv->resources->noutput; ++n)
     {
         /* get the output info */
@@ -265,6 +184,11 @@ xfce_randr_populate (XfceRandr *randr,
         {
             XRRFreeOutputInfo (output_info);
             continue;
+        }
+        else
+        {
+            output_ids[connected] = n;
+            connected++;
         }
 
         /* cache it */
@@ -278,11 +202,10 @@ xfce_randr_populate (XfceRandr *randr,
     /* allocate final space for the settings */
     randr->mode = g_new0 (RRMode, randr->noutput);
     randr->priv->modes = g_new0 (XfceRRMode *, randr->noutput);
-    randr->priv->position = g_new0 (XfceOutputPosition, randr->noutput);
+    randr->position = g_new0 (XfceOutputPosition, randr->noutput);
     randr->rotation = g_new0 (Rotation, randr->noutput);
     randr->rotations = g_new0 (Rotation, randr->noutput);
-    randr->relation = g_new0 (XfceOutputRelation, randr->noutput);
-    randr->related_to = g_new0 (guint, randr->noutput);
+    randr->mirrored = g_new0 (gboolean, randr->noutput);
     randr->status = g_new0 (XfceOutputStatus, randr->noutput);
     randr->friendly_name = g_new0 (gchar *, randr->noutput);
 
@@ -294,7 +217,7 @@ xfce_randr_populate (XfceRandr *randr,
 
 #ifdef HAS_RANDR_ONE_POINT_THREE
         /* find the primary screen if supported */
-        if (randr->priv->has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->priv->resources->outputs[m])
+        if (randr->priv->has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->priv->resources->outputs[output_ids[m]])
             randr->status[m] = XFCE_OUTPUT_STATUS_PRIMARY;
         else
 #endif
@@ -307,8 +230,8 @@ xfce_randr_populate (XfceRandr *randr,
             randr->mode[m] = crtc_info->mode;
             randr->rotation[m] = crtc_info->rotation;
             randr->rotations[m] = crtc_info->rotations;
-            randr->priv->position[m].x = crtc_info->x;
-            randr->priv->position[m].y = crtc_info->y;
+            randr->position[m].x = crtc_info->x;
+            randr->position[m].y = crtc_info->y;
             XRRFreeCrtcInfo (crtc_info);
         }
         else
@@ -320,11 +243,12 @@ xfce_randr_populate (XfceRandr *randr,
         }
 
         /* fill in the name used by the UI */
-        randr->friendly_name[m] = xfce_randr_friendly_name (randr, m);
+        randr->friendly_name[m] = xfce_randr_friendly_name (randr, m, output_ids[m]);
     }
-
-    /* calculate relations from positions */
+    /* populate mirrored details */
     xfce_randr_guess_relations (randr);
+
+    g_free (output_ids);
 }
 
 
@@ -408,9 +332,7 @@ xfce_randr_cleanup (XfceRandr *randr)
     g_free (randr->rotation);
     g_free (randr->rotations);
     g_free (randr->status);
-    g_free (randr->relation);
-    g_free (randr->related_to);
-    g_free (randr->priv->position);
+    g_free (randr->position);
     g_free (randr->priv->output_info);
 }
 
@@ -463,8 +385,7 @@ void
 xfce_randr_save_output (XfceRandr     *randr,
                         const gchar   *scheme,
                         XfconfChannel *channel,
-                        guint          output,
-                        gint           rel_changed)
+                        guint          output)
 {
     gchar             property[512];
     gchar            *str_value;
@@ -539,17 +460,13 @@ xfce_randr_save_output (XfceRandr     *randr,
                              randr->status[output] == XFCE_OUTPUT_STATUS_PRIMARY);
 #endif
 
-    /* update positions according to the current relations */
-    if (rel_changed)
-        xfce_randr_update_positions (randr, output);
-
     /* save the position */
     g_snprintf (property, sizeof (property), "/%s/%s/Position/X", scheme,
                 randr->priv->output_info[output]->name);
-    xfconf_channel_set_int (channel, property, MAX (randr->priv->position[output].x, 0));
+    xfconf_channel_set_int (channel, property, MAX (randr->position[output].x, 0));
     g_snprintf (property, sizeof (property), "/%s/%s/Position/Y", scheme,
                 randr->priv->output_info[output]->name);
-    xfconf_channel_set_int (channel, property, MAX (randr->priv->position[output].y, 0));
+    xfconf_channel_set_int (channel, property, MAX (randr->position[output].y, 0));
 }
 
 
@@ -612,12 +529,13 @@ xfce_randr_read_edid_data (Display  *xdisplay,
 
 static gchar *
 xfce_randr_friendly_name (XfceRandr *randr,
-                          guint      output)
+                          guint      output,
+                          guint      output_rr_id)
 {
-    Display     *xdisplay;
-    MonitorInfo *info = NULL;
-    guint8      *edid_data;
-    gchar       *friendly_name = NULL;
+    Display        *xdisplay;
+    MonitorInfo    *info = NULL;
+    guint8         *edid_data;
+    gchar          *friendly_name = NULL;
     const gchar *name = randr->priv->output_info[output]->name;
 
     /* special case, a laptop */
@@ -627,13 +545,13 @@ xfce_randr_friendly_name (XfceRandr *randr,
 
     /* otherwise, get the vendor & size */
     xdisplay = gdk_x11_display_get_xdisplay (randr->priv->display);
-    edid_data = xfce_randr_read_edid_data (xdisplay, randr->priv->resources->outputs[output]);
+    edid_data = xfce_randr_read_edid_data (xdisplay, randr->priv->resources->outputs[output_rr_id]);
 
     if (edid_data)
         info = decode_edid (edid_data);
 
     if (info)
-        friendly_name = make_display_name (info);
+        friendly_name = make_display_name (info, output);
 
     g_free (info);
     g_free (edid_data);
@@ -784,8 +702,8 @@ xfce_randr_get_positions (XfceRandr *randr,
     g_return_val_if_fail (randr != NULL && x != NULL && y != NULL, FALSE);
     g_return_val_if_fail (output < randr->noutput, FALSE);
 
-    *x = randr->priv->position[output].x;
-    *y = randr->priv->position[output].y;
+    *x = randr->position[output].x;
+    *y = randr->position[output].y;
     return TRUE;
 }
 

@@ -61,7 +61,7 @@ static const struct Vendor vendors[] =
     { "SEC", "Epson" },
     { "WAC", "Wacom" },
     { "NEC", "NEC" },
-    { "CMO", "CMO" },	/* Chi Mei */
+    { "CMO", "CMO" },   /* Chi Mei */
     { "BNQ", "BenQ" },
 
     { "ABP", "Advansys" },
@@ -242,62 +242,62 @@ find_vendor (const char *code)
 
     for (i = 0; i < sizeof (vendors) / sizeof (vendors[0]); ++i)
     {
-	const Vendor *v = &(vendors[i]);
+        const Vendor *v = &(vendors[i]);
 
-	if (strcmp (v->vendor_id, code) == 0)
-	    return v->vendor_name;
+        if (strcmp (v->vendor_id, code) == 0)
+            return v->vendor_name;
     }
 
     return code;
 };
 
 char *
-make_display_name (const MonitorInfo *info)
+make_display_name (const MonitorInfo *info, guint output)
 {
     const char *vendor;
     int width_mm, height_mm, inches;
 
     if (info)
     {
-	vendor = find_vendor (info->manufacturer_code);
+        vendor = find_vendor (info->manufacturer_code);
     }
     else
     {
         /* Translators: "Unknown" here is used to identify a monitor for which
          * we don't know the vendor. When a vendor is known, the name of the
          * vendor is used. */
-	vendor = C_("Monitor vendor", "Unknown");
+        vendor = C_("Monitor vendor", "Unknown");
     }
 
     if (info && info->width_mm != -1 && info->height_mm)
     {
-	width_mm = info->width_mm;
-	height_mm = info->height_mm;
+        width_mm = info->width_mm;
+        height_mm = info->height_mm;
     }
     else if (info && info->n_detailed_timings)
     {
-	width_mm = info->detailed_timings[0].width_mm;
-	height_mm = info->detailed_timings[0].height_mm;
+        width_mm = info->detailed_timings[0].width_mm;
+        height_mm = info->detailed_timings[0].height_mm;
     }
     else
     {
-	width_mm = -1;
-	height_mm = -1;
+        width_mm = -1;
+        height_mm = -1;
     }
 
     if (width_mm != -1 && height_mm != -1)
     {
-	double d = sqrt (width_mm * width_mm + height_mm * height_mm);
+        double d = sqrt (width_mm * width_mm + height_mm * height_mm);
 
-	inches = (int)(d / 25.4 + 0.5);
+        inches = (int)(d / 25.4 + 0.5);
     }
     else
     {
-	inches = -1;
+        inches = -1;
     }
 
     if (inches > 0)
-	return g_strdup_printf ("%s %d\"", vendor, inches);
+        return g_strdup_printf ("%i. %s %d\"", output+1, vendor, inches);
     else
-	return g_strdup (vendor);
+        return g_strdup_printf ("%i. %s ", output+1, vendor);
 }

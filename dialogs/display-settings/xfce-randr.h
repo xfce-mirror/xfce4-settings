@@ -37,22 +37,14 @@
 typedef struct _XfceRandr          XfceRandr;
 typedef struct _XfceRandrPrivate   XfceRandrPrivate;
 typedef struct _XfceRRMode         XfceRRMode;
+typedef struct _XfceOutputInfo     XfceOutputInfo;
 typedef enum   _XfceOutputStatus   XfceOutputStatus;
-typedef enum   _XfceOutputRelation XfceOutputRelation;
+typedef struct _XfceOutputPosition XfceOutputPosition;
 
 enum _XfceOutputStatus
 {
     XFCE_OUTPUT_STATUS_PRIMARY,
     XFCE_OUTPUT_STATUS_SECONDARY
-};
-
-enum _XfceOutputRelation
-{
-    XFCE_RANDR_PLACEMENT_MIRROR,
-    XFCE_RANDR_PLACEMENT_UP,
-    XFCE_RANDR_PLACEMENT_DOWN,
-    XFCE_RANDR_PLACEMENT_RIGHT,
-    XFCE_RANDR_PLACEMENT_LEFT
 };
 
 struct _XfceRRMode
@@ -61,6 +53,12 @@ struct _XfceRRMode
     guint   width;
     guint   height;
     gdouble rate;
+};
+
+struct _XfceOutputPosition
+{
+    gint x;
+    gint y;
 };
 
 struct _XfceRandr
@@ -72,16 +70,43 @@ struct _XfceRandr
     RRMode              *mode;
     Rotation            *rotation;
     Rotation            *rotations;
-    XfceOutputRelation  *relation;
-    guint               *related_to;
+    XfceOutputPosition  *position;
     XfceOutputStatus    *status;
+    gboolean            *mirrored;
     gchar              **friendly_name;
 
     /* implementation details */
     XfceRandrPrivate    *priv;
 };
 
+struct _XfceOutputInfo
+{
+    /* Identifiers */
+    guint      id;
+    gchar     *display_name;
 
+    /* Status */
+    gboolean   on;
+    gboolean   connected;
+    gboolean   mirrored;
+
+    /* Position */
+    gint      x;
+    gint      y;
+
+    /* Dimensions */
+    guint      width;
+    guint      height;
+    guint      pref_width;
+    guint      pref_height;
+    Rotation   rotation;
+
+    /* Frequency */
+    gdouble    rate;
+
+    /* User Data (e.g. GrabInfo) */
+    gpointer   user_data;
+};
 
 XfceRandr        *xfce_randr_new             (GdkDisplay      *display,
                                               GError         **error);
@@ -93,8 +118,7 @@ void              xfce_randr_reload          (XfceRandr        *randr);
 void              xfce_randr_save_output     (XfceRandr        *randr,
                                               const gchar      *scheme,
                                               XfconfChannel    *channel,
-                                              guint             output,
-                                              gint              rel_changed);
+                                              guint             output);
 
 void              xfce_randr_apply           (XfceRandr        *randr,
                                               const gchar      *scheme,

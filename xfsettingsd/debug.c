@@ -70,7 +70,7 @@ xfsettings_dbg_init (void)
 
 
 
-static void
+static void __attribute__((format (gnu_printf, 2,0)))
 xfsettings_dbg_print (XfsdDebugDomain  domain,
                       const gchar     *message,
                       va_list          args)
