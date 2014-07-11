@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2010
+# Jeff Huang <s8321414@gmail.com>, 2014
 # Walter Cheuk <wwycheuk@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-26 00:30+0100\n"
-"PO-Revision-Date: 2014-01-26 11:02+0000\n"
-"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
+"POT-Creation-Date: 2014-07-10 06:30+0200\n"
+"PO-Revision-Date: 2014-07-11 02:52+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce4-settings/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -207,21 +208,21 @@ msgstr "滑鼠(_M)"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "設定值管理員 socket"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:96
-#: ../dialogs/display-settings/main.c:138
+#: ../dialogs/display-settings/main.c:121
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:40
@@ -230,7 +231,7 @@ msgstr "版本資訊"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1994
+#: ../dialogs/display-settings/main.c:2950
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -240,7 +241,7 @@ msgstr "輸入 '%s --help' 以了解用法。"
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:2013
+#: ../dialogs/display-settings/main.c:2969
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -249,7 +250,7 @@ msgstr "Xfce 開發團隊。保留所有權利。"
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:2014
+#: ../dialogs/display-settings/main.c:2970
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -411,8 +412,7 @@ msgstr "設定值(_N)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/appearance-settings/main.c:892
-#: ../dialogs/display-settings/main.c:103
-#: ../dialogs/display-settings/main.c:114
+#: ../dialogs/display-settings/main.c:87 ../dialogs/display-settings/main.c:98
 msgid "None"
 msgstr "無"
 
@@ -542,22 +542,18 @@ msgid "R_esolution:"
 msgstr "解析度(_E)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "P_osition:"
-msgstr "位置(_O)："
-
-#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Use this output"
 msgstr "使用此輸出(_U)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
 msgstr "讓顯示器鏡像顯示(_M)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Configure _new displays when connected"
 msgstr "當連接時設定新的顯示器(_N)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Identify Displays"
 msgstr "識別顯示器"
 
@@ -589,55 +585,35 @@ msgstr "進階"
 msgid "radiobutton"
 msgstr "點選用按鈕"
 
-#: ../dialogs/display-settings/main.c:91
-msgid "Same as"
-msgstr "同於"
-
-#: ../dialogs/display-settings/main.c:92
-msgid "Above"
-msgstr "上於"
-
-#: ../dialogs/display-settings/main.c:93
-msgid "Below"
-msgstr "下於"
-
-#: ../dialogs/display-settings/main.c:94
-msgid "Right of"
-msgstr "右於"
-
-#: ../dialogs/display-settings/main.c:95
-msgid "Left of"
-msgstr "左於"
-
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:88
 msgid "Left"
 msgstr "左"
 
-#: ../dialogs/display-settings/main.c:105
+#: ../dialogs/display-settings/main.c:89
 msgid "Inverted"
 msgstr "反轉"
 
-#: ../dialogs/display-settings/main.c:106
+#: ../dialogs/display-settings/main.c:90
 msgid "Right"
 msgstr "右"
 
-#: ../dialogs/display-settings/main.c:115
+#: ../dialogs/display-settings/main.c:99
 msgid "Horizontal"
 msgstr "水平"
 
-#: ../dialogs/display-settings/main.c:116
+#: ../dialogs/display-settings/main.c:100
 msgid "Vertical"
 msgstr "垂直"
 
-#: ../dialogs/display-settings/main.c:117
+#: ../dialogs/display-settings/main.c:101
 msgid "Horizontal and Vertical"
 msgstr "水平與垂直"
 
-#: ../dialogs/display-settings/main.c:139
+#: ../dialogs/display-settings/main.c:122
 msgid "Minimal interface to set up an external output"
 msgstr "設置外部輸出的最小介面"
 
-#: ../dialogs/display-settings/main.c:228
+#: ../dialogs/display-settings/main.c:247
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -645,68 +621,92 @@ msgid ""
 msgstr "若您無法回應此提問，將於 %i 秒內還原成之前的組態。"
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:749
+#: ../dialogs/display-settings/main.c:532
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1042
+#: ../dialogs/display-settings/main.c:818
 msgid "Display:"
 msgstr "顯示器："
 
-#: ../dialogs/display-settings/main.c:1047
+#: ../dialogs/display-settings/main.c:823
 msgid "Resolution:"
 msgstr "解析度："
 
-#: ../dialogs/display-settings/main.c:1234
+#: ../dialogs/display-settings/main.c:1003
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "無法停用最後一個活動中的輸出，否則系統將無法使用。"
 
-#: ../dialogs/display-settings/main.c:1236
+#: ../dialogs/display-settings/main.c:1005
 msgid "Selected output not disabled"
 msgstr "選取的輸出未停用"
 
-#: ../dialogs/display-settings/main.c:2026
-#: ../dialogs/display-settings/xfce-randr.c:350
+#: ../dialogs/display-settings/main.c:2140
+msgid ""
+"Select a monitor to change its properties; drag it to rearrange its "
+"placement."
+msgstr "選取一個螢幕以改變其屬性；拖曳以重新排列其位置"
+
+#: ../dialogs/display-settings/main.c:2177
+#: ../dialogs/display-settings/main.c:2251
+#, c-format
+msgid "(%i, %i)"
+msgstr "(%i, %i)"
+
+#. Translators:  this is the feature where what you see on your laptop's
+#. * screen is the same as your external monitor.  Here, "Mirror" is being
+#. * used as an adjective, not as a verb.  For example, the Spanish
+#. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
+#: ../dialogs/display-settings/main.c:2283
+msgid "Mirror Screens"
+msgstr "鏡像螢幕"
+
+#: ../dialogs/display-settings/main.c:2481
+msgid "(Disabled)"
+msgstr "(已停用)"
+
+#: ../dialogs/display-settings/main.c:2982
+#: ../dialogs/display-settings/xfce-randr.c:274
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "無法查詢正在使用中的 RandR 擴展版本"
 
-#: ../dialogs/display-settings/main.c:2027
-#: ../dialogs/display-settings/main.c:2063
+#: ../dialogs/display-settings/main.c:2983
+#: ../dialogs/display-settings/main.c:3019
 msgid "Unable to start the Xfce Display Settings"
 msgstr "無法啟動 Xfce 顯示設定值"
 
-#: ../dialogs/display-settings/main.c:2058
+#: ../dialogs/display-settings/main.c:3014
 msgid "ATI Settings"
 msgstr "ATI 設定值"
 
-#: ../dialogs/display-settings/main.c:2073
+#: ../dialogs/display-settings/main.c:3029
 msgid "Unable to launch the proprietary driver settings"
 msgstr "無法啟動專有驅動程式設定值"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "本系統正在使用 RanR %d.%d。若要讓該顯示設定值運作，至少需要 1.2 版"
 
-#: ../dialogs/display-settings/xfce-randr.c:626
+#: ../dialogs/display-settings/xfce-randr.c:544
 msgid "Laptop"
 msgstr "膝上型電腦"
 
-#: ../dialogs/display-settings/xfce-randr.c:647
+#: ../dialogs/display-settings/xfce-randr.c:565
 msgid "Monitor"
 msgstr "螢幕"
 
-#: ../dialogs/display-settings/xfce-randr.c:650
+#: ../dialogs/display-settings/xfce-randr.c:568
 msgid "Television"
 msgstr "電視"
 
-#: ../dialogs/display-settings/xfce-randr.c:654
+#: ../dialogs/display-settings/xfce-randr.c:572
 msgid "Digital display"
 msgstr "數位顯示"
 
