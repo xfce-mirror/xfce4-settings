@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-26 00:30+0100\n"
-"PO-Revision-Date: 2014-02-03 12:39+0000\n"
+"POT-Creation-Date: 2014-07-10 06:30+0200\n"
+"PO-Revision-Date: 2014-07-19 12:21+0000\n"
 "Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce/language/uk/)\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce4-settings/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -207,21 +207,21 @@ msgstr "_Миша"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Сокет менеджера параметрів"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "ID сокета"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:96
-#: ../dialogs/display-settings/main.c:138
+#: ../dialogs/display-settings/main.c:121
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:40
@@ -230,7 +230,7 @@ msgstr "Інформація про версію"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1994
+#: ../dialogs/display-settings/main.c:2950
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -240,7 +240,7 @@ msgstr "Наберіть '%s --help' для використання."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:2013
+#: ../dialogs/display-settings/main.c:2969
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -249,7 +249,7 @@ msgstr "Команда розробників Xfce. Всі права засте
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:2014
+#: ../dialogs/display-settings/main.c:2970
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -411,8 +411,7 @@ msgstr "_Параметри"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/appearance-settings/main.c:892
-#: ../dialogs/display-settings/main.c:103
-#: ../dialogs/display-settings/main.c:114
+#: ../dialogs/display-settings/main.c:87 ../dialogs/display-settings/main.c:98
 msgid "None"
 msgstr "Нічого"
 
@@ -542,22 +541,18 @@ msgid "R_esolution:"
 msgstr "Р_оздільна здатність:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "P_osition:"
-msgstr "П_озиція:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Use this output"
 msgstr "В_икористати цей вивід"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
 msgstr "Дзе_ркальні Дисплеї"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Configure _new displays when connected"
 msgstr "Налаштування _нових дисплеїв при приєднанні"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Identify Displays"
 msgstr "Розпізнати монітори"
 
@@ -589,55 +584,35 @@ msgstr "Більше"
 msgid "radiobutton"
 msgstr "кнопкарадіо"
 
-#: ../dialogs/display-settings/main.c:91
-msgid "Same as"
-msgstr "Так само як"
-
-#: ../dialogs/display-settings/main.c:92
-msgid "Above"
-msgstr "Вище"
-
-#: ../dialogs/display-settings/main.c:93
-msgid "Below"
-msgstr "Нижче"
-
-#: ../dialogs/display-settings/main.c:94
-msgid "Right of"
-msgstr "Праворуч від"
-
-#: ../dialogs/display-settings/main.c:95
-msgid "Left of"
-msgstr "Ліворуч від"
-
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:88
 msgid "Left"
 msgstr "Ліворуч"
 
-#: ../dialogs/display-settings/main.c:105
+#: ../dialogs/display-settings/main.c:89
 msgid "Inverted"
 msgstr "Інвертовано"
 
-#: ../dialogs/display-settings/main.c:106
+#: ../dialogs/display-settings/main.c:90
 msgid "Right"
 msgstr "Праворуч"
 
-#: ../dialogs/display-settings/main.c:115
+#: ../dialogs/display-settings/main.c:99
 msgid "Horizontal"
 msgstr "Горизонтально"
 
-#: ../dialogs/display-settings/main.c:116
+#: ../dialogs/display-settings/main.c:100
 msgid "Vertical"
 msgstr "Вертикально"
 
-#: ../dialogs/display-settings/main.c:117
+#: ../dialogs/display-settings/main.c:101
 msgid "Horizontal and Vertical"
 msgstr "Горизонтально і вертикально"
 
-#: ../dialogs/display-settings/main.c:139
+#: ../dialogs/display-settings/main.c:122
 msgid "Minimal interface to set up an external output"
 msgstr "Мінімальний інтерфейс для налаштування зовнішнього виходу"
 
-#: ../dialogs/display-settings/main.c:228
+#: ../dialogs/display-settings/main.c:247
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -645,68 +620,92 @@ msgid ""
 msgstr "Попередня конфігурація відновиться через %i секунд, якщо Ви не дасте відповіді на це питання."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:749
+#: ../dialogs/display-settings/main.c:532
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Гц"
 
-#: ../dialogs/display-settings/main.c:1042
+#: ../dialogs/display-settings/main.c:818
 msgid "Display:"
 msgstr "Дисплей:"
 
-#: ../dialogs/display-settings/main.c:1047
+#: ../dialogs/display-settings/main.c:823
 msgid "Resolution:"
 msgstr "Роздільна здатність:"
 
-#: ../dialogs/display-settings/main.c:1234
+#: ../dialogs/display-settings/main.c:1003
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Останній активний дисплей не повинен бути виключений, інакше система буде непридатною для використання."
 
-#: ../dialogs/display-settings/main.c:1236
+#: ../dialogs/display-settings/main.c:1005
 msgid "Selected output not disabled"
 msgstr "Вибраний вихід не відключено"
 
-#: ../dialogs/display-settings/main.c:2026
-#: ../dialogs/display-settings/xfce-randr.c:350
+#: ../dialogs/display-settings/main.c:2140
+msgid ""
+"Select a monitor to change its properties; drag it to rearrange its "
+"placement."
+msgstr "Виберіть монітор для зміни його властивостей; захопіть його для перенесення в інше місце."
+
+#: ../dialogs/display-settings/main.c:2177
+#: ../dialogs/display-settings/main.c:2251
+#, c-format
+msgid "(%i, %i)"
+msgstr "(%i, %i)"
+
+#. Translators:  this is the feature where what you see on your laptop's
+#. * screen is the same as your external monitor.  Here, "Mirror" is being
+#. * used as an adjective, not as a verb.  For example, the Spanish
+#. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
+#: ../dialogs/display-settings/main.c:2283
+msgid "Mirror Screens"
+msgstr "Дзеркальні екрани"
+
+#: ../dialogs/display-settings/main.c:2481
+msgid "(Disabled)"
+msgstr "(Вимкнено)"
+
+#: ../dialogs/display-settings/main.c:2982
+#: ../dialogs/display-settings/xfce-randr.c:274
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Неможливо запитати версію розширення RandR, що зараз використовується"
 
-#: ../dialogs/display-settings/main.c:2027
-#: ../dialogs/display-settings/main.c:2063
+#: ../dialogs/display-settings/main.c:2983
+#: ../dialogs/display-settings/main.c:3019
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Не можу запустити налаштування дисплею Xfce"
 
-#: ../dialogs/display-settings/main.c:2058
+#: ../dialogs/display-settings/main.c:3014
 msgid "ATI Settings"
 msgstr "Параметри ATI"
 
-#: ../dialogs/display-settings/main.c:2073
+#: ../dialogs/display-settings/main.c:3029
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Не можу використати власні настройки драйвера"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Ця система використовує RandR %d.%d. Щоб настройки дисплею працювали, необхідно хоча б версія 1.2"
 
-#: ../dialogs/display-settings/xfce-randr.c:626
+#: ../dialogs/display-settings/xfce-randr.c:544
 msgid "Laptop"
 msgstr "Ноутбук"
 
-#: ../dialogs/display-settings/xfce-randr.c:647
+#: ../dialogs/display-settings/xfce-randr.c:565
 msgid "Monitor"
 msgstr "Монітор"
 
-#: ../dialogs/display-settings/xfce-randr.c:650
+#: ../dialogs/display-settings/xfce-randr.c:568
 msgid "Television"
 msgstr "Телевізор"
 
-#: ../dialogs/display-settings/xfce-randr.c:654
+#: ../dialogs/display-settings/xfce-randr.c:572
 msgid "Digital display"
 msgstr "Цифровий дисплей"
 
