@@ -2005,7 +2005,7 @@ output_overlaps (XfceOutputInfo *output)
 {
     GList         *connected_outputs = NULL;
     GList         *list;
-    gboolean       overlap = FALSE;
+    gboolean       overlaps = FALSE;
     GdkRectangle   output_rect;
 
     get_output_rect (output, &output_rect);
@@ -2022,13 +2022,13 @@ output_overlaps (XfceOutputInfo *output)
             get_output_rect (other, &other_rect);
             if (gdk_rectangle_intersect (&output_rect, &other_rect, NULL))
             {
-                overlap = TRUE;
+                overlaps = TRUE;
                 break;
             }
         }
     }
 
-    return overlap;
+    return overlaps;
 }
 
 static gboolean
