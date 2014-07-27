@@ -402,16 +402,18 @@ xfconf_property_is_valid (const gchar  *property,
     {
         if (!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
             && !(*p >= '0' && *p <= '9')
-            && *p != '_' && *p != '-' && *p != '/'
-            && !(*p == '<' || *p == '>'))
+            && *p != '_' && *p != '-' && *p != '/' && *p != '{' && *p != '}'
+            && !(*p == '<' || *p == '>') && *p != '|' && *p != ','
+            && *p != '[' && *p != ']' && *p != '.' && *p != ':')
         {
             if (error != NULL)
             {
                 g_set_error (error, XFCONF_ERROR,
                              XFCONF_ERROR_INVALID_PROPERTY,
                              _("Property names can only include the ASCII "
-                               "characters A-Z, a-z, 0-9, '_', '-', '<' "
-                               "and '>', as well as '/' as a separator"));
+                               "characters A-Z, a-z, 0-9, '_', '-', ':', '.', "
+                               "',', '[', ']', '{', '}', '<' and '>', as well "
+                               "as '/' as a separator"));
             }
             return FALSE;
         }
