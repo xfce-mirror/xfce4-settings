@@ -175,10 +175,11 @@ main (gint argc, gchar **argv)
 
     context = g_option_context_new (NULL);
     g_option_context_add_main_entries (context, option_entries, GETTEXT_PACKAGE);
-    g_option_context_add_group (context, gtk_get_option_group (FALSE));
+    /* We can't add the following command because it will invoke gtk_init
+       before we have a chance to fork.
+       g_option_context_add_group (context, gtk_get_option_group (FALSE));
+    */
     g_option_context_add_group (context, xfce_sm_client_get_option_group (argc, argv));
-
-    gtk_init (&argc, &argv);
 
     /* parse options */
     if (!g_option_context_parse (context, &argc, &argv, &error))
@@ -205,6 +206,33 @@ main (gint argc, gchar **argv)
         g_print ("\n");
 
         return EXIT_SUCCESS;
+    }
+
+    /* daemonize the process */
+    if (!opt_no_daemon)
+    {
+        if (daemonize () == -1)
+        {
+            /* show message and continue in normal mode */
+            g_warning ("Failed to fork the process: %s. Continuing in non-daemon mode.", g_strerror (errno));
+        }
+    }
+
+    if (!gtk_init_check (&argc, &argv))
+    {
+        if (G_LIKELY (error))
+        {
+            g_printerr ("%s: %s.\n", G_LOG_DOMAIN, error->message);
+            g_printerr (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
+            g_printerr ("\n");
+            g_error_free (error);
+        }
+        else
+        {
+            g_error ("Unable to open display.");
+        }
+
+        return EXIT_FAILURE;
     }
 
     dbus_connection = dbus_bus_get (DBUS_BUS_SESSION, NULL);
@@ -252,16 +280,6 @@ main (gint argc, gchar **argv)
     {
         g_printerr ("Failed to connect to session manager: %s\n", error->message);
         g_clear_error (&error);
-    }
-
-    /* daemonize the process */
-    if (!opt_no_daemon)
-    {
-        if (daemonize () == -1)
-        {
-            /* show message and continue in normal mode */
-            g_warning ("Failed to fork the process: %s. Continuing in non-daemon mode.", g_strerror (errno));
-        }
     }
 
     /* launch settings manager */
