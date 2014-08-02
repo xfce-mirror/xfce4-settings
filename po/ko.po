@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-10 06:30+0200\n"
-"PO-Revision-Date: 2014-07-25 13:01+0000\n"
-"Last-Translator: lego37yoon <lego37yoon@outlook.com>\n"
+"POT-Creation-Date: 2014-07-27 18:30+0200\n"
+"PO-Revision-Date: 2014-08-02 17:57+0000\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/projects/p/xfce4-settings/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -646,7 +646,7 @@ msgstr "선택한 출력을 비활성화하지 않았습니다"
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
-msgstr ""
+msgstr "속성을 바꿀 모니터를 선택하십시오. 위치를 바꾸려면 끌어다 놓으십시오."
 
 #: ../dialogs/display-settings/main.c:2177
 #: ../dialogs/display-settings/main.c:2251
@@ -660,7 +660,7 @@ msgstr "(%i, %i)"
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
 #: ../dialogs/display-settings/main.c:2283
 msgid "Mirror Screens"
-msgstr ""
+msgstr "화면 복제"
 
 #: ../dialogs/display-settings/main.c:2481
 msgid "(Disabled)"
@@ -1503,24 +1503,25 @@ msgstr "속성 이름은 반드시 '/' 문자로 시작해야 합니다"
 msgid "The root element ('/') is not a valid property name"
 msgstr "최상위 요소 ('/')는 유효한 속성 이름이 아닙니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:413
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr "속성 이름은 A-Z, a-z, 0-9, '_', '-', '<', '>', 그리고 구분 기호로 사용하는 '/'와 같은 문자를 포함한 ASCII 문자만 포함합니다."
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "속성이름은 A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<', '>' 만 포함할 수 있으며 '/' 문자는 구분 기호로 포함할 수 있습니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:427
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "속성 이름은 둘 이상의 연속된 '/' 문자를 가질 수 없습니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:441
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "속성 이름은 '/' 문자로 끝날 수 없습니다"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:654
 msgid "Edit Property"
 msgstr "속성 편집"
 
