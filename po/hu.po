@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009-2010,2012
+# Gyönki Bendegúz <gyonkibendeguz@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:46+0200\n"
-"PO-Revision-Date: 2013-11-19 13:19+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
-"Language-Team: Hungarian (http://www.transifex.com/projects/p/xfce/language/hu/)\n"
+"POT-Creation-Date: 2014-07-27 18:30+0200\n"
+"PO-Revision-Date: 2014-08-05 16:32+0000\n"
+"Last-Translator: Gyönki Bendegúz <gyonkibendeguz@gmail.com>\n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/xfce4-settings/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -206,21 +207,21 @@ msgstr "_Egér"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Beállításkezelő foglalat"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "FOGLALATAZONOSÍTÓ"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:96
-#: ../dialogs/display-settings/main.c:138
+#: ../dialogs/display-settings/main.c:121
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:40
@@ -229,7 +230,7 @@ msgstr "Verzióinformációk"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1943
+#: ../dialogs/display-settings/main.c:2950
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -239,7 +240,7 @@ msgstr "Segítségért adja ki az „%s --help” parancsot."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:1962
+#: ../dialogs/display-settings/main.c:2969
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -248,7 +249,7 @@ msgstr "Az Xfce fejlesztőcsapata. Minden jog fenntartva."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:1963
+#: ../dialogs/display-settings/main.c:2970
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -410,8 +411,7 @@ msgstr "Beállítások"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/appearance-settings/main.c:892
-#: ../dialogs/display-settings/main.c:103
-#: ../dialogs/display-settings/main.c:114
+#: ../dialogs/display-settings/main.c:87 ../dialogs/display-settings/main.c:98
 msgid "None"
 msgstr "Nincs"
 
@@ -541,20 +541,20 @@ msgid "R_esolution:"
 msgstr "_Felbontás:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "P_osition:"
-msgstr "H_elyzet:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Use this output"
 msgstr "Ezen _kimenet használata"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
 msgstr "Kijelzők _tükrözése"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Configure _new displays when connected"
 msgstr "Ú_j kijelzők konfigurálása csatlakoztatáskor"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid "Identify Displays"
+msgstr "Kijelzők beazonosítása"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -584,55 +584,35 @@ msgstr "Haladó"
 msgid "radiobutton"
 msgstr "rádiógomb"
 
-#: ../dialogs/display-settings/main.c:91
-msgid "Same as"
-msgstr "Ugyanaz mint"
-
-#: ../dialogs/display-settings/main.c:92
-msgid "Above"
-msgstr "Felül"
-
-#: ../dialogs/display-settings/main.c:93
-msgid "Below"
-msgstr "Alul"
-
-#: ../dialogs/display-settings/main.c:94
-msgid "Right of"
-msgstr "Jobbra"
-
-#: ../dialogs/display-settings/main.c:95
-msgid "Left of"
-msgstr "Balra"
-
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:88
 msgid "Left"
 msgstr "Balra"
 
-#: ../dialogs/display-settings/main.c:105
+#: ../dialogs/display-settings/main.c:89
 msgid "Inverted"
 msgstr "Fordított"
 
-#: ../dialogs/display-settings/main.c:106
+#: ../dialogs/display-settings/main.c:90
 msgid "Right"
 msgstr "Jobbra"
 
-#: ../dialogs/display-settings/main.c:115
+#: ../dialogs/display-settings/main.c:99
 msgid "Horizontal"
 msgstr "Vízszintes"
 
-#: ../dialogs/display-settings/main.c:116
+#: ../dialogs/display-settings/main.c:100
 msgid "Vertical"
 msgstr "Függőleges"
 
-#: ../dialogs/display-settings/main.c:117
+#: ../dialogs/display-settings/main.c:101
 msgid "Horizontal and Vertical"
 msgstr "Vízszintes és függőleges"
 
-#: ../dialogs/display-settings/main.c:139
+#: ../dialogs/display-settings/main.c:122
 msgid "Minimal interface to set up an external output"
 msgstr "Minimális felület külső kimenet beállításához"
 
-#: ../dialogs/display-settings/main.c:227
+#: ../dialogs/display-settings/main.c:247
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -640,68 +620,92 @@ msgid ""
 msgstr "A korábbi beállítás %i másodpercen belül visszaáll, ha nem válaszol."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:748
+#: ../dialogs/display-settings/main.c:532
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1041
+#: ../dialogs/display-settings/main.c:818
 msgid "Display:"
 msgstr "Kijelző:"
 
-#: ../dialogs/display-settings/main.c:1046
+#: ../dialogs/display-settings/main.c:823
 msgid "Resolution:"
 msgstr "Felbontás:"
 
-#: ../dialogs/display-settings/main.c:1233
+#: ../dialogs/display-settings/main.c:1003
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Az utolsó aktív kimenet nem kapcsolható ki, a rendszer használhatatlanná válna."
 
-#: ../dialogs/display-settings/main.c:1235
+#: ../dialogs/display-settings/main.c:1005
 msgid "Selected output not disabled"
 msgstr "A kijelölt kimenet nem kapcsolható ki"
 
-#: ../dialogs/display-settings/main.c:1975
-#: ../dialogs/display-settings/xfce-randr.c:350
+#: ../dialogs/display-settings/main.c:2140
+msgid ""
+"Select a monitor to change its properties; drag it to rearrange its "
+"placement."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:2177
+#: ../dialogs/display-settings/main.c:2251
+#, c-format
+msgid "(%i, %i)"
+msgstr "(%i, %i)"
+
+#. Translators:  this is the feature where what you see on your laptop's
+#. * screen is the same as your external monitor.  Here, "Mirror" is being
+#. * used as an adjective, not as a verb.  For example, the Spanish
+#. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
+#: ../dialogs/display-settings/main.c:2283
+msgid "Mirror Screens"
+msgstr "Kijelzők tükrözése"
+
+#: ../dialogs/display-settings/main.c:2481
+msgid "(Disabled)"
+msgstr "(Tiltva)"
+
+#: ../dialogs/display-settings/main.c:2982
+#: ../dialogs/display-settings/xfce-randr.c:274
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nem kérdezhető le a használt RandR kiterjesztés verziója"
 
-#: ../dialogs/display-settings/main.c:1976
-#: ../dialogs/display-settings/main.c:2012
+#: ../dialogs/display-settings/main.c:2983
+#: ../dialogs/display-settings/main.c:3019
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Az Xfce kijelzőbeállítások nem indítható"
 
-#: ../dialogs/display-settings/main.c:2007
+#: ../dialogs/display-settings/main.c:3014
 msgid "ATI Settings"
 msgstr "ATI beállítások"
 
-#: ../dialogs/display-settings/main.c:2022
+#: ../dialogs/display-settings/main.c:3029
 msgid "Unable to launch the proprietary driver settings"
 msgstr "A zárt illesztőprogram beállítója nem indítható"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Ez a rendszer a RandR %d.%d verzióját használja. A kijelzőbeállítások működéséhez legalább az 1.2 verzió szükséges"
 
-#: ../dialogs/display-settings/xfce-randr.c:626
+#: ../dialogs/display-settings/xfce-randr.c:544
 msgid "Laptop"
 msgstr "Noteszgép"
 
-#: ../dialogs/display-settings/xfce-randr.c:647
+#: ../dialogs/display-settings/xfce-randr.c:565
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../dialogs/display-settings/xfce-randr.c:650
+#: ../dialogs/display-settings/xfce-randr.c:568
 msgid "Television"
 msgstr "Televízió"
 
-#: ../dialogs/display-settings/xfce-randr.c:654
+#: ../dialogs/display-settings/xfce-randr.c:572
 msgid "Digital display"
 msgstr "Digitális kijelző"
 
@@ -1500,24 +1504,25 @@ msgstr "A tulajdonságneveknek „/” karakterrel kell kezdődniük"
 msgid "The root element ('/') is not a valid property name"
 msgstr "A gyökérelem („/”) nem érvényes tulajdonságnév"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:413
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr "A tulajdonságnevek csak a következő ASCII karaktereket tartalmazhatják: A-Z, a-z, 0-9, „_”, „-”, „<” és „>”, valamint elválasztóként „/”"
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:427
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "A tulajdonságnevekben nem lehet két vagy több egymást követő „/” karakter"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:441
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "A tulajdonságnevek nem végződhetnek „/” karakterre"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:654
 msgid "Edit Property"
 msgstr "Tulajdonság szerkesztése"
 
