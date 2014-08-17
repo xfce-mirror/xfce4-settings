@@ -333,6 +333,7 @@ xfce_randr_cleanup (XfceRandr *randr)
     g_free (randr->rotations);
     g_free (randr->status);
     g_free (randr->position);
+    g_free (randr->mirrored);
     g_free (randr->priv->output_info);
 }
 
