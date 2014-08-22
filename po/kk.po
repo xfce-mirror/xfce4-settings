@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-26 00:30+0100\n"
-"PO-Revision-Date: 2014-01-30 03:14+0000\n"
+"POT-Creation-Date: 2014-07-27 18:30+0200\n"
+"PO-Revision-Date: 2014-08-22 02:33+0000\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
-"Language-Team: Kazakh (http://www.transifex.com/projects/p/xfce/language/kk/)\n"
+"Language-Team: Kazakh (http://www.transifex.com/projects/p/xfce4-settings/language/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -206,21 +206,21 @@ msgstr "Ты_шқан"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Баптаулар басқарушысының сокеті"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:96
-#: ../dialogs/display-settings/main.c:138
+#: ../dialogs/display-settings/main.c:121
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:40
@@ -229,7 +229,7 @@ msgstr "Нұсқа ақпараты"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1994
+#: ../dialogs/display-settings/main.c:2950
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -239,7 +239,7 @@ msgstr "Көмек үшін '%s --help' енгізіңіз."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:2013
+#: ../dialogs/display-settings/main.c:2969
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -248,7 +248,7 @@ msgstr "Xfce өндіру тобы. Барлық құқықтары қорғал
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:2014
+#: ../dialogs/display-settings/main.c:2970
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -410,8 +410,7 @@ msgstr "Бап_таулар"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/appearance-settings/main.c:892
-#: ../dialogs/display-settings/main.c:103
-#: ../dialogs/display-settings/main.c:114
+#: ../dialogs/display-settings/main.c:87 ../dialogs/display-settings/main.c:98
 msgid "None"
 msgstr "Ешнәрсе"
 
@@ -541,22 +540,18 @@ msgid "R_esolution:"
 msgstr "Кең_ейтілуі:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "P_osition:"
-msgstr "Ор_наласуы:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Use this output"
 msgstr "Бұ_л шығысты қолдану"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
 msgstr "А_йналы дисплейдер"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Configure _new displays when connected"
 msgstr "Жаңа д_исплейдер қосылған кезде оларды баптау"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Identify Displays"
 msgstr "Дисплейдерді тану"
 
@@ -588,55 +583,35 @@ msgstr "Кеңейтілген"
 msgid "radiobutton"
 msgstr "radiobutton"
 
-#: ../dialogs/display-settings/main.c:91
-msgid "Same as"
-msgstr "Келесідей сияқты"
-
-#: ../dialogs/display-settings/main.c:92
-msgid "Above"
-msgstr "Үстінен"
-
-#: ../dialogs/display-settings/main.c:93
-msgid "Below"
-msgstr "Астынан"
-
-#: ../dialogs/display-settings/main.c:94
-msgid "Right of"
-msgstr "Оң жақтан"
-
-#: ../dialogs/display-settings/main.c:95
-msgid "Left of"
-msgstr "Сол жақтан"
-
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:88
 msgid "Left"
 msgstr "Сол жақ"
 
-#: ../dialogs/display-settings/main.c:105
+#: ../dialogs/display-settings/main.c:89
 msgid "Inverted"
 msgstr "Теріс"
 
-#: ../dialogs/display-settings/main.c:106
+#: ../dialogs/display-settings/main.c:90
 msgid "Right"
 msgstr "Оң жақ"
 
-#: ../dialogs/display-settings/main.c:115
+#: ../dialogs/display-settings/main.c:99
 msgid "Horizontal"
 msgstr "Жатық"
 
-#: ../dialogs/display-settings/main.c:116
+#: ../dialogs/display-settings/main.c:100
 msgid "Vertical"
 msgstr "Тік"
 
-#: ../dialogs/display-settings/main.c:117
+#: ../dialogs/display-settings/main.c:101
 msgid "Horizontal and Vertical"
 msgstr "Горизонталды және вертикалды"
 
-#: ../dialogs/display-settings/main.c:139
+#: ../dialogs/display-settings/main.c:122
 msgid "Minimal interface to set up an external output"
 msgstr "Сыртқы шығысты орнату үшін минималды интерфейс"
 
-#: ../dialogs/display-settings/main.c:228
+#: ../dialogs/display-settings/main.c:247
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -644,68 +619,92 @@ msgid ""
 msgstr "Егер осы сұраққа жауап бермесеңіз, алдыңғы баптаулар %i секундтан кейін қалпына келтіріледі."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:749
+#: ../dialogs/display-settings/main.c:532
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Гц"
 
-#: ../dialogs/display-settings/main.c:1042
+#: ../dialogs/display-settings/main.c:818
 msgid "Display:"
 msgstr "Дисплей:"
 
-#: ../dialogs/display-settings/main.c:1047
+#: ../dialogs/display-settings/main.c:823
 msgid "Resolution:"
 msgstr "Кең_ейтілуі:"
 
-#: ../dialogs/display-settings/main.c:1234
+#: ../dialogs/display-settings/main.c:1003
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Соңғы белсенді шығысты сөндіруге болмайды, өйткені жүйеңіз қолдануға жарамайтын болады."
 
-#: ../dialogs/display-settings/main.c:1236
+#: ../dialogs/display-settings/main.c:1005
 msgid "Selected output not disabled"
 msgstr "Таңдалған шығыс сөндірілген емес"
 
-#: ../dialogs/display-settings/main.c:2026
-#: ../dialogs/display-settings/xfce-randr.c:350
+#: ../dialogs/display-settings/main.c:2140
+msgid ""
+"Select a monitor to change its properties; drag it to rearrange its "
+"placement."
+msgstr "Қасиеттерін өзгерту үшін мониторды таңдаңыз; орналасуын өзгерту үшін оны тартып апарыңыз."
+
+#: ../dialogs/display-settings/main.c:2177
+#: ../dialogs/display-settings/main.c:2251
+#, c-format
+msgid "(%i, %i)"
+msgstr "(%i, %i)"
+
+#. Translators:  this is the feature where what you see on your laptop's
+#. * screen is the same as your external monitor.  Here, "Mirror" is being
+#. * used as an adjective, not as a verb.  For example, the Spanish
+#. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
+#: ../dialogs/display-settings/main.c:2283
+msgid "Mirror Screens"
+msgstr "Бірдей экрандар"
+
+#: ../dialogs/display-settings/main.c:2481
+msgid "(Disabled)"
+msgstr "(Сөндірулі)"
+
+#: ../dialogs/display-settings/main.c:2982
+#: ../dialogs/display-settings/xfce-randr.c:274
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Қолданулы тұрған RandR кеңейтуінің нұсқасын анықтау мүмкін емес"
 
-#: ../dialogs/display-settings/main.c:2027
-#: ../dialogs/display-settings/main.c:2063
+#: ../dialogs/display-settings/main.c:2983
+#: ../dialogs/display-settings/main.c:3019
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce экран баптауларын жөнелту мүмкін емес"
 
-#: ../dialogs/display-settings/main.c:2058
+#: ../dialogs/display-settings/main.c:3014
 msgid "ATI Settings"
 msgstr "ATI баптаулары"
 
-#: ../dialogs/display-settings/main.c:2073
+#: ../dialogs/display-settings/main.c:3029
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Проприетарлы драйвер баптауларын жөнелту мүмкін емес"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Жүйеңіздегі RandR нұсқасы %d.%d. Дисплей баптауларының жұмысы үшін кем дегенде 1.2 нұсқасы керек"
 
-#: ../dialogs/display-settings/xfce-randr.c:626
+#: ../dialogs/display-settings/xfce-randr.c:544
 msgid "Laptop"
 msgstr "Ноутбук"
 
-#: ../dialogs/display-settings/xfce-randr.c:647
+#: ../dialogs/display-settings/xfce-randr.c:565
 msgid "Monitor"
 msgstr "Монитор"
 
-#: ../dialogs/display-settings/xfce-randr.c:650
+#: ../dialogs/display-settings/xfce-randr.c:568
 msgid "Television"
 msgstr "Теледидар"
 
-#: ../dialogs/display-settings/xfce-randr.c:654
+#: ../dialogs/display-settings/xfce-randr.c:572
 msgid "Digital display"
 msgstr "Цифрлық дисплей"
 
@@ -977,7 +976,7 @@ msgstr "Өз ко_мандаңызды қолдану:"
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
-msgstr "Жоғарыдағы тізімде жоқ қоданабаны таңдау үшін өз командаңызды көрсетіңіз."
+msgstr "Жоғарыдағы тізімде жоқ қолданбаны таңдау үшін өз командаңызды көрсетіңіз."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
@@ -1012,7 +1011,7 @@ msgstr "Жаңа \"%s\" қолданбасын қосу сәтсіз"
 #: ../dialogs/mime-settings/xfce-mime-window.c:174
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
-msgstr "MIME түрінің түзетушісі"
+msgstr "MIME түрлерінің түзетушісі"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
@@ -1061,7 +1060,7 @@ msgstr[0] "%d MIME түрі табылды"
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr "\"%s\" қолданабсын \"%s\" mime түрі үшін орнату сәтсіз аяқталды."
+msgstr "\"%s\" қолданбасын \"%s\" mime түрі үшін орнату сәтсіз аяқталды."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
@@ -1127,7 +1126,7 @@ msgstr "Қоссаусақты айналдыру"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Circular scrolling"
-msgstr "Шенберлі айналдыру"
+msgstr "Шеңберлі айналдыру"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "None (right-handed)"
@@ -1503,24 +1502,25 @@ msgstr "Қасиеттердің атаулары '/' таңбасынан ба�
 msgid "The root element ('/') is not a valid property name"
 msgstr "Түбірлік ('/') элементі дұрыс қасиет аты емес"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:413
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr "Қасиеттің атында тек ASCII-дің таңбалары A-Z, a-z, 0-9, '_', '-', '<' және '>', оған қоса ажыратқыш ретінде '/' таңбасы болуы керек"
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Қасиеттің атында тек ASCII-дің таңбалары A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' және '>', оған қоса ажыратқыш ретінде '/' таңбасы болуы мүмкін"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:427
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Қасиет аттарында қатар тұрған екі немесе одан да көп '/' таңбалары болмауы керек"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:441
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Қасиеттің аты '/' таңбасымен аяқталмауы тиіс"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:654
 msgid "Edit Property"
 msgstr "Қасиетті түзету"
 
