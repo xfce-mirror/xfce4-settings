@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2013
+# Pasi Lallinaho <pasi@shimmerproject.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:46+0200\n"
-"PO-Revision-Date: 2013-11-11 20:38+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/xfce/language/fi/)\n"
+"POT-Creation-Date: 2014-07-27 18:30+0200\n"
+"PO-Revision-Date: 2014-08-22 18:48+0000\n"
+"Last-Translator: Pasi Lallinaho <pasi@shimmerproject.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/xfce4-settings/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -49,11 +50,11 @@ msgstr "AT-SPI -palvelua ei löytynyt"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive _Technologies"
-msgstr ""
+msgstr "Avustavat _teknologiat"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "_Use sticky keys"
-msgstr ""
+msgstr "Käytä t_arttuvia näppäimiä"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid ""
@@ -74,7 +75,7 @@ msgstr "Jos valitset tämän, muuntonäppäimet (kuten Ctrl, Alt ja Vaihto) pysy
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Disable sticky keys if two keys are _pressed"
-msgstr ""
+msgstr "Ota tarttuvat näppäimet pois käytöstä jos _kahta näppäinta painetaan"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid ""
@@ -156,7 +157,7 @@ msgstr "_Kiihdytysviive:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "Acceleration t_ime:"
-msgstr ""
+msgstr "Kiihdytysa_ika:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "Ma_ximum speed:"
@@ -206,21 +207,21 @@ msgstr "_Hiiri"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
 msgstr "Asetustenhallinnan pistoke"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
-#: ../dialogs/display-settings/main.c:137
+#: ../dialogs/display-settings/main.c:120
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
 msgstr "PISTOKE"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:96
-#: ../dialogs/display-settings/main.c:138
+#: ../dialogs/display-settings/main.c:121
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:40
@@ -229,7 +230,7 @@ msgstr "Versiotiedot"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:1943
+#: ../dialogs/display-settings/main.c:2950
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
@@ -239,7 +240,7 @@ msgstr "Saat ohjeita komennolla \"%s --help\"."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:1962
+#: ../dialogs/display-settings/main.c:2969
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
@@ -248,7 +249,7 @@ msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:1963
+#: ../dialogs/display-settings/main.c:2970
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
@@ -314,7 +315,7 @@ msgstr "_Vihjeistys:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 msgid "_Enable anti-aliasing"
-msgstr ""
+msgstr "Kytke antialiasointi päälle"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid ""
@@ -392,7 +393,7 @@ msgstr "Toistetaanko käyttöliittymän äänet (vaatii Canberra-tuen)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Enable input feedbac_k sounds"
-msgstr ""
+msgstr "Kytke syötön _vahvistusäänet päälle"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid ""
@@ -410,8 +411,7 @@ msgstr "_Asetukset"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/appearance-settings/main.c:892
-#: ../dialogs/display-settings/main.c:103
-#: ../dialogs/display-settings/main.c:114
+#: ../dialogs/display-settings/main.c:87 ../dialogs/display-settings/main.c:98
 msgid "None"
 msgstr "Ei mitään"
 
@@ -448,7 +448,7 @@ msgstr "Teksti kuvakkeiden vieressä"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
-msgstr ""
+msgstr "Varoitus: tällä kuvaketeemalla ei ole välimuistitiedostoa. Voit luoda tämän ajamalla <i>gtk-update-icon-cache %s/%s/</i> päätteessä."
 
 #: ../dialogs/appearance-settings/main.c:765
 #, c-format
@@ -541,20 +541,20 @@ msgid "R_esolution:"
 msgstr "_Tarkkuus:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "P_osition:"
-msgstr "_Sijainti:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Use this output"
 msgstr "Käytä tätä lä_htöä"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
 msgstr "_Peilaa näytöt"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Configure _new displays when connected"
 msgstr "_Määritä uuden näytön asetukset liitettäessä"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid "Identify Displays"
+msgstr "Tunnista näytöt"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -578,61 +578,41 @@ msgstr "Vain näyttö 2"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "Advanced"
-msgstr ""
+msgstr "Edistynyt"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
-msgstr ""
+msgstr "valintapainike"
 
-#: ../dialogs/display-settings/main.c:91
-msgid "Same as"
-msgstr ""
-
-#: ../dialogs/display-settings/main.c:92
-msgid "Above"
-msgstr ""
-
-#: ../dialogs/display-settings/main.c:93
-msgid "Below"
-msgstr ""
-
-#: ../dialogs/display-settings/main.c:94
-msgid "Right of"
-msgstr ""
-
-#: ../dialogs/display-settings/main.c:95
-msgid "Left of"
-msgstr ""
-
-#: ../dialogs/display-settings/main.c:104
+#: ../dialogs/display-settings/main.c:88
 msgid "Left"
 msgstr "Vastapäivään"
 
-#: ../dialogs/display-settings/main.c:105
+#: ../dialogs/display-settings/main.c:89
 msgid "Inverted"
 msgstr "Ylösalaisin"
 
-#: ../dialogs/display-settings/main.c:106
+#: ../dialogs/display-settings/main.c:90
 msgid "Right"
 msgstr "Myötäpäivään"
 
-#: ../dialogs/display-settings/main.c:115
+#: ../dialogs/display-settings/main.c:99
 msgid "Horizontal"
 msgstr "Vaakasuunnassa"
 
-#: ../dialogs/display-settings/main.c:116
+#: ../dialogs/display-settings/main.c:100
 msgid "Vertical"
 msgstr "Pystysuunnassa"
 
-#: ../dialogs/display-settings/main.c:117
+#: ../dialogs/display-settings/main.c:101
 msgid "Horizontal and Vertical"
-msgstr ""
+msgstr "Vaaka- ja pystytaso"
 
-#: ../dialogs/display-settings/main.c:139
+#: ../dialogs/display-settings/main.c:122
 msgid "Minimal interface to set up an external output"
 msgstr "Yksinkertaisin tapa ottaa käyttöön ulkoinen kuvalähtö"
 
-#: ../dialogs/display-settings/main.c:227
+#: ../dialogs/display-settings/main.c:247
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -640,68 +620,92 @@ msgid ""
 msgstr "Edelliset asetukset palautetaan %i sekunnin kuluttua, jos et vastaa tähän kysymykseen."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:748
+#: ../dialogs/display-settings/main.c:532
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1041
+#: ../dialogs/display-settings/main.c:818
 msgid "Display:"
 msgstr "Näyttö:"
 
-#: ../dialogs/display-settings/main.c:1046
+#: ../dialogs/display-settings/main.c:823
 msgid "Resolution:"
 msgstr "Tarkkuus:"
 
-#: ../dialogs/display-settings/main.c:1233
+#: ../dialogs/display-settings/main.c:1003
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Vähintään yhden kuvalähdön on oltava aktiivinen, tai järjestelmä on käyttökelvoton."
 
-#: ../dialogs/display-settings/main.c:1235
+#: ../dialogs/display-settings/main.c:1005
 msgid "Selected output not disabled"
 msgstr "Valittua lähtöä ei poistettu käytöstä"
 
-#: ../dialogs/display-settings/main.c:1975
-#: ../dialogs/display-settings/xfce-randr.c:350
+#: ../dialogs/display-settings/main.c:2140
+msgid ""
+"Select a monitor to change its properties; drag it to rearrange its "
+"placement."
+msgstr "Valitse näyttö muuttaaksesi sen asetuksia; vedä ja pudota muuttaaksesi sen sijaintia."
+
+#: ../dialogs/display-settings/main.c:2177
+#: ../dialogs/display-settings/main.c:2251
+#, c-format
+msgid "(%i, %i)"
+msgstr "(%i, %i)"
+
+#. Translators:  this is the feature where what you see on your laptop's
+#. * screen is the same as your external monitor.  Here, "Mirror" is being
+#. * used as an adjective, not as a verb.  For example, the Spanish
+#. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
+#: ../dialogs/display-settings/main.c:2283
+msgid "Mirror Screens"
+msgstr "Peilatut näytöt"
+
+#: ../dialogs/display-settings/main.c:2481
+msgid "(Disabled)"
+msgstr "(Pois päältä)"
+
+#: ../dialogs/display-settings/main.c:2982
+#: ../dialogs/display-settings/xfce-randr.c:274
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "RandR-laajennuksen versiota ei voi selvittää"
 
-#: ../dialogs/display-settings/main.c:1976
-#: ../dialogs/display-settings/main.c:2012
+#: ../dialogs/display-settings/main.c:2983
+#: ../dialogs/display-settings/main.c:3019
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce:n näyttöasetussovellusta ei voi käynnistää"
 
-#: ../dialogs/display-settings/main.c:2007
+#: ../dialogs/display-settings/main.c:3014
 msgid "ATI Settings"
 msgstr "ATI:n asetukset"
 
-#: ../dialogs/display-settings/main.c:2022
+#: ../dialogs/display-settings/main.c:3029
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Näytönohjainvalmistajan asetussovellusta ei voi käynnistää"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:358
+#: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Järjestelmä käyttää RandR-laajennuksen versiota %d.%d. Näytön asetukset vaativat toimiakseen vähintään version 1.2"
 
-#: ../dialogs/display-settings/xfce-randr.c:626
+#: ../dialogs/display-settings/xfce-randr.c:544
 msgid "Laptop"
 msgstr "Kannettava"
 
-#: ../dialogs/display-settings/xfce-randr.c:647
+#: ../dialogs/display-settings/xfce-randr.c:565
 msgid "Monitor"
 msgstr "Näyttö"
 
-#: ../dialogs/display-settings/xfce-randr.c:650
+#: ../dialogs/display-settings/xfce-randr.c:568
 msgid "Television"
 msgstr "Televisio"
 
-#: ../dialogs/display-settings/xfce-randr.c:654
+#: ../dialogs/display-settings/xfce-randr.c:572
 msgid "Digital display"
 msgstr "Digitaalinäyttö"
 
@@ -720,7 +724,7 @@ msgstr "Pikanäppäinkomento"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:147
 msgid "Enter the command you want to trigger with a shortcut."
-msgstr ""
+msgstr "Syötä komento jonka haluat käynnistää pikanäppäimellä."
 
 #. We are editing an existing shortcut
 #: ../dialogs/keyboard-settings/command-dialog.c:165
@@ -860,7 +864,7 @@ msgstr "_Toiminta"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Define shortcuts for la_unching applications:"
-msgstr ""
+msgstr "Määritä pikanäppäiment sovellusten _käynnistämiseen:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Reset to _Defaults"
@@ -886,7 +890,7 @@ msgstr "N_äppäimistön malli"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Change la_yout option"
-msgstr ""
+msgstr "Muuta sijoitusasetusta"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "Co_mpose key"
@@ -894,11 +898,11 @@ msgstr "Co_mpose-näppäin"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "Move currently selected item up by one row"
-msgstr ""
+msgstr "Siirrä valittu kohde yksi rivi ylöspäin"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "Move currently selected item down by one row"
-msgstr ""
+msgstr "Siirrä valittu kohde yksi rivi alaspäin"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Key_board layout"
@@ -1112,7 +1116,7 @@ msgstr "%.1f s"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "Disabled"
-msgstr ""
+msgstr "Pois päältä"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 msgid "Edge scrolling"
@@ -1124,7 +1128,7 @@ msgstr "Kahden sormen vieritys"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Circular scrolling"
-msgstr ""
+msgstr "Ympyränmuotoinen vieritys"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "None (right-handed)"
@@ -1182,7 +1186,7 @@ msgstr "Painikkeet"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Acceleratio_n:"
-msgstr ""
+msgstr "_Kiihdytys:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid ""
@@ -1228,11 +1232,11 @@ msgstr "Kosketuslevyn toiminta estetään, kun käytät näppäimistöä"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Duratio_n:"
-msgstr ""
+msgstr "K_esto:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Tap touchpad to clic_k"
-msgstr ""
+msgstr "_Napauta kosketuslevyä napsauttaaksesi"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Scrolling _mode:"
@@ -1252,7 +1256,7 @@ msgstr "_Kosketuslevy"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Trac_king mode:"
-msgstr ""
+msgstr "_Seurantatila:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "_Rotation:"
@@ -1260,7 +1264,7 @@ msgstr "_Kääntö:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Tab_let"
-msgstr ""
+msgstr "_Tabletti"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "_Devices"
@@ -1500,24 +1504,25 @@ msgstr "Asetuksen nimen täytyy alkaa /-merkillä."
 msgid "The root element ('/') is not a valid property name"
 msgstr "Juurielementti (\"/\") ei kelpaa asetuksen nimeksi."
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:413
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr "Asetuksen nimi voi sisältää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, \"_\", \"-\", \"<\" ja \">\", sekä erotinmerkin \"/\"."
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Nimet voivat sisältää vain ASCII-merkkejä A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' ja '>', sekä '/' erottimena"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:427
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Asetuksen nimessä ei voi olla peräkkäisiä /-merkkejä."
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:441
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Asetuksen nimi ei voi päättyä /-merkkiin."
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:654
 msgid "Edit Property"
 msgstr "Muokkaa asetusta"
 
