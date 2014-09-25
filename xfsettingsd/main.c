@@ -180,6 +180,7 @@ main (gint argc, gchar **argv)
        g_option_context_add_group (context, gtk_get_option_group (FALSE));
     */
     g_option_context_add_group (context, xfce_sm_client_get_option_group (argc, argv));
+    g_option_context_set_ignore_unknown_options(context, TRUE);
 
     /* parse options */
     if (!g_option_context_parse (context, &argc, &argv, &error))
