@@ -325,10 +325,21 @@ xfce_workspaces_helper_set_names_real (XfceWorkspacesHelper *helper)
         for (i = 0; i < names->len && i < n_workspaces; i++)
         {
             val = g_ptr_array_index (names, i);
-            name = g_value_get_string (val);
+            if (G_VALUE_HOLDS_STRING(val))
+            {
+                name = g_value_get_string (val);
 
-            /* insert the name with nul */
-            g_string_append_len (names_str, name, strlen (name) + 1);
+                /* insert the name with nul */
+                g_string_append_len (names_str, name, strlen (name) + 1);
+            }
+            else
+            {
+                /* value in xfconf isn't a string, so make a default one */
+                new_name = g_strdup_printf (_("Workspace %d"), i + 1);
+                /* insert the name with nul */
+                g_string_append_len (names_str, new_name, strlen (new_name) + 1);
+                g_free (new_name);
+            }
         }
 
         /* update stamp so new names is not handled for the next second */
@@ -546,6 +557,7 @@ xfce_workspaces_helper_save_names (XfceWorkspacesHelper *helper)
              {
                  /* set the old xfconf name to the new name */
                  g_value_unset (val_b);
+                 g_value_init (val_b, G_TYPE_STRING);
                  g_value_set_string (val_b, name_a);
 
                  save_array = TRUE;
