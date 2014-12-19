@@ -21,6 +21,8 @@ xfsettingsd_SOURCES = \
 	debug.h \
 	clipboard-manager.c \
 	clipboard-manager.h \
+	gtk-decorations.c \
+	gtk-decorations.h \
 	keyboards.c \
 	keyboards.h \
 	keyboard-shortcuts.c \

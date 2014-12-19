@@ -57,6 +57,7 @@
 #include "keyboard-shortcuts.h"
 #include "workspaces.h"
 #include "clipboard-manager.h"
+#include "gtk-decorations.h"
 #include "xsettings.h"
 
 #ifdef HAVE_XRANDR
@@ -159,6 +160,7 @@ main (gint argc, gchar **argv)
     GObject              *accessibility_helper;
     GObject              *shortcuts_helper;
     GObject              *keyboard_layout_helper;
+    GObject              *gtk_decorations_helper;
     GObject              *xsettings_helper;
     GObject              *clipboard_daemon = NULL;
 #ifdef HAVE_XRANDR
@@ -298,6 +300,7 @@ main (gint argc, gchar **argv)
     shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
     keyboard_layout_helper = g_object_new (XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, NULL);
     workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
+    gtk_decorations_helper = g_object_new (XFCE_TYPE_DECORATIONS_HELPER, NULL);
 
     if (g_getenv ("XFSETTINGSD_NO_CLIPBOARD") == NULL)
     {
@@ -339,6 +342,7 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (shortcuts_helper));
     g_object_unref (G_OBJECT (keyboard_layout_helper));
     g_object_unref (G_OBJECT (workspaces_helper));
+    g_object_unref (G_OBJECT (gtk_decorations_helper));
 
     if (G_LIKELY (clipboard_daemon != NULL))
     {
