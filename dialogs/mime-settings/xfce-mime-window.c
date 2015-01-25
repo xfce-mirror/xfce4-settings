@@ -407,9 +407,14 @@ xfce_mime_window_mime_user (void)
 
     table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 
-    filename = xfce_resource_save_location (XFCE_RESOURCE_DATA, "applications/mimeapps.list", FALSE);
+    filename = xfce_resource_save_location (XFCE_RESOURCE_CONFIG, "mimeapps.list", FALSE);
     if (filename == NULL)
-        return table;
+    {
+        /* deprecated location (glib < 2.41) */
+        filename = xfce_resource_save_location (XFCE_RESOURCE_DATA, "applications/mimeapps.list", FALSE);
+        if (filename == NULL)
+            return table;
+    }
 
     rc = xfce_rc_simple_open (filename, TRUE);
     g_free (filename);
