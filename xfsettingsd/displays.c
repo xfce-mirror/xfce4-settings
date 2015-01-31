@@ -695,9 +695,14 @@ xfce_displays_helper_load_from_xfconf (XfceDisplaysHelper *helper,
             rate = (gdouble) helper->resources->modes[m].dotClock /
                     ((gdouble) helper->resources->modes[m].hTotal * (gdouble) helper->resources->modes[m].vTotal);
 
+            /* construct a string equivalent to the mode generated in displays */
+            /* property is the resources mode translated into display panel name */
+            g_snprintf (property, sizeof (property), "%dx%d", helper->resources->modes[m].width,
+                        helper->resources->modes[m].height);
+
             /* find the mode corresponding to the saved values */
-            if (rint (rate) == rint (output_rate)
-                && (g_strcmp0 (helper->resources->modes[m].name, str_value) == 0))
+            if (rint (rate * 10) == rint (output_rate * 10)
+                && (g_strcmp0 (property, str_value) == 0))
             {
                 valid_mode = helper->resources->modes[m].id;
                 break;
