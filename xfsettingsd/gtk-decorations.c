@@ -150,8 +150,6 @@ xfce_decorations_helper_init (XfceDecorationsHelper *helper)
 static void
 xfce_decorations_helper_finalize (GObject *object)
 {
-    XfceDecorationsHelper *helper = XFCE_DECORATIONS_HELPER (object);
-
     (*G_OBJECT_CLASS (xfce_decorations_helper_parent_class)->finalize) (object);
 }
 
