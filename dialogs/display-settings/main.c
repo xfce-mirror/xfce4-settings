@@ -2861,6 +2861,9 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
             /* Can outputs be cloned? */
             if (display_settings_get_n_active_outputs () > 1)
                 mode = xfce_randr_clonable_mode (xfce_randr);
+            else
+                mode = None;
+
             gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), mode != None);
 
             if (xfce_randr->mode[0] != None)

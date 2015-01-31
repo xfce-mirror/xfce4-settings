@@ -298,7 +298,9 @@ xfce_keyboard_layout_get_option (gchar **options,
         }
     }
 
-    *_other_options = other_options;
+    if (_other_options)
+        *_other_options = other_options;
+
     return option_value;
 }
 
