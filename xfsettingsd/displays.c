@@ -847,6 +847,9 @@ xfce_displays_helper_list_outputs (XfceDisplaysHelper *helper)
         crtc = xfce_displays_helper_find_crtc_by_id (helper, output->info->crtc);
         output->active = crtc && crtc->mode != None;
 
+        /* Translate output->name into xfconf compatible format in place */
+        g_strcanon(output->info->name, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_<>", '_');
+
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Detected output %lu %s.", output->id,
                         output->info->name);
 

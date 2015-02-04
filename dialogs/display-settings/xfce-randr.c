@@ -244,6 +244,9 @@ xfce_randr_populate (XfceRandr *randr,
 
         /* fill in the name used by the UI */
         randr->friendly_name[m] = xfce_randr_friendly_name (randr, m, output_ids[m]);
+        
+        /* Replace spaces with underscore in name for xfconf compatibility */
+        g_strcanon(randr->priv->output_info[m]->name, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_<>", '_');
     }
     /* populate mirrored details */
     xfce_randr_guess_relations (randr);
