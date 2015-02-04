@@ -36,6 +36,10 @@
 #include <X11/Xcursor/Xcursor.h>
 #endif /* !HAVE_XCURSOR */
 
+#ifdef HAVE_LIBINPUT
+#include "libinput-properties.h"
+#endif /* HAVE_LIBINPUT */
+
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 
@@ -114,7 +118,17 @@ enum
     N_DEVICE_COLUMNS
 };
 
-
+typedef union
+{
+    gchar   c;
+    guchar  uc;
+    gint16  i16;
+    guint16 u16;
+    gint32  i32;
+    guint32 u32;
+    float   f;
+    Atom    a;
+} propdata_t;
 
 static gchar *
 mouse_settings_format_value_px (GtkScale *scale,
@@ -576,6 +590,128 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
 
 
 
+#ifdef HAVE_LIBINPUT
+/* FIXME: Completely overkill here and better suited in some common file */
+static gboolean
+mouse_settings_get_device_prop (Display     *xdisplay,
+                                XDevice     *device,
+                                const gchar *prop_name,
+                                Atom         type,
+                                propdata_t  *retval)
+{
+    Atom     prop, float_type, type_ret;
+    gulong   n_items, bytes_after;
+    gint     rc, format;
+    guchar  *data;
+    gboolean success;
+
+    prop = XInternAtom (xdisplay, prop_name, False);
+    float_type = XInternAtom (xdisplay, "FLOAT", False);
+
+    gdk_error_trap_push ();
+    rc = XGetDeviceProperty (xdisplay, device, prop, 0, 1, False,
+                             type, &type_ret, &format, &n_items,
+                             &bytes_after, &data);
+    gdk_error_trap_pop ();
+    if (rc == Success && type_ret == type && n_items > 0)
+    {
+        success = TRUE;
+        switch (type_ret)
+        {
+            case XA_INTEGER:
+                switch (format)
+                {
+                    case 8:
+                        retval->c = *((gchar*) data);
+                        break;
+                    case 16:
+                        retval->i16 = *((gint16 *) data);
+                        break;
+                    case 32:
+                        retval->i32 = *((gint32 *) data);
+                        break;
+                }
+                break;
+            case XA_CARDINAL:
+                switch (format)
+                {
+                    case 8:
+                        retval->uc = *((guchar*) data);
+                        break;
+                    case 16:
+                        retval->u16 = *((guint16 *) data);
+                        break;
+                    case 32:
+                        retval->u32 = *((guint32 *) data);
+                        break;
+                }
+                break;
+            case XA_ATOM:
+                retval->a = *((Atom *) data);
+                break;
+            default:
+                if (type_ret == float_type)
+                {
+                    retval->f = *((float*) data);
+                }
+                else
+                {
+                    success = FALSE;
+                    g_warning ("Unhandled type, please implement it");
+                }
+                break;
+        }
+        XFree (data);
+
+        return success;
+    }
+
+    return FALSE;
+}
+
+static gboolean
+mouse_settings_get_libinput_accel (Display *xdisplay,
+                                   XDevice *device,
+                                   gdouble *val)
+{
+    propdata_t pdata;
+    Atom float_type;
+
+    float_type = XInternAtom (xdisplay, "FLOAT", False);
+    if (mouse_settings_get_device_prop (xdisplay, device, LIBINPUT_PROP_ACCEL, float_type, &pdata))
+    {
+        /* We use double internally, for whatever reason */
+        *val = (gdouble) (pdata.f + 1.0) * 5.0;
+
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+
+
+static gboolean
+mouse_settings_get_libinput_boolean (Display     *xdisplay,
+                                     XDevice     *device,
+                                     const gchar *prop_name,
+                                     gboolean    *val)
+{
+    propdata_t pdata;
+
+    if (mouse_settings_get_device_prop (xdisplay, device, prop_name, XA_INTEGER, &pdata))
+    {
+        *val = (gboolean) (pdata.c);
+
+        return TRUE;
+    }
+
+    return FALSE;
+}
+#endif /* HAVE_LIBINPUT */
+
+
+
 #ifdef DEVICE_PROPERTIES
 static gint
 mouse_settings_device_get_int_property (XDevice *device,
@@ -989,6 +1125,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gint               ndevices;
     gboolean           is_synaptics = FALSE;
     gboolean           is_wacom = FALSE;
+    gboolean           is_libinput = FALSE;
+    gboolean           left_handed = FALSE;
+    gboolean           reverse_scrolling = FALSE;
 #ifdef DEVICE_PROPERTIES
     Atom               synaptics_prop;
     Atom               wacom_prop;
@@ -1047,63 +1186,73 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 
             XFreeDeviceList (device_info);
         }
-
-        /* get the button mapping */
-        if (nbuttons > 0)
+#ifdef HAVE_LIBINPUT
+        is_libinput = mouse_settings_get_libinput_boolean (xdisplay, device, LIBINPUT_PROP_LEFT_HANDED, &left_handed);
+        mouse_settings_get_libinput_boolean (xdisplay, device, LIBINPUT_PROP_NATURAL_SCROLL, &reverse_scrolling);
+        if (!is_libinput)
+#endif /* HAVE_LIBINPUT */
         {
-            buttonmap = g_new0 (guchar, nbuttons);
-            gdk_error_trap_push ();
-            XGetDeviceButtonMapping (xdisplay, device, buttonmap, nbuttons);
-            if (gdk_error_trap_pop () != 0)
-                g_critical ("Failed to get button map");
-
-            /* figure out the position of the first and second/third button in the map */
-            for (i = 0; i < nbuttons; i++)
+            /* get the button mapping */
+            if (nbuttons > 0)
             {
-                if (buttonmap[i] == 1)
-                    id_1 = i;
-                else if (buttonmap[i] == (nbuttons < 3 ? 2 : 3))
-                    id_3 = i;
-                else if (buttonmap[i] == 4)
-                    id_4 = i;
-                else if (buttonmap[i] == 5)
-                    id_5 = i;
-            }
+                buttonmap = g_new0 (guchar, nbuttons);
+                gdk_error_trap_push ();
+                XGetDeviceButtonMapping (xdisplay, device, buttonmap, nbuttons);
+                if (gdk_error_trap_pop () != 0)
+                    g_critical ("Failed to get button map");
 
-            g_free (buttonmap);
-        }
-        else
-        {
-            g_critical ("Device has no buttons");
-        }
-
-        /* get the feedback states for this device */
-        gdk_error_trap_push ();
-        states = XGetFeedbackControl (xdisplay, device, &nstates);
-        if (gdk_error_trap_pop () != 0 || states == NULL)
-        {
-             g_critical ("Failed to get feedback states");
-        }
-        else
-        {
-            /* get the pointer feedback class */
-            for (pt = states, i = 0; i < nstates; i++)
-            {
-                if (pt->class == PtrFeedbackClass)
+                /* figure out the position of the first and second/third button in the map */
+                for (i = 0; i < nbuttons; i++)
                 {
-                    /* get the state */
-                    state = (XPtrFeedbackState *) pt;
-                    acceleration = (gdouble) state->accelNum / (gdouble) state->accelDenom;
-                    threshold = state->threshold;
+                    if (buttonmap[i] == 1)
+                        id_1 = i;
+                    else if (buttonmap[i] == (nbuttons < 3 ? 2 : 3))
+                        id_3 = i;
+                    else if (buttonmap[i] == 4)
+                        id_4 = i;
+                    else if (buttonmap[i] == 5)
+                        id_5 = i;
+                }
+                g_free (buttonmap);
+                left_handed = (id_1 > id_3);
+                reverse_scrolling = !!(id_5 < id_4);
+            }
+            else
+            {
+                g_critical ("Device has no buttons");
+            }
+        }
+#ifdef HAVE_LIBINPUT
+        if (!mouse_settings_get_libinput_accel (xdisplay, device, &acceleration))
+#endif /* HAVE_LIBINPUT */
+        {
+            /* get the feedback states for this device */
+            gdk_error_trap_push ();
+            states = XGetFeedbackControl (xdisplay, device, &nstates);
+            if (gdk_error_trap_pop () != 0 || states == NULL)
+            {
+                 g_critical ("Failed to get feedback states");
+            }
+            else
+            {
+                /* get the pointer feedback class */
+                for (pt = states, i = 0; i < nstates; i++)
+                {
+                    if (pt->class == PtrFeedbackClass)
+                    {
+                        /* get the state */
+                        state = (XPtrFeedbackState *) pt;
+                        acceleration = (gdouble) state->accelNum / (gdouble) state->accelDenom;
+                        threshold = state->threshold;
+                    }
+
+                    /* advance the offset */
+                    pt = (XFeedbackState *) ((gchar *) pt + pt->length);
                 }
 
-                /* advance the offset */
-                pt = (XFeedbackState *) ((gchar *) pt + pt->length);
+                XFreeFeedbackList (states);
             }
-
-            XFreeFeedbackList (states);
         }
-
 #ifdef DEVICE_PROPERTIES
         /* wacom and synaptics specific properties */
         device_enabled_prop = XInternAtom (xdisplay, "Device Enabled", True);
@@ -1149,7 +1298,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     }
 
     /* update button order */
-    object = gtk_builder_get_object (builder, id_1 > id_3 ? "device-left-handed" : "device-right-handed");
+    object = gtk_builder_get_object (builder, left_handed ? "device-left-handed" : "device-right-handed");
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), TRUE);
 
     object = gtk_builder_get_object (builder, "device-reverse-scrolling");
@@ -1164,7 +1313,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     /* update threshold scale */
     object = gtk_builder_get_object (builder, "device-threshold-scale");
     gtk_range_set_value (GTK_RANGE (object), threshold);
-    gtk_widget_set_sensitive (GTK_WIDGET (object), threshold != -1);
+    gtk_widget_set_visible (GTK_WIDGET (object), threshold != -1);
+    object = gtk_builder_get_object (builder, "device-threshold-label");
+    gtk_widget_set_visible (GTK_WIDGET (object), threshold != -1);
 
     object = gtk_builder_get_object (builder, "device-enabled");
 #ifdef DEVICE_PROPERTIES
@@ -1176,6 +1327,11 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 #else
     gtk_widget_set_visible (GTK_WIDGET (object), FALSE);
 #endif
+
+#ifdef HAVE_LIBINPUT
+    object = gtk_builder_get_object (builder, "device-reset-feedback");
+    gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
+#endif /* HAVE_LIBINPUT */
 
     /* synaptics options */
     object = gtk_builder_get_object (builder, "synaptics-tab");

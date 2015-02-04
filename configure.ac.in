@@ -158,6 +158,12 @@ dnl ************************************
 XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [1.1.0],
                            [xcursor], [Cursor themes support])
 
+dnl *************************************************
+dnl *** Optional support for libinput Xorg driver ***
+dnl *************************************************
+XDT_CHECK_OPTIONAL_PACKAGE([LIBINPUT], [xorg-libinput], [0.6.0],
+                           [xorg-libinput], [libinput Xorg driver support])
+
 dnl ****************************************
 dnl *** Optional support for Libxklavier ***
 dnl ****************************************
@@ -271,6 +277,11 @@ if test x"$XCURSOR_FOUND" = x"yes"; then
 echo "* Xcursor support:           yes"
 else
 echo "* Xcursor support:           no"
+fi
+if test x"$LIBINPUT_FOUND" = x"yes"; then
+echo "* Xorg libinput support:     yes"
+else
+echo "* Xorg libinput support:     no"
 fi
 if test x"$ENABLE_PLUGGABLE_DIALOGS" = x"1"; then
 echo "* Embedded settings dialogs  yes"

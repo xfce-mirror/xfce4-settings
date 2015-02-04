@@ -54,6 +54,7 @@ xfsettingsd_CFLAGS = \
 	$(LIBX11_CFLAGS) \
 	$(LIBNOTIFY_CFLAGS) \
 	$(FONTCONFIG_CFLAGS) \
+	$(LIBINPUT_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfsettingsd_LDFLAGS = \
@@ -75,6 +76,7 @@ xfsettingsd_LDADD = \
 	$(LIBX11_LIBS) \
 	$(LIBNOTIFY_LIBS) \
 	$(FONTCONFIG_LIBS) \
+	$(LIBINPUT_LIBS) \
 	-lm
 
 #
