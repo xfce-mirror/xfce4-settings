@@ -791,7 +791,7 @@ xfce_settings_editor_dialog_channel_reset (XfceSettingsEditorDialog *dialog)
     GtkTreeIter        iter;
     GtkTreePath       *path;
     gchar            **channels;
-    gboolean           found;
+    gboolean           found = FALSE;
     guint              i;
 
     if (dialog->props_channel == NULL)

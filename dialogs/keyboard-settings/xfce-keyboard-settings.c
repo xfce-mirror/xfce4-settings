@@ -1156,10 +1156,8 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
                   /* Get shortcut */
                   new_shortcut =
                     xfce_shortcut_dialog_get_shortcut (XFCE_SHORTCUT_DIALOG (shortcut_dialog));
-
-                  if (g_strcmp0 (command, new_command) != 0
-                      || (test_new_shortcut = (g_strcmp0 (shortcut, new_shortcut) != 0))
-                      || snotify != new_snotify)
+                  test_new_shortcut = (g_strcmp0 (shortcut, new_shortcut) != 0);
+                  if (g_strcmp0 (command, new_command) != 0 || (test_new_shortcut) || snotify != new_snotify)
                     {
                       /* Remove the row because we add new one from the
                        * shortcut-added signal */

@@ -1125,9 +1125,11 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gint               ndevices;
     gboolean           is_synaptics = FALSE;
     gboolean           is_wacom = FALSE;
-    gboolean           is_libinput = FALSE;
     gboolean           left_handed = FALSE;
     gboolean           reverse_scrolling = FALSE;
+#ifdef HAVE_LIBINPUT
+    gboolean           is_libinput = FALSE;
+#endif /* HAVE_LIBINPUT */
 #ifdef DEVICE_PROPERTIES
     Atom               synaptics_prop;
     Atom               wacom_prop;
@@ -1302,7 +1304,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), TRUE);
 
     object = gtk_builder_get_object (builder, "device-reverse-scrolling");
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), !!(id_5 < id_4));
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), reverse_scrolling);
     gtk_widget_set_sensitive (GTK_WIDGET (object), nbuttons >= 5);
 
     /* update acceleration scale */

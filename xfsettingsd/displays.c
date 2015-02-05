@@ -408,7 +408,7 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
 {
     XfceDisplaysHelper *helper = XFCE_DISPLAYS_HELPER (data);
     GPtrArray          *old_outputs;
-    XfceRRCrtc         *crtc;
+    XfceRRCrtc         *crtc = NULL;
     XfceRROutput       *output, *o;
     XEvent             *e = xevent;
     gint                event_num;

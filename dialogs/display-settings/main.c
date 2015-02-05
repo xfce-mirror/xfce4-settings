@@ -136,7 +136,7 @@ static XfceRandr *xfce_randr = NULL;
 static gint randr_event_base;
 
 /* Used to identify the display */
-static GHashTable *display_popups;
+static GHashTable *display_popups = NULL;
 gboolean show_popups = FALSE;
 
 gboolean supports_alpha = FALSE;
@@ -172,7 +172,8 @@ display_settings_changed (void)
 static XfceOutputInfo*
 get_nth_xfce_output_info(gint id)
 {
-    XfceOutputInfo *output;
+    XfceOutputInfo *output = NULL;
+
     if (current_outputs)
         output = g_list_nth (current_outputs, id)->data;
 
@@ -772,7 +773,7 @@ static GtkWidget *
 display_setting_identity_display (gint display_id)
 {
     GtkBuilder       *builder;
-    GtkWidget        *popup;
+    GtkWidget        *popup = NULL;
     GObject          *display_name, *display_details;
     const XfceRRMode *current_mode;
     gchar            *color_hex = "#FFFFFF", *name_label, *details_label;
