@@ -66,6 +66,13 @@ static GdkFilterReturn  xfce_pointers_helper_event_filter             (GdkXEvent
                                                                        GdkEvent           *gdk_event,
                                                                        gpointer            user_data);
 #endif
+#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
+static void             xfce_pointers_helper_change_property          (XDeviceInfo        *device_info,
+                                                                       XDevice            *device,
+                                                                       Display            *xdisplay,
+                                                                       const gchar        *prop_name,
+                                                                       const GValue       *value);
+#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
 
 
@@ -216,37 +223,6 @@ xfce_pointers_is_libinput (Display *xdisplay,
     }
 
     return FALSE;
-}
-
-static void
-xfce_pointers_change_property (XDeviceInfo  *device_info,
-                               XDevice      *device,
-                               Display      *xdisplay,
-                               const gchar  *prop_name,
-                               Atom          type,
-                               int           format,
-                               void         *data,
-                               gulong        nitems)
-{
-    gulong nitems_ret, bytes_after_ret;
-    gint rc, format_ret;
-    Atom prop, type_ret;
-    guchar *data_ret;
-
-    prop = XInternAtom (xdisplay, prop_name, False);
-    rc = XGetDeviceProperty (xdisplay, device, prop, 0, 0, False,
-                             type, &type_ret, &format_ret,
-                             &nitems_ret, &bytes_after_ret, &data_ret);
-    if (rc == Success)
-    {
-        XFree (data_ret);
-
-        if (type_ret == type && format_ret == format)
-        {
-            XChangeDeviceProperty (xdisplay, device, prop, type,
-                                   format, PropModeReplace, data, nitems);
-        }
-    }
 }
 #endif /* HAVE_LIBINPUT */
 
@@ -422,18 +398,24 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
     {
         if (right_handed != -1)
         {
-            gboolean left_handed = !right_handed;
+            GValue value = G_VALUE_INIT;
 
-            xfce_pointers_change_property (device_info, device, xdisplay,
-                                           LIBINPUT_PROP_LEFT_HANDED,
-                                           XA_INTEGER, 8, &left_handed, 1);
+            g_value_init (&value, G_TYPE_INT);
+            g_value_set_int (&value, !right_handed);
+
+            xfce_pointers_helper_change_property (device_info, device, xdisplay,
+                                                  LIBINPUT_PROP_LEFT_HANDED, &value);
         }
 
         if (reverse_scrolling != -1)
         {
-            xfce_pointers_change_property (device_info, device, xdisplay,
-                                           LIBINPUT_PROP_NATURAL_SCROLL,
-                                           XA_INTEGER, 8, &reverse_scrolling, 1);
+            GValue value = G_VALUE_INIT;
+
+            g_value_init (&value, G_TYPE_INT);
+            g_value_set_int (&value, reverse_scrolling);
+
+            xfce_pointers_helper_change_property (device_info, device, xdisplay,
+                                                  LIBINPUT_PROP_NATURAL_SCROLL, &value);
         }
 
         return;
@@ -552,14 +534,15 @@ xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
 #ifdef HAVE_LIBINPUT
     if (xfce_pointers_is_libinput (xdisplay, device))
     {
-        gfloat libinput_accel;
+        gdouble libinput_accel;
+        GValue value = G_VALUE_INIT;
 
         libinput_accel = (acceleration / 5) - 1.0;
-        xfce_pointers_change_property (device_info, device, xdisplay,
-                                       LIBINPUT_PROP_ACCEL,
-                                       XInternAtom (xdisplay, "FLOAT", False),
-                                       32, &libinput_accel, 1);
+        g_value_init (&value, G_TYPE_DOUBLE);
+        g_value_set_double (&value, libinput_accel);
 
+        xfce_pointers_helper_change_property (device_info, device, xdisplay,
+                                              LIBINPUT_PROP_ACCEL, &value);
         return;
     }
 #endif /* HAVE_LIBINPUT */
@@ -718,7 +701,7 @@ xfce_pointers_helper_device_xfconf_name (const gchar *name)
 
 
 
-#ifdef DEVICE_PROPERTIES
+#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
 xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
                                       XDevice      *device,
@@ -871,8 +854,7 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
 
     XFree (props);
 }
-#endif
-
+#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
 
 #ifdef DEVICE_PROPERTIES
