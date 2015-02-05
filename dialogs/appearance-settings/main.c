@@ -288,13 +288,14 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
     gchar        *index_filename;
     const gchar  *theme_name;
     const gchar  *theme_comment;
+    gchar        *name_escaped;
     gchar        *comment_escaped;
+    gchar        *visible_name;
     gchar        *active_theme_name;
     gint          i;
     GSList       *check_list = NULL;
     gchar        *cache_filename;
     gboolean      has_cache;
-    gchar        *tmp;
     gchar        *cache_tooltip;
 
     /* Determine current theme */
@@ -341,8 +342,12 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                     theme_name = xfce_rc_read_entry (index_file, "Name", file);
                     theme_comment = xfce_rc_read_entry (index_file, "Comment", NULL);
 
-                    /* Escape the comment, since tooltips are markup, not text */
+                    /* Escape the theme's name and comment, since they are markup, not text */
+                    name_escaped = g_markup_escape_text (theme_name, -1);
                     comment_escaped = theme_comment ? g_markup_escape_text (theme_comment, -1) : NULL;
+                    visible_name = g_strdup_printf ("<b>%s</b>\n%s", name_escaped, comment_escaped);
+                    g_free (name_escaped);
+                    g_free (comment_escaped);
 
                     /* Cache filename */
                     cache_filename = g_build_filename (icon_theme_dirs[i], file, "icon-theme.cache", NULL);
@@ -351,35 +356,20 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
 
                     /* If the theme has no cache, mention this in the tooltip */
                     if (!has_cache)
-                      {
                         cache_tooltip = g_strdup_printf (_("Warning: this icon theme has no cache file. You can create this by "
                                                            "running <i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."),
                                                          icon_theme_dirs[i], file);
-
-                        if (comment_escaped == NULL)
-                          {
-                            comment_escaped = cache_tooltip;
-                          }
-                        else
-                          {
-                            tmp = g_strconcat (comment_escaped, "\n\n", cache_tooltip, NULL);
-                            g_free (comment_escaped);
-                            g_free (cache_tooltip);
-                            comment_escaped = tmp;
-                          }
-                      }
+		    else
+                        cache_tooltip = NULL;
 
                     /* Append icon theme to the list store */
                     gtk_list_store_append (list_store, &iter);
                     gtk_list_store_set (list_store, &iter,
                                         COLUMN_THEME_NAME, file,
-                                        COLUMN_THEME_DISPLAY_NAME, theme_name,
+                                        COLUMN_THEME_DISPLAY_NAME, visible_name,
                                         COLUMN_THEME_NO_CACHE, !has_cache,
-                                        COLUMN_THEME_COMMENT, comment_escaped,
+                                        COLUMN_THEME_COMMENT, cache_tooltip,
                                         -1);
-
-                    /* Cleanup */
-                    g_free (comment_escaped);
 
                     /* Check if this is the active theme, if so, select it */
                     if (G_UNLIKELY (g_utf8_collate (file, active_theme_name) == 0))
@@ -837,9 +827,10 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
+    gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (object), TRUE);
 
     renderer = gtk_cell_renderer_text_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "markup", COLUMN_THEME_DISPLAY_NAME, NULL);
 
     renderer = gtk_cell_renderer_pixbuf_new ();
     g_object_set (G_OBJECT (renderer), "icon-name", GTK_STOCK_DIALOG_WARNING, NULL);
