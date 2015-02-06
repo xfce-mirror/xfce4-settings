@@ -163,6 +163,9 @@ static void display_settings_minimal_extend_right_toggled    (GtkToggleButton *b
 static void display_settings_minimal_only_display2_toggled   (GtkToggleButton *button,
                                                               GtkBuilder      *builder);
 
+static void display_setting_primary_toggled                  (GtkToggleButton *button,
+                                                              GtkBuilder *builder);
+
 static void
 display_settings_changed (void)
 {
@@ -980,6 +983,69 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
 }
 
 static void
+display_setting_primary_toggled (GtkToggleButton *togglebutton,
+                                 GtkBuilder *builder)
+{
+    guint m;
+
+    if (!xfce_randr)
+        return;
+
+    if (gtk_toggle_button_get_active (togglebutton))
+    {
+        /* Set currently active display as primary */
+        xfce_randr->status[active_output]=XFCE_OUTPUT_STATUS_PRIMARY;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                                active_output);
+        /* and all others as secondary */
+        for (m = 0; m < xfce_randr->noutput; ++m)
+        {
+            if (m != active_output)
+            {
+                xfce_randr->status[m]=XFCE_OUTPUT_STATUS_SECONDARY;
+                xfce_randr_save_output (xfce_randr, "Default", display_channel, m);
+            }
+        }
+    }
+    else
+    {
+        xfce_randr->status[active_output]=XFCE_OUTPUT_STATUS_SECONDARY;
+        xfce_randr_save_output (xfce_randr, "Default", display_channel, active_output);
+    }
+
+    /* Apply the changes */
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+}
+
+static void
+display_setting_primary_populate (GtkBuilder *builder)
+{
+    GObject *check;
+
+    if (!xfce_randr)
+        return;
+
+    check = gtk_builder_get_object (builder, "primary");
+
+    if (xfce_randr->noutput > 1)
+        gtk_widget_show (GTK_WIDGET (check));
+    else
+    {
+        gtk_widget_hide (GTK_WIDGET (check));
+        return;
+    }
+
+    /* Block the "changed" signal to avoid triggering the confirmation dialog */
+    g_signal_handlers_block_by_func (check, display_setting_primary_toggled,
+                                     builder);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check),
+    xfce_randr->status[active_output] != XFCE_OUTPUT_STATUS_SECONDARY);
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (check, display_setting_primary_toggled,
+                                       builder);
+}
+
+static void
 display_setting_output_toggled (GtkToggleButton *togglebutton,
                                 GtkBuilder      *builder)
 {
@@ -1082,6 +1148,7 @@ display_settings_combobox_selection_changed (GtkComboBox *combobox,
 
         /* Update the combo boxes */
         display_setting_output_status_populate (builder);
+        display_setting_primary_populate (builder);
         display_setting_mirror_displays_populate (builder);
         display_setting_resolutions_populate (builder);
         display_setting_refresh_rates_populate (builder);
@@ -1233,7 +1300,7 @@ display_settings_dialog_new (GtkBuilder *builder)
 {
     GObject          *combobox;
     GtkCellRenderer  *renderer;
-    GObject          *label, *check, *mirror, *identify;
+    GObject          *label, *check, *primary, *mirror, *identify;
 
     /* Get the combobox */
     combobox = gtk_builder_get_object (builder, "randr-outputs");
@@ -1255,17 +1322,21 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     /* Setup the combo boxes */
     check = gtk_builder_get_object (builder, "output-on");
+    primary = gtk_builder_get_object (builder, "primary");
     mirror = gtk_builder_get_object (builder, "mirror-displays");
     g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
+    g_signal_connect (G_OBJECT (primary), "toggled", G_CALLBACK (display_setting_primary_toggled), builder);
     g_signal_connect (G_OBJECT (mirror), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled), builder);
     if (xfce_randr->noutput > 1)
     {
         gtk_widget_show (GTK_WIDGET (check));
+        gtk_widget_show (GTK_WIDGET (primary));
         gtk_widget_show (GTK_WIDGET (mirror));
     }
     else
     {
         gtk_widget_hide (GTK_WIDGET (check));
+        gtk_widget_hide (GTK_WIDGET (primary));
         gtk_widget_hide (GTK_WIDGET (mirror));
     }
 
