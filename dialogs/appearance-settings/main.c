@@ -167,8 +167,8 @@ cb_toolbar_style_combo_changed (GtkComboBox *combo)
 {
     gint active;
 
-    /* Get active item, prevent number outside the array */
-    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (toolbar_styles_array));
+    /* Get active item, prevent number outside the array (stay within zero-index) */
+    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (toolbar_styles_array)-1);
 
     /* Save setting */
     xfconf_channel_set_string (xsettings_channel, "/Gtk/ToolbarStyle", toolbar_styles_array[active]);
@@ -194,8 +194,8 @@ cb_hinting_style_combo_changed (GtkComboBox *combo)
 {
     gint active;
 
-    /* Get active item, prevent number outside the array */
-    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (xft_hint_styles_array));
+    /* Get active item, prevent number outside the array (stay within zero-index) */
+    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (xft_hint_styles_array)-1);
 
     /* Save setting */
     xfconf_channel_set_string (xsettings_channel, "/Xft/HintStyle", xft_hint_styles_array[active]);
@@ -206,8 +206,8 @@ cb_rgba_style_combo_changed (GtkComboBox *combo)
 {
     gint active;
 
-    /* Get active item, prevent number outside the array */
-    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (xft_rgba_array));
+    /* Get active item, prevent number outside the array (stay within zero-index) */
+    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (xft_rgba_array)-1);
 
     /* Save setting */
     xfconf_channel_set_string (xsettings_channel, "/Xft/RGBA", xft_rgba_array[active]);

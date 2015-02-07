@@ -1568,6 +1568,10 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
             || g_str_has_prefix (device_info->name, "Virtual core XTEST"))
             continue;
 
+        /* cannot go any further without device name */
+        if (device_info->name == NULL)
+            continue;
+
         /* create a valid xfconf device name */
         xfconf_name = mouse_settings_device_xfconf_name (device_info->name);
 
@@ -1579,8 +1583,7 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
                                            -1);
 
         /* check if we should select this device */
-        if (device_info->name != NULL
-            && opt_device_name != NULL
+        if (opt_device_name != NULL
             && strcmp (opt_device_name, device_info->name) == 0)
         {
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
