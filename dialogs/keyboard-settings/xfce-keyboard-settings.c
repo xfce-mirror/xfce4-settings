@@ -1076,7 +1076,7 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
       if (G_LIKELY (gtk_tree_model_get_iter (model, &iter, path)))
         {
           GtkWidget *command_dialog;
-          gboolean  finished;
+          gboolean  finished = FALSE;
           gboolean  snotify;
           gchar    *shortcut_label;
           gchar    *shortcut;

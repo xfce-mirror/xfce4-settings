@@ -406,6 +406,7 @@ send_incrementally (GsdClipboardManager *manager,
         IncrConversion *rdata;
         gulong          length;
         gulong          items;
+        gulong          bytes;
         guchar         *data;
 
         list = g_slist_find_custom (manager->priv->conversions, xev,
@@ -422,7 +423,9 @@ send_incrementally (GsdClipboardManager *manager,
 
         rdata->offset += length;
 
-        items = length / clipboard_bytes_per_item (rdata->data->format);
+        bytes = clipboard_bytes_per_item (rdata->data->format);
+        items = bytes == 0 ? 0 : length / bytes;
+
         XChangeProperty (manager->priv->display, rdata->requestor,
                          rdata->property, rdata->data->type,
                          rdata->data->format, PropModeAppend,
@@ -533,6 +536,7 @@ convert_clipboard_target (IncrConversion      *rdata,
         gint               n_targets;
         GSList            *list;
         gulong             items;
+        gulong             bytes;
         XWindowAttributes  atts;
 
         if (rdata->target == XA_TARGETS) {
@@ -571,7 +575,8 @@ convert_clipboard_target (IncrConversion      *rdata,
                 }
 
                 rdata->data = target_data_ref (tdata);
-                items = tdata->length / clipboard_bytes_per_item (tdata->format);
+                bytes = clipboard_bytes_per_item (tdata->format);
+                items = bytes == 0 ? 0 : tdata->length / bytes;
                 if (tdata->length <= SELECTION_MAX_SIZE)
                         XChangeProperty (manager->priv->display, rdata->requestor,
                                          rdata->property,

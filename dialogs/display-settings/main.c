@@ -1191,14 +1191,9 @@ display_settings_combobox_populate (GtkBuilder *builder)
     {
         /* Insert the output in the store */
         gtk_list_store_append (store, &iter);
-        if (xfce_randr->mode[m] == None)
-            gtk_list_store_set (store, &iter,
-                                COLUMN_OUTPUT_NAME, xfce_randr->friendly_name[m],
-                                COLUMN_OUTPUT_ID, m, -1);
-        else
-            gtk_list_store_set (store, &iter,
-                                COLUMN_OUTPUT_NAME, xfce_randr->friendly_name[m],
-                                COLUMN_OUTPUT_ID, m, -1);
+        gtk_list_store_set (store, &iter,
+                            COLUMN_OUTPUT_NAME, xfce_randr->friendly_name[m],
+                            COLUMN_OUTPUT_ID, m, -1);
 
         /* Select active output */
         if (m == active_output)
@@ -1568,7 +1563,7 @@ get_mirrored_configuration (void)
     if (!xfce_randr)
         return FALSE;
 
-    if (!xfce_randr->noutput > 1)
+    if (xfce_randr->noutput <= 1)
         return FALSE;
 
     /* Can outputs be cloned? */
@@ -3082,6 +3077,7 @@ main (gint argc, gchar **argv)
 
         if (!xfce_randr)
         {
+            succeeded = FALSE;
             command = g_find_program_in_path ("amdcccle");
 
             if (command != NULL)
@@ -3112,7 +3108,10 @@ main (gint argc, gchar **argv)
 
         /* Hook to make sure the libxfce4ui library is linked */
         if (xfce_titled_dialog_get_type () == 0)
-            return EXIT_FAILURE;
+        {
+            succeeded = FALSE;
+            goto cleanup;
+        }
 
         if (xfce_randr->noutput <= 1 || !minimal)
             display_settings_show_main_dialog (display);
