@@ -189,7 +189,10 @@ send_selection_notify (GsdClipboardManager *manager,
                     (XEvent *)&notify);
         XSync (manager->priv->display, False);
 
-        gdk_error_trap_pop ();
+        if (gdk_error_trap_pop () != 0)
+        {
+                g_critical ("Failed to notify clipboard selection");
+        }
 }
 
 static void
@@ -216,7 +219,10 @@ finish_selection_request (GsdClipboardManager *manager,
                     False, NoEventMask, (XEvent *) &notify);
         XSync (manager->priv->display, False);
 
-        gdk_error_trap_pop ();
+        if (gdk_error_trap_pop () != 0)
+        {
+                g_critical ("Failed to send selection request");
+        }
 }
 
 static int
@@ -599,7 +605,10 @@ convert_clipboard_target (IncrConversion      *rdata,
 
                         XSync (manager->priv->display, False);
 
-                        gdk_error_trap_pop ();
+                        if (gdk_error_trap_pop () != 0)
+                        {
+                                g_critical ("Failed to transfer clipboard contents");
+                        }
                 }
         }
 }

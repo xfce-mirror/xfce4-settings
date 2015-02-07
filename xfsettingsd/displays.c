@@ -351,7 +351,10 @@ xfce_displays_helper_finalize (GObject *object)
         gdk_error_trap_push ();
         XRRFreeScreenResources (helper->resources);
         gdk_flush ();
-        gdk_error_trap_pop ();
+        if (gdk_error_trap_pop () != 0)
+        {
+            g_critical ("Failed to free screen resources");
+        }
         helper->resources = NULL;
     }
 
@@ -871,8 +874,10 @@ xfce_displays_helper_free_output (XfceRROutput *output)
     gdk_error_trap_push ();
     XRRFreeOutputInfo (output->info);
     gdk_flush ();
-    gdk_error_trap_pop ();
-
+    if (gdk_error_trap_pop () != 0)
+    {
+        g_critical ("Failed to free output info");
+    }
     g_free (output);
 }
 
@@ -1215,7 +1220,10 @@ xfce_displays_helper_apply_all (XfceDisplaysHelper *helper)
     /* release the grab, changes are done */
     gdk_x11_display_ungrab (helper->display);
     gdk_flush ();
-    gdk_error_trap_pop ();
+    if (gdk_error_trap_pop () != 0)
+    {
+        g_critical ("Failed to apply display settings");
+    }
 }
 
 

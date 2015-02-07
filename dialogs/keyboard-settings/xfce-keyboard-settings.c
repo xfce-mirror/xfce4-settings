@@ -1633,12 +1633,14 @@ xfce_keyboard_settings_layouts_combo_changed (GtkComboBox          *combo,
   GtkTreeIter   iter;
   gchar        *xfconf_prop_value;
 
-  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combo), &iter);
-  model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
-  gtk_tree_model_get (model, &iter, XKB_LAYOUTS_COMBO_VALUE, &xfconf_prop_value, -1);
-  xfconf_channel_set_string (settings->priv->keyboard_layout_channel,
-                             xfconf_prop_name, xfconf_prop_value);
-  g_free (xfconf_prop_value);
+  if (G_LIKELY(gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combo), &iter)))
+  {
+    model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
+    gtk_tree_model_get (model, &iter, XKB_LAYOUTS_COMBO_VALUE, &xfconf_prop_value, -1);
+    xfconf_channel_set_string (settings->priv->keyboard_layout_channel,
+                               xfconf_prop_name, xfconf_prop_value);
+    g_free (xfconf_prop_value);
+  }
 }
 
 
@@ -1718,27 +1720,29 @@ xfce_keyboard_settings_edit_layout_button_cb (GtkWidget            *widget,
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (view));
 
-  gtk_tree_selection_get_selected (selection, &model, &iter);
-  gtk_tree_model_get (model, &iter,
-                      XKB_TREE_LAYOUTS, &current_layout,
-                      XKB_TREE_VARIANTS, &current_variant,
-                      -1);
+  if (G_LIKELY (gtk_tree_selection_get_selected (selection, &model, &iter)))
+  {
+    gtk_tree_model_get (model, &iter,
+                        XKB_TREE_LAYOUTS, &current_layout,
+                        XKB_TREE_VARIANTS, &current_variant,
+                        -1);
 
-  layout_selection =
-      xfce_keyboard_settings_layout_selection (settings, current_layout, current_variant);
-  if (layout_selection)
-    {
-      gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                          XKB_TREE_LAYOUTS, layout_selection[0],
-                          XKB_TREE_LAYOUTS_NAMES, layout_selection[1],
-                          XKB_TREE_VARIANTS, layout_selection[2],
-                          XKB_TREE_VARIANTS_NAMES, layout_selection[3],
-                          -1);
-      xfce_keyboard_settings_set_layout (settings);
-      g_strfreev (layout_selection);
-    }
-  g_free (current_layout);
-  g_free (current_variant);
+     layout_selection =
+        xfce_keyboard_settings_layout_selection (settings, current_layout, current_variant);
+    if (layout_selection)
+      {
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                            XKB_TREE_LAYOUTS, layout_selection[0],
+                            XKB_TREE_LAYOUTS_NAMES, layout_selection[1],
+                            XKB_TREE_VARIANTS, layout_selection[2],
+                            XKB_TREE_VARIANTS_NAMES, layout_selection[3],
+                            -1);
+        xfce_keyboard_settings_set_layout (settings);
+        g_strfreev (layout_selection);
+      }
+    g_free (current_layout);
+    g_free (current_variant);
+  }
 }
 
 
@@ -2079,34 +2083,38 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
   result = gtk_dialog_run (GTK_DIALOG (keyboard_layout_selection_dialog));
   if (result == GTK_RESPONSE_OK)
     {
-      gtk_tree_selection_get_selected (selection, &model, &iter);
-      gtk_tree_model_get (model, &iter, XKB_AVAIL_LAYOUTS_TREE_ID, &layout,
-                                        XKB_AVAIL_LAYOUTS_TREE_DESCRIPTION, &layout_desc, -1);
+      if (G_LIKELY (gtk_tree_selection_get_selected (selection, &model, &iter)))
+      {
+        gtk_tree_model_get (model, &iter, XKB_AVAIL_LAYOUTS_TREE_ID, &layout,
+                                          XKB_AVAIL_LAYOUTS_TREE_DESCRIPTION, &layout_desc, -1);
 
-      path = gtk_tree_model_get_path (model, &iter);
-      if (gtk_tree_path_get_depth (path) == 1)
-        {
-          variant = g_strdup ("");
-          variant_desc = g_strdup ("");
-        }
-      else
-        {
-          variant = layout;
-          variant_desc = layout_desc;
-          gtk_tree_path_up (path);
-          gtk_tree_model_get_iter (model, &iter, path);
-          gtk_tree_model_get (model, &iter, XKB_AVAIL_LAYOUTS_TREE_ID, &layout,
-                                            XKB_AVAIL_LAYOUTS_TREE_DESCRIPTION, &layout_desc, -1);
-        }
+        path = gtk_tree_model_get_path (model, &iter);
+        if (gtk_tree_path_get_depth (path) == 1)
+          {
+            variant = g_strdup ("");
+            variant_desc = g_strdup ("");
+          }
+        else
+          {
+            variant = layout;
+            variant_desc = layout_desc;
+            gtk_tree_path_up (path);
+            if (G_LIKELY (gtk_tree_model_get_iter (model, &iter, path)))
+              {
+                gtk_tree_model_get (model, &iter, XKB_AVAIL_LAYOUTS_TREE_ID, &layout,
+                                                  XKB_AVAIL_LAYOUTS_TREE_DESCRIPTION, &layout_desc, -1);
+              }
+          }
 
-      val_layout = g_new0 (typeof (gchar*), 5);
-      val_layout[0] = layout;
-      val_layout[1] = layout_desc;
-      val_layout[2] = variant;
-      val_layout[3] = variant_desc;
-      val_layout[4] = NULL;
+        val_layout = g_new0 (typeof (gchar*), 5);
+        val_layout[0] = layout;
+        val_layout[1] = layout_desc;
+        val_layout[2] = variant;
+        val_layout[3] = variant_desc;
+        val_layout[4] = NULL;
 
-      gtk_tree_path_free (path);
+        gtk_tree_path_free (path);
+      }
     }
 
   gtk_widget_hide (GTK_WIDGET (keyboard_layout_selection_dialog));

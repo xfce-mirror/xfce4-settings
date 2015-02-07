@@ -290,10 +290,12 @@ xfce_mime_chooser_row_can_select (GtkTreeSelection  *selection,
     if (G_UNLIKELY (!path_currently_selected))
     {
         /* check if there's an application for the path */
-        gtk_tree_model_get_iter (model, &iter, path);
-        gtk_tree_model_get_value (model, &iter, CHOOSER_COLUMN_APP_INFO, &value);
-        permitted = (g_value_get_object (&value) != NULL);
-        g_value_unset (&value);
+        if (G_LIKELY (gtk_tree_model_get_iter (model, &iter, path)))
+        {
+            gtk_tree_model_get_value (model, &iter, CHOOSER_COLUMN_APP_INFO, &value);
+            permitted = (g_value_get_object (&value) != NULL);
+            g_value_unset (&value);
+        }
     }
 
     return permitted;
