@@ -52,6 +52,7 @@
 
 enum
 {
+    COLUMN_THEME_PREVIEW,
     COLUMN_THEME_NAME,
     COLUMN_THEME_DISPLAY_NAME,
     COLUMN_THEME_COMMENT,
@@ -292,11 +293,18 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
     gchar        *comment_escaped;
     gchar        *visible_name;
     gchar        *active_theme_name;
-    gint          i;
+    gsize         i;
+    gsize         p;
     GSList       *check_list = NULL;
     gchar        *cache_filename;
     gboolean      has_cache;
     gchar        *cache_tooltip;
+    GtkIconTheme *icon_theme;
+    GdkPixbuf    *preview;
+    GdkPixbuf    *icon;
+    GError       *error = NULL;
+    gchar*        preview_icons[4] = { "folder", "go-down", "audio-volume-high", "web-browser" };
+    int           coords[4][2] = { { 4, 4 }, { 24, 4 }, { 4, 24 }, { 24, 24 } };
 
     /* Determine current theme */
     active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Rodent");
@@ -338,6 +346,31 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                     /* Insert the theme in the check list */
                     check_list = g_slist_prepend (check_list, g_strdup (file));
 
+                    /* Create the icon-theme preview */
+                    preview = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8, 44, 44);
+                    gdk_pixbuf_fill (preview, 0x00);
+                    icon_theme = gtk_icon_theme_new ();
+                    gtk_icon_theme_set_custom_theme (icon_theme, file);
+
+                    for (p = 0; p < 4; p++)
+                    {
+                        if (gtk_icon_theme_has_icon (icon_theme, preview_icons[p]))
+                            icon = gtk_icon_theme_load_icon (icon_theme, preview_icons[p], 16, 0, &error);
+                        else
+                            icon = gtk_icon_theme_load_icon (icon_theme, "image-missing", 16, 0, &error);
+
+                        if (!icon)
+                        {
+                            g_warning ("Couldn't load icon: %s", error->message);
+                            g_error_free (error);
+                        }
+                        else
+                        {
+                            gdk_pixbuf_copy_area (icon, 0, 0, 16, 16, preview, coords[p][0], coords[p][1]);
+                            g_object_unref (icon);
+                        }
+                    }
+
                     /* Get translated icon theme name and comment */
                     theme_name = xfce_rc_read_entry (index_file, "Name", file);
                     theme_comment = xfce_rc_read_entry (index_file, "Comment", NULL);
@@ -365,6 +398,7 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                     /* Append icon theme to the list store */
                     gtk_list_store_append (list_store, &iter);
                     gtk_list_store_set (list_store, &iter,
+                                        COLUMN_THEME_PREVIEW, preview,
                                         COLUMN_THEME_NAME, file,
                                         COLUMN_THEME_DISPLAY_NAME, visible_name,
                                         COLUMN_THEME_NO_CACHE, !has_cache,
@@ -379,6 +413,8 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                         gtk_tree_view_scroll_to_cell (tree_view, tree_path, NULL, TRUE, 0.5, 0);
                         gtk_tree_path_free (tree_path);
                     }
+
+                    g_object_unref (preview);
                 }
             }
 
@@ -823,19 +859,27 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Icon themes list */
     object = gtk_builder_get_object (builder, "icon_theme_treeview");
 
-    list_store = gtk_list_store_new (N_THEME_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
     gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (object), TRUE);
 
+    renderer = gtk_cell_renderer_pixbuf_new ();
+
+    column = gtk_tree_view_column_new ();
+    gtk_tree_view_column_pack_start (column, renderer, FALSE);
+    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", 0, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (object), column);
+
     renderer = gtk_cell_renderer_text_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "markup", COLUMN_THEME_DISPLAY_NAME, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 1, "", renderer, "markup", COLUMN_THEME_DISPLAY_NAME, NULL);
 
     renderer = gtk_cell_renderer_pixbuf_new ();
     g_object_set (G_OBJECT (renderer), "icon-name", GTK_STOCK_DIALOG_WARNING, NULL);
 
-    column = gtk_tree_view_get_column (GTK_TREE_VIEW (object), 0);
+    column = gtk_tree_view_get_column (GTK_TREE_VIEW (object), 1);
+
     gtk_tree_view_column_pack_start (column, renderer, FALSE);
     gtk_tree_view_column_add_attribute (column, renderer, "visible", COLUMN_THEME_NO_CACHE);
 
@@ -855,13 +899,13 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Gtk (UI) themes */
     object = gtk_builder_get_object (builder, "gtk_theme_treeview");
 
-    list_store = gtk_list_store_new (N_THEME_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS - 1, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
 
     renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 1, "", renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
 
     appearance_settings_load_ui_themes (list_store, GTK_TREE_VIEW (object));
 
