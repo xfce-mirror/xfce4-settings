@@ -537,7 +537,7 @@ xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
         gdouble libinput_accel;
         GValue value = G_VALUE_INIT;
 
-        libinput_accel = (acceleration / 5) - 1.0;
+        libinput_accel = CLAMP ((acceleration / 5) - 1.0, -1.0, 1.0);
         g_value_init (&value, G_TYPE_DOUBLE);
         g_value_set_double (&value, libinput_accel);
 
@@ -719,6 +719,7 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
     gulong        n_succeeds;
     Atom          float_atom;
     GPtrArray    *array = NULL;
+    int           rc;
     const GValue *val;
     union {
         guchar *c;
@@ -741,7 +742,7 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
 
     gdk_error_trap_push ();
     props = XListDeviceProperties (xdisplay, device, &n_props);
-    if (gdk_error_trap_pop () != 0 || props == NULL)
+    if (gdk_error_trap_pop () || props == NULL)
         return;
 
     float_atom = XInternAtom (xdisplay, "FLOAT", False);
@@ -752,9 +753,11 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
         if (props[n] != prop)
             continue;
 
-        if (XGetDeviceProperty (xdisplay, device, prop, 0, 1000, False,
-                                AnyPropertyType, &type, &format,
-                                &n_items, &bytes_after, &data.c) == Success)
+        gdk_error_trap_push ();
+        rc = XGetDeviceProperty (xdisplay, device, prop, 0, 1000, False,
+                                 AnyPropertyType, &type, &format,
+                                 &n_items, &bytes_after, &data.c);
+        if (!gdk_error_trap_pop () && rc == Success)
         {
             if (n_items == 1
                 && (G_VALUE_HOLDS_INT (value)
@@ -835,7 +838,8 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
                 gdk_error_trap_push ();
                 XChangeDeviceProperty (xdisplay, device, prop, type, format,
                                        PropModeReplace, data.c, n_items);
-                if (gdk_error_trap_pop () != 0)
+                XSync (xdisplay, FALSE);
+                if (gdk_error_trap_pop ())
                 {
                     g_critical ("Failed to set device property %s for %s",
                                 prop_name, device_info->name);
@@ -845,9 +849,10 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
                                 "[%s] Changed device property %s",
                                 device_info->name, prop_name);
             }
-
-            XFree (data.c);
         }
+
+        if (data.c)
+            XFree (data.c);
 
         break;
     }

@@ -597,12 +597,14 @@ mouse_settings_get_device_prop (Display     *xdisplay,
                                 XDevice     *device,
                                 const gchar *prop_name,
                                 Atom         type,
+                                guint        n_items,
                                 propdata_t  *retval)
 {
     Atom     prop, float_type, type_ret;
-    gulong   n_items, bytes_after;
-    gint     rc, format;
-    guchar  *data;
+    gulong   n_items_ret, bytes_after;
+    gint     rc, format, size;
+    guint    i;
+    guchar  *data, *ptr;
     gboolean success;
 
     prop = XInternAtom (xdisplay, prop_name, False);
@@ -610,56 +612,75 @@ mouse_settings_get_device_prop (Display     *xdisplay,
 
     gdk_error_trap_push ();
     rc = XGetDeviceProperty (xdisplay, device, prop, 0, 1, False,
-                             type, &type_ret, &format, &n_items,
+                             type, &type_ret, &format, &n_items_ret,
                              &bytes_after, &data);
     gdk_error_trap_pop ();
-    if (rc == Success && type_ret == type && n_items > 0)
+    if (rc == Success && type_ret == type && n_items_ret >= n_items)
     {
         success = TRUE;
-        switch (type_ret)
+        switch(format)
         {
-            case XA_INTEGER:
-                switch (format)
-                {
-                    case 8:
-                        retval->c = *((gchar*) data);
-                        break;
-                    case 16:
-                        retval->i16 = *((gint16 *) data);
-                        break;
-                    case 32:
-                        retval->i32 = *((gint32 *) data);
-                        break;
-                }
+            case 8:
+                size = sizeof (gchar);
                 break;
-            case XA_CARDINAL:
-                switch (format)
-                {
-                    case 8:
-                        retval->uc = *((guchar*) data);
-                        break;
-                    case 16:
-                        retval->u16 = *((guint16 *) data);
-                        break;
-                    case 32:
-                        retval->u32 = *((guint32 *) data);
-                        break;
-                }
+            case 16:
+                size = sizeof (gint16);
                 break;
-            case XA_ATOM:
-                retval->a = *((Atom *) data);
-                break;
+            case 32:
             default:
-                if (type_ret == float_type)
-                {
-                    retval->f = *((float*) data);
-                }
-                else
-                {
-                    success = FALSE;
-                    g_warning ("Unhandled type, please implement it");
-                }
+                size = sizeof (gint32);
                 break;
+        }
+        ptr = data;
+
+        for (i = 0; i < n_items; i++)
+        {
+            switch (type_ret)
+            {
+                case XA_INTEGER:
+                    switch (format)
+                    {
+                        case 8:
+                            retval[i].c = *((gchar*) ptr);
+                            break;
+                        case 16:
+                            retval[i].i16 = *((gint16 *) ptr);
+                            break;
+                        case 32:
+                            retval[i].i32 = *((gint32 *) ptr);
+                            break;
+                    }
+                    break;
+                case XA_CARDINAL:
+                    switch (format)
+                    {
+                        case 8:
+                            retval[i].uc = *((guchar*) ptr);
+                            break;
+                        case 16:
+                            retval[i].u16 = *((guint16 *) ptr);
+                            break;
+                        case 32:
+                            retval[i].u32 = *((guint32 *) ptr);
+                            break;
+                    }
+                    break;
+                case XA_ATOM:
+                    retval[i].a = *((Atom *) ptr);
+                    break;
+                default:
+                    if (type_ret == float_type)
+                    {
+                        retval[i].f = *((float*) ptr);
+                    }
+                    else
+                    {
+                        success = FALSE;
+                        g_warning ("Unhandled type, please implement it");
+                    }
+                    break;
+            }
+            ptr += size;
         }
         XFree (data);
 
@@ -674,14 +695,14 @@ mouse_settings_get_libinput_accel (Display *xdisplay,
                                    XDevice *device,
                                    gdouble *val)
 {
-    propdata_t pdata;
+    propdata_t pdata[1];
     Atom float_type;
 
     float_type = XInternAtom (xdisplay, "FLOAT", False);
-    if (mouse_settings_get_device_prop (xdisplay, device, LIBINPUT_PROP_ACCEL, float_type, &pdata))
+    if (mouse_settings_get_device_prop (xdisplay, device, LIBINPUT_PROP_ACCEL, float_type, 1, &pdata[0]))
     {
         /* We use double internally, for whatever reason */
-        *val = (gdouble) (pdata.f + 1.0) * 5.0;
+        *val = (gdouble) (pdata[0].f + 1.0) * 5.0;
 
         return TRUE;
     }
@@ -697,11 +718,11 @@ mouse_settings_get_libinput_boolean (Display     *xdisplay,
                                      const gchar *prop_name,
                                      gboolean    *val)
 {
-    propdata_t pdata;
+    propdata_t pdata[1];
 
-    if (mouse_settings_get_device_prop (xdisplay, device, prop_name, XA_INTEGER, &pdata))
+    if (mouse_settings_get_device_prop (xdisplay, device, prop_name, XA_INTEGER, 1, &pdata[0]))
     {
-        *val = (gboolean) (pdata.c);
+        *val = (gboolean) (pdata[0].c);
 
         return TRUE;
     }
@@ -867,7 +888,7 @@ mouse_settings_wacom_set_mode (GtkComboBox *combobox,
 
 
 
-#ifdef DEVICE_PROPERTIES
+#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
 static void
 mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
 {
@@ -888,6 +909,9 @@ mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
 
     if (mouse_settings_device_get_selected (builder, &device, &name))
     {
+        object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
+        tap_to_click = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
+
         gdk_error_trap_push ();
         tap_ation_prop = XInternAtom (xdisplay, "Synaptics Tap Action", True);
         res = XGetDeviceProperty (xdisplay, device, tap_ation_prop, 0, 1000, False,
@@ -900,8 +924,6 @@ mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
                 && format == 8
                 && n_items >= 7)
             {
-                object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
-                tap_to_click = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
 
                 /* format: RT, RB, LT, LB, F1, F2, F3 */
                 data[4] = tap_to_click ? 1 : 0;
@@ -926,11 +948,18 @@ mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
 
             XFree (data);
         }
-    }
 
+#ifdef HAVE_LIBINPUT
+        /* Set the corresponding libinput property as well */
+        prop = g_strdup_printf ("/%s/Properties/%s", name, LIBINPUT_PROP_TAP);
+        g_strdelimit (prop, " ", '_');
+        xfconf_channel_set_int (pointers_channel, prop, (int) tap_to_click);
+        g_free (prop);
+#endif /* HAVE_LIBINPUT */
+    }
     g_free (name);
 }
-#endif
+#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
 
 
@@ -962,7 +991,7 @@ mouse_settings_synaptics_hscroll_sensitive (GtkBuilder *builder)
 
 
 
-#ifdef DEVICE_PROPERTIES
+#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
 mouse_settings_synaptics_set_scrolling (GtkComboBox *combobox,
                                         GtkBuilder  *builder)
@@ -971,6 +1000,9 @@ mouse_settings_synaptics_set_scrolling (GtkComboBox *combobox,
     gint      two_scroll[2] = { 0, 0 };
     gint      circ_scroll = 0;
     gint      circ_trigger = 0;
+#ifdef HAVE_LIBINPUT
+    gint      button_scroll = 0;
+#endif /* HAVE_LIBINPUT */
     GObject  *object;
     gboolean  horizontal = FALSE;
     gint      active;
@@ -1048,11 +1080,24 @@ mouse_settings_synaptics_set_scrolling (GtkComboBox *combobox,
         prop = g_strconcat ("/", name, "/Properties/Synaptics_Circular_Scrolling_Trigger", NULL);
         xfconf_channel_set_int (pointers_channel, prop, circ_trigger);
         g_free (prop);
+
+#ifdef HAVE_LIBINPUT
+        /* Set the corresponding libinput property as well */
+        prop = g_strdup_printf ("/%s/Properties/%s", name, LIBINPUT_PROP_SCROLL_METHOD_ENABLED);
+        g_strdelimit (prop, " ", '_');
+        xfconf_channel_set_array (pointers_channel, prop,
+                                  G_TYPE_INT, &two_scroll[0],
+                                  G_TYPE_INT, &edge_scroll[0],
+                                  G_TYPE_INT, &button_scroll,
+                                  G_TYPE_INVALID);
+        g_free (prop);
+#endif /* HAVE_LIBINPUT */
+
     }
 
     g_free (name);
 }
-#endif
+#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
 
 
@@ -1074,7 +1119,7 @@ mouse_settings_synaptics_set_scroll_horiz (GtkWidget  *widget,
 
 
 
-#ifdef DEVICE_PROPERTIES
+#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
 static void
 mouse_settings_device_set_enabled (GtkToggleButton *button,
                                    GtkBuilder      *builder)
@@ -1100,7 +1145,7 @@ mouse_settings_device_set_enabled (GtkToggleButton *button,
 
     g_free (name);
 }
-#endif
+#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
 
 
@@ -1130,7 +1175,11 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 #ifdef HAVE_LIBINPUT
     gboolean           is_libinput = FALSE;
 #endif /* HAVE_LIBINPUT */
-#ifdef DEVICE_PROPERTIES
+#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
+#ifdef HAVE_LIBINPUT
+    Atom               libinput_tap_prop;
+    Atom               libinput_scroll_methods_prop;
+#endif /* HAVE_LIBINPUT */
     Atom               synaptics_prop;
     Atom               wacom_prop;
     Atom               synaptics_tap_prop;
@@ -1152,7 +1201,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     Atom              *props;
     gint               nprops;
     gint               wacom_mode = -1;
-#endif
+#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
     /* lock the dialog */
     locked++;
@@ -1255,7 +1304,12 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                 XFreeFeedbackList (states);
             }
         }
-#ifdef DEVICE_PROPERTIES
+#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
+#ifdef HAVE_LIBINPUT
+        /* lininput properties */
+        libinput_tap_prop = XInternAtom (xdisplay, LIBINPUT_PROP_TAP, True);
+        libinput_scroll_methods_prop = XInternAtom (xdisplay, LIBINPUT_PROP_SCROLL_METHOD_ENABLED, True);
+#endif /* HAVE_LIBINPUT */
         /* wacom and synaptics specific properties */
         device_enabled_prop = XInternAtom (xdisplay, "Device Enabled", True);
         synaptics_prop = XInternAtom (xdisplay, "Synaptics Off", True);
@@ -1289,11 +1343,46 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                     synaptics_circ_scroll = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
                 else if (props[i] == wacom_rotation_prop)
                     wacom_rotation = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
+#ifdef HAVE_LIBINPUT
+                else if (props[i] == libinput_tap_prop)
+                {
+                    is_synaptics = TRUE;
+                    mouse_settings_get_libinput_boolean (xdisplay, device, LIBINPUT_PROP_TAP, &synaptics_tap_to_click);
+                }
+                else if (props[i] == libinput_scroll_methods_prop)
+                {
+                    propdata_t pdata[3];
+                    gboolean success;
+
+                    success = mouse_settings_get_device_prop (xdisplay,
+                                                              device,
+                                                              LIBINPUT_PROP_SCROLL_METHOD_ENABLED,
+                                                              XA_INTEGER, 3, &pdata[0]);
+                    if (success)
+                    {
+                        synaptics_two_scroll = (gint) pdata[0].c;
+                        synaptics_edge_scroll = (gint) pdata[1].c;
+                        synaptics_circ_scroll = -1; /* libinput does not expose this method */
+                    }
+
+                    success = mouse_settings_get_device_prop (xdisplay,
+                                                              device,
+                                                              LIBINPUT_PROP_SCROLL_METHODS_AVAILABLE,
+                                                              XA_INTEGER, 3, &pdata[0]);
+                    if (success)
+                    {
+                        if (!pdata[0].c)
+                            synaptics_two_scroll = -1;
+                        if (!pdata[1].c)
+                            synaptics_edge_scroll = -1;
+                    }
+                }
+#endif /* HAVE_LIBINPUT */
             }
 
             XFree (props);
         }
-#endif
+#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
         /* close the device */
         XCloseDevice (xdisplay, device);
@@ -1339,7 +1428,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "synaptics-tab");
     gtk_widget_set_visible (GTK_WIDGET (object), is_synaptics);
 
-#ifdef DEVICE_PROPERTIES
+#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
     if (is_synaptics)
     {
         object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
@@ -1379,8 +1468,17 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         mouse_settings_synaptics_hscroll_sensitive (builder);
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object),
                                       synaptics_edge_hscroll == 1 || synaptics_two_hscroll == 1);
+#ifdef HAVE_LIBINPUT
+        gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
+
+        object = gtk_builder_get_object (builder, "synaptics-disable-while-type");
+        gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
+
+        object = gtk_builder_get_object (builder, "synaptics-disable-duration-box");
+        gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
+#endif /* HAVE_LIBINPUT */
     }
-#endif
+#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
     /* wacom options */
     object = gtk_builder_get_object (builder, "wacom-tab");
@@ -1395,7 +1493,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 
         object = gtk_builder_get_object (builder, "wacom-rotation");
         gtk_widget_set_sensitive (GTK_WIDGET (object), wacom_rotation != -1);
-        /* 3 (half) comes afer none */
+        /* 3 (half) comes after none */
         if (wacom_rotation == 3)
             wacom_rotation = 1;
         else if (wacom_rotation > 0)
@@ -1877,7 +1975,7 @@ main (gint argc, gchar **argv)
             g_signal_connect (G_OBJECT (object), "clicked",
                               G_CALLBACK (mouse_settings_device_reset), builder);
 
-#ifdef DEVICE_PROPERTIES
+#if defined (DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
             synaptics_disable_while_type = gtk_builder_get_object (builder, "synaptics-disable-while-type");
             syndaemon = g_find_program_in_path ("syndaemon");
             gtk_widget_set_sensitive (GTK_WIDGET (object), syndaemon != NULL);
@@ -1918,7 +2016,7 @@ main (gint argc, gchar **argv)
             object = gtk_builder_get_object (builder, "wacom-rotation");
             g_signal_connect (G_OBJECT (object), "changed",
                               G_CALLBACK (mouse_settings_wacom_set_rotation), builder);
-#endif
+#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
 #ifdef HAVE_XCURSOR
             /* populate the themes treeview */
