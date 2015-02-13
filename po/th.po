@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-27 18:30+0200\n"
-"PO-Revision-Date: 2014-07-30 11:17+0000\n"
+"POT-Creation-Date: 2015-02-06 06:30+0100\n"
+"PO-Revision-Date: 2015-02-13 07:19+0000\n"
 "Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/projects/p/xfce4-settings/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -208,14 +208,14 @@ msgstr "เ_มาส์"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:120
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:83
 msgid "Settings manager socket"
 msgstr "ซ็อกเก็ตของโปรแกรมจัดการค่าตั้ง"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:120
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:83
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
@@ -223,36 +223,37 @@ msgstr "SOCKET ID"
 #: ../dialogs/appearance-settings/main.c:96
 #: ../dialogs/display-settings/main.c:121
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
-#: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:40
+#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:43
+#: ../xfsettingsd/main.c:78 ../xfce4-settings-manager/main.c:40
 msgid "Version information"
 msgstr "ข้อมูลรุ่น"
 
 #: ../dialogs/accessibility-settings/main.c:192
-#: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:2950
+#: ../dialogs/appearance-settings/main.c:997
+#: ../dialogs/display-settings/main.c:3025
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
+#: ../dialogs/mouse-settings/main.c:1769 ../xfce4-settings-editor/main.c:63
+#: ../xfsettingsd/main.c:191 ../xfsettingsd/main.c:229
+#: ../xfce4-settings-manager/main.c:61
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "สั่ง '%s --help' เพื่อดูวิธีใช้"
 
 #: ../dialogs/accessibility-settings/main.c:211
-#: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:2969
+#: ../dialogs/appearance-settings/main.c:1016
+#: ../dialogs/display-settings/main.c:3044
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
+#: ../dialogs/mouse-settings/main.c:1788 ../xfce4-settings-editor/main.c:82
+#: ../xfsettingsd/main.c:207 ../xfce4-settings-manager/main.c:77
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:212
-#: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:2970
+#: ../dialogs/appearance-settings/main.c:1017
+#: ../dialogs/display-settings/main.c:3045
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
+#: ../dialogs/mouse-settings/main.c:1789 ../xfce4-settings-editor/main.c:83
+#: ../xfsettingsd/main.c:208 ../xfce4-settings-manager/main.c:78
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "หากพบปัญหา กรุณารายงานไปที่ <%s>"
@@ -410,7 +411,7 @@ msgid "Setti_ngs"
 msgstr "_ตั้งค่า"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
-#: ../dialogs/appearance-settings/main.c:892
+#: ../dialogs/appearance-settings/main.c:883
 #: ../dialogs/display-settings/main.c:87 ../dialogs/display-settings/main.c:98
 msgid "None"
 msgstr "ไม่ใช้"
@@ -443,52 +444,52 @@ msgstr "ข้อความใต้ไอคอน"
 msgid "Text next to icons"
 msgstr "ข้อความข้างไอคอน"
 
-#: ../dialogs/appearance-settings/main.c:355
+#: ../dialogs/appearance-settings/main.c:359
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "คำเตือน: ชุดไอคอนนี้ไม่มีแฟ้มแคช คุณสามารถสร้างแคชได้โดยสั่ง <i>gtk-update-icon-cache %s/%s/</i> ในโปรแกรมจำลองเทอร์มินัล"
 
-#: ../dialogs/appearance-settings/main.c:765
+#: ../dialogs/appearance-settings/main.c:755
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "แฟ้มมีขนาดใหญ่กว่า %d MB ขอยกเลิกการติดตั้ง"
 
-#: ../dialogs/appearance-settings/main.c:770
+#: ../dialogs/appearance-settings/main.c:760
 msgid "Failed to create temporary directory"
 msgstr "สร้างไดเรกทอรีชั่วคราวไม่สำเร็จ"
 
-#: ../dialogs/appearance-settings/main.c:775
+#: ../dialogs/appearance-settings/main.c:765
 msgid "Failed to extract archive"
 msgstr "แตกแฟ้มจัดเก็บไม่สำเร็จ"
 
-#: ../dialogs/appearance-settings/main.c:780
+#: ../dialogs/appearance-settings/main.c:770
 msgid "Unknown format, only archives and directories are supported"
 msgstr "รูปแบบไม่รู้จัก รองรับเฉพาะแฟ้มจัดเก็บและไดเรกทอรีเท่านั้น"
 
-#: ../dialogs/appearance-settings/main.c:785
+#: ../dialogs/appearance-settings/main.c:775
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "พบข้อผิดพลาดไม่ทราบสาเหตุ รหัสจบการทำงานคือ %d"
 
-#: ../dialogs/appearance-settings/main.c:792
+#: ../dialogs/appearance-settings/main.c:782
 msgid "Failed to install theme"
 msgstr "ติดตั้งชุดตกแต่งไม่สำเร็จ"
 
-#: ../dialogs/appearance-settings/main.c:896
+#: ../dialogs/appearance-settings/main.c:887
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:900
+#: ../dialogs/appearance-settings/main.c:891
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:904
+#: ../dialogs/appearance-settings/main.c:895
 msgid "Vertical RGB"
 msgstr "RGB แนวดิ่ง"
 
-#: ../dialogs/appearance-settings/main.c:908
+#: ../dialogs/appearance-settings/main.c:899
 msgid "Vertical BGR"
 msgstr "BGR แนวดิ่ง"
 
@@ -541,7 +542,7 @@ msgid "R_esolution:"
 msgstr "ความ_ละเอียด:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "_Use this output"
+msgid "_Use this display"
 msgstr "ใ_ช้จอแสดงผลนี้"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
@@ -549,10 +550,20 @@ msgid "_Mirror displays"
 msgstr "จอแสดงผลแสดงเห_มือนกัน"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "_Primary display"
+msgstr "จอแสดงผลหลั_ก"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid ""
+"This is a hint for panels, docks and desktop to show on this display "
+"preferably."
+msgstr "เป็นการแนะให้พาเนล, dock และพื้นโต๊ะแสดงบนจอแสดงผลนี้ถ้าทำได้"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Configure _new displays when connected"
 msgstr "ตั้งค่า_จอแสดงผลจอใหม่เมื่อมีการเชื่อมต่อ"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Identify Displays"
 msgstr "ระบุจอแสดงผล"
 
@@ -612,7 +623,7 @@ msgstr "แนวนอนและแนวตั้ง"
 msgid "Minimal interface to set up an external output"
 msgstr "ส่วนติดต่อฉบับย่อสำหรับตั้งค่าจอแสดงผลภายนอก"
 
-#: ../dialogs/display-settings/main.c:247
+#: ../dialogs/display-settings/main.c:251
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -620,36 +631,36 @@ msgid ""
 msgstr "จะเรียกคืนค่าตั้งเดิมภายใน %i วินาที ถ้าคุณไม่ตอบคำถามนี้"
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:532
+#: ../dialogs/display-settings/main.c:536
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:818
+#: ../dialogs/display-settings/main.c:822
 msgid "Display:"
 msgstr "จอแสดงผล:"
 
-#: ../dialogs/display-settings/main.c:823
+#: ../dialogs/display-settings/main.c:827
 msgid "Resolution:"
 msgstr "ความละเอียด:"
 
-#: ../dialogs/display-settings/main.c:1003
+#: ../dialogs/display-settings/main.c:1070
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "ห้ามปิดจอแสดงผลที่เปิดใช้งานอันสุดท้าย มิฉะนั้นระบบจะใช้การไม่ได้"
 
-#: ../dialogs/display-settings/main.c:1005
+#: ../dialogs/display-settings/main.c:1072
 msgid "Selected output not disabled"
 msgstr "จะไม่ปิดจอแสดงผลที่เลือก"
 
-#: ../dialogs/display-settings/main.c:2140
+#: ../dialogs/display-settings/main.c:2212
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "เลือกจอภาพที่จะตั้งค่า; ลากเพื่อจัดเรียงจอภาพ"
 
-#: ../dialogs/display-settings/main.c:2177
-#: ../dialogs/display-settings/main.c:2251
+#: ../dialogs/display-settings/main.c:2249
+#: ../dialogs/display-settings/main.c:2323
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -658,61 +669,61 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2283
+#: ../dialogs/display-settings/main.c:2355
 msgid "Mirror Screens"
 msgstr "หน้าจอแสดงเหมือนกัน"
 
-#: ../dialogs/display-settings/main.c:2481
+#: ../dialogs/display-settings/main.c:2553
 msgid "(Disabled)"
 msgstr "(ปิดใช้งาน)"
 
-#: ../dialogs/display-settings/main.c:2982
-#: ../dialogs/display-settings/xfce-randr.c:274
+#: ../dialogs/display-settings/main.c:3057
+#: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "ไม่สามารถสอบถามรุ่นของส่วนขยาย RandR ที่กำลังใช้อยู่ได้"
 
-#: ../dialogs/display-settings/main.c:2983
-#: ../dialogs/display-settings/main.c:3019
+#: ../dialogs/display-settings/main.c:3058
+#: ../dialogs/display-settings/main.c:3094
 msgid "Unable to start the Xfce Display Settings"
 msgstr "ไม่สามารถเปิดทำงานโปรแกรมตั้งค่าจอแสดงผลของ Xfce"
 
-#: ../dialogs/display-settings/main.c:3014
+#: ../dialogs/display-settings/main.c:3089
 msgid "ATI Settings"
 msgstr "ค่าตั้งของ ATI"
 
-#: ../dialogs/display-settings/main.c:3029
+#: ../dialogs/display-settings/main.c:3104
 msgid "Unable to launch the proprietary driver settings"
 msgstr "ไม่สามารถเรียกทำงานโปรแกรมตั้งค่าของไดรเวอร์เชิงพาณิชย์"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:282
+#: ../dialogs/display-settings/xfce-randr.c:290
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "ระบบนี้ใช้ RandR %d.%d โปรแกรมตั้งค่าจอแสดงผลต้องการรุ่น 1.2 ขึ้นไปจึงจะสามารถทำงานได้"
 
-#: ../dialogs/display-settings/xfce-randr.c:544
+#: ../dialogs/display-settings/xfce-randr.c:553
 msgid "Laptop"
 msgstr "แล็ปท็อป"
 
-#: ../dialogs/display-settings/xfce-randr.c:565
+#: ../dialogs/display-settings/xfce-randr.c:574
 msgid "Monitor"
 msgstr "จอภาพ"
 
-#: ../dialogs/display-settings/xfce-randr.c:568
+#: ../dialogs/display-settings/xfce-randr.c:577
 msgid "Television"
 msgstr "โทรทัศน์"
 
-#: ../dialogs/display-settings/xfce-randr.c:572
+#: ../dialogs/display-settings/xfce-randr.c:581
 msgid "Digital display"
 msgstr "จอแสดงผลดิจิทัล"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: ../dialogs/display-settings/display-name.c:269
+#: ../dialogs/display-settings/display-name.c:2493
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "ไม่ทราบ"
@@ -946,22 +957,22 @@ msgstr "แบบย่อย"
 msgid "Shortcut command may not be empty."
 msgstr "คำสั่งของปุ่มลัดว่างเปล่าไม่ได้"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1270
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
 msgid "Reset to Defaults"
 msgstr "คืนค่าปริยาย"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "นี่จะเป็นการคืนค่าปุ่มลัดทั้งหมดกลับเป็นค่าปริยาย คุณต้องการคืนค่าจริงหรือไม่?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1351
 msgid "The system defaults will be restored next time you log in."
 msgstr "จะคืนค่าปริยายของระบบในครั้งต่อไปที่คุณเข้าระบบ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1355
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
 msgid "Warning"
 msgstr "คำเตือน"
 
@@ -1039,76 +1050,76 @@ msgstr "สถานะ"
 msgid "Default Application"
 msgstr "โปรแกรมปริยาย"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:479
-#: ../dialogs/mime-settings/xfce-mime-window.c:604
+#: ../dialogs/mime-settings/xfce-mime-window.c:484
+#: ../dialogs/mime-settings/xfce-mime-window.c:609
 msgid "User Set"
 msgstr "ผู้ใช้กำหนด"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:481
-#: ../dialogs/mime-settings/xfce-mime-window.c:604
-#: ../dialogs/mouse-settings/main.c:366 ../dialogs/mouse-settings/main.c:368
-#: ../dialogs/mouse-settings/main.c:428
+#: ../dialogs/mime-settings/xfce-mime-window.c:486
+#: ../dialogs/mime-settings/xfce-mime-window.c:609
+#: ../dialogs/mouse-settings/main.c:380 ../dialogs/mouse-settings/main.c:382
+#: ../dialogs/mouse-settings/main.c:442
 msgid "Default"
 msgstr "ปริยาย"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:550
+#: ../dialogs/mime-settings/xfce-mime-window.c:555
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "พบชนิด MIME %d ชนิด"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:649
+#: ../dialogs/mime-settings/xfce-mime-window.c:654
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "กำหนดโปรแกรม \"%s\" สำหรับชนิด MIME \"%s\" ไม่สำเร็จ"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:906
+#: ../dialogs/mime-settings/xfce-mime-window.c:911
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการคืนค่าของชนิดเนื้อหา \"%s\" กลับเป็นค่าปริยาย?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:910
+#: ../dialogs/mime-settings/xfce-mime-window.c:915
 msgid "Question"
 msgstr "คำถาม"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:913
+#: ../dialogs/mime-settings/xfce-mime-window.c:918
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "นี่จะเป็นการลบการเชื่อมโยงที่คุณกำหนดเองไว้ และคืนค่ากลับเป็นค่าปริยายของระบบ"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:917
-#: ../dialogs/mime-settings/xfce-mime-window.c:988
+#: ../dialogs/mime-settings/xfce-mime-window.c:922
+#: ../dialogs/mime-settings/xfce-mime-window.c:993
 msgid "Reset to Default"
 msgstr "คืนค่าปริยาย"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:983
+#: ../dialogs/mime-settings/xfce-mime-window.c:988
 msgid "Choose Application..."
 msgstr "เลือกโปรแกรม..."
 
-#: ../dialogs/mouse-settings/main.c:78
+#: ../dialogs/mouse-settings/main.c:82
 msgid "Active device in the dialog"
 msgstr "อุปกรณ์ที่เลือกในกล่องโต้ตอบ"
 
-#: ../dialogs/mouse-settings/main.c:78
+#: ../dialogs/mouse-settings/main.c:82
 msgid "DEVICE NAME"
 msgstr "ชื่ออุปกรณ์"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:124
+#: ../dialogs/mouse-settings/main.c:138
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:134
+#: ../dialogs/mouse-settings/main.c:148
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:145
+#: ../dialogs/mouse-settings/main.c:159
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
@@ -1570,15 +1581,16 @@ msgstr "การป้องกันการกดแป้นรัว"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "เรียกทำงานปุ่มลัด \"%s\" ไม่สำเร็จ"
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Do not fork to the background"
 msgstr "ไม่ต้อง fork ไปทำงานเบื้องหลัง"
 
-#: ../xfsettingsd/main.c:79
+#: ../xfsettingsd/main.c:80
 msgid "Replace running xsettings daemon (if any)"
 msgstr "แทนที่ดีมอน xsettings ที่ทำงานอยู่ (ถ้ามี)"
 
-#: ../xfsettingsd/workspaces.c:385
+#. value in xfconf isn't a string, so make a default one
+#: ../xfsettingsd/workspaces.c:338 ../xfsettingsd/workspaces.c:396
 #, c-format
 msgid "Workspace %d"
 msgstr "พื้นที่ทำงาน %d"
@@ -1591,20 +1603,20 @@ msgstr "ดีมอนค่าตั้งของ Xfce"
 msgid "Settings dialog to show"
 msgstr "กล่องโต้ตอบตั้งค่าที่จะแสดง"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:192
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:193
 msgid "All _Settings"
 msgstr "การ_ตั้งค่าทุกรายการ"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:386
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:390
 msgid "Settings"
 msgstr "การตั้งค่า"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:388
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:392
 msgid "Customize your desktop"
 msgstr "ปรับแต่งเดสก์ท็อปของคุณ"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:878
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:889
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:885
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:896
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "ไม่สามารถเปิดทำงาน \"%s\""
