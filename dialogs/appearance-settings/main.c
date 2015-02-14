@@ -121,6 +121,46 @@ static GOptionEntry option_entries[] =
 /* Global xfconf channel */
 static XfconfChannel *xsettings_channel;
 
+typedef struct
+{
+    GtkListStore *list_store;
+    GtkTreeView *tree_view;
+} preview_data;
+
+
+static preview_data *
+preview_data_new (GtkListStore *list_store,
+                  GtkTreeView *tree_view)
+{
+    preview_data *pd;
+
+    g_return_val_if_fail (list_store != NULL, NULL);
+    g_return_val_if_fail (tree_view != NULL, NULL);
+    g_return_val_if_fail (GTK_IS_LIST_STORE (list_store), NULL);
+    g_return_val_if_fail (GTK_IS_TREE_VIEW (tree_view), NULL);
+
+    pd = g_slice_new0 (preview_data);
+    g_return_val_if_fail (pd != NULL, NULL);
+
+    pd->list_store = list_store;
+    pd->tree_view = tree_view;
+
+    g_object_ref (G_OBJECT (pd->list_store));
+    g_object_ref (G_OBJECT (pd->tree_view));
+
+    return pd;
+}
+
+static void
+preview_data_free (preview_data *pd)
+{
+    if (G_UNLIKELY (pd == NULL))
+        return;
+    g_object_unref (G_OBJECT (pd->list_store));
+    g_object_unref (G_OBJECT (pd->tree_view));
+    g_slice_free (preview_data, pd);
+}
+
 static int
 compute_xsettings_dpi (GtkWidget *widget)
 {
@@ -597,10 +637,11 @@ cb_enable_event_sounds_check_button_toggled (GtkToggleButton *toggle, GtkWidget 
 }
 #endif
 
-static void
-appearance_settings_load_icon_themes (GtkListStore *list_store,
-                                      GtkTreeView  *tree_view)
+static gboolean
+appearance_settings_load_icon_themes (preview_data *pd)
 {
+    GtkListStore *list_store;
+    GtkTreeView  *tree_view;
     GDir         *dir;
     GtkTreePath  *tree_path;
     GtkTreeIter   iter;
@@ -626,6 +667,11 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
     GError       *error = NULL;
     gchar*        preview_icons[4] = { "folder", "go-down", "audio-volume-high", "web-browser" };
     int           coords[4][2] = { { 4, 4 }, { 24, 4 }, { 4, 24 }, { 24, 24 } };
+
+    g_return_val_if_fail (pd != NULL, FALSE);
+
+    list_store = pd->list_store;
+    tree_view = pd->tree_view;
 
     /* Determine current theme */
     active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Rodent");
@@ -763,12 +809,15 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
         g_slist_foreach (check_list, (GFunc) g_free, NULL);
         g_slist_free (check_list);
     }
+
+    return FALSE;
 }
 
-static void
-appearance_settings_load_ui_themes (GtkListStore *list_store,
-                                    GtkTreeView  *tree_view)
+static gboolean
+appearance_settings_load_ui_themes (preview_data *pd)
 {
+    GtkListStore *list_store;
+    GtkTreeView  *tree_view;
     GDir         *dir;
     GtkTreePath  *tree_path;
     GtkTreeIter   iter;
@@ -786,6 +835,11 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
     gchar        *color_scheme = NULL;
     GdkPixbuf    *preview;
     GdkColor      colors[NUM_SYMBOLIC_COLORS];
+
+    g_return_val_if_fail (pd != NULL, FALSE);
+
+    list_store = pd->list_store;
+    tree_view = pd->tree_view;
 
     /* Determine current theme */
     active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/ThemeName", "Default");
@@ -899,6 +953,8 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
         g_slist_foreach (check_list, (GFunc) g_free, NULL);
         g_slist_free (check_list);
     }
+
+    return FALSE;
 }
 
 static void
@@ -1032,8 +1088,15 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
 
         if (reload)
         {
+            preview_data *pd;
+
             gtk_list_store_clear (GTK_LIST_STORE (model));
-            appearance_settings_load_ui_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+
+            pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+            g_idle_add_full (G_PRIORITY_HIGH_IDLE,
+                             (GSourceFunc) appearance_settings_load_ui_themes,
+                             pd,
+                             (GDestroyNotify) preview_data_free);
         }
     }
     else if (strcmp (property_name, "/Net/IconThemeName") == 0)
@@ -1066,8 +1129,14 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
 
         if (reload)
         {
+            preview_data *pd;
+
             gtk_list_store_clear (GTK_LIST_STORE (model));
-            appearance_settings_load_icon_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+            pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+            g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                             (GSourceFunc) appearance_settings_load_icon_themes,
+                             pd,
+                             (GDestroyNotify) preview_data_free);
         }
     }
 }
@@ -1094,6 +1163,7 @@ cb_theme_uri_dropped (GtkWidget        *widget,
     gboolean       something_installed = FALSE;
     GObject       *object;
     GtkTreeModel  *model;
+    preview_data  *pd;
 
     uris = gtk_selection_data_get_uris (data);
     if (uris == NULL)
@@ -1170,17 +1240,26 @@ cb_theme_uri_dropped (GtkWidget        *widget,
 
     if (something_installed)
     {
-        /* reload icon theme treeview */
+        /* reload icon theme treeview in an idle loop */
         object = gtk_builder_get_object (builder, "icon_theme_treeview");
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
         gtk_list_store_clear (GTK_LIST_STORE (model));
-        appearance_settings_load_icon_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+        pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+        g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                         (GSourceFunc) appearance_settings_load_icon_themes,
+                         pd,
+                         (GDestroyNotify) preview_data_free);
 
         /* reload gtk theme treeview */
         object = gtk_builder_get_object (builder, "gtk_theme_treeview");
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
         gtk_list_store_clear (GTK_LIST_STORE (model));
-        appearance_settings_load_ui_themes (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+
+        pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+        g_idle_add_full (G_PRIORITY_HIGH_IDLE,
+                         (GSourceFunc) appearance_settings_load_ui_themes,
+                         pd,
+                         (GDestroyNotify) preview_data_free);
     }
 }
 
@@ -1193,6 +1272,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     GdkPixbuf         *pixbuf;
     GtkTreeSelection  *selection;
     GtkTreeViewColumn *column;
+    preview_data      *pd;
 
     /* Icon themes list */
     object = gtk_builder_get_object (builder, "icon_theme_treeview");
@@ -1224,7 +1304,11 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_tree_view_column_set_attributes (column, renderer, "visible", COLUMN_THEME_NO_CACHE, NULL);
     g_object_set (G_OBJECT (renderer), "icon-name", GTK_STOCK_DIALOG_WARNING, NULL);
 
-    appearance_settings_load_icon_themes (list_store, GTK_TREE_VIEW (object));
+    pd = preview_data_new (GTK_LIST_STORE (list_store), GTK_TREE_VIEW (object));
+    g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                     (GSourceFunc) appearance_settings_load_icon_themes,
+                     pd,
+                     (GDestroyNotify) preview_data_free);
 
     g_object_unref (G_OBJECT (list_store));
 
@@ -1260,7 +1344,11 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
-    appearance_settings_load_ui_themes (list_store, GTK_TREE_VIEW (object));
+    pd = preview_data_new (list_store, GTK_TREE_VIEW (object));
+    g_idle_add_full (G_PRIORITY_HIGH_IDLE,
+                     (GSourceFunc) appearance_settings_load_ui_themes,
+                     pd,
+                     (GDestroyNotify) preview_data_free);
 
     g_object_unref (G_OBJECT (list_store));
 
