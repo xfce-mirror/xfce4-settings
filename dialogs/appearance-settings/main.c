@@ -31,7 +31,10 @@
 #include <sys/wait.h>
 #endif
 
+#include <unistd.h>
 #include <glib.h>
+#include <glib/gstdio.h>
+#include <fcntl.h>
 #include <gtk/gtk.h>
 
 #include <libxfce4ui/libxfce4ui.h>
@@ -50,6 +53,16 @@
 /* Increase this number if new gtk settings have been added */
 #define INITIALIZE_UINT (1)
 
+#define COLOR_SCHEME_SYMBOL ((gpointer) 1)
+#define GTK_RC_TOKEN_FG ((gpointer) 2)
+#define GTK_RC_TOKEN_BG ((gpointer) 3)
+#define GTK_RC_TOKEN_NORMAL ((gpointer) 4)
+#define GTK_RC_TOKEN_SELECTED ((gpointer) 5)
+
+gchar *gtkrc_get_color_scheme_for_theme (const gchar *gtkrc_filename);
+gboolean color_scheme_parse_colors (const gchar *scheme, GdkColor *colors);
+static GdkPixbuf *theme_create_preview (GdkColor *colors);
+
 enum
 {
     COLUMN_THEME_PREVIEW,
@@ -65,6 +78,13 @@ enum
     COLUMN_RGBA_PIXBUF,
     COLUMN_RGBA_NAME,
     N_RGBA_COLUMNS
+};
+
+enum {
+	COLOR_FG,
+	COLOR_BG,
+	COLOR_SELECTED_BG,
+	NUM_SYMBOLIC_COLORS
 };
 
 /* String arrays with the settings in combo boxes */
@@ -123,6 +143,307 @@ compute_xsettings_dpi (GtkWidget *widget)
     }
 
     return dpi;
+}
+
+/* Try to retrieve the color scheme and alternatively parse the colors from the gtkrc */
+gchar *
+gtkrc_get_color_scheme_for_theme (const gchar *gtkrc_filename)
+{
+    gint file = -1;
+    GString *result_string = g_string_new("");
+    GString *fallback_string = g_string_new("");
+    GString *tmp_string = g_string_new("");
+    gchar *result = NULL;
+    gboolean bg_normal = FALSE;
+    gboolean bg_selected = FALSE;
+    gboolean fg_normal = FALSE;
+    GSList *files = NULL;
+    GSList *read_files = NULL;
+    GTokenType token;
+    GScanner *scanner = gtk_rc_scanner_new ();
+
+    g_return_val_if_fail (gtkrc_filename != NULL, "");
+
+    g_scanner_scope_add_symbol (scanner, 0, "gtk_color_scheme", COLOR_SCHEME_SYMBOL);
+    g_scanner_scope_add_symbol (scanner, 0, "gtk-color-scheme", COLOR_SCHEME_SYMBOL);
+    g_scanner_scope_add_symbol (scanner, 0, "fg", GTK_RC_TOKEN_FG);
+    g_scanner_scope_add_symbol (scanner, 0, "bg", GTK_RC_TOKEN_BG);
+    g_scanner_scope_add_symbol (scanner, 0, "NORMAL", GTK_RC_TOKEN_NORMAL);
+    g_scanner_scope_add_symbol (scanner, 0, "SELECTED", GTK_RC_TOKEN_SELECTED);
+
+    files = g_slist_prepend (files, g_strdup (gtkrc_filename));
+    while (files != NULL)
+    {
+        gchar *filename = files->data;
+        files = g_slist_delete_link (files, files);
+
+        if (filename == NULL)
+            continue;
+
+        if (g_slist_find_custom (read_files, filename, (GCompareFunc) strcmp))
+        {
+            g_warning ("Recursion in the gtkrc detected!");
+            g_free (filename);
+            continue; /* skip this file since we've done it before... */
+        }
+
+        read_files = g_slist_prepend (read_files, filename);
+
+        file = g_open (filename, O_RDONLY);
+        if (file == -1)
+            g_warning ("Could not open file \"%s\"", filename);
+        else
+        {
+            g_scanner_input_file (scanner, file);
+            while ((token = g_scanner_get_next_token (scanner)) != G_TOKEN_EOF)
+            {
+                /* Scan the gtkrc file for the gtk-color-scheme */
+                if (GINT_TO_POINTER (token) == COLOR_SCHEME_SYMBOL)
+                {
+                    if (g_scanner_get_next_token (scanner) == '=')
+                    {
+                        token = g_scanner_get_next_token (scanner);
+                        if (token == G_TOKEN_STRING)
+                        {
+                            g_string_append_printf(result_string, "\n%s", scanner->value.v_string);
+                        }
+                        bg_normal = g_strstr_len(result_string->str, -1, "bg_color") != NULL;
+                        bg_selected = g_strstr_len(result_string->str, -1, "selected_bg_color") != NULL;
+                        fg_normal = g_strstr_len(result_string->str, -1, "fg_color") != NULL;
+                    }
+                }
+                /* Scan the gtkrc file for first occurences of bg[NORMAL], bg[SELECTED] and fg[NORMAL] in case
+                 * it doesn't provide a gtk-color-scheme */
+                if (result_string->len == 0)
+                {
+                    if (GINT_TO_POINTER (token) == GTK_RC_TOKEN_BG)
+                    {
+                        if (g_scanner_get_next_token (scanner) == G_TOKEN_LEFT_BRACE)
+                        {
+                            /* bg[SELECTED] */
+                            if (GINT_TO_POINTER (token = g_scanner_get_next_token (scanner)) == GTK_RC_TOKEN_SELECTED
+                                && g_scanner_get_next_token (scanner) == G_TOKEN_RIGHT_BRACE
+                                && g_scanner_get_next_token (scanner) == '=')
+                            {
+                                token = g_scanner_get_next_token (scanner);
+                                /* Parse colors in hex #rrggbb format */
+                                if (token == G_TOKEN_STRING)
+                                {
+                                    if (!g_strrstr (fallback_string->str, "selected_bg_color"))
+                                    {
+                                        g_string_append_printf(fallback_string, "\nselected_bg_color:%s", scanner->value.v_string);
+                                        bg_selected = TRUE;
+                                    }
+                                }
+                                /* Parse colors in { r, g, b } format */
+                                else if (token == G_TOKEN_LEFT_CURLY)
+                                {
+                                    if (!g_strrstr (fallback_string->str, "selected_bg_color"))
+                                    {
+                                        g_string_erase(tmp_string, 0, -1);
+                                        while (token != G_TOKEN_RIGHT_CURLY)
+                                        {
+                                            token = g_scanner_get_next_token (scanner);
+                                            if (token == G_TOKEN_FLOAT)
+                                                g_string_append_printf(tmp_string, "%02x", (uint) (scanner->value.v_float*255));
+                                        }
+                                        g_string_append_printf(fallback_string, "\nselected_bg_color:#%s", tmp_string->str);
+                                        bg_selected = TRUE;
+                                    }
+                                }
+                            }
+                            /* bg[NORMAL] */
+                            else if (GINT_TO_POINTER (token) == GTK_RC_TOKEN_NORMAL
+                                     && g_scanner_get_next_token (scanner) == G_TOKEN_RIGHT_BRACE
+                                     && g_scanner_get_next_token (scanner) == '=')
+                            {
+                                token = g_scanner_get_next_token (scanner);
+                                /* Parse colors in hex #rrggbb format */
+                                if (token == G_TOKEN_STRING)
+                                {
+                                    if (!g_strrstr (fallback_string->str, "bg_color"))
+                                    {
+                                        g_string_append_printf(fallback_string, "\nbg_color:%s", scanner->value.v_string);
+                                        bg_normal = TRUE;
+                                    }
+                                }
+                                /* Parse colors in { r, g, b } format */
+                                else if (token == G_TOKEN_LEFT_CURLY)
+                                {
+                                    if (!g_strrstr (fallback_string->str, "bg_color"))
+                                    {
+                                        g_string_erase(tmp_string, 0, -1);
+                                        while (token != G_TOKEN_RIGHT_CURLY)
+                                        {
+                                            token = g_scanner_get_next_token (scanner);
+                                            if (token == G_TOKEN_FLOAT)
+                                                g_string_append_printf(tmp_string, "%02x", (uint) (scanner->value.v_float*255));
+                                        }
+                                        g_string_append_printf(fallback_string, "\nbg_color:#%s", tmp_string->str);
+                                        bg_normal = TRUE;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (GINT_TO_POINTER (token) == GTK_RC_TOKEN_FG)
+                    {
+                        /* fg[NORMAL] */
+                        if (g_scanner_get_next_token (scanner) == G_TOKEN_LEFT_BRACE
+                            && GINT_TO_POINTER (token = g_scanner_get_next_token (scanner)) == GTK_RC_TOKEN_NORMAL
+                                && g_scanner_get_next_token (scanner) == G_TOKEN_RIGHT_BRACE
+                                && g_scanner_get_next_token (scanner) == '=')
+                        {
+                            token = g_scanner_get_next_token (scanner);
+                            /* Parse colors in hex #rrggbb format */
+                            if (token == G_TOKEN_STRING)
+                            {
+                                if (!g_strrstr (fallback_string->str, "fg_color"))
+                                {
+                                    g_string_append_printf(fallback_string, "\nfg_color:%s", scanner->value.v_string);
+                                    fg_normal = TRUE;
+                                }
+                            }
+                            /* Parse colors in { r, g, b } format */
+                            else if (token == G_TOKEN_LEFT_CURLY)
+                            {
+                                if (!g_strrstr (fallback_string->str, "fg_color"))
+                                {
+                                    g_string_erase(tmp_string, 0, -1);
+                                    while (token != G_TOKEN_RIGHT_CURLY)
+                                    {
+                                        token = g_scanner_get_next_token (scanner);
+                                        if (token == G_TOKEN_FLOAT)
+                                            g_string_append_printf(tmp_string, "%02x", (uint) (scanner->value.v_float*255));
+                                    }
+                                    g_string_append_printf(fallback_string, "\nfg_color:#%s", tmp_string->str);
+                                    fg_normal = TRUE;
+                                }
+                            }
+                        }
+                    }
+                }
+                /* Check whether we can stop parsing because all colors have been retrieved somehow */
+                if (bg_normal && bg_selected && fg_normal)
+                    break;
+            }
+        close (file);
+        }
+    }
+
+    g_slist_foreach (read_files, (GFunc) g_free, NULL);
+    g_slist_free (read_files);
+
+    g_scanner_destroy (scanner);
+
+    /* Use the fallback colors parsed from the theme if gtk-color-scheme is not defined */
+    /*
+    if (!result)
+        result = fallback;
+    */
+    if (result_string->len == 0)
+        result = g_strdup(fallback_string->str);
+    else
+        result = g_strdup(result_string->str);
+
+    g_string_free(result_string, TRUE);
+    g_string_free(fallback_string, TRUE);
+    g_string_free(tmp_string, TRUE);
+
+    return result;
+}
+
+gboolean
+color_scheme_parse_colors (const gchar *scheme, GdkColor *colors)
+{
+    gchar **color_scheme_strings, **color_scheme_pair, *current_string;
+    gboolean found = FALSE;
+    gint i;
+
+    if (!scheme || !strcmp (scheme, ""))
+        return FALSE;
+
+    /* Initialise the array, fallback color is white */
+    for (i = 0; i < NUM_SYMBOLIC_COLORS; i++)
+        colors[i].red = colors[i].green = colors[i].blue = 65535.0;
+
+    /* The color scheme string consists of name:color pairs, separated by
+     * either semicolons or newlines, so first we split the string up by delimiter */
+    if (g_strrstr (scheme, ";"))
+        color_scheme_strings = g_strsplit (scheme, ";", 0);
+    else
+        color_scheme_strings = g_strsplit (scheme, "\n", 0);
+
+    /* Loop through the name:color pairs, and save the color if we recognise the name */
+    i = 0;
+    while ((current_string = color_scheme_strings[i++]))
+    {
+        color_scheme_pair = g_strsplit (current_string, ":", 0);
+
+        if (color_scheme_pair[0] != NULL && color_scheme_pair[1] != NULL)
+        {
+            g_strstrip (color_scheme_pair[0]);
+            g_strstrip (color_scheme_pair[1]);
+
+            if (!strcmp ("fg_color", color_scheme_pair[0]))
+            {
+              gdk_color_parse (color_scheme_pair[1], &colors[COLOR_FG]);
+              found = TRUE;
+            }
+            else if (!strcmp ("bg_color", color_scheme_pair[0]))
+            {
+              gdk_color_parse (color_scheme_pair[1], &colors[COLOR_BG]);
+              found = TRUE;
+            }
+            else if (!strcmp ("selected_bg_color", color_scheme_pair[0]))
+            {
+              gdk_color_parse (color_scheme_pair[1], &colors[COLOR_SELECTED_BG]);
+              found = TRUE;
+            }
+        }
+
+        g_strfreev (color_scheme_pair);
+    }
+
+    g_strfreev (color_scheme_strings);
+
+    return found;
+}
+
+static GdkPixbuf *
+theme_create_preview (GdkColor *colors)
+{
+    GdkPixbuf *theme_preview;
+    GdkPixmap *drawable;
+    GdkColormap *cmap = gdk_colormap_get_system ();
+    cairo_t *cr;
+    gint width = 44;
+    gint height = 22;
+
+    drawable = gdk_pixmap_new (NULL, width, height, 24);
+    cr = gdk_cairo_create (drawable);
+    cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+
+    /* Draw three rectangles showcasing the background, foreground and selected background colors */
+    cairo_rectangle (cr, 0, 0, 16, 22);
+    cairo_set_source_rgb (cr, colors[COLOR_BG].red / 65535.0, colors[COLOR_BG].green / 65535.0, colors[COLOR_BG].blue / 65535.0);
+    cairo_fill (cr);
+
+    cairo_rectangle (cr, 15, 0, 30, 22);
+    cairo_set_source_rgb (cr, colors[COLOR_FG].red / 65535.0, colors[COLOR_FG].green / 65535.0, colors[COLOR_FG].blue / 65535.0);
+    cairo_fill (cr);
+
+    cairo_rectangle (cr, 29, 0, 42, 22);
+    cairo_set_source_rgb (cr, colors[COLOR_SELECTED_BG].red / 65535.0, colors[COLOR_SELECTED_BG].green / 65535.0, colors[COLOR_SELECTED_BG].blue / 65535.0);
+    cairo_fill (cr);
+
+    theme_preview = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8, width, height);
+    gdk_pixbuf_get_from_drawable (theme_preview, drawable, cmap, 0, 0, 0, 0, width, height);
+
+    g_object_unref (drawable);
+    cairo_destroy (cr);
+
+    return theme_preview;
 }
 
 static void
@@ -392,7 +713,7 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                         cache_tooltip = g_strdup_printf (_("Warning: this icon theme has no cache file. You can create this by "
                                                            "running <i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."),
                                                          icon_theme_dirs[i], file);
-		    else
+                    else
                         cache_tooltip = NULL;
 
                     /* Append icon theme to the list store */
@@ -462,6 +783,9 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
     gchar        *comment_escaped;
     gint          i;
     GSList       *check_list = NULL;
+    gchar        *color_scheme = NULL;
+    GdkPixbuf    *preview;
+    GdkColor      colors[NUM_SYMBOLIC_COLORS];
 
     /* Determine current theme */
     active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/ThemeName", "Default");
@@ -516,9 +840,22 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                     comment_escaped = NULL;
                 }
 
+                /* Retrieve the color values from the theme, parse them and create the palette preview pixbuf */
+                color_scheme = gtkrc_get_color_scheme_for_theme (gtkrc_filename);
+                if (color_scheme_parse_colors (color_scheme, colors))
+                    preview = theme_create_preview (colors);
+                /* If the color scheme parsing doesn't return anything useful, show a blank pixbuf */
+                else
+                {
+                    preview = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8, 44, 22);
+                    gdk_pixbuf_fill (preview, 0x00);
+                }
+                g_free (color_scheme);
+
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
                 gtk_list_store_set (list_store, &iter,
+                                    COLUMN_THEME_PREVIEW, preview,
                                     COLUMN_THEME_NAME, file,
                                     COLUMN_THEME_DISPLAY_NAME, theme_name,
                                     COLUMN_THEME_COMMENT, comment_escaped, -1);
@@ -527,6 +864,7 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                 if (G_LIKELY (index_file != NULL))
                     xfce_rc_close (index_file);
                 g_free (comment_escaped);
+                g_object_unref (preview);
 
                 /* Check if this is the active theme, if so, select it */
                 if (G_UNLIKELY (g_utf8_collate (file, active_theme_name) == 0))
@@ -865,23 +1203,26 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
     gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (object), TRUE);
 
-    renderer = gtk_cell_renderer_pixbuf_new ();
-
+    /* Single-column layout */
     column = gtk_tree_view_column_new ();
+
+    /* Icon Previews */
+    renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_column_pack_start (column, renderer, FALSE);
-    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", 0, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", COLUMN_THEME_PREVIEW, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (object), column);
 
+    /* Theme Name and Description */
     renderer = gtk_cell_renderer_text_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 1, "", renderer, "markup", COLUMN_THEME_DISPLAY_NAME, NULL);
+    gtk_tree_view_column_pack_start (column, renderer, TRUE);
+    gtk_tree_view_column_set_attributes (column, renderer, "markup", COLUMN_THEME_DISPLAY_NAME, NULL);
+    g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
+    /* Warning Icon */
     renderer = gtk_cell_renderer_pixbuf_new ();
-    g_object_set (G_OBJECT (renderer), "icon-name", GTK_STOCK_DIALOG_WARNING, NULL);
-
-    column = gtk_tree_view_get_column (GTK_TREE_VIEW (object), 1);
-
     gtk_tree_view_column_pack_start (column, renderer, FALSE);
-    gtk_tree_view_column_add_attribute (column, renderer, "visible", COLUMN_THEME_NO_CACHE);
+    gtk_tree_view_column_set_attributes (column, renderer, "visible", COLUMN_THEME_NO_CACHE, NULL);
+    g_object_set (G_OBJECT (renderer), "icon-name", GTK_STOCK_DIALOG_WARNING, NULL);
 
     appearance_settings_load_icon_themes (list_store, GTK_TREE_VIEW (object));
 
@@ -899,13 +1240,25 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Gtk (UI) themes */
     object = gtk_builder_get_object (builder, "gtk_theme_treeview");
 
-    list_store = gtk_list_store_new (N_THEME_COLUMNS - 1, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
 
-    renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
+    /* Single-column layout */
+    column = gtk_tree_view_column_new ();
+
+    /* Icon Previews */
+    renderer = gtk_cell_renderer_pixbuf_new ();
+    gtk_tree_view_column_pack_start (column, renderer, FALSE);
+    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", COLUMN_THEME_PREVIEW, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (object), column);
+
+    /* Theme Name and Description */
+    renderer = gtk_cell_renderer_text_new ();
+    gtk_tree_view_column_pack_start (column, renderer, TRUE);
+    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
+    g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
     appearance_settings_load_ui_themes (list_store, GTK_TREE_VIEW (object));
 
