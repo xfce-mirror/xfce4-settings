@@ -371,9 +371,10 @@ xfce_settings_editor_dialog_response (GtkDialog *widget,
 
     if (response_id == GTK_RESPONSE_HELP)
     {
-        xfce_dialog_show_help (GTK_WINDOW (widget),
-                               "xfce4-settings",
-                               "settings-editor", NULL);
+        xfce_dialog_show_help_with_version (GTK_WINDOW (widget),
+                                            "xfce4-settings",
+                                            "settings-editor", NULL,
+                                            XFCE4_SETTINGS_VERSION_SHORT);
     }
     else
     {

@@ -48,7 +48,8 @@ keyboard_settings_dialog_response (GtkWidget *dialog,
                                    gint       response_id)
 {
     if (response_id == GTK_RESPONSE_HELP)
-        xfce_dialog_show_help (GTK_WINDOW (dialog), "xfce4-settings", "keyboard", NULL);
+        xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "keyboard",
+                                            NULL, XFCE4_SETTINGS_VERSION_SHORT);
     else
         gtk_main_quit ();
 }
