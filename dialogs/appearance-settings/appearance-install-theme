@@ -89,11 +89,11 @@ fi
 
 # check file size, abort if bigger then 50Mb, only works for files
 if test x"`which stat 2>/dev/null`" != x""; then
-		if [ "`uname -s`" = "DragonFly" ] || [ "`uname -s`" = "FreeBSD" ] || [ "`uname -s`" = "NetBSD" ] || [ "`uname -s`" = "OpenBSD" ]; then
-				dndsize=`stat -f %z "$dndfilename"`
-		else
-				dndsize=`stat -c %s "$dndfilename"`
-		fi
+    if [ "`uname -s`" = "DragonFly" ] || [ "`uname -s`" = "FreeBSD" ] || [ "`uname -s`" = "NetBSD" ] || [ "`uname -s`" = "OpenBSD" ]; then
+        dndsize=`stat -f %z "$dndfilename"`
+    else
+        dndsize=`stat -c %s "$dndfilename"`
+    fi
     if test "$dndsize" -gt 52428800; then
         # 2: File too big
         exit 2
