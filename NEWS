@@ -1,3 +1,32 @@
+4.11.4
+======
+- Add touchpad support with libinput
+- Add previews for icon themes in appearance settings
+- Add Gtk+ theme palettes in the appearance dialog
+- Add support for versioned help documentation
+- Add support for libinput Xorg driver (bug #11469)
+- Add option to set the primary display (bug #8328)
+- Add helper to synchronize CSD layout to xfwm4
+- Support stat command flags on BSD systems (bug #11531)
+- Show more information in icon-theme list (bug #9130)
+- Width of display dialog is no longer hard-coded
+- Update display PNP IDs from hwdata
+- Update mimeapps.list location for glib >= 2.41 (bug #11293)
+- Use 1/10 Hz precision for displays (bug #10661)
+- Fix segmentation fault when renaming workspaces (bug #11229)
+- Fix --display argument being fatal (bug #11188)
+- Fix alignment of the sound settings
+- Fix issues found with cppcheck (bug #10879) and other
+  scanning utilities
+- Do not try to reencode libxklavier descriptions (bug #11317)
+- Prevent invalid characters from breaking display name (bug #11423)
+- Translation updates: Arabic, Asturian, Bulgarian,
+  Chinese (Simplified), Chinese (Traditional), Croatian, Czech,
+  Danish, Finnish, French, German, Spanish, Hebrew, Hungarian,
+  Icelandic, Italian, Japanese, Kazakh, Korean, Malay, Polish,
+  Portuguese, Portuguese (Brazilian), Russian, Serbian, Slovenian,
+  Thai, Turkish, Ukrainian
+
 4.11.3
 ======
 - Reapply settings when external keyboard connects
