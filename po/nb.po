@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Allan Nordhøy <comradekingu@gmail.com>, 2014
+# Allan Nordhøy <comradekingu@gmail.com>, 2014-2015
 # Harald <haarektrans@gmail.com>, 2014
 # Terje Uriansrud <terje@uriansrud.net>, 2008-2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-27 18:30+0200\n"
-"PO-Revision-Date: 2014-07-29 15:10+0000\n"
-"Last-Translator: Harald <haarektrans@gmail.com>\n"
+"POT-Creation-Date: 2015-02-06 06:30+0100\n"
+"PO-Revision-Date: 2015-02-20 20:26+0000\n"
+"Last-Translator: Allan Nordhøy <comradekingu@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/xfce4-settings/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -209,14 +209,14 @@ msgstr "_Mus"
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:120
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:83
 msgid "Settings manager socket"
 msgstr "Innstillingsbehandlersokkel"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:120
-#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
+#: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:83
 msgid "SOCKET ID"
 msgstr "SOKKEL-ID"
 
@@ -224,36 +224,37 @@ msgstr "SOKKEL-ID"
 #: ../dialogs/appearance-settings/main.c:96
 #: ../dialogs/display-settings/main.c:121
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
-#: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:40
+#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:43
+#: ../xfsettingsd/main.c:78 ../xfce4-settings-manager/main.c:40
 msgid "Version information"
 msgstr "Versjonsinformasjon"
 
 #: ../dialogs/accessibility-settings/main.c:192
-#: ../dialogs/appearance-settings/main.c:1006
-#: ../dialogs/display-settings/main.c:2950
+#: ../dialogs/appearance-settings/main.c:997
+#: ../dialogs/display-settings/main.c:3025
 #: ../dialogs/keyboard-settings/main.c:76 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1611 ../xfce4-settings-editor/main.c:63
-#: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
+#: ../dialogs/mouse-settings/main.c:1769 ../xfce4-settings-editor/main.c:63
+#: ../xfsettingsd/main.c:191 ../xfsettingsd/main.c:229
+#: ../xfce4-settings-manager/main.c:61
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Skriv '%s --help' for bruksinstruksjoner."
 
 #: ../dialogs/accessibility-settings/main.c:211
-#: ../dialogs/appearance-settings/main.c:1025
-#: ../dialogs/display-settings/main.c:2969
+#: ../dialogs/appearance-settings/main.c:1016
+#: ../dialogs/display-settings/main.c:3044
 #: ../dialogs/keyboard-settings/main.c:92 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
-#: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
+#: ../dialogs/mouse-settings/main.c:1788 ../xfce4-settings-editor/main.c:82
+#: ../xfsettingsd/main.c:207 ../xfce4-settings-manager/main.c:77
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce utviklingsteam. Alle rettigheter reservert."
 
 #: ../dialogs/accessibility-settings/main.c:212
-#: ../dialogs/appearance-settings/main.c:1026
-#: ../dialogs/display-settings/main.c:2970
+#: ../dialogs/appearance-settings/main.c:1017
+#: ../dialogs/display-settings/main.c:3045
 #: ../dialogs/keyboard-settings/main.c:93 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1631 ../xfce4-settings-editor/main.c:83
-#: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
+#: ../dialogs/mouse-settings/main.c:1789 ../xfce4-settings-editor/main.c:83
+#: ../xfsettingsd/main.c:208 ../xfce4-settings-manager/main.c:78
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapporter feil til <%s>."
@@ -411,7 +412,7 @@ msgid "Setti_ngs"
 msgstr "I_nnstillinger"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
-#: ../dialogs/appearance-settings/main.c:892
+#: ../dialogs/appearance-settings/main.c:883
 #: ../dialogs/display-settings/main.c:87 ../dialogs/display-settings/main.c:98
 msgid "None"
 msgstr "Ingen"
@@ -444,52 +445,52 @@ msgstr "Tekst under ikoner"
 msgid "Text next to icons"
 msgstr "Tekst ved siden av ikoner"
 
-#: ../dialogs/appearance-settings/main.c:355
+#: ../dialogs/appearance-settings/main.c:359
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Advarsel: denne ikondrakten har ingen hurtilagringsfil. Du kan opprette dette ved å kjøre <i>gtk-update-icon-cache %s/%s/</i> i en terminaletterligner."
 
-#: ../dialogs/appearance-settings/main.c:765
+#: ../dialogs/appearance-settings/main.c:755
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Fil større enn %d MB, installasjon avbrutt"
 
-#: ../dialogs/appearance-settings/main.c:770
+#: ../dialogs/appearance-settings/main.c:760
 msgid "Failed to create temporary directory"
 msgstr "Kunne ikke opprette midlertidig mappe"
 
-#: ../dialogs/appearance-settings/main.c:775
+#: ../dialogs/appearance-settings/main.c:765
 msgid "Failed to extract archive"
 msgstr "Kunne ikke pakke ut arkiv"
 
-#: ../dialogs/appearance-settings/main.c:780
+#: ../dialogs/appearance-settings/main.c:770
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Ukjent format, kun arkiv og mapper er støttet"
 
-#: ../dialogs/appearance-settings/main.c:785
+#: ../dialogs/appearance-settings/main.c:775
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "En ukjent feil, avslutningskode er %d"
 
-#: ../dialogs/appearance-settings/main.c:792
+#: ../dialogs/appearance-settings/main.c:782
 msgid "Failed to install theme"
 msgstr "Klarte ikke å installere drakt"
 
-#: ../dialogs/appearance-settings/main.c:896
+#: ../dialogs/appearance-settings/main.c:887
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:900
+#: ../dialogs/appearance-settings/main.c:891
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:904
+#: ../dialogs/appearance-settings/main.c:895
 msgid "Vertical RGB"
 msgstr "Loddrett RGB"
 
-#: ../dialogs/appearance-settings/main.c:908
+#: ../dialogs/appearance-settings/main.c:899
 msgid "Vertical BGR"
 msgstr "Loddrett BGR"
 
@@ -542,7 +543,7 @@ msgid "R_esolution:"
 msgstr "O_ppløsning:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "_Use this output"
+msgid "_Use this display"
 msgstr "_Bruk denne skjermen"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
@@ -550,10 +551,20 @@ msgid "_Mirror displays"
 msgstr "_Speil skjermer"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "_Primary display"
+msgstr "_Hovedskjerm"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid ""
+"This is a hint for panels, docks and desktop to show on this display "
+"preferably."
+msgstr "Dette er et hint til paneler, samlevinduer og skrivebordet forøvrig om å fortrinnsvis å tilkjennegi seg på denne skjermen."
+
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Configure _new displays when connected"
 msgstr "Gjør oppsett av _nye skjermer når de blir koblet til"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Identify Displays"
 msgstr "Identifiser skjermer"
 
@@ -613,7 +624,7 @@ msgstr "Horisontal og vertikal"
 msgid "Minimal interface to set up an external output"
 msgstr "Minimalt grensesnitt for å sette opp ekstern skjerm"
 
-#: ../dialogs/display-settings/main.c:247
+#: ../dialogs/display-settings/main.c:251
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -621,99 +632,99 @@ msgid ""
 msgstr "Forrige konfigurasjon vil ble gjenopprettet om %i sekunder hvis du ikke svarer på dette spørsmålet."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:532
+#: ../dialogs/display-settings/main.c:536
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:818
+#: ../dialogs/display-settings/main.c:822
 msgid "Display:"
 msgstr "Skjerm:"
 
-#: ../dialogs/display-settings/main.c:823
+#: ../dialogs/display-settings/main.c:827
 msgid "Resolution:"
 msgstr "Oppløsning:"
 
-#: ../dialogs/display-settings/main.c:1003
+#: ../dialogs/display-settings/main.c:1070
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Den siste aktive skjermen må ikke deaktiveres, dette fører til at system ikke vil virke korrekt."
 
-#: ../dialogs/display-settings/main.c:1005
+#: ../dialogs/display-settings/main.c:1072
 msgid "Selected output not disabled"
 msgstr "Valgte skjerm ikke deaktivert"
 
-#: ../dialogs/display-settings/main.c:2140
+#: ../dialogs/display-settings/main.c:2212
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
-msgstr ""
+msgstr "Velg en skjerm for å endre innstillinger; dra for å plassere."
 
-#: ../dialogs/display-settings/main.c:2177
-#: ../dialogs/display-settings/main.c:2251
+#: ../dialogs/display-settings/main.c:2249
+#: ../dialogs/display-settings/main.c:2323
 #, c-format
 msgid "(%i, %i)"
-msgstr ""
+msgstr "(%i, %i)"
 
 #. Translators:  this is the feature where what you see on your laptop's
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2283
+#: ../dialogs/display-settings/main.c:2355
 msgid "Mirror Screens"
 msgstr "Speile skjermer"
 
-#: ../dialogs/display-settings/main.c:2481
+#: ../dialogs/display-settings/main.c:2553
 msgid "(Disabled)"
 msgstr "(Deaktivert)"
 
-#: ../dialogs/display-settings/main.c:2982
-#: ../dialogs/display-settings/xfce-randr.c:274
+#: ../dialogs/display-settings/main.c:3057
+#: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Klarte ikke finne versjonen av RandR utvidlesen som benyttes"
 
-#: ../dialogs/display-settings/main.c:2983
-#: ../dialogs/display-settings/main.c:3019
+#: ../dialogs/display-settings/main.c:3058
+#: ../dialogs/display-settings/main.c:3094
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Kan ikke starte Xfce Skjerminnstillinger"
 
-#: ../dialogs/display-settings/main.c:3014
+#: ../dialogs/display-settings/main.c:3089
 msgid "ATI Settings"
 msgstr "ATI Innstillinger"
 
-#: ../dialogs/display-settings/main.c:3029
+#: ../dialogs/display-settings/main.c:3104
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kan ikke starte innstillinger for proprietære drivere"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:282
+#: ../dialogs/display-settings/xfce-randr.c:290
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Systemet bruker RandR %d, %d. For at skjerminnstillinger skal fungere kreves minimum versjon 1.2"
 
-#: ../dialogs/display-settings/xfce-randr.c:544
+#: ../dialogs/display-settings/xfce-randr.c:553
 msgid "Laptop"
 msgstr "Bærbar"
 
-#: ../dialogs/display-settings/xfce-randr.c:565
+#: ../dialogs/display-settings/xfce-randr.c:574
 msgid "Monitor"
 msgstr "Skjerm"
 
-#: ../dialogs/display-settings/xfce-randr.c:568
+#: ../dialogs/display-settings/xfce-randr.c:577
 msgid "Television"
 msgstr "TV"
 
-#: ../dialogs/display-settings/xfce-randr.c:572
+#: ../dialogs/display-settings/xfce-randr.c:581
 msgid "Digital display"
 msgstr "Digital skjerm"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: ../dialogs/display-settings/display-name.c:269
+#: ../dialogs/display-settings/display-name.c:2493
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Ukjent"
@@ -947,22 +958,22 @@ msgstr "Variant"
 msgid "Shortcut command may not be empty."
 msgstr "Hurtigtastkommando kan ikke være tom."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1270
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
 msgid "Reset to Defaults"
 msgstr "Nullstill til standardverdier"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Dette vil tilbakestille alle hurtigtaster til dens standardverdi. Ønsker du å gjøre dette?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1351
 msgid "The system defaults will be restored next time you log in."
 msgstr "Standardverdier vil bli gjenopprettet neste gang du logger inn."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1355
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -1040,77 +1051,77 @@ msgstr "Status"
 msgid "Default Application"
 msgstr "Forvalgte program"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:479
-#: ../dialogs/mime-settings/xfce-mime-window.c:604
+#: ../dialogs/mime-settings/xfce-mime-window.c:484
+#: ../dialogs/mime-settings/xfce-mime-window.c:609
 msgid "User Set"
 msgstr "Angitt av bruker"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:481
-#: ../dialogs/mime-settings/xfce-mime-window.c:604
-#: ../dialogs/mouse-settings/main.c:366 ../dialogs/mouse-settings/main.c:368
-#: ../dialogs/mouse-settings/main.c:428
+#: ../dialogs/mime-settings/xfce-mime-window.c:486
+#: ../dialogs/mime-settings/xfce-mime-window.c:609
+#: ../dialogs/mouse-settings/main.c:380 ../dialogs/mouse-settings/main.c:382
+#: ../dialogs/mouse-settings/main.c:442
 msgid "Default"
 msgstr "Standard"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:550
+#: ../dialogs/mime-settings/xfce-mime-window.c:555
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d MIME-type funnet"
 msgstr[1] "%d MIME-typer funnet"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:649
+#: ../dialogs/mime-settings/xfce-mime-window.c:654
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Kunne ikke angi program \"%s\" for MIME-type \"%s\"."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:906
+#: ../dialogs/mime-settings/xfce-mime-window.c:911
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Er du sikker på at du vil nullstille innholdstypen \"%s\" til standardverdi?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:910
+#: ../dialogs/mime-settings/xfce-mime-window.c:915
 msgid "Question"
 msgstr "Spørsmål"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:913
+#: ../dialogs/mime-settings/xfce-mime-window.c:918
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Dette vil fjerne dine brukerdefinerte MIME-assosiasjoner og gjenopprette systemets standardverdier."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:917
-#: ../dialogs/mime-settings/xfce-mime-window.c:988
+#: ../dialogs/mime-settings/xfce-mime-window.c:922
+#: ../dialogs/mime-settings/xfce-mime-window.c:993
 msgid "Reset to Default"
 msgstr "Nulstill til standardverdier"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:983
+#: ../dialogs/mime-settings/xfce-mime-window.c:988
 msgid "Choose Application..."
 msgstr "Velg program..."
 
-#: ../dialogs/mouse-settings/main.c:78
+#: ../dialogs/mouse-settings/main.c:82
 msgid "Active device in the dialog"
 msgstr "Aktiv enhet i vinduet"
 
-#: ../dialogs/mouse-settings/main.c:78
+#: ../dialogs/mouse-settings/main.c:82
 msgid "DEVICE NAME"
 msgstr "ENHETSNAVN"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:124
+#: ../dialogs/mouse-settings/main.c:138
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:134
+#: ../dialogs/mouse-settings/main.c:148
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:145
+#: ../dialogs/mouse-settings/main.c:159
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
@@ -1572,15 +1583,16 @@ msgstr "Filtertaster"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Kunne ikke starte snarvei «%s»"
 
-#: ../xfsettingsd/main.c:78
+#: ../xfsettingsd/main.c:79
 msgid "Do not fork to the background"
 msgstr "Ikke forgren til bakgrunnen"
 
-#: ../xfsettingsd/main.c:79
+#: ../xfsettingsd/main.c:80
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Erstatt eksisterende «xsettings» prosess (hvis den finnes)"
 
-#: ../xfsettingsd/workspaces.c:385
+#. value in xfconf isn't a string, so make a default one
+#: ../xfsettingsd/workspaces.c:338 ../xfsettingsd/workspaces.c:396
 #, c-format
 msgid "Workspace %d"
 msgstr "Arbeidsområde %d"
@@ -1593,20 +1605,20 @@ msgstr "Bakgrunnsprosess for Xfce-innstillinger"
 msgid "Settings dialog to show"
 msgstr "Innstillingsvindu som skal vises"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:192
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:193
 msgid "All _Settings"
 msgstr "Alle _innstillinger"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:386
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:390
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:388
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:392
 msgid "Customize your desktop"
 msgstr "Tilpass skrivebordet"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:878
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:889
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:885
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:896
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Klarte ikke starte «%s»"
