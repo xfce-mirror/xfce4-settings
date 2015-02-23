@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2015
+# Lyubomir Vasilev, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:16+0200\n"
-"PO-Revision-Date: 2015-01-31 11:49+0000\n"
-"Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>\n"
+"PO-Revision-Date: 2015-02-23 11:04+0000\n"
+"Last-Translator: Lyubomir Vasilev\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce4-settings/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +81,7 @@ msgstr "Забраняване на залепващите клавиши, ко�
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "Когато избраната функция \"залепващи клавиши\" , тя ще бъде забранена, ако се натиснат едновременно два клавиша"
+msgstr "Когато е избрано, функцията „залепващи клавиши“ ще бъде забранена, ако са натиснати едновременно два клавиша"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Sticky Keys"
@@ -235,7 +236,7 @@ msgstr "Информация за версията"
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:60
 #, c-format
 msgid "Type '%s --help' for usage."
-msgstr "Напишете '%s --help' за помощтна информация"
+msgstr "Напишете „%s --help“ за показване на потребителско ръководство."
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:985
@@ -423,7 +424,7 @@ msgstr "Включване на звук при събитие"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "Включване на звуците при събитие глобално (Необходима е поддръжка на \"Canberra\")"
+msgstr "Включване и изключване на звуците при събитие глобално (необходима е поддръжка на „Canberra“)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable i_nput feedback sounds"
@@ -917,12 +918,12 @@ msgstr "Други програми"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:611
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
-msgstr "Отваряне на <i>%s</i> и други файлове от типа \"%s\" с:"
+msgstr "Отваряне на <i>%s</i> и други файлове от типа „%s“ с:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:647
 #, c-format
 msgid "Failed to add new application \"%s\""
-msgstr "Не може да бъде добавена нова програма \"%s\""
+msgstr "Неуспешно добавяне на ново приложение „%s“"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:174
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
@@ -977,12 +978,12 @@ msgstr[1] "Намерени са %d MIME типове"
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr "Неуспех при задаване на приложение \"%s\" за MIME тип \"%s\"."
+msgstr "Неуспешно задаване на приложение „%s“ за MIME тип \"%s\"."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
-msgstr "Наистина ли искате да възстановите съдържание тип \"%s\" в стойности по подразбиране?"
+msgstr "Наистина ли искате да възстановите стойностите по подразбиране за типа съдържание „%s“?"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:910
 msgid "Question"
@@ -1321,7 +1322,7 @@ msgstr "Възстановяването на канала ще премахне
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr "Сигурен ли сте, че искате да възстановите канал \"%s\" и всички негови свойства?"
+msgstr "Сигурни ли сте, че искате да възстановите канала „%s“ и всички негови свойства?"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
 msgid "reset"
@@ -1339,7 +1340,7 @@ msgstr "Следене в Xfconf за изменение състоянието 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
 #, c-format
 msgid "start monitoring channel \"%s\""
-msgstr "Стартиране на наблюдение за канал \"%s\""
+msgstr "Стартиране на наблюдение за канал „%s“"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
 msgid "_Monitor"
@@ -1352,7 +1353,7 @@ msgstr "Възстановяването на свойствата ще прем
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
-msgstr "Сигурен ли сте, че искате да възстановите свойството на \"%s\"?"
+msgstr "Сигурни ли сте, че искате да възстановите свойството „%s“?"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Int"
@@ -1394,29 +1395,29 @@ msgstr "Значение:"
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Имената на свойствата трябва да започват със символа '/'"
+msgstr "Имената на свойствата трябва да започват със символа „/“"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "Елемент Корен ('/') не е валидно име на свойство"
+msgstr "Главният елемент („/“) не е валидно име на свойство"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr "Имената на свойствата могат да съдържат само ASCII-символи A-Z, a-z, 0-9, '_', '-', '<' и '>', а също е добре да има разделител  '/'"
+msgstr "Имената на свойствата могат да съдържат само ASCII-символи A-Z, a-z, 0-9, „_“, „-“, „<“ и „>“, както и „/“ за разделител"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Имената на свойствта не могат да съдържат два или повече последователни знака  '/'"
+msgstr "Имената на свойствата не могат да съдържат два или повече последователни символа „/“"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Имената на свойствата не могат да завършват със символ '/'"
+msgstr "Имената на свойствата не могат да завършват със символ „/“"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
 msgid "Edit Property"
@@ -1465,7 +1466,7 @@ msgstr "Прескачащи клавиши"
 #: ../xfsettingsd/keyboard-shortcuts.c:244
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
-msgstr "Не може да стартира клавишна комбинация \"%s\""
+msgstr "Неуспешно стартиране на приложение за клавишна комбинация „%s“"
 
 #: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
@@ -1504,7 +1505,7 @@ msgstr "Персонализирайте вашият работен плот"
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:869
 #, c-format
 msgid "Unable to start \"%s\""
-msgstr "Неуспех при стартиране на \"%s\""
+msgstr "Неуспешно стартиране на „%s“"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Settings Manager"
