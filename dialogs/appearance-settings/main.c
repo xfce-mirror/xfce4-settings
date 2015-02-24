@@ -723,13 +723,14 @@ appearance_settings_load_icon_themes (preview_data *pd)
                     {
                         if (gtk_icon_theme_has_icon (icon_theme, preview_icons[p]))
                             icon = gtk_icon_theme_load_icon (icon_theme, preview_icons[p], 16, 0, &error);
-                        else
+                        else if (gtk_icon_theme_has_icon (icon_theme, "image-missing"))
                             icon = gtk_icon_theme_load_icon (icon_theme, "image-missing", 16, 0, &error);
 
                         if (!icon)
                         {
                             g_warning ("Couldn't load icon: %s", error->message);
                             g_error_free (error);
+                            error = NULL;
                         }
                         else
                         {
