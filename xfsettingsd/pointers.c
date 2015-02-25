@@ -47,10 +47,13 @@
 #include "pointers-defines.h"
 
 #define MAX_DENOMINATOR (100.00)
-
 #define XFCONF_TYPE_G_VALUE_ARRAY (dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE))
 
-
+#ifdef XI_PROP_ENABLED
+#define DEVICE_ENABLED XI_PROP_ENABLED
+#else
+#define DEVICE_ENABLED "Device Enabled"
+#endif /* XI_PROP_ENABLED */
 
 static void             xfce_pointers_helper_finalize                 (GObject            *object);
 static void             xfce_pointers_helper_syndaemon_stop           (XfcePointersHelper *helper);
@@ -201,6 +204,34 @@ xfce_pointers_helper_finalize (GObject *object)
 
 
 #ifdef HAVE_LIBINPUT
+static gboolean
+xfce_pointers_is_enabled (Display *xdisplay,
+                          XDevice *device)
+{
+    Atom     prop, type;
+    gulong   n_items, bytes_after;
+    gint     rc, format;
+    guchar  *data;
+    gboolean enabled;
+
+    prop = XInternAtom (xdisplay, DEVICE_ENABLED, False);
+    gdk_error_trap_push ();
+    rc = XGetDeviceProperty (xdisplay, device, prop, 0, 1, False,
+                             XA_INTEGER, &type, &format, &n_items,
+                             &bytes_after, &data);
+    gdk_error_trap_pop ();
+    if (rc == Success)
+    {
+        enabled = (gboolean) *data;
+        XFree (data);
+        return (enabled);
+    }
+
+    return FALSE;
+}
+
+
+
 static gboolean
 xfce_pointers_is_libinput (Display *xdisplay,
                            XDevice *device)
@@ -739,6 +770,17 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
      * does not exists on any of the devices */
     if (prop == None)
         return;
+
+#ifdef HAVE_LIBINPUT
+    /*
+     * libinput cannot change properties on disabled devices
+     * see: https://bugs.freedesktop.org/show_bug.cgi?id=89296
+     * and: http://lists.x.org/archives/xorg-devel/2015-February/045716.html
+     */
+    if (prop != XInternAtom (xdisplay, DEVICE_ENABLED, True) &&
+        !xfce_pointers_is_enabled (xdisplay, device))
+        return;
+#endif /* HAVE_LIBINPUT */
 
     gdk_error_trap_push ();
     props = XListDeviceProperties (xdisplay, device, &n_props);
