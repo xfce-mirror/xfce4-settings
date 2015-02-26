@@ -664,7 +664,6 @@ appearance_settings_load_icon_themes (preview_data *pd)
     GtkIconTheme *icon_theme;
     GdkPixbuf    *preview;
     GdkPixbuf    *icon;
-    GError       *error = NULL;
     gchar*        preview_icons[4] = { "folder", "go-down", "audio-volume-high", "web-browser" };
     int           coords[4][2] = { { 4, 4 }, { 24, 4 }, { 4, 24 }, { 24, 24 } };
 
@@ -722,17 +721,11 @@ appearance_settings_load_icon_themes (preview_data *pd)
                     for (p = 0; p < 4; p++)
                     {
                         if (gtk_icon_theme_has_icon (icon_theme, preview_icons[p]))
-                            icon = gtk_icon_theme_load_icon (icon_theme, preview_icons[p], 16, 0, &error);
+                            icon = gtk_icon_theme_load_icon (icon_theme, preview_icons[p], 16, 0, NULL);
                         else if (gtk_icon_theme_has_icon (icon_theme, "image-missing"))
-                            icon = gtk_icon_theme_load_icon (icon_theme, "image-missing", 16, 0, &error);
+                            icon = gtk_icon_theme_load_icon (icon_theme, "image-missing", 16, 0, NULL);
 
-                        if (!icon)
-                        {
-                            g_warning ("Couldn't load icon: %s", error->message);
-                            g_error_free (error);
-                            error = NULL;
-                        }
-                        else
+                        if (icon)
                         {
                             gdk_pixbuf_copy_area (icon, 0, 0, 16, 16, preview, coords[p][0], coords[p][1]);
                             g_object_unref (icon);
