@@ -720,6 +720,7 @@ appearance_settings_load_icon_themes (preview_data *pd)
 
                     for (p = 0; p < 4; p++)
                     {
+                        icon = NULL;
                         if (gtk_icon_theme_has_icon (icon_theme, preview_icons[p]))
                             icon = gtk_icon_theme_load_icon (icon_theme, preview_icons[p], 16, 0, NULL);
                         else if (gtk_icon_theme_has_icon (icon_theme, "image-missing"))
