@@ -460,7 +460,8 @@ theme_create_preview (GdkColor *colors)
     gint width = 44;
     gint height = 22;
 
-    drawable = gdk_pixmap_new (NULL, width, height, 24);
+    drawable = gdk_pixmap_new (gdk_get_default_root_window(), width, height,
+                               gdk_drawable_get_depth (gdk_get_default_root_window ()));
     cr = gdk_cairo_create (drawable);
     cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
 
