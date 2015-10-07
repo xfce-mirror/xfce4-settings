@@ -17,8 +17,8 @@ xfce4_settings_editor_SOURCES = \
 	main.c \
 	xfce-settings-cell-renderer.c \
 	xfce-settings-cell-renderer.h \
-	xfce-settings-editor-dialog.c \
-	xfce-settings-editor-dialog.h \
+	xfce-settings-editor-box.c \
+	xfce-settings-editor-box.h \
 	xfce-settings-prop-dialog.c \
 	xfce-settings-prop-dialog.h
 
