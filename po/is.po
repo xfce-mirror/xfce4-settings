@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Sveinn í Felli <sv1@fellsnet.is>, 2014-2015
+# Sveinn í Felli <sveinki@nett.is>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:16+0200\n"
-"PO-Revision-Date: 2015-12-13 14:19+0000\n"
+"PO-Revision-Date: 2015-12-28 07:42+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/xfce/xfce4-settings/language/is/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +36,7 @@ msgstr "_Virkja stoðtækni"
 msgid ""
 "If enabled, the session manager will start the required applications for "
 "screen readers and magnifiers"
-msgstr ""
+msgstr "Ef þetta er virkt, mun setustjórinn ræsa þau forrit sem nauðsynleg eru fyrir skjálestur og skjástækkun"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
@@ -60,7 +61,7 @@ msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
-msgstr ""
+msgstr "Þegar þetta er valið, þarf ekki að halda niðri breytilyklum (svo sem Control, Alt, og Shift) á meðan ýtt er á aðra lykla í lyklasamsetningum/flýtilyklum; það má ýta á þá og sleppa áður en haldið er áfram með hina lyklana"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
@@ -70,7 +71,7 @@ msgstr "_Læsa klístruðum lyklum"
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr ""
+msgstr "Þegar þetta er valið, munu breytilyklar (svo sem Control, Alt, og Shift) haldast læstir í áþrýstri stöðu þar til ýtt er á þá aftur"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Disable sticky keys if _two keys are pressed"
@@ -94,7 +95,7 @@ msgstr "Nota hægan ly_kiláslátt"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted"
-msgstr ""
+msgstr "Til að koma í veg fyrir lyklaslátt af slysni, krefst hægur lyklasláttur þess að lyklum sé haldið niðri í lágmarkstíma áður en þeir eru meðteknir"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
@@ -104,7 +105,7 @@ msgstr "Samþ_ykktartöf:"
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr ""
+msgstr "Sá tími, í millísekúndum, sem þarf að líða áður en lyklasláttur verður meðtekinn"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "Slow Keys"
@@ -118,7 +119,7 @@ msgstr "Nota lyklaen_durvarp"
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
-msgstr ""
+msgstr "Til að koma í veg fyrir áslátt margra lykla af slysni, krefst lyklaendurvarp lágmarkstíma sem þarf að líða milli lyklaslátta"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
@@ -126,7 +127,7 @@ msgstr "Sein_kun á lyklaslætti:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr ""
+msgstr "Sá tími, í millísekúndum, sem líður á milli lyklaslátta"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "Bounce Keys"
@@ -178,19 +179,19 @@ msgstr "mynddílar/sek"
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
-msgstr ""
+msgstr "Sá tími, í millísekúndum, sem líður á milli þess þegar fyrst er ýtt á lykil þar til fyrsti hreyfingaratburður er endurtekinn"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "The time, in milliseconds, between repeated motion events"
-msgstr ""
+msgstr "Sá tími, í millísekúndum, sem líður á milli endurtekinna hreyfingaratburða"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "The ramp used to reach maximum pointer speed"
-msgstr ""
+msgstr "Hallatala sem notuð er til að ná hámarkshraða bendils"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "The maximum pointer speed after acceleration"
-msgstr ""
+msgstr "Hámarkshraði bendils eftir hröðun"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "The time, in milliseconds, to get to maximum speed"
@@ -317,7 +318,7 @@ msgstr "Táknmynd_ir"
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
-msgstr ""
+msgstr "Þetta letur verður notað sem sjálfgefið letur við að teikna upp texta í notandaviðmótinu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Select a default font"
@@ -331,13 +332,13 @@ msgstr "Sjálfgefið le_tur"
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr ""
+msgstr "Margar leturgerðir innihalda upplýsingar (hint = hnikun) um hvernig best sé að teikna stafina; veldu það sem þér sýnist gefa bestu útkomuna"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
-msgstr ""
+msgstr "Gæði leturs á TFT eða LCD-skjám má bæta verulega með því að velja rétta röðun undirdíla fyrir skjáinn"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "Sub-_pixel order:"
@@ -354,7 +355,7 @@ msgstr "Nota _afstöllun á letur"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr ""
+msgstr "Afstöllun, eða mýking á útlínum leturs getur bætt útlit texta á skjánum"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Rendering"
@@ -368,7 +369,7 @@ msgstr "Sérsniðin _PÁT stilling:"
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
-msgstr ""
+msgstr "Taka yfir skynjaða skjáupplausn ef letur sýnist vera of stórt eða of lítið"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "DPI"
@@ -392,7 +393,7 @@ msgstr "_Birta myndir á hnöppum"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr ""
+msgstr "Ákveddu hvort birta eigi táknmyndir við texta í hnöppum"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "Show images in _menus"
@@ -400,7 +401,7 @@ msgstr "Birta _myndir í valmyndum"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Specify whether icons should be displayed next to items in menus"
-msgstr ""
+msgstr "Ákveddu hvort birta eigi táknmyndir við atriði í valmyndum"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "Enable e_ditable accelerators"
@@ -411,7 +412,7 @@ msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr ""
+msgstr "Ef þetta er valið, er hægt að breyta flýtilyklum atriða í valmyndum með því að láta bendilinn svífa yfir valmyndarfærslunni og ýta á nýju lyklasamsetninguna"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Menus and Buttons"
@@ -423,7 +424,7 @@ msgstr "Virkja k_erfishljóð"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr ""
+msgstr "Virkja eða afvirkja atvikahljóð víðvært (krefst \"Canberra\"-stuðnings)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable i_nput feedback sounds"
@@ -433,7 +434,7 @@ msgstr "Virkja innta_kshljóð"
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
-msgstr ""
+msgstr "Tiltaktu hvort músarsmellir og annað ílag frá notanda eigi að valda því að atvikahljóð séu spiluð"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Event sounds"
@@ -543,15 +544,15 @@ msgstr "Skjástillingar"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Several displays are available. Use:\n"
-msgstr ""
+msgstr "Margir skjáir eru tiltækir. Nota:\n"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
 msgid "Both displays cloned"
-msgstr ""
+msgstr "Báðir skjáir klónaðir"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Use both displays to show the same contents"
-msgstr ""
+msgstr "Nota báða skjái til að birta sama innihald"
 
 #: ../dialogs/display-settings/main.c:68
 msgid "Normal"
@@ -744,7 +745,7 @@ msgstr "Virkja lyklaborðs_endurtekningar"
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
-msgstr ""
+msgstr "Þegar þetta er valið, mun það að ýta á og halda niðri lykli senda sama stafinn aftur og aftur"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "_Repeat delay:"
@@ -982,7 +983,7 @@ msgstr "Mistókst að setja forritið \"%s\" fyrir MIME-tegundina \"%s\"."
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
-msgstr ""
+msgstr "Ertu viss að þú viljir endurstilla efnistegundina \"%s\" á sjálfgefið gildi?"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:910
 msgid "Question"
@@ -992,7 +993,7 @@ msgstr "Spurning"
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr ""
+msgstr "Þetta mun fjarlægja allar sérsniðnar MIME-skilgreiningar og endurheimta sjálfgefnar stillingar kerfisins"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
@@ -1068,7 +1069,7 @@ msgstr "_Hröðun:"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr ""
+msgstr "Hlutfallið sem hraði bendilsins mun aukast um þegar músin er hreyfð"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid ""
@@ -1316,7 +1317,7 @@ msgstr "_Núllstilla rás"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr ""
+msgstr "Núllstilling á rás mun fjarlægja endanlega þessar sérsniðnu stillingar."
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
 #, c-format
@@ -1334,7 +1335,7 @@ msgstr "Fylgjast með %s"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
 msgid "Watch an Xfconf channel for property changes"
-msgstr ""
+msgstr "Fylgjast með Xfconf-rás hvort breytingar verði á eigindum"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
 #, c-format
@@ -1347,7 +1348,7 @@ msgstr "_Eftirlit"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr ""
+msgstr "Núllstilling á eigindi mun fjarlægja endanlega þessar sérsniðnu stillingar."
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
