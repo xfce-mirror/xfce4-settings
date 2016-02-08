@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Apostolos Papadimitriu <apostolos.papadimitriu@gmail.com>, 2016
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2015
 # Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
 # ebal <ebalaskas@ebalaskas.gr>, 2008-2009
@@ -11,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:16+0200\n"
-"PO-Revision-Date: 2016-02-06 14:56+0000\n"
-"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
+"PO-Revision-Date: 2016-02-08 23:17+0000\n"
+"Last-Translator: Apostolos Papadimitriu <apostolos.papadimitriu@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce4-settings/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,11 +48,11 @@ msgstr "Οι βοηθητικές τεχνολογίες θα είναι δια�
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "No AT-SPI provider was found on your system"
-msgstr ""
+msgstr "Δεν βρέθηκε AT-SPI παροχός στο σύστημά σας "
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "_Assistive Technologies"
-msgstr ""
+msgstr "_Βοηθητικές τεχνολογίες"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Use _sticky keys"
@@ -448,11 +449,11 @@ msgstr "Ρυ_θμίσεις"
 #: ../dialogs/appearance-settings/main.c:733
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
-msgstr ""
+msgstr "Το αρχείο είναι μεγαλύτερο από %d ΜΒ, ματαίωση εγκατάστασης"
 
 #: ../dialogs/appearance-settings/main.c:738
 msgid "Failed to create temporary directory"
-msgstr ""
+msgstr "Αποτυχία δημιουργίας προσωρινού καταλόγου"
 
 #: ../dialogs/appearance-settings/main.c:743
 msgid "Failed to extract archive"
@@ -460,7 +461,7 @@ msgstr "Αποτυχία αποσυμπίεσης αρχείου"
 
 #: ../dialogs/appearance-settings/main.c:748
 msgid "Unknown format, only archives and directories are supported"
-msgstr ""
+msgstr "Άγνωστη μορφή, υποστηρίζονται μόνο αρχεία και κατάλογοι"
 
 #: ../dialogs/appearance-settings/main.c:753
 #, c-format
@@ -731,7 +732,7 @@ msgstr "Επεξεργασία ρυθμίσεων πληκτρολογίου κ�
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 msgid "Restore num l_ock state on startup"
-msgstr ""
+msgstr "Επαναφορά της κατάστασης του num lock κατά την εκκίνηση"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
@@ -806,7 +807,7 @@ msgstr "Επαναφορά στις _προεπιλογές"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "A_pplication Shortcuts"
-msgstr ""
+msgstr "Σ_υντομεύσεις εφαρμογών"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Use system defaults"
@@ -888,17 +889,17 @@ msgstr "Επιλογή εφαρμογής"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:204
 msgid "Use a c_ustom command:"
-msgstr ""
+msgstr "Χρήση _προσαρμοσμένης εντολής:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
-msgstr ""
+msgstr "Χρησιμοποιήστε μια προσαρμοσμένη εντολή για μια εφαρμογή που δεν είναι  διαθέσιμη στην παραπάνω λίστα των εφαρμογών."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
-msgstr ""
+msgstr "_Περιήγηση..."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:376
 msgid "Select an Application"
@@ -910,7 +911,7 @@ msgstr "Καμία διαθέσιμη"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:573
 msgid "Recommended Applications"
-msgstr ""
+msgstr "Συνιστώμενες Εφαρμογές"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:591
 msgid "Other Applications"
@@ -919,7 +920,7 @@ msgstr "Άλες εφαρμογές"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:611
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
-msgstr ""
+msgstr "Άνοιγμα <i>%s</i> και άλλων αρχείων του τύπου \"%s\" με:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:647
 #, c-format
@@ -929,20 +930,20 @@ msgstr "Αποτυχία προσθήκης νέας εφαρμογής \"%s\""
 #: ../dialogs/mime-settings/xfce-mime-window.c:174
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
-msgstr ""
+msgstr "Επεξεργαστής Τύπου MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate applications with MIME types"
-msgstr ""
+msgstr "Συσχετισμός εφαρμογών με τύπους MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:203
 msgid "_Filter:"
-msgstr ""
+msgstr "_Φίλτρο:"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:211
 msgid "Clear filter"
-msgstr ""
+msgstr "Εκκαθάριση φίλτρου"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:257
 msgid "MIME Type"
@@ -954,7 +955,7 @@ msgstr "Κατάσταση"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:308
 msgid "Default Application"
-msgstr ""
+msgstr "Προεπιλεγμένη εφαρμογή"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:479
 #: ../dialogs/mime-settings/xfce-mime-window.c:604
@@ -973,13 +974,13 @@ msgstr "Προεπιλογή"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Βρέθηκε %d τύποι MIME"
+msgstr[1] "Βρέθηκαν %d τύποι MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr ""
+msgstr "Αποτυχία ορισμού εφαρμογής \"%s\" για τύπο mime \"%s\"."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
@@ -994,7 +995,7 @@ msgstr "Ερώτηση"
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr ""
+msgstr "Αυτό θα αφαιρέσει τον προσαρμοσμένο συσχετισμό τύπου mime και θα επαναφέρει την προεπιλογή συστήματος."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
@@ -1028,7 +1029,7 @@ msgstr "%g ms"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
-msgstr ""
+msgstr "Ποντίκι και Touchpad"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
@@ -1053,7 +1054,7 @@ msgstr "_Δεξιόχειρες"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Reverse scroll d_irection"
-msgstr ""
+msgstr "Αντίστροφη _κατεύθυνση κύλισης"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "When selected, the scroll wheel will work in the opposite direction"
@@ -1080,7 +1081,7 @@ msgstr "Ο αριθμός των πίξελ που πρέπει να κινηθ�
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "_Sensitivity:"
-msgstr ""
+msgstr "E_υαισθησία"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "Reset to De_faults"
@@ -1090,19 +1091,19 @@ msgstr "Επαναφορά στις _προεπιλογές"
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
-msgstr ""
+msgstr "Θέστε την επιτάχυνση και την ευαισθησία για την επιλεγμένη συσκευή στις προεπιλεγμένες τιμές"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Pointer Speed"
-msgstr ""
+msgstr "Ταχύτητα Δείκτη"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "B_uttons and Feedback"
-msgstr ""
+msgstr "Κουμπιά και ανατροφοδότηση"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Disable to_uchpad while typing"
-msgstr ""
+msgstr "Απενεργοποίηση του touchpad κατά την πληκτρολόγηση"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid ""
@@ -1111,11 +1112,11 @@ msgstr "Όταν επιλεχθεί, το touchpad θα είναι ανενερ�
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "T_ap touchpad to click"
-msgstr ""
+msgstr "_Πατήστε το touchpad για κλικ"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Di_sabled"
-msgstr ""
+msgstr "Απενεργοποιημένο"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Edge scro_lling"
@@ -1135,7 +1136,7 @@ msgstr "Κύλιση"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "T_ouchpad"
-msgstr ""
+msgstr "T_ouchpad"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Tr_acking mode:"
@@ -1147,7 +1148,7 @@ msgstr "Περισ_τροφή:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Table_t"
-msgstr ""
+msgstr "Τάμπλετ"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "_Devices"
@@ -1155,7 +1156,7 @@ msgstr "Συ_σκεύες"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Th_reshold:"
-msgstr ""
+msgstr "_Κατώφλι:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid ""
@@ -1179,7 +1180,7 @@ msgstr "Δύο κλικ ποντικιού σε λιγότερο από το μ�
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "D_istance:"
-msgstr ""
+msgstr "Α_πόσταση:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid ""
@@ -1197,7 +1198,7 @@ msgstr "Σ_υμπεριφορά"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Cursor _size:"
-msgstr ""
+msgstr "Μέγεθος _δείκτη:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "Size"
@@ -1291,7 +1292,7 @@ msgstr "Κενή"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
 msgid "Array"
-msgstr ""
+msgstr "Διάταξη"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
@@ -1314,7 +1315,7 @@ msgstr "Διπλός"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
 msgid "_Reset Channel"
-msgstr ""
+msgstr "__Επαναφορά καναλιού"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
 msgid "Resetting a channel will permanently remove those custom settings."
@@ -1336,12 +1337,12 @@ msgstr "Oθόνη %s"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
 msgid "Watch an Xfconf channel for property changes"
-msgstr ""
+msgstr "Παρακολούθηση καναλιού Xconf για αλλαγές ιδιοτήτων"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
 #, c-format
 msgid "start monitoring channel \"%s\""
-msgstr ""
+msgstr "έναρξη παρακολούθησης καναλιού \"%s\":"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
 msgid "_Monitor"
@@ -1467,7 +1468,7 @@ msgstr "Πλήκτρα αναπήδησης"
 #: ../xfsettingsd/keyboard-shortcuts.c:244
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
-msgstr ""
+msgstr "Αποτυχία εκκίνησης συντόμευσης \"%s\""
 
 #: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
