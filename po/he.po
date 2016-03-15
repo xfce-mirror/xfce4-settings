@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-06 06:30+0100\n"
-"PO-Revision-Date: 2016-03-15 12:09+0000\n"
+"PO-Revision-Date: 2016-03-15 20:36+0000\n"
 "Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce4-settings/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -339,7 +339,7 @@ msgstr "הגדרת _DPI מותאמת אישית:"
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
-msgstr "עקוף את הרזולוציה המאותרת של צג אם גופנים נראים גדולים או קטנים מדי"
+msgstr "עקוף את רזולוצית הצג המתגלית אם גופנים נראים גדולים או קטנים מדי"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "DPI"
@@ -359,11 +359,11 @@ msgstr "סגנון סרגל כלי_ם"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Show images on _buttons"
-msgstr "הצג תמונות על _לחצנים"
+msgstr "הצג תמונות על _כפתורים"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "ציין האם על סמלים להיות מוצגים לצד טקסט בלחצנים"
+msgstr "ציין האם על איקונים להיות מוצגים לצד טקסט בכפתורים"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Show images in _menus"
@@ -371,18 +371,18 @@ msgstr "הצג תמונות בתוך _תפריטים"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "ציין האם על סמלים להיות מוצגים לצד פריטים בתפריטים"
+msgstr "ציין האם על איקונים להיות מוצגים לצד פריטים בתפריטים"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Enable e_ditable accelerators"
-msgstr "אפשר מאיצים ע_ריכים"
+msgstr "אפשר מאיצים הניתנים לע_ריכה"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr "אם נבחרת, קיצורי דרך מקלדת עבור פריטי תפריט יכולים להשתנות על ידי ריחוף העכבר על פריט תפריט ולחיצה על הצירוף מקשים החדש עבור הקיצור דרך"
+msgstr "אם נבחרת, קיצורי מקלדת עבור פריטי תפריט יכולים להשתנות על ידי מיקום העכבר על פריט התפריט ולחיצה על צירוף המקשים החדש עבור הקיצור"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Menus and Buttons"
@@ -404,7 +404,7 @@ msgstr "אפשר צלילי משוב _קלט"
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
-msgstr "ציין האם לחיצות עכבר וקלט משתמש אחר יגרמו לנגינת צלילי אירוע"
+msgstr "ציין האם קליק עכבר וקלט משתמש אחר יגרמו לנגינת צלילי אירוע"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Event sounds"
@@ -453,12 +453,12 @@ msgstr "טקסט ליד איקונים"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
-msgstr "אזהרה: לערכת נושא סמל זו אין קובץ מטמון. באפשרותך ליצור כזו על ידי הרמת <i>gtk-update-icon-cache %s/%s/</i> בתוך מדמה מסוף."
+msgstr "אזהרה: לערכת נושא איקון זו אין קובץ מטמון. באפשרותך ליצור כזה על ידי הפעלת <i>gtk-update-icon-cache %s/%s/</i> בתוך מדמה מסוף."
 
 #: ../dialogs/appearance-settings/main.c:755
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
-msgstr "קובץ הינו גדול יותר מן %d מ״ב, התקנה ננטשה"
+msgstr "קובץ הינו גדול יותר מ- %d מ״ב, התקנה בוטלה"
 
 #: ../dialogs/appearance-settings/main.c:760
 msgid "Failed to create temporary directory"
@@ -470,12 +470,12 @@ msgstr "נכשל להוציא ארכיון"
 
 #: ../dialogs/appearance-settings/main.c:770
 msgid "Unknown format, only archives and directories are supported"
-msgstr "פורמט לא מוכר, רק ארכיונים וספריות הינם נתמכים"
+msgstr "פורמט לא ידוע, רק ארכיונים וספריות הינם נתמכים"
 
 #: ../dialogs/appearance-settings/main.c:775
 #, c-format
 msgid "An unknown error, exit code is %d"
-msgstr "An unknown error, exit code is %d"
+msgstr "שגיאה לא ידועה, קוד יציאה %d "
 
 #: ../dialogs/appearance-settings/main.c:782
 msgid "Failed to install theme"
@@ -503,7 +503,7 @@ msgstr "אימות"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid "Keep this configuration"
-msgstr "השאר תצורה זו"
+msgstr "שמור תצורה זו"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Restore the previous configuration"
@@ -511,7 +511,7 @@ msgstr "שחזר את התצורה הקודמת"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "<big><b>האם ברצונך להשאיר את תצורה זו?</b></big>"
+msgstr "<big><b>האם ברצונך לשמור תצורה זו?</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid ""
@@ -527,7 +527,7 @@ msgstr "תצוגה"
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
-msgstr "עיצוב הגדרות ומערך מסך"
+msgstr "הגדרת סידור והגדרות מסך"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "Ref_lection:"
@@ -551,7 +551,7 @@ msgstr "_השתמש בתצוגה זו"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
-msgstr "_שכפל תצוגה"
+msgstr "_שקף תצוגות"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "_Primary display"
@@ -561,7 +561,7 @@ msgstr "תצוגה _ראשית"
 msgid ""
 "This is a hint for panels, docks and desktop to show on this display "
 "preferably."
-msgstr "זוהי הכוונה עבור לוחות, סרגלים ושולחן עבודה כדי עדיפות להיראות על תצוגה זו."
+msgstr "זהו רמז עבור לוחות, סרגלים ושולחן עבודה להצגה בעדיפות בתצוגה זו."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Configure _new displays when connected"
@@ -581,7 +581,7 @@ msgstr "רק תצוגה 1"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Mirror Displays"
-msgstr "שכפל תצוגות"
+msgstr "שקף תצוגות"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
 msgid "Extend to the right"
@@ -597,7 +597,7 @@ msgstr "מתקדם"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
-msgstr "לחצן רדיו"
+msgstr "כפתור רדיו"
 
 #: ../dialogs/display-settings/main.c:88
 msgid "Left"
@@ -625,7 +625,7 @@ msgstr "אופקי ואנכי"
 
 #: ../dialogs/display-settings/main.c:122
 msgid "Minimal interface to set up an external output"
-msgstr "ממשק מינימלי ליצירת קלט חיצוני"
+msgstr "ממשק מינימלי לכיוונון פלט חיצוני"
 
 #: ../dialogs/display-settings/main.c:251
 #, c-format
@@ -651,11 +651,11 @@ msgstr "רזולוציה:"
 #: ../dialogs/display-settings/main.c:1070
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
-msgstr "The last active output must not be disabled, the system would be unusable."
+msgstr "הפלט הפעיל לאחרונה חייב לא להיות מנוטרל, המערכת תהפוך ללא שמישה."
 
 #: ../dialogs/display-settings/main.c:1072
 msgid "Selected output not disabled"
-msgstr "Selected output not disabled"
+msgstr "פלט נבחר לא מנוטרל"
 
 #: ../dialogs/display-settings/main.c:2212
 msgid ""
@@ -685,12 +685,12 @@ msgstr "(מנוטרל)"
 #: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr "Unable to query the version of the RandR extension being used"
+msgstr "לא יכול לתשאל גרסה של הרחבת RandR בשימוש"
 
 #: ../dialogs/display-settings/main.c:3058
 #: ../dialogs/display-settings/main.c:3094
 msgid "Unable to start the Xfce Display Settings"
-msgstr "Unable to start the Xfce Display Settings"
+msgstr "לא יכול להתחיל את הגדרות תצוגת Xfce "
 
 #: ../dialogs/display-settings/main.c:3089
 msgid "ATI Settings"
@@ -698,7 +698,7 @@ msgstr "הגדרות ATI"
 
 #: ../dialogs/display-settings/main.c:3104
 msgid "Unable to launch the proprietary driver settings"
-msgstr "Unable to launch the proprietary driver settings"
+msgstr "לא יכול להפעיל את הגדרות מנהל ההתקן הקנייני "
 
 #. 1.2 is required
 #: ../dialogs/display-settings/xfce-randr.c:290
