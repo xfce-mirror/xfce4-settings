@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-06 06:30+0100\n"
-"PO-Revision-Date: 2016-03-15 20:36+0000\n"
+"PO-Revision-Date: 2016-03-16 17:31+0000\n"
 "Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce4-settings/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -706,7 +706,7 @@ msgstr "לא יכול להפעיל את הגדרות מנהל ההתקן הקנ�
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "This system is using RandR %d.%d. For the display settings to work version 1.2 is required at least"
+msgstr "מערכת זו משתמשת ב-RandR %d.%d. נדרשת לפחות גרסה 1.2 כדי שהגדרות התצוגה יעבדו "
 
 #: ../dialogs/display-settings/xfce-randr.c:553
 msgid "Laptop"
@@ -730,12 +730,12 @@ msgstr "תצוגה דיגיטלית"
 #: ../dialogs/display-settings/display-name.c:2493
 msgctxt "Monitor vendor"
 msgid "Unknown"
-msgstr "לא מוכר"
+msgstr "לא ידוע"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
-msgstr "פקודת קיצור דרך"
+msgstr "פקודת קיצור"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:147
 msgid "Enter the command you want to trigger with a shortcut."
@@ -744,7 +744,7 @@ msgstr "הזן את הפקודה שברצונך לעורר בעזרת קיצור
 #. We are editing an existing shortcut
 #: ../dialogs/keyboard-settings/command-dialog.c:165
 msgid "Shortcut:"
-msgstr "קיצור דרך:"
+msgstr "קיצור:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:176
 msgid "Command:"
@@ -752,7 +752,7 @@ msgstr "פקודה:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:196
 msgid "Use _startup notification"
-msgstr "השתמש בהתראת ה_פעלה"
+msgstr "השתמש בהודעת ה_פעלה"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:243
 msgid "The command may not be empty."
@@ -798,7 +798,7 @@ msgstr "בחירת סידור מקלדת"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Select keyboard layout and variant"
-msgstr "בחירת פריסת מקלדת ומודל"
+msgstr "בחירת סידור ונוסח מקלדת"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
@@ -821,17 +821,17 @@ msgstr "כללי"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "_Enable key repeat"
-msgstr "אפשר _חזרת מקש"
+msgstr "אפשור _חזרת מקשים"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
-msgstr "כאשר נבחרת, לחיצה והחזקה של מקש תדפיס את אותו התו שוב ושוב, באופן חוזר ונשנה"
+msgstr "כאשר נבחרת, לחיצה והחזקה של מקש תדפיס את אותו התו שוב ושוב"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "_Repeat delay:"
-msgstr "שיהוי _חזרה:"
+msgstr "דיחוי _חזרה:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "The time, in milliseconds, before a pressed key begins repeating"
@@ -859,11 +859,11 @@ msgstr "ציין האם על סמן טקסט להבהב"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Blink _delay:"
-msgstr "שיהוי ה_בהוב:"
+msgstr "דיחוי ה_בהוב:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "השיהוי, באלפיות שנייה, בין הבהובים רצופים של הסמן"
+msgstr "הדיחוי, באלפיות שנייה, בין הבהובים רצופים של הסמן"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Cursor"
@@ -879,7 +879,7 @@ msgstr "ה_תנהגות"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Define shortcuts for la_unching applications:"
-msgstr "ה_גדר קיצורי דרך לשם שיגור יישומים:"
+msgstr "ה_גדר קיצורים להפעלת יישומים:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Reset to _Defaults"
@@ -887,7 +887,7 @@ msgstr "אפס ל_ברירות מחדל"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "A_pplication Shortcuts"
-msgstr "_קיצורי דרך יישום"
+msgstr "_קיצורי יישומים"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Use system defaults"
@@ -897,7 +897,7 @@ msgstr "_השתמש בברירות מחדל של מערכת"
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
-msgstr "מציינת האם פריסת המקלדת תישלט בעזרת דו שיח זה, או על ידי שרת X"
+msgstr "מציינת האם סידור המקלדת נשלט בעזרת דו שיח הגדרות זה, או על ידי שרת X"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Keyboard model"
@@ -905,7 +905,7 @@ msgstr "_דגם מקלדת"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Change la_yout option"
-msgstr "החלף אפשרות _פריסה"
+msgstr "החלף אפשרות _סידור"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "Co_mpose key"
@@ -913,11 +913,11 @@ msgstr "מקש _חיבור"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "Move currently selected item up by one row"
-msgstr "הזז פריט נוכחי נבחר מעלה בשורה אחת"
+msgstr "הזז פריט נבחר נוכחי מעלה בשורה אחת"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "Move currently selected item down by one row"
-msgstr "הזז פריט נוכחי נבחר מטה בשורה אחת"
+msgstr "הזז פריט נבחר נוכחי מטה בשורה אחת"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Key_board layout"
@@ -925,20 +925,20 @@ msgstr "סי_דור מקלדת"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "_Layout"
-msgstr "פריס_ה"
+msgstr "_סידור"
 
 #: ../dialogs/keyboard-settings/main.c:82
 msgid "Unable to initialize GTK+."
-msgstr "Unable to initialize GTK+."
+msgstr "לא יכול לאתחל GTK+. "
 
 #: ../dialogs/keyboard-settings/main.c:102
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
-msgstr "Failed to connect to xfconf daemon. Reason: %s"
+msgstr "נכשל להתחבר אל תהליך רקע xfconf. סיבה: %s"
 
 #: ../dialogs/keyboard-settings/main.c:113
 msgid "Could not create the settings dialog."
-msgstr "Could not create the settings dialog."
+msgstr "לא יכול ליצור דו שיח הגדרות."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
 msgid "Command"
@@ -946,7 +946,7 @@ msgstr "פקודה"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
-msgstr "קיצור דרך"
+msgstr "קיצור"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
 msgid "Layout"
@@ -954,12 +954,12 @@ msgstr "סידור"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Variant"
-msgstr "משתנה"
+msgstr "נוסח"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
 msgid "Shortcut command may not be empty."
-msgstr "פקודת קיצור דרך לא יכולה להיות ריקה."
+msgstr "פקודת קיצור לא יכולה להיות ריקה."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1270
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
@@ -986,13 +986,13 @@ msgstr "בחירת יישום"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:204
 msgid "Use a c_ustom command:"
-msgstr "השתמש בפקודה מות_אמת:"
+msgstr "השתמש בפקודה מות_אמת אישית:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
-msgstr "השתמש בפקודה מותאמת עבור יישום אשר אינו זמין מתוך הרשימה מעלה."
+msgstr "השתמש בפקודה מותאמת אישית עבור יישום אשר אינו זמין מתוך רשימת היישומים מעלה."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
@@ -1027,12 +1027,12 @@ msgstr "נכשל להוסיף יישום חדש \"%s\""
 #: ../dialogs/mime-settings/xfce-mime-window.c:174
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
-msgstr "עורך טיפוס MIME"
+msgstr "עורך סוג MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate applications with MIME types"
-msgstr "שייך יישומים בעזרת טיפוסי MIME"
+msgstr "שייך יישומים עם סוגי MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:203
 msgid "_Filter:"
@@ -1040,11 +1040,11 @@ msgstr "_מסנן:"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:211
 msgid "Clear filter"
-msgstr "טהר מסנן"
+msgstr "נקה מסנן"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:257
 msgid "MIME Type"
-msgstr "טיפוס MIME"
+msgstr "סוג MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:287
 msgid "Status"
@@ -1071,8 +1071,8 @@ msgstr "ברירת מחדל"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] "טיפוס MIME ‏%d נמצא"
-msgstr[1] "%d טיפוסי MIME נמצאו"
+msgstr[0] "סוג MIME ‏%d נמצא"
+msgstr[1] "%d סוגי MIME נמצאו"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:654
 #, c-format
@@ -1105,11 +1105,11 @@ msgstr "בחר יישום..."
 
 #: ../dialogs/mouse-settings/main.c:82
 msgid "Active device in the dialog"
-msgstr "Active device in the dialog"
+msgstr "התקן פעיל בדו שיח"
 
 #: ../dialogs/mouse-settings/main.c:82
 msgid "DEVICE NAME"
-msgstr "DEVICE NAME"
+msgstr "שם התקן"
 
 #. pixel value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:138
@@ -1169,7 +1169,7 @@ msgstr "עכבר ולוח מגע"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Configure pointer device behavior and appearance"
-msgstr "עיצוב התנהגות ומראה מכשיר הצבעה"
+msgstr "הגדר התנהגות ומראה התקן הצבעה"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "De_vice:"
