@@ -561,6 +561,9 @@ cb_hinting_style_combo_changed (GtkComboBox *combo)
 
     /* Save setting */
     xfconf_channel_set_string (xsettings_channel, "/Xft/HintStyle", xft_hint_styles_array[active]);
+
+    /* Also update /Xft/Hinting to match */
+    xfconf_channel_set_int (xsettings_channel, "/Xft/Hinting", active > 0 ? 1 : 0);
 }
 
 static void
