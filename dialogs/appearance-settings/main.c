@@ -776,6 +776,7 @@ appearance_settings_load_icon_themes (preview_data *pd)
                         gtk_tree_path_free (tree_path);
                     }
 
+                    g_object_unref (icon_theme);
                     g_object_unref (preview);
                 }
             }
