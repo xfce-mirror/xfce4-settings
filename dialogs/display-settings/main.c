@@ -1608,8 +1608,16 @@ static XfceOutputInfo *convert_xfce_output_info (gint output_id)
     output->display_name = xfce_randr->friendly_name[output_id];
     output->connected = TRUE;
     output->on = xfce_randr->mode[output_id] != None;
-    output->pref_width = preferred->width;
-    output->pref_height = preferred->height;
+
+    if (preferred != NULL) {
+        output->pref_width = preferred->width;
+        output->pref_height = preferred->height;
+    } else {
+        // Fallback on 640x480 if randr detection fails (Xfce #12580)
+        output->pref_width = 640;
+        output->pref_height = 480;
+    }
+
     if (output->on)
     {
         output->rotation = xfce_randr->rotation[output_id];
