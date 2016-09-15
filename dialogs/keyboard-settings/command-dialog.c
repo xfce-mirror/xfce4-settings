@@ -23,7 +23,6 @@
 
 #include <gtk/gtk.h>
 
-#include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 
 #include "command-dialog.h"
@@ -97,7 +96,6 @@ command_dialog_create_contents (CommandDialog *dialog,
                                 const gchar   *action,
                                 gboolean       snotify)
 {
-  GtkWidget *alignment;
   GtkWidget *button;
   GtkWidget *content_box;
   GtkWidget *hbox;
@@ -108,31 +106,23 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_window_set_title (GTK_WINDOW (dialog), _("Shortcut Command"));
   gtk_window_set_icon_name (GTK_WINDOW (dialog), "application-x-executable");
 
-  /* Configure dialog */
-  gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
-
   /* Create cancel button */
-  button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
+  button = gtk_button_new_with_label (_("Cancel"));
   gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_CANCEL);
   gtk_widget_show (button);
 
-  button = gtk_button_new_from_stock (GTK_STOCK_OK);
+  button = gtk_button_new_with_label (_("OK"));
   gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default (GTK_WIDGET(button), TRUE);
   gtk_widget_grab_default (button);
   gtk_widget_show (button);
 
   /* Set the main box layout */
-  alignment = gtk_alignment_new (0, 0, 1, 1);
-  gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 6, 12, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (alignment), 0);
-  gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
-                                    alignment);
-  gtk_widget_show (alignment);
-
-  content_box = gtk_vbox_new (FALSE, 6);
+  content_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+  gtk_widget_set_margin_bottom (GTK_WIDGET(content_box), 6);
+  gtk_widget_set_margin_start (GTK_WIDGET(content_box), 12);
   gtk_container_set_border_width (GTK_CONTAINER (content_box), 6);
-  gtk_container_add (GTK_CONTAINER (alignment), content_box);
+  gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), content_box);
   gtk_widget_show (content_box);
 
   if (!shortcut)
@@ -151,9 +141,9 @@ command_dialog_create_contents (CommandDialog *dialog,
       gtk_widget_show (label);
     }
 
-  table = gtk_table_new (3, 2, FALSE);
-  gtk_table_set_row_spacings (GTK_TABLE (table), 6);
-  gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+  table = gtk_grid_new ();
+  gtk_grid_set_row_spacing (GTK_GRID (table), 6);
+  gtk_grid_set_column_spacing (GTK_GRID (table), 12);
   gtk_container_set_border_width (GTK_CONTAINER (table), 6);
   gtk_container_add (GTK_CONTAINER (content_box), table);
   gtk_widget_show (table);
@@ -163,23 +153,26 @@ command_dialog_create_contents (CommandDialog *dialog,
       /* We are editing an existing shortcut */
 
       label = gtk_label_new (_("Shortcut:"));
-      gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-      gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+      gtk_widget_set_halign (GTK_WIDGET (label), GTK_ALIGN_START);
+      gtk_widget_set_valign (GTK_WIDGET (label), GTK_ALIGN_CENTER);
+      gtk_grid_attach (GTK_GRID (table), label, 0, 0, 1, 1);
       gtk_widget_show (label);
 
       label = gtk_label_new (shortcut);
-      gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-      gtk_table_attach (GTK_TABLE (table), label, 1, 2, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+      gtk_widget_set_halign (GTK_WIDGET (label), GTK_ALIGN_START);
+      gtk_widget_set_valign (GTK_WIDGET (label), GTK_ALIGN_CENTER);
+      gtk_grid_attach (GTK_GRID (table), label, 1, 0, 1, 1);
       gtk_widget_show (label);
     }
 
   label = gtk_label_new (_("Command:"));
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_widget_set_halign (GTK_WIDGET (label), GTK_ALIGN_START);
+  gtk_widget_set_valign (GTK_WIDGET (label), GTK_ALIGN_CENTER);
+  gtk_grid_attach (GTK_GRID (table), label, 0, 1, 1, 1);
   gtk_widget_show (label);
 
-  hbox = gtk_hbox_new (FALSE, 6);
-  gtk_table_attach (GTK_TABLE (table), hbox, 1, 2, 1, 2, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+  gtk_grid_attach (GTK_GRID (table), hbox, 1, 1, 1, 1);
   gtk_widget_show (hbox);
 
   dialog->entry = gtk_entry_new ();
@@ -188,13 +181,13 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_container_add (GTK_CONTAINER (hbox), dialog->entry);
   gtk_widget_show (dialog->entry);
 
-  dialog->button = gtk_button_new_from_stock (GTK_STOCK_OPEN);
+  dialog->button = gtk_button_new_with_label (_("Open"));
   g_signal_connect_swapped (dialog->button, "clicked", G_CALLBACK (command_dialog_button_clicked), dialog);
   gtk_box_pack_start (GTK_BOX (hbox), dialog->button, FALSE, TRUE, 0);
   gtk_widget_show (dialog->button);
 
   dialog->sn_option = gtk_check_button_new_with_mnemonic (_("Use _startup notification"));
-  gtk_table_attach (GTK_TABLE (table), dialog->sn_option, 1, 2, 2, 3, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+  gtk_grid_attach (GTK_GRID (table), dialog->sn_option, 0, 2, 1, 1);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->sn_option), snotify);
   gtk_widget_show (dialog->sn_option);
 
@@ -263,8 +256,8 @@ command_dialog_button_clicked (CommandDialog *dialog)
   chooser = gtk_file_chooser_dialog_new (_("Select command"),
                                          GTK_WINDOW (dialog),
                                          GTK_FILE_CHOOSER_ACTION_OPEN,
-                                         GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                         GTK_STOCK_OPEN, GTK_RESPONSE_OK, NULL);
+                                         _("Cancel"), GTK_RESPONSE_CANCEL,
+                                         _("Open"), GTK_RESPONSE_OK, NULL);
 
   /* Add file chooser filters */
   filter = gtk_file_filter_new ();

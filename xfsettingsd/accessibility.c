@@ -118,7 +118,7 @@ xfce_accessibility_helper_init (XfceAccessibilityHelper *helper)
     helper->notification = NULL;
 #endif /* !HAVE_LIBNOTIFY */
 
-    if (XkbQueryExtension (GDK_DISPLAY (), &dummy, &dummy, &dummy, &dummy, &dummy))
+    if (XkbQueryExtension (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), &dummy, &dummy, &dummy, &dummy, &dummy))
     {
         /* open the channel */
         helper->channel = xfconf_channel_get ("accessibility");
@@ -135,7 +135,7 @@ xfce_accessibility_helper_init (XfceAccessibilityHelper *helper)
             g_critical ("Failed to connect to the notification daemon.");
 
         /* add event filter */
-        XkbSelectEvents (GDK_DISPLAY (), XkbUseCoreKbd, XkbControlsNotifyMask, XkbControlsNotifyMask);
+        XkbSelectEvents (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), XkbUseCoreKbd, XkbControlsNotifyMask, XkbControlsNotifyMask);
 
         /* monitor all window events */
         gdk_window_add_filter (NULL, xfce_accessibility_helper_event_filter, helper);
@@ -197,7 +197,7 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
             SET_FLAG (mask, XkbMouseKeysAccelMask);
 
         /* load the xkb controls into the structure */
-        XkbGetControls (GDK_DISPLAY (), mask, xkb);
+        XkbGetControls (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), mask, xkb);
 
         /* AccessXKeys */
         if (HAS_FLAG (mask, XkbAccessXKeysMask))
@@ -348,7 +348,7 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
         }
 
         /* set the modified controls */
-        if (!XkbSetControls (GDK_DISPLAY (), mask, xkb))
+        if (!XkbSetControls (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), mask, xkb))
             g_message ("Setting the xkb controls failed");
 
         /* free the structure */

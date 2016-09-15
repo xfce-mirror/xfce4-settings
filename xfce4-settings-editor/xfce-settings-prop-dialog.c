@@ -141,39 +141,43 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     gtk_window_set_title (GTK_WINDOW (dialog), _("New Property"));
     gtk_window_set_default_size (GTK_WINDOW (dialog), 300, 200);
     gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                            GTK_STOCK_SAVE, GTK_RESPONSE_OK, NULL);
+                            _("Cancel"), GTK_RESPONSE_CANCEL,
+                            _("Save"), GTK_RESPONSE_OK, NULL);
     gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
     save_button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
     gtk_widget_set_sensitive (save_button, FALSE);
 
-    table = gtk_table_new (5, 2, FALSE);
+    table = gtk_grid_new ();
     content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
     gtk_box_pack_start (GTK_BOX (content_area), table, TRUE, TRUE, 0);
-    gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+    gtk_grid_set_column_spacing (GTK_GRID (table), 12);
     gtk_container_set_border_width (GTK_CONTAINER (table), 6);
     gtk_widget_show (table);
 
     label = gtk_label_new_with_mnemonic (_("_Property:"));
-    gtk_misc_set_alignment (GTK_MISC (label), 0.00, 0.50);
-    gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1,
-                      GTK_FILL, GTK_FILL, 0, 0);
-    gtk_table_set_row_spacing (GTK_TABLE (table), 0, 6);
+    gtk_widget_set_halign (label, GTK_ALIGN_START);
+    gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
+    gtk_grid_attach (GTK_GRID (table), label, 0, 0, 1, 1);
+    gtk_widget_set_margin_top (label, 6);
+    gtk_widget_set_margin_bottom (label, 6);
     gtk_widget_show (label);
 
     dialog->prop_name = entry = gtk_entry_new ();
-    gtk_table_attach (GTK_TABLE (table), entry, 1, 2, 0, 1,
-                      GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+    gtk_grid_attach (GTK_GRID (table), entry, 1, 0, 1, 1);
+    gtk_widget_set_margin_top (entry, 6);
+    gtk_widget_set_margin_bottom (entry, 6);
     xfce_settings_prop_dialog_visible_bind (entry, label);
     g_signal_connect (G_OBJECT (entry), "changed",
         G_CALLBACK (xfce_settings_prop_dialog_entry_validate), dialog);
     gtk_widget_show (entry);
 
     label = gtk_label_new_with_mnemonic (_("_Type:"));
-    gtk_misc_set_alignment (GTK_MISC (label), 0.00, 0.50);
-    gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2,
-                      GTK_FILL, GTK_FILL, 0, 0);
+    gtk_widget_set_halign (label, GTK_ALIGN_START);
+    gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
+    gtk_grid_attach (GTK_GRID (table), label, 0, 1, 1, 1);
+    gtk_widget_set_margin_top (label, 6);
+    gtk_widget_set_margin_bottom (label, 6);
     gtk_widget_show (label);
 
     store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_UINT);
@@ -185,9 +189,9 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     }
 
     dialog->prop_type = combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
-    gtk_table_attach (GTK_TABLE (table), combo, 1, 2, 1, 2,
-                      GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
-    gtk_table_set_row_spacing (GTK_TABLE (table), 1, 6);
+    gtk_grid_attach (GTK_GRID (table), combo, 1, 1, 1, 1);
+    gtk_widget_set_margin_top (combo, 6);
+    gtk_widget_set_margin_bottom (combo, 6);
     xfce_settings_prop_dialog_visible_bind (combo, label);
     gtk_combo_box_set_active (GTK_COMBO_BOX (combo), 0);
     g_signal_connect (G_OBJECT (combo), "changed",
@@ -202,38 +206,35 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
 
     /* strings */
     label = gtk_label_new_with_mnemonic (_("_Value:"));
-    gtk_misc_set_alignment (GTK_MISC (label), 0.00, 0.50);
-    gtk_table_attach (GTK_TABLE (table), label, 0, 1, 2, 3,
-                      GTK_FILL, GTK_FILL, 0, 0);
+    gtk_widget_set_halign (label, GTK_ALIGN_START);
+    gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
+    gtk_grid_attach (GTK_GRID (table), label, 0, 2, 1, 1);
 
     entry = dialog->prop_string = gtk_entry_new ();
-    gtk_table_attach (GTK_TABLE (table), entry, 1, 2, 2, 3,
-                      GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+    gtk_grid_attach (GTK_GRID (table), entry, 1, 2, 1, 1);
     xfce_settings_prop_dialog_visible_bind (entry, label);
 
     /* integers */
     label = gtk_label_new_with_mnemonic (_("_Value:"));
-    gtk_misc_set_alignment (GTK_MISC (label), 0.00, 0.50);
-    gtk_table_attach (GTK_TABLE (table), label, 0, 1, 3, 4,
-                      GTK_FILL, GTK_FILL, 0, 0);
+    gtk_widget_set_halign (label, GTK_ALIGN_START);
+    gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
+    gtk_grid_attach (GTK_GRID (table), label, 0, 3, 1, 1);
 
     spin = dialog->prop_integer = gtk_spin_button_new_with_range (0.00, 0.00, 1.00);
     gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin), TRUE);
-    gtk_table_attach (GTK_TABLE (table), spin, 1, 2, 3, 4,
-                      GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+    gtk_grid_attach (GTK_GRID (table), spin, 1, 3, 1, 1);
     xfce_settings_prop_dialog_visible_bind (spin, label);
 
     /* bool */
     label = gtk_label_new_with_mnemonic (_("_Value:"));
-    gtk_misc_set_alignment (GTK_MISC (label), 0.00, 0.50);
-    gtk_table_attach (GTK_TABLE (table), label, 0, 1, 4, 5,
-                      GTK_FILL, GTK_FILL, 0, 0);
+    gtk_widget_set_halign (label, GTK_ALIGN_START);
+    gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
+    gtk_grid_attach (GTK_GRID (table), label, 0, 4, 1, 1);
 
     toggle = dialog->prop_bool = gtk_toggle_button_new_with_label ("FALSE");
     g_signal_connect (G_OBJECT (toggle), "toggled",
         G_CALLBACK (xfce_settings_prop_dialog_button_toggled), NULL);
-    gtk_table_attach (GTK_TABLE (table), toggle, 1, 2, 4, 5,
-                      GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+    gtk_grid_attach (GTK_GRID (table), toggle, 1, 4, 1, 1);
     xfce_settings_prop_dialog_visible_bind (toggle, label);
 }
 
@@ -464,8 +465,8 @@ xfce_settings_prop_dialog_entry_validate (GtkWidget              *entry,
     {
         is_valid = xfconf_property_is_valid (text, &error);
 
-        gtk_entry_set_icon_from_stock (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY,
-                                       is_valid ? NULL : GTK_STOCK_DIALOG_ERROR);
+        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY,
+                                       is_valid ? NULL : "dialog-error");
         gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY,
                                          is_valid ? NULL : error->message);
 
@@ -474,7 +475,7 @@ xfce_settings_prop_dialog_entry_validate (GtkWidget              *entry,
     }
     else
     {
-        gtk_entry_set_icon_from_stock (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, NULL);
+        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, NULL);
     }
 
     save_button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);

@@ -80,33 +80,25 @@ static void             xfce_settings_cell_renderer_get_property  (GObject      
                                                                    GValue               *value,
                                                                    GParamSpec           *pspec);
 static void             xfce_settings_cell_renderer_finalize      (GObject              *object);
-static void             xfce_settings_cell_renderer_get_size      (GtkCellRenderer      *cell,
-                                                                   GtkWidget            *widget,
-                                                                   GdkRectangle         *cell_area,
-                                                                   gint                 *x_offset,
-                                                                   gint                 *y_offset,
-                                                                   gint                 *width,
-                                                                   gint                 *height);
 static void             xfce_settings_cell_renderer_render        (GtkCellRenderer      *cell,
-                                                                   GdkDrawable          *window,
+                                                                   cairo_t              *cr,
                                                                    GtkWidget            *widget,
-                                                                   GdkRectangle         *background_area,
-                                                                   GdkRectangle         *cell_area,
-                                                                   GdkRectangle         *expose_area,
+                                                                   const GdkRectangle   *background_area,
+                                                                   const GdkRectangle   *cell_area,
                                                                    GtkCellRendererState  flags);
 static gint             xfce_settings_cell_renderer_activate      (GtkCellRenderer      *cell,
                                                                    GdkEvent             *event,
                                                                    GtkWidget            *widget,
                                                                    const gchar          *path,
-                                                                   GdkRectangle         *background_area,
-                                                                   GdkRectangle         *cell_area,
+                                                                   const GdkRectangle   *background_area,
+                                                                   const GdkRectangle   *cell_area,
                                                                    GtkCellRendererState  flags);
 static GtkCellEditable *xfce_settings_cell_renderer_start_editing (GtkCellRenderer      *cell,
                                                                    GdkEvent             *event,
                                                                    GtkWidget            *widget,
                                                                    const gchar          *path,
-                                                                   GdkRectangle         *background_area,
-                                                                   GdkRectangle         *cell_area,
+                                                                   const GdkRectangle   *background_area,
+                                                                   const GdkRectangle   *cell_area,
                                                                    GtkCellRendererState  flags);
 static void             xfce_settings_strv_to_string              (const GValue         *src_value,
                                                                    GValue               *dest_value);
@@ -128,7 +120,6 @@ xfce_settings_cell_renderer_class_init (XfceSettingsCellRendererClass *klass)
     gobject_class->finalize = xfce_settings_cell_renderer_finalize;
 
     gtkcellrenderer_class = GTK_CELL_RENDERER_CLASS (klass);
-    gtkcellrenderer_class->get_size = xfce_settings_cell_renderer_get_size;
     gtkcellrenderer_class->render = xfce_settings_cell_renderer_render;
     gtkcellrenderer_class->activate = xfce_settings_cell_renderer_activate;
     gtkcellrenderer_class->start_editing = xfce_settings_cell_renderer_start_editing;
@@ -338,33 +329,11 @@ xfce_settings_cell_renderer_prepare (XfceSettingsCellRenderer *renderer)
 
 
 static void
-xfce_settings_cell_renderer_get_size (GtkCellRenderer      *cell,
-                                      GtkWidget            *widget,
-                                      GdkRectangle         *cell_area,
-                                      gint                 *x_offset,
-                                      gint                 *y_offset,
-                                      gint                 *width,
-                                      gint                 *height)
-{
-    XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (cell);
-    GtkCellRenderer          *cell_renderer;
-
-    cell_renderer = xfce_settings_cell_renderer_prepare (renderer);
-    gtk_cell_renderer_get_size (cell_renderer,
-                                widget, cell_area,
-                                x_offset, y_offset,
-                                width, height);
-}
-
-
-
-static void
 xfce_settings_cell_renderer_render (GtkCellRenderer      *cell,
-                                    GdkDrawable          *window,
+                                    cairo_t              *cr,
                                     GtkWidget            *widget,
-                                    GdkRectangle         *background_area,
-                                    GdkRectangle         *cell_area,
-                                    GdkRectangle         *expose_area,
+                                    const GdkRectangle   *background_area,
+                                    const GdkRectangle   *cell_area,
                                     GtkCellRendererState  flags)
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (cell);
@@ -372,9 +341,9 @@ xfce_settings_cell_renderer_render (GtkCellRenderer      *cell,
 
     cell_renderer = xfce_settings_cell_renderer_prepare (renderer);
     gtk_cell_renderer_render (cell_renderer,
-                              window, widget,
+                              cr, widget,
                               background_area, cell_area,
-                              expose_area, flags);
+                              flags);
 }
 
 
@@ -384,8 +353,8 @@ xfce_settings_cell_renderer_activate (GtkCellRenderer      *cell,
                                       GdkEvent             *event,
                                       GtkWidget            *widget,
                                       const gchar          *path,
-                                      GdkRectangle         *background_area,
-                                      GdkRectangle         *cell_area,
+                                      const GdkRectangle   *background_area,
+                                      const GdkRectangle   *cell_area,
                                       GtkCellRendererState  flags)
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (cell);
@@ -503,8 +472,8 @@ xfce_settings_cell_renderer_start_editing (GtkCellRenderer      *cell,
                                            GdkEvent             *event,
                                            GtkWidget            *widget,
                                            const gchar          *path,
-                                           GdkRectangle         *background_area,
-                                           GdkRectangle         *cell_area,
+                                           const GdkRectangle   *background_area,
+                                           const GdkRectangle   *cell_area,
                                            GtkCellRendererState  flags)
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (cell);

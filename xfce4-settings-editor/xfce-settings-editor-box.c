@@ -66,7 +66,7 @@ struct _XfceSettingsEditorBox
     GtkWidget         *button_new;
     GtkWidget         *button_edit;
     GtkWidget         *button_reset;
-    
+
     gint			   paned_pos;
 };
 
@@ -145,7 +145,7 @@ static void xfce_settings_editor_box_get_property (GObject *object,
 {
     XfceSettingsEditorBox *self;
     self = XFCE_SETTINGS_EDITOR_BOX (object);
-    
+
     switch (prop_id)
     {
 	case PROP_PANED_POSITION:
@@ -165,7 +165,7 @@ static void xfce_settings_editor_box_set_property (GObject *object,
 {
     XfceSettingsEditorBox *self;
     self = XFCE_SETTINGS_EDITOR_BOX (object);
-    
+
     switch (prop_id)
     {
 	case PROP_PANED_POSITION:
@@ -206,8 +206,8 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
 											G_TYPE_VALUE);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (self->props_store),
                                           PROP_COLUMN_NAME, GTK_SORT_ASCENDING);
-    self->paned = paned = gtk_hpaned_new ();
-    
+    self->paned = paned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
+
     gtk_box_pack_start (GTK_BOX (self), paned, TRUE, TRUE, 0);
     gtk_paned_set_position (GTK_PANED (paned), self->paned_pos);
     gtk_container_set_border_width (GTK_CONTAINER (paned), 6);
@@ -243,7 +243,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
                                                  _("Channel"), render,
                                                  "text", CHANNEL_COLUMN_NAME, NULL);
 
-    vbox = gtk_vbox_new (FALSE, 6);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
     gtk_paned_add2 (GTK_PANED (paned), vbox);
     gtk_widget_show (vbox);
 
@@ -304,12 +304,12 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     g_signal_connect (G_OBJECT (render), "value-changed",
         G_CALLBACK (xfce_settings_editor_box_value_changed), self);
 
-    bbox = gtk_hbutton_box_new ();
+    bbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
     gtk_box_pack_start (GTK_BOX (vbox), bbox, FALSE, TRUE, 0);
     gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_START);
     gtk_widget_show (bbox);
 
-    button = gtk_button_new_from_stock (GTK_STOCK_NEW);
+    button = gtk_button_new_with_label (_("New"));
     gtk_container_add (GTK_CONTAINER (bbox), button);
     gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
     gtk_widget_set_tooltip_text (button, _("New property"));
@@ -320,7 +320,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     g_signal_connect_swapped (G_OBJECT (button), "clicked",
         G_CALLBACK (xfce_settings_editor_box_property_new), self);
 
-    button = gtk_button_new_from_stock (GTK_STOCK_EDIT);
+    button = gtk_button_new_with_label (_("Edit"));
     gtk_container_add (GTK_CONTAINER (bbox), button);
     gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
     gtk_widget_set_tooltip_text (button, _("Edit selected property"));
@@ -331,7 +331,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     g_signal_connect_swapped (G_OBJECT (button), "clicked",
         G_CALLBACK (xfce_settings_editor_box_property_edit), self);
 
-    button = xfce_gtk_button_new_mixed (GTK_STOCK_REVERT_TO_SAVED, _("_Reset"));
+    button = xfce_gtk_button_new_mixed ("document-revert", _("_Reset"));
     gtk_container_add (GTK_CONTAINER (bbox), button);
     gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
     gtk_widget_set_tooltip_text (button, _("Reset selected property"));
@@ -347,9 +347,9 @@ static void
 xfce_settings_editor_box_class_init (XfceSettingsEditorBoxClass *klass)
 {
     GObjectClass   *gobject_class;
-	
+
 	gobject_class = G_OBJECT_CLASS (klass);
-	    
+
     gobject_class->set_property = xfce_settings_editor_box_set_property;
     gobject_class->get_property = xfce_settings_editor_box_get_property;
 
@@ -363,7 +363,7 @@ xfce_settings_editor_box_class_init (XfceSettingsEditorBoxClass *klass)
 													   10,
 													   G_PARAM_CONSTRUCT |
 													   G_PARAM_READWRITE));
-	
+
     gobject_class->finalize = xfce_settings_editor_box_finalize;
 }
 
@@ -389,7 +389,7 @@ xfce_settings_editor_box_finalize (GObject *object)
     g_object_unref (G_OBJECT (self->props_store));
     if (self->props_channel != NULL)
         g_object_unref (G_OBJECT (self->props_channel));
-    
+
     G_OBJECT_CLASS (xfce_settings_editor_box_parent_class)->finalize (object);
 }
 
@@ -796,7 +796,7 @@ xfce_settings_editor_box_channel_reset (XfceSettingsEditorBox *self)
     g_object_get (self->props_channel, "channel-name", &channel_name, NULL);
 
     if (xfce_dialog_confirm (GTK_WINDOW (gtk_widget_get_toplevel(GTK_WIDGET(self))),
-                             GTK_STOCK_REVERT_TO_SAVED,
+                             "document-revert",
                              _("_Reset Channel"),
                              _("Resetting a channel will permanently remove those custom settings."),
                              _("Are you sure you want to reset channel \"%s\" and all its properties?"),
@@ -941,8 +941,8 @@ xfce_settings_editor_box_channel_monitor (XfceSettingsEditorBox *self)
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (window),
         _("Watch an Xfconf channel for property changes"));
     gtk_dialog_add_buttons (GTK_DIALOG (window),
-                            GTK_STOCK_CLEAR, GTK_RESPONSE_REJECT,
-                            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
+                            _("Clear"), GTK_RESPONSE_REJECT,
+                            _("Close"), GTK_RESPONSE_CLOSE, NULL);
     g_signal_connect (G_OBJECT (window), "response",
         G_CALLBACK (xfce_settings_editor_box_channel_monitor_response),
         g_object_ref (G_OBJECT (self->props_channel)));
@@ -999,7 +999,6 @@ xfce_settings_editor_box_channel_menu (XfceSettingsEditorBox *self)
     GtkWidget *menu;
     GtkWidget *mi;
     gchar     *channel_name;
-    GtkWidget *image;
 
     if (self->props_channel == NULL)
         return FALSE;
@@ -1019,31 +1018,23 @@ xfce_settings_editor_box_channel_menu (XfceSettingsEditorBox *self)
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
     gtk_widget_show (mi);
 
-    mi = gtk_image_menu_item_new_with_mnemonic (_("_Reset"));
+    mi = gtk_menu_item_new_with_mnemonic (_("_Reset"));
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
     g_signal_connect_swapped (G_OBJECT (mi), "activate",
         G_CALLBACK (xfce_settings_editor_box_channel_reset), self);
     gtk_widget_show (mi);
 
-    image = gtk_image_new_from_stock (GTK_STOCK_REVERT_TO_SAVED, GTK_ICON_SIZE_MENU);
-    gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
-    gtk_widget_show (image);
-
-    mi = gtk_image_menu_item_new_with_mnemonic (_("_Monitor"));
+    mi = gtk_menu_item_new_with_mnemonic (_("_Monitor"));
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-    gtk_widget_show (mi);
-
-    image = gtk_image_new_from_icon_name ("utilities-system-monitor", GTK_ICON_SIZE_MENU);
-    gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
     g_signal_connect_swapped (G_OBJECT (mi), "activate",
         G_CALLBACK (xfce_settings_editor_box_channel_monitor), self);
-    gtk_widget_show (image);
+    gtk_widget_show (mi);
 
     mi = gtk_separator_menu_item_new ();
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
     gtk_widget_show (mi);
 
-    mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_REFRESH, NULL);
+    mi = gtk_menu_item_new_with_label (_("Refresh"));
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
     g_signal_connect_swapped (G_OBJECT (mi), "activate",
         G_CALLBACK (xfce_settings_editor_box_load_channels), self);
@@ -1293,13 +1284,13 @@ xfce_settings_editor_box_key_press_event (GtkTreeView              *treeview,
 										  GdkEventKey              *event,
 										  XfceSettingsEditorBox    *self)
 {
-    if (event->keyval == GDK_Delete
+    if (event->keyval == GDK_KEY_Delete
         && gtk_widget_get_sensitive (self->button_reset))
     {
         xfce_settings_editor_box_property_reset (self);
         return TRUE;
     }
-    else if (event->keyval == GDK_Insert
+    else if (event->keyval == GDK_KEY_Insert
              && gtk_widget_get_sensitive (self->button_new))
     {
         xfce_settings_editor_box_property_new (self);
@@ -1362,7 +1353,7 @@ xfce_settings_editor_box_property_reset (XfceSettingsEditorBox *self)
     property = xfce_settings_editor_box_selected (self, NULL, NULL);
     if (property != NULL
         && xfce_dialog_confirm (GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(self))),
-                                GTK_STOCK_REVERT_TO_SAVED, _("_Reset"),
+                                "document-revert", _("_Reset"),
                                 _("Resetting a property will permanently remove those custom settings."),
                                 _("Are you sure you want to reset property \"%s\"?"), property))
     {

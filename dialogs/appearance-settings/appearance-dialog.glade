@@ -1,8 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
 <interface>
-  <requires lib="gtk+" version="2.20"/>
-  <!-- interface-requires libxfce4ui 4.5 -->
-  <!-- interface-naming-policy toplevel-contextual -->
+  <requires lib="gtk+" version="3.20"/>
+  <requires lib="libxfce4ui-2" version="4.13"/>
+  <object class="GtkListStore" id="liststore1">
+    <columns>
+      <!-- column-name title -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">None</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Slight</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Medium</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Full</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="liststore2">
+    <columns>
+      <!-- column-name title -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Icons</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Text</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Text under icons</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Text next to icons</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="liststore3">
+    <columns>
+      <!-- column-name factor -->
+      <column type="gint"/>
+      <!-- column-name text -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">1</col>
+        <col id="1" translatable="yes">1x (no scaling)</col>
+      </row>
+      <row>
+        <col id="0">2</col>
+        <col id="1" translatable="yes">2x</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="xft_custom_dpi">
+    <property name="lower">48</property>
+    <property name="upper">1000</property>
+    <property name="value">96</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkListStore" id="xft_rgba_store">
+    <columns>
+      <!-- column-name pixbuf -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name title -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="XfceTitledDialog" id="dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Appearance</property>
@@ -11,19 +84,19 @@
     <property name="type_hint">dialog</property>
     <property name="subtitle" translatable="yes">Customize the look of your desktop</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox1">
+      <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area1">
+          <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -38,7 +111,6 @@
             <child>
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-help</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -69,8 +141,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="border_width">12</property>
-                <property name="hscrollbar_policy">automatic</property>
-                <property name="vscrollbar_policy">automatic</property>
                 <property name="shadow_type">etched-in</property>
                 <child>
                   <object class="GtkTreeView" id="gtk_theme_treeview">
@@ -78,6 +148,9 @@
                     <property name="can_focus">True</property>
                     <property name="headers_visible">False</property>
                     <property name="show_expanders">False</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection" id="treeview-selection1"/>
+                    </child>
                   </object>
                 </child>
               </object>
@@ -98,8 +171,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="border_width">12</property>
-                <property name="hscrollbar_policy">automatic</property>
-                <property name="vscrollbar_policy">automatic</property>
                 <property name="shadow_type">etched-in</property>
                 <child>
                   <object class="GtkTreeView" id="icon_theme_treeview">
@@ -107,6 +178,9 @@
                     <property name="can_focus">True</property>
                     <property name="headers_visible">False</property>
                     <property name="show_expanders">False</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection" id="treeview-selection2"/>
+                    </child>
                   </object>
                 </child>
               </object>
@@ -127,11 +201,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox3">
+              <object class="GtkBox" id="vbox3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
-                <property name="spacing">12</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
                 <child>
                   <object class="GtkFrame" id="frame3">
                     <property name="visible">True</property>
@@ -147,11 +222,11 @@
                         <property name="left_padding">12</property>
                         <child>
                           <object class="GtkFontButton" id="gtk_fontname_button">
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">This font will be used as the default font used when drawing user interface text</property>
+                            <property name="font">Sans 12</property>
                             <property name="title" translatable="yes">Select a default font</property>
                           </object>
                         </child>
@@ -183,113 +258,101 @@
                     <property name="label_xalign">0</property>
                     <property name="shadow_type">none</property>
                     <child>
-                      <object class="GtkAlignment" id="alignment4">
+                      <object class="GtkGrid" id="grid1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="bottom_padding">6</property>
-                        <property name="left_padding">12</property>
+                        <property name="margin_left">18</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">6</property>
+                        <property name="margin_bottom">12</property>
+                        <property name="row_spacing">6</property>
+                        <property name="column_spacing">12</property>
                         <child>
-                          <object class="GtkTable" id="table1">
+                          <object class="GtkCheckButton" id="xft_antialias_check_button">
+                            <property name="label" translatable="yes">_Enable anti-aliasing</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">Anti-aliasing, or font smoothing, can improve the look of text on the screen</property>
+                            <property name="halign">start</property>
+                            <property name="use_underline">True</property>
+                            <property name="active">True</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                            <property name="width">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label10">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="border_width">6</property>
-                            <property name="n_rows">3</property>
-                            <property name="n_columns">2</property>
-                            <property name="column_spacing">12</property>
-                            <property name="row_spacing">6</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">Hintin_g:</property>
+                            <property name="use_underline">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="xft_hinting_style_combo_box">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Many fonts contain information that provides extra hints as to how best draw the font; pick whichever looks best according to personal preference</property>
+                            <property name="hexpand">True</property>
+                            <property name="model">liststore1</property>
                             <child>
-                              <object class="GtkComboBox" id="xft_hinting_style_combo_box">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">Many fonts contain information that provides extra hints as to how best draw the font; pick whichever looks best according to personal preference</property>
-                                <property name="model">liststore1</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
-                                <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="xft_rgba_combo_box">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">Font quality on a TFT or LCD screen can be greatly improved by choosing the correct sub-pixel order of the screen</property>
-                                <property name="model">xft_rgba_store</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext3"/>
-                                  <attributes>
-                                    <attribute name="text">1</attribute>
-                                  </attributes>
-                                </child>
-                                <child>
-                                  <object class="GtkCellRendererPixbuf" id="cellrendererpixbuf1"/>
-                                  <attributes>
-                                    <attribute name="pixbuf">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
-                                <property name="top_attach">2</property>
-                                <property name="bottom_attach">3</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="label11">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="xalign">1</property>
-                                <property name="label" translatable="yes">Sub-_pixel order:</property>
-                                <property name="use_underline">True</property>
-                                <property name="mnemonic_widget">xft_rgba_combo_box</property>
-                              </object>
-                              <packing>
-                                <property name="top_attach">2</property>
-                                <property name="bottom_attach">3</property>
-                                <property name="x_options">GTK_FILL</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="label10">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="xalign">0</property>
-                                <property name="label" translatable="yes">Hintin_g:</property>
-                                <property name="use_underline">True</property>
-                                <property name="mnemonic_widget">xft_hinting_style_combo_box</property>
-                              </object>
-                              <packing>
-                                <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_FILL</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkCheckButton" id="xft_antialias_check_button">
-                                <property name="label" translatable="yes">_Enable anti-aliasing</property>
-                                <property name="use_action_appearance">False</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">False</property>
-                                <property name="tooltip_text" translatable="yes">Anti-aliasing, or font smoothing, can improve the look of text on the screen</property>
-                                <property name="use_underline">True</property>
-                                <property name="active">True</property>
-                                <property name="draw_indicator">True</property>
-                              </object>
-                              <packing>
-                                <property name="right_attach">2</property>
-                              </packing>
+                              <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
                             </child>
                           </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label11">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Sub-_pixel order:</property>
+                            <property name="use_underline">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="xft_rgba_combo_box">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Font quality on a TFT or LCD screen can be greatly improved by choosing the correct sub-pixel order of the screen</property>
+                            <property name="hexpand">True</property>
+                            <property name="model">xft_rgba_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cellrenderertext3"/>
+                              <attributes>
+                                <attribute name="text">1</attribute>
+                              </attributes>
+                            </child>
+                            <child>
+                              <object class="GtkCellRendererPixbuf" id="cellrendererpixbuf1"/>
+                              <attributes>
+                                <attribute name="pixbuf">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">2</property>
+                          </packing>
                         </child>
                       </object>
                     </child>
@@ -323,7 +386,7 @@
                         <property name="bottom_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkHBox" id="hbox1">
+                          <object class="GtkBox" id="hbox1">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="border_width">6</property>
@@ -331,7 +394,6 @@
                             <child>
                               <object class="GtkCheckButton" id="xft_custom_dpi_check_button">
                                 <property name="label" translatable="yes">Custom _DPI setting:</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
@@ -352,8 +414,6 @@
                                 <property name="can_focus">True</property>
                                 <property name="primary_icon_activatable">False</property>
                                 <property name="secondary_icon_activatable">False</property>
-                                <property name="primary_icon_sensitive">True</property>
-                                <property name="secondary_icon_sensitive">True</property>
                                 <property name="adjustment">xft_custom_dpi</property>
                                 <property name="snap_to_ticks">True</property>
                                 <property name="numeric">True</property>
@@ -404,10 +464,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox1">
+              <object class="GtkBox" id="vbox1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkFrame" id="frame2">
@@ -470,19 +531,20 @@
                         <property name="bottom_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkVBox" id="vbox2">
+                          <object class="GtkBox" id="vbox2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="border_width">6</property>
+                            <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkCheckButton" id="gtk_button_images_check_button">
                                 <property name="label" translatable="yes">Show images on _buttons</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Specify whether icons should be displayed next to text in buttons</property>
+                                <property name="halign">start</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -495,11 +557,11 @@
                             <child>
                               <object class="GtkCheckButton" id="gtk_menu_images_check_button">
                                 <property name="label" translatable="yes">Show images in _menus</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Specify whether icons should be displayed next to items in menus</property>
+                                <property name="halign">start</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -512,11 +574,11 @@
                             <child>
                               <object class="GtkCheckButton" id="gtk_caneditaccels_check_button">
                                 <property name="label" translatable="yes">Enable e_ditable accelerators</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">If selected, keyboard shortcuts for menu items can be changed by hovering the mouse over the menu item and pressing the new key combination for the shortcut</property>
+                                <property name="halign">start</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -559,19 +621,20 @@
                         <property name="bottom_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkVBox" id="vbox4">
+                          <object class="GtkBox" id="vbox4">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="border_width">6</property>
+                            <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkCheckButton" id="enable_event_sounds_check_button">
                                 <property name="label" translatable="yes">Enable _event sounds</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Enable or disable event sounds globally (requires "Canberra" support)</property>
+                                <property name="halign">start</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -584,11 +647,11 @@
                             <child>
                               <object class="GtkCheckButton" id="enable_input_feedback_sounds_button">
                                 <property name="label" translatable="yes">Enable input feedbac_k sounds</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Specify whether mouse clicks and other user input will cause event sounds to play</property>
+                                <property name="halign">start</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -617,6 +680,56 @@
                     <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame" id="frame6">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label_xalign">0</property>
+                    <property name="shadow_type">none</property>
+                    <child>
+                      <object class="GtkAlignment" id="alignment4">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="border_width">6</property>
+                        <property name="bottom_padding">6</property>
+                        <property name="left_padding">12</property>
+                        <child>
+                          <object class="GtkComboBox" id="gdk_window_scaling_factor_combo_box">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Adjust the system-wide display scaling</property>
+                            <property name="model">liststore3</property>
+                            <property name="active">0</property>
+                            <property name="id_column">0</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cellrenderertext4"/>
+                              <attributes>
+                                <attribute name="text">1</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="label13">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">_Window Scaling</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">gtk_toolbar_style_combo_box</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
               </object>
@@ -649,60 +762,5 @@
       <action-widget response="0">button1</action-widget>
       <action-widget response="-11">button2</action-widget>
     </action-widgets>
-  </object>
-  <object class="GtkListStore" id="liststore1">
-    <columns>
-      <!-- column-name title -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">None</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Slight</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Medium</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Full</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="liststore2">
-    <columns>
-      <!-- column-name title -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Icons</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Text</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Text under icons</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Text next to icons</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkAdjustment" id="xft_custom_dpi">
-    <property name="lower">48</property>
-    <property name="upper">1000</property>
-    <property name="value">96</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkListStore" id="xft_rgba_store">
-    <columns>
-      <!-- column-name pixbuf -->
-      <column type="GdkPixbuf"/>
-      <!-- column-name title -->
-      <column type="gchararray"/>
-    </columns>
   </object>
 </interface>

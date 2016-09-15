@@ -116,7 +116,7 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     /* monitor channel changes */
     g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_keyboard_layout_helper_channel_property_changed), helper);
 
-    helper->engine = xkl_engine_get_instance (GDK_DISPLAY ());
+    helper->engine = xkl_engine_get_instance (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()));
     helper->config = xkl_config_rec_new ();
     xkl_config_rec_get_from_server (helper->config, helper->engine);
     helper->system_keyboard_model = g_strdup (helper->config->model);

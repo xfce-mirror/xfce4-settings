@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
 <interface>
-  <requires lib="gtk+" version="2.20"/>
-  <!-- interface-requires libxfce4ui 4.5 -->
-  <!-- interface-naming-policy toplevel-contextual -->
+  <requires lib="gtk+" version="3.20"/>
+  <requires lib="libxfce4ui-2" version="4.13"/>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -22,19 +22,19 @@
     <property name="type_hint">dialog</property>
     <property name="subtitle" translatable="yes">Select keyboard layout and variant</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox2">
+      <object class="GtkBox" id="dialog-vbox2">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area2">
+          <object class="GtkButtonBox" id="dialog-action_area2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="layout_selection_ok_button">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -49,7 +49,6 @@
             <child>
               <object class="GtkButton" id="layout_selection_cancel_button">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -74,8 +73,6 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="border_width">6</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <property name="shadow_type">in</property>
             <child>
               <object class="GtkTreeView" id="layout_selection_view">
@@ -83,6 +80,9 @@
                 <property name="can_focus">True</property>
                 <property name="headers_visible">False</property>
                 <property name="search_column">0</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection1"/>
+                </child>
               </object>
             </child>
           </object>
@@ -99,6 +99,28 @@
       <action-widget response="-6">layout_selection_cancel_button</action-widget>
     </action-widgets>
   </object>
+  <object class="GtkAdjustment" id="net_cursor_blink_time">
+    <property name="lower">100</property>
+    <property name="upper">2000</property>
+    <property name="value">1000</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkSizeGroup" id="sizegroup1"/>
+  <object class="GtkAdjustment" id="xkb_key_repeat_delay">
+    <property name="lower">10</property>
+    <property name="upper">1000</property>
+    <property name="value">500</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="xkb_key_repeat_rate">
+    <property name="lower">1</property>
+    <property name="upper">250</property>
+    <property name="value">20</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="XfceTitledDialog" id="keyboard-settings-dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Keyboard</property>
@@ -108,19 +130,19 @@
     <property name="type_hint">dialog</property>
     <property name="subtitle" translatable="yes">Edit keyboard settings and application shortcuts</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox1">
+      <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area1">
+          <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-help</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -136,7 +158,6 @@
             <child>
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -157,20 +178,22 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="plug-child">
+          <object class="GtkBox" id="plug-child">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="border_width">6</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkNotebook" id="notebook1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <child>
-                  <object class="GtkVBox" id="vbox3">
+                  <object class="GtkBox" id="vbox3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">12</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkFrame" id="frame1">
@@ -189,10 +212,10 @@
                             <child>
                               <object class="GtkCheckButton" id="restore_numlock">
                                 <property name="label" translatable="yes">Restore num l_ock state on startup</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
+                                <property name="halign">start</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -229,19 +252,20 @@
                             <property name="can_focus">False</property>
                             <property name="left_padding">12</property>
                             <child>
-                              <object class="GtkVBox" id="vbox1">
+                              <object class="GtkBox" id="vbox1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="border_width">6</property>
+                                <property name="orientation">vertical</property>
                                 <property name="spacing">6</property>
                                 <child>
                                   <object class="GtkCheckButton" id="xkb_key_repeat_check">
                                     <property name="label" translatable="yes">_Enable key repeat</property>
-                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="tooltip_text" translatable="yes">When selected, pressing and holding down a key emits the same character over and over again</property>
+                                    <property name="halign">start</property>
                                     <property name="use_underline">True</property>
                                     <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
@@ -258,15 +282,16 @@
                                     <property name="can_focus">False</property>
                                     <property name="left_padding">18</property>
                                     <child>
-                                      <object class="GtkVBox" id="vbox6">
+                                      <object class="GtkBox" id="vbox6">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="orientation">vertical</property>
                                         <property name="spacing">6</property>
                                         <child>
                                           <object class="GtkLabel" id="label7">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xalign">0</property>
+                                            <property name="halign">start</property>
                                             <property name="label" translatable="yes">_Repeat delay:</property>
                                             <property name="use_underline">True</property>
                                             <property name="mnemonic_widget">xkb_key_repeat_delay_scale</property>
@@ -278,11 +303,10 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkHScale" id="xkb_key_repeat_delay_scale">
+                                          <object class="GtkScale" id="xkb_key_repeat_delay_scale">
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="tooltip_text" translatable="yes">The time, in milliseconds, before a pressed key begins repeating</property>
-                                            <property name="update_policy">delayed</property>
                                             <property name="adjustment">xkb_key_repeat_delay</property>
                                             <property name="digits">0</property>
                                             <property name="value_pos">right</property>
@@ -297,7 +321,7 @@
                                           <object class="GtkLabel" id="label10">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xalign">0</property>
+                                            <property name="halign">start</property>
                                             <property name="label" translatable="yes">Repe_at speed:</property>
                                             <property name="use_underline">True</property>
                                             <property name="mnemonic_widget">xkb_key_repeat_rate_scale</property>
@@ -309,11 +333,10 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkHScale" id="xkb_key_repeat_rate_scale">
+                                          <object class="GtkScale" id="xkb_key_repeat_rate_scale">
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="tooltip_text" translatable="yes">The rate at which keystrokes are generated while a key is pressed</property>
-                                            <property name="update_policy">delayed</property>
                                             <property name="adjustment">xkb_key_repeat_rate</property>
                                             <property name="digits">0</property>
                                             <property name="value_pos">right</property>
@@ -366,19 +389,20 @@
                             <property name="can_focus">False</property>
                             <property name="left_padding">12</property>
                             <child>
-                              <object class="GtkVBox" id="vbox4">
+                              <object class="GtkBox" id="vbox4">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="border_width">6</property>
+                                <property name="orientation">vertical</property>
                                 <property name="spacing">6</property>
                                 <child>
                                   <object class="GtkCheckButton" id="net_cursor_blink_check">
                                     <property name="label" translatable="yes">Show _blinking</property>
-                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="tooltip_text" translatable="yes">Specify whether or not the text cursor blinks</property>
+                                    <property name="halign">start</property>
                                     <property name="use_underline">True</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -395,15 +419,16 @@
                                     <property name="can_focus">False</property>
                                     <property name="left_padding">18</property>
                                     <child>
-                                      <object class="GtkVBox" id="vbox7">
+                                      <object class="GtkBox" id="vbox7">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="orientation">vertical</property>
                                         <property name="spacing">6</property>
                                         <child>
                                           <object class="GtkLabel" id="label13">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xalign">0</property>
+                                            <property name="halign">start</property>
                                             <property name="label" translatable="yes">Blink _delay:</property>
                                             <property name="use_underline">True</property>
                                             <property name="mnemonic_widget">net_cursor_blink_time_scale</property>
@@ -415,11 +440,10 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkHScale" id="net_cursor_blink_time_scale">
+                                          <object class="GtkScale" id="net_cursor_blink_time_scale">
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="tooltip_text" translatable="yes">The delay, in milliseconds, between successive blinks of the cursor</property>
-                                            <property name="update_policy">delayed</property>
                                             <property name="adjustment">net_cursor_blink_time</property>
                                             <property name="digits">0</property>
                                             <property name="value_pos">right</property>
@@ -461,7 +485,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hbox1">
+                      <object class="GtkBox" id="hbox1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">12</property>
@@ -484,11 +508,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">•</property>
-                            <property name="invisible_char_set">True</property>
                             <property name="primary_icon_activatable">False</property>
                             <property name="secondary_icon_activatable">False</property>
-                            <property name="primary_icon_sensitive">True</property>
-                            <property name="secondary_icon_sensitive">True</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -517,16 +538,16 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkVBox" id="vbox5">
+                  <object class="GtkBox" id="vbox5">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">12</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkLabel" id="label14">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">Define shortcuts for la_unching applications:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">kbd_shortcuts_view</property>
@@ -541,14 +562,15 @@
                       <object class="GtkScrolledWindow" id="scrolledwindow2">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">automatic</property>
-                        <property name="vscrollbar_policy">automatic</property>
                         <property name="shadow_type">etched-in</property>
                         <child>
                           <object class="GtkTreeView" id="kbd_shortcuts_view">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="search_column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection" id="treeview-selection2"/>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -562,18 +584,16 @@
                       <object class="GtkAlignment" id="alignment8">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="yalign">0</property>
                         <property name="xscale">0</property>
                         <property name="yscale">0</property>
                         <child>
-                          <object class="GtkHBox" id="hbox2">
+                          <object class="GtkBox" id="hbox2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="spacing">12</property>
                             <child>
                               <object class="GtkButton" id="add_shortcut_button">
                                 <property name="label">gtk-add</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
@@ -588,7 +608,6 @@
                             <child>
                               <object class="GtkButton" id="edit_shortcut_button">
                                 <property name="label">gtk-edit</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
@@ -603,7 +622,6 @@
                             <child>
                               <object class="GtkButton" id="delete_shortcut_button">
                                 <property name="label">gtk-remove</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
@@ -618,7 +636,6 @@
                             <child>
                               <object class="GtkButton" id="reset_shortcuts_button">
                                 <property name="label" translatable="yes">Reset to _Defaults</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
@@ -659,18 +676,19 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkVBox" id="xkb_tab_layout_vbox">
+                  <object class="GtkBox" id="xkb_tab_layout_vbox">
                     <property name="can_focus">False</property>
                     <property name="border_width">12</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkCheckButton" id="xkb_use_system_default_checkbutton">
                         <property name="label" translatable="yes">_Use system defaults</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Specifies whether the keyboard layout is controlled with this settings dialog, or by the X server</property>
+                        <property name="halign">start</property>
                         <property name="use_underline">True</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
@@ -720,7 +738,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hbox4">
+                      <object class="GtkBox" id="hbox4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">6</property>
@@ -821,12 +839,13 @@
                             <property name="border_width">6</property>
                             <property name="left_padding">12</property>
                             <child>
-                              <object class="GtkVBox" id="vbox8">
+                              <object class="GtkBox" id="vbox8">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="orientation">vertical</property>
                                 <property name="spacing">6</property>
                                 <child>
-                                  <object class="GtkHBox" id="hbox3">
+                                  <object class="GtkBox" id="hbox3">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="spacing">6</property>
@@ -834,14 +853,15 @@
                                       <object class="GtkScrolledWindow" id="scrolledwindow1">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="hscrollbar_policy">automatic</property>
-                                        <property name="vscrollbar_policy">automatic</property>
                                         <property name="shadow_type">etched-in</property>
                                         <child>
                                           <object class="GtkTreeView" id="xkb_layout_view">
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="search_column">0</property>
+                                            <child internal-child="selection">
+                                              <object class="GtkTreeSelection" id="treeview-selection3"/>
+                                            </child>
                                           </object>
                                         </child>
                                       </object>
@@ -852,13 +872,13 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkVBox" id="vbuttonbox1">
+                                      <object class="GtkBox" id="vbuttonbox1">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="orientation">vertical</property>
                                         <property name="spacing">6</property>
                                         <child>
                                           <object class="GtkButton" id="xkb_layout_up_button">
-                                            <property name="use_action_appearance">False</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">True</property>
@@ -879,7 +899,6 @@
                                         </child>
                                         <child>
                                           <object class="GtkButton" id="xkb_layout_down_button">
-                                            <property name="use_action_appearance">False</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">True</property>
@@ -913,7 +932,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkHButtonBox" id="hbuttonbox2">
+                                  <object class="GtkButtonBox" id="hbuttonbox2">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="spacing">12</property>
@@ -921,7 +940,6 @@
                                     <child>
                                       <object class="GtkButton" id="xkb_layout_add_button">
                                         <property name="label">gtk-add</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
@@ -936,7 +954,6 @@
                                     <child>
                                       <object class="GtkButton" id="xkb_layout_edit_button">
                                         <property name="label">gtk-edit</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
@@ -951,7 +968,6 @@
                                     <child>
                                       <object class="GtkButton" id="xkb_layout_delete_button">
                                         <property name="label">gtk-delete</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
@@ -1030,26 +1046,4 @@
       <action-widget response="0">button2</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkAdjustment" id="net_cursor_blink_time">
-    <property name="lower">100</property>
-    <property name="upper">2000</property>
-    <property name="value">1000</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="xkb_key_repeat_delay">
-    <property name="lower">10</property>
-    <property name="upper">1000</property>
-    <property name="value">500</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="xkb_key_repeat_rate">
-    <property name="lower">1</property>
-    <property name="upper">250</property>
-    <property name="value">20</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkSizeGroup" id="sizegroup1"/>
 </interface>

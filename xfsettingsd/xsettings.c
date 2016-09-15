@@ -394,7 +394,8 @@ xfce_xsettings_helper_prop_valid (const gchar  *prop_name,
     /* only accept properties in valid domains */
     if (!g_str_has_prefix (prop_name, "/Net/")
         && !g_str_has_prefix (prop_name, "/Xft/")
-        && !g_str_has_prefix (prop_name, "/Gtk/"))
+        && !g_str_has_prefix (prop_name, "/Gtk/")
+        && !g_str_has_prefix (prop_name, "/Gdk/"))
         return FALSE;
 
     /* notify if the property has an unsupported type */
@@ -1087,7 +1088,8 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
 
     gdk_error_trap_push ();
 
-    n_screens = gdk_display_get_n_screens (gdkdisplay);
+    /* Previously, gdk_display_get_n_screens. Since Gtk 3.10, the number of screens is always 1. */
+    n_screens = 1;
     for (n = 0; n < n_screens; n++)
     {
         g_snprintf (atom_name, sizeof (atom_name), "_XSETTINGS_S%d", n);

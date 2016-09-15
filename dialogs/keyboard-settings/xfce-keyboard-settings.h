@@ -40,7 +40,7 @@ GType xfce_keyboard_settings_get_type                      (void) G_GNUC_CONST;
 XfceKeyboardSettings *xfce_keyboard_settings_new           (void) G_GNUC_MALLOC;
 GtkWidget            *xfce_keyboard_settings_create_dialog (XfceKeyboardSettings *settings);
 GtkWidget            *xfce_keyboard_settings_create_plug   (XfceKeyboardSettings *settings,
-                                                            GdkNativeWindow       socket_id);
+                                                            gint                  socket_id);
 
 
 

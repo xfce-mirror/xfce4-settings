@@ -22,7 +22,9 @@ xfce4_settings_manager_CFLAGS = \
 	$(GARCON_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(EXO_CFLAGS) \
-	$(PLATFORM_CFLAGS)
+	$(PLATFORM_CFLAGS) \
+    -DGTK_DISABLE_SINGLE_INCLUDES \
+    -DGSEAL_ENABLE
 
 xfce4_settings_manager_LDFLAGS = \
 	-no-undefined \

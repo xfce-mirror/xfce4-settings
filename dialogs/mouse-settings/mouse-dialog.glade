@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
 <interface>
-  <requires lib="gtk+" version="2.20"/>
-  <!-- interface-requires libxfce4ui 4.5 -->
-  <!-- interface-naming-policy project-wide -->
+  <requires lib="gtk+" version="3.20"/>
+  <requires lib="libxfce4ui-2" version="4.13"/>
   <object class="GtkAdjustment" id="dclick-distance">
     <property name="upper">20</property>
     <property name="value">4</property>
@@ -17,10 +17,9 @@
     <property name="page_increment">100</property>
   </object>
   <object class="GtkAdjustment" id="device-acceleration">
-    <property name="lower">0</property>
     <property name="upper">10</property>
     <property name="value">2</property>
-    <property name="step_increment">0.1</property>
+    <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">1</property>
   </object>
   <object class="GtkAdjustment" id="device-threshold">
@@ -43,10 +42,10 @@
     <property name="stock">gtk-revert-to-saved</property>
   </object>
   <object class="GtkAdjustment" id="synaptics-disable-duration">
-    <property name="lower">0.1</property>
+    <property name="lower">0.10000000000000001</property>
     <property name="upper">4</property>
     <property name="value">2</property>
-    <property name="step_increment">0.1</property>
+    <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">1</property>
   </object>
   <object class="GtkListStore" id="synaptics-scroll-store">
@@ -82,6 +81,24 @@
     <property name="step_increment">1</property>
     <property name="page_increment">11</property>
   </object>
+  <object class="GtkListStore" id="wacom-mode-store">
+    <columns>
+      <!-- column-name mode -->
+      <column type="gchararray"/>
+      <!-- column-name title -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">ABSOLUTE</col>
+        <col id="1" translatable="yes">Pen (absolute)</col>
+      </row>
+      <row>
+        <col id="0">RELATIVE</col>
+        <col id="1" translatable="yes">Mouse (relative)</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkListStore" id="wacom-rotation-store">
     <columns>
       <!-- column-name rotation -->
@@ -116,19 +133,19 @@
     <property name="type_hint">dialog</property>
     <property name="subtitle" translatable="yes">Configure pointer device behavior and appearance</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox1">
+      <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area1">
+          <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -143,7 +160,6 @@
             <child>
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-help</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -170,13 +186,14 @@
             <property name="can_focus">True</property>
             <property name="border_width">6</property>
             <child>
-              <object class="GtkVBox" id="vbox1">
+              <object class="GtkBox" id="vbox1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
-                  <object class="GtkHBox" id="hbox1">
+                  <object class="GtkBox" id="hbox1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="spacing">12</property>
@@ -216,10 +233,10 @@
                 <child>
                   <object class="GtkCheckButton" id="device-enabled">
                     <property name="label" translatable="yes">_Enable this device</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="halign">start</property>
                     <property name="use_underline">True</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -234,10 +251,11 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <child>
-                      <object class="GtkVBox" id="device-box">
+                      <object class="GtkBox" id="device-box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="border_width">6</property>
+                        <property name="orientation">vertical</property>
                         <property name="spacing">6</property>
                         <child>
                           <object class="GtkFrame" id="frame1">
@@ -251,23 +269,24 @@
                                 <property name="can_focus">False</property>
                                 <property name="left_padding">12</property>
                                 <child>
-                                  <object class="GtkVBox" id="vbox12">
+                                  <object class="GtkBox" id="vbox12">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="border_width">6</property>
+                                    <property name="orientation">vertical</property>
                                     <property name="spacing">6</property>
                                     <child>
-                                      <object class="GtkHBox" id="hbox3">
+                                      <object class="GtkBox" id="hbox3">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="spacing">12</property>
                                         <child>
                                           <object class="GtkRadioButton" id="device-right-handed">
                                             <property name="label" translatable="yes">Ri_ght-handed</property>
-                                            <property name="use_action_appearance">False</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
+                                            <property name="halign">start</property>
                                             <property name="use_underline">True</property>
                                             <property name="active">True</property>
                                             <property name="draw_indicator">True</property>
@@ -281,10 +300,10 @@
                                         <child>
                                           <object class="GtkRadioButton" id="device-left-handed">
                                             <property name="label" translatable="yes">Le_ft-handed</property>
-                                            <property name="use_action_appearance">False</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
+                                            <property name="halign">start</property>
                                             <property name="use_underline">True</property>
                                             <property name="draw_indicator">True</property>
                                             <property name="group">device-right-handed</property>
@@ -305,11 +324,11 @@
                                     <child>
                                       <object class="GtkCheckButton" id="device-reverse-scrolling">
                                         <property name="label" translatable="yes">Reverse scroll d_irection</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="tooltip_text" translatable="yes">When selected, the scroll wheel will work in the opposite direction</property>
+                                        <property name="halign">start</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -347,108 +366,89 @@
                             <property name="label_xalign">0</property>
                             <property name="shadow_type">none</property>
                             <child>
-                              <object class="GtkAlignment" id="alignment2">
+                              <object class="GtkGrid" id="grid1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="left_padding">12</property>
+                                <property name="margin_left">18</property>
+                                <property name="margin_right">6</property>
+                                <property name="margin_top">6</property>
+                                <property name="margin_bottom">12</property>
+                                <property name="row_spacing">6</property>
+                                <property name="column_spacing">12</property>
                                 <child>
-                                  <object class="GtkTable" id="table1">
+                                  <object class="GtkButton" id="device-reset-feedback">
+                                    <property name="label" translatable="yes">_Reset to Defaults</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">True</property>
+                                    <property name="tooltip_text" translatable="yes">Set the acceleration and sensitivity for the selected device to the default values</property>
+                                    <property name="image">image5</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="device-threshold-label">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="border_width">6</property>
-                                    <property name="n_rows">3</property>
-                                    <property name="n_columns">2</property>
-                                    <property name="column_spacing">12</property>
-                                    <property name="row_spacing">6</property>
-                                    <child>
-                                      <object class="GtkLabel" id="device-acceleration-label">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">Acceleratio_n:</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="mnemonic_widget">device-acceleration-scale</property>
-                                      </object>
-                                      <packing>
-                                        <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options">GTK_FILL</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkHScale" id="device-acceleration-scale">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="tooltip_text" translatable="yes">The factor at which the pointer's speed will increase as the mouse is moved</property>
-                                        <property name="update_policy">delayed</property>
-                                        <property name="adjustment">device-acceleration</property>
-                                        <property name="round_digits">1</property>
-                                        <property name="value_pos">right</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">1</property>
-                                        <property name="right_attach">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkHScale" id="device-threshold-scale">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="tooltip_text" translatable="yes">The number of pixels the pointer must move in a short time before it starts accelerating</property>
-                                        <property name="update_policy">delayed</property>
-                                        <property name="adjustment">device-threshold</property>
-                                        <property name="round_digits">0</property>
-                                        <property name="digits">0</property>
-                                        <property name="value_pos">right</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">1</property>
-                                        <property name="right_attach">2</property>
-                                        <property name="top_attach">1</property>
-                                        <property name="bottom_attach">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel" id="device-threshold-label">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">Sensitivit_y:</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="mnemonic_widget">device-threshold-scale</property>
-                                      </object>
-                                      <packing>
-                                        <property name="top_attach">1</property>
-                                        <property name="bottom_attach">2</property>
-                                        <property name="x_options">GTK_FILL</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAlignment" id="alignment7">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="xalign">0</property>
-                                        <property name="xscale">0</property>
-                                        <property name="yscale">0</property>
-                                        <child>
-                                          <object class="GtkButton" id="device-reset-feedback">
-                                            <property name="label" translatable="yes">_Reset to Defaults</property>
-                                            <property name="use_action_appearance">False</property>
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="receives_default">True</property>
-                                            <property name="tooltip_text" translatable="yes">Set the acceleration and sensitivity for the selected device to the default values</property>
-                                            <property name="image">image5</property>
-                                            <property name="use_underline">True</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="right_attach">2</property>
-                                        <property name="top_attach">2</property>
-                                        <property name="bottom_attach">3</property>
-                                      </packing>
-                                    </child>
+                                    <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Sensitivit_y:</property>
+                                    <property name="use_underline">True</property>
                                   </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="device-acceleration-label">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Acceleratio_n:</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkScale" id="device-acceleration-scale">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="tooltip_text" translatable="yes">The factor at which the pointer's speed will increase as the mouse is moved</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="adjustment">device-acceleration</property>
+                                    <property name="round_digits">1</property>
+                                    <property name="value_pos">right</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkScale" id="device-threshold-scale">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="tooltip_text" translatable="yes">The number of pixels the pointer must move in a short time before it starts accelerating</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="adjustment">device-threshold</property>
+                                    <property name="round_digits">0</property>
+                                    <property name="digits">0</property>
+                                    <property name="value_pos">right</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                               </object>
                             </child>
@@ -483,10 +483,11 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkVBox" id="synaptics-tab">
+                      <object class="GtkBox" id="synaptics-tab">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="border_width">6</property>
+                        <property name="orientation">vertical</property>
                         <property name="spacing">6</property>
                         <child>
                           <object class="GtkFrame" id="frame11">
@@ -500,19 +501,20 @@
                                 <property name="can_focus">False</property>
                                 <property name="left_padding">12</property>
                                 <child>
-                                  <object class="GtkVBox" id="vbox11">
+                                  <object class="GtkBox" id="vbox11">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="border_width">6</property>
+                                    <property name="orientation">vertical</property>
                                     <property name="spacing">6</property>
                                     <child>
                                       <object class="GtkCheckButton" id="synaptics-disable-while-type">
                                         <property name="label" translatable="yes">Disable touchpad _while typing</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="tooltip_text" translatable="yes">When selected, the touchpad will be disabled when the keyboard is being used</property>
+                                        <property name="halign">start</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -528,7 +530,7 @@
                                         <property name="can_focus">False</property>
                                         <property name="left_padding">18</property>
                                         <child>
-                                          <object class="GtkHBox" id="synaptics-disable-duration-box">
+                                          <object class="GtkBox" id="synaptics-disable-duration-box">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="spacing">12</property>
@@ -547,10 +549,9 @@
                                               </packing>
                                             </child>
                                             <child>
-                                              <object class="GtkHScale" id="synaptics-disable-duration-scale">
+                                              <object class="GtkScale" id="synaptics-disable-duration-scale">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
-                                                <property name="update_policy">delayed</property>
                                                 <property name="adjustment">synaptics-disable-duration</property>
                                                 <property name="round_digits">1</property>
                                                 <property name="value_pos">right</property>
@@ -573,10 +574,10 @@
                                     <child>
                                       <object class="GtkCheckButton" id="synaptics-tap-to-click">
                                         <property name="label" translatable="yes">Tap touchpad to clic_k</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="halign">start</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -620,13 +621,14 @@
                                 <property name="can_focus">False</property>
                                 <property name="left_padding">12</property>
                                 <child>
-                                  <object class="GtkVBox" id="vbox10">
+                                  <object class="GtkBox" id="vbox10">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="border_width">6</property>
+                                    <property name="orientation">vertical</property>
                                     <property name="spacing">6</property>
                                     <child>
-                                      <object class="GtkHBox" id="hbox4">
+                                      <object class="GtkBox" id="hbox4">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="spacing">12</property>
@@ -634,7 +636,6 @@
                                           <object class="GtkLabel" id="label23">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xalign">0</property>
                                             <property name="label" translatable="yes">Scrolling _mode:</property>
                                             <property name="use_underline">True</property>
                                             <property name="mnemonic_widget">synaptics-scroll</property>
@@ -674,10 +675,10 @@
                                     <child>
                                       <object class="GtkCheckButton" id="synaptics-scroll-horiz">
                                         <property name="label" translatable="yes">Enable hori_zontal scrolling</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="halign">start</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -727,10 +728,11 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkVBox" id="wacom-tab">
+                      <object class="GtkBox" id="wacom-tab">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="border_width">6</property>
+                        <property name="orientation">vertical</property>
                         <property name="spacing">6</property>
                         <child>
                           <object class="GtkFrame" id="frame12">
@@ -739,84 +741,76 @@
                             <property name="label_xalign">0</property>
                             <property name="shadow_type">none</property>
                             <child>
-                              <object class="GtkAlignment" id="alignment14">
+                              <object class="GtkGrid" id="grid2">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="left_padding">12</property>
+                                <property name="margin_left">18</property>
+                                <property name="margin_right">6</property>
+                                <property name="margin_top">6</property>
+                                <property name="margin_bottom">12</property>
+                                <property name="row_spacing">6</property>
+                                <property name="column_spacing">12</property>
                                 <child>
-                                  <object class="GtkTable" id="table2">
+                                  <object class="GtkLabel" id="label9">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="border_width">6</property>
-                                    <property name="n_rows">2</property>
-                                    <property name="n_columns">2</property>
-                                    <property name="column_spacing">12</property>
-                                    <property name="row_spacing">6</property>
+                                    <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Trac_king mode:</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label10">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="label" translatable="yes">_Rotation:</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkComboBox" id="wacom-mode">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="model">wacom-mode-store</property>
                                     <child>
-                                      <object class="GtkLabel" id="label9">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">Trac_king mode:</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="mnemonic_widget">wacom-mode</property>
-                                      </object>
-                                      <packing>
-                                        <property name="x_options">GTK_FILL</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel" id="label10">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">_Rotation:</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="mnemonic_widget">wacom-rotation</property>
-                                      </object>
-                                      <packing>
-                                        <property name="top_attach">1</property>
-                                        <property name="bottom_attach">2</property>
-                                        <property name="x_options">GTK_FILL</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkComboBox" id="wacom-mode">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="model">wacom-mode-store</property>
-                                        <child>
-                                          <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                                          <attributes>
-                                            <attribute name="text">1</attribute>
-                                          </attributes>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">1</property>
-                                        <property name="right_attach">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkComboBox" id="wacom-rotation">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="model">wacom-rotation-store</property>
-                                        <child>
-                                          <object class="GtkCellRendererText" id="cellrenderertext2"/>
-                                          <attributes>
-                                            <attribute name="text">1</attribute>
-                                          </attributes>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">1</property>
-                                        <property name="right_attach">2</property>
-                                        <property name="top_attach">1</property>
-                                        <property name="bottom_attach">2</property>
-                                      </packing>
+                                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                                      <attributes>
+                                        <attribute name="text">1</attribute>
+                                      </attributes>
                                     </child>
                                   </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkComboBox" id="wacom-rotation">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="model">wacom-rotation-store</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
+                                      <attributes>
+                                        <attribute name="text">1</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">1</property>
+                                  </packing>
                                 </child>
                               </object>
                             </child>
@@ -876,10 +870,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox3">
+              <object class="GtkBox" id="vbox3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkFrame" id="frame3">
@@ -893,16 +888,17 @@
                         <property name="can_focus">False</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkVBox" id="vbox4">
+                          <object class="GtkBox" id="vbox4">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="border_width">6</property>
+                            <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="mouse-dnd-label">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">Th_reshold:</property>
                                 <property name="use_underline">True</property>
                                 <property name="mnemonic_widget">dnd-threshold-scale</property>
@@ -914,11 +910,10 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHScale" id="dnd-threshold-scale">
+                              <object class="GtkScale" id="dnd-threshold-scale">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">The number of pixels the pointer must move before a drag operation will start</property>
-                                <property name="update_policy">delayed</property>
                                 <property name="adjustment">dnd-threshold</property>
                                 <property name="digits">0</property>
                                 <property name="value_pos">right</property>
@@ -962,16 +957,17 @@
                         <property name="can_focus">False</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkVBox" id="vbox5">
+                          <object class="GtkBox" id="vbox5">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="border_width">6</property>
+                            <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="dclick-time-label">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">Ti_me:</property>
                                 <property name="use_underline">True</property>
                                 <property name="mnemonic_widget">dclick-time-scale</property>
@@ -983,11 +979,10 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHScale" id="dclick-time-scale">
+                              <object class="GtkScale" id="dclick-time-scale">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">Two mouse clicks in less than this length of time (in milliseconds) will be considered a double click</property>
-                                <property name="update_policy">delayed</property>
                                 <property name="adjustment">dclick-time</property>
                                 <property name="digits">0</property>
                                 <property name="value_pos">right</property>
@@ -1002,7 +997,7 @@
                               <object class="GtkLabel" id="dclick-distance-label">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">D_istance:</property>
                                 <property name="use_underline">True</property>
                                 <property name="mnemonic_widget">dclick-distance-scale</property>
@@ -1014,11 +1009,10 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHScale" id="dclick-distance-scale">
+                              <object class="GtkScale" id="dclick-distance-scale">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">The mouse pointer cannot move farther than this distance between two clicks for them to be considered a double click</property>
-                                <property name="update_policy">delayed</property>
                                 <property name="adjustment">dclick-distance</property>
                                 <property name="digits">0</property>
                                 <property name="value_pos">right</property>
@@ -1068,7 +1062,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkHBox" id="themes-hbox">
+              <object class="GtkBox" id="themes-hbox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
@@ -1077,8 +1071,6 @@
                   <object class="GtkScrolledWindow" id="scrolledwindow2">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
                     <property name="shadow_type">etched-in</property>
                     <child>
                       <object class="GtkTreeView" id="theme-treeview">
@@ -1086,6 +1078,9 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="headers_visible">False</property>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection" id="treeview-selection1"/>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -1096,9 +1091,10 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkVBox" id="vbox9">
+                  <object class="GtkBox" id="vbox9">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkFrame" id="frame5">
@@ -1112,7 +1108,7 @@
                             <property name="can_focus">False</property>
                             <property name="left_padding">12</property>
                             <child>
-                              <object class="GtkHBox" id="hbox7">
+                              <object class="GtkBox" id="hbox7">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="border_width">6</property>
@@ -1121,6 +1117,7 @@
                                   <object class="GtkLabel" id="label21">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
+                                    <property name="halign">start</property>
                                     <property name="label" translatable="yes">Cursor si_ze:</property>
                                     <property name="use_underline">True</property>
                                     <property name="mnemonic_widget">spin1</property>
@@ -1137,8 +1134,6 @@
                                     <property name="can_focus">True</property>
                                     <property name="primary_icon_activatable">False</property>
                                     <property name="secondary_icon_activatable">False</property>
-                                    <property name="primary_icon_sensitive">True</property>
-                                    <property name="secondary_icon_sensitive">True</property>
                                     <property name="adjustment">theme-cursor-size</property>
                                     <property name="snap_to_ticks">True</property>
                                     <property name="numeric">True</property>
@@ -1181,8 +1176,6 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="border_width">6</property>
-                            <property name="xalign">0</property>
-                            <property name="yalign">0</property>
                             <property name="xscale">0</property>
                             <property name="yscale">0</property>
                             <property name="top_padding">6</property>
@@ -1252,23 +1245,5 @@
       <action-widget response="0">button1</action-widget>
       <action-widget response="-11">button2</action-widget>
     </action-widgets>
-  </object>
-  <object class="GtkListStore" id="wacom-mode-store">
-    <columns>
-      <!-- column-name mode -->
-      <column type="gchararray"/>
-      <!-- column-name title -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0">ABSOLUTE</col>
-        <col id="1" translatable="yes">Pen (absolute)</col>
-      </row>
-      <row>
-        <col id="0">RELATIVE</col>
-        <col id="1" translatable="yes">Mouse (relative)</col>
-      </row>
-    </data>
   </object>
 </interface>

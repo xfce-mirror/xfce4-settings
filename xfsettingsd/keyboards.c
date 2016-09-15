@@ -182,7 +182,7 @@ xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
     values.auto_repeat_mode = repeat ? 1 : 0;
 
     gdk_error_trap_push ();
-    XChangeKeyboardControl (GDK_DISPLAY (), KBAutoRepeatMode, &values);
+    XChangeKeyboardControl (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), KBAutoRepeatMode, &values);
     if (gdk_error_trap_pop () != 0)
         g_critical ("Failed to change keyboard repeat mode");
 
@@ -208,14 +208,14 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
     if (G_LIKELY (xkb))
     {
         /* load controls */
-        XkbGetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
+        XkbGetControls (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), XkbRepeatKeysMask, xkb);
 
         /* set new values */
         xkb->ctrls->repeat_delay = delay;
         xkb->ctrls->repeat_interval = rate != 0 ? 1000 / rate : 0;
 
         /* set updated controls */
-        XkbSetControls (GDK_DISPLAY (), XkbRepeatKeysMask, xkb);
+        XkbSetControls (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), XkbRepeatKeysMask, xkb);
 
         xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set key repeat (delay=%d, rate=%d)",
                         xkb->ctrls->repeat_delay, xkb->ctrls->repeat_interval);
@@ -327,7 +327,7 @@ xfce_keyboards_helper_device_is_keyboard (XID xid)
     XDeviceInfo *device_list;
     Atom         keyboard_type;
     gint         n, ndevices;
-    Display     *xdisplay = GDK_DISPLAY ();
+    Display     *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
 
     keyboard_type = XInternAtom (xdisplay, XI_KEYBOARD, True);
     device_list = XListInputDevices(xdisplay, &ndevices);

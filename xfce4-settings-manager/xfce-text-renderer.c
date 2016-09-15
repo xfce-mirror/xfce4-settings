@@ -61,19 +61,11 @@ static void xfce_text_renderer_set_property (GObject               *object,
                                              guint                  prop_id,
                                              const GValue          *value,
                                              GParamSpec            *pspec);
-static void xfce_text_renderer_get_size     (GtkCellRenderer       *renderer,
-                                             GtkWidget             *widget,
-                                             GdkRectangle          *cell_area,
-                                             gint                  *x_offset,
-                                             gint                  *y_offset,
-                                             gint                  *width,
-                                             gint                  *height);
 static void xfce_text_renderer_render       (GtkCellRenderer       *renderer,
-                                             GdkWindow             *window,
+                                             cairo_t               *cr,
                                              GtkWidget             *widget,
-                                             GdkRectangle          *background_area,
-                                             GdkRectangle          *cell_area,
-                                             GdkRectangle          *expose_area,
+                                             const GdkRectangle    *background_area,
+                                             const GdkRectangle    *cell_area,
                                              GtkCellRendererState   flags);
 static void xfce_text_renderer_invalidate   (XfceTextRenderer      *text_renderer);
 static void xfce_text_renderer_set_widget   (XfceTextRenderer      *text_renderer,
@@ -123,7 +115,6 @@ xfce_text_renderer_class_init (XfceTextRendererClass *klass)
   gobject_class->set_property = xfce_text_renderer_set_property;
 
   gtkcell_renderer_class = GTK_CELL_RENDERER_CLASS (klass);
-  gtkcell_renderer_class->get_size = xfce_text_renderer_get_size;
   gtkcell_renderer_class->render = xfce_text_renderer_render;
 
   /**
@@ -315,80 +306,6 @@ xfce_text_renderer_set_property (GObject      *object,
 
 
 
-static void
-xfce_text_renderer_get_size (GtkCellRenderer *renderer,
-                             GtkWidget       *widget,
-                             GdkRectangle    *cell_area,
-                             gint            *x_offset,
-                             gint            *y_offset,
-                             gint            *width,
-                             gint            *height)
-{
-  XfceTextRenderer *text_renderer = XFCE_TEXT_RENDERER (renderer);
-  gint              text_length;
-  gint              text_width;
-  gint              text_height;
-
-  /* setup the new widget */
-  xfce_text_renderer_set_widget (text_renderer, widget);
-
-  /* we can guess the dimensions if we don't wrap */
-  if (text_renderer->wrap_width < 0)
-    {
-      /* determine the text_length in characters */
-      text_length = g_utf8_strlen (text_renderer->text, -1);
-
-      /* the approximation is usually 1-2 chars wrong, so wth */
-      text_length += 2;
-
-      /* calculate the appromixate text width/height */
-      text_width = text_renderer->char_width * text_length;
-      text_height = text_renderer->char_height;
-    }
-  else
-    {
-      /* calculate the real text dimension */
-      pango_layout_set_width (text_renderer->layout, text_renderer->wrap_width * PANGO_SCALE);
-      pango_layout_set_wrap (text_renderer->layout, text_renderer->wrap_mode);
-      pango_layout_set_text (text_renderer->layout, text_renderer->text, -1);
-      pango_layout_get_pixel_size (text_renderer->layout, &text_width, &text_height);
-    }
-
-  /* if we have to follow the state manually, we'll need
-   * to reserve some space to render the indicator to.
-   */
-  if (text_renderer->follow_state)
-    {
-      text_width += 2 * text_renderer->focus_width;
-      text_height += 2 * text_renderer->focus_width;
-    }
-
-  /* update width/height */
-  if (G_LIKELY (width != NULL))
-    *width = text_width + 2 * renderer->xpad;
-  if (G_LIKELY (height != NULL))
-    *height = text_height + 2 * renderer->ypad;
-
-  /* update the x/y offsets */
-  if (G_LIKELY (cell_area != NULL))
-    {
-      if (G_LIKELY (x_offset != NULL))
-        {
-          *x_offset = ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) ? (1.0 - renderer->xalign) : renderer->xalign)
-                    * (cell_area->width - text_width - (2 * renderer->xpad));
-          *x_offset = MAX (*x_offset, 0);
-        }
-
-      if (G_LIKELY (y_offset != NULL))
-        {
-          *y_offset = renderer->yalign * (cell_area->height - text_height - (2 * renderer->ypad));
-          *y_offset = MAX (*y_offset, 0);
-        }
-    }
-}
-
-
-
 static PangoAttrList*
 xfce_pango_attr_list_wrap (PangoAttribute *attribute, ...)
 {
@@ -414,9 +331,6 @@ xfce_pango_attr_list_wrap (PangoAttribute *attribute, ...)
 
 
 
-
-
-
 /**
  * xfce_pango_attr_list_underline_single:
  *
@@ -439,40 +353,45 @@ xfce_pango_attr_list_underline_single (void)
 
 static void
 xfce_text_renderer_render (GtkCellRenderer     *renderer,
-                           GdkWindow           *window,
+                           cairo_t             *cr,
                            GtkWidget           *widget,
-                           GdkRectangle        *background_area,
-                           GdkRectangle        *cell_area,
-                           GdkRectangle        *expose_area,
+                           const GdkRectangle  *background_area,
+                           const GdkRectangle  *cell_area,
                            GtkCellRendererState flags)
 {
   XfceTextRenderer *text_renderer = XFCE_TEXT_RENDERER (renderer);
   GtkStateType      state;
-  cairo_t          *cr;
   gint              x0, x1, y0, y1;
   gint              text_width;
   gint              text_height;
   gint              x_offset;
   gint              y_offset;
+  gint              x_pad;
+  gint              y_pad;
+  gfloat            x_align;
+  gfloat            y_align;
+
+  GtkStyleContext  *ctx = gtk_widget_get_style_context (widget);
+  GdkRGBA          *color;
 
   /* setup the new widget */
   xfce_text_renderer_set_widget (text_renderer, widget);
 
   if ((flags & GTK_CELL_RENDERER_SELECTED) == GTK_CELL_RENDERER_SELECTED)
     {
-      if (GTK_WIDGET_HAS_FOCUS (widget))
+      if (gtk_widget_has_focus (widget))
         state = GTK_STATE_SELECTED;
       else
         state = GTK_STATE_ACTIVE;
     }
   else if ((flags & GTK_CELL_RENDERER_PRELIT) == GTK_CELL_RENDERER_PRELIT
-        && GTK_WIDGET_STATE (widget) == GTK_STATE_PRELIGHT)
+        && gtk_widget_get_state_flags (widget) & GTK_STATE_PRELIGHT)
     {
       state = GTK_STATE_PRELIGHT;
     }
   else
     {
-      if (GTK_WIDGET_STATE (widget) == GTK_STATE_INSENSITIVE)
+      if (gtk_widget_get_state_flags (widget) & GTK_STATE_INSENSITIVE)
         state = GTK_STATE_INSENSITIVE;
       else
         state = GTK_STATE_NORMAL;
@@ -508,13 +427,16 @@ xfce_text_renderer_render (GtkCellRenderer     *renderer,
       text_height += 2 * text_renderer->focus_width;
     }
 
+  gtk_cell_renderer_get_padding(renderer, &x_pad, &y_pad);
+  gtk_cell_renderer_get_alignment(renderer, &x_align, &y_align);
+
   /* calculate the real x-offset */
-  x_offset = ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) ? (1.0 - renderer->xalign) : renderer->xalign)
-           * (cell_area->width - text_width - (2 * renderer->xpad));
+  x_offset = ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) ? (1.0 - x_align) : x_align)
+           * (cell_area->width - text_width - (2 * x_pad));
   x_offset = MAX (x_offset, 0);
 
   /* calculate the real y-offset */
-  y_offset = renderer->yalign * (cell_area->height - text_height - (2 * renderer->ypad));
+  y_offset = y_align * (cell_area->height - text_height - (2 * y_pad));
   y_offset = MAX (y_offset, 0);
 
   /* render the state indicator */
@@ -526,10 +448,15 @@ xfce_text_renderer_render (GtkCellRenderer     *renderer,
       x1 = x0 + text_width;
       y1 = y0 + text_height;
 
+      /* get the color */
+      gtk_style_context_get (ctx,
+                             state,
+                             "background-color", &color,
+                             NULL);
+
       /* Cairo produces nicer results than using a polygon
        * and so we use it directly if possible.
        */
-      cr = gdk_cairo_create (window);
       cairo_move_to (cr, x0 + 5, y0);
       cairo_line_to (cr, x1 - 5, y0);
       cairo_curve_to (cr, x1 - 5, y0, x1, y0, x1, y0 + 5);
@@ -539,16 +466,15 @@ xfce_text_renderer_render (GtkCellRenderer     *renderer,
       cairo_curve_to (cr, x0 + 5, y1, x0, y1, x0, y1 - 5);
       cairo_line_to (cr, x0, y0 + 5);
       cairo_curve_to (cr, x0, y0 + 5, x0, y0, x0 + 5, y0);
-      gdk_cairo_set_source_color (cr, &widget->style->base[state]);
+      gdk_cairo_set_source_rgba (cr, color);
       cairo_fill (cr);
-      cairo_destroy (cr);
+      //cairo_destroy (cr);
     }
 
   /* draw the focus indicator */
   if (text_renderer->follow_state && (flags & GTK_CELL_RENDERER_FOCUSED) != 0)
     {
-      gtk_paint_focus (widget->style, window, GTK_WIDGET_STATE (widget), NULL, widget, "icon_view",
-                       cell_area->x + x_offset, cell_area->y + y_offset, text_width, text_height);
+      gtk_render_focus (ctx, cr, cell_area->x + x_offset, cell_area->y + y_offset, text_width, text_height);
     }
 
   /* get proper sizing for the layout drawing */
@@ -561,11 +487,10 @@ xfce_text_renderer_render (GtkCellRenderer     *renderer,
     }
 
   /* draw the text */
-  gtk_paint_layout (widget->style, window, state, TRUE,
-                    expose_area, widget, "cellrenderertext",
-                    cell_area->x + x_offset + renderer->xpad,
-                    cell_area->y + y_offset + renderer->ypad,
-                    text_renderer->layout);
+  gtk_render_layout (ctx, cr,
+                     cell_area->x + x_offset + x_pad,
+                     cell_area->y + y_offset + y_pad,
+                     text_renderer->layout);
 }
 
 
@@ -584,6 +509,7 @@ xfce_text_renderer_set_widget (XfceTextRenderer *text_renderer,
 {
   PangoFontMetrics *metrics;
   PangoContext     *context;
+  PangoFontDescription *desc;
   gint              focus_padding;
   gint              focus_line_width;
 
@@ -621,8 +547,10 @@ xfce_text_renderer_set_widget (XfceTextRenderer *text_renderer,
       /* we don't want to interpret line separators in file names */
       pango_layout_set_single_paragraph_mode (text_renderer->layout, TRUE);
 
+      desc = pango_context_get_font_description (context);
+
       /* calculate the average character dimensions */
-      metrics = pango_context_get_metrics (context, widget->style->font_desc, pango_context_get_language (context));
+      metrics = pango_context_get_metrics (context, desc, pango_context_get_language (context));
       text_renderer->char_width = PANGO_PIXELS (pango_font_metrics_get_approximate_char_width (metrics));
       text_renderer->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics) + pango_font_metrics_get_descent (metrics));
       pango_font_metrics_unref (metrics);
@@ -653,4 +581,3 @@ xfce_text_renderer_new (void)
 {
   return g_object_new (XFCE_TYPE_TEXT_RENDERER, NULL);
 }
-

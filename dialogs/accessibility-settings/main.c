@@ -27,6 +27,9 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
+#include <gtk/gtkx.h>
+
+#include <gdk/gdkx.h>
 
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
@@ -36,7 +39,7 @@
 
 
 
-static GdkNativeWindow opt_socket_id = 0;
+static gint opt_socket_id = 0;
 static gboolean opt_version = FALSE;
 static GOptionEntry entries[] =
 {
@@ -137,9 +140,10 @@ accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     /* Mouse keys */
     object = gtk_builder_get_object (builder, "mouse-emulation-enabled");
-    box = gtk_builder_get_object (builder, "mouse-emulation-box");
+    box = gtk_builder_get_object (builder, "mouse-emulation-grid");
     g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
     xfconf_g_property_bind (accessibility_channel, "/MouseKeys", G_TYPE_BOOLEAN, object, "active");
+    gtk_widget_set_sensitive (GTK_WIDGET(box), xfconf_channel_get_bool(accessibility_channel, "/MouseKeys", TRUE));
 
     object = gtk_builder_get_object (builder, "mouse-emulation-delay");
     xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Delay", G_TYPE_INT, object, "value");
@@ -252,7 +256,7 @@ main (gint argc, gchar **argv)
             gtk_window_present (GTK_WINDOW (dialog));
 
             /* To prevent the settings dialog to be saved in the session */
-            gdk_set_sm_client_id ("FAKE ID");
+            gdk_x11_set_sm_client_id ("FAKE ID");
 
             gtk_main ();
         }
@@ -268,11 +272,11 @@ main (gint argc, gchar **argv)
 
             /* Get plug child widget */
             plug_child = gtk_builder_get_object (builder, "plug-child");
-            gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
+            xfce_widget_reparent (GTK_WIDGET (plug_child), plug);
             gtk_widget_show (GTK_WIDGET (plug_child));
 
             /* To prevent the settings dialog to be saved in the session */
-            gdk_set_sm_client_id ("FAKE ID");
+            gdk_x11_set_sm_client_id ("FAKE ID");
 
             /* Enter main loop */
             gtk_main ();

@@ -29,6 +29,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
@@ -56,11 +57,11 @@ save_window_size (GtkWidget *dialog, XfceSettingsEditorBox *settings_editor)
 	GdkWindowState            state;
 	gint                      width, height;
 	gint                      paned_pos;
-	
+
 	g_object_get (G_OBJECT(settings_editor), "paned-pos", &paned_pos, NULL);
 
-	state = gdk_window_get_state ((dialog)->window);
-		
+	state = gdk_window_get_state (gtk_widget_get_window(dialog));
+
 	if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
 	{
 		/* save window size */
@@ -68,7 +69,7 @@ save_window_size (GtkWidget *dialog, XfceSettingsEditorBox *settings_editor)
 		xfconf_channel_set_int (channel, "/last/window-width", width),
 			xfconf_channel_set_int (channel, "/last/window-height", height);
 		xfconf_channel_set_int (channel, "/last/paned-position", paned_pos);
-		
+
 	}
 }
 
@@ -164,28 +165,28 @@ main(gint argc, gchar **argv)
 					"gtk-help", GTK_RESPONSE_HELP,
 					"gtk-close", GTK_RESPONSE_OK,
 					NULL);
-		
+
 		xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (dialog),
 										 _("Customize settings stored by Xfconf"));
-		
+
 		gtk_window_set_icon_name (GTK_WINDOW (dialog), "preferences-system");
 		gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_NORMAL);
 		gtk_window_set_default_size (GTK_WINDOW (dialog),
           xfconf_channel_get_int (channel, "/last/window-width", 640),
           xfconf_channel_get_int (channel, "/last/window-height", 500));
-		
+
 		gtk_container_add_with_properties(
-			GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), 
+			GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog))),
 						  settings_editor,
 						  "expand", TRUE,
 						  "fill", TRUE,
 						  NULL);
-						  
+
 		g_signal_connect (dialog, "response",
                     G_CALLBACK (settings_dialog_response), settings_editor);
 
 		gtk_widget_show_all (dialog);
-		
+
 	}
 	else
 	{
@@ -196,21 +197,21 @@ main(gint argc, gchar **argv)
 		gtk_window_set_default_size (GTK_WINDOW (plug),
 		  xfconf_channel_get_int (channel, "/last/window-width", 640),
           xfconf_channel_get_int (channel, "/last/window-height", 500));
-		
+
 		gtk_widget_show (plug);
 
 		gtk_container_add (GTK_CONTAINER(plug), settings_editor);
-		
+
 		/* Stop startup notification */
 		gdk_notify_startup_complete ();
-		
+
 		gtk_widget_show (GTK_WIDGET (settings_editor));
 	}
 
     gtk_main ();
 
 	g_object_unref(channel);
-	
+
     /* shutdown xfconf */
     xfconf_shutdown ();
 

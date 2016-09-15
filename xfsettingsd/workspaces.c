@@ -461,9 +461,7 @@ xfce_workspaces_helper_wait_for_window_manager_destroyed (gpointer data)
   g_slice_free (WaitForWM, wfwm);
 
   /* set the names anyway... */
-  GDK_THREADS_ENTER ();
   xfce_workspaces_helper_set_names_real (helper);
-  GDK_THREADS_LEAVE ();
 }
 #endif
 

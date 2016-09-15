@@ -32,6 +32,7 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 #include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
 
@@ -112,7 +113,7 @@ typedef struct
 
 
 /* Option entries */
-static GdkNativeWindow opt_socket_id = 0;
+static gint opt_socket_id = 0;
 static gboolean opt_version = FALSE;
 static gboolean minimal = FALSE;
 static GOptionEntry option_entries[] =
@@ -165,6 +166,8 @@ static void display_settings_minimal_only_display2_toggled   (GtkToggleButton *b
 
 static void display_setting_primary_toggled                  (GtkToggleButton *button,
                                                               GtkBuilder *builder);
+
+
 
 static void
 display_settings_changed (void)
@@ -643,52 +646,55 @@ display_setting_screen_changed (GtkWidget *widget,
                                 GdkScreen *old_screen,
                                 gpointer   userdata)
 {
-    GdkScreen   *screen = gtk_widget_get_screen (widget);
-    GdkColormap *colormap = gdk_screen_get_rgba_colormap (screen);
+    GdkScreen *screen = gtk_widget_get_screen (widget);
+    GdkVisual *visual = gdk_screen_get_rgba_visual (screen);
 
     if (gdk_screen_is_composited (screen))
         supports_alpha = TRUE;
     else
     {
-        colormap = gdk_screen_get_rgb_colormap (screen);
+        visual = gdk_screen_get_system_visual (screen);
         supports_alpha = FALSE;
     }
 
-    gtk_widget_set_colormap (widget, colormap);
+    gtk_widget_set_visual (widget, visual);
 }
 
 static gboolean
-display_setting_identity_popup_expose (GtkWidget      *popup,
-                                       GdkEventExpose *event,
+display_setting_identity_popup_draw (GtkWidget      *popup,
+                                       cairo_t *c,
                                        GtkBuilder     *builder)
 {
-    cairo_t         *cr = gdk_cairo_create (popup->window);
+    cairo_t         *cr = gdk_cairo_create (gtk_widget_get_window(popup));
     cairo_pattern_t *vertical_gradient, *innerstroke_gradient, *selected_gradient, *selected_innerstroke_gradient;
     gint             radius;
     gboolean         selected = (g_hash_table_lookup (display_popups, GINT_TO_POINTER (active_output)) == popup);
+
+    GtkAllocation *allocation = g_new0 (GtkAllocation, 1);
+    gtk_widget_get_allocation(GTK_WIDGET(popup), allocation);
 
     radius = 10;
     cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
 
     /* Create the various gradients */
-    vertical_gradient = cairo_pattern_create_linear (0, 0, 0, popup->allocation.height);
+    vertical_gradient = cairo_pattern_create_linear (0, 0, 0, allocation->height);
     cairo_pattern_add_color_stop_rgb (vertical_gradient, 0, 0.25, 0.25, 0.25);
     cairo_pattern_add_color_stop_rgb (vertical_gradient, 0.24, 0.15, 0.15, 0.15);
     cairo_pattern_add_color_stop_rgb (vertical_gradient, 0.6, 0.0, 0.0, 0.0);
 
-    innerstroke_gradient = cairo_pattern_create_linear (0, 0, 0, popup->allocation.height);
+    innerstroke_gradient = cairo_pattern_create_linear (0, 0, 0, allocation->height);
     cairo_pattern_add_color_stop_rgb (innerstroke_gradient, 0, 0.35, 0.35, 0.35);
     cairo_pattern_add_color_stop_rgb (innerstroke_gradient, 0.4, 0.25, 0.25, 0.25);
     cairo_pattern_add_color_stop_rgb (innerstroke_gradient, 0.7, 0.15, 0.15, 0.15);
     cairo_pattern_add_color_stop_rgb (innerstroke_gradient, 0.85, 0.0, 0.0, 0.0);
 
-    selected_gradient = cairo_pattern_create_linear (0, 0, 0, popup->allocation.height);
+    selected_gradient = cairo_pattern_create_linear (0, 0, 0, allocation->height);
     cairo_pattern_add_color_stop_rgb (selected_gradient, 0, 0.05, 0.20, 0.46);
     cairo_pattern_add_color_stop_rgb (selected_gradient, 0.4, 0.05, 0.12, 0.25);
     cairo_pattern_add_color_stop_rgb (selected_gradient, 0.6, 0.05, 0.10, 0.20);
     cairo_pattern_add_color_stop_rgb (selected_gradient, 0.8, 0.0, 0.02, 0.05);
 
-    selected_innerstroke_gradient = cairo_pattern_create_linear (0, 0, 0, popup->allocation.height);
+    selected_innerstroke_gradient = cairo_pattern_create_linear (0, 0, 0, allocation->height);
     cairo_pattern_add_color_stop_rgb (selected_innerstroke_gradient, 0, 0.15, 0.45, 0.75);
     cairo_pattern_add_color_stop_rgb (selected_innerstroke_gradient, 0.7, 0.0, 0.15, 0.25);
     cairo_pattern_add_color_stop_rgb (selected_innerstroke_gradient, 0.85, 0.0, 0.0, 0.0);
@@ -703,7 +709,7 @@ display_setting_identity_popup_expose (GtkWidget      *popup,
             cairo_set_source (cr, selected_gradient);
         cairo_paint (cr);
         cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
-        cairo_rectangle (cr, 0.5, 0.5, popup->allocation.width-0.5, popup->allocation.height-0.5);
+        cairo_rectangle (cr, 0.5, 0.5, allocation->width-0.5, allocation->height-0.5);
         cairo_stroke (cr);
 
         /* Draw the inner stroke */
@@ -711,15 +717,15 @@ display_setting_identity_popup_expose (GtkWidget      *popup,
         if (selected)
             cairo_set_source_rgb (cr, 0.15, 0.45, 0.75);
         cairo_move_to (cr, 1.5, 1.5);
-        cairo_line_to (cr, popup->allocation.width-1, 1.5);
+        cairo_line_to (cr, allocation->width-1, 1.5);
         cairo_stroke (cr);
         cairo_set_source (cr, innerstroke_gradient);
         if (selected)
             cairo_set_source (cr, selected_innerstroke_gradient);
         cairo_move_to (cr, 1.5, 1.5);
-        cairo_line_to (cr, 1.5, popup->allocation.height-1.0);
-        cairo_move_to (cr, popup->allocation.width-1.5, 1.5);
-        cairo_line_to (cr, popup->allocation.width-1.5, popup->allocation.height-1.0);
+        cairo_line_to (cr, 1.5, allocation->height-1.0);
+        cairo_move_to (cr, allocation->width-1.5, 1.5);
+        cairo_line_to (cr, allocation->width-1.5, allocation->height-1.0);
         cairo_stroke (cr);
     }
     /* Draw rounded corners. */
@@ -730,12 +736,12 @@ display_setting_identity_popup_expose (GtkWidget      *popup,
 
         /* Draw a filled rounded rectangle with outline */
         cairo_set_line_width (cr, 1.0);
-        cairo_move_to (cr, 0.5, popup->allocation.height+0.5);
+        cairo_move_to (cr, 0.5, allocation->height+0.5);
         cairo_line_to (cr, 0.5, radius+0.5);
         cairo_arc (cr, radius+0.5, radius+0.5, radius, 3.14, 3.0*3.14/2.0);
-        cairo_line_to (cr, popup->allocation.width-0.5 - radius, 0.5);
-        cairo_arc (cr, popup->allocation.width-0.5 - radius, radius+0.5, radius, 3.0*3.14/2.0, 0.0);
-        cairo_line_to (cr, popup->allocation.width-0.5, popup->allocation.height+0.5);
+        cairo_line_to (cr, allocation->width-0.5 - radius, 0.5);
+        cairo_arc (cr, allocation->width-0.5 - radius, radius+0.5, radius, 3.0*3.14/2.0, 0.0);
+        cairo_line_to (cr, allocation->width-0.5, allocation->height+0.5);
         cairo_set_source (cr, vertical_gradient);
         if (selected)
             cairo_set_source (cr, selected_gradient);
@@ -748,16 +754,16 @@ display_setting_identity_popup_expose (GtkWidget      *popup,
         if (selected)
             cairo_set_source_rgb (cr, 0.15, 0.45, 0.75);
         cairo_arc (cr, radius+1.5, radius+1.5, radius, 3.14, 3.0*3.14/2.0);
-        cairo_line_to (cr, popup->allocation.width-1.5 - radius, 1.5);
-        cairo_arc (cr, popup->allocation.width-1.5 - radius, radius+1.5, radius, 3.0*3.14/2.0, 0.0);
+        cairo_line_to (cr, allocation->width-1.5 - radius, 1.5);
+        cairo_arc (cr, allocation->width-1.5 - radius, radius+1.5, radius, 3.0*3.14/2.0, 0.0);
         cairo_stroke (cr);
         cairo_set_source (cr, innerstroke_gradient);
         if (selected)
             cairo_set_source (cr, selected_innerstroke_gradient);
         cairo_move_to (cr, 1.5, radius+1.0);
-        cairo_line_to (cr, 1.5, popup->allocation.height-1.0);
-        cairo_move_to (cr, popup->allocation.width-1.5, radius+1.0);
-        cairo_line_to (cr, popup->allocation.width-1.5, popup->allocation.height-1.0);
+        cairo_line_to (cr, 1.5, allocation->height-1.0);
+        cairo_move_to (cr, allocation->width-1.5, radius+1.0);
+        cairo_line_to (cr, allocation->width-1.5, allocation->height-1.0);
         cairo_stroke (cr);
 
         cairo_close_path (cr);
@@ -768,6 +774,8 @@ display_setting_identity_popup_expose (GtkWidget      *popup,
     cairo_pattern_destroy (innerstroke_gradient);
     cairo_pattern_destroy (selected_gradient);
     cairo_pattern_destroy (selected_innerstroke_gradient);
+
+    g_free (allocation);
 
     return FALSE;
 }
@@ -791,7 +799,7 @@ display_setting_identity_display (gint display_id)
         gtk_widget_set_name (popup, "XfceDisplayDialogPopup");
 
         gtk_widget_set_app_paintable (popup, TRUE);
-        g_signal_connect (G_OBJECT (popup), "expose-event", G_CALLBACK (display_setting_identity_popup_expose), builder);
+        g_signal_connect (G_OBJECT (popup), "draw", G_CALLBACK (display_setting_identity_popup_draw), builder);
         g_signal_connect (G_OBJECT (popup), "screen-changed", G_CALLBACK (display_setting_screen_changed), NULL);
 
         display_name = gtk_builder_get_object (builder, "display_name");
@@ -2201,7 +2209,7 @@ set_cursor (GtkWidget *widget, GdkCursorType type)
         gdk_window_set_cursor (window, cursor);
 
     if (cursor)
-        gdk_cursor_unref (cursor);
+        g_object_unref (cursor);
 }
 
 static void
@@ -2373,32 +2381,15 @@ paint_background (FooScrollArea *area,
 {
     GdkRectangle viewport;
     GtkWidget *widget;
-    GtkStyle *widget_style;
+    GtkStyleContext *ctx;
 
     widget = GTK_WIDGET (area);
 
     foo_scroll_area_get_viewport (area, &viewport);
-    widget_style = gtk_widget_get_style (widget);
-
-    cairo_set_source_rgb (cr,
-                          widget_style->base[GTK_STATE_NORMAL].red / 65535.0,
-                          widget_style->base[GTK_STATE_NORMAL].green / 65535.0,
-                          widget_style->base[GTK_STATE_NORMAL].blue / 65535.0);
-
-    cairo_rectangle (cr,
-                     viewport.x, viewport.y,
-                     viewport.width, viewport.height);
-
-    cairo_fill_preserve (cr);
+    ctx = gtk_widget_get_style_context (widget);
+    gtk_style_context_add_class (ctx, "view");
 
     foo_scroll_area_add_input_from_fill (area, cr, on_canvas_event, NULL);
-
-    cairo_set_source_rgb (cr,
-                          widget_style->dark[GTK_STATE_NORMAL].red / 65535.0,
-                          widget_style->dark[GTK_STATE_NORMAL].green / 65535.0,
-                          widget_style->dark[GTK_STATE_NORMAL].blue / 65535.0);
-
-    cairo_stroke (cr);
 }
 
 static void
@@ -2582,11 +2573,9 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
 }
 
 static void
-on_area_paint (FooScrollArea *area,
-               cairo_t       *cr,
-               GdkRectangle  *extent,
-               GdkRegion     *region,
-               gpointer       data)
+on_area_paint (FooScrollArea  *area,
+               cairo_t        *cr,
+               gpointer        data)
 {
     GList *connected_outputs = NULL;
     GList *list;
@@ -2664,7 +2653,7 @@ get_output_for_window (GdkWindow *window)
     int largest_index;
     guint m;
 
-    gdk_window_get_geometry (window, &win_rect.x, &win_rect.y, &win_rect.width, &win_rect.height, NULL);
+    gdk_window_get_geometry (window, &win_rect.x, &win_rect.y, &win_rect.width, &win_rect.height);
     gdk_window_get_origin (window, &win_rect.x, &win_rect.y);
 
     largest_area = 0;
@@ -2813,12 +2802,12 @@ display_settings_show_main_dialog (GdkDisplay *display)
 
             /* Get plug child widget */
             plug_child = gtk_builder_get_object (builder, "plug-child");
-            gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
+            xfce_widget_reparent (GTK_WIDGET (plug_child), plug);
             gtk_widget_show (GTK_WIDGET (plug_child));
         }
 
         /* To prevent the settings dialog to be saved in the session */
-        gdk_set_sm_client_id ("FAKE ID");
+        gdk_x11_set_sm_client_id ("FAKE ID");
 
         /* Enter the main loop */
         gtk_main ();
@@ -2842,7 +2831,7 @@ display_settings_minimal_dialog_key_press_event(GtkWidget *widget,
                                                 GdkEventKey *event,
                                                 gpointer user_data)
 {
-    if (event->keyval == GDK_Escape)
+    if (event->keyval == GDK_KEY_Escape)
     {
         gtk_main_quit();
         return TRUE;
@@ -3080,9 +3069,9 @@ main (gint argc, gchar **argv)
     if (G_LIKELY (display_channel))
     {
         /* Create a new xfce randr (>= 1.2) for this display
-         * this will only work if there is 1 screen on this display */
-        if (gdk_display_get_n_screens (display) == 1)
-            xfce_randr = xfce_randr_new (display, &error);
+         * this will only work if there is 1 screen on this display
+         * As GTK 3.10, the number of screens is always 1 */
+        xfce_randr = xfce_randr_new (display, &error);
 
         if (!xfce_randr)
         {
@@ -3095,10 +3084,10 @@ main (gint argc, gchar **argv)
                 alternative_icon = "ccc_small";
             }
 
-            response = xfce_message_dialog (NULL, NULL, GTK_STOCK_DIALOG_ERROR,
+            response = xfce_message_dialog (NULL, NULL, "dialog-error",
                                             _("Unable to start the Xfce Display Settings"),
                                             error ? error->message : NULL,
-                                            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
+                                            _("_Close"), GTK_RESPONSE_CLOSE,
                                             alternative != NULL ?XFCE_BUTTON_TYPE_MIXED : NULL,
                                             alternative_icon, alternative, GTK_RESPONSE_OK, NULL);
             g_clear_error (&error);

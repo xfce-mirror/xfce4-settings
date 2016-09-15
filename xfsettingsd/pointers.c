@@ -281,7 +281,7 @@ static void
 xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
 {
 #ifdef DEVICE_PROPERTIES
-    Display     *xdisplay = GDK_DISPLAY ();
+    Display     *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
     XDeviceInfo *device_list;
     XDevice     *device;
     gint         n, ndevices;
@@ -926,7 +926,7 @@ static void
 xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
                                       XID                *xid)
 {
-    Display         *xdisplay = GDK_DISPLAY ();
+    Display         *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
     XDeviceInfo     *device_list, *device_info;
     gint             n, ndevices;
     XDevice         *device;
@@ -1040,7 +1040,7 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel      *channel,
                                                const GValue       *value,
                                                XfcePointersHelper *helper)
 {
-    Display      *xdisplay = GDK_DISPLAY ();
+    Display      *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
     XDeviceInfo  *device_list, *device_info;
     XDevice      *device;
     gint          n, ndevices;

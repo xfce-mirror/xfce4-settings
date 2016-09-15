@@ -137,12 +137,6 @@ xfce_mime_window_class_init (XfceMimeWindowClass *klass)
 
     gtkwidget_class = GTK_WIDGET_CLASS (klass);
     gtkwidget_class->delete_event = xfce_mime_window_delete_event;
-
-    gtk_rc_parse_string ("style \"mime-statusbar-internal\" {\n"
-                         "  GtkStatusbar::shadow-type = GTK_SHADOW_NONE\n"
-                         "}\n"
-                         "widget \"*.mime-statusbar\" "
-                         "style \"mime-statusbar-internal\"\n");
 }
 
 
@@ -155,7 +149,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
     GtkWidget         *hbox;
     GtkWidget         *label;
     GtkWidget         *entry;
-    GtkWidget         *align;
     GtkWidget         *scroll;
     GtkWidget         *statusbar;
     GtkWidget         *treeview;
@@ -183,21 +176,23 @@ xfce_mime_window_init (XfceMimeWindow *window)
         xfconf_channel_get_int (window->channel, "/last/window-height", 400));
 
     /* don't act like a dialog, hide the button box */
+    /* FIXME - Deprecated, should hide some other way... */
+    /*
     area = gtk_dialog_get_action_area (GTK_DIALOG (window));
     gtk_widget_hide (area);
+    */
 
-    vbox = gtk_vbox_new (FALSE, 0);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     area = gtk_dialog_get_content_area (GTK_DIALOG (window));
     gtk_box_pack_start (GTK_BOX (area), vbox, TRUE, TRUE, 0);
     gtk_widget_show (vbox);
 
-    align = gtk_alignment_new (0.00, 0.00, 1.00, 1.00);
-    gtk_alignment_set_padding (GTK_ALIGNMENT (align), 4, 0, 6, 6);
-    gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, TRUE, 0);
-    gtk_widget_show (align);
-
-    hbox = gtk_hbox_new (FALSE, 12);
-    gtk_container_add (GTK_CONTAINER (align), hbox);
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
+    gtk_widget_set_margin_top (GTK_WIDGET(hbox), 4);
+    gtk_widget_set_margin_bottom (GTK_WIDGET(hbox), 0);
+    gtk_widget_set_margin_start (GTK_WIDGET(hbox), 6);
+    gtk_widget_set_margin_end (GTK_WIDGET(hbox), 6);
+    gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, TRUE, 0);
     gtk_widget_show (hbox);
 
     label = gtk_label_new_with_mnemonic (_("_Filter:"));
@@ -207,7 +202,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     entry = gtk_entry_new ();
     gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
-    gtk_entry_set_icon_from_stock (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_CLEAR);
+    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, "edit-clear");
     gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, _("Clear filter"));
     g_signal_connect (G_OBJECT (entry), "icon-release",
         G_CALLBACK (xfce_mime_window_filter_clear), NULL);
@@ -227,7 +222,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
     window->statusbar = statusbar = gtk_statusbar_new ();
     gtk_widget_set_name (statusbar, "mime-statusbar");
     gtk_box_pack_start (GTK_BOX (vbox), statusbar, FALSE, TRUE, 0);
-    gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (statusbar), TRUE);
     window->desc_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "desc");
     window->count_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "count");
     xfce_mime_window_statusbar_count (window, n_mime_types);
@@ -263,12 +257,18 @@ xfce_mime_window_init (XfceMimeWindow *window)
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-    /* HACK */
+    /* HACK - Disabled as we move to GTK3 */
     /* https://bugzilla.gnome.org/show_bug.cgi?id=668428 */
+    /*
     column->use_resized_width = TRUE;
     column->resized_width = xfconf_channel_get_int (window->channel,
                                                     "/last/mime-width",
                                                     300);
+    */
+    gtk_tree_view_column_set_min_width (column, 300);
+    gtk_tree_view_column_set_fixed_width (column, xfconf_channel_get_int (window->channel,
+                                                                          "/last/mime-width",
+                                                                          300));
 
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (column), renderer, FALSE);
@@ -292,11 +292,17 @@ xfce_mime_window_init (XfceMimeWindow *window)
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-    /* HACK */
+    /* HACK - Disabled as we move to GTK3 */
+    /*
     column->use_resized_width = TRUE;
     column->resized_width = xfconf_channel_get_int (window->channel,
                                                     "/last/status-width",
                                                     75);
+    */
+    gtk_tree_view_column_set_min_width (column, 75);
+    gtk_tree_view_column_set_fixed_width (column, xfconf_channel_get_int (window->channel,
+                                                                          "/last/status-width",
+                                                                          75));
 
     renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (column), renderer, FALSE);
@@ -313,11 +319,17 @@ xfce_mime_window_init (XfceMimeWindow *window)
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-    /* HACK */
+    /* HACK - Disabled as we move to GTK3 */
+    /*
     column->use_resized_width = TRUE;
     column->resized_width = xfconf_channel_get_int (window->channel,
                                                     "/last/default-width",
                                                     100);
+    */
+    gtk_tree_view_column_set_min_width (column, 100);
+    gtk_tree_view_column_set_fixed_width (column, xfconf_channel_get_int (window->channel,
+                                                                          "/last/default-width",
+                                                                          100));
 
     renderer = gtk_cell_renderer_combo_new ();
     g_signal_connect (G_OBJECT (renderer), "editing-started",
@@ -368,7 +380,7 @@ xfce_mime_window_delete_event (GtkWidget   *widget,
     g_return_val_if_fail (XFCONF_IS_CHANNEL (window->channel), FALSE);
 
     /* don't save the state for full-screen windows */
-    state = gdk_window_get_state (GTK_WIDGET (window)->window);
+    state = gdk_window_get_state (gtk_widget_get_window(GTK_WIDGET(window)));
     if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
     {
         /* save window size */
@@ -913,12 +925,12 @@ xfce_mime_window_combo_changed (GtkWidget       *combo,
 
         dialog = xfce_message_dialog_new (GTK_WINDOW (window),
                                           _("Question"),
-                                          GTK_STOCK_DIALOG_QUESTION,
+                                          "dialog-question",
                                           primary,
                                           _("This will remove your custom mime-association "
                                             "and restore the system-wide default."),
-                                          GTK_STOCK_CANCEL, GTK_RESPONSE_NO,
-                                          XFCE_BUTTON_TYPE_MIXED, GTK_STOCK_REVERT_TO_SAVED,
+                                          _("Cancel"), GTK_RESPONSE_NO,
+                                          XFCE_BUTTON_TYPE_MIXED, "document-revert",
                                           _("Reset to Default"), GTK_RESPONSE_YES, NULL);
         g_free (primary);
 

@@ -131,19 +131,19 @@ xfce_mime_chooser_init (XfceMimeChooser *chooser)
     gtk_window_set_modal (GTK_WINDOW (chooser), TRUE);
 
     gtk_dialog_add_button (GTK_DIALOG (chooser),
-                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+                           _("Cancel"), GTK_RESPONSE_CANCEL);
     chooser->button = gtk_dialog_add_button (GTK_DIALOG (chooser),
-                                             GTK_STOCK_OPEN, GTK_RESPONSE_YES);
+                                             _("Open"), GTK_RESPONSE_YES);
     gtk_dialog_set_default_response (GTK_DIALOG (chooser), GTK_RESPONSE_YES);
     gtk_widget_set_sensitive (chooser->button, FALSE);
 
-    vbox = gtk_vbox_new (FALSE, 6);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
     area = gtk_dialog_get_content_area (GTK_DIALOG (chooser));
     gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
     gtk_box_pack_start (GTK_BOX (area), vbox, TRUE, TRUE, 0);
     gtk_widget_show (vbox);
 
-    hbox = gtk_hbox_new (FALSE, 6);
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, TRUE, 0);
     gtk_widget_show (hbox);
 
@@ -153,7 +153,8 @@ xfce_mime_chooser_init (XfceMimeChooser *chooser)
 
     chooser->label = label = gtk_label_new ("");
     gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
-    gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+    gtk_widget_set_halign (GTK_WIDGET (label), GTK_ALIGN_START);
+    gtk_widget_set_valign (GTK_WIDGET (label), GTK_ALIGN_CENTER);
     gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
     gtk_widget_set_size_request (label, 350, -1);
     gtk_widget_show (label);
@@ -210,7 +211,7 @@ xfce_mime_chooser_init (XfceMimeChooser *chooser)
     gtk_expander_set_expanded (GTK_EXPANDER (expander), FALSE);
     gtk_widget_show (expander);
 
-    hbox = gtk_hbox_new (FALSE, 6);
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     gtk_container_add (GTK_CONTAINER (expander), hbox);
     gtk_widget_show (hbox);
 
@@ -378,8 +379,8 @@ xfce_mime_chooser_browse_command (GtkWidget       *button,
     chooser = gtk_file_chooser_dialog_new (_("Select an Application"),
                                            GTK_WINDOW (dialog),
                                            GTK_FILE_CHOOSER_ACTION_OPEN,
-                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                           GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                           _("Cancel"), GTK_RESPONSE_CANCEL,
+                                           _("Open"), GTK_RESPONSE_ACCEPT,
                                            NULL);
     gtk_file_chooser_set_local_only (GTK_FILE_CHOOSER (chooser), TRUE);
 

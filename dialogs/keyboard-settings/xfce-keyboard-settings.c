@@ -30,6 +30,7 @@
 #include <glib-object.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 
 #include <exo/exo.h>
 #include <xfconf/xfconf.h>
@@ -360,7 +361,11 @@ xfce_keyboard_settings_constructed (GObject *object)
   /* XKB settings */
   xkb_key_repeat_check = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_check");
   xkb_key_repeat_box = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_box");
-  exo_binding_new (G_OBJECT (xkb_key_repeat_check), "active", G_OBJECT (xkb_key_repeat_box), "sensitive");
+
+  g_object_bind_property(G_OBJECT (xkb_key_repeat_check), "active",
+                         G_OBJECT (xkb_key_repeat_box), "sensitive",
+                         G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+
   xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat", G_TYPE_BOOLEAN, G_OBJECT (xkb_key_repeat_check), "active");
 
   xkb_key_repeat_rate = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_rate");
@@ -376,7 +381,9 @@ xfce_keyboard_settings_constructed (GObject *object)
   /* XSETTINGS */
   net_cursor_blink_check = gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_check");
   net_cursor_blink_box = gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_box");
-  exo_binding_new (G_OBJECT (net_cursor_blink_check), "active", G_OBJECT (net_cursor_blink_box), "sensitive");
+  g_object_bind_property(G_OBJECT (net_cursor_blink_check), "active",
+                         G_OBJECT (net_cursor_blink_box), "sensitive",
+                         G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
   xfconf_g_property_bind (settings->priv->xsettings_channel, "/Net/CursorBlink", G_TYPE_BOOLEAN, G_OBJECT (net_cursor_blink_check), "active");
 
   net_cursor_blink_time = gtk_builder_get_object (GTK_BUILDER (settings), "net_cursor_blink_time");
@@ -423,7 +430,7 @@ xfce_keyboard_settings_constructed (GObject *object)
 
 #ifdef HAVE_LIBXKLAVIER
   /* Init xklavier engine */
-  settings->priv->xkl_engine = xkl_engine_get_instance (GDK_DISPLAY());
+  settings->priv->xkl_engine = xkl_engine_get_instance (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()));
   xkl_engine_start_listen (settings->priv->xkl_engine, XKLL_TRACK_KEYBOARD_STATE);
 
   settings->priv->xkl_rec_config = xkl_config_rec_new ();
@@ -546,7 +553,7 @@ xfce_keyboard_settings_create_dialog (XfceKeyboardSettings *settings)
 
 GtkWidget *
 xfce_keyboard_settings_create_plug (XfceKeyboardSettings *settings,
-                                    GdkNativeWindow       socket_id)
+                                    gint                  socket_id)
 {
   GtkWidget *plug;
   GObject   *child;
@@ -557,7 +564,7 @@ xfce_keyboard_settings_create_plug (XfceKeyboardSettings *settings,
   gtk_widget_show (plug);
 
   child = gtk_builder_get_object (GTK_BUILDER (settings), "plug-child");
-  gtk_widget_reparent (GTK_WIDGET (child), plug);
+  xfce_widget_reparent (GTK_WIDGET (child), plug);
   gtk_widget_show (GTK_WIDGET (child));
 
   return plug;
@@ -1267,12 +1274,12 @@ xfce_keyboard_settings_reset_button_clicked (XfceKeyboardSettings *settings)
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
 
-  response = xfce_message_dialog (NULL, _("Reset to Defaults"), GTK_STOCK_DIALOG_QUESTION,
+  response = xfce_message_dialog (NULL, _("Reset to Defaults"), "dialog-question",
                                   _("Reset to Defaults"),
                                   _("This will reset all shortcuts to their default "
                                     "values. Do you really want to do this?"),
-                                  GTK_STOCK_NO, GTK_RESPONSE_NO,
-                                  GTK_STOCK_YES, GTK_RESPONSE_YES,
+                                  _("No"), GTK_RESPONSE_NO,
+                                  _("Yes"), GTK_RESPONSE_YES,
                                   NULL);
 
   if (G_LIKELY (response == GTK_RESPONSE_YES))

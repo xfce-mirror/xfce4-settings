@@ -2,7 +2,7 @@
 #ifndef __foo_marshal_MARSHAL_H__
 #define __foo_marshal_MARSHAL_H__
 
-#include <glib-object.h>
+#include	<glib-object.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,7 +33,7 @@ extern void foo_marshal_VOID__UINT_UINT (GClosure     *closure,
                                          gpointer      marshal_data);
 
 /* VOID:BOXED (marshal.list:4) */
-#define foo_marshal_VOID__BOXED g_cclosure_marshal_VOID__BOXED
+#define foo_marshal_VOID__BOXED	g_cclosure_marshal_VOID__BOXED
 
 /* VOID:BOXED,BOXED (marshal.list:5) */
 extern void foo_marshal_VOID__BOXED_BOXED (GClosure     *closure,

@@ -1,6 +1,6 @@
 
-#include <glib-object.h>
-#include "foo-marshal.h"
+#include	<glib-object.h>
+#include	"foo-marshal.h"
 
 
 #ifdef G_ENABLE_DEBUG
@@ -277,4 +277,3 @@ foo_marshal_VOID__POINTER_POINTER (GClosure     *closure,
             g_marshal_value_peek_pointer (param_values + 2),
             data2);
 }
-

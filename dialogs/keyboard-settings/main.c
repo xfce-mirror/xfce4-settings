@@ -25,7 +25,8 @@
 
 #include <gtk/gtk.h>
 
-#include <libxfce4util/libxfce4util.h>
+#include <gdk/gdkx.h>
+
 #include <libxfce4ui/libxfce4ui.h>
 #include <xfconf/xfconf.h>
 
@@ -33,7 +34,7 @@
 
 
 
-static GdkNativeWindow opt_socket_id = 0;
+static gint            opt_socket_id = 0;
 static gboolean        opt_version = FALSE;
 static GOptionEntry    entries[] = {
   { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID") },
@@ -129,7 +130,7 @@ main (int    argc,
       gtk_window_present (GTK_WINDOW (dialog));
 
       /* To prevent the settings dialog to be saved in the session */
-      gdk_set_sm_client_id ("FAKE ID");
+      gdk_x11_set_sm_client_id ("FAKE ID");
 
       gtk_main ();
     }
@@ -143,7 +144,7 @@ main (int    argc,
       gdk_notify_startup_complete ();
 
       /* To prevent the settings dialog to be saved in the session */
-      gdk_set_sm_client_id ("FAKE ID");
+      gdk_x11_set_sm_client_id ("FAKE ID");
 
       /* Enter the main loop */
       gtk_main ();

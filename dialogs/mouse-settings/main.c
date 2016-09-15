@@ -41,6 +41,7 @@
 #endif /* HAVE_LIBINPUT */
 
 #include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 #include <gdk/gdkx.h>
 
 #include <xfconf/xfconf.h>
@@ -74,7 +75,7 @@ static gint device_presence_event_type = 0;
 #endif
 
 /* option entries */
-static GdkNativeWindow opt_socket_id = 0;
+static gint opt_socket_id = 0;
 static gchar *opt_device_name = NULL;
 static gboolean opt_version = FALSE;
 static GOptionEntry option_entries[] =
@@ -129,6 +130,8 @@ typedef union
     float   f;
     Atom    a;
 } propdata_t;
+
+
 
 static gchar *
 mouse_settings_format_value_px (GtkScale *scale,
@@ -748,7 +751,8 @@ mouse_settings_device_get_int_property (XDevice *device,
     gint     res;
 
     gdk_error_trap_push ();
-    res = XGetDeviceProperty (GDK_DISPLAY (), device, prop, 0, 1000, False,
+    res = XGetDeviceProperty (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()),
+                              device, prop, 0, 1000, False,
                               AnyPropertyType, &type, &format,
                               &n_items, &bytes_after, &data);
     if (gdk_error_trap_pop () == 0 && res == Success)
@@ -798,7 +802,7 @@ mouse_settings_device_get_selected (GtkBuilder  *builder,
         {
             /* open the device */
             gdk_error_trap_push ();
-            *device = XOpenDevice (GDK_DISPLAY (), xid);
+            *device = XOpenDevice (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), xid);
             if (gdk_error_trap_pop () != 0 || *device == NULL)
             {
                 g_critical ("Unable to open device %ld", xid);
@@ -840,7 +844,7 @@ mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
             g_free (prop);
         }
 
-        XCloseDevice (GDK_DISPLAY (), device);
+        XCloseDevice (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), device);
     }
 
     g_free (name);
@@ -855,7 +859,7 @@ mouse_settings_wacom_set_mode (GtkComboBox *combobox,
                                GtkBuilder  *builder)
 {
     XDevice      *device;
-    Display      *xdisplay = GDK_DISPLAY ();
+    Display      *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
     GtkTreeIter   iter;
     GtkTreeModel *model;
     gchar        *mode = NULL;
@@ -892,7 +896,7 @@ mouse_settings_wacom_set_mode (GtkComboBox *combobox,
 static void
 mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
 {
-    Display   *xdisplay = GDK_DISPLAY ();
+    Display   *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
     XDevice   *device;
     gchar     *name = NULL;
     Atom       tap_ation_prop;
@@ -1153,7 +1157,7 @@ static void
 mouse_settings_device_selection_changed (GtkBuilder *builder)
 {
     gint               nbuttons = 0;
-    Display           *xdisplay = GDK_DISPLAY ();
+    Display           *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
     XDevice           *device;
     XDeviceInfo       *device_info;
     XFeedbackState    *states, *pt;
@@ -1649,7 +1653,7 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
 
     /* get all the registered devices */
     gdk_error_trap_push ();
-    device_list = XListInputDevices (GDK_DISPLAY (), &ndevices);
+    device_list = XListInputDevices (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), &ndevices);
     if (gdk_error_trap_pop () != 0 || device_list == NULL)
     {
         g_message ("No devices found");
@@ -1713,16 +1717,12 @@ mouse_settings_device_update_sliders (gpointer user_data)
     GtkBuilder *builder = GTK_BUILDER (user_data);
     GObject    *button;
 
-    GDK_THREADS_ENTER ();
-
     /* update */
     mouse_settings_device_selection_changed (builder);
 
     /* make the button sensitive again */
     button = gtk_builder_get_object (builder, "device-reset-feedback");
     gtk_widget_set_sensitive (GTK_WIDGET (button), TRUE);
-
-    GDK_THREADS_LEAVE ();
 
     return FALSE;
 }
@@ -1809,7 +1809,7 @@ mouse_settings_event_filter (GdkXEvent *xevent,
 static void
 mouse_settings_create_event_filter (GtkBuilder *builder)
 {
-    Display     *xdisplay = GDK_DISPLAY ();
+    Display     *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
     XEventClass  event_class;
 
     /* monitor device change events */
@@ -1905,7 +1905,7 @@ main (gint argc, gchar **argv)
     }
 
     /* check for Xi */
-    version = XGetExtensionVersion (GDK_DISPLAY (), INAME);
+    version = XGetExtensionVersion (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), INAME);
     if (version == NULL || ((long) version) == NoSuchExtension
         || !version->present)
     {
@@ -2076,7 +2076,7 @@ main (gint argc, gchar **argv)
                 gtk_window_present (GTK_WINDOW (dialog));
 
                 /* To prevent the settings dialog to be saved in the session */
-                gdk_set_sm_client_id ("FAKE ID");
+                gdk_x11_set_sm_client_id ("FAKE ID");
 
                 gtk_main ();
 
@@ -2094,14 +2094,14 @@ main (gint argc, gchar **argv)
 
                 /* Get plug child widget */
                 plug_child = gtk_builder_get_object (builder, "plug-child");
-                gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
+                xfce_widget_reparent (GTK_WIDGET (plug_child), plug);
                 gtk_widget_show (GTK_WIDGET (plug_child));
 
                 /* Unlock */
                 locked--;
 
                 /* To prevent the settings dialog to be saved in the session */
-                gdk_set_sm_client_id ("FAKE ID");
+                gdk_x11_set_sm_client_id ("FAKE ID");
 
                 /* Enter main loop */
                 gtk_main ();

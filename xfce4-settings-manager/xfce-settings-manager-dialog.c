@@ -31,6 +31,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 #include <gdk/gdkkeysyms.h>
 
 #include <libxfce4util/libxfce4util.h>
@@ -159,8 +160,6 @@ xfce_settings_manager_dialog_class_init (XfceSettingsManagerDialogClass *klass)
 static void
 xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 {
-    GtkWidget *align;
-    GtkWidget *bbox;
     GtkWidget *dialog_vbox;
     GtkWidget *ebox;
     GtkWidget *entry;
@@ -168,6 +167,8 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     GtkWidget *header;
     GtkWidget *scroll;
     GtkWidget *viewport;
+    GtkWidget *image;
+    GtkWidget *button;
     GList     *children;
     gchar     *path;
 
@@ -190,20 +191,25 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
       xfconf_channel_get_int (dialog->channel, "/last/window-height", 500));
     xfce_settings_manager_dialog_set_title (dialog, NULL, NULL, NULL);
 
-    dialog->button_back = xfce_gtk_button_new_mixed (GTK_STOCK_GO_BACK, _("All _Settings"));
-    bbox = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
-    gtk_container_add (GTK_CONTAINER (bbox), dialog->button_back);
+    dialog->button_back = gtk_dialog_add_button (GTK_DIALOG (dialog), _("All _Settings"), GTK_RESPONSE_NONE);
+    image = gtk_image_new_from_icon_name ("go-previous", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (GTK_BUTTON (dialog->button_back), image);
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
     gtk_widget_show (dialog->button_back);
     g_signal_connect_swapped (G_OBJECT (dialog->button_back), "clicked",
         G_CALLBACK (xfce_settings_manager_dialog_go_back), dialog);
 
+
     dialog->button_help = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                                 GTK_STOCK_HELP, GTK_RESPONSE_HELP);
-    gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
+                                                 _("Help"), GTK_RESPONSE_HELP);
+    image = gtk_image_new_from_icon_name ("help-browser", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (GTK_BUTTON (dialog->button_help), image);
+    button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Close"), GTK_RESPONSE_CLOSE);
+    image = gtk_image_new_from_icon_name ("window-close", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (GTK_BUTTON (button), image);
 
     /* add box at start of the main box */
-    hbox = gtk_hbox_new (FALSE, 0);
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     dialog_vbox = gtk_bin_get_child (GTK_BIN (dialog));
     gtk_box_pack_start (GTK_BOX (dialog_vbox), hbox, FALSE, TRUE, 0);
     gtk_box_reorder_child (GTK_BOX (dialog_vbox), hbox, 0);
@@ -224,14 +230,11 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
         G_CALLBACK (xfce_settings_manager_dialog_header_style), ebox);
     gtk_widget_show (ebox);
 
-    align = gtk_alignment_new (0.0f, 1.0f, 0.0f, 0.0f);
-    gtk_container_add (GTK_CONTAINER (ebox), align);
-    gtk_container_set_border_width (GTK_CONTAINER (align), 6);
-    gtk_widget_show (align);
-
     dialog->filter_entry = entry = gtk_entry_new ();
-    gtk_container_add (GTK_CONTAINER (align), entry);
-    gtk_entry_set_icon_from_stock (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_FIND);
+    gtk_container_add (GTK_CONTAINER (ebox), entry);
+    gtk_widget_set_halign (entry, GTK_ALIGN_START);
+    gtk_widget_set_valign (entry, GTK_ALIGN_END);
+    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, "edit-find");
     gtk_entry_set_icon_activatable (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, FALSE);
     g_signal_connect (G_OBJECT (entry), "changed",
         G_CALLBACK (xfce_settings_manager_dialog_entry_changed), dialog);
@@ -255,7 +258,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
     gtk_widget_show (viewport);
 
-    dialog->category_box = gtk_vbox_new (FALSE, 6);
+    dialog->category_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
     gtk_container_add (GTK_CONTAINER (viewport), dialog->category_box);
     gtk_container_set_border_width (GTK_CONTAINER (dialog->category_box), 6);
     gtk_widget_show (dialog->category_box);
@@ -311,13 +314,10 @@ xfce_settings_manager_dialog_style_set (GtkWidget *widget,
                                         GtkStyle  *old_style)
 {
     XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG (widget);
+    GtkStyleContext *context;
 
-    GTK_WIDGET_CLASS (xfce_settings_manager_dialog_parent_class)->style_set (widget, old_style);
-
-    /* set viewport to color icon view uses for background */
-    gtk_widget_modify_bg (dialog->category_viewport,
-                          GTK_STATE_NORMAL,
-                          &widget->style->base[GTK_STATE_NORMAL]);
+    context = gtk_widget_get_style_context (dialog->category_viewport);
+    gtk_style_context_add_class (context, "view");
 }
 
 
@@ -328,6 +328,9 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
 {
     XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG (widget);
     const gchar               *help_component;
+
+    if (response_id == GTK_RESPONSE_NONE)
+        return;
 
     if (response_id == GTK_RESPONSE_HELP)
     {
@@ -348,7 +351,7 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
         gint           width, height;
 
         /* Don't save the state for full-screen windows */
-        state = gdk_window_get_state (GTK_WIDGET (widget)->window);
+        state = gdk_window_get_state (gtk_widget_get_window(GTK_WIDGET(widget)));
 
         if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
         {
@@ -370,8 +373,11 @@ xfce_settings_manager_dialog_header_style (GtkWidget *header,
                                            GtkStyle  *old_style,
                                            GtkWidget *ebox)
 {
-    /* use the header background */
-    gtk_widget_modify_bg (ebox, GTK_STATE_NORMAL, &header->style->base[GTK_STATE_NORMAL]);
+    GtkStyleContext *context;
+
+    context = gtk_widget_get_style_context (ebox);
+    gtk_style_context_add_class (context, "view");
+    gtk_style_context_add_class (context, "XfceHeading");
 }
 
 
@@ -591,7 +597,7 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
     GtkWidget *socket;
 
     /* make sure no cursor is shown */
-    gdk_window_set_cursor (GTK_WIDGET (dialog)->window, NULL);
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
 
     /* reset dialog info */
     xfce_settings_manager_dialog_set_title (dialog, NULL, NULL, NULL);
@@ -657,9 +663,9 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget                 *entry,
         /* update entry */
         if (dialog->filter_text == NULL || filter_text == NULL)
         {
-            gtk_entry_set_icon_from_stock (GTK_ENTRY (dialog->filter_entry),
+            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (dialog->filter_entry),
                 GTK_ENTRY_ICON_SECONDARY,
-                filter_text == NULL ? GTK_STOCK_FIND : GTK_STOCK_CLEAR);
+                filter_text == NULL ? "edit-find" : "edit-clear");
             gtk_entry_set_icon_activatable (GTK_ENTRY (dialog->filter_entry),
                 GTK_ENTRY_ICON_SECONDARY, filter_text != NULL);
         }
@@ -704,7 +710,7 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
     GtkTreeModel   *model;
     const gchar    *text;
 
-    if (event->keyval == GDK_Escape)
+    if (event->keyval == GDK_KEY_Escape)
     {
         text = gtk_entry_get_text (GTK_ENTRY (entry));
         if (text != NULL && *text != '\0')
@@ -713,7 +719,7 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
             return TRUE;
         }
     }
-    else if (event->keyval == GDK_Return)
+    else if (event->keyval == GDK_KEY_Return)
     {
         /* count visible children */
         n_visible_items = 0;
@@ -795,7 +801,7 @@ xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
     gtk_widget_set_sensitive (dialog->filter_entry, FALSE);
 
     /* plug startup complete */
-    gdk_window_set_cursor (GTK_WIDGET (dialog)->window, NULL);
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
 }
 
 
@@ -821,6 +827,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
     const gchar    *command;
     gboolean        snotify;
     GdkScreen      *screen;
+    GdkDisplay     *display;
     GError         *error = NULL;
     GFile          *desktop_file;
     gchar          *filename;
@@ -859,9 +866,10 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
     if (pluggable)
     {
         /* fake startup notification */
-        cursor = gdk_cursor_new (GDK_WATCH);
-        gdk_window_set_cursor (GTK_WIDGET (dialog)->window, cursor);
-        gdk_cursor_unref (cursor);
+        display = gdk_display_get_default ();
+        cursor = gdk_cursor_new_for_display (display, GDK_WATCH);
+        gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), cursor);
+        g_object_unref (cursor);
 
         /* create fresh socket */
         socket = gtk_socket_new ();
@@ -876,10 +884,10 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         dialog->socket_item = g_object_ref (item);
 
         /* spawn dialog with socket argument */
-        cmd = g_strdup_printf ("%s --socket-id=%d", command, gtk_socket_get_id (GTK_SOCKET (socket)));
+        cmd = g_strdup_printf ("%s --socket-id=%d", command, (gint)gtk_socket_get_id (GTK_SOCKET (socket)));
         if (!xfce_spawn_command_line_on_screen (screen, cmd, FALSE, FALSE, &error))
         {
-            gdk_window_set_cursor (GTK_WIDGET (dialog)->window, NULL);
+            gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
 
             xfce_dialog_show_error (GTK_WINDOW (dialog), error,
                                     _("Unable to start \"%s\""), command);
@@ -958,7 +966,7 @@ static void
 xfce_settings_manager_dialog_scroll_to_item (GtkWidget                 *iconview,
                                              XfceSettingsManagerDialog *dialog)
 {
-    GtkAllocation *alloc;
+    GtkAllocation *alloc = g_new0 (GtkAllocation, 1);
     GtkTreePath   *path;
     gint           row, row_height;
     gdouble        rows;
@@ -971,8 +979,8 @@ xfce_settings_manager_dialog_scroll_to_item (GtkWidget                 *iconview
         row = exo_icon_view_get_item_row (EXO_ICON_VIEW (iconview), path);
         gtk_tree_path_free (path);
 
-        /* estinated row height */
-        alloc = &iconview->allocation;
+        /* estimated row height */
+        gtk_widget_get_allocation(GTK_WIDGET(iconview), alloc);
         rows = alloc->height / 56;
         row_height = alloc->height / MAX (1.0, (gint) rows);
 
@@ -981,9 +989,11 @@ xfce_settings_manager_dialog_scroll_to_item (GtkWidget                 *iconview
         upper = alloc->y + row_height * (row + 1);
 
         /* scroll so item is visible */
-        adjustment = gtk_viewport_get_vadjustment (GTK_VIEWPORT (dialog->category_viewport));
+        adjustment = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (dialog->category_viewport));
         gtk_adjustment_clamp_page (adjustment, lower, upper);
     }
+
+    g_free (alloc);
 }
 
 
@@ -1036,7 +1046,6 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
                                            GarconMenuDirectory       *directory)
 {
     GtkTreeModel    *filter;
-    GtkWidget       *alignment;
     GtkWidget       *iconview;
     GtkWidget       *label;
     GtkWidget       *separator;
@@ -1055,7 +1064,7 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
         xfce_settings_manager_dialog_filter_category,
         category, xfce_settings_manager_dialog_category_free);
 
-    category->box = vbox = gtk_vbox_new (FALSE, 0);
+    category->box = vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start (GTK_BOX (dialog->category_box), vbox, FALSE, TRUE, 0);
     gtk_widget_show (vbox);
 
@@ -1065,23 +1074,18 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
     pango_attr_list_insert (attrs, pango_attr_weight_new (PANGO_WEIGHT_BOLD));
     gtk_label_set_attributes (GTK_LABEL (label), attrs);
     pango_attr_list_unref (attrs);
-    gtk_misc_set_alignment (GTK_MISC (label), 0.0f, 0.5f);
+    gtk_widget_set_halign (label, GTK_ALIGN_START);
+    gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
     gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, TRUE, 0);
     gtk_widget_show (label);
 
     /* separate title and content using a horizontal line */
-    separator = gtk_hseparator_new ();
+    separator = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
     gtk_box_pack_start (GTK_BOX (vbox), separator, FALSE, TRUE, 0);
     gtk_widget_show (separator);
 
-    /* use an alignment to separate the category content from the title */
-    alignment = gtk_alignment_new (0.0f, 0.0f, 1.0f, 1.0f);
-    gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
-    gtk_container_add (GTK_CONTAINER (vbox), alignment);
-    gtk_widget_show (alignment);
-
     category->iconview = iconview = exo_icon_view_new_with_model (GTK_TREE_MODEL (filter));
-    gtk_container_add (GTK_CONTAINER (alignment), iconview);
+    gtk_container_add (GTK_CONTAINER (vbox), iconview);
     exo_icon_view_set_orientation (EXO_ICON_VIEW (iconview), GTK_ORIENTATION_HORIZONTAL);
     exo_icon_view_set_margin (EXO_ICON_VIEW (iconview), 0);
     exo_icon_view_set_single_click (EXO_ICON_VIEW (iconview), TRUE);
@@ -1116,14 +1120,16 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
                   "follow-state", TRUE,
                   NULL);
 
-    render = xfce_text_renderer_new ();
+    /* FIXME (maybe) - Use XfceTextRenderer */
+    //render = xfce_text_renderer_new ();
+    render = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_end (GTK_CELL_LAYOUT (iconview), render, FALSE);
     gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (iconview), render, "text", COLUMN_NAME);
     g_object_set (G_OBJECT (render),
                   "wrap-mode", PANGO_WRAP_WORD,
                   "wrap-width", TEXT_WIDTH,
-                  "follow-prelit", TRUE,
-                  "follow-state", TRUE,
+                  //"follow-prelit", TRUE,
+                  //"follow-state", TRUE,
                   NULL);
 
     g_object_unref (G_OBJECT (filter));

@@ -64,7 +64,7 @@ display-dialog_ui.h: display-dialog.glade
 
 minimal-display-dialog_ui.h: minimal-display-dialog.glade
 	exo-csource --static --strip-comments --strip-content --name=minimal_display_dialog_ui $< >$@
-	
+
 identity-popup_ui.h: identity-popup.glade
 	exo-csource --static --strip-comments --strip-content --name=identity_popup_ui $< >$@
 
