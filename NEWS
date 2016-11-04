@@ -1,3 +1,18 @@
+4.13.0
+======
+- Initial port to GTK+ 3
+- Known issues:
+  - The display dialog does not always build correctly. The offending
+    code exists in the port to GdkSeat. When alternating between the
+    old and new versions of this code, both versions do work, so there
+    seems to be some strangeness at build time.
+    - See dialogs/display-settings/scrollarea.c#n513
+- Translation updates: Basque, Bulgarian, Chinese (China),
+  Chinese (Taiwan), Croatian, English (Australia), French, German,
+  Hebrew, Japanese, Korean, Lithuanian, Malay, Occitan (post 1500),
+  Polish, Portuguese, Portuguese (Brazil), Romanian, Russian, Serbian,
+  Slovak, Spanish, Swedish, Ukrainian
+
 4.12.1
 ======
 - Fix: Color scheme preview on low bit depth displays (Xfce #12223)
