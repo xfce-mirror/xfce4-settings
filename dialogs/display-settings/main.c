@@ -2882,6 +2882,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
     GError     *error = NULL;
     gboolean    found = FALSE;
     RRMode      mode;
+    GtkApplication *app;
 
     builder = gtk_builder_new ();
 
@@ -2968,6 +2969,24 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
             gtk_widget_set_sensitive (GTK_WIDGET (only_display2), FALSE);
         }
 
+        /* Initialize application to ensure single instance */
+        app = gtk_application_new ("org.xfce.display.settings", 0);
+
+        g_application_register (G_APPLICATION (app), NULL, &error);
+        if (error != NULL)
+          {
+            g_warning ("Unable to register GApplication: %s", error->message);
+            g_error_free (error);
+            error = NULL;
+          }
+
+        if (g_application_get_is_remote (G_APPLICATION (app)))
+          {
+            g_application_activate (G_APPLICATION (app));
+            g_object_unref (app);
+            return;
+          }
+
         g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled),
                           builder);
         g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled),
@@ -2978,6 +2997,8 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
                           builder);
         g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked),
                           builder);
+
+        g_signal_connect_swapped (app, "activate", G_CALLBACK (gtk_window_present), dialog);
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));
