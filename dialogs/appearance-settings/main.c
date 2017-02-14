@@ -1408,6 +1408,11 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     xfconf_g_property_bind (xsettings_channel,  "/Gtk/FontName", G_TYPE_STRING,
                             G_OBJECT (object), "font-name");
 
+    /* Monospace font name */
+    object = gtk_builder_get_object (builder, "gtk_monospace_fontname_button");
+    xfconf_g_property_bind (xsettings_channel,  "/Gtk/MonospaceFontName", G_TYPE_STRING,
+                            G_OBJECT (object), "font-name");
+
     /* Toolbar style */
     object = gtk_builder_get_object (builder, "gtk_toolbar_style_combo_box");
     appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Gtk/ToolbarStyle", NULL, builder);
