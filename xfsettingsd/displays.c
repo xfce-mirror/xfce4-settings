@@ -1345,6 +1345,7 @@ xfce_displays_helper_toggle_internal (gpointer           *power,
 
         /* Try to find the internal display */
         if (g_str_has_prefix (output->info->name, "LVDS")
+            || g_str_has_prefix (output->info->name, "eDP")
             || strcmp (output->info->name, "PANEL") == 0)
         {
             lvds = output;
