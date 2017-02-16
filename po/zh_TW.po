@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2010
-# Jeff Huang <s8321414@gmail.com>, 2014-2016
+# Jeff Huang <s8321414@gmail.com>, 2014-2017
 # Walter Cheuk <wwycheuk@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 06:30+0200\n"
-"PO-Revision-Date: 2016-09-16 14:04+0000\n"
+"POT-Creation-Date: 2017-02-15 18:30+0100\n"
+"PO-Revision-Date: 2017-02-16 01:17+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/xfce/xfce4-settings/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -232,7 +232,7 @@ msgid "Version information"
 msgstr "版本資訊"
 
 #: ../dialogs/accessibility-settings/main.c:197
-#: ../dialogs/appearance-settings/main.c:1298
+#: ../dialogs/appearance-settings/main.c:1303
 #: ../dialogs/display-settings/main.c:3018
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
@@ -243,7 +243,7 @@ msgid "Type '%s --help' for usage."
 msgstr "輸入 '%s --help' 以了解用法。"
 
 #: ../dialogs/accessibility-settings/main.c:216
-#: ../dialogs/appearance-settings/main.c:1317
+#: ../dialogs/appearance-settings/main.c:1322
 #: ../dialogs/display-settings/main.c:3037
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
@@ -252,7 +252,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 開發團隊。保留所有權利。"
 
 #: ../dialogs/accessibility-settings/main.c:217
-#: ../dialogs/appearance-settings/main.c:1318
+#: ../dialogs/appearance-settings/main.c:1323
 #: ../dialogs/display-settings/main.c:3038
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
@@ -340,126 +340,140 @@ msgid "Default Fon_t"
 msgstr "預設字型(_T)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid ""
+"This font will be used as the default monospace font, for example by "
+"terminal emulators."
+msgstr "這個字型將會被用作預設的等寬字型，例如終端機模擬器。"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid "Select a default monospace font"
+msgstr "選取預設的等寬字型"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Default _Monospace Font"
+msgstr "預設等寬字型(_M)"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "_Enable anti-aliasing"
 msgstr "啟用防鋸齒(_E)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "防鋸齒或稱字型平滑化，可以改善畫面中文字的外觀"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Hintin_g:"
 msgstr "修飾(_G)："
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "許多字型包含提供額外修飾指示的資訊，比如說繪製該字型的最佳方式該怎麼做；請依照個人偏好挑選看起來最舒爽的那一項"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Sub-_pixel order:"
 msgstr "次像素排序(_P)："
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "在 TFT 或 LCD 顯示器上的字型品質可以藉由選擇顯示器的正確次像素排序而顯著改善。"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Rendering"
 msgstr "繪製方式"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Custom _DPI setting:"
 msgstr "自訂 _DPI 設定值："
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "若字型看起來過大或過小，便無視偵測到的螢幕解析度"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "DPI"
 msgstr "DPI"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "_Fonts"
 msgstr "字型(_F)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Specify what should be displayed in toolbar items"
 msgstr "指定工具列項目內該顯示什麼"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "_Toolbar Style"
 msgstr "工具列樣式(_T)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Show images on _buttons"
 msgstr "在按鈕上顯示影像(_B)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "指定圖示是否該顯示在按鈕內的文字旁"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images in _menus"
 msgstr "在選單內顯示影像(_M)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "指定圖示是否該顯示在選單內的項目旁"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable e_ditable accelerators"
 msgstr "啟用可編輯的快速鍵(_D)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "若選取，選單項目的鍵盤捷徑可以透過將滑鼠指向選單項目，接著為該捷徑按下新的按鍵組合來變更"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Menus and Buttons"
 msgstr "選單與按鈕"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable _event sounds"
 msgstr "啟用事件音效(_E)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "啟用或停用全系統事件音效 (需要有「Canberra」支援)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable input feedbac_k sounds"
 msgstr "啟用輸入回饋音效(_K)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "指定滑鼠點擊或其它使用者輸入是否要播放事件音效"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Event sounds"
 msgstr "事件音效"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Adjust the system-wide display scaling"
 msgstr "調整系統層級的顯示縮放係數"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "_Window Scaling"
 msgstr "視窗縮放(_W)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Setti_ngs"
 msgstr "設定值(_N)"
 
