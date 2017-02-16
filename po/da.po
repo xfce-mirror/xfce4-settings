@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 06:30+0200\n"
-"PO-Revision-Date: 2017-01-23 19:56+0000\n"
+"POT-Creation-Date: 2017-02-15 18:30+0100\n"
+"PO-Revision-Date: 2017-02-16 00:21+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce4-settings/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -233,7 +233,7 @@ msgid "Version information"
 msgstr "Versionsinformation"
 
 #: ../dialogs/accessibility-settings/main.c:197
-#: ../dialogs/appearance-settings/main.c:1298
+#: ../dialogs/appearance-settings/main.c:1303
 #: ../dialogs/display-settings/main.c:3018
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
@@ -244,7 +244,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Tast '%s --help' for information om brugen."
 
 #: ../dialogs/accessibility-settings/main.c:216
-#: ../dialogs/appearance-settings/main.c:1317
+#: ../dialogs/appearance-settings/main.c:1322
 #: ../dialogs/display-settings/main.c:3037
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
@@ -253,7 +253,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce's udviklingshold. Alle rettigheder forbeholdes."
 
 #: ../dialogs/accessibility-settings/main.c:217
-#: ../dialogs/appearance-settings/main.c:1318
+#: ../dialogs/appearance-settings/main.c:1323
 #: ../dialogs/display-settings/main.c:3038
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
@@ -341,126 +341,140 @@ msgid "Default Fon_t"
 msgstr "Standardskrif_t"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid ""
+"This font will be used as the default monospace font, for example by "
+"terminal emulators."
+msgstr "Denne skrifttype vil blive brugt som standardskrifttype med fast bredde, f.eks. af terminalemulatorer."
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid "Select a default monospace font"
+msgstr "Vælg en standardskrifttype med fast bredde"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Default _Monospace Font"
+msgstr "Standard_skrifttype med fast bredde"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "_Enable anti-aliasing"
 msgstr "_Slå udjævning til"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Udjævning, eller skriftudglatning kan forbedre udseendet af tekst på skærmen"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Hintin_g:"
 msgstr "Hentydnin_g:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Mange skrifter indeholder informationer der giver ekstra fif om hvordan skriften bedst tegnes; vælg hvilken der ser bedst ud ifølge din personlige præference"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Sub-_pixel order:"
 msgstr "Sub-_pixel-rækkefølge:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "Skriftkvalitet på en TFT- eller LCD-skærm kan i stor grad forbedres ved at vælge den korrekte rækkefølge af sub-pixler på skærmen"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Rendering"
 msgstr "Optegning"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Custom _DPI setting:"
 msgstr "Brugerdefineret _DPI-indstilling:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Tilsidesæt den registrerede skærmopløsning, hvis skriften ser for stor eller lille ud"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "DPI"
 msgstr "DPI"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "_Fonts"
 msgstr "Skri_fttyper"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Specify what should be displayed in toolbar items"
 msgstr "Angiv det der ønskes vist i værktøjslinjens elementer"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "_Toolbar Style"
 msgstr "_Værktøjslinjestil"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Show images on _buttons"
 msgstr "Vis billeder på _knapper"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Angiv om ikoner skal vises ved siden af tekst i knapper"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images in _menus"
 msgstr "Vis billeder i _menuer"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Angiv om ikoner skal vises ved siden af elementer i menuer"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable e_ditable accelerators"
 msgstr "Slå re_digérbare acceleratorer til"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Hvis valgt, så kan tastaturgenveje for menuelementer ændres ved at holde musen over menuelementet, og trykke den nye tastekombination for genvejen"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Menus and Buttons"
 msgstr "Menuer og knapper"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable _event sounds"
 msgstr "Slå lyde for _hændelser til"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Slå lyde til og fra globalt for hændelser (kræver understøttelse af \"Canberra\")"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable input feedbac_k sounds"
 msgstr "Slå l_ydtilbagemeldinger til for input"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Angiv om museklik eller andre brugerinput skal føre til, at hændelseslyde afspilles"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Event sounds"
 msgstr "Hændelseslyde"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Adjust the system-wide display scaling"
 msgstr "Justér skærmskalering for hele systemet"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "_Window Scaling"
 msgstr "_Vinduesskalering"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Setti_ngs"
 msgstr "I_ndstillinger"
 
