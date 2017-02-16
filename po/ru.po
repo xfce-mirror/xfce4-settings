@@ -8,15 +8,15 @@
 # Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011
 # Denis Koryavov <dkoryavov@yandex.ru> 2009, 2010
 # Dmitrij Smirnov <other@igus.lv>, 2011
-# Igor <f2404@yandex.ru>, 2016
+# Igor <f2404@yandex.ru>, 2016-2017
 # Ilya Shestopalov <yast4ik@yahoo.com>, 2009
 # Sergey Alyoshin <alyoshin.s@gmail.com>, 2013-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 06:30+0200\n"
-"PO-Revision-Date: 2016-09-17 14:09+0000\n"
+"POT-Creation-Date: 2017-02-15 18:30+0100\n"
+"PO-Revision-Date: 2017-02-16 04:51+0000\n"
 "Last-Translator: Igor <f2404@yandex.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/xfce/xfce4-settings/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -237,7 +237,7 @@ msgid "Version information"
 msgstr "Информация о версии"
 
 #: ../dialogs/accessibility-settings/main.c:197
-#: ../dialogs/appearance-settings/main.c:1298
+#: ../dialogs/appearance-settings/main.c:1303
 #: ../dialogs/display-settings/main.c:3018
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
@@ -248,7 +248,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Наберите «%s --help» для информации об использовании."
 
 #: ../dialogs/accessibility-settings/main.c:216
-#: ../dialogs/appearance-settings/main.c:1317
+#: ../dialogs/appearance-settings/main.c:1322
 #: ../dialogs/display-settings/main.c:3037
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
@@ -257,7 +257,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Команда разработчиков Xfce. Все права защищены."
 
 #: ../dialogs/accessibility-settings/main.c:217
-#: ../dialogs/appearance-settings/main.c:1318
+#: ../dialogs/appearance-settings/main.c:1323
 #: ../dialogs/display-settings/main.c:3038
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
@@ -345,126 +345,140 @@ msgid "Default Fon_t"
 msgstr "Шриф_т по умолчанию"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid ""
+"This font will be used as the default monospace font, for example by "
+"terminal emulators."
+msgstr "Этот шрифт будет использоваться в качестве моноширинного шрифта по умолчанию, например, эмулятором терминала."
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid "Select a default monospace font"
+msgstr "Выберите моноширинный шрифт по умолчанию"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Default _Monospace Font"
+msgstr "_Моноширинный шрифт по умолчанию"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "_Enable anti-aliasing"
 msgstr "Включить с_глаживание шрифта"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Сглаживание шрифта может улучшить вид текста на экране"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Hintin_g:"
 msgstr "_Хинтинг:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Многие шрифты содержат дополнительную информацию, которая помогает отрисовывать шрифт наилучшим образом. Выберите вариант, который выглядит лучше"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Sub-_pixel order:"
 msgstr "Распределение внутри _пикселя:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "Качество шрифтов на TFT или LCD экране может быть улучшено выбором правильного расположения цветов внутри пикселя"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Rendering"
 msgstr "Визуализация"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Custom _DPI setting:"
 msgstr "Задать _DPI:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Переопределить автоматически определённое разрешение монитора. Используйте если шрифты выглядят слишком маленькими или слишком большими"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "DPI"
 msgstr "Разрешающая способность (DPI)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "_Fonts"
 msgstr "_Шрифты"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Specify what should be displayed in toolbar items"
 msgstr "Указать, что должно отображаться в элементах панели"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "_Toolbar Style"
 msgstr "Стиль _панели инструментов"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Show images on _buttons"
 msgstr "Показывать значки на _кнопках"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Определяет, должны ли значки отображаться на кнопках"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images in _menus"
 msgstr "Показывать значки в _меню"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Определяет, должны ли значки отображаться в пунктах меню"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable e_ditable accelerators"
 msgstr "Включить редактируемые комбинации к_лавиш"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Если выбрано, комбинации клавиш для пунктов меню могут быть изменены наведением на них мыши и нажатием новой комбинации клавиш"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Menus and Buttons"
 msgstr "Меню и кнопки"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable _event sounds"
 msgstr "Включить з_вуки событий"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Включить или выключить звуки событий глобально (требуется поддержка «Canberra»)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable input feedbac_k sounds"
 msgstr "Включить в_ходящие звуки обратной связи"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Определить будут ли клики мыши и других устройств ввода приводить к проигрыванию звука события"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Event sounds"
 msgstr "Звуки событий"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Adjust the system-wide display scaling"
 msgstr "Настроить системное масштабирование дисплея"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "_Window Scaling"
 msgstr "_Масштабирование окон"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Setti_ngs"
 msgstr "_Настройки"
 
@@ -567,7 +581,7 @@ msgstr "_Разрешение:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "_Use this display"
-msgstr "Использовать этот дисплей"
+msgstr "_Использовать этот дисплей"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
@@ -575,7 +589,7 @@ msgstr "Зерка_льные дисплеи"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "_Primary display"
-msgstr "Основной дисплей"
+msgstr "_Основной дисплей"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid ""
