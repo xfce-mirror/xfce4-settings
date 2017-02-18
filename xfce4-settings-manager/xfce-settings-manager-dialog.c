@@ -231,9 +231,10 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_widget_show (ebox);
 
     dialog->filter_entry = entry = gtk_entry_new ();
+    gtk_widget_set_margin_end (GTK_WIDGET (entry), 6);
     gtk_container_add (GTK_CONTAINER (ebox), entry);
     gtk_widget_set_halign (entry, GTK_ALIGN_START);
-    gtk_widget_set_valign (entry, GTK_ALIGN_END);
+    gtk_widget_set_valign (entry, GTK_ALIGN_CENTER);
     gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, "edit-find");
     gtk_entry_set_icon_activatable (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, FALSE);
     g_signal_connect (G_OBJECT (entry), "changed",
