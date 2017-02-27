@@ -151,7 +151,7 @@ foo_scroll_area_map (GtkWidget *widget)
     GTK_WIDGET_CLASS (parent_class)->map (widget);
 
     if (area->priv->input_window)
-	gdk_window_show (area->priv->input_window);
+        gdk_window_show (area->priv->input_window);
 }
 
 static void
@@ -160,7 +160,7 @@ foo_scroll_area_unmap (GtkWidget *widget)
     FooScrollArea *area = FOO_SCROLL_AREA (widget);
 
     if (area->priv->input_window)
-	gdk_window_hide (area->priv->input_window);
+        gdk_window_hide (area->priv->input_window);
 
     GTK_WIDGET_CLASS (parent_class)->unmap (widget);
 }
@@ -186,24 +186,24 @@ foo_scroll_area_get_property (GObject    *object,
                               GValue     *value,
                               GParamSpec *pspec)
 {
-  FooScrollArea *scroll_area = FOO_SCROLL_AREA (object);
+    FooScrollArea *scroll_area = FOO_SCROLL_AREA (object);
 
-  switch (property_id)
+    switch (property_id)
     {
-    case PROP_VADJUSTMENT:
-      g_value_set_object (value, &scroll_area->priv->vadj);
-      break;
-    case PROP_HADJUSTMENT:
-      g_value_set_object (value, &scroll_area->priv->hadj);
-      break;
-    case PROP_HSCROLL_POLICY:
-      g_value_set_enum (value, scroll_area->priv->hscroll_policy);
-      break;
-    case PROP_VSCROLL_POLICY:
-      g_value_set_enum (value, scroll_area->priv->vscroll_policy);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+        case PROP_VADJUSTMENT:
+            g_value_set_object (value, &scroll_area->priv->vadj);
+            break;
+        case PROP_HADJUSTMENT:
+            g_value_set_object (value, &scroll_area->priv->hadj);
+            break;
+        case PROP_HSCROLL_POLICY:
+            g_value_set_enum (value, scroll_area->priv->hscroll_policy);
+            break;
+        case PROP_VSCROLL_POLICY:
+            g_value_set_enum (value, scroll_area->priv->vscroll_policy);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     }
 }
 
@@ -214,21 +214,23 @@ foo_scroll_area_set_property (GObject      *object,
                               GParamSpec   *pspec)
 {
     FooScrollArea *scroll_area = FOO_SCROLL_AREA (object);
-    switch (property_id) {
-    case PROP_VADJUSTMENT:
-      foo_scroll_area_set_vadjustment (FOO_SCROLL_AREA (object), g_value_get_object (value));
-      break;
-    case PROP_HADJUSTMENT:
-      foo_scroll_area_set_hadjustment (FOO_SCROLL_AREA (object), g_value_get_object (value));
-      break;
-    case PROP_HSCROLL_POLICY:
-      scroll_area->priv->hscroll_policy = g_value_get_enum (value);
-      break;
-    case PROP_VSCROLL_POLICY:
-      scroll_area->priv->vscroll_policy = g_value_get_enum (value);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+
+    switch (property_id)
+    {
+        case PROP_VADJUSTMENT:
+            foo_scroll_area_set_vadjustment (FOO_SCROLL_AREA (object), g_value_get_object (value));
+            break;
+        case PROP_HADJUSTMENT:
+            foo_scroll_area_set_hadjustment (FOO_SCROLL_AREA (object), g_value_get_object (value));
+            break;
+        case PROP_HSCROLL_POLICY:
+            scroll_area->priv->hscroll_policy = g_value_get_enum (value);
+            break;
+        case PROP_VSCROLL_POLICY:
+            scroll_area->priv->vscroll_policy = g_value_get_enum (value);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     }
 }
 
@@ -402,7 +404,7 @@ allocation_to_canvas (FooScrollArea *area,
 
 static void
 clear_exposed_input_region (FooScrollArea *area,
-                            GdkRegion *exposed) /* in canvas coordinates */
+                            GdkRegion     *exposed) /* in canvas coordinates */
 {
     guint i;
     GdkRegion *viewport;
@@ -453,7 +455,7 @@ initialize_background (GtkWidget *widget,
 
 static gboolean
 foo_scroll_area_draw (GtkWidget *widget,
-                      cairo_t *widget_cr)
+                      cairo_t   *widget_cr)
 {
     FooScrollArea *scroll_area = FOO_SCROLL_AREA (widget);
     cairo_t *cr;
@@ -483,7 +485,8 @@ foo_scroll_area_draw (GtkWidget *widget,
     scroll_area->priv->current_input = NULL;
 
     /* Finally draw the backing pixmap */
-    cairo_set_source_surface (widget_cr, scroll_area->priv->surface, widget_allocation.x, widget_allocation.y);
+    cairo_set_source_surface (widget_cr, scroll_area->priv->surface,
+                              widget_allocation.x, widget_allocation.y);
     cairo_paint (widget_cr);
 
     gdk_region_destroy (region);
@@ -536,7 +539,8 @@ clamp_adjustment (GtkAdjustment *adj)
 {
     if (gtk_adjustment_get_upper (adj) >= gtk_adjustment_get_page_size (adj))
         gtk_adjustment_set_value (adj, CLAMP (gtk_adjustment_get_value (adj), 0.0,
-                                  gtk_adjustment_get_upper (adj) - gtk_adjustment_get_page_size (adj)));
+                                              gtk_adjustment_get_upper (adj)
+                                               - gtk_adjustment_get_page_size (adj)));
     else
         gtk_adjustment_set_value (adj, 0.0);
 }
@@ -633,7 +637,7 @@ foo_scroll_area_unrealize (GtkWidget *widget)
 }
 
 static cairo_surface_t *
-create_new_surface (GtkWidget *widget,
+create_new_surface (GtkWidget       *widget,
                     cairo_surface_t *old)
 {
     GtkAllocation widget_allocation;
@@ -756,7 +760,7 @@ emit_input (FooScrollArea         *scroll_area,
 }
 
 static void
-process_event (FooScrollArea	     *scroll_area,
+process_event (FooScrollArea         *scroll_area,
                FooScrollAreaEventType input_type,
                int                    x,
                int                    y)
@@ -825,7 +829,7 @@ process_event (FooScrollArea	     *scroll_area,
 static void
 process_gdk_event (FooScrollArea *scroll_area,
                    int            x,
-                   int	          y,
+                   int            y,
                    GdkEvent      *event)
 {
     FooScrollAreaEventType input_type;
@@ -1050,8 +1054,8 @@ foo_scrollbar_adjustment_changed (GtkAdjustment *adj,
 
 static void
 set_one_adjustment (FooScrollArea *scroll_area,
-		    GtkAdjustment *adjustment,
-		    GtkAdjustment **location)
+                    GtkAdjustment *adjustment,
+                    GtkAdjustment **location)
 {
     g_return_if_fail (location != NULL);
 
@@ -1152,14 +1156,14 @@ make_path (FooScrollArea         *area,
 
 /* FIXME: we probably really want a
  *
- *	foo_scroll_area_add_input_from_fill (area, cr, ...);
+ *      foo_scroll_area_add_input_from_fill (area, cr, ...);
  * and
  *      foo_scroll_area_add_input_from_stroke (area, cr, ...);
  * as well.
  */
 void
 foo_scroll_area_add_input_from_fill (FooScrollArea         *scroll_area,
-                                     cairo_t	           *cr,
+                                     cairo_t               *cr,
                                      FooScrollAreaEventFunc func,
                                      gpointer               data)
 {
@@ -1172,7 +1176,7 @@ foo_scroll_area_add_input_from_fill (FooScrollArea         *scroll_area,
 
 void
 foo_scroll_area_add_input_from_stroke (FooScrollArea         *scroll_area,
-                                       cairo_t	             *cr,
+                                       cairo_t               *cr,
                                        FooScrollAreaEventFunc func,
                                        gpointer               data)
 {
@@ -1191,7 +1195,8 @@ foo_scroll_area_invalidate (FooScrollArea *scroll_area)
 
     gtk_widget_get_allocation (widget, &allocation);
     foo_scroll_area_invalidate_rect (scroll_area,
-                                     scroll_area->priv->x_offset, scroll_area->priv->y_offset,
+                                     scroll_area->priv->x_offset,
+                                     scroll_area->priv->y_offset,
                                      allocation.width,
                                      allocation.height);
 }
@@ -1205,8 +1210,8 @@ canvas_to_window (FooScrollArea *area,
 
     gtk_widget_get_allocation (widget, &allocation);
     gdk_region_offset (region,
-		       -area->priv->x_offset + allocation.x,
-		       -area->priv->y_offset + allocation.y);
+                       -area->priv->x_offset + allocation.x,
+                       -area->priv->y_offset + allocation.y);
 }
 
 static void
@@ -1218,8 +1223,8 @@ window_to_canvas (FooScrollArea *area,
 
     gtk_widget_get_allocation (widget, &allocation);
     gdk_region_offset (region,
-		       area->priv->x_offset - allocation.x,
-		       area->priv->y_offset - allocation.y);
+                       area->priv->x_offset - allocation.x,
+                       area->priv->y_offset - allocation.y);
 }
 
 void
@@ -1314,9 +1319,9 @@ rect_contains (const GdkRectangle *rect,
                int                 x,
                int                 y)
 {
-    return (x >= rect->x                &&
-            y >= rect->y                &&
-            x  < rect->x + rect->width	&&
+    return (x >= rect->x               &&
+            y >= rect->y               &&
+            x  < rect->x + rect->width &&
             y  < rect->y + rect->height);
 }
 
@@ -1357,9 +1362,9 @@ scroll_idle (gpointer data)
 
     if (viewport.x == new_viewport.x &&
         viewport.y == new_viewport.y &&
-        (info->res_x > 1.0           ||
-         info->res_y > 1.0           ||
-         info->res_x < -1.0          ||
+        (info->res_x > 1.0  ||
+         info->res_y > 1.0  ||
+         info->res_x < -1.0 ||
          info->res_y < -1.0))
     {
         stop_scrolling (area);
@@ -1380,7 +1385,7 @@ ensure_scrolling (FooScrollArea *area,
     {
         area->priv->auto_scroll_info = g_new0 (AutoScrollInfo, 1);
         area->priv->auto_scroll_info->timeout_id =
-                g_idle_add (scroll_idle, area);
+            g_idle_add (scroll_idle, area);
         area->priv->auto_scroll_info->timer = g_timer_new ();
     }
 
@@ -1435,7 +1440,7 @@ foo_scroll_area_auto_scroll (FooScrollArea      *scroll_area,
 void
 foo_scroll_area_begin_auto_scroll (FooScrollArea *scroll_area)
 {
-    /* noop  for now */
+    /* noop for now */
 }
 
 void
