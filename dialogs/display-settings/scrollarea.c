@@ -264,28 +264,27 @@ foo_scroll_area_class_init (FooScrollAreaClass *klass)
     g_object_class_override_property (object_class, PROP_VSCROLL_POLICY, "vscroll-policy");
 
     scrollarea_signals[VIEWPORT_CHANGED] =
-	g_signal_new ("viewport_changed",
-		      G_OBJECT_CLASS_TYPE (object_class),
-		      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-		      G_STRUCT_OFFSET (FooScrollAreaClass,
-				       viewport_changed),
-		      NULL, NULL,
-		      foo_marshal_VOID__BOXED_BOXED,
-		      G_TYPE_NONE, 2,
-		      GDK_TYPE_RECTANGLE,
-		      GDK_TYPE_RECTANGLE);
+        g_signal_new ("viewport_changed",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                      G_STRUCT_OFFSET (FooScrollAreaClass,
+                                       viewport_changed),
+                      NULL, NULL,
+                      foo_marshal_VOID__BOXED_BOXED,
+                      G_TYPE_NONE, 2,
+                      GDK_TYPE_RECTANGLE,
+                      GDK_TYPE_RECTANGLE);
 
     scrollarea_signals[PAINT] =
-	g_signal_new ("paint",
-		      G_OBJECT_CLASS_TYPE (object_class),
-		      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-		      G_STRUCT_OFFSET (FooScrollAreaClass,
-				       paint),
-		      NULL, NULL,
-		      g_cclosure_marshal_VOID__POINTER,
-		      G_TYPE_NONE,
-                      1,
-		      G_TYPE_POINTER);
+        g_signal_new ("paint",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                      G_STRUCT_OFFSET (FooScrollAreaClass,
+                                       paint),
+                      NULL, NULL,
+                      g_cclosure_marshal_VOID__POINTER,
+                      G_TYPE_NONE, 1,
+                      G_TYPE_POINTER);
 }
 
 static GtkAdjustment *
@@ -458,7 +457,6 @@ foo_scroll_area_draw (GtkWidget *widget,
                       cairo_t   *widget_cr)
 {
     FooScrollArea *scroll_area = FOO_SCROLL_AREA (widget);
-    cairo_t *cr;
     GdkRegion *region;
     GtkAllocation widget_allocation;
 
@@ -473,21 +471,18 @@ foo_scroll_area_draw (GtkWidget *widget,
     region = scroll_area->priv->update_region;
     scroll_area->priv->update_region = gdk_region_new ();
 
-    /* Create cairo context */
-    cr = cairo_create (scroll_area->priv->surface);
-    initialize_background (widget, cr);
+    initialize_background (widget, widget_cr);
 
-    g_signal_emit (widget, scrollarea_signals[PAINT], 0, cr);
-
-    /* Destroy stuff */
-    cairo_destroy (cr);
+    g_signal_emit (widget, scrollarea_signals[PAINT], 0, widget_cr);
 
     scroll_area->priv->current_input = NULL;
 
-    /* Finally draw the backing pixmap */
+    gtk_widget_get_allocation (widget, &widget_allocation);
+
+    /* Finally draw the backing surface */
     cairo_set_source_surface (widget_cr, scroll_area->priv->surface,
                               widget_allocation.x, widget_allocation.y);
-    cairo_paint (widget_cr);
+    cairo_fill (widget_cr);
 
     gdk_region_destroy (region);
 
