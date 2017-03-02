@@ -219,7 +219,7 @@ xfce_pointers_is_enabled (Display *xdisplay,
     rc = XGetDeviceProperty (xdisplay, device, prop, 0, 1, False,
                              XA_INTEGER, &type, &format, &n_items,
                              &bytes_after, &data);
-    gdk_error_trap_pop ();
+    gdk_error_trap_pop_ignored ();
     if (rc == Success)
     {
         enabled = (gboolean) *data;
@@ -246,7 +246,7 @@ xfce_pointers_is_libinput (Display *xdisplay,
     rc = XGetDeviceProperty (xdisplay, device, prop, 0, 1, False,
                              XA_INTEGER, &type, &format, &n_items,
                              &bytes_after, &data);
-    gdk_error_trap_pop ();
+    gdk_error_trap_pop_ignored ();
     if (rc == Success)
     {
         XFree (data);

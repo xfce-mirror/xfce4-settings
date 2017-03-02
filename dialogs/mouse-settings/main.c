@@ -617,7 +617,7 @@ mouse_settings_get_device_prop (Display     *xdisplay,
     rc = XGetDeviceProperty (xdisplay, device, prop, 0, 1, False,
                              type, &type_ret, &format, &n_items_ret,
                              &bytes_after, &data);
-    gdk_error_trap_pop ();
+    gdk_error_trap_pop_ignored ();
     if (rc == Success && type_ret == type && n_items_ret >= n_items)
     {
         success = TRUE;
