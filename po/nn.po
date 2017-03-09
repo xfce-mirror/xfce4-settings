@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Øystein Alværvik <internett@protonmail.com>, 2017
+# Kevin Brubeck Unhammer <unhammer+dill@mm.st>, 2017
+# Øystein Steffensen-Alværvik <internett@protonmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 06:30+0200\n"
-"PO-Revision-Date: 2017-02-10 18:02+0000\n"
-"Last-Translator: Øystein Alværvik <internett@protonmail.com>\n"
+"POT-Creation-Date: 2017-02-15 18:30+0100\n"
+"PO-Revision-Date: 2017-03-09 08:11+0000\n"
+"Last-Translator: Kevin Brubeck Unhammer <unhammer+dill@mm.st>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/xfce/xfce4-settings/language/nn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -162,7 +163,7 @@ msgstr "_Fartsaukeseinking: "
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "R_epeat interval:"
-msgstr "Pause mell_om repetisjonar: "
+msgstr "Pause mell_om gjentakingar: "
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "The time, in milliseconds, between repeated motion events"
@@ -230,7 +231,7 @@ msgid "Version information"
 msgstr "Informasjon om denne utgåva"
 
 #: ../dialogs/accessibility-settings/main.c:197
-#: ../dialogs/appearance-settings/main.c:1298
+#: ../dialogs/appearance-settings/main.c:1303
 #: ../dialogs/display-settings/main.c:3018
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
@@ -241,7 +242,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Skriv '%s --help' for bruksinstruksjonar"
 
 #: ../dialogs/accessibility-settings/main.c:216
-#: ../dialogs/appearance-settings/main.c:1317
+#: ../dialogs/appearance-settings/main.c:1322
 #: ../dialogs/display-settings/main.c:3037
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
@@ -250,7 +251,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Utviklingslaget for Xfce. Alle rettar er reserverte."
 
 #: ../dialogs/accessibility-settings/main.c:217
-#: ../dialogs/appearance-settings/main.c:1318
+#: ../dialogs/appearance-settings/main.c:1323
 #: ../dialogs/display-settings/main.c:3038
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
@@ -299,11 +300,11 @@ msgstr "Tekst ved sidan av ikon"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "1x (no scaling)"
-msgstr ""
+msgstr "1x (inga skalering)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
@@ -338,126 +339,140 @@ msgid "Default Fon_t"
 msgstr "Standardskrift"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid ""
+"This font will be used as the default monospace font, for example by "
+"terminal emulators."
+msgstr "Denne skrifta vil vera standard der me bruker skriftar med fast breidd, til dømes i terminalemulatorar."
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid "Select a default monospace font"
+msgstr "Vel ei standardskrift for fast breidd"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Default _Monospace Font"
+msgstr "Standard _fastbreiddskrift"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "_Enable anti-aliasing"
 msgstr "Slå på s_kriftutjamning"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Anti-aliasing, eller skriftutjamning, kan betra tekstutsjånaden på skjermen din"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Hintin_g:"
-msgstr ""
+msgstr "Hintin_g:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Mange skrifttypar inneheld informasjon om korleis skrifta skal teiknast på best mogleg vis. Vel det som ser best ut for deg."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Sub-_pixel order:"
 msgstr "_Rekkjefylgje på underpunkt: "
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "Skriftkvaliteten på ein flatsjerm/LCD-skjerm kan bli mykje betre om du vel rett underpikselordning for skjermen din"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Rendering"
 msgstr "Oppteikning"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Custom _DPI setting:"
 msgstr "Eiga _PPT-innstilling"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Overstyr den auto-oppdaga skjermoppløysinga viss skriftene ser for store eller små ut"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "DPI"
 msgstr "PPT"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "_Fonts"
 msgstr "_Skrifttypar"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Specify what should be displayed in toolbar items"
 msgstr "Vel kva som skal syna i verktøylinjeoppføringane"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "_Toolbar Style"
 msgstr "S_til på verktøylinja"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Show images on _buttons"
 msgstr "Vis bilete på _knappane"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Vel om ikona skal stå ved sidan av teksten på knappane"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images in _menus"
 msgstr "Vis bilete i _menyane"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Vel om ikona skal stå ved sidan av oppføringane i menyane"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable e_ditable accelerators"
 msgstr "Slå på snøggtastar som kan _endrast"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Når dette er valt, vil du kunna endra snøggtastar ved å halda musepeikaren over menyoppføringa og tasta den nye tastekombinasjonen for snarvegen."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Menus and Buttons"
 msgstr "Menyar og knappar"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable _event sounds"
 msgstr "Slå på _hendingslydar"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Slå på eller av lydmeldingar i det heile (krev «Canberra»-støtte)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable input feedbac_k sounds"
 msgstr "Slå på _lydmeldingar for inngang"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Vel om du vil høyra lydar ved museklikk og andre brukarhandlingar"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Event sounds"
 msgstr "Hendingslydar"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Adjust the system-wide display scaling"
-msgstr ""
+msgstr "Juster skjermskaleringa"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "_Window Scaling"
-msgstr ""
+msgstr "_Vindaugsskalering"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Setti_ngs"
 msgstr "Eige_nskapar"
 
@@ -564,7 +579,7 @@ msgstr "Bru_k denne skjermen"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
-msgstr ""
+msgstr "_Spegla skjermane"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "_Primary display"
@@ -574,7 +589,7 @@ msgstr "_Primærskjerm"
 msgid ""
 "This is a hint for panels, docks and desktop to show on this display "
 "preferably."
-msgstr ""
+msgstr "Dette er eit hint til panel, dokk og skrivebord om at dei helst skal visast på denne skjermen."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Configure _new displays when connected"
@@ -610,7 +625,7 @@ msgstr "Avansert"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
-msgstr ""
+msgstr "radioknapp"
 
 #: ../dialogs/display-settings/main.c:89
 msgid "Left"
@@ -680,7 +695,7 @@ msgstr "Vel ein skjerm for å endre eigenskapane hans; dra han for å endre plas
 #: ../dialogs/display-settings/main.c:2335
 #, c-format
 msgid "(%i, %i)"
-msgstr ""
+msgstr "(%i, %i)"
 
 #. Translators:  this is the feature where what you see on your laptop's
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
@@ -688,7 +703,7 @@ msgstr ""
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
 #: ../dialogs/display-settings/main.c:2367
 msgid "Mirror Screens"
-msgstr ""
+msgstr "Spegla skjermar"
 
 #: ../dialogs/display-settings/main.c:2548
 msgid "(Disabled)"
@@ -711,7 +726,7 @@ msgstr "ATI-innstillingar"
 
 #: ../dialogs/display-settings/main.c:3090
 msgid "_Close"
-msgstr ""
+msgstr "_Lukk"
 
 #: ../dialogs/display-settings/main.c:3098
 msgid "Unable to launch the proprietary driver settings"
@@ -766,7 +781,7 @@ msgstr "Avbryt"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:114
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:137
 msgid "Enter the command you want to trigger with a shortcut."
@@ -859,7 +874,7 @@ msgstr "Allment"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "_Enable key repeat"
-msgstr "Slå på taste_repetisjon"
+msgstr "Slå på taste_gjentaking"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 msgid ""
@@ -869,7 +884,7 @@ msgstr "Når dette er valt, vil same teiknet koma på nytt og på nytt om du hel
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "_Repeat delay:"
-msgstr "_Repetisjonsmellomrom: "
+msgstr "_Gjentakingsmellomrom: "
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "The time, in milliseconds, before a pressed key begins repeating"
@@ -877,7 +892,7 @@ msgstr "Tida før ein inntrykt tast lagar fleire teikn (i millisekund)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Repe_at speed:"
-msgstr ""
+msgstr "_Gjentakingsfart:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "The rate at which keystrokes are generated while a key is pressed"
@@ -943,19 +958,19 @@ msgstr "_Tastaturmodell"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Change la_yout option"
-msgstr ""
+msgstr "Endra utforming med"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "Co_mpose key"
-msgstr ""
+msgstr "«Co_mpose»-tasten"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "Move currently selected item up by one row"
-msgstr ""
+msgstr "Flytt valt element opp ei rad"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "Move currently selected item down by one row"
-msgstr ""
+msgstr "Flytt valt element ned ei rad"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Key_board layout"
@@ -1012,11 +1027,11 @@ msgstr "Dette nullstiller alle snarvegar til standardverdiane. Vil du verkeleg g
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1281
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
 msgid "The system defaults will be restored next time you log in."
@@ -1173,7 +1188,7 @@ msgstr "%g ms"
 #: ../dialogs/mouse-settings/main.c:162
 #, c-format
 msgid "%.1f s"
-msgstr ""
+msgstr "%.1f s"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "Disabled"
@@ -1189,7 +1204,7 @@ msgstr "Rulling med to fingrar"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Circular scrolling"
-msgstr ""
+msgstr "Sirkulær rulling"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Pen (absolute)"
@@ -1325,7 +1340,7 @@ msgstr "M_usefelt"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Trac_king mode:"
-msgstr ""
+msgstr "S_poremodus:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "_Rotation:"
@@ -1333,7 +1348,7 @@ msgstr "_Rotasjon: "
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Tab_let"
-msgstr ""
+msgstr "_Peikeflate"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "_Devices"
@@ -1383,7 +1398,7 @@ msgstr "Å_tferd"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "Cursor si_ze:"
-msgstr ""
+msgstr "Pei_karstorleik:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "Size"
@@ -1428,7 +1443,7 @@ msgstr "Verdi"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:312
 msgid "New"
-msgstr ""
+msgstr "Ny"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:315
 msgid "New property"
@@ -1436,7 +1451,7 @@ msgstr "Ny eigenskap"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
 msgid "Edit"
-msgstr ""
+msgstr "Endra"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:326
 msgid "Edit selected property"
@@ -1510,12 +1525,12 @@ msgstr "Lytt på ein Xfconf-kanal etter eigenskapsendringar"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:944
 msgid "Clear"
-msgstr ""
+msgstr "Tøm"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:945
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:207
 msgid "Close"
-msgstr ""
+msgstr "Lukk"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:978
 #, c-format
@@ -1528,7 +1543,7 @@ msgstr "Skjer_m"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1037
 msgid "Refresh"
-msgstr ""
+msgstr "Oppfrisk"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1357
 msgid "Resetting a property will permanently remove those custom settings."
@@ -1561,7 +1576,7 @@ msgstr "Ny eigenskap"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:145
 msgid "Save"
-msgstr ""
+msgstr "Lagra"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
 msgid "_Property:"
@@ -1596,7 +1611,7 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr ""
+msgstr "Eigenskapsnamn kan berre inkludera ASCII-teikna A-Z, a-z, 0-9, «_», «-», «:», «.», «,», «[», «]», «{», «}», «<» og «>», i tillegg til «/» som skiljeteikn"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:428
 #, c-format
