@@ -9,13 +9,14 @@
 # Adolfo Jayme-Barrientos, 2014
 # gabrieltandil <gabriel.tandil@gmail.com>, 2014-2015
 # Pablo Roberto “Jristz” Lezaeta Reyes <prflr88@gmail.com>, 2013-2015
+# Pablo Roberto “Jristz” Lezaeta Reyes <prflr88@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 06:30+0200\n"
-"PO-Revision-Date: 2016-09-20 06:32+0000\n"
-"Last-Translator: Manolo Díaz <diaz.manolo@gmail.com>\n"
+"POT-Creation-Date: 2017-02-15 18:30+0100\n"
+"PO-Revision-Date: 2017-03-13 05:39+0000\n"
+"Last-Translator: Pablo Roberto “Jristz” Lezaeta Reyes <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce4-settings/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -235,7 +236,7 @@ msgid "Version information"
 msgstr "Información de versión"
 
 #: ../dialogs/accessibility-settings/main.c:197
-#: ../dialogs/appearance-settings/main.c:1298
+#: ../dialogs/appearance-settings/main.c:1303
 #: ../dialogs/display-settings/main.c:3018
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
@@ -246,7 +247,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Escriba «%s --help» para instrucciones de uso."
 
 #: ../dialogs/accessibility-settings/main.c:216
-#: ../dialogs/appearance-settings/main.c:1317
+#: ../dialogs/appearance-settings/main.c:1322
 #: ../dialogs/display-settings/main.c:3037
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
@@ -255,7 +256,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "El equipo de desarrollo de Xfce. Todos los derechos reservados."
 
 #: ../dialogs/accessibility-settings/main.c:217
-#: ../dialogs/appearance-settings/main.c:1318
+#: ../dialogs/appearance-settings/main.c:1323
 #: ../dialogs/display-settings/main.c:3038
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
@@ -343,126 +344,140 @@ msgid "Default Fon_t"
 msgstr "_Tipo de letra predeterminado"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+msgid ""
+"This font will be used as the default monospace font, for example by "
+"terminal emulators."
+msgstr "Este tipo de letra será usatilizada como tipo de letra de ancho fijo predeterminada, por ejemplo por emuladores de terminal."
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+msgid "Select a default monospace font"
+msgstr "Seleccione el tipo de letra de ancho fijo predeterminada"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+msgid "Default _Monospace Font"
+msgstr "Tipo de letra de ancho fijo predeter_minada"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "_Enable anti-aliasing"
 msgstr "Activar _suavizado de bordes"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "El suavizado de bordes, puede mejorar la apariencia del texto en la pantalla"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Hintin_g:"
 msgstr "_Optimización de formas:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Muchos tipos de letra contienen información que que dan pistas adicionales sobre como dibujar la letra de mejor manera; escoja la que le parezca mejor de acuerdo con sus preferencias"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Sub-_pixel order:"
 msgstr "Orden de sub_píxeles:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "La calidad de las letras en pantallas TFT o LCD puede mejorar al elegir el orden de subpíxeles adecuado para la pantalla"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Rendering"
 msgstr "Representación"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Custom _DPI setting:"
 msgstr "Configuración personaliza_da de PPP:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Ignorar la resolución de monitor detectada si la letra parece demasiado grande o demasiado pequeña"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "DPI"
 msgstr "PPP"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "_Fonts"
 msgstr "_Tipos de letra"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Specify what should be displayed in toolbar items"
 msgstr "Especificar qué debería mostrarse en los elementos de la barra de herramientas"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "_Toolbar Style"
 msgstr "Estilo de la _barra de herramientas"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Show images on _buttons"
 msgstr "Mostrar imágenes en _botones"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Especificar si los iconos deberían mostrarse junto al texto en los botones"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images in _menus"
 msgstr "Mostrar imágenes en _menús"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Especificar si las imágenes deberían mostrarse junto a los elementos en los menús"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable e_ditable accelerators"
 msgstr "Activar aceleradores e_ditables"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Si se selecciona, los atajos de teclado para los elementos de menú pueden ser cambiados pasando el ratón sobre el elemento del menú y pulsando la nueva combinación de teclas para el atajo"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Menus and Buttons"
 msgstr "Menús y botones"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable _event sounds"
 msgstr "Activar sonidos de _eventos"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Activar o desactivar los sonidos de eventos globalmente (necesita compatibilidad con Canberra)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable input feedbac_k sounds"
 msgstr "Activar sonidos de e_ntradas"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Especifica si las pulsaciones de ratón u otra entrada del usuario causan la reproducción de sonidos de eventos"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Event sounds"
 msgstr "Sonidos de eventos"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Adjust the system-wide display scaling"
 msgstr "Ajustar el escalado de pantalla de todo el sistema"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "_Window Scaling"
 msgstr "Escalado de _ventana"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Setti_ngs"
 msgstr "Configuració_n"
 
@@ -501,19 +516,19 @@ msgstr "No se pudo instalar el tema"
 
 #: ../dialogs/appearance-settings/main.c:1182
 msgid "RGB"
-msgstr "RGB o RVA"
+msgstr "RVA (RGB)"
 
 #: ../dialogs/appearance-settings/main.c:1186
 msgid "BGR"
-msgstr "BGR o AVR"
+msgstr "AVR (BGR)"
 
 #: ../dialogs/appearance-settings/main.c:1190
 msgid "Vertical RGB"
-msgstr "RGB o RVA vertical"
+msgstr "RVA (RGB) vertical"
 
 #: ../dialogs/appearance-settings/main.c:1194
 msgid "Vertical BGR"
-msgstr "BGR o AVR vertical"
+msgstr "AVR (BGR) vertical"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
@@ -771,7 +786,7 @@ msgstr "Cancelar"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:114
 msgid "OK"
-msgstr "Ok"
+msgstr "Aceptar"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:137
 msgid "Enter the command you want to trigger with a shortcut."
