@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-15 18:30+0100\n"
-"PO-Revision-Date: 2017-03-16 17:01+0000\n"
-"Last-Translator: Nuno Miguel <nunomgue@gmail.com>\n"
+"PO-Revision-Date: 2017-05-24 14:26+0000\n"
+"Last-Translator: José Vieira <jvieira33@sapo.pt>\n"
 "Language-Team: Portuguese (http://www.transifex.com/xfce/xfce4-settings/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +27,7 @@ msgstr "Acessibilidade"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
 msgid "Configure keyboard and mouse accessibility"
-msgstr "Configurar a acessibilidade do teclado e rato"
+msgstr "Configurar a acessibilidade do teclado e do rato"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
 msgid "_Enable assistive technologies"
@@ -37,7 +37,7 @@ msgstr "Ativar te_cnologias de acessibilidade"
 msgid ""
 "If enabled, the session manager will start the required applications for "
 "screen readers and magnifiers"
-msgstr "Se ativo, o gestor de sessões vai iniciar todas as aplicações necessárias para o leitores de ecrã e ampliadores."
+msgstr "Se ativo, o gestor de sessões vai iniciar as aplicações requeridas pelos leitores de ecrã e ampliadores."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
@@ -62,7 +62,7 @@ msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
-msgstr "Se ativo, as teclas modificadoras (Control, Alt e Shift) não precisam de ser mantidas pressionadas (podem ser pressionadas e então soltas) quando múltiplas teclas poderiam normalmente necessitar serem pressionadas ao mesmo tempo"
+msgstr "Se ativo, as teclas modificadoras (Ctrl, Alt e Shift) não precisam de ser mantidas pressionadas (podem ser pressionadas e depois soltas); substitui o pressionar simultâneo de múltiplas teclas"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
@@ -72,7 +72,7 @@ msgstr "_Bloquear teclas fixas"
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "Se ativo, as teclas modificadoras (Control, Alt e Shift) permanecerão bloqueadas no estado pressionado até que sejam pressionadas novamente"
+msgstr "Se ativo, as teclas modificadoras (Ctrl, Alt e Shift) permanecerão bloqueadas no estado pressionado, até que sejam pressionadas novamente"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Disable sticky keys if two keys are _pressed"
@@ -82,7 +82,7 @@ msgstr "Desativar teclas fixas se duas teclas forem _pressionadas"
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "Se ativo, a funcionalidade \"teclas fixas\" será desligada se pressionar duas teclas simultaneamente"
+msgstr "Quando selecionado, a funcionalidade \"teclas fixas\" será desligada se pressionar duas teclas simultaneamente"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Sticky Keys"
@@ -96,7 +96,7 @@ msgstr "Utilizar teclas le_ntas"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "Para prevenir o pressionar acidental de teclas, as teclas lentas necessitam que uma tecla seja pressionada por um tempo mínimo antes de ser aceite"
+msgstr "Para prevenir o efeito do pressionar de teclas sem intenção, a função Teclas Lentas faz com que uma tecla tenha de ser pressionada por um tempo mínimo pré-determinado para que a ação seja aceite"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
@@ -120,7 +120,7 @@ msgstr "Utilizar teclas _saltitantes"
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
-msgstr "Para prevenir o pressionar acidental de múltiplas teclas, as teclas saltitantes impõem um tempo mínimo entre pressões"
+msgstr "Para prevenir o efeito do pressionar de teclas sem intenção, a função Teclas Saltitantes impõe um tempo mínimo entre pressões"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
@@ -146,7 +146,7 @@ msgstr "_Utilizar emulação do rato"
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
-msgstr "Se ativo, pode controlar o ponteiro do rato utilizando o teclado numérico"
+msgstr "Quando selecionado, o ponteiro do rato pode ser controlado utilizando o teclado numérico"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "msec"
@@ -259,7 +259,7 @@ msgstr "A equipa de desenvolvimento do Xfce. Todos os direitos reservados."
 #: ../xfsettingsd/main.c:208 ../xfce4-settings-manager/main.c:81
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Por favor reporte os erros em <%s>."
+msgstr "Por favor, comunique erros em <%s>."
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -329,29 +329,29 @@ msgstr "Í_cones"
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
-msgstr "Este tipo de letra será utilizado por omissão ao processar a interface de utilizador"
+msgstr "Este tipo de letra será utilizado por pré-definição ao usar a interface de utilizador"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "Select a default font"
-msgstr "Selecione um tipo de letra por omissão"
+msgstr "Pré-defina um tipo de letra, selecionando-o"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "Default Fon_t"
-msgstr "_Tipo de letra por omissão"
+msgstr "Tipo de letra pré-_definido"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
-msgstr "Este tipo de letra será usado por omissão como tipo de letra mono espaçada, por exemplo por emuladores de terminal."
+msgstr "Este tipo de letra será usado por pré-definição como tipo de letra mono espaçada, por exemplo por emuladores de terminal."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Select a default monospace font"
-msgstr "Selecionar um tipo de letra mono espaçada por omissão"
+msgstr "Selecionar um tipo de letra mono espaçada como pré-definida"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Default _Monospace Font"
-msgstr "Tipo de letra _mono espaçada por omissão"
+msgstr "Tipo de letra _mono espaçada por pré-definição"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "_Enable anti-aliasing"
@@ -370,7 +370,7 @@ msgstr "Alisa_mento:"
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr "Muitas letras contêm informações que mostram dicas como serem melhoradas; escolha a que achar melhor, de acordo com o seu gosto"
+msgstr "Muitas letras contêm informações que mostram dicas sobre como serem melhoradas; escolha a que achar melhor, de acordo com o seu gosto"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Sub-_pixel order:"
@@ -402,7 +402,7 @@ msgstr "PPP"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "_Fonts"
-msgstr "Tipo de _letra"
+msgstr "Tipo de l_etra"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Specify what should be displayed in toolbar items"
@@ -430,7 +430,7 @@ msgstr "Especifica se, nos menus, os ícones devem ser exibidos junto aos itens"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable e_ditable accelerators"
-msgstr "Ativar edição de acele_radores"
+msgstr "Ativar e_dição de aceleradores"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid ""
@@ -1255,7 +1255,7 @@ msgstr "Dest_ro"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Le_ft-handed"
-msgstr "Can_hoto"
+msgstr "Es_querdino"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Reverse scroll d_irection"
@@ -1271,7 +1271,7 @@ msgstr "Botões"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "_Reset to Defaults"
-msgstr "_Repor omissões"
+msgstr "_Repor pré-definições"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid ""
@@ -1577,7 +1577,7 @@ msgstr "Nova propriedade"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:145
 msgid "Save"
-msgstr "Gravar"
+msgstr "Guardar"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
 msgid "_Property:"
@@ -1697,7 +1697,7 @@ msgstr "Diálogo de definições a mostrar"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:194
 msgid "All _Settings"
-msgstr "Todas as definiçõe_s"
+msgstr "Toda_s as definições"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:204
 msgid "Help"
