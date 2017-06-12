@@ -47,7 +47,6 @@
 #include "pointers-defines.h"
 
 #define MAX_DENOMINATOR (100.00)
-#define XFCONF_TYPE_G_VALUE_ARRAY (dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE))
 
 #ifdef XI_PROP_ENABLED
 #define DEVICE_ENABLED XI_PROP_ENABLED
@@ -809,7 +808,7 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
                 /* only 1 items to set */
                 val = value;
             }
-            else if (G_VALUE_TYPE (value) == XFCONF_TYPE_G_VALUE_ARRAY)
+            else if (G_VALUE_TYPE (value) == G_TYPE_PTR_ARRAY)
             {
                 array = g_value_get_boxed (value);
                 if (array->len != n_items)
