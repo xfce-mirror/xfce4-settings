@@ -662,10 +662,9 @@ display_setting_screen_changed (GtkWidget *widget,
 
 static gboolean
 display_setting_identity_popup_draw (GtkWidget      *popup,
-                                       cairo_t *c,
-                                       GtkBuilder     *builder)
+                                     cairo_t *cr,
+                                     GtkBuilder     *builder)
 {
-    cairo_t         *cr = gdk_cairo_create (gtk_widget_get_window(popup));
     cairo_pattern_t *vertical_gradient, *innerstroke_gradient, *selected_gradient, *selected_innerstroke_gradient;
     gint             radius;
     gboolean         selected = (g_hash_table_lookup (display_popups, GINT_TO_POINTER (active_output)) == popup);
@@ -769,7 +768,6 @@ display_setting_identity_popup_draw (GtkWidget      *popup,
         cairo_close_path (cr);
     }
 
-    cairo_destroy (cr);
     cairo_pattern_destroy (vertical_gradient);
     cairo_pattern_destroy (innerstroke_gradient);
     cairo_pattern_destroy (selected_gradient);
