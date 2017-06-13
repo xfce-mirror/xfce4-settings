@@ -609,7 +609,9 @@ foo_scroll_area_realize (GtkWidget *widget)
     g_object_ref (window);
 
     area->priv->input_window = gdk_window_new (window, &attributes, attributes_mask);
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     cr = gdk_cairo_create (gtk_widget_get_window (widget));
+G_GNUC_END_IGNORE_DEPRECATIONS
     area->priv->surface = cairo_surface_create_similar (cairo_get_target (cr), CAIRO_CONTENT_COLOR,
                                                         widget_allocation.width, widget_allocation.height);
     cairo_destroy (cr);
@@ -641,7 +643,10 @@ create_new_surface (GtkWidget       *widget,
 
     gtk_widget_get_allocation (widget, &widget_allocation);
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     cr = gdk_cairo_create (gtk_widget_get_window (widget));
+G_GNUC_END_IGNORE_DEPRECATIONS
+
     new = cairo_surface_create_similar (cairo_get_target (cr),
                                         CAIRO_CONTENT_COLOR,
                                         widget_allocation.width,
@@ -787,7 +792,9 @@ process_event (FooScrollArea         *scroll_area,
                 cairo_t *cr;
                 gboolean inside;
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                 cr = gdk_cairo_create (gtk_widget_get_window (widget));
+G_GNUC_END_IGNORE_DEPRECATIONS
                 cairo_set_fill_rule (cr, path->fill_rule);
                 cairo_set_line_width (cr, path->line_width);
                 cairo_append_path (cr, path->path);
