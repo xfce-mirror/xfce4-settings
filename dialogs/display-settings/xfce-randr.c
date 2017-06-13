@@ -249,7 +249,7 @@ xfce_randr_populate (XfceRandr *randr,
 
         /* Update display info, primary display may have changed. */
         xfce_randr_save_output (randr, "Default", display_channel, m);
-        
+
         /* Replace spaces with underscore in name for xfconf compatibility */
         g_strcanon(randr->priv->output_info[m]->name, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_<>", '_');
     }
@@ -626,6 +626,7 @@ xfce_randr_preferred_mode (XfceRandr *randr,
     best_dist = 0;
     for (n = 0; n < randr->priv->output_info[output]->nmode; ++n)
     {
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
         if (n < randr->priv->output_info[output]->npreferred)
             dist = 0;
         else if (randr->priv->output_info[output]->mm_height != 0)
@@ -634,6 +635,7 @@ xfce_randr_preferred_mode (XfceRandr *randr,
                     randr->priv->output_info[output]->mm_height);
         else
             dist = gdk_screen_height () - randr->priv->modes[output][n].height;
+G_GNUC_END_IGNORE_DEPRECATIONS
 
         dist = ABS (dist);
 

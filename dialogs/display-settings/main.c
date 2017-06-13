@@ -820,8 +820,10 @@ display_setting_identity_display (gint display_id)
         {
             screen_pos_x = 0;
             screen_pos_y = 0;
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             screen_width = gdk_screen_width ();
             screen_height = gdk_screen_height ();
+G_GNUC_END_IGNORE_DEPRECATIONS
         }
 
         name_label = g_markup_printf_escaped ("<span foreground='%s'><big><b>%s %s</b></big></span>",

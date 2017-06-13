@@ -558,6 +558,7 @@ xfce_displays_helper_set_screen_size (XfceDisplaysHelper *helper)
         return;
     }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "min_h = %d, min_w = %d, max_h = %d, max_w = %d, "
                     "prev_h = %d, prev_w = %d, prev_hmm = %d, prev_wmm = %d, h = %d, w = %d, "
                     "hmm = %d, wmm = %d.", min_height, min_width, max_height, max_width,
@@ -578,6 +579,7 @@ xfce_displays_helper_set_screen_size (XfceDisplaysHelper *helper)
         XRRSetScreenSize (helper->xdisplay, GDK_WINDOW_XID (helper->root_window),
                           helper->width, helper->height, helper->mm_width, helper->mm_height);
     }
+G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 
@@ -857,6 +859,7 @@ xfce_displays_helper_list_outputs (XfceDisplaysHelper *helper)
                 if (helper->resources->modes[m].id != output->info->modes[l])
                     continue;
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                 if (l < output->info->npreferred)
                     dist = 0;
                 else if (output->info->mm_height != 0)
@@ -864,6 +867,7 @@ xfce_displays_helper_list_outputs (XfceDisplaysHelper *helper)
                             1000 * helper->resources->modes[m].height / output->info->mm_height);
                 else
                     dist = gdk_screen_height () - helper->resources->modes[m].height;
+G_GNUC_END_IGNORE_DEPRECATIONS
 
                 dist = ABS (dist);
 
