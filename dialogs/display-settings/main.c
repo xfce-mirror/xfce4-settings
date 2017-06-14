@@ -2239,6 +2239,9 @@ on_output_event (FooScrollArea      *area,
      * on_canvas_event() for where we reset the cursor to the default if it
      * exits the outputs' area.
      */
+    if (event->type == FOO_MOTION_OUTSIDE)
+        return;
+
     if (!get_mirrored_configuration() && get_n_connected() > 1)
         set_cursor (GTK_WIDGET (area), GDK_FLEUR);
 

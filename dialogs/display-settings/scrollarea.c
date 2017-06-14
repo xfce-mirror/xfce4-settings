@@ -322,36 +322,6 @@ typedef void (* PathForeachFunc) (double  *x,
                                   double  *y,
                                   gpointer data);
 
-static void
-path_foreach_point (cairo_path_t   *path,
-                    PathForeachFunc func,
-                    gpointer        user_data)
-{
-    int i;
-
-    for (i = 0; i < path->num_data; i += path->data[i].header.length)
-    {
-        cairo_path_data_t *data = &(path->data[i]);
-
-        switch (data->header.type)
-        {
-            case CAIRO_PATH_MOVE_TO:
-            case CAIRO_PATH_LINE_TO:
-                func (&(data[1].point.x), &(data[1].point.y), user_data);
-                break;
-
-            case CAIRO_PATH_CURVE_TO:
-                func (&(data[1].point.x), &(data[1].point.y), user_data);
-                func (&(data[2].point.x), &(data[2].point.y), user_data);
-                func (&(data[3].point.x), &(data[3].point.y), user_data);
-                break;
-
-            case CAIRO_PATH_CLOSE_PATH:
-                break;
-        }
-    }
-}
-
 typedef struct
 {
     double x1, y1, x2, y2;
@@ -749,7 +719,7 @@ emit_input (FooScrollArea         *scroll_area,
     if (!func)
         return;
 
-    if (type != FOO_MOTION)
+    if (type != FOO_MOTION && type != FOO_MOTION_OUTSIDE)
         emit_input (scroll_area, FOO_MOTION, x, y, func, data);
 
     event.type = type;
@@ -813,6 +783,12 @@ G_GNUC_END_IGNORE_DEPRECATIONS
                                 path->func,
                                 path->data);
                     return;
+                }
+                else if (input_type == FOO_MOTION) {
+                    emit_input (scroll_area, FOO_MOTION_OUTSIDE,
+                                x, y,
+                                path->func,
+                                path->data);
                 }
 
                 path = path->next;
@@ -1125,16 +1101,6 @@ foo_scroll_area_set_min_size (FooScrollArea *scroll_area,
     gtk_widget_queue_resize (GTK_WIDGET (scroll_area));
 }
 
-static void
-user_to_device (double  *x,
-                double  *y,
-                gpointer data)
-{
-    cairo_t *cr = data;
-
-    cairo_user_to_device (cr, x, y);
-}
-
 static InputPath *
 make_path (FooScrollArea         *area,
            cairo_t               *cr,
@@ -1148,7 +1114,6 @@ make_path (FooScrollArea         *area,
     path->fill_rule = cairo_get_fill_rule (cr);
     path->line_width = cairo_get_line_width (cr);
     path->path = cairo_copy_path (cr);
-    path_foreach_point (path->path, user_to_device, cr);
     path->func = func;
     path->data = data;
     path->next = area->priv->current_input->paths;

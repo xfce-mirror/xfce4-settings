@@ -47,7 +47,8 @@ typedef enum
 {
     FOO_BUTTON_PRESS,
     FOO_BUTTON_RELEASE,
-    FOO_MOTION
+    FOO_MOTION,
+    FOO_MOTION_OUTSIDE
 } FooScrollAreaEventType;
 
 struct FooScrollAreaEvent
