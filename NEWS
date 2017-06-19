@@ -1,3 +1,27 @@
+4.13.1
+======
+- This release now requires xfconf 4.13+
+- New: Default monospace font option in the Appearance dialog
+- New: Improved support for embedded DisplayPort connectors
+- Fix: Display dialog drawing of displays
+- Fix: Display dialog DND usability issue introduced in 4.13.0
+- Fix: Make minimal dialog single instance (Xfce #11169)
+- Fix: Linking to dbus-glib with xfconf 4.13+ (Xfce #13633)
+- Deprecations:
+  - Resolved gtk_menu_popup deprecation
+  - Resolved gdk_error_trap_pop deprecation
+  - Ignoring GdkScreen and GdkCairo deprecations in the display settings
+    until GNOME or others find a resolution in their display management
+- Code Quality:
+  - Several indentation fixes
+  - Drop duplicate drawing code
+- Translation updates: Arabic, Bulgarian, Catalan, Chinese (China),
+  Chinese (Taiwan), Croatian, Danish, Dutch, Finnish, French, Galician,
+  German, Greek, Hebrew, Indonesian, Italian, Japanese, Kazakh, Korean,
+  Lithuanian, Malay, Norwegian Bokmal, Norwegian Nynorsk, Occitan,
+  Portuguese, Portuguese (Brazil), Russian, Serbian, Slovak, Spanish,
+  Swedish, Thai, Ukrainian
+
 4.13.0
 ======
 - Initial port to GTK+ 3
@@ -35,8 +59,8 @@
 - Fix crashes for missing icons (bug #11568)
 - Fix warnings during configure
 - Fix primary checkbox expansion in the display settings
-- Translation updates: Asturian, Bulgarian, Chinese (China), 
-  Czech, Finnish, French, Hebrew, German, Spanish, 
+- Translation updates: Asturian, Bulgarian, Chinese (China),
+  Czech, Finnish, French, Hebrew, German, Spanish,
   Norwegian Bokmål, Portuguese, Romanian, Slovak, Turkish
 
 4.11.4
