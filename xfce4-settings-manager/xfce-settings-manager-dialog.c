@@ -593,10 +593,26 @@ xfce_settings_manager_dialog_iconview_focus (GtkWidget                 *iconview
 
 
 static void
-xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
+xfce_settings_manager_dialog_remove_socket (XfceSettingsManagerDialog *dialog)
 {
     GtkWidget *socket;
 
+    socket = gtk_bin_get_child (GTK_BIN (dialog->socket_viewport));
+    if (G_UNLIKELY (socket != NULL))
+        gtk_container_remove (GTK_CONTAINER (dialog->socket_viewport), socket);
+
+    if (dialog->socket_item != NULL)
+    {
+        g_object_unref (G_OBJECT (dialog->socket_item));
+        dialog->socket_item = NULL;
+    }
+}
+
+
+
+static void
+xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
+{
     /* make sure no cursor is shown */
     gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
 
@@ -620,15 +636,7 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
     gtk_entry_set_text (GTK_ENTRY (dialog->filter_entry), "");
     gtk_widget_grab_focus (dialog->filter_entry);
 
-    socket = gtk_bin_get_child (GTK_BIN (dialog->socket_viewport));
-    if (G_LIKELY (socket != NULL))
-        gtk_widget_destroy (socket);
-
-    if (dialog->socket_item != NULL)
-    {
-        g_object_unref (G_OBJECT (dialog->socket_item));
-        dialog->socket_item = NULL;
-    }
+    xfce_settings_manager_dialog_remove_socket (dialog);
 }
 
 
@@ -871,6 +879,8 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         cursor = gdk_cursor_new_for_display (display, GDK_WATCH);
         gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), cursor);
         g_object_unref (cursor);
+
+        xfce_settings_manager_dialog_remove_socket (dialog);
 
         /* create fresh socket */
         socket = gtk_socket_new ();
