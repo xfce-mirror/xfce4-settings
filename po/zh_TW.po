@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2010
+# Walter Cheuk <wwycheuk@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:16+0200\n"
-"PO-Revision-Date: 2013-10-08 14:33+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
+"PO-Revision-Date: 2017-09-19 18:03+0000\n"
+"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/xfce/xfce4-settings/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,7 +61,7 @@ msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
-msgstr "當選取時，一般需要同時按下按鍵的多按鍵功能其按鍵修飾鍵 (像是 Ctrl、Alt、Shift) 不需要一直按著不放 (它們可以被按壓然後放開)"
+msgstr "當選取時，通常要同時按下超過一個按鍵的功能修飾鍵 (例如 Ctrl、Alt、Shift) 不需要一直按着不放 (可以按一下然後放開)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
@@ -70,7 +71,7 @@ msgstr "鎖定相黏鍵(_L)"
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "當選取時，修飾鍵 (像是 Ctrl、Alt、Shift) 在按壓狀態時將維持上鎖直到您再度按壓為止"
+msgstr "當選取時，修飾鍵 (例如 Ctrl、Alt、Shift) 在按了一下之後會維持在「按下」狀態，直到再按為止"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Disable sticky keys if _two keys are pressed"
@@ -80,7 +81,7 @@ msgstr "若按下兩個按鍵的話則停用相黏鍵(_T)"
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "當選取時，若兩個按鍵被同時按壓的話，「相黏鍵」功能將停用"
+msgstr "當選取時，若同時按下兩個按鍵的話，會停用「相黏鍵」功能"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Sticky Keys"
@@ -94,7 +95,7 @@ msgstr "使用緩速鍵(_K)"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "協助防止產生按鍵效果的意外，緩速鍵需要該按鍵至少要被按壓一小段時間後才會接受其按鍵效果"
+msgstr "為了防止出現不想要的按鍵，「緩速鍵」需要按下一小段時間才會接受其按鍵效果"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
@@ -104,7 +105,7 @@ msgstr "接受前延遲(_D)："
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr "在按鍵效果被接受之前所要經過的時間，單位為毫秒"
+msgstr "接受按鍵效果所要經過的時間，單位為毫秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "Slow Keys"
@@ -118,7 +119,7 @@ msgstr "使用彈回鍵(_B)"
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
-msgstr "協助防止產生多個按鍵效果的意外，彈回鍵讓按鍵效果間都至少需要一小段延遲時間"
+msgstr "為了防止出現不想要的多重按鍵，「彈回鍵」讓按鍵生效前需要至少一段延遲時間"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
@@ -164,11 +165,11 @@ msgstr "最大速度(_S)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "Acceleration _profile:"
-msgstr "加速度個人設定檔(_P)："
+msgstr "加速度設定組合(_P)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "msec"
-msgstr "微秒"
+msgstr "毫秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "pixels/sec"
@@ -190,7 +191,7 @@ msgstr "達到最大指標速度的斜率"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "The maximum pointer speed after acceleration"
-msgstr "加速度後的最大指標速度"
+msgstr "加速後的最大指標速度"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "The time, in milliseconds, to get to maximum speed"
@@ -818,7 +819,7 @@ msgstr "指定鍵盤配置是否由此設定值對話窗來控制，或是由 X 
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "Keyboard model"
-msgstr "鍵盤模組"
+msgstr "鍵盤型號"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Keyboard layout"
@@ -1172,7 +1173,7 @@ msgstr "時間(_M)："
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
-msgstr "少於此時間 (單位為毫秒) 的兩個滑鼠點擊將被視為雙擊滑鼠"
+msgstr "相距少於此時間 (單位為毫秒) 的兩個滑鼠點擊會被視為雙擊滑鼠"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "D_istance:"
@@ -1182,7 +1183,7 @@ msgstr "距離(_I)："
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
-msgstr "在雙點的情況下，兩個滑鼠點擊動作之間其滑鼠指標無法移動比這還多的距離，否則無法被判讀為雙點滑鼠"
+msgstr "在兩個滑鼠點擊動作之間，指標不移動超過此距離才會判斷為雙擊"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Double Click"
