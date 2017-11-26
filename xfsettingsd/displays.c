@@ -861,7 +861,7 @@ xfce_displays_helper_list_outputs (XfceDisplaysHelper *helper)
 
                 if (l < output->info->npreferred)
                     dist = 0;
-                else if (output->info->mm_height != 0)
+                else if ((output->info->mm_height != 0) && (gdk_screen_height_mm () != 0))
                     dist = (1000 * gdk_screen_height () / gdk_screen_height_mm () -
                             1000 * helper->resources->modes[m].height / output->info->mm_height);
                 else
