@@ -39,6 +39,7 @@
 #include <gdk/gdkx.h>
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
+#include <locale.h>
 
 #include <dbus/dbus-glib.h>
 
@@ -351,6 +352,7 @@ xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
         disable_duration = xfconf_channel_get_double (helper->channel,
                                                       "/DisableTouchpadDuration",
                                                       2.0);
+        setlocale(LC_NUMERIC, "C"); /* syndaemon needs a dot for the float. Nothing localized! */
         g_snprintf (disable_duration_string, sizeof (disable_duration_string),
                     "%.1f", disable_duration);
 
