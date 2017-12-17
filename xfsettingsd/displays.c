@@ -506,7 +506,9 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
                         {
                             crtc->mode = output->preferred_mode;
                             crtc->rotation = RR_Rotate_0;
-                            crtc->x = crtc->y = 0;
+                            if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)) {
+                                crtc->x = crtc->y = 0;
+                            } /* else - leave values from last time we saw the monitor */
                             /* set width and height */
                             for (j = 0; j < helper->resources->nmode; ++j)
                             {
@@ -1406,7 +1408,9 @@ xfce_displays_helper_toggle_internal (gpointer           *power,
                 return;
             crtc->mode = lvds->preferred_mode;
             crtc->rotation = RR_Rotate_0;
-            crtc->x = crtc->y = 0;
+            if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)) {
+                crtc->x = crtc->y = 0;
+            } /* else - leave values from last time we saw the monitor */
             /* set width and height */
             for (m = 0; m < helper->resources->nmode; ++m)
             {
