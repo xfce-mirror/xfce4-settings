@@ -481,6 +481,9 @@ xfce_accessibility_helper_notification_show (XfceAccessibilityHelper *helper,
         helper->notification = notify_notification_new (summary, body, "keyboard", NULL);
 #endif
 
+        /* don't log notification */
+        notify_notification_set_hint (helper->notification, "transient", g_variant_new_boolean (FALSE));
+
         /* close signal */
         g_signal_connect (G_OBJECT (helper->notification), "closed", G_CALLBACK (xfce_accessibility_helper_notification_closed), helper);
     }
