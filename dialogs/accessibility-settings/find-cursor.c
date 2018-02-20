@@ -41,7 +41,9 @@ gboolean timeout (gpointer data)
 
 
 static void
-find_cursor_window_screen_changed (GtkWidget *widget, GdkScreen *old_screen, gpointer userdata) {
+find_cursor_window_screen_changed (GtkWidget *widget,
+                                   GdkScreen *old_screen,
+                                   gpointer userdata) {
     gboolean supports_alpha;
     GdkScreen *screen = gtk_widget_get_screen (widget);
     GdkVisual *visual = gdk_screen_get_rgba_visual (screen);
@@ -50,7 +52,7 @@ find_cursor_window_screen_changed (GtkWidget *widget, GdkScreen *old_screen, gpo
      * to call some fallback in non-composited envs */
     if (!visual) {
         g_warning ("Your screen does not support alpha channels!");
-        visual = gdk_screen_get_system_visual(screen);
+        visual = gdk_screen_get_system_visual (screen);
         supports_alpha = FALSE;
     } else {
         g_warning ("Your screen supports alpha channels!");
@@ -107,16 +109,20 @@ find_cursor_window_draw (GtkWidget      *window,
 gint
 main (gint argc, gchar **argv)
 {
-    gtk_init (&argc, &argv);
-
     GtkWidget     *window;
-    GdkDisplay    *display = gdk_display_get_default ();
-    GdkSeat       *seat = gdk_display_get_default_seat (display);
-    GdkDevice     *device = gdk_seat_get_pointer (seat);
-    GdkScreen     *screen = gdk_screen_get_default ();
+    GdkDisplay    *display;
+    GdkSeat       *seat;
+    GdkDevice     *device;
+    GdkScreen     *screen;
     gint           x,y;
 
+    gtk_init (&argc, &argv);
+
     /* just get the position of the mouse cursor */
+    display = gdk_display_get_default ();
+    seat = gdk_display_get_default_seat (display);
+    device = gdk_seat_get_pointer (seat);
+    screen = gdk_screen_get_default ();
     gdk_device_get_position (device, &screen, &x, &y);
 
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
