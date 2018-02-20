@@ -115,7 +115,7 @@ main (gint argc, gchar **argv)
     GdkScreen     *screen = gdk_screen_get_default ();
     gint           x,y;
 
-    // just get the position of the mouse cursor
+    /* just get the position of the mouse cursor */
     gdk_device_get_position (device, &screen, &x, &y);
 
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -127,11 +127,8 @@ main (gint argc, gchar **argv)
     gtk_widget_set_app_paintable (window, TRUE);
     gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), FALSE);
     gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_DOCK);
-
-    /* this results in the same as getting the mouse cursor and setting the positions
-       of the window with gtk_window_move */
-    //gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_MOUSE);
     gtk_window_set_gravity (GTK_WINDOW (window), GDK_GRAVITY_NORTH_WEST);
+    /* center the window around the mouse cursor */
     gtk_window_move (GTK_WINDOW (window), x - 250, y - 250);
 
     g_signal_connect (G_OBJECT (window), "draw",
