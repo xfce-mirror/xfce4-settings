@@ -8,12 +8,12 @@ AM_CPPFLAGS = \
 
 bin_PROGRAMS = \
 	xfce4-accessibility-settings \
-	find-cursor
+	xfce4-find-cursor
 
-find_cursor_SOURCES = \
+xfce4_find_cursor_SOURCES = \
   find-cursor.c
 
-find_cursor_CFLAGS = \
+xfce4_find_cursor_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
@@ -24,11 +24,11 @@ find_cursor_CFLAGS = \
     -DGDK_PIXBUF_DISABLE_DEPRECATED \
     -DG_DISABLE_DEPRECATED
 
-find_cursor_LDFLAGS = \
+xfce4_find_cursor_LDFLAGS = \
 	-no-undefined \
 	$(PLATFORM_LDFLAGS)
 
-find_cursor_LDADD = \
+xfce4_find_cursor_LDADD = \
 	$(GTK_LIBS) \
 	$(XFCONF_LIBS)
 
