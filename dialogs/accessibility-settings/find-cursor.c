@@ -126,6 +126,7 @@ main (gint argc, gchar **argv)
     gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
     gtk_widget_set_app_paintable (window, TRUE);
     gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), FALSE);
+    gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_DOCK);
 
     /* this results in the same as getting the mouse cursor and setting the positions
        of the window with gtk_window_move */
