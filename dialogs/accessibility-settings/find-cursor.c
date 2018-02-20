@@ -26,7 +26,6 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkx.h>
 
 #include <gdk/gdkx.h>
 #include <math.h>
@@ -49,35 +48,38 @@ static void
 find_cursor_window_screen_changed (GtkWidget *widget,
                                    GdkScreen *old_screen,
                                    gpointer userdata) {
-    gboolean supports_alpha;
-    GdkScreen *screen = gtk_widget_get_screen (widget);
-    GdkVisual *visual = gdk_screen_get_rgba_visual (screen);
+    gboolean     supports_alpha;
+    GdkScreen   *screen = gtk_widget_get_screen (widget);
+    GdkColormap *colormap = gdk_screen_get_rgba_colormap (screen);
 
-    /* this is a purely informatonal check at the moment. could later be user_data
-     * to call some fallback in non-composited envs */
-    if (!visual) {
-        g_warning ("Your screen does not support alpha channels!");
-        visual = gdk_screen_get_system_visual (screen);
-        supports_alpha = FALSE;
-    } else {
-        g_warning ("Your screen supports alpha channels!");
-        supports_alpha = TRUE;
+    if (gdk_screen_is_composited (screen))
+    {
+       supports_alpha = TRUE;
+       g_warning ("Your screen supports alpha!");
+    }
+    else
+    {
+       colormap = gdk_screen_get_rgb_colormap (screen);
+       supports_alpha = FALSE;
     }
 
-    gtk_widget_set_visual (widget, visual);
+    gtk_widget_set_colormap (widget, colormap);
 }
 
 
 static gboolean
-find_cursor_window_draw (GtkWidget      *window,
-                         cairo_t        *cr,
-                         gpointer        user_data) {
+find_cursor_window_expose (GtkWidget *widget,
+                           GdkEvent  *event,
+                           gpointer   user_data) {
+    cairo_t *cr;
+    GdkWindow *window = gtk_widget_get_window (widget);
     int width, height;
     int i = 0;
     int arcs = 1;
 
-    gtk_window_get_size (GTK_WINDOW (window), &width, &height);
+    gtk_widget_get_size_request (widget, &width, &height);
 
+    cr = gdk_cairo_create (window);
     cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
     cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.0);
     cairo_paint (cr);
@@ -120,10 +122,7 @@ main (gint argc, gchar **argv)
     XfconfChannel *accessibility_channel = NULL;
     GError        *error = NULL;
     GtkWidget     *window;
-    GdkDisplay    *display;
-    GdkSeat       *seat;
-    GdkDevice     *device;
-    GdkScreen     *screen;
+    GdkWindow     *root_window;
     gint           x,y;
 
     /* initialize xfconf */
@@ -147,11 +146,8 @@ main (gint argc, gchar **argv)
     gtk_init (&argc, &argv);
 
     /* just get the position of the mouse cursor */
-    display = gdk_display_get_default ();
-    seat = gdk_display_get_default_seat (display);
-    device = gdk_seat_get_pointer (seat);
-    screen = gdk_screen_get_default ();
-    gdk_device_get_position (device, &screen, &x, &y);
+    root_window = gdk_get_default_root_window ();
+    gdk_window_get_pointer (root_window, &x, &y, NULL);
 
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     gtk_container_set_border_width (GTK_CONTAINER (window), 0);
@@ -166,8 +162,8 @@ main (gint argc, gchar **argv)
     /* center the window around the mouse cursor */
     gtk_window_move (GTK_WINDOW (window), x - 250, y - 250);
 
-    g_signal_connect (G_OBJECT (window), "draw",
-                      G_CALLBACK (find_cursor_window_draw), NULL);
+    g_signal_connect (G_OBJECT (window), "expose-event",
+                      G_CALLBACK (find_cursor_window_expose), NULL);
     g_signal_connect (G_OBJECT(window), "screen-changed",
                       G_CALLBACK (find_cursor_window_screen_changed), NULL);
     g_signal_connect (G_OBJECT(window), "destroy",
