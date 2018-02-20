@@ -31,6 +31,9 @@
 #include <gdk/gdkx.h>
 #include <math.h>
 
+/* global var to keep track of the circle size */
+double px = 10;
+
 
 gboolean timeout (gpointer data)
 {
@@ -41,16 +44,18 @@ gboolean timeout (gpointer data)
 
 
 static void
-screen_changed (GtkWidget *widget, GdkScreen *old_screen, gpointer userdata) {
+find_cursor_window_screen_changed (GtkWidget *widget,
+                                   GdkScreen *old_screen,
+                                   gpointer userdata) {
     gboolean supports_alpha;
-    GdkScreen *screen = gtk_widget_get_screen(widget);
-    GdkVisual *visual = gdk_screen_get_rgba_visual(screen);
+    GdkScreen *screen = gtk_widget_get_screen (widget);
+    GdkVisual *visual = gdk_screen_get_rgba_visual (screen);
 
     /* this is a purely informatonal check at the moment. could later be user_data
      * to call some fallback in non-composited envs */
     if (!visual) {
         g_warning ("Your screen does not support alpha channels!");
-        visual = gdk_screen_get_system_visual(screen);
+        visual = gdk_screen_get_system_visual (screen);
         supports_alpha = FALSE;
     } else {
         g_warning ("Your screen supports alpha channels!");
@@ -60,15 +65,13 @@ screen_changed (GtkWidget *widget, GdkScreen *old_screen, gpointer userdata) {
     gtk_widget_set_visual (widget, visual);
 }
 
-double px = 10;
-double vx = 3;
 
 static gboolean
-find_cursor_window_draw  (GtkWidget      *window,
-                          cairo_t *cr,
-                          gpointer     user_data) {
+find_cursor_window_draw (GtkWidget      *window,
+                         cairo_t        *cr,
+                         gpointer        user_data) {
     int width, height;
-    int i = 1;
+    int i = 0;
     int arcs = 1;
 
     gtk_window_get_size (GTK_WINDOW (window), &width, &height);
@@ -79,25 +82,31 @@ find_cursor_window_draw  (GtkWidget      *window,
 
     cairo_set_line_width (cr, 3.0);
     cairo_translate (cr, width / 2, height / 2);
-    if (px > 30.0)
-        arcs = 2;
-    if (px > 60.0)
-        arcs = 3;
+
     if (px > 90.0)
         arcs = 4;
+    else if (px > 60.0)
+        arcs = 3;
+    else if (px > 30.0)
+        arcs = 2;
 
-    for (i = 1; i <= arcs; i++) {
-      cairo_arc (cr, 0, 0, px - ((i - 1) * 30.0), 0, 2 * M_PI);
-    }
+    /* draw fill */
+    cairo_arc (cr, 0, 0, px, 0, 2 * M_PI);
     cairo_set_source_rgba (cr, 1.0, 0.0, 0.0, 0.5);
-    cairo_fill_preserve (cr);
+    cairo_fill (cr);
+
+    /* draw several arcs, depending on the radius */
     cairo_set_source_rgba (cr, 1.0, 0.0, 0.0, 1.0);
-    cairo_stroke (cr);
+    for (i = 0; i < arcs; i++) {
+        cairo_arc (cr, 0, 0, px - (i * 30.0), 0, 2 * M_PI);
+        cairo_stroke (cr);
+    }
 
     /* stop before the circles get bigger than the window */
-    if (px <= 3 || px >= 200-3)
+    if (px > 200)
         gtk_main_quit();
-    px += vx;
+
+    px += 3;
 
     return FALSE;
 }
@@ -106,16 +115,20 @@ find_cursor_window_draw  (GtkWidget      *window,
 gint
 main (gint argc, gchar **argv)
 {
-    gtk_init (&argc, &argv);
-
     GtkWidget     *window;
-    GdkDisplay    *display = gdk_display_get_default ();
-    GdkSeat       *seat = gdk_display_get_default_seat (display);
-    GdkDevice     *device = gdk_seat_get_pointer (seat);
-    GdkScreen     *screen = gdk_screen_get_default ();
+    GdkDisplay    *display;
+    GdkSeat       *seat;
+    GdkDevice     *device;
+    GdkScreen     *screen;
     gint           x,y;
 
-    // just get the position of the mouse cursor
+    gtk_init (&argc, &argv);
+
+    /* just get the position of the mouse cursor */
+    display = gdk_display_get_default ();
+    seat = gdk_display_get_default_seat (display);
+    device = gdk_seat_get_pointer (seat);
+    screen = gdk_screen_get_default ();
     gdk_device_get_position (device, &screen, &x, &y);
 
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -126,20 +139,18 @@ main (gint argc, gchar **argv)
     gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
     gtk_widget_set_app_paintable (window, TRUE);
     gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), FALSE);
+    /* tell the wm to ignore if parts of the window are offscreen */
     gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_DOCK);
-
-    /* this results in the same as getting the mouse cursor and setting the positions
-       of the window with gtk_window_move */
-    //gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_MOUSE);
-    gtk_window_set_gravity (GTK_WINDOW (window), GDK_GRAVITY_NORTH_WEST);
+    /* center the window around the mouse cursor */
     gtk_window_move (GTK_WINDOW (window), x - 250, y - 250);
 
     g_signal_connect (G_OBJECT (window), "draw",
                       G_CALLBACK (find_cursor_window_draw), NULL);
-    g_signal_connect (G_OBJECT(window), "screen-changed", G_CALLBACK (screen_changed), NULL);
+    g_signal_connect (G_OBJECT(window), "screen-changed",
+                      G_CALLBACK (find_cursor_window_screen_changed), NULL);
     g_signal_connect (G_OBJECT(window), "destroy",
                       G_CALLBACK(gtk_main_quit), NULL);
-    screen_changed (window, NULL, NULL);
+    find_cursor_window_screen_changed (window, NULL, NULL);
     gtk_widget_show_all (window);
 
     g_timeout_add (10, timeout, window);
