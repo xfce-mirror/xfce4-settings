@@ -31,6 +31,8 @@
 #include <gdk/gdkx.h>
 #include <math.h>
 
+#include <xfconf/xfconf.h>
+
 /* global var to keep track of the circle size */
 double px = 10;
 
@@ -115,12 +117,32 @@ find_cursor_window_draw (GtkWidget      *window,
 gint
 main (gint argc, gchar **argv)
 {
+    XfconfChannel *accessibility_channel = NULL;
+    GError        *error = NULL;
     GtkWidget     *window;
     GdkDisplay    *display;
     GdkSeat       *seat;
     GdkDevice     *device;
     GdkScreen     *screen;
     gint           x,y;
+
+    /* initialize xfconf */
+    if (!xfconf_init (&error))
+    {
+        /* print error and exit */
+        g_error ("Failed to connect to xfconf daemon: %s.", error->message);
+        g_error_free (error);
+
+        return EXIT_FAILURE;
+    }
+
+    /* open the channels */
+    accessibility_channel = xfconf_channel_new ("accessibility");
+
+    if (xfconf_channel_get_bool (accessibility_channel, "/FindCursor", TRUE))
+        g_warning ("continue");
+    else
+        return 0;
 
     gtk_init (&argc, &argv);
 

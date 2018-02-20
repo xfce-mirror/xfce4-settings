@@ -15,6 +15,7 @@ find_cursor_SOURCES = \
 
 find_cursor_CFLAGS = \
 	$(GTK_CFLAGS) \
+	$(XFCONF_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
     -DGTK_DISABLE_SINGLE_INCLUDES \
     -DGDK_DISABLE_DEPRECATED \
@@ -28,7 +29,8 @@ find_cursor_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 find_cursor_LDADD = \
-	$(GTK_LIBS)
+	$(GTK_LIBS) \
+	$(XFCONF_LIBS)
 
 xfce4_accessibility_settings_SOURCES = \
 	main.c \
