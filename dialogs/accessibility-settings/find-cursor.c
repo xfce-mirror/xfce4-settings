@@ -44,6 +44,21 @@ gboolean timeout (gpointer data)
 }
 
 
+static gboolean
+find_cursor_motion_notify_event (GtkWidget      *widget,
+                                 GdkEventMotion *event,
+                                 gpointer userdata)
+{
+    GdkWindow *window = gtk_widget_get_window (widget);
+    gint x, y, root_x, root_y;
+
+    gdk_window_get_pointer (window, &x, &y, NULL);
+    gtk_window_get_position (GTK_WINDOW (widget), &root_x, &root_y);
+    gtk_window_move (GTK_WINDOW (widget), root_x + x - 250, root_y + y - 250);
+    return FALSE;
+}
+
+
 static void
 find_cursor_window_screen_changed (GtkWidget *widget,
                                    GdkScreen *old_screen,
@@ -162,12 +177,19 @@ main (gint argc, gchar **argv)
     /* center the window around the mouse cursor */
     gtk_window_move (GTK_WINDOW (window), x - 250, y - 250);
 
+
+    /* make the circles follow the mouse cursor */
+    gtk_widget_set_events (window, GDK_POINTER_MOTION_MASK);
+    g_signal_connect (G_OBJECT (window), "motion-notify-event",
+                      G_CALLBACK (find_cursor_motion_notify_event), NULL);
+
     g_signal_connect (G_OBJECT (window), "expose-event",
                       G_CALLBACK (find_cursor_window_expose), NULL);
-    g_signal_connect (G_OBJECT(window), "screen-changed",
+    g_signal_connect (G_OBJECT (window), "screen-changed",
                       G_CALLBACK (find_cursor_window_screen_changed), NULL);
-    g_signal_connect (G_OBJECT(window), "destroy",
-                      G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect (G_OBJECT (window), "destroy",
+                      G_CALLBACK (gtk_main_quit), NULL);
+
     find_cursor_window_screen_changed (window, NULL, NULL);
     gtk_widget_show_all (window);
 
