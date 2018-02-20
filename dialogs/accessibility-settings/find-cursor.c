@@ -31,6 +31,9 @@
 #include <gdk/gdkx.h>
 #include <math.h>
 
+/* global var to keep track of the circle size */
+double px = 10;
+
 
 gboolean timeout (gpointer data)
 {
@@ -62,7 +65,6 @@ find_cursor_window_screen_changed (GtkWidget *widget,
     gtk_widget_set_visual (widget, visual);
 }
 
-double px = 10;
 
 static gboolean
 find_cursor_window_draw (GtkWidget      *window,
@@ -80,6 +82,7 @@ find_cursor_window_draw (GtkWidget      *window,
 
     cairo_set_line_width (cr, 3.0);
     cairo_translate (cr, width / 2, height / 2);
+
     if (px > 90.0)
         arcs = 4;
     else if (px > 60.0)
@@ -87,14 +90,17 @@ find_cursor_window_draw (GtkWidget      *window,
     else if (px > 30.0)
         arcs = 2;
 
+    /* draw fill */
+    cairo_arc (cr, 0, 0, px, 0, 2 * M_PI);
+    cairo_set_source_rgba (cr, 1.0, 0.0, 0.0, 0.5);
+    cairo_fill (cr);
+
+    /* draw several arcs, depending on the radius */
+    cairo_set_source_rgba (cr, 1.0, 0.0, 0.0, 1.0);
     for (i = 0; i < arcs; i++) {
         cairo_arc (cr, 0, 0, px - (i * 30.0), 0, 2 * M_PI);
+        cairo_stroke (cr);
     }
-
-    cairo_set_source_rgba (cr, 1.0, 0.0, 0.0, 0.5);
-    cairo_fill_preserve (cr);
-    cairo_set_source_rgba (cr, 1.0, 0.0, 0.0, 1.0);
-    cairo_stroke (cr);
 
     /* stop before the circles get bigger than the window */
     if (px > 200)
