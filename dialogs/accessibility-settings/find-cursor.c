@@ -164,7 +164,8 @@ main (gint argc, gchar **argv)
     root_window = gdk_get_default_root_window ();
     gdk_window_get_pointer (root_window, &x, &y, NULL);
 
-    window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    /* popup tells the wm to ignore if parts of the window are offscreen */
+    window = gtk_window_new (GTK_WINDOW_POPUP);
     gtk_container_set_border_width (GTK_CONTAINER (window), 0);
     gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
     gtk_window_set_default_size (GTK_WINDOW (window), 500, 500);
@@ -172,11 +173,9 @@ main (gint argc, gchar **argv)
     gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
     gtk_widget_set_app_paintable (window, TRUE);
     gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), FALSE);
-    /* tell the wm to ignore if parts of the window are offscreen */
-    gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_DOCK);
+
     /* center the window around the mouse cursor */
     gtk_window_move (GTK_WINDOW (window), x - 250, y - 250);
-
 
     /* make the circles follow the mouse cursor */
     gtk_widget_set_events (window, GDK_POINTER_MOTION_MASK);
