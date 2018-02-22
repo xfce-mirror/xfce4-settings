@@ -24,6 +24,7 @@ xfce4_settings_editor_SOURCES = \
 
 xfce4_settings_editor_CFLAGS = \
 	$(GTK_CFLAGS) \
+	$(DBUS_GLIB_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
@@ -35,6 +36,7 @@ xfce4_settings_editor_LDFLAGS = \
 
 xfce4_settings_editor_LDADD = \
 	$(GTK_LIBS) \
+	$(DBUS_GLIB_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS)
