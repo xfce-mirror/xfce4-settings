@@ -38,6 +38,8 @@
 /* global var to keep track of the circle size */
 double px = 1;
 
+/* size of the final circles */
+gint circle_size=500;
 
 gboolean timeout (gpointer data)
 {
@@ -59,8 +61,8 @@ static GdkPixbuf
                                       x,
                                       y,
                                       0, 0,
-                                      500,
-                                      500);
+                                      circle_size,
+                                      circle_size);
     return screenshot;
 }
 
@@ -76,7 +78,7 @@ find_cursor_motion_notify_event (GtkWidget      *widget,
 
     gdk_window_get_pointer (window, &x, &y, NULL);
     gtk_window_get_position (GTK_WINDOW (widget), &root_x, &root_y);
-    gtk_window_move (GTK_WINDOW (widget), root_x + x - 250, root_y + y - 250);
+    gtk_window_move (GTK_WINDOW (widget), root_x + x - (circle_size/2), root_y + y - (circle_size/2));
     return FALSE;
 }
 
@@ -125,7 +127,7 @@ find_cursor_window_expose (GtkWidget *widget,
     else {
         /* only take a screenshot once in the first iteration */
         if (px == 1) {
-            pixbuf = get_rectangle_screenshot (root_x + x - 250 + 1, root_y + y - 250 , widget);
+            pixbuf = get_rectangle_screenshot (root_x + x - (circle_size / 2) + 1, root_y + y - (circle_size / 2) , widget);
             if (!pixbuf)
                 g_warning("Getting screenshot failed");
         }
@@ -161,7 +163,7 @@ find_cursor_window_expose (GtkWidget *widget,
     }
 
     /* stop before the circles get bigger than the window */
-    if (px > 200) {
+    if (px >= (circle_size/2)) {
         if (pixbuf)
             g_object_unref (pixbuf);
         gtk_main_quit();
@@ -211,14 +213,14 @@ main (gint argc, gchar **argv)
     window = gtk_window_new (GTK_WINDOW_POPUP);
     gtk_container_set_border_width (GTK_CONTAINER (window), 0);
     gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
-    gtk_window_set_default_size (GTK_WINDOW (window), 500, 500);
-    gtk_widget_set_size_request (window, 500, 500);
+    gtk_window_set_default_size (GTK_WINDOW (window), circle_size, circle_size);
+    gtk_widget_set_size_request (window, circle_size, circle_size);
     gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
     gtk_widget_set_app_paintable (window, TRUE);
     gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), FALSE);
 
     /* center the window around the mouse cursor */
-    gtk_window_move (GTK_WINDOW (window), x - 250, y - 250);
+    gtk_window_move (GTK_WINDOW (window), x - (circle_size/2), y - (circle_size/2));
 
     /* check if we're in a composited environment */
     composited = find_cursor_window_composited (window);
