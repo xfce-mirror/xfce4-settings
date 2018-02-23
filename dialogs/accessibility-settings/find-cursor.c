@@ -50,18 +50,18 @@ gboolean timeout (gpointer data)
 static GdkPixbuf
 *get_rectangle_screenshot (gint x, gint y, GtkWidget *widget)
 {
-  GdkPixbuf *screenshot = NULL;
-  GdkWindow *root_window = gdk_get_default_root_window ();
-  GdkColormap *colormap = gdk_colormap_get_system();
+    GdkPixbuf *screenshot = NULL;
+    GdkWindow *root_window = gdk_get_default_root_window ();
+    GdkColormap *colormap = gdk_colormap_get_system();
 
-  screenshot =
-    gdk_pixbuf_get_from_drawable (NULL, root_window, colormap,
-                                  x,
-                                  y,
-                                  0, 0,
-                                  500,
-                                  500);
-  return screenshot;
+    screenshot =
+        gdk_pixbuf_get_from_drawable (NULL, root_window, colormap,
+                                      x,
+                                      y,
+                                      0, 0,
+                                      500,
+                                      500);
+    return screenshot;
 }
 
 
