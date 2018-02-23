@@ -30,6 +30,9 @@
 #include <gdk/gdkx.h>
 #include <math.h>
 
+#include <X11/extensions/shape.h>
+#include <gdk/gdkkeysyms.h>
+
 #include <xfconf/xfconf.h>
 
 /* global var to keep track of the circle size */
@@ -42,6 +45,25 @@ gboolean timeout (gpointer data)
     gtk_widget_queue_draw (widget);
     return TRUE;
 }
+
+
+static GdkPixbuf
+*get_rectangle_screenshot (gint x, gint y, GtkWidget *widget)
+{
+  GdkPixbuf *screenshot = NULL;
+  GdkWindow *root_window;
+  GdkColormap *colormap = gdk_colormap_get_system();
+
+  screenshot =
+    gdk_pixbuf_get_from_drawable (NULL, root_window, colormap,
+                                  x,
+                                  y,
+                                  0, 0,
+                                  500,
+                                  500);
+  return screenshot;
+}
+
 
 
 static gboolean
@@ -59,28 +81,25 @@ find_cursor_motion_notify_event (GtkWidget      *widget,
 }
 
 
-static void
-find_cursor_window_screen_changed (GtkWidget *widget,
-                                   GdkScreen *old_screen,
-                                   gpointer userdata) {
-    gboolean     supports_alpha;
+static gboolean
+find_cursor_window_composited (GtkWidget *widget) {
+    gboolean     composited;
     GdkScreen   *screen = gtk_widget_get_screen (widget);
     GdkColormap *colormap = gdk_screen_get_rgba_colormap (screen);
 
     if (gdk_screen_is_composited (screen))
-    {
-       supports_alpha = TRUE;
-       g_warning ("Your screen supports alpha!");
-    }
+       composited = TRUE;
     else
     {
        colormap = gdk_screen_get_rgb_colormap (screen);
-       supports_alpha = FALSE;
+       composited = FALSE;
     }
 
     gtk_widget_set_colormap (widget, colormap);
+    return composited;
 }
 
+GdkPixbuf *pixbuf = NULL;
 
 static gboolean
 find_cursor_window_expose (GtkWidget *widget,
@@ -89,14 +108,28 @@ find_cursor_window_expose (GtkWidget *widget,
     cairo_t *cr;
     GdkWindow *window = gtk_widget_get_window (widget);
     int width, height;
+    gint x, y, root_x, root_y;
     int i = 0;
     int arcs = 1;
+    gboolean composited = GPOINTER_TO_INT (user_data);
 
     gtk_widget_get_size_request (widget, &width, &height);
+    gdk_window_get_pointer (window, &x, &y, NULL);
+    gtk_window_get_position (GTK_WINDOW (widget), &root_x, &root_y);
 
     cr = gdk_cairo_create (window);
-    cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-    cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.0);
+    if (composited) {
+        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+        cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.0);
+    }
+    else {
+        if (px == 10) {
+          pixbuf = get_rectangle_screenshot (root_x + x - 250, root_y + y - 250, widget);
+        }
+
+        gdk_cairo_set_source_pixbuf (cr, pixbuf, 1, 0);
+    }
+
     cairo_paint (cr);
 
     cairo_set_line_width (cr, 3.0);
@@ -122,8 +155,11 @@ find_cursor_window_expose (GtkWidget *widget,
     }
 
     /* stop before the circles get bigger than the window */
-    if (px > 200)
+    if (px > 200) {
+        if (pixbuf)
+            g_object_unref (pixbuf);
         gtk_main_quit();
+    }
 
     px += 3;
 
@@ -139,6 +175,7 @@ main (gint argc, gchar **argv)
     GtkWidget     *window;
     GdkWindow     *root_window;
     gint           x,y;
+    gboolean       composited;
 
     /* initialize xfconf */
     if (!xfconf_init (&error))
@@ -177,19 +214,21 @@ main (gint argc, gchar **argv)
     /* center the window around the mouse cursor */
     gtk_window_move (GTK_WINDOW (window), x - 250, y - 250);
 
-    /* make the circles follow the mouse cursor */
-    gtk_widget_set_events (window, GDK_POINTER_MOTION_MASK);
-    g_signal_connect (G_OBJECT (window), "motion-notify-event",
-                      G_CALLBACK (find_cursor_motion_notify_event), NULL);
+    /* check if we're in a composited environment */
+    composited = find_cursor_window_composited (window);
 
+    /* make the circles follow the mouse cursor */
+    if (composited) {
+        gtk_widget_set_events (window, GDK_POINTER_MOTION_MASK);
+        g_signal_connect (G_OBJECT (window), "motion-notify-event",
+                          G_CALLBACK (find_cursor_motion_notify_event), NULL);
+    }
     g_signal_connect (G_OBJECT (window), "expose-event",
-                      G_CALLBACK (find_cursor_window_expose), NULL);
-    g_signal_connect (G_OBJECT (window), "screen-changed",
-                      G_CALLBACK (find_cursor_window_screen_changed), NULL);
+                      G_CALLBACK (find_cursor_window_expose), GINT_TO_POINTER (composited));
     g_signal_connect (G_OBJECT (window), "destroy",
                       G_CALLBACK (gtk_main_quit), NULL);
 
-    find_cursor_window_screen_changed (window, NULL, NULL);
+
     gtk_widget_show_all (window);
 
     g_timeout_add (10, timeout, window);
