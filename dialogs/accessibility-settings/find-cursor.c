@@ -51,7 +51,7 @@ static GdkPixbuf
 *get_rectangle_screenshot (gint x, gint y, GtkWidget *widget)
 {
   GdkPixbuf *screenshot = NULL;
-  GdkWindow *root_window;
+  GdkWindow *root_window = gdk_get_default_root_window ();
   GdkColormap *colormap = gdk_colormap_get_system();
 
   screenshot =
@@ -124,10 +124,16 @@ find_cursor_window_expose (GtkWidget *widget,
     }
     else {
         /* only take a screenshot once in the first iteration */
-        if (px == 1)
-          pixbuf = get_rectangle_screenshot (root_x + x - 250, root_y + y - 250, widget);
-        /* FIXME: use 0,0 as coordinates */
-        gdk_cairo_set_source_pixbuf (cr, pixbuf, 1, 0);
+        if (px == 1) {
+            pixbuf = get_rectangle_screenshot (root_x + x - 250, root_y + y - 250, widget);
+            if (!pixbuf)
+                g_warning("Getting screenshot failed");
+        }
+
+        if (pixbuf) {
+    	    /* FIXME: use 0,0 as coordinates */
+            gdk_cairo_set_source_pixbuf (cr, pixbuf, 1, 1);
+        }
     }
 
     cairo_paint (cr);
