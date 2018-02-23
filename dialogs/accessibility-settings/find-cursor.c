@@ -41,6 +41,9 @@ double px = 1;
 /* size of the final circles */
 gint circle_size=500;
 
+/* gdk_cairo_set_source_pixbuf() crashes with 0,0 */
+gint workaround_offset = 1;
+
 gboolean timeout (gpointer data)
 {
     GtkWidget *widget = GTK_WIDGET (data);
@@ -61,8 +64,8 @@ static GdkPixbuf
                                       x,
                                       y,
                                       0, 0,
-                                      circle_size,
-                                      circle_size);
+                                      circle_size + workaround_offset,
+                                      circle_size + workaround_offset);
     return screenshot;
 }
 
@@ -127,14 +130,14 @@ find_cursor_window_expose (GtkWidget *widget,
     else {
         /* only take a screenshot once in the first iteration */
         if (px == 1) {
-            pixbuf = get_rectangle_screenshot (root_x + x - (circle_size / 2) + 1, root_y + y - (circle_size / 2) , widget);
+            pixbuf = get_rectangle_screenshot (root_x + x - (circle_size / 2) - workaround_offset, root_y + y - (circle_size / 2) - workaround_offset, widget);
             if (!pixbuf)
                 g_warning("Getting screenshot failed");
         }
 
         if (pixbuf) {
     	    /* FIXME: use 0,0 as coordinates */
-            gdk_cairo_set_source_pixbuf (cr, pixbuf, 1, 0);
+            gdk_cairo_set_source_pixbuf (cr, pixbuf, 0 - workaround_offset, 0 - workaround_offset);
         }
     }
 
