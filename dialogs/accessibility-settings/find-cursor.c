@@ -171,6 +171,8 @@ find_cursor_window_expose (GtkWidget *widget,
 
     px += 3;
 
+    cairo_destroy(cr);
+
     return FALSE;
 }
 
@@ -242,6 +244,8 @@ main (gint argc, gchar **argv)
     g_timeout_add (10, timeout, window);
 
     gtk_main ();
+
+    xfconf_shutdown();
 
     return 0;
 }
