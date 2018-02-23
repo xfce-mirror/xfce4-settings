@@ -125,14 +125,14 @@ find_cursor_window_expose (GtkWidget *widget,
     else {
         /* only take a screenshot once in the first iteration */
         if (px == 1) {
-            pixbuf = get_rectangle_screenshot (root_x + x - 250, root_y + y - 250, widget);
+            pixbuf = get_rectangle_screenshot (root_x + x - 250 + 1, root_y + y - 250 , widget);
             if (!pixbuf)
                 g_warning("Getting screenshot failed");
         }
 
         if (pixbuf) {
     	    /* FIXME: use 0,0 as coordinates */
-            gdk_cairo_set_source_pixbuf (cr, pixbuf, 1, 1);
+            gdk_cairo_set_source_pixbuf (cr, pixbuf, 1, 0);
         }
     }
 
