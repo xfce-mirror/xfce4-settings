@@ -21,27 +21,12 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="button1">
-                <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-help</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -49,6 +34,21 @@
                 <property name="fill">False</property>
                 <property name="position">0</property>
                 <property name="secondary">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -147,11 +147,11 @@
                         <property name="left_padding">12</property>
                         <child>
                           <object class="GtkFontButton" id="gtk_fontname_button">
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">This font will be used as the default font used when drawing user interface text</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="title" translatable="yes">Select a default font</property>
                           </object>
                         </child>
@@ -186,8 +186,6 @@
                       <object class="GtkAlignment" id="alignment7">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="border_width">6</property>
                         <property name="bottom_padding">6</property>
                         <property name="left_padding">12</property>
@@ -197,8 +195,9 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">This font will be used as the default monospace font, for example by terminal emulators.</property>
-                            <property name="font">Monospace 12</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="title" translatable="yes">Select a default monospace font</property>
+                            <property name="font_name">Monospace 12</property>
                           </object>
                         </child>
                       </object>
@@ -322,11 +321,11 @@
                             <child>
                               <object class="GtkCheckButton" id="xft_antialias_check_button">
                                 <property name="label" translatable="yes">_Enable anti-aliasing</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Anti-aliasing, or font smoothing, can improve the look of text on the screen</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="active">True</property>
                                 <property name="draw_indicator">True</property>
@@ -377,11 +376,11 @@
                             <child>
                               <object class="GtkCheckButton" id="xft_custom_dpi_check_button">
                                 <property name="label" translatable="yes">Custom _DPI setting:</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Override the detected monitor resolution if fonts look too large or too small</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -524,11 +523,11 @@
                             <child>
                               <object class="GtkCheckButton" id="gtk_button_images_check_button">
                                 <property name="label" translatable="yes">Show images on _buttons</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Specify whether icons should be displayed next to text in buttons</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -541,11 +540,11 @@
                             <child>
                               <object class="GtkCheckButton" id="gtk_menu_images_check_button">
                                 <property name="label" translatable="yes">Show images in _menus</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Specify whether icons should be displayed next to items in menus</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -558,11 +557,11 @@
                             <child>
                               <object class="GtkCheckButton" id="gtk_caneditaccels_check_button">
                                 <property name="label" translatable="yes">Enable e_ditable accelerators</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">If selected, keyboard shortcuts for menu items can be changed by hovering the mouse over the menu item and pressing the new key combination for the shortcut</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -613,11 +612,11 @@
                             <child>
                               <object class="GtkCheckButton" id="enable_event_sounds_check_button">
                                 <property name="label" translatable="yes">Enable _event sounds</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Enable or disable event sounds globally (requires "Canberra" support)</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -630,11 +629,11 @@
                             <child>
                               <object class="GtkCheckButton" id="enable_input_feedback_sounds_button">
                                 <property name="label" translatable="yes">Enable input feedbac_k sounds</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="tooltip_text" translatable="yes">Specify whether mouse clicks and other user input will cause event sounds to play</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -692,8 +691,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button1</action-widget>
       <action-widget response="-11">button2</action-widget>
+      <action-widget response="0">button1</action-widget>
     </action-widgets>
   </object>
   <object class="GtkListStore" id="liststore1">
