@@ -36,7 +36,7 @@
 #include <xfconf/xfconf.h>
 
 /* global var to keep track of the circle size */
-double px = 10;
+double px = 1;
 
 
 gboolean timeout (gpointer data)
@@ -123,10 +123,10 @@ find_cursor_window_expose (GtkWidget *widget,
         cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.0);
     }
     else {
-        if (px == 10) {
+        /* only take a screenshot once in the first iteration */
+        if (px == 1)
           pixbuf = get_rectangle_screenshot (root_x + x - 250, root_y + y - 250, widget);
-        }
-
+        /* FIXME: use 0,0 as coordinates */
         gdk_cairo_set_source_pixbuf (cr, pixbuf, 1, 0);
     }
 
