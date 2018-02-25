@@ -53,19 +53,31 @@ gboolean timeout (gpointer data)
 
 
 static GdkPixbuf
-*get_rectangle_screenshot (gint x, gint y, GtkWidget *widget)
+*get_rectangle_screenshot (gint x, gint y)
 {
     GdkPixbuf *screenshot = NULL;
     GdkWindow *root_window = gdk_get_default_root_window ();
     GdkColormap *colormap = gdk_colormap_get_system();
+    gint width = circle_size + workaround_offset;
+    gint height = circle_size + workaround_offset;
 
+    /* cut down screenshot if it's out of bounds */
+    if (x < 0) {
+        width += x;
+        x = 0;
+    }
+    if (y < 0) {
+        height += y;
+        y = 0;
+    }
+ 
     screenshot =
         gdk_pixbuf_get_from_drawable (NULL, root_window, colormap,
                                       x,
                                       y,
                                       0, 0,
-                                      circle_size + workaround_offset,
-                                      circle_size + workaround_offset);
+                                      width,
+                                      height);
     return screenshot;
 }
 
@@ -105,6 +117,7 @@ find_cursor_window_composited (GtkWidget *widget) {
 }
 
 GdkPixbuf *pixbuf = NULL;
+gint screenshot_offset_x, screenshot_offset_y;
 
 static gboolean
 find_cursor_window_expose (GtkWidget *widget,
@@ -130,14 +143,20 @@ find_cursor_window_expose (GtkWidget *widget,
     else {
         /* only take a screenshot once in the first iteration */
         if (px == 1) {
-            pixbuf = get_rectangle_screenshot (root_x + x - (circle_size / 2) - workaround_offset, root_y + y - (circle_size / 2) - workaround_offset, widget);
+            /* this offset has to match the screenshot */
+            screenshot_offset_x = root_x + x - (circle_size / 2) - workaround_offset;
+            screenshot_offset_y = root_y + y - (circle_size / 2) - workaround_offset;
+
+            pixbuf = get_rectangle_screenshot (screenshot_offset_x, screenshot_offset_y);
             if (!pixbuf)
                 g_warning("Getting screenshot failed");
         }
 
         if (pixbuf) {
-    	    /* FIXME: use 0,0 as coordinates */
-            gdk_cairo_set_source_pixbuf (cr, pixbuf, 0 - workaround_offset, 0 - workaround_offset);
+            if (screenshot_offset_x > 0) screenshot_offset_x = 0;
+            if (screenshot_offset_y > 0) screenshot_offset_y = 0;
+
+            gdk_cairo_set_source_pixbuf (cr, pixbuf, 0 - screenshot_offset_x - workaround_offset, 0 - screenshot_offset_y - workaround_offset);
         }
     }
 
