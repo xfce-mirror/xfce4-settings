@@ -112,6 +112,16 @@ find_cursor_window_composited (GtkWidget *widget) {
 
 
 
+static void
+find_cursor_window_destroy (GtkWidget *widget,
+                            gpointer   user_data) {
+    if (pixbuf)
+        g_object_unref (pixbuf);
+    gtk_main_quit ();
+}
+
+
+
 static gboolean
 find_cursor_window_expose (GtkWidget       *widget,
                            GdkEventExpose  *event,
@@ -166,9 +176,7 @@ find_cursor_window_expose (GtkWidget       *widget,
 
     /* stop before the circles get bigger than the window */
     if (px >= CIRCLE_RADIUS) {
-        if (pixbuf)
-            g_object_unref (pixbuf);
-        gtk_main_quit ();
+        find_cursor_window_destroy (widget, NULL);
     }
 
     px += 3;
@@ -247,7 +255,7 @@ main (gint argc, gchar **argv)
     g_signal_connect (G_OBJECT (window), "expose-event",
                       G_CALLBACK (find_cursor_window_expose), GINT_TO_POINTER (composited));
     g_signal_connect (G_OBJECT (window), "destroy",
-                      G_CALLBACK (gtk_main_quit), NULL);
+                      G_CALLBACK (find_cursor_window_destroy), NULL);
 
 
     gtk_widget_show_all (GTK_WIDGET (window));
