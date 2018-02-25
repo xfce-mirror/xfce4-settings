@@ -39,7 +39,10 @@
 double px = 1;
 
 /* size of the final circles */
-gint circle_size=500;
+gint circle_size = 500;
+
+GdkPixbuf *pixbuf = NULL;
+gint screenshot_offset_x, screenshot_offset_y;
 
 /* gdk_cairo_set_source_pixbuf() crashes with 0,0 */
 gint workaround_offset = 1;
@@ -70,7 +73,7 @@ static GdkPixbuf
         height += y;
         y = 0;
     }
- 
+
     screenshot =
         gdk_pixbuf_get_from_drawable (NULL, root_window, colormap,
                                       x,
@@ -111,54 +114,37 @@ find_cursor_window_composited (GtkWidget *widget) {
     return composited;
 }
 
-GdkPixbuf *pixbuf = NULL;
-gint screenshot_offset_x, screenshot_offset_y;
+
 
 static gboolean
-find_cursor_window_expose (GtkWidget *widget,
-                           GdkEvent  *event,
-                           gpointer   user_data) {
+find_cursor_window_expose (GtkWidget       *widget,
+                           GdkEventExpose  *event,
+                           gpointer         user_data) {
     cairo_t *cr;
-    GdkWindow *window = gtk_widget_get_window (widget);
-    int width, height;
-    gint x, y, root_x, root_y;
     int i = 0;
     int arcs = 1;
     gboolean composited = GPOINTER_TO_INT (user_data);
 
-    gtk_widget_get_size_request (widget, &width, &height);
-    gdk_window_get_pointer (window, &x, &y, NULL);
-    gtk_window_get_position (GTK_WINDOW (widget), &root_x, &root_y);
-
-    cr = gdk_cairo_create (window);
+    cr = gdk_cairo_create (event->window);
     if (composited) {
         cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
         cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.0);
     }
     else {
-        /* only take a screenshot once in the first iteration */
-        if (px == 1) {
-            /* this offset has to match the screenshot */
-            screenshot_offset_x = root_x + x - (circle_size / 2) - workaround_offset;
-            screenshot_offset_y = root_y + y - (circle_size / 2) - workaround_offset;
-
-            pixbuf = get_rectangle_screenshot (screenshot_offset_x, screenshot_offset_y);
-            if (!pixbuf)
-                g_warning("Getting screenshot failed");
-        }
-
         if (pixbuf) {
             if (screenshot_offset_x > 0) screenshot_offset_x = 0;
             if (screenshot_offset_y > 0) screenshot_offset_y = 0;
 
             gdk_cairo_set_source_pixbuf (cr, pixbuf, 0 - screenshot_offset_x - workaround_offset, 0 - screenshot_offset_y - workaround_offset);
         }
+        else
+            g_warning ("Something with the screenshot went wrong.");
     }
 
     cairo_paint (cr);
 
     cairo_set_line_width (cr, 3.0);
-    cairo_translate (cr, width / 2, height / 2);
+    cairo_translate (cr, circle_size / 2, circle_size / 2);
 
     if (px > 90.0)
         arcs = 4;
@@ -183,12 +169,12 @@ find_cursor_window_expose (GtkWidget *widget,
     if (px >= (circle_size/2)) {
         if (pixbuf)
             g_object_unref (pixbuf);
-        gtk_main_quit();
+        gtk_main_quit ();
     }
 
     px += 3;
 
-    cairo_destroy(cr);
+    cairo_destroy (cr);
 
     return FALSE;
 }
@@ -233,22 +219,31 @@ main (gint argc, gchar **argv)
     gtk_container_set_border_width (GTK_CONTAINER (window), 0);
     gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
     gtk_window_set_default_size (GTK_WINDOW (window), circle_size, circle_size);
-    gtk_widget_set_size_request (window, circle_size, circle_size);
+    gtk_widget_set_size_request (GTK_WIDGET (window), circle_size, circle_size);
     gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
-    gtk_widget_set_app_paintable (window, TRUE);
+    gtk_widget_set_app_paintable (GTK_WIDGET (window), TRUE);
     gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), FALSE);
 
     /* center the window around the mouse cursor */
     gtk_window_move (GTK_WINDOW (window), x - (circle_size/2), y - (circle_size/2));
 
     /* check if we're in a composited environment */
-    composited = find_cursor_window_composited (window);
+    composited = find_cursor_window_composited (GTK_WIDGET (window));
 
     /* make the circles follow the mouse cursor */
     if (composited) {
-        gtk_widget_set_events (window, GDK_POINTER_MOTION_MASK);
+        gtk_widget_set_events (GTK_WIDGET (window), GDK_POINTER_MOTION_MASK);
         g_signal_connect (G_OBJECT (window), "motion-notify-event",
                           G_CALLBACK (find_cursor_motion_notify_event), NULL);
+    }
+    else {
+        /* this offset has to match the screenshot */
+        screenshot_offset_x = x - (circle_size/2) - workaround_offset;
+        screenshot_offset_y = y - (circle_size/2) - workaround_offset;
+
+        pixbuf = get_rectangle_screenshot (screenshot_offset_x, screenshot_offset_y);
+        if (!pixbuf)
+            g_warning("Getting screenshot failed");
     }
     g_signal_connect (G_OBJECT (window), "expose-event",
                       G_CALLBACK (find_cursor_window_expose), GINT_TO_POINTER (composited));
@@ -256,7 +251,7 @@ main (gint argc, gchar **argv)
                       G_CALLBACK (gtk_main_quit), NULL);
 
 
-    gtk_widget_show_all (window);
+    gtk_widget_show_all (GTK_WIDGET (window));
 
     g_timeout_add (10, timeout, window);
 
