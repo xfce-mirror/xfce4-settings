@@ -88,12 +88,7 @@ find_cursor_motion_notify_event (GtkWidget      *widget,
                                  GdkEventMotion *event,
                                  gpointer userdata)
 {
-    GdkWindow *window = gtk_widget_get_window (widget);
-    gint x, y, root_x, root_y;
-
-    gdk_window_get_pointer (window, &x, &y, NULL);
-    gtk_window_get_position (GTK_WINDOW (widget), &root_x, &root_y);
-    gtk_window_move (GTK_WINDOW (widget), root_x + x - (circle_size/2), root_y + y - (circle_size/2));
+    gtk_window_move (GTK_WINDOW (widget), event->x_root - (circle_size/2), event->y_root - (circle_size/2));
     return FALSE;
 }
 
