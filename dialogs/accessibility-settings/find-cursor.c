@@ -54,8 +54,8 @@ gboolean timeout (gpointer data)
 }
 
 
-static GdkPixbuf
-*get_rectangle_screenshot (gint x, gint y)
+static GdkPixbuf *
+get_rectangle_screenshot (gint x, gint y)
 {
     GdkPixbuf *screenshot = NULL;
     GdkWindow *root_window = gdk_get_default_root_window ();
@@ -73,13 +73,10 @@ static GdkPixbuf
         y = 0;
     }
 
-    screenshot =
-        gdk_pixbuf_get_from_drawable (NULL, root_window, colormap,
-                                      x,
-                                      y,
-                                      0, 0,
-                                      width,
-                                      height);
+    screenshot = gdk_pixbuf_get_from_drawable (NULL, root_window, colormap,
+                                               x, y,
+                                               0, 0,
+                                               width, height);
     return screenshot;
 }
 
@@ -88,7 +85,7 @@ static GdkPixbuf
 static gboolean
 find_cursor_motion_notify_event (GtkWidget      *widget,
                                  GdkEventMotion *event,
-                                 gpointer userdata)
+                                 gpointer        userdata)
 {
     gtk_window_move (GTK_WINDOW (widget), event->x_root - CIRCLE_RADIUS, event->y_root - CIRCLE_RADIUS);
     return FALSE;
@@ -120,8 +117,8 @@ find_cursor_window_expose (GtkWidget       *widget,
                            GdkEventExpose  *event,
                            gpointer         user_data) {
     cairo_t *cr;
-    int i = 0;
-    int arcs = 1;
+    int      i = 0;
+    int      arcs = 1;
     gboolean composited = GPOINTER_TO_INT (user_data);
 
     cr = gdk_cairo_create (event->window);
@@ -245,7 +242,7 @@ main (gint argc, gchar **argv)
 
         pixbuf = get_rectangle_screenshot (screenshot_offset_x, screenshot_offset_y);
         if (!pixbuf)
-            g_warning("Getting screenshot failed");
+            g_warning ("Getting screenshot failed");
     }
     g_signal_connect (G_OBJECT (window), "expose-event",
                       G_CALLBACK (find_cursor_window_expose), GINT_TO_POINTER (composited));
