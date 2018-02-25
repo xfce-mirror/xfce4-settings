@@ -46,17 +46,17 @@ gint screenshot_offset_x, screenshot_offset_y;
 gint workaround_offset = 1;
 
 
-gboolean timeout (gpointer data)
-{
+
+gboolean timeout (gpointer data) {
     GtkWidget *widget = GTK_WIDGET (data);
     gtk_widget_queue_draw (widget);
     return TRUE;
 }
 
 
+
 static GdkPixbuf *
-get_rectangle_screenshot (gint x, gint y)
-{
+get_rectangle_screenshot (gint x, gint y) {
     GdkPixbuf *screenshot = NULL;
     GdkWindow *root_window = gdk_get_default_root_window ();
     GdkColormap *colormap = gdk_colormap_get_system();
@@ -85,11 +85,11 @@ get_rectangle_screenshot (gint x, gint y)
 static gboolean
 find_cursor_motion_notify_event (GtkWidget      *widget,
                                  GdkEventMotion *event,
-                                 gpointer        userdata)
-{
+                                 gpointer        userdata) {
     gtk_window_move (GTK_WINDOW (widget), event->x_root - CIRCLE_RADIUS, event->y_root - CIRCLE_RADIUS);
     return FALSE;
 }
+
 
 
 static gboolean
@@ -187,9 +187,9 @@ find_cursor_window_expose (GtkWidget       *widget,
 }
 
 
+
 gint
-main (gint argc, gchar **argv)
-{
+main (gint argc, gchar **argv) {
     XfconfChannel *accessibility_channel = NULL;
     GError        *error = NULL;
     GtkWidget     *window;
@@ -198,8 +198,7 @@ main (gint argc, gchar **argv)
     gboolean       composited;
 
     /* initialize xfconf */
-    if (!xfconf_init (&error))
-    {
+    if (!xfconf_init (&error)) {
         /* print error and exit */
         g_error ("Failed to connect to xfconf daemon: %s.", error->message);
         g_error_free (error);
@@ -264,7 +263,7 @@ main (gint argc, gchar **argv)
 
     gtk_main ();
 
-    xfconf_shutdown();
+    xfconf_shutdown ();
 
     return 0;
 }
