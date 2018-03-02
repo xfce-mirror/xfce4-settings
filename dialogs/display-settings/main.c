@@ -933,6 +933,7 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
     RRMode   mode = None;
     guint    n;
     gint     cloned = TRUE;
+    gint     mirrored;
 
     if (!xfce_randr)
         return;
@@ -970,12 +971,19 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
 
         cloned &= (xfce_randr->mode[n] == mode &&
                    xfce_randr->mirrored[n]);
+        mirrored = xfce_randr->mirrored[n];
 
         if (!cloned)
             break;
     }
 
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), cloned);
+    /* if two displays are 'mirrored', i.e. their x and y positions are the same
+       we set the checkbutton to the inconsistent state */
+    if (mirrored == TRUE && cloned == FALSE)
+        gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (check), 1);
+    else
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), cloned);
+
 
     /* Unblock the signal */
     g_signal_handlers_unblock_by_func (check, display_setting_mirror_displays_toggled,
