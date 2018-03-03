@@ -913,7 +913,7 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
             xfce_randr->position[n].x = pos;
             xfce_randr->position[n].y = 0;
 
-            pos = xfce_randr_mode_width (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
+            pos += xfce_randr_mode_width (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
         }
     }
 
