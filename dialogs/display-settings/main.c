@@ -179,14 +179,15 @@ static XfceOutputInfo*
 get_nth_xfce_output_info(gint id)
 {
     XfceOutputInfo *output = NULL;
+    GList * entry = NULL;
 
     if (current_outputs)
-        output = g_list_nth (current_outputs, id)->data;
+        entry = g_list_nth (current_outputs, id);
 
-    if (output)
-        return output;
+    if (entry)
+        output = entry->data;
 
-    return NULL;
+    return output;
 }
 
 static void
@@ -932,12 +933,14 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     for (n = 0; n < xfce_randr->noutput; n++)
     {
         output = get_nth_xfce_output_info (n);
-        output->rotation = xfce_randr->rotation[n];
-        output->x = xfce_randr->position[n].x;
-        output->y = xfce_randr->position[n].y;
-        output->mirrored = xfce_randr->mirrored[n];
-        output->width = xfce_randr_mode_width (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
-        output->height = xfce_randr_mode_height (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
+        if (output) {
+            output->rotation = xfce_randr->rotation[n];
+            output->x = xfce_randr->position[n].x;
+            output->y = xfce_randr->position[n].y;
+            output->mirrored = xfce_randr->mirrored[n];
+            output->width = xfce_randr_mode_width (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
+            output->height = xfce_randr_mode_height (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
+        } /* else: some kind of racecondition during re-connect? - just ignore */
     }
 
     /* Apply the changes */
