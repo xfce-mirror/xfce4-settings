@@ -26,15 +26,25 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkx.h>
 
 #include <gdk/gdkx.h>
 #include <math.h>
 
 #include <xfconf/xfconf.h>
 
+/* size of the window and circles */
+#define CIRCLE_SIZE 500
+#define CIRCLE_RADIUS 250
+
 /* global var to keep track of the circle size */
-double px = 10;
+double px = 1;
+
+GdkPixbuf *pixbuf = NULL;
+gint screenshot_offset_x, screenshot_offset_y;
+
+/* gdk_cairo_set_source_pixbuf() crashes with 0,0 */
+gint workaround_offset = 1;
+
 
 
 gboolean timeout (gpointer data)
@@ -45,45 +55,100 @@ gboolean timeout (gpointer data)
 }
 
 
-static void
-find_cursor_window_screen_changed (GtkWidget *widget,
-                                   GdkScreen *old_screen,
-                                   gpointer userdata) {
-    gboolean supports_alpha;
-    GdkScreen *screen = gtk_widget_get_screen (widget);
-    GdkVisual *visual = gdk_screen_get_rgba_visual (screen);
 
-    /* this is a purely informatonal check at the moment. could later be user_data
-     * to call some fallback in non-composited envs */
-    if (!visual) {
-        g_warning ("Your screen does not support alpha channels!");
-        visual = gdk_screen_get_system_visual (screen);
-        supports_alpha = FALSE;
-    } else {
-        g_warning ("Your screen supports alpha channels!");
-        supports_alpha = TRUE;
+static GdkPixbuf *
+get_rectangle_screenshot (gint x, gint y) {
+    GdkPixbuf *screenshot = NULL;
+    GdkWindow *root_window = gdk_get_default_root_window ();
+    gint width = CIRCLE_SIZE + workaround_offset;
+    gint height = CIRCLE_SIZE + workaround_offset;
+
+    /* cut down screenshot if it's out of bounds */
+    if (x < 0) {
+        width += x;
+        x = 0;
+    }
+    if (y < 0) {
+        height += y;
+        y = 0;
     }
 
-    gtk_widget_set_visual (widget, visual);
+    screenshot = gdk_pixbuf_get_from_window (root_window,
+                                             x, y,
+                                             width, height);
+    return screenshot;
 }
 
 
+
 static gboolean
-find_cursor_window_draw (GtkWidget      *window,
+find_cursor_motion_notify_event (GtkWidget      *widget,
+                                 GdkEventMotion *event,
+                                 gpointer        userdata) {
+    gtk_window_move (GTK_WINDOW (widget), event->x_root - CIRCLE_RADIUS, event->y_root - CIRCLE_RADIUS);
+    return FALSE;
+}
+
+
+
+static gboolean
+find_cursor_window_composited (GtkWidget *widget) {
+    GdkScreen   *screen = gtk_widget_get_screen (widget);
+    GdkVisual   *visual = gdk_screen_get_rgba_visual (screen);
+    gboolean     composited;
+
+    if (gdk_screen_is_composited (screen))
+        composited = TRUE;
+    else
+    {
+        visual = gdk_screen_get_system_visual (screen);
+        composited = FALSE;
+    }
+
+    gtk_widget_set_visual (widget, visual);
+    return composited;
+}
+
+
+
+static void
+find_cursor_window_destroy (GtkWidget *widget,
+                            gpointer   user_data) {
+    if (pixbuf)
+        g_object_unref (pixbuf);
+    gtk_main_quit ();
+}
+
+
+
+static gboolean
+find_cursor_window_draw (GtkWidget      *widget,
                          cairo_t        *cr,
                          gpointer        user_data) {
-    int width, height;
     int i = 0;
     int arcs = 1;
+    gboolean composited = GPOINTER_TO_INT (user_data);
 
-    gtk_window_get_size (GTK_WINDOW (window), &width, &height);
+    if (composited) {
+        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+        cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.0);
+    }
+    else {
+        if (pixbuf) {
+            if (screenshot_offset_x > 0) screenshot_offset_x = 0;
+            if (screenshot_offset_y > 0) screenshot_offset_y = 0;
 
-    cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-    cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.0);
+            gdk_cairo_set_source_pixbuf (cr, pixbuf,
+                                         0 - screenshot_offset_x - workaround_offset,
+                                         0 - screenshot_offset_y - workaround_offset);
+        }
+        else
+            g_warning ("Something with the screenshot went wrong.");
+    }
     cairo_paint (cr);
 
     cairo_set_line_width (cr, 3.0);
-    cairo_translate (cr, width / 2, height / 2);
+    cairo_translate (cr, CIRCLE_RADIUS, CIRCLE_RADIUS);
 
     if (px > 90.0)
         arcs = 4;
@@ -105,13 +170,15 @@ find_cursor_window_draw (GtkWidget      *window,
     }
 
     /* stop before the circles get bigger than the window */
-    if (px > 200)
-        gtk_main_quit();
+    if (px >= CIRCLE_RADIUS) {
+        find_cursor_window_destroy (widget, NULL);
+    }
 
     px += 3;
 
     return FALSE;
 }
+
 
 
 gint
@@ -125,10 +192,10 @@ main (gint argc, gchar **argv)
     GdkDevice     *device;
     GdkScreen     *screen;
     gint           x,y;
+    gboolean       composited;
 
     /* initialize xfconf */
-    if (!xfconf_init (&error))
-    {
+    if (!xfconf_init (&error)) {
         /* print error and exit */
         g_error ("Failed to connect to xfconf daemon: %s.", error->message);
         g_error_free (error);
@@ -139,9 +206,8 @@ main (gint argc, gchar **argv)
     /* open the channels */
     accessibility_channel = xfconf_channel_new ("accessibility");
 
-    if (xfconf_channel_get_bool (accessibility_channel, "/FindCursor", TRUE))
-        g_warning ("continue");
-    else
+    /* don't do anything if the /FindCursor setting is not enabled */
+    if (!xfconf_channel_get_bool (accessibility_channel, "/FindCursor", TRUE))
         return 0;
 
     gtk_init (&argc, &argv);
@@ -153,31 +219,52 @@ main (gint argc, gchar **argv)
     screen = gdk_screen_get_default ();
     gdk_device_get_position (device, &screen, &x, &y);
 
-    window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    /* popup tells the wm to ignore if parts of the window are offscreen */
+    window = gtk_window_new (GTK_WINDOW_POPUP);
     gtk_container_set_border_width (GTK_CONTAINER (window), 0);
     gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
-    gtk_window_set_default_size (GTK_WINDOW (window), 500, 500);
-    gtk_widget_set_size_request (window, 500, 500);
+    gtk_window_set_default_size (GTK_WINDOW (window), CIRCLE_SIZE, CIRCLE_SIZE);
+    gtk_widget_set_size_request (GTK_WIDGET (window), CIRCLE_SIZE, CIRCLE_SIZE);
     gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
-    gtk_widget_set_app_paintable (window, TRUE);
+    gtk_widget_set_app_paintable (GTK_WIDGET (window), TRUE);
     gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), FALSE);
-    /* tell the wm to ignore if parts of the window are offscreen */
-    gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_DOCK);
+
     /* center the window around the mouse cursor */
-    gtk_window_move (GTK_WINDOW (window), x - 250, y - 250);
+    gtk_window_move (GTK_WINDOW (window), x - CIRCLE_RADIUS, y - CIRCLE_RADIUS);
+
+    /* check if we're in a composited environment */
+    composited = find_cursor_window_composited (GTK_WIDGET (window));
+
+    /* with compositor: make the circles follow the mouse cursor */
+    if (composited) {
+        gtk_widget_set_events (GTK_WIDGET (window), GDK_POINTER_MOTION_MASK);
+        g_signal_connect (G_OBJECT (window), "motion-notify-event",
+                          G_CALLBACK (find_cursor_motion_notify_event), NULL);
+    }
+    /* fake transparency by creating a screenshot and using that as window bg */
+    else {
+        /* this offset has to match the screenshot */
+        screenshot_offset_x = x - CIRCLE_RADIUS - workaround_offset;
+        screenshot_offset_y = y - CIRCLE_RADIUS - workaround_offset;
+
+        pixbuf = get_rectangle_screenshot (screenshot_offset_x, screenshot_offset_y);
+        if (!pixbuf)
+            g_warning ("Getting screenshot failed");
+    }
 
     g_signal_connect (G_OBJECT (window), "draw",
-                      G_CALLBACK (find_cursor_window_draw), NULL);
-    g_signal_connect (G_OBJECT(window), "screen-changed",
-                      G_CALLBACK (find_cursor_window_screen_changed), NULL);
-    g_signal_connect (G_OBJECT(window), "destroy",
-                      G_CALLBACK(gtk_main_quit), NULL);
-    find_cursor_window_screen_changed (window, NULL, NULL);
-    gtk_widget_show_all (window);
+                      G_CALLBACK (find_cursor_window_draw), GINT_TO_POINTER (composited));
+    g_signal_connect (G_OBJECT (window), "destroy",
+                      G_CALLBACK (find_cursor_window_destroy), NULL);
+
+
+    gtk_widget_show_all (GTK_WIDGET (window));
 
     g_timeout_add (10, timeout, window);
 
     gtk_main ();
+
+    xfconf_shutdown ();
 
     return 0;
 }
