@@ -167,7 +167,7 @@ static void display_settings_minimal_only_display2_toggled   (GtkToggleButton *b
 static void display_setting_primary_toggled                  (GtkToggleButton *button,
                                                               GtkBuilder *builder);
 
-
+static void display_setting_mirror_displays_populate         (GtkBuilder *builder);
 
 static void
 display_settings_changed (void)
@@ -179,14 +179,15 @@ static XfceOutputInfo*
 get_nth_xfce_output_info(gint id)
 {
     XfceOutputInfo *output = NULL;
+    GList * entry = NULL;
 
     if (current_outputs)
-        output = g_list_nth (current_outputs, id)->data;
+        entry = g_list_nth (current_outputs, id);
 
-    if (output)
-        return output;
+    if (entry)
+        output = entry->data;
 
-    return NULL;
+    return output;
 }
 
 static void
@@ -485,8 +486,12 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
     /* Set new mode */
     xfce_randr->mode[active_output] = value;
 
+    /* In any case, check if we're now in mirror mode */
+    display_setting_mirror_displays_populate (builder);
+
     /* Apply the changes */
     display_settings_changed ();
+    foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
 }
 
 static void
@@ -551,6 +556,9 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     /* If a new resolution was selected, set a refresh rate */
     if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
         gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
+
+    /* In any case, check if we're now in mirror mode */
+    display_setting_mirror_displays_populate (builder);
 
     /* Unblock the signal */
     g_signal_handlers_unblock_by_func (combobox, display_setting_refresh_rates_changed,
@@ -885,6 +893,10 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     if (!xfce_randr)
         return;
 
+    /* reset the inconsistent state, since the mirror checkbutton is being toggled */
+    if (gtk_toggle_button_get_inconsistent(togglebutton))
+        gtk_toggle_button_set_inconsistent (togglebutton, FALSE);
+
     if (gtk_toggle_button_get_active (togglebutton))
     {
         /* Activate mirror-mode with a single mode for all of them */
@@ -921,12 +933,14 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     for (n = 0; n < xfce_randr->noutput; n++)
     {
         output = get_nth_xfce_output_info (n);
-        output->rotation = xfce_randr->rotation[n];
-        output->x = xfce_randr->position[n].x;
-        output->y = xfce_randr->position[n].y;
-        output->mirrored = xfce_randr->mirrored[n];
-        output->width = xfce_randr_mode_width (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
-        output->height = xfce_randr_mode_height (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
+        if (output) {
+            output->rotation = xfce_randr->rotation[n];
+            output->x = xfce_randr->position[n].x;
+            output->y = xfce_randr->position[n].y;
+            output->mirrored = xfce_randr->mirrored[n];
+            output->width = xfce_randr_mode_width (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
+            output->height = xfce_randr_mode_height (xfce_randr_find_mode_by_id (xfce_randr, n, xfce_randr->mode[n]), 0);
+        } /* else: some kind of racecondition during re-connect? - just ignore */
     }
 
     /* Apply the changes */
@@ -941,6 +955,7 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
     RRMode   mode = None;
     guint    n;
     gint     cloned = TRUE;
+    gint     mirrored;
 
     if (!xfce_randr)
         return;
@@ -978,12 +993,25 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
 
         cloned &= (xfce_randr->mode[n] == mode &&
                    xfce_randr->mirrored[n]);
+        mirrored = xfce_randr->mirrored[n];
 
         if (!cloned)
             break;
     }
 
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), cloned);
+    /* if two displays are 'mirrored', i.e. their x and y positions are the same
+       we set the checkbutton to the inconsistent state */
+    if (mirrored == TRUE && cloned == FALSE)
+    {
+        gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (check), 1);
+    }
+    else
+    {
+        if (gtk_toggle_button_get_inconsistent (GTK_TOGGLE_BUTTON (check)))
+            gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (check), 0);
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), cloned);
+    }
+
 
     /* Unblock the signal */
     g_signal_handlers_unblock_by_func (check, display_setting_mirror_displays_toggled,
@@ -1562,12 +1590,19 @@ screen_on_event (GdkXEvent *xevent,
 }
 
 /* Xfce RANDR GUI **TODO** Place these functions in a sensible location */
-static gboolean
+/* This function checks the status quo of more than one display with respect to
+   cloning and mirroring and returns:
+      0: not cloned
+      1: cloned (same x/y, same resolution)
+      2: mirrored (same x/y, different resolution)
+*/
+static gint
 get_mirrored_configuration (void)
 {
-    gboolean cloned = FALSE;
+    gboolean cloned = TRUE;
     RRMode   mode = None;
     guint    n;
+    gint     mirrored;
 
     if (!xfce_randr)
         return FALSE;
@@ -1580,7 +1615,7 @@ get_mirrored_configuration (void)
         mode = xfce_randr_clonable_mode (xfce_randr);
 
     if (mode == None)
-        return FALSE;
+        return 0;
 
     /* Check if mirror settings are on */
     for (n = 0; n < xfce_randr->noutput; n++)
@@ -1588,13 +1623,18 @@ get_mirrored_configuration (void)
         if (xfce_randr->mode[n] == None)
             continue;
 
-        cloned = xfce_randr->mirrored[n];
+        cloned &= (xfce_randr->mode[n] == mode &&
+                   xfce_randr->mirrored[n]);
+        mirrored = xfce_randr->mirrored[n];
 
         if (!cloned)
             break;
     }
 
-    return cloned;
+    if (mirrored == TRUE && cloned == FALSE)
+        return 2;
+    else
+        return cloned;
 }
 
 static XfceOutputInfo *convert_xfce_output_info (gint output_id)
@@ -2232,9 +2272,11 @@ on_output_event (FooScrollArea      *area,
                  gpointer            data)
 {
     XfceOutputInfo *output = data;
+    gint            mirrored;
 
     //App *app = g_object_get_data (G_OBJECT (area), "app");
 
+    mirrored = get_mirrored_configuration();
     /* If the mouse is inside the outputs, set the cursor to "you can move me".  See
      * on_canvas_event() for where we reset the cursor to the default if it
      * exits the outputs' area.
@@ -2242,7 +2284,7 @@ on_output_event (FooScrollArea      *area,
     if (event->type == FOO_MOTION_OUTSIDE)
         return;
 
-    if (!get_mirrored_configuration() && get_n_connected() > 1)
+    if (!mirrored == 1 && get_n_connected() > 1)
         set_cursor (GTK_WIDGET (area), GDK_FLEUR);
 
     if (event->type == FOO_BUTTON_PRESS)
@@ -2251,7 +2293,7 @@ on_output_event (FooScrollArea      *area,
 
         gtk_combo_box_set_active (GTK_COMBO_BOX(randr_outputs_combobox), output->id);
 
-        if (!get_mirrored_configuration() && get_n_connected() > 1)
+        if (!mirrored == 1 && get_n_connected() > 1)
         {
             foo_scroll_area_begin_grab (area, on_output_event, data);
 
@@ -2355,29 +2397,6 @@ on_canvas_event (FooScrollArea      *area,
     set_cursor (GTK_WIDGET (area), GDK_BLANK_CURSOR);
 }
 
-static PangoLayout *
-get_display_name (XfceOutputInfo *output)
-{
-    const char *text;
-
-    if (get_mirrored_configuration())
-    {
-    /* Translators:  this is the feature where what you see on your laptop's
-     * screen is the same as your external monitor.  Here, "Mirror" is being
-     * used as an adjective, not as a verb.  For example, the Spanish
-     * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-     */
-        text = _("Mirror Screens");
-    }
-    else
-    {
-        text = output->display_name;
-    }
-
-    return gtk_widget_create_pango_layout (
-    GTK_WIDGET (randr_gui_area), text);
-}
-
 static void
 paint_background (FooScrollArea *area,
                   cairo_t       *cr)
@@ -2404,13 +2423,17 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     gint total_w, total_h;
     GList *connected_outputs = list_connected_outputs (&total_w, &total_h);
     XfceOutputInfo *output = g_list_nth (connected_outputs, i)->data;
-    PangoLayout *layout = get_display_name (output);
+    PangoLayout *layout;
     PangoRectangle ink_extent, log_extent;
     GdkRectangle viewport;
     cairo_pattern_t *pat_lin = NULL, *pat_radial = NULL;
     double alpha = 1.0;
     double available_w;
     double factor = 1.0;
+    const char *text;
+    gint    mirrored;
+
+    mirrored = get_mirrored_configuration();
 
     cairo_save (cr);
 
@@ -2463,7 +2486,17 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
 
     cairo_set_line_width (cr, 1.0);
 
-    if (output->id != active_output)
+    /* Make overlapping displays ('mirrored') more transparent so both displays can
+       be recognized more easily */
+    if (output->id != active_output && mirrored == 2)
+        alpha = 0.3;
+    /* When displays are mirrored it makes no sense to make them semi-transparent
+       because they overlay each other completely */
+    else if (mirrored == 1)
+        alpha = 1.0;
+    /* the inactive display should be more transparent and the overlapping one as
+       well */
+    else if (output->id != active_output || mirrored == 2)
         alpha = 0.8;
 
     if (output->on)
@@ -2515,6 +2548,20 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     cairo_fill (cr);
 
     /* Display name label*/
+    if (mirrored == 1)
+    {
+    /* Translators:  this is the feature where what you see on your laptop's
+     * screen is the same as your external monitor.  Here, "Mirror" is being
+     * used as an adjective, not as a verb.  For example, the Spanish
+     * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
+     */
+        text = _("Mirror Screens");
+    }
+    else
+    {
+        text = output->display_name;
+    }
+    layout = gtk_widget_create_pango_layout (GTK_WIDGET (randr_gui_area), text);
     layout_set_font (layout, "Sans Bold 12");
     pango_layout_get_pixel_extents (layout, &ink_extent, &log_extent);
 
@@ -2532,7 +2579,11 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     cairo_move_to (cr,
                    x + ((w * scale + 0.5) - factor * log_extent.width) / 2,
                    y + ((h * scale + 0.5) - factor * log_extent.height) / 2 - 1);
-    cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha - 0.6);
+    /* Try to make the text as readable as possible for overlapping displays */
+    if (output->id == active_output && mirrored == 2)
+       cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha);
+    else
+        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha - 0.6);
 
     pango_cairo_show_layout (cr, layout);
 
@@ -2540,7 +2591,12 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
                    x + ((w * scale + 0.5) - factor * log_extent.width) / 2,
                    y + ((h * scale + 0.5) - factor * log_extent.height) / 2);
 
-    cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, alpha);
+    /* Try to make the text as readable as possible for overlapping displays - the
+       currently selected one could be painted below the other display*/
+    if (output->id == active_output && mirrored == 2)
+        cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 1.0);
+    else
+        cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, alpha);
 
     pango_cairo_show_layout (cr, layout);
 
@@ -2592,7 +2648,7 @@ on_area_paint (FooScrollArea  *area,
     {
         paint_output (cr, g_list_position (connected_outputs, list), &x, &y);
 
-        if (get_mirrored_configuration())
+        if (get_mirrored_configuration() == 1)
             break;
     }
 }
