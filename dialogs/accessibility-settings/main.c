@@ -159,6 +159,9 @@ accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     object = gtk_builder_get_object (builder, "mouse-emulation-curve");
     xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Curve", G_TYPE_INT, object, "value");
+
+    object = gtk_builder_get_object (builder, "find-cursor");
+    xfconf_g_property_bind (accessibility_channel, "/FindCursor", G_TYPE_BOOLEAN, object, "active");
 }
 
 

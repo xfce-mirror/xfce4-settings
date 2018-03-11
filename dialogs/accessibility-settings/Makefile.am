@@ -7,7 +7,30 @@ AM_CPPFLAGS = \
 	$(PLATFORM_CPPFLAGS)
 
 bin_PROGRAMS = \
-	xfce4-accessibility-settings
+	xfce4-accessibility-settings \
+	xfce4-find-cursor
+
+xfce4_find_cursor_SOURCES = \
+  find-cursor.c
+
+xfce4_find_cursor_CFLAGS = \
+	$(GTK_CFLAGS) \
+	$(XFCONF_CFLAGS) \
+	$(PLATFORM_CFLAGS) \
+    -DGTK_DISABLE_SINGLE_INCLUDES \
+    -DGDK_DISABLE_DEPRECATED \
+    -DGTK_DISABLE_DEPRECATED \
+    -DGSEAL_ENABLE \
+    -DGDK_PIXBUF_DISABLE_DEPRECATED \
+    -DG_DISABLE_DEPRECATED
+
+xfce4_find_cursor_LDFLAGS = \
+	-no-undefined \
+	$(PLATFORM_LDFLAGS)
+
+xfce4_find_cursor_LDADD = \
+	$(GTK_LIBS) \
+	$(XFCONF_LIBS)
 
 xfce4_accessibility_settings_SOURCES = \
 	main.c \
