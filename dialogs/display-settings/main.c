@@ -2430,7 +2430,8 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     double x, y, end_x, end_y;
     gint total_w, total_h;
     GList *connected_outputs = list_connected_outputs (&total_w, &total_h);
-    XfceOutputInfo *output = g_list_nth (connected_outputs, i)->data;
+    XfceOutputInfo *output = NULL;
+    GList *entry = NULL;
     PangoLayout *layout;
     PangoRectangle ink_extent, log_extent;
     GdkRectangle viewport;
@@ -2447,7 +2448,13 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
 
     foo_scroll_area_get_viewport (FOO_SCROLL_AREA (randr_gui_area), &viewport);
 
-    get_geometry (output, &w, &h);
+    entry = g_list_nth (connected_outputs, i);
+    if (entry)
+        output = entry->data;
+    if (output)
+        get_geometry (output, &w, &h);
+    else
+        return;
 
     viewport.height -= 2 * MARGIN;
     viewport.width -= 2 * MARGIN;
