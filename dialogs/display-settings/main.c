@@ -2496,7 +2496,7 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     /* Make overlapping displays ('mirrored') more transparent so both displays can
        be recognized more easily */
     if (output->id != active_output && mirrored == 2)
-        alpha = 0.3;
+        alpha = 0.5;
     /* When displays are mirrored it makes no sense to make them semi-transparent
        because they overlay each other completely */
     else if (mirrored == 1)
@@ -2504,7 +2504,7 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     /* the inactive display should be more transparent and the overlapping one as
        well */
     else if (output->id != active_output || mirrored == 2)
-        alpha = 0.8;
+        alpha = 0.7;
 
     if (output->on)
     {
@@ -2653,11 +2653,21 @@ on_area_paint (FooScrollArea  *area,
 
     for (list = connected_outputs; list != NULL; list = list->next)
     {
-        paint_output (cr, g_list_position (connected_outputs, list), &x, &y);
+        gint i;
+
+        i = g_list_position (connected_outputs, list);
+        /* Always paint the currently selected display last, i.e. on top, so it's
+           visible and the name is readable */
+        if (i == active_output) {
+            continue;
+        }
+        paint_output (cr, i, &x, &y);
 
         if (get_mirrored_configuration() == 1)
             break;
     }
+    /* Finally also paint the active output */
+    paint_output (cr, active_output, &x, &y);
 }
 
 static XfceOutputInfo *
