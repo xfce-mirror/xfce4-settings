@@ -613,11 +613,11 @@ mouse_settings_get_device_prop (Display     *xdisplay,
     prop = XInternAtom (xdisplay, prop_name, False);
     float_type = XInternAtom (xdisplay, "FLOAT", False);
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
     rc = XGetDeviceProperty (xdisplay, device, prop, 0, 1, False,
                              type, &type_ret, &format, &n_items_ret,
                              &bytes_after, &data);
-    gdk_error_trap_pop_ignored ();
+    gdk_x11_display_error_trap_pop_ignored (gdk_display_get_default ());
     if (rc == Success && type_ret == type && n_items_ret >= n_items)
     {
         success = TRUE;
@@ -750,12 +750,12 @@ mouse_settings_device_get_int_property (XDevice *device,
     gint     val = -1;
     gint     res;
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
     res = XGetDeviceProperty (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()),
                               device, prop, 0, 1000, False,
                               AnyPropertyType, &type, &format,
                               &n_items, &bytes_after, &data);
-    if (gdk_error_trap_pop () == 0 && res == Success)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) == 0 && res == Success)
     {
         if (type == XA_INTEGER)
         {
@@ -801,9 +801,9 @@ mouse_settings_device_get_selected (GtkBuilder  *builder,
         if (device != NULL)
         {
             /* open the device */
-            gdk_error_trap_push ();
+            gdk_x11_display_error_trap_push (gdk_display_get_default ());
             *device = XOpenDevice (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), xid);
-            if (gdk_error_trap_pop () != 0 || *device == NULL)
+            if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || *device == NULL)
             {
                 g_critical ("Unable to open device %ld", xid);
                 *device = NULL;
@@ -916,12 +916,12 @@ mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
         object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
         tap_to_click = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
 
-        gdk_error_trap_push ();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
         tap_ation_prop = XInternAtom (xdisplay, "Synaptics Tap Action", True);
         res = XGetDeviceProperty (xdisplay, device, tap_ation_prop, 0, 1000, False,
                                   AnyPropertyType, &type, &format,
                                   &n_items, &bytes_after, &data);
-        if (gdk_error_trap_pop () == 0
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) == 0
             && res == Success)
         {
             if (type == XA_INTEGER
@@ -1213,9 +1213,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     /* get the selected item */
     if (mouse_settings_device_get_selected (builder, &device, NULL))
     {
-        gdk_error_trap_push ();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
         device_info = XListInputDevices (xdisplay, &ndevices);
-        if (gdk_error_trap_pop () == 0 && device_info != NULL)
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) == 0 && device_info != NULL)
         {
             /* find mode and number of buttons */
             for (i = 0; i < ndevices; i++)
@@ -1251,9 +1251,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
             if (nbuttons > 0)
             {
                 buttonmap = g_new0 (guchar, nbuttons);
-                gdk_error_trap_push ();
+                gdk_x11_display_error_trap_push (gdk_display_get_default ());
                 XGetDeviceButtonMapping (xdisplay, device, buttonmap, nbuttons);
-                if (gdk_error_trap_pop () != 0)
+                if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
                     g_critical ("Failed to get button map");
 
                 /* figure out the position of the first and second/third button in the map */
@@ -1282,9 +1282,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 #endif /* HAVE_LIBINPUT */
         {
             /* get the feedback states for this device */
-            gdk_error_trap_push ();
+            gdk_x11_display_error_trap_push (gdk_display_get_default ());
             states = XGetFeedbackControl (xdisplay, device, &nstates);
-            if (gdk_error_trap_pop () != 0 || states == NULL)
+            if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || states == NULL)
             {
                  g_critical ("Failed to get feedback states");
             }
@@ -1325,9 +1325,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         wacom_rotation_prop = XInternAtom (xdisplay, "Wacom Rotation", True);
 
         /* check if this is a synaptics or wacom device */
-        gdk_error_trap_push ();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
         props = XListDeviceProperties (xdisplay, device, &nprops);
-        if (gdk_error_trap_pop () == 0 && props != NULL)
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) == 0 && props != NULL)
         {
             for (i = 0; i < nprops; i++)
             {
@@ -1652,9 +1652,9 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
     }
 
     /* get all the registered devices */
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
     device_list = XListInputDevices (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), &ndevices);
-    if (gdk_error_trap_pop () != 0 || device_list == NULL)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || device_list == NULL)
     {
         g_message ("No devices found");
         goto bailout;
@@ -1813,10 +1813,10 @@ mouse_settings_create_event_filter (GtkBuilder *builder)
     XEventClass  event_class;
 
     /* monitor device change events */
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
     DevicePresence (xdisplay, device_presence_event_type, event_class);
     XSelectExtensionEvent (xdisplay, RootWindow (xdisplay, DefaultScreen (xdisplay)), &event_class, 1);
-    if (gdk_error_trap_pop () != 0)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
     {
         g_critical ("Failed to setup the device event filter");
         return;

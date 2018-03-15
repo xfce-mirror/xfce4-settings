@@ -175,7 +175,7 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
     gint       delay, interval, time_to_max;
     gint       max_speed, curve;
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     /* allocate */
     xkb = XkbAllocKeyboard ();
@@ -361,7 +361,7 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
         g_critical ("XkbAllocKeyboard() returned a null pointer");
     }
 
-    if (gdk_error_trap_pop () != 0)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
        g_critical ("Failed to set keyboard controls");
 }
 

@@ -1066,7 +1066,7 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
     DialogCategory  *category;
 
     category = g_slice_new0 (DialogCategory);
-    category->directory = g_object_ref (G_OBJECT (directory));
+    category->directory = (GarconMenuDirectory *) g_object_ref (G_OBJECT (directory));
     category->dialog = dialog;
 
     /* filter category from main store */

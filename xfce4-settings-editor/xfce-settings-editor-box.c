@@ -728,7 +728,7 @@ xfce_settings_editor_box_properties_load (XfceSettingsEditorBox *self,
 
     gtk_tree_store_clear (self->props_store);
 
-    self->props_channel = g_object_ref (G_OBJECT (channel));
+    self->props_channel = (XfconfChannel *) g_object_ref (G_OBJECT (channel));
 
     props = xfconf_channel_get_properties (channel, NULL);
     if (G_LIKELY (props != NULL))

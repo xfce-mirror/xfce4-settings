@@ -180,7 +180,7 @@ send_selection_notify (GsdClipboardManager *manager,
         notify.property = success ? manager->priv->property : None;
         notify.time = manager->priv->time;
 
-        gdk_error_trap_push ();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
         XSendEvent (manager->priv->display,
                     manager->priv->requestor,
@@ -189,7 +189,7 @@ send_selection_notify (GsdClipboardManager *manager,
                     (XEvent *)&notify);
         XSync (manager->priv->display, False);
 
-        if (gdk_error_trap_pop () != 0)
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
         {
                 g_critical ("Failed to notify clipboard selection");
         }
@@ -212,14 +212,14 @@ finish_selection_request (GsdClipboardManager *manager,
         notify.property = success ? xev->xselectionrequest.property : None;
         notify.time = xev->xselectionrequest.time;
 
-        gdk_error_trap_push ();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
         XSendEvent (xev->xselectionrequest.display,
                     xev->xselectionrequest.requestor,
                     False, NoEventMask, (XEvent *) &notify);
         XSync (manager->priv->display, False);
 
-        if (gdk_error_trap_pop () != 0)
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
         {
                 g_critical ("Failed to send selection request");
         }
@@ -464,7 +464,7 @@ convert_clipboard_manager (GsdClipboardManager *manager,
                          */
                         finish_selection_request (manager, xev, False);
                 } else {
-                        gdk_error_trap_push ();
+                        gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
                         clipboard_manager_watch_cb (manager,
                                                     xev->xselectionrequest.requestor,
@@ -476,10 +476,10 @@ convert_clipboard_manager (GsdClipboardManager *manager,
                                       StructureNotifyMask);
                         XSync (manager->priv->display, False);
 
-                        if (gdk_error_trap_pop () != Success)
+                        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != Success)
                                 return;
 
-                        gdk_error_trap_push ();
+                        gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
                         if (xev->xselectionrequest.property != None) {
                                 XGetWindowProperty (manager->priv->display,
@@ -489,7 +489,7 @@ convert_clipboard_manager (GsdClipboardManager *manager,
                                                     &type, &format, &nitems, &remaining,
                                                     (guchar **) &targets);
 
-                                if (gdk_error_trap_pop () != Success) {
+                                if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != Success) {
                                         if (targets)
                                                 XFree (targets);
 
@@ -592,7 +592,7 @@ convert_clipboard_target (IncrConversion      *rdata,
                         /* start incremental transfer */
                         rdata->offset = 0;
 
-                        gdk_error_trap_push ();
+                        gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
                         XGetWindowAttributes (manager->priv->display, rdata->requestor, &atts);
                         XSelectInput (manager->priv->display, rdata->requestor,
@@ -605,7 +605,7 @@ convert_clipboard_target (IncrConversion      *rdata,
 
                         XSync (manager->priv->display, False);
 
-                        if (gdk_error_trap_pop () != 0)
+                        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
                         {
                                 g_critical ("Failed to transfer clipboard contents");
                         }

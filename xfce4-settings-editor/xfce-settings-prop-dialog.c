@@ -646,7 +646,7 @@ xfce_settings_prop_dialog_new (GtkWindow     *parent,
 
     dialog = g_object_new (XFCE_TYPE_SETTINGS_PROP_DIALOG, NULL);
 
-    dialog->channel = g_object_ref (G_OBJECT (channel));
+    dialog->channel = (XfconfChannel *) g_object_ref (G_OBJECT (channel));
 
     if (property != NULL)
     {

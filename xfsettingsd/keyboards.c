@@ -132,12 +132,12 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
         if (G_LIKELY (xdisplay != NULL))
         {
             /* monitor device changes */
-            gdk_error_trap_push ();
+            gdk_x11_display_error_trap_push (gdk_display_get_default ());
             DevicePresence (xdisplay, helper->device_presence_event_type, event_class);
             XSelectExtensionEvent (xdisplay, RootWindow (xdisplay, DefaultScreen (xdisplay)), &event_class, 1);
 
             /* add an event filter */
-            if (gdk_error_trap_pop () == 0)
+            if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) == 0)
                 gdk_window_add_filter (NULL, xfce_keyboards_helper_event_filter, helper);
             else
                 g_warning ("Failed to create device filter");
@@ -181,9 +181,9 @@ xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
     /* set key repeat */
     values.auto_repeat_mode = repeat ? 1 : 0;
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
     XChangeKeyboardControl (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), KBAutoRepeatMode, &values);
-    if (gdk_error_trap_pop () != 0)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
         g_critical ("Failed to change keyboard repeat mode");
 
     xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set auto repeat %s", repeat ? "on" : "off");
@@ -201,7 +201,7 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
     delay = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Delay", 500);
     rate = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Rate", 20);
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     /* allocate xkb structure */
     xkb = XkbAllocKeyboard ();
@@ -225,7 +225,7 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
         XFree (xkb);
     }
 
-    if (gdk_error_trap_pop () != 0)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
         g_critical ("Failed to change the keyboard repeat");
 }
 
@@ -266,13 +266,13 @@ xfce_keyboards_helper_restore_numlock_state (XfconfChannel *channel)
     {
         state = xfconf_channel_get_bool (channel, "/Default/Numlock", FALSE);
 
-        gdk_error_trap_push ();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
         dpy = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
         numlock_mask = XkbKeysymToModifiers (dpy, XK_Num_Lock);
         XkbLockModifiers (dpy, XkbUseCoreKbd, numlock_mask, state ? numlock_mask : 0);
 
-        if (gdk_error_trap_pop () != 0)
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
             g_critical ("Failed to change numlock modifier");
 
         xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set numlock %s", state ? "on" : "off");
@@ -292,13 +292,13 @@ xfce_keyboards_helper_save_numlock_state (XfconfChannel *channel)
     Bool     numlock_state;
     Atom     numlock;
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     dpy = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
     numlock = XInternAtom(dpy, "Num Lock", False);
     XkbGetNamedIndicator (dpy, numlock, NULL, &numlock_state, NULL, NULL);
 
-    if (gdk_error_trap_pop () != 0)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
         g_critical ("Failed to get numlock state");
 
     xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "save numlock %s", numlock_state ? "on" : "off");

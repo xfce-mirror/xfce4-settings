@@ -206,7 +206,7 @@ xfce_workspaces_helper_get_names (void)
     GValue      *val;
     const gchar *p;
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     utf8_atom = gdk_atom_intern_static_string ("UTF8_STRING");
     succeed = gdk_property_get (gdk_get_default_root_window (),
@@ -216,7 +216,7 @@ xfce_workspaces_helper_get_names (void)
                                 FALSE, &type_returned, NULL, &length,
                                 (guchar **) &data);
 
-    if (gdk_error_trap_pop () == 0
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) == 0
         && succeed
         && type_returned == utf8_atom
         && data != NULL
@@ -263,7 +263,7 @@ xfce_workspaces_helper_get_count (void)
     GdkAtom   cardinal_atom, type_returned;
     gint      format_returned;
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     cardinal_atom = gdk_atom_intern_static_string ("CARDINAL");
     succeed = gdk_property_get (gdk_get_default_root_window (),
@@ -273,7 +273,7 @@ xfce_workspaces_helper_get_count (void)
                                 FALSE, &type_returned, &format_returned, NULL,
                                 &data);
 
-    if (gdk_error_trap_pop () == 0
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) == 0
         && succeed
         && data != NULL
         && type_returned == cardinal_atom
@@ -346,7 +346,7 @@ xfce_workspaces_helper_set_names_real (XfceWorkspacesHelper *helper)
         g_get_current_time (&helper->timestamp);
         g_time_val_add (&helper->timestamp, G_USEC_PER_SEC);
 
-        gdk_error_trap_push();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
         gdk_property_change (gdk_get_default_root_window (),
                              gdk_atom_intern_static_string ("_NET_DESKTOP_NAMES"),
@@ -355,7 +355,7 @@ xfce_workspaces_helper_set_names_real (XfceWorkspacesHelper *helper)
                              (guchar *) names_str->str,
                              names_str->len + 1);
 
-        if (gdk_error_trap_pop () != 0)
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
             g_warning ("Failed to change _NET_DESKTOP_NAMES.");
 
         xfsettings_dbg (XFSD_DEBUG_WORKSPACES, "%d desktop names set from xfconf", i);

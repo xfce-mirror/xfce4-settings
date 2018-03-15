@@ -227,12 +227,12 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
         if (XRRQueryVersion (helper->xdisplay, &major, &minor)
             && (major > 1 || (major == 1 && minor >= 2)))
         {
-            gdk_error_trap_push ();
+            gdk_x11_display_error_trap_push (gdk_display_get_default ());
             /* get the screen resource */
             helper->resources = XRRGetScreenResources (helper->xdisplay,
                                                        GDK_WINDOW_XID (helper->root_window));
-            gdk_flush ();
-            err = gdk_error_trap_pop ();
+            gdk_display_flush (gdk_display_get_default ());
+            err = gdk_x11_display_error_trap_pop (gdk_display_get_default ());
             if (err)
             {
                 g_critical ("XRRGetScreenResources failed (err: %d). "
@@ -348,10 +348,10 @@ xfce_displays_helper_finalize (GObject *object)
     /* Free the screen resources */
     if (helper->resources)
     {
-        gdk_error_trap_push ();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
         XRRFreeScreenResources (helper->resources);
-        gdk_flush ();
-        if (gdk_error_trap_pop () != 0)
+        gdk_display_flush (gdk_display_get_default ());
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
         {
             g_critical ("Failed to free screen resources");
         }
@@ -374,7 +374,7 @@ xfce_displays_helper_reload (XfceDisplaysHelper *helper)
     g_ptr_array_unref (helper->outputs);
     g_ptr_array_unref (helper->crtcs);
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     /* Free the screen resources */
     XRRFreeScreenResources (helper->resources);
@@ -392,8 +392,8 @@ xfce_displays_helper_reload (XfceDisplaysHelper *helper)
     helper->resources = XRRGetScreenResources (helper->xdisplay,
                                                GDK_WINDOW_XID (helper->root_window));
 
-    gdk_flush ();
-    err = gdk_error_trap_pop ();
+    gdk_display_flush (gdk_display_get_default ());
+    err = gdk_x11_display_error_trap_pop (gdk_display_get_default ());
     if (err)
         g_critical ("Failed to reload the RandR cache (err: %d).", err);
 
@@ -506,7 +506,9 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
                         {
                             crtc->mode = output->preferred_mode;
                             crtc->rotation = RR_Rotate_0;
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                             if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)) {
+G_GNUC_END_IGNORE_DEPRECATIONS
                                 crtc->x = crtc->y = 0;
                             } /* else - leave values from last time we saw the monitor */
                             /* set width and height */
@@ -828,10 +830,10 @@ xfce_displays_helper_list_outputs (XfceDisplaysHelper *helper)
     outputs = g_ptr_array_new_with_free_func ((GDestroyNotify) xfce_displays_helper_free_output);
     for (n = 0; n < helper->resources->noutput; ++n)
     {
-        gdk_error_trap_push ();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
         output_info = XRRGetOutputInfo (helper->xdisplay, helper->resources, helper->resources->outputs[n]);
-        gdk_flush ();
-        err = gdk_error_trap_pop ();
+        gdk_display_flush (gdk_display_get_default ());
+        err = gdk_x11_display_error_trap_pop (gdk_display_get_default ());
         if (err || !output_info)
         {
             g_warning ("Failed to load info for output %lu (err: %d). Skipping.",
@@ -906,10 +908,10 @@ xfce_displays_helper_free_output (XfceRROutput *output)
     if (output == NULL)
         return;
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
     XRRFreeOutputInfo (output->info);
-    gdk_flush ();
-    if (gdk_error_trap_pop () != 0)
+    gdk_display_flush (gdk_display_get_default ());
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
     {
         g_critical ("Failed to free output info");
     }
@@ -934,10 +936,10 @@ xfce_displays_helper_list_crtcs (XfceDisplaysHelper *helper)
     {
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Detected CRTC %lu.", helper->resources->crtcs[n]);
 
-        gdk_error_trap_push ();
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
         crtc_info = XRRGetCrtcInfo (helper->xdisplay, helper->resources, helper->resources->crtcs[n]);
-        gdk_flush ();
-        err = gdk_error_trap_pop ();
+        gdk_display_flush (gdk_display_get_default ());
+        err = gdk_x11_display_error_trap_pop (gdk_display_get_default ());
         if (err || !crtc_info)
         {
             g_warning ("Failed to load info for CRTC %lu (err: %d). Skipping.",
@@ -1232,7 +1234,7 @@ xfce_displays_helper_apply_all (XfceDisplaysHelper *helper)
     g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_get_topleftmost_pos, helper);
     g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_normalize_crtc, helper);
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     /* grab server to prevent clients from thinking no output is enabled */
     gdk_x11_display_grab (helper->display);
@@ -1254,8 +1256,8 @@ xfce_displays_helper_apply_all (XfceDisplaysHelper *helper)
 
     /* release the grab, changes are done */
     gdk_x11_display_ungrab (helper->display);
-    gdk_flush ();
-    if (gdk_error_trap_pop () != 0)
+    gdk_display_flush (gdk_display_get_default ());
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
     {
         g_critical ("Failed to apply display settings");
     }
@@ -1408,7 +1410,9 @@ xfce_displays_helper_toggle_internal (gpointer           *power,
                 return;
             crtc->mode = lvds->preferred_mode;
             crtc->rotation = RR_Rotate_0;
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)) {
+G_GNUC_END_IGNORE_DEPRECATIONS
                 crtc->x = crtc->y = 0;
             } /* else - leave values from last time we saw the monitor */
             /* set width and height */

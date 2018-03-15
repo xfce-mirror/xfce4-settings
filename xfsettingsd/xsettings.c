@@ -692,7 +692,7 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
     xfce_xsettings_helper_notify_xft_update (resource, "Xcursor.theme_core:", &bool_val);
     g_value_unset (&bool_val);
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     /* set the new resource manager string */
     XChangeProperty (xdisplay,
@@ -704,7 +704,7 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
 
     XCloseDisplay (xdisplay);
 
-    if (gdk_error_trap_pop () != 0)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
         g_critical ("Failed to update the resource manager string");
 
     xfsettings_dbg (XFSD_DEBUG_XSETTINGS,
@@ -941,7 +941,7 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
     needle = notify->buf + 8;
     *(CARD32 *)needle = notify->n_settings;
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     /* set new xsettings buffer to the screens */
     for (li = helper->screens; li != NULL; li = li->next)
@@ -961,7 +961,7 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
                          8, PropModeReplace, notify->buf, notify->buf_len);
     }
 
-    if (gdk_error_trap_pop () != 0)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
     {
         g_critical ("Failed to set properties");
     }
@@ -1086,7 +1086,7 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
     xdisplay = GDK_DISPLAY_XDISPLAY (gdkdisplay);
     helper->xsettings_atom = XInternAtom (xdisplay, "_XSETTINGS_SETTINGS", False);
 
-    gdk_error_trap_push ();
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     /* Previously, gdk_display_get_n_screens. Since Gtk 3.10, the number of screens is always 1. */
     n_screens = 1;
@@ -1166,7 +1166,7 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
         }
     }
 
-    if (gdk_error_trap_pop () != 0)
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
         g_critical ("Failed to initialize screens");
 
     if (helper->screens != NULL)
