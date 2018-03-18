@@ -47,6 +47,7 @@ gint workaround_offset = 1;
 
 
 
+static
 gboolean timeout (gpointer data) {
     GtkWidget *widget = GTK_WIDGET (data);
     gtk_widget_queue_draw (widget);
