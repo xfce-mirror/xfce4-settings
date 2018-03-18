@@ -1,3 +1,15 @@
+4.12.3
+======
+- Improvements for multimonitor support:
+  - Visualize all three display configuration states
+  - Visually note if two displays overlap (mirrored) but are not cloned
+  - Always draw active display last so it's on top
+  - Fix: Correctly position monitors in extended mode
+  - Fix: Race condition with monitor connect and disconnect
+  - Fix: Segfault on monitor reconnect
+- Translation updates: Belarusian, Danish, Greek, Italian, Malay,
+  Norwegian Bokmål, Polish, Portuguese (Brazil), Serbian, Swedish, Turkish
+
 4.12.2
 ======
 - Fix: Leave monitors where they were if possible (Xfce #14096)
