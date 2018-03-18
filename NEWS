@@ -1,6 +1,30 @@
-4.13.2 (UNRELEASED)
+4.13.2
 ======
 - New: Show location of the mouse pointer on keypress
+- Fix: syncdaemon not starting with certain locales
+- Fix: division by 0 crash from gdk_screen_height_mm()
+- Fix: Remove existing socket from socket viewport (Xfce #13847)
+- Fix: Use transient notifications for improved logging
+- Fix: Do not expand event sounds section so font scaling is correctly
+  positioned
+- Improvements for multimonitor support:
+  - Visualize all three display configuration states
+  - Visually note if two displays overlap (mirrored) but are not cloned
+  - Always draw active display last so it's on top
+  - Fix: Correctly position monitors in extended mode
+  - Fix: Race condition with monitor connect and disconnect
+  - Fix: Segfault on monitor reconnect
+  - Fix: Leave monitors where they were if possible (Xfce #14096)
+- Deprecations:
+  - Resolved GTK+ 3.22 deprecations (Xfce #14273)
+- Translation updates: Amharic, Arabic, Asturian, Basque, Belarusian,
+  Bengali, Bulgarian, Catalan, Chinese (China), Chinese (Hong Kong),
+  Chinese (Taiwan), Croatian, Czech, Danish, Dutch, English (Australia),
+  English (United Kingdom), Finnish, French, Galician, German, Greek, Hebrew,
+  Hungarian, Icelandic, Indonesian, Italian, Japanese, Kazakh, Korean,
+  Lithuanian, Malay, Norwegian Bokmål, Norwegian Nynorsk, Occitan (post 1500),
+  Polish, Portuguese, Portuguese (Brazil), Romanian, Russian, Serbian, Slovak,
+  Slovenian, Spanish, Swedish, Thai, Turkish, Uighur, Ukrainian
 
 4.13.1
 ======
