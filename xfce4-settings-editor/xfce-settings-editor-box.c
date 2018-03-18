@@ -66,7 +66,7 @@ struct _XfceSettingsEditorBox
     GtkWidget         *button_new;
     GtkWidget         *button_edit;
     GtkWidget         *button_reset;
-    
+
     gint			   paned_pos;
 };
 
@@ -145,7 +145,7 @@ static void xfce_settings_editor_box_get_property (GObject *object,
 {
     XfceSettingsEditorBox *self;
     self = XFCE_SETTINGS_EDITOR_BOX (object);
-    
+
     switch (prop_id)
     {
 	case PROP_PANED_POSITION:
@@ -165,7 +165,7 @@ static void xfce_settings_editor_box_set_property (GObject *object,
 {
     XfceSettingsEditorBox *self;
     self = XFCE_SETTINGS_EDITOR_BOX (object);
-    
+
     switch (prop_id)
     {
 	case PROP_PANED_POSITION:
@@ -207,7 +207,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (self->props_store),
                                           PROP_COLUMN_NAME, GTK_SORT_ASCENDING);
     self->paned = paned = gtk_hpaned_new ();
-    
+
     gtk_box_pack_start (GTK_BOX (self), paned, TRUE, TRUE, 0);
     gtk_paned_set_position (GTK_PANED (paned), self->paned_pos);
     gtk_container_set_border_width (GTK_CONTAINER (paned), 6);
@@ -347,9 +347,9 @@ static void
 xfce_settings_editor_box_class_init (XfceSettingsEditorBoxClass *klass)
 {
     GObjectClass   *gobject_class;
-	
+
 	gobject_class = G_OBJECT_CLASS (klass);
-	    
+
     gobject_class->set_property = xfce_settings_editor_box_set_property;
     gobject_class->get_property = xfce_settings_editor_box_get_property;
 
@@ -363,7 +363,7 @@ xfce_settings_editor_box_class_init (XfceSettingsEditorBoxClass *klass)
 													   10,
 													   G_PARAM_CONSTRUCT |
 													   G_PARAM_READWRITE));
-	
+
     gobject_class->finalize = xfce_settings_editor_box_finalize;
 }
 
@@ -389,7 +389,7 @@ xfce_settings_editor_box_finalize (GObject *object)
     g_object_unref (G_OBJECT (self->props_store));
     if (self->props_channel != NULL)
         g_object_unref (G_OBJECT (self->props_channel));
-    
+
     G_OBJECT_CLASS (xfce_settings_editor_box_parent_class)->finalize (object);
 }
 
@@ -728,7 +728,7 @@ xfce_settings_editor_box_properties_load (XfceSettingsEditorBox *self,
 
     gtk_tree_store_clear (self->props_store);
 
-    self->props_channel = g_object_ref (G_OBJECT (channel));
+    self->props_channel = (XfconfChannel *) g_object_ref (G_OBJECT (channel));
 
     props = xfconf_channel_get_properties (channel, NULL);
     if (G_LIKELY (props != NULL))
