@@ -5,17 +5,18 @@
 # Translators:
 # Adolfo Jayme-Barrientos, 2014
 # Adolfo Jayme Barrientos, 2014
-# Adolfo Jayme Barrientos, 2014
-# Adolfo Jayme Barrientos, 2014
+# Adolfo Jayme-Barrientos, 2014
+# Adolfo Jayme-Barrientos, 2014
 # gabrieltandil <gabriel.tandil@gmail.com>, 2014-2015
+# Pablo Lezaeta Reyes [pˈaβ̞lo lˌe̞θaˈeta rˈejɛ] <prflr88@gmail.com>, 2018
 # Pablo Lezaeta Reyes [pˈaβ̞lo lˌe̞θaˈeta rˈejɛ] <prflr88@gmail.com>, 2013-2015
 # Pablo Lezaeta Reyes [pˈaβ̞lo lˌe̞θaˈeta rˈejɛ] <prflr88@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-15 18:30+0100\n"
-"PO-Revision-Date: 2017-09-23 19:02+0000\n"
+"POT-Creation-Date: 2018-03-11 18:31+0100\n"
+"PO-Revision-Date: 2018-03-30 08:34+0000\n"
 "Last-Translator: Pablo Lezaeta Reyes [pˈaβ̞lo lˌe̞θaˈeta rˈejɛ] <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce4-settings/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -203,10 +204,20 @@ msgid "The ramp used to reach maximum pointer speed"
 msgstr "El incremento usado para alcanzar la velocidad máxima del puntero"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+msgid "Show location of pointer on keypress"
+msgstr "Mostrar la ubicación del puntero al pulsar una tecla"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+msgid ""
+"Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
+"mouse pointer's current location"
+msgstr "Vincula un atajo de teclado a Buscador de cursor de Xfce4 para obtener comentarios visuales de la ubicación actual del puntero del ratón"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
 msgstr "Emulación del ratón"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid "_Mouse"
 msgstr "_Ratón"
 
@@ -235,9 +246,9 @@ msgstr "Id. del SOCKET"
 msgid "Version information"
 msgstr "Información de versión"
 
-#: ../dialogs/accessibility-settings/main.c:197
-#: ../dialogs/appearance-settings/main.c:1303
-#: ../dialogs/display-settings/main.c:3018
+#: ../dialogs/accessibility-settings/main.c:200
+#: ../dialogs/appearance-settings/main.c:1305
+#: ../dialogs/display-settings/main.c:3098
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
 #: ../xfsettingsd/main.c:191 ../xfsettingsd/main.c:229
@@ -246,18 +257,18 @@ msgstr "Información de versión"
 msgid "Type '%s --help' for usage."
 msgstr "Escriba «%s --help» para instrucciones de uso."
 
-#: ../dialogs/accessibility-settings/main.c:216
-#: ../dialogs/appearance-settings/main.c:1322
-#: ../dialogs/display-settings/main.c:3037
+#: ../dialogs/accessibility-settings/main.c:219
+#: ../dialogs/appearance-settings/main.c:1324
+#: ../dialogs/display-settings/main.c:3117
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
 #: ../xfsettingsd/main.c:207 ../xfce4-settings-manager/main.c:80
 msgid "The Xfce development team. All rights reserved."
 msgstr "El equipo de desarrollo de Xfce. Todos los derechos reservados."
 
-#: ../dialogs/accessibility-settings/main.c:217
-#: ../dialogs/appearance-settings/main.c:1323
-#: ../dialogs/display-settings/main.c:3038
+#: ../dialogs/accessibility-settings/main.c:220
+#: ../dialogs/appearance-settings/main.c:1325
+#: ../dialogs/display-settings/main.c:3118
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
 #: ../xfsettingsd/main.c:208 ../xfce4-settings-manager/main.c:81
@@ -270,7 +281,7 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "Mejore la accesibilidad de teclado y ratón"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1178
+#: ../dialogs/appearance-settings/main.c:1180
 #: ../dialogs/display-settings/main.c:88 ../dialogs/display-settings/main.c:99
 msgid "None"
 msgstr "Ninguno"
@@ -481,52 +492,52 @@ msgstr "Escalado de _ventana"
 msgid "Setti_ngs"
 msgstr "Configuració_n"
 
-#: ../dialogs/appearance-settings/main.c:559
+#: ../dialogs/appearance-settings/main.c:561
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Aviso: este tema de iconos no tiene un archivo de caché. Puede crearlo al ejecutar <i>gtk-update-icon-cache %s/%s/</i> en un emulador de terminal."
 
-#: ../dialogs/appearance-settings/main.c:1010
+#: ../dialogs/appearance-settings/main.c:1012
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "El archivo es mayor que %d MB. Se interrumpió la instalación"
 
-#: ../dialogs/appearance-settings/main.c:1015
+#: ../dialogs/appearance-settings/main.c:1017
 msgid "Failed to create temporary directory"
 msgstr "No se pudo crear el directorio temporal"
 
-#: ../dialogs/appearance-settings/main.c:1020
+#: ../dialogs/appearance-settings/main.c:1022
 msgid "Failed to extract archive"
 msgstr "No se pudo extraer el archivador"
 
-#: ../dialogs/appearance-settings/main.c:1025
+#: ../dialogs/appearance-settings/main.c:1027
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Formato desconocido, solo se aceptan carpetas y archivadores"
 
-#: ../dialogs/appearance-settings/main.c:1030
+#: ../dialogs/appearance-settings/main.c:1032
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Error desconocido, el código de salida es %d"
 
-#: ../dialogs/appearance-settings/main.c:1037
+#: ../dialogs/appearance-settings/main.c:1039
 msgid "Failed to install theme"
 msgstr "No se pudo instalar el tema"
 
-#: ../dialogs/appearance-settings/main.c:1182
+#: ../dialogs/appearance-settings/main.c:1184
 msgid "RGB"
 msgstr "RVA (RGB)"
 
-#: ../dialogs/appearance-settings/main.c:1186
+#: ../dialogs/appearance-settings/main.c:1188
 msgid "BGR"
 msgstr "AVR (BGR)"
 
-#: ../dialogs/appearance-settings/main.c:1190
+#: ../dialogs/appearance-settings/main.c:1192
 msgid "Vertical RGB"
 msgstr "RVA (RGB) vertical"
 
-#: ../dialogs/appearance-settings/main.c:1194
+#: ../dialogs/appearance-settings/main.c:1196
 msgid "Vertical BGR"
 msgstr "AVR (BGR) vertical"
 
@@ -660,7 +671,7 @@ msgstr "Horizontal y vertical"
 msgid "Minimal interface to set up an external output"
 msgstr "Interfaz mínima para configurar un dispositivo externo"
 
-#: ../dialogs/display-settings/main.c:254
+#: ../dialogs/display-settings/main.c:255
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -668,36 +679,36 @@ msgid ""
 msgstr "La configuración anterior será restablecida en %i segundos si no responde a esta pregunta."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:539
+#: ../dialogs/display-settings/main.c:544
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:830
+#: ../dialogs/display-settings/main.c:838
 msgid "Display:"
 msgstr "Pantalla:"
 
-#: ../dialogs/display-settings/main.c:835
+#: ../dialogs/display-settings/main.c:843
 msgid "Resolution:"
 msgstr "Resolución:"
 
-#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/main.c:1106
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "No se debe desactivar el último dispositivo de salida, o de otro modo no se podrá utilizar el sistema."
 
-#: ../dialogs/display-settings/main.c:1080
+#: ../dialogs/display-settings/main.c:1108
 msgid "Selected output not disabled"
 msgstr "Dispositivo de salida seleccionado no desactivado"
 
-#: ../dialogs/display-settings/main.c:2224
+#: ../dialogs/display-settings/main.c:2264
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Seleccione un monitor para cambiar sus propiedades; arrástrelo para reordenar su ubicación."
 
-#: ../dialogs/display-settings/main.c:2261
-#: ../dialogs/display-settings/main.c:2335
+#: ../dialogs/display-settings/main.c:2306
+#: ../dialogs/display-settings/main.c:2380
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -706,34 +717,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2367
+#: ../dialogs/display-settings/main.c:2558
 msgid "Mirror Screens"
 msgstr "Pantallas en espejo"
 
-#: ../dialogs/display-settings/main.c:2548
+#: ../dialogs/display-settings/main.c:2607
 msgid "(Disabled)"
 msgstr "(Desactivado)"
 
-#: ../dialogs/display-settings/main.c:3050
+#: ../dialogs/display-settings/main.c:3130
 #: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "No se pudo obtener la versión de la extensión RandR en uso"
 
-#: ../dialogs/display-settings/main.c:3051
-#: ../dialogs/display-settings/main.c:3088
+#: ../dialogs/display-settings/main.c:3131
+#: ../dialogs/display-settings/main.c:3168
 msgid "Unable to start the Xfce Display Settings"
 msgstr "No se pudo iniciar la configuración de pantalla de Xfce"
 
-#: ../dialogs/display-settings/main.c:3083
+#: ../dialogs/display-settings/main.c:3163
 msgid "ATI Settings"
 msgstr "Configuración de ATI"
 
-#: ../dialogs/display-settings/main.c:3090
+#: ../dialogs/display-settings/main.c:3170
 msgid "_Close"
 msgstr "_Cerrar"
 
-#: ../dialogs/display-settings/main.c:3098
+#: ../dialogs/display-settings/main.c:3178
 msgid "Unable to launch the proprietary driver settings"
 msgstr "No se pudieron abrir las configuraciones del controlador propietario"
 
@@ -1464,7 +1475,7 @@ msgstr "Editar propiedad seleccionada"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:334
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1021
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1356
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1360
 msgid "_Reset"
 msgstr "_Restablecer"
 
@@ -1550,11 +1561,11 @@ msgstr "_Monitor"
 msgid "Refresh"
 msgstr "Actualizar"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1357
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1361
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Restablecer una propiedad eliminará permanentemente sus configuraciones personalizadas."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1358
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1362
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "¿Está seguro de que quiere restablecer la propiedad «%s»?"
@@ -1707,16 +1718,16 @@ msgstr "_Toda la configuración"
 msgid "Help"
 msgstr "Ayuda"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:396
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:397
 msgid "Settings"
 msgstr "Configuración"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:398
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:399
 msgid "Customize your desktop"
 msgstr "Personalice su escritorio"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:893
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:904
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:915
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "No se pudo iniciar «%s»"
