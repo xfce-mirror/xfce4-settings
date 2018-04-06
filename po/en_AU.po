@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# John Humphrys <john.humphrys@protonmail.com>, 2018
 # Michael Findlay <translate@cobber-linux.org>, 2013-2015
 # Michael Findlay <translate@cobber-linux.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-15 18:30+0100\n"
-"PO-Revision-Date: 2017-09-23 19:05+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"POT-Creation-Date: 2018-03-11 18:31+0100\n"
+"PO-Revision-Date: 2018-04-05 23:20+0000\n"
+"Last-Translator: John Humphrys <john.humphrys@protonmail.com>\n"
 "Language-Team: English (Australia) (http://www.transifex.com/xfce/xfce4-settings/language/en_AU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,10 +199,20 @@ msgid "The ramp used to reach maximum pointer speed"
 msgstr "The ramp used to reach maximum pointer speed"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+msgid "Show location of pointer on keypress"
+msgstr "Show location of pointer on keypress"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+msgid ""
+"Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
+"mouse pointer's current location"
+msgstr "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the mouse pointer's current location"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
 msgstr "Mouse Emulation"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid "_Mouse"
 msgstr "_Mouse"
 
@@ -230,9 +241,9 @@ msgstr "SOCKET ID"
 msgid "Version information"
 msgstr "Version information"
 
-#: ../dialogs/accessibility-settings/main.c:197
-#: ../dialogs/appearance-settings/main.c:1303
-#: ../dialogs/display-settings/main.c:3018
+#: ../dialogs/accessibility-settings/main.c:200
+#: ../dialogs/appearance-settings/main.c:1305
+#: ../dialogs/display-settings/main.c:3098
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
 #: ../xfsettingsd/main.c:191 ../xfsettingsd/main.c:229
@@ -241,18 +252,18 @@ msgstr "Version information"
 msgid "Type '%s --help' for usage."
 msgstr "Type '%s --help' for usage."
 
-#: ../dialogs/accessibility-settings/main.c:216
-#: ../dialogs/appearance-settings/main.c:1322
-#: ../dialogs/display-settings/main.c:3037
+#: ../dialogs/accessibility-settings/main.c:219
+#: ../dialogs/appearance-settings/main.c:1324
+#: ../dialogs/display-settings/main.c:3117
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
 #: ../xfsettingsd/main.c:207 ../xfce4-settings-manager/main.c:80
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
-#: ../dialogs/accessibility-settings/main.c:217
-#: ../dialogs/appearance-settings/main.c:1323
-#: ../dialogs/display-settings/main.c:3038
+#: ../dialogs/accessibility-settings/main.c:220
+#: ../dialogs/appearance-settings/main.c:1325
+#: ../dialogs/display-settings/main.c:3118
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
 #: ../xfsettingsd/main.c:208 ../xfce4-settings-manager/main.c:81
@@ -265,7 +276,7 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "Improve keyboard and mouse accessibility"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1178
+#: ../dialogs/appearance-settings/main.c:1180
 #: ../dialogs/display-settings/main.c:88 ../dialogs/display-settings/main.c:99
 msgid "None"
 msgstr "None"
@@ -342,15 +353,15 @@ msgstr "Default Fon_t"
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
-msgstr ""
+msgstr "This font will be used as the default monospace font, for example by terminal emulators."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Select a default monospace font"
-msgstr ""
+msgstr "Select a default monospace font"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Default _Monospace Font"
-msgstr ""
+msgstr "Default _Monospace Font"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "_Enable anti-aliasing"
@@ -476,52 +487,52 @@ msgstr "_Window Scaling"
 msgid "Setti_ngs"
 msgstr "Setti_ngs"
 
-#: ../dialogs/appearance-settings/main.c:559
+#: ../dialogs/appearance-settings/main.c:561
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Warning: this icon theme has no cache file. You can create this by running <i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 
-#: ../dialogs/appearance-settings/main.c:1010
+#: ../dialogs/appearance-settings/main.c:1012
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "File is larger than %d MB, installation aborted"
 
-#: ../dialogs/appearance-settings/main.c:1015
+#: ../dialogs/appearance-settings/main.c:1017
 msgid "Failed to create temporary directory"
 msgstr "Failed to create temporary directory"
 
-#: ../dialogs/appearance-settings/main.c:1020
+#: ../dialogs/appearance-settings/main.c:1022
 msgid "Failed to extract archive"
 msgstr "Failed to extract archive"
 
-#: ../dialogs/appearance-settings/main.c:1025
+#: ../dialogs/appearance-settings/main.c:1027
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Unknown format, only archives and directories are supported"
 
-#: ../dialogs/appearance-settings/main.c:1030
+#: ../dialogs/appearance-settings/main.c:1032
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "An unknown error, exit code is %d"
 
-#: ../dialogs/appearance-settings/main.c:1037
+#: ../dialogs/appearance-settings/main.c:1039
 msgid "Failed to install theme"
 msgstr "Failed to install theme"
 
-#: ../dialogs/appearance-settings/main.c:1182
+#: ../dialogs/appearance-settings/main.c:1184
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1186
+#: ../dialogs/appearance-settings/main.c:1188
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1190
+#: ../dialogs/appearance-settings/main.c:1192
 msgid "Vertical RGB"
 msgstr "Vertical RGB"
 
-#: ../dialogs/appearance-settings/main.c:1194
+#: ../dialogs/appearance-settings/main.c:1196
 msgid "Vertical BGR"
 msgstr "Vertical BGR"
 
@@ -655,7 +666,7 @@ msgstr "Horizontal and Vertical"
 msgid "Minimal interface to set up an external output"
 msgstr "Minimal interface to set up an external output"
 
-#: ../dialogs/display-settings/main.c:254
+#: ../dialogs/display-settings/main.c:255
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -663,36 +674,36 @@ msgid ""
 msgstr "The previous configuration will be restored in %i seconds if you do not reply to this question."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:539
+#: ../dialogs/display-settings/main.c:544
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:830
+#: ../dialogs/display-settings/main.c:838
 msgid "Display:"
 msgstr "Display:"
 
-#: ../dialogs/display-settings/main.c:835
+#: ../dialogs/display-settings/main.c:843
 msgid "Resolution:"
 msgstr "Resolution:"
 
-#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/main.c:1106
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "The last active output must not be disabled, the system would be unusable."
 
-#: ../dialogs/display-settings/main.c:1080
+#: ../dialogs/display-settings/main.c:1108
 msgid "Selected output not disabled"
 msgstr "Selected output not disabled"
 
-#: ../dialogs/display-settings/main.c:2224
+#: ../dialogs/display-settings/main.c:2264
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Select a monitor to change its properties; drag it to rearrange its placement."
 
-#: ../dialogs/display-settings/main.c:2261
-#: ../dialogs/display-settings/main.c:2335
+#: ../dialogs/display-settings/main.c:2306
+#: ../dialogs/display-settings/main.c:2380
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -701,34 +712,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2367
+#: ../dialogs/display-settings/main.c:2558
 msgid "Mirror Screens"
 msgstr "Mirror Screens"
 
-#: ../dialogs/display-settings/main.c:2548
+#: ../dialogs/display-settings/main.c:2607
 msgid "(Disabled)"
 msgstr "(Disabled)"
 
-#: ../dialogs/display-settings/main.c:3050
+#: ../dialogs/display-settings/main.c:3130
 #: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Unable to query the version of the RandR extension being used"
 
-#: ../dialogs/display-settings/main.c:3051
-#: ../dialogs/display-settings/main.c:3088
+#: ../dialogs/display-settings/main.c:3131
+#: ../dialogs/display-settings/main.c:3168
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Unable to start the Xfce Display Settings"
 
-#: ../dialogs/display-settings/main.c:3083
+#: ../dialogs/display-settings/main.c:3163
 msgid "ATI Settings"
 msgstr "ATI Settings"
 
-#: ../dialogs/display-settings/main.c:3090
+#: ../dialogs/display-settings/main.c:3170
 msgid "_Close"
 msgstr "_Close"
 
-#: ../dialogs/display-settings/main.c:3098
+#: ../dialogs/display-settings/main.c:3178
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Unable to launch the proprietary driver settings"
 
@@ -1459,7 +1470,7 @@ msgstr "Edit selected property"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:334
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1021
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1356
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1360
 msgid "_Reset"
 msgstr "_Reset"
 
@@ -1545,11 +1556,11 @@ msgstr "_Monitor"
 msgid "Refresh"
 msgstr "Refresh"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1357
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1361
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Resetting a property will permanently remove those custom settings."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1358
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1362
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Are you sure you want to reset property \"%s\"?"
@@ -1702,16 +1713,16 @@ msgstr "All _Settings"
 msgid "Help"
 msgstr "Help"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:396
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:397
 msgid "Settings"
 msgstr "Settings"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:398
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:399
 msgid "Customize your desktop"
 msgstr "Customise your desktop"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:893
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:904
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:915
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Unable to start \"%s\""
