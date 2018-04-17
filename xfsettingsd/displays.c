@@ -58,6 +58,8 @@
 #define ROTATION_PROP       OUTPUT_FMT "/Rotation"
 #define REFLECTION_PROP     OUTPUT_FMT "/Reflection"
 #define RESOLUTION_PROP     OUTPUT_FMT "/Resolution"
+#define SCALEX_PROP         OUTPUT_FMT "/Scale/X"
+#define SCALEY_PROP         OUTPUT_FMT "/Scale/Y"
 #define RRATE_PROP          OUTPUT_FMT "/RefreshRate"
 #define POSX_PROP           OUTPUT_FMT "/Position/X"
 #define POSY_PROP           OUTPUT_FMT "/Position/Y"
@@ -97,6 +99,8 @@ static void             xfce_displays_helper_normalize_crtc                 (Xfc
 static Status           xfce_displays_helper_disable_crtc                   (XfceDisplaysHelper      *helper,
                                                                              RRCrtc                   crtc);
 static void             xfce_displays_helper_workaround_crtc_size           (XfceRRCrtc              *crtc,
+                                                                             XfceDisplaysHelper      *helper);
+static void             xfce_displays_helper_apply_crtc_transform           (XfceRRCrtc              *crtc,
                                                                              XfceDisplaysHelper      *helper);
 static void             xfce_displays_helper_apply_crtc                     (XfceRRCrtc              *crtc,
                                                                              XfceDisplaysHelper      *helper);
@@ -169,6 +173,8 @@ struct _XfceRRCrtc
     gint      height;
     gint      x;
     gint      y;
+    gfloat    scalex;
+    gfloat    scaley;
     gint      noutput;
     RROutput *outputs;
     gint      npossible;
@@ -599,6 +605,7 @@ xfce_displays_helper_load_from_xfconf (XfceDisplaysHelper *helper,
     const gchar *str_value;
     gchar        property[512];
     gdouble      output_rate, rate;
+    gdouble      scalex, scaley;
     RRMode       valid_mode;
     Rotation     rot;
     gint         x, y, n, m, int_value;
@@ -717,6 +724,41 @@ xfce_displays_helper_load_from_xfconf (XfceDisplaysHelper *helper,
         output_rate = g_value_get_double (value);
     else
         output_rate = 0.0;
+
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    if (helper->has_1_3)
+    {
+        /* scaling X */
+        g_snprintf (property, sizeof (property), SCALEX_PROP, scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_DOUBLE (value))
+            scalex = g_value_get_double (value);
+        else
+            scalex = 1.0;
+
+        /* scaling Y */
+        g_snprintf (property, sizeof (property), SCALEY_PROP, scheme,
+                    output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_DOUBLE (value))
+            scaley = g_value_get_double (value);
+        else
+            scaley = 1.0;
+
+        if (scalex <= 0.0 || scaley <= 0.0) {
+            scalex = 1.0;
+            scaley = 1.0;
+        }
+
+        if (crtc->scalex != scalex || crtc->scaley != scaley)
+        {
+            crtc->scalex = scalex;
+            crtc->scaley = scaley;
+            crtc->changed = TRUE;
+        }
+    }
+#endif
 
     /* check mode validity */
     valid_mode = None;
@@ -1100,8 +1142,8 @@ xfce_displays_helper_normalize_crtc (XfceRRCrtc         *crtc,
                     crtc->id, crtc->width, crtc->height, crtc->x, crtc->y);
 
     /* calculate the total screen size */
-    helper->width = MAX (helper->width, crtc->x + crtc->width);
-    helper->height = MAX (helper->height, crtc->y + crtc->height);
+    helper->width = MAX (helper->width, crtc->x + crtc->width * crtc->scalex);
+    helper->height = MAX (helper->height, crtc->y + crtc->height * crtc->scaley);
 
     /* The 'physical size' of an X screen is meaningless if that screen
      * can consist of many monitors. So just pick a size that make the
@@ -1156,6 +1198,46 @@ xfce_displays_helper_workaround_crtc_size (XfceRRCrtc         *crtc,
 
 
 static void
+xfce_displays_helper_apply_crtc_transform (XfceRRCrtc         *crtc,
+                                           XfceDisplaysHelper *helper)
+{
+    XTransform transform;
+    gchar *filter;
+
+    g_assert (XFCE_IS_DISPLAYS_HELPER (helper) && helper->xdisplay && crtc);
+
+    if (!crtc->changed)
+        return;
+
+#ifdef HAS_RANDR_ONE_POINT_THREE
+    if (helper->has_1_3)
+    {
+        if (crtc->scalex == 1 && crtc->scaley == 1)
+            filter = "nearest";
+        else
+            filter = "bilinear";
+
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applying CRTC %lu Transform: x=%lf y=%lf, filter=%s.", crtc->id,
+                        crtc->scalex, crtc->scaley, filter);
+
+        memset(&transform, '\0', sizeof(transform));
+
+        transform.matrix[0][0] = XDoubleToFixed(crtc->scalex);
+        transform.matrix[1][1] = XDoubleToFixed(crtc->scaley);
+        transform.matrix[2][2] = XDoubleToFixed(1.0);
+
+        XRRSetCrtcTransform(helper->xdisplay, crtc->id,
+                            &transform,
+                            filter,
+                            NULL,
+                            0);
+    }
+#endif
+}
+
+
+
+static void
 xfce_displays_helper_apply_crtc (XfceRRCrtc         *crtc,
                                  XfceDisplaysHelper *helper)
 {
@@ -1170,12 +1252,15 @@ xfce_displays_helper_apply_crtc (XfceRRCrtc         *crtc,
     {
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applying changes to CRTC %lu.", crtc->id);
 
-        if (crtc->mode == None)
+        if (crtc->mode == None) {
             ret = xfce_displays_helper_disable_crtc (helper, crtc->id);
-        else
+        } else {
+            xfce_displays_helper_apply_crtc_transform (crtc, helper);
+
             ret = XRRSetCrtcConfig (helper->xdisplay, helper->resources, crtc->id,
                                     CurrentTime, crtc->x, crtc->y, crtc->mode,
                                     crtc->rotation, crtc->outputs, crtc->noutput);
+        }
 
         if (ret == RRSetConfigSuccess)
             crtc->changed = FALSE;
