@@ -38,6 +38,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <dbus/dbus.h>
+#include <dbus/dbus-glib-lowlevel.h>
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
@@ -108,6 +109,21 @@ dbus_connection_filter_func (DBusConnection *connection,
                                    DBUS_TYPE_STRING, &name,
                                    DBUS_TYPE_STRING, &old,
                                    DBUS_TYPE_STRING, &new,
+                                   DBUS_TYPE_INVALID))
+        {
+            if (g_strcmp0 (name, XFSETTINGS_DBUS_NAME) == 0)
+            {
+                g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
+                gtk_main_quit ();
+                return DBUS_HANDLER_RESULT_HANDLED;
+            }
+        }
+    }
+
+    if (dbus_message_is_signal (message, DBUS_INTERFACE_DBUS, "NameLost"))
+    {
+        if (dbus_message_get_args (message, NULL,
+                                   DBUS_TYPE_STRING, &name,
                                    DBUS_TYPE_INVALID))
         {
             if (g_strcmp0 (name, XFSETTINGS_DBUS_NAME) == 0)
@@ -241,6 +257,7 @@ main (gint argc, gchar **argv)
     dbus_connection = dbus_bus_get (DBUS_BUS_SESSION, NULL);
     if (G_LIKELY (dbus_connection != NULL))
     {
+        dbus_connection_setup_with_g_main (dbus_connection, NULL);
         dbus_connection_set_exit_on_disconnect (dbus_connection, FALSE);
 
         dbus_flags = DBUS_NAME_FLAG_ALLOW_REPLACEMENT | DBUS_NAME_FLAG_DO_NOT_QUEUE;
@@ -255,7 +272,12 @@ main (gint argc, gchar **argv)
             return EXIT_SUCCESS;
         }
 
-        dbus_bus_add_match (dbus_connection, "type='signal',member='NameOwnerChanged',arg0='"XFSETTINGS_DBUS_NAME"'", NULL);
+        dbus_bus_add_match (dbus_connection,
+            "type='signal',interface='"DBUS_INTERFACE_DBUS"',member='NameOwnerChanged',arg0='"XFSETTINGS_DBUS_NAME"'",
+            NULL);
+        dbus_bus_add_match (dbus_connection,
+            "type='signal',interface='"DBUS_INTERFACE_DBUS"',member='NameLost',arg0='"XFSETTINGS_DBUS_NAME"'",
+            NULL);
         dbus_connection_add_filter (dbus_connection, dbus_connection_filter_func, NULL, NULL);
     }
     else
