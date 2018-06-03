@@ -41,8 +41,6 @@
 #include <libxfce4util/libxfce4util.h>
 #include <locale.h>
 
-#include <dbus/dbus-glib.h>
-
 #include "debug.h"
 #include "pointers.h"
 #include "pointers-defines.h"

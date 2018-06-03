@@ -36,8 +36,8 @@
 #endif
 
 #include <glib.h>
+#include <gio/gio.h>
 #include <gtk/gtk.h>
-#include <dbus/dbus.h>
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
@@ -69,10 +69,11 @@
 
 
 static XfceSMClient *sm_client = NULL;
-
 static gboolean opt_version = FALSE;
 static gboolean opt_no_daemon = FALSE;
 static gboolean opt_replace = FALSE;
+static guint owner_id;
+
 static GOptionEntry option_entries[] =
 {
     { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
@@ -81,7 +82,15 @@ static GOptionEntry option_entries[] =
     { NULL }
 };
 
+static void
+on_name_lost (GDBusConnection *connection,
+              const gchar     *name,
+              gpointer         user_data)
+{
 
+    g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
+    gtk_main_quit ();
+}
 
 static void
 signal_handler (gint signum,
@@ -90,39 +99,6 @@ signal_handler (gint signum,
     /* quit the main loop */
     gtk_main_quit ();
 }
-
-
-
-static DBusHandlerResult
-dbus_connection_filter_func (DBusConnection *connection,
-                             DBusMessage    *message,
-                             void           *user_data)
-{
-    gchar *name, *old, *new;
-
-    if (dbus_message_is_signal (message, DBUS_INTERFACE_DBUS, "NameOwnerChanged"))
-    {
-        /* double check if it is really org.xfce.SettingsDaemon
-         * being replaced, see bug 9273 */
-        if (dbus_message_get_args (message, NULL,
-                                   DBUS_TYPE_STRING, &name,
-                                   DBUS_TYPE_STRING, &old,
-                                   DBUS_TYPE_STRING, &new,
-                                   DBUS_TYPE_INVALID))
-        {
-            if (g_strcmp0 (name, XFSETTINGS_DBUS_NAME) == 0)
-            {
-                g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
-                gtk_main_quit ();
-                return DBUS_HANDLER_RESULT_HANDLED;
-            }
-        }
-    }
-
-    return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
-}
-
-
 
 static gint
 daemonize (void)
@@ -169,9 +145,10 @@ main (gint argc, gchar **argv)
     GObject              *workspaces_helper;
     guint                 i;
     const gint            signums[] = { SIGQUIT, SIGTERM };
-    DBusConnection       *dbus_connection;
-    gint                  result;
-    guint                 dbus_flags;
+    GDBusConnection       *dbus_connection;
+    GBusNameOwnerFlags    dbus_flags;
+    gboolean name_owned;
+    GVariant* name_owned_variant;
 
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -238,29 +215,48 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    dbus_connection = dbus_bus_get (DBUS_BUS_SESSION, NULL);
-    if (G_LIKELY (dbus_connection != NULL))
+    dbus_connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+    if (G_LIKELY (!error))
     {
-        dbus_connection_set_exit_on_disconnect (dbus_connection, FALSE);
+        g_object_set(G_OBJECT (dbus_connection), "exit-on-close", TRUE, NULL);
 
-        dbus_flags = DBUS_NAME_FLAG_ALLOW_REPLACEMENT | DBUS_NAME_FLAG_DO_NOT_QUEUE;
-        if (opt_replace)
-          dbus_flags |= DBUS_NAME_FLAG_REPLACE_EXISTING;
+        name_owned_variant = g_dbus_connection_call_sync (dbus_connection,
+                                                          "org.freedesktop.DBus",
+                                                          "/org/freedesktop/DBus",
+                                                          "org.freedesktop.DBus",
+                                                          "NameHasOwner",
+                                                          g_variant_new ("(s)", XFSETTINGS_DBUS_NAME),
+                                                          G_VARIANT_TYPE ("(b)"),
+                                                          G_DBUS_CALL_FLAGS_NONE,
+                                                          -1,
+                                                          NULL,
+                                                          &error);
 
-        result = dbus_bus_request_name (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, NULL);
-        if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER)
-        {
+        if (G_UNLIKELY (error)) {
+            g_printerr ("%s: %s.\n", G_LOG_DOMAIN, error->message);
+            g_error_free (error);
+            return EXIT_FAILURE;
+        }
+
+        name_owned = FALSE;
+        g_variant_get(name_owned_variant, "(b)", &name_owned, NULL);
+
+        if(G_UNLIKELY (name_owned && !opt_replace)) {
             xfsettings_dbg (XFSD_DEBUG_XSETTINGS, "Another instance is already running. Leaving.");
-            dbus_connection_unref (dbus_connection);
+            g_dbus_connection_close_sync (dbus_connection, NULL, NULL);
             return EXIT_SUCCESS;
         }
 
-        dbus_bus_add_match (dbus_connection, "type='signal',member='NameOwnerChanged',arg0='"XFSETTINGS_DBUS_NAME"'", NULL);
-        dbus_connection_add_filter (dbus_connection, dbus_connection_filter_func, NULL, NULL);
+        /* Allow the settings daemon to be replaced */
+        dbus_flags = G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT | G_BUS_NAME_OWNER_FLAGS_REPLACE;
+
+        owner_id = g_bus_own_name (G_BUS_TYPE_SESSION, XFSETTINGS_DBUS_NAME, dbus_flags, NULL, NULL, on_name_lost, NULL, NULL );
     }
     else
     {
+        g_printerr ("%s: %s.\n", G_LOG_DOMAIN, error->message);
         g_error ("Failed to connect to the dbus session bus.");
+        g_error_free (error);
         return EXIT_FAILURE;
     }
 
@@ -326,9 +322,8 @@ main (gint argc, gchar **argv)
     /* release the dbus name */
     if (dbus_connection != NULL)
     {
-        dbus_connection_remove_filter (dbus_connection, dbus_connection_filter_func, NULL);
-        dbus_bus_release_name (dbus_connection, XFSETTINGS_DBUS_NAME, NULL);
-        dbus_connection_unref (dbus_connection);
+        g_bus_unown_name (owner_id);
+        g_dbus_connection_close_sync (dbus_connection, NULL, NULL);
     }
 
     /* release the sub daemons */

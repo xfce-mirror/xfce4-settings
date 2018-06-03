@@ -43,8 +43,7 @@ xfce4_settings_editor_LDADD = \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
-	$(XFCONF_LIBS) \
-	$(DBUS_GLIB_LIBS)
+	$(XFCONF_LIBS)
 
 desktopdir = $(datadir)/applications
 desktop_in_files = xfce4-settings-editor.desktop.in

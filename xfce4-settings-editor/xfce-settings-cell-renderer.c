@@ -26,7 +26,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <dbus/dbus-glib.h>
 
 #include <libxfce4util/libxfce4util.h>
 
@@ -630,7 +629,7 @@ xfce_settings_array_type (void)
 
     if (type == 0)
     {
-        type = dbus_g_type_get_collection ("GPtrArray", G_TYPE_VALUE);
+        type = g_type_from_name ("GPtrArray");
         g_value_register_transform_func (type, G_TYPE_STRING,
                                          xfce_settings_array_to_string);
     }
