@@ -93,6 +93,18 @@ on_name_lost (GDBusConnection *connection,
 }
 
 static void
+on_name_acquired (GDBusConnection *connection,
+                  const gchar     *name,
+                  gpointer         user_data)
+{
+    GBusNameOwnerFlags    dbus_flags;
+
+    /* Update the name flags to allow replacement */
+    dbus_flags = G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT;
+    g_bus_own_name_on_connection (connection, XFSETTINGS_DBUS_NAME, dbus_flags, NULL, NULL, NULL, NULL );
+}
+
+static void
 signal_handler (gint signum,
                 gpointer user_data)
 {
@@ -248,9 +260,11 @@ main (gint argc, gchar **argv)
         }
 
         /* Allow the settings daemon to be replaced */
-        dbus_flags = G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT | G_BUS_NAME_OWNER_FLAGS_REPLACE;
+        dbus_flags = G_BUS_NAME_OWNER_FLAGS_NONE;
+        if (opt_replace || name_owned)
+            dbus_flags = G_BUS_NAME_OWNER_FLAGS_REPLACE ;
 
-        owner_id = g_bus_own_name (G_BUS_TYPE_SESSION, XFSETTINGS_DBUS_NAME, dbus_flags, NULL, NULL, on_name_lost, NULL, NULL );
+        owner_id = g_bus_own_name_on_connection (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, on_name_acquired, on_name_lost, NULL, NULL );
     }
     else
     {
