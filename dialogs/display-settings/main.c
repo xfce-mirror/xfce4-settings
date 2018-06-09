@@ -954,8 +954,8 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
     GObject *check;
     RRMode   mode = None;
     guint    n;
-    gint     cloned = TRUE;
-    gint     mirrored;
+    gboolean cloned = TRUE;
+    gboolean mirrored = FALSE;
 
     if (!xfce_randr)
         return;
@@ -1600,9 +1600,9 @@ static gint
 get_mirrored_configuration (void)
 {
     gboolean cloned = TRUE;
+    gboolean mirrored = FALSE;
     RRMode   mode = None;
     guint    n;
-    gint     mirrored;
 
     if (!xfce_randr)
         return FALSE;
