@@ -67,12 +67,32 @@
 #define XFSETTINGS_DBUS_NAME    "org.xfce.SettingsDaemon"
 #define XFSETTINGS_DESKTOP_FILE (SYSCONFIGDIR "/xdg/autostart/xfsettingsd.desktop")
 
+#define UNREF_GOBJECT(obj) \
+    if (obj) \
+    g_object_unref (G_OBJECT(obj))
 
-static XfceSMClient *sm_client = NULL;
 static gboolean opt_version = FALSE;
 static gboolean opt_no_daemon = FALSE;
 static gboolean opt_replace = FALSE;
 static guint owner_id;
+
+struct t_data_set
+{
+    XfceSMClient         *sm_client;
+    GObject              *pointer_helper;
+    GObject              *keyboards_helper;
+    GObject              *accessibility_helper;
+    GObject              *shortcuts_helper;
+    GObject              *keyboard_layout_helper;
+    GObject              *gtk_decorations_helper;
+    GObject              *xsettings_helper;
+    GObject              *clipboard_daemon;
+#ifdef HAVE_XRANDR
+    GObject              *displays_helper;
+#endif
+    GObject              *workspaces_helper;
+};
+
 
 static GOptionEntry option_entries[] =
 {
@@ -97,7 +117,53 @@ on_name_acquired (GDBusConnection *connection,
                   const gchar     *name,
                   gpointer         user_data)
 {
-    GBusNameOwnerFlags    dbus_flags;
+    GBusNameOwnerFlags         dbus_flags;
+    struct t_data_set         *s_data;
+    GError                    *error = NULL;
+
+    s_data = (struct t_data_set*) user_data;
+
+    /* connect to session always, even if we quit below.  this way the
+     * session manager won't wait for us to time out. */
+    s_data->sm_client = xfce_sm_client_get ();
+    xfce_sm_client_set_restart_style (s_data->sm_client, XFCE_SM_CLIENT_RESTART_IMMEDIATELY);
+    xfce_sm_client_set_desktop_file (s_data->sm_client, XFSETTINGS_DESKTOP_FILE);
+    xfce_sm_client_set_priority (s_data->sm_client, XFCE_SM_CLIENT_PRIORITY_CORE);
+    g_signal_connect (G_OBJECT (s_data->sm_client), "quit", G_CALLBACK (gtk_main_quit), NULL);
+    if (!xfce_sm_client_connect (s_data->sm_client, &error) && error)
+    {
+        g_printerr ("Failed to connect to session manager: %s\n", error->message);
+        g_clear_error (&error);
+    }
+
+    /* launch settings manager */
+    s_data->xsettings_helper = g_object_new (XFCE_TYPE_XSETTINGS_HELPER, NULL);
+    xfce_xsettings_helper_register (XFCE_XSETTINGS_HELPER (s_data->xsettings_helper),
+                                    gdk_display_get_default (), opt_replace);
+
+    /* create the sub daemons */
+#ifdef HAVE_XRANDR
+    s_data->displays_helper = g_object_new (XFCE_TYPE_DISPLAYS_HELPER, NULL);
+#endif
+    s_data->pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
+    s_data->keyboards_helper = g_object_new (XFCE_TYPE_KEYBOARDS_HELPER, NULL);
+    s_data->accessibility_helper = g_object_new (XFCE_TYPE_ACCESSIBILITY_HELPER, NULL);
+    s_data->shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
+    s_data->keyboard_layout_helper = g_object_new (XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, NULL);
+    s_data->workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
+    s_data->gtk_decorations_helper = g_object_new (XFCE_TYPE_DECORATIONS_HELPER, NULL);
+
+    if (g_getenv ("XFSETTINGSD_NO_CLIPBOARD") == NULL)
+    {
+        s_data->clipboard_daemon = g_object_new (GSD_TYPE_CLIPBOARD_MANAGER, NULL);
+        if (!gsd_clipboard_manager_start (GSD_CLIPBOARD_MANAGER (s_data->clipboard_daemon), opt_replace))
+        {
+            UNREF_GOBJECT (G_OBJECT (s_data->clipboard_daemon));
+            s_data->clipboard_daemon = NULL;
+
+            g_printerr (G_LOG_DOMAIN ": %s\n", "Another clipboard manager is already running.");
+        }
+    }
 
     /* Update the name flags to allow replacement */
     dbus_flags = G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT;
@@ -143,24 +209,13 @@ main (gint argc, gchar **argv)
 {
     GError               *error = NULL;
     GOptionContext       *context;
-    GObject              *pointer_helper;
-    GObject              *keyboards_helper;
-    GObject              *accessibility_helper;
-    GObject              *shortcuts_helper;
-    GObject              *keyboard_layout_helper;
-    GObject              *gtk_decorations_helper;
-    GObject              *xsettings_helper;
-    GObject              *clipboard_daemon = NULL;
-#ifdef HAVE_XRANDR
-    GObject              *displays_helper;
-#endif
-    GObject              *workspaces_helper;
+    struct t_data_set     s_data;
     guint                 i;
     const gint            signums[] = { SIGQUIT, SIGTERM };
-    GDBusConnection       *dbus_connection;
+    GDBusConnection      *dbus_connection;
     GBusNameOwnerFlags    dbus_flags;
-    gboolean name_owned;
-    GVariant* name_owned_variant;
+    gboolean              name_owned;
+    GVariant             *name_owned_variant;
 
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -227,6 +282,9 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
+    /* Initialize our data set */
+    memset (&s_data, 0, sizeof (struct t_data_set));
+
     dbus_connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
     if (G_LIKELY (!error))
     {
@@ -264,7 +322,7 @@ main (gint argc, gchar **argv)
         if (opt_replace || name_owned)
             dbus_flags = G_BUS_NAME_OWNER_FLAGS_REPLACE ;
 
-        owner_id = g_bus_own_name_on_connection (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, on_name_acquired, on_name_lost, NULL, NULL );
+        owner_id = g_bus_own_name_on_connection (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, on_name_acquired, on_name_lost, &s_data, NULL );
     }
     else
     {
@@ -280,48 +338,6 @@ main (gint argc, gchar **argv)
         g_error_free (error);
 
         return EXIT_FAILURE;
-    }
-
-    /* connect to session always, even if we quit below.  this way the
-     * session manager won't wait for us to time out. */
-    sm_client = xfce_sm_client_get ();
-    xfce_sm_client_set_restart_style (sm_client, XFCE_SM_CLIENT_RESTART_IMMEDIATELY);
-    xfce_sm_client_set_desktop_file (sm_client, XFSETTINGS_DESKTOP_FILE);
-    xfce_sm_client_set_priority (sm_client, XFCE_SM_CLIENT_PRIORITY_CORE);
-    g_signal_connect (G_OBJECT (sm_client), "quit", G_CALLBACK (gtk_main_quit), NULL);
-    if (!xfce_sm_client_connect (sm_client, &error) && error)
-    {
-        g_printerr ("Failed to connect to session manager: %s\n", error->message);
-        g_clear_error (&error);
-    }
-
-    /* launch settings manager */
-    xsettings_helper = g_object_new (XFCE_TYPE_XSETTINGS_HELPER, NULL);
-    xfce_xsettings_helper_register (XFCE_XSETTINGS_HELPER (xsettings_helper),
-                                    gdk_display_get_default (), opt_replace);
-
-    /* create the sub daemons */
-#ifdef HAVE_XRANDR
-    displays_helper = g_object_new (XFCE_TYPE_DISPLAYS_HELPER, NULL);
-#endif
-    pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
-    keyboards_helper = g_object_new (XFCE_TYPE_KEYBOARDS_HELPER, NULL);
-    accessibility_helper = g_object_new (XFCE_TYPE_ACCESSIBILITY_HELPER, NULL);
-    shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
-    keyboard_layout_helper = g_object_new (XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, NULL);
-    workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
-    gtk_decorations_helper = g_object_new (XFCE_TYPE_DECORATIONS_HELPER, NULL);
-
-    if (g_getenv ("XFSETTINGSD_NO_CLIPBOARD") == NULL)
-    {
-        clipboard_daemon = g_object_new (GSD_TYPE_CLIPBOARD_MANAGER, NULL);
-        if (!gsd_clipboard_manager_start (GSD_CLIPBOARD_MANAGER (clipboard_daemon), opt_replace))
-        {
-            g_object_unref (G_OBJECT (clipboard_daemon));
-            clipboard_daemon = NULL;
-
-            g_printerr (G_LOG_DOMAIN ": %s\n", "Another clipboard manager is already running.");
-        }
     }
 
     /* setup signal handlers to properly quit the main loop */
@@ -341,27 +357,28 @@ main (gint argc, gchar **argv)
     }
 
     /* release the sub daemons */
-    g_object_unref (G_OBJECT (xsettings_helper));
-#ifdef HAVE_XRANDR
-    g_object_unref (G_OBJECT (displays_helper));
-#endif
-    g_object_unref (G_OBJECT (pointer_helper));
-    g_object_unref (G_OBJECT (keyboards_helper));
-    g_object_unref (G_OBJECT (accessibility_helper));
-    g_object_unref (G_OBJECT (shortcuts_helper));
-    g_object_unref (G_OBJECT (keyboard_layout_helper));
-    g_object_unref (G_OBJECT (workspaces_helper));
-    g_object_unref (G_OBJECT (gtk_decorations_helper));
+    UNREF_GOBJECT(s_data.xsettings_helper);
 
-    if (G_LIKELY (clipboard_daemon != NULL))
+#ifdef HAVE_XRANDR
+    UNREF_GOBJECT (s_data.displays_helper);
+#endif
+    UNREF_GOBJECT (s_data.pointer_helper);
+    UNREF_GOBJECT (s_data.keyboards_helper);
+    UNREF_GOBJECT (s_data.accessibility_helper);
+    UNREF_GOBJECT (s_data.shortcuts_helper);
+    UNREF_GOBJECT (s_data.keyboard_layout_helper);
+    UNREF_GOBJECT (s_data.workspaces_helper);
+    UNREF_GOBJECT (s_data.gtk_decorations_helper);
+
+    if (G_LIKELY (s_data.clipboard_daemon != NULL))
     {
-        gsd_clipboard_manager_stop (GSD_CLIPBOARD_MANAGER (clipboard_daemon));
-        g_object_unref (G_OBJECT (clipboard_daemon));
+        gsd_clipboard_manager_stop (GSD_CLIPBOARD_MANAGER (s_data.clipboard_daemon));
+        UNREF_GOBJECT (s_data.clipboard_daemon);
     }
 
     xfconf_shutdown ();
 
-    g_object_unref (G_OBJECT (sm_client));
+    UNREF_GOBJECT (s_data.sm_client);
 
     return EXIT_SUCCESS;
 }
