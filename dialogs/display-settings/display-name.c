@@ -1853,6 +1853,7 @@ static const struct Vendor vendors[] =
     { "SCS", "Nanomach Anstalt" },
     { "SCT", "Smart Card Technology" },
     { "SDA", "SAT (Societe Anonyme)" },
+    { "SDC", "Laptop" }, // based on available hardware and no registered PNP
     { "SDD", "Intrada-SDD Ltd" },
     { "SDE", "Sherwood Digital Electronics Corporation" },
     { "SDF", "SODIFF E&T CO., Ltd." },
