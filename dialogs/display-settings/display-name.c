@@ -46,7 +46,7 @@ struct Vendor
 
 /*
  * The following list of vendor codes comes from these sources:
- * https://git.fedorahosted.org/cgit/hwdata.git/plain/pnp.ids
+ * https://raw.githubusercontent.com/vcrhonek/hwdata/master/pnp.ids
  * http://ezix.org/project/wiki/HardwareLiSter
  * http://faydoc.tripod.com/structures/01/0136.htm
  *
@@ -58,7 +58,6 @@ struct Vendor
  */
 static const struct Vendor vendors[] =
 {
-    /* From https://git.fedorahosted.org/cgit/hwdata.git/plain/pnp.ids */
     { "AAA", "Avolites Ltd" },
     { "AAE", "Anatek Electronics Inc." },
     { "AAT", "Ann Arbor Technologies" },
@@ -67,24 +66,29 @@ static const struct Vendor vendors[] =
     { "ABD", "Allen Bradley Company" },
     { "ABE", "Alcatel Bell" },
     { "ABO", "D-Link Systems Inc" },
+    { "ABP", "Advansys" }, // ezix
     { "ABT", "Anchor Bay Technologies, Inc." },
     { "ABV", "Advanced Research Technology" },
     { "ACA", "Ariel Corporation" },
     { "ACB", "Aculab Ltd" },
     //{ "ACC", "Accton Technology Corporation" },
+    { "ACC", "Accton" }, // ezix
     { "ACD", "AWETA BV" },
     { "ACE", "Actek Engineering Pty Ltd" },
     { "ACG", "A&R Cambridge Ltd" },
     { "ACH", "Archtek Telecom Corporation" },
-    { "ACI", "Ancor Communications Inc" },
+    //{ "ACI", "Ancor Communications Inc" },
+    { "ACI", "ASUS" },
     { "ACK", "Acksys" },
     { "ACL", "Apricot Computers" },
     { "ACM", "Acroloop Motion Control Systems Inc" },
     { "ACO", "Allion Computer Inc." },
     { "ACP", "Aspen Tech Inc" },
     //{ "ACR", "Acer Technologies" },
+    { "ACR", "Acer" }, // ezix
     { "ACS", "Altos Computer Systems" },
-    { "ACT", "Applied Creative Technology" },
+    //{ "ACT", "Applied Creative Technology" },
+    { "ACT", "Targa" }, // faydoc
     { "ACU", "Acculogic" },
     { "ACV", "ActivCard S.A" },
     { "ADA", "Addi-Data GmbH" },
@@ -93,17 +97,20 @@ static const struct Vendor vendors[] =
     { "ADD", "Advanced Peripheral Devices Inc" },
     { "ADE", "Arithmos, Inc." },
     { "ADH", "Aerodata Holdings Ltd" },
-    { "ADI", "ADI Systems Inc" },
+    //{ "ADI", "ADI Systems Inc" },
+    { "ADI", "ADI Corporation" },
     { "ADK", "Adtek System Science Company Ltd" },
     { "ADL", "ASTRA Security Products Ltd" },
     { "ADM", "Ad Lib MultiMedia Inc" },
     { "ADN", "Analog & Digital Devices Tel. Inc" },
     //{ "ADP", "Adaptec Inc" },
+    { "ADP", "Adaptec" }, // ezix
     { "ADR", "Nasa Ames Research Center" },
     { "ADS", "Analog Devices Inc" },
     { "ADT", "Adtek" },
-    { "ADT", "Aved Display Technologies" },
+    //{ "ADT", "Aved Display Technologies" },
     //{ "ADV", "Advanced Micro Devices Inc" },
+    { "ADV", "AMD" }, // ezix
     { "ADX", "Adax Inc" },
     { "AEC", "Antex Electronics Corporation" },
     { "AED", "Advanced Electronic Designs, Inc." },
@@ -125,7 +132,8 @@ static const struct Vendor vendors[] =
     { "AII", "Amptron International Inc." },
     { "AIL", "Altos India Ltd" },
     { "AIM", "AIMS Lab Inc" },
-    { "AIR", "Advanced Integ. Research Inc" },
+    //{ "AIR", "Advanced Integ. Research Inc" },
+    { "AIR", "AIR" }, // ezix
     { "AIS", "Alien Internet Services" },
     { "AIW", "Aiwa Company Ltd" },
     { "AIX", "ALTINEX, INC." },
@@ -152,7 +160,7 @@ static const struct Vendor vendors[] =
     { "ALP", "Alps Electric Company Ltd" },
     { "ALR", "Advanced Logic" },
     { "ALS", "Avance Logic Inc" },
-    { "ALS", "Texas Advanced optoelectronics Solutions, Inc" },
+    //{ "ALS", "Texas Advanced optoelectronics Solutions, Inc" },
     { "ALT", "Altra" },
     { "ALV", "AlphaView LCD" },
     { "ALX", "ALEXON Co.,Ltd." },
@@ -160,7 +168,8 @@ static const struct Vendor vendors[] =
     { "AMB", "Ambient Technologies, Inc." },
     { "AMC", "Attachmate Corporation" },
     { "AMD", "Amdek Corporation" },
-    { "AMI", "American Megatrends Inc" },
+    //{ "AMI", "American Megatrends Inc" },
+    { "AMI", "AMI" }, // ezix
     { "AML", "Anderson Multimedia Communications (HK) Limited" },
     { "AMN", "Amimon LTD." },
     { "AMO", "Amino Technologies PLC and Amino Communications Limited" },
@@ -181,6 +190,7 @@ static const struct Vendor vendors[] =
     { "ANT", "Ace CAD Enterprise Company Ltd" },
     { "ANX", "Acer Netxus Inc" },
     { "AOA", "AOpen Inc." },
+    { "AOC", "AOC International" }, // faydoc
     { "AOE", "Advanced Optics Electronics, Inc." },
     { "AOL", "America OnLine" },
     { "AOT", "Alcatel" },
@@ -188,11 +198,13 @@ static const struct Vendor vendors[] =
     { "APD", "AppliAdata" },
     { "APE", "Alpine Electronics, Inc." },
     { "APG", "Horner Electric Inc" },
-    { "API", "A Plus Info Corporation" },
+    //{ "API", "A Plus Info Corporation" },
+    { "API", "Acer" }, // faydoc
     { "APL", "Aplicom Oy" },
     { "APM", "Applied Memory Tech" },
     { "APN", "Appian Tech Inc" },
     //{ "APP", "Apple Computer Inc" },
+    { "APP", "Apple" }, // ezix
     { "APR", "Aprilia s.p.a." },
     { "APS", "Autologic Inc" },
     { "APT", "Audio Processing Technology Ltd" },
@@ -207,7 +219,8 @@ static const struct Vendor vendors[] =
     { "ARM", "Arima" },
     { "ARO", "Poso International B.V." },
     { "ARS", "Arescom Inc" },
-    { "ART", "Corion Industrial Corporation" },
+    //{ "ART", "Corion Industrial Corporation" },
+    { "ART", "ArtMedia" }, // faydoc
     { "ASC", "Ascom Strategic Technology Unit" },
     { "ASD", "USC Information Sciences Institute" },
     { "ASE", "AseV Display Labs" },
@@ -217,8 +230,10 @@ static const struct Vendor vendors[] =
     { "ASM", "ASEM S.p.A." },
     { "ASN", "Asante Tech Inc" },
     { "ASP", "ASP Microelectronics Ltd" },
-    { "AST", "AST Research Inc" },
+    //{ "AST", "AST Research Inc" },
+    { "AST", "AST Research" },
     //{ "ASU", "Asuscom Network Inc" },
+    { "ASU", "ASUS" }, // ezix
     { "ASX", "AudioScience" },
     { "ASY", "Rockwell Collins / Airshow Systems" },
     { "ATA", "Allied Telesyn International (Asia) Pte Ltd" },
@@ -226,8 +241,10 @@ static const struct Vendor vendors[] =
     { "ATD", "Alpha Telecom Inc" },
     { "ATE", "Innovate Ltd" },
     { "ATH", "Athena Informatica S.R.L." },
-    { "ATI", "Allied Telesis KK" },
-    //{ "ATK", "Allied Telesyn Int'l" },
+    //{ "ATI", "Allied Telesis KK" },
+    { "ATI", "ATI" }, // ezix
+    //{ "ATK", "Allied Telesyn Int"l" },
+    { "ATK", "Allied Telesyn" }, // ezix
     { "ATL", "Arcus Technology Ltd" },
     { "ATM", "ATM Ltd" },
     { "ATN", "Athena Smartcard Solutions Ltd." },
@@ -252,7 +269,7 @@ static const struct Vendor vendors[] =
     { "AVR", "AVer Information Inc." },
     { "AVT", "Avtek (Electronics) Pty Ltd" },
     { "AVV", "SBS Technologies (Canada), Inc. (was Avvida Systems, Inc.)" },
-    { "AVX", "A/Vaux Electronics" },
+    //{ "AVX", "A/Vaux Electronics" },
     { "AVX", "AVerMedia Technologies, Inc." },
     { "AWC", "Access Works Comm Inc" },
     { "AWL", "Aironet Wireless Communications, Inc" },
@@ -271,6 +288,7 @@ static const struct Vendor vendors[] =
     { "AYR", "Airlib, Inc" },
     { "AZM", "AZ Middelheim - Radiotherapy" },
     //{ "AZT", "Aztech Systems Ltd" },
+    { "AZT", "Aztech" }, // ezix
     { "BAC", "Biometric Access Corporation" },
     { "BAN", "Banyan" },
     { "BBB", "an-najah university" },
@@ -308,6 +326,7 @@ static const struct Vendor vendors[] =
     { "BNE", "Bull AB" },
     { "BNK", "Banksia Tech Pty Ltd" },
     { "BNO", "Bang & Olufsen" },
+    { "BNQ", "BenQ" }, // ezix
     { "BNS", "Boulder Nonlinear Systems" },
     { "BOB", "Rainy Orchard" },
     { "BOE", "BOE" },
@@ -319,6 +338,7 @@ static const struct Vendor vendors[] =
     { "BRC", "BARC" },
     { "BRG", "Bridge Information Co., Ltd" },
     //{ "BRI", "Boca Research Inc" },
+    { "BRI", "Boca Research" }, // ezix
     { "BRM", "Braemar Inc" },
     { "BRO", "BROTHER INDUSTRIES,LTD." },
     { "BSE", "Bose Corporation" },
@@ -347,8 +367,8 @@ static const struct Vendor vendors[] =
     { "CAL", "Acon" },
     { "CAM", "Cambridge Audio" },
     { "CAN", "Canopus Company Ltd" },
-    { "CAN", "Carrera Computer Inc" },
-    { "CAN", "CORNEA" },
+    //{ "CAN", "Carrera Computer Inc" },
+    //{ "CAN", "CORNEA" },
     { "CAR", "Cardinal Company Ltd" },
     { "CAS", "CASIO COMPUTER CO.,LTD" },
     { "CAT", "Consultancy in Advanced Technology" },
@@ -388,6 +408,7 @@ static const struct Vendor vendors[] =
     { "CGS", "Chyron Corp" },
     { "CGT", "congatec AG" },
     //{ "CHA", "Chase Research PLC" },
+    { "CHA", "Chase" }, // ezix
     { "CHC", "Chic Technology Corp." },
     { "CHD", "ChangHong Electric Co.,Ltd" },
     { "CHE", "Acer Inc" },
@@ -421,7 +442,8 @@ static const struct Vendor vendors[] =
     { "CLV", "Clevo Company" },
     { "CLX", "CardLogix" },
     { "CMC", "CMC Ltd" },
-    { "CMD", "Colorado MicroDisplay, Inc." },
+    //{ "CMD", "Colorado MicroDisplay, Inc." },
+    { "CMD", "CMD Technology, Inc." }, // ezix
     { "CMG", "Chenming Mold Ind. Corp." },
     { "CMI", "C-Media Electronics" },
     { "CMM", "Comtime GmbH" },
@@ -438,6 +460,7 @@ static const struct Vendor vendors[] =
     { "CNT", "COINT Multimedia Systems" },
     { "COB", "COBY Electronics Co., Ltd" },
     { "COD", "CODAN Pty. Ltd." },
+    { "COG", "Cogent" }, // ezix
     { "COI", "Codec Inc." },
     { "COL", "Rockwell Collins, Inc." },
     { "COM", "Comtrol Corporation" },
@@ -452,8 +475,10 @@ static const struct Vendor vendors[] =
     { "CPD", "CompuAdd" },
     { "CPI", "Computer Peripherals Inc" },
     //{ "CPL", "Compal Electronics Inc" },
+    { "CPL", "Compal" }, // faydoc
     { "CPM", "Capella Microsystems Inc." },
     //{ "CPQ", "Compaq Computer Company" },
+    { "CPQ", "Compaq" }, // ezix
     { "CPT", "cPATH" },
     { "CPX", "Powermatic Data Systems" },
     { "CRC", "CONRAC GmbH" },
@@ -465,10 +490,12 @@ static const struct Vendor vendors[] =
     { "CRO", "Extraordinary Technologies PTY Limited" },
     { "CRQ", "Cirque Corporation" },
     //{ "CRS", "Crescendo Communication Inc" },
+    { "CRS", "Crescendo" }, // ezix
     { "CRV", "Cerevo Inc." },
     { "CRX", "Cyrix Corporation" },
     { "CSB", "Transtex SA" },
     //{ "CSC", "Crystal Semiconductor" },
+    { "CSC", "Crystal" }, // ezix
     { "CSD", "Cresta Systems Inc" },
     { "CSE", "Concept Solutions & Engineering" },
     { "CSI", "Cabletron System Inc" },
@@ -479,12 +506,14 @@ static const struct Vendor vendors[] =
     { "CTA", "CoSystems Inc" },
     { "CTC", "CTC Communication Development Company Ltd" },
     { "CTE", "Chunghwa Telecom Co., Ltd." },
-    { "CTL", "Creative Technology Ltd" },
+    //{ "CTL", "Creative Technology Ltd" },
+    { "CTL", "Creative Labs" }, // ezix
     { "CTM", "Computerm Corporation" },
     { "CTN", "Computone Products" },
     { "CTP", "Computer Technology Corporation" },
     { "CTS", "Comtec Systems Co., Ltd." },
-    { "CTX", "Creatix Polymedia GmbH" },
+    //{ "CTX", "Creatix Polymedia GmbH" },
+    { "CTX", "Chuntex Electronic Co." }, // faydoc
     { "CUB", "Cubix Corporation" },
     { "CUK", "Calibre UK Ltd" },
     { "CVA", "Covia Inc." },
@@ -516,6 +545,7 @@ static const struct Vendor vendors[] =
     { "DBD", "Diebold Inc." },
     { "DBI", "DigiBoard Inc" },
     //{ "DBK", "Databook Inc" },
+    { "DBK", "Databook" }, // ezix
     { "DBL", "Doble Engineering Company" },
     { "DBN", "DB Networks Inc" },
     { "DCA", "Digital Communications Association" },
@@ -538,8 +568,10 @@ static const struct Vendor vendors[] =
     { "DDT", "Datadesk Technologies Inc" },
     { "DDV", "Delta Information Systems, Inc" },
     //{ "DEC", "Digital Equipment Corporation" },
+    { "DEC", "Digital Equipment" }, // ezix
     { "DEI", "Deico Electronics" },
     //{ "DEL", "Dell Inc." },
+    { "DEL", "Dell" }, // ezix
     { "DEN", "Densitron Computers Ltd" },
     { "DEX", "idex displays" },
     { "DFI", "DFI" },
@@ -552,7 +584,7 @@ static const struct Vendor vendors[] =
     { "DGP", "Digicorp European sales S.A." },
     { "DGS", "Diagsoft Inc" },
     { "DGT", "Dearborn Group Technology" },
-    { "DGT", "The Dearborn Group" },
+    //{ "DGT", "The Dearborn Group" },
     { "DHP", "DH Print" },
     { "DHQ", "Quadram" },
     { "DHT", "Projectavision Inc" },
@@ -590,6 +622,7 @@ static const struct Vendor vendors[] =
     { "DOT", "Dotronic Mikroelektronik GmbH" },
     { "DPA", "DigiTalk Pro AV" },
     //{ "DPC", "Delta Electronics Inc" },
+    { "DPC", "Delta Electronics" }, // faydoc
     { "DPI", "DocuPoint" },
     { "DPL", "Digital Projection Limited" },
     { "DPM", "ADPM Synthesis sas" },
@@ -623,6 +656,7 @@ static const struct Vendor vendors[] =
     { "DVS", "Digital Video System" },
     { "DVT", "Data Video" },
     //{ "DWE", "Daewoo Electronics Company Ltd" },
+    { "DWE", "Daewoo" }, // faydoc
     { "DXC", "Digipronix Control Systems" },
     { "DXD", "DECIMATOR DESIGN PTY LTD" },
     { "DXL", "Dextera Labs Inc" },
@@ -644,6 +678,7 @@ static const struct Vendor vendors[] =
     { "ECO", "Echo Speech Corporation" },
     { "ECP", "Elecom Company Ltd" },
     //{ "ECS", "Elitegroup Computer Systems Company Ltd" },
+    { "ECS", "Elitegroup" }, // faydoc
     { "ECT", "Enciris Technologies" },
     { "EDC", "e.Digital Corporation" },
     { "EDG", "Electronic-Design GmbH" },
@@ -662,6 +697,7 @@ static const struct Vendor vendors[] =
     { "EHJ", "Epson Research" },
     { "EHN", "Enhansoft" },
     { "EIC", "Eicon Technology Corporation" },
+    { "EIZ", "EIZO" }, // faydoc
     { "EKA", "MagTek Inc." },
     { "EKC", "Eastman Kodak Company" },
     { "EKS", "EKSEN YAZILIM" },
@@ -673,8 +709,9 @@ static const struct Vendor vendors[] =
     { "ELL", "Electrosonic Ltd" },
     { "ELM", "Elmic Systems Inc" },
     { "ELO", "Elo TouchSystems Inc" },
-    { "ELO", "Tyco Electronics" },
+    //{ "ELO", "Tyco Electronics" },
     //{ "ELS", "ELSA GmbH" },
+    { "ELS", "ELSA" }, // ezix
     { "ELT", "Element Labs, Inc." },
     { "ELX", "Elonex PLC" },
     { "EMB", "Embedded computing inc ltd" },
@@ -712,6 +749,7 @@ static const struct Vendor vendors[] =
     { "ESL", "Esterline Technologies" },
     { "ESN", "eSATURNUS" },
     //{ "ESS", "ESS Technology Inc" },
+    { "ESS", "ESS" }, // ezix
     { "EST", "Embedded Solution Technology" },
     { "ESY", "E-Systems Inc" },
     { "ETC", "Everton Technology Company Ltd" },
@@ -738,9 +776,11 @@ static const struct Vendor vendors[] =
     { "EZE", "EzE Technologies" },
     { "EZP", "Storm Technology" },
     //{ "FAR", "Farallon Computing" },
+    { "FAR", "Farallon" }, // ezix
     { "FBI", "Interface Corporation" },
     { "FCB", "Furukawa Electric Company Ltd" },
     { "FCG", "First International Computer Ltd" },
+    { "FCM", "Funai" }, // faydoc
     { "FCS", "Focus Enhancements, Inc." },
     { "FDC", "Future Domain" },
     { "FDT", "Fujitsu Display Technologies Corp." },
@@ -767,7 +807,7 @@ static const struct Vendor vendors[] =
     { "FLY", "Butterfly Communications" },
     { "FMA", "Fast Multimedia AG" },
     { "FMC", "Ford Microelectronics Inc" },
-    { "FMI", "Fellowes, Inc." },
+    //{ "FMI", "Fellowes, Inc." },
     { "FMI", "Fujitsu Microelect Inc" },
     { "FML", "Fujitsu Microelect Ltd" },
     { "FMZ", "Formoza-Altair" },
@@ -798,7 +838,8 @@ static const struct Vendor vendors[] =
     { "FTW", "MindTribe Product Engineering, Inc." },
     { "FUJ", "Fujitsu Ltd" },
     { "FUN", "sisel muhendislik" },
-    { "FUS", "Fujitsu Siemens Computers GmbH" },
+    //{ "FUS", "Fujitsu Siemens Computers GmbH" },
+    { "FUS", "Fujitsu Siemens" },
     { "FVC", "First Virtual Corporation" },
     { "FVX", "C-C-C Group Plc" },
     { "FWA", "Attero Tech, LLC" },
@@ -853,7 +894,7 @@ static const struct Vendor vendors[] =
     { "GRY", "Robert Gray Company" },
     { "GSB", "NIPPONDENCHI CO,.LTD" },
     { "GSC", "General Standards Corporation" },
-    { "GSM", "Goldstar Company Ltd" },
+    { "GSM", "LG Electronics" },
     { "GST", "Graphic SystemTechnology" },
     { "GSY", "Grossenbacher Systeme AG" },
     { "GTC", "Graphtec Corporation" },
@@ -886,6 +927,7 @@ static const struct Vendor vendors[] =
     { "HDV", "Holografika kft." },
     { "HEC", "Hisense Electric Co., Ltd." },
     { "HEC", "Hitachi Engineering Company Ltd" },
+    { "HEI", "Hyundai" }, // faydoc
     { "HEL", "Hitachi Micro Systems Europe Ltd" },
     { "HER", "Ascom Business Systems" },
     { "HET", "HETEC Datensysteme GmbH" },
@@ -897,6 +939,7 @@ static const struct Vendor vendors[] =
     { "HIL", "Hilevel Technology" },
     { "HIQ", "Kaohsiung Opto Electronics Americas, Inc." },
     //{ "HIT", "Hitachi America Ltd" },
+    { "HIT", "Hitachi" }, // faydoc
     { "HJI", "Harris & Jeffries Inc" },
     { "HKA", "HONKO MFG. CO., LTD." },
     { "HKG", "Josef Heim KG" },
@@ -923,9 +966,11 @@ static const struct Vendor vendors[] =
     { "HRT", "HERCULES" },
     { "HSC", "Hagiwara Sys-Com Company Ltd" },
     { "HSD", "HannStar Display Corp" },
+    { "HSL", "Hansol" }, // faydoc
     { "HSM", "AT&T Microelectronics" },
     { "HSP", "HannStar Display Corp" },
-    { "HTC", "Hitachi Ltd" },
+    //{ "HTC", "Hitachi Ltd" },
+    { "HTC", "Hitachi" },
     { "HTI", "Hampshire Company, Inc." },
     { "HTK", "Holtek Microelectronics Inc" },
     { "HTX", "Hitex Systementwicklung GmbH" },
@@ -950,6 +995,7 @@ static const struct Vendor vendors[] =
     { "IBI", "INBINE.CO.LTD" },
     //{ "IBM", "IBM Brasil" },
     //{ "IBM", "IBM France" },
+    { "IBM", "IBM" }, // ezix
     { "IBP", "IBP Instruments GmbH" },
     { "IBR", "IBR GmbH" },
     { "ICA", "ICA Inc" },
@@ -957,6 +1003,7 @@ static const struct Vendor vendors[] =
     { "ICD", "ICD Inc" },
     { "ICE", "IC Ensemble" },
     { "ICI", "Infotek Communication Inc" },
+    { "ICL", "Fujitsu ICL" }, // faydoc
     { "ICM", "Intracom SA" },
     { "ICN", "Sanyo Icon" },
     { "ICO", "Intel Corp" },
@@ -976,7 +1023,8 @@ static const struct Vendor vendors[] =
     { "IEC", "Interlace Engineering Corporation" },
     { "IEE", "IEE" },
     { "IEI", "Interlink Electronics" },
-    { "IFS", "In Focus Systems Inc" },
+    //{ "IFS", "In Focus Systems Inc" },
+    { "IFS", "InFocus" },
     { "IFT", "Informtech" },
     { "IFX", "Infineon Technologies AG" },
     { "IFZ", "Infinite Z" },
@@ -999,7 +1047,7 @@ static const struct Vendor vendors[] =
     { "IMM", "Immersion Corporation" },
     { "IMN", "Impossible Production" },
     { "IMP", "Impinj" },
-    { "IMP", "Impression Products Incorporated" },
+    //{ "IMP", "Impression Products Incorporated" },
     { "IMT", "Inmax Technology Corporation" },
     { "INC", "Home Row Inc" },
     { "IND", "ILC" },
@@ -1014,7 +1062,8 @@ static const struct Vendor vendors[] =
     { "INO", "Innolab Pte Ltd" },
     { "INP", "Interphase Corporation" },
     { "INS", "Ines GmbH" },
-    { "INT", "Interphase Corporation" },
+    //{ "INT", "Interphase Corporation" },
+    { "INT", "Intel" }, // ezix
     { "inu", "Inovatec S.p.A." },
     { "INV", "Inviso, Inc." },
     { "INX", "Communications Supply Corporation (A division of WESCO)" },
@@ -1113,6 +1162,7 @@ static const struct Vendor vendors[] =
     { "KES", "Kesa Corporation" },
     { "KEY", "Key Tech Inc" },
     //{ "KFC", "SCD Tech" },
+    { "KFC", "KFC Computek" }, // faydoc
     { "KFE", "Komatsu Forest" },
     { "KFX", "Kofax Image Products" },
     { "KGL", "KEISOKU GIKEN Co.,Ltd." },
@@ -1172,6 +1222,7 @@ static const struct Vendor vendors[] =
     { "LED", "Long Engineering Design Inc" },
     { "LEG", "Legerity, Inc" },
     //{ "LEN", "Lenovo Group Limited" },
+    { "LEN", "Lenovo" }, // faydoc
     { "LEO", "First International Computer Inc" },
     { "LEX", "Lexical Ltd" },
     { "LGC", "Logic Ltd" },
@@ -1185,7 +1236,8 @@ static const struct Vendor vendors[] =
     { "LIP", "Linked IP GmbH" },
     { "LIT", "Lithics Silicon Technology" },
     { "LJX", "Datalogic Corporation" },
-    { "LKM", "Likom Technology Sdn. Bhd." },
+    //{ "LKM", "Likom Technology Sdn. Bhd." },
+    { "LKM", "ADLAS" }, // faydoc
     { "LLL", "L-3 Communications" },
     { "LMG", "Lucent Technologies" },
     { "LMI", "Lexmark Int'l Inc" },
@@ -1212,7 +1264,8 @@ static const struct Vendor vendors[] =
     { "LTC", "Labtec Inc" },
     { "LTI", "Jongshine Tech Inc" },
     { "LTK", "Lucidity Technology Company Ltd" },
-    { "LTN", "Litronic Inc" },
+    //{ "LTN", "Litronic Inc" },
+    { "LTN", "Lite-On" }, // faydoc
     { "LTS", "LTS Scale LLC" },
     { "LTV", "Leitch Technology International Inc." },
     { "LTW", "Lightware, Inc" },
@@ -1236,7 +1289,8 @@ static const struct Vendor vendors[] =
     { "MAN", "LGIC" },
     { "MAS", "Mass Inc." },
     { "MAT", "Matsushita Electric Ind. Company Ltd" },
-    { "MAX", "Rogen Tech Distribution Inc" },
+    //{ "MAX", "Rogen Tech Distribution Inc" },
+    { "MAX", "Maxdata" }, // faydoc
     { "MAY", "Maynard Electronics" },
     { "MAZ", "MAZeT GmbH" },
     { "MBC", "MBC" },
@@ -1262,6 +1316,7 @@ static const struct Vendor vendors[] =
     { "MDC", "Midori Electronics" },
     { "MDD", "MODIS" },
     //{ "MDG", "Madge Networks" },
+    { "MDG", "Madge" }, // ezix
     { "MDI", "Micro Design Inc" },
     { "MDK", "Mediatek Corporation" },
     { "MDO", "Panasonic" },
@@ -1271,17 +1326,21 @@ static const struct Vendor vendors[] =
     { "MDV", "MET Development Inc" },
     { "MDX", "MicroDatec GmbH" },
     //{ "MDY", "Microdyne Inc" },
+    { "MDY", "Microdyne" }, // ezix
     { "MEC", "Mega System Technologies Inc" },
     { "MED", "Messeltronik Dresden GmbH" },
     { "MEE", "Mitsubishi Electric Engineering Co., Ltd." },
     { "MEG", "Abeam Tech Ltd" },
     //{ "MEI", "Panasonic Industry Company" },
+    { "MEI", "Panasonic" }, // faydoc
     { "MEJ", "Mac-Eight Co., LTD." },
     //{ "MEL", "Mitsubishi Electric Corporation" },
+    { "MEL", "Mitsubishi" }, // faydoc
     { "MEN", "MEN Mikroelectronik Nueruberg GmbH" },
     { "MEP", "Meld Technology" },
     { "MEQ", "Matelect Ltd." },
     //{ "MET", "Metheus Corporation" },
+    { "MET", "Metheus" }, // ezix
     { "MEX", "MSC Vertriebs GmbH" },
     { "MFG", "MicroField Graphics Inc" },
     { "MFI", "Micro Firmware" },
@@ -1291,7 +1350,8 @@ static const struct Vendor vendors[] =
     { "MGE", "Schneider Electric S.A." },
     { "MGL", "M-G Technology Ltd" },
     { "MGT", "Megatech R & D Company" },
-    { "MIC", "Micom Communications Inc" },
+    //{ "MIC", "Micom Communications Inc" },
+    { "MIC", "Micronics" }, // ezix
     { "MID", "miro Displays" },
     { "MII", "Mitec Inc" },
     { "MIL", "Marconi Instruments Ltd" },
@@ -1313,6 +1373,7 @@ static const struct Vendor vendors[] =
     { "MLN", "Mark Levinson" },
     { "MLS", "Milestone EPE" },
     //{ "MLX", "Mylex Corporation" },
+    { "MLX", "Mylex" }, // ezix
     { "MMA", "Micromedia AG" },
     { "MMD", "Micromed Biotecnologia Ltd" },
     { "MMF", "Minnesota Mining and Manufacturing" },
@@ -1360,11 +1421,12 @@ static const struct Vendor vendors[] =
     { "MSX", "Micomsoft Co., Ltd." },
     { "MSY", "MicroTouch Systems Inc" },
     { "MTB", "Media Technologies Ltd." },
-    { "MTC", "Mars-Tech Corporation" },
+    //{ "MTC", "Mars-Tech Corporation" },
+    { "MTC", "MITAC" }, // faydoc
     { "MTD", "MindTech Display Co. Ltd" },
     { "MTE", "MediaTec GmbH" },
     { "MTH", "Micro-Tech Hearing Instruments" },
-    { "MTI", "MaxCom Technical Inc" },
+    //{ "MTI", "MaxCom Technical Inc" },
     { "MTI", "Motorola Inc." },
     { "MTK", "Microtek International Inc." },
     { "MTL", "Mitel Corporation" },
@@ -1397,6 +1459,7 @@ static const struct Vendor vendors[] =
     { "NAD", "NAD Electronics" },
     { "NAK", "Nakano Engineering Co.,Ltd." },
     { "NAL", "Network Alchemy" },
+    { "NAN", "NANAO" }, // faydoc
     { "NAT", "NaturalPoint Inc." },
     { "NAV", "Navigation Corporation" },
     { "NAX", "Naxos Tecnologia" },
@@ -1417,6 +1480,7 @@ static const struct Vendor vendors[] =
     { "NDL", "Network Designers" },
     { "NDS", "Nokia Data" },
     //{ "NEC", "NEC Corporation" },
+    { "NEC", "NEC" }, // ezix
     { "NEO", "NEO TELECOM CO.,LTD." },
     { "NET", "Mettler Toledo" },
     { "NEU", "NEUROTEC - EMPRESA DE PESQUISA E DESENVOLVIMENTO EM BIOMEDICINA" },
@@ -1440,6 +1504,7 @@ static const struct Vendor vendors[] =
     { "NOE", "NordicEye AB" },
     { "NOI", "North Invent A/S" },
     //{ "NOK", "Nokia Display Products" },
+    { "NOK", "Nokia" }, // faydoc
     { "NOR", "Norand Corporation" },
     { "NOT", "Not Limited Inc" },
     { "NPI", "Network Peripherals Inc" },
@@ -1466,6 +1531,7 @@ static const struct Vendor vendors[] =
     { "NVD", "Nvidia" },
     { "NVI", "NuVision US, Inc." },
     //{ "NVL", "Novell Inc" },
+    { "NVL", "Novell" }, // ezix
     { "NVT", "Navatek Engineering Corporation" },
     { "NWC", "NW Computer Engineering" },
     { "NWP", "NovaWeb Technologies Inc" },
@@ -1491,6 +1557,7 @@ static const struct Vendor vendors[] =
     { "OIN", "Option International" },
     { "OKI", "OKI Electric Industrial Company Ltd" },
     //{ "OLC", "Olicom A/S" },
+    { "OLC", "Olicom" }, // ezix
     { "OLD", "Olidata S.p.A." },
     { "OLI", "Olivetti" },
     { "OLT", "Olitec S.A." },
@@ -1511,7 +1578,8 @@ static const struct Vendor vendors[] =
     { "OPP", "OPPO Digital, Inc." },
     { "OPT", "OPTi Inc" },
     { "OPV", "Optivision Inc" },
-    { "OQI", "Oksori Company Ltd" },
+    //{ "OQI", "Oksori Company Ltd" },
+    { "OQI", "OPTIQUEST" }, // faydoc
     { "ORG", "ORGA Kartensysteme GmbH" },
     { "ORI", "OSR Open Systems Resources, Inc." },
     { "ORN", "ORION ELECTRIC CO., LTD." },
@@ -1538,6 +1606,7 @@ static const struct Vendor vendors[] =
     { "PBI", "Pitney Bowes" },
     { "PBL", "Packard Bell Electronics" },
     //{ "PBN", "Packard Bell NEC" },
+    { "PBN", "Packard Bell" }, // faydoc
     { "PBV", "Pitney Bowes" },
     { "PCA", "Philips BU Add On Card" },
     { "PCB", "OCTAL S.A." },
@@ -1571,9 +1640,11 @@ static const struct Vendor vendors[] =
     { "PGM", "Paradigm Advanced Research Centre" },
     { "PGP", "propagamma kommunikation" },
     //{ "PGS", "Princeton Graphic Systems" },
+    { "PGS", "Princeton" }, // faydoc
     { "PHC", "Pijnenburg Beheer N.V." },
     { "PHE", "Philips Medical Systems Boeblingen GmbH" },
     //{ "PHL", "Philips Consumer Electronics Company" },
+    { "PHL", "Philips" }, // faydoc
     { "PHO", "Photonics Systems Inc." },
     { "PHS", "Philips Communication Systems" },
     { "PHY", "Phylon Communications" },
@@ -1598,7 +1669,7 @@ static const struct Vendor vendors[] =
     { "PMT", "Promate Electronic Co., Ltd." },
     { "PMX", "Photomatrix" },
     { "PNG", "Microsoft" },
-    { "PNG", "P.I. Engineering Inc" },
+    //{ "PNG", "P.I. Engineering Inc" },
     { "PNL", "Panelview, Inc." },
     { "PNP", "Microsoft" },
     { "PNR", "Planar Systems, Inc." },
@@ -1696,7 +1767,8 @@ static const struct Vendor vendors[] =
     { "RED", "Research Electronics Development Inc" },
     { "REF", "Reflectivity, Inc." },
     { "REH", "Rehan Electronics Ltd." },
-    { "REL", "Reliance Electric Ind Corporation" },
+    //{ "REL", "Reliance Electric Ind Corporation" },
+    { "REL", "Relisys" }, // faydoc
     { "REM", "SCI Systems Inc." },
     { "REN", "Renesas Technology Corp." },
     { "RES", "ResMed Pty Ltd" },
@@ -1709,6 +1781,7 @@ static const struct Vendor vendors[] =
     { "RHT", "Red Hat, Inc." },
     { "RIC", "RICOH COMPANY, LTD." },
     //{ "RII", "Racal Interlan Inc" },
+    { "RII", "Racal" }, // ezix
     { "RIO", "Rios Systems Company Ltd" },
     { "RIT", "Ritech Inc" },
     { "RIV", "Rivulet Communications" },
@@ -1740,6 +1813,7 @@ static const struct Vendor vendors[] =
     { "RTC", "Relia Technologies" },
     { "RTI", "Rancho Tech Inc" },
     //{ "RTL", "Realtek Semiconductor Company Ltd" },
+    { "RTL", "Realtek" }, // ezix
     { "RTS", "Raintree Systems" },
     { "RUN", "RUNCO International" },
     { "RUP", "Ups Manufactoring s.r.l." },
@@ -1754,6 +1828,7 @@ static const struct Vendor vendors[] =
     { "SAI", "Sage Inc" },
     { "SAK", "Saitek Ltd" },
     //{ "SAM", "Samsung Electric Company" },
+    { "SAM", "Samsung" }, // ezix
     { "SAN", "Sanyo Electric Co.,Ltd." },
     { "SAS", "Stores Automated Systems Inc" },
     { "SAT", "Shuttle Tech" },
@@ -1770,6 +1845,7 @@ static const struct Vendor vendors[] =
     { "SCI", "System Craft" },
     { "SCL", "Sigmacom Co., Ltd." },
     //{ "SCM", "SCM Microsystems Inc" },
+    { "SCM", "SCM" }, // ezix
     { "SCN", "Scanport, Inc." },
     { "SCO", "SORCUS Computer GmbH" },
     { "SCP", "Scriptel Corporation" },
@@ -1782,6 +1858,7 @@ static const struct Vendor vendors[] =
     { "SDF", "SODIFF E&T CO., Ltd." },
     { "SDH", "Communications Specialies, Inc." },
     //{ "SDI", "Samtron Displays Inc" },
+    { "SDI", "Samtron" }, // faydoc
     { "SDK", "SAIT-Devlonics" },
     { "SDR", "SDR Systems" },
     { "SDS", "SunRiver Data System" },
@@ -1789,7 +1866,8 @@ static const struct Vendor vendors[] =
     { "SDX", "SDX Business Systems Ltd" },
     { "SEA", "Seanix Technology Inc." },
     { "SEB", "system elektronik GmbH" },
-    { "SEC", "Seiko Epson Corporation" },
+    //{ "SEC", "Seiko Epson Corporation" },
+    { "SEC", "Epson" }, // ezix
     { "SEE", "SeeColor Corporation" },
     { "SEI", "Seitz & Associates Inc" },
     { "SEL", "Way2Call Communications" },
@@ -1805,7 +1883,8 @@ static const struct Vendor vendors[] =
     { "SGC", "Spectragraphics Corporation" },
     { "SGD", "Sigma Designs, Inc." },
     { "SGE", "Kansai Electric Company Ltd" },
-    { "SGI", "Scan Group Ltd" },
+    //{ "SGI", "Scan Group Ltd" },
+    { "SGI", "SGI" }, // ezix
     { "SGL", "Super Gate Technology Company Ltd" },
     { "SGM", "SAGEM" },
     { "SGO", "Logos Design A/S" },
@@ -1853,8 +1932,10 @@ static const struct Vendor vendors[] =
     { "SMA", "SMART Modular Technologies" },
     { "SMB", "Schlumberger" },
     //{ "SMC", "Standard Microsystems Corporation" },
+    { "SMC", "SMC" }, // ezix
     { "SME", "Sysmate Company" },
-    { "SMI", "SpaceLabs Medical Inc" },
+    //{ "SMI", "SpaceLabs Medical Inc" },
+    { "SMI", "Smile" }, // faydoc
     { "SMK", "SMK CORPORATION" },
     { "SML", "Sumitomo Metal Industries, Ltd." },
     { "SMM", "Shark Multimedia Inc" },
@@ -1864,7 +1945,8 @@ static const struct Vendor vendors[] =
     { "SMS", "Silicom Multimedia Systems Inc" },
     { "SMT", "Silcom Manufacturing Tech Inc" },
     { "SNC", "Sentronic International Corp." },
-    { "SNI", "Siemens Microdesign GmbH" },
+    //{ "SNI", "Siemens Microdesign GmbH" },
+    { "SNI", "Siemens Nixdorf" }, // ezix
     { "SNK", "S&K Electronics" },
     { "SNO", "SINOSUN TECHNOLOGY CO., LTD" },
     { "SNP", "Siemens Nixdorf Info Systems" },
@@ -1889,10 +1971,12 @@ static const struct Vendor vendors[] =
     { "SPR", "pmns GmbH" },
     { "SPS", "Synopsys Inc" },
     //{ "SPT", "Sceptre Tech Inc" },
+    { "SPT", "Sceptre" }, // faydoc
     { "SPU", "SIM2 Multimedia S.P.A." },
     { "SPX", "Simplex Time Recorder Co." },
     { "SQT", "Sequent Computer Systems Inc" },
-    { "SRC", "Integrated Tech Express Inc" },
+    //{ "SRC", "Integrated Tech Express Inc" },
+    { "SRC", "Shamrock Technology" }, // faydoc
     { "SRD", "Setred" },
     { "SRF", "Surf Communication Solutions Ltd" },
     { "SRG", "Intuitive Surgical, Inc." },
@@ -1916,11 +2000,13 @@ static const struct Vendor vendors[] =
     { "STH", "Semtech Corporation" },
     { "STI", "Smart Tech Inc" },
     { "STK", "SANTAK CORP." },
-    { "STL", "SigmaTel Inc" },
+    //{ "STL", "SigmaTel Inc" },
+    { "STL", "Stallion Technologies" }, // ezix
     { "STM", "SGS Thomson Microelectronics" },
     { "STN", "Samsung Electronics America" },
     { "STO", "Stollmann E+V GmbH" },
-    { "STP", "StreamPlay Ltd" },
+    //{ "STP", "StreamPlay Ltd" },
+    { "STP", "Sceptre" }, // faydoc
     { "STR", "Starlight Networks Inc" },
     { "STS", "SITECSYSTEM CO., LTD." },
     { "STT", "Star Paging Telecom Tech (Shenzhen) Co. Ltd." },
@@ -1931,11 +2017,13 @@ static const struct Vendor vendors[] =
     { "SUB", "Subspace Comm. Inc" },
     { "SUM", "Summagraphics Corporation" },
     //{ "SUN", "Sun Electronics Corporation" },
+    { "SUN", "Sun" }, // ezix
     { "SUP", "Supra Corporation" },
     { "SUR", "Surenam Computer Corporation" },
     { "SVA", "SGEG" },
     { "SVC", "Intellix Corp." },
     { "SVD", "SVD Computer" },
+    { "SVE", "SVEC" }, // ezix
     { "SVI", "Sun Microsystems" },
     { "SVS", "SVSI" },
     { "SVT", "SEVIT Co., Ltd." },
@@ -1966,7 +2054,8 @@ static const struct Vendor vendors[] =
     { "TAI", "Toshiba America Info Systems Inc" },
     { "TAM", "Tamura Seisakusyo Ltd" },
     { "TAS", "Taskit Rechnertechnik GmbH" },
-    { "TAT", "Teleliaison Inc" },
+    //{ "TAT", "Teleliaison Inc" },
+    { "TAT", "Tatung" }, // faydoc
     { "TAX", "Taxan (Europe) Ltd" },
     { "TBB", "Triple S Engineering Inc" },
     { "TBC", "Turbo Communication, Inc" },
@@ -1975,12 +2064,15 @@ static const struct Vendor vendors[] =
     { "TCD", "Taicom Data Systems Co., Ltd." },
     { "TCE", "Century Corporation" },
     { "TCH", "Interaction Systems, Inc" },
-    //{ "TCI", "Tulip Computers Int'l B.V." },
+    //{ "TCI", "Tulip Computers Int"l B.V." },
+    { "TCI", "Tulip" }, // ezix
     { "TCJ", "TEAC America Inc" },
     { "TCL", "Technical Concepts Ltd" },
     //{ "TCM", "3Com Corporation" },
+    { "TCM", "3Com" }, // ezix
     { "TCN", "Tecnetics (PTY) Ltd" },
     //{ "TCO", "Thomas-Conrad Corporation" },
+    { "TCO", "Thomas-Conrad" }, // ezix
     { "TCR", "Thomson Consumer Electronics" },
     { "TCS", "Tatung Company of America Inc" },
     { "TCT", "Telecom Technology Centre Co. Ltd." },
@@ -1996,6 +2088,7 @@ static const struct Vendor vendors[] =
     { "TDY", "Tandy Electronics" },
     { "TEA", "TEAC System Corporation" },
     //{ "TEC", "Tecmar Inc" },
+    { "TEC", "Tecmar" }, // ezix
     { "TEK", "Tektronix Inc" },
     { "TEL", "Promotion and Display Technology Ltd." },
     { "TER", "TerraTec Electronic GmbH" },
@@ -2037,7 +2130,8 @@ static const struct Vendor vendors[] =
     { "TOG", "The OPEN Group" },
     { "TON", "TONNA" },
     { "TOP", "Orion Communications Co., Ltd." },
-    { "TOS", "Toshiba Corporation" },
+    //{ "TOS", "Toshiba Corporation" },
+    { "TOS", "Toshiba" }, // ezix
     { "TOU", "Touchstone Technology" },
     { "TPC", "Touch Panel Systems Corporation" },
     { "TPE", "Technology Power Enterprises Inc" },
@@ -2058,10 +2152,12 @@ static const struct Vendor vendors[] =
     { "TRN", "Datacommunicatie Tron B.V." },
     { "TRS", "Torus Systems Ltd" },
     { "TRT", "Tritec Electronic AG" },
-    { "TRU", "Aashima Technology B.V." },
+    //{ "TRU", "Aashima Technology B.V." },
+    { "TRU", "Truevision" }, // ezix
     { "TRV", "Trivisio Prototyping GmbH" },
     { "TRX", "Trex Enterprises" },
     //{ "TSB", "Toshiba America Info Systems Inc" },
+    { "TSB", "Toshiba, Inc." }, // faydoc
     { "TSC", "Sanyo Electric Company Ltd" },
     { "TSD", "TechniSat Digital GmbH" },
     { "TSE", "Tottori Sanyo Electric" },
@@ -2101,8 +2197,10 @@ static const struct Vendor vendors[] =
     { "TXN", "Texas Insturments" },
     { "TXT", "Textron Defense System" },
     //{ "TYN", "Tyan Computer Corporation" },
+    { "TYN", "Tyan" }, // ezix
     { "UAS", "Ultima Associates Pte Ltd" },
     //{ "UBI", "Ungermann-Bass Inc" },
+    { "UBI", "Ungermann-Bass" }, // ezix
     { "UBL", "Ubinetics Ltd." },
     { "UDN", "Uniden Corporation" },
     { "UEC", "Ultima Electronics Corporation" },
@@ -2124,7 +2222,7 @@ static const struct Vendor vendors[] =
     { "UND", "Unisys Corporation" },
     { "UNE", "Unisys Corporation" },
     { "UNF", "Unisys Corporation" },
-    { "UNI", "Uniform Industry Corp." },
+    //{ "UNI", "Uniform Industry Corp." },
     { "UNI", "Unisys Corporation" },
     { "UNM", "Unisys Corporation" },
     { "UNO", "Unisys Corporation" },
@@ -2136,6 +2234,7 @@ static const struct Vendor vendors[] =
     { "UPS", "Systems Enhancement" },
     { "URD", "Video Computer S.p.A." },
     { "USA", "Utimaco Safeware AG" },
+    { "USC", "UltraStor" }, // ezix
     { "USD", "U.S. Digital Corporation" },
     { "USI", "Universal Scientific Industrial Co., Ltd." },
     { "USR", "U.S. Robotics Inc" },
@@ -2177,6 +2276,7 @@ static const struct Vendor vendors[] =
     { "VLK", "Vislink International Ltd" },
     { "VLT", "VideoLan Technologies" },
     //{ "VMI", "Vermont Microsystems" },
+    { "VMI", "Vermont" }, // ezix
     { "VML", "Vine Micros Limited" },
     { "VMW", "VMware Inc.," },
     { "VNC", "Vinca Corporation" },
@@ -2186,6 +2286,7 @@ static const struct Vendor vendors[] =
     { "VQ@", "Vision Quest" },
     { "VRC", "Virtual Resources Corporation" },
     //{ "VSC", "ViewSonic Corporation" },
+    { "VSC", "ViewSonic" }, // faydoc
     { "VSD", "3M" },
     { "VSI", "VideoServer" },
     { "VSN", "Ingram Macrotron" },
@@ -2204,6 +2305,7 @@ static const struct Vendor vendors[] =
     { "VUT", "Vutrix (UK) Ltd" },
     { "VWB", "Vweb Corp." },
     //{ "WAC", "Wacom Tech" },
+    { "WAC", "Wacom" }, // ezix
     { "WAL", "Wave Access" },
     { "WAV", "Wavephore" },
     { "WBN", "MicroSoftWare" },
@@ -2277,6 +2379,7 @@ static const struct Vendor vendors[] =
     { "ZAX", "Zefiro Acoustics" },
     { "ZAZ", "Zazzle Technologies" },
     { "ZBR", "Zebra Technologies International, LLC" },
+    { "ZCM", "Zenith Data Systems" }, // faydoc
     { "ZCT", "ZeitControl cardsystems GmbH" },
     { "ZDS", "Zenith Data Systems" },
     { "ZGT", "Zenith Data Systems" },
@@ -2298,119 +2401,6 @@ static const struct Vendor vendors[] =
     { "ZYT", "Zytex Computers" },
     { "ZYX", "Zyxel" },
     { "ZZZ", "Boca Research Inc" },
-
-    /* From http://ezix.org/project/wiki/HardwareLiSter */
-    { "ABP", "Advansys" },
-    { "ACC", "Accton" },
-    //{ "ACE", "Accton" },
-    { "ACR", "Acer" },
-    { "ADP", "Adaptec" },
-    { "ADV", "AMD" },
-    //{ "AIR", "AIR" },
-    //{ "AMI", "AMI" },
-    { "APP", "Apple" },
-    { "ASU", "ASUS" },
-    //{ "ATI", "ATI" },
-    { "ATK", "Allied Telesyn" },
-    { "AZT", "Aztech" },
-    { "BNQ", "BenQ" },
-    { "BRI", "Boca Research" },
-    //{ "BUS", "Buslogic" },
-    { "CHA", "Chase" },
-    //{ "CMD", "CMD Technology, Inc." },
-    { "COG", "Cogent" },
-    { "CPQ", "Compaq" },
-    { "CRS", "Crescendo" },
-    { "CSC", "Crystal" },
-    //{ "CTL", "Creative Labs" },
-    { "COG", "Cogent" },
-    { "DBK", "Databook" },
-    { "DEC", "Digital Equipment" },
-    { "DEL", "Dell" },
-    { "ELS", "ELSA" },
-    { "ESS", "ESS" },
-    { "FAR", "Farallon" },
-    { "IBM", "IBM" },
-    //{ "INT", "Intel" },
-    //{ "ISA", "Iomega" },
-    { "MDG", "Madge" },
-    { "MDY", "Microdyne" },
-    { "MET", "Metheus" },
-    //{ "MIC", "Micronics" },
-    { "MLX", "Mylex" },
-    { "NEC", "NEC" },
-    { "NVL", "Novell" },
-    { "OLC", "Olicom" },
-    { "RII", "Racal" },
-    { "RTL", "Realtek" },
-    { "SAM", "Samsung" },
-    { "SCM", "SCM" },
-    //{ "SEC", "Epson" },
-    { "SGI", "SGI" },
-    //{ "SKD", "SysKonnect" },
-    { "SMC", "SMC" },
-    //{ "SNI", "Siemens Nixdorf" },
-    //{ "STL", "Stallion Technologies" },
-    { "SUN", "Sun" },
-    //{ "SUP", "SupraExpress" },
-    { "SVE", "SVEC" },
-    //{ "TCC", "Thomas-Conrad" },
-    { "TCI", "Tulip" },
-    { "TCM", "3Com" },
-    { "TCO", "Thomas-Conrad" },
-    { "TEC", "Tecmar" },
-    { "TOS", "Toshiba" },
-    //{ "TRU", "Truevision" },
-    { "TYN", "Tyan" },
-    { "UBI", "Ungermann-Bass" },
-    { "USC", "UltraStor" },
-    { "VMI", "Vermont" },
-    { "WAC", "Wacom" },
-    //{ "ZDS", "Zeos" },
-    
-    /* From http://faydoc.tripod.com/structures/01/0136.htm */
-    //{ "ACT", "Targa" },
-    { "AOC", "AOC Intl" },
-    //{ "API", "Acer America" },
-    //{ "ART", "ArtMedia" },
-    { "CPL", "Compal" },
-    //{ "CTX", "Chuntex Electronic Co." },
-    { "DPC", "Delta Electronics" },
-    { "DWE", "Daewoo" },
-    { "ECS", "Elitegroup" },
-    { "EIZ", "EIZO" },
-    { "FCM", "Funai" },
-    { "GSM", "LG Electronics" },
-    { "GWY", "Gateway 2000" },
-    { "HEI", "Hyundai" },
-    { "HIT", "Hitachi" },
-    { "HSL", "Hansol" },
-    { "ICL", "Fujitsu ICL" },
-    { "KFC", "KFC Computek" },
-    { "LEN", "Lenovo" },
-    //{ "LKM", "ADLAS" },
-    //{ "LTN", "Lite-On" },
-    //{ "MAX", "Maxdata" },
-    { "MEI", "Panasonic" },
-    { "MEL", "Mitsubishi" },
-    //{ "MTC", "MITAC" },
-    { "NAN", "NANAO" },
-    { "NOK", "Nokia" },
-    //{ "OQI", "OPTIQUEST" },
-    { "PBN", "Packard Bell" },
-    { "PGS", "Princeton" },
-    { "PHL", "Philips" },
-    //{ "REL", "Relisys" },
-    { "SDI", "Samtron" },
-    //{ "SMI", "Smile" },
-    { "SPT", "Sceptre" },
-    //{ "SRC", "Shamrock Technology" },
-    //{ "STP", "Sceptre" },
-    //{ "TAT", "Tatung" },
-    { "TSB", "Toshiba, Inc." },
-    { "VSC", "ViewSonic" },
-    //{ "WTC", "Wen Tech" },
-    { "ZCM", "Zenith Data Systems" },
 
     { "???", "Unknown" },
 };
