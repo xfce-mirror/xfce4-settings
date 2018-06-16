@@ -41,7 +41,7 @@ typedef struct Vendor Vendor;
 struct Vendor
 {
     const char vendor_id[4];
-    const char vendor_name[77];
+    const char vendor_name[78];
 };
 
 /*
