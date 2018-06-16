@@ -49,6 +49,7 @@ struct Vendor
  * https://raw.githubusercontent.com/vcrhonek/hwdata/master/pnp.ids
  * http://ezix.org/project/wiki/HardwareLiSter
  * http://faydoc.tripod.com/structures/01/0136.htm
+ * https://www.lansweeper.com/kb/292/list-of-3-letter-monitor-manufacturer-codes.html
  *
  * Feel free to contribute preferred vendor names as some of these
  * are uncomfortably long for our display dialog.
@@ -181,6 +182,7 @@ static const struct Vendor vendors[] =
     { "AMP", "AMP Inc" },
     { "AMS", "ARMSTEL, Inc." },
     { "AMT", "AMT International Industry" },
+    { "AMW", "AMW" }, // lansweeper
     { "AMX", "AMX LLC" },
     { "ANA", "Anakron" },
     { "ANC", "Ancot" },
@@ -334,6 +336,7 @@ static const struct Vendor vendors[] =
     { "BMD", "Blackmagic Design" },
     { "BMI", "Benson Medical Instruments Company" },
     { "BML", "BIOMED Lab" },
+    { "BMM", "BMM" }, // lansweeper
     { "BMS", "BIOMEDISYS" },
     { "BNE", "Bull AB" },
     { "BNK", "Banksia Tech Pty Ltd" },
@@ -994,7 +997,8 @@ static const struct Vendor vendors[] =
     { "HIC", "Hitachi" },
     { "HIK", "Hikom Co., Ltd." },
     { "HIL", "Hilevel Technology" },
-    { "HIQ", "Kaohsiung Opto Electronics Americas, Inc." },
+    //{ "HIQ", "Kaohsiung Opto Electronics Americas, Inc." },
+    { "HIQ", "Hyundai" }, // lansweeper
     //{ "HIT", "Hitachi America Ltd" },
     { "HIT", "Hitachi" }, // faydoc
     { "HJI", "Harris & Jeffries Inc" },
@@ -1025,7 +1029,8 @@ static const struct Vendor vendors[] =
     //{ "HRT", "HERCULES" },
     { "HRT", "Hercules" },
     { "HSC", "Hagiwara Sys-Com Company Ltd" },
-    { "HSD", "HannStar Display Corp" },
+    //{ "HSD", "HannStar Display Corp" },
+    { "HSD", "Hannspree Inc" }, // lansweeper
     { "HSL", "Hansol" }, // faydoc
     //{ "HSM", "AT&T Microelectronics" },
     { "HSM", "AT&T" },
@@ -1149,7 +1154,8 @@ static const struct Vendor vendors[] =
     { "IPT", "International Power Technologies" },
     { "IPW", "IPWireless, Inc" },
     { "IQI", "IneoQuest Technologies, Inc" },
-    { "IQT", "IMAGEQUEST Co., Ltd" },
+    //{ "IQT", "IMAGEQUEST Co., Ltd" },
+    { "IQT", "Hyundai" }, // lansweeper
     { "IRD", "IRdata" },
     { "ISA", "Symbol Technologies" },
     { "ISC", "Id3 Semiconductors" },
@@ -1300,6 +1306,7 @@ static const struct Vendor vendors[] =
     { "LEO", "First International Computer Inc" },
     { "LEX", "Lexical Ltd" },
     { "LGC", "Logic Ltd" },
+    { "LGD", "LG" }, // lansweeper
     { "LGI", "Logitech Inc" },
     //{ "LGS", "LG Semicom Company Ltd" },
     { "LGS", "LG" },
@@ -1712,7 +1719,8 @@ static const struct Vendor vendors[] =
     { "PCC", "PowerCom Technology Company Ltd" },
     { "PCG", "First Industrial Computer Inc" },
     { "PCI", "Pioneer Computer Inc" },
-    { "PCK", "PCBANK21" },
+    //{ "PCK", "PCBANK21" },
+    { "PCK", "Daewoo" }, // lansweeper
     { "PCL", "pentel.co.,ltd" },
     { "PCM", "PCM Systems Corporation" },
     { "PCO", "Performance Concepts Inc.," },
@@ -1722,6 +1730,7 @@ static const struct Vendor vendors[] =
     { "PCT", "PC-Tel Inc" },
     { "PCW", "Pacific CommWare Inc" },
     { "PCX", "PC Xperten" },
+    { "PDC", "Polaroid" }, // lansweeper
     { "PDM", "Psion Dacom Plc." },
     //{ "PDN", "AT&T Paradyne" },
     { "PDN", "AT&T" },
@@ -1799,7 +1808,8 @@ static const struct Vendor vendors[] =
     { "PRM", "Prometheus" },
     { "PRO", "Proteon" },
     { "PRS", "Leutron Vision" },
-    { "PRT", "Parade Technologies, Ltd." },
+    //{ "PRT", "Parade Technologies, Ltd." },
+    { "PRT", "Princeton" }, // lansweeper
     { "PRX", "Proxima Corporation" },
     { "PSA", "Advanced Signal Processing Technologies" },
     //{ "PSC", "Philips Semiconductors" },
@@ -2053,7 +2063,8 @@ static const struct Vendor vendors[] =
     { "SMA", "SMART Modular Technologies" },
     { "SMB", "Schlumberger" },
     //{ "SMC", "Standard Microsystems Corporation" },
-    { "SMC", "SMC" }, // ezix
+    //{ "SMC", "SMC" }, // ezix
+    { "SMC", "Samtron" }, // lansweeper
     //{ "SME", "Sysmate Company" },
     { "SME", "Sysmate" },
     //{ "SMI", "SpaceLabs Medical Inc" },
@@ -2481,7 +2492,8 @@ static const struct Vendor vendors[] =
     { "WSC", "CIS Technology Inc" },
     { "WSP", "Wireless And Smart Products Inc." },
     { "WST", "Wistron Corporation" },
-    { "WTC", "ACC Microelectronics" },
+    //{ "WTC", "ACC Microelectronics" },
+    { "WTC", "Wen Technology" }, // lansweeper
     { "WTI", "WorkStation Tech" },
     { "WTK", "Wearnes Thakral Pte" },
     { "WTS", "Restek Electric Company Ltd" },
