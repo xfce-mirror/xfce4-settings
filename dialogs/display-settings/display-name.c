@@ -2396,6 +2396,7 @@ static const struct Vendor vendors[] =
     { "VAR", "Varian Australia Pty Ltd" },
     { "VBR", "VBrick Systems Inc." },
     { "VBT", "Valley Board Ltda" },
+    { "VBX", "VirtualBox" },
     { "VCC", "Virtual Computer Corporation" },
     { "VCI", "VistaCom Inc" },
     { "VCJ", "Victor Company of Japan, Limited" },
