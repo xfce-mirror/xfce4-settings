@@ -713,7 +713,7 @@ clipboard_manager_process_event (GsdClipboardManager *manager,
         switch (xev->xany.type) {
         case DestroyNotify:
                 if (xev->xdestroywindow.window == manager->priv->requestor) {
-                        g_slist_foreach (manager->priv->contents, (GFunc) target_data_unref, NULL);
+                        g_slist_foreach (manager->priv->contents, (GFunc) (void (*)(void)) target_data_unref, NULL);
                         g_slist_free (manager->priv->contents);
                         manager->priv->contents = NULL;
 
@@ -741,7 +741,7 @@ clipboard_manager_process_event (GsdClipboardManager *manager,
                 if (xev->xselectionclear.selection == XA_CLIPBOARD_MANAGER) {
                         /* We lost the manager selection */
                         if (manager->priv->contents) {
-                                g_slist_foreach (manager->priv->contents, (GFunc) target_data_unref, NULL);
+                                g_slist_foreach (manager->priv->contents, (GFunc) (void (*)(void)) target_data_unref, NULL);
                                 g_slist_free (manager->priv->contents);
                                 manager->priv->contents = NULL;
 
@@ -754,7 +754,7 @@ clipboard_manager_process_event (GsdClipboardManager *manager,
                 }
                 if (xev->xselectionclear.selection == XA_CLIPBOARD) {
                         /* We lost the clipboard selection */
-                        g_slist_foreach (manager->priv->contents, (GFunc) target_data_unref, NULL);
+                        g_slist_foreach (manager->priv->contents, (GFunc) (void (*)(void)) target_data_unref, NULL);
                         g_slist_free (manager->priv->contents);
                         manager->priv->contents = NULL;
                         clipboard_manager_watch_cb (manager,
@@ -1008,13 +1008,13 @@ gsd_clipboard_manager_stop (GsdClipboardManager *manager)
         }
 
         if (manager->priv->conversions != NULL) {
-                g_slist_foreach (manager->priv->conversions, (GFunc) conversion_free, NULL);
+                g_slist_foreach (manager->priv->conversions, (GFunc) (void (*)(void)) conversion_free, NULL);
                 g_slist_free (manager->priv->conversions);
                 manager->priv->conversions = NULL;
         }
 
         if (manager->priv->contents != NULL) {
-                g_slist_foreach (manager->priv->contents, (GFunc) target_data_unref, NULL);
+                g_slist_foreach (manager->priv->contents, (GFunc) (void (*)(void)) target_data_unref, NULL);
                 g_slist_free (manager->priv->contents);
                 manager->priv->contents = NULL;
         }

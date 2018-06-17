@@ -284,7 +284,7 @@ xfce_xsettings_helper_fc_free (XfceXSettingsHelper *helper)
     if (helper->fc_monitors != NULL)
     {
         /* remove monitors */
-        g_ptr_array_foreach (helper->fc_monitors, (GFunc) g_object_unref, NULL);
+        g_ptr_array_foreach (helper->fc_monitors, (GFunc) (void (*)(void)) g_object_unref, NULL);
         g_ptr_array_free (helper->fc_monitors, TRUE);
         helper->fc_monitors = NULL;
     }
