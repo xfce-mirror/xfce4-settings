@@ -861,7 +861,7 @@ static const struct Vendor vendors[] =
     { "FNI", "Funai" },
     { "FOA", "FOR-A Company Limited" },
     { "FOS", "Foss Tecator" },
-    { "FOX", "HON HAI PRECISON IND.CO.,LTD." },
+    { "FOX", "HON HAI PRECISION IND.CO.,LTD." },
     //{ "FPE", "Fujitsu Peripherals Ltd" },
     { "FPE", "Fujitsu" },
     { "FPS", "Deltec Corporation" },
