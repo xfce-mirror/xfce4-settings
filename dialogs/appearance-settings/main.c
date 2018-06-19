@@ -371,7 +371,7 @@ gtkrc_get_color_scheme_for_theme (const gchar *gtkrc_filename)
         }
     }
 
-    g_slist_foreach (read_files, (GFunc) g_free, NULL);
+    g_slist_foreach (read_files, (GFunc) (void (*)(void)) g_free, NULL);
     g_slist_free (read_files);
 
     g_scanner_destroy (scanner);
@@ -806,7 +806,7 @@ appearance_settings_load_icon_themes (preview_data *pd)
     /* Free the check list */
     if (G_LIKELY (check_list))
     {
-        g_slist_foreach (check_list, (GFunc) g_free, NULL);
+        g_slist_foreach (check_list, (GFunc) (void (*)(void)) g_free, NULL);
         g_slist_free (check_list);
     }
 
@@ -950,7 +950,7 @@ appearance_settings_load_ui_themes (preview_data *pd)
     /* Free the check list */
     if (G_LIKELY (check_list))
     {
-        g_slist_foreach (check_list, (GFunc) g_free, NULL);
+        g_slist_foreach (check_list, (GFunc) (void (*)(void)) g_free, NULL);
         g_slist_free (check_list);
     }
 

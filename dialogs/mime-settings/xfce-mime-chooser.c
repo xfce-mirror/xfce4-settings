@@ -598,8 +598,8 @@ xfce_mime_chooser_set_mime_type (XfceMimeChooser *chooser,
     gtk_tree_view_expand_all (GTK_TREE_VIEW (chooser->treeview));
 
     /* cleanup */
-    g_list_foreach (recommended, (GFunc) g_object_unref, NULL);
-    g_list_foreach (all, (GFunc) g_object_unref, NULL);
+    g_list_foreach (recommended, (GFunc) (void (*)(void)) g_object_unref, NULL);
+    g_list_foreach (all, (GFunc) (void (*)(void)) g_object_unref, NULL);
     g_list_free (recommended);
     g_list_free (all);
     g_list_free (other);

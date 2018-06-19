@@ -200,7 +200,7 @@ mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
         pixbuf = gdk_pixbuf_new_from_data (buffer, GDK_COLORSPACE_RGB, TRUE,
                                            8, image->width, image->height,
                                            4 * image->width,
-                                           (GdkPixbufDestroyNotify) g_free, NULL);
+                                           (GdkPixbufDestroyNotify) (void (*)(void)) g_free, NULL);
 
         /* don't leak when creating the pixbuf failed */
         if (G_UNLIKELY (pixbuf == NULL))

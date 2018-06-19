@@ -2275,7 +2275,7 @@ on_output_event (FooScrollArea      *area,
      * on_canvas_event() for where we reset the cursor to the default if it
      * exits the outputs' area.
      */
-    if (!mirrored == 1 && get_n_connected() > 1)
+    if (!mirrored && get_n_connected() > 1)
         set_cursor (GTK_WIDGET (area), GDK_FLEUR);
 
     if (event->type == FOO_BUTTON_PRESS)
@@ -2284,7 +2284,7 @@ on_output_event (FooScrollArea      *area,
 
         gtk_combo_box_set_active (GTK_COMBO_BOX(randr_outputs_combobox), output->id);
 
-        if (!mirrored == 1 && get_n_connected() > 1)
+        if (!mirrored && get_n_connected() > 1)
         {
             foo_scroll_area_begin_grab (area, on_output_event, data);
 
@@ -2668,7 +2668,7 @@ on_area_paint (FooScrollArea *area,
         i = g_list_position (connected_outputs, list);
         /* Always paint the currently selected display last, i.e. on top, so it's
            visible and the name is readable */
-        if (i == active_output) {
+        if (i >= 0 && (guint)i == active_output) {
             continue;
         }
         paint_output (cr, i, &x, &y);
