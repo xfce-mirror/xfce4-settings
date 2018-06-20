@@ -1,3 +1,10 @@
+4.13.4
+======
+- Fix: Redefinition of DISTCLEANFILES
+- Fix: Typo, "PRECISON" to "PRECISION"
+- Replaced "AC_CONFIG_MACRO_DIR" usage with "AC_CONFIG_MACRO_DIRS"
+- Translation updates: Russian
+
 4.13.3
 ======
 - Fix: Uninitialized scalar variables (CID #292062, #292063)
@@ -80,6 +87,22 @@
   Hebrew, Japanese, Korean, Lithuanian, Malay, Occitan (post 1500),
   Polish, Portuguese, Portuguese (Brazil), Romanian, Russian, Serbian,
   Slovak, Spanish, Swedish, Ukrainian
+
+4.12.4
+======
+- Fix: xfsettingsd --replace does not replace old daemon (Xfce #14381)
+- Fix: Uninitialized scalar variables (CID #292062, #292063)
+- Fix: -Wcast-function-type (GCC 8)
+- Fix: Redefinition of DISTCLEANFILES
+- Improved display manufucturer name recognition:
+  - Refreshed PNP IDs from hwdata
+  - Added support for VBX (VirtualBox)
+  - Standardized and shortened manufacturer names
+  - Updated laptop detection to include eDP in XfceRandr
+- Updated --help copyright information to 2018
+- Replaced "AC_CONFIG_MACRO_DIR" usage with "AC_CONFIG_MACRO_DIRS"
+- Translation updates: Belarusian, Catalan, English (Australia), Galician,
+  Hungarian, Japanese, Korean, Portuguese, Ukrainian
 
 4.12.3
 ======
