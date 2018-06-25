@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Nikola Radovanović <cobisimo@gmail.com>, 2018
 # Саша Петровић <salepetronije@gmail.com>, 2012,2014
 # Саша Петровић <salepetronije@gmail.com>, 2012,2014-2016
 # Саша Петровић <salepetronije@gmail.com>, 2017
@@ -10,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-15 18:30+0100\n"
-"PO-Revision-Date: 2017-09-23 19:02+0000\n"
-"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
+"POT-Creation-Date: 2018-03-11 18:31+0100\n"
+"PO-Revision-Date: 2018-06-25 14:11+0000\n"
+"Last-Translator: Nikola Radovanović <cobisimo@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/xfce4-settings/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -199,10 +200,20 @@ msgid "The ramp used to reach maximum pointer speed"
 msgstr "Вредност узета за највећу брзину показивача"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+msgid "Show location of pointer on keypress"
+msgstr "Приказуј положај показивача на притисак дугмади"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+msgid ""
+"Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
+"mouse pointer's current location"
+msgstr "Направи пречицу дугмади на xfce4-find-cursor ради видног одзива показивача миша на тренутном положају"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
 msgstr "Опонашање миша"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid "_Mouse"
 msgstr "_Миш"
 
@@ -231,9 +242,9 @@ msgstr "ЛБ УТИЧНИЦЕ"
 msgid "Version information"
 msgstr "Подаци о издању"
 
-#: ../dialogs/accessibility-settings/main.c:197
-#: ../dialogs/appearance-settings/main.c:1303
-#: ../dialogs/display-settings/main.c:3018
+#: ../dialogs/accessibility-settings/main.c:200
+#: ../dialogs/appearance-settings/main.c:1305
+#: ../dialogs/display-settings/main.c:3098
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
 #: ../xfsettingsd/main.c:191 ../xfsettingsd/main.c:229
@@ -242,18 +253,18 @@ msgstr "Подаци о издању"
 msgid "Type '%s --help' for usage."
 msgstr "Упишите „%s --help“ за коришћење."
 
-#: ../dialogs/accessibility-settings/main.c:216
-#: ../dialogs/appearance-settings/main.c:1322
-#: ../dialogs/display-settings/main.c:3037
+#: ../dialogs/accessibility-settings/main.c:219
+#: ../dialogs/appearance-settings/main.c:1324
+#: ../dialogs/display-settings/main.c:3117
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
 #: ../xfsettingsd/main.c:207 ../xfce4-settings-manager/main.c:80
 msgid "The Xfce development team. All rights reserved."
 msgstr "Развојна дружина.Иксфце-а Сва права су задржана."
 
-#: ../dialogs/accessibility-settings/main.c:217
-#: ../dialogs/appearance-settings/main.c:1323
-#: ../dialogs/display-settings/main.c:3038
+#: ../dialogs/accessibility-settings/main.c:220
+#: ../dialogs/appearance-settings/main.c:1325
+#: ../dialogs/display-settings/main.c:3118
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
 #: ../xfsettingsd/main.c:208 ../xfce4-settings-manager/main.c:81
@@ -266,7 +277,7 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "Побољшава приступачност миша и тастатуре"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1178
+#: ../dialogs/appearance-settings/main.c:1180
 #: ../dialogs/display-settings/main.c:88 ../dialogs/display-settings/main.c:99
 msgid "None"
 msgstr "ништа"
@@ -477,52 +488,52 @@ msgstr "Увећање _прозора"
 msgid "Setti_ngs"
 msgstr "Постав_ке"
 
-#: ../dialogs/appearance-settings/main.c:559
+#: ../dialogs/appearance-settings/main.c:561
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Упозорење: Ова тема иконица нема датотеку међумеморије. Можете је образовати извршавањем наредбе <i>gtk-update-icon-cache %s/%s/</i> у опонашачу терминала."
 
-#: ../dialogs/appearance-settings/main.c:1010
+#: ../dialogs/appearance-settings/main.c:1012
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Датотека је већа од %d MB, уграђивање је прекинуто"
 
-#: ../dialogs/appearance-settings/main.c:1015
+#: ../dialogs/appearance-settings/main.c:1017
 msgid "Failed to create temporary directory"
 msgstr "Нисам успео да направим привремену фасциклу"
 
-#: ../dialogs/appearance-settings/main.c:1020
+#: ../dialogs/appearance-settings/main.c:1022
 msgid "Failed to extract archive"
 msgstr "Нисам успео да распакујем архиву"
 
-#: ../dialogs/appearance-settings/main.c:1025
+#: ../dialogs/appearance-settings/main.c:1027
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Непознати облик, само архиве и фасцикле су подржане"
 
-#: ../dialogs/appearance-settings/main.c:1030
+#: ../dialogs/appearance-settings/main.c:1032
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Непозната грешка, излазни код је %d"
 
-#: ../dialogs/appearance-settings/main.c:1037
+#: ../dialogs/appearance-settings/main.c:1039
 msgid "Failed to install theme"
 msgstr "Нисам успео да уградим тему"
 
-#: ../dialogs/appearance-settings/main.c:1182
+#: ../dialogs/appearance-settings/main.c:1184
 msgid "RGB"
 msgstr "ЦЗП"
 
-#: ../dialogs/appearance-settings/main.c:1186
+#: ../dialogs/appearance-settings/main.c:1188
 msgid "BGR"
 msgstr "ПЗЦ"
 
-#: ../dialogs/appearance-settings/main.c:1190
+#: ../dialogs/appearance-settings/main.c:1192
 msgid "Vertical RGB"
 msgstr "Усправне ЦЗП"
 
-#: ../dialogs/appearance-settings/main.c:1194
+#: ../dialogs/appearance-settings/main.c:1196
 msgid "Vertical BGR"
 msgstr "Усправне ПЗЦ"
 
@@ -656,7 +667,7 @@ msgstr "водоравно и усправно"
 msgid "Minimal interface to set up an external output"
 msgstr "Најмање сучеље да би се подесио спољни излаз"
 
-#: ../dialogs/display-settings/main.c:254
+#: ../dialogs/display-settings/main.c:255
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -664,36 +675,36 @@ msgid ""
 msgstr "Претходна подешавања ће бити враћена кроз %i секунде ако не одговорите на ово питање."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:539
+#: ../dialogs/display-settings/main.c:544
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:830
+#: ../dialogs/display-settings/main.c:838
 msgid "Display:"
 msgstr "Приказ:"
 
-#: ../dialogs/display-settings/main.c:835
+#: ../dialogs/display-settings/main.c:843
 msgid "Resolution:"
 msgstr "Размера:"
 
-#: ../dialogs/display-settings/main.c:1078
+#: ../dialogs/display-settings/main.c:1106
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Последњи употребљени излаз не сме бити онемогућен, графички систем ће бити неупотребљив."
 
-#: ../dialogs/display-settings/main.c:1080
+#: ../dialogs/display-settings/main.c:1108
 msgid "Selected output not disabled"
 msgstr "Одабрани излаз није онемогућен"
 
-#: ../dialogs/display-settings/main.c:2224
+#: ../dialogs/display-settings/main.c:2264
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Изаберите екран за промену његових поставки; превуците га ради преуређења његовог смештаја."
 
-#: ../dialogs/display-settings/main.c:2261
-#: ../dialogs/display-settings/main.c:2335
+#: ../dialogs/display-settings/main.c:2306
+#: ../dialogs/display-settings/main.c:2380
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -702,34 +713,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2367
+#: ../dialogs/display-settings/main.c:2558
 msgid "Mirror Screens"
 msgstr "Пресликај екране"
 
-#: ../dialogs/display-settings/main.c:2548
+#: ../dialogs/display-settings/main.c:2607
 msgid "(Disabled)"
 msgstr "(Онемогућено)"
 
-#: ../dialogs/display-settings/main.c:3050
+#: ../dialogs/display-settings/main.c:3130
 #: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Нисам успео да пропитам издање проширења Раднра које је у употреби"
 
-#: ../dialogs/display-settings/main.c:3051
-#: ../dialogs/display-settings/main.c:3088
+#: ../dialogs/display-settings/main.c:3131
+#: ../dialogs/display-settings/main.c:3168
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Нисам успео да покренем поставке приказа Иксфце-а"
 
-#: ../dialogs/display-settings/main.c:3083
+#: ../dialogs/display-settings/main.c:3163
 msgid "ATI Settings"
 msgstr "подешавања АТИ-а"
 
-#: ../dialogs/display-settings/main.c:3090
+#: ../dialogs/display-settings/main.c:3170
 msgid "_Close"
 msgstr "_Затвори"
 
-#: ../dialogs/display-settings/main.c:3098
+#: ../dialogs/display-settings/main.c:3178
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Нисам успео да покренем поставке власничког управљачког програма"
 
@@ -1461,7 +1472,7 @@ msgstr "Уреди изабрану особину"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:334
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1021
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1356
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1360
 msgid "_Reset"
 msgstr "_Врати на подразумевано"
 
@@ -1547,11 +1558,11 @@ msgstr "_Надгледање"
 msgid "Refresh"
 msgstr "Освежи"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1357
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1361
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Враћање особина ће трајно уклонити прилагођене поставке."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1358
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1362
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Да ли сте сигурни да желите да повратите особине „%s“?"
@@ -1704,16 +1715,16 @@ msgstr "Све _поставке"
 msgid "Help"
 msgstr "Помоћ"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:396
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:397
 msgid "Settings"
 msgstr "Поставке"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:398
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:399
 msgid "Customize your desktop"
 msgstr "Прилагодите радни простор"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:893
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:904
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:915
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Нисам успео да покренем „%s“"
