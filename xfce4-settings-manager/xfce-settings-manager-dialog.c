@@ -201,10 +201,10 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 
 
     dialog->button_help = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                                 _("Help"), GTK_RESPONSE_HELP);
+                                                 _("_Help"), GTK_RESPONSE_HELP);
     image = gtk_image_new_from_icon_name ("help-browser", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (dialog->button_help), image);
-    button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Close"), GTK_RESPONSE_CLOSE);
+    button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("_Close"), GTK_RESPONSE_CLOSE);
     image = gtk_image_new_from_icon_name ("window-close", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (button), image);
 
