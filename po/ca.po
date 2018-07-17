@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-11 18:31+0100\n"
-"PO-Revision-Date: 2018-05-14 08:41+0000\n"
+"POT-Creation-Date: 2018-07-17 00:31+0200\n"
+"PO-Revision-Date: 2018-07-17 07:57+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce4-settings/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -239,16 +239,16 @@ msgstr "SÒCOL ID"
 #: ../dialogs/display-settings/main.c:122
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfsettingsd/main.c:78 ../xfce4-settings-manager/main.c:43
+#: ../xfsettingsd/main.c:99 ../xfce4-settings-manager/main.c:43
 msgid "Version information"
 msgstr "Informació de la versió"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1305
-#: ../dialogs/display-settings/main.c:3098
+#: ../dialogs/display-settings/main.c:3115
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
-#: ../xfsettingsd/main.c:191 ../xfsettingsd/main.c:229
+#: ../xfsettingsd/main.c:235 ../xfsettingsd/main.c:273
 #: ../xfce4-settings-manager/main.c:64
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -256,19 +256,19 @@ msgstr "Teclegeu «%s --help» per a l'ús."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1324
-#: ../dialogs/display-settings/main.c:3117
+#: ../dialogs/display-settings/main.c:3134
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
-#: ../xfsettingsd/main.c:207 ../xfce4-settings-manager/main.c:80
+#: ../xfsettingsd/main.c:251 ../xfce4-settings-manager/main.c:80
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1325
-#: ../dialogs/display-settings/main.c:3118
+#: ../dialogs/display-settings/main.c:3135
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
-#: ../xfsettingsd/main.c:208 ../xfce4-settings-manager/main.c:81
+#: ../xfsettingsd/main.c:252 ../xfce4-settings-manager/main.c:81
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Envieu els errors a <%s>."
@@ -714,34 +714,35 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2558
+#: ../dialogs/display-settings/main.c:2565
 msgid "Mirror Screens"
 msgstr "Pantalles emmirallades"
 
-#: ../dialogs/display-settings/main.c:2607
+#: ../dialogs/display-settings/main.c:2614
 msgid "(Disabled)"
 msgstr "(Inhabilitat)"
 
-#: ../dialogs/display-settings/main.c:3130
+#: ../dialogs/display-settings/main.c:3147
 #: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "No es pot consultar la versió de l'extensió Randr que s'està utilitzant"
 
-#: ../dialogs/display-settings/main.c:3131
-#: ../dialogs/display-settings/main.c:3168
+#: ../dialogs/display-settings/main.c:3148
+#: ../dialogs/display-settings/main.c:3185
 msgid "Unable to start the Xfce Display Settings"
 msgstr "No es poden iniciar els ajusts de pantalla de Xfce"
 
-#: ../dialogs/display-settings/main.c:3163
+#: ../dialogs/display-settings/main.c:3180
 msgid "ATI Settings"
 msgstr "Ajusts d'ATI"
 
-#: ../dialogs/display-settings/main.c:3170
+#: ../dialogs/display-settings/main.c:3187
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:207
 msgid "_Close"
 msgstr "Tan_ca"
 
-#: ../dialogs/display-settings/main.c:3178
+#: ../dialogs/display-settings/main.c:3195
 msgid "Unable to launch the proprietary driver settings"
 msgstr "No es pot executar el gestor d'ajusts del controlador propietari"
 
@@ -753,26 +754,26 @@ msgid ""
 "1.2 is required at least"
 msgstr "El sistema està utilitzant RandR %d.%d. Perquè els ajusts de pantalla funcionin com a mínim es requereix la versió 1.2"
 
-#: ../dialogs/display-settings/xfce-randr.c:553
+#: ../dialogs/display-settings/xfce-randr.c:554
 msgid "Laptop"
 msgstr "Portàtil"
 
-#: ../dialogs/display-settings/xfce-randr.c:574
+#: ../dialogs/display-settings/xfce-randr.c:575
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../dialogs/display-settings/xfce-randr.c:577
+#: ../dialogs/display-settings/xfce-randr.c:578
 msgid "Television"
 msgstr "Televisió"
 
-#: ../dialogs/display-settings/xfce-randr.c:581
+#: ../dialogs/display-settings/xfce-randr.c:582
 msgid "Digital display"
 msgstr "Pantalla digital"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: ../dialogs/display-settings/display-name.c:2493
+#: ../dialogs/display-settings/display-name.c:2641
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "desconegut"
@@ -788,7 +789,7 @@ msgstr "Drecera de l'ordre"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:932
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:143
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -1483,7 +1484,7 @@ msgstr "Restableix la propietat seleccionada"
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:444
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:535
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:654
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "Buit"
 
@@ -1492,7 +1493,7 @@ msgid "Array"
 msgstr "Seqüència"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:452
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "Cadena"
 
@@ -1501,12 +1502,12 @@ msgid "Integer"
 msgstr "Enter"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:463
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "Booleà"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:466
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "Doble"
 
@@ -1541,7 +1542,6 @@ msgid "Clear"
 msgstr "Neteja"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:945
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:207
 msgid "Close"
 msgstr "Tanca"
 
@@ -1567,58 +1567,58 @@ msgstr "El restabliment d'una propietat suprimirà permanentment els valors pers
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Esteu segur que voleu restablir la propietat «%s»?"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
 msgid "Int"
 msgstr "Enter"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
 msgid "Unsigned Int"
 msgstr "Enter sense signe"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
 msgid "Int64"
 msgstr "Enter de 64 bits"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
 msgid "Unsigned Int64"
 msgstr "Enter de 64 bits sense signe"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
 msgid "New Property"
 msgstr "Propietat nova"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:145
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Save"
 msgstr "Desa"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:157
 msgid "_Property:"
 msgstr "_Propietat:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:175
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:174
 msgid "_Type:"
 msgstr "_Tipus:"
 
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:208
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:218
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:229
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:207
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:217
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:228
 msgid "_Value:"
 msgstr "_Valor:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:386
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Els noms de les propietats han de començar amb el caràcter «/»"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:397
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "L'element arrel («/») no és un nom de propietat vàlid"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:414
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:413
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1626,17 +1626,17 @@ msgid ""
 "separator"
 msgstr "Els noms de propietats només poden incloure els caràcters ASCII A-Z, a-z, 0-9, «_», «-», «:», «.», «,», «[», «]», «{», «}», «<» i «>», així com el separador «/»"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:428
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:427
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Els noms de les propietats no poden tenir dos caràcters «/» seguits"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:442
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:441
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Els noms de les propietats no poden acabar amb el caràcter «/»"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:655
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:654
 msgid "Edit Property"
 msgstr "Edita la propietat"
 
@@ -1680,16 +1680,16 @@ msgstr "El rebot de tecles està inhabilitat"
 msgid "Bounce keys"
 msgstr "Rebot de tecles"
 
-#: ../xfsettingsd/keyboard-shortcuts.c:244
+#: ../xfsettingsd/keyboard-shortcuts.c:242
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Ha fallat el llançament de la drecera «%s»"
 
-#: ../xfsettingsd/main.c:79
+#: ../xfsettingsd/main.c:100
 msgid "Do not fork to the background"
 msgstr "No bifurquis el segon pla"
 
-#: ../xfsettingsd/main.c:80
+#: ../xfsettingsd/main.c:101
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Substitueix el dimoni «xsettings» en execució (si n'hi ha algun)"
 
@@ -1712,8 +1712,8 @@ msgid "All _Settings"
 msgstr "Tot_s els ajusts"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:204
-msgid "Help"
-msgstr "Ajuda"
+msgid "_Help"
+msgstr "A_juda"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:397
 msgid "Settings"
