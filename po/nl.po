@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-11 18:31+0100\n"
-"PO-Revision-Date: 2018-03-12 08:27+0000\n"
+"POT-Creation-Date: 2018-07-17 00:31+0200\n"
+"PO-Revision-Date: 2018-07-17 19:29+0000\n"
 "Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/xfce/xfce4-settings/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -238,16 +238,16 @@ msgstr "CONTACTPUNT ID"
 #: ../dialogs/display-settings/main.c:122
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfsettingsd/main.c:78 ../xfce4-settings-manager/main.c:43
+#: ../xfsettingsd/main.c:99 ../xfce4-settings-manager/main.c:43
 msgid "Version information"
 msgstr "Versie-informatie"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1305
-#: ../dialogs/display-settings/main.c:3098
+#: ../dialogs/display-settings/main.c:3115
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
-#: ../xfsettingsd/main.c:191 ../xfsettingsd/main.c:229
+#: ../xfsettingsd/main.c:235 ../xfsettingsd/main.c:273
 #: ../xfce4-settings-manager/main.c:64
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -255,19 +255,19 @@ msgstr "Tik '%s --help' voor een gebruiksaanwijzing."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1324
-#: ../dialogs/display-settings/main.c:3117
+#: ../dialogs/display-settings/main.c:3134
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
-#: ../xfsettingsd/main.c:207 ../xfce4-settings-manager/main.c:80
+#: ../xfsettingsd/main.c:251 ../xfce4-settings-manager/main.c:80
 msgid "The Xfce development team. All rights reserved."
 msgstr "De Xfce-ontwikkelploeg. Alle rechten voorbehouden."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1325
-#: ../dialogs/display-settings/main.c:3118
+#: ../dialogs/display-settings/main.c:3135
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
-#: ../xfsettingsd/main.c:208 ../xfce4-settings-manager/main.c:81
+#: ../xfsettingsd/main.c:252 ../xfce4-settings-manager/main.c:81
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Gelieve fouten te melden aan <%s>."
@@ -713,34 +713,35 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2558
+#: ../dialogs/display-settings/main.c:2565
 msgid "Mirror Screens"
 msgstr "Schermen spiegelen"
 
-#: ../dialogs/display-settings/main.c:2607
+#: ../dialogs/display-settings/main.c:2614
 msgid "(Disabled)"
 msgstr "(Uitgeschakeld)"
 
-#: ../dialogs/display-settings/main.c:3130
+#: ../dialogs/display-settings/main.c:3147
 #: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Kan de versie van de gebruikte RandR-extensie niet bepalen"
 
-#: ../dialogs/display-settings/main.c:3131
-#: ../dialogs/display-settings/main.c:3168
+#: ../dialogs/display-settings/main.c:3148
+#: ../dialogs/display-settings/main.c:3185
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Kon de Xfce 4-Beeldscherminstellingen niet starten"
 
-#: ../dialogs/display-settings/main.c:3163
+#: ../dialogs/display-settings/main.c:3180
 msgid "ATI Settings"
 msgstr "ATI-Instellingen"
 
-#: ../dialogs/display-settings/main.c:3170
+#: ../dialogs/display-settings/main.c:3187
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:207
 msgid "_Close"
 msgstr "_Sluiten"
 
-#: ../dialogs/display-settings/main.c:3178
+#: ../dialogs/display-settings/main.c:3195
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kon de instellingen van het gesloten fabrieksstuurprogramma niet starten"
 
@@ -752,26 +753,26 @@ msgid ""
 "1.2 is required at least"
 msgstr "Dit systeem maakt gebruik van RandR %d.%d. Voor het bewerken van de weergave-instellingen is minstens versie 1.2 vereist"
 
-#: ../dialogs/display-settings/xfce-randr.c:553
+#: ../dialogs/display-settings/xfce-randr.c:554
 msgid "Laptop"
 msgstr "Laptop"
 
-#: ../dialogs/display-settings/xfce-randr.c:574
+#: ../dialogs/display-settings/xfce-randr.c:575
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../dialogs/display-settings/xfce-randr.c:577
+#: ../dialogs/display-settings/xfce-randr.c:578
 msgid "Television"
 msgstr "Televisie"
 
-#: ../dialogs/display-settings/xfce-randr.c:581
+#: ../dialogs/display-settings/xfce-randr.c:582
 msgid "Digital display"
 msgstr "Digitaal beeldscherm"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: ../dialogs/display-settings/display-name.c:2493
+#: ../dialogs/display-settings/display-name.c:2641
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Onbekend"
@@ -787,7 +788,7 @@ msgstr "Opdracht voor sneltoets"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:932
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:143
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -1482,7 +1483,7 @@ msgstr "Gekozen eigenschap terugzetten op standaardwaarden"
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:444
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:535
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:654
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "Leeg"
 
@@ -1491,7 +1492,7 @@ msgid "Array"
 msgstr "Reeks"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:452
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "Tekstsnoer"
 
@@ -1500,12 +1501,12 @@ msgid "Integer"
 msgstr "Geheel getal"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:463
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "Booleaanse waarde"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:466
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "Double"
 
@@ -1540,7 +1541,6 @@ msgid "Clear"
 msgstr "Wissen"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:945
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:207
 msgid "Close"
 msgstr "Sluiten"
 
@@ -1566,58 +1566,58 @@ msgstr "Het terugzetten van een eigenschap op de standaardwaarden, zal deze aang
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Weet u zeker dat u eigenschap '%s' terug wilt zetten op de standaardwaarden?"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
 msgid "Int"
 msgstr "Int"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
 msgid "Unsigned Int"
 msgstr "Unsigned Int"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
 msgid "Int64"
 msgstr "Int64"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
 msgid "Unsigned Int64"
 msgstr "Unsigned Int64"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
 msgid "New Property"
 msgstr "Nieuwe eigenschap"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:145
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:157
 msgid "_Property:"
 msgstr "Eigenschap:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:175
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:174
 msgid "_Type:"
 msgstr "_Type:"
 
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:208
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:218
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:229
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:207
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:217
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:228
 msgid "_Value:"
 msgstr "_Waarde:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:386
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Namen van eigenschappen moeten beginnen met het teken '/'"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:397
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Het root-element ('/') is geen geldige naam voor een eigenschap"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:414
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:413
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1625,17 +1625,17 @@ msgid ""
 "separator"
 msgstr "Eigenschapnamen kunnen slechts de ASCII-tekens A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' en '>' bevatten, alsook '/' als een scheidingsteken"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:428
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:427
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Namen van eigenschappen mogen geen opeenvolgende '/'-tekens bevatten"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:442
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:441
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Namen van eigenschappen mogen niet met een '/' eindigen"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:655
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:654
 msgid "Edit Property"
 msgstr "Eigenschap bewerken"
 
@@ -1679,16 +1679,16 @@ msgstr "Kaatstoetsen zijn uitgeschakeld"
 msgid "Bounce keys"
 msgstr "Kaatstoetsen"
 
-#: ../xfsettingsd/keyboard-shortcuts.c:244
+#: ../xfsettingsd/keyboard-shortcuts.c:242
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Kon sneltoets '%s' niet starten"
 
-#: ../xfsettingsd/main.c:79
+#: ../xfsettingsd/main.c:100
 msgid "Do not fork to the background"
 msgstr "Niet naar de achtergrond vorken"
 
-#: ../xfsettingsd/main.c:80
+#: ../xfsettingsd/main.c:101
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Draaiende xsettings-achtergronddienst vervangen (indien van toepassing)"
 
@@ -1711,8 +1711,8 @@ msgid "All _Settings"
 msgstr "_Alle instellingen"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:204
-msgid "Help"
-msgstr "Hulp"
+msgid "_Help"
+msgstr "_Hulp"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:397
 msgid "Settings"
