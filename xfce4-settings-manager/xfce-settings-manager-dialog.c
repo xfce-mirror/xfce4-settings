@@ -41,7 +41,6 @@
 #include <exo/exo.h>
 
 #include "xfce-settings-manager-dialog.h"
-#include "xfce-text-renderer.h"
 
 #define TEXT_WIDTH (128)
 #define ICON_WIDTH (48)
@@ -70,6 +69,8 @@ struct _XfceSettingsManagerDialog
     GtkWidget      *category_box;
 
     GList          *categories;
+
+    GtkCssProvider *css_provider;
 
     GtkWidget      *socket_scroll;
     GtkWidget      *socket_viewport;
@@ -108,8 +109,8 @@ enum
 
 
 static void     xfce_settings_manager_dialog_finalize        (GObject                   *object);
-static void     xfce_settings_manager_dialog_style_set       (GtkWidget                 *widget,
-                                                              GtkStyle                  *old_style);
+static void     xfce_settings_manager_dialog_style_updated   (GtkWidget                 *widget);
+static void     xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog);
 static void     xfce_settings_manager_dialog_response        (GtkDialog                 *widget,
                                                               gint                       response_id);
 static void     xfce_settings_manager_dialog_header_style    (GtkWidget                 *header,
@@ -149,7 +150,7 @@ xfce_settings_manager_dialog_class_init (XfceSettingsManagerDialogClass *klass)
     gobject_class->finalize = xfce_settings_manager_dialog_finalize;
 
     gtkwiget_class = GTK_WIDGET_CLASS (klass);
-    gtkwiget_class->style_set = xfce_settings_manager_dialog_style_set;
+    gtkwiget_class->style_updated = xfce_settings_manager_dialog_style_updated;
 
     gtkdialog_class = GTK_DIALOG_CLASS (klass);
     gtkdialog_class->response = xfce_settings_manager_dialog_response;
@@ -280,6 +281,8 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
     gtk_widget_show (viewport);
 
+    dialog->css_provider = gtk_css_provider_new ();
+
     xfce_settings_manager_dialog_menu_reload (dialog);
 
     g_signal_connect_swapped (G_OBJECT (dialog->menu), "reload-required",
@@ -311,16 +314,46 @@ xfce_settings_manager_dialog_finalize (GObject *object)
 
 
 static void
-xfce_settings_manager_dialog_style_set (GtkWidget *widget,
-                                        GtkStyle  *old_style)
+xfce_settings_manager_dialog_style_updated (GtkWidget *widget)
 {
     XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG (widget);
     GtkStyleContext *context;
 
     context = gtk_widget_get_style_context (dialog->category_viewport);
     gtk_style_context_add_class (context, "view");
+    gtk_style_context_add_class (context, "exoiconview");
+    xfce_settings_manager_dialog_set_hover_style (dialog);
 }
 
+
+
+static void
+xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog)
+{
+    GtkStyleContext *context;
+    GdkRGBA          color;
+    gchar           *css_string;
+    gchar           *color_text;
+    GdkScreen       *screen;
+
+    context = gtk_widget_get_style_context (GTK_WIDGET (dialog));
+    /* Reset the provider to make sure we drop the previous Gtk theme style */
+    gtk_style_context_remove_provider (context,
+                                       GTK_STYLE_PROVIDER (dialog->css_provider));
+    /* Get the foreground color for the underline */
+    gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &color);
+    color_text = gdk_rgba_to_string (&color);
+    /* Set a fake underline with box-shadow and use gtk to highlight the icon of the cell renderer */
+    css_string = g_strdup_printf (".exoiconview.view *:hover { -gtk-icon-effect: highlight; box-shadow: inset 0 -1px 1px %s; }",
+                                  color_text);
+    gtk_css_provider_load_from_data (dialog->css_provider, css_string, -1, NULL);
+    screen = gdk_screen_get_default ();
+    /* As we don't have the individual ExoIconView widgets here, we set this provider for the whole screen.
+       This is fairly unproblematic as nobody uses the CSS class exiconview. */
+    gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (dialog->css_provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    g_free (css_string);
+    g_free (color_text);
+}
 
 
 static void
@@ -362,6 +395,7 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
             xfconf_channel_set_int (dialog->channel, "/last/window-height", height);
         }
 
+        g_object_unref (dialog->css_provider);
         gtk_widget_destroy (GTK_WIDGET (widget));
         gtk_main_quit ();
     }
@@ -1102,6 +1136,7 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
     exo_icon_view_set_single_click (EXO_ICON_VIEW (iconview), TRUE);
     exo_icon_view_set_enable_search (EXO_ICON_VIEW (iconview), FALSE);
     exo_icon_view_set_item_width (EXO_ICON_VIEW (iconview), TEXT_WIDTH + ICON_WIDTH);
+    xfce_settings_manager_dialog_set_hover_style (dialog);
     gtk_widget_show (iconview);
 
     /* list used for unselecting */
@@ -1131,16 +1166,12 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
                   "follow-state", TRUE,
                   NULL);
 
-    /* FIXME (maybe) - Use XfceTextRenderer */
-    //render = xfce_text_renderer_new ();
     render = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_end (GTK_CELL_LAYOUT (iconview), render, FALSE);
     gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (iconview), render, "text", COLUMN_NAME);
     g_object_set (G_OBJECT (render),
                   "wrap-mode", PANGO_WRAP_WORD,
                   "wrap-width", TEXT_WIDTH,
-                  //"follow-prelit", TRUE,
-                  //"follow-state", TRUE,
                   NULL);
 
     g_object_unref (G_OBJECT (filter));
