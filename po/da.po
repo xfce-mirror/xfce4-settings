@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-11 18:31+0100\n"
-"PO-Revision-Date: 2018-03-13 22:02+0000\n"
+"POT-Creation-Date: 2018-07-17 00:31+0200\n"
+"PO-Revision-Date: 2018-07-17 23:34+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce4-settings/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -238,16 +238,16 @@ msgstr "SOKKEL-ID"
 #: ../dialogs/display-settings/main.c:122
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:40
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfsettingsd/main.c:78 ../xfce4-settings-manager/main.c:43
+#: ../xfsettingsd/main.c:99 ../xfce4-settings-manager/main.c:43
 msgid "Version information"
 msgstr "Versionsinformation"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1305
-#: ../dialogs/display-settings/main.c:3098
+#: ../dialogs/display-settings/main.c:3115
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
 #: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
-#: ../xfsettingsd/main.c:191 ../xfsettingsd/main.c:229
+#: ../xfsettingsd/main.c:235 ../xfsettingsd/main.c:273
 #: ../xfce4-settings-manager/main.c:64
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -255,19 +255,19 @@ msgstr "Skriv \"%s --help\" for anvendelse."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1324
-#: ../dialogs/display-settings/main.c:3117
+#: ../dialogs/display-settings/main.c:3134
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
 #: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
-#: ../xfsettingsd/main.c:207 ../xfce4-settings-manager/main.c:80
+#: ../xfsettingsd/main.c:251 ../xfce4-settings-manager/main.c:80
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce's udviklingshold. Alle rettigheder forbeholdes."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1325
-#: ../dialogs/display-settings/main.c:3118
+#: ../dialogs/display-settings/main.c:3135
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
-#: ../xfsettingsd/main.c:208 ../xfce4-settings-manager/main.c:81
+#: ../xfsettingsd/main.c:252 ../xfce4-settings-manager/main.c:81
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapportér venligst fejl til <%s>."
@@ -713,34 +713,35 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2558
+#: ../dialogs/display-settings/main.c:2565
 msgid "Mirror Screens"
 msgstr "Spejlvend skærme"
 
-#: ../dialogs/display-settings/main.c:2607
+#: ../dialogs/display-settings/main.c:2614
 msgid "(Disabled)"
 msgstr "(Deaktiveret)"
 
-#: ../dialogs/display-settings/main.c:3130
+#: ../dialogs/display-settings/main.c:3147
 #: ../dialogs/display-settings/xfce-randr.c:282
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Kan ikke forespørge hvilken version af RandR-udvidelsen som anvendes"
 
-#: ../dialogs/display-settings/main.c:3131
-#: ../dialogs/display-settings/main.c:3168
+#: ../dialogs/display-settings/main.c:3148
+#: ../dialogs/display-settings/main.c:3185
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Kunne ikke starte Xfce skærmindstillinger"
 
-#: ../dialogs/display-settings/main.c:3163
+#: ../dialogs/display-settings/main.c:3180
 msgid "ATI Settings"
 msgstr "ATI-indstillinger"
 
-#: ../dialogs/display-settings/main.c:3170
+#: ../dialogs/display-settings/main.c:3187
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:207
 msgid "_Close"
 msgstr "_Luk"
 
-#: ../dialogs/display-settings/main.c:3178
+#: ../dialogs/display-settings/main.c:3195
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kan ikke opstarte de proprietære driverindstillinger"
 
@@ -752,26 +753,26 @@ msgid ""
 "1.2 is required at least"
 msgstr "Dette system bruger RandR %d.%d. For at skærmindstillingerne skal fungere, så kræves der mindst version 1.2"
 
-#: ../dialogs/display-settings/xfce-randr.c:553
+#: ../dialogs/display-settings/xfce-randr.c:554
 msgid "Laptop"
 msgstr "Bærbar"
 
-#: ../dialogs/display-settings/xfce-randr.c:574
+#: ../dialogs/display-settings/xfce-randr.c:575
 msgid "Monitor"
 msgstr "Skærm"
 
-#: ../dialogs/display-settings/xfce-randr.c:577
+#: ../dialogs/display-settings/xfce-randr.c:578
 msgid "Television"
 msgstr "Fjernsyn"
 
-#: ../dialogs/display-settings/xfce-randr.c:581
+#: ../dialogs/display-settings/xfce-randr.c:582
 msgid "Digital display"
 msgstr "Digital skærm"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: ../dialogs/display-settings/display-name.c:2493
+#: ../dialogs/display-settings/display-name.c:2641
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Ukendt"
@@ -787,7 +788,7 @@ msgstr "Genvejskommando"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:932
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:143
 msgid "Cancel"
 msgstr "Annuller"
 
@@ -1482,7 +1483,7 @@ msgstr "Nulstil valgte egenskab"
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:444
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:535
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:654
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "Tom"
 
@@ -1491,7 +1492,7 @@ msgid "Array"
 msgstr "Tabel"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:452
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "Streng"
 
@@ -1500,12 +1501,12 @@ msgid "Integer"
 msgstr "Heltal"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:463
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "Boolesk"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:466
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "Double"
 
@@ -1540,7 +1541,6 @@ msgid "Clear"
 msgstr "Ryd"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:945
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:207
 msgid "Close"
 msgstr "Luk"
 
@@ -1566,58 +1566,58 @@ msgstr "Nulstilling af en egenskab vil fjerne disse brugerdefinerede indstilling
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Er du sikker på, at du vil nulstille egenskaben \"%s\"?"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
 msgid "Int"
 msgstr "Heltal"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
 msgid "Unsigned Int"
 msgstr "Heltal uden fortegn"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
 msgid "Int64"
 msgstr "Heltal-64"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
 msgid "Unsigned Int64"
 msgstr "Heltal-64 uden fortegn"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
 msgid "New Property"
 msgstr "Ny egenskab"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:145
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Save"
 msgstr "Gem"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:157
 msgid "_Property:"
 msgstr "_Egenskab:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:175
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:174
 msgid "_Type:"
 msgstr "_Type:"
 
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:208
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:218
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:229
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:207
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:217
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:228
 msgid "_Value:"
 msgstr "_Værdi:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:386
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Egenskabnavne skal starte med et '/'-tegn"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:397
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Rodelementet ('/') er ikke et gyldigt egenskabnavn"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:414
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:413
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1625,17 +1625,17 @@ msgid ""
 "separator"
 msgstr "Egenskabnavne kan kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' og '>', såvel som '/' som et tegn til adskilning"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:428
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:427
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Egenskabnavne må ikke indeholde mere end ét '/'-tegn efter hinanden"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:442
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:441
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Egenskabnavne må ikke slutte med et '/'-tegn"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:655
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:654
 msgid "Edit Property"
 msgstr "Rediger egenskab"
 
@@ -1679,16 +1679,16 @@ msgstr "Rystetaster er deaktiveret"
 msgid "Bounce keys"
 msgstr "Rystetaster"
 
-#: ../xfsettingsd/keyboard-shortcuts.c:244
+#: ../xfsettingsd/keyboard-shortcuts.c:242
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Kunne ikke starte genvej \"%s\""
 
-#: ../xfsettingsd/main.c:79
+#: ../xfsettingsd/main.c:100
 msgid "Do not fork to the background"
 msgstr "Forgren ikke til baggrunden"
 
-#: ../xfsettingsd/main.c:80
+#: ../xfsettingsd/main.c:101
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Erstat kørende xsettings-dæmon (hvis den findes)"
 
@@ -1711,8 +1711,8 @@ msgid "All _Settings"
 msgstr "Alle _indstillinger"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:204
-msgid "Help"
-msgstr "Hjælp"
+msgid "_Help"
+msgstr "_Hjælp"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:397
 msgid "Settings"
