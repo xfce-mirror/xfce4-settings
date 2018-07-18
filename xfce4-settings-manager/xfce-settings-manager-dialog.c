@@ -344,7 +344,8 @@ xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog)
     gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &color);
     color_text = gdk_rgba_to_string (&color);
     /* Set a fake underline with box-shadow and use gtk to highlight the icon of the cell renderer */
-    css_string = g_strdup_printf (".exoiconview.view *:hover { -gtk-icon-effect: highlight; box-shadow: inset 0 -1px 1px %s; }",
+    css_string = g_strdup_printf (".exoiconview.view *:hover { -gtk-icon-effect: highlight; box-shadow: inset 0 -1px 1px %s;"
+                                  "                            border-left: 1px solid transparent; border-right: 1px solid transparent; }",
                                   color_text);
     gtk_css_provider_load_from_data (dialog->css_provider, css_string, -1, NULL);
     screen = gdk_screen_get_default ();
