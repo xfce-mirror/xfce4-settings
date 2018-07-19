@@ -538,8 +538,6 @@ appearance_settings_load_ui_themes (preview_data *pd)
     gchar        *comment_escaped;
     gint          i;
     GSList       *check_list = NULL;
-    gchar        *color_scheme = NULL;
-    GdkRGBA      *colors[NUM_SYMBOLIC_COLORS];
 
     g_return_val_if_fail (pd != NULL, FALSE);
 
@@ -762,11 +760,9 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
     else if (strcmp (property_name, "/Net/ThemeName") == 0)
     {
         GtkTreeIter iter;
-        gboolean    reload;
 
         object = gtk_builder_get_object (builder, "gtk_theme_treeview");
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
-        reload = TRUE;
 
         if (gtk_tree_selection_get_selected (gtk_tree_view_get_selection (GTK_TREE_VIEW (object)),
                                              &model,
@@ -778,8 +774,6 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
             gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &selected_name, -1);
 
             new_name = xfconf_channel_get_string (channel, property_name, NULL);
-
-            reload = (strcmp (new_name, selected_name) != 0);
 
             g_free (selected_name);
             g_free (new_name);
