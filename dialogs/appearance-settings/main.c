@@ -56,15 +56,6 @@
 /* Increase this number if new gtk settings have been added */
 #define INITIALIZE_UINT (1)
 
-#define COLOR_SCHEME_SYMBOL ((gpointer) 1)
-#define GTK_RC_TOKEN_FG ((gpointer) 2)
-#define GTK_RC_TOKEN_BG ((gpointer) 3)
-#define GTK_RC_TOKEN_NORMAL ((gpointer) 4)
-#define GTK_RC_TOKEN_SELECTED ((gpointer) 5)
-
-gboolean gtkcss_get_color_scheme_for_theme (const gchar *gtkcss_filename, GdkRGBA **colors);
-static GdkPixbuf *theme_create_preview (GdkRGBA **colors);
-
 enum
 {
     COLUMN_THEME_PREVIEW,
@@ -187,95 +178,6 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 G_GNUC_END_IGNORE_DEPRECATIONS
 
     return dpi;
-}
-
-gboolean
-gtkcss_get_color_scheme_for_theme (const gchar *gtkcss_filename,
-                                   GdkRGBA **colors)
-{
-    GdkRGBA *bgn, *bgs, *fgn;
-    GtkCssProvider *provider;
-    GtkWidget *window, *icon_view;
-    GtkStyleContext *window_ctx, *icon_view_ctx;
-
-    g_return_val_if_fail (gtkcss_filename != NULL, FALSE);
-
-    provider = gtk_css_provider_new();
-    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    icon_view = gtk_icon_view_new();
-    gtk_container_add (GTK_CONTAINER(window), icon_view);
-    window_ctx = gtk_widget_get_style_context(window);
-    icon_view_ctx = gtk_widget_get_style_context(icon_view);
-
-    gtk_css_provider_load_from_path (provider,
-                                     gtkcss_filename,
-                                     NULL);
-
-    gtk_style_context_add_provider(window_ctx,
-                                   GTK_STYLE_PROVIDER(provider),
-                                   GTK_STYLE_PROVIDER_PRIORITY_USER);
-    gtk_style_context_add_provider(icon_view_ctx,
-                                   GTK_STYLE_PROVIDER(provider),
-                                   GTK_STYLE_PROVIDER_PRIORITY_USER);
-
-    gtk_style_context_get (window_ctx,
-                           GTK_STATE_FLAG_NORMAL,
-                           "background-color", &bgn,
-                           NULL);
-
-    gtk_style_context_get (icon_view_ctx,
-                           GTK_STATE_FLAG_SELECTED,
-                           "background-color", &bgs,
-                           NULL);
-
-    gtk_style_context_get (window_ctx,
-                           GTK_STATE_FLAG_NORMAL,
-                           "color", &fgn,
-                           NULL);
-
-    colors[COLOR_BG] = bgn;
-    colors[COLOR_SELECTED_BG] = bgs;
-    colors[COLOR_FG] = fgn;
-
-    gtk_widget_destroy(window);
-
-    return TRUE;
-}
-
-static GdkPixbuf *
-theme_create_preview (GdkRGBA **colors)
-{
-    GdkPixbuf *theme_preview;
-    cairo_surface_t *s;
-    cairo_t *cr;
-    gint width = 44;
-    gint height = 22;
-
-    s = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
-    cr = cairo_create (s);
-
-    cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-
-    /* Draw three rectangles showcasing the background, foreground and selected background colors */
-    /* FIXME - Colors always appear solid black */
-    cairo_rectangle (cr, 0, 0, 16, 22);
-    cairo_set_source_rgb (cr, colors[COLOR_BG]->red, colors[COLOR_BG]->green, colors[COLOR_BG]->blue);
-    cairo_fill (cr);
-
-    cairo_rectangle (cr, 15, 0, 30, 22);
-    cairo_set_source_rgb (cr, colors[COLOR_FG]->red, colors[COLOR_FG]->green, colors[COLOR_FG]->blue);
-    cairo_fill (cr);
-
-    cairo_rectangle (cr, 29, 0, 42, 22);
-    cairo_set_source_rgb (cr, colors[COLOR_SELECTED_BG]->red, colors[COLOR_SELECTED_BG]->green, colors[COLOR_SELECTED_BG]->blue);
-    cairo_fill (cr);
-
-    theme_preview = gdk_pixbuf_get_from_surface (s, 0, 0, width, height);
-
-    cairo_destroy (cr);
-    cairo_surface_destroy (s);
-
-    return theme_preview;
 }
 
 static void
@@ -637,7 +539,6 @@ appearance_settings_load_ui_themes (preview_data *pd)
     gint          i;
     GSList       *check_list = NULL;
     gchar        *color_scheme = NULL;
-    GdkPixbuf    *preview;
     GdkRGBA      *colors[NUM_SYMBOLIC_COLORS];
 
     g_return_val_if_fail (pd != NULL, FALSE);
@@ -699,23 +600,9 @@ appearance_settings_load_ui_themes (preview_data *pd)
                     comment_escaped = NULL;
                 }
 
-                /* Retrieve the color values from the theme, parse them and create the palette preview pixbuf */
-                if (g_file_test (gtkcss_filename, G_FILE_TEST_EXISTS) && gtkcss_get_color_scheme_for_theme (gtkcss_filename, colors))
-                {
-                    preview = theme_create_preview (colors);
-                }
-                /* If the color scheme parsing doesn't return anything useful, show a blank pixbuf */
-                else
-                {
-                    preview = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8, 44, 22);
-                    gdk_pixbuf_fill (preview, 0x00);
-                }
-                g_free (color_scheme);
-
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
                 gtk_list_store_set (list_store, &iter,
-                                    COLUMN_THEME_PREVIEW, preview,
                                     COLUMN_THEME_NAME, file,
                                     COLUMN_THEME_DISPLAY_NAME, theme_name,
                                     COLUMN_THEME_COMMENT, comment_escaped, -1);
@@ -724,7 +611,6 @@ appearance_settings_load_ui_themes (preview_data *pd)
                 if (G_LIKELY (index_file != NULL))
                     xfce_rc_close (index_file);
                 g_free (comment_escaped);
-                g_object_unref (preview);
 
                 /* Check if this is the active theme, if so, select it */
                 if (G_UNLIKELY (g_utf8_collate (file, active_theme_name) == 0))
@@ -898,19 +784,6 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
             g_free (selected_name);
             g_free (new_name);
         }
-
-        if (reload)
-        {
-            preview_data *pd;
-
-            gtk_list_store_clear (GTK_LIST_STORE (model));
-
-            pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
-            g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-                             (GSourceFunc) appearance_settings_load_ui_themes,
-                             pd,
-                             (GDestroyNotify) preview_data_free);
-        }
     }
     else if (strcmp (property_name, "/Net/IconThemeName") == 0)
     {
@@ -1067,12 +940,6 @@ cb_theme_uri_dropped (GtkWidget        *widget,
         object = gtk_builder_get_object (builder, "gtk_theme_treeview");
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
         gtk_list_store_clear (GTK_LIST_STORE (model));
-
-        pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
-        g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-                         (GSourceFunc) appearance_settings_load_ui_themes,
-                         pd,
-                         (GDestroyNotify) preview_data_free);
     }
 }
 
