@@ -1210,19 +1210,72 @@ display_settings_combobox_selection_changed (GtkComboBox *combobox,
 static GList*
 get_profiles (void)
 {
+    GHashTable *properties;
     GList *channel_contents, *profiles = NULL, *current;
-    channel_contents = g_hash_table_get_keys (xfconf_channel_get_properties (display_channel, NULL));
+    guint                     m;
+    gchar                    *edid, *output_info_name, **display_infos;
 
-    //Get actual profiles
+    properties = xfconf_channel_get_properties (display_channel, NULL);
+    channel_contents = g_hash_table_get_keys (properties);
+    display_infos = g_new0 (gchar *, xfce_randr->noutput);
+    /* get all display connectors in combination with their respective edids */
+    for (m = 0; m < xfce_randr->noutput; ++m)
+    {
+      edid = xfce_randr_get_edid (xfce_randr, m);
+      output_info_name = xfce_randr_get_output_info_name (xfce_randr, m);
+      display_infos[m] = g_strdup_printf ("%s/%s", output_info_name, edid);
+    }
+
+    /* get all profiles */
     current = g_list_first (channel_contents);
     while (current)
     {
         gchar* buf = strtok (current->data, "/");
-        if (!g_list_find_custom (profiles, (char*) buf, (GCompareFunc) strcmp) && strcmp (buf, "Notify") && strcmp (buf, "Default") && strcmp (buf, "Schemes"))
+        gboolean profile_match = TRUE;
+
+        /* walk all connected displays and filter for edids matching the current profile */
+        for (m = 0; m < xfce_randr->noutput; ++m)
+        {
+            gchar *property;
+            gchar *edid, *output_edid;
+            gchar **display_infos_tokens;
+
+            display_infos_tokens = g_strsplit (display_infos[m], "/", 2);
+            property = g_strdup_printf ("/%s/%s/EDID", buf, display_infos_tokens[0]);
+            edid = xfconf_channel_get_string (display_channel, property, NULL);
+            output_edid = g_strdup_printf ("%s/%s", display_infos_tokens[0], edid);
+            if (edid)
+            {
+                if (g_strcmp0 (display_infos[m],output_edid) != 0)
+                    profile_match = FALSE;
+            }
+            else
+            {
+                profile_match = FALSE;
+            }
+            g_free (property);
+            g_free (edid);
+            g_free (output_edid);
+            g_strfreev (display_infos_tokens);
+        }
+        /* filter the content of the combobox to only matching profiles and exclude "Notify", "Default" and "Schemes" */
+        if (!g_list_find_custom (profiles, (char*) buf, (GCompareFunc) strcmp) &&
+            strcmp (buf, "Notify") &&
+            strcmp (buf, "Default") &&
+            strcmp (buf, "Schemes") &&
+            profile_match)
+        {
             profiles = g_list_prepend (profiles, buf);
+        }
+        /* else don't add the profile to the list */
         current = g_list_next (current);
     }
 
+    for (m = 0; m < xfce_randr->noutput; ++m)
+    {
+        g_free (display_infos[m]);
+    }
+    g_free (display_infos);
     g_list_free (channel_contents);
 
     return profiles;
@@ -1238,18 +1291,18 @@ profile_combobox_populate (GtkBuilder *builder)
     GList *profiles = NULL;
     GList *current;
 
-    /* Create a new list store */
+    /* create a new list store */
     store = gtk_list_store_new (1,
                                 G_TYPE_STRING);
     m = 0;
 
-    /* Set up the new combobox which will replace the above combobox */
+    /* set up the new combobox which will replace the above combobox */
     combobox = gtk_builder_get_object (builder, "randr-profile");
     gtk_combo_box_set_model (GTK_COMBO_BOX (combobox), GTK_TREE_MODEL (store));
 
     profiles = get_profiles ();
 
-    //Populate combobox
+    /* populate combobox */
     current = g_list_first(profiles);
     while (current)
     {
@@ -1263,7 +1316,7 @@ profile_combobox_populate (GtkBuilder *builder)
     }
 
     /* Release the store */
-    g_list_free(profiles);
+    g_list_free (profiles);
     g_object_unref (G_OBJECT (store));
 }
 
@@ -1408,7 +1461,7 @@ static void
 profile_load (GtkWidget *widget, GtkBuilder *builder)
 {
     GtkWidget *entry = gtk_bin_get_child((GtkBin*)gtk_builder_get_object (builder, "randr-profile"));
-    if(gtk_entry_get_text_length(GTK_ENTRY(entry))) 
+    if(gtk_entry_get_text_length(GTK_ENTRY(entry)))
     {
         xfce_randr_apply (xfce_randr, gtk_entry_get_text(GTK_ENTRY(entry)), display_channel);
     }
