@@ -45,9 +45,12 @@ struct _XfceRandrPrivate
     GdkDisplay          *display;
     XRRScreenResources  *resources;
 
+
     /* cache for the output/mode info */
     XRROutputInfo      **output_info;
     XfceRRMode         **modes;
+    /* SHA-1 checksum of the EDID */
+    gchar              **edid;
 };
 
 
@@ -204,6 +207,7 @@ xfce_randr_populate (XfceRandr *randr,
     /* allocate final space for the settings */
     randr->mode = g_new0 (RRMode, randr->noutput);
     randr->priv->modes = g_new0 (XfceRRMode *, randr->noutput);
+    randr->priv->edid = g_new0 (gchar *, randr->noutput);
     randr->position = g_new0 (XfceOutputPosition, randr->noutput);
     randr->rotation = g_new0 (Rotation, randr->noutput);
     randr->rotations = g_new0 (Rotation, randr->noutput);
@@ -326,6 +330,8 @@ xfce_randr_cleanup (XfceRandr *randr)
             XRRFreeOutputInfo (randr->priv->output_info[n]);
         if (G_LIKELY (randr->priv->modes[n]))
             g_free (randr->priv->modes[n]);
+        if (G_LIKELY (randr->priv->edid[n]))
+            g_free (randr->priv->edid[n]);
         if (G_LIKELY (randr->friendly_name[n]))
             g_free (randr->friendly_name[n]);
     }
@@ -337,6 +343,7 @@ xfce_randr_cleanup (XfceRandr *randr)
     g_free (randr->friendly_name);
     g_free (randr->mode);
     g_free (randr->priv->modes);
+    g_free (randr->priv->edid);
     g_free (randr->rotation);
     g_free (randr->rotations);
     g_free (randr->status);
@@ -417,6 +424,10 @@ xfce_randr_save_output (XfceRandr     *randr,
     g_snprintf (property, sizeof (property), "/%s/%s/Active", scheme,
                 randr->priv->output_info[output]->name);
     xfconf_channel_set_bool (channel, property, mode != NULL);
+
+    g_snprintf (property, sizeof (property), "/%s/%s/EDID", scheme,
+                randr->priv->output_info[output]->name);
+    xfconf_channel_set_string (channel, property, randr->priv->edid[output]);
 
     if (mode == NULL)
         return;
@@ -557,8 +568,10 @@ xfce_randr_friendly_name (XfceRandr *randr,
     xdisplay = gdk_x11_display_get_xdisplay (randr->priv->display);
     edid_data = xfce_randr_read_edid_data (xdisplay, randr->priv->resources->outputs[output_rr_id]);
 
-    if (edid_data)
+    if (edid_data) {
         info = decode_edid (edid_data);
+        randr->priv->edid[output] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
+    }
 
     if (info)
         friendly_name = make_display_name (info, output);
