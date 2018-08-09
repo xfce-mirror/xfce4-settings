@@ -189,11 +189,22 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="auto_button">
-                <property name="label" translatable="yes">Auto</property>
+              <object class="GtkComboBox" id="randr-profile">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="hexpand">True</property>
+                <property name="has_entry">True</property>
+                <property name="entry_text_column">0</property>
+                <child internal-child="entry">
+                  <object class="GtkEntry">
+                    <property name="can_focus">True</property>
+                    <property name="primary_icon_activatable">False</property>
+                    <property name="secondary_icon_activatable">False</property>
+                    <property name="primary_icon_sensitive">False</property>
+                    <property name="secondary_icon_sensitive">False</property>
+                    <property name="input_purpose">name</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="expand">True</property>

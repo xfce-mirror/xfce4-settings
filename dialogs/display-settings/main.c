@@ -1221,9 +1221,9 @@ get_profiles (void)
     /* get all display connectors in combination with their respective edids */
     for (m = 0; m < xfce_randr->noutput; ++m)
     {
-      edid = xfce_randr_get_edid (xfce_randr, m);
-      output_info_name = xfce_randr_get_output_info_name (xfce_randr, m);
-      display_infos[m] = g_strdup_printf ("%s/%s", output_info_name, edid);
+        edid = xfce_randr_get_edid (xfce_randr, m);
+        output_info_name = xfce_randr_get_output_info_name (xfce_randr, m);
+        display_infos[m] = g_strdup_printf ("%s/%s", output_info_name, edid);
     }
 
     /* get all profiles */
@@ -3238,8 +3238,13 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         extend_right = gtk_builder_get_object (builder, "extend_right");
         only_display2 = gtk_builder_get_object (builder, "display2");
         advanced = gtk_builder_get_object (builder, "advanced_button");
-        auto_button = gtk_builder_get_object (builder, "auto_button");
+        auto_button = gtk_builder_get_object (builder, "randr-profile");
         fake_button = gtk_builder_get_object (builder, "fake_button");
+
+        display_settings_combo_box_create (GTK_COMBO_BOX (auto_button));
+        /* Populate the combobox */
+        display_settings_combobox_populate (builder);
+        profile_combobox_populate (builder);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
 
