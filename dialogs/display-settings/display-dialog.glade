@@ -3,6 +3,16 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <requires lib="libxfce4ui-2" version="4.13"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">list-remove-symbolic</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">list-add-symbolic</property>
+  </object>
   <object class="XfceTitledDialog" id="display-dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Display</property>
@@ -110,25 +120,12 @@
                 <property name="can_focus">False</property>
                 <property name="halign">end</property>
                 <child>
-                  <object class="GtkButton" id="button-profile-load">
-                    <property name="label">Apply</property>
+                  <object class="GtkButton" id="button-profile-delete">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack_type">end</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="button-profile-save">
-                    <property name="label">Save</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
+                    <property name="image">image1</property>
+                    <property name="always_show_image">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -138,11 +135,12 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button-profile-delete">
-                    <property name="label">Delete</property>
+                  <object class="GtkButton" id="button-profile-save">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="image">image2</property>
+                    <property name="always_show_image">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -152,16 +150,13 @@
                   </packing>
                 </child>
                 <style>
-                  <class name="inline-toolbar"/>
+                  <class name="linked"/>
                 </style>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">1</property>
+                <property name="left_attach">2</property>
+                <property name="top_attach">0</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>

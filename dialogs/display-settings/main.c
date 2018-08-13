@@ -151,7 +151,6 @@ GtkWidget *randr_outputs_combobox = NULL;
 GtkWidget *apply_button = NULL;
 
 GtkWidget *profile_save_button = NULL;
-GtkWidget *profile_load_button = NULL;
 GtkWidget *profile_delete_button = NULL;
 
 
@@ -1208,7 +1207,7 @@ display_settings_combobox_selection_changed (GtkComboBox *combobox,
 }
 
 static GList*
-get_profiles (void)
+display_settings_get_profiles (void)
 {
     GHashTable *properties;
     GList *channel_contents, *profiles = NULL, *current;
@@ -1282,7 +1281,7 @@ get_profiles (void)
 }
 
 static void
-profile_combobox_populate (GtkBuilder *builder)
+display_settings_profile_combobox_populate (GtkBuilder *builder)
 {
     guint             m;
     GtkListStore     *store;
@@ -1300,7 +1299,7 @@ profile_combobox_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-profile");
     gtk_combo_box_set_model (GTK_COMBO_BOX (combobox), GTK_TREE_MODEL (store));
 
-    profiles = get_profiles ();
+    profiles = display_settings_get_profiles ();
 
     /* populate combobox */
     current = g_list_first(profiles);
@@ -1444,31 +1443,35 @@ display_setting_apply (GtkWidget *widget, GtkBuilder *builder)
 }
 
 static void
-profile_save (GtkWidget *widget, GtkBuilder *builder)
+display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
 {
-    GtkWidget *entry = gtk_bin_get_child((GtkBin*)gtk_builder_get_object (builder, "randr-profile"));
+    GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
 
-    if (gtk_entry_get_text_length(GTK_ENTRY(entry)))
+    if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
     {
         guint i = 0;
         for (i=0; i < xfce_randr->noutput; i++)
-            xfce_randr_save_output (xfce_randr, gtk_entry_get_text(GTK_ENTRY(entry)), display_channel, i);
-        profile_combobox_populate (builder);
+            xfce_randr_save_output (xfce_randr, gtk_entry_get_text (GTK_ENTRY(entry)), display_channel, i);
+        display_settings_profile_combobox_populate (builder);
+        gtk_widget_set_sensitive (widget, FALSE);
     }
+    else
+        gtk_widget_set_sensitive (widget, TRUE);
 }
 
 static void
-profile_load (GtkWidget *widget, GtkBuilder *builder)
+display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 {
-    GtkWidget *entry = gtk_bin_get_child((GtkBin*)gtk_builder_get_object (builder, "randr-profile"));
-    if (gtk_entry_get_text_length(GTK_ENTRY(entry)))
+    GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
+    g_warning ("applying changes, loading profile.");
+    if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
     {
-        xfce_randr_apply (xfce_randr, gtk_entry_get_text(GTK_ENTRY(entry)), display_channel);
+        xfce_randr_apply (xfce_randr, gtk_entry_get_text (GTK_ENTRY (entry)), display_channel);
     }
 }
 
 static void
-profile_delete (GtkWidget *widget, GtkBuilder *builder)
+display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
 {
     GtkWidget *entry = gtk_bin_get_child((GtkBin*)gtk_builder_get_object (builder, "randr-profile"));
     if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
@@ -1476,7 +1479,7 @@ profile_delete (GtkWidget *widget, GtkBuilder *builder)
         GString *buf = g_string_new (gtk_entry_get_text(GTK_ENTRY(entry)));
         g_string_prepend_c (buf, '/');
         xfconf_channel_reset_property (display_channel, buf->str, True);
-        profile_combobox_populate (builder);
+        display_settings_profile_combobox_populate (builder);
         gtk_entry_set_text(GTK_ENTRY(entry), "");
     }
 }
@@ -1549,6 +1552,8 @@ display_settings_dialog_new (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-profile");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
 
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_profile_apply), builder);
+
     check = gtk_builder_get_object (builder, "minimal-autoshow");
     xfconf_g_property_bind (display_channel, "/Notify", G_TYPE_BOOLEAN, check,
                             "active");
@@ -1558,18 +1563,15 @@ display_settings_dialog_new (GtkBuilder *builder)
     gtk_widget_set_sensitive(apply_button, FALSE);
 
     profile_save_button = GTK_WIDGET(gtk_builder_get_object (builder, "button-profile-save"));
-    g_signal_connect (G_OBJECT (profile_save_button), "clicked", G_CALLBACK (profile_save), builder);
-
-    profile_load_button = GTK_WIDGET(gtk_builder_get_object (builder, "button-profile-load"));
-    g_signal_connect (G_OBJECT (profile_load_button), "clicked", G_CALLBACK (profile_load), builder);
+    g_signal_connect (G_OBJECT (profile_save_button), "clicked", G_CALLBACK (display_settings_profile_save), builder);
 
     profile_delete_button = GTK_WIDGET(gtk_builder_get_object (builder, "button-profile-delete"));
-    g_signal_connect (G_OBJECT (profile_delete_button), "clicked", G_CALLBACK (profile_delete), builder);
+    g_signal_connect (G_OBJECT (profile_delete_button), "clicked", G_CALLBACK (display_settings_profile_delete), builder);
 
 
     /* Populate the combobox */
     display_settings_combobox_populate (builder);
-    profile_combobox_populate (builder);
+    display_settings_profile_combobox_populate (builder);
 
     return GTK_WIDGET (gtk_builder_get_object (builder, "display-dialog"));
 }
@@ -3104,7 +3106,7 @@ display_settings_minimal_auto_clicked (GtkButton  *button,
     GList *current_default = NULL;
     GList *current_profile = NULL;
     GList *current_profile_content = NULL;
-    GList *profiles = get_profiles();
+    GList *profiles = display_settings_get_profiles();
 
     GList *default_contents = g_hash_table_get_keys(xfconf_channel_get_properties(display_channel, "/Default"));
 
@@ -3245,7 +3247,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         display_settings_combo_box_create (GTK_COMBO_BOX (auto_button));
         /* Populate the combobox */
         display_settings_combobox_populate (builder);
-        profile_combobox_populate (builder);
+        display_settings_profile_combobox_populate (builder);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
 
