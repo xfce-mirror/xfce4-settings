@@ -1448,7 +1448,7 @@ profile_save (GtkWidget *widget, GtkBuilder *builder)
 {
     GtkWidget *entry = gtk_bin_get_child((GtkBin*)gtk_builder_get_object (builder, "randr-profile"));
 
-    if(gtk_entry_get_text_length(GTK_ENTRY(entry)))
+    if (gtk_entry_get_text_length(GTK_ENTRY(entry)))
     {
         guint i = 0;
         for (i=0; i < xfce_randr->noutput; i++)
@@ -1461,7 +1461,7 @@ static void
 profile_load (GtkWidget *widget, GtkBuilder *builder)
 {
     GtkWidget *entry = gtk_bin_get_child((GtkBin*)gtk_builder_get_object (builder, "randr-profile"));
-    if(gtk_entry_get_text_length(GTK_ENTRY(entry)))
+    if (gtk_entry_get_text_length(GTK_ENTRY(entry)))
     {
         xfce_randr_apply (xfce_randr, gtk_entry_get_text(GTK_ENTRY(entry)), display_channel);
     }
@@ -1471,12 +1471,13 @@ static void
 profile_delete (GtkWidget *widget, GtkBuilder *builder)
 {
     GtkWidget *entry = gtk_bin_get_child((GtkBin*)gtk_builder_get_object (builder, "randr-profile"));
-    if(gtk_entry_get_text_length(GTK_ENTRY(entry)))
+    if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
     {
-        GString *buf = g_string_new(gtk_entry_get_text(GTK_ENTRY(entry)));
-        g_string_prepend_c(buf, '/');
-        xfconf_channel_reset_property(display_channel, buf->str, True);
+        GString *buf = g_string_new (gtk_entry_get_text(GTK_ENTRY(entry)));
+        g_string_prepend_c (buf, '/');
+        xfconf_channel_reset_property (display_channel, buf->str, True);
         profile_combobox_populate (builder);
+        gtk_entry_set_text(GTK_ENTRY(entry), "");
     }
 }
 
