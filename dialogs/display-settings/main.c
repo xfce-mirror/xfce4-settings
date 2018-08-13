@@ -1463,10 +1463,17 @@ static void
 display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 {
     GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
-    g_warning ("applying changes, loading profile.");
+
     if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
     {
+        gtk_widget_set_sensitive (profile_save_button, TRUE);
+        gtk_widget_set_sensitive (profile_delete_button, TRUE);
         xfce_randr_apply (xfce_randr, gtk_entry_get_text (GTK_ENTRY (entry)), display_channel);
+    }
+    else
+    {
+        gtk_widget_set_sensitive (profile_save_button, FALSE);
+        gtk_widget_set_sensitive (profile_delete_button, FALSE);
     }
 }
 
@@ -1563,9 +1570,11 @@ display_settings_dialog_new (GtkBuilder *builder)
     gtk_widget_set_sensitive(apply_button, FALSE);
 
     profile_save_button = GTK_WIDGET(gtk_builder_get_object (builder, "button-profile-save"));
+    gtk_widget_set_sensitive (profile_save_button, FALSE);
     g_signal_connect (G_OBJECT (profile_save_button), "clicked", G_CALLBACK (display_settings_profile_save), builder);
 
     profile_delete_button = GTK_WIDGET(gtk_builder_get_object (builder, "button-profile-delete"));
+    gtk_widget_set_sensitive (profile_delete_button, FALSE);
     g_signal_connect (G_OBJECT (profile_delete_button), "clicked", G_CALLBACK (display_settings_profile_delete), builder);
 
 
