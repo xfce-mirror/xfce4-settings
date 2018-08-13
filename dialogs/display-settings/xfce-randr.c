@@ -558,13 +558,7 @@ xfce_randr_friendly_name (XfceRandr *randr,
     gchar          *friendly_name = NULL;
     const gchar *name = randr->priv->output_info[output]->name;
 
-    /* special case, a laptop */
-    if (g_str_has_prefix (name, "LVDS")
-        || g_str_has_prefix (name, "eDP")
-        || strcmp (name, "PANEL") == 0)
-        return g_strdup (_("Laptop"));
-
-    /* otherwise, get the vendor & size */
+    /* get the vendor & size */
     xdisplay = gdk_x11_display_get_xdisplay (randr->priv->display);
     edid_data = xfce_randr_read_edid_data (xdisplay, randr->priv->resources->outputs[output_rr_id]);
 
@@ -572,6 +566,12 @@ xfce_randr_friendly_name (XfceRandr *randr,
         info = decode_edid (edid_data);
         randr->priv->edid[output] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
     }
+
+    /* special case, a laptop */
+    if (g_str_has_prefix (name, "LVDS")
+        || g_str_has_prefix (name, "eDP")
+        || strcmp (name, "PANEL") == 0)
+    return g_strdup (_("Laptop"));
 
     if (info)
         friendly_name = make_display_name (info, output);
