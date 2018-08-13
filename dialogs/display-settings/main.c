@@ -2997,9 +2997,9 @@ display_settings_show_main_dialog (GdkDisplay *display)
                                               RRNotify + 1);
         gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
 
-        /* Show/Hide the helper popups when the dialog is shown/hidden */
+        /* Show/Hide the helper popups when the dialog is shown/hidden
         g_signal_connect(G_OBJECT(dialog), "focus-out-event", G_CALLBACK (focus_out_event), builder);
-        g_signal_connect(G_OBJECT(dialog), "focus-in-event", G_CALLBACK (focus_in_event), builder);
+        g_signal_connect(G_OBJECT(dialog), "focus-in-event", G_CALLBACK (focus_in_event), builder); */
 
         app = g_new0 (App, 1);
 
