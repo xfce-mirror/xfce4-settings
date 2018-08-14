@@ -1305,12 +1305,21 @@ display_settings_profile_combobox_populate (GtkBuilder *builder)
     current = g_list_first(profiles);
     while (current)
     {
+        gchar *property;
+        gchar *profile_name;
+
+        /* use the display string value of the profile hash property */
+        property = g_strdup_printf ("/%s", (gchar *)current->data);
+        profile_name = xfconf_channel_get_string (display_channel, property, NULL);
+
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
-                            0, (gchar*)current->data,
+                            0, profile_name,
                             -1);
 
         current = g_list_next(current);
+        g_free (property);
+        g_free (profile_name);
         m++;
     }
 
@@ -1450,10 +1459,26 @@ display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
     if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
     {
         guint i = 0;
+        gchar *property;
+        gchar *profile_hash;
+        const gchar *profile;
+
+        /* make sure the profile name can be saved as xfconf property name, so hash it */
+        profile = gtk_entry_get_text (GTK_ENTRY (entry));
+        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
+        property = g_strdup_printf ("/%s", profile_hash);
+
         for (i=0; i < xfce_randr->noutput; i++)
-            xfce_randr_save_output (xfce_randr, gtk_entry_get_text (GTK_ENTRY(entry)), display_channel, i);
+            xfce_randr_save_output (xfce_randr, profile_hash, display_channel, i);
+
+        /* save the human-readable name of the profile as string value */
+        xfconf_channel_set_string (display_channel, property, profile);
+
         display_settings_profile_combobox_populate (builder);
         gtk_widget_set_sensitive (widget, FALSE);
+
+        g_free (property);
+        g_free (profile_hash);
     }
     else
         gtk_widget_set_sensitive (widget, TRUE);
@@ -1466,9 +1491,16 @@ display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 
     if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
     {
+        gchar *profile_hash;
+        const gchar *profile;
+
         gtk_widget_set_sensitive (profile_save_button, TRUE);
         gtk_widget_set_sensitive (profile_delete_button, TRUE);
-        xfce_randr_apply (xfce_randr, gtk_entry_get_text (GTK_ENTRY (entry)), display_channel);
+
+        profile = gtk_entry_get_text (GTK_ENTRY (entry));
+        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
+
+        xfce_randr_apply (xfce_randr, profile_hash, display_channel);
 
         if (!display_setting_timed_confirmation (builder))
         {
@@ -1479,6 +1511,8 @@ display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 
             foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
         }
+
+        g_free (profile_hash);
     }
     else
     {
@@ -1510,11 +1544,18 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
         g_free (secondary_message);
         if (response == GTK_RESPONSE_YES)
         {
-            GString *buf = g_string_new (gtk_entry_get_text(GTK_ENTRY(entry)));
-            g_string_prepend_c (buf, '/');
-            xfconf_channel_reset_property (display_channel, buf->str, True);
+            GString *property;
+            gchar *profile_hash;
+            const gchar *profile_name;
+
+            profile_name = gtk_entry_get_text (GTK_ENTRY (entry));
+            profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen (profile_name));
+            property = g_string_new (profile_hash);
+            g_string_prepend_c (property, '/');
+
+            xfconf_channel_reset_property (display_channel, property->str, True);
             display_settings_profile_combobox_populate (builder);
-            gtk_entry_set_text(GTK_ENTRY(entry), "");
+            gtk_entry_set_text (GTK_ENTRY (entry), "");
         }
         else {
             return;
