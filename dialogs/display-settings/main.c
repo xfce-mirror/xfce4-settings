@@ -1469,6 +1469,16 @@ display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
         gtk_widget_set_sensitive (profile_save_button, TRUE);
         gtk_widget_set_sensitive (profile_delete_button, TRUE);
         xfce_randr_apply (xfce_randr, gtk_entry_get_text (GTK_ENTRY (entry)), display_channel);
+
+        if (!display_setting_timed_confirmation (builder))
+        {
+            xfce_randr_apply (xfce_randr, "Default", display_channel);
+            gtk_entry_set_text (GTK_ENTRY (entry), "");
+            gtk_widget_set_sensitive (profile_save_button, FALSE);
+            gtk_widget_set_sensitive (profile_delete_button, FALSE);
+
+            foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
+        }
     }
     else
     {
