@@ -152,6 +152,7 @@ GtkWidget *apply_button = NULL;
 
 GtkWidget *profile_save_button = NULL;
 GtkWidget *profile_delete_button = NULL;
+GtkWidget *profile_apply_button = NULL;
 
 
 static void display_settings_minimal_only_display1_toggled   (GtkToggleButton *button,
@@ -1485,6 +1486,17 @@ display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
 }
 
 static void
+display_settings_profile_changed (GtkWidget *widget, GtkBuilder *builder)
+{
+    GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
+    gboolean sensitive = gtk_entry_get_text_length (GTK_ENTRY (entry));
+
+    gtk_widget_set_sensitive (profile_save_button, sensitive);
+    gtk_widget_set_sensitive (profile_delete_button, sensitive);
+    gtk_widget_set_sensitive (profile_apply_button, sensitive);
+}
+
+static void
 display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 {
     GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
@@ -1631,7 +1643,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-profile");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
 
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_profile_apply), builder);
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_profile_changed), builder);
 
     check = gtk_builder_get_object (builder, "minimal-autoshow");
     xfconf_g_property_bind (display_channel, "/Notify", G_TYPE_BOOLEAN, check,
@@ -1649,6 +1661,9 @@ display_settings_dialog_new (GtkBuilder *builder)
     gtk_widget_set_sensitive (profile_delete_button, FALSE);
     g_signal_connect (G_OBJECT (profile_delete_button), "clicked", G_CALLBACK (display_settings_profile_delete), builder);
 
+    profile_apply_button = GTK_WIDGET(gtk_builder_get_object (builder, "button-profile-apply"));
+    gtk_widget_set_sensitive (profile_apply_button, FALSE);
+    g_signal_connect (G_OBJECT (profile_apply_button), "clicked", G_CALLBACK (display_settings_profile_apply), builder);
 
     /* Populate the combobox */
     display_settings_combobox_populate (builder);
