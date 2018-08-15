@@ -3341,9 +3341,11 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         fake_button = gtk_builder_get_object (builder, "fake_button");
 
         display_settings_combo_box_create (GTK_COMBO_BOX (auto_button));
+
         /* Populate the combobox */
         display_settings_combobox_populate (builder);
         display_settings_profile_combobox_populate (builder);
+        g_signal_connect (G_OBJECT (auto_button), "changed", G_CALLBACK (display_settings_profile_apply), builder);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
 
