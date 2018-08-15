@@ -150,6 +150,7 @@ GList *current_outputs = NULL;
 GtkWidget *randr_outputs_combobox = NULL;
 GtkWidget *apply_button = NULL;
 
+/* Profile buttons */
 GtkWidget *profile_save_button = NULL;
 GtkWidget *profile_delete_button = NULL;
 GtkWidget *profile_apply_button = NULL;
@@ -171,6 +172,9 @@ static void display_setting_primary_toggled                  (GtkToggleButton *b
                                                               GtkBuilder *builder);
 
 static void display_setting_mirror_displays_populate         (GtkBuilder *builder);
+
+static void display_settings_profile_apply                   (GtkWidget       *widget,
+                                                              GtkBuilder      *builder);
 
 static void
 display_settings_changed (void)
@@ -1324,6 +1328,10 @@ display_settings_profile_combobox_populate (GtkBuilder *builder)
         m++;
     }
 
+    /* If there is only one profile we auto-select and activate it */
+    if (m == 1)
+        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
+
     /* Release the store */
     g_list_free (profiles);
     g_object_unref (G_OBJECT (store));
@@ -1490,16 +1498,43 @@ display_settings_profile_changed (GtkWidget *widget, GtkBuilder *builder)
 {
     GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
     gboolean sensitive = gtk_entry_get_text_length (GTK_ENTRY (entry));
+    GtkTreeIter   iter;
 
     gtk_widget_set_sensitive (profile_save_button, sensitive);
     gtk_widget_set_sensitive (profile_delete_button, sensitive);
     gtk_widget_set_sensitive (profile_apply_button, sensitive);
+
+    if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (widget), &iter))
+    {
+        display_settings_profile_apply (widget, builder);
+    }
+}
+
+static void
+display_settings_minimal_profile_apply (GtkComboBox *combobox, GtkBuilder *builder)
+{
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
+    GValue       *value;
+    const gchar  *profile;
+    gchar        *profile_hash;
+
+    if (gtk_combo_box_get_active_iter (combobox, &iter))
+    {
+        model = gtk_combo_box_get_model (combobox);
+        gtk_tree_model_get_value (model, &iter, 0, value);
+        profile = g_value_get_string (value);
+        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
+        g_warning ("this is the value: %s / %s", profile, profile_hash);
+        xfce_randr_apply (xfce_randr, profile_hash, display_channel);
+    }
+    g_value_unset (value);
 }
 
 static void
 display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 {
-    GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
+    GtkWidget *entry = gtk_bin_get_child (GTK_BIN (widget));
 
     if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
     {
@@ -3345,7 +3380,6 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         /* Populate the combobox */
         display_settings_combobox_populate (builder);
         display_settings_profile_combobox_populate (builder);
-        g_signal_connect (G_OBJECT (auto_button), "changed", G_CALLBACK (display_settings_profile_apply), builder);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
 
@@ -3439,6 +3473,8 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
                           builder);
 
         g_signal_connect_swapped (app, "activate", G_CALLBACK (gtk_window_present), dialog);
+
+        g_signal_connect (G_OBJECT (auto_button), "changed", G_CALLBACK (display_settings_minimal_profile_apply), builder);
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));
