@@ -1498,16 +1498,10 @@ display_settings_profile_changed (GtkWidget *widget, GtkBuilder *builder)
 {
     GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
     gboolean sensitive = gtk_entry_get_text_length (GTK_ENTRY (entry));
-    GtkTreeIter   iter;
 
     gtk_widget_set_sensitive (profile_save_button, sensitive);
     gtk_widget_set_sensitive (profile_delete_button, sensitive);
     gtk_widget_set_sensitive (profile_apply_button, sensitive);
-
-    if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (widget), &iter))
-    {
-        display_settings_profile_apply (widget, builder);
-    }
 }
 
 static void
