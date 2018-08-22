@@ -3245,94 +3245,6 @@ display_settings_minimal_advanced_clicked (GtkButton  *button,
 }
 
 static void
-display_settings_minimal_auto_clicked (GtkButton  *button,
-                                       GtkBuilder *builder)
-{
-    GList *current_default = NULL;
-    GList *current_profile = NULL;
-    GList *current_profile_content = NULL;
-    GList *profiles = display_settings_get_profiles();
-
-    GList *default_contents = g_hash_table_get_keys(xfconf_channel_get_properties(display_channel, "/Default"));
-
-    //Remove every parameter which is not output
-    current_default = g_list_first(default_contents);
-
-    while(current_default)
-    {
-        GList *next = g_list_next(current_default);
-        gint i = 0;
-        gchar *s = current_default->data;
-        for (i=0; s[i]; s[i]=='/' ? i++ : *s++);
-        if(i != 2)
-        {
-            default_contents = g_list_delete_link (default_contents, current_default);
-        }
-        current_default = next;
-    }
-
-    current_profile = g_list_first(profiles);
-
-
-    while(current_profile)
-    {
-        gboolean flag = TRUE;
-        guint count = 0;
-        GList *profile_contents = NULL;
-        GString *buf = g_string_new(current_profile->data);
-        g_string_prepend_c(buf, '/');
-        profile_contents = g_hash_table_get_keys(xfconf_channel_get_properties(display_channel, buf->str));
-
-        current_profile_content = g_list_first(profile_contents);
-
-        //Remove each parameter which is not output
-        while(current_profile_content)
-        {
-            GList *next = g_list_next(current_profile_content);
-            gint i = 0;
-            gchar *s = current_profile_content->data;
-            for (i=0; s[i]; s[i]=='/' ? i++ : *s++);
-            if(i != 2)
-            {
-                profile_contents = g_list_delete_link (profile_contents, current_profile_content);
-            }
-            current_profile_content = next;
-        }
-
-        current_default = g_list_first(default_contents);
-        current_profile_content = g_list_first(profile_contents);
-
-        //Compare output values
-        while(current_default && current_profile_content)
-        {
-            if(strcmp(xfconf_channel_get_string(display_channel, current_default->data, NULL),
-                xfconf_channel_get_string(display_channel,current_profile_content->data, NULL)))
-            {
-                flag = FALSE;
-                count++;
-                break;
-            }
-            else
-            {
-                current_default = g_list_next(current_default);
-                current_profile_content = g_list_next(current_profile_content);
-                count++;
-            }
-        }
-        if(flag && !current_profile_content && count == display_settings_get_n_active_outputs())
-        {
-            xfce_randr_apply (xfce_randr, current_profile->data, display_channel);
-            g_list_free(profile_contents);
-            break;
-        }
-        g_list_free(profile_contents);
-        current_profile = g_list_next(current_profile);
-    }
-    g_list_free(profiles);
-    g_list_free(default_contents);
-}
-
-static void
 display_settings_minimal_load_icon (GtkBuilder  *builder,
                                     const gchar *img_name,
                                     const gchar *icon_name)
@@ -3357,7 +3269,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
     GtkBuilder *builder;
     GtkWidget  *dialog, *cancel;
     GObject    *only_display1, *only_display2, *mirror_displays;
-    GObject    *extend_right, *advanced, *fake_button, *auto_button, *label, *auto_profile;
+    GObject    *extend_right, *advanced, *fake_button, *label, *profile_combo, *auto_profile;
     GError     *error = NULL;
     gboolean    found = FALSE;
     RRMode      mode;
@@ -3385,12 +3297,12 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         mirror_displays = gtk_builder_get_object (builder, "mirror");
         extend_right = gtk_builder_get_object (builder, "extend_right");
         only_display2 = gtk_builder_get_object (builder, "display2");
-        auto_profile = gtk_builder_get_object (builder, "auto-profile");
+        auto_profile = gtk_builder_get_object (builder, "auto_profile");
         advanced = gtk_builder_get_object (builder, "advanced_button");
-        auto_button = gtk_builder_get_object (builder, "randr-profile");
+        profile_combo = gtk_builder_get_object (builder, "randr-profile");
         fake_button = gtk_builder_get_object (builder, "fake_button");
 
-        display_settings_combo_box_create (GTK_COMBO_BOX (auto_button));
+        display_settings_combo_box_create (GTK_COMBO_BOX (profile_combo));
 
         /* Populate the combobox */
         display_settings_profile_combobox_populate (builder);
@@ -3488,8 +3400,9 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
 
         g_signal_connect_swapped (app, "activate", G_CALLBACK (gtk_window_present), dialog);
 
-        g_signal_connect (G_OBJECT (auto_button), "changed", G_CALLBACK (display_settings_minimal_profile_changed), builder);
-        display_settings_minimal_profile_changed (GTK_COMBO_BOX (auto_button), builder);
+        g_signal_connect (G_OBJECT (profile_combo), "changed", G_CALLBACK (display_settings_minimal_profile_changed), builder);
+        /* Trigger the changed signal once to see if there is a profile we may want to auto-apply */
+        display_settings_minimal_profile_changed (GTK_COMBO_BOX (profile_combo), builder);
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));
