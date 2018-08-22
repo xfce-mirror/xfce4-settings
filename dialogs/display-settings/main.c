@@ -1535,7 +1535,7 @@ display_settings_minimal_profile_changed (GtkComboBox *combobox, GtkBuilder *bui
 }
 
 static void
-display_settings_minimal_profile_apply (GtkWidget *widget, GtkBuilder *builder)
+display_settings_minimal_profile_apply (GtkToggleButton *widget, GtkBuilder *builder)
 {
     const gchar  *profile;
     gchar        *profile_hash;
@@ -1548,7 +1548,7 @@ display_settings_minimal_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 static void
 display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 {
-    GtkWidget *entry = gtk_bin_get_child (GTK_BIN (widget));
+    GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
 
     if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
     {
@@ -3297,7 +3297,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         mirror_displays = gtk_builder_get_object (builder, "mirror");
         extend_right = gtk_builder_get_object (builder, "extend_right");
         only_display2 = gtk_builder_get_object (builder, "display2");
-        auto_profile = gtk_builder_get_object (builder, "auto_profile");
+        auto_profile = gtk_builder_get_object (builder, "auto-profile");
         advanced = gtk_builder_get_object (builder, "advanced_button");
         profile_combo = gtk_builder_get_object (builder, "randr-profile");
         fake_button = gtk_builder_get_object (builder, "fake_button");
@@ -3400,7 +3400,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
 
         g_signal_connect_swapped (app, "activate", G_CALLBACK (gtk_window_present), dialog);
 
-        g_signal_connect (G_OBJECT (profile_combo), "changed", G_CALLBACK (display_settings_minimal_profile_changed), builder);
+        g_signal_connect (profile_combo, "changed", G_CALLBACK (display_settings_minimal_profile_changed), builder);
         /* Trigger the changed signal once to see if there is a profile we may want to auto-apply */
         display_settings_minimal_profile_changed (GTK_COMBO_BOX (profile_combo), builder);
 
