@@ -1288,7 +1288,7 @@ display_settings_get_profiles (void)
 static void
 display_settings_profile_combobox_populate (GtkBuilder *builder)
 {
-    guint             m;
+    guint             m = 0;
     GtkListStore     *store;
     GObject          *combobox;
     GtkTreeIter       iter;
@@ -1298,7 +1298,6 @@ display_settings_profile_combobox_populate (GtkBuilder *builder)
     /* create a new list store */
     store = gtk_list_store_new (1,
                                 G_TYPE_STRING);
-    m = 0;
 
     /* set up the new combobox which will replace the above combobox */
     combobox = gtk_builder_get_object (builder, "randr-profile");
@@ -1509,20 +1508,20 @@ display_settings_minimal_profile_apply (GtkComboBox *combobox, GtkBuilder *build
 {
     GtkTreeModel *model;
     GtkTreeIter   iter;
-    GValue       *value;
+    GValue        value = { 0, };
     const gchar  *profile;
     gchar        *profile_hash;
 
     if (gtk_combo_box_get_active_iter (combobox, &iter))
     {
         model = gtk_combo_box_get_model (combobox);
-        gtk_tree_model_get_value (model, &iter, 0, value);
-        profile = g_value_get_string (value);
+        gtk_tree_model_get_value (model, &iter, 0, &value);
+        profile = g_value_get_string (&value);
         profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
-        g_warning ("this is the value: %s / %s", profile, profile_hash);
         xfce_randr_apply (xfce_randr, profile_hash, display_channel);
     }
-    g_value_unset (value);
+
+    g_value_unset (&value);
 }
 
 static void
@@ -3372,7 +3371,6 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         display_settings_combo_box_create (GTK_COMBO_BOX (auto_button));
 
         /* Populate the combobox */
-        display_settings_combobox_populate (builder);
         display_settings_profile_combobox_populate (builder);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
@@ -3469,6 +3467,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         g_signal_connect_swapped (app, "activate", G_CALLBACK (gtk_window_present), dialog);
 
         g_signal_connect (G_OBJECT (auto_button), "changed", G_CALLBACK (display_settings_minimal_profile_apply), builder);
+        display_settings_minimal_profile_apply (GTK_COMBO_BOX (auto_button), builder);
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));
