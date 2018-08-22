@@ -1504,24 +1504,45 @@ display_settings_profile_changed (GtkWidget *widget, GtkBuilder *builder)
 }
 
 static void
-display_settings_minimal_profile_apply (GtkComboBox *combobox, GtkBuilder *builder)
+display_settings_minimal_profile_changed (GtkComboBox *combobox, GtkBuilder *builder)
 {
+    GObject      *auto_profile;
     GtkTreeModel *model;
     GtkTreeIter   iter;
     GValue        value = { 0, };
     const gchar  *profile;
     gchar        *profile_hash;
+    gboolean      profile_match;
 
-    if (gtk_combo_box_get_active_iter (combobox, &iter))
+    auto_profile = gtk_builder_get_object (builder, "auto-profile");
+    profile_match = gtk_combo_box_get_active_iter (combobox, &iter);
+
+    if (profile_match)
     {
         model = gtk_combo_box_get_model (combobox);
         gtk_tree_model_get_value (model, &iter, 0, &value);
         profile = g_value_get_string (&value);
         profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
         xfce_randr_apply (xfce_randr, profile_hash, display_channel);
+        gtk_button_set_label (GTK_BUTTON (auto_profile), profile);
     }
 
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (auto_profile), profile_match);
+    gtk_widget_set_visible (GTK_WIDGET (combobox), !profile_match);
+    gtk_widget_set_visible (GTK_WIDGET (auto_profile), profile_match);
+
     g_value_unset (&value);
+}
+
+static void
+display_settings_minimal_profile_apply (GtkWidget *widget, GtkBuilder *builder)
+{
+    const gchar  *profile;
+    gchar        *profile_hash;
+
+    profile = gtk_button_get_label (GTK_BUTTON (widget));
+    profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
+    xfce_randr_apply (xfce_randr, profile_hash, display_channel);
 }
 
 static void
@@ -3336,7 +3357,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
     GtkBuilder *builder;
     GtkWidget  *dialog, *cancel;
     GObject    *only_display1, *only_display2, *mirror_displays;
-    GObject    *extend_right, *advanced, *fake_button, *auto_button, *label;
+    GObject    *extend_right, *advanced, *fake_button, *auto_button, *label, *auto_profile;
     GError     *error = NULL;
     gboolean    found = FALSE;
     RRMode      mode;
@@ -3364,6 +3385,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         mirror_displays = gtk_builder_get_object (builder, "mirror");
         extend_right = gtk_builder_get_object (builder, "extend_right");
         only_display2 = gtk_builder_get_object (builder, "display2");
+        auto_profile = gtk_builder_get_object (builder, "auto-profile");
         advanced = gtk_builder_get_object (builder, "advanced_button");
         auto_button = gtk_builder_get_object (builder, "randr-profile");
         fake_button = gtk_builder_get_object (builder, "fake_button");
@@ -3459,15 +3481,15 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
                           builder);
         g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled),
                           builder);
-        g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked),
+        g_signal_connect (auto_profile, "toggled", G_CALLBACK (display_settings_minimal_profile_apply),
                           builder);
-        g_signal_connect (auto_button, "clicked", G_CALLBACK (display_settings_minimal_auto_clicked),
+        g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked),
                           builder);
 
         g_signal_connect_swapped (app, "activate", G_CALLBACK (gtk_window_present), dialog);
 
-        g_signal_connect (G_OBJECT (auto_button), "changed", G_CALLBACK (display_settings_minimal_profile_apply), builder);
-        display_settings_minimal_profile_apply (GTK_COMBO_BOX (auto_button), builder);
+        g_signal_connect (G_OBJECT (auto_button), "changed", G_CALLBACK (display_settings_minimal_profile_changed), builder);
+        display_settings_minimal_profile_changed (GTK_COMBO_BOX (auto_button), builder);
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));
