@@ -1599,7 +1599,7 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
                                         _("Delete display profile"),
                                         secondary_message,
                                         _("Cancel"), GTK_RESPONSE_NO,
-                                        XFCE_BUTTON_TYPE_MIXED, _("Delete"), _("Delete"), GTK_RESPONSE_YES,
+                                        _("Delete"), GTK_RESPONSE_YES,
                                         NULL);
 
         g_free (secondary_message);
