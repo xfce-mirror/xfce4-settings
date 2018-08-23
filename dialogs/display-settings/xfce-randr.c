@@ -643,11 +643,13 @@ xfce_randr_preferred_mode (XfceRandr *randr,
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
         if (n < randr->priv->output_info[output]->npreferred)
             dist = 0;
-        else if (randr->priv->output_info[output]->mm_height != 0)
+        else if ((randr->priv->output_info[output]->mm_height != 0) &&
+                 (gdk_screen_height_mm() != 0))
+        {
             dist = (1000 * gdk_screen_height () / gdk_screen_height_mm () -
                 1000 * randr->priv->modes[output][n].height /
                     randr->priv->output_info[output]->mm_height);
-        else
+        } else
             dist = gdk_screen_height () - randr->priv->modes[output][n].height;
 G_GNUC_END_IGNORE_DEPRECATIONS
 
