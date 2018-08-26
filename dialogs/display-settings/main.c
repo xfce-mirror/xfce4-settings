@@ -1088,21 +1088,22 @@ display_setting_primary_populate (GtkBuilder *builder)
                                        builder);
 }
 
-static void
-display_setting_output_toggled (GtkToggleButton *togglebutton,
+static gboolean
+display_setting_output_toggled (GtkSwitch       *widget,
+                                gboolean         output_on,
                                 GtkBuilder      *builder)
 {
     RRMode old_mode;
 
     if (!xfce_randr)
-        return;
+        return FALSE;
 
     if (xfce_randr->noutput <= 1)
-        return;
+        return FALSE;
 
     old_mode = xfce_randr->mode[active_output];
 
-    if (gtk_toggle_button_get_active (togglebutton))
+    if (output_on)
         xfce_randr->mode[active_output] =
             xfce_randr_preferred_mode (xfce_randr, active_output);
     else
@@ -1113,14 +1114,7 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
                                       _("The last active output must not be disabled, the system would"
                                         " be unusable."),
                                       _("Selected output not disabled"));
-            /* Set it back to active */
-            g_signal_handlers_block_by_func (togglebutton, display_setting_output_toggled,
-                                             builder);
-            gtk_toggle_button_set_active (togglebutton, TRUE);
-            /* Unblock the signal */
-            g_signal_handlers_unblock_by_func (togglebutton, display_setting_output_toggled,
-                                               builder);
-            return;
+            return FALSE;
         }
         xfce_randr->mode[active_output] = None;
     }
@@ -1139,7 +1133,10 @@ display_setting_output_toggled (GtkToggleButton *togglebutton,
         xfce_randr_apply (xfce_randr, "Default", display_channel);
 
         foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
+        return FALSE;
     }
+
+    return TRUE;
 }
 
 static void
@@ -1163,8 +1160,8 @@ display_setting_output_status_populate (GtkBuilder *builder)
     /* Block the "changed" signal to avoid triggering the confirmation dialog */
     g_signal_handlers_block_by_func (check, display_setting_output_toggled,
                                      builder);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check),
-                                  xfce_randr->mode[active_output] != None);
+    gtk_switch_set_state (GTK_SWITCH (check),
+                          xfce_randr->mode[active_output] != None);
     /* Unblock the signal */
     g_signal_handlers_unblock_by_func (check, display_setting_output_toggled,
                                        builder);
@@ -1653,7 +1650,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     check = gtk_builder_get_object (builder, "output-on");
     primary = gtk_builder_get_object (builder, "primary");
     mirror = gtk_builder_get_object (builder, "mirror-displays");
-    g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_output_toggled), builder);
+    g_signal_connect (G_OBJECT (check), "state-set", G_CALLBACK (display_setting_output_toggled), builder);
     g_signal_connect (G_OBJECT (primary), "toggled", G_CALLBACK (display_setting_primary_toggled), builder);
     g_signal_connect (G_OBJECT (mirror), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled), builder);
     if (xfce_randr->noutput > 1)
