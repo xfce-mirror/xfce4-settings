@@ -287,7 +287,6 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
 
     /* Lock the main UI */
     main_dialog = gtk_builder_get_object (main_builder, "display-dialog");
-    gtk_widget_set_sensitive (GTK_WIDGET (main_dialog), FALSE);
 
     builder = gtk_builder_new ();
 
@@ -304,6 +303,7 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
         dialog = gtk_builder_get_object (builder, "dialog1");
 
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
+        gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
         source_id = g_timeout_add_seconds (1, (GSourceFunc) display_settings_update_time_label,
                                            confirmation_dialog);
 
