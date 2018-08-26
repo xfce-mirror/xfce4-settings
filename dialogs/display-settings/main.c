@@ -1422,11 +1422,15 @@ set_display_popups_visible(gboolean visible)
     }
 }
 
-static void
-on_identify_displays_toggled (GtkWidget *widget, GtkBuilder *builder)
+static gboolean
+on_identify_displays_toggled (GtkWidget *widget,
+                              gboolean   state,
+                              GtkBuilder *builder)
 {
-    show_popups = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
-    set_display_popups_visible (show_popups);
+    set_display_popups_visible (state);
+    gtk_switch_set_state (GTK_SWITCH (widget), state);
+
+    return TRUE;
 }
 
 static void
@@ -1626,7 +1630,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     /* Identification popups */
     display_setting_identity_popups_populate ();
     identify = gtk_builder_get_object (builder, "identify-displays");
-    g_signal_connect (G_OBJECT (identify), "toggled", G_CALLBACK (on_identify_displays_toggled), builder);
+    g_signal_connect (G_OBJECT (identify), "state-set", G_CALLBACK (on_identify_displays_toggled), builder);
     set_display_popups_visible (show_popups);
 
     /* Display selection combobox */
