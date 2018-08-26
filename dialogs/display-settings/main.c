@@ -320,9 +320,6 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
 
     g_object_unref (G_OBJECT (builder));
 
-    /* Unlock the main UI */
-    gtk_widget_set_sensitive (GTK_WIDGET (main_dialog), TRUE);
-
     return ((response_id == 2) ? TRUE : FALSE);
 }
 
@@ -350,7 +347,7 @@ static void
 display_setting_reflections_populate (GtkBuilder *builder)
 {
     GtkTreeModel *model;
-    GObject      *combobox;
+    GObject      *combobox, *label;
     Rotation      reflections;
     Rotation      active_reflection;
     guint         n;
@@ -363,14 +360,17 @@ display_setting_reflections_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-reflection");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
+    label = gtk_builder_get_object (builder, "label-reflection");
 
     /* disable it if no mode is selected */
     if (xfce_randr->mode[active_output] == None)
     {
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
         return;
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (label), TRUE);
 
     /* Block the "changed" signal to avoid triggering the confirmation dialog */
     g_signal_handlers_block_by_func (combobox, display_setting_reflections_changed,
@@ -430,7 +430,7 @@ static void
 display_setting_rotations_populate (GtkBuilder *builder)
 {
     GtkTreeModel *model;
-    GObject      *combobox;
+    GObject      *combobox, *label;
     Rotation      rotations;
     Rotation      active_rotation;
     guint         n;
@@ -440,14 +440,17 @@ display_setting_rotations_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-rotation");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
+    label = gtk_builder_get_object (builder, "label-rotation");
 
     /* Disable it if no mode is selected */
     if (xfce_randr->mode[active_output] == None)
     {
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
         return;
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (label), TRUE);
 
     /* Block the "changed" signal to avoid triggering the confirmation dialog */
     g_signal_handlers_block_by_func (combobox, display_setting_rotations_changed,
@@ -506,7 +509,7 @@ static void
 display_setting_refresh_rates_populate (GtkBuilder *builder)
 {
     GtkTreeModel     *model;
-    GObject          *combobox;
+    GObject          *combobox, *label;
     GtkTreeIter       iter;
     gchar            *name = NULL;
     gint              nmode, n;
@@ -517,14 +520,17 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-refresh-rate");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
+    label = gtk_builder_get_object (builder, "label-refresh-rate");
 
     /* Disable it if no mode is selected */
     if (xfce_randr->mode[active_output] == None)
     {
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
         return;
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (label), TRUE);
 
     /* Block the "changed" signal to avoid triggering the confirmation dialog */
     g_signal_handlers_block_by_func (combobox, display_setting_refresh_rates_changed,
@@ -605,7 +611,7 @@ static void
 display_setting_resolutions_populate (GtkBuilder *builder)
 {
     GtkTreeModel     *model;
-    GObject          *combobox;
+    GObject          *combobox, *label;
     gint              nmode, n;
     gchar            *name;
     GtkTreeIter       iter;
@@ -615,15 +621,18 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
+    label = gtk_builder_get_object (builder, "label-resolution");
 
     /* Disable it if no mode is selected */
     if (xfce_randr->mode[active_output] == None)
     {
         gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
         display_setting_refresh_rates_populate (builder);
         return;
     }
     gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (label), TRUE);
 
     /* Block the "changed" signal to avoid triggering the confirmation dialog */
     g_signal_handlers_block_by_func (combobox, display_setting_resolutions_changed,
@@ -1068,12 +1077,14 @@ display_setting_primary_toggled (GtkWidget *widget,
 static void
 display_setting_primary_populate (GtkBuilder *builder)
 {
-    GObject *check;
+    GObject *check, *label;
+    gboolean output_on = TRUE;
 
     if (!xfce_randr)
         return;
 
     check = gtk_builder_get_object (builder, "primary");
+    label = gtk_builder_get_object (builder, "label-primary");
 
     if (xfce_randr->noutput > 1)
         gtk_widget_show (GTK_WIDGET (check));
@@ -1082,6 +1093,11 @@ display_setting_primary_populate (GtkBuilder *builder)
         gtk_widget_hide (GTK_WIDGET (check));
         return;
     }
+
+    if (xfce_randr->mode[active_output] == None)
+        output_on = FALSE;
+    gtk_widget_set_sensitive (GTK_WIDGET (check), output_on);
+    gtk_widget_set_sensitive (GTK_WIDGET (label), output_on);
 
     /* Block the "changed" signal to avoid triggering the confirmation dialog */
     g_signal_handlers_block_by_func (check, display_setting_primary_toggled,
