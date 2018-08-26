@@ -1514,7 +1514,7 @@ display_settings_profile_changed (GtkWidget *widget, GtkBuilder *builder)
 static void
 display_settings_minimal_profile_changed (GtkComboBox *combobox, GtkBuilder *builder)
 {
-    GObject      *auto_profile;
+    GObject      *auto_profile, *auto_profile_label;
     GtkTreeModel *model;
     GtkTreeIter   iter;
     GValue        value = { 0, };
@@ -1523,6 +1523,7 @@ display_settings_minimal_profile_changed (GtkComboBox *combobox, GtkBuilder *bui
     gboolean      profile_match;
 
     auto_profile = gtk_builder_get_object (builder, "auto-profile");
+    auto_profile_label = gtk_builder_get_object (builder, "label5");
     profile_match = gtk_combo_box_get_active_iter (combobox, &iter);
 
     if (profile_match)
@@ -1538,6 +1539,7 @@ display_settings_minimal_profile_changed (GtkComboBox *combobox, GtkBuilder *bui
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (auto_profile), profile_match);
     gtk_widget_set_visible (GTK_WIDGET (combobox), !profile_match);
     gtk_widget_set_visible (GTK_WIDGET (auto_profile), profile_match);
+    gtk_widget_set_visible (GTK_WIDGET (auto_profile_label), profile_match);
 
     g_value_unset (&value);
 }
