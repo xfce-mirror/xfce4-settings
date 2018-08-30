@@ -176,6 +176,8 @@ static void display_setting_mirror_displays_populate         (GtkBuilder *builde
 
 static void display_settings_profile_apply                   (GtkWidget       *widget,
                                                               GtkBuilder      *builder);
+static void display_settings_minimal_profile_apply           (GtkToggleButton *widget,
+                                                              GtkBuilder      *builder);
 
 static void
 display_settings_changed (void)
@@ -1304,6 +1306,44 @@ display_settings_get_profiles (void)
 }
 
 static void
+display_settings_minimal_profile_populate (GtkBuilder *builder)
+{
+    GObject  *profile_box, *profile_display1;
+    GList    *profiles = NULL;
+    GList    *current;
+
+    profile_box  = gtk_builder_get_object (builder, "profile-box");
+    profile_display1  = gtk_builder_get_object (builder, "display1");
+
+    profiles = display_settings_get_profiles ();
+
+    current = g_list_first (profiles);
+    while (current)
+    {
+        GtkWidget *profile_radio;
+        gchar *property;
+        gchar *profile_name;
+
+        /* use the display string value of the profile hash property */
+        property = g_strdup_printf ("/%s", (gchar *)current->data);
+        profile_name = xfconf_channel_get_string (display_channel, property, NULL);
+
+        profile_radio = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (profile_display1), profile_name);
+        gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (profile_radio), FALSE);
+        gtk_widget_set_size_request (GTK_WIDGET (profile_radio), 128, 128);
+        gtk_box_pack_start (GTK_BOX (profile_box), profile_radio, FALSE, FALSE, 0);
+        g_signal_connect (profile_radio, "toggled", G_CALLBACK (display_settings_minimal_profile_apply),
+                          builder);
+
+        current = g_list_next(current);
+        g_free (property);
+        g_free (profile_name);
+    }
+
+    gtk_widget_show_all (GTK_WIDGET (profile_box));
+}
+
+static void
 display_settings_profile_combobox_populate (GtkBuilder *builder)
 {
     guint             m = 0;
@@ -1509,39 +1549,6 @@ display_settings_profile_changed (GtkWidget *widget, GtkBuilder *builder)
     gtk_widget_set_sensitive (profile_save_button, sensitive);
     gtk_widget_set_sensitive (profile_delete_button, sensitive);
     gtk_widget_set_sensitive (profile_apply_button, sensitive);
-}
-
-static void
-display_settings_minimal_profile_changed (GtkComboBox *combobox, GtkBuilder *builder)
-{
-    GObject      *auto_profile, *auto_profile_label;
-    GtkTreeModel *model;
-    GtkTreeIter   iter;
-    GValue        value = { 0, };
-    const gchar  *profile;
-    gchar        *profile_hash;
-    gboolean      profile_match;
-
-    auto_profile = gtk_builder_get_object (builder, "auto-profile");
-    auto_profile_label = gtk_builder_get_object (builder, "label5");
-    profile_match = gtk_combo_box_get_active_iter (combobox, &iter);
-
-    if (profile_match)
-    {
-        model = gtk_combo_box_get_model (combobox);
-        gtk_tree_model_get_value (model, &iter, 0, &value);
-        profile = g_value_get_string (&value);
-        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
-        xfce_randr_apply (xfce_randr, profile_hash, display_channel);
-        gtk_button_set_label (GTK_BUTTON (auto_profile), profile);
-    }
-
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (auto_profile), profile_match);
-    gtk_widget_set_visible (GTK_WIDGET (combobox), !profile_match);
-    gtk_widget_set_visible (GTK_WIDGET (auto_profile), profile_match);
-    gtk_widget_set_visible (GTK_WIDGET (auto_profile_label), profile_match);
-
-    g_value_unset (&value);
 }
 
 static void
@@ -3282,7 +3289,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
     GtkBuilder *builder;
     GtkWidget  *dialog, *cancel;
     GObject    *only_display1, *only_display2, *mirror_displays;
-    GObject    *extend_right, *advanced, *fake_button, *label, *profile_combo, *auto_profile;
+    GObject    *extend_right, *advanced, *fake_button, *label;
     GError     *error = NULL;
     gboolean    found = FALSE;
     RRMode      mode;
@@ -3310,15 +3317,12 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         mirror_displays = gtk_builder_get_object (builder, "mirror");
         extend_right = gtk_builder_get_object (builder, "extend_right");
         only_display2 = gtk_builder_get_object (builder, "display2");
-        auto_profile = gtk_builder_get_object (builder, "auto-profile");
         advanced = gtk_builder_get_object (builder, "advanced_button");
-        profile_combo = gtk_builder_get_object (builder, "randr-profile");
         fake_button = gtk_builder_get_object (builder, "fake_button");
 
-        display_settings_combo_box_create (GTK_COMBO_BOX (profile_combo));
+        /* Create the profile radiobuttons */
+        display_settings_minimal_profile_populate (builder);
 
-        /* Populate the combobox */
-        display_settings_profile_combobox_populate (builder);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
 
@@ -3406,16 +3410,30 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
                           builder);
         g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled),
                           builder);
-        g_signal_connect (auto_profile, "toggled", G_CALLBACK (display_settings_minimal_profile_apply),
-                          builder);
         g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked),
                           builder);
 
         g_signal_connect_swapped (app, "activate", G_CALLBACK (gtk_window_present), dialog);
 
-        g_signal_connect (profile_combo, "changed", G_CALLBACK (display_settings_minimal_profile_changed), builder);
-        /* Trigger the changed signal once to see if there is a profile we may want to auto-apply */
-        display_settings_minimal_profile_changed (GTK_COMBO_BOX (profile_combo), builder);
+        /* Auto-apply the first profile in the list */
+        GObject *profile_box;
+        profile_box  = gtk_builder_get_object (builder, "profile-box");
+        if (GTK_IS_CONTAINER (profile_box))
+        {
+            GList *children = NULL;
+            GList *current;
+
+            children = gtk_container_get_children (GTK_CONTAINER (profile_box));
+            current = g_list_first (children);
+            while (current)
+            {
+                GtkWidget* widget = GTK_WIDGET (children->data);
+                if (widget != NULL) {
+                    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
+                    break;
+                }
+            }
+        }
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));

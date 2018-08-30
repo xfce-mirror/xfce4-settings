@@ -25,7 +25,6 @@
             <property name="can_focus">False</property>
             <property name="row_spacing">3</property>
             <property name="column_spacing">24</property>
-            <property name="column_homogeneous">True</property>
             <child>
               <object class="GtkLabel" id="label1">
                 <property name="width_request">128</property>
@@ -87,6 +86,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
+                <property name="halign">center</property>
                 <property name="active">True</property>
                 <property name="draw_indicator">False</property>
                 <property name="group">display1</property>
@@ -109,6 +109,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
+                <property name="halign">center</property>
                 <property name="active">True</property>
                 <property name="draw_indicator">False</property>
                 <property name="group">display1</property>
@@ -131,6 +132,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
+                <property name="halign">center</property>
                 <property name="active">True</property>
                 <property name="draw_indicator">False</property>
                 <property name="group">display1</property>
@@ -153,6 +155,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
+                <property name="halign">center</property>
                 <property name="active">True</property>
                 <property name="draw_indicator">False</property>
                 <child>
@@ -168,31 +171,27 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label5">
-                <property name="width_request">128</property>
+              <object class="GtkBox" id="profile-box">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Profile</property>
-                <property name="ellipsize">middle</property>
-              </object>
-              <packing>
-                <property name="left_attach">4</property>
-                <property name="top_attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkRadioButton" id="auto-profile">
-                <property name="label" translatable="yes">radiobutton</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">False</property>
-                <property name="draw_indicator">False</property>
-                <property name="group">display1</property>
+                <property name="spacing">24</property>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
               </object>
               <packing>
                 <property name="left_attach">4</property>
                 <property name="top_attach">0</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -217,22 +216,6 @@
                 <property name="fill">False</property>
                 <property name="position">0</property>
               </packing>
-            </child>
-            <child>
-              <object class="GtkComboBox" id="randr-profile">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="hexpand">True</property>
-                <property name="entry_text_column">0</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
             <child>
               <object class="GtkRadioButton" id="fake_button">
