@@ -13,6 +13,21 @@
     <property name="can_focus">False</property>
     <property name="icon_name">document-save-symbolic</property>
   </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">object-select-symbolic</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">document-save-symbolic</property>
+  </object>
+  <object class="GtkImage" id="image5">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">document-new-symbolic</property>
+  </object>
   <object class="XfceTitledDialog" id="display-dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Display</property>
@@ -527,12 +542,12 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkButton" id="button-profile-save">
+                              <object class="GtkButton" id="button-profile-create">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
-                                <property name="tooltip_text" translatable="yes">Save a new display profile or update an existing profile.</property>
-                                <property name="image">image2</property>
+                                <property name="tooltip_text" translatable="yes">Create a new display profile.</property>
+                                <property name="image">image5</property>
                                 <property name="always_show_image">True</property>
                               </object>
                               <packing>
@@ -540,6 +555,22 @@
                                 <property name="fill">True</property>
                                 <property name="pack_type">end</property>
                                 <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="button-profile-save">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="tooltip_text" translatable="yes">Update an existing profile.</property>
+                                <property name="image">image2</property>
+                                <property name="always_show_image">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack_type">end</property>
+                                <property name="position">2</property>
                               </packing>
                             </child>
                             <style>
@@ -613,10 +644,5 @@
       <action-widget response="-11">button-help</action-widget>
       <action-widget response="0">button-close</action-widget>
     </action-widgets>
-  </object>
-  <object class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">object-select-symbolic</property>
   </object>
 </interface>

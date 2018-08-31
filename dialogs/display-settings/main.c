@@ -150,11 +150,8 @@ GList *current_outputs = NULL;
 GtkWidget *randr_outputs_combobox = NULL;
 GtkWidget *apply_button = NULL;
 
-/* Profile buttons */
-GtkWidget *profile_save_button = NULL;
-GtkWidget *profile_delete_button = NULL;
-GtkWidget *profile_apply_button = NULL;
-
+/* New Profile entry */
+GtkWidget *profile_create_entry;
 
 static void display_settings_minimal_only_display1_toggled   (GtkToggleButton *button,
                                                               GtkBuilder      *builder);
@@ -1512,47 +1509,21 @@ display_setting_apply (GtkWidget *widget, GtkBuilder *builder)
 }
 
 static void
-display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
+display_settings_profile_changed (GtkTreeSelection *selection, GtkBuilder *builder)
 {
-    GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
+    GObject *button;
+    GtkTreeModel      *model;
+    GtkTreeIter        iter;
+    gboolean selected;
 
-    if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
-    {
-        guint i = 0;
-        gchar *property;
-        gchar *profile_hash;
-        const gchar *profile;
+    selected = gtk_tree_selection_get_selected (selection, &model, &iter);
 
-        /* make sure the profile name can be saved as xfconf property name, so hash it */
-        profile = gtk_entry_get_text (GTK_ENTRY (entry));
-        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
-        property = g_strdup_printf ("/%s", profile_hash);
-
-        for (i=0; i < xfce_randr->noutput; i++)
-            xfce_randr_save_output (xfce_randr, profile_hash, display_channel, i);
-
-        /* save the human-readable name of the profile as string value */
-        xfconf_channel_set_string (display_channel, property, profile);
-
-        display_settings_profile_list_populate (builder);
-        gtk_widget_set_sensitive (widget, FALSE);
-
-        g_free (property);
-        g_free (profile_hash);
-    }
-    else
-        gtk_widget_set_sensitive (widget, TRUE);
-}
-
-static void
-display_settings_profile_changed (GtkWidget *widget, GtkBuilder *builder)
-{
-    GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
-    gboolean sensitive = gtk_entry_get_text_length (GTK_ENTRY (entry));
-
-    gtk_widget_set_sensitive (profile_save_button, sensitive);
-    gtk_widget_set_sensitive (profile_delete_button, sensitive);
-    gtk_widget_set_sensitive (profile_apply_button, sensitive);
+    button = gtk_builder_get_object (builder, "button-profile-save");
+    gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
+    button = gtk_builder_get_object (builder, "button-profile-delete");
+    gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
+    button = gtk_builder_get_object (builder, "button-profile-apply");
+    gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
 }
 
 static void
@@ -1567,53 +1538,152 @@ display_settings_minimal_profile_apply (GtkToggleButton *widget, GtkBuilder *bui
 }
 
 static void
+display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
+{
+    GObject           *treeview;
+    GtkTreeSelection  *selection;
+    GtkTreeModel      *model;
+    GtkTreeIter        iter;
+
+    treeview = gtk_builder_get_object (builder, "randr-profile");
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
+    if (gtk_tree_selection_get_selected (selection, &model, &iter))
+    {
+        guint i = 0;
+        gchar *property;
+        gchar *profile_hash;
+        gchar *profile_name;
+
+        /* make sure the profile name can be saved as xfconf property name, so hash it */
+        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, -1);
+        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen(profile_name));
+        property = g_strdup_printf ("/%s", profile_hash);
+
+        for (i=0; i < xfce_randr->noutput; i++)
+            xfce_randr_save_output (xfce_randr, profile_hash, display_channel, i);
+
+        /* save the human-readable name of the profile as string value */
+        xfconf_channel_set_string (display_channel, property, profile_name);
+
+        display_settings_profile_list_populate (builder);
+        gtk_widget_set_sensitive (widget, FALSE);
+
+        g_free (property);
+        g_free (profile_hash);
+        g_free (profile_name);
+    }
+    else
+        gtk_widget_set_sensitive (widget, TRUE);
+}
+
+static void
+display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
+{
+    const gchar *profile_name;
+
+    profile_name = gtk_entry_get_text (GTK_ENTRY (profile_create_entry));
+    if (profile_name)
+    {
+        guint i = 0;
+        gchar *property;
+        gchar *profile_hash;
+
+        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen(profile_name));
+        property = g_strdup_printf ("/%s", profile_hash);
+        for (i=0; i < xfce_randr->noutput; i++)
+            xfce_randr_save_output (xfce_randr, profile_hash, display_channel, i);
+
+        /* save the human-readable name of the profile as string value */
+        xfconf_channel_set_string (display_channel, property, profile_name);
+        display_settings_profile_list_populate (builder);
+
+        g_free (property);
+        g_free (profile_hash);
+        //g_free (profile_name);
+    }
+}
+
+static void
+display_settings_profile_create (GtkWidget *widget, GtkBuilder *builder)
+{
+    GtkWidget *popover, *box, *label, *entry, *button;
+
+    /* Create a popover dialog for saving a new profile */
+    popover = gtk_popover_new (widget);
+    gtk_popover_set_modal (GTK_POPOVER (popover), TRUE);
+
+    label = gtk_label_new (_("Profile Name:"));
+    profile_create_entry = gtk_entry_new ();
+    button = gtk_button_new_with_label ("Save");
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    gtk_widget_set_margin_start (box, 12);
+    gtk_widget_set_margin_end (box, 12);
+    gtk_widget_set_margin_top (box, 12);
+    gtk_widget_set_margin_bottom (box, 12);
+    gtk_box_pack_start (GTK_BOX (box), label, FALSE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (box), profile_create_entry, FALSE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, TRUE, 0);
+
+    gtk_container_add (GTK_CONTAINER (popover), box);
+    gtk_widget_show_all (popover);
+
+    g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (display_settings_profile_create_cb), builder);
+}
+
+static void
 display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 {
-    GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
+    GObject           *treeview;
+    GtkTreeSelection  *selection;
+    GtkTreeModel      *model;
+    GtkTreeIter        iter;
 
-    if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
+    treeview = gtk_builder_get_object (builder, "randr-profile");
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
+    if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
         gchar *profile_hash;
-        const gchar *profile;
+        gchar *profile_name;
 
-        gtk_widget_set_sensitive (profile_save_button, TRUE);
-        gtk_widget_set_sensitive (profile_delete_button, TRUE);
-
-        profile = gtk_entry_get_text (GTK_ENTRY (entry));
-        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
+        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, -1);
+        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen(profile_name));
 
         xfce_randr_apply (xfce_randr, profile_hash, display_channel);
 
         if (!display_setting_timed_confirmation (builder))
         {
             xfce_randr_apply (xfce_randr, "Default", display_channel);
-            gtk_entry_set_text (GTK_ENTRY (entry), "");
-            gtk_widget_set_sensitive (profile_save_button, FALSE);
-            gtk_widget_set_sensitive (profile_delete_button, FALSE);
 
             foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
         }
 
         g_free (profile_hash);
-    }
-    else
-    {
-        gtk_widget_set_sensitive (profile_save_button, FALSE);
-        gtk_widget_set_sensitive (profile_delete_button, FALSE);
+        g_free (profile_name);
     }
 }
 
 static void
 display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
 {
-    GtkWidget *entry = gtk_bin_get_child ((GtkBin*) gtk_builder_get_object (builder, "randr-profile"));
+    GObject           *treeview;
+    GtkTreeSelection  *selection;
+    GtkTreeModel      *model;
+    GtkTreeIter        iter;
 
-    if (gtk_entry_get_text_length (GTK_ENTRY (entry)))
+    treeview = gtk_builder_get_object (builder, "randr-profile");
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
+    if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
-        gint response;
+        gchar *profile_name;
+        gint   response;
         gchar *secondary_message;
 
-        secondary_message = g_strdup_printf (_("Do you really want to delete the profile '%s'?"), gtk_entry_get_text (GTK_ENTRY (entry)));
+        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, -1);
+        secondary_message = g_strdup_printf (_("Do you really want to delete the profile '%s'?"), profile_name);
 
         response = xfce_message_dialog (NULL, _("Question"),
                                         "dialog-question",
@@ -1624,22 +1694,23 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
                                         NULL);
 
         g_free (secondary_message);
+
         if (response == GTK_RESPONSE_YES)
         {
             GString *property;
             gchar *profile_hash;
-            const gchar *profile_name;
 
-            profile_name = gtk_entry_get_text (GTK_ENTRY (entry));
             profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen (profile_name));
             property = g_string_new (profile_hash);
             g_string_prepend_c (property, '/');
 
             xfconf_channel_reset_property (display_channel, property->str, True);
             display_settings_profile_list_populate (builder);
-            gtk_entry_set_text (GTK_ENTRY (entry), "");
+            g_free (profile_name);
         }
-        else {
+        else
+        {
+            g_free (profile_name);
             return;
         }
     }
@@ -1651,6 +1722,8 @@ display_settings_dialog_new (GtkBuilder *builder)
     GObject          *combobox;
     GtkCellRenderer  *renderer;
     GObject          *label, *check, *primary, *mirror, *identify;
+    GtkWidget        *button;
+    GtkTreeSelection *selection;
 
     /* Get the combobox */
     combobox = gtk_builder_get_object (builder, "randr-outputs");
@@ -1711,28 +1784,32 @@ display_settings_dialog_new (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
 
     combobox = gtk_builder_get_object (builder, "randr-profile");
-
-    //g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_profile_changed), builder);
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (combobox));
+    gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_profile_changed), builder);
 
     check = gtk_builder_get_object (builder, "minimal-autoshow");
     xfconf_g_property_bind (display_channel, "/Notify", G_TYPE_BOOLEAN, check,
                             "active");
 
-    apply_button = GTK_WIDGET(gtk_builder_get_object (builder, "apply"));
+    apply_button = GTK_WIDGET (gtk_builder_get_object (builder, "apply"));
     g_signal_connect (G_OBJECT (apply_button), "clicked", G_CALLBACK (display_setting_apply), builder);
     gtk_widget_set_sensitive(apply_button, FALSE);
 
-    profile_save_button = GTK_WIDGET(gtk_builder_get_object (builder, "button-profile-save"));
-    gtk_widget_set_sensitive (profile_save_button, FALSE);
-    g_signal_connect (G_OBJECT (profile_save_button), "clicked", G_CALLBACK (display_settings_profile_save), builder);
+    button = GTK_WIDGET (gtk_builder_get_object (builder, "button-profile-save"));
+    gtk_widget_set_sensitive (button, FALSE);
+    g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (display_settings_profile_save), builder);
 
-    profile_delete_button = GTK_WIDGET(gtk_builder_get_object (builder, "button-profile-delete"));
-    gtk_widget_set_sensitive (profile_delete_button, FALSE);
-    g_signal_connect (G_OBJECT (profile_delete_button), "clicked", G_CALLBACK (display_settings_profile_delete), builder);
+    button = GTK_WIDGET (gtk_builder_get_object (builder, "button-profile-delete"));
+    gtk_widget_set_sensitive (button, FALSE);
+    g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (display_settings_profile_delete), builder);
 
-    profile_apply_button = GTK_WIDGET(gtk_builder_get_object (builder, "button-profile-apply"));
-    gtk_widget_set_sensitive (profile_apply_button, FALSE);
-    g_signal_connect (G_OBJECT (profile_apply_button), "clicked", G_CALLBACK (display_settings_profile_apply), builder);
+    button = GTK_WIDGET (gtk_builder_get_object (builder, "button-profile-apply"));
+    gtk_widget_set_sensitive (button, FALSE);
+    g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (display_settings_profile_apply), builder);
+
+    button = GTK_WIDGET (gtk_builder_get_object (builder, "button-profile-create"));
+    g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (display_settings_profile_create), builder);
 
     /* Populate the combobox */
     display_settings_combobox_populate (builder);
