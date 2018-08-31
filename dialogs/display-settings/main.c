@@ -1344,27 +1344,36 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
 }
 
 static void
-display_settings_profile_combobox_populate (GtkBuilder *builder)
+display_settings_profile_list_populate (GtkBuilder *builder)
 {
-    guint             m = 0;
     GtkListStore     *store;
-    GObject          *combobox;
+    GObject          *treeview;
     GtkTreeIter       iter;
     GList *profiles = NULL;
     GList *current;
+    GtkCellRenderer *renderer;
+    GtkTreeViewColumn *column;
 
     /* create a new list store */
     store = gtk_list_store_new (1,
                                 G_TYPE_STRING);
 
     /* set up the new combobox which will replace the above combobox */
-    combobox = gtk_builder_get_object (builder, "randr-profile");
-    gtk_combo_box_set_model (GTK_COMBO_BOX (combobox), GTK_TREE_MODEL (store));
+    treeview = gtk_builder_get_object (builder, "randr-profile");
+    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
+    gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
+    column = gtk_tree_view_column_new ();
+    /* Setup renderer */
+    renderer = gtk_cell_renderer_text_new ();
+    gtk_tree_view_column_pack_start (column, renderer, TRUE);
+    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_COMBO_NAME, NULL);
+    g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
     profiles = display_settings_get_profiles ();
 
     /* populate combobox */
-    current = g_list_first(profiles);
+    current = g_list_first (profiles);
     while (current)
     {
         gchar *property;
@@ -1382,12 +1391,7 @@ display_settings_profile_combobox_populate (GtkBuilder *builder)
         current = g_list_next(current);
         g_free (property);
         g_free (profile_name);
-        m++;
     }
-
-    /* If there is only one profile we auto-select and activate it */
-    if (m == 1)
-        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
 
     /* Release the store */
     g_list_free (profiles);
@@ -1530,7 +1534,7 @@ display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
         /* save the human-readable name of the profile as string value */
         xfconf_channel_set_string (display_channel, property, profile);
 
-        display_settings_profile_combobox_populate (builder);
+        display_settings_profile_list_populate (builder);
         gtk_widget_set_sensitive (widget, FALSE);
 
         g_free (property);
@@ -1632,7 +1636,7 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
             g_string_prepend_c (property, '/');
 
             xfconf_channel_reset_property (display_channel, property->str, True);
-            display_settings_profile_combobox_populate (builder);
+            display_settings_profile_list_populate (builder);
             gtk_entry_set_text (GTK_ENTRY (entry), "");
         }
         else {
@@ -1707,9 +1711,8 @@ display_settings_dialog_new (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
 
     combobox = gtk_builder_get_object (builder, "randr-profile");
-    display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
 
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_profile_changed), builder);
+    //g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_profile_changed), builder);
 
     check = gtk_builder_get_object (builder, "minimal-autoshow");
     xfconf_g_property_bind (display_channel, "/Notify", G_TYPE_BOOLEAN, check,
@@ -1733,7 +1736,7 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     /* Populate the combobox */
     display_settings_combobox_populate (builder);
-    display_settings_profile_combobox_populate (builder);
+    display_settings_profile_list_populate (builder);
 
     return GTK_WIDGET (gtk_builder_get_object (builder, "display-dialog"));
 }
