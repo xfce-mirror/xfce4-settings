@@ -1820,7 +1820,11 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     apply_button = GTK_WIDGET (gtk_builder_get_object (builder, "apply"));
     g_signal_connect (G_OBJECT (apply_button), "clicked", G_CALLBACK (display_setting_apply), builder);
-    gtk_widget_set_sensitive(apply_button, FALSE);
+    gtk_widget_set_sensitive (apply_button, FALSE);
+
+    check = gtk_builder_get_object (builder, "auto-enable-profiles");
+    xfconf_g_property_bind (display_channel, "/AutoEnableProfiles", G_TYPE_BOOLEAN, check,
+                            "active");
 
     button = GTK_WIDGET (gtk_builder_get_object (builder, "button-profile-save"));
     gtk_widget_set_sensitive (button, FALSE);
@@ -3523,21 +3527,24 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         g_signal_connect_swapped (app, "activate", G_CALLBACK (gtk_window_present), dialog);
 
         /* Auto-apply the first profile in the list */
-        GObject *profile_box;
-        profile_box  = gtk_builder_get_object (builder, "profile-box");
-        if (GTK_IS_CONTAINER (profile_box))
+        if (xfconf_channel_get_bool (display_channel, "/AutoEnableProfiles", TRUE))
         {
-            GList *children = NULL;
-            GList *current;
-
-            children = gtk_container_get_children (GTK_CONTAINER (profile_box));
-            current = g_list_first (children);
-            while (current)
+            GObject *profile_box;
+            profile_box  = gtk_builder_get_object (builder, "profile-box");
+            if (GTK_IS_CONTAINER (profile_box))
             {
-                GtkWidget* widget = GTK_WIDGET (children->data);
-                if (widget != NULL) {
-                    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
-                    break;
+                GList *children = NULL;
+                GList *current;
+
+                children = gtk_container_get_children (GTK_CONTAINER (profile_box));
+                current = g_list_first (children);
+                while (current)
+                {
+                    GtkWidget* widget = GTK_WIDGET (children->data);
+                    if (widget != NULL) {
+                        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
+                        break;
+                    }
                 }
             }
         }
