@@ -49,6 +49,8 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 
+#include <locale.h>
+
 #include "debug.h"
 #include "accessibility.h"
 #include "pointers.h"
@@ -281,6 +283,8 @@ main (gint argc, gchar **argv)
 
         return EXIT_FAILURE;
     }
+
+    setlocale(LC_NUMERIC,"C");
 
     /* Initialize our data set */
     memset (&s_data, 0, sizeof (struct t_data_set));
