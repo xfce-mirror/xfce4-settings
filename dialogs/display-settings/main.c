@@ -1258,14 +1258,14 @@ display_settings_get_profiles (void)
         for (m = 0; m < xfce_randr->noutput; ++m)
         {
             gchar *property;
-            gchar *edid, *output_edid;
+            gchar *current_edid, *output_edid;
             gchar **display_infos_tokens;
 
             display_infos_tokens = g_strsplit (display_infos[m], "/", 2);
             property = g_strdup_printf ("/%s/%s/EDID", buf, display_infos_tokens[0]);
-            edid = xfconf_channel_get_string (display_channel, property, NULL);
-            output_edid = g_strdup_printf ("%s/%s", display_infos_tokens[0], edid);
-            if (edid)
+            current_edid = xfconf_channel_get_string (display_channel, property, NULL);
+            output_edid = g_strdup_printf ("%s/%s", display_infos_tokens[0], current_edid);
+            if (current_edid)
             {
                 if (g_strcmp0 (display_infos[m],output_edid) != 0)
                     profile_match = FALSE;
@@ -1275,7 +1275,7 @@ display_settings_get_profiles (void)
                 profile_match = FALSE;
             }
             g_free (property);
-            g_free (edid);
+            g_free (current_edid);
             g_free (output_edid);
             g_strfreev (display_infos_tokens);
         }
@@ -1383,8 +1383,6 @@ display_settings_profile_list_populate (GtkBuilder *builder)
     GtkTreeIter       iter;
     GList *profiles = NULL;
     GList *current;
-    GtkCellRenderer *renderer;
-    GtkTreeViewColumn *column;
 
     /* create a new list store */
     store = gtk_list_store_new (1,
@@ -1637,7 +1635,7 @@ display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
 static void
 display_settings_profile_create (GtkWidget *widget, GtkBuilder *builder)
 {
-    GtkWidget *popover, *box, *label, *entry, *button;
+    GtkWidget *popover, *box, *label, *button;
 
     /* Create a popover dialog for saving a new profile */
     popover = gtk_popover_new (widget);
@@ -1754,12 +1752,14 @@ display_setting_minimal_autoshow_toggled (GtkSwitch       *widget,
                                           GtkBuilder      *builder)
 {
     GObject *auto_enable_profiles;
-    gboolean auto_enable_profiles_setting;
 
     auto_enable_profiles = gtk_builder_get_object (builder, "auto-enable-profiles");
     gtk_widget_set_sensitive (GTK_WIDGET (auto_enable_profiles), state);
     auto_enable_profiles = gtk_builder_get_object (builder, "auto-enable-profiles-label");
     gtk_widget_set_sensitive (GTK_WIDGET (auto_enable_profiles), state);
+    gtk_switch_set_state (GTK_SWITCH (widget), state);
+
+    return TRUE;
 }
 
 static GtkWidget *
@@ -1770,7 +1770,6 @@ display_settings_dialog_new (GtkBuilder *builder)
     GObject          *label, *check, *primary, *mirror, *identify;
     GtkWidget        *button;
     GtkTreeSelection *selection;
-    gboolean          show_popups;
 
     /* Get the combobox */
     combobox = gtk_builder_get_object (builder, "randr-outputs");
@@ -1787,8 +1786,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (identify), "state-set", G_CALLBACK (on_identify_displays_toggled), builder);
     xfconf_g_property_bind (display_channel, "/IdentityPopups", G_TYPE_BOOLEAN, identify,
                             "active");
-    show_popups = gtk_switch_get_active (GTK_SWITCH (identify));
-    set_display_popups_visible (show_popups);
+    set_display_popups_visible (gtk_switch_get_active (GTK_SWITCH (identify)));
 
     /* Display selection combobox */
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_combobox_selection_changed), builder);
@@ -3427,7 +3425,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
     GtkBuilder *builder;
     GtkWidget  *dialog, *cancel;
     GObject    *only_display1, *only_display2, *mirror_displays;
-    GObject    *extend_right, *advanced, *fake_button, *label;
+    GObject    *extend_right, *advanced, *fake_button, *label, *profile_box;
     GError     *error = NULL;
     gboolean    found = FALSE;
     RRMode      mode;
@@ -3557,7 +3555,6 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         if (xfconf_channel_get_bool (display_channel, "/AutoEnableProfiles", TRUE))
         {
             /* Walz down the widget hierarchy: profile-box -> gtkbox -> gtkradiobutton */
-            GObject *profile_box;
             profile_box  = gtk_builder_get_object (builder, "profile-box");
             if (GTK_IS_CONTAINER (profile_box))
             {
