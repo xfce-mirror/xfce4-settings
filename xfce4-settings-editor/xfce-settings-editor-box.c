@@ -190,6 +190,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     GtkWidget         *vbox;
     GtkWidget         *bbox;
     GtkWidget         *button;
+    GtkCssProvider    *provider;
 
 	self->channels_store = gtk_list_store_new (N_CHANNEL_COLUMNS,
                                                  G_TYPE_STRING);
@@ -212,6 +213,14 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     gtk_paned_set_position (GTK_PANED (paned), self->paned_pos);
     gtk_container_set_border_width (GTK_CONTAINER (paned), 6);
     gtk_widget_show (paned);
+
+    /* Style the GtkPaned */
+    gtk_paned_set_wide_handle (GTK_PANED (paned), TRUE);
+    provider = gtk_css_provider_new ();
+    gtk_css_provider_load_from_data (provider, 
+        "paned > separator.wide { background:transparent; }", -1, NULL);
+    gtk_style_context_add_provider (gtk_widget_get_style_context (paned),
+        GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     scroll = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -305,13 +314,14 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
         G_CALLBACK (xfce_settings_editor_box_value_changed), self);
 
     bbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
+    gtk_box_set_spacing (GTK_BOX (bbox), 12);
     gtk_box_pack_start (GTK_BOX (vbox), bbox, FALSE, TRUE, 0);
     gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_START);
     gtk_widget_show (bbox);
 
-    button = gtk_button_new_with_label (_("New"));
+    button = xfce_gtk_button_new_mixed ("edit-add", _("New"));
     gtk_container_add (GTK_CONTAINER (bbox), button);
-    gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
+    gtk_button_box_set_child_non_homogeneous (GTK_BUTTON_BOX (bbox), button, TRUE);
     gtk_widget_set_tooltip_text (button, _("New property"));
     gtk_widget_set_sensitive (button, FALSE);
     gtk_widget_set_can_focus (button, FALSE);
@@ -320,9 +330,9 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     g_signal_connect_swapped (G_OBJECT (button), "clicked",
         G_CALLBACK (xfce_settings_editor_box_property_new), self);
 
-    button = gtk_button_new_with_label (_("Edit"));
+    button = xfce_gtk_button_new_mixed ("gtk-edit", _("Edit"));
     gtk_container_add (GTK_CONTAINER (bbox), button);
-    gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
+    gtk_button_box_set_child_non_homogeneous (GTK_BUTTON_BOX (bbox), button, TRUE);
     gtk_widget_set_tooltip_text (button, _("Edit selected property"));
     gtk_widget_set_sensitive (button, FALSE);
     gtk_widget_set_can_focus (button, FALSE);
@@ -333,7 +343,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
 
     button = xfce_gtk_button_new_mixed ("document-revert", _("_Reset"));
     gtk_container_add (GTK_CONTAINER (bbox), button);
-    gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
+    gtk_button_box_set_child_non_homogeneous (GTK_BUTTON_BOX (bbox), button, TRUE);
     gtk_widget_set_tooltip_text (button, _("Reset selected property"));
     gtk_widget_set_sensitive (button, FALSE);
     gtk_widget_set_can_focus (button, FALSE);
