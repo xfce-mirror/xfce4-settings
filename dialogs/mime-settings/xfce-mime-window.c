@@ -220,6 +220,11 @@ xfce_mime_window_init (XfceMimeWindow *window)
     window->desc_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "desc");
     window->count_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "count");
     xfce_mime_window_statusbar_count (window, n_mime_types);
+
+    gtk_widget_set_margin_top (statusbar, 0);
+    gtk_widget_set_margin_bottom (statusbar, 6);
+    gtk_widget_set_margin_start (statusbar, 2);
+
     gtk_widget_show (statusbar);
 
     window->filter_model = gtk_tree_model_filter_new (window->mime_model, NULL);
@@ -252,14 +257,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-    /* HACK - Disabled as we move to GTK3 */
-    /* https://bugzilla.gnome.org/show_bug.cgi?id=668428 */
-    /*
-    column->use_resized_width = TRUE;
-    column->resized_width = xfconf_channel_get_int (window->channel,
-                                                    "/last/mime-width",
-                                                    300);
-    */
     gtk_tree_view_column_set_min_width (column, 300);
     gtk_tree_view_column_set_fixed_width (column, xfconf_channel_get_int (window->channel,
                                                                           "/last/mime-width",
