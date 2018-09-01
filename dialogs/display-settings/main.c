@@ -1746,6 +1746,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     GObject          *label, *check, *primary, *mirror, *identify;
     GtkWidget        *button;
     GtkTreeSelection *selection;
+    gboolean          show_popups;
 
     /* Get the combobox */
     combobox = gtk_builder_get_object (builder, "randr-outputs");
@@ -1760,6 +1761,9 @@ display_settings_dialog_new (GtkBuilder *builder)
     display_setting_identity_popups_populate ();
     identify = gtk_builder_get_object (builder, "identify-displays");
     g_signal_connect (G_OBJECT (identify), "state-set", G_CALLBACK (on_identify_displays_toggled), builder);
+    xfconf_g_property_bind (display_channel, "/IdentityPopups", G_TYPE_BOOLEAN, identify,
+                            "active");
+    show_popups = gtk_switch_get_active (GTK_SWITCH (identify));
     set_display_popups_visible (show_popups);
 
     /* Display selection combobox */
