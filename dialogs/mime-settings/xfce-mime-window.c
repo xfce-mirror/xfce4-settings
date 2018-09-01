@@ -25,6 +25,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 #include <gio/gio.h>
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
@@ -78,6 +79,7 @@ struct _XfceMimeWindow
     XfconfChannel *channel;
 
     GtkWidget     *treeview;
+    GtkWidget     *plug_child;
 
     PangoAttrList *attrs_bold;
     GtkTreeModel  *mime_model;
@@ -175,7 +177,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
         xfconf_channel_get_int (window->channel, "/last/window-width", 550),
         xfconf_channel_get_int (window->channel, "/last/window-height", 400));
 
-    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    window->plug_child = vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     area = gtk_dialog_get_content_area (GTK_DIALOG (window));
     gtk_box_pack_start (GTK_BOX (area), vbox, TRUE, TRUE, 0);
     gtk_widget_show (vbox);
@@ -1010,4 +1012,42 @@ xfce_mime_window_combo_populate (GtkCellRenderer *renderer,
 
     g_list_free (app_infos);
     g_object_unref (G_OBJECT (model));
+}
+
+
+
+XfceMimeWindow *
+xfce_mime_window_new (void)
+{
+  return g_object_new (XFCE_TYPE_MIME_WINDOW, NULL);
+}
+
+
+
+GtkWidget *
+xfce_mime_window_create_dialog (XfceMimeWindow *window)
+{
+  g_return_val_if_fail (XFCE_IS_MIME_WINDOW (window), NULL);
+  return GTK_WIDGET (window);
+}
+
+
+
+GtkWidget *
+xfce_mime_window_create_plug (XfceMimeWindow *window,
+                              gint            socket_id)
+{
+  GtkWidget *plug;
+  GObject   *child;
+
+  g_return_val_if_fail (XFCE_IS_MIME_WINDOW (window), NULL);
+
+  plug = gtk_plug_new (socket_id);
+  gtk_widget_show (plug);
+
+  child = G_OBJECT (window->plug_child);
+  xfce_widget_reparent (GTK_WIDGET (child), plug);
+  gtk_widget_show (GTK_WIDGET (child));
+
+  return plug;
 }
