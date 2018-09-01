@@ -1738,6 +1738,20 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
     }
 }
 
+static gboolean
+display_setting_minimal_autoshow_toggled (GtkSwitch       *widget,
+                                          gboolean         state,
+                                          GtkBuilder      *builder)
+{
+    GObject *auto_enable_profiles;
+    gboolean auto_enable_profiles_setting;
+
+    auto_enable_profiles = gtk_builder_get_object (builder, "auto-enable-profiles");
+    gtk_widget_set_sensitive (GTK_WIDGET (auto_enable_profiles), state);
+    auto_enable_profiles = gtk_builder_get_object (builder, "auto-enable-profiles-label");
+    gtk_widget_set_sensitive (GTK_WIDGET (auto_enable_profiles), state);
+}
+
 static GtkWidget *
 display_settings_dialog_new (GtkBuilder *builder)
 {
@@ -1815,8 +1829,11 @@ display_settings_dialog_new (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_profile_changed), builder);
 
     check = gtk_builder_get_object (builder, "minimal-autoshow");
+    g_signal_connect (G_OBJECT (check), "state-set", G_CALLBACK (display_setting_minimal_autoshow_toggled), builder);
     xfconf_g_property_bind (display_channel, "/Notify", G_TYPE_BOOLEAN, check,
                             "active");
+    /* Correctly initiate the state of the auto-enable-profiles setting based on minimal-autoshow */
+    display_setting_minimal_autoshow_toggled ((GTK_SWITCH (check)), gtk_switch_get_active (GTK_SWITCH (check)), builder);
 
     apply_button = GTK_WIDGET (gtk_builder_get_object (builder, "apply"));
     g_signal_connect (G_OBJECT (apply_button), "clicked", G_CALLBACK (display_setting_apply), builder);
