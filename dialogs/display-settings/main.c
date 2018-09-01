@@ -1635,7 +1635,9 @@ display_settings_profile_create (GtkWidget *widget, GtkBuilder *builder)
 
     label = gtk_label_new (_("Profile Name:"));
     profile_create_entry = gtk_entry_new ();
+    gtk_entry_set_activates_default (GTK_ENTRY (profile_create_entry), TRUE);
     button = gtk_button_new_with_label ("Save");
+    gtk_widget_set_can_default (button, TRUE);
 
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     gtk_widget_set_margin_start (box, 12);
@@ -1645,9 +1647,9 @@ display_settings_profile_create (GtkWidget *widget, GtkBuilder *builder)
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, TRUE, 0);
     gtk_box_pack_start (GTK_BOX (box), profile_create_entry, FALSE, TRUE, 0);
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, TRUE, 0);
-
     gtk_container_add (GTK_CONTAINER (popover), box);
     gtk_widget_show_all (popover);
+    gtk_widget_grab_default (button);
 
     g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (display_settings_profile_create_cb), builder);
 }
