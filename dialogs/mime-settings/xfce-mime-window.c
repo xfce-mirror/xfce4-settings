@@ -175,13 +175,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
         xfconf_channel_get_int (window->channel, "/last/window-width", 550),
         xfconf_channel_get_int (window->channel, "/last/window-height", 400));
 
-    /* don't act like a dialog, hide the button box */
-    /* FIXME - Deprecated, should hide some other way... */
-    /*
-    area = gtk_dialog_get_action_area (GTK_DIALOG (window));
-    gtk_widget_hide (area);
-    */
-
     vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     area = gtk_dialog_get_content_area (GTK_DIALOG (window));
     gtk_box_pack_start (GTK_BOX (area), vbox, TRUE, TRUE, 0);
@@ -292,13 +285,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-    /* HACK - Disabled as we move to GTK3 */
-    /*
-    column->use_resized_width = TRUE;
-    column->resized_width = xfconf_channel_get_int (window->channel,
-                                                    "/last/status-width",
-                                                    75);
-    */
     gtk_tree_view_column_set_min_width (column, 75);
     gtk_tree_view_column_set_fixed_width (column, xfconf_channel_get_int (window->channel,
                                                                           "/last/status-width",
@@ -319,13 +305,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
         G_CALLBACK (xfce_mime_window_column_clicked), window);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-    /* HACK - Disabled as we move to GTK3 */
-    /*
-    column->use_resized_width = TRUE;
-    column->resized_width = xfconf_channel_get_int (window->channel,
-                                                    "/last/default-width",
-                                                    100);
-    */
     gtk_tree_view_column_set_min_width (column, 100);
     gtk_tree_view_column_set_fixed_width (column, xfconf_channel_get_int (window->channel,
                                                                           "/last/default-width",
