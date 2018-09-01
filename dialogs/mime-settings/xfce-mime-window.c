@@ -178,15 +178,14 @@ xfce_mime_window_init (XfceMimeWindow *window)
         xfconf_channel_get_int (window->channel, "/last/window-height", 400));
 
     window->plug_child = vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
+    gtk_box_set_spacing (GTK_BOX (vbox), 6);
+
     area = gtk_dialog_get_content_area (GTK_DIALOG (window));
     gtk_box_pack_start (GTK_BOX (area), vbox, TRUE, TRUE, 0);
     gtk_widget_show (vbox);
 
     hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
-    gtk_widget_set_margin_top (GTK_WIDGET(hbox), 4);
-    gtk_widget_set_margin_bottom (GTK_WIDGET(hbox), 0);
-    gtk_widget_set_margin_start (GTK_WIDGET(hbox), 6);
-    gtk_widget_set_margin_end (GTK_WIDGET(hbox), 6);
     gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, TRUE, 0);
     gtk_widget_show (hbox);
 
@@ -211,7 +210,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
                                     GTK_POLICY_ALWAYS);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll), GTK_SHADOW_ETCHED_IN);
     gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
-    gtk_container_set_border_width (GTK_CONTAINER (scroll), 6);
     gtk_widget_show (scroll);
 
     window->statusbar = statusbar = gtk_statusbar_new ();
@@ -222,8 +220,8 @@ xfce_mime_window_init (XfceMimeWindow *window)
     xfce_mime_window_statusbar_count (window, n_mime_types);
 
     gtk_widget_set_margin_top (statusbar, 0);
-    gtk_widget_set_margin_bottom (statusbar, 6);
-    gtk_widget_set_margin_start (statusbar, 2);
+    gtk_widget_set_margin_bottom (statusbar, 0);
+    gtk_widget_set_margin_start (statusbar, 0);
 
     gtk_widget_show (statusbar);
 
