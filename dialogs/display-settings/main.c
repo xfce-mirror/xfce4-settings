@@ -1317,7 +1317,7 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
     current = g_list_first (profiles);
     while (current)
     {
-        GtkWidget *profile_radio;
+        GtkWidget *box, *profile_radio, *label, *image;
         gchar *property;
         gchar *profile_name;
 
@@ -1325,16 +1325,26 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
         property = g_strdup_printf ("/%s", (gchar *)current->data);
         profile_name = xfconf_channel_get_string (display_channel, property, NULL);
 
-        profile_radio = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (profile_display1), profile_name);
+        label = gtk_label_new (profile_name);
+        image = gtk_image_new_from_icon_name ("gtk-about", 96);
+        gtk_image_set_pixel_size (GTK_IMAGE (image), 96);
+
+        profile_radio = gtk_radio_button_new_from_widget (GTK_RADIO_BUTTON (profile_display1));
+        gtk_container_add (GTK_CONTAINER (profile_radio), image);
+        g_object_set_data (G_OBJECT (profile_radio), "profile", profile_name);
         gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (profile_radio), FALSE);
         gtk_widget_set_size_request (GTK_WIDGET (profile_radio), 128, 128);
-        gtk_box_pack_start (GTK_BOX (profile_box), profile_radio, FALSE, FALSE, 0);
+
+        box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+        gtk_box_pack_start (GTK_BOX (box), profile_radio, FALSE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (box), label, FALSE, TRUE, 3);
+        gtk_box_pack_start (GTK_BOX (profile_box), box, FALSE, FALSE, 0);
+
         g_signal_connect (profile_radio, "toggled", G_CALLBACK (display_settings_minimal_profile_apply),
                           builder);
 
-        current = g_list_next(current);
+        current = g_list_next (current);
         g_free (property);
-        g_free (profile_name);
     }
 
     gtk_widget_show_all (GTK_WIDGET (profile_box));
@@ -1546,10 +1556,10 @@ display_settings_profile_changed (GtkTreeSelection *selection, GtkBuilder *build
 static void
 display_settings_minimal_profile_apply (GtkToggleButton *widget, GtkBuilder *builder)
 {
-    const gchar  *profile;
-    gchar        *profile_hash;
+    gchar  *profile;
+    gchar  *profile_hash;
 
-    profile = gtk_button_get_label (GTK_BUTTON (widget));
+    profile = (gchar *) g_object_get_data (G_OBJECT (widget), "profile");
     profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
     xfce_randr_apply (xfce_randr, profile_hash, display_channel);
 }
@@ -3546,21 +3556,32 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         /* Auto-apply the first profile in the list */
         if (xfconf_channel_get_bool (display_channel, "/AutoEnableProfiles", TRUE))
         {
+            /* Walz down the widget hierarchy: profile-box -> gtkbox -> gtkradiobutton */
             GObject *profile_box;
             profile_box  = gtk_builder_get_object (builder, "profile-box");
             if (GTK_IS_CONTAINER (profile_box))
             {
                 GList *children = NULL;
-                GList *current;
+                GList *first_profile_box;
 
                 children = gtk_container_get_children (GTK_CONTAINER (profile_box));
-                current = g_list_first (children);
-                while (current)
+                first_profile_box = g_list_first (children);
+                if (first_profile_box)
                 {
-                    GtkWidget* widget = GTK_WIDGET (children->data);
-                    if (widget != NULL) {
-                        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
-                        break;
+                    GList *grand_children = NULL;
+                    GList *current;
+                    GtkWidget *box = GTK_WIDGET (first_profile_box->data);
+
+                    grand_children = gtk_container_get_children (GTK_CONTAINER (box));
+                    current = g_list_first (grand_children);
+                    if (current)
+                    {
+                        GtkWidget* widget = GTK_WIDGET (grand_children->data);
+
+                        if (GTK_IS_TOGGLE_BUTTON (widget))
+                        {
+                            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
+                        }
                     }
                 }
             }
