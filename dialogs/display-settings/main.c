@@ -1369,7 +1369,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
 
     profiles = display_settings_get_profiles ();
 
-    /* populate combobox */
+    /* Populate treeview */
     current = g_list_first (profiles);
     while (current)
     {
@@ -1581,6 +1581,7 @@ static void
 display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
 {
     const gchar *profile_name;
+    GtkWidget *popover;
 
     profile_name = gtk_entry_get_text (GTK_ENTRY (profile_create_entry));
     if (profile_name)
@@ -1600,8 +1601,10 @@ display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
 
         g_free (property);
         g_free (profile_hash);
-        //g_free (profile_name);
     }
+    popover = gtk_widget_get_ancestor (widget, GTK_TYPE_POPOVER);
+    if (popover)
+        gtk_popover_popdown (GTK_POPOVER (popover));
 }
 
 static void
