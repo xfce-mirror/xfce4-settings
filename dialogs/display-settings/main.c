@@ -1341,6 +1341,31 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
 }
 
 static void
+display_settings_profile_list_init (GtkBuilder *builder)
+{
+    GtkListStore      *store;
+    GObject           *treeview;
+    GtkCellRenderer   *renderer;
+    GtkTreeViewColumn *column;
+
+    store = gtk_list_store_new (1,
+                                G_TYPE_STRING);
+
+    treeview = gtk_builder_get_object (builder, "randr-profile");
+    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
+    gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
+    column = gtk_tree_view_column_new ();
+    /* Setup renderer */
+    renderer = gtk_cell_renderer_text_new ();
+    gtk_tree_view_column_pack_start (column, renderer, TRUE);
+    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_COMBO_NAME, NULL);
+    g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
+    g_object_unref (G_OBJECT (store));
+}
+
+static void
 display_settings_profile_list_populate (GtkBuilder *builder)
 {
     GtkListStore     *store;
@@ -1357,15 +1382,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
 
     /* set up the new combobox which will replace the above combobox */
     treeview = gtk_builder_get_object (builder, "randr-profile");
-    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
-    column = gtk_tree_view_column_new ();
-    /* Setup renderer */
-    renderer = gtk_cell_renderer_text_new ();
-    gtk_tree_view_column_pack_start (column, renderer, TRUE);
-    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_COMBO_NAME, NULL);
-    g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
-    gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
     profiles = display_settings_get_profiles ();
 
@@ -1816,6 +1833,7 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     /* Populate the combobox */
     display_settings_combobox_populate (builder);
+    display_settings_profile_list_init (builder);
     display_settings_profile_list_populate (builder);
 
     return GTK_WIDGET (gtk_builder_get_object (builder, "display-dialog"));
