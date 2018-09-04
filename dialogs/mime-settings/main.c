@@ -27,6 +27,8 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+#include <gdk/gdkx.h>
+
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
@@ -34,20 +36,34 @@
 
 
 
+static gint     opt_socket_id = 0;
 static gboolean opt_version = FALSE;
 static GOptionEntry entries[] =
 {
+    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID") },
     { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { NULL }
 };
 
 
 
+static void
+mime_window_dialog_response (GtkWidget *dialog,
+                             gint       response_id)
+{
+    gtk_main_quit ();
+}
+
+
+
 gint
 main (gint argc, gchar **argv)
 {
-    GError    *error = NULL;
-    GtkWidget *window;
+    
+    XfceMimeWindow *window;
+    GtkWidget      *dialog;
+    GtkWidget      *plug;
+    GError         *error = NULL;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -91,12 +107,47 @@ main (gint argc, gchar **argv)
         g_error_free (error);
     }
 
-    window = g_object_new (XFCE_TYPE_MIME_WINDOW, NULL);
-    g_signal_connect (G_OBJECT (window), "response",
-        G_CALLBACK (gtk_main_quit), NULL);
-    gtk_window_present (GTK_WINDOW (window));
+    /* Create the window object */
+    window = xfce_mime_window_new ();
 
-    gtk_main ();
+    if (G_UNLIKELY (window == NULL))
+        {
+        g_error (_("Could not create the mime dialog."));
+        xfconf_shutdown ();
+        return EXIT_FAILURE;
+        }
+
+    DBG ("opt_socket_id = %i", opt_socket_id);
+
+    if (G_UNLIKELY (opt_socket_id == 0))
+        {
+        /* Create and run the settings dialog */
+        dialog = xfce_mime_window_create_dialog (window);
+
+        g_signal_connect (dialog, "response",
+          G_CALLBACK (mime_window_dialog_response), NULL);
+        gtk_window_present (GTK_WINDOW (dialog));
+
+        /* To prevent the settings dialog to be saved in the session */
+        gdk_x11_set_sm_client_id ("FAKE ID");
+
+        gtk_main ();
+        }
+    else
+        {
+        /* Embedd the settings dialog into the given socket ID */
+        plug = xfce_mime_window_create_plug (window, opt_socket_id);
+        g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+
+        /* Stop startup notification */
+        gdk_notify_startup_complete ();
+
+        /* To prevent the settings dialog to be saved in the session */
+        gdk_x11_set_sm_client_id ("FAKE ID");
+
+        /* Enter the main loop */
+        gtk_main ();
+        }
 
     xfconf_shutdown ();
 

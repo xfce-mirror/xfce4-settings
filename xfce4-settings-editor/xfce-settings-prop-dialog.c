@@ -137,6 +137,7 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     GtkCellRenderer *render;
     GtkWidget       *save_button;
 
+    gtk_window_set_icon_name (GTK_WINDOW (dialog), "edit-add");
     gtk_window_set_title (GTK_WINDOW (dialog), _("New Property"));
     gtk_window_set_default_size (GTK_WINDOW (dialog), 300, 200);
     gtk_dialog_add_buttons (GTK_DIALOG (dialog),
@@ -148,9 +149,11 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     gtk_widget_set_sensitive (save_button, FALSE);
 
     table = gtk_grid_new ();
+    gtk_container_set_border_width (GTK_CONTAINER (table), 6);
     content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
     gtk_box_pack_start (GTK_BOX (content_area), table, TRUE, TRUE, 0);
     gtk_grid_set_column_spacing (GTK_GRID (table), 12);
+    gtk_grid_set_row_spacing (GTK_GRID (table), 6);
     gtk_container_set_border_width (GTK_CONTAINER (table), 6);
     gtk_widget_show (table);
 
@@ -158,14 +161,11 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     gtk_widget_set_halign (label, GTK_ALIGN_START);
     gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
     gtk_grid_attach (GTK_GRID (table), label, 0, 0, 1, 1);
-    gtk_widget_set_margin_top (label, 6);
-    gtk_widget_set_margin_bottom (label, 6);
     gtk_widget_show (label);
 
     dialog->prop_name = entry = gtk_entry_new ();
+    gtk_widget_set_hexpand (GTK_WIDGET (entry), TRUE);
     gtk_grid_attach (GTK_GRID (table), entry, 1, 0, 1, 1);
-    gtk_widget_set_margin_top (entry, 6);
-    gtk_widget_set_margin_bottom (entry, 6);
     xfce_settings_prop_dialog_visible_bind (entry, label);
     g_signal_connect (G_OBJECT (entry), "changed",
         G_CALLBACK (xfce_settings_prop_dialog_entry_validate), dialog);
@@ -175,8 +175,6 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     gtk_widget_set_halign (label, GTK_ALIGN_START);
     gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
     gtk_grid_attach (GTK_GRID (table), label, 0, 1, 1, 1);
-    gtk_widget_set_margin_top (label, 6);
-    gtk_widget_set_margin_bottom (label, 6);
     gtk_widget_show (label);
 
     store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_UINT);
@@ -189,8 +187,6 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
 
     dialog->prop_type = combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
     gtk_grid_attach (GTK_GRID (table), combo, 1, 1, 1, 1);
-    gtk_widget_set_margin_top (combo, 6);
-    gtk_widget_set_margin_bottom (combo, 6);
     xfce_settings_prop_dialog_visible_bind (combo, label);
     gtk_combo_box_set_active (GTK_COMBO_BOX (combo), 0);
     g_signal_connect (G_OBJECT (combo), "changed",
@@ -652,6 +648,7 @@ xfce_settings_prop_dialog_new (GtkWindow     *parent,
         gtk_entry_set_text (GTK_ENTRY (dialog->prop_name), property);
         gtk_editable_set_editable (GTK_EDITABLE (dialog->prop_name), FALSE);
         gtk_window_set_title (GTK_WINDOW (dialog), _("Edit Property"));
+        gtk_window_set_icon_name (GTK_WINDOW (dialog), "gtk-edit");
 
         if (xfconf_channel_get_property (channel, property, &dialog->prop_value))
         {

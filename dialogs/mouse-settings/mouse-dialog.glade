@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <requires lib="libxfce4ui-2" version="4.13"/>
@@ -191,7 +191,7 @@
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
                 <property name="orientation">vertical</property>
-                <property name="spacing">6</property>
+                <property name="spacing">12</property>
                 <child>
                   <object class="GtkBox" id="hbox1">
                     <property name="visible">True</property>
@@ -223,27 +223,23 @@
                         <property name="position">1</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkSwitch" id="device-enabled">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="valign">center</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="device-enabled">
-                    <property name="label" translatable="yes">_Enable this device</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="halign">start</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
@@ -254,9 +250,9 @@
                       <object class="GtkBox" id="device-box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="border_width">6</property>
+                        <property name="border_width">12</property>
                         <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                        <property name="spacing">18</property>
                         <child>
                           <object class="GtkFrame" id="frame1">
                             <property name="visible">True</property>
@@ -267,12 +263,12 @@
                               <object class="GtkAlignment" id="alignment1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="top_padding">6</property>
                                 <property name="left_padding">12</property>
                                 <child>
                                   <object class="GtkBox" id="vbox12">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="border_width">6</property>
                                     <property name="orientation">vertical</property>
                                     <property name="spacing">6</property>
                                     <child>
@@ -280,23 +276,6 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="spacing">12</property>
-                                        <child>
-                                          <object class="GtkRadioButton" id="device-right-handed">
-                                            <property name="label" translatable="yes">Ri_ght-handed</property>
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="receives_default">False</property>
-                                            <property name="halign">start</property>
-                                            <property name="use_underline">True</property>
-                                            <property name="active">True</property>
-                                            <property name="draw_indicator">True</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
                                         <child>
                                           <object class="GtkRadioButton" id="device-left-handed">
                                             <property name="label" translatable="yes">Le_ft-handed</property>
@@ -307,6 +286,23 @@
                                             <property name="use_underline">True</property>
                                             <property name="draw_indicator">True</property>
                                             <property name="group">device-right-handed</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkRadioButton" id="device-right-handed">
+                                            <property name="label" translatable="yes">Ri_ght-handed</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">False</property>
+                                            <property name="halign">start</property>
+                                            <property name="use_underline">True</property>
+                                            <property name="active">True</property>
+                                            <property name="draw_indicator">True</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -366,89 +362,92 @@
                             <property name="label_xalign">0</property>
                             <property name="shadow_type">none</property>
                             <child>
-                              <object class="GtkGrid" id="grid1">
+                              <object class="GtkAlignment">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_left">18</property>
-                                <property name="margin_right">6</property>
-                                <property name="margin_top">6</property>
-                                <property name="margin_bottom">12</property>
-                                <property name="row_spacing">6</property>
-                                <property name="column_spacing">12</property>
+                                <property name="top_padding">6</property>
+                                <property name="left_padding">12</property>
                                 <child>
-                                  <object class="GtkButton" id="device-reset-feedback">
-                                    <property name="label" translatable="yes">_Reset to Defaults</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="tooltip_text" translatable="yes">Set the acceleration and sensitivity for the selected device to the default values</property>
-                                    <property name="image">image5</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">0</property>
-                                    <property name="top_attach">2</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="device-threshold-label">
+                                  <object class="GtkGrid" id="grid1">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Sensitivit_y:</property>
-                                    <property name="use_underline">True</property>
+                                    <property name="row_spacing">6</property>
+                                    <property name="column_spacing">12</property>
+                                    <child>
+                                      <object class="GtkButton" id="device-reset-feedback">
+                                        <property name="label" translatable="yes">_Reset to Defaults</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">True</property>
+                                        <property name="tooltip_text" translatable="yes">Set the acceleration and sensitivity for the selected device to the default values</property>
+                                        <property name="halign">start</property>
+                                        <property name="image">image5</property>
+                                        <property name="use_underline">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">2</property>
+                                        <property name="width">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="device-threshold-label">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Sensitivit_y:</property>
+                                        <property name="use_underline">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="device-acceleration-label">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Acceleratio_n:</property>
+                                        <property name="use_underline">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkScale" id="device-acceleration-scale">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="tooltip_text" translatable="yes">The factor at which the pointer's speed will increase as the mouse is moved</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="adjustment">device-acceleration</property>
+                                        <property name="round_digits">1</property>
+                                        <property name="value_pos">right</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkScale" id="device-threshold-scale">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="tooltip_text" translatable="yes">The number of pixels the pointer must move in a short time before it starts accelerating</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="adjustment">device-threshold</property>
+                                        <property name="round_digits">0</property>
+                                        <property name="digits">0</property>
+                                        <property name="value_pos">right</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
-                                  <packing>
-                                    <property name="left_attach">0</property>
-                                    <property name="top_attach">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="device-acceleration-label">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Acceleratio_n:</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">0</property>
-                                    <property name="top_attach">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkScale" id="device-acceleration-scale">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="tooltip_text" translatable="yes">The factor at which the pointer's speed will increase as the mouse is moved</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="adjustment">device-acceleration</property>
-                                    <property name="round_digits">1</property>
-                                    <property name="value_pos">right</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="top_attach">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkScale" id="device-threshold-scale">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="tooltip_text" translatable="yes">The number of pixels the pointer must move in a short time before it starts accelerating</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="adjustment">device-threshold</property>
-                                    <property name="round_digits">0</property>
-                                    <property name="digits">0</property>
-                                    <property name="value_pos">right</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="top_attach">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <placeholder/>
                                 </child>
                               </object>
                             </child>
@@ -486,9 +485,9 @@
                       <object class="GtkBox" id="synaptics-tab">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="border_width">6</property>
+                        <property name="border_width">12</property>
                         <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                        <property name="spacing">18</property>
                         <child>
                           <object class="GtkFrame" id="frame11">
                             <property name="visible">True</property>
@@ -499,12 +498,12 @@
                               <object class="GtkAlignment" id="alignment13">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="top_padding">6</property>
                                 <property name="left_padding">12</property>
                                 <child>
                                   <object class="GtkBox" id="vbox11">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="border_width">6</property>
                                     <property name="orientation">vertical</property>
                                     <property name="spacing">6</property>
                                     <child>
@@ -528,7 +527,7 @@
                                       <object class="GtkAlignment" id="alignment8">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="left_padding">18</property>
+                                        <property name="left_padding">12</property>
                                         <child>
                                           <object class="GtkBox" id="synaptics-disable-duration-box">
                                             <property name="visible">True</property>
@@ -619,12 +618,12 @@
                               <object class="GtkAlignment" id="alignment12">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="top_padding">6</property>
                                 <property name="left_padding">12</property>
                                 <child>
                                   <object class="GtkBox" id="vbox10">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="border_width">6</property>
                                     <property name="orientation">vertical</property>
                                     <property name="spacing">6</property>
                                     <child>
@@ -731,7 +730,7 @@
                       <object class="GtkBox" id="wacom-tab">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="border_width">6</property>
+                        <property name="border_width">12</property>
                         <property name="orientation">vertical</property>
                         <property name="spacing">6</property>
                         <child>
@@ -741,76 +740,80 @@
                             <property name="label_xalign">0</property>
                             <property name="shadow_type">none</property>
                             <child>
-                              <object class="GtkGrid" id="grid2">
+                              <object class="GtkAlignment">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_left">18</property>
-                                <property name="margin_right">6</property>
-                                <property name="margin_top">6</property>
-                                <property name="margin_bottom">12</property>
-                                <property name="row_spacing">6</property>
-                                <property name="column_spacing">12</property>
+                                <property name="top_padding">6</property>
+                                <property name="left_padding">12</property>
                                 <child>
-                                  <object class="GtkLabel" id="label9">
+                                  <object class="GtkGrid" id="grid2">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Trac_king mode:</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">0</property>
-                                    <property name="top_attach">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="label10">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">_Rotation:</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">0</property>
-                                    <property name="top_attach">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkComboBox" id="wacom-mode">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="model">wacom-mode-store</property>
+                                    <property name="row_spacing">6</property>
+                                    <property name="column_spacing">12</property>
                                     <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                                      <attributes>
-                                        <attribute name="text">1</attribute>
-                                      </attributes>
+                                      <object class="GtkLabel" id="label9">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Trac_king mode:</property>
+                                        <property name="use_underline">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="label10">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">_Rotation:</property>
+                                        <property name="use_underline">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="wacom-mode">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="model">wacom-mode-store</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                                          <attributes>
+                                            <attribute name="text">1</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="wacom-rotation">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="model">wacom-rotation-store</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cellrenderertext2"/>
+                                          <attributes>
+                                            <attribute name="text">1</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
                                     </child>
                                   </object>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="top_attach">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkComboBox" id="wacom-rotation">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="model">wacom-rotation-store</property>
-                                    <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
-                                      <attributes>
-                                        <attribute name="text">1</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="top_attach">1</property>
-                                  </packing>
                                 </child>
                               </object>
                             </child>
@@ -853,7 +856,7 @@
                   <packing>
                     <property name="expand">True</property>
                     <property name="fill">True</property>
-                    <property name="position">2</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
               </object>
@@ -875,7 +878,7 @@
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
                 <property name="orientation">vertical</property>
-                <property name="spacing">6</property>
+                <property name="spacing">18</property>
                 <child>
                   <object class="GtkFrame" id="frame3">
                     <property name="visible">True</property>
@@ -886,12 +889,12 @@
                       <object class="GtkAlignment" id="alignment3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="top_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
                           <object class="GtkBox" id="vbox4">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="border_width">6</property>
                             <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
@@ -955,12 +958,12 @@
                       <object class="GtkAlignment" id="alignment4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="top_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
                           <object class="GtkBox" id="vbox5">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="border_width">6</property>
                             <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
@@ -1095,7 +1098,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
+                    <property name="spacing">18</property>
                     <child>
                       <object class="GtkFrame" id="frame5">
                         <property name="visible">True</property>
@@ -1106,12 +1109,12 @@
                           <object class="GtkAlignment" id="alignment5">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="top_padding">6</property>
                             <property name="left_padding">12</property>
                             <child>
                               <object class="GtkBox" id="hbox7">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="border_width">6</property>
                                 <property name="spacing">12</property>
                                 <child>
                                   <object class="GtkLabel" id="label21">
@@ -1175,13 +1178,10 @@
                           <object class="GtkAlignment" id="alignment6">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="border_width">6</property>
+                            <property name="border_width">0</property>
                             <property name="xscale">0</property>
                             <property name="yscale">0</property>
                             <property name="top_padding">6</property>
-                            <property name="bottom_padding">6</property>
-                            <property name="left_padding">18</property>
-                            <property name="right_padding">6</property>
                             <child>
                               <object class="GtkImage" id="theme-preview">
                                 <property name="visible">True</property>

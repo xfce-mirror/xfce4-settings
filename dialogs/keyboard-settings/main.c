@@ -123,7 +123,6 @@ main (int    argc,
     {
       /* Create and run the settings dialog */
       dialog = xfce_keyboard_settings_create_dialog (settings);
-      gtk_window_set_default_size (GTK_WINDOW (dialog), 450, -1);
 
       g_signal_connect (dialog, "response",
           G_CALLBACK (keyboard_settings_dialog_response), NULL);

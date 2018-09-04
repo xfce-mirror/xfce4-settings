@@ -1125,15 +1125,16 @@ mouse_settings_synaptics_set_scroll_horiz (GtkWidget  *widget,
 
 #if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
 static void
-mouse_settings_device_set_enabled (GtkToggleButton *button,
-                                   GtkBuilder      *builder)
+mouse_settings_device_set_enabled (GtkSwitch  *widget,
+                                   GParamSpec *pspec,
+                                   GtkBuilder *builder)
 {
     gchar    *name = NULL;
     gchar    *prop;
     gboolean  enabled;
     GObject  *object;
 
-    enabled = gtk_toggle_button_get_active (button);
+    enabled = gtk_switch_get_active (widget);
     object = gtk_builder_get_object (builder, "device-notebook");
     gtk_widget_set_sensitive (GTK_WIDGET (object), enabled);
 
@@ -1415,7 +1416,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "device-enabled");
 #ifdef DEVICE_PROPERTIES
     gtk_widget_set_sensitive (GTK_WIDGET (object), is_enabled != -1);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), is_enabled > 0);
+    gtk_switch_set_active (GTK_SWITCH (object), is_enabled > 0);
 
     object = gtk_builder_get_object (builder, "device-notebook");
     gtk_widget_set_sensitive (GTK_WIDGET (object), is_enabled == 1);
@@ -1946,7 +1947,7 @@ main (gint argc, gchar **argv)
             /* connect signals */
 #ifdef DEVICE_PROPERTIES
             object = gtk_builder_get_object (builder, "device-enabled");
-            g_signal_connect (G_OBJECT (object), "toggled",
+            g_signal_connect (G_OBJECT (object), "notify::active",
                               G_CALLBACK (mouse_settings_device_set_enabled), builder);
 #endif
 
