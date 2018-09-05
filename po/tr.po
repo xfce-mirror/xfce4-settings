@@ -4,7 +4,7 @@
 # 
 # Translators:
 # aybuke <aybuke.147@gmail.com>, 2013
-# Demiray “tulliana” Muhterem <mdemiray@msn.com>, 2018
+# Demiray Muhterem <mdemiray@msn.com>, 2018
 # Muhammet Kara <muhammetk@gmail.com>, 2018
 # Natavan Mirzayeva <mirzayevanatavan@gmail.com>, 2015
 # Necdet Yücel <necdetyucel@gmail.com>, 2013-2014,2017
@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 00:31+0200\n"
-"PO-Revision-Date: 2018-07-21 15:58+0000\n"
-"Last-Translator: Demiray “tulliana” Muhterem <mdemiray@msn.com>\n"
+"POT-Creation-Date: 2018-09-04 06:31+0200\n"
+"PO-Revision-Date: 2018-09-05 06:07+0000\n"
+"Last-Translator: Demiray Muhterem <mdemiray@msn.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfce4-settings/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,20 +34,22 @@ msgid "Configure keyboard and mouse accessibility"
 msgstr "Klavye ve fare erişilebilirliğini yapılandır"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+msgid ""
+"When enabled, the session manager will start the required applications for "
+"screen readers and magnifiers."
+msgstr "Bu seçenek etkinleştirildiğinde, oturum yöneticisi ekran okuyucu ve büyüteçler için gerekli uygulamaları başlatır."
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 msgid "_Enable assistive technologies"
 msgstr "Yardımcı teknolojileri _etkinleştir"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
-msgid ""
-"If enabled, the session manager will start the required applications for "
-"screen readers and magnifiers"
-msgstr "Etkinleştirilirse oturum yöneticisi ekran okuma ve büyüteçler için gerekli uygulamaları başlatacaktır"
-
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
-msgid ""
-"Assistive technologies will be available the\n"
-"next time you login"
-msgstr "Yeniden oturum açtığınızda yardımcı teknolojiler\nkullanılabilir olacaktır"
+msgid "Start With Session"
+msgstr "Oturum ile Başla"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+msgid "Assistive technologies will be available the next time you login"
+msgstr "Bir sonraki oturum açışınızda yardımcı teknolojiler etkin olacak"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "No AT-SPI provider was found on your system"
@@ -58,15 +60,15 @@ msgid "Assistive _Technologies"
 msgstr "Yardımcı _Teknolojiler"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
-msgid "_Use sticky keys"
-msgstr "Yapışkan t_uşları kullan"
+msgid ""
+"When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
+" be held down (they can be pressed and then released) when multiple keys "
+"would normally need to be pressed at the same time."
+msgstr "Etkinleştirildiğinde, normalde aynı anda birden fazla tuşun basılması gerektiğinde, fonksiyon değiştirici tuşların (Control, Alt, ve Shift gibi) basılı tutulmalarına gerek duyulmaz. (basıp bırakmak yeterlidir)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
-msgid ""
-"When selected, modifier keys (such as Control, Alt, and Shift) do not need "
-"to be held down (they can be pressed and then released) when multiple keys "
-"would normally need to be pressed at the same time"
-msgstr "Seçildiğinde birden çok tuşa birden basılması gereken durumlarda düzenleyici tuşların (Control, Alt ve Shift gibi) basılı tutulmaları gerekmez (basılıp bırakılmaları yeterli olur)"
+msgid "_Use sticky keys"
+msgstr "Yapışkan t_uşları kullan"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
@@ -93,14 +95,14 @@ msgid "Sticky Keys"
 msgstr "Yapışkan Tuşlar"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
-msgid "Use slow _keys"
-msgstr "Yavaş tuşları _kullan"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
-" for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "Yavaş tuşlar kazara tuşlara basılmasını önlemek için bir tuşa belli bir süre basılmasını gerektirirler."
+" for a certain minimum amount of time before the keystroke will be accepted."
+msgstr "Yanlışlıkla tuş basmalarının engellenmesine yardımcı olmak için, yavaş tuşlar tuşa basılmadan önce  kısa bir süre için bir tuşun basılı tutulmasını gerektirir."
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+msgid "Use slow _keys"
+msgstr "Yavaş tuşları _kullan"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
@@ -117,14 +119,14 @@ msgid "Slow Keys"
 msgstr "Yavaş Tuşlar"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
-msgid "Use _bounce keys"
-msgstr "_Sıçrama tuşlarını kullan"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
-"minimum delay between keystrokes"
-msgstr "Tuşlara kazara basılmasını önlemek için sıçrama tuşları iki basış arasında minimum bir süre gerektirir"
+"minimum delay between keystrokes."
+msgstr "Yanlışlıkla aynı anda birden çok tuşa basılmasını önlemek için sıçrama tuşları iki tuş basması arasında bir gecikme sağlar."
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+msgid "Use _bounce keys"
+msgstr "_Sıçrama tuşlarını kullan"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
@@ -143,134 +145,144 @@ msgid "Keyboa_rd"
 msgstr "_Klavye"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+msgid ""
+"When enabled, the mouse pointer can be controlled using the keyboard number "
+"pad."
+msgstr "Etkinleştirildiğinde, fare imleci klavye numara takımı kullanılarak kontrol edilebilir."
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid "_Use mouse emulation"
 msgstr "Fare benzetimini k_ullan"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "Seçildiğinde klavye sayı alanı ile fare imleci kontrol edilebilir"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "msec"
 msgstr "msec"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "Bir tuşa ilk basılması ile ilk tekrar edilecek hareket eylemi arasında geçen milisaniye cinsinden süre"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "_Acceleration delay:"
 msgstr "İvmelenme _gecikmesi:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "R_epeat interval:"
 msgstr "T_ekrar aralığı:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Tekrarlanan hareket olayları arasındaki milisaniye cinsinden zaman"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "Acceleration t_ime:"
 msgstr "_İvmelenme zamanı:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "En yüksek hıza çıkmak için gerekli zaman, milisaniye cinsinden"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "Ma_ximum speed:"
 msgstr "Ma_ksimum hız:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "The maximum pointer speed after acceleration"
 msgstr "İvmelenme sonrası en fazla işaretçi hızı"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "pixels/sec"
 msgstr "pixel/sn"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "Acceleration _profile:"
 msgstr "Hızlandırma _profili:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "En yüksek işaretçi hızına ulaşmak için rampa kullanılır"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
-msgid "Show location of pointer on keypress"
-msgstr "Tuş basımında işaretçinin konumunu göster"
-
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
-msgid ""
-"Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
-"mouse pointer's current location"
-msgstr "Fare işaretçisinin geçerli konumuna dair görsel geri bildirim almak için xfce4-find-cursor'a bir klavye kısayolu bağlayın"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
 msgstr "Fare Benzetimi"
 
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
+msgid ""
+"Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
+"mouse pointer's current location."
+msgstr "Fare imleç konumunun görsel geri bildirimini almak için xfce4-find-cursor  komutuna bir klavye kısayol tuşu atayın."
+
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
+msgid "Show location of pointer on keypress"
+msgstr "Tuş basımında işaretçinin konumunu göster"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
+msgid "Find Cursor"
+msgstr "İmleç Bul"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "_Mouse"
 msgstr "_Fare"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:118
+#: ../dialogs/appearance-settings/main.c:109
 #: ../dialogs/display-settings/main.c:121
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:84
-#: ../xfce4-settings-editor/main.c:49
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
+#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "Soket yöneticisi ayarları"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:118
+#: ../dialogs/appearance-settings/main.c:109
 #: ../dialogs/display-settings/main.c:121
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:84
-#: ../xfce4-settings-editor/main.c:49
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
+#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "SOKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:119
+#: ../dialogs/appearance-settings/main.c:110
 #: ../dialogs/display-settings/main.c:122
-#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:40
+#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfsettingsd/main.c:99 ../xfce4-settings-manager/main.c:43
+#: ../xfsettingsd/main.c:101 ../xfce4-settings-manager/main.c:43
 msgid "Version information"
 msgstr "Sürüm bilgisi"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1305
+#: ../dialogs/appearance-settings/main.c:1166
 #: ../dialogs/display-settings/main.c:3115
-#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
-#: ../xfsettingsd/main.c:235 ../xfsettingsd/main.c:273
+#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
+#: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
+#: ../xfsettingsd/main.c:237 ../xfsettingsd/main.c:275
 #: ../xfce4-settings-manager/main.c:64
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Kullanım için '%s --help' yazın"
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1324
+#: ../dialogs/appearance-settings/main.c:1185
 #: ../dialogs/display-settings/main.c:3134
-#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
-#: ../xfsettingsd/main.c:251 ../xfce4-settings-manager/main.c:80
+#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
+#: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
+#: ../xfsettingsd/main.c:253 ../xfce4-settings-manager/main.c:80
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce geliştirme takımı. Tüm hakları saklıdır."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1325
+#: ../dialogs/appearance-settings/main.c:1186
 #: ../dialogs/display-settings/main.c:3135
-#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
-#: ../xfsettingsd/main.c:252 ../xfce4-settings-manager/main.c:81
+#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
+#: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
+#: ../xfsettingsd/main.c:254 ../xfce4-settings-manager/main.c:81
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Lütfen hataları <%s> adresine bildirin."
@@ -280,7 +292,7 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "Klavye ve fare erişilebilirliğini arttır"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1180
+#: ../dialogs/appearance-settings/main.c:1041
 #: ../dialogs/display-settings/main.c:88 ../dialogs/display-settings/main.c:99
 msgid "None"
 msgstr "Hiçbiri"
@@ -491,52 +503,52 @@ msgstr "_Pencere Ölçekleme"
 msgid "Setti_ngs"
 msgstr "Ay_arlar"
 
-#: ../dialogs/appearance-settings/main.c:561
+#: ../dialogs/appearance-settings/main.c:463
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Uyarı: bu simge temasının önbellek dosyası yok. Bir terminalden <i>gtk-update-icon-cache %s/%s/</i> komutunu çalıştırarak oluşturabilirsiniz."
 
-#: ../dialogs/appearance-settings/main.c:1012
+#: ../dialogs/appearance-settings/main.c:879
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Dosya %d MB'tan daha büyük, kurulum iptal edildi"
 
-#: ../dialogs/appearance-settings/main.c:1017
+#: ../dialogs/appearance-settings/main.c:884
 msgid "Failed to create temporary directory"
 msgstr "Geçici dizin oluşturulamadı"
 
-#: ../dialogs/appearance-settings/main.c:1022
+#: ../dialogs/appearance-settings/main.c:889
 msgid "Failed to extract archive"
 msgstr "Arşiv açılamadı"
 
-#: ../dialogs/appearance-settings/main.c:1027
+#: ../dialogs/appearance-settings/main.c:894
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Bilinmeyen biçim, sadece arşivler ve dizinler destekleniyor"
 
-#: ../dialogs/appearance-settings/main.c:1032
+#: ../dialogs/appearance-settings/main.c:899
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Bilinmeyen hata, çıkış kodu %d"
 
-#: ../dialogs/appearance-settings/main.c:1039
+#: ../dialogs/appearance-settings/main.c:906
 msgid "Failed to install theme"
 msgstr "Tema yüklenemedi"
 
-#: ../dialogs/appearance-settings/main.c:1184
+#: ../dialogs/appearance-settings/main.c:1045
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1188
+#: ../dialogs/appearance-settings/main.c:1049
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1192
+#: ../dialogs/appearance-settings/main.c:1053
 msgid "Vertical RGB"
 msgstr "Dikey RGB"
 
-#: ../dialogs/appearance-settings/main.c:1196
+#: ../dialogs/appearance-settings/main.c:1057
 msgid "Vertical BGR"
 msgstr "Dikey BGR"
 
@@ -740,7 +752,7 @@ msgid "ATI Settings"
 msgstr "ATI Ayarları"
 
 #: ../dialogs/display-settings/main.c:3187
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:207
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
 msgid "_Close"
 msgstr "_Kapat"
 
@@ -790,8 +802,8 @@ msgstr "Kısayol Komutu"
 #: ../dialogs/keyboard-settings/command-dialog.c:259
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
-#: ../dialogs/mime-settings/xfce-mime-window.c:932
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:143
+#: ../dialogs/mime-settings/xfce-mime-window.c:908
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "İptal"
 
@@ -884,7 +896,7 @@ msgid "Restore num l_ock state on startup"
 msgstr "Sayısal tuşları başlangıçta etkinleştir"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "General"
 msgstr "Genel"
 
@@ -1057,6 +1069,10 @@ msgstr "Sistem varsayılanları yeniden oturum açtığınızda yüklenecek."
 msgid "Warning"
 msgstr "Uyarı"
 
+#: ../dialogs/mime-settings/main.c:115
+msgid "Could not create the mime dialog."
+msgstr "Mime iletişim kutusu oluşturulamadı."
+
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
 msgstr "Uygulama Seç"
@@ -1101,82 +1117,82 @@ msgstr "<i>%s</i> ve diğer \"%s\" tipindeki dosyaları bununla aç:"
 msgid "Failed to add new application \"%s\""
 msgstr "\"%s\" yeni uygulaması eklenemedi"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:167
+#: ../dialogs/mime-settings/xfce-mime-window.c:169
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
 msgstr "MIME Tipi Düzenleyicisi"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:171
+#: ../dialogs/mime-settings/xfce-mime-window.c:173
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate applications with MIME types"
 msgstr "Uygulamaları MIME tipleriyle ilişkilendir"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:198
+#: ../dialogs/mime-settings/xfce-mime-window.c:192
 msgid "_Filter:"
 msgstr "_Filtre:"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:206
+#: ../dialogs/mime-settings/xfce-mime-window.c:200
 msgid "Clear filter"
 msgstr "Filtreyi temizle"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:251
+#: ../dialogs/mime-settings/xfce-mime-window.c:249
 msgid "MIME Type"
 msgstr "MIME Türü"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:287
+#: ../dialogs/mime-settings/xfce-mime-window.c:277
 msgid "Status"
 msgstr "Durum"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:314
+#: ../dialogs/mime-settings/xfce-mime-window.c:297
 msgid "Default Application"
 msgstr "Öntanımlı Uygulama"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:496
-#: ../dialogs/mime-settings/xfce-mime-window.c:621
+#: ../dialogs/mime-settings/xfce-mime-window.c:472
+#: ../dialogs/mime-settings/xfce-mime-window.c:597
 msgid "User Set"
 msgstr "Kullanıcı Kümesi"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:498
-#: ../dialogs/mime-settings/xfce-mime-window.c:621
+#: ../dialogs/mime-settings/xfce-mime-window.c:474
+#: ../dialogs/mime-settings/xfce-mime-window.c:597
 #: ../dialogs/mouse-settings/main.c:383 ../dialogs/mouse-settings/main.c:385
 #: ../dialogs/mouse-settings/main.c:445
 msgid "Default"
 msgstr "Öntanımlı"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:567
+#: ../dialogs/mime-settings/xfce-mime-window.c:543
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d MIME tipi bulundu"
 msgstr[1] "%d MIME tipi bulundu"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:666
+#: ../dialogs/mime-settings/xfce-mime-window.c:642
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "\"%s\" mime tipi için \"%s\" uygulaması başlatılamadı."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:923
+#: ../dialogs/mime-settings/xfce-mime-window.c:899
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "\"%s\" içerik tipinin varsayılan değerine döndürmek istediğinizden emin misiniz?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:927
+#: ../dialogs/mime-settings/xfce-mime-window.c:903
 msgid "Question"
 msgstr "Soru"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:930
+#: ../dialogs/mime-settings/xfce-mime-window.c:906
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Bu ayarladığınız mime tipini kaldıracak ve sistem varsayılanını yükleyecektir."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:934
-#: ../dialogs/mime-settings/xfce-mime-window.c:1005
+#: ../dialogs/mime-settings/xfce-mime-window.c:910
+#: ../dialogs/mime-settings/xfce-mime-window.c:981
 msgid "Reset to Default"
 msgstr "Varsayılanlara Döndür"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1000
+#: ../dialogs/mime-settings/xfce-mime-window.c:976
 msgid "Choose Application..."
 msgstr "Uygulama Seçin..."
 
@@ -1261,170 +1277,166 @@ msgid "De_vice:"
 msgstr "_Aygıt:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-msgid "_Enable this device"
-msgstr "Bu aygıtı _etkinleştir"
+msgid "Le_ft-handed"
+msgstr "S_ol elini kullanan"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Ri_ght-handed"
 msgstr "_Sağ elini kullanan"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
-msgid "Le_ft-handed"
-msgstr "S_ol elini kullanan"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Reverse scroll d_irection"
 msgstr "Tekerlek yönünü tersine çev_ir"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Seçildiğinde kaydırma tekerleği ters yönde çalışacaktır"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Buttons"
 msgstr "Düğmeler"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "_Reset to Defaults"
 msgstr "Varsayılanlara _Döndür"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Seçili aygıtın ivmelenme ve duyarlılık ayarlarını varsayılan değerlerine getir"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Sensitivit_y:"
 msgstr "Du_yarlılık:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Acceleratio_n:"
 msgstr "İvmele_nme:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Fare hareketiyle işaretçi hareketinin hız katsayısı"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Bir işaretçinin ivmelenmeye başlamadan önce kısa bir zamanda hareket etmesi gereken piksel sayısı"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "Pointer Speed"
 msgstr "İşaretçi Hızı"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "B_uttons and Feedback"
 msgstr "_Düğmeler ve Geri bildirim"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Disable touchpad _while typing"
 msgstr "_Yazarken dokunmatik yüzeyi etkisizleştir"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Seçildiğinde klavye kullanılırken dokunmatik yüzey kullanılamaz olur"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Duratio_n:"
 msgstr "_Süre:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Tap touchpad to clic_k"
 msgstr "Tıklamak için dokunmatik yüzeye dokunun"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Scrolling _mode:"
 msgstr "Kaydır_ma kipi:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Enable hori_zontal scrolling"
 msgstr "Yatay kaydırmayı etkinleştir"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Scrolling"
 msgstr "Kaydırma"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "T_ouchpad"
 msgstr "D_okunmatik yüzey"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Trac_king mode:"
 msgstr "İzle_me modu:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "_Rotation:"
 msgstr "_Dönme:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Tab_let"
 msgstr "Tab_let"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "_Devices"
 msgstr "_Aygıtlar"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Th_reshold:"
 msgstr "Eş_ik:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Bir sürükleme işleminin başlaması için işaretçinin hareket etmesi gereken piksel sayısı"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "Drag and Drop"
 msgstr "Sürükle Bırak"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Ti_me:"
 msgstr "Za_man:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Bu zamandan (milisaniye cinsinden) daha kısa süredeki iki fare tıklaması çift tıklama olarak kabul edilecektir"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "D_istance:"
 msgstr "_Mesafe:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Fare işaretçisi bir çift tıklama arasında bu mesafeden daha fazla yol katedemez"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "Double Click"
 msgstr "Çift Tıklama"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "_Behavior"
 msgstr "_Davranış"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "Cursor si_ze:"
 msgstr "İmleç _boyutu:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "Size"
 msgstr "Boyut"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "Preview"
 msgstr "Önizleme"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "_Theme"
 msgstr "_Tema"
 
@@ -1437,134 +1449,134 @@ msgstr "Ayarlar Editörü"
 msgid "Customize settings stored by Xfconf"
 msgstr "Xfconf ile yüklenen ayarları özelleştir"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:243
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:252
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:277
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:286
 msgid "Property"
 msgstr "Özellik"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:284
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:293
 msgid "Type"
 msgstr "Tür"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:291
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:300
 msgid "Locked"
 msgstr "Kilitli"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:298
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:307
 msgid "Value"
 msgstr "Değer"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:312
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:322
 msgid "New"
 msgstr "Yeni"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:315
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:325
 msgid "New property"
 msgstr "Yeni özellik"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:333
 msgid "Edit"
 msgstr "Düzenle"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:326
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
 msgid "Edit selected property"
 msgstr "Seçilen özelliği düzenle"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:334
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1021
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1360
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:344
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1031
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1370
 msgid "_Reset"
 msgstr "_Sıfırla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:337
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:347
 msgid "Reset selected property"
 msgstr "Seçilen özelliği sıfırla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:444
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:535
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:654
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:454
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:545
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:664
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "Boş"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:447
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:457
 msgid "Array"
 msgstr "Dizi"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:452
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:462
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "Katar"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:460
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:470
 msgid "Integer"
 msgstr "Integer"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:463
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:473
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "Boolean"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:466
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:476
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "Double"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:800
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:810
 msgid "_Reset Channel"
 msgstr "Kanalı Sıfı_rla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:801
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:811
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Bir kanalı sıfırlamak özelleştirilmiş ayarları kalıcı olarak kaldıracaktır."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:802
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:812
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "\"%s\" kanalını ve tüm özelliklerini sıfırlamak istediğinizden emin misiniz?"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:877
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:887
 msgid "reset"
 msgstr "sıfırla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:934
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:944
 #, c-format
 msgid "Monitor %s"
 msgstr "Monitör %s"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:942
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:952
 msgid "Watch an Xfconf channel for property changes"
 msgstr "Özellik değişiklikleri için bir Xfconf kanalını izleyin"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:944
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:954
 msgid "Clear"
 msgstr "Temizle"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:945
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:955
 msgid "Close"
 msgstr "Kapat"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:978
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:988
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "\"%s\" kanalını göstermeye başla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1027
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1037
 msgid "_Monitor"
 msgstr "_Monitör"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1037
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1047
 msgid "Refresh"
 msgstr "Tazele"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1361
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1371
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Bir özelliği sıfırlamak bütün özel ayarları kalıcı olarak silecektir."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1362
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1372
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "\"%s\" özelliğini sıfırlamak istediğinizden emin misiniz?"
@@ -1585,15 +1597,15 @@ msgstr "Int64"
 msgid "Unsigned Int64"
 msgstr "Unsigned Int64"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
 msgid "New Property"
 msgstr "Yeni Özellik"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:145
 msgid "Save"
 msgstr "Kaydet"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:157
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:160
 msgid "_Property:"
 msgstr "_Özellik:"
 
@@ -1604,23 +1616,23 @@ msgstr "_Tip:"
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:207
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:217
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:228
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:203
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:213
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:224
 msgid "_Value:"
 msgstr "_Değer:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Özellik isimleri '/' ile başlamalıdır"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "('/') geçerli bir özellik ismi değildir"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:413
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:409
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1628,17 +1640,17 @@ msgid ""
 "separator"
 msgstr "Özellik isimleri sadece A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' ve '>' ASCII karakterlerini ve '/' ayracını kullanabilirler"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:427
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:423
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Özellik isimleri iki veya daha fazla '/' karakteri içeremez"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:441
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:437
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Özellik isimleri '/' karakteriyle sonlanamaz"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:654
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:650
 msgid "Edit Property"
 msgstr "Özelliği Düzenle"
 
@@ -1687,11 +1699,11 @@ msgstr "Sıçrama tuşları"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "\"%s\" kısayoluna erişilemedi"
 
-#: ../xfsettingsd/main.c:100
+#: ../xfsettingsd/main.c:102
 msgid "Do not fork to the background"
 msgstr "Arkaplanda çoklama"
 
-#: ../xfsettingsd/main.c:101
+#: ../xfsettingsd/main.c:103
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Çalışan xsettings sürecini değiştir (mümkünse)"
 
@@ -1709,24 +1721,24 @@ msgstr "Xfce Ayarlar Süreci"
 msgid "Settings dialog to show"
 msgstr "Gösterilecek ayarlar iletişim penceresi"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:194
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
 msgid "All _Settings"
 msgstr "Tüm _Ayarlar"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:204
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
 msgid "_Help"
 msgstr "_Yardım"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:397
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:399
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
 msgid "Customize your desktop"
 msgstr "Masaüstünüzü özelleştirin"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:904
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:915
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "\"%s\" başlatılamadı"
