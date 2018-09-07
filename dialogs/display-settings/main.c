@@ -1635,27 +1635,40 @@ display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
 static void
 display_settings_profile_create (GtkWidget *widget, GtkBuilder *builder)
 {
-    GtkWidget *popover, *box, *label, *button;
+    GtkWidget *popover, *grid, *label, *button;
+    GtkStyleContext *context;
+    const char *str, *format;
+    char *markup;
 
     /* Create a popover dialog for saving a new profile */
     popover = gtk_popover_new (widget);
     gtk_popover_set_modal (GTK_POPOVER (popover), TRUE);
 
-    label = gtk_label_new (_("Profile Name:"));
+    label = gtk_label_new (NULL);
+    str = _("Profile Name");
+    format = "<b>\%s</b>";
+    markup = g_markup_printf_escaped (format, str);
+    gtk_label_set_markup (GTK_LABEL (label), markup);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+    g_free (markup);
     profile_create_entry = gtk_entry_new ();
     gtk_entry_set_activates_default (GTK_ENTRY (profile_create_entry), TRUE);
-    button = gtk_button_new_with_label (_("Save"));
+    button = gtk_button_new_with_label (_("Create"));
+    context = gtk_widget_get_style_context (button);
+    gtk_style_context_add_class (context, "suggested-action");
     gtk_widget_set_can_default (button, TRUE);
 
-    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
-    gtk_widget_set_margin_start (box, 12);
-    gtk_widget_set_margin_end (box, 12);
-    gtk_widget_set_margin_top (box, 12);
-    gtk_widget_set_margin_bottom (box, 12);
-    gtk_box_pack_start (GTK_BOX (box), label, FALSE, TRUE, 0);
-    gtk_box_pack_start (GTK_BOX (box), profile_create_entry, FALSE, TRUE, 0);
-    gtk_box_pack_start (GTK_BOX (box), button, FALSE, TRUE, 0);
-    gtk_container_add (GTK_CONTAINER (popover), box);
+    grid = gtk_grid_new ();
+    gtk_grid_attach (GTK_GRID (grid), label, 0, 0, 2, 1);
+    gtk_grid_attach (GTK_GRID (grid), profile_create_entry, 0, 1, 1, 1);
+    gtk_grid_attach (GTK_GRID (grid), button, 1, 1, 1, 1);
+    gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
+    gtk_grid_set_column_spacing (GTK_GRID (grid), 6);
+    gtk_widget_set_margin_start (grid, 12);
+    gtk_widget_set_margin_end (grid, 12);
+    gtk_widget_set_margin_top (grid, 12);
+    gtk_widget_set_margin_bottom (grid, 24);
+    gtk_container_add (GTK_CONTAINER (popover), grid);
     gtk_widget_show_all (popover);
     gtk_widget_grab_default (button);
 
