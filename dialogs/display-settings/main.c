@@ -1326,8 +1326,8 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
         profile_name = xfconf_channel_get_string (display_channel, property, NULL);
 
         label = gtk_label_new (profile_name);
-        image = gtk_image_new_from_icon_name ("gtk-about", 96);
-        gtk_image_set_pixel_size (GTK_IMAGE (image), 96);
+        image = gtk_image_new_from_icon_name ("xfce-display-profile", 128);
+        gtk_image_set_pixel_size (GTK_IMAGE (image), 128);
 
         profile_radio = gtk_radio_button_new_from_widget (GTK_RADIO_BUTTON (profile_display1));
         gtk_container_add (GTK_CONTAINER (profile_radio), image);

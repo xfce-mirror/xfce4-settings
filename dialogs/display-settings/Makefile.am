@@ -81,7 +81,8 @@ icons_DATA = \
 	xfce-display-extend.png \
 	xfce-display-external.png \
 	xfce-display-internal.png \
-	xfce-display-mirror.png
+	xfce-display-mirror.png \
+	xfce-display-profile.png
 
 EXTRA_DIST = \
 	$(icons_DATA) \
