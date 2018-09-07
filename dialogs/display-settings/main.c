@@ -3103,7 +3103,7 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     {
         PangoLayout *display_state;
         display_state = gtk_widget_create_pango_layout ( GTK_WIDGET (randr_gui_area), _("(Disabled)"));
-        layout_set_font (display_state, "Sans 9");
+        layout_set_font (display_state, "Sans 8");
         pango_layout_get_pixel_extents (display_state, &ink_extent, &log_extent);
 
         available_w = w * scale + 0.5 - 6;
