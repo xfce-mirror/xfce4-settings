@@ -3040,8 +3040,8 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
 
     /* Draw a panel type rectangle to show which monitor is primary */
     if (xfce_randr->status[output->id] == XFCE_OUTPUT_STATUS_PRIMARY) {
-        cairo_rectangle (cr, x + 1, y + 1, end_x - x - 2, 7);
-        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha - 0.2);
+        cairo_rectangle (cr, x, y, end_x - x, 7);
+        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha - 0.3);
         cairo_fill (cr);
     }
 
