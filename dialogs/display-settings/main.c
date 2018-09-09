@@ -1331,7 +1331,7 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
 
         profile_radio = gtk_radio_button_new_from_widget (GTK_RADIO_BUTTON (profile_display1));
         gtk_container_add (GTK_CONTAINER (profile_radio), image);
-        g_object_set_data (G_OBJECT (profile_radio), "profile", profile_name);
+        g_object_set_data (G_OBJECT (profile_radio), "profile", (gchar *)current->data);
         gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (profile_radio), FALSE);
         gtk_widget_set_size_request (GTK_WIDGET (profile_radio), 128, 128);
 
@@ -1358,18 +1358,26 @@ display_settings_profile_list_init (GtkBuilder *builder)
     GtkCellRenderer   *renderer;
     GtkTreeViewColumn *column;
 
-    store = gtk_list_store_new (1,
+    store = gtk_list_store_new (2,
+                                G_TYPE_STRING,
                                 G_TYPE_STRING);
 
     treeview = gtk_builder_get_object (builder, "randr-profile");
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
+    /* Setup Profile name column */
     column = gtk_tree_view_column_new ();
-    /* Setup renderer */
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
     gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_COMBO_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+    /* Setup Profile hash column */
+    column = gtk_tree_view_column_new ();
+    renderer = gtk_cell_renderer_text_new ();
+    gtk_tree_view_column_pack_start (column, renderer, TRUE);
+    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_COMBO_VALUE, NULL);
+    gtk_tree_view_column_set_visible (column, FALSE);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
     g_object_unref (G_OBJECT (store));
@@ -1385,7 +1393,8 @@ display_settings_profile_list_populate (GtkBuilder *builder)
     GList *current;
 
     /* create a new list store */
-    store = gtk_list_store_new (1,
+    store = gtk_list_store_new (2,
+                                G_TYPE_STRING,
                                 G_TYPE_STRING);
 
     /* set up the new combobox which will replace the above combobox */
@@ -1408,6 +1417,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
                             0, profile_name,
+                            1, (gchar *)current->data,
                             -1);
 
         current = g_list_next(current);
@@ -1554,11 +1564,9 @@ display_settings_profile_changed (GtkTreeSelection *selection, GtkBuilder *build
 static void
 display_settings_minimal_profile_apply (GtkToggleButton *widget, GtkBuilder *builder)
 {
-    gchar  *profile;
     gchar  *profile_hash;
 
-    profile = (gchar *) g_object_get_data (G_OBJECT (widget), "profile");
-    profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile, strlen(profile));
+    profile_hash = (gchar *) g_object_get_data (G_OBJECT (widget), "profile");
     xfce_randr_apply (xfce_randr, profile_hash, display_channel);
 }
 
@@ -1580,12 +1588,10 @@ display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
         gchar *profile_hash;
         gchar *profile_name;
 
-        /* make sure the profile name can be saved as xfconf property name, so hash it */
-        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, -1);
-        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen(profile_name));
+        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, COLUMN_COMBO_VALUE, &profile_hash, -1);
         property = g_strdup_printf ("/%s", profile_hash);
 
-        for (i=0; i < xfce_randr->noutput; i++)
+        for (i = 0; i < xfce_randr->noutput; i++)
             xfce_randr_save_output (xfce_randr, profile_hash, display_channel, i);
 
         /* save the human-readable name of the profile as string value */
@@ -1689,11 +1695,8 @@ display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
     if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
         gchar *profile_hash;
-        gchar *profile_name;
 
-        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, -1);
-        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen(profile_name));
-
+        gtk_tree_model_get (model, &iter, COLUMN_COMBO_VALUE, &profile_hash, -1);
         xfce_randr_apply (xfce_randr, profile_hash, display_channel);
 
         if (!display_setting_timed_confirmation (builder))
@@ -1704,7 +1707,6 @@ display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
         }
 
         g_free (profile_hash);
-        g_free (profile_name);
     }
 }
 
@@ -1722,10 +1724,11 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
     if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
         gchar *profile_name;
+        gchar *profile_hash;
         gint   response;
         gchar *secondary_message;
 
-        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, -1);
+        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, COLUMN_COMBO_VALUE, &profile_hash, -1);
         secondary_message = g_strdup_printf (_("Do you really want to delete the profile '%s'?"), profile_name);
 
         response = xfce_message_dialog (NULL, _("Question"),
@@ -1741,9 +1744,7 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
         if (response == GTK_RESPONSE_YES)
         {
             GString *property;
-            gchar *profile_hash;
 
-            profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen (profile_name));
             property = g_string_new (profile_hash);
             g_string_prepend_c (property, '/');
 
@@ -3474,7 +3475,6 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
 
         /* Create the profile radiobuttons */
         display_settings_minimal_profile_populate (builder);
-
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
 
