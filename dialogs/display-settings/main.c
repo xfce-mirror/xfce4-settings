@@ -173,13 +173,14 @@ static void display_setting_mirror_displays_populate         (GtkBuilder *builde
 
 static void display_settings_profile_apply                   (GtkWidget       *widget,
                                                               GtkBuilder      *builder);
+
 static void display_settings_minimal_profile_apply           (GtkToggleButton *widget,
                                                               GtkBuilder      *builder);
 
 static void
 display_settings_changed (void)
 {
-    gtk_widget_set_sensitive(GTK_WIDGET(apply_button), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (apply_button), TRUE);
 }
 
 static XfceOutputInfo*
@@ -694,7 +695,7 @@ display_setting_identity_popup_draw (GtkWidget      *popup,
     gboolean         selected = (g_hash_table_lookup (display_popups, GINT_TO_POINTER (active_output)) == popup);
 
     GtkAllocation *allocation = g_new0 (GtkAllocation, 1);
-    gtk_widget_get_allocation(GTK_WIDGET(popup), allocation);
+    gtk_widget_get_allocation (GTK_WIDGET (popup), allocation);
 
     radius = 10;
     cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
@@ -860,7 +861,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
         gtk_label_set_markup (GTK_LABEL (display_details), details_label);
         g_free (details_label);
 
-        gtk_window_get_size (GTK_WINDOW(popup), &window_width, &window_height);
+        gtk_window_get_size (GTK_WINDOW (popup), &window_width, &window_height);
 
         gtk_window_move (GTK_WINDOW (popup),
                          screen_pos_x + (screen_width - window_width)/2,
@@ -910,7 +911,7 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
         return;
 
     /* reset the inconsistent state, since the mirror checkbutton is being toggled */
-    if (gtk_toggle_button_get_inconsistent(togglebutton))
+    if (gtk_toggle_button_get_inconsistent (togglebutton))
         gtk_toggle_button_set_inconsistent (togglebutton, FALSE);
 
     if (gtk_toggle_button_get_active (togglebutton))
@@ -1267,7 +1268,7 @@ display_settings_get_profiles (void)
             output_edid = g_strdup_printf ("%s/%s", display_infos_tokens[0], current_edid);
             if (current_edid)
             {
-                if (g_strcmp0 (display_infos[m],output_edid) != 0)
+                if (g_strcmp0 (display_infos[m], output_edid) != 0)
                     profile_match = FALSE;
             }
             else
@@ -1420,7 +1421,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
                             1, (gchar *)current->data,
                             -1);
 
-        current = g_list_next(current);
+        current = g_list_next (current);
         g_free (property);
         g_free (profile_name);
     }
@@ -1460,7 +1461,7 @@ display_settings_combobox_populate (GtkBuilder *builder)
         /* Select active output */
         if (m == active_output)
         {
-            gtk_combo_box_set_active (GTK_COMBO_BOX(combobox), m);
+            gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), m);
             selected = TRUE;
         }
     }
@@ -1468,7 +1469,7 @@ display_settings_combobox_populate (GtkBuilder *builder)
     /* If nothing was selected the active output is no longer valid,
      * select the last display in the list. */
     if (!selected)
-        gtk_combo_box_set_active (GTK_COMBO_BOX(combobox), m);
+        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), m);
 
     /* Release the store */
     g_object_unref (G_OBJECT (store));
@@ -1515,7 +1516,7 @@ set_display_popups_visible(gboolean visible)
     while (g_hash_table_iter_next (&iter, &key, &value))
     {
         popup = (GtkWidget *) value;
-        gtk_widget_set_visible(popup, visible);
+        gtk_widget_set_visible (popup, visible);
     }
 }
 
@@ -1623,7 +1624,7 @@ display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
 
         profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen(profile_name));
         property = g_strdup_printf ("/%s", profile_hash);
-        for (i=0; i < xfce_randr->noutput; i++)
+        for (i = 0; i < xfce_randr->noutput; i++)
             xfce_randr_save_output (xfce_randr, profile_hash, display_channel, i);
 
         /* save the human-readable name of the profile as string value */
@@ -2743,7 +2744,7 @@ set_monitors_tooltip (gchar *tooltip_text)
     const char *text;
 
     if (tooltip_text)
-        text = g_strdup(tooltip_text);
+        text = g_strdup (tooltip_text);
 
     else
         text = _("Select a monitor to change its properties; drag it to rearrange its placement.");
@@ -2761,7 +2762,7 @@ on_output_event (FooScrollArea      *area,
 
     //App *app = g_object_get_data (G_OBJECT (area), "app");
 
-    mirrored = get_mirrored_configuration();
+    mirrored = get_mirrored_configuration ();
     /* If the mouse is inside the outputs, set the cursor to "you can move me".  See
      * on_canvas_event() for where we reset the cursor to the default if it
      * exits the outputs' area.
@@ -2769,16 +2770,16 @@ on_output_event (FooScrollArea      *area,
     if (event->type == FOO_MOTION_OUTSIDE)
         return;
 
-    if (!mirrored && get_n_connected() > 1)
+    if (!mirrored && get_n_connected () > 1)
         set_cursor (GTK_WIDGET (area), GDK_FLEUR);
 
     if (event->type == FOO_BUTTON_PRESS)
     {
         GrabInfo *info;
 
-        gtk_combo_box_set_active (GTK_COMBO_BOX(randr_outputs_combobox), output->id);
+        gtk_combo_box_set_active (GTK_COMBO_BOX (randr_outputs_combobox), output->id);
 
-        if (!mirrored && get_n_connected() > 1)
+        if (!mirrored && get_n_connected () > 1)
         {
             foo_scroll_area_begin_grab (area, on_output_event, data);
 
@@ -2857,7 +2858,7 @@ on_output_event (FooScrollArea      *area,
                 g_free (output->user_data);
                 output->user_data = NULL;
 
-                initialize_connected_outputs_at_zero();
+                initialize_connected_outputs_at_zero ();
                 display_settings_changed ();
             }
             else
@@ -2919,7 +2920,7 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     const char *text;
     gint    mirrored;
 
-    mirrored = get_mirrored_configuration();
+    mirrored = get_mirrored_configuration ();
 
     cairo_save (cr);
 
@@ -2994,11 +2995,11 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     if (output->on)
     {
         /* Background gradient for active display */
-        pat_lin = cairo_pattern_create_linear(x, y, x, y + (h * scale));
-        cairo_pattern_add_color_stop_rgba(pat_lin, 0.0, 0.56, 0.85, 0.92, alpha);
-        cairo_pattern_add_color_stop_rgba(pat_lin, 0.2, 0.33, 0.75, 0.92, alpha);
-        cairo_pattern_add_color_stop_rgba(pat_lin, 0.7, 0.25, 0.57, 0.77, alpha);
-        cairo_pattern_add_color_stop_rgba(pat_lin, 1.0, 0.17, 0.39, 0.63, alpha);
+        pat_lin = cairo_pattern_create_linear (x, y, x, y + (h * scale));
+        cairo_pattern_add_color_stop_rgba (pat_lin, 0.0, 0.56, 0.85, 0.92, alpha);
+        cairo_pattern_add_color_stop_rgba (pat_lin, 0.2, 0.33, 0.75, 0.92, alpha);
+        cairo_pattern_add_color_stop_rgba (pat_lin, 0.7, 0.25, 0.57, 0.77, alpha);
+        cairo_pattern_add_color_stop_rgba (pat_lin, 1.0, 0.17, 0.39, 0.63, alpha);
         cairo_set_source (cr, pat_lin);
         cairo_fill_preserve (cr);
 
@@ -3008,11 +3009,11 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     else
     {
         /* Background gradient for disabled display */
-        pat_lin = cairo_pattern_create_linear(x, y, x, y + (h * scale));
-        cairo_pattern_add_color_stop_rgba(pat_lin, 0.0, 0.24, 0.3, 0.31, alpha);
-        cairo_pattern_add_color_stop_rgba(pat_lin, 0.2, 0.17, 0.20, 0.22, alpha);
-        cairo_pattern_add_color_stop_rgba(pat_lin, 0.7, 0.14, 0.16, 0.18, alpha);
-        cairo_pattern_add_color_stop_rgba(pat_lin, 1.0, 0.07, 0.07, 0.07, alpha);
+        pat_lin = cairo_pattern_create_linear (x, y, x, y + (h * scale));
+        cairo_pattern_add_color_stop_rgba (pat_lin, 0.0, 0.24, 0.3, 0.31, alpha);
+        cairo_pattern_add_color_stop_rgba (pat_lin, 0.2, 0.17, 0.20, 0.22, alpha);
+        cairo_pattern_add_color_stop_rgba (pat_lin, 0.7, 0.14, 0.16, 0.18, alpha);
+        cairo_pattern_add_color_stop_rgba (pat_lin, 1.0, 0.07, 0.07, 0.07, alpha);
         cairo_set_source (cr, pat_lin);
         cairo_fill_preserve (cr);
 
@@ -3027,9 +3028,9 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
 
     /* Draw reflection as radial gradient on a polygon */
     pat_radial = cairo_pattern_create_radial ((end_x -x) /2 + x, y, 1, (end_x -x) /2 + x, y, h * scale);
-    cairo_pattern_add_color_stop_rgba(pat_radial, 0.0, 1.0, 1.0, 1.0, 0.4);
-    cairo_pattern_add_color_stop_rgba(pat_radial, 0.5, 1.0, 1.0, 1.0, 0.15);
-    cairo_pattern_add_color_stop_rgba(pat_radial, 0.8, 1.0, 1.0, 1.0, 0.0);
+    cairo_pattern_add_color_stop_rgba (pat_radial, 0.0, 1.0, 1.0, 1.0, 0.4);
+    cairo_pattern_add_color_stop_rgba (pat_radial, 0.5, 1.0, 1.0, 1.0, 0.15);
+    cairo_pattern_add_color_stop_rgba (pat_radial, 0.8, 1.0, 1.0, 1.0, 0.0);
 
     cairo_move_to (cr, x + 1.5, y + 1.5);
     cairo_line_to (cr, end_x - 1.5, y + 1.5);
@@ -3103,7 +3104,7 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     if (!output->on)
     {
         PangoLayout *display_state;
-        display_state = gtk_widget_create_pango_layout ( GTK_WIDGET (randr_gui_area), _("(Disabled)"));
+        display_state = gtk_widget_create_pango_layout (GTK_WIDGET (randr_gui_area), _("(Disabled)"));
         layout_set_font (display_state, "Sans 8");
         pango_layout_get_pixel_extents (display_state, &ink_extent, &log_extent);
 
@@ -3123,9 +3124,9 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     cairo_restore (cr);
 
     if (pat_lin)
-        cairo_pattern_destroy(pat_lin);
+        cairo_pattern_destroy (pat_lin);
     if (pat_radial)
-        cairo_pattern_destroy(pat_radial);
+        cairo_pattern_destroy (pat_radial);
 
     g_object_unref (layout);
 }
@@ -3155,7 +3156,7 @@ on_area_paint (FooScrollArea  *area,
         }
         paint_output (cr, i, &x, &y);
 
-        if (get_mirrored_configuration() == 1)
+        if (get_mirrored_configuration () == 1)
             break;
     }
     /* Finally also paint the active output */
@@ -3178,7 +3179,7 @@ get_nearest_output (gint x, gint y)
         XfceOutputInfo *output;
         guint dist_x, dist_y;
 
-        output = convert_xfce_output_info(m);
+        output = convert_xfce_output_info (m);
 
         if (!(output->connected && output->on))
             continue;
@@ -3205,7 +3206,7 @@ get_nearest_output (gint x, gint y)
     }
 
     if (nearest_index != -1)
-        return convert_xfce_output_info(nearest_index);
+        return convert_xfce_output_info (nearest_index);
     else
         return NULL;
 }
@@ -3233,7 +3234,7 @@ get_output_for_window (GdkWindow *window)
         XfceOutputInfo *output;
         GdkRectangle output_rect, intersection;
 
-        output = convert_xfce_output_info(m);
+        output = convert_xfce_output_info (m);
 
         output_rect.x      = output->x;
         output_rect.y      = output->y;
@@ -3257,7 +3258,7 @@ get_output_for_window (GdkWindow *window)
     }
 
     if (largest_index != -1)
-        return convert_xfce_output_info(largest_index);
+        return convert_xfce_output_info (largest_index);
     else
         return get_nearest_output ( win_rect.x + win_rect.width / 2,
                                     win_rect.y + win_rect.height / 2);
@@ -3480,7 +3481,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
 
         label = gtk_builder_get_object (builder, "label1");
         gtk_label_set_text (GTK_LABEL (label), xfce_randr->friendly_name[0]);
-        gtk_widget_set_tooltip_text(GTK_WIDGET(label), xfce_randr->friendly_name[0]);
+        gtk_widget_set_tooltip_text (GTK_WIDGET (label), xfce_randr->friendly_name[0]);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1),
                                       xfce_randr->mode[0] != None);
@@ -3489,7 +3490,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         {
             label = gtk_builder_get_object (builder, "label4");
             gtk_label_set_text (GTK_LABEL (label), xfce_randr->friendly_name[1]);
-            gtk_widget_set_tooltip_text(GTK_WIDGET(label), xfce_randr->friendly_name[1]);
+            gtk_widget_set_tooltip_text (GTK_WIDGET (label), xfce_randr->friendly_name[1]);
 
             /* Can outputs be cloned? */
             if (display_settings_get_n_active_outputs () > 1)
