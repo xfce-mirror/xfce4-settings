@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
@@ -1154,6 +1154,7 @@ msgid_plural "%d MIME types found"
 msgstr[0] "Nájdený %d typ MIME"
 msgstr[1] "Nájdené %d typy MIME"
 msgstr[2] "Nájdených %d typov MIME"
+msgstr[3] "Nájdených %d typov MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:654
 #, c-format
