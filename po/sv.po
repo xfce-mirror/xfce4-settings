@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 00:31+0200\n"
-"PO-Revision-Date: 2018-08-25 11:40+0000\n"
-"Last-Translator: Påvel Nicklasson <pavel2@frimix.se>\n"
+"POT-Creation-Date: 2018-09-04 06:31+0200\n"
+"PO-Revision-Date: 2018-09-14 00:26+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/xfce/xfce4-settings/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,20 +31,22 @@ msgid "Configure keyboard and mouse accessibility"
 msgstr "Ställ in hjälpfunktioner för tangentbord och mus"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+msgid ""
+"When enabled, the session manager will start the required applications for "
+"screen readers and magnifiers."
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 msgid "_Enable assistive technologies"
 msgstr "_Aktivera hjälpmedelsfunktioner"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
-msgid ""
-"If enabled, the session manager will start the required applications for "
-"screen readers and magnifiers"
-msgstr "Om aktiverat kommer sessionshanteraren att starta de nödvändiga programmen för skärmläsare och -förstorare"
-
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
-msgid ""
-"Assistive technologies will be available the\n"
-"next time you login"
-msgstr "Hjälpmedelsfunktioner kommer att finnas\ntillgängliga nästa gång du loggar in"
+msgid "Start With Session"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+msgid "Assistive technologies will be available the next time you login"
+msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "No AT-SPI provider was found on your system"
@@ -55,15 +57,15 @@ msgid "Assistive _Technologies"
 msgstr "Hjälp_medelsfunktioner"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
-msgid "_Use sticky keys"
-msgstr "Använd tr_öga tangenter"
+msgid ""
+"When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
+" be held down (they can be pressed and then released) when multiple keys "
+"would normally need to be pressed at the same time."
+msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
-msgid ""
-"When selected, modifier keys (such as Control, Alt, and Shift) do not need "
-"to be held down (they can be pressed and then released) when multiple keys "
-"would normally need to be pressed at the same time"
-msgstr "När vald så behöver inte modifierartangenter (såsom Control, Alt och Skift) hållas ner (de kan tryckas och sedan släppas) när flera tangenter normalt sett behöver tryckas ner samtidigt"
+msgid "_Use sticky keys"
+msgstr "Använd tr_öga tangenter"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
@@ -90,14 +92,14 @@ msgid "Sticky Keys"
 msgstr "Tröga tangenter"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
-msgid "Use slow _keys"
-msgstr "Använd långsamma _tangenter"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
-" for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "För att hjälpa till att förhindra oavsiktliga tangenttryckningar så kräver långsamma tangenter att en tangent hålls nere i viss tidsperiod innan tangenttryckningen tas emot"
+" for a certain minimum amount of time before the keystroke will be accepted."
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+msgid "Use slow _keys"
+msgstr "Använd långsamma _tangenter"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
@@ -114,14 +116,14 @@ msgid "Slow Keys"
 msgstr "Långsamma tangenter"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
-msgid "Use _bounce keys"
-msgstr "Använd tangent st_uds"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
-"minimum delay between keystrokes"
-msgstr "För att hjälpa till att förhindra oavsiktliga multipla tangenttryckningar ställer tangentstuds in en minimal fördröjning mellan tangenttryckningar"
+"minimum delay between keystrokes."
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+msgid "Use _bounce keys"
+msgstr "Använd tangent st_uds"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
@@ -140,134 +142,144 @@ msgid "Keyboa_rd"
 msgstr "Ta_ngentbord"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+msgid ""
+"When enabled, the mouse pointer can be controlled using the keyboard number "
+"pad."
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid "_Use mouse emulation"
 msgstr "_Använd musemulering"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "När vald kan muspekaren kontrolleras med den numeriska delen av tangentbordet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "msec"
 msgstr "ms"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "Tiden, i millisekunder, mellan en initial tangenttryckning och första upprepade rörelsehändelsen"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "_Acceleration delay:"
 msgstr "_Accelerationsfördröjning:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "R_epeat interval:"
 msgstr "Uppr_epningsintervall:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Tiden, i millisekunder, mellan upprepade rörelsehändelser"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "Acceleration t_ime:"
 msgstr "Accelerationst_id:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Tiden, i millisekunder, för att uppnå maximal hastighet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "Ma_ximum speed:"
 msgstr "Ma_ximal hastighet:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "The maximum pointer speed after acceleration"
 msgstr "Maximala pekarhastigheten efter acceleration"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "pixels/sec"
 msgstr "bildpunkter/s"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "Acceleration _profile:"
 msgstr "Accelerations_profil:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Tröskeln att använda för att nå maximal pekarhastighet"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
-msgid "Show location of pointer on keypress"
-msgstr "Visa muspekarens position vid tangenttryck"
-
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
-msgid ""
-"Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
-"mouse pointer's current location"
-msgstr "Bind en tangentbordsgenväg till xfce-find-cursor för att få visuell feedback för muspekarens aktuella position"
-
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
 msgstr "Musemulering"
 
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
+msgid ""
+"Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
+"mouse pointer's current location."
+msgstr ""
+
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
+msgid "Show location of pointer on keypress"
+msgstr "Visa muspekarens position vid tangenttryck"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
+msgid "Find Cursor"
+msgstr ""
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "_Mouse"
 msgstr "_Mus"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:118
+#: ../dialogs/appearance-settings/main.c:109
 #: ../dialogs/display-settings/main.c:121
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:84
-#: ../xfce4-settings-editor/main.c:49
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
+#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "Uttag för inställningshanterare"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:118
+#: ../dialogs/appearance-settings/main.c:109
 #: ../dialogs/display-settings/main.c:121
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mouse-settings/main.c:84
-#: ../xfce4-settings-editor/main.c:49
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
+#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "UTTAGS-ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:119
+#: ../dialogs/appearance-settings/main.c:110
 #: ../dialogs/display-settings/main.c:122
-#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:40
+#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfsettingsd/main.c:99 ../xfce4-settings-manager/main.c:43
+#: ../xfsettingsd/main.c:101 ../xfce4-settings-manager/main.c:43
 msgid "Version information"
 msgstr "Versionsinformation"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1305
+#: ../dialogs/appearance-settings/main.c:1166
 #: ../dialogs/display-settings/main.c:3115
-#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:62
-#: ../dialogs/mouse-settings/main.c:1871 ../xfce4-settings-editor/main.c:120
-#: ../xfsettingsd/main.c:235 ../xfsettingsd/main.c:273
+#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
+#: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
+#: ../xfsettingsd/main.c:237 ../xfsettingsd/main.c:275
 #: ../xfce4-settings-manager/main.c:64
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Ange \"%s --help\" för användningsinformation."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1324
+#: ../dialogs/appearance-settings/main.c:1185
 #: ../dialogs/display-settings/main.c:3134
-#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:81
-#: ../dialogs/mouse-settings/main.c:1890 ../xfce4-settings-editor/main.c:139
-#: ../xfsettingsd/main.c:251 ../xfce4-settings-manager/main.c:80
+#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
+#: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
+#: ../xfsettingsd/main.c:253 ../xfce4-settings-manager/main.c:80
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. Alla rättigheter är reserverade."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1325
+#: ../dialogs/appearance-settings/main.c:1186
 #: ../dialogs/display-settings/main.c:3135
-#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:82
-#: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:140
-#: ../xfsettingsd/main.c:252 ../xfce4-settings-manager/main.c:81
+#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
+#: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
+#: ../xfsettingsd/main.c:254 ../xfce4-settings-manager/main.c:81
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapportera fel till <%s>."
@@ -277,7 +289,7 @@ msgid "Improve keyboard and mouse accessibility"
 msgstr "Förbättra hjälpfunktioner för tangentbord och mus"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1180
+#: ../dialogs/appearance-settings/main.c:1041
 #: ../dialogs/display-settings/main.c:88 ../dialogs/display-settings/main.c:99
 msgid "None"
 msgstr "Ingen"
@@ -488,52 +500,52 @@ msgstr "_Fönsterskalning"
 msgid "Setti_ngs"
 msgstr "In_ställningar"
 
-#: ../dialogs/appearance-settings/main.c:561
+#: ../dialogs/appearance-settings/main.c:463
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Varning: detta ikontema har ingen cache-fil. Du kan skapa den genom att köra <i>gtk-update-icon-cache %s/%s/</i> i en terminalemulator."
 
-#: ../dialogs/appearance-settings/main.c:1012
+#: ../dialogs/appearance-settings/main.c:879
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Filen är större än %d MB, installation avbruten"
 
-#: ../dialogs/appearance-settings/main.c:1017
+#: ../dialogs/appearance-settings/main.c:884
 msgid "Failed to create temporary directory"
 msgstr "Misslyckades med att skapa temporär mapp"
 
-#: ../dialogs/appearance-settings/main.c:1022
+#: ../dialogs/appearance-settings/main.c:889
 msgid "Failed to extract archive"
 msgstr "Misslyckades med att extrahera arkiv"
 
-#: ../dialogs/appearance-settings/main.c:1027
+#: ../dialogs/appearance-settings/main.c:894
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Okänt format, det finns bara stöd för arkiv och mappar"
 
-#: ../dialogs/appearance-settings/main.c:1032
+#: ../dialogs/appearance-settings/main.c:899
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Okänt fel, felkod %d"
 
-#: ../dialogs/appearance-settings/main.c:1039
+#: ../dialogs/appearance-settings/main.c:906
 msgid "Failed to install theme"
 msgstr "Misslyckades med att installera tema"
 
-#: ../dialogs/appearance-settings/main.c:1184
+#: ../dialogs/appearance-settings/main.c:1045
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1188
+#: ../dialogs/appearance-settings/main.c:1049
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1192
+#: ../dialogs/appearance-settings/main.c:1053
 msgid "Vertical RGB"
 msgstr "Vertikal RGB"
 
-#: ../dialogs/appearance-settings/main.c:1196
+#: ../dialogs/appearance-settings/main.c:1057
 msgid "Vertical BGR"
 msgstr "Vertikal BGR"
 
@@ -737,7 +749,7 @@ msgid "ATI Settings"
 msgstr "ATI-inställningar"
 
 #: ../dialogs/display-settings/main.c:3187
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:207
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
 msgid "_Close"
 msgstr "_Stäng"
 
@@ -787,8 +799,8 @@ msgstr "Genvägskommando"
 #: ../dialogs/keyboard-settings/command-dialog.c:259
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
-#: ../dialogs/mime-settings/xfce-mime-window.c:932
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:143
+#: ../dialogs/mime-settings/xfce-mime-window.c:908
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -881,7 +893,7 @@ msgid "Restore num l_ock state on startup"
 msgstr "Återställ num l_ock vid start"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "General"
 msgstr "Allmänt"
 
@@ -1054,6 +1066,10 @@ msgstr "Systemets standardvärden kommer att återställas nästa gång du logga
 msgid "Warning"
 msgstr "Varning"
 
+#: ../dialogs/mime-settings/main.c:115
+msgid "Could not create the mime dialog."
+msgstr ""
+
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
 msgstr "Välj program"
@@ -1098,82 +1114,82 @@ msgstr "Öppna <i>%s</i> och andra filer av typ \"%s\" med:"
 msgid "Failed to add new application \"%s\""
 msgstr "Det gick inte att lägga till nytt program \"%s\""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:167
+#: ../dialogs/mime-settings/xfce-mime-window.c:169
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
 msgstr "MIME-typ redigerare"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:171
+#: ../dialogs/mime-settings/xfce-mime-window.c:173
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate applications with MIME types"
 msgstr "Associera program med MIME-typer"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:198
+#: ../dialogs/mime-settings/xfce-mime-window.c:192
 msgid "_Filter:"
 msgstr "_Filter:"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:206
+#: ../dialogs/mime-settings/xfce-mime-window.c:200
 msgid "Clear filter"
 msgstr "Rensa filter"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:251
+#: ../dialogs/mime-settings/xfce-mime-window.c:249
 msgid "MIME Type"
 msgstr "MIME-typ"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:287
+#: ../dialogs/mime-settings/xfce-mime-window.c:277
 msgid "Status"
 msgstr "Status"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:314
+#: ../dialogs/mime-settings/xfce-mime-window.c:297
 msgid "Default Application"
 msgstr "Standardprogram"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:496
-#: ../dialogs/mime-settings/xfce-mime-window.c:621
+#: ../dialogs/mime-settings/xfce-mime-window.c:472
+#: ../dialogs/mime-settings/xfce-mime-window.c:597
 msgid "User Set"
 msgstr "Användarbestämt"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:498
-#: ../dialogs/mime-settings/xfce-mime-window.c:621
+#: ../dialogs/mime-settings/xfce-mime-window.c:474
+#: ../dialogs/mime-settings/xfce-mime-window.c:597
 #: ../dialogs/mouse-settings/main.c:383 ../dialogs/mouse-settings/main.c:385
 #: ../dialogs/mouse-settings/main.c:445
 msgid "Default"
 msgstr "Standard"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:567
+#: ../dialogs/mime-settings/xfce-mime-window.c:543
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d MIME-typ hittad"
 msgstr[1] "%d MIME-typer hittade"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:666
+#: ../dialogs/mime-settings/xfce-mime-window.c:642
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Misslyckades med att ställa in program \"%s\" för mime-typ \"%s\"."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:923
+#: ../dialogs/mime-settings/xfce-mime-window.c:899
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Är du säker på att du vill återställa innehållstyp \"%s\" till dess standardvärde?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:927
+#: ../dialogs/mime-settings/xfce-mime-window.c:903
 msgid "Question"
 msgstr "Fråga"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:930
+#: ../dialogs/mime-settings/xfce-mime-window.c:906
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Detta kommer att ta bort anpassade mime-associationer och återställa systemets förval."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:934
-#: ../dialogs/mime-settings/xfce-mime-window.c:1005
+#: ../dialogs/mime-settings/xfce-mime-window.c:910
+#: ../dialogs/mime-settings/xfce-mime-window.c:981
 msgid "Reset to Default"
 msgstr "Återställ till standardvärden"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1000
+#: ../dialogs/mime-settings/xfce-mime-window.c:976
 msgid "Choose Application..."
 msgstr "Välj program..."
 
@@ -1258,170 +1274,166 @@ msgid "De_vice:"
 msgstr "En_het:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-msgid "_Enable this device"
-msgstr "Aktivera denna _enhet"
+msgid "Le_ft-handed"
+msgstr "_Vänsterhänt"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Ri_ght-handed"
 msgstr "Hö_gerhänt"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
-msgid "Le_ft-handed"
-msgstr "_Vänsterhänt"
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Reverse scroll d_irection"
 msgstr "Omvänd rullningsr_iktning"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "När vald kommer rullhjulet att fungera i motsatt riktning"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Buttons"
 msgstr "Knappar"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "_Reset to Defaults"
 msgstr "Åte_rställ till standardvärden"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Ställ in acceleration och känslighet för markerad enhet till standardvärden"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Sensitivit_y:"
 msgstr "Kän_slighet:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Acceleratio_n:"
 msgstr "_Acceleration:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Faktorn med vilken pekarens hastighet ökar när musen rörs"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Antal bildpunkter som pekaren måste förflyttas på en kort tid innan den börjar accelerera"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "Pointer Speed"
 msgstr "Muspekarhastighet"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "B_uttons and Feedback"
 msgstr "K_nappar och Feedback"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Disable touchpad _while typing"
 msgstr "Ina_ktivera pekplatta medan du skriver"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Om valt, kommer pekplattan att inaktiveras då tangentbordet används"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Duratio_n:"
 msgstr "_Varaktighet:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Tap touchpad to clic_k"
 msgstr "Knacka pekplatta att kli_cka"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Scrolling _mode:"
 msgstr "Rull_ningsläge:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Enable hori_zontal scrolling"
 msgstr "Aktivera hori_sontell rullning"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Scrolling"
 msgstr "Rullning"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "T_ouchpad"
 msgstr "_Pekplatta"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Trac_king mode:"
 msgstr "Sp_årningsläge:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "_Rotation:"
 msgstr "_Rotation:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Tab_let"
 msgstr "Ri_tbord"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "_Devices"
 msgstr "En_heter"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Th_reshold:"
 msgstr "T_röskelnivå:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Antal bildpunkter som pekaren måste förflyttas innan en dragåtgärd påbörjas"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "Drag and Drop"
 msgstr "Dra och släpp"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Ti_me:"
 msgstr "Ti_d:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Två musklick på mindre än denna tidsperiod (i millisekunder) kommer att anses vara ett dubbelklick"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "D_istance:"
 msgstr "_Avstånd:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Muspekaren kan inte förflyttas längre än detta avstånd mellan två klickningar för att de ska anses vara en dubbelklickning"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "Double Click"
 msgstr "Dubbelklick"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "_Behavior"
 msgstr "_Beteende"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "Cursor si_ze:"
 msgstr "Pekar_storlek:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "Size"
 msgstr "Storlek"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "Preview"
 msgstr "Förhandsgranska"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "_Theme"
 msgstr "_Tema"
 
@@ -1434,134 +1446,134 @@ msgstr "Inställningsredigerare"
 msgid "Customize settings stored by Xfconf"
 msgstr "Anpassa inställningar lagrade av Xfconf"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:243
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:252
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:277
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:286
 msgid "Property"
 msgstr "Egenskap"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:284
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:293
 msgid "Type"
 msgstr "Typ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:291
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:300
 msgid "Locked"
 msgstr "Låst"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:298
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:307
 msgid "Value"
 msgstr "Värde"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:312
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:322
 msgid "New"
 msgstr "Ny"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:315
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:325
 msgid "New property"
 msgstr "Ny egenskap"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:333
 msgid "Edit"
 msgstr "Redigera"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:326
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
 msgid "Edit selected property"
 msgstr "Redigera markerad egenskap"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:334
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1021
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1360
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:344
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1031
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1370
 msgid "_Reset"
 msgstr "Å_terställ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:337
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:347
 msgid "Reset selected property"
 msgstr "Återställ markerad egenskap"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:444
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:535
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:654
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:454
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:545
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:664
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "Tom"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:447
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:457
 msgid "Array"
 msgstr "Samling"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:452
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:462
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "String"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:460
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:470
 msgid "Integer"
 msgstr "Heltal"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:463
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:473
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "Boolean"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:466
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:476
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "Double"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:800
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:810
 msgid "_Reset Channel"
 msgstr "Återställ Kanal"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:801
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:811
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Återställa en kanal kommer att ta bort dessa anpassade inställningar permanent."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:802
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:812
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Är du säker på att du vill återställa kanalen \"%s\" och alla dess egenskaper?"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:877
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:887
 msgid "reset"
 msgstr "återställ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:934
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:944
 #, c-format
 msgid "Monitor %s"
 msgstr "Övervaka %s"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:942
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:952
 msgid "Watch an Xfconf channel for property changes"
 msgstr "Se en Xconf-kanal för egenskapsändringar"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:944
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:954
 msgid "Clear"
 msgstr "Rensa"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:945
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:955
 msgid "Close"
 msgstr "Stäng"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:978
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:988
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "börja övervaka kanal \"%s\""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1027
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1037
 msgid "_Monitor"
 msgstr "_Övervaka"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1037
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1047
 msgid "Refresh"
 msgstr "Uppdatera"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1361
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1371
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Återställa en egenskap kommer att ta bort dessa anpassade inställningar permanent."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1362
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1372
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Är du säker på att du vill återställa egenskapen \"%s\"?"
@@ -1582,15 +1594,15 @@ msgstr "Int64"
 msgid "Unsigned Int64"
 msgstr "Unsigned Int64"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:140
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
 msgid "New Property"
 msgstr "Ny egenskap"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:145
 msgid "Save"
 msgstr "Spara"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:157
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:160
 msgid "_Property:"
 msgstr "_Egenskap:"
 
@@ -1601,23 +1613,23 @@ msgstr "_Typ:"
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:207
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:217
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:228
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:203
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:213
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:224
 msgid "_Value:"
 msgstr "_Värde:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Egenskapsnamn måste börja med tecknet \"/\""
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Rotelementet (\"/\") är inte ett giltigt egenskapsnamn"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:413
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:409
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -1625,17 +1637,17 @@ msgid ""
 "separator"
 msgstr "Egenskapsnamn kan bara innehålla ASCII-tecknen A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' och '>', liksom '/' som en separator"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:427
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:423
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Egenskapsnamn får inte ha två eller flera efterföljande \"/\"-tecken"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:441
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:437
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Egenskapsnamn får inte avslutas med tecknet \"/\""
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:654
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:650
 msgid "Edit Property"
 msgstr "Redigera egenskap"
 
@@ -1684,11 +1696,11 @@ msgstr "Tangentstuds"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Det gick inte att starta genvägen \"%s\""
 
-#: ../xfsettingsd/main.c:100
+#: ../xfsettingsd/main.c:102
 msgid "Do not fork to the background"
 msgstr "Grena inte processen till bakgrunden"
 
-#: ../xfsettingsd/main.c:101
+#: ../xfsettingsd/main.c:103
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Ersätt körande xsettings-demon (om någon)"
 
@@ -1706,24 +1718,24 @@ msgstr "Inställningshanteraren för Xfce"
 msgid "Settings dialog to show"
 msgstr "Inställningsdialog att visa"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:194
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
 msgid "All _Settings"
 msgstr "_Alla inställningar"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:204
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:397
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
 msgid "Settings"
 msgstr "Inställningar"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:399
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
 msgid "Customize your desktop"
 msgstr "Anpassa ditt skrivbord"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:904
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:915
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Det gick inte att starta \"%s\""
