@@ -25,7 +25,7 @@
 /* Downloaded from <http://git.gnome.org/browse/gnome-desktop/tree/libgnome-desktop>
    (git commit 60f318f3d5a890c267160562f54a048d862def18)
    Slightly modified by Lionel Le Folgoc <mrpouit@gmail.com> to build with full debug */
-   
+
 /* Further modifications come from upstream hwdata */
 
 #include <config.h>
@@ -2669,7 +2669,7 @@ make_display_name (const MonitorInfo *info, guint output)
     }
 
     if (inches > 0)
-        return g_strdup_printf ("%i. %s %d\"", output+1, vendor, inches);
+        return g_strdup_printf ("%s %d\"", vendor, inches);
     else
-        return g_strdup_printf ("%i. %s ", output+1, vendor);
+        return g_strdup_printf ("%s ", vendor);
 }

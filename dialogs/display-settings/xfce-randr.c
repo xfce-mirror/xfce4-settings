@@ -45,9 +45,12 @@ struct _XfceRandrPrivate
     GdkDisplay          *display;
     XRRScreenResources  *resources;
 
+
     /* cache for the output/mode info */
     XRROutputInfo      **output_info;
     XfceRRMode         **modes;
+    /* SHA-1 checksum of the EDID */
+    gchar              **edid;
 };
 
 
@@ -204,6 +207,7 @@ xfce_randr_populate (XfceRandr *randr,
     /* allocate final space for the settings */
     randr->mode = g_new0 (RRMode, randr->noutput);
     randr->priv->modes = g_new0 (XfceRRMode *, randr->noutput);
+    randr->priv->edid = g_new0 (gchar *, randr->noutput);
     randr->position = g_new0 (XfceOutputPosition, randr->noutput);
     randr->rotation = g_new0 (Rotation, randr->noutput);
     randr->rotations = g_new0 (Rotation, randr->noutput);
@@ -326,6 +330,8 @@ xfce_randr_cleanup (XfceRandr *randr)
             XRRFreeOutputInfo (randr->priv->output_info[n]);
         if (G_LIKELY (randr->priv->modes[n]))
             g_free (randr->priv->modes[n]);
+        if (G_LIKELY (randr->priv->edid[n]))
+            g_free (randr->priv->edid[n]);
         if (G_LIKELY (randr->friendly_name[n]))
             g_free (randr->friendly_name[n]);
     }
@@ -337,6 +343,7 @@ xfce_randr_cleanup (XfceRandr *randr)
     g_free (randr->friendly_name);
     g_free (randr->mode);
     g_free (randr->priv->modes);
+    g_free (randr->priv->edid);
     g_free (randr->rotation);
     g_free (randr->rotations);
     g_free (randr->status);
@@ -417,6 +424,10 @@ xfce_randr_save_output (XfceRandr     *randr,
     g_snprintf (property, sizeof (property), "/%s/%s/Active", scheme,
                 randr->priv->output_info[output]->name);
     xfconf_channel_set_bool (channel, property, mode != NULL);
+
+    g_snprintf (property, sizeof (property), "/%s/%s/EDID", scheme,
+                randr->priv->output_info[output]->name);
+    xfconf_channel_set_string (channel, property, randr->priv->edid[output]);
 
     if (mode == NULL)
         return;
@@ -547,18 +558,20 @@ xfce_randr_friendly_name (XfceRandr *randr,
     gchar          *friendly_name = NULL;
     const gchar *name = randr->priv->output_info[output]->name;
 
+    /* get the vendor & size */
+    xdisplay = gdk_x11_display_get_xdisplay (randr->priv->display);
+    edid_data = xfce_randr_read_edid_data (xdisplay, randr->priv->resources->outputs[output_rr_id]);
+
+    if (edid_data) {
+        info = decode_edid (edid_data);
+        randr->priv->edid[output] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
+    }
+
     /* special case, a laptop */
     if (g_str_has_prefix (name, "LVDS")
         || g_str_has_prefix (name, "eDP")
         || strcmp (name, "PANEL") == 0)
-        return g_strdup (_("Laptop"));
-
-    /* otherwise, get the vendor & size */
-    xdisplay = gdk_x11_display_get_xdisplay (randr->priv->display);
-    edid_data = xfce_randr_read_edid_data (xdisplay, randr->priv->resources->outputs[output_rr_id]);
-
-    if (edid_data)
-        info = decode_edid (edid_data);
+    return g_strdup (_("Laptop"));
 
     if (info)
         friendly_name = make_display_name (info, output);
@@ -630,11 +643,13 @@ xfce_randr_preferred_mode (XfceRandr *randr,
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
         if (n < randr->priv->output_info[output]->npreferred)
             dist = 0;
-        else if (randr->priv->output_info[output]->mm_height != 0)
+        else if ((randr->priv->output_info[output]->mm_height != 0) &&
+                 (gdk_screen_height_mm() != 0))
+        {
             dist = (1000 * gdk_screen_height () / gdk_screen_height_mm () -
                 1000 * randr->priv->modes[output][n].height /
                     randr->priv->output_info[output]->mm_height);
-        else
+        } else
             dist = gdk_screen_height () - randr->priv->modes[output][n].height;
 G_GNUC_END_IGNORE_DEPRECATIONS
 
@@ -687,6 +702,24 @@ xfce_randr_clonable_mode (XfceRandr *randr)
     }
 
     return None;
+}
+
+
+
+gchar *
+xfce_randr_get_edid (XfceRandr *randr,
+                     guint noutput)
+{
+    return randr->priv->edid[noutput];
+}
+
+
+
+gchar *
+xfce_randr_get_output_info_name (XfceRandr *randr,
+                                 guint noutput)
+{
+    return randr->priv->output_info[noutput]->name;
 }
 
 

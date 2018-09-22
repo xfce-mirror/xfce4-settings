@@ -137,6 +137,12 @@ RRMode            xfce_randr_preferred_mode  (XfceRandr        *randr,
 
 RRMode            xfce_randr_clonable_mode   (XfceRandr        *randr);
 
+gchar *           xfce_randr_get_edid        (XfceRandr        *randr,
+                                              guint             noutput);
+
+gchar *           xfce_randr_get_output_info_name (XfceRandr *randr,
+                                                   guint        noutput);
+
 const XfceRRMode *xfce_randr_get_modes       (XfceRandr        *randr,
                                               guint             output,
                                               gint             *nmode);
