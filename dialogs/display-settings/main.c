@@ -1677,6 +1677,7 @@ display_settings_profile_create (GtkWidget *widget, GtkBuilder *builder)
     gtk_widget_set_margin_bottom (grid, 24);
     gtk_container_add (GTK_CONTAINER (popover), grid);
     gtk_widget_show_all (popover);
+    gtk_widget_grab_focus (GTK_WIDGET (profile_create_entry));
     gtk_widget_grab_default (button);
 
     g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (display_settings_profile_create_cb), builder);
