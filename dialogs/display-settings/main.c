@@ -3443,7 +3443,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
 {
     GtkBuilder *builder;
     GtkWidget  *dialog, *cancel;
-    GObject    *only_display1, *only_display2, *mirror_displays;
+    GObject    *only_display1, *only_display2, *mirror_displays, *mirror_displays_label;
     GObject    *extend_right, *advanced, *fake_button, *label, *profile_box;
     GError     *error = NULL;
     gboolean    found = FALSE;
@@ -3472,6 +3472,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
 
         only_display1 = gtk_builder_get_object (builder, "display1");
         mirror_displays = gtk_builder_get_object (builder, "mirror");
+        mirror_displays_label = gtk_builder_get_object (builder, "label2");
         extend_right = gtk_builder_get_object (builder, "extend_right");
         only_display2 = gtk_builder_get_object (builder, "display2");
         advanced = gtk_builder_get_object (builder, "advanced_button");
@@ -3505,6 +3506,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
                 mode = None;
 
             gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), mode != None);
+            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays_label), mode != None);
 
             if (xfce_randr->mode[0] != None)
             {
