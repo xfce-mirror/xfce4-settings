@@ -3483,7 +3483,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
 
         label = gtk_builder_get_object (builder, "label1");
-        only_display1_label = g_strdup_printf ("Only %s (1)", xfce_randr->friendly_name[0]);
+        only_display1_label = g_strdup_printf (_("Only %s (1)"), xfce_randr->friendly_name[0]);
         gtk_label_set_text (GTK_LABEL (label), only_display1_label);
         gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display1_label);
         g_free (only_display1_label);
@@ -3494,7 +3494,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         if (xfce_randr->noutput > 1)
         {
             label = gtk_builder_get_object (builder, "label4");
-            only_display2_label = g_strdup_printf ("Only %s (2)", xfce_randr->friendly_name[1]);
+            only_display2_label = g_strdup_printf (_("Only %s (2)"), xfce_randr->friendly_name[1]);
             gtk_label_set_text (GTK_LABEL (label), only_display2_label);
             gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display2_label);
             g_free (only_display2_label);
