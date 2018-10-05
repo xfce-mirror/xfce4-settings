@@ -575,7 +575,12 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                     gdk_screen_height (), gdk_screen_width (), gdk_screen_height_mm (),
                     gdk_screen_width_mm (), helper->height, helper->width, helper->mm_height,
                     helper->mm_width);
-
+    if (helper->width > max_width || helper->height > max_height)
+    {
+        g_warning ("Your screen can't handle the requested size. "
+                   "%dx%d exceeds the maximum: %dx%d",
+                   helper->width, helper->height, max_width, max_height);
+    }
     /* set the screen size only if it's really needed and valid */
     if (helper->width >= min_width && helper->width <= max_width
         && helper->height >= min_height && helper->height <= max_height
