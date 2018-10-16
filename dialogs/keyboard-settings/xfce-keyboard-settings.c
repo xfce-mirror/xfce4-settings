@@ -50,10 +50,6 @@
 
 
 
-#define XFCE_KEYBOARD_SETTINGS_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettingsPrivate))
-
-
-
 enum
 {
   COMMAND_COLUMN,
@@ -229,7 +225,7 @@ struct _XfceKeyboardShortcutInfo
 
 
 
-G_DEFINE_TYPE (XfceKeyboardSettings, xfce_keyboard_settings, GTK_TYPE_BUILDER)
+G_DEFINE_TYPE_WITH_PRIVATE (XfceKeyboardSettings, xfce_keyboard_settings, GTK_TYPE_BUILDER)
 
 
 
@@ -237,8 +233,6 @@ static void
 xfce_keyboard_settings_class_init (XfceKeyboardSettingsClass *klass)
 {
   GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (XfceKeyboardSettingsPrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->constructed = xfce_keyboard_settings_constructed;
@@ -252,7 +246,7 @@ xfce_keyboard_settings_init (XfceKeyboardSettings *settings)
 {
   GError *error = NULL;
 
-  settings->priv = XFCE_KEYBOARD_SETTINGS_GET_PRIVATE (settings);
+  settings->priv = xfce_keyboard_settings_get_instance_private (settings);
 
   settings->priv->keyboards_channel = xfconf_channel_new ("keyboards");
   settings->priv->keyboard_layout_channel = xfconf_channel_new ("keyboard-layout");

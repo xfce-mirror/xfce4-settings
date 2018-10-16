@@ -99,7 +99,7 @@ static Atom XA_TIMESTAMP = None;
 
 
 
-G_DEFINE_TYPE (GsdClipboardManager, gsd_clipboard_manager, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GsdClipboardManager, gsd_clipboard_manager, G_TYPE_OBJECT)
 
 
 
@@ -109,8 +109,6 @@ gsd_clipboard_manager_class_init (GsdClipboardManagerClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = gsd_clipboard_manager_finalize;
-
-        g_type_class_add_private (klass, sizeof (GsdClipboardManagerPrivate));
 }
 
 static void
