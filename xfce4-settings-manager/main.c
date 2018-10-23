@@ -93,6 +93,10 @@ main(int argc,
         return EXIT_FAILURE;
     }
 
+    /* Workaround for xinput2's subpixel handling triggering unwanted enter/leave-notify events:
+     * https://bugs.freedesktop.org/show_bug.cgi?id=92681 */
+    g_setenv("GDK_CORE_DEVICE_EVENTS", "1", TRUE);
+
     garcon_set_environment ("XFCE");
 
     dialog = xfce_settings_manager_dialog_new ();
