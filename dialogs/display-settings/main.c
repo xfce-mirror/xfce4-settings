@@ -1778,6 +1778,95 @@ display_setting_minimal_autoshow_toggled (GtkSwitch       *widget,
     return TRUE;
 }
 
+static void
+display_settings_launch_settings_dialogs (GtkButton *button,
+                                          gpointer   user_data)
+{
+    gchar    *command = user_data;
+    GAppInfo *app_info = NULL;
+    GError   *error = NULL;
+
+    g_warning ("trying to launch %s", command);
+
+    app_info = g_app_info_create_from_commandline (command, "Xfce Settings",
+                                                   G_APP_INFO_CREATE_NONE, NULL);
+    app_info = g_app_info_create_from_commandline (command, "Xfce Settings", G_APP_INFO_CREATE_NONE, &error);
+    if (G_UNLIKELY (app_info == NULL)) {
+        g_warning ("Could not find application %s", error->message);
+        return;
+    }
+    if (error != NULL)
+        g_error_free (error);
+
+    if (!g_app_info_launch (app_info, NULL, NULL, &error))
+        g_warning ("Could not launch the application %s", error->message);
+    if (error != NULL)
+        g_error_free (error);
+}
+
+static void
+display_settings_primary_status_info_populate (GtkBuilder *builder)
+{
+    GObject          *widget;
+    GtkWidget        *image;
+    XfconfChannel    *channel;
+    gchar            *primary_status_panel;
+    gint              primary_status;
+    gint              panels = 0;
+    gint              panels_with_primary = 0;
+    gchar            *property;
+
+    widget = gtk_builder_get_object (builder, "primary-info-button");
+    image = gtk_image_new_from_icon_name ("dialog-information", GTK_ICON_SIZE_BUTTON);
+    gtk_container_add (GTK_CONTAINER (widget), image);
+    gtk_widget_show (image);
+
+    channel = xfconf_channel_new ("xfce4-panel");
+    widget = gtk_builder_get_object (builder, "panel-ok");
+    property = g_strdup_printf ("/panels/panel-%u/output-name", panels);
+    /* Check all panels and show the ok icon on the first occurence of a panel set to "Primary" */
+    for (panels = 0; xfconf_channel_has_property (channel, property); panels++)
+    {
+        primary_status_panel = xfconf_channel_get_string (channel, property, "Automatic");
+        if (g_strcmp0 (primary_status_panel, "Primary") == 0)
+        {
+            gtk_widget_show (GTK_WIDGET (widget));
+            panels_with_primary++;
+        }
+        else
+            gtk_widget_hide (GTK_WIDGET (widget));
+        property = g_strdup_printf ("/panels/panel-%u/output-name", panels + 1);
+    }
+    if (panels_with_primary > 1)
+    {
+        gchar *label;
+        widget = gtk_builder_get_object (builder, "panel-label");
+        label = g_strdup_printf (_("%d Xfce Panels"), panels_with_primary);
+        gtk_label_set_text (GTK_LABEL (widget), label);
+        g_free (label);
+    }
+    g_free (property);
+    g_object_unref (G_OBJECT (channel));
+    widget = gtk_builder_get_object (builder, "panel-configure");
+    g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfce4-panel --preferences");
+
+    channel = xfconf_channel_new ("xfce4-desktop");
+    primary_status = xfconf_channel_get_bool (channel, "/desktop-icons/primary", FALSE);
+    widget = gtk_builder_get_object (builder, "desktop-ok");
+    gtk_widget_set_visible (GTK_WIDGET (widget), primary_status);
+    g_object_unref (G_OBJECT (channel));
+    widget = gtk_builder_get_object (builder, "desktop-configure");
+    g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfdesktop-settings");
+
+    channel = xfconf_channel_new ("xfce4-notifyd");
+    primary_status = xfconf_channel_get_uint (channel, "/primary-monitor", 0);
+    widget = gtk_builder_get_object (builder, "notifications-ok");
+    gtk_widget_set_visible (GTK_WIDGET (widget), primary_status);
+    g_object_unref (G_OBJECT (channel));
+    widget = gtk_builder_get_object (builder, "notifications-configure");
+    g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfce4-notifyd-config");
+}
+
 static GtkWidget *
 display_settings_dialog_new (GtkBuilder *builder)
 {
@@ -1829,6 +1918,9 @@ display_settings_dialog_new (GtkBuilder *builder)
         gtk_widget_hide (GTK_WIDGET (primary_label));
         gtk_widget_hide (GTK_WIDGET (mirror));
     }
+
+    /* Set up primary status info button */
+    display_settings_primary_status_info_populate (builder);
 
     label = gtk_builder_get_object (builder, "label-reflection");
     gtk_widget_show (GTK_WIDGET (label));
