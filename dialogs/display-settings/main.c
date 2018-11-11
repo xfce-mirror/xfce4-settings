@@ -1077,14 +1077,16 @@ display_setting_primary_toggled (GtkWidget *widget,
 static void
 display_setting_primary_populate (GtkBuilder *builder)
 {
-    GObject *check, *label;
+    GObject *check, *label, *primary_indicator;
     gboolean output_on = TRUE;
+    gboolean primary;
 
     if (!xfce_randr)
         return;
-
+    primary = xfce_randr->status[active_output] != XFCE_OUTPUT_STATUS_SECONDARY;
     check = gtk_builder_get_object (builder, "primary");
     label = gtk_builder_get_object (builder, "label-primary");
+    primary_indicator = gtk_builder_get_object (builder, "primary-indicator");
 
     if (xfce_randr->noutput > 1)
         gtk_widget_show (GTK_WIDGET (check));
@@ -1098,12 +1100,12 @@ display_setting_primary_populate (GtkBuilder *builder)
         output_on = FALSE;
     gtk_widget_set_sensitive (GTK_WIDGET (check), output_on);
     gtk_widget_set_sensitive (GTK_WIDGET (label), output_on);
+    gtk_widget_set_visible (GTK_WIDGET (primary_indicator), primary);
 
     /* Block the "changed" signal to avoid triggering the confirmation dialog */
     g_signal_handlers_block_by_func (check, display_setting_primary_toggled,
                                      builder);
-    gtk_switch_set_state (GTK_SWITCH (check),
-                          xfce_randr->status[active_output] != XFCE_OUTPUT_STATUS_SECONDARY);
+    gtk_switch_set_state (GTK_SWITCH (check), primary);
     /* Unblock the signal */
     g_signal_handlers_unblock_by_func (check, display_setting_primary_toggled,
                                        builder);
@@ -1872,7 +1874,7 @@ display_settings_dialog_new (GtkBuilder *builder)
 {
     GObject          *combobox;
     GtkCellRenderer  *renderer;
-    GObject          *label, *check, *primary, *primary_label, *mirror, *identify;
+    GObject          *label, *check, *primary, *primary_label, *mirror, *identify, *primary_indicator;
     GtkWidget        *button;
     GtkTreeSelection *selection;
 
@@ -1921,6 +1923,8 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     /* Set up primary status info button */
     display_settings_primary_status_info_populate (builder);
+    primary_indicator = gtk_builder_get_object (builder, "primary-indicator");
+    gtk_widget_set_visible (GTK_WIDGET (primary_indicator), gtk_switch_get_active (GTK_SWITCH (primary)));
 
     label = gtk_builder_get_object (builder, "label-reflection");
     gtk_widget_show (GTK_WIDGET (label));
@@ -3135,9 +3139,19 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
 
     /* Draw a panel type rectangle to show which monitor is primary */
     if (xfce_randr->status[output->id] == XFCE_OUTPUT_STATUS_PRIMARY) {
-        cairo_rectangle (cr, x, y, end_x - x, 7);
-        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha - 0.3);
-        cairo_fill (cr);
+        GdkPixbuf   *pixbuf;
+        GtkIconInfo *icon_info;
+        GdkRGBA      fg;
+
+        icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (),
+                                                "gtk-about-symbolic",
+                                                16,
+                                                GTK_ICON_LOOKUP_GENERIC_FALLBACK);
+
+        gdk_rgba_parse (&fg, "#000000");
+        pixbuf = gtk_icon_info_load_symbolic (icon_info, &fg, NULL, NULL, NULL, NULL, NULL);
+        gdk_cairo_set_source_pixbuf (cr, pixbuf, x + 1, y + 1);
+        cairo_paint (cr);
     }
 
     /* Display name label*/
