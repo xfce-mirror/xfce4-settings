@@ -2294,11 +2294,8 @@ lay_out_outputs_horizontally (void)
         output = list->data;
         if (output->connected && output->on)
         {
-            if ((gint)output->x + (gint)output->width > x || output->y > y)
-            {
-                y = output->y;
-                x = output->x + output->width;
-            }
+            y = MAX(output->y, y);
+            x = MAX(output->x + output->width, x);
         }
     }
 
