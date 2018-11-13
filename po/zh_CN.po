@@ -18,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-26 12:30+0200\n"
-"PO-Revision-Date: 2018-09-30 14:24+0000\n"
-"Last-Translator: Shun <shun98@139.com>\n"
+"POT-Creation-Date: 2018-11-12 00:30+0100\n"
+"PO-Revision-Date: 2018-11-13 06:24+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -263,7 +263,7 @@ msgstr "版本信息"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/display-settings/main.c:3646
+#: ../dialogs/display-settings/main.c:3740
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
 #: ../xfsettingsd/main.c:237 ../xfsettingsd/main.c:275
@@ -274,7 +274,7 @@ msgstr "输入 ‘%s --help’ 获取用法。"
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/display-settings/main.c:3665
+#: ../dialogs/display-settings/main.c:3759
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
 #: ../xfsettingsd/main.c:253 ../xfce4-settings-manager/main.c:80
@@ -283,7 +283,7 @@ msgstr "Xfce 开发团队。保留所有权利。"
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/display-settings/main.c:3666
+#: ../dialogs/display-settings/main.c:3760
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
 #: ../xfsettingsd/main.c:254 ../xfce4-settings-manager/main.c:81
@@ -579,93 +579,113 @@ msgid ""
 msgstr "如果您不答复此问题，先前的配置将在 10 秒内恢复。"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "The primary display is currently configured to show:"
+msgstr "主显示器当前配置为显示："
+
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+msgid "Xfce Panel"
+msgstr "Xfce 面板"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+msgid "Desktop icons"
+msgstr "桌面图标"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "Notifications"
+msgstr "通知"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Configure..."
+msgstr "配置..."
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "显示"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/display-dialog.glade.h:7
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
 msgstr "配置屏幕设置和布局"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "R_esolution:"
 msgstr "分辨率(_E)："
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Refresh _rate:"
 msgstr "刷新率(_R)："
 
-#: ../dialogs/display-settings/display-dialog.glade.h:5
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Ro_tation:"
 msgstr "旋转(_T)："
 
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Ref_lection:"
 msgstr "镜像(_L)："
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Primary Display:"
 msgstr "主显示器："
 
-#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "_Mirror displays"
 msgstr "镜像显示(_M)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "_General"
 msgstr "常规(_G)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:15
 msgid "<b>Profiles</b>"
 msgstr "<b>属性</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:16
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>连接显示器</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:12
+#: ../dialogs/display-settings/display-dialog.glade.h:17
 msgid ""
 "Only profiles matching at least the currently connected displays are shown."
 msgstr "仅列出与当前连接显示器匹配的配置。"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:13
+#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "Delete the currently selected display profile."
 msgstr "删除当前选择的显示配置文件。"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:14
+#: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "Apply"
 msgstr "应用"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:15
+#: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "Apply the currently selected display profile."
 msgstr "应用当前选择的显示配置文件。"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:16
+#: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Create a new display profile."
 msgstr "创建新的显示配置文件。"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:17
+#: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "Update an existing profile."
 msgstr "更新现有配置文件。"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:18
+#: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "Automatically enable profiles when new display is connected"
 msgstr "连接新显示器时自动启用配置文件"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:19
+#: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "Configure new displays when connected"
 msgstr "连接时配置新显示器"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:20
+#: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "Show popup windows to identify displays"
 msgstr "显示弹出窗口以识别显示器"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:21
+#: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>识别显示器</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:22
+#: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "_Advanced"
 msgstr "高级(_A)"
 
@@ -792,14 +812,19 @@ msgstr "取消"
 msgid "Delete"
 msgstr "删除"
 
-#: ../dialogs/display-settings/main.c:2751
+#: ../dialogs/display-settings/main.c:1844
+#, c-format
+msgid "%d Xfce Panels"
+msgstr "Xfce 面板 %d "
+
+#: ../dialogs/display-settings/main.c:2843
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "选取一个屏幕以改变其属性；拖曳以重新排列其位置。"
 
-#: ../dialogs/display-settings/main.c:2793
-#: ../dialogs/display-settings/main.c:2867
+#: ../dialogs/display-settings/main.c:2885
+#: ../dialogs/display-settings/main.c:2959
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -808,45 +833,45 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3059
+#: ../dialogs/display-settings/main.c:3151
 msgid "Mirror Screens"
 msgstr "镜像屏幕"
 
-#: ../dialogs/display-settings/main.c:3108
+#: ../dialogs/display-settings/main.c:3200
 msgid "(Disabled)"
 msgstr "(已停用)"
 
-#: ../dialogs/display-settings/main.c:3486
+#: ../dialogs/display-settings/main.c:3579
 #, c-format
 msgid "Only %s (1)"
 msgstr "只有%s（1）"
 
-#: ../dialogs/display-settings/main.c:3497
+#: ../dialogs/display-settings/main.c:3590
 #, c-format
 msgid "Only %s (2)"
 msgstr "只有%s（2）"
 
-#: ../dialogs/display-settings/main.c:3678
+#: ../dialogs/display-settings/main.c:3772
 #: ../dialogs/display-settings/xfce-randr.c:286
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "未能查询正在使用的 RandR 扩展的版本"
 
-#: ../dialogs/display-settings/main.c:3679
-#: ../dialogs/display-settings/main.c:3716
+#: ../dialogs/display-settings/main.c:3773
+#: ../dialogs/display-settings/main.c:3810
 msgid "Unable to start the Xfce Display Settings"
 msgstr "未能启动 Xfce 显示设置"
 
-#: ../dialogs/display-settings/main.c:3711
+#: ../dialogs/display-settings/main.c:3805
 msgid "ATI Settings"
 msgstr "ATI 设置"
 
-#: ../dialogs/display-settings/main.c:3718
+#: ../dialogs/display-settings/main.c:3812
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: ../dialogs/display-settings/main.c:3726
+#: ../dialogs/display-settings/main.c:3820
 msgid "Unable to launch the proprietary driver settings"
 msgstr "未能启动非自由驱动设置"
 
@@ -1101,51 +1126,51 @@ msgstr "无法与 xfconf 守护进程连接。原因：%s"
 msgid "Could not create the settings dialog."
 msgstr "未能创建设置对话框。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:404
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:398
 msgid "Command"
 msgstr "命令"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:409
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:403
 msgid "Shortcut"
 msgstr "快捷键"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Layout"
 msgstr "布局"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:486
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:480
 msgid "Variant"
 msgstr "变体"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1009
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1113
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1003
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1107
 msgid "Shortcut command may not be empty."
 msgstr "快捷键命令不能为空。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1277
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
 msgid "Reset to Defaults"
 msgstr "重置为默认"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "这会把所有快捷键重置为它们的默认值，您真的要这样做吗？"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1281
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1275
 msgid "No"
 msgstr "不"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1276
 msgid "Yes"
 msgstr "是的"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1352
 msgid "The system defaults will be restored next time you log in."
 msgstr "在您下次登录时将恢复系统默认。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1354
 msgid "Warning"
 msgstr "警告"
 
