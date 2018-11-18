@@ -1901,7 +1901,6 @@ display_settings_dialog_new (GtkBuilder *builder)
     /* Setup the combo boxes */
     check = gtk_builder_get_object (builder, "output-on");
     primary = gtk_builder_get_object (builder, "primary");
-    primary_label = gtk_builder_get_object (builder, "label-primary");
     mirror = gtk_builder_get_object (builder, "mirror-displays");
     g_signal_connect (G_OBJECT (check), "state-set", G_CALLBACK (display_setting_output_toggled), builder);
     g_signal_connect (G_OBJECT (primary), "state-set", G_CALLBACK (display_setting_primary_toggled), builder);
@@ -1909,15 +1908,11 @@ display_settings_dialog_new (GtkBuilder *builder)
     if (xfce_randr->noutput > 1)
     {
         gtk_widget_show (GTK_WIDGET (check));
-        gtk_widget_show (GTK_WIDGET (primary));
-        gtk_widget_show (GTK_WIDGET (primary_label));
         gtk_widget_show (GTK_WIDGET (mirror));
     }
     else
     {
         gtk_widget_hide (GTK_WIDGET (check));
-        gtk_widget_hide (GTK_WIDGET (primary));
-        gtk_widget_hide (GTK_WIDGET (primary_label));
         gtk_widget_hide (GTK_WIDGET (mirror));
     }
 
