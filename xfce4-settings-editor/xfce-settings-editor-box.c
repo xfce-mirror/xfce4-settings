@@ -319,7 +319,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_START);
     gtk_widget_show (bbox);
 
-    button = xfce_gtk_button_new_mixed ("edit-add", _("New"));
+    button = xfce_gtk_button_new_mixed ("list-add", _("New"));
     gtk_container_add (GTK_CONTAINER (bbox), button);
     gtk_button_box_set_child_non_homogeneous (GTK_BUTTON_BOX (bbox), button, TRUE);
     gtk_widget_set_tooltip_text (button, _("New property"));

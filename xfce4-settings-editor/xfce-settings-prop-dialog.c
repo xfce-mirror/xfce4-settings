@@ -137,7 +137,7 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     GtkCellRenderer *render;
     GtkWidget       *save_button;
 
-    gtk_window_set_icon_name (GTK_WINDOW (dialog), "edit-add");
+    gtk_window_set_icon_name (GTK_WINDOW (dialog), "list-add");
     gtk_window_set_title (GTK_WINDOW (dialog), _("New Property"));
     gtk_window_set_default_size (GTK_WINDOW (dialog), 300, 200);
     gtk_dialog_add_buttons (GTK_DIALOG (dialog),
