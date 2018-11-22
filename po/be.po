@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-04 06:31+0200\n"
-"PO-Revision-Date: 2018-09-14 00:26+0000\n"
+"POT-Creation-Date: 2018-11-12 00:30+0100\n"
+"PO-Revision-Date: 2018-11-22 16:33+0000\n"
 "Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/xfce4-settings/language/be/)\n"
 "MIME-Version: 1.0\n"
@@ -220,7 +220,7 @@ msgstr "Паказваць размяшчэнне паказальніка мы�
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
 msgid "Find Cursor"
-msgstr ""
+msgstr "Знайсці курсор"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "_Mouse"
@@ -253,7 +253,7 @@ msgstr "Інфармацыя пра версію"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/display-settings/main.c:3115
+#: ../dialogs/display-settings/main.c:3740
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
 #: ../xfsettingsd/main.c:237 ../xfsettingsd/main.c:275
@@ -264,7 +264,7 @@ msgstr "Увядзіце \"%s --help\" для дапамогі."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/display-settings/main.c:3134
+#: ../dialogs/display-settings/main.c:3759
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
 #: ../xfsettingsd/main.c:253 ../xfce4-settings-manager/main.c:80
@@ -273,7 +273,7 @@ msgstr "Каманда распрацоўкі Xfce. Усе правы абаро
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/display-settings/main.c:3135
+#: ../dialogs/display-settings/main.c:3760
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
 #: ../xfsettingsd/main.c:254 ../xfce4-settings-manager/main.c:81
@@ -569,56 +569,115 @@ msgid ""
 msgstr "Папярэдняя канфігурацыя будзе адноўлена праз 10 секунд калі вы не адкажаце на пытанне."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "The primary display is currently configured to show:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+msgid "Xfce Panel"
+msgstr "Панэль Xfce"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+msgid "Desktop icons"
+msgstr "Значкі працоўнага стала"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "Notifications"
+msgstr "Апавяшчэнні"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Configure..."
+msgstr "Наладзіць..."
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "Адлюстраванне"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/display-dialog.glade.h:7
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
 msgstr "Наладка экрана"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
-msgid "Ref_lection:"
-msgstr "Ад_люстраванне:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:4
-msgid "Ro_tation:"
-msgstr "Пава_рочванне:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:5
-msgid "Refresh _rate:"
-msgstr "Чашчыня _абнаўлення:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "R_esolution:"
 msgstr "Раз_дзяляльная здольнасць:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "_Use this display"
-msgstr "_Выкарыстоўваць гэты дысплей"
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "Refresh _rate:"
+msgstr "Чашчыня _абнаўлення:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid "Ro_tation:"
+msgstr "Пава_рочванне:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Ref_lection:"
+msgstr "Ад_люстраванне:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:12
+msgid "Primary Display:"
+msgstr "Асноўны дысплей:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "_Mirror displays"
 msgstr "_Адлюстраваныя дысплеі"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
-msgid "_Primary display"
-msgstr "_Пераважны дысплей"
+#: ../dialogs/display-settings/display-dialog.glade.h:14
+msgid "_General"
+msgstr "А_сноўныя"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:15
+msgid "<b>Profiles</b>"
+msgstr "<b>Профілі</b>"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:16
+msgid "<b>Connecting Displays</b>"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:17
 msgid ""
-"This is a hint for panels, docks and desktop to show on this display "
-"preferably."
-msgstr "Падказка для панэляў, докаў і працоных сталоў, адлюстроўваемая пераважна для гэтага дысплея."
+"Only profiles matching at least the currently connected displays are shown."
+msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
-msgid "Configure _new displays when connected"
-msgstr "Наладжваць _новыя дысплеі падчас падлучэння"
+#: ../dialogs/display-settings/display-dialog.glade.h:18
+msgid "Delete the currently selected display profile."
+msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:12
-msgid "Identify Displays"
-msgstr "Вызначыць дысплеі"
+#: ../dialogs/display-settings/display-dialog.glade.h:19
+msgid "Apply"
+msgstr "Ужыць"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:20
+msgid "Apply the currently selected display profile."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:21
+msgid "Create a new display profile."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:22
+msgid "Update an existing profile."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:23
+msgid "Automatically enable profiles when new display is connected"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:24
+msgid "Configure new displays when connected"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:25
+msgid "Show popup windows to identify displays"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:26
+msgid "<b>Identifying Displays</b>"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:27
+msgid "_Advanced"
+msgstr ""
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -676,7 +735,7 @@ msgstr "Гарызанатальна і вертыкальна"
 msgid "Minimal interface to set up an external output"
 msgstr "Мінімальны інтэрфейс для наладкі вонкавага вываду"
 
-#: ../dialogs/display-settings/main.c:255
+#: ../dialogs/display-settings/main.c:263
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -684,36 +743,78 @@ msgid ""
 msgstr "Папярэдняя канфігурацыя будзе адноўлена праз %i  секунд калі вы не адкажаце на пытанне."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:544
+#: ../dialogs/display-settings/main.c:558
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Гц"
 
-#: ../dialogs/display-settings/main.c:838
+#: ../dialogs/display-settings/main.c:855
 msgid "Display:"
 msgstr "Дысплей:"
 
-#: ../dialogs/display-settings/main.c:843
+#: ../dialogs/display-settings/main.c:860
 msgid "Resolution:"
 msgstr "Раздзяляльная здольнасць:"
 
-#: ../dialogs/display-settings/main.c:1106
+#: ../dialogs/display-settings/main.c:1135
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Апошні актыўны выхад мусіць быць уключаны, сістэма будзе непрыдатнай для выкарыстання."
 
-#: ../dialogs/display-settings/main.c:1108
+#: ../dialogs/display-settings/main.c:1137
 msgid "Selected output not disabled"
 msgstr "Абраны выхад недаступны"
 
-#: ../dialogs/display-settings/main.c:2264
+#: ../dialogs/display-settings/main.c:1655
+msgid "Profile Name"
+msgstr "Назва профілю"
+
+#: ../dialogs/display-settings/main.c:1663
+msgid "Create"
+msgstr "Стварыць"
+
+#: ../dialogs/display-settings/main.c:1734
+#, c-format
+msgid "Do you really want to delete the profile '%s'?"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:1736
+#: ../dialogs/mime-settings/xfce-mime-window.c:903
+msgid "Question"
+msgstr "Пытанне"
+
+#: ../dialogs/display-settings/main.c:1738
+msgid "Delete display profile"
+msgstr "Выдаліць профіль дысплея"
+
+#. Create cancel button
+#: ../dialogs/display-settings/main.c:1740
+#: ../dialogs/keyboard-settings/command-dialog.c:110
+#: ../dialogs/keyboard-settings/command-dialog.c:259
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:134
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:382
+#: ../dialogs/mime-settings/xfce-mime-window.c:908
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
+msgid "Cancel"
+msgstr "Скасаваць"
+
+#: ../dialogs/display-settings/main.c:1741
+msgid "Delete"
+msgstr "Выдаліць"
+
+#: ../dialogs/display-settings/main.c:1844
+#, c-format
+msgid "%d Xfce Panels"
+msgstr "%dпанэлі Xfce"
+
+#: ../dialogs/display-settings/main.c:2843
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Абярыце манітор для змены яго ўласцівасцяў; перацягніце для змены яго размяшчэння."
 
-#: ../dialogs/display-settings/main.c:2306
-#: ../dialogs/display-settings/main.c:2380
+#: ../dialogs/display-settings/main.c:2885
+#: ../dialogs/display-settings/main.c:2959
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -722,59 +823,69 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2565
+#: ../dialogs/display-settings/main.c:3151
 msgid "Mirror Screens"
 msgstr "Люстэркавыя экраны"
 
-#: ../dialogs/display-settings/main.c:2614
+#: ../dialogs/display-settings/main.c:3200
 msgid "(Disabled)"
 msgstr "(Выключана)"
 
-#: ../dialogs/display-settings/main.c:3147
-#: ../dialogs/display-settings/xfce-randr.c:282
+#: ../dialogs/display-settings/main.c:3579
+#, c-format
+msgid "Only %s (1)"
+msgstr "Толькі %s (1)"
+
+#: ../dialogs/display-settings/main.c:3590
+#, c-format
+msgid "Only %s (2)"
+msgstr "Толькі %s(2)"
+
+#: ../dialogs/display-settings/main.c:3772
+#: ../dialogs/display-settings/xfce-randr.c:286
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Не атрымалася запатрабаваць версію выкарыстоўваемага пашырэння RandR"
 
-#: ../dialogs/display-settings/main.c:3148
-#: ../dialogs/display-settings/main.c:3185
+#: ../dialogs/display-settings/main.c:3773
+#: ../dialogs/display-settings/main.c:3810
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Не атрымалася запусціць налады дысплея Xfce"
 
-#: ../dialogs/display-settings/main.c:3180
+#: ../dialogs/display-settings/main.c:3805
 msgid "ATI Settings"
 msgstr "Налады  ATI"
 
-#: ../dialogs/display-settings/main.c:3187
+#: ../dialogs/display-settings/main.c:3812
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
 msgid "_Close"
 msgstr "_Закрыць"
 
-#: ../dialogs/display-settings/main.c:3195
+#: ../dialogs/display-settings/main.c:3820
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Не атрымалася запусціць налады прапірэітарнага драйвера"
 
 #. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:290
+#: ../dialogs/display-settings/xfce-randr.c:294
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Гэтая сістэма выкарыстоўвае RandR %d.%d. Для працы налад дысплея патрабуецца версія 1.2 альбо пазнейшая"
 
-#: ../dialogs/display-settings/xfce-randr.c:554
+#: ../dialogs/display-settings/xfce-randr.c:574
 msgid "Laptop"
 msgstr "Ноўтбук"
 
-#: ../dialogs/display-settings/xfce-randr.c:575
+#: ../dialogs/display-settings/xfce-randr.c:588
 msgid "Monitor"
 msgstr "Манітор"
 
-#: ../dialogs/display-settings/xfce-randr.c:578
+#: ../dialogs/display-settings/xfce-randr.c:591
 msgid "Television"
 msgstr "Тэлебачанне"
 
-#: ../dialogs/display-settings/xfce-randr.c:582
+#: ../dialogs/display-settings/xfce-randr.c:595
 msgid "Digital display"
 msgstr "Лічбавы дысплей"
 
@@ -790,16 +901,6 @@ msgstr "Невядома"
 #: ../dialogs/keyboard-settings/command-dialog.c:106
 msgid "Shortcut Command"
 msgstr "Загад для спалучэння клавіш"
-
-#. Create cancel button
-#: ../dialogs/keyboard-settings/command-dialog.c:110
-#: ../dialogs/keyboard-settings/command-dialog.c:259
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:134
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:382
-#: ../dialogs/mime-settings/xfce-mime-window.c:908
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
-msgid "Cancel"
-msgstr "Скасаваць"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:114
 msgid "OK"
@@ -1015,57 +1116,57 @@ msgstr "Не атрымалася злучыцца з дэманам xfconf. П�
 msgid "Could not create the settings dialog."
 msgstr "Не атрымалася стварыць акно налад."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:404
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:398
 msgid "Command"
 msgstr "Загад "
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:409
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:403
 msgid "Shortcut"
 msgstr "Спалучэнне"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Layout"
 msgstr "Раскладка"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:486
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:480
 msgid "Variant"
 msgstr "Варыянт"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1009
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1113
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1003
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1107
 msgid "Shortcut command may not be empty."
 msgstr "Загад не можа быць пустым."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1277
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
 msgid "Reset to Defaults"
 msgstr "Скінуць да прадвызначанага"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Гэтае дзеянне скіне ўсе спалучэнні клавішаў. Сапраўды зрабіць гэта?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1281
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1275
 msgid "No"
 msgstr "Не"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1276
 msgid "Yes"
 msgstr "Так"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1352
 msgid "The system defaults will be restored next time you log in."
 msgstr "Прадвызначаныя налады адновяцца падчас наступнага ўваходу ў сістэму."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1354
 msgid "Warning"
 msgstr "Увага"
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
-msgstr ""
+msgstr "Не атрымалася стварыць дыялог mime."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
@@ -1172,10 +1273,6 @@ msgstr "Не атрымалася прызначыць праграму \"%s\" �
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Вы сапраўды хочаце скінуць змесціва тыпу \"%s\" да прадвызначанага значэння?"
-
-#: ../dialogs/mime-settings/xfce-mime-window.c:903
-msgid "Question"
-msgstr "Пытанне"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 msgid ""
