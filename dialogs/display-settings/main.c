@@ -1788,11 +1788,8 @@ display_settings_launch_settings_dialogs (GtkButton *button,
     GAppInfo *app_info = NULL;
     GError   *error = NULL;
 
-    g_warning ("trying to launch %s", command);
-
-    app_info = g_app_info_create_from_commandline (command, "Xfce Settings",
-                                                   G_APP_INFO_CREATE_NONE, NULL);
     app_info = g_app_info_create_from_commandline (command, "Xfce Settings", G_APP_INFO_CREATE_NONE, &error);
+
     if (G_UNLIKELY (app_info == NULL)) {
         g_warning ("Could not find application %s", error->message);
         return;
