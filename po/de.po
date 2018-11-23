@@ -12,15 +12,15 @@
 # Simon Schneider <simon@schneiderimtal.de>, 2009
 # Simon Steinbeiß <simon.steinbeiss@gmail.com>, 2018
 # Thomas Schütz <xfce@thschuetz.de>, 2012
-# Tobias Bannert <tobannert@gmail.com>, 2014-2017
+# Tobias Bannert <tobannert@gmail.com>, 2014-2018
 # Vinzenz Vietzke <vinz@vinzv.de>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-26 12:30+0200\n"
-"PO-Revision-Date: 2018-10-16 21:58+0000\n"
-"Last-Translator: Andreas Kamzol\n"
+"POT-Creation-Date: 2018-11-12 00:30+0100\n"
+"PO-Revision-Date: 2018-11-23 15:15+0000\n"
+"Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/xfce/xfce4-settings/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -263,7 +263,7 @@ msgstr "Versionsinformation"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/display-settings/main.c:3646
+#: ../dialogs/display-settings/main.c:3740
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
 #: ../xfsettingsd/main.c:237 ../xfsettingsd/main.c:275
@@ -274,7 +274,7 @@ msgstr "»%s --help« eingeben, um Informationen über die Verwendung zu erhalte
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/display-settings/main.c:3665
+#: ../dialogs/display-settings/main.c:3759
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
 #: ../xfsettingsd/main.c:253 ../xfce4-settings-manager/main.c:80
@@ -283,7 +283,7 @@ msgstr "Die Entwicklungsmannschaft von Xfce. Alle Rechte vorbehalten."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/display-settings/main.c:3666
+#: ../dialogs/display-settings/main.c:3760
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
 #: ../xfsettingsd/main.c:254 ../xfce4-settings-manager/main.c:81
@@ -579,93 +579,113 @@ msgid ""
 msgstr "Die vorherige Konfiguration wird in 10 Sekunden wiederhergestellt, wenn Sie auf diese Frage nicht reagieren."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "The primary display is currently configured to show:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+msgid "Xfce Panel"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+msgid "Desktop icons"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
+msgid "Notifications"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Configure..."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "Anzeige"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/display-dialog.glade.h:7
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
 msgstr "Bildschirmeinstellungen und Anordnung konfigurieren"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "R_esolution:"
 msgstr "_Auflösung:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Refresh _rate:"
 msgstr "_Bildwiederholfrequenz:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:5
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Ro_tation:"
 msgstr "_Drehung:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Ref_lection:"
 msgstr "_Spiegelung:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Primary Display:"
-msgstr "Primärer Bildschirm"
+msgstr "Hauptbildschirm:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "_Mirror displays"
 msgstr "Bildschir_me spiegeln"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "_General"
 msgstr "_Allgemein"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:15
 msgid "<b>Profiles</b>"
 msgstr "<b>Profile</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:16
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>Bildschirme verbinden</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:12
+#: ../dialogs/display-settings/display-dialog.glade.h:17
 msgid ""
 "Only profiles matching at least the currently connected displays are shown."
 msgstr "Nur Profile, die auf zumindest die derzeit angeschlossenen Bildschirme passen, werden angezeigt."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:13
+#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "Delete the currently selected display profile."
 msgstr "Das derzeit ausgewählte Bildschirmprofil löschen."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:14
+#: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "Apply"
 msgstr "Anwenden"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:15
+#: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "Apply the currently selected display profile."
 msgstr "Das derzeit ausgewählte Bildschirmprofil anwenden."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:16
+#: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Create a new display profile."
 msgstr "Neues Bildschirmprofil erstellen."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:17
+#: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "Update an existing profile."
 msgstr "Vorhandenes Bildschirmprofil aktualisieren."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:18
+#: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "Automatically enable profiles when new display is connected"
 msgstr "Automatisch Bildschirmprofile anwenden, wenn ein neuer Bildschirm verbunden wird"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:19
+#: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "Configure new displays when connected"
 msgstr "Neue Bildschirme konfigurieren, wenn sie verbunden werden"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:20
+#: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "Show popup windows to identify displays"
 msgstr "Popupfenster anzeigen, um Bildschirme zu identifizieren"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:21
+#: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Bildschirme identifizieren</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:22
+#: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "_Advanced"
 msgstr "_Erweitert"
 
@@ -792,14 +812,19 @@ msgstr "Abbrechen"
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../dialogs/display-settings/main.c:2751
+#: ../dialogs/display-settings/main.c:1844
+#, c-format
+msgid "%d Xfce Panels"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:2843
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Bitte einen Monitor auswählen, um seine Eigenschaften zu ändern; ihn ziehen, um seine Platzierung zu ändern."
 
-#: ../dialogs/display-settings/main.c:2793
-#: ../dialogs/display-settings/main.c:2867
+#: ../dialogs/display-settings/main.c:2885
+#: ../dialogs/display-settings/main.c:2959
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -808,45 +833,45 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3059
+#: ../dialogs/display-settings/main.c:3151
 msgid "Mirror Screens"
 msgstr "Spiegelbildschirme"
 
-#: ../dialogs/display-settings/main.c:3108
+#: ../dialogs/display-settings/main.c:3200
 msgid "(Disabled)"
 msgstr "(Deaktiviert)"
 
-#: ../dialogs/display-settings/main.c:3486
+#: ../dialogs/display-settings/main.c:3579
 #, c-format
 msgid "Only %s (1)"
 msgstr "Nur %s (1)"
 
-#: ../dialogs/display-settings/main.c:3497
+#: ../dialogs/display-settings/main.c:3590
 #, c-format
 msgid "Only %s (2)"
 msgstr "Nur %s (2)"
 
-#: ../dialogs/display-settings/main.c:3678
+#: ../dialogs/display-settings/main.c:3772
 #: ../dialogs/display-settings/xfce-randr.c:286
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Die verwendete Version der RandR-Erweiterung konnte nicht festgestellt werden."
 
-#: ../dialogs/display-settings/main.c:3679
-#: ../dialogs/display-settings/main.c:3716
+#: ../dialogs/display-settings/main.c:3773
+#: ../dialogs/display-settings/main.c:3810
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Die Xfce-Anzeigeeinstellungen können nicht gestartet werden"
 
-#: ../dialogs/display-settings/main.c:3711
+#: ../dialogs/display-settings/main.c:3805
 msgid "ATI Settings"
 msgstr "Einstellungen (ATI)"
 
-#: ../dialogs/display-settings/main.c:3718
+#: ../dialogs/display-settings/main.c:3812
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
 msgid "_Close"
 msgstr "S_chließen"
 
-#: ../dialogs/display-settings/main.c:3726
+#: ../dialogs/display-settings/main.c:3820
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Die proprietären Treibereinstellungen können nicht geladen werden"
 
@@ -1101,51 +1126,51 @@ msgstr "Die Verbindung zum xfconf-Dienst konnte nicht hergestellt werden. Ursach
 msgid "Could not create the settings dialog."
 msgstr "Konnte den Einstellungsdialog nicht erstellen."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:404
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:398
 msgid "Command"
 msgstr "Befehl"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:409
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:403
 msgid "Shortcut"
 msgstr "Tastenkürzel"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Layout"
 msgstr "Belegung"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:486
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:480
 msgid "Variant"
 msgstr "Variante"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1009
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1113
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1003
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1107
 msgid "Shortcut command may not be empty."
 msgstr "Der Befehl für das Tastenkürzel darf nicht leer sein."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1277
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
 msgid "Reset to Defaults"
 msgstr "Auf Standardwerte zurückstellen"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Dieses stellt alle Tastenkürzel auf ihre Standardwerte zurück. Möchten Sie das wirklich?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1281
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1275
 msgid "No"
 msgstr "Nein"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1276
 msgid "Yes"
 msgstr "Ja"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1352
 msgid "The system defaults will be restored next time you log in."
 msgstr "Die Systemvorgaben werden wiederhergestellt, wenn Sie sich das nächste Mal anmelden."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1354
 msgid "Warning"
 msgstr "Achtung"
 
