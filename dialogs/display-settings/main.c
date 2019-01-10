@@ -1077,24 +1077,28 @@ display_setting_primary_toggled (GtkWidget *widget,
 static void
 display_setting_primary_populate (GtkBuilder *builder)
 {
-    GObject *check, *label, *primary_indicator;
+    GObject *check, *label, *primary_indicator, *primary_info;
     gboolean output_on = TRUE;
+    gboolean multiple_displays = TRUE;
     gboolean primary;
 
     if (!xfce_randr)
         return;
     primary = xfce_randr->status[active_output] != XFCE_OUTPUT_STATUS_SECONDARY;
+    if (xfce_randr->noutput <= 1)
+        multiple_displays = FALSE;
     check = gtk_builder_get_object (builder, "primary");
     label = gtk_builder_get_object (builder, "label-primary");
+    primary_info = gtk_builder_get_object (builder, "primary-info-button");
     primary_indicator = gtk_builder_get_object (builder, "primary-indicator");
 
-    if (xfce_randr->noutput > 1)
-        gtk_widget_show (GTK_WIDGET (check));
-    else
-    {
-        gtk_widget_hide (GTK_WIDGET (check));
+    /* If there's only one display we hide the primary option as it is meaningless */
+    gtk_widget_set_visible (GTK_WIDGET (check), multiple_displays);
+    gtk_widget_set_visible (GTK_WIDGET (label), multiple_displays);
+    gtk_widget_set_visible (GTK_WIDGET (primary_info), multiple_displays);
+    gtk_widget_set_visible (GTK_WIDGET (primary_indicator), multiple_displays);
+    if (!multiple_displays)
         return;
-    }
 
     if (xfce_randr->mode[active_output] == None)
         output_on = FALSE;
