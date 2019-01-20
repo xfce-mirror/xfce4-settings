@@ -596,8 +596,8 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     /* Apply resolution to gui */
     output = get_nth_xfce_output_info (active_output);
     mode = xfce_randr_find_mode_by_id (xfce_randr, active_output, value);
-    output->width = mode->width;
-    output->height = mode->height;
+    output->width = xfce_randr_mode_width(mode, 0);
+    output->height = xfce_randr_mode_height(mode, 0);
 
     /* Update refresh rates */
     display_setting_refresh_rates_populate (builder);
@@ -2123,7 +2123,7 @@ display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
 
     /* Move Display2 right of Display1 */
     mode = xfce_randr_find_mode_by_id (xfce_randr, 0, xfce_randr->mode[0]);
-    xfce_randr->position[1].x = mode->width;
+    xfce_randr->position[1].x = xfce_randr_mode_width(mode, 0);
     xfce_randr->position[1].y = 0;
 
     /* Save changes to both displays */
@@ -2245,15 +2245,22 @@ static XfceOutputInfo *convert_xfce_output_info (gint output_id)
         output->pref_height = 480;
     }
 
-    if (output->on)
-    {
+    if (output->on) {
         output->rotation = xfce_randr->rotation[output_id];
-        output->width = mode->width;
-        output->height = mode->height;
-        output->rate = mode->rate;
-    }
-    else
-    {
+        if (mode != NULL) {
+            output->width = mode->width;
+            output->height = mode->height;
+            output->rate = mode->rate;
+        } else if (preferred != NULL) {
+            output->width = preferred->width;
+            output->height = preferred->height;
+            output->rate = preferred->rate;
+        } else {
+            output->width = 640;
+            output->height = 480;
+            output->rate = 0.0;
+        }
+    } else {
         output->rotation = 0;
         output->width = output->pref_width;
         output->height = output->pref_height;
@@ -3618,7 +3625,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
                         found = TRUE;
                     }
                     /* Check for Extend Right */
-                    if (!found && (gint)xfce_randr->position[1].x == (gint)xfce_randr->position[0].x + (gint)xfce_randr_find_mode_by_id (xfce_randr, 0, xfce_randr->mode[0])->width)
+                    if (!found && (gint)xfce_randr->position[1].x == (gint)xfce_randr->position[0].x + (gint)xfce_randr_mode_width(xfce_randr_find_mode_by_id (xfce_randr, 0, xfce_randr->mode[0]), 0))
                     {
                         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_right), TRUE);
                         found = TRUE;
