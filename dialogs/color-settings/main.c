@@ -52,127 +52,51 @@ static GOptionEntry entries[] =
 
 
 /* global xfconf channel */
-static XfconfChannel *accessibility_channel = NULL;
-static XfconfChannel *session_channel = NULL;
+static XfconfChannel *color_channel = NULL;
 
 
 
 static void
-accessibility_settings_sensitivity (GtkToggleButton *button,
-                                    GtkWidget       *box)
+color_settings_device_selected_cb (GtkTreeView       *tree_view,
+                                   GtkTreePath       *path,
+                                   GtkTreeViewColumn *column,
+                                   gpointer           user_data)
 {
-    gtk_widget_set_sensitive (GTK_WIDGET (box),
-        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
+
 }
 
 
 
 static void
-accessibility_settings_at (GtkToggleButton *button,
-                           GtkBuilder      *builder)
+color_settings_profile_add_cb (GtkButton *button, gpointer user_data)
 {
-  AtkObject  *atkobj;
-  GObject    *info_logout;
-  GObject    *no_atspi;
-  gchar     **atspi;
 
-  info_logout = gtk_builder_get_object (builder, "info-logout");
-  no_atspi = gtk_builder_get_object (builder, "info-no-at");
-
-  gtk_widget_hide (GTK_WIDGET (info_logout));
-  gtk_widget_hide (GTK_WIDGET (no_atspi));
-
-  if (gtk_toggle_button_get_active (button))
-    {
-      atspi = xfce_resource_match (XFCE_RESOURCE_CONFIG, "autostart/at-spi-*.desktop", TRUE);
-      atkobj = gtk_widget_get_accessible (GTK_WIDGET (button));
-
-      if (atspi == NULL || g_strv_length (atspi) == 0)
-        gtk_widget_show (GTK_WIDGET (no_atspi));
-      else if (!GTK_IS_ACCESSIBLE (atkobj))
-        gtk_widget_show (GTK_WIDGET (info_logout));
-
-      g_strfreev (atspi);
-    }
 }
 
 
 
 static void
-accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
+color_settings_dialog_configure_widgets (GtkBuilder *builder)
 {
-    GObject *box, *object;
-
-    /* assistive technologies */
-    object = gtk_builder_get_object (builder, "start-at");
-    xfconf_g_property_bind (session_channel, "/general/StartAssistiveTechnologies", G_TYPE_BOOLEAN, object, "active");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_at), builder);
-    accessibility_settings_at (GTK_TOGGLE_BUTTON (object), builder);
+    GObject *devices, *profiles, *profile_add;
 
     /* Sticky keys */
-    object = gtk_builder_get_object (builder, "sticky-keys-enabled");
-    box = gtk_builder_get_object (builder, "sticky-keys-box");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
-    xfconf_g_property_bind (accessibility_channel, "/StickyKeys", G_TYPE_BOOLEAN, object, "active");
+    devices = gtk_builder_get_object (builder, "colord-devices");
+    profiles = gtk_builder_get_object (builder, "colord-profiles");
+    g_signal_connect (devices, "row-activated", G_CALLBACK (color_settings_device_selected_cb), profiles);
 
-    object = gtk_builder_get_object (builder, "sticky-keys-latch-to-lock");
-    xfconf_g_property_bind (accessibility_channel, "/StickyKeys/LatchToLock", G_TYPE_BOOLEAN, object, "active");
-
-    object = gtk_builder_get_object (builder, "sticky-keys-two-keys-disable");
-    xfconf_g_property_bind (accessibility_channel, "/StickyKeys/TwoKeysDisable", G_TYPE_BOOLEAN, object, "active");
-
-    /* Slow keys */
-    object = gtk_builder_get_object (builder, "slow-keys-enabled");
-    box = gtk_builder_get_object (builder, "slow-keys-box");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
-    xfconf_g_property_bind (accessibility_channel, "/SlowKeys", G_TYPE_BOOLEAN, object, "active");
-
-    object = gtk_builder_get_object (builder, "slow-keys-delay");
-    xfconf_g_property_bind (accessibility_channel, "/SlowKeys/Delay", G_TYPE_INT, object, "value");
-
-    /* Bounce keys */
-    object = gtk_builder_get_object (builder, "bounce-keys-enabled");
-    box = gtk_builder_get_object (builder, "bounce-keys-box");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
-    xfconf_g_property_bind (accessibility_channel, "/BounceKeys", G_TYPE_BOOLEAN, object, "active");
-
-    object = gtk_builder_get_object (builder, "bounce-keys-delay");
-    xfconf_g_property_bind (accessibility_channel, "/BounceKeys/Delay", G_TYPE_INT, object, "value");
-
-    /* Mouse keys */
-    object = gtk_builder_get_object (builder, "mouse-emulation-enabled");
-    box = gtk_builder_get_object (builder, "mouse-emulation-grid");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys", G_TYPE_BOOLEAN, object, "active");
-    gtk_widget_set_sensitive (GTK_WIDGET(box), xfconf_channel_get_bool(accessibility_channel, "/MouseKeys", TRUE));
-
-    object = gtk_builder_get_object (builder, "mouse-emulation-delay");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Delay", G_TYPE_INT, object, "value");
-
-    object = gtk_builder_get_object (builder, "mouse-emulation-interval");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Interval", G_TYPE_INT, object, "value");
-
-    object = gtk_builder_get_object (builder, "mouse-emulation-time-to-max");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/TimeToMax", G_TYPE_INT, object, "value");
-
-    object = gtk_builder_get_object (builder, "mouse-emulation-max-speed");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/MaxSpeed", G_TYPE_INT, object, "value");
-
-    object = gtk_builder_get_object (builder, "mouse-emulation-curve");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Curve", G_TYPE_INT, object, "value");
-
-    object = gtk_builder_get_object (builder, "find-cursor");
-    xfconf_g_property_bind (accessibility_channel, "/FindCursor", G_TYPE_BOOLEAN, object, "active");
+    profile_add = gtk_builder_get_object (builder, "profile-add");
+    g_signal_connect (profile_add, "clicked", G_CALLBACK (color_settings_profile_add_cb), NULL);
 }
 
 
 
 static void
-accessibility_settings_dialog_response (GtkWidget *dialog,
+color_settings_dialog_response (GtkWidget *dialog,
                                         gint       response_id)
 {
     if (response_id == GTK_RESPONSE_HELP)
-        xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "accessibility",
+        xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "color",
                                             NULL, XFCE4_SETTINGS_VERSION_SHORT);
     else
         gtk_main_quit ();
@@ -235,8 +159,7 @@ main (gint argc, gchar **argv)
     }
 
     /* open the channels */
-    accessibility_channel = xfconf_channel_new ("accessibility");
-    session_channel = xfconf_channel_new ("xfce4-session");
+    color_channel = xfconf_channel_new ("color");
 
     /* hook to make sure the libxfce4ui library is linked */
     if (xfce_titled_dialog_get_type () == 0)
@@ -248,7 +171,7 @@ main (gint argc, gchar **argv)
                                      color_dialog_ui_length, &error) != 0)
     {
         /* Configure widgets */
-        accessibility_settings_dialog_configure_widgets (builder);
+        color_settings_dialog_configure_widgets (builder);
 
         if (G_UNLIKELY (opt_socket_id == 0))
         {
@@ -256,7 +179,7 @@ main (gint argc, gchar **argv)
             dialog = gtk_builder_get_object (builder, "dialog");
 
             g_signal_connect (dialog, "response",
-                G_CALLBACK (accessibility_settings_dialog_response), NULL);
+                G_CALLBACK (color_settings_dialog_response), NULL);
             gtk_window_present (GTK_WINDOW (dialog));
 
             /* To prevent the settings dialog to be saved in the session */
@@ -296,8 +219,7 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (builder));
 
     /* release the channels */
-    g_object_unref (G_OBJECT (accessibility_channel));
-    g_object_unref (G_OBJECT (session_channel));
+    g_object_unref (G_OBJECT (color_channel));
 
     /* shutdown xfconf */
     xfconf_shutdown();
