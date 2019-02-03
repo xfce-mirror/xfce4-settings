@@ -54,7 +54,17 @@ static GOptionEntry entries[] =
 /* global xfconf channel */
 static XfconfChannel *color_channel = NULL;
 
+typedef
+struct _ColorSettings
+{
+    CdClient      *client;
+    CdDevice      *current_device;
+    GPtrArray     *devices;
+    GCancellable  *cancellable;
+    GDBusProxy    *proxy;
+} ColorSettings;
 
+static ColorSettings *settings;
 
 static void
 color_settings_device_selected_cb (GtkTreeView       *tree_view,
@@ -100,6 +110,93 @@ color_settings_dialog_response (GtkWidget *dialog,
                                             NULL, XFCE4_SETTINGS_VERSION_SHORT);
     else
         gtk_main_quit ();
+}
+
+
+
+static void
+color_settings_get_devices_cb (GObject *object,
+                               GAsyncResult *res,
+                               gpointer user_data)
+{
+  ColorSettings *settings = (ColorSettings *) user_data;
+  CdClient *client = CD_CLIENT (object);
+  CdDevice *device;
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GPtrArray) devices = NULL;
+  guint i;
+
+  /* get devices and add them */
+  devices = cd_client_get_devices_finish (client, res, &error);
+  if (devices == NULL)
+    {
+      g_warning ("failed to add connected devices: %s",
+                 error->message);
+      return;
+    }
+  for (i = 0; i < devices->len; i++)
+    {
+      device = g_ptr_array_index (devices, i);
+      g_warning ("device: %d", i);
+      //gcm_prefs_add_device (prefs, device);
+    }
+
+  /* ensure we show the 'No devices detected' entry if empty */
+  //gcm_prefs_update_device_list_extra_entry (prefs);
+}
+
+
+
+static void
+color_settings_connect_cb (GObject *object,
+                           GAsyncResult *res,
+                           gpointer user_data)
+{
+    gboolean ret;
+    g_autoptr(GError) error = NULL;
+
+    ret = cd_client_connect_finish (CD_CLIENT (object),
+                                    res,
+                                    &error);
+    if (!ret)
+      {
+        if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+          g_warning ("failed to connect to colord: %s", error->message);
+        return;
+      }
+
+    /* Only cast the parameters after making sure it didn't fail. At this point,
+     * the user can potentially already have changed to another panel, effectively
+     * making user_data invalid. */
+    //settings = CC_COLOR_PANEL (user_data);
+
+    /* get devices */
+    cd_client_get_devices (settings->client,
+                           settings->cancellable,
+                           color_settings_get_devices_cb,
+                           settings);
+}
+
+
+
+static void
+color_settings_dialog_init ()
+{
+    settings = g_new0 (ColorSettings, 1);
+    settings->cancellable = g_cancellable_new ();
+    settings->devices = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
+
+    /* use a device client array */
+    settings->client = cd_client_new ();
+/*    g_signal_connect_object (settings->client, "device-added",
+                             G_CALLBACK (color_settings_device_added_cb), settings, 0);
+    g_signal_connect_object (settings->client, "device-removed",
+                             G_CALLBACK (color_settings_device_removed_cb), settings, 0);
+*/
+    cd_client_connect (settings->client,
+                       settings->cancellable,
+                       color_settings_connect_cb,
+                       settings);
 }
 
 
@@ -171,6 +268,7 @@ main (gint argc, gchar **argv)
                                      color_dialog_ui_length, &error) != 0)
     {
         /* Configure widgets */
+        color_settings_dialog_init ();
         color_settings_dialog_configure_widgets (builder);
 
         if (G_UNLIKELY (opt_socket_id == 0))
