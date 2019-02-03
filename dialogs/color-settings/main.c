@@ -64,7 +64,7 @@ struct _ColorSettings
     GDBusProxy    *proxy;
 } ColorSettings;
 
-static ColorSettings *settings;
+static ColorSettings *color_settings;
 
 static void
 color_settings_device_selected_cb (GtkTreeView       *tree_view,
@@ -119,9 +119,9 @@ color_settings_get_devices_cb (GObject *object,
                                GAsyncResult *res,
                                gpointer user_data)
 {
-  ColorSettings *settings = (ColorSettings *) user_data;
+  //ColorSettings *settings = (ColorSettings *) user_data;
   CdClient *client = CD_CLIENT (object);
-  CdDevice *device;
+  //CdDevice *device;
   g_autoptr(GError) error = NULL;
   g_autoptr(GPtrArray) devices = NULL;
   guint i;
@@ -136,7 +136,7 @@ color_settings_get_devices_cb (GObject *object,
     }
   for (i = 0; i < devices->len; i++)
     {
-      device = g_ptr_array_index (devices, i);
+      //device = g_ptr_array_index (devices, i);
       g_warning ("device: %d", i);
       //gcm_prefs_add_device (prefs, device);
     }
@@ -171,32 +171,32 @@ color_settings_connect_cb (GObject *object,
     //settings = CC_COLOR_PANEL (user_data);
 
     /* get devices */
-    cd_client_get_devices (settings->client,
-                           settings->cancellable,
+    cd_client_get_devices (color_settings->client,
+                           color_settings->cancellable,
                            color_settings_get_devices_cb,
-                           settings);
+                           color_settings);
 }
 
 
 
 static void
-color_settings_dialog_init ()
+color_settings_dialog_init (void)
 {
-    settings = g_new0 (ColorSettings, 1);
-    settings->cancellable = g_cancellable_new ();
-    settings->devices = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
+    color_settings = g_new0 (ColorSettings, 1);
+    color_settings->cancellable = g_cancellable_new ();
+    color_settings->devices = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
 
     /* use a device client array */
-    settings->client = cd_client_new ();
+    color_settings->client = cd_client_new ();
 /*    g_signal_connect_object (settings->client, "device-added",
                              G_CALLBACK (color_settings_device_added_cb), settings, 0);
     g_signal_connect_object (settings->client, "device-removed",
                              G_CALLBACK (color_settings_device_removed_cb), settings, 0);
 */
-    cd_client_connect (settings->client,
-                       settings->cancellable,
+    cd_client_connect (color_settings->client,
+                       color_settings->cancellable,
                        color_settings_connect_cb,
-                       settings);
+                       color_settings);
 }
 
 
