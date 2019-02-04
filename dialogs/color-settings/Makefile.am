@@ -11,6 +11,8 @@ bin_PROGRAMS = \
 
 xfce4_color_settings_SOURCES = \
 	main.c \
+	color-device.c \
+	color-profile.c \
 	color-dialog_ui.h
 
 xfce4_color_settings_CFLAGS = \
