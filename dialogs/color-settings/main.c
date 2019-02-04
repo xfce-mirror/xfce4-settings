@@ -413,8 +413,6 @@ color_settings_device_changed_cb (CdDevice *device, ColorSettings *settings)
     }
 
   color_settings_update_profile_list_extra_entry (settings);
-  /* resort */
-  //gtk_list_box_invalidate_sort (prefs->list_box);
 }
 
 
@@ -442,14 +440,10 @@ color_settings_add_device (ColorSettings *settings, CdDevice *device)
   gtk_container_add (GTK_CONTAINER (settings->list_box), widget);
   gtk_size_group_add_widget (settings->list_box_size, widget);
 
-  /* add profiles */
-  //color_settings_add_device_profiles (settings, device);
-
   /* watch for changes */
   g_ptr_array_add (settings->devices, g_object_ref (device));
   g_signal_connect (device, "changed",
                     G_CALLBACK (color_settings_device_changed_cb), settings);
-  gtk_list_box_invalidate_sort (settings->list_box);
 }
 
 

@@ -37,6 +37,5 @@ void         color_profile_set_is_default   (ColorProfile  *color_profile,
                                                 gboolean         profile_is_default);
 CdDevice    *color_profile_get_device       (ColorProfile  *color_profile);
 CdProfile   *color_profile_get_profile      (ColorProfile  *color_profile);
-const gchar *color_profile_get_sortable     (ColorProfile  *color_profile);
 
 G_END_DECLS
