@@ -34,6 +34,7 @@ struct _ColorDevice
   gboolean     enabled;
   gchar       *sortable;
   GtkWidget   *widget_description;
+  GtkWidget   *widget_icon;
   GtkWidget   *widget_switch;
   guint        device_changed_id;
 };
@@ -135,6 +136,23 @@ color_device_kind_to_sort (CdDevice *device)
   return "9";
 }
 
+static const gchar *
+color_device_get_type_icon (CdDevice *device)
+{
+  CdDeviceKind kind = cd_device_get_kind (device);
+  if (kind == CD_DEVICE_KIND_DISPLAY)
+    return "video-display-symbolic";
+  if (kind == CD_DEVICE_KIND_SCANNER)
+    return "scanner-symbolic";
+  if (kind == CD_DEVICE_KIND_CAMERA)
+    return "camera-photo-symbolic";
+  if (kind == CD_DEVICE_KIND_WEBCAM)
+    return "camera-web-symbolic";
+  if (kind == CD_DEVICE_KIND_PRINTER)
+    return "printer-symbolic";
+  return "dialog-question-symbolic";
+}
+
 gchar *
 color_device_get_sortable_base (CdDevice *device)
 {
@@ -162,6 +180,10 @@ color_device_refresh (ColorDevice *color_device)
   gtk_label_set_label (GTK_LABEL (color_device->widget_description), title);
   gtk_widget_set_visible (color_device->widget_description, TRUE);
 
+  gtk_image_set_from_icon_name (GTK_IMAGE (color_device->widget_icon),
+                                color_device_get_type_icon (color_device->device),
+                                GTK_ICON_SIZE_MENU);
+  gtk_widget_set_visible (color_device->widget_icon, TRUE);
   gtk_widget_set_visible (color_device->widget_switch, profiles->len > 0);
 
   gtk_switch_set_active (GTK_SWITCH (color_device->widget_switch),
@@ -334,8 +356,12 @@ color_device_init (ColorDevice *color_device)
 
   /* description */
   box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 9);
+  color_device->widget_icon = gtk_image_new ();
+  gtk_widget_set_margin_start (color_device->widget_icon, 12);
+  gtk_widget_set_margin_end (color_device->widget_icon, 3);
+  gtk_box_pack_start (GTK_BOX (box), color_device->widget_icon, FALSE , FALSE, 0);
+
   color_device->widget_description = gtk_label_new ("");
-  gtk_widget_set_margin_start (color_device->widget_description, 20);
   gtk_widget_set_margin_top (color_device->widget_description, 12);
   gtk_widget_set_margin_bottom (color_device->widget_description, 12);
   gtk_widget_set_halign (color_device->widget_description, GTK_ALIGN_START);
