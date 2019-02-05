@@ -75,6 +75,7 @@ struct _ColorSettings
     GtkSizeGroup  *list_box_size;
     GObject       *label_no_profiles;
     GObject       *box_profiles;
+    GObject       *profiles_remove;
     GObject       *frame_profiles;
     GtkListBox    *profiles_list_box;
     gchar         *profiles_list_box_filter;
@@ -284,6 +285,7 @@ color_settings_update_profile_list_extra_entry (ColorSettings *settings)
   number_of_profiles = g_list_length (profile_widgets);
   gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), number_of_profiles == 0);
   gtk_widget_set_visible (GTK_WIDGET (settings->box_profiles), number_of_profiles > 0);
+  gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), number_of_profiles > 0);
 }
 
 
@@ -641,6 +643,7 @@ color_settings_dialog_init (GtkBuilder *builder)
     /* Profiles ListBox */
     settings->label_no_profiles = gtk_builder_get_object (builder, "label-no-profiles");
     settings->box_profiles = gtk_builder_get_object (builder, "box-profiles");
+    settings->profiles_remove = gtk_builder_get_object (builder, "profiles-remove");
     settings->frame_profiles = gtk_builder_get_object (builder, "frame-profiles");
     settings->profiles_list_box = GTK_LIST_BOX (gtk_list_box_new ());
     gtk_list_box_set_header_func (settings->profiles_list_box,
