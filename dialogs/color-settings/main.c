@@ -87,6 +87,15 @@ struct _ColorSettings
 
 
 static void
+listbox_remove_all (GtkWidget *widget, gpointer user_data)
+{
+    GtkWidget *container = user_data;
+    gtk_container_remove (GTK_CONTAINER (container), widget);
+}
+
+
+
+static void
 color_settings_make_profile_default_cb (GObject *object,
                                         GAsyncResult *res,
                                         ColorSettings *settings)
@@ -185,10 +194,13 @@ color_settings_add_device_profile (ColorSettings *settings,
 static void
 color_settings_add_device_profiles (ColorSettings *settings, CdDevice *device)
 {
+  GtkCallback func = listbox_remove_all;
   CdProfile *profile_tmp;
   g_autoptr(GPtrArray) profiles = NULL;
   guint i;
 
+  /* remove all profiles from the list */
+  gtk_container_foreach (GTK_CONTAINER (settings->profiles_list_box), func, settings->profiles_list_box);
   /* add profiles */
   profiles = cd_device_get_profiles (device);
   if (profiles == NULL)
@@ -291,31 +303,23 @@ color_settings_update_profile_list_extra_entry (ColorSettings *settings)
 
 
 static void
-listbox_remove_all (GtkWidget *widget, gpointer user_data)
-{
-    GtkWidget *container = user_data;
-    gtk_container_remove (GTK_CONTAINER (container), widget);
-}
-
-
-
-static void
 color_settings_list_box_row_activated_cb (GtkListBox *list_box,
                                           GtkListBoxRow *row,
                                           ColorSettings *settings)
 {
-    GtkCallback func = listbox_remove_all;
 
-    gtk_container_foreach (GTK_CONTAINER (settings->profiles_list_box), func, settings->profiles_list_box);
     g_object_get (row, "device", &settings->current_device, NULL);
     if (cd_device_get_enabled (settings->current_device))
     {
         color_settings_add_device_profiles (settings, settings->current_device);
         color_settings_update_profile_list_extra_entry (settings);
-        gtk_widget_queue_draw (GTK_WIDGET (settings->grid));
     }
     else
-        color_settings_update_profile_list_extra_entry (settings);
+    {
+        gtk_widget_show (GTK_WIDGET (settings->label_no_profiles));
+        gtk_widget_hide (GTK_WIDGET (settings->box_profiles));
+    }
+    gtk_widget_queue_draw (GTK_WIDGET (settings->grid));
 }
 
 
@@ -327,8 +331,7 @@ color_settings_device_enabled_changed_cb (ColorDevice *widget,
                                           ColorSettings *settings)
 {
     gtk_list_box_select_row (settings->list_box, GTK_LIST_BOX_ROW (widget));
-    gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), !is_enabled);
-    gtk_widget_set_visible (GTK_WIDGET (settings->box_profiles), is_enabled);
+    color_settings_list_box_row_activated_cb (settings->list_box, GTK_LIST_BOX_ROW (widget), settings);
 }
 
 
