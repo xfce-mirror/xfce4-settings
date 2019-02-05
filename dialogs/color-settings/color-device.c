@@ -318,6 +318,8 @@ color_device_constructed (GObject *object)
   sortable_tmp = color_device_get_sortable_base (color_device->device);
   color_device->sortable = g_strdup_printf ("%sXX", sortable_tmp);
 
+  color_device->enabled = cd_device_get_enabled (color_device->device);
+
   color_device_refresh (color_device);
 
   /* watch to see if the user flicked the switch */
