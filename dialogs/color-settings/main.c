@@ -76,6 +76,7 @@ struct _ColorSettings
     GtkWidget     *dialog_assign;
     GObject       *label_no_profiles;
     GObject       *box_profiles;
+    GObject       *profiles_import;
     GObject       *profiles_remove;
     GObject       *frame_profiles;
     GtkListBox    *profiles_list_box;
@@ -148,6 +149,51 @@ static void
 color_settings_profile_add_cb (GtkButton *button, gpointer user_data)
 {
 
+}
+
+
+
+static void
+color_settings_profile_import_cb (GtkWidget *widget,
+                                  ColorSettings *settings)
+{
+    g_autoptr(GFile) file = NULL;
+    g_autoptr(GError) error = NULL;
+    g_autoptr(CdProfile) profile = NULL;
+    gboolean ret = FALSE;
+
+    file = color_settings_file_chooser_get_icc_profile (settings);
+    if (file == NULL)
+    {
+        g_warning ("failed to get ICC file");
+        widget = GTK_WIDGET (settings->dialog_assign);
+        gtk_widget_hide (widget);
+        return;
+    }
+
+#if CD_CHECK_VERSION(0,1,12)
+    profile = cd_client_import_profile_sync (settings->client,
+                                             file,
+                                             settings->cancellable,
+                                             &error);
+    if (profile == NULL)
+    {
+        g_warning ("failed to get imported profile: %s", error->message);
+        return;
+    }
+#endif
+
+    /* just add it, the list store will get ::changed */
+    ret = cd_device_add_profile_sync (settings->current_device,
+                                      CD_DEVICE_RELATION_HARD,
+                                      profile,
+                                      settings->cancellable,
+                                      &error);
+    if (!ret)
+    {
+        g_warning ("failed to add: %s", error->message);
+        return;
+    }
 }
 
 
@@ -628,6 +674,8 @@ color_settings_dialog_init (GtkBuilder *builder)
     /* Profiles ListBox */
     profile_add = gtk_builder_get_object (builder, "profiles-add");
     g_signal_connect (profile_add, "clicked", G_CALLBACK (color_settings_profile_add_cb), NULL);
+    settings->profiles_import = gtk_builder_get_object (builder, "profiles-import");
+    g_signal_connect (settings->profiles_import, "clicked", G_CALLBACK (color_settings_profile_import_cb), settings);
     settings->profiles_remove = gtk_builder_get_object (builder, "profiles-remove");
     g_signal_connect (settings->profiles_remove, "clicked", G_CALLBACK (color_settings_profile_remove_cb), settings);
 

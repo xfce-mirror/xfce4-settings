@@ -23,6 +23,11 @@
     <property name="icon_name">list-remove-symbolic</property>
     <property name="use_fallback">True</property>
   </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">folder-open-symbolic</property>
+  </object>
   <object class="XfceTitledDialog" id="dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Color Profiles</property>
@@ -44,6 +49,20 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
+              <object class="GtkButton" id="button2">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-help</property>
                 <property name="visible">True</property>
@@ -56,20 +75,6 @@
                 <property name="fill">False</property>
                 <property name="position">0</property>
                 <property name="secondary">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="button2">
-                <property name="label">gtk-close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -290,16 +295,31 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkButton" id="profiles-remove">
+                          <object class="GtkButton" id="profiles-import">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
-                            <property name="image">image2</property>
+                            <property name="tooltip_text" translatable="yes">Import color profile files (*.icc)</property>
+                            <property name="image">image3</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="profiles-remove">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="tooltip_text" translatable="yes">Delete the currently selected profile</property>
+                            <property name="image">image2</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                         <style>
@@ -335,8 +355,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-11">button1</action-widget>
       <action-widget response="0">button2</action-widget>
+      <action-widget response="-11">button1</action-widget>
     </action-widgets>
   </object>
   <object class="GtkAdjustment" id="mouse-emulation-curve">
