@@ -133,7 +133,7 @@ color_settings_file_chooser_get_icc_profile (ColorSettings *settings)
 
     /* did user choose file */
     if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
-      file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER(dialog));
+        file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER(dialog));
 
     /* we're done */
     gtk_widget_destroy (dialog);
@@ -163,13 +163,13 @@ color_settings_profile_remove_cb (GtkWidget *widget, ColorSettings *settings)
     /* get the selected profile */
     row = gtk_list_box_get_selected_row (settings->profiles_list_box);
     if (row == NULL)
-      return;
+        return;
     profile = color_profile_get_profile (SETTINGS_COLOR_PROFILE (row));
     if (profile == NULL)
-      {
+    {
           g_warning ("failed to get the active profile");
           return;
-      }
+    }
 
     /* just remove it, the list store will get ::changed */
     ret = cd_device_remove_profile_sync (settings->current_device,
@@ -177,7 +177,7 @@ color_settings_profile_remove_cb (GtkWidget *widget, ColorSettings *settings)
                                          settings->cancellable,
                                          &error);
     if (!ret)
-      g_warning ("failed to remove profile: %s", error->message);
+        g_warning ("failed to remove profile: %s", error->message);
 }
 
 
@@ -187,18 +187,18 @@ color_settings_make_profile_default_cb (GObject *object,
                                         GAsyncResult *res,
                                         ColorSettings *settings)
 {
-  CdDevice *device = CD_DEVICE (object);
-  gboolean ret = FALSE;
-  g_autoptr(GError) error = NULL;
+    CdDevice *device = CD_DEVICE (object);
+    gboolean ret = FALSE;
+    g_autoptr(GError) error = NULL;
 
-  ret = cd_device_make_profile_default_finish (device,
-                                               res,
-                                               &error);
-  if (!ret)
+    ret = cd_device_make_profile_default_finish (device,
+                                                 res,
+                                                 &error);
+    if (!ret)
     {
-      g_warning ("failed to set default profile on %s: %s",
-                 cd_device_get_id (device),
-                 error->message);
+        g_warning ("failed to set default profile on %s: %s",
+                   cd_device_get_id (device),
+                   error->message);
     }
 }
 
@@ -207,29 +207,29 @@ color_settings_make_profile_default_cb (GObject *object,
 static void
 color_settings_device_profile_enable_cb (GtkWidget *widget, ColorSettings *settings)
 {
-  CdProfile *profile;
-  GtkListBoxRow *row;
+    CdProfile *profile;
+    GtkListBoxRow *row;
 
-  /* get the selected profile */
-  row = gtk_list_box_get_selected_row (settings->profiles_list_box);
-  if (row == NULL)
-    return;
-  profile = color_profile_get_profile (SETTINGS_COLOR_PROFILE (row));
-  if (profile == NULL)
-    {
-        g_warning ("failed to get the active profile");
+    /* get the selected profile */
+    row = gtk_list_box_get_selected_row (settings->profiles_list_box);
+    if (row == NULL)
         return;
+    profile = color_profile_get_profile (SETTINGS_COLOR_PROFILE (row));
+    if (profile == NULL)
+    {
+          g_warning ("failed to get the active profile");
+          return;
     }
 
-  /* just set it default */
-  g_debug ("setting %s default on %s",
-           cd_profile_get_id (profile),
-           cd_device_get_id (settings->current_device));
-  cd_device_make_profile_default (settings->current_device,
-                                  profile,
-                                  settings->cancellable,
-                                  (GAsyncReadyCallback) color_settings_make_profile_default_cb,
-                                  settings);
+    /* just set it default */
+    g_debug ("setting %s default on %s",
+             cd_profile_get_id (profile),
+             cd_device_get_id (settings->current_device));
+    cd_device_make_profile_default (settings->current_device,
+                                    profile,
+                                    settings->cancellable,
+                                    (GAsyncReadyCallback) color_settings_make_profile_default_cb,
+                                    settings);
 }
 
 static void
@@ -238,42 +238,42 @@ color_settings_add_device_profile (ColorSettings *settings,
                                    CdProfile     *profile,
                                    gboolean       is_default)
 {
-  gboolean ret;
-  g_autoptr(GError) error = NULL;
-  GtkWidget *widget;
+    gboolean ret;
+    g_autoptr(GError) error = NULL;
+    GtkWidget *widget;
 
-  /* get properties */
-  ret = cd_profile_connect_sync (profile,
-                                 settings->cancellable,
-                                 &error);
-  if (!ret)
+    /* get properties */
+    ret = cd_profile_connect_sync (profile,
+                                   settings->cancellable,
+                                   &error);
+    if (!ret)
     {
-      g_warning ("failed to get profile: %s", error->message);
-      return;
+        g_warning ("failed to get profile: %s", error->message);
+        return;
     }
 
-  /* ignore profiles from other user accounts */
-  if (!cd_profile_has_access (profile))
+    /* ignore profiles from other user accounts */
+    if (!cd_profile_has_access (profile))
     {
-      /* only print the filename if it exists */
-      if (cd_profile_get_filename (profile) != NULL)
+        /* only print the filename if it exists */
+        if (cd_profile_get_filename (profile) != NULL)
         {
-          g_warning ("%s is not usable by this user",
-                     cd_profile_get_filename (profile));
+            g_warning ("%s is not usable by this user",
+                       cd_profile_get_filename (profile));
         }
-      else
+        else
         {
-          g_warning ("%s is not usable by this user",
-                     cd_profile_get_id (profile));
+            g_warning ("%s is not usable by this user",
+                       cd_profile_get_id (profile));
         }
-      return;
+        return;
     }
 
-  /* add to listbox */
-  widget = color_profile_new (device, profile, is_default);
-  gtk_widget_show (widget);
-  gtk_container_add (GTK_CONTAINER (settings->profiles_list_box), widget);
-  gtk_size_group_add_widget (settings->profiles_list_box_size, widget);
+    /* add to listbox */
+    widget = color_profile_new (device, profile, is_default);
+    gtk_widget_show (widget);
+    gtk_container_add (GTK_CONTAINER (settings->profiles_list_box), widget);
+    gtk_size_group_add_widget (settings->profiles_list_box_size, widget);
 }
 
 
@@ -281,24 +281,24 @@ color_settings_add_device_profile (ColorSettings *settings,
 static void
 color_settings_add_device_profiles (ColorSettings *settings, CdDevice *device)
 {
-  GtkCallback func = listbox_remove_all;
-  CdProfile *profile_tmp;
-  g_autoptr(GPtrArray) profiles = NULL;
-  guint i;
+    GtkCallback func = listbox_remove_all;
+    CdProfile *profile_tmp;
+    g_autoptr(GPtrArray) profiles = NULL;
+    guint i;
 
-  /* remove all profiles from the list */
-  gtk_container_foreach (GTK_CONTAINER (settings->profiles_list_box), func, settings->profiles_list_box);
-  /* add profiles */
-  profiles = cd_device_get_profiles (device);
-  if (profiles == NULL)
-    return;
-  for (i = 0; i < profiles->len; i++)
+    /* remove all profiles from the list */
+    gtk_container_foreach (GTK_CONTAINER (settings->profiles_list_box), func, settings->profiles_list_box);
+    /* add profiles */
+    profiles = cd_device_get_profiles (device);
+    if (profiles == NULL)
+        return;
+    for (i = 0; i < profiles->len; i++)
     {
-      profile_tmp = g_ptr_array_index (profiles, i);
-      color_settings_add_device_profile (settings, device, profile_tmp, i == 0);
+        profile_tmp = g_ptr_array_index (profiles, i);
+        color_settings_add_device_profile (settings, device, profile_tmp, i == 0);
     }
 
-  gtk_widget_show (GTK_WIDGET (settings->profiles_list_box));
+    gtk_widget_show (GTK_WIDGET (settings->profiles_list_box));
 }
 
 
@@ -306,14 +306,14 @@ color_settings_add_device_profiles (ColorSettings *settings, CdDevice *device)
 static void
 color_settings_update_device_list_extra_entry (ColorSettings *settings)
 {
-  g_autoptr(GList) device_widgets = NULL;
-  guint number_of_devices;
+    g_autoptr(GList) device_widgets = NULL;
+    guint number_of_devices;
 
-  /* any devices to show? */
-  device_widgets = gtk_container_get_children (GTK_CONTAINER (settings->list_box));
-  number_of_devices = g_list_length (device_widgets);
-  gtk_widget_set_visible (GTK_WIDGET (settings->label_no_devices), number_of_devices == 0);
-  gtk_widget_set_visible (GTK_WIDGET (settings->box_devices), number_of_devices > 0);
+    /* any devices to show? */
+    device_widgets = gtk_container_get_children (GTK_CONTAINER (settings->list_box));
+    number_of_devices = g_list_length (device_widgets);
+    gtk_widget_set_visible (GTK_WIDGET (settings->label_no_devices), number_of_devices == 0);
+    gtk_widget_set_visible (GTK_WIDGET (settings->box_devices), number_of_devices > 0);
 }
 
 
@@ -321,15 +321,15 @@ color_settings_update_device_list_extra_entry (ColorSettings *settings)
 static void
 color_settings_update_profile_list_extra_entry (ColorSettings *settings)
 {
-  g_autoptr(GList) profile_widgets = NULL;
-  guint number_of_profiles;
+    g_autoptr(GList) profile_widgets = NULL;
+    guint number_of_profiles;
 
-  /* any profiles to show? */
-  profile_widgets = gtk_container_get_children (GTK_CONTAINER (settings->profiles_list_box));
-  number_of_profiles = g_list_length (profile_widgets);
-  gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), number_of_profiles == 0);
-  gtk_widget_set_visible (GTK_WIDGET (settings->box_profiles), number_of_profiles > 0);
-  gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), number_of_profiles > 0);
+    /* any profiles to show? */
+    profile_widgets = gtk_container_get_children (GTK_CONTAINER (settings->profiles_list_box));
+    number_of_profiles = g_list_length (profile_widgets);
+    gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), number_of_profiles == 0);
+    gtk_widget_set_visible (GTK_WIDGET (settings->box_profiles), number_of_profiles > 0);
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), number_of_profiles > 0);
 }
 
 
@@ -410,8 +410,8 @@ static void
 color_settings_device_changed_cb (CdDevice *device,
                                   ColorSettings *settings)
 {
-  color_settings_add_device_profiles (settings, device);
-  color_settings_update_profile_list_extra_entry (settings);
+    color_settings_add_device_profiles (settings, device);
+    color_settings_update_profile_list_extra_entry (settings);
 }
 
 
@@ -419,30 +419,30 @@ color_settings_device_changed_cb (CdDevice *device,
 static void
 color_settings_add_device (ColorSettings *settings, CdDevice *device)
 {
-  gboolean ret;
-  g_autoptr(GError) error = NULL;
-  GtkWidget *widget;
+    gboolean ret;
+    g_autoptr(GError) error = NULL;
+    GtkWidget *widget;
 
-  /* get device properties */
-  ret = cd_device_connect_sync (device, settings->cancellable, &error);
-  if (!ret)
+    /* get device properties */
+    ret = cd_device_connect_sync (device, settings->cancellable, &error);
+    if (!ret)
     {
-      g_warning ("failed to connect to the device: %s", error->message);
-      return;
+        g_warning ("failed to connect to the device: %s", error->message);
+        return;
     }
 
-  /* add device */
-  widget = color_device_new (device);
-  g_signal_connect (G_OBJECT (widget), "enabled-changed",
-                    G_CALLBACK (color_settings_device_enabled_changed_cb), settings);
-  gtk_widget_show (widget);
-  gtk_container_add (GTK_CONTAINER (settings->list_box), widget);
-  gtk_size_group_add_widget (settings->list_box_size, widget);
+    /* add device */
+    widget = color_device_new (device);
+    g_signal_connect (G_OBJECT (widget), "enabled-changed",
+                      G_CALLBACK (color_settings_device_enabled_changed_cb), settings);
+    gtk_widget_show (widget);
+    gtk_container_add (GTK_CONTAINER (settings->list_box), widget);
+    gtk_size_group_add_widget (settings->list_box_size, widget);
 
-  /* watch for changes */
-  g_ptr_array_add (settings->devices, g_object_ref (device));
-  g_signal_connect (device, "changed",
-                    G_CALLBACK (color_settings_device_changed_cb), settings);
+    /* watch for changes */
+    g_ptr_array_add (settings->devices, g_object_ref (device));
+    g_signal_connect (device, "changed",
+                      G_CALLBACK (color_settings_device_changed_cb), settings);
 }
 
 
@@ -450,26 +450,26 @@ color_settings_add_device (ColorSettings *settings, CdDevice *device)
 static void
 color_settings_remove_device (ColorSettings *settings, CdDevice *device)
 {
-  CdDevice *device_tmp;
-  GList *l;
-  g_autoptr(GList) list = NULL;
+    CdDevice *device_tmp;
+    GList *l;
+    g_autoptr(GList) list = NULL;
 
-  list = gtk_container_get_children (GTK_CONTAINER (settings->list_box));
-  for (l = list; l != NULL; l = l->next)
+    list = gtk_container_get_children (GTK_CONTAINER (settings->list_box));
+    for (l = list; l != NULL; l = l->next)
     {
-      device_tmp = color_device_get_device (CC_COLOR_DEVICE (l->data));
+        device_tmp = color_device_get_device (CC_COLOR_DEVICE (l->data));
 
-      if (g_strcmp0 (cd_device_get_object_path (device),
-                     cd_device_get_object_path (device_tmp)) == 0)
+        if (g_strcmp0 (cd_device_get_object_path (device),
+                       cd_device_get_object_path (device_tmp)) == 0)
         {
-          gtk_widget_destroy (GTK_WIDGET (l->data));
+            gtk_widget_destroy (GTK_WIDGET (l->data));
         }
     }
-  g_signal_handlers_disconnect_by_func (device,
-                                        G_CALLBACK (color_settings_device_changed_cb),
-                                        settings);
-  g_ptr_array_remove (settings->devices, device);
-  color_settings_update_profile_list_extra_entry (settings);
+    g_signal_handlers_disconnect_by_func (device,
+                                          G_CALLBACK (color_settings_device_changed_cb),
+                                          settings);
+    g_ptr_array_remove (settings->devices, device);
+    color_settings_update_profile_list_extra_entry (settings);
 }
 
 
@@ -479,20 +479,20 @@ list_box_update_header_func (GtkListBoxRow *row,
                                 GtkListBoxRow *before,
                                 gpointer user_data)
 {
-  GtkWidget *current;
+    GtkWidget *current;
 
-  if (before == NULL)
+    if (before == NULL)
     {
-      gtk_list_box_row_set_header (row, NULL);
-      return;
+        gtk_list_box_row_set_header (row, NULL);
+        return;
     }
 
-  current = gtk_list_box_row_get_header (row);
-  if (current == NULL)
+    current = gtk_list_box_row_get_header (row);
+    if (current == NULL)
     {
-      current = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
-      gtk_widget_show (current);
-      gtk_list_box_row_set_header (row, current);
+        current = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
+        gtk_widget_show (current);
+        gtk_list_box_row_set_header (row, current);
     }
 }
 
@@ -503,11 +503,11 @@ color_settings_device_added_cb (CdClient *client,
                                 CdDevice *device,
                                 ColorSettings *settings)
 {
-  /* add the device */
-  color_settings_add_device (settings, device);
+    /* add the device */
+    color_settings_add_device (settings, device);
 
-  /* ensure we're not showing the 'No devices detected' entry */
-  color_settings_update_device_list_extra_entry (settings);
+    /* ensure we're not showing the 'No devices detected' entry */
+    color_settings_update_device_list_extra_entry (settings);
 }
 
 
@@ -517,11 +517,11 @@ color_settings_device_removed_cb (CdClient *client,
                                   CdDevice *device,
                                   ColorSettings *settings)
 {
-  /* remove from the UI */
-  color_settings_remove_device (settings, device);
+    /* remove from the UI */
+    color_settings_remove_device (settings, device);
 
-  /* ensure we showing the 'No devices detected' entry if required */
-  color_settings_update_device_list_extra_entry (settings);
+    /* ensure we showing the 'No devices detected' entry if required */
+    color_settings_update_device_list_extra_entry (settings);
 }
 
 
@@ -531,29 +531,29 @@ color_settings_get_devices_cb (GObject *object,
                                GAsyncResult *res,
                                gpointer user_data)
 {
-  ColorSettings *settings = (ColorSettings *) user_data;
-  CdClient *client = CD_CLIENT (object);
-  CdDevice *device;
-  g_autoptr(GError) error = NULL;
-  g_autoptr(GPtrArray) devices = NULL;
-  guint i;
+    ColorSettings *settings = (ColorSettings *) user_data;
+    CdClient *client = CD_CLIENT (object);
+    CdDevice *device;
+    g_autoptr(GError) error = NULL;
+    g_autoptr(GPtrArray) devices = NULL;
+    guint i;
 
-  /* get devices and add them */
-  devices = cd_client_get_devices_finish (client, res, &error);
-  if (devices == NULL)
+    /* get devices and add them */
+    devices = cd_client_get_devices_finish (client, res, &error);
+    if (devices == NULL)
     {
-      g_warning ("failed to add connected devices: %s",
-                 error->message);
-      return;
+        g_warning ("failed to add connected devices: %s",
+                   error->message);
+        return;
     }
-  for (i = 0; i < devices->len; i++)
+    for (i = 0; i < devices->len; i++)
     {
-      device = g_ptr_array_index (devices, i);
-      color_settings_add_device (settings, device);
+        device = g_ptr_array_index (devices, i);
+        color_settings_add_device (settings, device);
     }
-  /* ensure we showing the 'No devices detected' entry if required */
-  color_settings_update_device_list_extra_entry (settings);
-  color_settings_update_profile_list_extra_entry (settings);
+    /* ensure we showing the 'No devices detected' entry if required */
+    color_settings_update_device_list_extra_entry (settings);
+    color_settings_update_profile_list_extra_entry (settings);
 }
 
 
@@ -571,16 +571,11 @@ color_settings_connect_cb (GObject *object,
                                     res,
                                     &error);
     if (!ret)
-      {
+    {
         if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
           g_warning ("failed to connect to colord: %s", error->message);
         return;
-      }
-
-    /* Only cast the parameters after making sure it didn't fail. At this point,
-     * the user can potentially already have changed to another panel, effectively
-     * making user_data invalid. */
-    //settings = SETTINGS_COLOR_PANEL (user_data);
+    }
 
     /* get devices */
     cd_client_get_devices (settings->client,
