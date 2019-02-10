@@ -73,6 +73,7 @@ struct _ColorSettings
     guint          list_box_selected_id;
     guint          list_box_activated_id;
     GtkSizeGroup  *list_box_size;
+    GtkWidget     *dialog_assign;
     GObject       *label_no_profiles;
     GObject       *box_profiles;
     GObject       *profiles_remove;
@@ -91,6 +92,92 @@ listbox_remove_all (GtkWidget *widget, gpointer user_data)
 {
     GtkWidget *container = user_data;
     gtk_container_remove (GTK_CONTAINER (container), widget);
+}
+
+
+
+static GFile *
+color_settings_file_chooser_get_icc_profile (ColorSettings *settings)
+{
+    GtkWindow *window;
+    GtkWidget *dialog;
+    GFile *file = NULL;
+    GtkFileFilter *filter;
+
+    /* create new dialog */
+    window = GTK_WINDOW (settings->dialog_assign);
+    /* TRANSLATORS: an ICC profile is a file containing colorspace data */
+    dialog = gtk_file_chooser_dialog_new (_("Select ICC Profile File"), window,
+                                          GTK_FILE_CHOOSER_ACTION_OPEN,
+                                          _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                          _("_Import"), GTK_RESPONSE_ACCEPT,
+                                          NULL);
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER(dialog), g_get_home_dir ());
+    gtk_file_chooser_set_create_folders (GTK_FILE_CHOOSER(dialog), FALSE);
+    gtk_file_chooser_set_local_only (GTK_FILE_CHOOSER(dialog), FALSE);
+
+    /* setup the filter */
+    filter = gtk_file_filter_new ();
+    gtk_file_filter_add_mime_type (filter, "application/vnd.iccprofile");
+
+    /* TRANSLATORS: filter name on the file->open dialog */
+    gtk_file_filter_set_name (filter, _("Supported ICC profiles"));
+    gtk_file_chooser_add_filter (GTK_FILE_CHOOSER(dialog), filter);
+
+    /* setup the all files filter */
+    filter = gtk_file_filter_new ();
+    gtk_file_filter_add_pattern (filter, "*");
+    /* TRANSLATORS: filter name on the file->open dialog */
+    gtk_file_filter_set_name (filter, _("All files"));
+    gtk_file_chooser_add_filter (GTK_FILE_CHOOSER(dialog), filter);
+
+    /* did user choose file */
+    if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+      file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER(dialog));
+
+    /* we're done */
+    gtk_widget_destroy (dialog);
+
+    /* or NULL for missing */
+    return file;
+}
+
+
+
+static void
+color_settings_profile_add_cb (GtkButton *button, gpointer user_data)
+{
+
+}
+
+
+
+static void
+color_settings_profile_remove_cb (GtkWidget *widget, ColorSettings *settings)
+{
+    CdProfile *profile;
+    gboolean ret = FALSE;
+    g_autoptr(GError) error = NULL;
+    GtkListBoxRow *row;
+
+    /* get the selected profile */
+    row = gtk_list_box_get_selected_row (settings->profiles_list_box);
+    if (row == NULL)
+      return;
+    profile = color_profile_get_profile (SETTINGS_COLOR_PROFILE (row));
+    if (profile == NULL)
+      {
+          g_warning ("failed to get the active profile");
+          return;
+      }
+
+    /* just remove it, the list store will get ::changed */
+    ret = cd_device_remove_profile_sync (settings->current_device,
+                                         profile,
+                                         settings->cancellable,
+                                         &error);
+    if (!ret)
+      g_warning ("failed to remove profile: %s", error->message);
 }
 
 
@@ -147,9 +234,9 @@ color_settings_device_profile_enable_cb (GtkWidget *widget, ColorSettings *setti
 
 static void
 color_settings_add_device_profile (ColorSettings *settings,
-                              CdDevice *device,
-                              CdProfile *profile,
-                              gboolean is_default)
+                                   CdDevice      *device,
+                                   CdProfile     *profile,
+                                   gboolean       is_default)
 {
   gboolean ret;
   g_autoptr(GError) error = NULL;
@@ -283,6 +370,17 @@ color_settings_device_enabled_changed_cb (ColorDevice *widget,
 
 
 static void
+color_settings_profiles_list_box_row_selected_cb (GtkListBox *list_box,
+                                                  GtkListBoxRow *row,
+                                                  ColorSettings *settings)
+{
+/*  TODO: Check/Update the state of the toolbar buttons
+ */
+}
+
+
+
+static void
 color_settings_profiles_list_box_row_activated_cb (GtkListBox *list_box,
                                                    GtkListBoxRow *row,
                                                    ColorSettings *settings)
@@ -296,16 +394,8 @@ color_settings_profiles_list_box_row_activated_cb (GtkListBox *list_box,
 
 
 static void
-color_settings_profile_add_cb (GtkButton *button, gpointer user_data)
-{
-
-}
-
-
-
-static void
 color_settings_dialog_response (GtkWidget *dialog,
-                                        gint       response_id)
+                                gint       response_id)
 {
     if (response_id == GTK_RESPONSE_HELP)
         xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "color",
@@ -317,7 +407,8 @@ color_settings_dialog_response (GtkWidget *dialog,
 
 
 static void
-color_settings_device_changed_cb (CdDevice *device, ColorSettings *settings)
+color_settings_device_changed_cb (CdDevice *device,
+                                  ColorSettings *settings)
 {
   color_settings_add_device_profiles (settings, device);
   color_settings_update_profile_list_extra_entry (settings);
@@ -517,9 +608,6 @@ color_settings_dialog_init (GtkBuilder *builder)
     g_signal_connect_data (settings->client, "device-removed",
                            G_CALLBACK (color_settings_device_removed_cb), settings, 0, 0);
 
-    profile_add = gtk_builder_get_object (builder, "profile-add");
-    g_signal_connect (profile_add, "clicked", G_CALLBACK (color_settings_profile_add_cb), NULL);
-
     settings->label_no_devices = gtk_builder_get_object (builder, "label-no-devices");
     settings->box_devices = gtk_builder_get_object (builder, "box-devices");
     settings->grid = gtk_builder_get_object (builder, "grid");
@@ -543,9 +631,13 @@ color_settings_dialog_init (GtkBuilder *builder)
     gtk_widget_show_all (GTK_WIDGET (settings->list_box));
 
     /* Profiles ListBox */
+    profile_add = gtk_builder_get_object (builder, "profiles-add");
+    g_signal_connect (profile_add, "clicked", G_CALLBACK (color_settings_profile_add_cb), NULL);
+    settings->profiles_remove = gtk_builder_get_object (builder, "profiles-remove");
+    g_signal_connect (settings->profiles_remove, "clicked", G_CALLBACK (color_settings_profile_remove_cb), settings);
+
     settings->label_no_profiles = gtk_builder_get_object (builder, "label-no-profiles");
     settings->box_profiles = gtk_builder_get_object (builder, "box-profiles");
-    settings->profiles_remove = gtk_builder_get_object (builder, "profiles-remove");
     settings->frame_profiles = gtk_builder_get_object (builder, "frame-profiles");
     settings->profiles_list_box = GTK_LIST_BOX (gtk_list_box_new ());
     gtk_list_box_set_header_func (settings->profiles_list_box,
@@ -553,10 +645,10 @@ color_settings_dialog_init (GtkBuilder *builder)
                               settings, NULL);
     gtk_list_box_set_selection_mode (settings->profiles_list_box,
                                  GTK_SELECTION_SINGLE);
-    gtk_list_box_set_activate_on_single_click (settings->profiles_list_box, TRUE);
+    gtk_list_box_set_activate_on_single_click (settings->profiles_list_box, FALSE);
     settings->profiles_list_box_selected_id =
         g_signal_connect (settings->profiles_list_box, "row-selected",
-                          G_CALLBACK (color_settings_profiles_list_box_row_activated_cb),
+                          G_CALLBACK (color_settings_profiles_list_box_row_selected_cb),
                           settings);
     settings->profiles_list_box_activated_id =
     g_signal_connect (settings->profiles_list_box, "row-activated",
