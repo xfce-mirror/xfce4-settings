@@ -926,6 +926,22 @@ color_settings_device_removed_cb (CdClient *client,
 
 
 
+static gint
+color_settings_sort_func (GtkListBoxRow *a,
+                          GtkListBoxRow *b,
+                          gpointer user_data)
+{
+  const gchar *sort_a = NULL;
+  const gchar *sort_b = NULL;
+
+  sort_a = color_device_get_sortable (CC_COLOR_DEVICE (a));
+  sort_b = color_device_get_sortable (CC_COLOR_DEVICE (b));
+
+  return g_strcmp0 (sort_b, sort_a);
+}
+
+
+
 static void
 color_settings_get_devices_cb (GObject *object,
                                GAsyncResult *res,
@@ -1010,6 +1026,10 @@ color_settings_dialog_init (GtkBuilder *builder)
     /* Devices ListBox */
     settings->frame_devices = gtk_builder_get_object (builder, "frame-devices");
     settings->list_box = GTK_LIST_BOX (gtk_list_box_new ());
+    gtk_list_box_set_sort_func (settings->list_box,
+                                color_settings_sort_func,
+                                settings,
+                                NULL);
     gtk_list_box_set_header_func (settings->list_box,
                               list_box_update_header_func,
                               settings, NULL);
