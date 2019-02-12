@@ -749,6 +749,7 @@ color_settings_list_box_row_activated_cb (GtkListBox *list_box,
     {
         gtk_widget_show (GTK_WIDGET (settings->label_no_profiles));
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
         gtk_widget_hide (GTK_WIDGET (settings->box_profiles));
     }
 }
