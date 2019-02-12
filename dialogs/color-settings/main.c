@@ -727,11 +727,13 @@ color_settings_list_box_row_activated_cb (GtkListBox *list_box,
     if (cd_device_get_enabled (settings->current_device))
     {
         color_settings_add_device_profiles (settings, settings->current_device);
+        gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), TRUE);
         color_settings_update_profile_list_extra_entry (settings);
     }
     else
     {
         gtk_widget_show (GTK_WIDGET (settings->label_no_profiles));
+        gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), FALSE);
         gtk_widget_hide (GTK_WIDGET (settings->box_profiles));
     }
 }
@@ -747,6 +749,7 @@ color_settings_device_enabled_changed_cb (ColorDevice *widget,
     gtk_list_box_select_row (settings->list_box, GTK_LIST_BOX_ROW (widget));
     gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), !is_enabled);
     gtk_widget_set_visible (GTK_WIDGET (settings->box_profiles), is_enabled);
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), is_enabled);
 }
 
