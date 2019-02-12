@@ -410,6 +410,23 @@ color_settings_add_profiles_suitable_for_devices (ColorSettings *settings,
 
 
 static void
+color_settings_profiles_treeview_clicked_cb (GtkTreeSelection *selection,
+                                        ColorSettings *settings)
+{
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+
+  /* get selection */
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+    return;
+
+  /* as soon as anything is selected, make the Add button sensitive */
+  gtk_widget_set_sensitive (GTK_WIDGET (settings->button_assign_ok), TRUE);
+}
+
+
+
+static void
 color_settings_button_assign_cancel_cb (GtkWidget *widget, ColorSettings *settings)
 {
     gtk_widget_hide (GTK_WIDGET (settings->dialog_assign));
@@ -490,12 +507,11 @@ color_settings_profile_add_cb (GtkButton *button, ColorSettings *settings)
     profiles = cd_device_get_profiles (settings->current_device);
     color_settings_add_profiles_suitable_for_devices (settings, profiles);
 
-    /* make insensitve until we have a selection */
-    //gtk_widget_set_sensitive (settings->button_assign_ok, FALSE);
+    /* make insensitive until we have a selection */
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->button_assign_ok), FALSE);
 
     /* show the dialog */
     gtk_widget_show (GTK_WIDGET (settings->dialog_assign));
-    //gtk_window_set_transient_for (GTK_WINDOW (settings->dialog_assign), GTK_WINDOW (settings->main_window));
 }
 
 
@@ -975,6 +991,7 @@ static void
 color_settings_dialog_init (GtkBuilder *builder)
 {
     ColorSettings *settings;
+    GtkTreeSelection *selection;
 
     settings = g_new0 (ColorSettings, 1);
     settings->cancellable = g_cancellable_new ();
@@ -1043,11 +1060,11 @@ color_settings_dialog_init (GtkBuilder *builder)
     settings->liststore_assign = gtk_builder_get_object (builder, "liststore-assign");
     settings->treeview_assign = gtk_builder_get_object (builder, "treeview-assign");
     color_settings_add_profiles_columns (settings, GTK_TREE_VIEW (settings->treeview_assign));
-/*    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (settings->treeview_assign));
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (settings->treeview_assign));
     g_signal_connect (selection, "changed",
                       G_CALLBACK (color_settings_profiles_treeview_clicked_cb),
                       settings);
-    g_signal_connect (GTK_TREE_VIEW (settings->treeview_assign), "row-activated",
+/*    g_signal_connect (GTK_TREE_VIEW (settings->treeview_assign), "row-activated",
                       G_CALLBACK (color_settings_profiles_row_activated_cb),
                       settings); */
     settings->button_assign_import = gtk_builder_get_object (builder, "assign-import");
