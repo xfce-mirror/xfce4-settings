@@ -1027,8 +1027,10 @@ color_settings_dialog_init (GtkBuilder *builder)
 
     /* Profiles ListBox */
     settings->profiles_add = gtk_builder_get_object (builder, "profiles-add");
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), FALSE);
     g_signal_connect (settings->profiles_add, "clicked", G_CALLBACK (color_settings_profile_add_cb), settings);
     settings->profiles_remove = gtk_builder_get_object (builder, "profiles-remove");
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
     g_signal_connect (settings->profiles_remove, "clicked", G_CALLBACK (color_settings_profile_remove_cb), settings);
 
     settings->label_no_profiles = gtk_builder_get_object (builder, "label-no-profiles");
