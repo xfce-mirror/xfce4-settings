@@ -507,7 +507,6 @@ color_settings_profile_import_cb (GtkWidget *widget,
     g_autoptr(GFile) file = NULL;
     g_autoptr(GError) error = NULL;
     g_autoptr(CdProfile) profile = NULL;
-    gboolean ret = FALSE;
 
     file = color_settings_file_chooser_get_icc_profile (settings);
     if (file == NULL)
