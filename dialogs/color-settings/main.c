@@ -727,7 +727,6 @@ color_settings_update_profile_list_extra_entry (ColorSettings *settings)
     number_of_profiles = g_list_length (profile_widgets);
     gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), number_of_profiles == 0);
     gtk_widget_set_visible (GTK_WIDGET (settings->box_profiles), number_of_profiles > 0);
-    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), number_of_profiles > 0);
 }
 
 
@@ -776,8 +775,7 @@ color_settings_profiles_list_box_row_selected_cb (GtkListBox *list_box,
                                                   GtkListBoxRow *row,
                                                   ColorSettings *settings)
 {
-/*  TODO: Check/Update the state of the toolbar buttons
- */
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), TRUE);
 }
 
 
