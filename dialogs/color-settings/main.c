@@ -77,7 +77,6 @@ struct _ColorSettings
     GObject       *label_no_profiles;
     GObject       *box_profiles;
     GObject       *profiles_add;
-    GObject       *profiles_import;
     GObject       *profiles_remove;
     GObject       *frame_profiles;
     GtkListBox    *profiles_list_box;
@@ -87,6 +86,7 @@ struct _ColorSettings
     GtkSizeGroup  *profiles_list_box_size;
     GObject       *treeview_assign;
     GObject       *liststore_assign;
+    GObject       *button_assign_import;
     GObject       *button_assign_ok;
     GObject       *button_assign_cancel;
 } ColorSettings;
@@ -530,17 +530,7 @@ color_settings_profile_import_cb (GtkWidget *widget,
     }
 #endif
 
-    /* just add it, the list store will get ::changed */
-    ret = cd_device_add_profile_sync (settings->current_device,
-                                      CD_DEVICE_RELATION_HARD,
-                                      profile,
-                                      settings->cancellable,
-                                      &error);
-    if (!ret)
-    {
-        g_warning ("failed to add: %s", error->message);
-        return;
-    }
+    color_settings_profile_add_cb (NULL, settings);
 }
 
 
@@ -1020,8 +1010,6 @@ color_settings_dialog_init (GtkBuilder *builder)
     /* Profiles ListBox */
     settings->profiles_add = gtk_builder_get_object (builder, "profiles-add");
     g_signal_connect (settings->profiles_add, "clicked", G_CALLBACK (color_settings_profile_add_cb), settings);
-    settings->profiles_import = gtk_builder_get_object (builder, "profiles-import");
-    g_signal_connect (settings->profiles_import, "clicked", G_CALLBACK (color_settings_profile_import_cb), settings);
     settings->profiles_remove = gtk_builder_get_object (builder, "profiles-remove");
     g_signal_connect (settings->profiles_remove, "clicked", G_CALLBACK (color_settings_profile_remove_cb), settings);
 
@@ -1060,6 +1048,8 @@ color_settings_dialog_init (GtkBuilder *builder)
     g_signal_connect (GTK_TREE_VIEW (settings->treeview_assign), "row-activated",
                       G_CALLBACK (color_settings_profiles_row_activated_cb),
                       settings); */
+    settings->button_assign_import = gtk_builder_get_object (builder, "assign-import");
+    g_signal_connect (settings->button_assign_import, "clicked", G_CALLBACK (color_settings_profile_import_cb), settings);
     settings->button_assign_ok = gtk_builder_get_object (builder, "assign-ok");
     g_signal_connect (settings->button_assign_ok, "clicked",
                   G_CALLBACK (color_settings_button_assign_ok_cb), settings);
