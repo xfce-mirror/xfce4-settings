@@ -73,9 +73,10 @@ struct _ColorSettings
     guint          list_box_selected_id;
     guint          list_box_activated_id;
     GtkSizeGroup  *list_box_size;
-    GtkWidget     *dialog_assign;
+    GObject       *dialog_assign;
     GObject       *label_no_profiles;
     GObject       *box_profiles;
+    GObject       *profiles_add;
     GObject       *profiles_import;
     GObject       *profiles_remove;
     GObject       *frame_profiles;
@@ -84,7 +85,25 @@ struct _ColorSettings
     guint          profiles_list_box_selected_id;
     guint          profiles_list_box_activated_id;
     GtkSizeGroup  *profiles_list_box_size;
+    GObject       *treeview_assign;
+    GObject       *liststore_assign;
+    GObject       *button_assign_ok;
+    GObject       *button_assign_cancel;
 } ColorSettings;
+
+
+
+enum {
+  COLOR_SETTINGS_COMBO_COLUMN_TEXT,
+  COLOR_SETTINGS_COMBO_COLUMN_PROFILE,
+  COLOR_SETTINGS_COMBO_COLUMN_TYPE,
+  COLOR_SETTINGS_COMBO_COLUMN_WARNING_FILENAME,
+  COLOR_SETTINGS_COMBO_COLUMN_NUM_COLUMNS
+};
+
+
+
+static void color_settings_make_profile_default_cb (GObject *object, GAsyncResult *res, ColorSettings *settings);
 
 
 
@@ -146,9 +165,337 @@ color_settings_file_chooser_get_icc_profile (ColorSettings *settings)
 
 
 static void
-color_settings_profile_add_cb (GtkButton *button, gpointer user_data)
+color_settings_liststore_add_profile (ColorSettings *settings,
+                                      CdProfile *profile,
+                                      GtkTreeIter *iter)
 {
+  const gchar *id;
+  GtkTreeIter iter_tmp;
+  g_autoptr(GString) string = NULL;
+  gchar *escaped = NULL;
+  guint kind = 0;
+  const gchar *warning = NULL;
+#if CD_CHECK_VERSION(0,1,25)
+  gchar **warnings;
+#endif
 
+  /* iter is optional */
+  if (iter == NULL)
+    iter = &iter_tmp;
+
+  /* use description */
+  string = g_string_new (cd_profile_get_title (profile));
+
+  /* any source prefix? */
+  id = cd_profile_get_metadata_item (profile,
+                                     CD_PROFILE_METADATA_DATA_SOURCE);
+  if (g_strcmp0 (id, CD_PROFILE_METADATA_DATA_SOURCE_EDID) == 0)
+    {
+      /* TRANSLATORS: this is a profile prefix to signify the
+       * profile has been auto-generated for this hardware */
+      g_string_prepend (string, _("Default: "));
+      kind = 1;
+    }
+#if CD_CHECK_VERSION(0,1,14)
+  if (g_strcmp0 (id, CD_PROFILE_METADATA_DATA_SOURCE_STANDARD) == 0)
+    {
+      /* TRANSLATORS: this is a profile prefix to signify the
+       * profile his a standard space like AdobeRGB */
+      g_string_prepend (string, _("Colorspace: "));
+      kind = 2;
+    }
+  if (g_strcmp0 (id, CD_PROFILE_METADATA_DATA_SOURCE_TEST) == 0)
+    {
+      /* TRANSLATORS: this is a profile prefix to signify the
+       * profile is a test profile */
+      g_string_prepend (string, _("Test profile: "));
+      kind = 3;
+    }
+#endif
+
+  /* is the profile faulty */
+#if CD_CHECK_VERSION(0,1,25)
+  warnings = cd_profile_get_warnings (profile);
+  if (warnings != NULL && warnings[0] != NULL)
+    warning = "dialog-warning-symbolic";
+#endif
+
+  escaped = g_markup_escape_text (string->str, -1);
+  gtk_list_store_append (GTK_LIST_STORE (settings->liststore_assign), iter);
+  gtk_list_store_set (GTK_LIST_STORE (settings->liststore_assign), iter,
+                      COLOR_SETTINGS_COMBO_COLUMN_TEXT, escaped,
+                      COLOR_SETTINGS_COMBO_COLUMN_PROFILE, profile,
+                      COLOR_SETTINGS_COMBO_COLUMN_TYPE, kind,
+                      COLOR_SETTINGS_COMBO_COLUMN_WARNING_FILENAME, warning,
+                      -1);
+}
+
+
+
+static void
+color_settings_add_profiles_columns (ColorSettings *settings,
+                                     GtkTreeView *treeview)
+{
+  GtkCellRenderer *renderer;
+  GtkTreeViewColumn *column;
+
+  /* text */
+  renderer = gtk_cell_renderer_text_new ();
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+  gtk_tree_view_column_add_attribute (column, renderer,
+                                      "markup", COLOR_SETTINGS_COMBO_COLUMN_TEXT);
+  gtk_tree_view_column_set_expand (column, TRUE);
+  gtk_tree_view_append_column (treeview, column);
+
+  /* image */
+  column = gtk_tree_view_column_new ();
+  renderer = gtk_cell_renderer_pixbuf_new ();
+  g_object_set (renderer, "stock-size", GTK_ICON_SIZE_MENU, NULL);
+  gtk_tree_view_column_pack_start (column, renderer, FALSE);
+  gtk_tree_view_column_add_attribute (column, renderer,
+                                      "icon-name", COLOR_SETTINGS_COMBO_COLUMN_WARNING_FILENAME);
+  gtk_tree_view_append_column (treeview, column);
+}
+
+
+
+static gboolean
+color_settings_profile_exists_in_array (GPtrArray *array, CdProfile *profile)
+{
+  CdProfile *profile_tmp;
+  guint i;
+
+  for (i = 0; i < array->len; i++)
+    {
+      profile_tmp = g_ptr_array_index (array, i);
+      if (cd_profile_equal (profile, profile_tmp))
+         return TRUE;
+    }
+  return FALSE;
+}
+
+
+
+static gboolean
+color_settings_is_profile_suitable_for_device (CdProfile *profile,
+                                               CdDevice *device)
+{
+    const gchar *data_source;
+    CdProfileKind profile_kind_tmp;
+    CdProfileKind profile_kind;
+    CdColorspace profile_colorspace;
+    CdColorspace device_colorspace = 0;
+    gboolean ret = FALSE;
+    CdDeviceKind device_kind;
+    CdStandardSpace standard_space;
+
+    /* not the right colorspace */
+    device_colorspace = cd_device_get_colorspace (device);
+    profile_colorspace = cd_profile_get_colorspace (profile);
+    if (device_colorspace != profile_colorspace)
+      goto out;
+
+    /* if this is a display matching with one of the standard spaces that displays
+     * could emulate, also mark it as suitable */
+    if (cd_device_get_kind (device) == CD_DEVICE_KIND_DISPLAY &&
+        cd_profile_get_kind (profile) == CD_PROFILE_KIND_DISPLAY_DEVICE)
+        {
+          data_source = cd_profile_get_metadata_item (profile,
+                                                      CD_PROFILE_METADATA_STANDARD_SPACE);
+          standard_space = cd_standard_space_from_string (data_source);
+          if (standard_space == CD_STANDARD_SPACE_SRGB ||
+              standard_space == CD_STANDARD_SPACE_ADOBE_RGB)
+            {
+              ret = TRUE;
+              goto out;
+            }
+        }
+
+    /* not the correct kind */
+    device_kind = cd_device_get_kind (device);
+    profile_kind_tmp = cd_profile_get_kind (profile);
+    profile_kind = cd_device_kind_to_profile_kind (device_kind);
+    if (profile_kind_tmp != profile_kind)
+      goto out;
+
+    /* ignore the colorspace profiles */
+    data_source = cd_profile_get_metadata_item (profile,
+                                                CD_PROFILE_METADATA_DATA_SOURCE);
+    if (g_strcmp0 (data_source, CD_PROFILE_METADATA_DATA_SOURCE_STANDARD) == 0)
+      goto out;
+
+    /* success */
+    ret = TRUE;
+out:
+    return ret;
+}
+
+
+
+static void
+color_settings_add_profiles_suitable_for_devices (ColorSettings *settings,
+                                                  GPtrArray *profiles)
+{
+  CdProfile *profile_tmp;
+  gboolean ret;
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GPtrArray) profile_array = NULL;
+  GtkTreeIter iter;
+  guint i;
+
+  gtk_list_store_clear (GTK_LIST_STORE (settings->liststore_assign));
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (settings->liststore_assign),
+                                        COLOR_SETTINGS_COMBO_COLUMN_TEXT,
+                                        GTK_SORT_ASCENDING);
+/*  gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (settings->liststore_assign),
+                                   COLOR_SETTINGS_COMBO_COLUMN_TEXT,
+                                   color_settings_combo_sort_func_cb,
+                                   settings->liststore_assign, NULL);
+
+  gtk_widget_hide (settings->label_assign_warning);
+*/
+  /* get profiles */
+  profile_array = cd_client_get_profiles_sync (settings->client,
+                                               settings->cancellable,
+                                               &error);
+  if (profile_array == NULL)
+    {
+      g_warning ("failed to get profiles: %s",
+           error->message);
+      return;
+    }
+
+  /* add profiles of the right kind */
+  for (i = 0; i < profile_array->len; i++)
+    {
+      profile_tmp = g_ptr_array_index (profile_array, i);
+
+      /* get properties */
+      ret = cd_profile_connect_sync (profile_tmp,
+                                     settings->cancellable,
+                                     &error);
+      if (!ret)
+        {
+          g_warning ("failed to get profile: %s", error->message);
+          return;
+        }
+
+      /* don't add any of the already added profiles */
+      if (profiles != NULL)
+        {
+          if (color_settings_profile_exists_in_array (profiles, profile_tmp))
+            continue;
+        }
+
+      /* only add correct types */
+      ret = color_settings_is_profile_suitable_for_device (profile_tmp,
+                                                      settings->current_device);
+      if (!ret)
+        continue;
+
+#if CD_CHECK_VERSION(0,1,13)
+      /* ignore profiles from other user accounts */
+      if (!cd_profile_has_access (profile_tmp))
+        continue;
+#endif
+
+      /* add */
+      color_settings_liststore_add_profile (settings,
+                                      profile_tmp,
+                                      &iter);
+    }
+}
+
+
+
+static void
+color_settings_button_assign_cancel_cb (GtkWidget *widget, ColorSettings *settings)
+{
+    gtk_widget_hide (GTK_WIDGET (settings->dialog_assign));
+}
+
+
+
+static void
+color_settings_button_assign_ok_cb (GtkWidget *widget, ColorSettings *settings)
+{
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  g_autoptr(CdProfile) profile = NULL;
+  gboolean ret = FALSE;
+  g_autoptr(GError) error = NULL;
+  GtkTreeSelection *selection;
+
+  /* hide window */
+  widget = GTK_WIDGET (settings->dialog_assign);
+  gtk_widget_hide (widget);
+
+  /* get the selected profile */
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (settings->treeview_assign));
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+    return;
+  gtk_tree_model_get (model, &iter,
+                      COLOR_SETTINGS_COMBO_COLUMN_PROFILE, &profile,
+                      -1);
+  if (profile == NULL)
+    {
+      g_warning ("failed to get the active profile");
+      return;
+    }
+
+  /* if the device is disabled, enable the device so that we can
+   * add color profiles to it */
+  if (!cd_device_get_enabled (settings->current_device))
+    {
+      ret = cd_device_set_enabled_sync (settings->current_device,
+                                        TRUE,
+                                        settings->cancellable,
+                                        &error);
+      if (!ret)
+        {
+          g_warning ("failed to enabled device: %s", error->message);
+          return;
+        }
+    }
+
+  /* just add it, the list store will get ::changed */
+  ret = cd_device_add_profile_sync (settings->current_device,
+                                    CD_DEVICE_RELATION_HARD,
+                                    profile,
+                                    settings->cancellable,
+                                    &error);
+  if (!ret)
+    {
+      g_warning ("failed to add: %s", error->message);
+      return;
+    }
+
+  /* make it default */
+  cd_device_make_profile_default (settings->current_device,
+                                  profile,
+                                  settings->cancellable,
+                                  (GAsyncReadyCallback) color_settings_make_profile_default_cb,
+                                  settings);
+}
+
+
+
+static void
+color_settings_profile_add_cb (GtkButton *button, ColorSettings *settings)
+{
+    g_autoptr(GPtrArray) profiles = NULL;
+
+    /* add profiles of the right kind */
+    profiles = cd_device_get_profiles (settings->current_device);
+    color_settings_add_profiles_suitable_for_devices (settings, profiles);
+
+    /* make insensitve until we have a selection */
+    //gtk_widget_set_sensitive (settings->button_assign_ok, FALSE);
+
+    /* show the dialog */
+    gtk_widget_show (GTK_WIDGET (settings->dialog_assign));
+    //gtk_window_set_transient_for (GTK_WINDOW (settings->dialog_assign), GTK_WINDOW (settings->main_window));
 }
 
 
@@ -635,9 +982,8 @@ color_settings_connect_cb (GObject *object,
 static void
 color_settings_dialog_init (GtkBuilder *builder)
 {
-    GObject *profile_add;
-
     ColorSettings *settings;
+
     settings = g_new0 (ColorSettings, 1);
     settings->cancellable = g_cancellable_new ();
     settings->devices = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
@@ -672,8 +1018,8 @@ color_settings_dialog_init (GtkBuilder *builder)
     gtk_widget_show_all (GTK_WIDGET (settings->list_box));
 
     /* Profiles ListBox */
-    profile_add = gtk_builder_get_object (builder, "profiles-add");
-    g_signal_connect (profile_add, "clicked", G_CALLBACK (color_settings_profile_add_cb), NULL);
+    settings->profiles_add = gtk_builder_get_object (builder, "profiles-add");
+    g_signal_connect (settings->profiles_add, "clicked", G_CALLBACK (color_settings_profile_add_cb), settings);
     settings->profiles_import = gtk_builder_get_object (builder, "profiles-import");
     g_signal_connect (settings->profiles_import, "clicked", G_CALLBACK (color_settings_profile_import_cb), settings);
     settings->profiles_remove = gtk_builder_get_object (builder, "profiles-remove");
@@ -701,6 +1047,25 @@ color_settings_dialog_init (GtkBuilder *builder)
 
     gtk_container_add (GTK_CONTAINER (settings->frame_profiles), GTK_WIDGET (settings->profiles_list_box));
     gtk_widget_show (GTK_WIDGET (settings->profiles_list_box));
+
+    /* Treeview of all colord profiles */
+    settings->dialog_assign = gtk_builder_get_object (builder, "dialog-assign");
+    settings->liststore_assign = gtk_builder_get_object (builder, "liststore-assign");
+    settings->treeview_assign = gtk_builder_get_object (builder, "treeview-assign");
+    color_settings_add_profiles_columns (settings, GTK_TREE_VIEW (settings->treeview_assign));
+/*    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (settings->treeview_assign));
+    g_signal_connect (selection, "changed",
+                      G_CALLBACK (color_settings_profiles_treeview_clicked_cb),
+                      settings);
+    g_signal_connect (GTK_TREE_VIEW (settings->treeview_assign), "row-activated",
+                      G_CALLBACK (color_settings_profiles_row_activated_cb),
+                      settings); */
+    settings->button_assign_ok = gtk_builder_get_object (builder, "assign-ok");
+    g_signal_connect (settings->button_assign_ok, "clicked",
+                  G_CALLBACK (color_settings_button_assign_ok_cb), settings);
+    settings->button_assign_cancel = gtk_builder_get_object (builder, "assign-cancel");
+    g_signal_connect (settings->button_assign_cancel, "clicked",
+                  G_CALLBACK (color_settings_button_assign_cancel_cb), settings);
 
     cd_client_connect (settings->client,
                        settings->cancellable,
