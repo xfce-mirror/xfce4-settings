@@ -787,7 +787,7 @@ color_settings_find_profile_by_object_path (GPtrArray *profiles,
     for (i = 0; i < profiles->len; i++) {
         profile_tmp = g_ptr_array_index (profiles, i);
         if (g_strcmp0 (cd_profile_get_object_path (profile_tmp), object_path) == 0)
-          return TRUE;
+            return TRUE;
     }
     return FALSE;
 }
@@ -806,7 +806,7 @@ color_settings_find_widget_by_object_path (GList *list,
 
     for (l = list; l != NULL; l = l->next) {
         if (!SETTINGS_IS_COLOR_PROFILE (l->data))
-          continue;
+            continue;
 
         /* correct device ? */
         device_tmp = color_profile_get_device (SETTINGS_COLOR_PROFILE (l->data));
@@ -850,16 +850,16 @@ color_settings_device_changed_cb (CdDevice *device,
         device_tmp = color_profile_get_device (SETTINGS_COLOR_PROFILE (l->data));
         if (g_strcmp0 (cd_device_get_id (device),
                        cd_device_get_id (device_tmp)) != 0)
-          continue;
+            continue;
 
         /* if profile is not in Device.Profiles then remove */
         profile_tmp = color_profile_get_profile (SETTINGS_COLOR_PROFILE (l->data));
         ret = color_settings_find_profile_by_object_path (profiles,
                                                      cd_profile_get_object_path (profile_tmp));
         if (!ret) {
-          gtk_widget_destroy (GTK_WIDGET (l->data));
-          /* Don't look at the destroyed widget below */
-          l->data = NULL;
+            gtk_widget_destroy (GTK_WIDGET (l->data));
+            /* Don't look at the destroyed widget below */
+            l->data = NULL;
         }
     }
 
@@ -870,7 +870,7 @@ color_settings_device_changed_cb (CdDevice *device,
                                                   cd_device_get_object_path (device),
                                                   cd_profile_get_object_path (profile_tmp));
       if (!ret)
-        color_settings_add_device_profile (settings, device, profile_tmp, i == 0);
+          color_settings_add_device_profile (settings, device, profile_tmp, i == 0);
     }
 
     color_settings_update_profile_list_extra_entry (settings);
@@ -935,8 +935,8 @@ color_settings_remove_device (ColorSettings *settings, CdDevice *device)
 
 static void
 list_box_update_header_func (GtkListBoxRow *row,
-                                GtkListBoxRow *before,
-                                gpointer user_data)
+                             GtkListBoxRow *before,
+                             gpointer user_data)
 {
     GtkWidget *current;
 
@@ -1043,7 +1043,7 @@ color_settings_connect_cb (GObject *object,
                                     &error);
     if (!ret) {
         if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
-          g_warning ("failed to connect to colord: %s", error->message);
+            g_warning ("failed to connect to colord: %s", error->message);
         return;
     }
 
@@ -1113,10 +1113,10 @@ color_settings_dialog_init (GtkBuilder *builder)
     settings->frame_profiles = gtk_builder_get_object (builder, "frame-profiles");
     settings->profiles_list_box = GTK_LIST_BOX (gtk_list_box_new ());
     gtk_list_box_set_header_func (settings->profiles_list_box,
-                              list_box_update_header_func,
-                              settings, NULL);
+                                  list_box_update_header_func,
+                                  settings, NULL);
     gtk_list_box_set_selection_mode (settings->profiles_list_box,
-                                 GTK_SELECTION_SINGLE);
+                                     GTK_SELECTION_SINGLE);
     gtk_list_box_set_activate_on_single_click (settings->profiles_list_box, FALSE);
     settings->profiles_list_box_selected_id =
         g_signal_connect (settings->profiles_list_box, "row-selected",
