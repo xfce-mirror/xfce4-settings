@@ -806,11 +806,109 @@ color_settings_dialog_response (GtkWidget *dialog,
 
 
 
+/* find the profile in the array -- for flicker-free changes */
+static gboolean
+color_settings_find_profile_by_object_path (GPtrArray *profiles,
+                                            const gchar *object_path)
+{
+    CdProfile *profile_tmp;
+    guint i;
+
+    for (i = 0; i < profiles->len; i++)
+      {
+        profile_tmp = g_ptr_array_index (profiles, i);
+        if (g_strcmp0 (cd_profile_get_object_path (profile_tmp), object_path) == 0)
+          return TRUE;
+      }
+    return FALSE;
+}
+
+
+
+/* find the profile in the list view -- for flicker-free changes */
+static gboolean
+color_settings_find_widget_by_object_path (GList *list,
+                                      const gchar *object_path_device,
+                                      const gchar *object_path_profile)
+{
+    GList *l;
+    CdDevice *device_tmp;
+    CdProfile *profile_tmp;
+
+    for (l = list; l != NULL; l = l->next)
+      {
+        if (!SETTINGS_IS_COLOR_PROFILE (l->data))
+          continue;
+
+        /* correct device ? */
+        device_tmp = color_profile_get_device (SETTINGS_COLOR_PROFILE (l->data));
+        if (g_strcmp0 (object_path_device,
+                       cd_device_get_object_path (device_tmp)) != 0)
+          {
+            continue;
+          }
+
+        /* this profile */
+        profile_tmp = color_profile_get_profile (SETTINGS_COLOR_PROFILE (l->data));
+        if (g_strcmp0 (object_path_profile,
+                       cd_profile_get_object_path (profile_tmp)) == 0)
+          {
+            return TRUE;
+          }
+      }
+    return FALSE;
+}
+
+
+
 static void
 color_settings_device_changed_cb (CdDevice *device,
                                   ColorSettings *settings)
 {
-    color_settings_add_device_profiles (settings, device);
+    CdDevice *device_tmp;
+    CdProfile *profile_tmp;
+    gboolean ret;
+    GList *l;
+    g_autoptr(GList) list = NULL;
+    GPtrArray *profiles;
+    guint i;
+
+    /* remove anything in the list view that's not in Device.Profiles */
+    profiles = cd_device_get_profiles (device);
+    list = gtk_container_get_children (GTK_CONTAINER (settings->profiles_list_box));
+    for (l = list; l != NULL; l = l->next)
+    {
+      if (!SETTINGS_IS_COLOR_PROFILE (l->data))
+        continue;
+
+      /* correct device ? */
+      device_tmp = color_profile_get_device (SETTINGS_COLOR_PROFILE (l->data));
+      if (g_strcmp0 (cd_device_get_id (device),
+                     cd_device_get_id (device_tmp)) != 0)
+        continue;
+
+      /* if profile is not in Device.Profiles then remove */
+      profile_tmp = color_profile_get_profile (SETTINGS_COLOR_PROFILE (l->data));
+      ret = color_settings_find_profile_by_object_path (profiles,
+                                                   cd_profile_get_object_path (profile_tmp));
+      if (!ret) {
+        gtk_widget_destroy (GTK_WIDGET (l->data));
+        /* Don't look at the destroyed widget below */
+        l->data = NULL;
+      }
+    }
+
+    /* add anything in Device.Profiles that's not in the list view */
+    for (i = 0; i < profiles->len; i++)
+    {
+      profile_tmp = g_ptr_array_index (profiles, i);
+      ret = color_settings_find_widget_by_object_path (list,
+                                                  cd_device_get_object_path (device),
+                                                  cd_profile_get_object_path (profile_tmp));
+      if (!ret)
+        color_settings_add_device_profile (settings, device, profile_tmp, i == 0);
+    }
+
     color_settings_update_profile_list_extra_entry (settings);
 }
 
