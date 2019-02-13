@@ -1875,7 +1875,7 @@ display_settings_dialog_new (GtkBuilder *builder)
 {
     GObject          *combobox;
     GtkCellRenderer  *renderer;
-    GObject          *label, *check, *primary, *primary_label, *mirror, *identify, *primary_indicator;
+    GObject          *label, *check, *primary, *mirror, *identify, *primary_indicator;
     GtkWidget        *button;
     GtkTreeSelection *selection;
 
@@ -2286,7 +2286,7 @@ static void get_geometry (XfceOutputInfo *output, int *w, int *h);
 static void
 lay_out_outputs_horizontally (void)
 {
-    gint x, y;
+    gint x, y, temp_x;
     GList *list;
 
     /* Lay out all the monitors horizontally when "mirror screens" is turned
@@ -2306,7 +2306,8 @@ lay_out_outputs_horizontally (void)
         if (output->connected && output->on)
         {
             y = MAX(output->y, y);
-            x = MAX(output->x + output->width, x);
+            temp_x = output->x + output->width;
+            x = MAX(temp_x, x);
         }
     }
 
