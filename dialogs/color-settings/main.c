@@ -846,11 +846,15 @@ color_settings_device_changed_cb (CdDevice *device,
         if (!SETTINGS_IS_COLOR_PROFILE (l->data))
             continue;
 
-        /* correct device ? */
+        /* remove profiles from other devices from the list */
         device_tmp = color_profile_get_device (SETTINGS_COLOR_PROFILE (l->data));
         if (g_strcmp0 (cd_device_get_id (device),
-                       cd_device_get_id (device_tmp)) != 0)
+                       cd_device_get_id (device_tmp)) != 0) {
+            gtk_widget_destroy (GTK_WIDGET (l->data));
+            /* Don't look at the destroyed widget below */
+            l->data = NULL;
             continue;
+        }
 
         /* if profile is not in Device.Profiles then remove */
         profile_tmp = color_profile_get_profile (SETTINGS_COLOR_PROFILE (l->data));
