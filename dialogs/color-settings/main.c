@@ -103,7 +103,11 @@ enum {
 
 
 
-static void color_settings_make_profile_default_cb (GObject *object, GAsyncResult *res, ColorSettings *settings);
+static void color_settings_make_profile_default_cb (GObject       *object,
+                                                    GAsyncResult  *res,
+                                                    ColorSettings *settings);
+static void color_settings_device_changed_cb       (CdDevice      *device,
+                                                    ColorSettings *settings);
 
 
 
@@ -648,31 +652,6 @@ color_settings_add_device_profile (ColorSettings *settings,
 
 
 static void
-color_settings_add_device_profiles (ColorSettings *settings, CdDevice *device)
-{
-    GtkCallback func = listbox_remove_all;
-    CdProfile *profile_tmp;
-    g_autoptr(GPtrArray) profiles = NULL;
-    guint i;
-
-    /* remove all profiles from the list */
-    gtk_container_foreach (GTK_CONTAINER (settings->profiles_list_box), func, settings->profiles_list_box);
-    /* add profiles */
-    profiles = cd_device_get_profiles (device);
-    if (profiles == NULL)
-        return;
-    for (i = 0; i < profiles->len; i++)
-    {
-        profile_tmp = g_ptr_array_index (profiles, i);
-        color_settings_add_device_profile (settings, device, profile_tmp, i == 0);
-    }
-
-    gtk_widget_show (GTK_WIDGET (settings->profiles_list_box));
-}
-
-
-
-static void
 color_settings_update_device_list_extra_entry (ColorSettings *settings)
 {
     g_autoptr(GList) device_widgets = NULL;
@@ -710,9 +689,8 @@ color_settings_list_box_row_activated_cb (GtkListBox *list_box,
     g_object_get (row, "device", &settings->current_device, NULL);
     if (cd_device_get_enabled (settings->current_device))
     {
-        color_settings_add_device_profiles (settings, settings->current_device);
+        color_settings_device_changed_cb (settings->current_device, settings);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), TRUE);
-        color_settings_update_profile_list_extra_entry (settings);
     }
     else
     {
