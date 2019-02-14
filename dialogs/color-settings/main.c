@@ -483,6 +483,23 @@ color_settings_button_assign_ok_cb (GtkWidget *widget, ColorSettings *settings)
 
 
 static void
+color_settings_profiles_row_activated_cb (GtkTreeView *tree_view,
+                                          GtkTreePath *path,
+                                          GtkTreeViewColumn *column,
+                                          ColorSettings *settings)
+{
+    GtkTreeIter iter;
+    gboolean ret;
+
+    ret = gtk_tree_model_get_iter (gtk_tree_view_get_model (tree_view), &iter, path);
+    if (!ret)
+        return;
+    color_settings_button_assign_ok_cb (NULL, settings);
+}
+
+
+
+static void
 color_settings_profile_add_cb (GtkButton *button, ColorSettings *settings)
 {
     g_autoptr(GPtrArray) profiles = NULL;
@@ -1131,9 +1148,9 @@ color_settings_dialog_init (GtkBuilder *builder)
     g_signal_connect (selection, "changed",
                       G_CALLBACK (color_settings_profiles_treeview_clicked_cb),
                       settings);
-/*    g_signal_connect (GTK_TREE_VIEW (settings->treeview_assign), "row-activated",
+    g_signal_connect (GTK_TREE_VIEW (settings->treeview_assign), "row-activated",
                       G_CALLBACK (color_settings_profiles_row_activated_cb),
-                      settings); */
+                      settings);
     settings->button_assign_import = gtk_builder_get_object (builder, "assign-import");
     g_signal_connect (settings->button_assign_import, "clicked", G_CALLBACK (color_settings_profile_import_cb), settings);
     settings->button_assign_ok = gtk_builder_get_object (builder, "assign-ok");
