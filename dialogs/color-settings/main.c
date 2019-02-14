@@ -111,15 +111,6 @@ static void color_settings_device_changed_cb       (CdDevice      *device,
 
 
 
-static void
-listbox_remove_all (GtkWidget *widget, gpointer user_data)
-{
-    GtkWidget *container = user_data;
-    gtk_container_remove (GTK_CONTAINER (container), widget);
-}
-
-
-
 static GFile *
 color_settings_file_chooser_get_icc_profile (ColorSettings *settings)
 {
