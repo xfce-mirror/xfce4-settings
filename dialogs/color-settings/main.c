@@ -1056,7 +1056,6 @@ color_settings_dialog_init (GtkBuilder *builder)
 {
     ColorSettings *settings;
     GtkTreeSelection *selection;
-    GtkStyleContext *context;
 
     settings = g_new0 (ColorSettings, 1);
     settings->cancellable = g_cancellable_new ();
