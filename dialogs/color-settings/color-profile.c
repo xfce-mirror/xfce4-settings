@@ -69,7 +69,10 @@ color_profile_get_profile_date (CdProfile *profile)
   if (created == 0)
     return NULL;
   dt = g_date_time_new_from_unix_utc (created);
-  return g_date_time_format (dt, "%x");
+  if (dt)
+      return g_date_time_format (dt, "%x");
+  else
+      return NULL;
 }
 
 static gchar *
