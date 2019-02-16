@@ -19,7 +19,6 @@ xfce4_color_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(COLORD_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
-	$(XFCONF_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
     -DGTK_DISABLE_SINGLE_INCLUDES \
     -DGDK_DISABLE_DEPRECATED \
@@ -35,8 +34,7 @@ xfce4_color_settings_LDFLAGS = \
 xfce4_color_settings_LDADD = \
 	$(GTK_LIBS) \
 	$(COLORD_LIBS) \
-	$(LIBXFCE4UI_LIBS) \
-	$(XFCONF_LIBS)
+	$(LIBXFCE4UI_LIBS)
 
 if MAINTAINER_MODE
 

@@ -34,7 +34,6 @@
 
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
-#include <xfconf/xfconf.h>
 
 #include "color-device.h"
 #include "color-profile.h"
@@ -52,9 +51,6 @@ static GOptionEntry entries[] =
 };
 
 
-
-/* global xfconf channel */
-static XfconfChannel *color_channel = NULL;
 
 typedef
 struct _ColorSettings
@@ -1198,18 +1194,6 @@ main (gint argc, gchar **argv)
         return EXIT_SUCCESS;
     }
 
-    /* initialize xfconf */
-    if (!xfconf_init (&error)) {
-        /* print error and exit */
-        g_error ("Failed to connect to xfconf daemon: %s.", error->message);
-        g_error_free (error);
-
-        return EXIT_FAILURE;
-    }
-
-    /* open the channels */
-    color_channel = xfconf_channel_new ("color");
-
     /* hook to make sure the libxfce4ui library is linked */
     if (xfce_titled_dialog_get_type () == 0)
         return EXIT_FAILURE;
@@ -1263,12 +1247,6 @@ main (gint argc, gchar **argv)
 
     /* Release Builder */
     g_object_unref (G_OBJECT (builder));
-
-    /* release the channels */
-    g_object_unref (G_OBJECT (color_channel));
-
-    /* shutdown xfconf */
-    xfconf_shutdown();
 
     return EXIT_SUCCESS;
 }
