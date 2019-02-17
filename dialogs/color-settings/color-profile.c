@@ -45,7 +45,7 @@ struct _ColorProfile
 #define GCM_SETTINGS_RECALIBRATE_DISPLAY_THRESHOLD      "recalibrate-display-threshold"
 
 
-#define IMAGE_WIDGET_PADDING 12
+#define IMAGE_WIDGET_PADDING 9
 
 G_DEFINE_TYPE (ColorProfile, color_profile, GTK_TYPE_LIST_BOX_ROW)
 
@@ -183,7 +183,7 @@ color_profile_refresh (ColorProfile *color_profile)
   /* show the image if the profile is default */
   gtk_widget_set_visible (color_profile->widget_image, color_profile->is_default);
   gtk_widget_set_margin_start (color_profile->widget_description,
-                              color_profile->is_default ? 0 : IMAGE_WIDGET_PADDING * 4);
+                              color_profile->is_default ? 0 : IMAGE_WIDGET_PADDING * 2 + 16);
 
   /* set the title */
   title = gcm_prefs_get_profile_title (color_profile->profile);
@@ -348,7 +348,7 @@ color_profile_init (ColorProfile *color_profile)
   /* default tick */
   color_profile->widget_image = gtk_image_new_from_icon_name ("object-select-symbolic", GTK_ICON_SIZE_MENU);
   gtk_widget_set_margin_start (color_profile->widget_image, IMAGE_WIDGET_PADDING);
-  gtk_widget_set_margin_end (color_profile->widget_image, IMAGE_WIDGET_PADDING);
+  //gtk_widget_set_margin_end (color_profile->widget_image, IMAGE_WIDGET_PADDING);
   gtk_box_pack_start (GTK_BOX (box), color_profile->widget_image, FALSE, FALSE, 0);
 
   /* description */
