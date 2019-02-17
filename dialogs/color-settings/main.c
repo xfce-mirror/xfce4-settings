@@ -60,10 +60,11 @@ struct _ColorSettings
     GPtrArray     *devices;
     GCancellable  *cancellable;
     GDBusProxy    *proxy;
-    GObject       *grid;
     GObject       *label_no_devices;
-    GObject       *box_devices;
-    GObject       *frame_devices;
+    GObject       *scrolled_devices;
+    GObject       *model;
+    GObject       *vendor;
+    GObject       *colorspace;
     GtkListBox    *list_box;
     gchar         *list_box_filter;
     guint          list_box_selected_id;
@@ -670,7 +671,7 @@ color_settings_update_device_list_extra_entry (ColorSettings *settings)
     device_widgets = gtk_container_get_children (GTK_CONTAINER (settings->list_box));
     number_of_devices = g_list_length (device_widgets);
     gtk_widget_set_visible (GTK_WIDGET (settings->label_no_devices), number_of_devices == 0);
-    gtk_widget_set_visible (GTK_WIDGET (settings->box_devices), number_of_devices > 0);
+    gtk_widget_set_visible (GTK_WIDGET (settings->scrolled_devices), number_of_devices > 0);
 }
 
 
@@ -680,6 +681,13 @@ color_settings_update_profile_list_extra_entry (ColorSettings *settings)
 {
     g_autoptr(GList) profile_widgets = NULL;
     guint number_of_profiles;
+
+    if (CD_IS_DEVICE (settings->current_device)) {
+        gtk_label_set_text (GTK_LABEL (settings->model), cd_device_get_model (settings->current_device));
+        gtk_label_set_text (GTK_LABEL (settings->vendor), cd_device_get_vendor (settings->current_device));
+        gtk_label_set_text (GTK_LABEL (settings->colorspace),
+                            cd_colorspace_to_string (cd_device_get_colorspace (settings->current_device)));
+    }
 
     /* any profiles to show? */
     profile_widgets = gtk_container_get_children (GTK_CONTAINER (settings->profiles_list_box));
@@ -1057,6 +1065,8 @@ color_settings_dialog_init (GtkBuilder *builder)
 {
     ColorSettings *settings;
     GtkTreeSelection *selection;
+    GObject *paned;
+    GtkCssProvider *provider;
 
     settings = g_new0 (ColorSettings, 1);
     settings->cancellable = g_cancellable_new ();
@@ -1069,12 +1079,23 @@ color_settings_dialog_init (GtkBuilder *builder)
     g_signal_connect_data (settings->client, "device-removed",
                            G_CALLBACK (color_settings_device_removed_cb), settings, 0, 0);
 
+    /* hide separator from GtkPaned */
+    paned = gtk_builder_get_object (builder, "paned");
+    provider = gtk_css_provider_new ();
+    gtk_css_provider_load_from_data (provider,
+                                     "paned separator { background:transparent; }",
+                                     -1, NULL);
+    gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (paned)),
+                                    GTK_STYLE_PROVIDER (provider),
+                                    GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
     settings->label_no_devices = gtk_builder_get_object (builder, "label-no-devices");
-    settings->box_devices = gtk_builder_get_object (builder, "box-devices");
-    settings->grid = gtk_builder_get_object (builder, "grid");
 
     /* Devices ListBox */
-    settings->frame_devices = gtk_builder_get_object (builder, "frame-devices");
+    settings->model = gtk_builder_get_object (builder, "model");
+    settings->vendor = gtk_builder_get_object (builder, "vendor");
+    settings->colorspace = gtk_builder_get_object (builder, "colorspace");
+    settings->scrolled_devices = gtk_builder_get_object (builder, "scrolled-devices");
     settings->list_box = GTK_LIST_BOX (gtk_list_box_new ());
     gtk_list_box_set_sort_func (settings->list_box,
                                 color_settings_sort_func,
@@ -1092,7 +1113,7 @@ color_settings_dialog_init (GtkBuilder *builder)
                           settings);
     settings->list_box_size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
 
-    gtk_container_add (GTK_CONTAINER (settings->frame_devices), GTK_WIDGET (settings->list_box));
+    gtk_container_add (GTK_CONTAINER (settings->scrolled_devices), GTK_WIDGET (settings->list_box));
     gtk_widget_show_all (GTK_WIDGET (settings->list_box));
 
     /* Profiles ListBox */
@@ -1215,7 +1236,7 @@ main (gint argc, gchar **argv)
             dialog = gtk_builder_get_object (builder, "dialog");
 
             g_signal_connect (dialog, "response",
-                G_CALLBACK (color_settings_dialog_response), NULL);
+                              G_CALLBACK (color_settings_dialog_response), NULL);
             gtk_window_present (GTK_WINDOW (dialog));
 
             /* To prevent the settings dialog to be saved in the session */

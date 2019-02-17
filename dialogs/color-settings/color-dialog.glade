@@ -20,8 +20,8 @@
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Color Profiles</property>
     <property name="window_position">center-on-parent</property>
-    <property name="default_width">400</property>
-    <property name="default_height">600</property>
+    <property name="default_width">700</property>
+    <property name="default_height">400</property>
     <property name="icon_name">preferences-color-symbolic</property>
     <property name="type_hint">dialog</property>
     <property name="subtitle" translatable="yes">Configure color profiles for your devices</property>
@@ -80,72 +80,30 @@
             <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkGrid" id="grid">
+              <object class="GtkPaned" id="paned">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="border_width">6</property>
+                <property name="can_focus">True</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkBox" id="device">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Devices&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
-                    <property name="xalign">0</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">12</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Profiles&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
-                    <property name="xalign">0</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="margin_left">6</property>
+                    <property name="margin_top">6</property>
+                    <property name="margin_bottom">6</property>
                     <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkBox" id="box-devices">
+                      <object class="GtkScrolledWindow" id="scrolled-devices">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="orientation">vertical</property>
+                        <property name="can_focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="shadow_type">in</property>
+                        <property name="min_content_width">250</property>
                         <child>
-                          <object class="GtkFrame" id="frame-devices">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="label_xalign">0.5</property>
-                            <property name="shadow_type">in</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child type="label_item">
-                              <placeholder/>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
+                          <placeholder/>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
+                        <property name="expand">True</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
@@ -187,51 +145,117 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
+                    <property name="resize">False</property>
+                    <property name="shrink">False</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="profile">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="vexpand">True</property>
+                    <property name="margin_left">12</property>
+                    <property name="margin_right">12</property>
+                    <property name="margin_top">12</property>
+                    <property name="margin_bottom">12</property>
                     <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkBox" id="label-no-profiles">
+                      <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
-                        <property name="orientation">vertical</property>
+                        <property name="margin_top">6</property>
+                        <property name="margin_bottom">6</property>
+                        <property name="row_spacing">3</property>
+                        <property name="column_spacing">12</property>
+                        <property name="column_homogeneous">True</property>
                         <child>
-                          <object class="GtkLabel" id="label-no-profiles-label">
+                          <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="sensitive">False</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
-                            <property name="margin_right">12</property>
-                            <property name="margin_top">12</property>
-                            <property name="margin_bottom">12</property>
-                            <property name="hexpand">True</property>
-                            <property name="label" translatable="yes">&lt;b&gt;No profiles for the selected device.&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
-                            <property name="justify">center</property>
+                            <property name="label" translatable="yes">Model:</property>
+                            <property name="xalign">1</property>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
                           </packing>
                         </child>
-                        <style>
-                          <class name="view"/>
-                          <class name="frame"/>
-                        </style>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Vendor:</property>
+                            <property name="xalign">1</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Colorspace:</property>
+                            <property name="xalign">1</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="model">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="xalign">0</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="vendor">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="xalign">0</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="colorspace">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="xalign">0</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">2</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_top">12</property>
+                        <property name="label" translatable="yes">&lt;b&gt;Profiles&lt;/b&gt;</property>
+                        <property name="use_markup">True</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -250,7 +274,43 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="label-no-profiles">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkLabel" id="label-no-profiles-label">
+                            <property name="visible">True</property>
+                            <property name="sensitive">False</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_left">12</property>
+                            <property name="margin_right">12</property>
+                            <property name="margin_top">12</property>
+                            <property name="margin_bottom">12</property>
+                            <property name="label" translatable="yes">&lt;b&gt;No profiles for the selected device.&lt;/b&gt;</property>
+                            <property name="use_markup">True</property>
+                            <property name="justify">center</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <style>
+                          <class name="view"/>
+                          <class name="frame"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
                       </packing>
                     </child>
                     <child>
@@ -341,13 +401,13 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">4</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">3</property>
+                    <property name="resize">True</property>
+                    <property name="shrink">False</property>
                   </packing>
                 </child>
               </object>
