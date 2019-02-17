@@ -561,6 +561,11 @@ color_settings_profile_remove_cb (GtkWidget *widget, ColorSettings *settings)
                                          &error);
     if (!ret)
         g_warning ("failed to remove profile: %s", error->message);
+
+    /* as there are no items selected by default after removing a profile, we disable
+       the "remove" and "enable" buttons */
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), FALSE);
 }
 
 
