@@ -62,6 +62,7 @@ struct _ColorSettings
     GDBusProxy    *proxy;
     GObject       *label_no_devices;
     GObject       *scrolled_devices;
+    GObject       *device_icon;
     GObject       *model;
     GObject       *vendor;
     GObject       *colorspace;
@@ -72,7 +73,7 @@ struct _ColorSettings
     GtkSizeGroup  *list_box_size;
     GObject       *dialog_assign;
     GObject       *label_no_profiles;
-    GObject       *box_profiles;
+    GObject       *scrolled_profiles;
     GObject       *profiles_enable;
     GObject       *profiles_add;
     GObject       *profiles_remove;
@@ -683,17 +684,23 @@ color_settings_update_profile_list_extra_entry (ColorSettings *settings)
     guint number_of_profiles;
 
     if (CD_IS_DEVICE (settings->current_device)) {
-        gtk_label_set_text (GTK_LABEL (settings->model), cd_device_get_model (settings->current_device));
-        gtk_label_set_text (GTK_LABEL (settings->vendor), cd_device_get_vendor (settings->current_device));
-        gtk_label_set_text (GTK_LABEL (settings->colorspace),
-                            cd_colorspace_to_string (cd_device_get_colorspace (settings->current_device)));
+        const gchar *model = cd_device_get_model (settings->current_device);
+        const gchar *vendor = cd_device_get_vendor (settings->current_device);
+        const gchar *colorspace = cd_colorspace_to_string (cd_device_get_colorspace (settings->current_device));
+
+        gtk_image_set_from_icon_name (GTK_IMAGE (settings->device_icon),
+                                      color_device_get_type_icon (settings->current_device),
+                                      GTK_ICON_SIZE_DIALOG);
+        gtk_label_set_text (GTK_LABEL (settings->model), model ? model : _("Unknown"));
+        gtk_label_set_text (GTK_LABEL (settings->vendor), vendor ? vendor : _("Unknown"));
+        gtk_label_set_text (GTK_LABEL (settings->colorspace), colorspace ? colorspace : _("Unknown"));
     }
 
     /* any profiles to show? */
     profile_widgets = gtk_container_get_children (GTK_CONTAINER (settings->profiles_list_box));
     number_of_profiles = g_list_length (profile_widgets);
     gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), number_of_profiles == 0);
-    gtk_widget_set_visible (GTK_WIDGET (settings->box_profiles), number_of_profiles > 0);
+    gtk_widget_set_visible (GTK_WIDGET (settings->scrolled_profiles), number_of_profiles > 0);
 }
 
 
@@ -717,7 +724,7 @@ color_settings_list_box_row_activated_cb (GtkListBox *list_box,
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), FALSE);
-        gtk_widget_hide (GTK_WIDGET (settings->box_profiles));
+        gtk_widget_hide (GTK_WIDGET (settings->scrolled_profiles));
     }
 }
 
@@ -731,7 +738,7 @@ color_settings_device_enabled_changed_cb (ColorDevice *widget,
 {
     gtk_list_box_select_row (settings->list_box, GTK_LIST_BOX_ROW (widget));
     gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), !is_enabled);
-    gtk_widget_set_visible (GTK_WIDGET (settings->box_profiles), is_enabled);
+    gtk_widget_set_visible (GTK_WIDGET (settings->scrolled_profiles), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), is_enabled);
@@ -1065,8 +1072,6 @@ color_settings_dialog_init (GtkBuilder *builder)
 {
     ColorSettings *settings;
     GtkTreeSelection *selection;
-    GObject *paned;
-    GtkCssProvider *provider;
 
     settings = g_new0 (ColorSettings, 1);
     settings->cancellable = g_cancellable_new ();
@@ -1079,19 +1084,10 @@ color_settings_dialog_init (GtkBuilder *builder)
     g_signal_connect_data (settings->client, "device-removed",
                            G_CALLBACK (color_settings_device_removed_cb), settings, 0, 0);
 
-    /* hide separator from GtkPaned */
-    paned = gtk_builder_get_object (builder, "paned");
-    provider = gtk_css_provider_new ();
-    gtk_css_provider_load_from_data (provider,
-                                     "paned separator { background:transparent; }",
-                                     -1, NULL);
-    gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (paned)),
-                                    GTK_STYLE_PROVIDER (provider),
-                                    GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
     settings->label_no_devices = gtk_builder_get_object (builder, "label-no-devices");
 
     /* Devices ListBox */
+    settings->device_icon = gtk_builder_get_object (builder, "device-icon");
     settings->model = gtk_builder_get_object (builder, "model");
     settings->vendor = gtk_builder_get_object (builder, "vendor");
     settings->colorspace = gtk_builder_get_object (builder, "colorspace");
@@ -1130,7 +1126,6 @@ color_settings_dialog_init (GtkBuilder *builder)
     g_signal_connect (settings->profiles_enable, "clicked", G_CALLBACK (color_settings_device_profile_enable_cb), settings);
 
     settings->label_no_profiles = gtk_builder_get_object (builder, "label-no-profiles");
-    settings->box_profiles = gtk_builder_get_object (builder, "box-profiles");
     settings->profiles_list_box = GTK_LIST_BOX (gtk_list_box_new ());
     gtk_list_box_set_header_func (settings->profiles_list_box,
                                   list_box_update_header_func,
@@ -1148,7 +1143,8 @@ color_settings_dialog_init (GtkBuilder *builder)
                       settings);
     settings->profiles_list_box_size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
 
-    gtk_container_add (GTK_CONTAINER (settings->box_profiles), GTK_WIDGET (settings->profiles_list_box));
+    settings->scrolled_profiles = gtk_builder_get_object (builder, "scrolled-profiles");
+    gtk_container_add (GTK_CONTAINER (settings->scrolled_profiles), GTK_WIDGET (settings->profiles_list_box));
     gtk_widget_show (GTK_WIDGET (settings->profiles_list_box));
 
     /* Treeview of all colord profiles */

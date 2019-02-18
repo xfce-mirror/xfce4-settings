@@ -136,21 +136,21 @@ color_device_kind_to_sort (CdDevice *device)
   return "9";
 }
 
-static const gchar *
+const gchar *
 color_device_get_type_icon (CdDevice *device)
 {
   CdDeviceKind kind = cd_device_get_kind (device);
   if (kind == CD_DEVICE_KIND_DISPLAY)
-    return "video-display-symbolic";
+    return "video-display";
   if (kind == CD_DEVICE_KIND_SCANNER)
-    return "scanner-symbolic";
+    return "scanner";
   if (kind == CD_DEVICE_KIND_CAMERA)
-    return "camera-photo-symbolic";
+    return "camera-photo";
   if (kind == CD_DEVICE_KIND_WEBCAM)
-    return "camera-web-symbolic";
+    return "camera-web";
   if (kind == CD_DEVICE_KIND_PRINTER)
-    return "printer-symbolic";
-  return "dialog-question-symbolic";
+    return "printer";
+  return "dialog-question";
 }
 
 gchar *
@@ -170,6 +170,7 @@ color_device_refresh (ColorDevice *color_device)
   g_autoptr(GPtrArray) profiles = NULL;
   AtkObject *accessible;
   g_autofree gchar *name1 = NULL;
+  g_autofree gchar *device_icon = NULL;
 
   /* add switch and expander if there are profiles, otherwise use a label */
   profiles = cd_device_get_profiles (color_device->device);
@@ -180,8 +181,9 @@ color_device_refresh (ColorDevice *color_device)
   gtk_label_set_label (GTK_LABEL (color_device->widget_description), title);
   gtk_widget_set_visible (color_device->widget_description, TRUE);
 
+  device_icon = g_strdup_printf ("%s-symbolic", color_device_get_type_icon (color_device->device));
   gtk_image_set_from_icon_name (GTK_IMAGE (color_device->widget_icon),
-                                color_device_get_type_icon (color_device->device),
+                                device_icon,
                                 GTK_ICON_SIZE_MENU);
   gtk_widget_set_visible (color_device->widget_icon, TRUE);
   gtk_widget_set_visible (color_device->widget_switch, profiles->len > 0);
