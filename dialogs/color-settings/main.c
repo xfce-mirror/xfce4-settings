@@ -1072,6 +1072,8 @@ color_settings_dialog_init (GtkBuilder *builder)
 {
     ColorSettings *settings;
     GtkTreeSelection *selection;
+    GObject *paned;
+    GtkCssProvider *provider;
 
     settings = g_new0 (ColorSettings, 1);
     settings->cancellable = g_cancellable_new ();
@@ -1083,6 +1085,17 @@ color_settings_dialog_init (GtkBuilder *builder)
                            G_CALLBACK (color_settings_device_added_cb), settings, 0, 0);
     g_signal_connect_data (settings->client, "device-removed",
                            G_CALLBACK (color_settings_device_removed_cb), settings, 0, 0);
+
+    /* brighten the background of the GtkPaned for better visual grouping */
+    paned = gtk_builder_get_object (builder, "paned");
+    gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (paned)), "color-profiles");
+    provider = gtk_css_provider_new ();
+    gtk_css_provider_load_from_data (provider,
+                                     "paned.color-profiles { background: shade(@theme_bg_color, 1.05); }",
+                                     -1, NULL);
+    gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (paned)),
+                                    GTK_STYLE_PROVIDER (provider),
+                                    GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     settings->label_no_devices = gtk_builder_get_object (builder, "label-no-devices");
 
