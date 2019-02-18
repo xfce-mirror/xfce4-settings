@@ -236,6 +236,7 @@ color_settings_add_profiles_columns (ColorSettings *settings,
     gtk_tree_view_column_add_attribute (column, renderer,
                                         "markup", COLOR_SETTINGS_COMBO_COLUMN_TEXT);
     gtk_tree_view_column_set_expand (column, TRUE);
+    gtk_tree_view_column_set_title (column, _("Compatible Profiles"));
     gtk_tree_view_append_column (treeview, column);
 
     /* image */
