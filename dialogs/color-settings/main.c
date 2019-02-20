@@ -106,7 +106,7 @@ static void color_settings_make_profile_default_cb (GObject       *object,
                                                     ColorSettings *settings);
 static void color_settings_device_changed_cb       (CdDevice      *device,
                                                     ColorSettings *settings);
-
+ColorSettings * color_settings_dialog_init         (GtkBuilder    *builder);
 
 
 static GFile *
@@ -772,14 +772,27 @@ color_settings_profiles_list_box_row_activated_cb (GtkListBox *list_box,
 
 
 static void
+color_settings_dialog_destroy (ColorSettings *settings)
+{
+    g_clear_object (&settings->cancellable);
+    g_clear_object (&settings->client);
+    g_clear_object (&settings->current_device);
+    g_clear_object (&settings->list_box_size);
+    gtk_main_quit ();
+}
+
+
+
+static void
 color_settings_dialog_response (GtkWidget *dialog,
-                                gint       response_id)
+                                gint       response_id,
+                                ColorSettings *settings)
 {
     if (response_id == GTK_RESPONSE_HELP)
         xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "color",
                                             NULL, XFCE4_SETTINGS_VERSION_SHORT);
     else
-        gtk_main_quit ();
+        color_settings_dialog_destroy (settings);
 }
 
 
@@ -1068,7 +1081,7 @@ color_settings_connect_cb (GObject *object,
 
 
 
-static void
+ColorSettings *
 color_settings_dialog_init (GtkBuilder *builder)
 {
     ColorSettings *settings;
@@ -1186,6 +1199,7 @@ color_settings_dialog_init (GtkBuilder *builder)
                        settings->cancellable,
                        color_settings_connect_cb,
                        settings);
+    return settings;
 }
 
 
@@ -1193,10 +1207,11 @@ color_settings_dialog_init (GtkBuilder *builder)
 gint
 main (gint argc, gchar **argv)
 {
-    GObject    *dialog, *plug_child;
-    GtkWidget  *plug;
-    GtkBuilder *builder;
-    GError     *error = NULL;
+    GObject       *dialog, *plug_child;
+    GtkWidget     *plug;
+    GtkBuilder    *builder;
+    GError        *error = NULL;
+    ColorSettings *settings;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -1239,14 +1254,14 @@ main (gint argc, gchar **argv)
     if (gtk_builder_add_from_string (builder, color_dialog_ui,
                                      color_dialog_ui_length, &error) != 0) {
         /* Initialize the dialog */
-        color_settings_dialog_init (builder);
+        settings = color_settings_dialog_init (builder);
 
         if (G_UNLIKELY (opt_socket_id == 0)) {
             /* Get the dialog widget */
             dialog = gtk_builder_get_object (builder, "dialog");
 
             g_signal_connect (dialog, "response",
-                              G_CALLBACK (color_settings_dialog_response), NULL);
+                              G_CALLBACK (color_settings_dialog_response), settings);
             gtk_window_present (GTK_WINDOW (dialog));
 
             /* To prevent the settings dialog to be saved in the session */
@@ -1257,7 +1272,7 @@ main (gint argc, gchar **argv)
         else {
             /* Create plug widget */
             plug = gtk_plug_new (opt_socket_id);
-            g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+            g_signal_connect (plug, "delete-event", G_CALLBACK (color_settings_dialog_destroy), settings);
             gtk_widget_show (plug);
 
             /* Stop startup notification */
