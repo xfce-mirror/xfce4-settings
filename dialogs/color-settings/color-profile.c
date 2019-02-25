@@ -36,7 +36,6 @@ struct _ColorProfile
   gboolean     is_default;
   GtkWidget   *widget_description;
   GtkWidget   *widget_image;
-  GtkWidget   *widget_info;
   guint        device_changed_id;
   guint        profile_changed_id;
 };
@@ -360,12 +359,6 @@ color_profile_init (ColorProfile *color_profile)
   gtk_label_set_xalign (GTK_LABEL (color_profile->widget_description), 0);
   gtk_box_pack_start (GTK_BOX (box), color_profile->widget_description, TRUE, TRUE, 0);
   gtk_widget_show (color_profile->widget_description);
-
-  /* profile warnings/info */
-  color_profile->widget_info = gtk_image_new_from_icon_name ("dialog-information-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_widget_set_margin_start (color_profile->widget_info, IMAGE_WIDGET_PADDING);
-  gtk_widget_set_margin_end (color_profile->widget_info, IMAGE_WIDGET_PADDING);
-  gtk_box_pack_start (GTK_BOX (box), color_profile->widget_info, FALSE, FALSE, 0);
 
   /* refresh */
   gtk_container_add (GTK_CONTAINER (color_profile), box);

@@ -77,6 +77,7 @@ struct _ColorSettings
     GObject       *profiles_enable;
     GObject       *profiles_add;
     GObject       *profiles_remove;
+    GObject       *profiles_info;
     GtkListBox    *profiles_list_box;
     gchar         *profiles_list_box_filter;
     guint          profiles_list_box_selected_id;
@@ -574,6 +575,45 @@ color_settings_profile_remove_cb (GtkWidget *widget, ColorSettings *settings)
 
 
 static void
+color_settings_profile_info_view (CdProfile *profile)
+{
+    gboolean ret;
+    GError **error = NULL;
+    gchar *cli;
+
+    /* open up gcm-viewer */
+    argv = g_ptr_array_new_with_free_func (g_free);
+    cli = g_strdup_printf ("gcm-viewer --profile %s", cd_profile_get_id (profile));
+    ret = g_spawn_command_line_async (cli, error);
+    if (!ret)
+        g_warning ("failed to run gcm-viewer: %s", error->message);
+
+    g_free (cli);
+}
+
+
+
+static void
+color_settings_profile_info_cb (GtkWidget *widget, ColorSettings *settings)
+{
+    CdProfile *profile;
+    GtkListBoxRow *row;
+
+    /* get the selected profile */
+    row = gtk_list_box_get_selected_row (settings->profiles_list_box);
+    if (row == NULL)
+        return;
+    profile = color_profile_get_profile (SETTINGS_COLOR_PROFILE (row));
+    if (profile == NULL) {
+          g_warning ("failed to get the active profile");
+          return;
+    }
+    color_settings_profile_info_view (profile);
+}
+
+
+
+static void
 color_settings_make_profile_default_cb (GObject *object,
                                         GAsyncResult *res,
                                         ColorSettings *settings)
@@ -620,6 +660,8 @@ color_settings_device_profile_enable_cb (GtkWidget *widget, ColorSettings *setti
                                     (GAsyncReadyCallback) color_settings_make_profile_default_cb,
                                     settings);
 }
+
+
 
 static void
 color_settings_add_device_profile (ColorSettings *settings,
@@ -717,6 +759,7 @@ color_settings_list_box_row_activated_cb (GtkListBox *list_box,
         color_settings_device_changed_cb (settings->current_device, settings);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), TRUE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), FALSE);
     }
     else
@@ -724,6 +767,7 @@ color_settings_list_box_row_activated_cb (GtkListBox *list_box,
         gtk_widget_show (GTK_WIDGET (settings->label_no_profiles));
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), FALSE);
         gtk_widget_hide (GTK_WIDGET (settings->scrolled_profiles));
     }
@@ -742,6 +786,7 @@ color_settings_device_enabled_changed_cb (ColorDevice *widget,
     gtk_widget_set_visible (GTK_WIDGET (settings->scrolled_profiles), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), is_enabled);
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), is_enabled);
 }
 
@@ -753,6 +798,7 @@ color_settings_profiles_list_box_row_selected_cb (GtkListBox *list_box,
                                                   ColorSettings *settings)
 {
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), TRUE);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), TRUE);
 }
 
@@ -1147,6 +1193,13 @@ color_settings_dialog_init (GtkBuilder *builder)
     settings->profiles_remove = gtk_builder_get_object (builder, "profiles-remove");
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
     g_signal_connect (settings->profiles_remove, "clicked", G_CALLBACK (color_settings_profile_remove_cb), settings);
+
+    settings->profiles_info = gtk_builder_get_object (builder, "profiles-info");
+    /* Conditionally show/hide the info button, based on the availability of gnome-color-manager */
+    if (g_find_program_in_path ("gcm-viewer") == NULL)
+        gtk_widget_hide (GTK_WIDGET (settings->profiles_info));
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
+    g_signal_connect (settings->profiles_info, "clicked", G_CALLBACK (color_settings_profile_info_cb), settings);
 
     settings->profiles_enable = gtk_builder_get_object (builder, "profiles-enable");
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), FALSE);
