@@ -578,15 +578,16 @@ static void
 color_settings_profile_info_view (CdProfile *profile)
 {
     gboolean ret;
-    GError **error = NULL;
+    g_autoptr(GError) error = NULL;
     gchar *cli;
 
     /* open up gcm-viewer */
-    argv = g_ptr_array_new_with_free_func (g_free);
     cli = g_strdup_printf ("gcm-viewer --profile %s", cd_profile_get_id (profile));
-    ret = g_spawn_command_line_async (cli, error);
-    if (!ret)
+    ret = g_spawn_command_line_async (cli, &error);
+
+    if (!ret) {
         g_warning ("failed to run gcm-viewer: %s", error->message);
+    }
 
     g_free (cli);
 }
