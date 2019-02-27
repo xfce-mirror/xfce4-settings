@@ -67,6 +67,7 @@ struct _ColorSettings
     GObject       *model;
     GObject       *vendor;
     GObject       *colorspace;
+    GObject       *device_calibrate;
     GtkListBox    *list_box;
     gchar         *list_box_filter;
     guint          list_box_selected_id;
@@ -577,6 +578,33 @@ color_settings_profile_remove_cb (GtkWidget *widget, ColorSettings *settings)
 
 
 static void
+color_settings_device_calibrate_cb (CdProfile *profile, ColorSettings *settings)
+{
+    gchar *cli;
+    guint xid;
+    GAppInfo *app_info;
+    GError *error = NULL;
+
+    xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (settings->dialog)));
+
+    cli = g_strdup_printf ("gcm-calibrate --device %s --parent-window %i", cd_device_get_id (settings->current_device), xid);
+
+    /* open up gcm-viewer */
+    app_info = g_app_info_create_from_commandline (cli, "Gnome Color Manager Calibration",
+                                                   G_APP_INFO_CREATE_NONE, NULL);
+    if (!g_app_info_launch (app_info, NULL, NULL, &error)) {
+      if (error != NULL) {
+        g_warning ("gcm-calibrate could not be launched. %s", error->message);
+        g_error_free (error);
+      }
+    }
+
+    g_free (cli);
+}
+
+
+
+static void
 color_settings_profile_info_view (CdProfile *profile, ColorSettings *settings)
 {
     gchar *cli;
@@ -597,7 +625,7 @@ color_settings_profile_info_view (CdProfile *profile, ColorSettings *settings)
                                                    G_APP_INFO_CREATE_NONE, NULL);
     if (!g_app_info_launch (app_info, NULL, NULL, &error)) {
       if (error != NULL) {
-        g_warning ("xfce4-notifyd-config could not be launched. %s", error->message);
+        g_warning ("gcm-viewer could not be launched. %s", error->message);
         g_error_free (error);
       }
     }
@@ -1222,6 +1250,12 @@ color_settings_dialog_init (GtkBuilder *builder)
 
     gtk_container_add (GTK_CONTAINER (settings->scrolled_devices), GTK_WIDGET (settings->list_box));
     gtk_widget_show_all (GTK_WIDGET (settings->list_box));
+
+    /* Conditionally show/hide the calibrate button, based on the availability of gnome-color-manager */
+    settings->device_calibrate = gtk_builder_get_object (builder, "device-calibrate");
+    if (g_find_program_in_path ("gcm-calibrate") == NULL)
+        gtk_widget_hide (GTK_WIDGET (settings->device_calibrate));
+    g_signal_connect (settings->device_calibrate, "clicked", G_CALLBACK (color_settings_device_calibrate_cb), settings);
 
     /* Profiles ListBox */
     settings->profiles_add = gtk_builder_get_object (builder, "profiles-add");
