@@ -60,6 +60,7 @@ struct _ColorSettings
     GPtrArray     *devices;
     GCancellable  *cancellable;
     GDBusProxy    *proxy;
+    GObject       *dialog;
     GObject       *label_no_devices;
     GObject       *scrolled_devices;
     GObject       *device_icon;
@@ -71,7 +72,6 @@ struct _ColorSettings
     guint          list_box_selected_id;
     guint          list_box_activated_id;
     GtkSizeGroup  *list_box_size;
-    GObject       *dialog_assign;
     GObject       *label_no_profiles;
     GObject       *scrolled_profiles;
     GObject       *profiles_enable;
@@ -83,9 +83,11 @@ struct _ColorSettings
     guint          profiles_list_box_selected_id;
     guint          profiles_list_box_activated_id;
     GtkSizeGroup  *profiles_list_box_size;
+    GObject       *dialog_assign;
     GObject       *treeview_assign;
     GObject       *liststore_assign;
     GObject       *button_assign_import;
+    GObject       *button_assign_info;
     GObject       *button_assign_ok;
     GObject       *button_assign_cancel;
 } ColorSettings;
@@ -575,21 +577,56 @@ color_settings_profile_remove_cb (GtkWidget *widget, ColorSettings *settings)
 
 
 static void
-color_settings_profile_info_view (CdProfile *profile)
+color_settings_profile_info_view (CdProfile *profile, ColorSettings *settings, gboolean embed)
 {
-    gboolean ret;
-    g_autoptr(GError) error = NULL;
     gchar *cli;
+    guint xid;
+    GAppInfo *app_info;
+    GError *error = NULL;
+
+    /* determine if we're launching from the regular or the assign dialog */
+    if (gtk_widget_get_visible (GTK_WIDGET (settings->dialog_assign)))
+        xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (settings->dialog_assign)));
+    else
+        xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (settings->dialog)));
+
+    cli = g_strdup_printf ("gcm-viewer --profile %s --parent-window %i", cd_profile_get_id (profile), xid);
 
     /* open up gcm-viewer */
-    cli = g_strdup_printf ("gcm-viewer --profile %s", cd_profile_get_id (profile));
-    ret = g_spawn_command_line_async (cli, &error);
-
-    if (!ret) {
-        g_warning ("failed to run gcm-viewer: %s", error->message);
+    app_info = g_app_info_create_from_commandline (cli, "Gnome Color Manager Viewer",
+                                                   G_APP_INFO_CREATE_NONE, NULL);
+    if (!g_app_info_launch (app_info, NULL, NULL, &error)) {
+      if (error != NULL) {
+        g_warning ("xfce4-notifyd-config could not be launched. %s", error->message);
+        g_error_free (error);
+      }
     }
 
     g_free (cli);
+}
+
+
+
+static void
+color_settings_assign_profile_info_cb (GtkWidget *widget, ColorSettings *settings)
+{
+    GtkTreeIter iter;
+    GtkTreeModel *model;
+    g_autoptr(CdProfile) profile = NULL;
+    GtkTreeSelection *selection;
+
+    /* get the selected profile */
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (settings->treeview_assign));
+    if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+        return;
+    gtk_tree_model_get (model, &iter,
+                        COLOR_SETTINGS_COMBO_COLUMN_PROFILE, &profile,
+                        -1);
+    if (profile == NULL) {
+        g_warning ("failed to get the active profile");
+        return;
+    }
+    color_settings_profile_info_view (profile, settings, TRUE);
 }
 
 
@@ -609,7 +646,7 @@ color_settings_profile_info_cb (GtkWidget *widget, ColorSettings *settings)
           g_warning ("failed to get the active profile");
           return;
     }
-    color_settings_profile_info_view (profile);
+    color_settings_profile_info_view (profile, settings, FALSE);
 }
 
 
@@ -1242,6 +1279,8 @@ color_settings_dialog_init (GtkBuilder *builder)
                       settings);
     settings->button_assign_import = gtk_builder_get_object (builder, "assign-import");
     g_signal_connect (settings->button_assign_import, "clicked", G_CALLBACK (color_settings_profile_import_cb), settings);
+    settings->button_assign_info = gtk_builder_get_object (builder, "assign-info");
+    g_signal_connect (settings->button_assign_info, "clicked", G_CALLBACK (color_settings_assign_profile_info_cb), settings);
     settings->button_assign_ok = gtk_builder_get_object (builder, "assign-ok");
     g_signal_connect (settings->button_assign_ok, "clicked",
                       G_CALLBACK (color_settings_button_assign_ok_cb), settings);
@@ -1261,7 +1300,7 @@ color_settings_dialog_init (GtkBuilder *builder)
 gint
 main (gint argc, gchar **argv)
 {
-    GObject       *dialog, *plug_child;
+    GObject       *plug_child;
     GtkWidget     *plug;
     GtkBuilder    *builder;
     GError        *error = NULL;
@@ -1312,11 +1351,11 @@ main (gint argc, gchar **argv)
 
         if (G_UNLIKELY (opt_socket_id == 0)) {
             /* Get the dialog widget */
-            dialog = gtk_builder_get_object (builder, "dialog");
+            settings->dialog = gtk_builder_get_object (builder, "dialog");
 
-            g_signal_connect (dialog, "response",
+            g_signal_connect (settings->dialog, "response",
                               G_CALLBACK (color_settings_dialog_response), settings);
-            gtk_window_present (GTK_WINDOW (dialog));
+            gtk_window_present (GTK_WINDOW (settings->dialog));
 
             /* To prevent the settings dialog to be saved in the session */
             gdk_x11_set_sm_client_id ("FAKE ID");
