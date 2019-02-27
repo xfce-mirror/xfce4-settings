@@ -577,7 +577,7 @@ color_settings_profile_remove_cb (GtkWidget *widget, ColorSettings *settings)
 
 
 static void
-color_settings_profile_info_view (CdProfile *profile, ColorSettings *settings, gboolean embed)
+color_settings_profile_info_view (CdProfile *profile, ColorSettings *settings)
 {
     gchar *cli;
     guint xid;
@@ -626,7 +626,7 @@ color_settings_assign_profile_info_cb (GtkWidget *widget, ColorSettings *setting
         g_warning ("failed to get the active profile");
         return;
     }
-    color_settings_profile_info_view (profile, settings, TRUE);
+    color_settings_profile_info_view (profile, settings);
 }
 
 
@@ -646,7 +646,7 @@ color_settings_profile_info_cb (GtkWidget *widget, ColorSettings *settings)
           g_warning ("failed to get the active profile");
           return;
     }
-    color_settings_profile_info_view (profile, settings, FALSE);
+    color_settings_profile_info_view (profile, settings);
 }
 
 
