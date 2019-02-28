@@ -823,6 +823,7 @@ color_settings_list_box_row_activated_cb (GtkListBox *list_box,
     if (cd_device_get_enabled (settings->current_device))
     {
         color_settings_device_changed_cb (settings->current_device, settings);
+        gtk_widget_set_sensitive (GTK_WIDGET (settings->device_calibrate), TRUE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), TRUE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
@@ -831,6 +832,7 @@ color_settings_list_box_row_activated_cb (GtkListBox *list_box,
     else
     {
         gtk_widget_show (GTK_WIDGET (settings->label_no_profiles));
+        gtk_widget_set_sensitive (GTK_WIDGET (settings->device_calibrate), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
@@ -850,6 +852,7 @@ color_settings_device_enabled_changed_cb (ColorDevice *widget,
     gtk_list_box_select_row (settings->list_box, GTK_LIST_BOX_ROW (widget));
     gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), !is_enabled);
     gtk_widget_set_visible (GTK_WIDGET (settings->scrolled_profiles), is_enabled);
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->device_calibrate), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), is_enabled);
@@ -1255,6 +1258,7 @@ color_settings_dialog_init (GtkBuilder *builder)
     settings->device_calibrate = gtk_builder_get_object (builder, "device-calibrate");
     if (g_find_program_in_path ("gcm-calibrate") == NULL)
         gtk_widget_hide (GTK_WIDGET (settings->device_calibrate));
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->device_calibrate), FALSE);
     g_signal_connect (settings->device_calibrate, "clicked", G_CALLBACK (color_settings_device_calibrate_cb), settings);
 
     /* Profiles ListBox */
