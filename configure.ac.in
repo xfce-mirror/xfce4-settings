@@ -158,6 +158,13 @@ dnl **************************************
 XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [0.1.3],
                            [libnotify], [Notification support])
 
+dnl **************************************
+dnl *** Optional support for colord ***
+dnl **************************************
+XDT_CHECK_OPTIONAL_PACKAGE([COLORD], [colord], [1.0.2],
+                          [colord], [colord support])
+
+
 dnl *********************
 dnl *** Mime settings ***
 dnl *********************
@@ -284,6 +291,11 @@ if test x"$LIBNOTIFY_FOUND" = x"yes"; then
 echo "* Libnotify support:         yes"
 else
 echo "* Libnotify support:         no"
+fi
+if test x"$COLORD_FOUND" = x"yes"; then
+echo "* colord support:            yes"
+else
+echo "* colord support:            no"
 fi
 if test x"$XCURSOR_FOUND" = x"yes"; then
 echo "* Xcursor support:           yes"

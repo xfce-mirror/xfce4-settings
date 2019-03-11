@@ -48,6 +48,15 @@ xfce4_display_settings_LDADD = \
 	$(XRANDR_LIBS) \
 	$(GLIB_LIBS)
 
+# Optional support for colord
+if HAVE_COLORD
+xfce4_display_settings_CFLAGS += \
+	$(COLORD_CFLAGS)
+
+xfce4_display_settings_LDADD += \
+	$(COLORD_LIBS)
+endif
+
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
