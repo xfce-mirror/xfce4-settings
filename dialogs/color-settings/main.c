@@ -497,6 +497,7 @@ static void
 color_settings_profile_add_cb (GtkButton *button, ColorSettings *settings)
 {
     g_autoptr(GPtrArray) profiles = NULL;
+    gchar *window_title;
 
     /* add profiles of the right kind */
     profiles = cd_device_get_profiles (settings->current_device);
@@ -506,6 +507,12 @@ color_settings_profile_add_cb (GtkButton *button, ColorSettings *settings)
     gtk_widget_set_sensitive (GTK_WIDGET (settings->button_assign_ok), FALSE);
 
     /* show the dialog */
+    gtk_window_set_icon_name (GTK_WINDOW (settings->dialog_assign), color_device_get_type_icon (settings->current_device));
+    window_title = g_strdup_printf ("Add Color Profile to %s",
+                                    color_device_get_kind (settings->current_device) ? color_device_get_kind (settings->current_device) : "Device");
+    gtk_window_set_title (GTK_WINDOW (settings->dialog_assign), window_title);
+    xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (settings->dialog_assign), color_device_get_title (settings->current_device));
+    g_free (window_title);
     gtk_widget_show (GTK_WIDGET (settings->dialog_assign));
 }
 

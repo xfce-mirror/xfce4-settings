@@ -57,6 +57,29 @@ enum
 static guint signals [SIGNAL_LAST] = { 0 };
 
 gchar *
+color_device_get_kind (CdDevice *device)
+{
+  if (cd_device_get_kind (device) == CD_DEVICE_KIND_DISPLAY)
+    /* TRANSLATORS: an externally connected display, where %s is either the
+     * model, vendor or ID, e.g. 'LP2480zx Monitor' */
+    return _("Monitor");
+  else if (cd_device_get_kind (device) == CD_DEVICE_KIND_SCANNER)
+    /* TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner' */
+    return _("Scanner");
+  else if (cd_device_get_kind (device) == CD_DEVICE_KIND_CAMERA)
+    /* TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera' */
+    return _("Camera");
+  else if (cd_device_get_kind (device) == CD_DEVICE_KIND_PRINTER)
+    /* TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer' */
+    return _("Printer");
+  else if (cd_device_get_kind (device) == CD_DEVICE_KIND_WEBCAM)
+    /* TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera' */
+    return _("Webcam");
+  else
+    return NULL;
+}
+
+gchar *
 color_device_get_title (CdDevice *device)
 {
   const gchar *tmp;
@@ -89,32 +112,11 @@ color_device_get_title (CdDevice *device)
   if (tmp == NULL)
     tmp = cd_device_get_id (device);
 
-  switch (cd_device_get_kind (device)) {
-    case CD_DEVICE_KIND_DISPLAY:
-      /* TRANSLATORS: an externally connected display, where %s is either the
-       * model, vendor or ID, e.g. 'LP2480zx Monitor' */
-      g_string_append_printf (string, _("%s Monitor"), tmp);
-      break;
-    case CD_DEVICE_KIND_SCANNER:
-      /* TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner' */
-      g_string_append_printf (string, _("%s Scanner"), tmp);
-      break;
-    case CD_DEVICE_KIND_CAMERA:
-      /* TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera' */
-      g_string_append_printf (string, _("%s Camera"), tmp);
-      break;
-    case CD_DEVICE_KIND_PRINTER:
-      /* TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer' */
-      g_string_append_printf (string, _("%s Printer"), tmp);
-      break;
-    case CD_DEVICE_KIND_WEBCAM:
-      /* TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera' */
-      g_string_append_printf (string, _("%s Webcam"), tmp);
-      break;
-    default:
-      g_string_append (string, tmp);
-      break;
-  }
+  if (color_device_get_kind (device))
+    g_string_append_printf (string, "%s %s", tmp, color_device_get_kind (device));
+  else
+    g_string_append (string, tmp);
+
 out:
   return g_string_free (string, FALSE);
 }

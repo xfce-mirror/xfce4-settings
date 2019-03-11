@@ -47,6 +47,20 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
+              <object class="GtkButton" id="button2">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-help</property>
                 <property name="visible">True</property>
@@ -59,20 +73,6 @@
                 <property name="fill">False</property>
                 <property name="position">0</property>
                 <property name="secondary">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="button2">
-                <property name="label">gtk-close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -468,8 +468,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-11">button1</action-widget>
       <action-widget response="0">button2</action-widget>
+      <action-widget response="-11">button1</action-widget>
     </action-widgets>
   </object>
   <object class="GtkImage" id="image5">
@@ -489,7 +489,7 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkDialog" id="dialog-assign">
+  <object class="XfceTitledDialog" id="dialog-assign">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Add Profile to Device</property>
     <property name="modal">True</property>
@@ -498,9 +498,7 @@
     <property name="icon_name">preferences-color</property>
     <property name="type_hint">dialog</property>
     <property name="transient_for">dialog</property>
-    <child>
-      <placeholder/>
-    </child>
+    <property name="subtitle" translatable="yes">Add a Color Profile to your Device</property>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -557,8 +555,6 @@
               <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="margin_left">12</property>
-                <property name="margin_right">12</property>
                 <property name="shadow_type">in</property>
                 <child>
                   <object class="GtkTreeView" id="treeview-assign">
@@ -581,8 +577,6 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">12</property>
-                <property name="margin_right">12</property>
                 <property name="margin_bottom">12</property>
                 <child>
                   <object class="GtkButton" id="assign-import">
