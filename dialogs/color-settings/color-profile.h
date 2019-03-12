@@ -30,12 +30,12 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (ColorProfile, color_profile, SETTINGS, COLOR_PROFILE, GtkListBoxRow)
 
 GtkWidget   *color_profile_new              (CdDevice        *device,
-                                                CdProfile       *profile,
-                                                gboolean         is_default);
-gboolean     color_profile_get_is_default   (ColorProfile  *color_profile);
-void         color_profile_set_is_default   (ColorProfile  *color_profile,
-                                                gboolean         profile_is_default);
-CdDevice    *color_profile_get_device       (ColorProfile  *color_profile);
-CdProfile   *color_profile_get_profile      (ColorProfile  *color_profile);
+                                             CdProfile       *profile,
+                                             gboolean         is_default);
+gboolean     color_profile_get_is_default   (ColorProfile    *color_profile);
+void         color_profile_set_is_default   (ColorProfile    *color_profile,
+                                             gboolean         profile_is_default);
+CdDevice    *color_profile_get_device       (ColorProfile    *color_profile);
+CdProfile   *color_profile_get_profile      (ColorProfile    *color_profile);
 
 G_END_DECLS

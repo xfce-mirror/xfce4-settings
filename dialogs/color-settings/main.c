@@ -600,10 +600,10 @@ color_settings_device_calibrate_cb (CdProfile *profile, ColorSettings *settings)
     app_info = g_app_info_create_from_commandline (cli, "Gnome Color Manager Calibration",
                                                    G_APP_INFO_CREATE_NONE, NULL);
     if (!g_app_info_launch (app_info, NULL, NULL, &error)) {
-      if (error != NULL) {
-        g_warning ("gcm-calibrate could not be launched. %s", error->message);
-        g_error_free (error);
-      }
+        if (error != NULL) {
+            g_warning ("gcm-calibrate could not be launched. %s", error->message);
+            g_error_free (error);
+        }
     }
 
     g_free (cli);
@@ -631,10 +631,10 @@ color_settings_profile_info_view (CdProfile *profile, ColorSettings *settings)
     app_info = g_app_info_create_from_commandline (cli, "Gnome Color Manager Viewer",
                                                    G_APP_INFO_CREATE_NONE, NULL);
     if (!g_app_info_launch (app_info, NULL, NULL, &error)) {
-      if (error != NULL) {
-        g_warning ("gcm-viewer could not be launched. %s", error->message);
-        g_error_free (error);
-      }
+        if (error != NULL) {
+            g_warning ("gcm-viewer could not be launched. %s", error->message);
+            g_error_free (error);
+        }
     }
 
     g_free (cli);
@@ -885,8 +885,7 @@ color_settings_profiles_list_box_row_activated_cb (GtkListBox *list_box,
                                                    GtkListBoxRow *row,
                                                    ColorSettings *settings)
 {
-    if (SETTINGS_IS_COLOR_PROFILE (row))
-    {
+    if (SETTINGS_IS_COLOR_PROFILE (row)) {
         color_settings_device_profile_enable_cb (NULL, settings);
     }
 }
@@ -1012,12 +1011,12 @@ color_settings_device_changed_cb (CdDevice *device,
 
     /* add anything in Device.Profiles that's not in the list view */
     for (i = 0; i < profiles->len; i++) {
-      profile_tmp = g_ptr_array_index (profiles, i);
-      ret = color_settings_find_widget_by_object_path (list,
-                                                  cd_device_get_object_path (device),
-                                                  cd_profile_get_object_path (profile_tmp));
-      if (!ret)
-          color_settings_add_device_profile (settings, device, profile_tmp, i == 0);
+        profile_tmp = g_ptr_array_index (profiles, i);
+        ret = color_settings_find_widget_by_object_path (list,
+                                                    cd_device_get_object_path (device),
+                                                    cd_profile_get_object_path (profile_tmp));
+        if (!ret)
+            color_settings_add_device_profile (settings, device, profile_tmp, i == 0);
     }
 
     color_settings_update_profile_list_extra_entry (settings);
@@ -1135,13 +1134,13 @@ color_settings_sort_func (GtkListBoxRow *a,
                           GtkListBoxRow *b,
                           gpointer user_data)
 {
-  const gchar *sort_a = NULL;
-  const gchar *sort_b = NULL;
+    const gchar *sort_a = NULL;
+    const gchar *sort_b = NULL;
 
-  sort_a = color_device_get_sortable (SETTINGS_COLOR_DEVICE (a));
-  sort_b = color_device_get_sortable (SETTINGS_COLOR_DEVICE (b));
+    sort_a = color_device_get_sortable (SETTINGS_COLOR_DEVICE (a));
+    sort_b = color_device_get_sortable (SETTINGS_COLOR_DEVICE (b));
 
-  return g_strcmp0 (sort_b, sort_a);
+    return g_strcmp0 (sort_b, sort_a);
 }
 
 
@@ -1355,7 +1354,7 @@ main (gint argc, gchar **argv)
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     /* initialize Gtk+ */
-    if(!gtk_init_with_args (&argc, &argv, "", entries, PACKAGE, &error)) {
+    if (!gtk_init_with_args (&argc, &argv, "", entries, PACKAGE, &error)) {
         if (G_LIKELY (error)) {
             /* print error */
             g_print ("%s: %s.\n", G_LOG_DOMAIN, error->message);
