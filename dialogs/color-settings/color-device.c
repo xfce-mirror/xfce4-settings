@@ -201,14 +201,14 @@ color_device_refresh (ColorDevice *color_device)
 CdDevice *
 color_device_get_device (ColorDevice *color_device)
 {
-  g_return_val_if_fail (CC_IS_COLOR_DEVICE (color_device), NULL);
+  g_return_val_if_fail (SETTINGS_IS_COLOR_DEVICE (color_device), NULL);
   return color_device->device;
 }
 
 const gchar *
 color_device_get_sortable (ColorDevice *color_device)
 {
-  g_return_val_if_fail (CC_IS_COLOR_DEVICE (color_device), NULL);
+  g_return_val_if_fail (SETTINGS_IS_COLOR_DEVICE (color_device), NULL);
   return color_device->sortable;
 }
 
@@ -216,7 +216,7 @@ static void
 color_device_get_property (GObject *object, guint param_id,
                               GValue *value, GParamSpec *pspec)
 {
-  ColorDevice *color_device = CC_COLOR_DEVICE (object);
+  ColorDevice *color_device = SETTINGS_COLOR_DEVICE (object);
   switch (param_id)
     {
       case PROP_DEVICE:
@@ -232,7 +232,7 @@ static void
 color_device_set_property (GObject *object, guint param_id,
                               const GValue *value, GParamSpec *pspec)
 {
-  ColorDevice *color_device = CC_COLOR_DEVICE (object);
+  ColorDevice *color_device = SETTINGS_COLOR_DEVICE (object);
 
   switch (param_id)
     {
@@ -248,7 +248,7 @@ color_device_set_property (GObject *object, guint param_id,
 static void
 color_device_finalize (GObject *object)
 {
-  ColorDevice *color_device = CC_COLOR_DEVICE (object);
+  ColorDevice *color_device = SETTINGS_COLOR_DEVICE (object);
 
   if (color_device->device_changed_id > 0)
     g_signal_handler_disconnect (color_device->device, color_device->device_changed_id);
@@ -281,7 +281,7 @@ color_device_notify_enable_device_cb (GtkSwitch *sw,
                                          GParamSpec *pspec,
                                          gpointer user_data)
 {
-  ColorDevice *color_device = CC_COLOR_DEVICE (user_data);
+  ColorDevice *color_device = SETTINGS_COLOR_DEVICE (user_data);
   gboolean enable;
   gboolean ret;
   g_autoptr(GError) error = NULL;
@@ -308,7 +308,7 @@ color_device_changed_cb (CdDevice *device,
 static void
 color_device_constructed (GObject *object)
 {
-  ColorDevice *color_device = CC_COLOR_DEVICE (object);
+  ColorDevice *color_device = SETTINGS_COLOR_DEVICE (object);
   g_autofree gchar *sortable_tmp = NULL;
 
   /* watch the device for changes */

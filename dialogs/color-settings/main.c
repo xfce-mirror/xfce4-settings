@@ -1064,7 +1064,7 @@ color_settings_remove_device (ColorSettings *settings, CdDevice *device)
 
     list = gtk_container_get_children (GTK_CONTAINER (settings->list_box));
     for (l = list; l != NULL; l = l->next) {
-        device_tmp = color_device_get_device (CC_COLOR_DEVICE (l->data));
+        device_tmp = color_device_get_device (SETTINGS_COLOR_DEVICE (l->data));
 
         if (g_strcmp0 (cd_device_get_object_path (device),
                        cd_device_get_object_path (device_tmp)) == 0) {
@@ -1138,8 +1138,8 @@ color_settings_sort_func (GtkListBoxRow *a,
   const gchar *sort_a = NULL;
   const gchar *sort_b = NULL;
 
-  sort_a = color_device_get_sortable (CC_COLOR_DEVICE (a));
-  sort_b = color_device_get_sortable (CC_COLOR_DEVICE (b));
+  sort_a = color_device_get_sortable (SETTINGS_COLOR_DEVICE (a));
+  sort_b = color_device_get_sortable (SETTINGS_COLOR_DEVICE (b));
 
   return g_strcmp0 (sort_b, sort_a);
 }
