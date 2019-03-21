@@ -35,7 +35,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <glib.h>
-#include "edid.h"
+#include "common/edid.h"
 
 typedef struct Vendor Vendor;
 struct Vendor

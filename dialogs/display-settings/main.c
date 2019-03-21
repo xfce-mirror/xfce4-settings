@@ -44,7 +44,7 @@
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
 
-#include "xfce-randr.h"
+#include <common/xfce-randr.h>
 #include "display-dialog_ui.h"
 #include "confirmation-dialog_ui.h"
 #include "minimal-display-dialog_ui.h"

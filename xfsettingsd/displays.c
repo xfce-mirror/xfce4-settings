@@ -36,6 +36,9 @@
 
 #include <X11/extensions/Xrandr.h>
 
+#include "common/display-profiles.h"
+#include "common/xfce-randr.h"
+
 #include "debug.h"
 #include "displays.h"
 #ifdef HAVE_UPOWERGLIB
@@ -424,6 +427,13 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
     gint                j;
     guint               n, m, nactive = 0;
     gboolean            found = FALSE, changed = FALSE;
+    GList              *profiles = NULL;
+    GdkDisplay         *display;
+    GError             *error = NULL;
+    gpointer           *profile;
+    XfceRandr          *xfce_randr;
+    gchar              *profile_name;
+    gchar              *property;
 
     if (!e)
         return GDK_FILTER_CONTINUE;
@@ -439,6 +449,36 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
 
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Noutput: before = %d, after = %d.",
                         old_outputs->len, helper->outputs->len);
+
+        /* Check if we have a matching profile and apply it if there's only one */
+        if (xfconf_channel_get_bool (helper->channel, "/AutoEnableProfiles", TRUE))
+        {
+            display = gdk_display_get_default ();
+            xfce_randr = xfce_randr_new (display, &error);
+            profiles = display_settings_get_profiles (xfce_randr, helper->channel);
+            if (xfce_randr)
+                xfce_randr_free (xfce_randr);
+
+            if (g_list_length (profiles) == 1)
+            {
+                profile = g_list_nth_data (profiles, 0);
+                xfce_randr_apply (xfce_randr, (gchar *)profile, helper->channel);
+                property = g_strdup_printf ("/%s", (gchar *) profile);
+                profile_name = xfconf_channel_get_string (helper->channel, property, NULL);
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applied the only matching display profile: %s", profile_name);
+                g_free (profile_name);
+                g_free (property);
+                return GDK_FILTER_CONTINUE;
+            }
+            else if (profiles == NULL)
+            {
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "No matching display profiles found.");
+            }
+            else
+            {
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles.", g_list_length (profiles));
+            }
+        }
 
         if (old_outputs->len > helper->outputs->len)
         {

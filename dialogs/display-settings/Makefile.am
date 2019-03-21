@@ -4,7 +4,6 @@ AM_CPPFLAGS = \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-display-settings\" \
-	-DPNP_IDS=\"$(PNP_IDS)\" \
 	$(PLATFORM_CPPFLAGS)
 
 bin_PROGRAMS = \
@@ -12,15 +11,10 @@ bin_PROGRAMS = \
 
 xfce4_display_settings_SOURCES = \
 	main.c \
-	xfce-randr.c \
-	xfce-randr.h \
 	confirmation-dialog_ui.h \
 	display-dialog_ui.h \
 	minimal-display-dialog_ui.h \
 	identity-popup_ui.h \
-	display-name.c \
-	edid-parse.c \
-	edid.h \
 	scrollarea.c \
 	scrollarea.h \
 	foo-marshal.c \
@@ -46,7 +40,8 @@ xfce4_display_settings_LDADD = \
 	$(EXO_LIBS) \
 	$(LIBX11_LIBS) -lm \
 	$(XRANDR_LIBS) \
-	$(GLIB_LIBS)
+	$(GLIB_LIBS) \
+	$(top_builddir)/common/libxfce4-settings.la
 
 # Optional support for colord
 if HAVE_COLORD

@@ -93,7 +93,8 @@ xfsettingsd_CFLAGS += \
 	$(XRANDR_CFLAGS)
 
 xfsettingsd_LDADD += \
-	$(XRANDR_LIBS)
+	$(XRANDR_LIBS) \
+	$(top_builddir)/common/libxfce4-settings.la
 
 if HAVE_UPOWERGLIB
 xfsettingsd_SOURCES += \
