@@ -455,11 +455,17 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
         {
             display = gdk_display_get_default ();
             xfce_randr = xfce_randr_new (display, &error);
-            profiles = display_settings_get_profiles (xfce_randr, helper->channel);
             if (xfce_randr)
+            {
+                profiles = display_settings_get_profiles (xfce_randr, helper->channel);
                 xfce_randr_free (xfce_randr);
+            }
 
-            if (g_list_length (profiles) == 1)
+            if (profiles == NULL)
+            {
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "No matching display profiles found.");
+            }
+            else if (g_list_length (profiles) == 1)
             {
                 profile = g_list_nth_data (profiles, 0);
                 xfce_randr_apply (xfce_randr, (gchar *)profile, helper->channel);
@@ -469,10 +475,6 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
                 g_free (profile_name);
                 g_free (property);
                 return GDK_FILTER_CONTINUE;
-            }
-            else if (profiles == NULL)
-            {
-                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "No matching display profiles found.");
             }
             else
             {
