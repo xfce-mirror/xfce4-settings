@@ -1272,6 +1272,7 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
         box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_box_pack_start (GTK_BOX (box), profile_radio, FALSE, TRUE, 0);
         gtk_box_pack_start (GTK_BOX (box), label, FALSE, TRUE, 3);
+        gtk_widget_set_margin_start (GTK_WIDGET (box), 24);
         gtk_box_pack_start (GTK_BOX (profile_box), box, FALSE, FALSE, 0);
 
         g_signal_connect (profile_radio, "toggled", G_CALLBACK (display_settings_minimal_profile_apply),
