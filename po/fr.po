@@ -14,13 +14,13 @@
 # Mike Massonnet <mmassonnet@xfce.org>, 2009
 # Silvère Latchurié <slatchurie@gmail.com>, 2017
 # Urien Desterres <urien.desterres@gmail.com>, 2014
-# Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2018
+# Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-12 00:30+0100\n"
-"PO-Revision-Date: 2018-11-15 13:31+0000\n"
+"POT-Creation-Date: 2019-03-23 18:30+0100\n"
+"PO-Revision-Date: 2019-03-24 11:55+0000\n"
 "Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/xfce/xfce4-settings/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: ../common/display-name.c:2641
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3714
+#, c-format
+msgid "Unable to query the version of the RandR extension being used"
+msgstr "Impossible de déterminer la version de l’extension RandR utilisée"
+
+#. 1.2 is required
+#: ../common/xfce-randr.c:294
+#, c-format
+msgid ""
+"This system is using RandR %d.%d. For the display settings to work version "
+"1.2 is required at least"
+msgstr "Ce système utilise RandR %d.%d. Pour que les paramètres d’affichage fonctionnent, la version 1.2 ou ultérieure est nécessaire."
+
+#: ../common/xfce-randr.c:574
+msgid "Laptop"
+msgstr "Portable"
+
+#. TRANSLATORS: an externally connected display, where %s is either the
+#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
+#: ../common/xfce-randr.c:588 ../dialogs/color-settings/color-device.c:65
+msgid "Monitor"
+msgstr "Moniteur"
+
+#: ../common/xfce-randr.c:591
+msgid "Television"
+msgstr "Téléviseur"
+
+#: ../common/xfce-randr.c:595
+msgid "Digital display"
+msgstr "Écran numérique"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
@@ -239,7 +278,7 @@ msgstr "_Souris"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/display-settings/main.c:121
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:122
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
@@ -247,7 +286,7 @@ msgstr "Socket du gestionnaire de paramètres"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/display-settings/main.c:121
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:122
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
@@ -255,39 +294,42 @@ msgstr "ID SOCKET"
 
 #: ../dialogs/accessibility-settings/main.c:47
 #: ../dialogs/appearance-settings/main.c:110
-#: ../dialogs/display-settings/main.c:122
+#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:123
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfsettingsd/main.c:101 ../xfce4-settings-manager/main.c:43
+#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:101
 msgid "Version information"
 msgstr "Informations sur la version"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/display-settings/main.c:3740
+#: ../dialogs/color-settings/main.c:1361
+#: ../dialogs/display-settings/main.c:3682
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
-#: ../xfsettingsd/main.c:237 ../xfsettingsd/main.c:275
-#: ../xfce4-settings-manager/main.c:64
+#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
+#: ../xfsettingsd/main.c:275
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Taper « %s --help » pour obtenir plus d’aide."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/display-settings/main.c:3759
+#: ../dialogs/color-settings/main.c:1378
+#: ../dialogs/display-settings/main.c:3701
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
-#: ../xfsettingsd/main.c:253 ../xfce4-settings-manager/main.c:80
+#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
 msgid "The Xfce development team. All rights reserved."
 msgstr "L’équipe de développement Xfce. Tous droits réservés."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/display-settings/main.c:3760
+#: ../dialogs/color-settings/main.c:1379
+#: ../dialogs/display-settings/main.c:3702
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
-#: ../xfsettingsd/main.c:254 ../xfce4-settings-manager/main.c:81
+#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Veuillez signaler les bogues à <%s>."
@@ -298,7 +340,8 @@ msgstr "Améliorer l’accessibilité du clavier et de la souris"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1041
-#: ../dialogs/display-settings/main.c:88 ../dialogs/display-settings/main.c:99
+#: ../dialogs/display-settings/main.c:89
+#: ../dialogs/display-settings/main.c:100
 msgid "None"
 msgstr "-------"
 
@@ -557,6 +600,225 @@ msgstr "RVB vertical"
 msgid "Vertical BGR"
 msgstr "BVR vertical"
 
+#. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
+#: ../dialogs/color-settings/color-device.c:68
+msgid "Scanner"
+msgstr "Scanner"
+
+#. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
+#: ../dialogs/color-settings/color-device.c:71
+msgid "Camera"
+msgstr "Appareil photo"
+
+#. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
+#: ../dialogs/color-settings/color-device.c:74
+msgid "Printer"
+msgstr "Imprimante"
+
+#. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
+#: ../dialogs/color-settings/color-device.c:77
+msgid "Webcam"
+msgstr "Webcam"
+
+#. TRANSLATORS: This refers to the TFT display on a laptop
+#: ../dialogs/color-settings/color-device.c:94
+msgid "Laptop Screen"
+msgstr "Écran d‘ordinateur portable"
+
+#. TRANSLATORS: This refers to the embedded webcam on a laptop
+#: ../dialogs/color-settings/color-device.c:102
+msgid "Built-in Webcam"
+msgstr "Webcam intégrée"
+
+#: ../dialogs/color-settings/color-device.c:195
+#, c-format
+msgid "Enable color management for %s"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:1
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
+msgid "Color Profiles"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:2
+msgid "Configure color profiles for your devices"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:3
+msgid "<b>No devices found.</b>"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:4
+msgid "Model:"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:5
+msgid "Colorspace:"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:6
+msgid "Vendor:"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:7
+msgid "Calibrate"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:8
+msgid "<b>No profiles for the selected device.</b>"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:9
+msgid "Add a profile to the currently selected device"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:10
+msgid "Delete the currently selected profile"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:11
+msgid "Enable"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:12
+msgid "Enable the selected profile"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:13
+msgid "Add Profile to Device"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:14
+msgid "Add a Color Profile to your Device"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:15
+#: ../dialogs/color-settings/main.c:129
+msgid "_Cancel"
+msgstr "_Annuler"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:16
+msgid "_OK"
+msgstr "_Valider"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:17
+msgid "Import color profile files (*.icc)"
+msgstr ""
+
+#. TRANSLATORS: standard spaces are well known colorspaces like
+#. * sRGB, AdobeRGB and ProPhotoRGB
+#: ../dialogs/color-settings/color-profile.c:94
+msgid "Standard Space"
+msgstr ""
+
+#. TRANSLATORS: test profiles do things like changing the screen
+#. * a different color, or swap the red and green channels
+#: ../dialogs/color-settings/color-profile.c:99
+msgid "Test Profile"
+msgstr ""
+
+#. TRANSLATORS: automatic profiles are generated automatically
+#. * by the color management system based on manufacturing data,
+#. * for instance the default monitor profile is created from the
+#. * primaries specified in the monitor EDID
+#: ../dialogs/color-settings/color-profile.c:106
+msgctxt "Automatically generated profile"
+msgid "Automatic"
+msgstr "Automatique"
+
+#. TRANSLATORS: the profile quality - low quality profiles take
+#. * much less time to generate but may be a poor reflection of the
+#. * device capability
+#: ../dialogs/color-settings/color-profile.c:115
+msgctxt "Profile quality"
+msgid "Low Quality"
+msgstr ""
+
+#. TRANSLATORS: the profile quality
+#: ../dialogs/color-settings/color-profile.c:119
+msgctxt "Profile quality"
+msgid "Medium Quality"
+msgstr ""
+
+#. TRANSLATORS: the profile quality - high quality profiles take
+#. * a *long* time, and have the best calibration and
+#. * characterisation data.
+#: ../dialogs/color-settings/color-profile.c:125
+msgctxt "Profile quality"
+msgid "High Quality"
+msgstr ""
+
+#. TRANSLATORS: this default RGB space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:140
+msgctxt "Colorspace fallback"
+msgid "Default RGB"
+msgstr ""
+
+#. TRANSLATORS: this default CMYK space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:146
+msgctxt "Colorspace fallback"
+msgid "Default CMYK"
+msgstr ""
+
+#. TRANSLATORS: this default gray space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:152
+msgctxt "Colorspace fallback"
+msgid "Default Gray"
+msgstr ""
+
+#. TRANSLATORS: an ICC profile is a file containing colorspace data
+#: ../dialogs/color-settings/main.c:127
+msgid "Select ICC Profile File"
+msgstr ""
+
+#: ../dialogs/color-settings/main.c:130
+msgid "_Import"
+msgstr ""
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: ../dialogs/color-settings/main.c:141
+msgid "Supported ICC profiles"
+msgstr ""
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: ../dialogs/color-settings/main.c:148
+msgid "All files"
+msgstr "Tous les fichiers"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile has been auto-generated for this hardware
+#: ../dialogs/color-settings/main.c:192
+msgid "Default: "
+msgstr ""
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile his a standard space like AdobeRGB
+#: ../dialogs/color-settings/main.c:199
+msgid "Colorspace: "
+msgstr ""
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile is a test profile
+#: ../dialogs/color-settings/main.c:205
+msgid "Test profile: "
+msgstr ""
+
+#: ../dialogs/color-settings/main.c:243
+msgid "Compatible Profiles"
+msgstr ""
+
+#: ../dialogs/color-settings/main.c:810 ../dialogs/color-settings/main.c:811
+#: ../dialogs/color-settings/main.c:812
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
+msgid "Set color profiles"
+msgstr ""
+
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
 msgstr "Confirmation"
@@ -610,24 +872,24 @@ msgid "Configure screen settings and layout"
 msgstr "Configurer les paramètres et la disposition des écrans"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
+msgid "Primary Display:"
+msgstr "Affichage primaire :"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "R_esolution:"
 msgstr "_Résolution :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Refresh _rate:"
 msgstr "Taux de _rafraîchissement :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Ro_tation:"
 msgstr "Ro_tation :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Ref_lection:"
 msgstr "Réf_lexion :"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:12
-msgid "Primary Display:"
-msgstr "Affichage primaire :"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "_Mirror displays"
@@ -718,35 +980,35 @@ msgstr "Avancé"
 msgid "radiobutton"
 msgstr "bouton radio"
 
-#: ../dialogs/display-settings/main.c:89
+#: ../dialogs/display-settings/main.c:90
 msgid "Left"
 msgstr "Gauche"
 
-#: ../dialogs/display-settings/main.c:90
+#: ../dialogs/display-settings/main.c:91
 msgid "Inverted"
 msgstr "Inversée"
 
-#: ../dialogs/display-settings/main.c:91
+#: ../dialogs/display-settings/main.c:92
 msgid "Right"
 msgstr "Droite"
 
-#: ../dialogs/display-settings/main.c:100
+#: ../dialogs/display-settings/main.c:101
 msgid "Horizontal"
 msgstr "Horizontale"
 
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:102
 msgid "Vertical"
 msgstr "Verticale"
 
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:103
 msgid "Horizontal and Vertical"
 msgstr "Horizontale et verticale"
 
-#: ../dialogs/display-settings/main.c:123
+#: ../dialogs/display-settings/main.c:124
 msgid "Minimal interface to set up an external output"
 msgstr "Interface minimale pour configurer une sortie externe"
 
-#: ../dialogs/display-settings/main.c:263
+#: ../dialogs/display-settings/main.c:264
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -754,52 +1016,52 @@ msgid ""
 msgstr "La configuration précédente sera restaurée dans %i secondes si vous ne répondez pas à cette question."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:558
+#: ../dialogs/display-settings/main.c:559
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:855
+#: ../dialogs/display-settings/main.c:856
 msgid "Display:"
 msgstr "Écran :"
 
-#: ../dialogs/display-settings/main.c:860
+#: ../dialogs/display-settings/main.c:861
 msgid "Resolution:"
 msgstr "Résolution :"
 
-#: ../dialogs/display-settings/main.c:1135
+#: ../dialogs/display-settings/main.c:1142
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "La dernière sortie active ne doit pas être désactivée, le système deviendrait inutilisable."
 
-#: ../dialogs/display-settings/main.c:1137
+#: ../dialogs/display-settings/main.c:1144
 msgid "Selected output not disabled"
 msgstr "La sortie sélectionnée n’est pas désactivée"
 
-#: ../dialogs/display-settings/main.c:1655
+#: ../dialogs/display-settings/main.c:1588
 msgid "Profile Name"
 msgstr "Nom du profil"
 
-#: ../dialogs/display-settings/main.c:1663
+#: ../dialogs/display-settings/main.c:1596
 msgid "Create"
 msgstr "Créer"
 
-#: ../dialogs/display-settings/main.c:1734
+#: ../dialogs/display-settings/main.c:1667
 #, c-format
 msgid "Do you really want to delete the profile '%s'?"
 msgstr "Voulez-vous vraiment supprimer le profil « %s » ?"
 
-#: ../dialogs/display-settings/main.c:1736
+#: ../dialogs/display-settings/main.c:1669
 #: ../dialogs/mime-settings/xfce-mime-window.c:903
 msgid "Question"
 msgstr "Question"
 
-#: ../dialogs/display-settings/main.c:1738
+#: ../dialogs/display-settings/main.c:1671
 msgid "Delete display profile"
 msgstr "Supprimer le profil d’affichage"
 
 #. Create cancel button
-#: ../dialogs/display-settings/main.c:1740
+#: ../dialogs/display-settings/main.c:1673
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 #: ../dialogs/keyboard-settings/command-dialog.c:259
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -809,23 +1071,23 @@ msgstr "Supprimer le profil d’affichage"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../dialogs/display-settings/main.c:1741
+#: ../dialogs/display-settings/main.c:1674
 msgid "Delete"
 msgstr "Supprimer"
 
-#: ../dialogs/display-settings/main.c:1844
+#: ../dialogs/display-settings/main.c:1774
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d tableaux de bord Xfce"
 
-#: ../dialogs/display-settings/main.c:2843
+#: ../dialogs/display-settings/main.c:2775
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Sélectionner un moniteur pour modifier ses propriétés ; le faire glisser pour réorganiser sa position."
 
-#: ../dialogs/display-settings/main.c:2885
-#: ../dialogs/display-settings/main.c:2959
+#: ../dialogs/display-settings/main.c:2817
+#: ../dialogs/display-settings/main.c:2891
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -834,79 +1096,41 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3151
+#: ../dialogs/display-settings/main.c:3093
 msgid "Mirror Screens"
 msgstr "Écrans en miroir"
 
-#: ../dialogs/display-settings/main.c:3200
+#: ../dialogs/display-settings/main.c:3142
 msgid "(Disabled)"
 msgstr "(Désactivé)"
 
-#: ../dialogs/display-settings/main.c:3579
+#: ../dialogs/display-settings/main.c:3521
 #, c-format
 msgid "Only %s (1)"
 msgstr "%s uniquement (1)"
 
-#: ../dialogs/display-settings/main.c:3590
+#: ../dialogs/display-settings/main.c:3532
 #, c-format
 msgid "Only %s (2)"
 msgstr "%s uniquement (2) "
 
-#: ../dialogs/display-settings/main.c:3772
-#: ../dialogs/display-settings/xfce-randr.c:286
-#, c-format
-msgid "Unable to query the version of the RandR extension being used"
-msgstr "Impossible de déterminer la version de l’extension RandR utilisée"
-
-#: ../dialogs/display-settings/main.c:3773
-#: ../dialogs/display-settings/main.c:3810
+#: ../dialogs/display-settings/main.c:3715
+#: ../dialogs/display-settings/main.c:3752
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Impossible de démarrer les paramètres d’affichage Xfce"
 
-#: ../dialogs/display-settings/main.c:3805
+#: ../dialogs/display-settings/main.c:3747
 msgid "ATI Settings"
 msgstr "Paramètres ATI"
 
-#: ../dialogs/display-settings/main.c:3812
+#: ../dialogs/display-settings/main.c:3754
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
 msgid "_Close"
 msgstr "_Fermer"
 
-#: ../dialogs/display-settings/main.c:3820
+#: ../dialogs/display-settings/main.c:3762
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Impossible d’exécuter les paramètres du pilote propriétaire"
-
-#. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:294
-#, c-format
-msgid ""
-"This system is using RandR %d.%d. For the display settings to work version "
-"1.2 is required at least"
-msgstr "Ce système utilise RandR %d.%d. Pour que les paramètres d’affichage fonctionnent, la version 1.2 ou ultérieure est nécessaire."
-
-#: ../dialogs/display-settings/xfce-randr.c:574
-msgid "Laptop"
-msgstr "Portable"
-
-#: ../dialogs/display-settings/xfce-randr.c:588
-msgid "Monitor"
-msgstr "Moniteur"
-
-#: ../dialogs/display-settings/xfce-randr.c:591
-msgid "Television"
-msgstr "Téléviseur"
-
-#: ../dialogs/display-settings/xfce-randr.c:595
-msgid "Digital display"
-msgstr "Écran numérique"
-
-#. Translators: "Unknown" here is used to identify a monitor for which
-#. * we don't know the vendor. When a vendor is known, the name of the
-#. * vendor is used.
-#: ../dialogs/display-settings/display-name.c:2641
-msgctxt "Monitor vendor"
-msgid "Unknown"
-msgstr "Inconnu"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:106
@@ -1760,6 +1984,40 @@ msgstr "Modifier la propriété"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Éditeur graphique de paramètres pour Xfconf"
 
+#: ../xfce4-settings-manager/main.c:44
+msgid "Settings dialog to show"
+msgstr "Fenêtre de paramètres à afficher"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
+msgid "All _Settings"
+msgstr "Tous les _paramètres"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
+msgid "_Help"
+msgstr "Aid_e"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
+msgid "Customize your desktop"
+msgstr "Personnaliser votre environnement de bureau"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
+#, c-format
+msgid "Unable to start \"%s\""
+msgstr "Impossible de démarrer « %s »"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
+msgid "Settings Manager"
+msgstr "Gestionnaire de paramètres"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Graphical Settings Manager for Xfce 4"
+msgstr "Gestionnaire graphique de paramètres pour Xfce 4"
+
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr "Les touches rémanentes sont activées"
@@ -1818,37 +2076,3 @@ msgstr "Espace de travail %d"
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
 msgid "The Xfce Settings Daemon"
 msgstr "Le démon des paramètres Xfce"
-
-#: ../xfce4-settings-manager/main.c:44
-msgid "Settings dialog to show"
-msgstr "Fenêtre de paramètres à afficher"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
-msgid "All _Settings"
-msgstr "Tous les _paramètres"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
-msgid "_Help"
-msgstr "Aid_e"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
-msgid "Settings"
-msgstr "Paramètres"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
-msgid "Customize your desktop"
-msgstr "Personnaliser votre environnement de bureau"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
-#, c-format
-msgid "Unable to start \"%s\""
-msgstr "Impossible de démarrer « %s »"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Settings Manager"
-msgstr "Gestionnaire de paramètres"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Gestionnaire graphique de paramètres pour Xfce 4"
