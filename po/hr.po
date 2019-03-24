@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Edin Veskovic <edin.lockedin@gmail.com>, 2018
+# Edin Veskovic <edin.lockedin@gmail.com>, 2018-2019
 # Edin Veskovic <edin.lockedin@gmail.com>, 2015,2017
 # Edin Veskovic <edin.lockedin@gmail.com>, 2014
 # Ivica  Kolić <ikoli@yahoo.com>, 2010
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-12 00:30+0100\n"
-"PO-Revision-Date: 2018-11-14 07:06+0000\n"
+"POT-Creation-Date: 2019-03-23 18:30+0100\n"
+"PO-Revision-Date: 2019-03-24 07:26+0000\n"
 "Last-Translator: Edin Veskovic <edin.lockedin@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/xfce/xfce4-settings/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: ../common/display-name.c:2641
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr "Nepoznato"
+
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3714
+#, c-format
+msgid "Unable to query the version of the RandR extension being used"
+msgstr "Ne mogu otkriti verziju RandRa koja se trenutno koristi"
+
+#. 1.2 is required
+#: ../common/xfce-randr.c:294
+#, c-format
+msgid ""
+"This system is using RandR %d.%d. For the display settings to work version "
+"1.2 is required at least"
+msgstr "Ovaj sustav koristi RandR %d.%d. Za prikaz postavki najmanja potrebna verzija je 1.2 "
+
+#: ../common/xfce-randr.c:574
+msgid "Laptop"
+msgstr "Laptop"
+
+#. TRANSLATORS: an externally connected display, where %s is either the
+#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
+#: ../common/xfce-randr.c:588 ../dialogs/color-settings/color-device.c:65
+msgid "Monitor"
+msgstr "Monitor"
+
+#: ../common/xfce-randr.c:591
+msgid "Television"
+msgstr "Televizor"
+
+#: ../common/xfce-randr.c:595
+msgid "Digital display"
+msgstr "Digitalni zaslon"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
@@ -234,7 +273,7 @@ msgstr "_Miš"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/display-settings/main.c:121
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:122
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
@@ -242,7 +281,7 @@ msgstr "Priključak upravitelja postavkama"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/display-settings/main.c:121
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:122
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
@@ -250,39 +289,42 @@ msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
 #: ../dialogs/appearance-settings/main.c:110
-#: ../dialogs/display-settings/main.c:122
+#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:123
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfsettingsd/main.c:101 ../xfce4-settings-manager/main.c:43
+#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:101
 msgid "Version information"
 msgstr "Inforemacija o verziji"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/display-settings/main.c:3740
+#: ../dialogs/color-settings/main.c:1361
+#: ../dialogs/display-settings/main.c:3682
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
-#: ../xfsettingsd/main.c:237 ../xfsettingsd/main.c:275
-#: ../xfce4-settings-manager/main.c:64
+#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
+#: ../xfsettingsd/main.c:275
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Upiši '%s --help' za upotrebu."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/display-settings/main.c:3759
+#: ../dialogs/color-settings/main.c:1378
+#: ../dialogs/display-settings/main.c:3701
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
-#: ../xfsettingsd/main.c:253 ../xfce4-settings-manager/main.c:80
+#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce razvojni tim.Sva prava pridržana."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/display-settings/main.c:3760
+#: ../dialogs/color-settings/main.c:1379
+#: ../dialogs/display-settings/main.c:3702
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
-#: ../xfsettingsd/main.c:254 ../xfce4-settings-manager/main.c:81
+#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Prijavite probleme u <%s>."
@@ -293,7 +335,8 @@ msgstr "Poboljšajte pristupačnost tipkovnice i miša"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1041
-#: ../dialogs/display-settings/main.c:88 ../dialogs/display-settings/main.c:99
+#: ../dialogs/display-settings/main.c:89
+#: ../dialogs/display-settings/main.c:100
 msgid "None"
 msgstr "Nijedan"
 
@@ -552,6 +595,225 @@ msgstr "Okomito RGB"
 msgid "Vertical BGR"
 msgstr "Okomito BGR"
 
+#. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
+#: ../dialogs/color-settings/color-device.c:68
+msgid "Scanner"
+msgstr "Skener"
+
+#. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
+#: ../dialogs/color-settings/color-device.c:71
+msgid "Camera"
+msgstr "Kamera"
+
+#. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
+#: ../dialogs/color-settings/color-device.c:74
+msgid "Printer"
+msgstr "Printer"
+
+#. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
+#: ../dialogs/color-settings/color-device.c:77
+msgid "Webcam"
+msgstr "Web kamera"
+
+#. TRANSLATORS: This refers to the TFT display on a laptop
+#: ../dialogs/color-settings/color-device.c:94
+msgid "Laptop Screen"
+msgstr "Zaslon prijenosnog računala"
+
+#. TRANSLATORS: This refers to the embedded webcam on a laptop
+#: ../dialogs/color-settings/color-device.c:102
+msgid "Built-in Webcam"
+msgstr "Ugrađena web kamera"
+
+#: ../dialogs/color-settings/color-device.c:195
+#, c-format
+msgid "Enable color management for %s"
+msgstr "Omogući upravljanje bojama za %s"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:1
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
+msgid "Color Profiles"
+msgstr "Profili boja"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:2
+msgid "Configure color profiles for your devices"
+msgstr "Konfiguriraj profile boja za svoje uređaje"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:3
+msgid "<b>No devices found.</b>"
+msgstr "<b>Nisu nađeni uređaji.</b>"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:4
+msgid "Model:"
+msgstr "Model:"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:5
+msgid "Colorspace:"
+msgstr "Područje boja:"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:6
+msgid "Vendor:"
+msgstr "Prodavač:"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:7
+msgid "Calibrate"
+msgstr "Kalibriraj"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:8
+msgid "<b>No profiles for the selected device.</b>"
+msgstr "<b>Nema profila za odabrani uređaj.</b>"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:9
+msgid "Add a profile to the currently selected device"
+msgstr "Dodaj profil trenutno odabranom uređaju"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:10
+msgid "Delete the currently selected profile"
+msgstr "Obriši trenutno odabrani uređaj"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:11
+msgid "Enable"
+msgstr "Omogući"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:12
+msgid "Enable the selected profile"
+msgstr "Omogući odabrani profil"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:13
+msgid "Add Profile to Device"
+msgstr "Dodaj profil za uređaj"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:14
+msgid "Add a Color Profile to your Device"
+msgstr "Dodaj profil boja svom uređaju"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:15
+#: ../dialogs/color-settings/main.c:129
+msgid "_Cancel"
+msgstr "_Odustani"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:16
+msgid "_OK"
+msgstr "_U redu"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:17
+msgid "Import color profile files (*.icc)"
+msgstr "Uvezi datoteke profila boja (*.icc)"
+
+#. TRANSLATORS: standard spaces are well known colorspaces like
+#. * sRGB, AdobeRGB and ProPhotoRGB
+#: ../dialogs/color-settings/color-profile.c:94
+msgid "Standard Space"
+msgstr "Standardno područje"
+
+#. TRANSLATORS: test profiles do things like changing the screen
+#. * a different color, or swap the red and green channels
+#: ../dialogs/color-settings/color-profile.c:99
+msgid "Test Profile"
+msgstr "Testiraj profil"
+
+#. TRANSLATORS: automatic profiles are generated automatically
+#. * by the color management system based on manufacturing data,
+#. * for instance the default monitor profile is created from the
+#. * primaries specified in the monitor EDID
+#: ../dialogs/color-settings/color-profile.c:106
+msgctxt "Automatically generated profile"
+msgid "Automatic"
+msgstr "Automatski"
+
+#. TRANSLATORS: the profile quality - low quality profiles take
+#. * much less time to generate but may be a poor reflection of the
+#. * device capability
+#: ../dialogs/color-settings/color-profile.c:115
+msgctxt "Profile quality"
+msgid "Low Quality"
+msgstr "Niska kvaliteta"
+
+#. TRANSLATORS: the profile quality
+#: ../dialogs/color-settings/color-profile.c:119
+msgctxt "Profile quality"
+msgid "Medium Quality"
+msgstr "Srednja kvaliteta"
+
+#. TRANSLATORS: the profile quality - high quality profiles take
+#. * a *long* time, and have the best calibration and
+#. * characterisation data.
+#: ../dialogs/color-settings/color-profile.c:125
+msgctxt "Profile quality"
+msgid "High Quality"
+msgstr "Viskoka kvaliteta"
+
+#. TRANSLATORS: this default RGB space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:140
+msgctxt "Colorspace fallback"
+msgid "Default RGB"
+msgstr "Zadani RGB"
+
+#. TRANSLATORS: this default CMYK space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:146
+msgctxt "Colorspace fallback"
+msgid "Default CMYK"
+msgstr "Zadani CMYK"
+
+#. TRANSLATORS: this default gray space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:152
+msgctxt "Colorspace fallback"
+msgid "Default Gray"
+msgstr "Zadani Siva"
+
+#. TRANSLATORS: an ICC profile is a file containing colorspace data
+#: ../dialogs/color-settings/main.c:127
+msgid "Select ICC Profile File"
+msgstr "Odaberi datoteku ICC profila"
+
+#: ../dialogs/color-settings/main.c:130
+msgid "_Import"
+msgstr "Uvez_i"
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: ../dialogs/color-settings/main.c:141
+msgid "Supported ICC profiles"
+msgstr "Podržani ICC profili"
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: ../dialogs/color-settings/main.c:148
+msgid "All files"
+msgstr "Sve datoteke"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile has been auto-generated for this hardware
+#: ../dialogs/color-settings/main.c:192
+msgid "Default: "
+msgstr "Zadano:"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile his a standard space like AdobeRGB
+#: ../dialogs/color-settings/main.c:199
+msgid "Colorspace: "
+msgstr "Područje boja:"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile is a test profile
+#: ../dialogs/color-settings/main.c:205
+msgid "Test profile: "
+msgstr "Testiraj profil:"
+
+#: ../dialogs/color-settings/main.c:243
+msgid "Compatible Profiles"
+msgstr "Kompatibilni profili:"
+
+#: ../dialogs/color-settings/main.c:810 ../dialogs/color-settings/main.c:811
+#: ../dialogs/color-settings/main.c:812
+msgid "Unknown"
+msgstr "Nepoznato"
+
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
+msgid "Set color profiles"
+msgstr "Postavi profil boje"
+
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
 msgstr "Potvrda"
@@ -605,24 +867,24 @@ msgid "Configure screen settings and layout"
 msgstr "Konfigurirajte postavke i raspored ekrana"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
+msgid "Primary Display:"
+msgstr "Primarni zaslon:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "R_esolution:"
 msgstr "R_ezolucija:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Refresh _rate:"
 msgstr "Vrijeme _osvježenja:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Ro_tation:"
 msgstr "Ro_tacija:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Ref_lection:"
 msgstr "Ref_leksija:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:12
-msgid "Primary Display:"
-msgstr "Primarni zaslon:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "_Mirror displays"
@@ -713,35 +975,35 @@ msgstr "Napredno"
 msgid "radiobutton"
 msgstr "gumb odabira"
 
-#: ../dialogs/display-settings/main.c:89
+#: ../dialogs/display-settings/main.c:90
 msgid "Left"
 msgstr "Lijevo"
 
-#: ../dialogs/display-settings/main.c:90
+#: ../dialogs/display-settings/main.c:91
 msgid "Inverted"
 msgstr "Obrnuto"
 
-#: ../dialogs/display-settings/main.c:91
+#: ../dialogs/display-settings/main.c:92
 msgid "Right"
 msgstr "Desno"
 
-#: ../dialogs/display-settings/main.c:100
+#: ../dialogs/display-settings/main.c:101
 msgid "Horizontal"
 msgstr "Vodoravno"
 
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:102
 msgid "Vertical"
 msgstr "Okomito"
 
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:103
 msgid "Horizontal and Vertical"
 msgstr "Vodoravno i okomito"
 
-#: ../dialogs/display-settings/main.c:123
+#: ../dialogs/display-settings/main.c:124
 msgid "Minimal interface to set up an external output"
 msgstr "Minimalno sučelje za postavljanje vanjskog ulaza"
 
-#: ../dialogs/display-settings/main.c:263
+#: ../dialogs/display-settings/main.c:264
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -749,52 +1011,52 @@ msgid ""
 msgstr "Prethodna konfiguracija će biti obnovljena u %i sekunda ako ne odgovorite na ovo pitanje."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:558
+#: ../dialogs/display-settings/main.c:559
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:855
+#: ../dialogs/display-settings/main.c:856
 msgid "Display:"
 msgstr "Zaslon:"
 
-#: ../dialogs/display-settings/main.c:860
+#: ../dialogs/display-settings/main.c:861
 msgid "Resolution:"
 msgstr "Rezolucija:"
 
-#: ../dialogs/display-settings/main.c:1135
+#: ../dialogs/display-settings/main.c:1142
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Zadnji aktivni izlaz ne smije biti  onemogućen, sustav će biti neupotrebljiv."
 
-#: ../dialogs/display-settings/main.c:1137
+#: ../dialogs/display-settings/main.c:1144
 msgid "Selected output not disabled"
 msgstr "Izabrani izlaz nije onemogućen"
 
-#: ../dialogs/display-settings/main.c:1655
+#: ../dialogs/display-settings/main.c:1588
 msgid "Profile Name"
 msgstr "Naziv profila"
 
-#: ../dialogs/display-settings/main.c:1663
+#: ../dialogs/display-settings/main.c:1596
 msgid "Create"
 msgstr "Stvori"
 
-#: ../dialogs/display-settings/main.c:1734
+#: ../dialogs/display-settings/main.c:1667
 #, c-format
 msgid "Do you really want to delete the profile '%s'?"
 msgstr "Jeste li sigurni da želite izbrisati profil '%s'?"
 
-#: ../dialogs/display-settings/main.c:1736
+#: ../dialogs/display-settings/main.c:1669
 #: ../dialogs/mime-settings/xfce-mime-window.c:903
 msgid "Question"
 msgstr "Pitanje"
 
-#: ../dialogs/display-settings/main.c:1738
+#: ../dialogs/display-settings/main.c:1671
 msgid "Delete display profile"
 msgstr "Izbriši profil zaslona"
 
 #. Create cancel button
-#: ../dialogs/display-settings/main.c:1740
+#: ../dialogs/display-settings/main.c:1673
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 #: ../dialogs/keyboard-settings/command-dialog.c:259
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -804,23 +1066,23 @@ msgstr "Izbriši profil zaslona"
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: ../dialogs/display-settings/main.c:1741
+#: ../dialogs/display-settings/main.c:1674
 msgid "Delete"
 msgstr "Izbriši"
 
-#: ../dialogs/display-settings/main.c:1844
+#: ../dialogs/display-settings/main.c:1774
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce ploče"
 
-#: ../dialogs/display-settings/main.c:2843
+#: ../dialogs/display-settings/main.c:2775
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Izaberite monitor kako bi mijenjali njegova svojstva; povucite ih kako bi promijenili raspored."
 
-#: ../dialogs/display-settings/main.c:2885
-#: ../dialogs/display-settings/main.c:2959
+#: ../dialogs/display-settings/main.c:2817
+#: ../dialogs/display-settings/main.c:2891
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -829,79 +1091,41 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3151
+#: ../dialogs/display-settings/main.c:3093
 msgid "Mirror Screens"
 msgstr "Zrcali zaslone"
 
-#: ../dialogs/display-settings/main.c:3200
+#: ../dialogs/display-settings/main.c:3142
 msgid "(Disabled)"
 msgstr "(Onemogućeno)"
 
-#: ../dialogs/display-settings/main.c:3579
+#: ../dialogs/display-settings/main.c:3521
 #, c-format
 msgid "Only %s (1)"
 msgstr "Samo %s (1)"
 
-#: ../dialogs/display-settings/main.c:3590
+#: ../dialogs/display-settings/main.c:3532
 #, c-format
 msgid "Only %s (2)"
 msgstr "Samo %s (2)"
 
-#: ../dialogs/display-settings/main.c:3772
-#: ../dialogs/display-settings/xfce-randr.c:286
-#, c-format
-msgid "Unable to query the version of the RandR extension being used"
-msgstr "Ne mogu otkriti verziju RandRa koja se trenutno koristi"
-
-#: ../dialogs/display-settings/main.c:3773
-#: ../dialogs/display-settings/main.c:3810
+#: ../dialogs/display-settings/main.c:3715
+#: ../dialogs/display-settings/main.c:3752
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nije moguće pokrenuti postavke Xfce zaslona"
 
-#: ../dialogs/display-settings/main.c:3805
+#: ../dialogs/display-settings/main.c:3747
 msgid "ATI Settings"
 msgstr "ATI postavke"
 
-#: ../dialogs/display-settings/main.c:3812
+#: ../dialogs/display-settings/main.c:3754
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
 msgid "_Close"
 msgstr "_Zatvori"
 
-#: ../dialogs/display-settings/main.c:3820
+#: ../dialogs/display-settings/main.c:3762
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nije moguće pokrenuti postavke vlasničkog upravljačkog programa"
-
-#. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:294
-#, c-format
-msgid ""
-"This system is using RandR %d.%d. For the display settings to work version "
-"1.2 is required at least"
-msgstr "Ovaj sustav koristi RandR %d.%d. Za prikaz postavki najmanja potrebna verzija je 1.2 "
-
-#: ../dialogs/display-settings/xfce-randr.c:574
-msgid "Laptop"
-msgstr "Laptop"
-
-#: ../dialogs/display-settings/xfce-randr.c:588
-msgid "Monitor"
-msgstr "Monitor"
-
-#: ../dialogs/display-settings/xfce-randr.c:591
-msgid "Television"
-msgstr "Televizor"
-
-#: ../dialogs/display-settings/xfce-randr.c:595
-msgid "Digital display"
-msgstr "Digitalni zaslon"
-
-#. Translators: "Unknown" here is used to identify a monitor for which
-#. * we don't know the vendor. When a vendor is known, the name of the
-#. * vendor is used.
-#: ../dialogs/display-settings/display-name.c:2641
-msgctxt "Monitor vendor"
-msgid "Unknown"
-msgstr "Nepoznato"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:106
@@ -1756,6 +1980,40 @@ msgstr "Uredi svojstvo"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Grafički uređivač postavki za Xfconf"
 
+#: ../xfce4-settings-manager/main.c:44
+msgid "Settings dialog to show"
+msgstr "Pokaži dijalog postavki"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
+msgid "All _Settings"
+msgstr "Sve _postavke"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
+msgid "_Help"
+msgstr "_Pomoć"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
+msgid "Settings"
+msgstr "Postavke"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
+msgid "Customize your desktop"
+msgstr "Prilagodite vašu radnu površinu"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
+#, c-format
+msgid "Unable to start \"%s\""
+msgstr "Ne mogu pokrenuti \"%s\""
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
+msgid "Settings Manager"
+msgstr "Upravitelj postavki"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Graphical Settings Manager for Xfce 4"
+msgstr "Grafički upravitelj postavkama za Xfce 4"
+
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr "Ljepljive tipke su omogućene"
@@ -1814,37 +2072,3 @@ msgstr "Radni prostor %d"
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
 msgid "The Xfce Settings Daemon"
 msgstr "Xfce nadglednik postavki"
-
-#: ../xfce4-settings-manager/main.c:44
-msgid "Settings dialog to show"
-msgstr "Pokaži dijalog postavki"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
-msgid "All _Settings"
-msgstr "Sve _postavke"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
-msgid "_Help"
-msgstr "_Pomoć"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
-msgid "Settings"
-msgstr "Postavke"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
-msgid "Customize your desktop"
-msgstr "Prilagodite vašu radnu površinu"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
-#, c-format
-msgid "Unable to start \"%s\""
-msgstr "Ne mogu pokrenuti \"%s\""
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Settings Manager"
-msgstr "Upravitelj postavki"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Grafički upravitelj postavkama za Xfce 4"
