@@ -1662,15 +1662,17 @@ display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
     if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
         gchar *profile_hash;
+        gchar *old_profile_hash;
 
+        old_profile_hash = xfconf_channel_get_string (display_channel, "/ActiveProfile", "Default");
         gtk_tree_model_get (model, &iter, COLUMN_HASH, &profile_hash, -1);
         xfce_randr_apply (xfce_randr, profile_hash, display_channel);
         xfconf_channel_set_string (display_channel, "/ActiveProfile", profile_hash);
 
         if (!display_setting_timed_confirmation (builder))
         {
-            xfce_randr_apply (xfce_randr, "Default", display_channel);
-            xfconf_channel_set_string (display_channel, "/ActiveProfile", "Default");
+            xfce_randr_apply (xfce_randr, old_profile_hash, display_channel);
+            xfconf_channel_set_string (display_channel, "/ActiveProfile", old_profile_hash);
 
             foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
         }
