@@ -1531,6 +1531,7 @@ display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
 
         /* save the human-readable name of the profile as string value */
         xfconf_channel_set_string (display_channel, property, profile_name);
+        xfconf_channel_set_string (display_channel, "/ActiveProfile", profile_hash);
 
         display_settings_profile_list_populate (builder);
         gtk_widget_set_sensitive (widget, FALSE);
@@ -1563,6 +1564,7 @@ display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
 
         /* save the human-readable name of the profile as string value */
         xfconf_channel_set_string (display_channel, property, profile_name);
+        xfconf_channel_set_string (display_channel, "/ActiveProfile", profile_hash);
         display_settings_profile_list_populate (builder);
 
         g_free (property);
@@ -1634,10 +1636,12 @@ display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 
         gtk_tree_model_get (model, &iter, COLUMN_COMBO_VALUE, &profile_hash, -1);
         xfce_randr_apply (xfce_randr, profile_hash, display_channel);
+        xfconf_channel_set_string (display_channel, "/ActiveProfile", profile_hash);
 
         if (!display_setting_timed_confirmation (builder))
         {
             xfce_randr_apply (xfce_randr, "Default", display_channel);
+            xfconf_channel_set_string (display_channel, "/ActiveProfile", "Default");
 
             foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
         }
@@ -1685,6 +1689,7 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
             g_string_prepend_c (property, '/');
 
             xfconf_channel_reset_property (display_channel, property->str, True);
+            xfconf_channel_set_string (display_channel, "/ActiveProfile", "Default");
             display_settings_profile_list_populate (builder);
             g_free (profile_name);
         }

@@ -472,6 +472,7 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
                 property = g_strdup_printf ("/%s", (gchar *) profile);
                 profile_name = xfconf_channel_get_string (helper->channel, property, NULL);
                 xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applied the only matching display profile: %s", profile_name);
+                xfconf_channel_set_string (helper->channel, "/ActiveProfile", (gchar *) profile);
                 g_free (profile_name);
                 g_free (property);
                 return GDK_FILTER_CONTINUE;
@@ -481,6 +482,7 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
                 xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles.", g_list_length (profiles));
             }
         }
+        xfconf_channel_set_string (helper->channel, "/ActiveProfile", "Default");
 
         if (old_outputs->len > helper->outputs->len)
         {
