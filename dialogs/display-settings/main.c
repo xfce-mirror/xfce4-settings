@@ -64,6 +64,14 @@ enum
 
 enum
 {
+    COLUMN_ICON,
+    COLUMN_NAME,
+    COLUMN_HASH,
+    N_COLUMNS
+};
+
+enum
+{
     COLUMN_COMBO_NAME,
     COLUMN_COMBO_VALUE,
     N_COMBO_COLUMNS
@@ -1293,7 +1301,8 @@ display_settings_profile_list_init (GtkBuilder *builder)
     GtkCellRenderer   *renderer;
     GtkTreeViewColumn *column;
 
-    store = gtk_list_store_new (2,
+    store = gtk_list_store_new (3,
+                                GDK_TYPE_PIXBUF,
                                 G_TYPE_STRING,
                                 G_TYPE_STRING);
 
@@ -1302,16 +1311,22 @@ display_settings_profile_list_init (GtkBuilder *builder)
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
     /* Setup Profile name column */
     column = gtk_tree_view_column_new ();
+    renderer = gtk_cell_renderer_pixbuf_new ();
+    gtk_tree_view_column_pack_start (column, renderer, TRUE);
+    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", COLUMN_ICON, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+    /* Setup Profile name column */
+    column = gtk_tree_view_column_new ();
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
-    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_COMBO_NAME, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
     /* Setup Profile hash column */
     column = gtk_tree_view_column_new ();
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
-    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_COMBO_VALUE, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_HASH, NULL);
     gtk_tree_view_column_set_visible (column, FALSE);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
@@ -1328,7 +1343,8 @@ display_settings_profile_list_populate (GtkBuilder *builder)
     GList *current;
 
     /* create a new list store */
-    store = gtk_list_store_new (2,
+    store = gtk_list_store_new (3,
+                                GDK_TYPE_PIXBUF,
                                 G_TYPE_STRING,
                                 G_TYPE_STRING);
 
@@ -1344,20 +1360,33 @@ display_settings_profile_list_populate (GtkBuilder *builder)
     {
         gchar *property;
         gchar *profile_name;
+        gchar *active_profile_hash;
+        GdkPixbuf *pixbuf = NULL;
 
         /* use the display string value of the profile hash property */
         property = g_strdup_printf ("/%s", (gchar *)current->data);
         profile_name = xfconf_channel_get_string (display_channel, property, NULL);
+        active_profile_hash = xfconf_channel_get_string (display_channel, "/ActiveProfile", "Default");
+
+        /* highlight the currently active profile */
+        if (g_strcmp0 ((gchar *)current->data, active_profile_hash) == 0)
+            pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
+                                               "object-select-symbolic", 16,
+                                               GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
 
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
-                            0, profile_name,
-                            1, (gchar *)current->data,
+                            0, pixbuf,
+                            1, profile_name,
+                            2, (gchar *)current->data,
                             -1);
 
         current = g_list_next (current);
         g_free (property);
         g_free (profile_name);
+        g_free (active_profile_hash);
+        if (pixbuf)
+            g_object_unref (pixbuf);
     }
 
     /* Release the store */
@@ -1523,7 +1552,7 @@ display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
         gchar *profile_hash;
         gchar *profile_name;
 
-        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, COLUMN_COMBO_VALUE, &profile_hash, -1);
+        gtk_tree_model_get (model, &iter, COLUMN_NAME, &profile_name, COLUMN_HASH, &profile_hash, -1);
         property = g_strdup_printf ("/%s", profile_hash);
 
         for (i = 0; i < xfce_randr->noutput; i++)
@@ -1634,7 +1663,7 @@ display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
     {
         gchar *profile_hash;
 
-        gtk_tree_model_get (model, &iter, COLUMN_COMBO_VALUE, &profile_hash, -1);
+        gtk_tree_model_get (model, &iter, COLUMN_HASH, &profile_hash, -1);
         xfce_randr_apply (xfce_randr, profile_hash, display_channel);
         xfconf_channel_set_string (display_channel, "/ActiveProfile", profile_hash);
 
@@ -1645,9 +1674,20 @@ display_settings_profile_apply (GtkWidget *widget, GtkBuilder *builder)
 
             foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
         }
+        display_settings_profile_list_populate (builder);
 
         g_free (profile_hash);
     }
+}
+
+static void
+display_settings_profile_row_activated (GtkTreeView       *tree_view,
+                                        GtkTreePath       *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer           user_data)
+{
+    GtkBuilder *builder = user_data;
+    display_settings_profile_apply (NULL, builder);
 }
 
 static void
@@ -1668,7 +1708,7 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
         gint   response;
         gchar *secondary_message;
 
-        gtk_tree_model_get (model, &iter, COLUMN_COMBO_NAME, &profile_name, COLUMN_COMBO_VALUE, &profile_hash, -1);
+        gtk_tree_model_get (model, &iter, COLUMN_NAME, &profile_name, COLUMN_HASH, &profile_hash, -1);
         secondary_message = g_strdup_printf (_("Do you really want to delete the profile '%s'?"), profile_name);
 
         response = xfce_message_dialog (NULL, _("Question"),
@@ -1878,7 +1918,9 @@ display_settings_dialog_new (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-profile");
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (combobox));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+    gtk_tree_view_set_activate_on_single_click (GTK_TREE_VIEW (combobox), FALSE);
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_profile_changed), builder);
+    g_signal_connect (G_OBJECT (combobox), "row-activated", G_CALLBACK (display_settings_profile_row_activated), builder);
 
     check = gtk_builder_get_object (builder, "minimal-autoshow");
     g_signal_connect (G_OBJECT (check), "state-set", G_CALLBACK (display_setting_minimal_autoshow_toggled), builder);
