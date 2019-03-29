@@ -1301,7 +1301,7 @@ display_settings_profile_list_init (GtkBuilder *builder)
     GtkCellRenderer   *renderer;
     GtkTreeViewColumn *column;
 
-    store = gtk_list_store_new (3,
+    store = gtk_list_store_new (N_COLUMNS,
                                 GDK_TYPE_PIXBUF,
                                 G_TYPE_STRING,
                                 G_TYPE_STRING);
@@ -1343,7 +1343,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
     GList *current;
 
     /* create a new list store */
-    store = gtk_list_store_new (3,
+    store = gtk_list_store_new (N_COLUMNS,
                                 GDK_TYPE_PIXBUF,
                                 G_TYPE_STRING,
                                 G_TYPE_STRING);
@@ -1376,9 +1376,9 @@ display_settings_profile_list_populate (GtkBuilder *builder)
 
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
-                            0, pixbuf,
-                            1, profile_name,
-                            2, (gchar *)current->data,
+                            COLUMN_ICON, pixbuf,
+                            COLUMN_NAME, profile_name,
+                            COLUMN_HASH, (gchar *)current->data,
                             -1);
 
         current = g_list_next (current);
