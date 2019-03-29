@@ -39,6 +39,36 @@ get_size (gchar **i) {
     return num;
 }
 
+gboolean
+display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_profile_name)
+{
+    GHashTable *properties;
+    GList *channel_contents, *current;
+
+    properties = xfconf_channel_get_properties (channel, NULL);
+    channel_contents = g_hash_table_get_keys (properties);
+
+    /* get all profiles */
+    current = g_list_first (channel_contents);
+    while (current)
+    {
+        gchar **current_elements = g_strsplit (current->data, "/", -1);
+
+        if (get_size (current_elements) != 2)
+        {
+            g_strfreev (current_elements);
+            current = g_list_next (current);
+            continue;
+        }
+
+        if (g_strcmp0 (new_profile_name, xfconf_channel_get_string (channel, current->data, NULL)) == 0)
+            return FALSE;
+
+        current = g_list_next (current);
+    }
+    return TRUE;
+}
+
 GList*
 display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
 {

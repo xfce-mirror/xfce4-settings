@@ -159,9 +159,6 @@ GList *current_outputs = NULL;
 GtkWidget *randr_outputs_combobox = NULL;
 GtkWidget *apply_button = NULL;
 
-/* New Profile entry */
-GtkWidget *profile_create_entry;
-
 static void display_settings_minimal_only_display1_toggled   (GtkToggleButton *button,
                                                               GtkBuilder      *builder);
 
@@ -1578,8 +1575,19 @@ display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
 {
     const gchar *profile_name;
     GtkWidget *popover;
+    GObject *infobar, *entry;
 
-    profile_name = gtk_entry_get_text (GTK_ENTRY (profile_create_entry));
+    entry = gtk_builder_get_object (builder, "entry-profile-create");
+    profile_name = gtk_entry_get_text (GTK_ENTRY (entry));
+
+    /* check if the profile name is already taken */
+    if (!display_settings_profile_name_exists (display_channel, profile_name))
+    {
+        infobar = gtk_builder_get_object (builder, "profile-exists");
+        gtk_widget_show_all (GTK_WIDGET (infobar));
+        return;
+    }
+
     if (profile_name)
     {
         guint i = 0;
@@ -1607,45 +1615,20 @@ display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
 static void
 display_settings_profile_create (GtkWidget *widget, GtkBuilder *builder)
 {
-    GtkWidget *popover, *grid, *label, *button;
-    GtkStyleContext *context;
-    const char *str, *format;
-    char *markup;
+    GObject *popover, *entry, *button, *infobar;
 
     /* Create a popover dialog for saving a new profile */
-    popover = gtk_popover_new (widget);
-    gtk_popover_set_modal (GTK_POPOVER (popover), TRUE);
+    popover = gtk_builder_get_object (builder, "popover-create-profile");
+    entry = gtk_builder_get_object (builder, "entry-profile-create");
+    button = gtk_builder_get_object (builder, "button-profile-create-cb");
+    infobar = gtk_builder_get_object (builder, "profile-exists");
 
-    label = gtk_label_new (NULL);
-    str = _("Profile Name");
-    format = "<b>\%s</b>";
-    markup = g_markup_printf_escaped (format, str);
-    gtk_label_set_markup (GTK_LABEL (label), markup);
-    gtk_label_set_xalign (GTK_LABEL (label), 0.0);
-    g_free (markup);
-    profile_create_entry = gtk_entry_new ();
-    gtk_entry_set_activates_default (GTK_ENTRY (profile_create_entry), TRUE);
-    button = gtk_button_new_with_label (_("Create"));
-    context = gtk_widget_get_style_context (button);
-    gtk_style_context_add_class (context, "suggested-action");
-    gtk_widget_set_can_default (button, TRUE);
+    gtk_widget_show (GTK_WIDGET (popover));
+    gtk_widget_hide (GTK_WIDGET (infobar));
+    gtk_widget_grab_focus (GTK_WIDGET (entry));
+    gtk_widget_grab_default (GTK_WIDGET (button));
 
-    grid = gtk_grid_new ();
-    gtk_grid_attach (GTK_GRID (grid), label, 0, 0, 2, 1);
-    gtk_grid_attach (GTK_GRID (grid), profile_create_entry, 0, 1, 1, 1);
-    gtk_grid_attach (GTK_GRID (grid), button, 1, 1, 1, 1);
-    gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
-    gtk_grid_set_column_spacing (GTK_GRID (grid), 6);
-    gtk_widget_set_margin_start (grid, 12);
-    gtk_widget_set_margin_end (grid, 12);
-    gtk_widget_set_margin_top (grid, 12);
-    gtk_widget_set_margin_bottom (grid, 24);
-    gtk_container_add (GTK_CONTAINER (popover), grid);
-    gtk_widget_show_all (popover);
-    gtk_widget_grab_focus (GTK_WIDGET (profile_create_entry));
-    gtk_widget_grab_default (button);
-
-    g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (display_settings_profile_create_cb), builder);
+    g_signal_connect (button, "clicked", G_CALLBACK (display_settings_profile_create_cb), builder);
 }
 
 static void

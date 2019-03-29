@@ -22,4 +22,7 @@
 #include "xfce-randr.h"
 
 
-GList* display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel);
+gboolean display_settings_profile_name_exists   (XfconfChannel *channel,
+                                                 const gchar   *new_profile_name);
+GList*   display_settings_get_profiles          (XfceRandr     *xfce_randr,
+                                                 XfconfChannel *channel);
