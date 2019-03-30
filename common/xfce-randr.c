@@ -496,11 +496,25 @@ xfce_randr_apply (XfceRandr     *randr,
                   const gchar   *scheme,
                   XfconfChannel *channel)
 {
+    gboolean autoenable;
+
     g_return_if_fail (randr != NULL && scheme != NULL);
     g_return_if_fail (XFCONF_IS_CHANNEL (channel));
 
+    /* Temporarily disable auto-enabling of profiles (if active).
+       Otherwise the user (changing settings in the display settings dialog) and
+       xfsettingsd (re-applying the unchanged profile) will fight against each other.
+       (Spoiler alert: xfsettingsd always wins!) */
+    autoenable = xfconf_channel_get_bool (channel, "/AutoEnableProfiles", FALSE);
+    if (autoenable)
+        xfconf_channel_set_bool (channel, "/AutoEnableProfiles", !autoenable);
+
     /* tell the helper to apply this theme */
     xfconf_channel_set_string (channel, "/Schemes/Apply", scheme);
+
+    /* Re-enable auto-enabling of profiles (if it was previously enabled) */
+    if (autoenable)
+        xfconf_channel_set_bool (channel, "/AutoEnableProfiles", autoenable);
 }
 
 
