@@ -81,6 +81,7 @@ typedef struct _XfceRROutput XfceRROutput;
 static void             xfce_displays_helper_dispose                        (GObject                 *object);
 static void             xfce_displays_helper_finalize                       (GObject                 *object);
 static void             xfce_displays_helper_reload                         (XfceDisplaysHelper      *helper);
+static gchar           *xfce_displays_helper_get_matching_profile           (XfceDisplaysHelper      *helper);
 static GdkFilterReturn  xfce_displays_helper_screen_on_event                (GdkXEvent               *xevent,
                                                                              GdkEvent                *event,
                                                                              gpointer                 data);
@@ -216,13 +217,6 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
 {
     gint major = 0, minor = 0;
     gint error_base, err;
-    GList              *profiles = NULL;
-    GdkDisplay         *display;
-    GError             *error = NULL;
-    gpointer           *profile;
-    XfceRandr          *xfce_randr;
-    gchar              *profile_name;
-    gchar              *property;
 
 #ifdef HAVE_UPOWERGLIB
     helper->power = NULL;
@@ -301,32 +295,12 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
             /*  check if we can auto-enable a profile */
             if (xfconf_channel_get_bool (helper->channel, AUTO_ENABLE_PROFILES, TRUE))
             {
-                display = gdk_display_get_default ();
-                xfce_randr = xfce_randr_new (display, &error);
-                if (xfce_randr)
-                {
-                    profiles = display_settings_get_profiles (xfce_randr, helper->channel);
-                    xfce_randr_free (xfce_randr);
-                }
+                gchar *matching_profile = NULL;
 
-                if (profiles == NULL)
+                matching_profile = xfce_displays_helper_get_matching_profile (helper);
+                if (matching_profile)
                 {
-                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "No matching display profiles found.");
-                }
-                else if (g_list_length (profiles) == 1)
-                {
-                    profile = g_list_nth_data (profiles, 0);
-                    xfce_displays_helper_channel_apply (helper, (gchar *)profile);
-                    property = g_strdup_printf ("/%s", (gchar *) profile);
-                    profile_name = xfconf_channel_get_string (helper->channel, property, NULL);
-                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applied the only matching display profile: %s", profile_name);
-                    xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, (gchar *) profile);
-                    g_free (profile_name);
-                    g_free (property);
-                }
-                else
-                {
-                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles.", g_list_length (profiles));
+                    xfce_displays_helper_channel_apply (helper, matching_profile);
                 }
             }
             /* restore the default scheme */
@@ -456,6 +430,49 @@ xfce_displays_helper_reload (XfceDisplaysHelper *helper)
 
 
 
+static gchar *
+xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
+{
+    GList              *profiles = NULL;
+    GdkDisplay         *display;
+    GError             *error = NULL;
+    gpointer           *profile;
+    XfceRandr          *xfce_randr;
+    gchar              *profile_name;
+    gchar              *property;
+
+    display = gdk_display_get_default ();
+    xfce_randr = xfce_randr_new (display, &error);
+    if (xfce_randr)
+    {
+        profiles = display_settings_get_profiles (xfce_randr, helper->channel);
+        xfce_randr_free (xfce_randr);
+    }
+
+    if (profiles == NULL)
+    {
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "No matching display profiles found.");
+    }
+    else if (g_list_length (profiles) == 1)
+    {
+        profile = g_list_nth_data (profiles, 0);
+        property = g_strdup_printf ("/%s", (gchar *) profile);
+        profile_name = xfconf_channel_get_string (helper->channel, property, NULL);
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applied the only matching display profile: %s", profile_name);
+        xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, (gchar *) profile);
+        g_free (profile_name);
+        g_free (property);
+        return (gchar *)profile;
+    }
+    else
+    {
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles.", g_list_length (profiles));
+    }
+    return NULL;
+}
+
+
+
 static GdkFilterReturn
 xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
                                       GdkEvent  *event,
@@ -470,13 +487,6 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
     gint                j;
     guint               n, m, nactive = 0;
     gboolean            found = FALSE, changed = FALSE;
-    GList              *profiles = NULL;
-    GdkDisplay         *display;
-    GError             *error = NULL;
-    gpointer           *profile;
-    XfceRandr          *xfce_randr;
-    gchar              *profile_name;
-    gchar              *property;
 
     if (!e)
         return GDK_FILTER_CONTINUE;
@@ -496,33 +506,13 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
         /* Check if we have a matching profile and apply it if there's only one */
         if (xfconf_channel_get_bool (helper->channel, AUTO_ENABLE_PROFILES, TRUE))
         {
-            display = gdk_display_get_default ();
-            xfce_randr = xfce_randr_new (display, &error);
-            if (xfce_randr)
-            {
-                profiles = display_settings_get_profiles (xfce_randr, helper->channel);
-                xfce_randr_free (xfce_randr);
-            }
+            gchar *matching_profile = NULL;
 
-            if (profiles == NULL)
+            matching_profile = xfce_displays_helper_get_matching_profile (helper);
+            if (matching_profile)
             {
-                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "No matching display profiles found.");
-            }
-            else if (g_list_length (profiles) == 1)
-            {
-                profile = g_list_nth_data (profiles, 0);
-                xfce_displays_helper_channel_apply (helper, (gchar *)profile);
-                property = g_strdup_printf ("/%s", (gchar *) profile);
-                profile_name = xfconf_channel_get_string (helper->channel, property, NULL);
-                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applied the only matching display profile: %s", profile_name);
-                xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, (gchar *) profile);
-                g_free (profile_name);
-                g_free (property);
+                xfce_displays_helper_channel_apply (helper, matching_profile);
                 return GDK_FILTER_CONTINUE;
-            }
-            else
-            {
-                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles.", g_list_length (profiles));
             }
         }
         xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, "Default");
