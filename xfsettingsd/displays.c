@@ -280,7 +280,7 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
 
             /* remove any leftover apply property before setting the monitor */
             xfconf_channel_reset_property (helper->channel, APPLY_SCHEME_PROP, FALSE);
-            xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, "Default");
+            xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
 
             /* monitor channel changes */
             helper->handler = g_signal_connect (G_OBJECT (helper->channel),
@@ -459,7 +459,6 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
         property = g_strdup_printf ("/%s", (gchar *) profile);
         profile_name = xfconf_channel_get_string (helper->channel, property, NULL);
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applied the only matching display profile: %s", profile_name);
-        xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, (gchar *) profile);
         g_free (profile_name);
         g_free (property);
         return (gchar *)profile;
@@ -503,19 +502,24 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Noutput: before = %d, after = %d.",
                         old_outputs->len, helper->outputs->len);
 
-        /* Check if we have a matching profile and apply it if there's only one */
-        if (xfconf_channel_get_bool (helper->channel, AUTO_ENABLE_PROFILES, TRUE))
+        /* Check if we have different amount of outputs and a matching profile and
+           apply it if there's only one */
+        if (old_outputs->len > helper->outputs->len ||
+            old_outputs->len < helper->outputs->len)
         {
-            gchar *matching_profile = NULL;
-
-            matching_profile = xfce_displays_helper_get_matching_profile (helper);
-            if (matching_profile)
+            if (xfconf_channel_get_bool (helper->channel, AUTO_ENABLE_PROFILES, TRUE))
             {
-                xfce_displays_helper_channel_apply (helper, matching_profile);
-                return GDK_FILTER_CONTINUE;
+                gchar *matching_profile = NULL;
+
+                matching_profile = xfce_displays_helper_get_matching_profile (helper);
+                if (matching_profile)
+                {
+                    xfce_displays_helper_channel_apply (helper, matching_profile);
+                    return GDK_FILTER_CONTINUE;
+                }
             }
+            xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
         }
-        xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, "Default");
 
         if (old_outputs->len > helper->outputs->len)
         {
@@ -1444,6 +1448,8 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
 #ifdef HAS_RANDR_ONE_POINT_THREE
     helper->primary = None;
 #endif
+
+    xfconf_channel_set_string (helper->channel, ACTIVE_PROFILE, scheme);
 
     /* finally the list of saved outputs from xfconf */
     g_snprintf (property, sizeof (property), "/%s", scheme);
