@@ -66,6 +66,7 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
 
         current = g_list_next (current);
     }
+    g_hash_table_destroy (properties);
     return TRUE;
 }
 

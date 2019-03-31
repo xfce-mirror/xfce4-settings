@@ -174,6 +174,7 @@ foo_scroll_area_finalize (GObject *object)
     g_object_unref (scroll_area->priv->vadj);
 
     g_ptr_array_free (scroll_area->priv->input_regions, TRUE);
+    gdk_region_destroy (scroll_area->priv->update_region);
 
     g_free (scroll_area->priv);
 
