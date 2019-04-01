@@ -18,10 +18,20 @@
     <property name="can_focus">False</property>
     <property name="icon_name">close-symbolic</property>
   </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">object-select-symbolic</property>
+  </object>
   <object class="GtkImage" id="image5">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">document-new-symbolic</property>
+  </object>
+  <object class="GtkImage" id="image6">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">help-browser</property>
   </object>
   <object class="GtkPopover" id="primary-info">
     <property name="can_focus">False</property>
@@ -193,11 +203,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button-help">
-                <property name="label">gtk-help</property>
+                <property name="label">_Help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="image">image6</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -542,11 +553,12 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="apply">
-                            <property name="label">gtk-apply</property>
+                            <property name="label">A_pply</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
-                            <property name="use_stock">True</property>
+                            <property name="image">image4</property>
+                            <property name="use_underline">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
