@@ -2114,6 +2114,7 @@ screen_on_event (GdkXEvent *xevent,
     {
         xfce_randr_reload (xfce_randr);
         display_settings_combobox_populate (builder);
+        display_settings_profile_list_populate (builder);
 
         /* recreate the identify display popups */
         g_hash_table_destroy (display_popups);
