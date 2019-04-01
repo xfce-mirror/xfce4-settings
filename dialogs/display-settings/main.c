@@ -49,6 +49,7 @@
 #include "display-dialog_ui.h"
 #include "confirmation-dialog_ui.h"
 #include "minimal-display-dialog_ui.h"
+#include "profile-changed-dialog_ui.h"
 #include "identity-popup_ui.h"
 
 #include "scrollarea.h"
@@ -150,6 +151,9 @@ static GHashTable *display_popups = NULL;
 gboolean show_popups = FALSE;
 
 gboolean supports_alpha = FALSE;
+
+/* Keep track of the initially active profile */
+gchar *active_profile = NULL;
 
 /* Graphical randr */
 GtkWidget *randr_gui_area = NULL;
@@ -1461,8 +1465,75 @@ display_settings_dialog_response (GtkDialog  *dialog,
     if (response_id == GTK_RESPONSE_HELP)
         xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "display",
                                             NULL, XFCE4_SETTINGS_VERSION_SHORT);
-    else
+    else if (response_id == GTK_RESPONSE_CLOSE)
+    {
+        gchar *new_active_profile = xfconf_channel_get_string (display_channel, "/ActiveProfile", NULL);
+
+        if (g_strcmp0 (active_profile, new_active_profile) != 0 &&
+            g_strcmp0 (active_profile, "Default") != 0)
+        {
+            GtkBuilder *profile_changed_builder;
+            GError     *error = NULL;
+            gint        profile_response_id;
+            gchar      *property = g_strdup_printf ("/%s", active_profile);
+            gchar      *profile_name = xfconf_channel_get_string (display_channel, property, NULL);
+
+            profile_changed_builder = gtk_builder_new ();
+
+            if (gtk_builder_add_from_string (profile_changed_builder, profile_changed_dialog_ui,
+                                             profile_changed_dialog_ui_length, &error) != 0)
+            {
+                GObject *profile_changed_dialog, *label, *button;
+                const char *str;
+                const char *format = "<big><b>\%s</b></big>";
+                char *markup;
+                gchar *button_label;
+
+                profile_changed_dialog = gtk_builder_get_object (profile_changed_builder, "profile-changed-dialog");
+
+                gtk_window_set_transient_for (GTK_WINDOW (profile_changed_dialog), GTK_WINDOW (dialog));
+                gtk_window_set_modal (GTK_WINDOW (profile_changed_dialog), TRUE);
+
+                label = gtk_builder_get_object (profile_changed_builder, "header");
+                str = g_strdup_printf(_("Update changed display profile '%s'"), profile_name);
+                markup = g_markup_printf_escaped (format, str);
+                gtk_label_set_markup (GTK_LABEL (label), markup);
+
+                button = gtk_builder_get_object (profile_changed_builder, "button-update");
+                button_label = g_strdup_printf (_("_Update '%s'"), profile_name);
+                gtk_button_set_label (GTK_BUTTON (button), button_label);
+
+                profile_response_id = gtk_dialog_run (GTK_DIALOG (profile_changed_dialog));
+                gtk_widget_destroy (GTK_WIDGET (profile_changed_dialog));
+                g_free (markup);
+                g_free (button_label);
+            }
+            else
+            {
+                profile_response_id = 2;
+                g_error ("Failed to load the UI file: %s.", error->message);
+                g_error_free (error);
+            }
+
+            /* update the profile */
+            if (profile_response_id == GTK_RESPONSE_OK)
+            {
+                guint i;
+
+                for (i = 0; i < xfce_randr->noutput; i++)
+                    xfce_randr_save_output (xfce_randr, active_profile, display_channel, i);
+
+                xfconf_channel_set_string (display_channel, "/ActiveProfile", active_profile);
+            }
+
+            g_object_unref (G_OBJECT (profile_changed_builder));
+            g_free (profile_name);
+            g_free (property);
+        }
+        g_free (new_active_profile);
+        g_free (active_profile);
         gtk_main_quit ();
+    }
 }
 
 static void
@@ -3416,8 +3487,11 @@ display_settings_show_main_dialog (GdkDisplay *display)
                   G_CALLBACK (on_viewport_changed), app);
 
         gui_container = GTK_WIDGET(gtk_builder_get_object(builder, "randr-dnd"));
-        gtk_container_add(GTK_CONTAINER(gui_container), GTK_WIDGET(randr_gui_area));
-        gtk_widget_show_all(gui_container);
+        gtk_container_add (GTK_CONTAINER(gui_container), GTK_WIDGET(randr_gui_area));
+        gtk_widget_show_all (gui_container);
+
+        /* Keep track of the profile that was active when the dialog was launched */
+        active_profile = xfconf_channel_get_string (display_channel, "/ActiveProfile", "Default");
 
         if (G_UNLIKELY (opt_socket_id == 0))
         {
