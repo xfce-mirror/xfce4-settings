@@ -1641,12 +1641,27 @@ display_settings_profile_save (GtkWidget *widget, GtkBuilder *builder)
         gtk_widget_set_sensitive (widget, TRUE);
 }
 
+/* reset the widget states if the user starts editing the profile name */
+static void
+display_settings_profile_entry_text_changed (GtkEditable *entry,
+                                             GtkBuilder  *builder)
+{
+    GObject *infobar, *button;
+
+    button = gtk_builder_get_object (builder, "button-profile-create-cb");
+    infobar = gtk_builder_get_object (builder, "profile-exists");
+
+    gtk_style_context_remove_class (gtk_widget_get_style_context (GTK_WIDGET (entry)), "error");
+    gtk_widget_set_sensitive (GTK_WIDGET (button), TRUE);
+    gtk_widget_hide (GTK_WIDGET (infobar));
+}
+
 static void
 display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
 {
     const gchar *profile_name;
     GtkWidget *popover;
-    GObject *infobar, *entry;
+    GObject *infobar, *entry, *button;
 
     entry = gtk_builder_get_object (builder, "entry-profile-create");
     profile_name = gtk_entry_get_text (GTK_ENTRY (entry));
@@ -1654,8 +1669,15 @@ display_settings_profile_create_cb (GtkWidget *widget, GtkBuilder *builder)
     /* check if the profile name is already taken */
     if (!display_settings_profile_name_exists (display_channel, profile_name))
     {
+        button = gtk_builder_get_object (builder, "button-profile-create-cb");
         infobar = gtk_builder_get_object (builder, "profile-exists");
+
+        gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (entry)), "error");
+        gtk_widget_set_sensitive (GTK_WIDGET (button), FALSE);
         gtk_widget_show_all (GTK_WIDGET (infobar));
+
+        g_signal_connect (G_OBJECT (entry), "changed",
+                          G_CALLBACK (display_settings_profile_entry_text_changed), builder);
         return;
     }
 
