@@ -1495,7 +1495,7 @@ display_settings_dialog_response (GtkDialog  *dialog,
                 gtk_window_set_modal (GTK_WINDOW (profile_changed_dialog), TRUE);
 
                 label = gtk_builder_get_object (profile_changed_builder, "header");
-                str = g_strdup_printf(_("Update changed display profile '%s'"), profile_name);
+                str = g_strdup_printf(_("Update changed display profile '%s'?"), profile_name);
                 markup = g_markup_printf_escaped (format, str);
                 gtk_label_set_markup (GTK_LABEL (label), markup);
 
@@ -1762,20 +1762,20 @@ display_settings_profile_delete (GtkWidget *widget, GtkBuilder *builder)
         gchar *profile_name;
         gchar *profile_hash;
         gint   response;
-        gchar *secondary_message;
+        gchar *primary_message;
 
         gtk_tree_model_get (model, &iter, COLUMN_NAME, &profile_name, COLUMN_HASH, &profile_hash, -1);
-        secondary_message = g_strdup_printf (_("Do you really want to delete the profile '%s'?"), profile_name);
+        primary_message = g_strdup_printf (_("Do you want to delete the display profile '%s'?"), profile_name);
 
-        response = xfce_message_dialog (NULL, _("Question"),
-                                        "dialog-question",
-                                        _("Delete display profile"),
-                                        secondary_message,
+        response = xfce_message_dialog (NULL, _("Delete Profile"),
+                                        "user-trash",
+                                        primary_message,
+                                        _("Once a display profile is deleted it cannot be restored."),
                                         _("Cancel"), GTK_RESPONSE_NO,
                                         _("Delete"), GTK_RESPONSE_YES,
                                         NULL);
 
-        g_free (secondary_message);
+        g_free (primary_message);
 
         if (response == GTK_RESPONSE_YES)
         {
