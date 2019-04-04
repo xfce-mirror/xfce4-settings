@@ -1308,7 +1308,6 @@ display_settings_profile_list_init (GtkBuilder *builder)
                                 G_TYPE_STRING);
 
     treeview = gtk_builder_get_object (builder, "randr-profile");
-    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
     /* Setup Profile name column */
     column = gtk_tree_view_column_new ();
@@ -1318,6 +1317,7 @@ display_settings_profile_list_init (GtkBuilder *builder)
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
     /* Setup Profile name column */
     column = gtk_tree_view_column_new ();
+    gtk_tree_view_column_set_title (column, "Profiles matching the currently connected displays");
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
     gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_NAME, NULL);
@@ -3486,8 +3486,8 @@ display_settings_show_main_dialog (GdkDisplay *display)
         g_signal_connect (randr_gui_area, "viewport_changed",
                   G_CALLBACK (on_viewport_changed), app);
 
-        gui_container = GTK_WIDGET(gtk_builder_get_object(builder, "randr-dnd"));
-        gtk_container_add (GTK_CONTAINER(gui_container), GTK_WIDGET(randr_gui_area));
+        gui_container = GTK_WIDGET (gtk_builder_get_object (builder, "randr-dnd"));
+        gtk_container_add (GTK_CONTAINER (gui_container), GTK_WIDGET (randr_gui_area));
         gtk_widget_show_all (gui_container);
 
         /* Keep track of the profile that was active when the dialog was launched */
