@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-23 18:30+0100\n"
-"PO-Revision-Date: 2019-03-24 04:33+0000\n"
+"POT-Creation-Date: 2019-04-05 00:30+0200\n"
+"PO-Revision-Date: 2019-04-05 04:55+0000\n"
 "Last-Translator: No Ne\n"
 "Language-Team: Polish (http://www.transifex.com/xfce/xfce4-settings/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3714
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3844
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nie można uzyskać wersji używanego rozszerzenia RandR"
@@ -273,7 +273,7 @@ msgstr "_Mysz"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:122
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:131
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
@@ -281,7 +281,7 @@ msgstr "Określa gniazdo menedżera ustawień"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:122
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:131
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
@@ -289,7 +289,7 @@ msgstr "ID_GNIAZDA"
 
 #: ../dialogs/accessibility-settings/main.c:47
 #: ../dialogs/appearance-settings/main.c:110
-#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:123
+#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:132
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
 #: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:101
@@ -299,7 +299,7 @@ msgstr "Wypisuje informacje o wersji i kończy"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
 #: ../dialogs/color-settings/main.c:1361
-#: ../dialogs/display-settings/main.c:3682
+#: ../dialogs/display-settings/main.c:3812
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
@@ -311,7 +311,7 @@ msgstr "Proszę wprowadzić „%s --help”, aby wypisać komunikat pomocy."
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
 #: ../dialogs/color-settings/main.c:1378
-#: ../dialogs/display-settings/main.c:3701
+#: ../dialogs/display-settings/main.c:3831
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
@@ -321,7 +321,7 @@ msgstr "Zespół twórców Xfce. Wszystkie prawa zastrzeżone."
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
 #: ../dialogs/color-settings/main.c:1379
-#: ../dialogs/display-settings/main.c:3702
+#: ../dialogs/display-settings/main.c:3832
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
@@ -335,8 +335,8 @@ msgstr "Konfiguruje techniki ułatwiające korzystanie z klawiatury i myszy"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1041
-#: ../dialogs/display-settings/main.c:89
-#: ../dialogs/display-settings/main.c:100
+#: ../dialogs/display-settings/main.c:98
+#: ../dialogs/display-settings/main.c:109
 msgid "None"
 msgstr "Brak"
 
@@ -867,28 +867,28 @@ msgid "Configure screen settings and layout"
 msgstr "Konfiguruje ustawienia i układ ekranu"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
+msgid "_Mirror displays"
+msgstr "_Ten sam obraz na wszystkich ekranach"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Primary Display:"
 msgstr "Ekran główny:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "R_esolution:"
 msgstr "_Rozdzielczość:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Refresh _rate:"
 msgstr "Częstotliwość _odświeżania:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Ro_tation:"
 msgstr "_Orientacja:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:12
+#: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "Ref_lection:"
 msgstr "_Odbicie:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:13
-msgid "_Mirror displays"
-msgstr "_Ten sam obraz na wszystkich ekranach"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "_General"
@@ -903,49 +903,56 @@ msgid "<b>Connecting Displays</b>"
 msgstr "<b>Podłączanie ekranów</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:17
-msgid ""
-"Only profiles matching at least the currently connected displays are shown."
-msgstr "Wyświetlane są tylko profile odpowiadające co najmniej aktualnie podłączonym ekranom."
-
-#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "Delete the currently selected display profile."
 msgstr "Usuwa aktualnie wybrany profil ekranu."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:19
+#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "Apply"
 msgstr "Zastosuj"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:20
+#: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "Apply the currently selected display profile."
 msgstr "Zastosuj aktualnie wybrany profil ekranu."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:21
+#: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "Create a new display profile."
 msgstr "Utwórz nowy profil ekranu."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:22
+#: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Update an existing profile."
 msgstr "Zaktualizuj istniejący profil."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:23
+#: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "Automatically enable profiles when new display is connected"
 msgstr "Włączanie profilu po podłączeniu nowego ekranu"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:24
+#: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "Configure new displays when connected"
 msgstr "Konfigurowanie nowych ekranów po podłączeniu"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:25
+#: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "Show popup windows to identify displays"
 msgstr "Pokazuj okna podręczne, aby zidentyfikować ekrany"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:26
+#: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Rozpoznawanie ekranów</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:27
+#: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "_Advanced"
 msgstr "_Zaawansowane"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:27
+msgid "<b>Profile Name</b>"
+msgstr "<b>Nazwa profilu</b>"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:28
+msgid "Create"
+msgstr "Utwórz"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:29
+msgid "A profile of this name already exists."
+msgstr "Profil o tej nazwie już istnieje."
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -975,35 +982,60 @@ msgstr "Zaawansowane"
 msgid "radiobutton"
 msgstr "Pole jednokrotnego wyboru"
 
-#: ../dialogs/display-settings/main.c:90
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
+msgid "Update Display Profile"
+msgstr "Zaktualizuj profil ekranu"
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
+#: ../dialogs/display-settings/main.c:3884
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
+msgid "_Close"
+msgstr "_Zamknij"
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
+msgid "_Update"
+msgstr "_Zaktualizuj"
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:4
+msgid ""
+"<big><b>You have made changes to your previously active profile</b></big>"
+msgstr "<big><b>Dokonałeś zmian w swoim wcześniej aktywnym profilu</b></big>"
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
+msgid ""
+"If you don't update the profile your changes will be lost upon restarting "
+"your session or disconnecting or connecting a display."
+msgstr "Jeśli nie zaktualizujesz profilu, zmiany zostaną utracone po ponownym uruchomieniu sesji lub odłączeniu lub podłączeniu wyświetlacza."
+
+#: ../dialogs/display-settings/main.c:99
 msgid "Left"
 msgstr "Lewo"
 
-#: ../dialogs/display-settings/main.c:91
+#: ../dialogs/display-settings/main.c:100
 msgid "Inverted"
 msgstr "Odwrócona"
 
-#: ../dialogs/display-settings/main.c:92
+#: ../dialogs/display-settings/main.c:101
 msgid "Right"
 msgstr "Prawo"
 
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:110
 msgid "Horizontal"
 msgstr "Poziomo"
 
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:111
 msgid "Vertical"
 msgstr "Pionowo"
 
-#: ../dialogs/display-settings/main.c:103
+#: ../dialogs/display-settings/main.c:112
 msgid "Horizontal and Vertical"
 msgstr "Poziomo i Pionowo"
 
-#: ../dialogs/display-settings/main.c:124
+#: ../dialogs/display-settings/main.c:133
 msgid "Minimal interface to set up an external output"
 msgstr "Otwiera okno uproszczonej konfiguracji ekranów"
 
-#: ../dialogs/display-settings/main.c:264
+#: ../dialogs/display-settings/main.c:273
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -1011,52 +1043,53 @@ msgid ""
 msgstr "Poprzednia konfiguracja zostanie przywrócona w przeciągu %i sekund."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:559
+#: ../dialogs/display-settings/main.c:568
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:856
+#: ../dialogs/display-settings/main.c:865
 msgid "Display:"
 msgstr "Ekran"
 
-#: ../dialogs/display-settings/main.c:861
+#: ../dialogs/display-settings/main.c:870
 msgid "Resolution:"
 msgstr "Rozdzielczość:"
 
-#: ../dialogs/display-settings/main.c:1142
+#: ../dialogs/display-settings/main.c:1151
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Nie można wyłączyć ostatniego aktywnego wyjścia. W przeciwnym razie komputer byłby nie zdatny do użycia."
 
-#: ../dialogs/display-settings/main.c:1144
+#: ../dialogs/display-settings/main.c:1153
 msgid "Selected output not disabled"
 msgstr "Zaznaczone wyjście nie jest wyłączone"
 
-#: ../dialogs/display-settings/main.c:1588
-msgid "Profile Name"
-msgstr "Nazwa profilu"
-
-#: ../dialogs/display-settings/main.c:1596
-msgid "Create"
-msgstr "Utwórz"
-
-#: ../dialogs/display-settings/main.c:1667
+#: ../dialogs/display-settings/main.c:1498
 #, c-format
-msgid "Do you really want to delete the profile '%s'?"
-msgstr "Czy na pewno chcesz usunąć profil '%s'?"
+msgid "Update changed display profile '%s'?"
+msgstr "Zaktualizować zmieniony profil ekranu '%s'?"
 
-#: ../dialogs/display-settings/main.c:1669
-#: ../dialogs/mime-settings/xfce-mime-window.c:903
-msgid "Question"
-msgstr "Pytanie"
+#: ../dialogs/display-settings/main.c:1503
+#, c-format
+msgid "_Update '%s'"
+msgstr "_Zaktualizuj '%s'"
 
-#: ../dialogs/display-settings/main.c:1671
-msgid "Delete display profile"
-msgstr "Usuwa profil ekranu"
+#: ../dialogs/display-settings/main.c:1790
+#, c-format
+msgid "Do you want to delete the display profile '%s'?"
+msgstr "Czy chcesz usunąć profil ekranu '%s'?"
+
+#: ../dialogs/display-settings/main.c:1792
+msgid "Delete Profile"
+msgstr "Usuń profil"
+
+#: ../dialogs/display-settings/main.c:1795
+msgid "Once a display profile is deleted it cannot be restored."
+msgstr "Po usunięciu profilu ekranu nie można go przywrócić."
 
 #. Create cancel button
-#: ../dialogs/display-settings/main.c:1673
+#: ../dialogs/display-settings/main.c:1796
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 #: ../dialogs/keyboard-settings/command-dialog.c:259
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -1066,23 +1099,23 @@ msgstr "Usuwa profil ekranu"
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../dialogs/display-settings/main.c:1674
+#: ../dialogs/display-settings/main.c:1797
 msgid "Delete"
 msgstr "Usuń"
 
-#: ../dialogs/display-settings/main.c:1774
+#: ../dialogs/display-settings/main.c:1898
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d panele Xfce"
 
-#: ../dialogs/display-settings/main.c:2775
+#: ../dialogs/display-settings/main.c:2902
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Proszę wybrać ekran, aby zmienić jego właściwości, przenieść, aby zmienić jego położenie."
 
-#: ../dialogs/display-settings/main.c:2817
-#: ../dialogs/display-settings/main.c:2891
+#: ../dialogs/display-settings/main.c:2944
+#: ../dialogs/display-settings/main.c:3018
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1091,39 +1124,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3093
+#: ../dialogs/display-settings/main.c:3220
 msgid "Mirror Screens"
 msgstr "Ekrany zewnętrzne"
 
-#: ../dialogs/display-settings/main.c:3142
+#: ../dialogs/display-settings/main.c:3269
 msgid "(Disabled)"
 msgstr "(Wyłączone)"
 
-#: ../dialogs/display-settings/main.c:3521
+#: ../dialogs/display-settings/main.c:3651
 #, c-format
 msgid "Only %s (1)"
 msgstr "Tylko %s (1)"
 
-#: ../dialogs/display-settings/main.c:3532
+#: ../dialogs/display-settings/main.c:3662
 #, c-format
 msgid "Only %s (2)"
 msgstr "Tylko %s (2)"
 
-#: ../dialogs/display-settings/main.c:3715
-#: ../dialogs/display-settings/main.c:3752
+#: ../dialogs/display-settings/main.c:3845
+#: ../dialogs/display-settings/main.c:3882
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nie można uruchomić programu konfiguracyjnego ekranów"
 
-#: ../dialogs/display-settings/main.c:3747
+#: ../dialogs/display-settings/main.c:3877
 msgid "ATI Settings"
 msgstr "Sterownik ATI"
 
-#: ../dialogs/display-settings/main.c:3754
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
-msgid "_Close"
-msgstr "_Zamknij"
-
-#: ../dialogs/display-settings/main.c:3762
+#: ../dialogs/display-settings/main.c:3892
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nie można uruchomić ustawień sterownika własnościowego"
 
@@ -1503,6 +1531,10 @@ msgstr "Nie udało się przypisać programu „%s” do typu MIME „%s”."
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Przywrócić domyślną zawartość typu „%s”?"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:903
+msgid "Question"
+msgstr "Pytanie"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 msgid ""
