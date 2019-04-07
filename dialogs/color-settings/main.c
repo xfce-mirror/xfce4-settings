@@ -788,7 +788,19 @@ color_settings_update_device_list_extra_entry (ColorSettings *settings)
     device_widgets = gtk_container_get_children (GTK_CONTAINER (settings->list_box));
     number_of_devices = g_list_length (device_widgets);
     gtk_widget_set_visible (GTK_WIDGET (settings->label_no_devices), number_of_devices == 0);
-    gtk_widget_set_visible (GTK_WIDGET (settings->scrolled_devices), number_of_devices > 0);
+
+    if (number_of_devices > 0) {
+        GList *selected_rows;
+
+        gtk_widget_set_visible (GTK_WIDGET (settings->scrolled_devices), TRUE);
+
+        /* if no device is selected yet select the first one in the list */
+        selected_rows = gtk_list_box_get_selected_rows (GTK_LIST_BOX (settings->list_box));
+        if (g_list_length (selected_rows) == 0)
+            gtk_list_box_select_row (GTK_LIST_BOX (settings->list_box),
+                                 gtk_list_box_get_row_at_index (GTK_LIST_BOX (settings->list_box), 0));
+        g_list_free (selected_rows);
+    }
 }
 
 
