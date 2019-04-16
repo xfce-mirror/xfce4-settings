@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-05 00:30+0200\n"
-"PO-Revision-Date: 2019-04-16 14:07+0000\n"
+"PO-Revision-Date: 2019-04-16 20:23+0000\n"
 "Last-Translator: Красимир Беров\n"
 "Language-Team: Bulgarian (http://www.transifex.com/xfce/xfce4-settings/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -256,7 +256,7 @@ msgstr "Емулация на мишката"
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
-msgstr "Обвързване на клавишна комбинация към xfce4-find-cursor, за да получаване на визуална обратна връзка за текущото местоположение на курсора на мишката."
+msgstr "Обвързване на клавишно съчетание с xfce4-find-cursor за видимо обозначаване на текущото местоположение на показалеца на мишката."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid "Show location of pointer on keypress"
@@ -505,7 +505,7 @@ msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr "Ако бъде избрано, клавишните комбинации за елементите от менюто могат да бъдат променени чрез преместване на мишката върху тях и натискане на клавишите за нова комбинация."
+msgstr "Ако бъде избрано, клавишните съчетания за елементите от менюто могат да бъдат променени чрез преместване на мишката върху тях и натискане на клавишите за новото съчетание."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Menus and Buttons"
@@ -1157,7 +1157,7 @@ msgstr "Не могат да стартират настройките на ли
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:106
 msgid "Shortcut Command"
-msgstr "Клавишна комбинация за команда"
+msgstr "Клавишно съчетание за команда"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:114
 msgid "OK"
@@ -1165,12 +1165,12 @@ msgstr "OK"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:137
 msgid "Enter the command you want to trigger with a shortcut."
-msgstr "Въведете команда, която искате да стартира с клавишна комбинация."
+msgstr "Въведете команда, която искате да стартира с клавишно съчетание."
 
 #. We are editing an existing shortcut
 #: ../dialogs/keyboard-settings/command-dialog.c:155
 msgid "Shortcut:"
-msgstr "Клавишна комбинация:"
+msgstr "Клавишно съчетание:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:168
 msgid "Command:"
@@ -1241,7 +1241,7 @@ msgstr "Клавиатура"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Edit keyboard settings and application shortcuts"
-msgstr "Редактиране на настройките на клавиатурата и клавишните съчетания"
+msgstr "Промяна на настройките на клавиатурата и клавишните съчетания"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 msgid "Restore num l_ock state on startup"
@@ -1379,7 +1379,7 @@ msgstr "Команда"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:403
 msgid "Shortcut"
-msgstr "Клавишна комбинация"
+msgstr "Клавишно съчетание"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Layout"
@@ -1392,7 +1392,7 @@ msgstr "Вариант"
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1003
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1107
 msgid "Shortcut command may not be empty."
-msgstr "Клавишната комбинация за команда не може да бъде празна."
+msgstr "Клавишното съчетание за команда не може да бъде празно."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
@@ -1472,7 +1472,7 @@ msgstr "Неуспешно добавяне на ново приложение �
 #: ../dialogs/mime-settings/xfce-mime-window.c:169
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
-msgstr "Редактор на MIME типове"
+msgstr "Промяна на MIME типове"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:173
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
@@ -1795,7 +1795,7 @@ msgstr "Тема"
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
-msgstr "Редактор на настройките"
+msgstr "Промяна на настройките"
 
 #: ../xfce4-settings-editor/main.c:170
 msgid "Customize settings stored by Xfconf"
@@ -1819,7 +1819,7 @@ msgstr "Заключено"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:307
 msgid "Value"
-msgstr "Значение"
+msgstr "Стойност"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:322
 msgid "New"
@@ -1831,11 +1831,11 @@ msgstr "Ново свойство"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:333
 msgid "Edit"
-msgstr "Редактиране"
+msgstr "Промяна"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
 msgid "Edit selected property"
-msgstr "Редактиране на избраното свойство"
+msgstr "Промяна на избраното свойство"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:344
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1031
@@ -1972,7 +1972,7 @@ msgstr "_Тип:"
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:213
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:224
 msgid "_Value:"
-msgstr "Значение:"
+msgstr "Стойност:"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
 #, c-format
@@ -2004,7 +2004,7 @@ msgstr "Имената на свойствата не могат да завър
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:650
 msgid "Edit Property"
-msgstr "Редактиране на свойство"
+msgstr "Промяна на свойство"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 msgid "Graphical settings editor for Xfconf"
@@ -2083,7 +2083,7 @@ msgstr "Прескачащи клавиши"
 #: ../xfsettingsd/keyboard-shortcuts.c:242
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
-msgstr "Неуспешно стартиране на приложение за клавишна комбинация „%s“"
+msgstr "Неуспешно задействане на клавишно съчетание „%s“"
 
 #: ../xfsettingsd/main.c:102
 msgid "Do not fork to the background"
