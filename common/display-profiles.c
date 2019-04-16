@@ -76,7 +76,7 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
     GHashTable *properties;
     GList *channel_contents, *profiles = NULL, *current;
     guint                     m;
-    gchar                    *edid, *output_info_name, **display_infos;
+    gchar                   **display_infos;
 
     properties = xfconf_channel_get_properties (channel, NULL);
     channel_contents = g_hash_table_get_keys (properties);
@@ -85,9 +85,7 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
     /* get all display connectors in combination with their respective edids */
     for (m = 0; m < xfce_randr->noutput; ++m)
     {
-        edid = xfce_randr_get_edid (xfce_randr, m);
-        output_info_name = xfce_randr_get_output_info_name (xfce_randr, m);
-        display_infos[m] = g_strdup_printf ("%s/%s", output_info_name, edid);
+        display_infos[m] = g_strdup_printf ("%s", xfce_randr_get_edid (xfce_randr, m));
     }
 
     /* get all profiles */
@@ -134,12 +132,10 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
         {
             gchar *property;
             gchar *current_edid, *output_edid;
-            gchar **display_infos_tokens;
 
-            display_infos_tokens = g_strsplit (display_infos[m], "/", 2);
-            property = g_strdup_printf ("/%s/%s/EDID", buf, display_infos_tokens[0]);
+            property = g_strdup_printf ("/%s/%s/EDID", buf, xfce_randr_get_output_info_name (xfce_randr, m));
             current_edid = xfconf_channel_get_string (channel, property, NULL);
-            output_edid = g_strdup_printf ("%s/%s", display_infos_tokens[0], current_edid);
+            output_edid = g_strdup_printf ("%s", current_edid);
             if (current_edid)
             {
                 if (g_strcmp0 (display_infos[m], output_edid) == 0)
@@ -148,7 +144,6 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
             g_free (property);
             g_free (current_edid);
             g_free (output_edid);
-            g_strfreev (display_infos_tokens);
         }
 
         /* filter the content of the combobox to only matching profiles and exclude "Notify", "Default" and "Schemes" */
