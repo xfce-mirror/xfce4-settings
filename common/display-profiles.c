@@ -82,7 +82,7 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
     channel_contents = g_hash_table_get_keys (properties);
     display_infos = g_new0 (gchar *, xfce_randr->noutput);
 
-    /* get all display connectors in combination with their respective edids */
+    /* get all display edids, to only query randr once */
     for (m = 0; m < xfce_randr->noutput; ++m)
     {
         display_infos[m] = g_strdup_printf ("%s", xfce_randr_get_edid (xfce_randr, m));
@@ -98,10 +98,12 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
         gpointer        key, value;
         guint           profile_match = 0;
         guint           monitors = 0;
-        gchar          *buf = strtok (current->data, "/");
+        gchar          *buf;
         gchar         **current_elements = g_strsplit (current->data, "/", -1);
 
         /* Only process the profiles and skip all other xfconf properties */
+        /* If xfconf ever supports just getting the first-level children of a property
+           we could replace this */
         if (get_size (current_elements) != 2)
         {
             g_strfreev (current_elements);
@@ -109,42 +111,45 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
             continue;
         }
         g_strfreev (current_elements);
+        buf = strtok (current->data, "/");
 
-        /* Count how many monitors are part of the current profile */
-        /* If xfconf ever supports just getting the first-level children of a property
-           we could replace this */
+        /* Walk through the profile and check if every EDID referenced there is also currently available */
         property_profile = g_strdup_printf ("/%s", buf);
         props = xfconf_channel_get_properties (channel, property_profile);
         g_hash_table_iter_init (&iter, props);
+
         while (g_hash_table_iter_next (&iter, &key, &value))
         {
+            gchar *property;
+            gchar *current_edid, *output_edid;
+
             gchar ** property_elements = g_strsplit (key, "/", -1);
-            if (get_size (property_elements) == 3)
+            if (get_size (property_elements) == 3) {
                 monitors++;
+
+                property = g_strdup_printf ("%s/EDID", (gchar*)key);
+                current_edid = xfconf_channel_get_string (channel, property, NULL);
+                output_edid = g_strdup_printf ("%s", current_edid);
+
+                if (current_edid) {
+
+                    for (m = 0; m < xfce_randr->noutput; ++m)
+                    {
+                        if (g_strcmp0 (display_infos[m], output_edid) == 0)
+                        {
+                            profile_match ++;
+                        }
+                    }
+                }
+                g_free (property);
+                g_free (current_edid);
+                g_free (output_edid);
+            }
 
             g_strfreev (property_elements);
         }
         g_free (property_profile);
         g_hash_table_destroy (props);
-
-        /* walk all connected displays and filter for edids matching the current profile */
-        for (m = 0; m < xfce_randr->noutput; ++m)
-        {
-            gchar *property;
-            gchar *current_edid, *output_edid;
-
-            property = g_strdup_printf ("/%s/%s/EDID", buf, xfce_randr_get_output_info_name (xfce_randr, m));
-            current_edid = xfconf_channel_get_string (channel, property, NULL);
-            output_edid = g_strdup_printf ("%s", current_edid);
-            if (current_edid)
-            {
-                if (g_strcmp0 (display_infos[m], output_edid) == 0)
-                    profile_match ++;
-            }
-            g_free (property);
-            g_free (current_edid);
-            g_free (output_edid);
-        }
 
         /* filter the content of the combobox to only matching profiles and exclude "Notify", "Default" and "Schemes" */
         if (!g_list_find_custom (profiles, (char*) buf, (GCompareFunc) strcmp) &&
