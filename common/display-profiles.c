@@ -121,7 +121,7 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
         while (g_hash_table_iter_next (&iter, &key, &value))
         {
             gchar *property;
-            gchar *current_edid, *output_edid;
+            gchar *current_edid;
 
             gchar ** property_elements = g_strsplit (key, "/", -1);
             if (get_size (property_elements) == 3) {
@@ -129,13 +129,12 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
 
                 property = g_strdup_printf ("%s/EDID", (gchar*)key);
                 current_edid = xfconf_channel_get_string (channel, property, NULL);
-                output_edid = g_strdup_printf ("%s", current_edid);
 
                 if (current_edid) {
 
                     for (m = 0; m < xfce_randr->noutput; ++m)
                     {
-                        if (g_strcmp0 (display_infos[m], output_edid) == 0)
+                        if (g_strcmp0 (display_infos[m], current_edid) == 0)
                         {
                             profile_match ++;
                         }
@@ -143,7 +142,6 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
                 }
                 g_free (property);
                 g_free (current_edid);
-                g_free (output_edid);
             }
 
             g_strfreev (property_elements);
