@@ -818,9 +818,9 @@ display_setting_identity_display (gint display_id)
 {
     GtkBuilder       *builder;
     GtkWidget        *popup = NULL;
-    GObject          *display_name, *display_details;
+    GObject          *display_number, *display_name, *display_details;
     const XfceRRMode *current_mode;
-    gchar            *color_hex = "#FFFFFF", *name_label, *details_label;
+    gchar            *color_hex = "#FFFFFF", *number_label, *name_label, *details_label;
     gint              screen_pos_x, screen_pos_y;
     gint              window_width, window_height, screen_width, screen_height;
 
@@ -835,6 +835,7 @@ display_setting_identity_display (gint display_id)
         g_signal_connect (G_OBJECT (popup), "draw", G_CALLBACK (display_setting_identity_popup_draw), builder);
         g_signal_connect (G_OBJECT (popup), "screen-changed", G_CALLBACK (display_setting_screen_changed), NULL);
 
+        display_number = gtk_builder_get_object (builder, "display_number");
         display_name = gtk_builder_get_object (builder, "display_name");
         display_details = gtk_builder_get_object (builder, "display_details");
 
@@ -861,12 +862,24 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 G_GNUC_END_IGNORE_DEPRECATIONS
         }
 
-        name_label = g_markup_printf_escaped ("<span foreground='%s'><big><b>%s %s</b></big></span>",
+        if (xfce_randr->noutput > 1) {
+            number_label = g_markup_printf_escaped ("<span foreground='%s' font='Bold 28'>%d</span>",
+                                                    color_hex, display_id + 1);
+            gtk_label_set_markup (GTK_LABEL (display_number), number_label);
+            g_free (number_label);
+        }
+        else {
+            gtk_label_set_text (GTK_LABEL (display_number), NULL);
+            gtk_widget_set_margin_start (GTK_WIDGET (display_number), 0);
+            gtk_widget_set_margin_end (GTK_WIDGET (display_number), 0);
+        }
+
+        name_label = g_markup_printf_escaped ("<span foreground='%s' font='Bold 10'>%s %s</span>",
                                               color_hex, _("Display:"), xfce_randr->friendly_name[display_id]);
         gtk_label_set_markup (GTK_LABEL (display_name), name_label);
         g_free (name_label);
 
-        details_label = g_markup_printf_escaped ("<span foreground='%s'>%s %i x %i</span>", color_hex,
+        details_label = g_markup_printf_escaped ("<span foreground='%s' font='Light 10'>%s %i x %i</span>", color_hex,
                                                  _("Resolution:"), screen_width, screen_height);
         gtk_label_set_markup (GTK_LABEL (display_details), details_label);
         g_free (details_label);
@@ -1416,10 +1429,16 @@ display_settings_combobox_populate (GtkBuilder *builder)
     /* Walk all the connected outputs */
     for (m = 0; m < xfce_randr->noutput; ++m)
     {
+        gchar *friendly_name;
+
         /* Insert the output in the store */
+        if (xfce_randr->noutput > 1)
+            friendly_name = g_strdup_printf ("%d - %s", m + 1, xfce_randr->friendly_name[m]);
+        else
+            friendly_name = xfce_randr->friendly_name[m];
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
-                            COLUMN_OUTPUT_NAME, xfce_randr->friendly_name[m],
+                            COLUMN_OUTPUT_NAME, friendly_name,
                             COLUMN_OUTPUT_ID, m, -1);
 
         /* Select active output */
@@ -1428,6 +1447,8 @@ display_settings_combobox_populate (GtkBuilder *builder)
             gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), m);
             selected = TRUE;
         }
+        if (xfce_randr->noutput > 1)
+            g_free (friendly_name);
     }
 
     /* If nothing was selected the active output is no longer valid,
@@ -3243,7 +3264,7 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
                    y + ((h * scale + 0.5) - factor * log_extent.height) / 2 - 1);
     /* Try to make the text as readable as possible for overlapping displays */
     if (output->id == active_output && mirrored == 2)
-       cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha);
+        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha);
     else
         cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha - 0.6);
 
@@ -3266,6 +3287,7 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
     if (!output->on)
     {
         PangoLayout *display_state;
+
         display_state = gtk_widget_create_pango_layout (GTK_WIDGET (randr_gui_area), _("(Disabled)"));
         layout_set_font (display_state, "Sans 8");
         pango_layout_get_pixel_extents (display_state, &ink_extent, &log_extent);
@@ -3281,6 +3303,39 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
         cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.75);
         pango_cairo_show_layout (cr, display_state);
         g_object_unref (display_state);
+    }
+
+    /* Show display number in the left bottom corner if there's more than 1*/
+    if (xfce_randr->noutput > 1)
+    {
+        PangoLayout *display_number;
+        gchar *display_num;
+
+
+        display_num = g_strdup_printf ("%d", i + 1);
+        display_number = gtk_widget_create_pango_layout (GTK_WIDGET (randr_gui_area), display_num);
+        layout_set_font (display_number, "Mono Bold 9");
+        pango_layout_get_pixel_extents (display_number, &ink_extent, &log_extent);
+
+        available_w = w * scale + 0.5 - 6;
+        if (available_w < ink_extent.width)
+            factor = available_w / ink_extent.width;
+        else
+            factor = 1.0;
+
+        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.4);
+        cairo_arc (cr,
+                   x + (w * scale + 0.5) / 2,
+                   y + ((h * scale + 0.5)) - (factor * log_extent.height / 2) - 3.5,
+                   factor * log_extent.height / 2 + 2.5, 0.0, 2 * M_PI);
+        cairo_fill (cr);
+        cairo_move_to (cr,
+                       x + ((w * scale + 0.5) - factor * log_extent.width) / 2,
+                       y + ((h * scale + 0.5) - factor * log_extent.height) - 3.5);
+        cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 1.0);
+        pango_cairo_show_layout (cr, display_number);
+        g_object_unref (display_number);
+        g_free (display_num);
     }
 
     cairo_restore (cr);
