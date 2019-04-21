@@ -571,9 +571,8 @@ xfce_randr_friendly_name (XfceRandr *randr,
     if (g_str_has_prefix (name, "LVDS")
         || g_str_has_prefix (name, "eDP")
         || strcmp (name, "PANEL") == 0)
-    return g_strdup (_("Laptop"));
-
-    if (info)
+        friendly_name = g_strdup (_("Laptop"));
+    else if (info)
         friendly_name = make_display_name (info, output);
 
     g_free (info);

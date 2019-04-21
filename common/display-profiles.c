@@ -157,7 +157,7 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
             profile_match == monitors &&
             xfce_randr->noutput == profile_match)
         {
-            profiles = g_list_prepend (profiles, buf);
+            profiles = g_list_prepend (profiles, g_strdup (buf));
         }
         /* else don't add the profile to the list */
         current = g_list_next (current);
@@ -169,6 +169,7 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
     }
     g_free (display_infos);
     g_list_free (channel_contents);
+    g_hash_table_destroy (properties);
 
     return profiles;
 }

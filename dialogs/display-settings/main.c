@@ -2949,6 +2949,7 @@ on_output_event (FooScrollArea      *area,
     if (event->type == FOO_BUTTON_PRESS)
     {
         GrabInfo *info;
+        gchar *tooltip_text;
 
         gtk_combo_box_set_active (GTK_COMBO_BOX (randr_outputs_combobox), output->id);
 
@@ -2962,7 +2963,9 @@ on_output_event (FooScrollArea      *area,
             info->output_x = output->x;
             info->output_y = output->y;
 
-            set_monitors_tooltip (g_strdup_printf(_("(%i, %i)"), output->x, output->y) );
+            tooltip_text = g_strdup_printf(_("(%i, %i)"), output->x, output->y);
+            set_monitors_tooltip (tooltip_text);
+            g_free (tooltip_text);
 
             output->user_data = info;
         }
@@ -3599,6 +3602,7 @@ display_settings_show_main_dialog (GdkDisplay *display)
         gtk_main ();
 
         gtk_widget_destroy (dialog);
+        g_free (app);
     }
     else
     {
