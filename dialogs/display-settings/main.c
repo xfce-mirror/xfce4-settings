@@ -3508,6 +3508,8 @@ display_settings_show_main_dialog (GdkDisplay *display)
         g_signal_connect (randr_gui_area, "viewport_changed",
                   G_CALLBACK (on_viewport_changed), app);
 
+        g_signal_connect (G_OBJECT(dialog), "destroy", gtk_main_quit, NULL);
+
         gui_container = GTK_WIDGET (gtk_builder_get_object (builder, "randr-dnd"));
         gtk_container_add (GTK_CONTAINER (gui_container), GTK_WIDGET (randr_gui_area));
         gtk_widget_show_all (gui_container);
