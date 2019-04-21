@@ -1532,7 +1532,7 @@ display_settings_dialog_response (GtkDialog  *dialog,
         }
         g_free (new_active_profile);
         g_free (active_profile);
-        gtk_main_quit ();
+        gtk_widget_destroy (GTK_WIDGET (dialog));
     }
 }
 
@@ -3508,8 +3508,6 @@ display_settings_show_main_dialog (GdkDisplay *display)
         g_signal_connect (randr_gui_area, "viewport_changed",
                   G_CALLBACK (on_viewport_changed), app);
 
-        g_signal_connect (G_OBJECT(dialog), "destroy", gtk_main_quit, NULL);
-
         gui_container = GTK_WIDGET (gtk_builder_get_object (builder, "randr-dnd"));
         gtk_container_add (GTK_CONTAINER (gui_container), GTK_WIDGET (randr_gui_area));
         gtk_widget_show_all (gui_container);
@@ -3520,8 +3518,9 @@ display_settings_show_main_dialog (GdkDisplay *display)
         if (G_UNLIKELY (opt_socket_id == 0))
         {
             g_signal_connect (G_OBJECT (dialog), "response",
-                G_CALLBACK (display_settings_dialog_response), builder);
-
+                              G_CALLBACK (display_settings_dialog_response), builder);
+            g_signal_connect (G_OBJECT (dialog), "destroy",
+                              G_CALLBACK (gtk_main_quit), builder);
             /* Show the dialog */
             gtk_window_present (GTK_WINDOW (dialog));
         }
