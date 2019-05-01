@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-12 00:30+0100\n"
-"PO-Revision-Date: 2019-01-26 16:11+0000\n"
+"POT-Creation-Date: 2019-04-24 06:31+0200\n"
+"PO-Revision-Date: 2019-05-01 16:29+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/xfce/xfce4-settings/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: ../common/display-name.c:2641
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr "Tidak diketahui"
+
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3904
+#, c-format
+msgid "Unable to query the version of the RandR extension being used"
+msgstr "Tidak boleh tanya versi sambungan RandR yang digunakan"
+
+#. 1.2 is required
+#: ../common/xfce-randr.c:294
+#, c-format
+msgid ""
+"This system is using RandR %d.%d. For the display settings to work version "
+"1.2 is required at least"
+msgstr "Sistem ini menggunakan RandR %d.%d. Untuk tetapan paparan berfungsi dengan baikv sekurang-kurangnya versi 1.2 diperlukan"
+
+#: ../common/xfce-randr.c:574
+msgid "Laptop"
+msgstr "Komputer riba"
+
+#. TRANSLATORS: an externally connected display, where %s is either the
+#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
+#: ../common/xfce-randr.c:587 ../dialogs/color-settings/color-device.c:65
+msgid "Monitor"
+msgstr "Monitor"
+
+#: ../common/xfce-randr.c:590
+msgid "Television"
+msgstr "Televisyen"
+
+#: ../common/xfce-randr.c:594
+msgid "Digital display"
+msgstr "Paparan digital"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
@@ -228,7 +267,7 @@ msgstr "_Tetikus"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/display-settings/main.c:121
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:131
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
@@ -236,7 +275,7 @@ msgstr "Soket pengurus tetapan"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/display-settings/main.c:121
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:131
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
@@ -244,39 +283,42 @@ msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
 #: ../dialogs/appearance-settings/main.c:110
-#: ../dialogs/display-settings/main.c:122
+#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:132
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfsettingsd/main.c:101 ../xfce4-settings-manager/main.c:43
+#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:101
 msgid "Version information"
 msgstr "Maklumat versi"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/display-settings/main.c:3740
+#: ../dialogs/color-settings/main.c:1373
+#: ../dialogs/display-settings/main.c:3872
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
-#: ../xfsettingsd/main.c:237 ../xfsettingsd/main.c:275
-#: ../xfce4-settings-manager/main.c:64
+#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
+#: ../xfsettingsd/main.c:275
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Taip '%s --help' untuk penggunaan."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/display-settings/main.c:3759
+#: ../dialogs/color-settings/main.c:1390
+#: ../dialogs/display-settings/main.c:3891
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
-#: ../xfsettingsd/main.c:253 ../xfce4-settings-manager/main.c:80
+#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
 msgid "The Xfce development team. All rights reserved."
 msgstr "Pasukan pembangunan Xfce. Semua hak cipta terpelihara."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/display-settings/main.c:3760
+#: ../dialogs/color-settings/main.c:1391
+#: ../dialogs/display-settings/main.c:3892
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
-#: ../xfsettingsd/main.c:254 ../xfce4-settings-manager/main.c:81
+#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Sila laporkan pepijat ke <%s>."
@@ -287,7 +329,8 @@ msgstr "Pertingkatkan kebolehcapaian papan kekunci dan tetikus"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1041
-#: ../dialogs/display-settings/main.c:88 ../dialogs/display-settings/main.c:99
+#: ../dialogs/display-settings/main.c:98
+#: ../dialogs/display-settings/main.c:109
 msgid "None"
 msgstr "Tiada"
 
@@ -546,6 +589,225 @@ msgstr "RGB menegak"
 msgid "Vertical BGR"
 msgstr "BGR menegak"
 
+#. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
+#: ../dialogs/color-settings/color-device.c:68
+msgid "Scanner"
+msgstr "Pengimbas"
+
+#. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
+#: ../dialogs/color-settings/color-device.c:71
+msgid "Camera"
+msgstr "Kamera"
+
+#. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
+#: ../dialogs/color-settings/color-device.c:74
+msgid "Printer"
+msgstr "Pencetak"
+
+#. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
+#: ../dialogs/color-settings/color-device.c:77
+msgid "Webcam"
+msgstr "Kamera Sesawang"
+
+#. TRANSLATORS: This refers to the TFT display on a laptop
+#: ../dialogs/color-settings/color-device.c:94
+msgid "Laptop Screen"
+msgstr "Skrin Komputer Riba"
+
+#. TRANSLATORS: This refers to the embedded webcam on a laptop
+#: ../dialogs/color-settings/color-device.c:102
+msgid "Built-in Webcam"
+msgstr "Kamera  Terbina-dalam"
+
+#: ../dialogs/color-settings/color-device.c:195
+#, c-format
+msgid "Enable color management for %s"
+msgstr "Benarkan pengurusan warna untuk %s"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:1
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
+msgid "Color Profiles"
+msgstr "Profil Warna"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:2
+msgid "Configure color profiles for your devices"
+msgstr "Konfigur profil warna untuk peranti anda"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:3
+msgid "<b>No devices found.</b>"
+msgstr "<b>Tiada peranti ditemui.</b>"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:4
+msgid "Model:"
+msgstr "Model:"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:5
+msgid "Colorspace:"
+msgstr "Ruang warna:"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:6
+msgid "Vendor:"
+msgstr "Pembekal:"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:7
+msgid "Calibrate"
+msgstr "Tentukur"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:8
+msgid "<b>No profiles for the selected device.</b>"
+msgstr "<b>Tiada profil untuk peranti terpilih.</b>"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:9
+msgid "Add a profile to the currently selected device"
+msgstr "Tambah satu profil kepada peranti terpilih semasa"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:10
+msgid "Delete the currently selected profile"
+msgstr "Padam profil terpilih semasa"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:11
+msgid "Enable"
+msgstr "Benarkan"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:12
+msgid "Enable the selected profile"
+msgstr "Benarkan profil terpilih"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:13
+msgid "Add Profile to Device"
+msgstr "Tambah Profil pada Peranti"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:14
+msgid "Add a Color Profile to your Device"
+msgstr "Tambah satu Profil Warna pada Peranti anda"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:15
+#: ../dialogs/color-settings/main.c:129
+msgid "_Cancel"
+msgstr "_Batal"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:16
+msgid "_OK"
+msgstr "_OK"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:17
+msgid "Import color profile files (*.icc)"
+msgstr "Import fail profil warna (*.icc)"
+
+#. TRANSLATORS: standard spaces are well known colorspaces like
+#. * sRGB, AdobeRGB and ProPhotoRGB
+#: ../dialogs/color-settings/color-profile.c:94
+msgid "Standard Space"
+msgstr "Ruang Piawai"
+
+#. TRANSLATORS: test profiles do things like changing the screen
+#. * a different color, or swap the red and green channels
+#: ../dialogs/color-settings/color-profile.c:99
+msgid "Test Profile"
+msgstr "Uji Profil"
+
+#. TRANSLATORS: automatic profiles are generated automatically
+#. * by the color management system based on manufacturing data,
+#. * for instance the default monitor profile is created from the
+#. * primaries specified in the monitor EDID
+#: ../dialogs/color-settings/color-profile.c:106
+msgctxt "Automatically generated profile"
+msgid "Automatic"
+msgstr "Automatik"
+
+#. TRANSLATORS: the profile quality - low quality profiles take
+#. * much less time to generate but may be a poor reflection of the
+#. * device capability
+#: ../dialogs/color-settings/color-profile.c:115
+msgctxt "Profile quality"
+msgid "Low Quality"
+msgstr "Kualiti Rendah"
+
+#. TRANSLATORS: the profile quality
+#: ../dialogs/color-settings/color-profile.c:119
+msgctxt "Profile quality"
+msgid "Medium Quality"
+msgstr "Kualiti Sederhana"
+
+#. TRANSLATORS: the profile quality - high quality profiles take
+#. * a *long* time, and have the best calibration and
+#. * characterisation data.
+#: ../dialogs/color-settings/color-profile.c:125
+msgctxt "Profile quality"
+msgid "High Quality"
+msgstr "Kualiti Tinggi"
+
+#. TRANSLATORS: this default RGB space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:140
+msgctxt "Colorspace fallback"
+msgid "Default RGB"
+msgstr "RGB Lalai"
+
+#. TRANSLATORS: this default CMYK space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:146
+msgctxt "Colorspace fallback"
+msgid "Default CMYK"
+msgstr "CMYK Lalai"
+
+#. TRANSLATORS: this default gray space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:152
+msgctxt "Colorspace fallback"
+msgid "Default Gray"
+msgstr "Kelabu Lalai"
+
+#. TRANSLATORS: an ICC profile is a file containing colorspace data
+#: ../dialogs/color-settings/main.c:127
+msgid "Select ICC Profile File"
+msgstr "Pilih Fail Profil ICC"
+
+#: ../dialogs/color-settings/main.c:130
+msgid "_Import"
+msgstr "_Import"
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: ../dialogs/color-settings/main.c:141
+msgid "Supported ICC profiles"
+msgstr "Profil ICC disokong"
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: ../dialogs/color-settings/main.c:148
+msgid "All files"
+msgstr "Semua fail"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile has been auto-generated for this hardware
+#: ../dialogs/color-settings/main.c:192
+msgid "Default: "
+msgstr "Lalai:"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile his a standard space like AdobeRGB
+#: ../dialogs/color-settings/main.c:199
+msgid "Colorspace: "
+msgstr "Ruang warna:"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile is a test profile
+#: ../dialogs/color-settings/main.c:205
+msgid "Test profile: "
+msgstr "Uji Profil:"
+
+#: ../dialogs/color-settings/main.c:243
+msgid "Compatible Profiles"
+msgstr "Profil Serasi"
+
+#: ../dialogs/color-settings/main.c:822 ../dialogs/color-settings/main.c:823
+#: ../dialogs/color-settings/main.c:824
+msgid "Unknown"
+msgstr "Tidak diketahui"
+
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
+msgid "Set color profiles"
+msgstr "Tetapkan profil warna"
+
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
 msgstr "Pengesahan"
@@ -599,28 +861,28 @@ msgid "Configure screen settings and layout"
 msgstr "Konfigur tetapan dan bentangan skrin"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
-msgid "R_esolution:"
-msgstr "R_esolusi:"
+msgid "_Mirror displays"
+msgstr "Paparan _Cermin"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
-msgid "Refresh _rate:"
-msgstr "_Kadar segar semula:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:10
-msgid "Ro_tation:"
-msgstr "P_utaran:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:11
-msgid "Ref_lection:"
-msgstr "Pa_ntulan:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Primary Display:"
 msgstr "Paparan Utama:"
 
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid "R_esolution:"
+msgstr "R_esolusi:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Refresh _rate:"
+msgstr "_Kadar segar semula:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:12
+msgid "Ro_tation:"
+msgstr "P_utaran:"
+
 #: ../dialogs/display-settings/display-dialog.glade.h:13
-msgid "_Mirror displays"
-msgstr "Paparan _Cermin"
+msgid "Ref_lection:"
+msgstr "Pa_ntulan:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "_General"
@@ -635,49 +897,56 @@ msgid "<b>Connecting Displays</b>"
 msgstr "<b>Paparan Bersambung</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:17
-msgid ""
-"Only profiles matching at least the currently connected displays are shown."
-msgstr "Hanya profil sepadan dengan paparan bersambung semasa ditunjukkan."
-
-#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "Delete the currently selected display profile."
 msgstr "Padam profil paparan terpilih semasa."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:19
+#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "Apply"
 msgstr "Laksana"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:20
+#: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "Apply the currently selected display profile."
 msgstr "Laksana profil paparan terpilih semasa."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:21
+#: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "Create a new display profile."
 msgstr "Cipta satu profil paparan baharu."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:22
+#: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Update an existing profile."
 msgstr "Kemaskini profil sedia ada."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:23
+#: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "Automatically enable profiles when new display is connected"
 msgstr "Benarkan profil secara automatik ketika paparan baharu bersambung"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:24
+#: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "Configure new displays when connected"
 msgstr "Konfigur paparan baharu bila bersambung"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:25
+#: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "Show popup windows to identify displays"
 msgstr "Tunjuk tetingkap timbul untuk mengenalpasti paparan"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:26
+#: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Mengenalpasti Paparan</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:27
+#: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "_Advanced"
 msgstr "_Lanjutan"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:27
+msgid "<b>Profile Name</b>"
+msgstr "<b>Nama Profil</b>"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:28
+msgid "Create"
+msgstr "Cipta"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:29
+msgid "A profile of this name already exists."
+msgstr "Satu profil dengan nama ini sudah wujud."
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -707,35 +976,60 @@ msgstr "Lanjutan"
 msgid "radiobutton"
 msgstr "radiobutton"
 
-#: ../dialogs/display-settings/main.c:89
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
+msgid "Update Display Profile"
+msgstr "Kemaskini Profil Paparan"
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
+#: ../dialogs/display-settings/main.c:3944
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
+msgid "_Close"
+msgstr "_Tutup"
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
+msgid "_Update"
+msgstr "_Kemaskini"
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:4
+msgid ""
+"<big><b>You have made changes to your previously active profile</b></big>"
+msgstr ""
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
+msgid ""
+"If you don't update the profile your changes will be lost upon restarting "
+"your session or disconnecting or connecting a display."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:99
 msgid "Left"
 msgstr "Kiri"
 
-#: ../dialogs/display-settings/main.c:90
+#: ../dialogs/display-settings/main.c:100
 msgid "Inverted"
 msgstr "Songsang"
 
-#: ../dialogs/display-settings/main.c:91
+#: ../dialogs/display-settings/main.c:101
 msgid "Right"
 msgstr "Kanan"
 
-#: ../dialogs/display-settings/main.c:100
+#: ../dialogs/display-settings/main.c:110
 msgid "Horizontal"
 msgstr "Mengufuk"
 
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:111
 msgid "Vertical"
 msgstr "Menegak"
 
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:112
 msgid "Horizontal and Vertical"
 msgstr "Mengufuk dan Mendatar"
 
-#: ../dialogs/display-settings/main.c:123
+#: ../dialogs/display-settings/main.c:133
 msgid "Minimal interface to set up an external output"
 msgstr "Antaramuka minimum untuk tetapkan output luar"
 
-#: ../dialogs/display-settings/main.c:263
+#: ../dialogs/display-settings/main.c:273
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -743,52 +1037,53 @@ msgid ""
 msgstr "Konfigurasi terdahulu akan dipulihkan dalam tempoh %i saat jika anda tidak membalas pertanyaan ini."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:558
+#: ../dialogs/display-settings/main.c:568
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:855
+#: ../dialogs/display-settings/main.c:878
 msgid "Display:"
 msgstr "Paparan:"
 
-#: ../dialogs/display-settings/main.c:860
+#: ../dialogs/display-settings/main.c:883
 msgid "Resolution:"
 msgstr "Resolusi:"
 
-#: ../dialogs/display-settings/main.c:1135
+#: ../dialogs/display-settings/main.c:1164
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Output aktif terakhir mesti tidak boleh dilumpuhkan, kerana sistem akan menjadi tidak stabil."
 
-#: ../dialogs/display-settings/main.c:1137
+#: ../dialogs/display-settings/main.c:1166
 msgid "Selected output not disabled"
 msgstr "Output terpilih tidak dilumpuhkan"
 
-#: ../dialogs/display-settings/main.c:1655
-msgid "Profile Name"
-msgstr "Nama Profil"
-
-#: ../dialogs/display-settings/main.c:1663
-msgid "Create"
-msgstr "Cipta"
-
-#: ../dialogs/display-settings/main.c:1734
+#: ../dialogs/display-settings/main.c:1519
 #, c-format
-msgid "Do you really want to delete the profile '%s'?"
-msgstr "Anda pasti mahu memadam profil '%s'?"
+msgid "Update changed display profile '%s'?"
+msgstr ""
 
-#: ../dialogs/display-settings/main.c:1736
-#: ../dialogs/mime-settings/xfce-mime-window.c:903
-msgid "Question"
-msgstr "Soalan"
+#: ../dialogs/display-settings/main.c:1524
+#, c-format
+msgid "_Update '%s'"
+msgstr "_Kemaskini '%s'"
 
-#: ../dialogs/display-settings/main.c:1738
-msgid "Delete display profile"
-msgstr "Padam profil paparan"
+#: ../dialogs/display-settings/main.c:1811
+#, c-format
+msgid "Do you want to delete the display profile '%s'?"
+msgstr "Anda mahu memadam profil paparan '%s'?"
+
+#: ../dialogs/display-settings/main.c:1813
+msgid "Delete Profile"
+msgstr "Padam Profil"
+
+#: ../dialogs/display-settings/main.c:1816
+msgid "Once a display profile is deleted it cannot be restored."
+msgstr "Apabila profil paparan dipadam ia tidak dapat dipulihkan."
 
 #. Create cancel button
-#: ../dialogs/display-settings/main.c:1740
+#: ../dialogs/display-settings/main.c:1817
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 #: ../dialogs/keyboard-settings/command-dialog.c:259
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -798,23 +1093,23 @@ msgstr "Padam profil paparan"
 msgid "Cancel"
 msgstr "Batal"
 
-#: ../dialogs/display-settings/main.c:1741
+#: ../dialogs/display-settings/main.c:1818
 msgid "Delete"
 msgstr "Padam"
 
-#: ../dialogs/display-settings/main.c:1844
+#: ../dialogs/display-settings/main.c:1919
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "Panel Xfce %d"
 
-#: ../dialogs/display-settings/main.c:2843
+#: ../dialogs/display-settings/main.c:2923
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Pilih monitor untuk menukar sifatnya; seret ia untuk menyusun semula kedudukannya."
 
-#: ../dialogs/display-settings/main.c:2885
-#: ../dialogs/display-settings/main.c:2959
+#: ../dialogs/display-settings/main.c:2966
+#: ../dialogs/display-settings/main.c:3042
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -823,79 +1118,36 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3151
+#: ../dialogs/display-settings/main.c:3244
 msgid "Mirror Screens"
 msgstr "Skrin Cermin"
 
-#: ../dialogs/display-settings/main.c:3200
+#: ../dialogs/display-settings/main.c:3294
 msgid "(Disabled)"
 msgstr "(Dilumpuhkan)"
 
-#: ../dialogs/display-settings/main.c:3579
+#: ../dialogs/display-settings/main.c:3711
 #, c-format
 msgid "Only %s (1)"
 msgstr "Hanya %s (1)"
 
-#: ../dialogs/display-settings/main.c:3590
+#: ../dialogs/display-settings/main.c:3722
 #, c-format
 msgid "Only %s (2)"
 msgstr "Hanya %s (2)"
 
-#: ../dialogs/display-settings/main.c:3772
-#: ../dialogs/display-settings/xfce-randr.c:286
-#, c-format
-msgid "Unable to query the version of the RandR extension being used"
-msgstr "Tidak boleh tanya versi sambungan RandR yang digunakan"
-
-#: ../dialogs/display-settings/main.c:3773
-#: ../dialogs/display-settings/main.c:3810
+#: ../dialogs/display-settings/main.c:3905
+#: ../dialogs/display-settings/main.c:3942
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Tidak boleh mulakan tetapan Paparan Xfce"
 
-#: ../dialogs/display-settings/main.c:3805
+#: ../dialogs/display-settings/main.c:3937
 msgid "ATI Settings"
 msgstr "Tetapan ATI"
 
-#: ../dialogs/display-settings/main.c:3812
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
-msgid "_Close"
-msgstr "_Tutup"
-
-#: ../dialogs/display-settings/main.c:3820
+#: ../dialogs/display-settings/main.c:3952
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Tidak boleh lancarkan tetapan pemacu proprietari"
-
-#. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:294
-#, c-format
-msgid ""
-"This system is using RandR %d.%d. For the display settings to work version "
-"1.2 is required at least"
-msgstr "Sistem ini menggunakan RandR %d.%d. Untuk tetapan paparan berfungsi dengan baikv sekurang-kurangnya versi 1.2 diperlukan"
-
-#: ../dialogs/display-settings/xfce-randr.c:574
-msgid "Laptop"
-msgstr "Komputer riba"
-
-#: ../dialogs/display-settings/xfce-randr.c:588
-msgid "Monitor"
-msgstr "Monitor"
-
-#: ../dialogs/display-settings/xfce-randr.c:591
-msgid "Television"
-msgstr "Televisyen"
-
-#: ../dialogs/display-settings/xfce-randr.c:595
-msgid "Digital display"
-msgstr "Paparan digital"
-
-#. Translators: "Unknown" here is used to identify a monitor for which
-#. * we don't know the vendor. When a vendor is known, the name of the
-#. * vendor is used.
-#: ../dialogs/display-settings/display-name.c:2641
-msgctxt "Monitor vendor"
-msgid "Unknown"
-msgstr "Tidak diketahui"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:106
@@ -1270,6 +1522,10 @@ msgstr "Gagal tetapkan aplikasi \"%s\" untuk jenis mime \"%s\"."
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Anda pasti mahu tetapkan jenis kandungan \"%s\" ke nilai lalainya?"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:903
+msgid "Question"
+msgstr "Soalan"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 msgid ""
@@ -1748,6 +2004,40 @@ msgstr "Sunting Sifat"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Penyunting tetapan bergrafik untuk Xfconf"
 
+#: ../xfce4-settings-manager/main.c:44
+msgid "Settings dialog to show"
+msgstr "Dialog tetapan yang ditunjukkan"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
+msgid "All _Settings"
+msgstr "Semua T_etapan"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
+msgid "_Help"
+msgstr "_Bantuan"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
+msgid "Settings"
+msgstr "Tetapan"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
+msgid "Customize your desktop"
+msgstr "Suaikan desktop anda"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
+#, c-format
+msgid "Unable to start \"%s\""
+msgstr "Tidak boleh mulakan \"%s\""
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
+msgid "Settings Manager"
+msgstr "Pengurus Tetapan"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Graphical Settings Manager for Xfce 4"
+msgstr "Pengurus Tetapan Bergrafik untuk Xfce 4"
+
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr "Kekunci lekat dibenarkan"
@@ -1806,37 +2096,3 @@ msgstr "Ruang Kerja %d"
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
 msgid "The Xfce Settings Daemon"
 msgstr "Daemon Tetapan Xfce"
-
-#: ../xfce4-settings-manager/main.c:44
-msgid "Settings dialog to show"
-msgstr "Dialog tetapan yang ditunjukkan"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
-msgid "All _Settings"
-msgstr "Semua T_etapan"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
-msgid "_Help"
-msgstr "_Bantuan"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
-msgid "Settings"
-msgstr "Tetapan"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
-msgid "Customize your desktop"
-msgstr "Suaikan desktop anda"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
-#, c-format
-msgid "Unable to start \"%s\""
-msgstr "Tidak boleh mulakan \"%s\""
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Settings Manager"
-msgstr "Pengurus Tetapan"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Pengurus Tetapan Bergrafik untuk Xfce 4"
