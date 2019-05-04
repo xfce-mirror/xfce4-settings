@@ -8,6 +8,11 @@ SUBDIRS = \
 	xfsettingsd \
 	po
 
+if HAVE_COLORD
+SUBDIRS += \
+	icons
+endif
+
 EXTRA_DIST = \
 	intltool-extract.in \
 	intltool-merge.in \
