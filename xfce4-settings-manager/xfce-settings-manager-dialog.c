@@ -685,7 +685,7 @@ xfce_settings_manager_queue_redraw (XfceSettingsManagerDialog *dialog)
     for (li = dialog->categories; li != NULL; li = li->next)
     {
         category = li->data;
-        gtk_widget_queue_resize(GTK_WIDGET(category->iconview));
+        gtk_widget_queue_resize (GTK_WIDGET (category->iconview));
     }
 
     return FALSE;
