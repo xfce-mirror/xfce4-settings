@@ -676,6 +676,23 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
 
 
 
+static gboolean
+xfce_settings_manager_queue_redraw (XfceSettingsManagerDialog *dialog)
+{
+    GList *li;
+    DialogCategory *category;
+
+    for (li = dialog->categories; li != NULL; li = li->next)
+    {
+        category = li->data;
+        gtk_widget_queue_resize(GTK_WIDGET(category->iconview));
+    }
+
+    return FALSE;
+}
+
+
+
 static void
 xfce_settings_manager_dialog_entry_changed (GtkWidget                 *entry,
                                             XfceSettingsManagerDialog *dialog)
@@ -731,6 +748,8 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget                 *entry,
             n_children = gtk_tree_model_iter_n_children (model, NULL);
             gtk_widget_set_visible (category->box, n_children > 0);
         }
+
+        g_idle_add ((GSourceFunc) xfce_settings_manager_queue_redraw, dialog);
     }
     else
     {
