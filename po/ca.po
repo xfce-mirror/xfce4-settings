@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-05 00:30+0200\n"
-"PO-Revision-Date: 2019-04-06 20:45+0000\n"
-"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
+"POT-Creation-Date: 2019-04-24 06:31+0200\n"
+"PO-Revision-Date: 2019-04-24 04:31+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce4-settings/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "desconegut"
 
-#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3844
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3904
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "No es pot consultar la versió de l'extensió Randr que s'està utilitzant"
@@ -49,15 +49,15 @@ msgstr "Portàtil"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: ../common/xfce-randr.c:588 ../dialogs/color-settings/color-device.c:65
+#: ../common/xfce-randr.c:587 ../dialogs/color-settings/color-device.c:65
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../common/xfce-randr.c:591
+#: ../common/xfce-randr.c:590
 msgid "Television"
 msgstr "Televisió"
 
-#: ../common/xfce-randr.c:595
+#: ../common/xfce-randr.c:594
 msgid "Digital display"
 msgstr "Pantalla digital"
 
@@ -296,8 +296,8 @@ msgstr "Informació de la versió"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/color-settings/main.c:1361
-#: ../dialogs/display-settings/main.c:3812
+#: ../dialogs/color-settings/main.c:1373
+#: ../dialogs/display-settings/main.c:3872
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
@@ -308,8 +308,8 @@ msgstr "Teclegeu «%s --help» per a l'ús."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/color-settings/main.c:1378
-#: ../dialogs/display-settings/main.c:3831
+#: ../dialogs/color-settings/main.c:1390
+#: ../dialogs/display-settings/main.c:3891
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
@@ -318,8 +318,8 @@ msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/color-settings/main.c:1379
-#: ../dialogs/display-settings/main.c:3832
+#: ../dialogs/color-settings/main.c:1391
+#: ../dialogs/display-settings/main.c:3892
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
@@ -803,8 +803,8 @@ msgstr "Perfil de prova:"
 msgid "Compatible Profiles"
 msgstr "Perfils compatibles"
 
-#: ../dialogs/color-settings/main.c:810 ../dialogs/color-settings/main.c:811
-#: ../dialogs/color-settings/main.c:812
+#: ../dialogs/color-settings/main.c:822 ../dialogs/color-settings/main.c:823
+#: ../dialogs/color-settings/main.c:824
 msgid "Unknown"
 msgstr "Desconegut"
 
@@ -985,7 +985,7 @@ msgid "Update Display Profile"
 msgstr "Actualitza el perfil de la pantalla"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:3884
+#: ../dialogs/display-settings/main.c:3944
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
 msgid "_Close"
 msgstr "Tan_ca"
@@ -1046,48 +1046,48 @@ msgstr "En cas que no respongueu a aquesta pregunta en %i segons es restablirà 
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:865
+#: ../dialogs/display-settings/main.c:878
 msgid "Display:"
 msgstr "Pantalla:"
 
-#: ../dialogs/display-settings/main.c:870
+#: ../dialogs/display-settings/main.c:883
 msgid "Resolution:"
 msgstr "Resolució:"
 
-#: ../dialogs/display-settings/main.c:1151
+#: ../dialogs/display-settings/main.c:1164
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "No s'ha d'inhabilitar l'última sortida activa, el sistema podria ser inservible."
 
-#: ../dialogs/display-settings/main.c:1153
+#: ../dialogs/display-settings/main.c:1166
 msgid "Selected output not disabled"
 msgstr "La sortida seleccionada no està Inhabilitada"
 
-#: ../dialogs/display-settings/main.c:1498
+#: ../dialogs/display-settings/main.c:1519
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Voleu actualitzar el perfil de pantalla '%s'?"
 
-#: ../dialogs/display-settings/main.c:1503
+#: ../dialogs/display-settings/main.c:1524
 #, c-format
 msgid "_Update '%s'"
 msgstr "Act_ualitza '%s'"
 
-#: ../dialogs/display-settings/main.c:1790
+#: ../dialogs/display-settings/main.c:1811
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Voleu suprimir el perfil de pantalla '%s'?"
 
-#: ../dialogs/display-settings/main.c:1792
+#: ../dialogs/display-settings/main.c:1813
 msgid "Delete Profile"
 msgstr "Suprimeix el perfil"
 
-#: ../dialogs/display-settings/main.c:1795
+#: ../dialogs/display-settings/main.c:1816
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Un se suprimeix un perfil de pantalla, aquest no es pot restaurar."
 
 #. Create cancel button
-#: ../dialogs/display-settings/main.c:1796
+#: ../dialogs/display-settings/main.c:1817
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 #: ../dialogs/keyboard-settings/command-dialog.c:259
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -1097,23 +1097,23 @@ msgstr "Un se suprimeix un perfil de pantalla, aquest no es pot restaurar."
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: ../dialogs/display-settings/main.c:1797
+#: ../dialogs/display-settings/main.c:1818
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: ../dialogs/display-settings/main.c:1898
+#: ../dialogs/display-settings/main.c:1919
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d taulers de Xfce"
 
-#: ../dialogs/display-settings/main.c:2902
+#: ../dialogs/display-settings/main.c:2923
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Seleccioneu un monitor per canviar-ne les propietats, arrossegueu-lo per ajustar-ne la ubicació."
 
-#: ../dialogs/display-settings/main.c:2944
-#: ../dialogs/display-settings/main.c:3018
+#: ../dialogs/display-settings/main.c:2966
+#: ../dialogs/display-settings/main.c:3042
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1122,34 +1122,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3220
+#: ../dialogs/display-settings/main.c:3244
 msgid "Mirror Screens"
 msgstr "Pantalles emmirallades"
 
-#: ../dialogs/display-settings/main.c:3269
+#: ../dialogs/display-settings/main.c:3294
 msgid "(Disabled)"
 msgstr "(Inhabilitat)"
 
-#: ../dialogs/display-settings/main.c:3651
+#: ../dialogs/display-settings/main.c:3711
 #, c-format
 msgid "Only %s (1)"
 msgstr "Només %s (1)"
 
-#: ../dialogs/display-settings/main.c:3662
+#: ../dialogs/display-settings/main.c:3722
 #, c-format
 msgid "Only %s (2)"
 msgstr "Només %s (2)"
 
-#: ../dialogs/display-settings/main.c:3845
-#: ../dialogs/display-settings/main.c:3882
+#: ../dialogs/display-settings/main.c:3905
+#: ../dialogs/display-settings/main.c:3942
 msgid "Unable to start the Xfce Display Settings"
 msgstr "No es poden iniciar els ajusts de pantalla de Xfce"
 
-#: ../dialogs/display-settings/main.c:3877
+#: ../dialogs/display-settings/main.c:3937
 msgid "ATI Settings"
 msgstr "Ajusts d'ATI"
 
-#: ../dialogs/display-settings/main.c:3892
+#: ../dialogs/display-settings/main.c:3952
 msgid "Unable to launch the proprietary driver settings"
 msgstr "No es pot executar el gestor d'ajusts del controlador propietari"
 
