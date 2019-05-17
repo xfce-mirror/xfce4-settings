@@ -11,6 +11,9 @@ SUBDIRS = \
 if HAVE_COLORD
 SUBDIRS += \
 	icons
+
+distuninstallcheck_listfiles = 						\
+	find . -type f -print | grep -v ./share/icons/hicolor/icon-theme.cache
 endif
 
 EXTRA_DIST = \
