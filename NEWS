@@ -1,3 +1,58 @@
+4.13.6
+======
+- New Feature: Add color-settings (colord frontend)
+- New Feature: Add display profile support to the daemon
+- Bugfixes and other smaller changes:
+  - display:
+    - Track and highlight active profile
+    - Ask user to update profile when closing with unsaved
+      changes
+    - Add interactive information about primary display setting
+    - Improve profile-create popover
+    - Improve profile-delete dialog
+    - UI alignment improvements
+    - Reduce complexity of the code and speedup
+      display_settings_get_profiles
+    - Replace deprecated GtkStock
+    - Re-introduce display numbering
+    - Ensure the settomgs dialog gets properly destroyed
+    - Verify unique profile names
+    - Drop connector name from profile matching
+    - Correctly fall back to previous profile on cancel
+    - Fix alignment of buttons in minimal dialog
+    - Only show profiles which match *all* connected displays
+    - Update profile list on screen changes
+    - Fix crash when no RRMode is available (bug #12607)
+    - Correctly hide primary setting with 1 display
+    - Fix calculation of offset
+    - Always show the 'primary display' option
+    - Make primary indicator a star icon
+    - Throw warning when monitors exceed max screen size
+  - color: Always select first device on startup (Bug #15266)
+  - xfsettingsd: Increase startup priority
+  - Fix scrolling in embedded settings dialogs (Xfce #14285, LP #1653448)
+  - Fix search change clearing and hiding sections (bug #14792)
+  - Resolved g_type_class_add_private deprecations (GObject 2.58)
+  - Fix incremental sending from the clipboard manager (Bug #13537)
+  - Fix WindowScalingFactory property type
+  - Fix code spacing
+  - Fix memory leaks
+  - Fix CID 337242: Null pointer dereferences (REVERSE_INULL)
+  - Fix compiler warnings
+  - Fix icon names
+  - Update configure.ac.in
+  - Update .gitignore
+  - Set yes as the default debug level
+- Translation Updates:
+    Albanian, Arabic, Asturian, Basque, Belarusian, Bulgarian, Catalan,
+    Chinese (China), Chinese (Hong Kong), Chinese (Taiwan), Croatian,
+    Czech, Danish, Dutch (Flemish), English (Australia), English (Great
+    Britain), Finnish, French, Galician, German, Greek, Hebrew, Hungarian,
+    Icelandic, Indonesian, Italian, Japanese, Kazakh, Korean, Lithuanian,
+    Malay, Norwegian Bokmål, Norwegian Nynorsk, Occitan, Polish,
+    Portuguese, Portuguese (Brazilian), Romanian, Russian, Serbian, Slovak,
+    Slovenian, Spanish, Swedish, Thai, Turkish, Ukrainian, Uyghur
+
 4.13.5
 ======
 - New: Add display profiles feature
