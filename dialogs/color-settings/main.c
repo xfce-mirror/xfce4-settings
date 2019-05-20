@@ -61,6 +61,7 @@ struct _ColorSettings
     GCancellable  *cancellable;
     GDBusProxy    *proxy;
     GObject       *dialog;
+    GObject       *plug_child;
     GObject       *label_no_devices;
     GObject       *scrolled_devices;
     GObject       *device_icon;
@@ -592,7 +593,12 @@ color_settings_device_calibrate_cb (CdProfile *profile, ColorSettings *settings)
     GAppInfo *app_info;
     GError *error = NULL;
 
-    xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (settings->dialog)));
+    if (GTK_IS_WIDGET (settings->dialog))
+        xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (settings->dialog)));
+    else if (GTK_IS_WIDGET (settings->plug_child))
+        xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (settings->plug_child)));
+    else
+        return;
 
     cli = g_strdup_printf ("gcm-calibrate --device %s --parent-window %i", cd_device_get_id (settings->current_device), xid);
 
@@ -622,8 +628,12 @@ color_settings_profile_info_view (CdProfile *profile, ColorSettings *settings)
     /* determine if we're launching from the regular or the assign dialog */
     if (gtk_widget_get_visible (GTK_WIDGET (settings->dialog_assign)))
         xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (settings->dialog_assign)));
-    else
+    else if (GTK_IS_WIDGET (settings->dialog))
         xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (settings->dialog)));
+    else if (GTK_IS_WIDGET (settings->plug_child))
+        xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (settings->plug_child)));
+    else
+        return;
 
     cli = g_strdup_printf ("gcm-viewer --profile %s --parent-window %i", cd_profile_get_id (profile), xid);
 
@@ -1356,7 +1366,6 @@ color_settings_dialog_init (GtkBuilder *builder)
 gint
 main (gint argc, gchar **argv)
 {
-    GObject       *plug_child;
     GtkWidget     *plug;
     GtkBuilder    *builder;
     GError        *error = NULL;
@@ -1428,9 +1437,9 @@ main (gint argc, gchar **argv)
             gdk_notify_startup_complete ();
 
             /* Get plug child widget */
-            plug_child = gtk_builder_get_object (builder, "plug-child");
-            xfce_widget_reparent (GTK_WIDGET (plug_child), plug);
-            gtk_widget_show (GTK_WIDGET (plug_child));
+            settings->plug_child = gtk_builder_get_object (builder, "plug-child");
+            xfce_widget_reparent (GTK_WIDGET (settings->plug_child), plug);
+            gtk_widget_show (GTK_WIDGET (settings->plug_child));
 
             /* To prevent the settings dialog to be saved in the session */
             gdk_x11_set_sm_client_id ("FAKE ID");
