@@ -3223,7 +3223,7 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
         GdkRGBA      fg;
 
         icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (),
-                                                "gtk-about-symbolic",
+                                                "help-about-symbolic",
                                                 16,
                                                 GTK_ICON_LOOKUP_GENERIC_FALLBACK);
 
