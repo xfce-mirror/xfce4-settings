@@ -7,12 +7,13 @@
 # Саша Петровић <salepetronije@gmail.com>, 2012,2014
 # Саша Петровић <salepetronije@gmail.com>, 2012,2014-2018
 # Саша Петровић <salepetronije@gmail.com>, 2017
+# Саша Петровић <salepetronije@gmail.com>, 2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-24 06:31+0200\n"
-"PO-Revision-Date: 2019-05-13 11:32+0000\n"
+"PO-Revision-Date: 2019-05-22 20:44+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/xfce4-settings/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +74,7 @@ msgstr "Подесите приступачност тастатуре и миш
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
-msgstr "Уколико је укључено, управник седнице ће покренути потребне програме за читање екрана и лупе."
+msgstr "Уколико је укључено, управник седнице ће покренути потребне програме за читање приказа и лупе."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 msgid "_Enable assistive technologies"
@@ -351,7 +352,7 @@ msgstr "потпуно"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid "Icons"
-msgstr "иконице"
+msgstr "сличице"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 msgid "Text"
@@ -359,11 +360,11 @@ msgstr "текст"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid "Text under icons"
-msgstr "текст испод иконица"
+msgstr "потпис испод сличица"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 msgid "Text next to icons"
-msgstr "текст поред иконица"
+msgstr "допис поред сличица"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "1x (no scaling)"
@@ -389,7 +390,7 @@ msgstr "Нач_ин"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "_Icons"
-msgstr "_Иконице"
+msgstr "_Сличице"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid ""
@@ -426,7 +427,7 @@ msgstr "_Омогући омекшавање"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "Дотеривање, или умекшавање словног лика, може побољшати изглед текста на екрану"
+msgstr "Дотеривање, или умекшавање словног лика, може побољшати изглед писма приказа"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Hintin_g:"
@@ -446,7 +447,7 @@ msgstr "Распоред испод _тачака:"
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
-msgstr "Изглед словних ликова на ТФТ или ЛЦД екрану може бити побољшан правилним избором приказа распореда тачака на екрану"
+msgstr "Изглед словних ликова на ТФТ или ЛЦД екрану може бити побољшан правилним избором приказа распореда тачака"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Rendering"
@@ -484,7 +485,7 @@ msgstr "Приказуј слике на _дугмадима"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "Одредите да ли ће се иконице приказивати поред текста на дугмадима"
+msgstr "Одредите да ли ће се сличице приказивати поред писма на дугмадима"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images in _menus"
@@ -492,7 +493,7 @@ msgstr "Приказуј слике у _изборницима"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "Одредите да ли ће се иконице приказивати поред ставки у изборнику"
+msgstr "Одредите да ли ће се сличице приказивати поред ставки у изборнику"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable e_ditable accelerators"
@@ -548,7 +549,7 @@ msgstr "Постав_ке"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
-msgstr "Упозорење: Ова тема иконица нема датотеку међумеморије. Можете је образовати извршавањем наредбе <i>gtk-update-icon-cache %s/%s/</i> у опонашачу терминала."
+msgstr "Упозорење: Ова тема сличица нема датотеку међумеморије. Можете је образовати извршавањем наредбе <i>gtk-update-icon-cache %s/%s/</i> у опонашачу терминала."
 
 #: ../dialogs/appearance-settings/main.c:879
 #, c-format
@@ -595,94 +596,94 @@ msgstr "Усправне ПЗЦ"
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
 msgid "Scanner"
-msgstr ""
+msgstr "Скенер"
 
 #. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
 #: ../dialogs/color-settings/color-device.c:71
 msgid "Camera"
-msgstr ""
+msgstr "Камера"
 
 #. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
 #: ../dialogs/color-settings/color-device.c:74
 msgid "Printer"
-msgstr ""
+msgstr "Штампач"
 
 #. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
 #: ../dialogs/color-settings/color-device.c:77
 msgid "Webcam"
-msgstr ""
+msgstr "Веб-камера"
 
 #. TRANSLATORS: This refers to the TFT display on a laptop
 #: ../dialogs/color-settings/color-device.c:94
 msgid "Laptop Screen"
-msgstr ""
+msgstr "Екран преклопног рачунара"
 
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
 #: ../dialogs/color-settings/color-device.c:102
 msgid "Built-in Webcam"
-msgstr ""
+msgstr "Уграђена веб-камера"
 
 #: ../dialogs/color-settings/color-device.c:195
 #, c-format
 msgid "Enable color management for %s"
-msgstr ""
+msgstr "Омогући управљање бојама за %s"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
 msgid "Color Profiles"
-msgstr ""
+msgstr "Пресеци боја"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:2
 msgid "Configure color profiles for your devices"
-msgstr ""
+msgstr "Подесите пресеке боја уређају"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:3
 msgid "<b>No devices found.</b>"
-msgstr ""
+msgstr "<b>Нема пронађених уређаја.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:4
 msgid "Model:"
-msgstr ""
+msgstr "Модел:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:5
 msgid "Colorspace:"
-msgstr ""
+msgstr "Обојеност:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:6
 msgid "Vendor:"
-msgstr ""
+msgstr "Произвођач:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:7
 msgid "Calibrate"
-msgstr ""
+msgstr "Избаждари"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:8
 msgid "<b>No profiles for the selected device.</b>"
-msgstr ""
+msgstr "<b>Нема пресека боја одабраног уређаја.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:9
 msgid "Add a profile to the currently selected device"
-msgstr ""
+msgstr "Додајте пресек боја изабраном уређају"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:10
 msgid "Delete the currently selected profile"
-msgstr ""
+msgstr "Избриши тренутни пресек"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:11
 msgid "Enable"
-msgstr ""
+msgstr "Омогући"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "Enable the selected profile"
-msgstr ""
+msgstr "Омогући изабрани пресек"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:13
 msgid "Add Profile to Device"
-msgstr ""
+msgstr "Додај пресек уређају"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:14
 msgid "Add a Color Profile to your Device"
-msgstr ""
+msgstr "Додај пресек боја уређају"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:15
 #: ../dialogs/color-settings/main.c:129
@@ -695,19 +696,19 @@ msgstr "_У реду"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:17
 msgid "Import color profile files (*.icc)"
-msgstr ""
+msgstr "Увези датотеке пресека боја (*.icc)"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
 #: ../dialogs/color-settings/color-profile.c:94
 msgid "Standard Space"
-msgstr ""
+msgstr "Уобичајени простор"
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
 #: ../dialogs/color-settings/color-profile.c:99
 msgid "Test Profile"
-msgstr ""
+msgstr "Провери пресек"
 
 #. TRANSLATORS: automatic profiles are generated automatically
 #. * by the color management system based on manufacturing data,
@@ -724,13 +725,13 @@ msgstr "Самостално"
 #: ../dialogs/color-settings/color-profile.c:115
 msgctxt "Profile quality"
 msgid "Low Quality"
-msgstr ""
+msgstr "Ниска каквоћа"
 
 #. TRANSLATORS: the profile quality
 #: ../dialogs/color-settings/color-profile.c:119
 msgctxt "Profile quality"
 msgid "Medium Quality"
-msgstr ""
+msgstr "Средња каквоћа"
 
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
@@ -738,42 +739,42 @@ msgstr ""
 #: ../dialogs/color-settings/color-profile.c:125
 msgctxt "Profile quality"
 msgid "High Quality"
-msgstr ""
+msgstr "Висока каквоћа"
 
 #. TRANSLATORS: this default RGB space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:140
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
-msgstr ""
+msgstr "Подразумевани ЦЗП"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
-msgstr ""
+msgstr "Подразумевани ЦЦЖЦ"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:152
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
-msgstr ""
+msgstr "Подразумевани сиви"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
 #: ../dialogs/color-settings/main.c:127
 msgid "Select ICC Profile File"
-msgstr ""
+msgstr "Изаберите датотеку ИЦЦ-а"
 
 #: ../dialogs/color-settings/main.c:130
 msgid "_Import"
-msgstr ""
+msgstr "_Увези"
 
 #. TRANSLATORS: filter name on the file->open dialog
 #: ../dialogs/color-settings/main.c:141
 msgid "Supported ICC profiles"
-msgstr ""
+msgstr "Подржани пресеци ИЦЦ-а"
 
 #. TRANSLATORS: filter name on the file->open dialog
 #: ../dialogs/color-settings/main.c:148
@@ -784,23 +785,23 @@ msgstr "Све датотеке"
 #. * profile has been auto-generated for this hardware
 #: ../dialogs/color-settings/main.c:192
 msgid "Default: "
-msgstr ""
+msgstr "Подразумевани"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
 #: ../dialogs/color-settings/main.c:199
 msgid "Colorspace: "
-msgstr ""
+msgstr "Простор боја:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
 #: ../dialogs/color-settings/main.c:205
 msgid "Test profile: "
-msgstr ""
+msgstr "Провери пресек:"
 
 #: ../dialogs/color-settings/main.c:243
 msgid "Compatible Profiles"
-msgstr ""
+msgstr "Одговарајући пресеци"
 
 #: ../dialogs/color-settings/main.c:822 ../dialogs/color-settings/main.c:823
 #: ../dialogs/color-settings/main.c:824
@@ -809,7 +810,7 @@ msgstr "Непознато"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
 msgid "Set color profiles"
-msgstr ""
+msgstr "Постави пресеке боја"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
@@ -941,7 +942,7 @@ msgstr "Напредно_"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "<b>Profile Name</b>"
-msgstr ""
+msgstr "<b>Име пресека</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "Create"
@@ -949,7 +950,7 @@ msgstr "Направи"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:29
 msgid "A profile of this name already exists."
-msgstr ""
+msgstr "Пресек оваквог назива већ постоји"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -981,7 +982,7 @@ msgstr "притисно дугме"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
 msgid "Update Display Profile"
-msgstr ""
+msgstr "Освежи пресек приказа"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
 #: ../dialogs/display-settings/main.c:3944
@@ -991,18 +992,18 @@ msgstr "_Затвори"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
 msgid "_Update"
-msgstr ""
+msgstr "_Освежи"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:4
 msgid ""
 "<big><b>You have made changes to your previously active profile</b></big>"
-msgstr ""
+msgstr "<big><b>Изменили сте претходно коришћени пресек</b></big>"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
-msgstr ""
+msgstr "Ако не освежите пресек, измене ће бити изгубљене након поновног покретања седнице или откачињања или прикачивања екрана."
 
 #: ../dialogs/display-settings/main.c:99
 msgid "Left"
@@ -1065,25 +1066,25 @@ msgstr "Одабрани излаз није онемогућен"
 #: ../dialogs/display-settings/main.c:1519
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr ""
+msgstr "Да ли освежити измењени пресек приказа „%s“?"
 
 #: ../dialogs/display-settings/main.c:1524
 #, c-format
 msgid "_Update '%s'"
-msgstr ""
+msgstr "_Освежи „%s“"
 
 #: ../dialogs/display-settings/main.c:1811
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr ""
+msgstr "Да ли желите избрисати пресек приказа „%s“?"
 
 #: ../dialogs/display-settings/main.c:1813
 msgid "Delete Profile"
-msgstr ""
+msgstr "Избриши пресек"
 
 #: ../dialogs/display-settings/main.c:1816
 msgid "Once a display profile is deleted it cannot be restored."
-msgstr ""
+msgstr "Ако ли се избрише пресек приказа не може се повратити."
 
 #. Create cancel button
 #: ../dialogs/display-settings/main.c:1817
@@ -1123,7 +1124,7 @@ msgstr "(%i, %i)"
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
 #: ../dialogs/display-settings/main.c:3244
 msgid "Mirror Screens"
-msgstr "Пресликај екране"
+msgstr "Пресликај приказе"
 
 #: ../dialogs/display-settings/main.c:3294
 msgid "(Disabled)"
