@@ -2,6 +2,11 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="image5">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">window-close</property>
+  </object>
   <object class="GtkWindow" id="dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Displays</property>
@@ -260,10 +265,11 @@
             <property name="can_focus">False</property>
             <child>
               <object class="GtkButton" id="advanced_button">
-                <property name="label" translatable="yes">Advanced</property>
+                <property name="label" translatable="yes">_Advanced</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -287,11 +293,12 @@
             </child>
             <child>
               <object class="GtkButton" id="cancel_button">
-                <property name="label">gtk-close</property>
+                <property name="label">_Close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="image">image5</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
