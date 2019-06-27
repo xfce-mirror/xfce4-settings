@@ -353,13 +353,6 @@ main (gint argc, gchar **argv)
 
     gtk_main();
 
-    /* release the dbus name */
-    if (dbus_connection != NULL)
-    {
-        g_bus_unown_name (owner_id);
-        g_dbus_connection_close_sync (dbus_connection, NULL, NULL);
-    }
-
     /* release the sub daemons */
     UNREF_GOBJECT(s_data.xsettings_helper);
 
@@ -383,6 +376,13 @@ main (gint argc, gchar **argv)
     xfconf_shutdown ();
 
     UNREF_GOBJECT (s_data.sm_client);
+
+    /* release the dbus name */
+    if (dbus_connection != NULL)
+    {
+        g_bus_unown_name (owner_id);
+        g_dbus_connection_close_sync (dbus_connection, NULL, NULL);
+    }
 
     return EXIT_SUCCESS;
 }

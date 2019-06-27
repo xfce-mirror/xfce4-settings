@@ -369,7 +369,6 @@ xfce_keyboard_settings_constructed (GObject *object)
   xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/KeyRepeat/Delay", G_TYPE_INT, xkb_key_repeat_delay, "value");
 
   xkb_numlock = gtk_builder_get_object (GTK_BUILDER (settings), "restore_numlock");
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (xkb_numlock), TRUE);
   xfconf_g_property_bind (settings->priv->keyboards_channel, "/Default/RestoreNumlock", G_TYPE_BOOLEAN, xkb_numlock, "active");
 
   /* XSETTINGS */
