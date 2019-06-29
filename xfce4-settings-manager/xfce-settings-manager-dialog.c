@@ -158,6 +158,63 @@ xfce_settings_manager_dialog_class_init (XfceSettingsManagerDialogClass *klass)
 
 
 
+static gboolean
+xfce_settings_manager_queue_resize (XfceSettingsManagerDialog *dialog)
+{
+    GList *li;
+    DialogCategory *category;
+    GdkWindow *window = gtk_widget_get_window (GTK_WIDGET (dialog));
+
+    for (li = dialog->categories; li != NULL; li = li->next)
+    {
+        category = li->data;
+        gtk_widget_queue_resize (GTK_WIDGET (category->iconview));
+    }
+
+    if (window == NULL)
+        return FALSE;
+
+    gdk_window_invalidate_rect (window, NULL, TRUE);
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+    gdk_window_process_updates (window, TRUE);
+G_GNUC_END_IGNORE_DEPRECATIONS
+
+    return FALSE;
+}
+
+
+
+/* FIXME: This is a hacky patch to ensure the embedded icon views resize on change. */
+static gboolean
+xfce_settings_manager_queue_redraw (XfceSettingsManagerDialog *dialog)
+{
+    GdkWindow *window = gtk_widget_get_window (GTK_WIDGET (dialog));
+    gint h, w;
+
+    if (window == NULL)
+        return FALSE;
+
+    h = gdk_window_get_height (window);
+    w = gdk_window_get_width (window);
+
+    gdk_window_resize (window, w, h+1);
+    gdk_window_resize (window, w, h);
+
+    return FALSE;
+}
+
+
+
+static void
+xfce_settings_manager_dialog_size_allocate (GtkWidget *widget, GdkRectangle *allocation, gpointer *user_data)
+{
+    XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG (user_data);
+    xfce_settings_manager_queue_resize (dialog);
+}
+
+
+
 static void
 xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 {
@@ -287,6 +344,8 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 
     g_signal_connect_swapped (G_OBJECT (dialog->menu), "reload-required",
         G_CALLBACK (xfce_settings_manager_dialog_menu_reload), dialog);
+
+    g_signal_connect (G_OBJECT (dialog), "size-allocate", G_CALLBACK (xfce_settings_manager_dialog_size_allocate), dialog);
 }
 
 
@@ -672,23 +731,6 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
     gtk_widget_grab_focus (dialog->filter_entry);
 
     xfce_settings_manager_dialog_remove_socket (dialog);
-}
-
-
-
-static gboolean
-xfce_settings_manager_queue_redraw (XfceSettingsManagerDialog *dialog)
-{
-    GList *li;
-    DialogCategory *category;
-
-    for (li = dialog->categories; li != NULL; li = li->next)
-    {
-        category = li->data;
-        gtk_widget_queue_resize (GTK_WIDGET (category->iconview));
-    }
-
-    return FALSE;
 }
 
 
@@ -1330,6 +1372,8 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
         g_critical ("Failed to load menu: %s", error->message);
         g_error_free (error);
     }
+
+    g_idle_add ((GSourceFunc) xfce_settings_manager_queue_redraw, dialog);
 }
 
 
