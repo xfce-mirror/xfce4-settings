@@ -207,7 +207,7 @@ xfce_settings_manager_queue_redraw (XfceSettingsManagerDialog *dialog)
 
 
 static void
-xfce_settings_manager_dialog_size_allocate (GtkWidget *widget, GdkRectangle *allocation, gpointer *user_data)
+xfce_settings_manager_dialog_check_resize (GtkWidget *widget, gpointer *user_data)
 {
     XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG (user_data);
     xfce_settings_manager_queue_resize (dialog);
@@ -345,7 +345,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     g_signal_connect_swapped (G_OBJECT (dialog->menu), "reload-required",
         G_CALLBACK (xfce_settings_manager_dialog_menu_reload), dialog);
 
-    g_signal_connect (G_OBJECT (dialog), "size-allocate", G_CALLBACK (xfce_settings_manager_dialog_size_allocate), dialog);
+    g_signal_connect (G_OBJECT (dialog), "check-resize", G_CALLBACK (xfce_settings_manager_dialog_check_resize), dialog);
 }
 
 
