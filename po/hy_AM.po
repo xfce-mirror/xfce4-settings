@@ -40,12 +40,16 @@ msgid ""
 "If enabled, the session manager will start the required applications for "
 "screen readers and magnifiers"
 msgstr ""
+"Եթե միացուած է, նիստի կառավարիչը կմիացնի պահանջուած ծրագիրը էկրանի "
+"ընթերցողների եւ խոշորացոյցների համար"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
 "Assistive technologies will be available the\n"
 "next time you login"
 msgstr ""
+"Աջակցող տեխնոլոգիաները հասանելի կլինեն\n"
+"հաջորդ մուտքի ժամանակ"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "No AT-SPI provider was found on your system"
@@ -65,6 +69,9 @@ msgid ""
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
 msgstr ""
+"Երբ ընտրուած է, ձեւափոխիչ ստեղները (ինչպիսիք են Control, Alt, եւ Shift ֊ը) "
+"կարիք չեն ունենա սեղմուել պահուել, (դրանք կարող են սեղմուել, ինչից յետոյ "
+"թողարկուել) երբ ձեւափոխիչ ստեղները հասարակ կերպով միարժամանակ սեղմուեն"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
@@ -103,6 +110,9 @@ msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted"
 msgstr ""
+"Արգելուած անակնկալ ստեղնահարուածին աւգնելու համար, դանդաղ ստեղները պահանջում"
+" են սեղմած պահել որոշ ամենափոքր ժամանակահատուածով ստեղնահարուածը ընդունելուց"
+" առաջ"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
@@ -127,6 +137,8 @@ msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
 msgstr ""
+"Արգելուած անակնկալ բազմակի ստեղնահարվածներին աւգնելու համար, ցատկանկող "
+"ստեղները նախատեսում են նուազագոյն յապաղումը ստեղնահարվածների միջեւ։"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
@@ -209,13 +221,15 @@ msgstr "Միլիվայրկեաններով ժամանակը, առաւելագո�
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "Show location of pointer on keypress"
-msgstr ""
+msgstr "Ցուցադրել ցուցիչի դիրքը ստեղներում"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location"
 msgstr ""
+"Կապել ստեղնաշարի դիւրացնումը xfce4-find-cursor ֊ին մկնիկի ցուցչի ընթացիկ "
+"դիրքի մասին տեսողական արձագանք ստանալու համար"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
@@ -323,14 +337,16 @@ msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr ""
+"Այս տառատեսակը կաւգտագործուի որպէս լռելեայն մենատարածք տառատեսակ, աւրինակ "
+"վահանակի նմանակչով։"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "Select a default monospace font"
-msgstr ""
+msgstr "Ընտրեք լռելեայն մենատարածք տառատեսակը"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Default _Monospace Font"
-msgstr ""
+msgstr "Լռելեայն _մենատարածք տառատեսակ"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 msgid ""
@@ -602,7 +618,7 @@ msgstr "Կ_էտայնացում․"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "_Use this display"
-msgstr ""
+msgstr "_Աւգտագործել այս ցուցադրիչը"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
@@ -610,21 +626,23 @@ msgstr "_Հայելային ցուցադրիչներ"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "_Primary display"
-msgstr ""
+msgstr "_Առաջնային ցուցադրիչ"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid ""
 "This is a hint for panels, docks and desktop to show on this display "
 "preferably."
 msgstr ""
+"Սա յուշում է վահանակների համար, յարակցիչներին եւ աշխատանքային սեղանին այս "
+"ցուցադրիչում բավարար ցուցադրելու համար։"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Configure _new displays when connected"
-msgstr ""
+msgstr "Կազմաձեւել _նոր ցուցադրիչներ միացման ժամանակ"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Identify Displays"
-msgstr ""
+msgstr "Նոյնացնել ցուցադրիչները"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -1138,8 +1156,8 @@ msgstr "Լռելեայն"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Գտնուել է %d MIME տեսակ"
+msgstr[1] "Գտնուել են %d MIME տեսակներ"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:654
 #, c-format
@@ -1246,7 +1264,7 @@ msgstr "Սա_րք․"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "_Enable this device"
-msgstr ""
+msgstr "_Թոյլատրել սարքը"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Ri_ght-handed"
