@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2018 Simon Steinbeiß <simon@xfce.org>
+ *  Copyright (c) 2019 Simon Steinbeiß <simon@xfce.org>
  *                     Florian Schüller <florian.schueller@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
