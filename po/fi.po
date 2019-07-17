@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Ammuu5, 2018-2019
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2013,2018
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2013,2018-2019
 # Pasi Lallinaho <pasi@shimmerproject.org>, 2014-2015,2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-29 00:31+0200\n"
-"PO-Revision-Date: 2019-06-24 14:41+0000\n"
-"Last-Translator: Ammuu5\n"
+"PO-Revision-Date: 2019-07-17 09:40+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/xfce/xfce4-settings/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +88,7 @@ msgstr "Apuvälineteknologiat ovat käytettävissä seuraavan kerran kun kirjaud
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "No AT-SPI provider was found on your system"
-msgstr "AT-SPI -palvelua ei löytynyt"
+msgstr "AT-SPI-palvelua ei löytynyt"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive _Technologies"
@@ -394,15 +394,15 @@ msgstr "K_uvakkeet"
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
-msgstr "Tätä kirjasinta käytetään oletuskirjasimena käyttöliittymien tekstille"
+msgstr "Tätä fonttia käytetään oletusfonttina käyttöliittymien tekstille"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "Select a default font"
-msgstr "Valitse oletuskirjasin"
+msgstr "Valitse oletusfontti"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "Default Fon_t"
-msgstr "Oletuski_rjasin"
+msgstr "Oletus_fontti"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid ""
@@ -420,12 +420,12 @@ msgstr "Tasalev_yinen oletusfontti"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "_Enable anti-aliasing"
-msgstr "Kytke antialiasointi päälle"
+msgstr "Kytke reunanpehmennys päälle"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "Antialiasointi eli kirjasinten reunojen tasoitus voi parantaa tekstin ulkonäköä näytöllä"
+msgstr "Reunanpehmennys (antialiasointi) eli fonttien reunojen tasoitus voi parantaa tekstin ulkonäköä näytöllä"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Hintin_g:"
@@ -435,7 +435,7 @@ msgstr "_Vihjeistys:"
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr "Useat kirjasimet sisältävät tietoa siitä, kuinka ne olisi parasta esittää. Valitse se vaihtoehto, joka mielestäsi näyttää parhaalta"
+msgstr "Useat fontit sisältävät tietoa siitä, kuinka ne olisi parasta esittää. Valitse se vaihtoehto, joka mielestäsi näyttää parhaalta"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Sub-_pixel order:"
@@ -449,7 +449,7 @@ msgstr "Jos sinulla on TFT- tai LCD-näyttö, voit parantaa kirjasinten laatua v
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Rendering"
-msgstr "Kirjasinten piirto"
+msgstr "Fonttien piirto"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Custom _DPI setting:"
@@ -459,7 +459,7 @@ msgstr "Mukautettu _erottelukyky:"
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
-msgstr "Ohita havaittu näytön tarkkuus jos kirjasimet ovat liian suuria tai pieniä"
+msgstr "Ohita havaittu näytön tarkkuus jos fontit ovat liian suuria tai pieniä"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "DPI"
@@ -467,7 +467,7 @@ msgstr "DPI"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "_Fonts"
-msgstr "_Kirjasimet"
+msgstr "_Fontit"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Specify what should be displayed in toolbar items"
@@ -624,7 +624,7 @@ msgstr "Sisäänrakennettu web-kamera"
 #: ../dialogs/color-settings/color-device.c:195
 #, c-format
 msgid "Enable color management for %s"
-msgstr "Käytä väriprofilointi laitteelle %s"
+msgstr "Käytä värihallintaa laitteelle %s"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
@@ -645,7 +645,7 @@ msgstr "Malli:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:5
 msgid "Colorspace:"
-msgstr "Väriavaruus"
+msgstr "Väriavaruus:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:6
 msgid "Vendor:"
@@ -686,7 +686,7 @@ msgstr "Lisää väriprofiili laitteellesi"
 #: ../dialogs/color-settings/color-dialog.glade.h:15
 #: ../dialogs/color-settings/main.c:130
 msgid "_Cancel"
-msgstr "_Peruuta"
+msgstr "_Peru"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:16
 msgid "_OK"
@@ -763,7 +763,7 @@ msgstr "Oletusharmaasävy"
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
 #: ../dialogs/color-settings/main.c:128
 msgid "Select ICC Profile File"
-msgstr "Valitse ICC -profiilitiedosto"
+msgstr "Valitse ICC-profiilitiedosto"
 
 #: ../dialogs/color-settings/main.c:131
 msgid "_Import"
@@ -937,7 +937,7 @@ msgstr "<b>Näyttöjen tunnistaminen</b>"
 #: ../dialogs/display-settings/display-dialog.glade.h:26
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "_Advanced"
-msgstr "Edistyneet _asetukset"
+msgstr "Lisä_asetukset"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "<b>Profile Name</b>"
@@ -949,7 +949,7 @@ msgstr "Luo"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:29
 msgid "A profile of this name already exists."
-msgstr "Samanniminen profiili on jo olemassa."
+msgstr "Profiili samalla nimellä on jo olemassa."
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -1090,7 +1090,7 @@ msgstr "Näyttöprofiilia ei voida palauttaa sen poistamisen jälkeen."
 #: ../dialogs/mime-settings/xfce-mime-window.c:908
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
-msgstr "Peruuta"
+msgstr "Peru"
 
 #: ../dialogs/display-settings/main.c:1818
 msgid "Delete"
@@ -1099,7 +1099,7 @@ msgstr "Poista"
 #: ../dialogs/display-settings/main.c:1919
 #, c-format
 msgid "%d Xfce Panels"
-msgstr "%d Xfce paneelit"
+msgstr "%d Xfce-paneelit"
 
 #: ../dialogs/display-settings/main.c:2923
 msgid ""
@@ -1397,7 +1397,7 @@ msgstr "Palauta oletukset"
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
-msgstr "Tämä palauttaa kaikki pikanäppäimet oletusarvoihinsa. Oletko varma, että haluat tehdä tämän?"
+msgstr "Tämä palauttaa kaikki pikanäppäimet oletusarvoihinsa. Haluatko varmasti tehdä tämän?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1275
 msgid "No"
@@ -1431,7 +1431,7 @@ msgstr "_Mukautettu komento:"
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
-msgstr "Käytä mukautettua komentoa sovellukselle, jota ei löydy ylläolevalta listalta."
+msgstr "Käytä mukautettua komentoa sovellukselle, jota ei löydy yllä olevalta listalta."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:224
 msgid "_Browse..."
@@ -1953,7 +1953,7 @@ msgstr "Tallenna"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:160
 msgid "_Property:"
-msgstr "_Asetus"
+msgstr "_Asetus:"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:174
 msgid "_Type:"
