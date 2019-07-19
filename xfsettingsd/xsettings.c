@@ -1086,7 +1086,8 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
     xdisplay = GDK_DISPLAY_XDISPLAY (gdkdisplay);
     helper->xsettings_atom = XInternAtom (xdisplay, "_XSETTINGS_SETTINGS", False);
 
-    gdk_x11_display_error_trap_push (gdk_display_get_default ());
+    gdk_x11_display_grab (gdkdisplay);
+    gdk_x11_display_error_trap_push (gdkdisplay);
 
     /* Previously, gdk_display_get_n_screens. Since Gtk 3.10, the number of screens is always 1. */
     n_screens = 1;
@@ -1166,7 +1167,9 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
         }
     }
 
-    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
+    gdk_display_sync (gdkdisplay);
+    gdk_x11_display_ungrab (gdkdisplay);
+    if (gdk_x11_display_error_trap_pop (gdkdisplay) != 0)
         g_critical ("Failed to initialize screens");
 
     if (helper->screens != NULL)
