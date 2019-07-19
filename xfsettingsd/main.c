@@ -125,19 +125,6 @@ on_name_acquired (GDBusConnection *connection,
 
     s_data = (struct t_data_set*) user_data;
 
-    /* connect to session always, even if we quit below.  this way the
-     * session manager won't wait for us to time out. */
-    s_data->sm_client = xfce_sm_client_get ();
-    xfce_sm_client_set_restart_style (s_data->sm_client, XFCE_SM_CLIENT_RESTART_IMMEDIATELY);
-    xfce_sm_client_set_desktop_file (s_data->sm_client, XFSETTINGS_DESKTOP_FILE);
-    xfce_sm_client_set_priority (s_data->sm_client, 20);
-    g_signal_connect (G_OBJECT (s_data->sm_client), "quit", G_CALLBACK (gtk_main_quit), NULL);
-    if (!xfce_sm_client_connect (s_data->sm_client, &error) && error)
-    {
-        g_printerr ("Failed to connect to session manager: %s\n", error->message);
-        g_clear_error (&error);
-    }
-
     /* launch settings manager */
     s_data->xsettings_helper = g_object_new (XFCE_TYPE_XSETTINGS_HELPER, NULL);
     xfce_xsettings_helper_register (XFCE_XSETTINGS_HELPER (s_data->xsettings_helper),
@@ -154,6 +141,19 @@ on_name_acquired (GDBusConnection *connection,
     s_data->keyboard_layout_helper = g_object_new (XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, NULL);
     s_data->workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
     s_data->gtk_decorations_helper = g_object_new (XFCE_TYPE_DECORATIONS_HELPER, NULL);
+
+    /* connect to session always, even if we quit below.  this way the
+     * session manager won't wait for us to time out. */
+    s_data->sm_client = xfce_sm_client_get ();
+    xfce_sm_client_set_restart_style (s_data->sm_client, XFCE_SM_CLIENT_RESTART_IMMEDIATELY);
+    xfce_sm_client_set_desktop_file (s_data->sm_client, XFSETTINGS_DESKTOP_FILE);
+    xfce_sm_client_set_priority (s_data->sm_client, 20);
+    g_signal_connect (G_OBJECT (s_data->sm_client), "quit", G_CALLBACK (gtk_main_quit), NULL);
+    if (!xfce_sm_client_connect (s_data->sm_client, &error) && error)
+    {
+        g_printerr ("Failed to connect to session manager: %s\n", error->message);
+        g_clear_error (&error);
+    }
 
     if (g_getenv ("XFSETTINGSD_NO_CLIPBOARD") == NULL)
     {
