@@ -1428,8 +1428,8 @@ xfce_displays_helper_apply_all (XfceDisplaysHelper *helper)
 #endif
 
     /* release the grab, changes are done */
+    gdk_display_sync (helper->display);
     gdk_x11_display_ungrab (helper->display);
-    gdk_display_flush (helper->display);
     if (gdk_x11_display_error_trap_pop (helper->display) != 0)
     {
         g_critical ("Failed to apply display settings");
