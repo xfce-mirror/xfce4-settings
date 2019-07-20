@@ -130,7 +130,7 @@ on_name_acquired (GDBusConnection *connection,
     s_data->sm_client = xfce_sm_client_get ();
     xfce_sm_client_set_restart_style (s_data->sm_client, XFCE_SM_CLIENT_RESTART_IMMEDIATELY);
     xfce_sm_client_set_desktop_file (s_data->sm_client, XFSETTINGS_DESKTOP_FILE);
-    xfce_sm_client_set_priority (s_data->sm_client, XFCE_SM_CLIENT_PRIORITY_HIGHEST);
+    xfce_sm_client_set_priority (s_data->sm_client, 20);
     g_signal_connect (G_OBJECT (s_data->sm_client), "quit", G_CALLBACK (gtk_main_quit), NULL);
     if (!xfce_sm_client_connect (s_data->sm_client, &error) && error)
     {
