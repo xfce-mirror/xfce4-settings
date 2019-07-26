@@ -20,9 +20,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 06:31+0200\n"
-"PO-Revision-Date: 2019-04-24 04:31+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"POT-Creation-Date: 2019-05-29 00:31+0200\n"
+"PO-Revision-Date: 2019-07-26 00:36+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -304,7 +304,7 @@ msgstr "版本信息"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/color-settings/main.c:1373
+#: ../dialogs/color-settings/main.c:1382
 #: ../dialogs/display-settings/main.c:3872
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
@@ -316,7 +316,7 @@ msgstr "输入 ‘%s --help’ 获取用法。"
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/color-settings/main.c:1390
+#: ../dialogs/color-settings/main.c:1399
 #: ../dialogs/display-settings/main.c:3891
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
@@ -326,7 +326,7 @@ msgstr "Xfce 开发团队。保留所有权利。"
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/color-settings/main.c:1391
+#: ../dialogs/color-settings/main.c:1400
 #: ../dialogs/display-settings/main.c:3892
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
@@ -694,7 +694,7 @@ msgid "Add a Color Profile to your Device"
 msgstr "添加色彩配置文件到您设备"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:15
-#: ../dialogs/color-settings/main.c:129
+#: ../dialogs/color-settings/main.c:130
 msgid "_Cancel"
 msgstr "取消(_C)"
 
@@ -771,48 +771,48 @@ msgid "Default Gray"
 msgstr "默认 Gray"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: ../dialogs/color-settings/main.c:127
+#: ../dialogs/color-settings/main.c:128
 msgid "Select ICC Profile File"
 msgstr "选择 ICC 配置文件"
 
-#: ../dialogs/color-settings/main.c:130
+#: ../dialogs/color-settings/main.c:131
 msgid "_Import"
 msgstr "导入(_I)"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: ../dialogs/color-settings/main.c:141
+#: ../dialogs/color-settings/main.c:142
 msgid "Supported ICC profiles"
 msgstr "支持的 ICC 配置文件"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: ../dialogs/color-settings/main.c:148
+#: ../dialogs/color-settings/main.c:149
 msgid "All files"
 msgstr "所有文件"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: ../dialogs/color-settings/main.c:192
+#: ../dialogs/color-settings/main.c:193
 msgid "Default: "
 msgstr "默认： "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: ../dialogs/color-settings/main.c:199
+#: ../dialogs/color-settings/main.c:200
 msgid "Colorspace: "
 msgstr "色彩空间： "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: ../dialogs/color-settings/main.c:205
+#: ../dialogs/color-settings/main.c:206
 msgid "Test profile: "
 msgstr "测试配置文件： "
 
-#: ../dialogs/color-settings/main.c:243
+#: ../dialogs/color-settings/main.c:244
 msgid "Compatible Profiles"
 msgstr "兼容的配置文件"
 
-#: ../dialogs/color-settings/main.c:822 ../dialogs/color-settings/main.c:823
-#: ../dialogs/color-settings/main.c:824
+#: ../dialogs/color-settings/main.c:832 ../dialogs/color-settings/main.c:833
+#: ../dialogs/color-settings/main.c:834
 msgid "Unknown"
 msgstr "未知的"
 
@@ -902,7 +902,7 @@ msgstr "常规(_G)"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:15
 msgid "<b>Profiles</b>"
-msgstr "<b>属性</b>"
+msgstr "<b>配置</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:16
 msgid "<b>Connecting Displays</b>"
@@ -945,6 +945,7 @@ msgid "<b>Identifying Displays</b>"
 msgstr "<b>识别显示器</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:26
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "_Advanced"
 msgstr "高级(_A)"
 
@@ -979,10 +980,6 @@ msgstr "扩展至右方"
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Only Display 2"
 msgstr "只在显示 2"
-
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
-msgid "Advanced"
-msgstr "高级"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
@@ -2036,8 +2033,8 @@ msgstr "设置"
 msgid "Customize your desktop"
 msgstr "自定义您的桌面"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:958
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:969
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "未能启动 “%s”"
