@@ -59,7 +59,7 @@ mime_window_dialog_response (GtkWidget *dialog,
 gint
 main (gint argc, gchar **argv)
 {
-    
+
     XfceMimeWindow *window;
     GtkWidget      *dialog;
     GtkWidget      *plug;
