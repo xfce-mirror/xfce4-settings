@@ -160,10 +160,10 @@ main(gint argc, gchar **argv)
 
 	if (G_UNLIKELY (opt_socket_id == 0))
     {
-		dialog = xfce_titled_dialog_new_with_buttons (_("Settings Editor"), NULL,
+		dialog = xfce_titled_dialog_new_with_mixed_buttons (_("Settings Editor"), NULL,
 					GTK_DIALOG_DESTROY_WITH_PARENT,
-					"gtk-help", GTK_RESPONSE_HELP,
-					"gtk-close", GTK_RESPONSE_OK,
+					_("_Help"), "help-browser", GTK_RESPONSE_HELP,
+					_("_Close"), "window-close", GTK_RESPONSE_OK,
 					NULL);
 
 		xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (dialog),
