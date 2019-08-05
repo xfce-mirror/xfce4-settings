@@ -515,7 +515,7 @@ xfce_randr_load (XfceRandr     *randr,
 
 
 
-static guint8 *
+guint8 *
 xfce_randr_read_edid_data (Display  *xdisplay,
                            RROutput  output)
 {

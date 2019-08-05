@@ -128,6 +128,9 @@ void              xfce_randr_load            (XfceRandr        *randr,
                                               const gchar      *scheme,
                                               XfconfChannel    *channel);
 
+guint8 *          xfce_randr_read_edid_data  (Display          *xdisplay,
+                                              RROutput          output);
+
 const XfceRRMode *xfce_randr_find_mode_by_id (XfceRandr        *randr,
                                               guint             output,
                                               RRMode            id);

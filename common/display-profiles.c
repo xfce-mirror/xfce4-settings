@@ -66,27 +66,24 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
 
         current = g_list_next (current);
     }
+    g_list_free (channel_contents);
     g_hash_table_destroy (properties);
     return TRUE;
 }
 
 GList*
-display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
+display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
 {
     GHashTable *properties;
-    GList *channel_contents, *profiles = NULL, *current;
-    guint                     m;
-    gchar                   **display_infos;
+    GList      *channel_contents;
+    GList      *profiles = NULL;
+    GList      *current;
+    guint       m;
+    guint       noutput;
 
     properties = xfconf_channel_get_properties (channel, NULL);
     channel_contents = g_hash_table_get_keys (properties);
-    display_infos = g_new0 (gchar *, xfce_randr->noutput);
-
-    /* get all display edids, to only query randr once */
-    for (m = 0; m < xfce_randr->noutput; ++m)
-    {
-        display_infos[m] = g_strdup_printf ("%s", xfce_randr_get_edid (xfce_randr, m));
-    }
+    noutput = g_strv_length (display_infos);
 
     /* get all profiles */
     current = g_list_first (channel_contents);
@@ -98,8 +95,8 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
         gpointer        key, value;
         guint           profile_match = 0;
         guint           monitors = 0;
-        gchar          *buf;
         gchar         **current_elements = g_strsplit (current->data, "/", -1);
+        gchar          *profile_name;
 
         /* Only process the profiles and skip all other xfconf properties */
         /* If xfconf ever supports just getting the first-level children of a property
@@ -110,11 +107,12 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
             current = g_list_next (current);
             continue;
         }
+
+        profile_name = g_strdup_printf ("%s", *(current_elements+1));
         g_strfreev (current_elements);
-        buf = strtok (current->data, "/");
 
         /* Walk through the profile and check if every EDID referenced there is also currently available */
-        property_profile = g_strdup_printf ("/%s", buf);
+        property_profile = g_strdup_printf ("/%s", profile_name);
         props = xfconf_channel_get_properties (channel, property_profile);
         g_hash_table_iter_init (&iter, props);
 
@@ -132,7 +130,7 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
 
                 if (current_edid) {
 
-                    for (m = 0; m < xfce_randr->noutput; ++m)
+                    for (m = 0; m < noutput; ++m)
                     {
                         if (g_strcmp0 (display_infos[m], current_edid) == 0)
                         {
@@ -150,20 +148,21 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
         g_hash_table_destroy (props);
 
         /* filter the content of the combobox to only matching profiles and exclude "Notify", "Default" and "Schemes" */
-        if (!g_list_find_custom (profiles, (char*) buf, (GCompareFunc) strcmp) &&
-            strcmp (buf, "Notify") &&
-            strcmp (buf, "Default") &&
-            strcmp (buf, "Schemes") &&
+        if (!g_list_find_custom (profiles, profile_name, (GCompareFunc) strcmp) &&
+            strcmp (profile_name, "Notify") &&
+            strcmp (profile_name, "Default") &&
+            strcmp (profile_name, "Schemes") &&
             profile_match == monitors &&
-            xfce_randr->noutput == profile_match)
+            noutput == profile_match)
         {
-            profiles = g_list_prepend (profiles, g_strdup (buf));
+            profiles = g_list_prepend (profiles, g_strdup (profile_name));
         }
         /* else don't add the profile to the list */
         current = g_list_next (current);
+        g_free (profile_name);
     }
 
-    for (m = 0; m < xfce_randr->noutput; ++m)
+    for (m = 0; m < noutput; ++m)
     {
         g_free (display_infos[m]);
     }

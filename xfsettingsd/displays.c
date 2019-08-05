@@ -303,6 +303,9 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
                 {
                     xfce_displays_helper_channel_apply (helper, matching_profile);
                 }
+                else {
+                    xfce_displays_helper_channel_apply (helper, DEFAULT_SCHEME_NAME);
+                }
             }
             /* restore the default scheme */
             else {
@@ -432,23 +435,44 @@ xfce_displays_helper_reload (XfceDisplaysHelper *helper)
 
 
 
+static gchar **
+xfce_displays_helper_get_display_infos (gint      noutput,
+                                        Display  *xdisplay,
+                                        RROutput *outputs)
+{
+    gchar    **display_infos;
+    gint       m;
+    guint8    *edid_data;
+
+    display_infos = g_new0 (gchar *, noutput);
+    /* get all display edids, to only query randr once */
+    for (m = 0; m < noutput; ++m)
+    {
+        edid_data = xfce_randr_read_edid_data (xdisplay, outputs[m]);
+
+        if (edid_data)
+            display_infos[m] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
+    }
+    return display_infos;
+}
+
+
+
 static gchar *
 xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
 {
     GList              *profiles = NULL;
-    GdkDisplay         *display;
-    GError             *error = NULL;
     gpointer           *profile;
-    XfceRandr          *xfce_randr;
     gchar              *profile_name;
     gchar              *property;
+    gchar             **display_infos;
 
-    display = gdk_display_get_default ();
-    xfce_randr = xfce_randr_new (display, &error);
-    if (xfce_randr)
+    display_infos = xfce_displays_helper_get_display_infos (helper->resources->noutput,
+                                                            helper->xdisplay,
+                                                            helper->resources->outputs);
+    if (display_infos)
     {
-        profiles = display_settings_get_profiles (xfce_randr, helper->channel);
-        xfce_randr_free (xfce_randr);
+        profiles = display_settings_get_profiles (display_infos, helper->channel);
     }
 
     if (profiles == NULL)
@@ -469,6 +493,7 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
     {
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles.", g_list_length (profiles));
     }
+
     return NULL;
 }
 
@@ -805,7 +830,6 @@ xfce_displays_helper_load_from_xfconf (XfceDisplaysHelper *helper,
         str_value = "";
     else
         str_value = g_value_get_string (value);
-
 
     /* refresh rate */
     g_snprintf (property, sizeof (property), RRATE_PROP, scheme, output->info->name);
