@@ -1489,15 +1489,16 @@ display_settings_dialog_response (GtkDialog  *dialog,
     else if (response_id == GTK_RESPONSE_CLOSE)
     {
         gchar *new_active_profile = xfconf_channel_get_string (display_channel, "/ActiveProfile", NULL);
+        gchar *property = g_strdup_printf ("/%s", active_profile);
+        gchar *profile_name = xfconf_channel_get_string (display_channel, property, NULL);
 
         if (g_strcmp0 (active_profile, new_active_profile) != 0 &&
+            profile_name != NULL &&
             g_strcmp0 (active_profile, "Default") != 0)
         {
             GtkBuilder *profile_changed_builder;
             GError     *error = NULL;
             gint        profile_response_id;
-            gchar      *property = g_strdup_printf ("/%s", active_profile);
-            gchar      *profile_name = xfconf_channel_get_string (display_channel, property, NULL);
 
             profile_changed_builder = gtk_builder_new ();
 
@@ -1548,9 +1549,9 @@ display_settings_dialog_response (GtkDialog  *dialog,
             }
 
             g_object_unref (G_OBJECT (profile_changed_builder));
-            g_free (profile_name);
-            g_free (property);
         }
+        g_free (profile_name);
+        g_free (property);
         g_free (new_active_profile);
         g_free (active_profile);
         gtk_widget_destroy (GTK_WIDGET (dialog));
