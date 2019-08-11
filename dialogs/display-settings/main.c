@@ -617,6 +617,13 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
 }
 
+/** Greatest common divisor
+ *  SMELL: maybe there is already some implemetation (other than in gcrypt?) */
+static guint gcd(guint a, guint b) {
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+
 static void
 display_setting_resolutions_populate (GtkBuilder *builder)
 {
@@ -658,7 +665,10 @@ display_setting_resolutions_populate (GtkBuilder *builder)
         {
 
             /* Insert the mode */
-            name = g_strdup_printf ("%dx%d", modes[n].width, modes[n].height);
+            guint gcd_tmp = gcd(modes[n].width, modes[n].height);
+            guint format_x = modes[n].width / gcd_tmp;
+            guint format_y = modes[n].height / gcd_tmp;
+            name = g_strdup_printf ("%dx%d (%d/%d)", modes[n].width, modes[n].height, format_x, format_y);
             gtk_list_store_append (GTK_LIST_STORE (model), &iter);
             gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                                 COLUMN_COMBO_NAME, name,
