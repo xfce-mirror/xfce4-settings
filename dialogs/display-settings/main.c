@@ -1264,12 +1264,13 @@ display_settings_get_display_infos (void)
     gchar   **display_infos;
     guint     m;
 
-    display_infos = g_new0 (gchar *, xfce_randr->noutput);
+    display_infos = g_new0 (gchar *, xfce_randr->noutput + 1);
     /* get all display edids, to only query randr once */
     for (m = 0; m < xfce_randr->noutput; ++m)
     {
         display_infos[m] = g_strdup_printf ("%s", xfce_randr_get_edid (xfce_randr, m));
     }
+
     return display_infos;
 }
 
@@ -1286,6 +1287,7 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
 
     display_infos = display_settings_get_display_infos ();
     profiles = display_settings_get_profiles (display_infos, display_channel);
+    g_strfreev (display_infos);
 
     current = g_list_first (profiles);
     while (current)
@@ -1386,6 +1388,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
 
     display_infos = display_settings_get_display_infos ();
     profiles = display_settings_get_profiles (display_infos, display_channel);
+    g_strfreev (display_infos);
 
     /* Populate treeview */
     current = g_list_first (profiles);

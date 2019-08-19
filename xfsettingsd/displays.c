@@ -444,7 +444,7 @@ xfce_displays_helper_get_display_infos (gint      noutput,
     gint       m;
     guint8    *edid_data;
 
-    display_infos = g_new0 (gchar *, noutput);
+    display_infos = g_new0 (gchar *, noutput + 1);
     /* get all display edids, to only query randr once */
     for (m = 0; m < noutput; ++m)
     {
@@ -452,7 +452,10 @@ xfce_displays_helper_get_display_infos (gint      noutput,
 
         if (edid_data)
             display_infos[m] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
+        else
+            display_infos[m] = g_strdup ("");
     }
+
     return display_infos;
 }
 
@@ -473,6 +476,7 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
     if (display_infos)
     {
         profiles = display_settings_get_profiles (display_infos, helper->channel);
+        g_strfreev (display_infos);
     }
 
     if (profiles == NULL)

@@ -108,7 +108,7 @@ display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
             continue;
         }
 
-        profile_name = g_strdup_printf ("%s", *(current_elements+1));
+        profile_name = g_strdup_printf ("%s", *(current_elements + 1));
         g_strfreev (current_elements);
 
         /* Walk through the profile and check if every EDID referenced there is also currently available */
@@ -162,11 +162,6 @@ display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
         g_free (profile_name);
     }
 
-    for (m = 0; m < noutput; ++m)
-    {
-        g_free (display_infos[m]);
-    }
-    g_free (display_infos);
     g_list_free (channel_contents);
     g_hash_table_destroy (properties);
 
