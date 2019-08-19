@@ -1299,9 +1299,6 @@ color_settings_dialog_init (GtkBuilder *builder)
     g_signal_connect (settings->profiles_remove, "clicked", G_CALLBACK (color_settings_profile_remove_cb), settings);
 
     settings->profiles_info = gtk_builder_get_object (builder, "profiles-info");
-    /* Conditionally show/hide the info button, based on the availability of gnome-color-manager */
-    if (g_find_program_in_path ("gcm-viewer") == NULL)
-        gtk_widget_hide (GTK_WIDGET (settings->profiles_info));
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
     g_signal_connect (settings->profiles_info, "clicked", G_CALLBACK (color_settings_profile_info_cb), settings);
 
@@ -1353,6 +1350,12 @@ color_settings_dialog_init (GtkBuilder *builder)
     settings->button_assign_cancel = gtk_builder_get_object (builder, "assign-cancel");
     g_signal_connect (settings->button_assign_cancel, "clicked",
                       G_CALLBACK (color_settings_button_assign_cancel_cb), settings);
+
+    /* Conditionally show/hide the info buttons, based on the availability of gnome-color-manager */
+    if (g_find_program_in_path ("gcm-viewer") == NULL) {
+        gtk_widget_hide (GTK_WIDGET (settings->profiles_info));
+        gtk_widget_hide (GTK_WIDGET (settings->button_assign_info));
+    }
 
     cd_client_connect (settings->client,
                        settings->cancellable,
