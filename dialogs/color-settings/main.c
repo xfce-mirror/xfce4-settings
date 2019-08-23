@@ -499,6 +499,7 @@ color_settings_profile_add_cb (GtkButton *button, ColorSettings *settings)
 {
     g_autoptr(GPtrArray) profiles = NULL;
     gchar *window_title;
+    int response;
 
     /* add profiles of the right kind */
     profiles = cd_device_get_profiles (settings->current_device);
@@ -514,7 +515,10 @@ color_settings_profile_add_cb (GtkButton *button, ColorSettings *settings)
     gtk_window_set_title (GTK_WINDOW (settings->dialog_assign), window_title);
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (settings->dialog_assign), color_device_get_title (settings->current_device));
     g_free (window_title);
-    gtk_widget_show (GTK_WIDGET (settings->dialog_assign));
+
+    response = gtk_dialog_run (GTK_DIALOG (settings->dialog_assign));
+    if (response == GTK_RESPONSE_DELETE_EVENT)
+        gtk_widget_hide (GTK_WIDGET (settings->dialog_assign));
 }
 
 
@@ -917,6 +921,7 @@ color_settings_profiles_list_box_row_activated_cb (GtkListBox *list_box,
 static void
 color_settings_dialog_destroy (ColorSettings *settings)
 {
+    gtk_widget_destroy (GTK_WIDGET (settings->dialog_assign));
     g_clear_object (&settings->cancellable);
     g_clear_object (&settings->client);
     g_clear_object (&settings->current_device);
