@@ -70,7 +70,7 @@ main (int    argc,
   xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
   /* Initialize GTK+ and parse command line options */
-  if (G_UNLIKELY (!gtk_init_with_args (&argc, &argv, "", entries, PACKAGE, &error)))
+  if (G_UNLIKELY (!gtk_init_with_args (&argc, &argv, NULL, entries, PACKAGE, &error)))
     {
       if (G_LIKELY (error != NULL))
         {

@@ -191,7 +191,7 @@ main (gint argc, gchar **argv)
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     /* initialize Gtk+ */
-    if(!gtk_init_with_args (&argc, &argv, "", entries, PACKAGE, &error))
+    if(!gtk_init_with_args (&argc, &argv, NULL, entries, PACKAGE, &error))
     {
         if (G_LIKELY (error))
         {
