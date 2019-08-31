@@ -8,12 +8,13 @@
 # Саша Петровић <salepetronije@gmail.com>, 2012,2014-2019
 # Саша Петровић <salepetronije@gmail.com>, 2017
 # Саша Петровић <salepetronije@gmail.com>, 2017,2019
+# Саша Петровић <salepetronije@gmail.com>, 2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-30 06:31+0200\n"
-"PO-Revision-Date: 2019-08-14 20:35+0000\n"
+"POT-Creation-Date: 2019-08-20 06:31+0200\n"
+"PO-Revision-Date: 2019-08-31 17:48+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/xfce4-settings/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -30,10 +31,10 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Непознато"
 
-#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3904
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3927
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr "Нисам успео да пропитам издање проширења Раднра које је у употреби"
+msgstr "Нисам успео да пропитам издање проширења Рандра које је у употреби"
 
 #. 1.2 is required
 #: ../common/xfce-randr.c:294
@@ -71,201 +72,226 @@ msgid "Configure keyboard and mouse accessibility"
 msgstr "Подесите приступачност тастатуре и миша"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/color-settings/color-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
+#: ../dialogs/display-settings/main.c:3967
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../xfce4-settings-editor/main.c:166
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:265
+msgid "_Close"
+msgstr "_Затвори"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/color-settings/color-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../xfce4-settings-editor/main.c:165
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:262
+msgid "_Help"
+msgstr "_Помоћ"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr "Уколико је укључено, управник седнице ће покренути потребне програме за читање приказа и лупе."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "_Enable assistive technologies"
 msgstr "_Омогући технологије приступачности"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Start With Session"
 msgstr "Покрени са седницом"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive technologies will be available the next time you login"
 msgstr "Технологије испомоћи ће бити доступне на следећој пријави"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "No AT-SPI provider was found on your system"
 msgstr "Није пронађен АТ-СПИ давалац услуга на систему"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Assistive _Technologies"
 msgstr "Технологије _приступачности"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr "Када је омогућено, управљачка дугмад (као што су  Контрол, Алт и Шифт) не морају се држати притиснута (она могу бити притиснута па пуштена) када обично више дугмади треба притиснути у исто време."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "_Use sticky keys"
 msgstr "_Користи лепљиву дугмад"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "_Lock sticky keys"
 msgstr "_Закључај лепљиву дугмад"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr "Када је изабрано, управљачка дугмад (као што су Контрол, Алт и Шифт) ће остати закључани у притиснутом стању док се не притисну опет"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr "Искључи лепљиву дугмад ако се притисну _два дугмета"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr "Када је изабрано, особина „лепљивих дугмади“ ће бити обустављена ако су два дугмета притиснута истовремено"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "Sticky Keys"
 msgstr "Лепљива дугмад"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr "За спречавање случајних низова дугмади, спора дугмада захтевају да се дугме држи притиснутим одређено време пре него низ притисака дугмади буде прихваћен."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "Use slow _keys"
 msgstr "Користи _спору дугмад"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "Acceptance _delay:"
 msgstr "_Кашњење пpихватања:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "Време у милисекундама, за прихватање притисака дугмади"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid "Slow Keys"
 msgstr "Спора дугмад"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr "Да би спречили случајне вишеструке притиске дугмади, одскочна дугмад намећу најмање кашњење између притисака дугмади"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
 msgstr "Користи _одскочну дугмад"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "K_eystroke delay:"
 msgstr "Кашњење одзива ду_гмади:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Време у милисекундама, потребно за раздвајање притисака дугмади"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid "Bounce Keys"
 msgstr "Одскочна дугмад"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid "Keyboa_rd"
 msgstr "Тастату_ра"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr "Када је изабрано, показивачем миша може бити управљано бројчаним дугмадима"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "_Use mouse emulation"
 msgstr "_Користи опонашање миша"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "Када је изабрано, показивачем миша може бити управљано бројчаним дугмадима"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "msec"
 msgstr "милисек"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "Време између почетних притисака дугмади и првог поновљеног покрета у милисекундама"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "_Acceleration delay:"
 msgstr "Кашњење _убрзања:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "R_epeat interval:"
 msgstr "Учесталост п_онављања:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Време између поновљених покрета показивача у милисекундама"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "Acceleration t_ime:"
 msgstr "В_реме убрзaња:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Време потребно за највеће убрзање у милисекундама"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "Ma_ximum speed:"
 msgstr "На_јвећа брзина:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "The maximum pointer speed after acceleration"
 msgstr "Највећа брзина показивача миша после убрзања"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "pixels/sec"
 msgstr "тачака/сек"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "Acceleration _profile:"
 msgstr "_Профил убрзања:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Вредност узета за највећу брзину показивача"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid "Mouse Emulation"
 msgstr "Опонашање миша"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr "Додели пречицу дугмади за xfce4-find-cursor ради видног одзива тренутног положаја миша."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "Show location of pointer on keypress"
 msgstr "Приказуј положај показивача на притисак дугмади"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:47
 msgid "Find Cursor"
 msgstr "Пронађи показивач"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:48
 msgid "_Mouse"
 msgstr "_Миш"
 
@@ -296,8 +322,8 @@ msgstr "Подаци о издању"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/color-settings/main.c:1382
-#: ../dialogs/display-settings/main.c:3872
+#: ../dialogs/color-settings/main.c:1385
+#: ../dialogs/display-settings/main.c:3895
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
@@ -308,8 +334,8 @@ msgstr "Упишите „%s --help“ за коришћење."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/color-settings/main.c:1399
-#: ../dialogs/display-settings/main.c:3891
+#: ../dialogs/color-settings/main.c:1402
+#: ../dialogs/display-settings/main.c:3914
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
@@ -318,8 +344,8 @@ msgstr "Развојна дружина.Иксфце-а Сва права су �
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/color-settings/main.c:1400
-#: ../dialogs/display-settings/main.c:3892
+#: ../dialogs/color-settings/main.c:1403
+#: ../dialogs/display-settings/main.c:3915
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
@@ -384,163 +410,163 @@ msgstr "Изглед"
 msgid "Customize the look of your desktop"
 msgstr "Прилагодите изглед радног простора"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "St_yle"
 msgstr "Нач_ин"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "_Icons"
 msgstr "_Сличице"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "Овај словни лик ће бити коришћен као подразумевани при исцртавању текста корисничког сучеља"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "Select a default font"
 msgstr "Одредите подразумевани словни лик"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Default Fon_t"
 msgstr "Подразумевани словни ли_к"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr "Овај словолик ће се користити за подразумевани једноразмачни словни лик, нпр. за опонашаче терминала."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Select a default monospace font"
 msgstr "Изаберите подразумевани једноразмачни словолик"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Default _Monospace Font"
 msgstr "Подразумевани једноразмачни словолик"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "_Enable anti-aliasing"
 msgstr "_Омогући омекшавање"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Дотеривање, или умекшавање словног лика, може побољшати изглед писма приказа"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Hintin_g:"
 msgstr "Наговештавањ_е:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Многи словни ликови садрже податке који обезбеђују додатна упутства о најбољем исцртавању словних ликова; изаберите оно које изгледа најбоље по личном нахођењу"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Sub-_pixel order:"
 msgstr "Распоред испод _тачака:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "Изглед словних ликова на ТФТ или ЛЦД екрану може бити побољшан правилним избором приказа распореда тачака"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Rendering"
 msgstr "Приказ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Custom _DPI setting:"
 msgstr "Прилагођена подешавања _ТПИ:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Изаберите другачију размеру екрана од препознате уколико словни ликови изгледају превелики или премали"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "DPI"
 msgstr "ТПИ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "_Fonts"
 msgstr "_Словни ликови"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Specify what should be displayed in toolbar items"
 msgstr "Одредите шта ће бити приказивано у ставкама траке алата"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "_Toolbar Style"
 msgstr "Изглед _траке алата"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images on _buttons"
 msgstr "Приказуј слике на _дугмадима"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Одредите да ли ће се сличице приказивати поред писма на дугмадима"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Show images in _menus"
 msgstr "Приказуј слике у _изборницима"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Одредите да ли ће се сличице приказивати поред ставки у изборнику"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Enable e_ditable accelerators"
 msgstr "Укључи _уредиве пречице"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Ако је изабрано, пречице дугмади за избор ставки могу бити промењене надношењем миша над избором ставки и притиском новог низа пречице"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Menus and Buttons"
 msgstr "Изборници и дугмад"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable _event sounds"
 msgstr "Укључи звучне _догађаје"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Омогући или онемогући звуке (захтева подршку Канбере - canberra)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Enable input feedbac_k sounds"
 msgstr "Омогући звуке одзив_а уноса"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Одредите да ли кликтање мишем или други уноси треба да покрену звучне догађаје"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "Event sounds"
 msgstr "Звуци догађаја"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Adjust the system-wide display scaling"
 msgstr "Подесите опште увећање приказа"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
 msgid "_Window Scaling"
 msgstr "Увећање _прозора"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:50
 msgid "Setti_ngs"
 msgstr "Постав_ке"
 
@@ -637,64 +663,74 @@ msgstr "Пресеци боја"
 msgid "Configure color profiles for your devices"
 msgstr "Подесите пресеке боја уређају"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:3
+#: ../dialogs/color-settings/color-dialog.glade.h:5
 msgid "<b>No devices found.</b>"
 msgstr "<b>Нема пронађених уређаја.</b>"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:4
+#: ../dialogs/color-settings/color-dialog.glade.h:6
 msgid "Model:"
 msgstr "Модел:"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:5
+#: ../dialogs/color-settings/color-dialog.glade.h:7
 msgid "Colorspace:"
 msgstr "Обојеност:"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:6
+#: ../dialogs/color-settings/color-dialog.glade.h:8
 msgid "Vendor:"
 msgstr "Произвођач:"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:7
+#: ../dialogs/color-settings/color-dialog.glade.h:9
 msgid "Calibrate"
 msgstr "Избаждари"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:8
+#: ../dialogs/color-settings/color-dialog.glade.h:10
 msgid "<b>No profiles for the selected device.</b>"
 msgstr "<b>Нема пресека боја одабраног уређаја.</b>"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:9
+#: ../dialogs/color-settings/color-dialog.glade.h:11
 msgid "Add a profile to the currently selected device"
 msgstr "Додајте пресек боја изабраном уређају"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "Delete the currently selected profile"
 msgstr "Избриши тренутни пресек"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:11
+#: ../dialogs/color-settings/color-dialog.glade.h:13
+msgid "Show detailed information about the selected profile"
+msgstr "Прикажи опширно податке о одабраном пресеку"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:14
 msgid "Enable"
 msgstr "Омогући"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/color-settings/color-dialog.glade.h:15
 msgid "Enable the selected profile"
 msgstr "Омогући изабрани пресек"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:13
+#: ../dialogs/color-settings/color-dialog.glade.h:16
 msgid "Add Profile to Device"
 msgstr "Додај пресек уређају"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:14
+#: ../dialogs/color-settings/color-dialog.glade.h:17
 msgid "Add a Color Profile to your Device"
 msgstr "Додај пресек боја уређају"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:15
+#. Create cancel button
+#: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
+#: ../dialogs/keyboard-settings/command-dialog.c:111
+#: ../dialogs/keyboard-settings/command-dialog.c:262
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 msgid "_Cancel"
 msgstr "_Откажи"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:16
+#: ../dialogs/color-settings/color-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/command-dialog.c:115
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 msgid "_OK"
 msgstr "_У реду"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:17
+#: ../dialogs/color-settings/color-dialog.glade.h:20
 msgid "Import color profile files (*.icc)"
 msgstr "Увези датотеке пресека боја (*.icc)"
 
@@ -863,19 +899,6 @@ msgstr "Приказ"
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
 msgstr "Подеси екране и њихов размештај"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:8
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:262
-msgid "_Help"
-msgstr "_Помоћ"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:9
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
-#: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:3944
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:265
-msgid "_Close"
-msgstr "_Затвори"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "_Mirror displays"
@@ -1071,33 +1094,30 @@ msgstr "Последњи употребљени излаз не сме бити 
 msgid "Selected output not disabled"
 msgstr "Одабрани излаз није онемогућен"
 
-#: ../dialogs/display-settings/main.c:1519
+#: ../dialogs/display-settings/main.c:1542
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Да ли освежити измењени пресек приказа „%s“?"
 
-#: ../dialogs/display-settings/main.c:1524
+#: ../dialogs/display-settings/main.c:1547
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Освежи „%s“"
 
-#: ../dialogs/display-settings/main.c:1811
+#: ../dialogs/display-settings/main.c:1834
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Да ли желите избрисати пресек приказа „%s“?"
 
-#: ../dialogs/display-settings/main.c:1813
+#: ../dialogs/display-settings/main.c:1836
 msgid "Delete Profile"
 msgstr "Избриши пресек"
 
-#: ../dialogs/display-settings/main.c:1816
+#: ../dialogs/display-settings/main.c:1839
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Ако ли се избрише пресек приказа не може се повратити."
 
-#. Create cancel button
-#: ../dialogs/display-settings/main.c:1817
-#: ../dialogs/keyboard-settings/command-dialog.c:110
-#: ../dialogs/keyboard-settings/command-dialog.c:259
+#: ../dialogs/display-settings/main.c:1840
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:908
@@ -1105,23 +1125,23 @@ msgstr "Ако ли се избрише пресек приказа не мож�
 msgid "Cancel"
 msgstr "Откажи"
 
-#: ../dialogs/display-settings/main.c:1818
+#: ../dialogs/display-settings/main.c:1841
 msgid "Delete"
 msgstr "Обриши"
 
-#: ../dialogs/display-settings/main.c:1919
+#: ../dialogs/display-settings/main.c:1942
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d полица ИксФЦЕ-а"
 
-#: ../dialogs/display-settings/main.c:2923
+#: ../dialogs/display-settings/main.c:2946
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Изаберите екран за промену његових поставки; превуците га ради преуређења његовог смештаја."
 
-#: ../dialogs/display-settings/main.c:2966
-#: ../dialogs/display-settings/main.c:3042
+#: ../dialogs/display-settings/main.c:2989
+#: ../dialogs/display-settings/main.c:3065
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1130,104 +1150,97 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3244
+#: ../dialogs/display-settings/main.c:3267
 msgid "Mirror Screens"
 msgstr "Пресликај приказе"
 
-#: ../dialogs/display-settings/main.c:3294
+#: ../dialogs/display-settings/main.c:3317
 msgid "(Disabled)"
 msgstr "(Онемогућено)"
 
-#: ../dialogs/display-settings/main.c:3711
+#: ../dialogs/display-settings/main.c:3734
 #, c-format
 msgid "Only %s (1)"
 msgstr "Само %s (1)"
 
-#: ../dialogs/display-settings/main.c:3722
+#: ../dialogs/display-settings/main.c:3745
 #, c-format
 msgid "Only %s (2)"
 msgstr "Само %s (2)"
 
-#: ../dialogs/display-settings/main.c:3905
-#: ../dialogs/display-settings/main.c:3942
+#: ../dialogs/display-settings/main.c:3928
+#: ../dialogs/display-settings/main.c:3965
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Нисам успео да покренем поставке приказа Иксфце-а"
 
-#: ../dialogs/display-settings/main.c:3937
+#: ../dialogs/display-settings/main.c:3960
 msgid "ATI Settings"
 msgstr "подешавања АТИ-а"
 
-#: ../dialogs/display-settings/main.c:3952
+#: ../dialogs/display-settings/main.c:3975
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Нисам успео да покренем поставке власничког управљачког програма"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:106
+#: ../dialogs/keyboard-settings/command-dialog.c:107
 msgid "Shortcut Command"
 msgstr "Наредба пречице"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:114
-msgid "OK"
-msgstr "У реду"
-
-#: ../dialogs/keyboard-settings/command-dialog.c:137
+#: ../dialogs/keyboard-settings/command-dialog.c:136
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr "Унесите наредбу коју желите окидати пречицом."
 
 #. We are editing an existing shortcut
-#: ../dialogs/keyboard-settings/command-dialog.c:155
+#: ../dialogs/keyboard-settings/command-dialog.c:154
 msgid "Shortcut:"
 msgstr "Пречица:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:168
-msgid "Command:"
-msgstr "Наредба:"
+#: ../dialogs/keyboard-settings/command-dialog.c:167
+msgid "Comm_and:"
+msgstr "На_редба:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:184
-#: ../dialogs/keyboard-settings/command-dialog.c:260
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:136
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
-msgid "Open"
-msgstr "Отвори"
-
-#: ../dialogs/keyboard-settings/command-dialog.c:189
+#: ../dialogs/keyboard-settings/command-dialog.c:192
 msgid "Use _startup notification"
 msgstr "Користи _обавештења при покретању"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:236
+#: ../dialogs/keyboard-settings/command-dialog.c:239
 msgid "The command may not be empty."
 msgstr "Наредба не може бити без садржаја."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:256
+#: ../dialogs/keyboard-settings/command-dialog.c:259
 msgid "Select command"
 msgstr "Изабери наредбу"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:264
+#: ../dialogs/keyboard-settings/command-dialog.c:263
+msgid "_Open"
+msgstr "_Отвори"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:267
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:389
 msgid "All Files"
 msgstr "Све датотеке"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:269
+#: ../dialogs/keyboard-settings/command-dialog.c:272
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:394
 msgid "Executable Files"
 msgstr "Извршне датотеке"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:284
+#: ../dialogs/keyboard-settings/command-dialog.c:287
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:409
 msgid "Perl Scripts"
 msgstr "Скрипта Перла"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:290
+#: ../dialogs/keyboard-settings/command-dialog.c:293
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:415
 msgid "Python Scripts"
 msgstr "Скрипта Питона"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:296
+#: ../dialogs/keyboard-settings/command-dialog.c:299
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:421
 msgid "Ruby Scripts"
 msgstr "Скрипта Рубија"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:302
+#: ../dialogs/keyboard-settings/command-dialog.c:305
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:427
 msgid "Shell Scripts"
 msgstr "Скрипта љуске"
@@ -1240,130 +1253,130 @@ msgstr "Избор распореда тастатуре"
 msgid "Select keyboard layout and variant"
 msgstr "Одаберите врсту и распоред тастатуре"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
 msgstr "Тастатура"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "Уредите поставке тастатуре и пречица програма"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Restore num l_ock state on startup"
 msgstr "Поврати стање закључавања _бројчаних дугмади при покретању"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "General"
 msgstr "Опште"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "_Enable key repeat"
 msgstr "_Омогући понављање дугмади"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
 msgstr "Када је изабрано, притисак и држање дугмади ће исписивати исти знак у недоглед"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "_Repeat delay:"
 msgstr "Кашњење _понављања:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Време у милисекундама, пре него што притиснуто дугме почне са понављањем"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Repe_at speed:"
 msgstr "_Брзина понављања:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Учесталост по којој се притисци дугмади понављају док се дугме држи притиснуто"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Typing Settings"
 msgstr "Поставке куцања"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Show _blinking"
 msgstr "Приказуј _трептање"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Одредите да ли показивач трепће"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Blink _delay:"
 msgstr "Кашњење _трептања:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Кашњење у милисекундама између наредних трептаја показивача"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Cursor"
 msgstr "Показивач"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Test area:"
 msgstr "_Место за пробу:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "Beha_vior"
 msgstr "_Понашање"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "Define shortcuts for la_unching applications:"
 msgstr "Одредите _пречицу за покретање програма:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "Reset to _Defaults"
 msgstr "Врати на _подразумевано"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "A_pplication Shortcuts"
 msgstr "П_речице програма"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Use system defaults"
 msgstr "_Користи системски подразумеване"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
 msgstr "Одредите да ли се распоред тастатуре подешава у прозорчету поставки, или сервером Икса"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "Модел тастатуре"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr "Измена могућности _распореда"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr "Положај дугмета _састави (compoze):"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "Помери тренутно одабрану ставку један ред више"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "Помери тренутно одабрану ставку један ред ниже"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "Распоред _тастатуре"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "_Распоред"
 
@@ -1435,6 +1448,11 @@ msgstr "Нисам успео да направим прозорче врста.
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
 msgstr "Изаберите програм"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:136
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
+msgid "Open"
+msgstr "Отвори"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid "Use a c_ustom command:"
@@ -1632,171 +1650,171 @@ msgstr "Миш и додирна плочица"
 msgid "Configure pointer device behavior and appearance"
 msgstr "Подесите изглед и особине уређаја показивача"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "De_vice:"
 msgstr "Ур_еђај:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Le_ft-handed"
 msgstr "_Леворуки"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Ri_ght-handed"
 msgstr "Десноруки"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Reverse scroll d_irection"
 msgstr "Обрни с_мер клизања"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Ако је одабрано, точкић миша ће радити у супротном смеру"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Buttons"
 msgstr "Дугмад"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "_Reset to Defaults"
 msgstr "_Врати на подразумевано"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Врати убрзање и осетљивост одабраног уређаја на подразумеване вредности"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Sensitivit_y:"
 msgstr "_Осетљивост:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Acceleratio_n:"
 msgstr "_Убрзање:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Множилац са којим ће се брзина показивача увећати померањем миша"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Број тачака које показивач пређе за време пре почетка његовог убрзања"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Pointer Speed"
 msgstr "Брзина показивача"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "B_uttons and Feedback"
 msgstr "_Дугмад и њихов одзив"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Disable touchpad _while typing"
 msgstr "Онемогући до_дирну плочицу за време куцања"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Кад је одабрано, додирна плочица ће бити онемогућена док се користи тастатура"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Duratio_n:"
 msgstr "_Трајање:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Tap touchpad to clic_k"
 msgstr "Т_апни додирну плочицу за клик"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Scrolling _mode:"
 msgstr "_Начин клизања:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Enable hori_zontal scrolling"
 msgstr "Укључи _водоравно клизање"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Scrolling"
 msgstr "Клизање"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "T_ouchpad"
 msgstr "Д_одирна плочица"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Trac_king mode:"
 msgstr "Начин пр_аћења:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "_Rotation:"
 msgstr "_Смер обртања:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Tab_let"
 msgstr "Таблица"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "_Devices"
 msgstr "_Уређаји"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "Th_reshold:"
 msgstr "За_дршка:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Број тачака које показивач пређе пре почетка радње превлачења"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "Drag and Drop"
 msgstr "Превуци и спусти"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Ti_me:"
 msgstr "Вр_еме:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Два клика мишем за краће време (у милисекундама) ће бити схваћена као двоклик"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "D_istance:"
 msgstr "Р_азмак:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Показивач миша не може да се помери даље од овог растојања између два клика да би их сматрали двокликом"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "Double Click"
 msgstr "Двоклик"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "_Behavior"
 msgstr "_Понашање"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "Cursor si_ze:"
 msgstr "_Величина показивача:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "Size"
 msgstr "Величина"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid "Preview"
 msgstr "Преглед"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:54
 msgid "_Theme"
 msgstr "_Тема"
 
