@@ -1119,6 +1119,8 @@ xfce_displays_helper_list_crtcs (XfceDisplaysHelper *helper)
         crtc->height = crtc_info->height;
         crtc->x = crtc_info->x;
         crtc->y = crtc_info->y;
+        crtc->scalex = 1.0;
+        crtc->scaley = 1.0;
 
         crtc->noutput = crtc_info->noutput;
         crtc->outputs = NULL;
