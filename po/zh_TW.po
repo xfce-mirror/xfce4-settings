@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-20 06:31+0200\n"
-"PO-Revision-Date: 2019-09-12 03:32+0000\n"
+"PO-Revision-Date: 2019-09-20 01:19+0000\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/xfce/xfce4-settings/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "無法查詢正在使用中的 RandR 擴展版本"
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "本系統正在使用 RanR %d.%d。若要讓該顯示設定值運作，至少需要 1.2 版"
+msgstr "本系統正在使用 RanR %d.%d。若要令顯示器設定生效，至少需要 1.2 版"
 
 #: ../common/xfce-randr.c:574
 msgid "Laptop"
@@ -551,7 +551,7 @@ msgstr "啟用輸入回饋音效(_K)"
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
-msgstr "指定滑鼠點擊或其它使用者輸入是否要播放事件音效"
+msgstr "指定滑鼠點擊或其他使用者輸入是否要播放事件音效"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "Event sounds"
@@ -871,7 +871,7 @@ msgstr "若您無法回應此提問，將於 10 秒內還原成之前的組態�
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "The primary display is currently configured to show:"
-msgstr "目前設定為顯示主顯示器："
+msgstr "目前設定為顯示主要顯示器："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 msgid "Xfce Panel"
@@ -892,7 +892,7 @@ msgstr "設定……"
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
-msgstr "顯示"
+msgstr "顯示器"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
@@ -901,11 +901,11 @@ msgstr "調整螢幕設定值與配置"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "_Mirror displays"
-msgstr "讓顯示器鏡像顯示(_M)"
+msgstr "鏡像顯示(_M)"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Primary Display:"
-msgstr "主顯示器："
+msgstr "主要顯示器："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "R_esolution:"
@@ -1002,7 +1002,7 @@ msgstr "僅顯示器 1"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Mirror Displays"
-msgstr "讓顯示器鏡像顯示"
+msgstr "鏡像顯示"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
 msgid "Extend to the right"
@@ -1033,11 +1033,11 @@ msgstr "<big><b>您已對您先前作用中的設定檔做出變更</b></big>"
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
-msgstr "如果您沒有更新設定檔，您的變更將會在重新啟動您的工作階段或拔下或連上螢幕時遺失。"
+msgstr "如果沒有更新設定檔，變更會在重新啟動工作階段或拔下或連上螢幕時遺失。"
 
 #: ../dialogs/display-settings/main.c:99
 msgid "Left"
-msgstr "左"
+msgstr "向左"
 
 #: ../dialogs/display-settings/main.c:100
 msgid "Inverted"
@@ -1045,7 +1045,7 @@ msgstr "反轉"
 
 #: ../dialogs/display-settings/main.c:101
 msgid "Right"
-msgstr "右"
+msgstr "向右"
 
 #: ../dialogs/display-settings/main.c:110
 msgid "Horizontal"
@@ -1096,7 +1096,7 @@ msgstr "選取的輸出未停用"
 #: ../dialogs/display-settings/main.c:1542
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr "更新已變更的顯示設定檔 '%s'？"
+msgstr "是否更新已變更的顯示設定檔「%s」？"
 
 #: ../dialogs/display-settings/main.c:1547
 #, c-format
@@ -1106,7 +1106,7 @@ msgstr "更新 '%s' (_U)"
 #: ../dialogs/display-settings/main.c:1834
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr "您想要刪除顯示設定檔 '%s' 嗎？"
+msgstr "要刪除顯示設定檔「%s」嗎？"
 
 #: ../dialogs/display-settings/main.c:1836
 msgid "Delete Profile"
@@ -1170,7 +1170,7 @@ msgstr "僅 %s (2)"
 #: ../dialogs/display-settings/main.c:3928
 #: ../dialogs/display-settings/main.c:3965
 msgid "Unable to start the Xfce Display Settings"
-msgstr "無法啟動 Xfce 顯示設定值"
+msgstr "無法啟動 Xfce 顯示器設定"
 
 #: ../dialogs/display-settings/main.c:3960
 msgid "ATI Settings"
@@ -1550,7 +1550,7 @@ msgstr "無法為 MIME 類型「%2$s」設定應用程式「%1$s」。"
 #: ../dialogs/mime-settings/xfce-mime-window.c:899
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
-msgstr "您確定要重設內容類型「%s」為其預設值？"
+msgstr "確定要將內容類型「%s」重設為預設值？"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:903
 msgid "Question"
@@ -1911,7 +1911,7 @@ msgstr "重設通道將永久移除那些自訂過的設定值。"
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:812
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr "您確定要重設「%s」通道與其全部屬性？"
+msgstr "確定要重設「%s」通道與其全部屬性？"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:887
 msgid "reset"
@@ -1954,7 +1954,7 @@ msgstr "重設屬性將永久移除那些自訂過的設定值。"
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1372
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
-msgstr "您確定要重設屬性「%s」嗎？"
+msgstr "確定要重設屬性「%s」嗎？"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
 msgid "Int"
