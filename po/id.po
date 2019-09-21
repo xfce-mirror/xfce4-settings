@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-20 06:31+0200\n"
-"PO-Revision-Date: 2019-09-05 07:39+0000\n"
-"Last-Translator: tap saja <tapsaja@gmail.com>\n"
+"PO-Revision-Date: 2019-09-21 20:23+0000\n"
+"Last-Translator: Ardjuna <Asyura.x@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/xfce/xfce4-settings/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "Tak dapat kueri versi dari ekstensi RandR yang digunakan"
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "Sistem ini menggunakan RandR %d.%d. Agar pengaturan tampilan bekerja setidaknya versi 1.2 diperlukan"
+msgstr "Saat ini sistem menggunakan RandR versi %d.%d. Agar pengaturan layar dapat berjalan, diperlukan versi 1.2 atau yang lebih baru."
 
 #: ../common/xfce-randr.c:574
 msgid "Laptop"
@@ -57,7 +57,7 @@ msgstr "Televisi"
 
 #: ../common/xfce-randr.c:594
 msgid "Digital display"
-msgstr "Tampilan digital"
+msgstr "Layar digital"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
@@ -109,7 +109,7 @@ msgstr "Mulai dengan Sesi"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive technologies will be available the next time you login"
-msgstr "Peralatan asistensi difabel akan diaktifkan pada sesi berikutnya"
+msgstr "Peralatan pemandu difabel akan diaktifkan pada sesi berikutnya"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "No AT-SPI provider was found on your system"
@@ -138,7 +138,7 @@ msgstr "_Kunci tombol lekat"
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "Ketika terpilih, tombol pengubah (seperti Control, Alt, dan Shift) akan tetap terkunci pada kondisi ditekan sampai ditekan lagi"
+msgstr "Ketika terpilih, tombol pengubah (seperti Control, Alt, dan Shift) akan dikunci seakan selalu ditekan. Tekan kembali tombol tersebut untuk menjadikan kondisi sebaliknya."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Disable sticky keys if two keys are _pressed"
@@ -222,7 +222,7 @@ msgstr "Ketika dipilih, pointer tetikus dapat dikendalikan dengan area tombol an
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "msec"
-msgstr "mdet"
+msgstr "milidetik"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid ""
@@ -260,7 +260,7 @@ msgstr "Kecepatan pointer maksimum setelah akselerasi"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "pixels/sec"
-msgstr "piksel/det"
+msgstr "piksel/detik"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "Acceleration _profile:"
@@ -348,7 +348,7 @@ msgstr "Tim pengembang Xfce. Hak cipta dilindungi undang-undang."
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Silakan laporkan kutu ke <%s>."
+msgstr "Silakan laporkan galat ke <%s>."
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -391,7 +391,7 @@ msgstr "Tulisan di samping ikon"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "1x (no scaling)"
-msgstr "1x (tidak ada penskalaan)"
+msgstr "1x (tanpa ada penskalaan)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "2x"
@@ -400,7 +400,7 @@ msgstr "2x"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
-msgstr "Tampilan"
+msgstr "Nuansa"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
@@ -437,11 +437,11 @@ msgstr "Fonta ini akan digunakan sebagai fonta monospace bawaan, misalnya dengan
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Select a default monospace font"
-msgstr "Pilih fonta monospace bawaan"
+msgstr "Pilih standar fonta monospasi"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Default _Monospace Font"
-msgstr "Fonta _Monospace Bawaan"
+msgstr "Standar Fonta _Monospasi"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "_Enable anti-aliasing"
@@ -454,13 +454,13 @@ msgstr "Anti-alias, atau penghalus fonta, dapat meningkatkan tampilan teks di la
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Hintin_g:"
-msgstr "_Petunjuk:"
+msgstr "_Arsiran:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr "Banyak fonta berisi informasi yang menyediakan petunjuk ekstra seperti bagaimana cara terbaik menggambar fonta; pilih apa saja yang terlihat paling bagus menurut selera pribadi"
+msgstr "Banyak fonta menyediakan variasi arsiran yang dapat mempengaruhi tampilannya; silakan pilih yang paling cocok dengan selera anda"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Sub-_pixel order:"
@@ -474,7 +474,7 @@ msgstr "Kualitas fonta pada layar TFT atau LCD dapat ditingkatkan dengan pesat d
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Rendering"
-msgstr "Sesuaian"
+msgstr "Perupaan"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Custom _DPI setting:"
@@ -484,7 +484,7 @@ msgstr "Pengaturan _DPI suai:"
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
-msgstr "Timpa resolusi monitor terdeteksi jika fonta tampak terlalu besar atau terlalu kecil"
+msgstr "Timpa setelan resolusi monitor terdeteksi jika fonta tampak terlalu besar atau terlalu kecil"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "DPI"
@@ -496,27 +496,27 @@ msgstr "_Fonta"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Specify what should be displayed in toolbar items"
-msgstr "Tentukan apa yang harus ditampilkan pada item batang alat"
+msgstr "Menentukan apa yang akan ditampilkan pada item batang peralatan"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "_Toolbar Style"
-msgstr "_Gaya Batang Alat"
+msgstr "_Gaya Mistar Alat"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images on _buttons"
-msgstr "Tampilkan citra di _tombol"
+msgstr "Tampilkan ikon pada _tombol"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "Tentukan apakah ikon harus ditampilkan di sebelah teks dalam tombol"
+msgstr "Menentukan tampakan ikon di sebelah teks dalam tombol"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Show images in _menus"
-msgstr "Tampilkan citra di _menu"
+msgstr "Tampilkan ikon pada _menu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "Tentukan apakah ikon harus ditampilkan di sebelah item dalam menu"
+msgstr "Menentukan tampakan ikon di samping item menu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Enable e_ditable accelerators"
@@ -527,7 +527,7 @@ msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr "Jika terpilih, jalan pintas papan ketik untuk item menu dapat diubah dengan cara mendekatkan tetikus di item menu lalu menekan kombinasi tombol baru untuk jalan pintas"
+msgstr "Jika dipilih, pintasan papan ketik pada item menu dapat diubah dengan cara melayangkan petunjuk tetikus di atas item menu lalu menekan kombinasi tombol baru sebagai pintasan penggantinya"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Menus and Buttons"
@@ -549,7 +549,7 @@ msgstr "Aktifkan s_uara balikan masukan"
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
-msgstr "Tentukan apakah klik tetikus dan masukan pengguna lainnya akan menyebabkan pemutaran suara peristiwa"
+msgstr "Menentukan apakah klik tetikus dan masukan pengguna lainnya akan memicu suara peristiwa"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "Event sounds"
@@ -869,7 +869,7 @@ msgstr "Konfigurasi sebelumnya akan dikembalikan dalam waktu 10 detik jika anda 
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "The primary display is currently configured to show:"
-msgstr "Saat ini penampil utama diatur untuk menampilkan:"
+msgstr "Saat ini layar utama diatur untuk menampilkan:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 msgid "Xfce Panel"
@@ -890,7 +890,7 @@ msgstr "Konfigurasi..."
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
-msgstr "Tampilan"
+msgstr "Layar"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
@@ -899,11 +899,11 @@ msgstr "Atur pengaturan layar dan tata letak"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "_Mirror displays"
-msgstr "_Mode cermin"
+msgstr "Tampilan cer_min"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Primary Display:"
-msgstr "Penampil Utama:"
+msgstr "Layar Utama:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "R_esolution:"
@@ -935,11 +935,11 @@ msgstr "<b>Profil</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "<b>Connecting Displays</b>"
-msgstr "<b>Menghubungkan Penampil</b>"
+msgstr "<b>Menghubungkan Layar</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "Delete the currently selected display profile."
-msgstr "Hapus profil penampil yang dipilih."
+msgstr "Hapus profil layar yang dipilih."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Apply"
@@ -947,11 +947,11 @@ msgstr "Terapkan"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "Apply the currently selected display profile."
-msgstr "Terapkan profil penampil terpilih."
+msgstr "Terapkan profil layar terpilih."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "Create a new display profile."
-msgstr "Buat profil penampil baru."
+msgstr "Buat profil layar baru."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "Update an existing profile."
@@ -959,19 +959,19 @@ msgstr "Sunting profil yang tersedia."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "Automatically enable profiles when new display is connected"
-msgstr "Aktifkan profil secara otomatis saat penampil baru terkoneksi"
+msgstr "Aktifkan profil layar secara otomatis saat ada koneksi baru"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "Configure new displays when connected"
-msgstr "Atur penampil baru saat terkoneksi"
+msgstr "Buka pengaturan layar saat ada koneksi baru"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "Show popup windows to identify displays"
-msgstr "Tampilkan jendela info untuk mengidentifikasi penampil"
+msgstr "Tampilkan jendela info untuk mengidentifikasi layar"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "<b>Identifying Displays</b>"
-msgstr "<b>Mengidentifikasi Penampil</b>"
+msgstr "<b>Mengidentifikasi Layar</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:29
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
@@ -1012,11 +1012,11 @@ msgstr "Hanya Layar 2"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
-msgstr "tombol radio"
+msgstr "tombol pilihan"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
 msgid "Update Display Profile"
-msgstr "Sunting Profil Penampil"
+msgstr "Simpan Profil Layar"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
 msgid "_Update"
@@ -1031,7 +1031,7 @@ msgstr "<big><b>Anda telah berhasil mengubah profil aktif</b></big>"
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
-msgstr "Sesi destop baru atau cabut - pasang penampil akan menghilangkan perubahan profil yang tidak disimpan sebelumnya."
+msgstr "Sesi destop baru ataupun aktivitas cabut - pasang layar dapat menghilangkan perubahan profil yang tidak disimpan."
 
 #: ../dialogs/display-settings/main.c:99
 msgid "Left"
@@ -1094,7 +1094,7 @@ msgstr "Keluaran terpilih jangan dinonaktifkan"
 #: ../dialogs/display-settings/main.c:1542
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr "Perbarui profil penampil '%s'?"
+msgstr "Perbarui profil layar '%s'?"
 
 #: ../dialogs/display-settings/main.c:1547
 #, c-format
@@ -1104,7 +1104,7 @@ msgstr "_Sunting '%s'"
 #: ../dialogs/display-settings/main.c:1834
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr "Apakah anda ingin menghapus profil penampil '%s'?"
+msgstr "Apakah anda ingin menghapus profil layar '%s'?"
 
 #: ../dialogs/display-settings/main.c:1836
 msgid "Delete Profile"
@@ -1112,7 +1112,7 @@ msgstr "Hapus Profil"
 
 #: ../dialogs/display-settings/main.c:1839
 msgid "Once a display profile is deleted it cannot be restored."
-msgstr "Profil penampil yang telah dihapus tidak dapat dikembalikan."
+msgstr "Profil layar yang telah dihapus tidak dapat dikembalikan."
 
 #: ../dialogs/display-settings/main.c:1840
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -1168,7 +1168,7 @@ msgstr "Hanya %s (2)"
 #: ../dialogs/display-settings/main.c:3928
 #: ../dialogs/display-settings/main.c:3965
 msgid "Unable to start the Xfce Display Settings"
-msgstr "Tak dapat menjalankan Pengaturan Tampilan Xfce"
+msgstr "Gagal menjalankan Pengaturan Layar Xfce"
 
 #: ../dialogs/display-settings/main.c:3960
 msgid "ATI Settings"
@@ -1176,12 +1176,12 @@ msgstr "Pengaturan ATI"
 
 #: ../dialogs/display-settings/main.c:3975
 msgid "Unable to launch the proprietary driver settings"
-msgstr "Tak dapat menjalankan pengaturan driver kode sumber tertutup"
+msgstr "Tidak dapat menjalankan pengaturan dari driver paten"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:107
 msgid "Shortcut Command"
-msgstr "Jalan Pintas Perintah"
+msgstr "Pintasan Perintah"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:136
 msgid "Enter the command you want to trigger with a shortcut."
@@ -1190,7 +1190,7 @@ msgstr "Masukkan perintah yang ingin dijalankan melalui pintasan."
 #. We are editing an existing shortcut
 #: ../dialogs/keyboard-settings/command-dialog.c:154
 msgid "Shortcut:"
-msgstr "Jalan pintas:"
+msgstr "Pintasan:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:167
 msgid "Comm_and:"
@@ -1258,7 +1258,7 @@ msgstr "Papan ketik "
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Edit keyboard settings and application shortcuts"
-msgstr "Sunting pengaturan papan ketik dan jalan pintas aplikasi"
+msgstr "Sunting pengaturan papan ketik dan pintasan aplikasi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Restore num l_ock state on startup"
@@ -1321,7 +1321,7 @@ msgstr "Kursor"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Test area:"
-msgstr "Area tes_"
+msgstr "Area tes_:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "Beha_vior"
@@ -1337,7 +1337,7 @@ msgstr "Set Ulang ke Stan_dar"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "A_pplication Shortcuts"
-msgstr "Jalan _Pintas Aplikasi"
+msgstr "_Pintasan Aplikasi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Use system defaults"
@@ -1347,7 +1347,7 @@ msgstr "_Gunakan standar sistem"
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
-msgstr "Tentukan apakah tata letak papan ketik dikendalikan oleh dialog pengaturan ini, atau oleh server X"
+msgstr "Menentukan apakah tata letak papan ketik dikendalikan oleh pengaturan ini atau oleh server X"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
@@ -1384,7 +1384,7 @@ msgstr "Tak dapat menginisialisasi GTK+"
 #: ../dialogs/keyboard-settings/main.c:104
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
-msgstr "Gagal menyambung ke jurik xfconf. Alasan: %s"
+msgstr "Gagal menyambung ke jurik xfconf. Penyebab: %s"
 
 #: ../dialogs/keyboard-settings/main.c:115
 msgid "Could not create the settings dialog."
@@ -1396,7 +1396,7 @@ msgstr "Perintah"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
-msgstr "Jalan pintas"
+msgstr "Pintasan"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
 msgid "Layout"
@@ -1409,7 +1409,7 @@ msgstr "Jenis"
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
 msgid "Shortcut command may not be empty."
-msgstr "Jalan pintas perintah mungkin tidak kosong."
+msgstr "Perintah pintasan tidak boleh dikosongkan."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1270
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
@@ -1420,7 +1420,7 @@ msgstr "Set Ulang ke Standar"
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
-msgstr "Ini akan mengatur ulang semua jalan pintas ke nilai standar mereka. Anda yakin ingin melakukan ini?"
+msgstr "Ini akan mengatur ulang semua pintasan ke kondisi standar. Anda yakin ingin melanjutkan?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid "No"
@@ -1432,7 +1432,7 @@ msgstr "Ya"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1351
 msgid "The system defaults will be restored next time you log in."
-msgstr "Standar sistem akan dikembalikan ketika lain kali anda log masuk."
+msgstr "Standar sistem akan diterapkan ketika anda log masuk kembali."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
 msgid "Warning"
