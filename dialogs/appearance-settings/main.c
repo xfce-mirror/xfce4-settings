@@ -570,7 +570,7 @@ appearance_settings_load_ui_themes (preview_data *pd)
             gtkcss_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-3.0", "gtk.css", NULL);
 
             /* Check if the gtkrc file exists and the theme is not already in the list */
-            if (g_file_test (gtkrc_filename, G_FILE_TEST_EXISTS)
+            if (g_file_test (gtkcss_filename, G_FILE_TEST_EXISTS)
                 && g_slist_find_custom (check_list, file, (GCompareFunc) g_utf8_collate) == NULL)
             {
                 /* Insert the theme in the check list */
