@@ -1,17 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Gheyret Kenji <gheyret@gmail.com>, 2012
+# Xfce Bot <transifex@xfce.org>, 2019
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfce4-settings\n"
+"Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 06:31+0200\n"
-"PO-Revision-Date: 2019-04-24 04:31+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Uighur (http://www.transifex.com/xfce/xfce4-settings/language/ug/)\n"
+"POT-Creation-Date: 2019-10-20 18:32+0200\n"
+"PO-Revision-Date: 2019-10-20 16:33+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>, 2019\n"
+"Language-Team: Uighur (https://www.transifex.com/xfce/teams/16840/ug/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +29,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "نامەلۇم"
 
-#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3904
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3927
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "ئىشلىتىلىۋاتقان RandR كېڭەيتىلمىسىنىڭ نەشرىنى سۈرۈشتۈرگىلى بولمىدى"
@@ -37,7 +40,9 @@ msgstr "ئىشلىتىلىۋاتقان RandR كېڭەيتىلمىسىنىڭ نە
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "مەزكۇر سىستېمىدا RandR %d.%d ئىشلىتىلىۋاتىدۇ. كۆرسەتكۈچ تەڭشىكىنى ئىشلىتىش ئۈچۈن ئەڭ توۋەن بولغاندىمۇ 1.2 نەشرى زۆرۈردۇر"
+msgstr ""
+"مەزكۇر سىستېمىدا RandR %d.%d ئىشلىتىلىۋاتىدۇ. كۆرسەتكۈچ تەڭشىكىنى ئىشلىتىش "
+"ئۈچۈن ئەڭ توۋەن بولغاندىمۇ 1.2 نەشرى زۆرۈردۇر"
 
 #: ../common/xfce-randr.c:574
 msgid "Laptop"
@@ -67,201 +72,239 @@ msgid "Configure keyboard and mouse accessibility"
 msgstr "ھەرپتاختا ۋە چاشقىنەكنىڭ ياردەم ئىقتىدارىنى تەڭشە"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/color-settings/color-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
+#: ../dialogs/display-settings/main.c:3967
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../xfce4-settings-editor/main.c:166
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:265
+msgid "_Close"
+msgstr "تاقا(_C)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/color-settings/color-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../xfce4-settings-editor/main.c:165
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:262
+msgid "_Help"
+msgstr "ياردەم(_H)"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "_Enable assistive technologies"
 msgstr "ياردەمچى (پاراۋانلىق) تېخنىكىسى ئىناۋەتلىك بولسۇن(_E)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Start With Session"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive technologies will be available the next time you login"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "No AT-SPI provider was found on your system"
 msgstr "سىستېمىڭىزدا AT-SPI  تەمىنلىگۈچىسى يوق ئىكەن"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Assistive _Technologies"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "_Use sticky keys"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "_Lock sticky keys"
 msgstr "چاپلىشاڭغۇ كۇنۇپكىلارنى قۇلۇپلا(_L)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "بۇ تاللانما تاللانسا، سۈپەتلىگۈچى كۇنۇپكىلار(Control، Alt، ۋە Shift قاتارلىقلار) بېسىلىپ قويۇۋېتىلسىمۇ، كېيىنكى قېتىم بېسىلغۇچە بېسىلغان ھالىتى ساقلىنىپ قېلىنىدۇ."
+msgstr ""
+"بۇ تاللانما تاللانسا، سۈپەتلىگۈچى كۇنۇپكىلار(Control، Alt، ۋە Shift "
+"قاتارلىقلار) بېسىلىپ قويۇۋېتىلسىمۇ، كېيىنكى قېتىم بېسىلغۇچە بېسىلغان ھالىتى "
+"ساقلىنىپ قېلىنىدۇ."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "بۇ تاللانما تاللانسا، ئىككى كۇنۇپكا تەڭ بېسىلغاندا، «چاپلىشاڭغۇ كۇنۇپكا» ئىقتىدارى ئىشلىمەيدۇ."
+msgstr ""
+"بۇ تاللانما تاللانسا، ئىككى كۇنۇپكا تەڭ بېسىلغاندا، «چاپلىشاڭغۇ كۇنۇپكا» "
+"ئىقتىدارى ئىشلىمەيدۇ."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "Sticky Keys"
 msgstr "چاپلىشاڭغۇ كۇنۇپكىلار"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "Use slow _keys"
 msgstr "ئاستا كۇنۇپكىلارنى ئىشلەتسۇن(_K)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "Acceptance _delay:"
 msgstr "قوبۇل قىلغۇچە بولغان ۋاقىت(_D):"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "كۇنۇپكا بېسىلىپ قوبۇل قىلغۇچە بېسىلىپ تۇرىدىغان ۋاقىت(مىللىسېكۇنت ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid "Slow Keys"
 msgstr "ئاستا كۇنۇپكىلار"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
 msgstr "سەكرىمە كۇنۇپكىلارنى ئىشلەتسۇن(_B)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "K_eystroke delay:"
 msgstr "بېسىش كېچىكىشى(_E):"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "كېيىنكى كۇنۇپكا بېسىلغۇچە بولغان ئارىلىقتىكى ۋاقىت (ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid "Bounce Keys"
 msgstr "سەكرىمە كۇنۇپكىلار"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid "Keyboa_rd"
 msgstr "ھەرپتاختا(_R)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "_Use mouse emulation"
 msgstr "چاشقىنەك تەقلىدلىگۈچنى ئىشلەت(_U)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
-msgstr "بۇ تاللانما تاللانسا، چاشقىنەك ئىسترېلكىسىنى رەقەم كۇنۇپكا رايونى ئارقىلىق باشقۇرغىلى بولىدۇ."
+msgstr ""
+"بۇ تاللانما تاللانسا، چاشقىنەك ئىسترېلكىسىنى رەقەم كۇنۇپكا رايونى ئارقىلىق "
+"باشقۇرغىلى بولىدۇ."
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "msec"
 msgstr "مىللىسېكۇنت"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
-msgstr "كۇنۇپكا تۈننى قېتىم بېسىلىپ، ئۈزلۈكسىز بېسىلىپ تۇرۇۋاتىدۇ دەپ ھۆكۈم قىلىنغۇچە بولغان ۋاقىت(مىللىسېكۇنت ms)"
+msgstr ""
+"كۇنۇپكا تۈننى قېتىم بېسىلىپ، ئۈزلۈكسىز بېسىلىپ تۇرۇۋاتىدۇ دەپ ھۆكۈم "
+"قىلىنغۇچە بولغان ۋاقىت(مىللىسېكۇنت ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "_Acceleration delay:"
 msgstr "تېزلىتىشكىچە بولغان ۋاقىت(_A):"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "R_epeat interval:"
 msgstr "تەكرارلاش ئارىلىقى(_E):"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "The time, in milliseconds, between repeated motion events"
-msgstr "كۇنۇپكا بېسىلىپ تۇرغاندا تەكرار مەشغۇلاتنى ئېلىپ بېرىش ئىنتېرۋالى(مىللىسېكۇنت ms)"
+msgstr ""
+"كۇنۇپكا بېسىلىپ تۇرغاندا تەكرار مەشغۇلاتنى ئېلىپ بېرىش "
+"ئىنتېرۋالى(مىللىسېكۇنت ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "Acceleration t_ime:"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "ئەڭ يورۇقى تېزلىككە يېتىشكە كېرەك بولىدىغان ۋاقىت (ms)"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "Ma_ximum speed:"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "The maximum pointer speed after acceleration"
 msgstr "تېزلىتىلگەندىن كېيىنكى چاشقىنەك ئىسترېلكىسىنىڭ ئەڭ چوڭ تېزلىكى"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "pixels/sec"
 msgstr "پىكسېل/سېكۇنت"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "Acceleration _profile:"
 msgstr "تېزلەتكۈچ profile(_P):"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "The ramp used to reach maximum pointer speed"
-msgstr "چاشقىنەك ئىسترېلكىسىنىڭ ئەڭ چوڭ تېزلىككە يېتىشكۈچە بولغان ئارىلىقتىكى تېزلىنىشى"
+msgstr ""
+"چاشقىنەك ئىسترېلكىسىنىڭ ئەڭ چوڭ تېزلىككە يېتىشكۈچە بولغان ئارىلىقتىكى "
+"تېزلىنىشى"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid "Mouse Emulation"
 msgstr "چاشقىنەك تەقلىدلەش"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "Show location of pointer on keypress"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:47
 msgid "Find Cursor"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:48
 msgid "_Mouse"
 msgstr "چاشقىنەك(_M)"
 
@@ -292,8 +335,8 @@ msgstr "نەشر ئۇچۇرى"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/color-settings/main.c:1373
-#: ../dialogs/display-settings/main.c:3872
+#: ../dialogs/color-settings/main.c:1390
+#: ../dialogs/display-settings/main.c:3895
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
@@ -304,8 +347,8 @@ msgstr "'%s --help' كىرگۈزسە ئىشلىتىش ئۇسۇلىنى كۆرگ�
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:3891
+#: ../dialogs/color-settings/main.c:1407
+#: ../dialogs/display-settings/main.c:3914
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
@@ -314,8 +357,8 @@ msgstr "Xfce ئىجادىيەت گۇرۇپپىسى. نەشر ھوقۇقى ئۆز
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/color-settings/main.c:1391
-#: ../dialogs/display-settings/main.c:3892
+#: ../dialogs/color-settings/main.c:1408
+#: ../dialogs/display-settings/main.c:3915
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
@@ -380,163 +423,178 @@ msgstr "كۆرۈنۈشى"
 msgid "Customize the look of your desktop"
 msgstr "ئۈستەلئۈستىنىڭ كۆرۈنۈشىنى ئۆزلەشتۈرۈش"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "St_yle"
 msgstr "ئۇسلۇب(_Y)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "_Icons"
 msgstr "سىنبەلگە(_I)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "بۇ فونت كۆرۈنمە يۈزدە ئىشلىتىلىدىغان كۆڭۈلدىكى فونت قىلىپ ئىشلىتىلىدۇ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "Select a default font"
 msgstr "كۆڭۈلدىكى فونتى تاللايدۇ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Default Fon_t"
 msgstr "كۆڭۈلدىكى خەت نۇسخىسى(_T)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Select a default monospace font"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Default _Monospace Font"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
-msgid "_Enable anti-aliasing"
-msgstr ""
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
-msgid ""
-"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "ھەرە چىشىنى يوق(Anti-aliasing) قىلىش ياكى سىلىقلاش ئارىلىق ئېكراندىكى تېكىستنىڭ كۆرۈنۈشىنى ياخشىلىغىلى بولىدۇ"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
-msgid "Hintin_g:"
+msgid "_Enable anti-aliasing"
 msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid ""
-"Many fonts contain information that provides extra hints as to how best draw"
-" the font; pick whichever looks best according to personal preference"
-msgstr "نۇرغۇن فونتلاردا بېشارەت ئۇچۇرلىرى بار بولۇپ، بۇ فونتنى تېخىمۇ چىرايلىق كۆرسىتىش رولىنى ئوينايدۇ. قايسى ئەڭ چىرايلىق كۆرۈنگەن بولسا شۇنى تاللاڭ"
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr ""
+"ھەرە چىشىنى يوق(Anti-aliasing) قىلىش ياكى سىلىقلاش ئارىلىق ئېكراندىكى "
+"تېكىستنىڭ كۆرۈنۈشىنى ياخشىلىغىلى بولىدۇ"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
-msgid "Sub-_pixel order:"
-msgstr "تارماق پىكسېل تەرتىپى(_P):"
+msgid "Hintin_g:"
+msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
-"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
-"correct sub-pixel order of the screen"
-msgstr "ئەگەر مۇۋاپىق بولغان تارماق پىكسېل(sub-pixel) تەرتىپى تاللانسا، TFT ياكى LCD ئېكرانىدا كۆرسىتىلىدىغان خەتلەرنىڭ كۆرۈنۈشى ياخشىلىنىدۇ"
+"Many fonts contain information that provides extra hints as to how best draw"
+" the font; pick whichever looks best according to personal preference"
+msgstr ""
+"نۇرغۇن فونتلاردا بېشارەت ئۇچۇرلىرى بار بولۇپ، بۇ فونتنى تېخىمۇ چىرايلىق "
+"كۆرسىتىش رولىنى ئوينايدۇ. قايسى ئەڭ چىرايلىق كۆرۈنگەن بولسا شۇنى تاللاڭ"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+msgid "Sub-_pixel order:"
+msgstr "تارماق پىكسېل تەرتىپى(_P):"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr ""
+"ئەگەر مۇۋاپىق بولغان تارماق پىكسېل(sub-pixel) تەرتىپى تاللانسا، TFT ياكى LCD"
+" ئېكرانىدا كۆرسىتىلىدىغان خەتلەرنىڭ كۆرۈنۈشى ياخشىلىنىدۇ"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Rendering"
 msgstr "سىزىۋاتىدۇ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Custom _DPI setting:"
 msgstr "ئىختىيارىي DPI تەڭشىكى(_D):"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
-msgstr "فونت بەك چوڭ ياكى بەك كىچىك بولۇپ قالغاندا مۇشۇ تاللانما ئارىلىق ياخشىلاشقا بولىدۇ. بۇ ئېكراننىڭ ئېنىقلىقىدىنمۇ ئاۋۋال نەزەرگە ئېلىنىدۇ."
+msgstr ""
+"فونت بەك چوڭ ياكى بەك كىچىك بولۇپ قالغاندا مۇشۇ تاللانما ئارىلىق ياخشىلاشقا "
+"بولىدۇ. بۇ ئېكراننىڭ ئېنىقلىقىدىنمۇ ئاۋۋال نەزەرگە ئېلىنىدۇ."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "DPI"
 msgstr "DPI"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "_Fonts"
 msgstr "فونتلار(_F)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Specify what should be displayed in toolbar items"
 msgstr "قورال بالدىقىدا كۆرسىتىلىدىغان تۈرلەرنى بەلگىلەش"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "_Toolbar Style"
 msgstr "قورال بالدىقىنىڭ ئۇسلۇبى(_T)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images on _buttons"
 msgstr "توپچىنىڭ سىنبەلگىنى كۆرسەتسۇن(_B)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "بۇ تاللانما تاللانسا توپچا تېكىستنىڭ يېنىدا سىنبەلگە كۆرسىتىلىدۇ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Show images in _menus"
 msgstr "تىزىملىكنىڭ ئىچىدە سىنبەلگىنى كۆرسەتسۇن(_M)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "بۇ تاللانما تاللانسا تىزىملىكنىڭ يېنىدا سىنبەلگە كۆرسىتىلىدۇ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Enable e_ditable accelerators"
 msgstr "تىزىملىكنىڭ تېزلەتمىسى ئۆزگەرتىشكە ئىجازەت(_E)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr "بۇ تاللانما تاللانسا، چاشقىنەك ئىسترېلكىسى تىزىملىك تۈرىنىڭ ئۈستىدە تۇرغان ۋاقىتتا، خالىغان بىرىكمە كۇنۇپكىلار بېسىلسا، ئۇ مەزكۇر تىزىملىكنىڭ تېزلەتمىسى بولىدۇ."
+msgstr ""
+"بۇ تاللانما تاللانسا، چاشقىنەك ئىسترېلكىسى تىزىملىك تۈرىنىڭ ئۈستىدە تۇرغان "
+"ۋاقىتتا، خالىغان بىرىكمە كۇنۇپكىلار بېسىلسا، ئۇ مەزكۇر تىزىملىكنىڭ "
+"تېزلەتمىسى بولىدۇ."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Menus and Buttons"
 msgstr "تىزىملىكلەر ۋە توپچىلار"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable _event sounds"
 msgstr "ھادىسە ئاۋازلىرى ئىناۋەتلىك بولسۇن(_E)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "پۈتكۈل دائىرىدىكى ھادىسە ئاۋازىنى ئىناۋەتلىك ياكى ئىناۋەتسىز قىلىدۇ (بۇنىڭ ئۈچۈن «Canberra» بولۇشى كېرەك)"
+msgstr ""
+"پۈتكۈل دائىرىدىكى ھادىسە ئاۋازىنى ئىناۋەتلىك ياكى ئىناۋەتسىز قىلىدۇ (بۇنىڭ "
+"ئۈچۈن «Canberra» بولۇشى كېرەك)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Enable input feedbac_k sounds"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
-msgstr "چاشقىنەك چېكىلگەندە ۋە باشقا كىرگۈزۈش مەشغۇلاتى بولغاندا ئاۋاز چىقىرىش چىقارماسلىقنى بەلگىلەيدۇ"
+msgstr ""
+"چاشقىنەك چېكىلگەندە ۋە باشقا كىرگۈزۈش مەشغۇلاتى بولغاندا ئاۋاز چىقىرىش "
+"چىقارماسلىقنى بەلگىلەيدۇ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "Event sounds"
 msgstr "ھادىسە ئاۋازى"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Adjust the system-wide display scaling"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
 msgid "_Window Scaling"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:50
 msgid "Setti_ngs"
 msgstr ""
 
@@ -633,64 +691,74 @@ msgstr ""
 msgid "Configure color profiles for your devices"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:3
+#: ../dialogs/color-settings/color-dialog.glade.h:5
 msgid "<b>No devices found.</b>"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:4
+#: ../dialogs/color-settings/color-dialog.glade.h:6
 msgid "Model:"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:5
+#: ../dialogs/color-settings/color-dialog.glade.h:7
 msgid "Colorspace:"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:6
+#: ../dialogs/color-settings/color-dialog.glade.h:8
 msgid "Vendor:"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:7
+#: ../dialogs/color-settings/color-dialog.glade.h:9
 msgid "Calibrate"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:8
+#: ../dialogs/color-settings/color-dialog.glade.h:10
 msgid "<b>No profiles for the selected device.</b>"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:9
+#: ../dialogs/color-settings/color-dialog.glade.h:11
 msgid "Add a profile to the currently selected device"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "Delete the currently selected profile"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:11
-msgid "Enable"
-msgstr ""
-
-#: ../dialogs/color-settings/color-dialog.glade.h:12
-msgid "Enable the selected profile"
-msgstr ""
-
 #: ../dialogs/color-settings/color-dialog.glade.h:13
-msgid "Add Profile to Device"
+msgid "Show detailed information about the selected profile"
 msgstr ""
 
 #: ../dialogs/color-settings/color-dialog.glade.h:14
-msgid "Add a Color Profile to your Device"
+msgid "Enable"
 msgstr ""
 
 #: ../dialogs/color-settings/color-dialog.glade.h:15
-#: ../dialogs/color-settings/main.c:129
-msgid "_Cancel"
-msgstr "ۋاز كەچ(_C)"
+msgid "Enable the selected profile"
+msgstr ""
 
 #: ../dialogs/color-settings/color-dialog.glade.h:16
-msgid "_OK"
+msgid "Add Profile to Device"
 msgstr ""
 
 #: ../dialogs/color-settings/color-dialog.glade.h:17
+msgid "Add a Color Profile to your Device"
+msgstr ""
+
+#. Create cancel button
+#: ../dialogs/color-settings/color-dialog.glade.h:18
+#: ../dialogs/color-settings/main.c:130
+#: ../dialogs/keyboard-settings/command-dialog.c:111
+#: ../dialogs/keyboard-settings/command-dialog.c:262
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+msgid "_Cancel"
+msgstr "ۋاز كەچ(_C)"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/command-dialog.c:115
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+msgid "_OK"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:20
 msgid "Import color profile files (*.icc)"
 msgstr ""
 
@@ -759,48 +827,48 @@ msgid "Default Gray"
 msgstr ""
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: ../dialogs/color-settings/main.c:127
+#: ../dialogs/color-settings/main.c:128
 msgid "Select ICC Profile File"
 msgstr ""
 
-#: ../dialogs/color-settings/main.c:130
+#: ../dialogs/color-settings/main.c:131
 msgid "_Import"
 msgstr ""
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: ../dialogs/color-settings/main.c:141
+#: ../dialogs/color-settings/main.c:142
 msgid "Supported ICC profiles"
 msgstr ""
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: ../dialogs/color-settings/main.c:148
+#: ../dialogs/color-settings/main.c:149
 msgid "All files"
 msgstr "ھەممە ھۆججەتلەر"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: ../dialogs/color-settings/main.c:192
+#: ../dialogs/color-settings/main.c:193
 msgid "Default: "
 msgstr ""
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: ../dialogs/color-settings/main.c:199
+#: ../dialogs/color-settings/main.c:200
 msgid "Colorspace: "
 msgstr ""
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: ../dialogs/color-settings/main.c:205
+#: ../dialogs/color-settings/main.c:206
 msgid "Test profile: "
 msgstr ""
 
-#: ../dialogs/color-settings/main.c:243
+#: ../dialogs/color-settings/main.c:244
 msgid "Compatible Profiles"
 msgstr ""
 
-#: ../dialogs/color-settings/main.c:822 ../dialogs/color-settings/main.c:823
-#: ../dialogs/color-settings/main.c:824
+#: ../dialogs/color-settings/main.c:836 ../dialogs/color-settings/main.c:837
+#: ../dialogs/color-settings/main.c:838
 msgid "Unknown"
 msgstr "نامەلۇم"
 
@@ -828,7 +896,8 @@ msgstr "<big><b>بۇ سەپلىمىنى ساقلاپ قالامسىز؟</b></big
 msgid ""
 "The previous configuration will be restored in 10 seconds if you do not "
 "reply to this question."
-msgstr "بۇنىڭغا جاۋاب بەرمىسىڭىز بۇرۇنقى سەپلىمە 10 سېكۇنت ئىچىدە ئەسلىگە كېلىدۇ."
+msgstr ""
+"بۇنىڭغا جاۋاب بەرمىسىڭىز بۇرۇنقى سەپلىمە 10 سېكۇنت ئىچىدە ئەسلىگە كېلىدۇ."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "The primary display is currently configured to show:"
@@ -860,91 +929,96 @@ msgstr "كۆرسەتكۈچ"
 msgid "Configure screen settings and layout"
 msgstr "ئېكراننىڭ ئورۇنلاشتۇرۇلۇشى ۋە ئېنىقلىقىنى تەڭشەش"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "_Mirror displays"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Primary Display:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "R_esolution:"
 msgstr "ئېنىقلىق(_E):"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "Refresh _rate:"
 msgstr "چاستوتىسى(_R):"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:12
+#: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "Ro_tation:"
 msgstr "چۆرگىلىتىش(_T):"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:13
+#: ../dialogs/display-settings/display-dialog.glade.h:15
 msgid "Ref_lection:"
 msgstr "تەتۈر(_F):"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:14
-msgid "_General"
-msgstr "ئادەتتىكى(_G)"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:15
-msgid "<b>Profiles</b>"
-msgstr ""
-
 #: ../dialogs/display-settings/display-dialog.glade.h:16
-msgid "<b>Connecting Displays</b>"
+msgid "A_pply"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:17
-msgid "Delete the currently selected display profile."
-msgstr ""
+msgid "_General"
+msgstr "ئادەتتىكى(_G)"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:18
-msgid "Apply"
+msgid "<b>Profiles</b>"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:19
-msgid "Apply the currently selected display profile."
+msgid "<b>Connecting Displays</b>"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:20
-msgid "Create a new display profile."
+msgid "Delete the currently selected display profile."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:21
-msgid "Update an existing profile."
+msgid "Apply"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:22
-msgid "Automatically enable profiles when new display is connected"
+msgid "Apply the currently selected display profile."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:23
-msgid "Configure new displays when connected"
+msgid "Create a new display profile."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:24
-msgid "Show popup windows to identify displays"
+msgid "Update an existing profile."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:25
-msgid "<b>Identifying Displays</b>"
+msgid "Automatically enable profiles when new display is connected"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:26
-msgid "_Advanced"
+msgid "Configure new displays when connected"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:27
-msgid "<b>Profile Name</b>"
+msgid "Show popup windows to identify displays"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:28
-msgid "Create"
+msgid "<b>Identifying Displays</b>"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:29
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
+msgid "_Advanced"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:30
+msgid "<b>Profile Name</b>"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:31
+msgid "Create"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:32
 msgid "A profile of this name already exists."
 msgstr ""
 
@@ -968,10 +1042,6 @@ msgstr ""
 msgid "Only Display 2"
 msgstr ""
 
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
-msgid "Advanced"
-msgstr "ئالىي"
-
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
 msgstr ""
@@ -979,12 +1049,6 @@ msgstr ""
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
 msgid "Update Display Profile"
 msgstr ""
-
-#: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:3944
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
-msgid "_Close"
-msgstr "تاقا(_C)"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
 msgid "_Update"
@@ -1034,7 +1098,9 @@ msgstr "سىرتقى چىقىرىشنى بەلگىلەيدىغان ئەڭ كىچ
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
 "reply to this question."
-msgstr "ئەگەر بۇنىڭغا جاۋاب بەرمىسىڭىز بۇرۇنقى سەپلىمە %i سېكۇنت ئىچىدە ئەسلىگە كېلىدۇ."
+msgstr ""
+"ئەگەر بۇنىڭغا جاۋاب بەرمىسىڭىز بۇرۇنقى سەپلىمە %i سېكۇنت ئىچىدە ئەسلىگە "
+"كېلىدۇ."
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:568
@@ -1053,39 +1119,38 @@ msgstr ""
 #: ../dialogs/display-settings/main.c:1164
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
-msgstr "ئەڭ ئاخىرقى ئاكتىپ چىقىرىشنى ئىناۋەتسىز قىلىشقا بولمايدۇ. بولمىسا سىستېمىنى ئىشلەتكىلى بولمايدۇ."
+msgstr ""
+"ئەڭ ئاخىرقى ئاكتىپ چىقىرىشنى ئىناۋەتسىز قىلىشقا بولمايدۇ. بولمىسا سىستېمىنى "
+"ئىشلەتكىلى بولمايدۇ."
 
 #: ../dialogs/display-settings/main.c:1166
 msgid "Selected output not disabled"
 msgstr "تاللانغان چىقىرىش ئىناۋەتسىز بولمىدى"
 
-#: ../dialogs/display-settings/main.c:1519
+#: ../dialogs/display-settings/main.c:1542
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1524
+#: ../dialogs/display-settings/main.c:1547
 #, c-format
 msgid "_Update '%s'"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1811
+#: ../dialogs/display-settings/main.c:1834
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1813
+#: ../dialogs/display-settings/main.c:1836
 msgid "Delete Profile"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1816
+#: ../dialogs/display-settings/main.c:1839
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr ""
 
-#. Create cancel button
-#: ../dialogs/display-settings/main.c:1817
-#: ../dialogs/keyboard-settings/command-dialog.c:110
-#: ../dialogs/keyboard-settings/command-dialog.c:259
+#: ../dialogs/display-settings/main.c:1840
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:908
@@ -1093,23 +1158,23 @@ msgstr ""
 msgid "Cancel"
 msgstr "ۋاز كەچ"
 
-#: ../dialogs/display-settings/main.c:1818
+#: ../dialogs/display-settings/main.c:1841
 msgid "Delete"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1919
+#: ../dialogs/display-settings/main.c:1942
 #, c-format
 msgid "%d Xfce Panels"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2923
+#: ../dialogs/display-settings/main.c:2946
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2966
-#: ../dialogs/display-settings/main.c:3042
+#: ../dialogs/display-settings/main.c:2989
+#: ../dialogs/display-settings/main.c:3065
 #, c-format
 msgid "(%i, %i)"
 msgstr ""
@@ -1118,104 +1183,97 @@ msgstr ""
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3244
+#: ../dialogs/display-settings/main.c:3267
 msgid "Mirror Screens"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3294
+#: ../dialogs/display-settings/main.c:3317
 msgid "(Disabled)"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3711
+#: ../dialogs/display-settings/main.c:3734
 #, c-format
 msgid "Only %s (1)"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3722
+#: ../dialogs/display-settings/main.c:3745
 #, c-format
 msgid "Only %s (2)"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3905
-#: ../dialogs/display-settings/main.c:3942
+#: ../dialogs/display-settings/main.c:3928
+#: ../dialogs/display-settings/main.c:3965
 msgid "Unable to start the Xfce Display Settings"
 msgstr "كۆرسەتكۈچ تەڭشىكىنى قوزغاتقىلى بولمىدى"
 
-#: ../dialogs/display-settings/main.c:3937
+#: ../dialogs/display-settings/main.c:3960
 msgid "ATI Settings"
 msgstr "ATI تەڭشىكى"
 
-#: ../dialogs/display-settings/main.c:3952
+#: ../dialogs/display-settings/main.c:3975
 msgid "Unable to launch the proprietary driver settings"
 msgstr "ئىگىسى بار قوزغاتقۇنىڭ تەڭشىكىنى ئىجرا قىلغىلى بولمىدى"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:106
+#: ../dialogs/keyboard-settings/command-dialog.c:107
 msgid "Shortcut Command"
 msgstr "تېزلەتمە بۇيرۇق"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:114
-msgid "OK"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:137
+#: ../dialogs/keyboard-settings/command-dialog.c:136
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr ""
 
 #. We are editing an existing shortcut
-#: ../dialogs/keyboard-settings/command-dialog.c:155
+#: ../dialogs/keyboard-settings/command-dialog.c:154
 msgid "Shortcut:"
 msgstr "تېزلەتمە:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:168
-msgid "Command:"
-msgstr "بۇيرۇق:"
-
-#: ../dialogs/keyboard-settings/command-dialog.c:184
-#: ../dialogs/keyboard-settings/command-dialog.c:260
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:136
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
-msgid "Open"
+#: ../dialogs/keyboard-settings/command-dialog.c:167
+msgid "Comm_and:"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/command-dialog.c:189
+#: ../dialogs/keyboard-settings/command-dialog.c:192
 msgid "Use _startup notification"
 msgstr "قوزغىلىش ئۇقتۇرۇشى ئىشلەت(_S)"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:236
+#: ../dialogs/keyboard-settings/command-dialog.c:239
 msgid "The command may not be empty."
 msgstr "بۇيرۇق چوقۇم كىرگۈزۈلۈشى كېرەك."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:256
+#: ../dialogs/keyboard-settings/command-dialog.c:259
 msgid "Select command"
 msgstr "بۇيرۇق تاللا"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:264
+#: ../dialogs/keyboard-settings/command-dialog.c:263
+msgid "_Open"
+msgstr "ئاچ(_O)"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:267
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:389
 msgid "All Files"
 msgstr "ھەممە ھۆججەتلەر"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:269
+#: ../dialogs/keyboard-settings/command-dialog.c:272
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:394
 msgid "Executable Files"
 msgstr "پروگرامما(ئىجرا بولىدىغان ھۆججەت)"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:284
+#: ../dialogs/keyboard-settings/command-dialog.c:287
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:409
 msgid "Perl Scripts"
 msgstr "Perl پروگراممىسى"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:290
+#: ../dialogs/keyboard-settings/command-dialog.c:293
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:415
 msgid "Python Scripts"
 msgstr "Python پروگراممىسى"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:296
+#: ../dialogs/keyboard-settings/command-dialog.c:299
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:421
 msgid "Ruby Scripts"
 msgstr "Ruby پروگراممىسى"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:302
+#: ../dialogs/keyboard-settings/command-dialog.c:305
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:427
 msgid "Shell Scripts"
 msgstr "Shell پروگراممىسى"
@@ -1228,130 +1286,134 @@ msgstr "ھەرپتاختا ئورۇنلاشتۇرۇلۇشىنى تاللا"
 msgid "Select keyboard layout and variant"
 msgstr "ھەرپتاختا ئورۇنلاشتۇرۇلۇشى ۋە ۋارىيانتىنى تاللا"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
 msgstr "ھەرپتاختا"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "ھەرپتاختا تەڭشىكى ۋە پروگرامما تېزلەتمىلىرىنى تەھرىرلەيدۇ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Restore num l_ock state on startup"
 msgstr "كۇنۇپكا NumLock  نىڭ ھالىتىنى ئېسىدە تۇتسۇن(_O)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "General"
 msgstr "ئادەتتىكى"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "_Enable key repeat"
 msgstr "كۇنۇپكا تەكرارلاشنى ئىناۋەتلىك قىلسۇن(_E)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
-msgstr "بۇ تاللانما تاللانسا، كۇنۇپكىنى ئۈزلۈكسىز بېسىپ تۇرغاندىكىدەك مەشغۇلات ئېلىپ بېرىلىدۇ"
+msgstr ""
+"بۇ تاللانما تاللانسا، كۇنۇپكىنى ئۈزلۈكسىز بېسىپ تۇرغاندىكىدەك مەشغۇلات ئېلىپ"
+" بېرىلىدۇ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "_Repeat delay:"
 msgstr "تەكرارلاش تېزلىكى(_R):"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "كۇنۇپكا بېسىلىپ، تەكرارلىق ھاسىل قىلىنغۇچە بولغان ۋاقىت(مىللىسېكۇنت)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Repe_at speed:"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "كۇنۇپكا بېسىلىپ تۇرغان ۋاقىتتا، كۇنۇپكا كودىنىڭ ھاسىل قىلىنىش تېزلىكى"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Typing Settings"
 msgstr "كىرگۈزۈش تەڭشىكى"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Show _blinking"
 msgstr "لىپىلدات(_B)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "Specify whether or not the text cursor blinks"
 msgstr "تېكىست نۇربەلگىنىڭ لىپىلداش - لىپىلدىماسلىقىنى بەلگىلەيدۇ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Blink _delay:"
 msgstr "لىپىلداش تېزلىكى(_D):"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "نۇربەلگىسىنىڭ لىپىلداش تېزلىكى (مىللىسېكۇنت)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Cursor"
 msgstr "نۇربەلگە"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Test area:"
 msgstr "سىناق رايون(_T):"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "Beha_vior"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "Define shortcuts for la_unching applications:"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "Reset to _Defaults"
 msgstr "كۆڭۈلدىكىگە قايتۇر(_D)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "A_pplication Shortcuts"
 msgstr "پروگرامما تېزلەتمىلىرى(_P)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Use system defaults"
 msgstr "سىستېمىنىڭ كۆڭۈلدىكى تەڭشەكلىرىنى ئىشلەت(_U)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
-msgstr "ھەرپتاختا ئورۇنلاشتۇرۇلۇشىنى مەزكۇر تەڭشەك سۆزلەشكۈسى باشقۇرامدۇ ياكى X مۇلازىمېتىرىمۇ"
+msgstr ""
+"ھەرپتاختا ئورۇنلاشتۇرۇلۇشىنى مەزكۇر تەڭشەك سۆزلەشكۈسى باشقۇرامدۇ ياكى X "
+"مۇلازىمېتىرىمۇ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "ھازىرقى تاللانغان تۈرنى بىر قۇر ئۈستىگە چىقىرىدۇ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "ھازىرقى تاللانغان تۈرنى بىر قۇر ئاستىغا چۈشۈرىدۇ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "ئورۇنلاشتۇرۇلۇشى(_L)"
 
@@ -1368,51 +1430,55 @@ msgstr "xfconf مۇئەككىلىگە باغلىنىش مەغلۇپ بولدى. 
 msgid "Could not create the settings dialog."
 msgstr "تەڭشەك سۆزلەشكۈسىنى قۇرغىلى بولمىدى."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:398
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
 msgid "Command"
 msgstr "بۇيرۇق"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:403
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
 msgstr "تېزلەتمە"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
 msgid "Layout"
 msgstr "ئورۇنلاشتۇرۇلۇشى"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:480
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Variant"
 msgstr "ۋارىيانتى"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1003
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1107
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
 msgid "Shortcut command may not be empty."
 msgstr "تېزلەتمە قىلىنىدىغان بۇيرۇق چوقۇم كىرگۈزۈلمىسە بولمايدۇ"
 
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1270
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
 msgid "Reset to Defaults"
 msgstr "كۆڭۈلدىكىگە قايتۇر"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
-msgstr "بۇ بارلىق تېزلەتمىلەرنىڭ كۆڭۈلدىكى قىممەتلىرىنى ئەسلىگە كەلتۈرۈۋاتىدۇ. بۇنى قىلسۇنمۇ؟"
+msgstr ""
+"بۇ بارلىق تېزلەتمىلەرنىڭ كۆڭۈلدىكى قىممەتلىرىنى ئەسلىگە كەلتۈرۈۋاتىدۇ. بۇنى "
+"قىلسۇنمۇ؟"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1275
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid "No"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1276
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1275
 msgid "Yes"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1352
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1351
 msgid "The system defaults will be restored next time you log in."
-msgstr "سىستېمىنىڭ كۆڭۈلدىكى قىممەتلىرى كېيىنكى قېتىم سىستېمىغا كىرگەندە ئەسلىگە قايتىدۇ."
+msgstr ""
+"سىستېمىنىڭ كۆڭۈلدىكى قىممەتلىرى كېيىنكى قېتىم سىستېمىغا كىرگەندە ئەسلىگە "
+"قايتىدۇ."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1354
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
 msgid "Warning"
 msgstr "دىققەت"
 
@@ -1423,6 +1489,11 @@ msgstr ""
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
 msgstr "پروگرامما تاللاش"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:136
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
+msgid "Open"
+msgstr ""
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid "Use a c_ustom command:"
@@ -1457,7 +1528,8 @@ msgstr "باشقا پروگراممىلار"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:614
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
-msgstr "<i>%s</i> بىلەن تىپى «%s» بولغان ھۆججەتلەرنى تۆۋەندىكى پروگراممىدا ئاچ:"
+msgstr ""
+"<i>%s</i> بىلەن تىپى «%s» بولغان ھۆججەتلەرنى تۆۋەندىكى پروگراممىدا ئاچ:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:650
 #, c-format
@@ -1531,7 +1603,9 @@ msgstr "سوئال"
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr "بۇنىڭ بىلەن سىز بەلگىلىگەن mime تىپى مۇناسىۋەتلىرى ئۆچۈرۈلۈپ سىستېمىنىڭ تەڭشىكى ئەسلىگە كېلىدۇ."
+msgstr ""
+"بۇنىڭ بىلەن سىز بەلگىلىگەن mime تىپى مۇناسىۋەتلىرى ئۆچۈرۈلۈپ سىستېمىنىڭ "
+"تەڭشىكى ئەسلىگە كېلىدۇ."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:910
 #: ../dialogs/mime-settings/xfce-mime-window.c:981
@@ -1618,171 +1692,183 @@ msgstr "چاشقىنەك ۋە سېزىمچان تاختا"
 msgid "Configure pointer device behavior and appearance"
 msgstr "كۆرسەتكۈچ ئۈسكۈنىسىنىڭ ھەرىكىتى ۋە كۆرۈنۈشىنى تەڭشەش"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "De_vice:"
 msgstr "ئۈسكۈنە(_V):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Le_ft-handed"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Ri_ght-handed"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Reverse scroll d_irection"
 msgstr "سىيرىش يۆنىلىشى تەتۈر بولسۇن(_I)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "بۇ تاللانسا سىيرىش غالتىكى قارشى يۆنىلىشكە قاراپ ھەرىكەت قىلىدۇ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Buttons"
 msgstr "توپچىلار"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "_Reset to Defaults"
 msgstr "كۆڭۈلدىكىگە قايتۇر(_R)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
-msgstr "تاللانغان ئۈسكۈنىنىڭ تېزلىنىشى ۋە سەزگۈرلۈكىنى كۆڭۈلدىكى قىممەتكە قايتۇرىدۇ."
+msgstr ""
+"تاللانغان ئۈسكۈنىنىڭ تېزلىنىشى ۋە سەزگۈرلۈكىنى كۆڭۈلدىكى قىممەتكە قايتۇرىدۇ."
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Sensitivit_y:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Acceleratio_n:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "چاشقىنەك ھەرىكەت قىلىۋاتقاندا، ئىسترېلكىسىنىڭ تېزلىكىنى بەلگىلەيدىغان مىقدار"
+msgstr ""
+"چاشقىنەك ھەرىكەت قىلىۋاتقاندا، ئىسترېلكىسىنىڭ تېزلىكىنى بەلگىلەيدىغان مىقدار"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
-msgstr "چاشقىنەك ئىسترېلكىسىنىڭ قىسقا ۋاقىت ئىچىدىكى يۆتكىلىش ئارىلىقى بۇ قىممەتتىن چوڭ بولسا، تېزلىنىش باشلىنىدۇ"
+msgstr ""
+"چاشقىنەك ئىسترېلكىسىنىڭ قىسقا ۋاقىت ئىچىدىكى يۆتكىلىش ئارىلىقى بۇ قىممەتتىن "
+"چوڭ بولسا، تېزلىنىش باشلىنىدۇ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Pointer Speed"
 msgstr "ئىسترېلكا سۈرئىتى"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "B_uttons and Feedback"
 msgstr "توپچىلار ۋە ئىنكاسلار(Feedback)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Disable touchpad _while typing"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
-msgstr "بۇ تاللانما تاللانسا، كۇنۇپكا بېسىلىۋاتقاندا سەزگۈر تاختا ئىناۋەتسىز قىلىنىدۇ."
+msgstr ""
+"بۇ تاللانما تاللانسا، كۇنۇپكا بېسىلىۋاتقاندا سەزگۈر تاختا ئىناۋەتسىز "
+"قىلىنىدۇ."
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Duratio_n:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Tap touchpad to clic_k"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Scrolling _mode:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Enable hori_zontal scrolling"
 msgstr "توغرا يۆنىلىشتە سىيرىش ئىناۋەتلىك بولسۇن(_Z)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Scrolling"
 msgstr "سىيرىش"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "T_ouchpad"
 msgstr "سېزىمچان تاختا(_O)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Trac_king mode:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "_Rotation:"
 msgstr "چۆرگىلەت(_R):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Tab_let"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "_Devices"
 msgstr "ئۈسكۈنە(_D)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "Th_reshold:"
 msgstr "بوسۇغا(_R):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
-msgstr "چاشقىنەك ئىسترېلكىسىنىڭ يۆتكىلىش ئارىلىقى بۇ قىممەتتىن چوڭ بولسا سۆرەش دەپ قارىلىدۇ."
+msgstr ""
+"چاشقىنەك ئىسترېلكىسىنىڭ يۆتكىلىش ئارىلىقى بۇ قىممەتتىن چوڭ بولسا سۆرەش دەپ "
+"قارىلىدۇ."
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "Drag and Drop"
 msgstr "سۆرەپ تاشلاش"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Ti_me:"
 msgstr "ۋاقىت(_M):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
-msgstr "2 قېتىملىق چاشقىنەك كۇنۇپكىسىنىڭ چېكىلىش ئارىلىقى(ms) بۇنىڭدىن كىچىك بولۇپ قالسا قوش چېكىلىش دەپ قارالسۇن"
+msgstr ""
+"2 قېتىملىق چاشقىنەك كۇنۇپكىسىنىڭ چېكىلىش ئارىلىقى(ms) بۇنىڭدىن كىچىك بولۇپ "
+"قالسا قوش چېكىلىش دەپ قارالسۇن"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "D_istance:"
 msgstr "ئارىلىق(_I):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
-msgstr "ئىككى قېتىم چېكىلگەندە چاشقىنەك ئىسترېلكىسىنىڭ يۆتكەلگەن ئارىلىقى بۇ قىممەتتىن(پىكسېل) كىچىك بولسا، قوش چېكىش دەپ قارىلىدۇ."
+msgstr ""
+"ئىككى قېتىم چېكىلگەندە چاشقىنەك ئىسترېلكىسىنىڭ يۆتكەلگەن ئارىلىقى بۇ "
+"قىممەتتىن(پىكسېل) كىچىك بولسا، قوش چېكىش دەپ قارىلىدۇ."
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "Double Click"
 msgstr "قوش چېكىش"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "_Behavior"
 msgstr "ھەرىكەت(_B)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "Cursor si_ze:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "Size"
 msgstr "چوڭلۇقى"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid "Preview"
 msgstr "ئالدىن كۆرۈش"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:54
 msgid "_Theme"
 msgstr ""
 
@@ -1920,7 +2006,8 @@ msgstr ""
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1371
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr "بىرەر خاسلىق ئەسلىگە قايتۇرۇلسا ئىختىيارىي تەڭشەكلەر مەڭگۈلۈككە ئۆچۈرۈلىدۇ."
+msgstr ""
+"بىرەر خاسلىق ئەسلىگە قايتۇرۇلسا ئىختىيارىي تەڭشەكلەر مەڭگۈلۈككە ئۆچۈرۈلىدۇ."
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1372
 #, c-format
@@ -1989,7 +2076,9 @@ msgstr ""
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:423
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "خاسلىق ئاتىغا ئارقىمۇ-ئارقا كەلگەن ئىككىدىن ياكى ئۇنىڭدىن ئارتۇق '/' نى ئىشلىتىشكە بولمايدۇ"
+msgstr ""
+"خاسلىق ئاتىغا ئارقىمۇ-ئارقا كەلگەن ئىككىدىن ياكى ئۇنىڭدىن ئارتۇق '/' نى "
+"ئىشلىتىشكە بولمايدۇ"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:437
 #, c-format
@@ -2008,24 +2097,20 @@ msgstr "Xfconf نىڭ گرافىكىلىق تەڭشەك تەھرىرلىگۈسى
 msgid "Settings dialog to show"
 msgstr "كۆرسىتىلىدىغان تەڭشەك سۆزلەشكۈسى"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:252
 msgid "All _Settings"
 msgstr ""
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
-msgid "_Help"
-msgstr "ياردەم(_H)"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:491
 msgid "Settings"
 msgstr "تەڭشەكلەر"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:493
 msgid "Customize your desktop"
 msgstr "ئۈستەلئۈستىنى ئۆزلەشتۈر"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:1000
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:1011
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "«%s» نى قوزغاتقىلى بولمىدى"
