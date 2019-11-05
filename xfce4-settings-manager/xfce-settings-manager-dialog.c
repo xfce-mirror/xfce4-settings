@@ -263,7 +263,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     image = gtk_image_new_from_icon_name ("help-browser", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (dialog->button_help), image);
     button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("_Close"), GTK_RESPONSE_CLOSE);
-    image = gtk_image_new_from_icon_name ("window-close", GTK_ICON_SIZE_BUTTON);
+    image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (button), image);
 
     /* add box at start of the main box */
