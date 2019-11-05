@@ -190,6 +190,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     GtkWidget         *vbox;
     GtkWidget         *bbox;
     GtkWidget         *button;
+    GtkWidget         *image;
     GtkCssProvider    *provider;
 
 	self->channels_store = gtk_list_store_new (N_CHANNEL_COLUMNS,
@@ -252,7 +253,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
                                                  _("Channel"), render,
                                                  "text", CHANNEL_COLUMN_NAME, NULL);
 
-    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_paned_add2 (GTK_PANED (paned), vbox);
     gtk_widget_show (vbox);
 
@@ -314,12 +315,14 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
         G_CALLBACK (xfce_settings_editor_box_value_changed), self);
 
     bbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
-    gtk_box_set_spacing (GTK_BOX (bbox), 12);
     gtk_box_pack_start (GTK_BOX (vbox), bbox, FALSE, TRUE, 0);
     gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_START);
+    gtk_style_context_add_class (gtk_widget_get_style_context (bbox), "inline-toolbar");
     gtk_widget_show (bbox);
 
-    button = xfce_gtk_button_new_mixed ("list-add", _("New"));
+    button = gtk_button_new ();
+    image = gtk_image_new_from_icon_name ("list-add-symbolic", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (GTK_BUTTON (button), GTK_IMAGE (image));
     gtk_container_add (GTK_CONTAINER (bbox), button);
     gtk_button_box_set_child_non_homogeneous (GTK_BUTTON_BOX (bbox), button, TRUE);
     gtk_widget_set_tooltip_text (button, _("New property"));
@@ -330,7 +333,9 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     g_signal_connect_swapped (G_OBJECT (button), "clicked",
         G_CALLBACK (xfce_settings_editor_box_property_new), self);
 
-    button = xfce_gtk_button_new_mixed ("gtk-edit", _("Edit"));
+    button = gtk_button_new ();
+    image = gtk_image_new_from_icon_name ("document-edit-symbolic", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (button, image);
     gtk_container_add (GTK_CONTAINER (bbox), button);
     gtk_button_box_set_child_non_homogeneous (GTK_BUTTON_BOX (bbox), button, TRUE);
     gtk_widget_set_tooltip_text (button, _("Edit selected property"));
@@ -341,7 +346,9 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     g_signal_connect_swapped (G_OBJECT (button), "clicked",
         G_CALLBACK (xfce_settings_editor_box_property_edit), self);
 
-    button = xfce_gtk_button_new_mixed ("document-revert", _("_Reset"));
+    button = gtk_button_new ();
+    image = gtk_image_new_from_icon_name ("document-revert-symbolic", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (button, image);
     gtk_container_add (GTK_CONTAINER (bbox), button);
     gtk_button_box_set_child_non_homogeneous (GTK_BUTTON_BOX (bbox), button, TRUE);
     gtk_widget_set_tooltip_text (button, _("Reset selected property"));
