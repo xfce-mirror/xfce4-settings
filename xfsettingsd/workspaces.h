@@ -30,6 +30,7 @@ typedef struct _XfceWorkspacesHelper       XfceWorkspacesHelper;
 typedef struct _XfceWorkspacesHelperClass  XfceWorkspacesHelperClass;
 
 GType xfce_workspaces_helper_get_type(void) G_GNUC_CONST;
+void xfce_workspaces_helper_disable_wm_check(void);
 
 G_END_DECLS
 

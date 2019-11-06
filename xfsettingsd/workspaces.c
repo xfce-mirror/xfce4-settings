@@ -76,7 +76,7 @@ struct _XfceWorkspacesHelperClass
     GObjectClass parent;
 };
 
-
+static gboolean global_disable_wm_check = FALSE;
 
 #ifdef GDK_WINDOWING_X11
 static Atom atom_net_number_of_desktops = 0;
@@ -99,7 +99,11 @@ WaitForWM;
 
 G_DEFINE_TYPE(XfceWorkspacesHelper, xfce_workspaces_helper, G_TYPE_OBJECT)
 
-
+void
+xfce_workspaces_helper_disable_wm_check(void)
+{
+    global_disable_wm_check = TRUE;
+}
 
 static void
 xfce_workspaces_helper_class_init(XfceWorkspacesHelperClass *klass)
@@ -476,7 +480,7 @@ xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper,
     guint       i;
     gchar     **atom_names;
 
-    if (!disable_wm_check)
+    if (!disable_wm_check && !global_disable_wm_check)
     {
         /* setup data for wm checking */
         wfwm = g_slice_new0 (WaitForWM);
