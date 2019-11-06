@@ -75,6 +75,7 @@
 
 static gboolean opt_version = FALSE;
 static gboolean opt_no_daemon = FALSE;
+static gboolean opt_disable_wm_check = FALSE;
 static gboolean opt_replace = FALSE;
 static guint owner_id;
 
@@ -100,6 +101,7 @@ static GOptionEntry option_entries[] =
 {
     { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { "no-daemon", 0, 0, G_OPTION_ARG_NONE, &opt_no_daemon, N_("Do not fork to the background"), NULL },
+    { "disable-wm-check", 'D', 0, G_OPTION_ARG_NONE, &opt_disable_wm_check, N_("Do not wait for a window manager on startup"), NULL },
     { "replace", 0, 0, G_OPTION_ARG_NONE, &opt_replace, N_("Replace running xsettings daemon (if any)"), NULL },
     { NULL }
 };
@@ -139,6 +141,9 @@ on_name_acquired (GDBusConnection *connection,
     s_data->accessibility_helper = g_object_new (XFCE_TYPE_ACCESSIBILITY_HELPER, NULL);
     s_data->shortcuts_helper = g_object_new (XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, NULL);
     s_data->keyboard_layout_helper = g_object_new (XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, NULL);
+#ifdef GDK_WINDOWING_X11
+    xfce_workspaces_helper_disable_wm_check (opt_disable_wm_check);
+#endif
     s_data->workspaces_helper = g_object_new (XFCE_TYPE_WORKSPACES_HELPER, NULL);
     s_data->gtk_decorations_helper = g_object_new (XFCE_TYPE_DECORATIONS_HELPER, NULL);
 
