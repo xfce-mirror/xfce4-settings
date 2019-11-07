@@ -6,6 +6,7 @@
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2019
 # 黃柏諺 <s8321414@gmail.com>, 2019
+# Walter Cheuk <wwycheuk@gmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-21 00:33+0200\n"
 "PO-Revision-Date: 2019-10-20 16:33+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2019\n"
+"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>, 2019\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/xfce/teams/16840/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +42,7 @@ msgstr "無法查詢正在使用中的 RandR 擴展版本"
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "本系統正在使用 RanR %d.%d。若要讓該顯示設定值運作，至少需要 1.2 版"
+msgstr "本系統正在使用 RanR %d.%d。若要讓該顯示設定運作，至少需要 1.2 版"
 
 #: ../common/xfce-randr.c:574
 msgid "Laptop"
@@ -300,7 +301,7 @@ msgstr "滑鼠(_M)"
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
-msgstr "設定值管理員 socket"
+msgstr "設定管理員 socket"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
@@ -480,7 +481,7 @@ msgstr "繪製方式"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Custom _DPI setting:"
-msgstr "自訂 _DPI 設定值："
+msgstr "自訂 _DPI 設定："
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid ""
@@ -893,12 +894,12 @@ msgstr "設定……"
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
-msgstr "顯示"
+msgstr "顯示器"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
-msgstr "調整螢幕設定值與配置"
+msgstr "調整螢幕設定與配置"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "_Mirror displays"
@@ -1034,7 +1035,7 @@ msgstr "<big><b>您已對您先前作用中的設定檔做出變更</b></big>"
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
-msgstr "如果您沒有更新設定檔，您的變更將會在重新啟動您的工作階段或拔下或連上螢幕時遺失。"
+msgstr "如果沒有更新設定檔，變更將會在重新啟動工作階段或拔下或連上顯示器時失去。"
 
 #: ../dialogs/display-settings/main.c:99
 msgid "Left"
@@ -1097,7 +1098,7 @@ msgstr "選取的輸出未停用"
 #: ../dialogs/display-settings/main.c:1542
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr "更新已變更的顯示設定檔 '%s'？"
+msgstr "更新已變更的顯示設定檔「%s」嗎？"
 
 #: ../dialogs/display-settings/main.c:1547
 #, c-format
@@ -1107,7 +1108,7 @@ msgstr "更新 '%s' (_U)"
 #: ../dialogs/display-settings/main.c:1834
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr "您想要刪除顯示設定檔 '%s' 嗎？"
+msgstr "要刪除顯示設定檔「%s」嗎？"
 
 #: ../dialogs/display-settings/main.c:1836
 msgid "Delete Profile"
@@ -1115,7 +1116,7 @@ msgstr "刪除設定檔"
 
 #: ../dialogs/display-settings/main.c:1839
 msgid "Once a display profile is deleted it cannot be restored."
-msgstr "顯示設定檔一旦被刪除就無法復原。"
+msgstr "顯示設定檔一旦刪除就無法復原。"
 
 #: ../dialogs/display-settings/main.c:1840
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -1171,15 +1172,15 @@ msgstr "僅 %s (2)"
 #: ../dialogs/display-settings/main.c:3928
 #: ../dialogs/display-settings/main.c:3965
 msgid "Unable to start the Xfce Display Settings"
-msgstr "無法啟動 Xfce 顯示設定值"
+msgstr "無法啟動 Xfce 顯示器設定"
 
 #: ../dialogs/display-settings/main.c:3960
 msgid "ATI Settings"
-msgstr "ATI 設定值"
+msgstr "ATI 設定"
 
 #: ../dialogs/display-settings/main.c:3975
 msgid "Unable to launch the proprietary driver settings"
-msgstr "無法啟動專有驅動程式設定值"
+msgstr "無法啟動專有驅動程式設定"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:107
@@ -1261,7 +1262,7 @@ msgstr "鍵盤"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Edit keyboard settings and application shortcuts"
-msgstr "編輯鍵盤設定值與應用程式捷徑"
+msgstr "編輯鍵盤設定與應用程式捷徑"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Restore num l_ock state on startup"
@@ -1300,7 +1301,7 @@ msgstr "當按鍵被按壓後產生按鍵效果的頻率"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Typing Settings"
-msgstr "輸入設定值"
+msgstr "輸入設定"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Show _blinking"
@@ -1350,7 +1351,7 @@ msgstr "使用系統預設值(_U)"
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
-msgstr "指定鍵盤配置是否由此設定值對話窗來控制，或是由 X 伺服器控制"
+msgstr "指定鍵盤配置是否由此設定對話窗來控制，或是由 X 伺服器控制"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
@@ -1391,7 +1392,7 @@ msgstr "無法連接至 xfconf 幕後程式。原因：%s"
 
 #: ../dialogs/keyboard-settings/main.c:115
 msgid "Could not create the settings dialog."
-msgstr "無法建立設定值對話窗。"
+msgstr "無法建立設定對話窗。"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
 msgid "Command"
@@ -1819,11 +1820,11 @@ msgstr "主題(_T)"
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
-msgstr "設定值編輯器"
+msgstr "設定編輯器"
 
 #: ../xfce4-settings-editor/main.c:170
 msgid "Customize settings stored by Xfconf"
-msgstr "自訂 Xfconf 儲存的設定值"
+msgstr "自訂 Xfconf 儲存的設定"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:252
 msgid "Channel"
@@ -1907,7 +1908,7 @@ msgstr "重設通道(_R)"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:811
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr "重設通道將永久移除那些自訂過的設定值。"
+msgstr "重設通道將永久移除那些自訂過的設定。"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:812
 #, c-format
@@ -1950,7 +1951,7 @@ msgstr "重新整理"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1371
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr "重設屬性將永久移除那些自訂過的設定值。"
+msgstr "重設屬性將永久移除那些自訂過的設定。"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1372
 #, c-format
@@ -2034,19 +2035,19 @@ msgstr "編輯屬性"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 msgid "Graphical settings editor for Xfconf"
-msgstr "Xfconf 的圖形化設定值編輯器"
+msgstr "Xfconf 的圖形化設定編輯器"
 
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
-msgstr "要顯示的設定值對話窗"
+msgstr "要顯示的設定對話窗"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:252
 msgid "All _Settings"
-msgstr "所有設定值(_S)"
+msgstr "所有設定(_S)"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:491
 msgid "Settings"
-msgstr "設定值"
+msgstr "設定"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:493
 msgid "Customize your desktop"
@@ -2060,11 +2061,11 @@ msgstr "無法啟動「%s」"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Settings Manager"
-msgstr "設定值管理員"
+msgstr "設定管理員"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Xfce 4 的圖形設定值管理員"
+msgstr "Xfce 4 的圖形化設定管理員"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2123,4 +2124,4 @@ msgstr "工作區 %d"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
 msgid "The Xfce Settings Daemon"
-msgstr "Xfce 4 設定值幕後程式"
+msgstr "Xfce 4 設定幕後程式"
