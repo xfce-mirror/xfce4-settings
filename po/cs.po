@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-20 06:31+0200\n"
-"PO-Revision-Date: 2019-10-20 21:22+0000\n"
-"Last-Translator: Alois Nešpor <info@aloisnespor.info>\n"
+"POT-Creation-Date: 2019-11-16 00:30+0100\n"
+"PO-Revision-Date: 2019-11-16 10:00+0000\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/xfce/xfce4-settings/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -319,7 +319,7 @@ msgstr "Informace o verzi"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/color-settings/main.c:1385
+#: ../dialogs/color-settings/main.c:1390
 #: ../dialogs/display-settings/main.c:3895
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
@@ -331,7 +331,7 @@ msgstr "Informace o použití získáte příkazem '%s --help'"
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/color-settings/main.c:1402
+#: ../dialogs/color-settings/main.c:1407
 #: ../dialogs/display-settings/main.c:3914
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
@@ -341,7 +341,7 @@ msgstr "Vývojářský tým Xfce. Všechna práva vyhrazena."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/color-settings/main.c:1403
+#: ../dialogs/color-settings/main.c:1408
 #: ../dialogs/display-settings/main.c:3915
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
@@ -836,8 +836,8 @@ msgstr "Testovací prostor:"
 msgid "Compatible Profiles"
 msgstr "Kompatibilní profily"
 
-#: ../dialogs/color-settings/main.c:832 ../dialogs/color-settings/main.c:833
-#: ../dialogs/color-settings/main.c:834
+#: ../dialogs/color-settings/main.c:836 ../dialogs/color-settings/main.c:837
+#: ../dialogs/color-settings/main.c:838
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -1825,134 +1825,125 @@ msgstr "Editor nastavení"
 msgid "Customize settings stored by Xfconf"
 msgstr "Přizpůsobení nastavení uloženého službou Xfconf"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:252
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:253
 msgid "Channel"
 msgstr "Kanál"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:286
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:287
 msgid "Property"
 msgstr "Vlastnost"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:293
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:294
 msgid "Type"
 msgstr "Typ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:300
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:301
 msgid "Locked"
 msgstr "Uzamčeno"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:307
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:308
 msgid "Value"
 msgstr "Hodnota"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:322
-msgid "New"
-msgstr "Nová"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:325
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:328
 msgid "New property"
 msgstr "Nová vlastnost"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:333
-msgid "Edit"
-msgstr "Upravit"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:341
 msgid "Edit selected property"
 msgstr "Úprava vybrané vlastnosti"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:344
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1031
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1370
-msgid "_Reset"
-msgstr "_Obnovit na výchozí"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:347
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
 msgid "Reset selected property"
 msgstr "Obnovit vybranou vlastnost na výchozí hodnotu"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:454
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:545
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:664
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:461
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:552
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:671
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "Prázdné"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:457
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:464
 msgid "Array"
 msgstr "Pole"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:462
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:469
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "String"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:470
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:477
 msgid "Integer"
 msgstr "Celočíselná hodnota"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:473
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:480
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "Boolean"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:476
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:483
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "Double"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:810
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:817
 msgid "_Reset Channel"
 msgstr "_Obnovit kanál na výchozí hodnotu"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:811
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:818
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Obnovení kanálu na výchozí hodnotu trvale odstraní vlastní nastavení."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:812
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:819
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Opravdu chcete obnovit  kanál „%s“ a všechny jeho vlastnosti na výchozí hodnoty?"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:887
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:894
 msgid "reset"
 msgstr "obnovit na výchozí hodnotu"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:944
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:951
 #, c-format
 msgid "Monitor %s"
 msgstr "Sledování položky %s"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:952
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:959
 msgid "Watch an Xfconf channel for property changes"
 msgstr "Sledovat změny vlastností kanálu Xfconf"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:954
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:961
 msgid "Clear"
 msgstr "Vyčistit"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:955
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:962
 msgid "Close"
 msgstr "Zavřít"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:988
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:995
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "sledování kanálu \"%s\" zahájeno"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1037
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1038
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1377
+msgid "_Reset"
+msgstr "_Obnovit na výchozí"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1044
 msgid "_Monitor"
 msgstr "_Sledovat"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1047
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1054
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1371
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1378
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Obnovení vlastnosti na výchozí hodnotu odstraní vlastní nastavení."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1372
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1379
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Opravdu chcete obnovit vlastnost „%s“ na výchozí hodnotu?"
@@ -2120,5 +2111,9 @@ msgid "Workspace %d"
 msgstr "Pracovní plocha %d"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
+msgid "Xfce Settings Daemon"
+msgstr "Démon nastavení prostředí Xfce"
+
+#: ../xfsettingsd/xfsettingsd.desktop.in.h:2
 msgid "The Xfce Settings Daemon"
 msgstr "Démon nastavení prostředí Xfce"
