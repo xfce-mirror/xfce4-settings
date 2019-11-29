@@ -501,6 +501,13 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
                                                              5 /* scroll down */,
                                                              !reverse_scrolling))
             map_changed = TRUE;
+
+        if (xfce_pointers_helper_change_button_mapping_swap (buttonmap, num_buttons,
+                                                             6 /* scroll left */,
+                                                             7 /* scroll right */,
+                                                             !reverse_scrolling))
+
+            map_changed = TRUE;
     }
 
     /* only set on changes */

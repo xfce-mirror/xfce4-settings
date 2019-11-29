@@ -1384,7 +1384,8 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gint i, n;
     guchar *buttonmap;
     gint id_1 = 0, id_3 = 0;
-    gint id_4 = 0, id_5 = 0;
+    gint id_4 = 0, id_5 = 0; // Vertical scroll pointer
+    gint id_6 = 0, id_7 = 0; // Horizontal scroll pointer
     gdouble acceleration = -1.00;
     gint threshold = -1;
     GObject *object;
@@ -1505,10 +1506,14 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                         id_4 = i;
                     else if (buttonmap[i] == 5)
                         id_5 = i;
+                    else if (buttonmap[i] == 6)
+                        id_6 = i;
+                    else if (buttonmap[i] == 7)
+                        id_7 = i;
                 }
                 g_free (buttonmap);
                 left_handed = (id_1 > id_3);
-                reverse_scrolling = !!(id_5 < id_4);
+                reverse_scrolling = (id_5 < id_4) && (id_7 < id_6);
             }
             else
             {
