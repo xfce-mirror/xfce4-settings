@@ -5,8 +5,8 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2019
-# Slavko <linux@slavino.sk>, 2019
 # Jose Riha <jose1711@gmail.com>, 2019
+# Slavko <linux@slavino.sk>, 2019
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-21 00:33+0200\n"
 "PO-Revision-Date: 2019-10-20 16:33+0000\n"
-"Last-Translator: Jose Riha <jose1711@gmail.com>, 2019\n"
+"Last-Translator: Slavko <linux@slavino.sk>, 2019\n"
 "Language-Team: Slovak (https://www.transifex.com/xfce/teams/16840/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,6 +103,8 @@ msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr ""
+"Ak je zapnuté, správca relácie spustí požadované aplikácie na čítanie "
+"obrazovky a lupy."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "_Enable assistive technologies"
@@ -110,11 +112,11 @@ msgstr "Povoliť _asistenčné technológie"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Start With Session"
-msgstr ""
+msgstr "Spustiť s reláciou"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive technologies will be available the next time you login"
-msgstr ""
+msgstr "Asistenčné technológie budú dostupné pri nasledujúcom prihlásení"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "No AT-SPI provider was found on your system"
@@ -130,6 +132,8 @@ msgid ""
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr ""
+"Ak je zapnuté, nie je potrebné klávesy modifikátorov (Control, Alt a Shift) "
+"držať (stačí ich stlačiť a uvoľniť), ak majú byť viaceré stlačené naraz."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "_Use sticky keys"
@@ -168,6 +172,9 @@ msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr ""
+"Funkcia pomalé klávesy pomáha predchádzať náhodným stlačeniam klávesov tak, "
+"že požadovaná klávesa musí byť pred prijatím stlačená určitú dobu, kým bude "
+"použitá."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "Use slow _keys"
@@ -193,6 +200,8 @@ msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr ""
+"Na pomoc pred náhodným stlačením viac-klávesových skratiek, zdvojené klávesy"
+" zavádzajú minimálnu dobu medzi klávesovými skratkami."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
@@ -218,7 +227,7 @@ msgstr "Kláves_nica"
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
-msgstr ""
+msgstr "Ak je zapnuté, je možné ovládať kurzor myši numerickou klávesnicou."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "_Use mouse emulation"
@@ -293,6 +302,8 @@ msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr ""
+"Priraďte klávesovú skratku pre xfce4-find-cursor na získanie vizuálneho "
+"zvýraznenia aktuálnej pozície kurzora myši."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "Show location of pointer on keypress"
@@ -902,7 +913,7 @@ msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "The primary display is currently configured to show:"
-msgstr ""
+msgstr "Primárny displej je aktuálne nastavený na zobrazenie:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 msgid "Xfce Panel"
@@ -1059,12 +1070,16 @@ msgstr "_Aktualizovať"
 msgid ""
 "<big><b>You have made changes to your previously active profile</b></big>"
 msgstr ""
+"<big><b>Vykonali ste zmeny vo svojom predchádzajúcom aktívnom "
+"profile</b></big>"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
 msgstr ""
+"Ak neaktualizujete profil, zmeny budú stratené pri reštarte relácie, "
+"odpojení alebo pripojení displeja."
 
 #: ../dialogs/display-settings/main.c:99
 msgid "Left"
@@ -1130,12 +1145,12 @@ msgstr "Vybraný výstup nie je zakázaný"
 #: ../dialogs/display-settings/main.c:1542
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr ""
+msgstr "Aktualizovať zmenený profil monitora „%s“?"
 
 #: ../dialogs/display-settings/main.c:1547
 #, c-format
 msgid "_Update '%s'"
-msgstr ""
+msgstr "Akt_ualizovať „%s“"
 
 #: ../dialogs/display-settings/main.c:1834
 #, c-format
@@ -1148,7 +1163,7 @@ msgstr "Odstrániť profil"
 
 #: ../dialogs/display-settings/main.c:1839
 msgid "Once a display profile is deleted it cannot be restored."
-msgstr ""
+msgstr "Keď je profile monitora zmazaný, už ho nemožno obnoviť."
 
 #: ../dialogs/display-settings/main.c:1840
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
