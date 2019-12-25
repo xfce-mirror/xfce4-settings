@@ -163,6 +163,39 @@ GList *current_outputs = NULL;
 GtkWidget *randr_outputs_combobox = NULL;
 GtkWidget *apply_button = NULL;
 
+/* Show nice representation of the display ratio */
+typedef struct _XfceRatio XfceRatio;
+
+struct _XfceRatio
+{
+    gboolean precise;
+    gdouble ratio;
+    const gchar *desc;
+};
+
+static GHashTable *display_ratio = NULL;
+/* adding the +0.5 to result in "rounding" instead of trunc() */
+#define _ONE_DIGIT_PRECISION(x) ((gdouble)((gint)((x)*10.0+0.5))/10.0)
+#define _TWO_DIGIT_PRECISION(x) ((gdouble)((gint)((x)*100.0+0.5))/100.0)
+
+/* most prominent ratios */
+/* adding in least exact order to find most precise */
+static XfceRatio ratio_table[] = {
+    { FALSE, _ONE_DIGIT_PRECISION(16.0/9.0), "~16:9" },
+    { FALSE, _TWO_DIGIT_PRECISION(16.0/9.0), "~16:9" },
+    { TRUE, 16.0/9.0, "16:9" },
+    { FALSE, _ONE_DIGIT_PRECISION(16.0/10.0), "~16:10" },
+    { FALSE, _TWO_DIGIT_PRECISION(16.0/10.0), "~16:10" },
+    { TRUE, 16.0/10.0, "16:10" },
+    /* _ONE_DIGIT_PRECISION(4.0/3.0) would be mixed up with 5/4 */
+    { FALSE, _TWO_DIGIT_PRECISION(4.0/3.0), "~4:3" },
+    { TRUE, 4.0/3.0, "4:3" },
+    { FALSE, _ONE_DIGIT_PRECISION(21.0/9.0), "~21:9" },
+    { FALSE, _TWO_DIGIT_PRECISION(21.0/9.0), "~21:9" },
+    { TRUE, 21.0/9.0, "21:9" },
+    { FALSE, 0.0 , NULL }
+};
+
 static void display_settings_minimal_only_display1_toggled   (GtkToggleButton *button,
                                                               GtkBuilder      *builder);
 
@@ -617,6 +650,15 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
 }
 
+/* Greatest common divisor */
+static guint
+gcd (guint a, guint b) {
+    if (b == 0)
+        return a;
+
+    return gcd (b, a % b);
+}
+
 static void
 display_setting_resolutions_populate (GtkBuilder *builder)
 {
@@ -656,9 +698,59 @@ display_setting_resolutions_populate (GtkBuilder *builder)
         if (n == 0 || (n > 0 && (modes[n].width != modes[n - 1].width
             || modes[n].height != modes[n - 1].height)))
         {
+            /* Insert mode and ratio */
+            gdouble    ratio = (double) modes[n].width / (double) modes[n].height;
+            gdouble    rough_ratio;
+            gchar     *ratio_text = NULL;
+            XfceRatio *ratio_info = g_hash_table_lookup (display_ratio, &ratio);
 
-            /* Insert the mode */
-            name = g_strdup_printf ("%dx%d", modes[n].width, modes[n].height);
+            if (ratio_info)
+                ratio_text = g_strdup (ratio_info->desc);
+
+            if (!ratio_info)
+            {
+                rough_ratio = _TWO_DIGIT_PRECISION (ratio);
+                ratio_info = g_hash_table_lookup (display_ratio, &rough_ratio);
+                if (ratio_info)
+                {
+                    /* if the lookup finds a precise ratio
+                     * although we did round the current ratio
+                     * we also mark this as not precise */
+                    if (ratio_info->precise)
+                        ratio_text = g_strdup_printf ("~%s", ratio_info->desc);
+                    else
+                        ratio_text = g_strdup (ratio_info->desc);
+                }
+            }
+
+            if (!ratio_info)
+            {
+                rough_ratio = _ONE_DIGIT_PRECISION (ratio);
+                ratio_info = g_hash_table_lookup (display_ratio, &rough_ratio);
+                if (ratio_info)
+                {
+                    if (ratio_info->precise)
+                        ratio_text = g_strdup_printf ("~%s", ratio_info->desc);
+                    else
+                        ratio_text = g_strdup (ratio_info->desc);
+                }
+            }
+
+            if (!ratio_info)
+            {
+                guint gcd_tmp = gcd (modes[n].width, modes[n].height);
+                guint format_x = modes[n].width / gcd_tmp;
+                guint format_y = modes[n].height / gcd_tmp;
+                name = g_strdup_printf ("%dx%d (%d:%d - %.3f)", modes[n].width,
+                                        modes[n].height, format_x, format_y, ratio);
+            }
+            else
+            {
+                name = g_strdup_printf ("%dx%d (%s - %.3f)", modes[n].width,
+                                        modes[n].height, ratio_text, ratio);
+            }
+            g_free(ratio_text);
+
             gtk_list_store_append (GTK_LIST_STORE (model), &iter);
             gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                                 COLUMN_COMBO_NAME, name,
@@ -907,6 +999,13 @@ display_setting_identity_popups_populate (void)
     guint n;
 
     g_assert (xfce_randr);
+
+    display_ratio = g_hash_table_new (g_double_hash, g_double_equal);
+    XfceRatio *i;
+    for (i = ratio_table; i->ratio != 0.0; i++)
+    {
+        g_hash_table_insert (display_ratio, &i->ratio, (gpointer) i);
+    }
 
     display_popups = g_hash_table_new_full (g_direct_hash,
                                             g_direct_equal,
@@ -2255,6 +2354,7 @@ screen_on_event (GdkXEvent *xevent,
 
         /* recreate the identify display popups */
         g_hash_table_destroy (display_popups);
+        g_hash_table_destroy (display_ratio);
         display_setting_identity_popups_populate ();
         set_display_popups_visible(show_popups);
     }
