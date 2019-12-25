@@ -652,9 +652,11 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
 
 /* Greatest common divisor */
 static guint
-gcd (guint a, guint b) {
+gcd (guint a,
+     guint b)
+{
     if (b == 0)
-        return a;
+      return a;
 
     return gcd (b, a % b);
 }
@@ -664,6 +666,7 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 {
     GtkTreeModel     *model;
     GObject          *combobox, *label;
+    GtkCellRenderer  *renderer;
     gint              nmode, n;
     gchar            *name;
     GtkTreeIter       iter;
@@ -673,6 +676,14 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
+
+    /* Replace the standard text renderer of the combobox with markup */
+    renderer = gtk_cell_renderer_text_new ();
+    gtk_cell_layout_clear (GTK_CELL_LAYOUT (combobox));
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combobox), renderer, FALSE);
+    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combobox), renderer,
+                                   "markup", 0);
+
     label = gtk_builder_get_object (builder, "label-resolution");
 
     /* Disable it if no mode is selected */
@@ -741,12 +752,12 @@ display_setting_resolutions_populate (GtkBuilder *builder)
                 guint gcd_tmp = gcd (modes[n].width, modes[n].height);
                 guint format_x = modes[n].width / gcd_tmp;
                 guint format_y = modes[n].height / gcd_tmp;
-                name = g_strdup_printf ("%dx%d (%d:%d - %.3f)", modes[n].width,
+                name = g_strdup_printf ("%dx%d <span fgalpha='50%'>%d:%d - %.3f</span>", modes[n].width,
                                         modes[n].height, format_x, format_y, ratio);
             }
             else
             {
-                name = g_strdup_printf ("%dx%d (%s - %.3f)", modes[n].width,
+                name = g_strdup_printf ("%dx%d <span fgalpha='50%'>%s - %.3f</span>", modes[n].width,
                                         modes[n].height, ratio_text, ratio);
             }
             g_free(ratio_text);
