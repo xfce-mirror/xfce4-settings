@@ -752,13 +752,13 @@ display_setting_resolutions_populate (GtkBuilder *builder)
                 guint gcd_tmp = gcd (modes[n].width, modes[n].height);
                 guint format_x = modes[n].width / gcd_tmp;
                 guint format_y = modes[n].height / gcd_tmp;
-                name = g_strdup_printf ("%dx%d <span fgalpha='50%'>%d:%d - %.3f</span>", modes[n].width,
-                                        modes[n].height, format_x, format_y, ratio);
+                name = g_strdup_printf ("%dx%d <span fgalpha='50%%'>%d:%d</span>", modes[n].width,
+                                        modes[n].height, format_x, format_y);
             }
             else
             {
-                name = g_strdup_printf ("%dx%d <span fgalpha='50%'>%s - %.3f</span>", modes[n].width,
-                                        modes[n].height, ratio_text, ratio);
+                name = g_strdup_printf ("%dx%d <span fgalpha='50%%'>%s</span>", modes[n].width,
+                                        modes[n].height, ratio_text);
             }
             g_free(ratio_text);
 
