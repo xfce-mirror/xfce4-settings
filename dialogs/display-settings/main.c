@@ -673,6 +673,19 @@ gcd (guint a,
     return gcd (b, a % b);
 }
 
+/* Initialize valid display aspect ratios */
+static void
+display_settings_aspect_ratios_populate (void)
+{
+    XfceRatio *i;
+
+    display_ratio = g_hash_table_new (g_double_hash, g_double_equal);
+    for (i = ratio_table; i->ratio != 0.0; i++)
+    {
+        g_hash_table_insert (display_ratio, &i->ratio, (gpointer) i);
+    }
+}
+
 static void
 display_setting_resolutions_populate (GtkBuilder *builder)
 {
@@ -1018,15 +1031,8 @@ static void
 display_setting_identity_popups_populate (void)
 {
     guint n;
-    XfceRatio *i;
 
     g_assert (xfce_randr);
-
-    display_ratio = g_hash_table_new (g_double_hash, g_double_equal);
-    for (i = ratio_table; i->ratio != 0.0; i++)
-    {
-        g_hash_table_insert (display_ratio, &i->ratio, (gpointer) i);
-    }
 
     display_popups = g_hash_table_new_full (g_direct_hash,
                                             g_direct_equal,
@@ -2161,6 +2167,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     gtk_widget_show (GTK_WIDGET (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_reflections_changed), builder);
 
+    display_settings_aspect_ratios_populate ();
     combobox = gtk_builder_get_object (builder, "randr-resolution");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox), TRUE);
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_resolutions_changed), builder);
@@ -2393,6 +2400,7 @@ screen_on_event (GdkXEvent *xevent,
         g_hash_table_destroy (display_popups);
         g_hash_table_destroy (display_ratio);
         display_setting_identity_popups_populate ();
+        display_settings_aspect_ratios_populate ();
         set_display_popups_visible(show_popups);
     }
 
