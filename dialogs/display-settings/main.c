@@ -228,6 +228,9 @@ static void display_settings_profile_apply                   (GtkWidget       *w
 static void display_settings_minimal_profile_apply           (GtkToggleButton *widget,
                                                               GtkBuilder      *builder);
 
+static GList *list_connected_outputs                         (gint            *total_w,
+                                                              gint            *total_h);
+
 static void
 display_settings_changed (void)
 {
@@ -235,13 +238,15 @@ display_settings_changed (void)
 }
 
 static XfceOutputInfo*
-get_nth_xfce_output_info(gint id)
+get_nth_xfce_output_info (gint id)
 {
     XfceOutputInfo *output = NULL;
     GList * entry = NULL;
 
-    if (current_outputs)
-        entry = g_list_nth (current_outputs, id);
+    if (!current_outputs)
+        current_outputs = list_connected_outputs (NULL, NULL);
+
+    entry = g_list_nth (current_outputs, id);
 
     if (entry)
         output = entry->data;
@@ -697,6 +702,7 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     gchar            *rratio;
     GtkTreeIter       iter;
     const XfceRRMode *modes;
+    XfceOutputInfo   *output;
 
     /* Get the combo box store and clear it */
     combobox = gtk_builder_get_object (builder, "randr-resolution");
@@ -704,6 +710,8 @@ display_setting_resolutions_populate (GtkBuilder *builder)
     gtk_list_store_clear (GTK_LIST_STORE (model));
 
     label = gtk_builder_get_object (builder, "label-resolution");
+
+    output = get_nth_xfce_output_info (active_output);
 
     /* Disable it if no mode is selected */
     if (xfce_randr->mode[active_output] == None)
@@ -733,6 +741,15 @@ display_setting_resolutions_populate (GtkBuilder *builder)
             gdouble    rough_ratio;
             gchar     *ratio_text = NULL;
             XfceRatio *ratio_info = g_hash_table_lookup (display_ratio, &ratio);
+
+            /* Highlight the preferred mode with an asterisk */
+            if (output->pref_width == modes[n].width
+                && output->pref_height == modes[n].height)
+                name = g_strdup_printf ("%dx%d*", modes[n].width,
+                                        modes[n].height);
+            else
+                name = g_strdup_printf ("%dx%d", modes[n].width,
+                                        modes[n].height);
 
             if (ratio_info)
                 ratio_text = g_strdup (ratio_info->desc);
@@ -771,14 +788,10 @@ display_setting_resolutions_populate (GtkBuilder *builder)
                 guint gcd_tmp = gcd (modes[n].width, modes[n].height);
                 guint format_x = modes[n].width / gcd_tmp;
                 guint format_y = modes[n].height / gcd_tmp;
-                name = g_strdup_printf ("%dx%d", modes[n].width,
-                                        modes[n].height);
                 rratio = g_strdup_printf ("<span fgalpha='50%%'>%d:%d</span>", format_x, format_y);
             }
             else
             {
-                name = g_strdup_printf ("%dx%d", modes[n].width,
-                                        modes[n].height);
                 rratio = g_strdup_printf ("<span fgalpha='50%%'>%s</span>", ratio_text);
             }
             g_free (ratio_text);
@@ -2459,7 +2472,8 @@ get_mirrored_configuration (void)
         return cloned;
 }
 
-static XfceOutputInfo *convert_xfce_output_info (gint output_id)
+static XfceOutputInfo *
+convert_xfce_output_info (gint output_id)
 {
     XfceOutputInfo *output;
     const XfceRRMode *mode, *preferred;
@@ -2468,7 +2482,7 @@ static XfceOutputInfo *convert_xfce_output_info (gint output_id)
 
     xfce_randr_get_positions(xfce_randr, output_id, &x, &y);
     mode = xfce_randr_find_mode_by_id (xfce_randr, output_id, xfce_randr->mode[output_id]);
-    preferred_mode = xfce_randr_preferred_mode(xfce_randr, output_id);
+    preferred_mode = xfce_randr_preferred_mode (xfce_randr, output_id);
     preferred = xfce_randr_find_mode_by_id (xfce_randr, output_id, preferred_mode);
     output = g_new0 (XfceOutputInfo, 1);
     output->id = output_id;
