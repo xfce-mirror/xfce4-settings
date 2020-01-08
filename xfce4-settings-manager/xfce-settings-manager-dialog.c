@@ -216,7 +216,6 @@ static void
 xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 {
     GtkWidget *dialog_vbox;
-    GtkWidget *ebox;
     GtkWidget *entry;
     GtkWidget *scroll;
     GtkWidget *viewport;
@@ -244,28 +243,27 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
       xfconf_channel_get_int (dialog->channel, "/last/window-height", 500));
     xfce_settings_manager_dialog_set_title (dialog, NULL, NULL, NULL);
 
-    dialog->button_back = gtk_dialog_add_button (GTK_DIALOG (dialog), _("All _Settings"), GTK_RESPONSE_NONE);
-    image = gtk_image_new_from_icon_name ("go-previous", GTK_ICON_SIZE_BUTTON);
+    /* Add a buttonbox (Help, All Settings, Close) at bottom of the main box */
+    xfce_titled_dialog_create_action_area (XFCE_TITLED_DIALOG (dialog));
+
+    dialog->button_help = xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (dialog), _("_Help"), GTK_RESPONSE_HELP);
+    image = gtk_image_new_from_icon_name ("help-browser", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (GTK_BUTTON (dialog->button_help), image);
+
+    dialog->button_back = xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (dialog), _("All _Settings"), GTK_RESPONSE_NONE);
+    image = gtk_image_new_from_icon_name ("go-previous-symbolic", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (dialog->button_back), image);
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
-    gtk_widget_show (dialog->button_back);
     g_signal_connect_swapped (G_OBJECT (dialog->button_back), "clicked",
         G_CALLBACK (xfce_settings_manager_dialog_go_back), dialog);
 
-
-    dialog->button_help = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                                 _("_Help"), GTK_RESPONSE_HELP);
-    image = gtk_image_new_from_icon_name ("help-browser", GTK_ICON_SIZE_BUTTON);
-    gtk_button_set_image (GTK_BUTTON (dialog->button_help), image);
-    button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("_Close"), GTK_RESPONSE_CLOSE);
+    button = xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (dialog), _("_Close"), GTK_RESPONSE_CLOSE);
     image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (button), image);
 
     /* Add the filter box to the Headerbar */
     dialog->filter_entry = entry = gtk_entry_new ();
-    gtk_widget_set_margin_end (GTK_WIDGET (entry), 6);
-    gtk_container_add (GTK_CONTAINER (ebox), entry);
-    gtk_widget_set_halign (entry, GTK_ALIGN_START);
+    gtk_header_bar_pack_end (GTK_HEADER_BAR (gtk_dialog_get_header_bar (GTK_DIALOG (dialog))), entry);
     gtk_widget_set_valign (entry, GTK_ALIGN_CENTER);
     gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, "edit-find");
     gtk_entry_set_icon_activatable (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, FALSE);
