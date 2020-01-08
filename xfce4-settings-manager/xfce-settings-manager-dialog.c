@@ -113,9 +113,6 @@ static void     xfce_settings_manager_dialog_style_updated   (GtkWidget         
 static void     xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog);
 static void     xfce_settings_manager_dialog_response        (GtkDialog                 *widget,
                                                               gint                       response_id);
-static void     xfce_settings_manager_dialog_header_style    (GtkWidget                 *header,
-                                                              GtkStyle                  *old_style,
-                                                              GtkWidget                 *ebox);
 static void     xfce_settings_manager_dialog_set_title       (XfceSettingsManagerDialog *dialog,
                                                               const gchar               *title,
                                                               const gchar               *icon_name,
@@ -221,8 +218,6 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     GtkWidget *dialog_vbox;
     GtkWidget *ebox;
     GtkWidget *entry;
-    GtkWidget *hbox;
-    GtkWidget *header;
     GtkWidget *scroll;
     GtkWidget *viewport;
     GtkWidget *image;
@@ -266,28 +261,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (button), image);
 
-    /* add box at start of the main box */
-    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    dialog_vbox = gtk_bin_get_child (GTK_BIN (dialog));
-    gtk_box_pack_start (GTK_BOX (dialog_vbox), hbox, FALSE, TRUE, 0);
-    gtk_box_reorder_child (GTK_BOX (dialog_vbox), hbox, 0);
-    gtk_widget_show (hbox);
-
-    /* move the xfce-header in the hbox */
-    children = gtk_container_get_children (GTK_CONTAINER (dialog_vbox));
-    header = g_list_nth_data (children, 1);
-    g_object_ref (G_OBJECT (header));
-    gtk_container_remove (GTK_CONTAINER (dialog_vbox), header);
-    gtk_box_pack_start (GTK_BOX (hbox), header, TRUE, TRUE, 0);
-    g_object_unref (G_OBJECT (header));
-    g_list_free (children);
-
-    ebox = gtk_event_box_new ();
-    gtk_box_pack_start (GTK_BOX (hbox), ebox, FALSE, TRUE, 0);
-    g_signal_connect (header, "style-set",
-        G_CALLBACK (xfce_settings_manager_dialog_header_style), ebox);
-    gtk_widget_show (ebox);
-
+    /* Add the filter box to the Headerbar */
     dialog->filter_entry = entry = gtk_entry_new ();
     gtk_widget_set_margin_end (GTK_WIDGET (entry), 6);
     gtk_container_add (GTK_CONTAINER (ebox), entry);
@@ -416,6 +390,7 @@ xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog)
 }
 
 
+
 static void
 xfce_settings_manager_dialog_response (GtkDialog *widget,
                                        gint       response_id)
@@ -459,20 +434,6 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
         gtk_widget_destroy (GTK_WIDGET (widget));
         gtk_main_quit ();
     }
-}
-
-
-
-static void
-xfce_settings_manager_dialog_header_style (GtkWidget *header,
-                                           GtkStyle  *old_style,
-                                           GtkWidget *ebox)
-{
-    GtkStyleContext *context;
-
-    context = gtk_widget_get_style_context (ebox);
-    gtk_style_context_add_class (context, "view");
-    gtk_style_context_add_class (context, "XfceHeading");
 }
 
 
