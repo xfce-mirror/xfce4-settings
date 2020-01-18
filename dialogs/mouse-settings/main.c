@@ -2068,6 +2068,7 @@ main (gint argc, gchar **argv)
             {
                 /* get the dialog */
                 dialog = gtk_builder_get_object (builder, "mouse-dialog");
+                gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_NORMAL);
 
                 /* unlock */
                 locked--;

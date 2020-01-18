@@ -3715,6 +3715,8 @@ display_settings_show_main_dialog (GdkDisplay *display)
     {
         /* Build the dialog */
         dialog = display_settings_dialog_new (builder);
+        gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_NORMAL);
+
         /* Set up notifications */
         XRRSelectInput (gdk_x11_display_get_xdisplay (display),
                         GDK_WINDOW_XID (gdk_get_default_root_window ()),
