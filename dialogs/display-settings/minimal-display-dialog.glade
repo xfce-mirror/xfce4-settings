@@ -10,7 +10,6 @@
   <object class="GtkWindow" id="dialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Displays</property>
-    <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="icon_name">video-display</property>
     <property name="type_hint">dialog</property>
@@ -33,6 +32,7 @@
               <object class="GtkBox" id="profile-box">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
                 <child>
                   <placeholder/>
                 </child>
@@ -52,6 +52,7 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
                 <child>
@@ -102,6 +103,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">24</property>
+                <property name="hexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
                 <child>
@@ -154,6 +156,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">24</property>
+                <property name="hexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
                 <child>
@@ -206,6 +209,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">24</property>
+                <property name="hexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
                 <child>
