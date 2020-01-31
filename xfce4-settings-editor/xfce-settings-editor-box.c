@@ -67,7 +67,7 @@ struct _XfceSettingsEditorBox
     GtkWidget         *button_edit;
     GtkWidget         *button_reset;
 
-    gint			   paned_pos;
+    gint               paned_pos;
 };
 
 
@@ -200,12 +200,12 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
                                           CHANNEL_COLUMN_NAME, GTK_SORT_ASCENDING);
 
     self->props_store = gtk_tree_store_new (N_PROP_COLUMNS,
-											G_TYPE_STRING,
-											G_TYPE_STRING,
-											G_TYPE_STRING,
-											G_TYPE_STRING,
-											G_TYPE_BOOLEAN,
-											G_TYPE_VALUE);
+                                            G_TYPE_STRING,
+                                            G_TYPE_STRING,
+                                            G_TYPE_STRING,
+                                            G_TYPE_STRING,
+                                            G_TYPE_BOOLEAN,
+                                            G_TYPE_VALUE);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (self->props_store),
                                           PROP_COLUMN_NAME, GTK_SORT_ASCENDING);
     self->paned = paned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
@@ -218,7 +218,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     /* Style the GtkPaned */
     gtk_paned_set_wide_handle (GTK_PANED (paned), TRUE);
     provider = gtk_css_provider_new ();
-    gtk_css_provider_load_from_data (provider, 
+    gtk_css_provider_load_from_data (provider,
         "paned > separator.wide { background:transparent; }", -1, NULL);
     gtk_style_context_add_provider (gtk_widget_get_style_context (paned),
         GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -335,7 +335,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
 
     button = gtk_button_new ();
     image = gtk_image_new_from_icon_name ("document-edit-symbolic", GTK_ICON_SIZE_BUTTON);
-    gtk_button_set_image (button, image);
+    gtk_button_set_image (GTK_BUTTON (button), GTK_IMAGE (image));
     gtk_container_add (GTK_CONTAINER (bbox), button);
     gtk_button_box_set_child_non_homogeneous (GTK_BUTTON_BOX (bbox), button, TRUE);
     gtk_widget_set_tooltip_text (button, _("Edit selected property"));
@@ -348,7 +348,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
 
     button = gtk_button_new ();
     image = gtk_image_new_from_icon_name ("document-revert-symbolic", GTK_ICON_SIZE_BUTTON);
-    gtk_button_set_image (button, image);
+    gtk_button_set_image (GTK_BUTTON (button), GTK_IMAGE (image));
     gtk_container_add (GTK_CONTAINER (bbox), button);
     gtk_button_box_set_child_non_homogeneous (GTK_BUTTON_BOX (bbox), button, TRUE);
     gtk_widget_set_tooltip_text (button, _("Reset selected property"));
