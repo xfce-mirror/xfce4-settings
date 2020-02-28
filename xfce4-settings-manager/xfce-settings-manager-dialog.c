@@ -1249,10 +1249,12 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
     GList               *lnext;
     GarconMenuDirectory *directory;
     GList               *items, *lp;
+    GList               *keywords, *kli;
     gint                 i = 0;
     gchar               *item_text;
     gchar               *normalized;
     gchar               *filter_text;
+    GString             *item_keywords;
     DialogCategory      *category;
 
     g_return_if_fail (XFCE_IS_SETTINGS_MANAGER_DIALOG (dialog));
@@ -1298,10 +1300,19 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
                 items = g_list_sort (items, xfce_settings_manager_dialog_menu_sort);
                 for (lp = items; lp != NULL; lp = lp->next)
                 {
-                    /* create independent search string */
-                    item_text = g_strdup_printf ("%s\n%s",
+                    /* create independent search string based on name, comment and keywords */
+                    keywords = garcon_menu_item_get_keywords (lp->data);
+                    item_keywords = g_string_new (NULL);
+                    for (kli = keywords; kli != NULL; kli = kli->next)
+                    {
+                        g_string_append (item_keywords, kli->data);
+                    }
+                    item_text = g_strdup_printf ("%s\n%s\n%s",
                         garcon_menu_item_get_name (lp->data),
-                        garcon_menu_item_get_comment (lp->data));
+                        garcon_menu_item_get_comment (lp->data),
+                        item_keywords->str);
+                    g_string_free (item_keywords, FALSE);
+                    g_list_free (kli);
                     normalized = g_utf8_normalize (item_text, -1, G_NORMALIZE_DEFAULT);
                     g_free (item_text);
                     filter_text = g_utf8_casefold (normalized, -1);
