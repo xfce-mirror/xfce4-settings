@@ -39,12 +39,16 @@ msgid ""
 "If enabled, the session manager will start the required applications for "
 "screen readers and magnifiers"
 msgstr ""
+"Калі ўключана, кіраўнік сэансаў запусьціць дастасаваньні, неабходныя для "
+"чытаньня з экрану й павелічэньня"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
 "Assistive technologies will be available the\n"
 "next time you login"
 msgstr ""
+"Дапаможныя тэхналёгіі стануць даступны\n"
+"падчас наступнага ўваходу ў сыстэму"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "No AT-SPI provider was found on your system"
@@ -64,6 +68,9 @@ msgid ""
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
 msgstr ""
+"Калі абрана, клявішы-мадыфікатары (Control, Alt, Shift) не патрэбна "
+"ўтрымліваць пстрыкнутымі (іх можна націснуць і адпусьціць), звычайна іх "
+"патрэбна ўтрымліваць націснутымі"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
@@ -102,6 +109,8 @@ msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted"
 msgstr ""
+"Каб прадухіліць выпадковыя пстрыкі клявішаў, запаволеныя клявішы неабходна "
+"ўтрымліваць пэўны прамежак часу, каб дзеяньне ўжылася"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
@@ -126,6 +135,8 @@ msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
 msgstr ""
+"Каб прадухіліць выпадковыя пстрыкі некалькіх клявішаў, скокаючыя клявішы "
+"актывуюць мінымальную затрымку паміж пстрыкамі клявішаў"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
@@ -214,6 +225,8 @@ msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location"
 msgstr ""
+"Прывязаць спалучэнне клавіш да xfce4-find-cursor для выяўленьня бягучага "
+"месцазнаходжаньня ўказальніка мышу"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
@@ -595,7 +608,7 @@ msgstr "Меж_ная здольнасьць:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "_Use this display"
-msgstr ""
+msgstr "_Скарыстаць гэты дысплэй"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Mirror displays"
@@ -603,21 +616,23 @@ msgstr "_Адлюстраваныя дысплэі"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "_Primary display"
-msgstr ""
+msgstr "_Пераважны дысплэй"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid ""
 "This is a hint for panels, docks and desktop to show on this display "
 "preferably."
 msgstr ""
+"Падказка для панэляў, докаў і стальніцаў, адлюстроўваемая пераважна для "
+"гэтага дысплэю."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Configure _new displays when connected"
-msgstr ""
+msgstr "Наладжваць _новыя дысплэі падчас падлучэньня"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Identify Displays"
-msgstr ""
+msgstr "Вызначыць дысплэі"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -641,7 +656,7 @@ msgstr "Толькі дысплэй 2"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "Advanced"
-msgstr ""
+msgstr "Адмысловае"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
@@ -1133,10 +1148,10 @@ msgstr "Прадвызначаны"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d MIME-тып знойдзены"
+msgstr[1] "%d MIME-тыпа знойдзена"
+msgstr[2] "%d MIME-тыпаў знойдзена"
+msgstr[3] "%d MIME-тып знойдзены"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:654
 #, c-format
@@ -1243,7 +1258,7 @@ msgstr "Пры_лада:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "_Enable this device"
-msgstr ""
+msgstr "_Уключыць гэтую прыладу"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Ri_ght-handed"
