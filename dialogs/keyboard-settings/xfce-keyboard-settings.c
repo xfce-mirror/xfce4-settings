@@ -1159,14 +1159,16 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
                   test_new_shortcut = (g_strcmp0 (shortcut, new_shortcut) != 0);
                   if (g_strcmp0 (command, new_command) != 0 || (test_new_shortcut) || snotify != new_snotify)
                     {
-                      /* Remove the row because we add new one from the
-                       * shortcut-added signal */
-                      gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
-
                       if (test_new_shortcut)
-                        /* Remove old keyboard shortcut via xfconf */
-                        xfce_shortcuts_provider_reset_shortcut (settings->priv->provider,
-                                                                shortcut);
+                        {
+                          /* Remove the row because we add new one from the
+                           * shortcut-added signal */
+                          gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+
+                          /* Remove old keyboard shortcut via xfconf */
+                          xfce_shortcuts_provider_reset_shortcut (settings->priv->provider,
+                                                                  shortcut);
+                        }
 
                       /* Save settings */
                       xfce_shortcuts_provider_set_shortcut (settings->priv->provider,
