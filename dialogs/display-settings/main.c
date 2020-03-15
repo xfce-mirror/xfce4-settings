@@ -333,6 +333,32 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
     return ((response_id == 2) ? TRUE : FALSE);
 }
 
+/*
+ * Encapsulates display_setting_timed_confirmation, automatically uses Fallback on FALSE
+ * Returns TRUE if the configuration was kept, FALSE if the configuration was replaced with the Fallback
+ */
+static gboolean
+display_setting_ask_fallback (GtkBuilder *builder)
+{
+    guint i = 0;
+
+    /* Ask user confirmation (or recover to'Fallback on timeout') */
+    if (display_setting_timed_confirmation (builder))
+    {
+        /* Update the Fallback */
+        for (i = 0; i < xfce_randr->noutput; i++)
+            xfce_randr_save_output (xfce_randr, "Fallback", display_channel, i);
+        return TRUE;
+    }
+    else
+    {
+        /* Recover to Fallback (will as well overwrite default xfconf settings) */
+        xfce_randr_apply (xfce_randr, "Fallback", display_channel);
+        foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
+        return FALSE;
+    }
+}
+
 static void
 display_setting_reflections_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
@@ -1143,15 +1169,11 @@ display_setting_output_toggled (GtkSwitch       *widget,
                                 gboolean         output_on,
                                 GtkBuilder      *builder)
 {
-    RRMode old_mode;
-
     if (!xfce_randr)
         return FALSE;
 
     if (xfce_randr->noutput <= 1)
         return FALSE;
-
-    old_mode = xfce_randr->mode[active_output];
 
     if (output_on)
         xfce_randr->mode[active_output] =
@@ -1175,18 +1197,7 @@ display_setting_output_toggled (GtkSwitch       *widget,
 
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
 
-    /* Ask user confirmation */
-    if (!display_setting_timed_confirmation (builder))
-    {
-        xfce_randr->mode[active_output] = old_mode;
-        xfce_randr_save_output (xfce_randr, "Default", display_channel, active_output);
-        xfce_randr_apply (xfce_randr, "Default", display_channel);
-
-        foo_scroll_area_invalidate (FOO_SCROLL_AREA (randr_gui_area));
-        return FALSE;
-    }
-
-    return TRUE;
+    return display_setting_ask_fallback (builder);
 }
 
 static void
@@ -1615,7 +1626,8 @@ display_setting_apply (GtkWidget *widget, GtkBuilder *builder)
         xfce_randr_save_output (xfce_randr, "Default", display_channel, i);
     xfce_randr_apply (xfce_randr, "Default", display_channel);
 
-    /* TODO: Restore Confirmation Dialog */
+    display_setting_ask_fallback (builder);
+
     gtk_widget_set_sensitive(widget, FALSE);
 }
 
@@ -3881,6 +3893,7 @@ main (gint argc, gchar **argv)
     const gchar *alternative = NULL;
     const gchar *alternative_icon = NULL;
     gint         response;
+    guint        i = 0;
 
     /* Setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -3987,6 +4000,10 @@ main (gint argc, gchar **argv)
             succeeded = FALSE;
             goto cleanup;
         }
+
+        /* Store a Fallback of the current settings */
+        for (i = 0; i < xfce_randr->noutput; i++)
+            xfce_randr_save_output (xfce_randr, "Fallback", display_channel, i);
 
         if (xfce_randr->noutput <= 1 || !minimal)
             display_settings_show_main_dialog (display);
