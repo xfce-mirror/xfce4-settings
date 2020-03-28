@@ -235,7 +235,7 @@ command_dialog_run (CommandDialog *dialog,
     {
       response = gtk_dialog_run (GTK_DIALOG (dialog));
 
-      if (G_UNLIKELY (response != GTK_RESPONSE_CANCEL && g_utf8_strlen (command_dialog_get_command (dialog), -1) == 0))
+      if (G_UNLIKELY (response == GTK_RESPONSE_OK && g_utf8_strlen (command_dialog_get_command (dialog), -1) == 0))
         xfce_dialog_show_error (GTK_WINDOW (dialog), NULL, _("The command may not be empty."));
       else
         finished = TRUE;
