@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008,2016-2019
+# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008,2016-2020
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-16 00:30+0100\n"
-"PO-Revision-Date: 2019-11-20 08:58+0000\n"
+"POT-Creation-Date: 2020-04-01 12:31+0200\n"
+"PO-Revision-Date: 2020-04-04 01:57+0000\n"
 "Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/xfce/xfce4-settings/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +27,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "不明"
 
-#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3927
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:4101
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "使用している RandR エクステンションのバージョンを問い合わせることができません"
@@ -72,11 +73,11 @@ msgstr "キーボードおよびマウスのアクセシビリティを設定し
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:3967
+#: ../dialogs/display-settings/main.c:4141
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #: ../xfce4-settings-editor/main.c:166
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:265
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:260
 msgid "_Close"
 msgstr "閉じる(_C)"
 
@@ -87,7 +88,7 @@ msgstr "閉じる(_C)"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 #: ../xfce4-settings-editor/main.c:165
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:262
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:249
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
@@ -292,7 +293,7 @@ msgstr "マウス(_M)"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:131
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
@@ -300,7 +301,7 @@ msgstr "設定マネージャーソケット"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:131
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
@@ -308,21 +309,21 @@ msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
 #: ../dialogs/appearance-settings/main.c:110
-#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:132
+#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:101
+#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
 msgid "Version information"
 msgstr "バージョン情報を表示する"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
 #: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:3895
+#: ../dialogs/display-settings/main.c:4069
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
-#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
-#: ../xfsettingsd/main.c:275
+#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
+#: ../xfsettingsd/main.c:280
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "'%s --help' と入力すると使用方法が表示されます。"
@@ -330,20 +331,20 @@ msgstr "'%s --help' と入力すると使用方法が表示されます。"
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:3914
+#: ../dialogs/display-settings/main.c:4088
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
-#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
+#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
 #: ../dialogs/color-settings/main.c:1408
-#: ../dialogs/display-settings/main.c:3915
+#: ../dialogs/display-settings/main.c:4089
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
-#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
+#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "バグの報告は <%s> までお願いします。"
@@ -352,10 +353,16 @@ msgstr "バグの報告は <%s> までお願いします。"
 msgid "Improve keyboard and mouse accessibility"
 msgstr "キーボードとマウスのユーザー補助機能を向上させます"
 
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
+msgid ""
+"assistive;technologies;keys;sticky;bounce;emulation;screen "
+"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
+msgstr "補助;技術;キー;付箋;バウンス;エミュレーション;スクリーンリーダー;拡大鏡;a11y;i18n;l10n;AT-SPI;ATK;障害;"
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1041
-#: ../dialogs/display-settings/main.c:98
-#: ../dialogs/display-settings/main.c:109
+#: ../dialogs/display-settings/main.c:106
+#: ../dialogs/display-settings/main.c:117
 msgid "None"
 msgstr "なし"
 
@@ -614,6 +621,13 @@ msgstr "垂直 RGB"
 msgid "Vertical BGR"
 msgstr "垂直 GBR"
 
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
+msgid ""
+"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
+"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
+"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
+msgstr "テーマ;ユーザーインターフェイス;スタイル;アイコン;フォント;アンチエイリアス;ヒンティング;サブピクセル;サブピクセル;レンダリング;ClearType;DPI;RGB;BGR;メニューアクセラレーター;キーボードショートカット;イベント;サウンド;ウィンドウスケーリング;HiDPI;Retina ディスプレイ;"
+
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
 msgid "Scanner"
@@ -843,6 +857,10 @@ msgstr "不明"
 msgid "Set color profiles"
 msgstr "カラープロファイルを設定する"
 
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
+msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
+msgstr "色;設定;管理;ディスプレイ;モニター;プリンター;ウェブカメラ;スキャナー;"
+
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
 msgstr "確認"
@@ -1031,35 +1049,35 @@ msgid ""
 "your session or disconnecting or connecting a display."
 msgstr "変更されたプロファイルを更新しない場合、セッションの再起動、ディスプレイの切断または接続時に変更が失われます。"
 
-#: ../dialogs/display-settings/main.c:99
+#: ../dialogs/display-settings/main.c:107
 msgid "Left"
 msgstr "左"
 
-#: ../dialogs/display-settings/main.c:100
+#: ../dialogs/display-settings/main.c:108
 msgid "Inverted"
 msgstr "反転"
 
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:109
 msgid "Right"
 msgstr "右"
 
-#: ../dialogs/display-settings/main.c:110
+#: ../dialogs/display-settings/main.c:118
 msgid "Horizontal"
 msgstr "水平"
 
-#: ../dialogs/display-settings/main.c:111
+#: ../dialogs/display-settings/main.c:119
 msgid "Vertical"
 msgstr "垂直"
 
-#: ../dialogs/display-settings/main.c:112
+#: ../dialogs/display-settings/main.c:120
 msgid "Horizontal and Vertical"
 msgstr "垂直および水平"
 
-#: ../dialogs/display-settings/main.c:133
+#: ../dialogs/display-settings/main.c:141
 msgid "Minimal interface to set up an external output"
 msgstr "外部出力を設定する最小限のインターフェイス"
 
-#: ../dialogs/display-settings/main.c:273
+#: ../dialogs/display-settings/main.c:323
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -1067,52 +1085,52 @@ msgid ""
 msgstr "このままにしておくと %i 秒後に元の設定に戻ります。"
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:568
+#: ../dialogs/display-settings/main.c:644
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:878
+#: ../dialogs/display-settings/main.c:1043
 msgid "Display:"
 msgstr "ディスプレイ:"
 
-#: ../dialogs/display-settings/main.c:883
+#: ../dialogs/display-settings/main.c:1048
 msgid "Resolution:"
 msgstr "解像度:"
 
-#: ../dialogs/display-settings/main.c:1164
+#: ../dialogs/display-settings/main.c:1325
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "最後に有効だった出力を無効にしてはいけません。システムが使用できなくなります。"
 
-#: ../dialogs/display-settings/main.c:1166
+#: ../dialogs/display-settings/main.c:1327
 msgid "Selected output not disabled"
 msgstr "選択した出力は無効になっていません"
 
-#: ../dialogs/display-settings/main.c:1542
+#: ../dialogs/display-settings/main.c:1708
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "変更されたディスプレイプロファイル '%s' を更新しますか?"
 
-#: ../dialogs/display-settings/main.c:1547
+#: ../dialogs/display-settings/main.c:1713
 #, c-format
 msgid "_Update '%s'"
 msgstr "更新 '%s'(_U)"
 
-#: ../dialogs/display-settings/main.c:1834
+#: ../dialogs/display-settings/main.c:2001
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "ディスプレイプロファイル '%s' を削除しますか?"
 
-#: ../dialogs/display-settings/main.c:1836
+#: ../dialogs/display-settings/main.c:2003
 msgid "Delete Profile"
 msgstr "プロファイルを削除"
 
-#: ../dialogs/display-settings/main.c:1839
+#: ../dialogs/display-settings/main.c:2006
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "一度削除されたディスプレイプロファイルは復元できません。"
 
-#: ../dialogs/display-settings/main.c:1840
+#: ../dialogs/display-settings/main.c:2007
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:908
@@ -1120,23 +1138,23 @@ msgstr "一度削除されたディスプレイプロファイルは復元でき
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: ../dialogs/display-settings/main.c:1841
+#: ../dialogs/display-settings/main.c:2008
 msgid "Delete"
 msgstr "削除"
 
-#: ../dialogs/display-settings/main.c:1942
+#: ../dialogs/display-settings/main.c:2109
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce パネル"
 
-#: ../dialogs/display-settings/main.c:2946
+#: ../dialogs/display-settings/main.c:3117
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "プロパティを変更したいモニターを選択してください。ドラッグで配置を変更できます。"
 
-#: ../dialogs/display-settings/main.c:2989
-#: ../dialogs/display-settings/main.c:3065
+#: ../dialogs/display-settings/main.c:3160
+#: ../dialogs/display-settings/main.c:3236
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1145,36 +1163,41 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3267
+#: ../dialogs/display-settings/main.c:3438
 msgid "Mirror Screens"
 msgstr "ミラー表示"
 
-#: ../dialogs/display-settings/main.c:3317
+#: ../dialogs/display-settings/main.c:3488
 msgid "(Disabled)"
 msgstr "(無効)"
 
-#: ../dialogs/display-settings/main.c:3734
+#: ../dialogs/display-settings/main.c:3907
 #, c-format
 msgid "Only %s (1)"
 msgstr "%s のみ (1)"
 
-#: ../dialogs/display-settings/main.c:3745
+#: ../dialogs/display-settings/main.c:3918
 #, c-format
 msgid "Only %s (2)"
 msgstr "%s のみ (2)"
 
-#: ../dialogs/display-settings/main.c:3928
-#: ../dialogs/display-settings/main.c:3965
+#: ../dialogs/display-settings/main.c:4102
+#: ../dialogs/display-settings/main.c:4139
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce ディスプレイ設定を開始できません"
 
-#: ../dialogs/display-settings/main.c:3960
+#: ../dialogs/display-settings/main.c:4134
 msgid "ATI Settings"
 msgstr "ATI 設定"
 
-#: ../dialogs/display-settings/main.c:3975
+#: ../dialogs/display-settings/main.c:4149
 msgid "Unable to launch the proprietary driver settings"
 msgstr "プロプライエタリドライバー設定を起動できません"
+
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
+msgid ""
+"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
+msgstr "ディスプレイ;設定;画面;解像度;リフレッシュ;レート;回転;外部;プロジェクター;モニター;LCD;CRT;HiDPI;"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:107
@@ -1404,37 +1427,36 @@ msgstr "レイアウト"
 msgid "Variant"
 msgstr "バリエーション"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
-msgid "Shortcut command may not be empty."
-msgstr "ショートカットするコマンドが入力されていません。"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1270
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1246
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1247
 msgid "Reset to Defaults"
 msgstr "デフォルトに戻す"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1248
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "すべてのショートカットをデフォルト値にリセットします。本当によろしいですか?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1250
 msgid "No"
 msgstr "いいえ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1275
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1251
 msgid "Yes"
 msgstr "はい"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1351
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
 msgid "The system defaults will be restored next time you log in."
 msgstr "次回のログイン時にシステムデフォルトに戻ります。"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1329
 msgid "Warning"
 msgstr "警告"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
+msgid "numlock;keyboard;layout;shortcuts;"
+msgstr "numlock;キーボード;レイアウト;ショートカット;"
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
@@ -1566,6 +1588,10 @@ msgstr "デフォルトに戻す"
 #: ../dialogs/mime-settings/xfce-mime-window.c:976
 msgid "Choose Application..."
 msgstr "アプリケーションを選択..."
+
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
+msgid "file;type;extension;association;open with;"
+msgstr "ファイル;タイプ;拡張子;関連付け;開く;"
 
 #: ../dialogs/mouse-settings/main.c:83
 msgid "Active device in the dialog"
@@ -1811,6 +1837,11 @@ msgstr "プレビュー"
 msgid "_Theme"
 msgstr "テーマ(_T)"
 
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
+msgid ""
+"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
+msgstr "設定;ボタン;スクロール;方向;ポインター;速度;ダブルクリック;テーマ;ホイール;"
+
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
@@ -2020,24 +2051,28 @@ msgstr "プロパティの編集"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Xfconf のグラフィカル設定エディターです"
 
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
+msgid "registry;regedit;configuration file;"
+msgstr "レジストリ;regedit;構成ファイル;"
+
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
 msgstr "設定ダイアログを表示する"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:252
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:253
 msgid "All _Settings"
 msgstr "一覧(_S)"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:491
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:450
 msgid "Settings"
 msgstr "設定マネージャー"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:493
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:452
 msgid "Customize your desktop"
 msgstr "デスクトップをカスタマイズします"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:1000
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:1011
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:959
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:970
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "\"%s\" を起動できませんでした"
@@ -2047,8 +2082,12 @@ msgid "Settings Manager"
 msgstr "設定マネージャー"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Xfce 4 用グラフィカル設定マネージャーです"
+msgid "Graphical Settings Manager for Xfce"
+msgstr "Xfce のグラフィカル設定マネージャー"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
+msgid "control;panel;center;system;settings;personalize;hardware;"
+msgstr "コントロール;パネル;センター;システム;設定;パーソナライズ;ハードウェア;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2091,16 +2130,20 @@ msgstr "バウンスキー"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "ショートカット \"%s\" の起動に失敗しました"
 
-#: ../xfsettingsd/main.c:102
+#: ../xfsettingsd/main.c:103
 msgid "Do not fork to the background"
 msgstr "バックグラウンドで fork しない"
 
-#: ../xfsettingsd/main.c:103
+#: ../xfsettingsd/main.c:104
+msgid "Do not wait for a window manager on startup"
+msgstr "起動時にウィンドウマネージャーを待たない"
+
+#: ../xfsettingsd/main.c:105
 msgid "Replace running xsettings daemon (if any)"
 msgstr "既存の xsettings デーモン (もしあれば) を強制的に置き換えます"
 
 #. value in xfconf isn't a string, so make a default one
-#: ../xfsettingsd/workspaces.c:338 ../xfsettingsd/workspaces.c:396
+#: ../xfsettingsd/workspaces.c:337 ../xfsettingsd/workspaces.c:395
 #, c-format
 msgid "Workspace %d"
 msgstr "ワークスペース %d"
