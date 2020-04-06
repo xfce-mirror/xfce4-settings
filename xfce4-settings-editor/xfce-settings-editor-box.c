@@ -859,7 +859,7 @@ xfce_settings_editor_box_channel_monitor_changed (XfconfChannel *channel,
 												  GtkWidget     *window)
 {
     GtkTextBuffer *buffer;
-    GTimeVal       timeval;
+    gint64         timeval;
     gchar         *str;
     GValue         str_value = { 0, };
     GtkTextIter    iter;
@@ -867,7 +867,7 @@ xfce_settings_editor_box_channel_monitor_changed (XfconfChannel *channel,
     buffer = g_object_get_data (G_OBJECT (window), "buffer");
     g_return_if_fail (GTK_IS_TEXT_BUFFER (buffer));
 
-    g_get_current_time (&timeval);
+    timeval = g_get_real_time ();
 
     if (value != NULL && G_IS_VALUE (value))
     {
@@ -875,14 +875,14 @@ xfce_settings_editor_box_channel_monitor_changed (XfconfChannel *channel,
         if (g_value_transform (value, &str_value))
         {
             str = g_strdup_printf ("%ld: %s (%s: %s)\n",
-                                   timeval.tv_sec, property,
+                                   timeval / G_USEC_PER_SEC, property,
                                    G_VALUE_TYPE_NAME (value),
                                    g_value_get_string (&str_value));
         }
         else
         {
             str = g_strdup_printf ("%ld: %s (%s)\n",
-                                   timeval.tv_sec, property,
+                                   timeval / G_USEC_PER_SEC, property,
                                    G_VALUE_TYPE_NAME (value));
         }
         g_value_unset (&str_value);
@@ -890,7 +890,7 @@ xfce_settings_editor_box_channel_monitor_changed (XfconfChannel *channel,
     else
     {
         /* I18N: if a property is removed from the channel */
-        str = g_strdup_printf ("%ld: %s (%s)\n", timeval.tv_sec,
+        str = g_strdup_printf ("%ld: %s (%s)\n", timeval / G_USEC_PER_SEC,
                                property, _("reset"));
     }
 
@@ -940,7 +940,7 @@ xfce_settings_editor_box_channel_monitor (XfceSettingsEditorBox *self)
     GtkWidget     *textview;
     GtkWidget     *content_area;
     GtkTextBuffer *buffer;
-    GTimeVal       timeval;
+    gint64         timeval;
     gchar         *str;
     GtkTextIter    iter;
 
@@ -986,9 +986,9 @@ xfce_settings_editor_box_channel_monitor (XfceSettingsEditorBox *self)
     g_signal_connect (G_OBJECT (self->props_channel), "property-changed",
         G_CALLBACK (xfce_settings_editor_box_channel_monitor_changed), window);
 
-    g_get_current_time (&timeval);
+    timeval = g_get_real_time ();
     gtk_text_buffer_get_start_iter (buffer, &iter);
-    str = g_strdup_printf ("%ld: ", timeval.tv_sec);
+    str = g_strdup_printf ("%ld: ", timeval / G_USEC_PER_SEC);
     gtk_text_buffer_insert_with_tags_by_name (buffer, &iter, str, -1, "monospace", NULL);
     g_free (str);
 
