@@ -301,7 +301,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     /* pluggable dialog scrolled window and viewport */
     dialog->socket_scroll = scroll = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll), GTK_SHADOW_NONE);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
     gtk_box_pack_start (GTK_BOX (dialog_vbox), scroll, TRUE, TRUE, 0);
     gtk_container_set_border_width (GTK_CONTAINER (scroll), 0);
 
