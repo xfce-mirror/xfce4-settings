@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 06:31+0200\n"
-"PO-Revision-Date: 2019-04-24 04:31+0000\n"
+"POT-Creation-Date: 2020-04-01 12:31+0200\n"
+"PO-Revision-Date: 2020-04-01 10:31+0000\n"
 "Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/xfce/xfce4-settings/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3904
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:4101
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nu se poate interoga versiunea extensiei RandR utilizate"
@@ -68,207 +68,232 @@ msgid "Configure keyboard and mouse accessibility"
 msgstr "Configurați accesibilitatea pentru tastatură și maus"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/color-settings/color-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
+#: ../dialogs/display-settings/main.c:4141
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../xfce4-settings-editor/main.c:166
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:260
+msgid "_Close"
+msgstr "_Închide"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/color-settings/color-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../xfce4-settings-editor/main.c:165
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:249
+msgid "_Help"
+msgstr "_Ajutor"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "_Enable assistive technologies"
 msgstr "Activea_ză facilitățile de accesibilitate"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Start With Session"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive technologies will be available the next time you login"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "No AT-SPI provider was found on your system"
 msgstr "Nu s-a găsit niciun furnizor AT-SPI pe acest sistem"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid "Assistive _Technologies"
 msgstr "_Facilități de accesibilitate"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "_Use sticky keys"
 msgstr "_Utilizează taste persistente"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "_Lock sticky keys"
 msgstr "_Blochează tastele persistente"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr "La activare, tastele modificatoare (precum Control, Alt ori Shift) vor rămâne active până la următoarea apăsare"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr "_Dezactivează tastele persistente dacă se apasă două taste concomitent"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr "La activare, facilitatea „taste persistente” va fi dezactivată dacă se apasă simultan două taste"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid "Sticky Keys"
 msgstr "Taste persistente"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "Use slow _keys"
 msgstr "Utilizează taste le_nte"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "Acceptance _delay:"
 msgstr "Întâr_ziere la acceptare:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "Durata, în milisecunde, ce trebuie să treacă pentru a se accepta o nouă apăsare a unei taste"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid "Slow Keys"
 msgstr "Taste lente"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
 msgstr "Utilizează taste fără r_epetiție"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "K_eystroke delay:"
 msgstr "Întârzie_re la apăsarea tastei:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Durata, în milisecunde, ce trebuie să treacă între apăsările de taste"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid "Bounce Keys"
 msgstr "Taste fără repetiție"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid "Keyboa_rd"
 msgstr "Ta_statură"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "_Use mouse emulation"
 msgstr "Utilizează _emularea de maus"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "La activare, cursorul mausului va putea fi controlat prin intermediul blocului numeric al tastaturii"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "msec"
 msgstr "msec"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "Durata în milisecunde între apăsarea inițială a unei taste și prima mișcare repetată a cursorului"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "_Acceleration delay:"
 msgstr "Întâr_ziere la accelerare:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "R_epeat interval:"
 msgstr "Interval de _repetare:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Durata în milisecunde între mișcări repetate ale cursorului"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "Acceleration t_ime:"
 msgstr "Timp _de accelerare:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Durata în milisecunde în care se poate obține viteza maximă a cursorului"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "Ma_ximum speed:"
 msgstr "_Viteză maximă:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "The maximum pointer speed after acceleration"
 msgstr "Viteza maximă a cursorului de maus după accelerare"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "pixels/sec"
 msgstr "pixeli/sec"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "Acceleration _profile:"
 msgstr "_Profil de accelerare:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Intervalul în care se poate atinge viteza maximă a cursorului"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid "Mouse Emulation"
 msgstr "Emulare de maus"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "Show location of pointer on keypress"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:47
 msgid "Find Cursor"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:48
 msgid "_Mouse"
 msgstr "_Maus"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:131
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
@@ -276,7 +301,7 @@ msgstr "Socket al managerului opțiunilor"
 
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:131
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
@@ -284,42 +309,42 @@ msgstr "ID SOCKET"
 
 #: ../dialogs/accessibility-settings/main.c:47
 #: ../dialogs/appearance-settings/main.c:110
-#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:132
+#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:101
+#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
 msgid "Version information"
 msgstr "Detalii despre versiune"
 
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/color-settings/main.c:1373
-#: ../dialogs/display-settings/main.c:3872
+#: ../dialogs/color-settings/main.c:1390
+#: ../dialogs/display-settings/main.c:4069
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
-#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
-#: ../xfsettingsd/main.c:275
+#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
+#: ../xfsettingsd/main.c:280
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Încercați „%s --help” pentru detalii de utilizare."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:3891
+#: ../dialogs/color-settings/main.c:1407
+#: ../dialogs/display-settings/main.c:4088
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
-#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
+#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Echipa de dezvoltare Xfce. Toate drepturile sunt rezervate."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/color-settings/main.c:1391
-#: ../dialogs/display-settings/main.c:3892
+#: ../dialogs/color-settings/main.c:1408
+#: ../dialogs/display-settings/main.c:4089
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
-#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
+#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Raportați problemele la <%s>."
@@ -328,10 +353,16 @@ msgstr "Raportați problemele la <%s>."
 msgid "Improve keyboard and mouse accessibility"
 msgstr "Îmbunătățiți accesibilitatea tastaturii și a mausului"
 
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
+msgid ""
+"assistive;technologies;keys;sticky;bounce;emulation;screen "
+"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
+msgstr ""
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1041
-#: ../dialogs/display-settings/main.c:98
-#: ../dialogs/display-settings/main.c:109
+#: ../dialogs/display-settings/main.c:106
+#: ../dialogs/display-settings/main.c:117
 msgid "None"
 msgstr "Fără"
 
@@ -381,163 +412,163 @@ msgstr "Aspect"
 msgid "Customize the look of your desktop"
 msgstr "Personalizați aspectul propriului desktop"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "St_yle"
 msgstr "_Stil"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "_Icons"
 msgstr "Iconiț_e"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "Acest font va fi utilizat implicit la afișarea textului din interfață"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "Select a default font"
 msgstr "Selectați un font implicit"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Default Fon_t"
 msgstr "Fo_nt implicit"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Select a default monospace font"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Default _Monospace Font"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "_Enable anti-aliasing"
 msgstr "Acti_vare antialias"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Antialiasul (netezirea fonturilor) poate îmbunătăți aspectul textului pe ecran"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Hintin_g:"
 msgstr "_Hinting:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Multe fonturi conțin informații suplimentare privind cea mai bună metodă de afișare a caracterelor, alegeți opțiunea ce vi se pare că dă rezultatele cele mai bune"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Sub-_pixel order:"
 msgstr "Ordonare sub-pi_xel:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "Calitatea afișării fonturilor pe un ecran TFT/LCD poate fi mărită substanțial prin alegerea unei ordonări sub-pixel adecvată ecranului"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Rendering"
 msgstr "Randare"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Custom _DPI setting:"
 msgstr "_DPI specificat:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Modificați această opțiune dependentă de rezoluția monitorului dacă fonturile arată prea mari ori prea mici"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "DPI"
 msgstr "DPI"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "_Fonts"
 msgstr "_Fonturi"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Specify what should be displayed in toolbar items"
 msgstr "Specificați ce să se afișeze în bara cu unelte"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "_Toolbar Style"
 msgstr "Stil al barei cu _unelte"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images on _buttons"
 msgstr "Arată imagini în _butoane"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Specificați dacă să se afișeze iconițe în dreptul textului din butoane"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Show images in _menus"
 msgstr "Arată imagini în _meniuri"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Specificați dacă să se afișeze iconițe în dreptul elementelor din meniuri"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Enable e_ditable accelerators"
 msgstr "Activează acceleratorii e_ditabili"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "La activare, combinația de taste pentru un element din meniu poate fi schimbată prin apăsarea unei noi combinații de taste atunci când elementul este selectat în meniu"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Menus and Buttons"
 msgstr "Meniuri și butoane"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable _event sounds"
 msgstr "Activează _evenimentele sonore"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Activează ori dezactivează global evenimentele sonore (necesită suport pentru Canberra)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Enable input feedbac_k sounds"
 msgstr "Activează feedbackul sonor pentru i_nput"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Specificați dacă clicurile de maus ori alte tipuri de input din partea utilizatorului vor genera evenimente sonore"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "Event sounds"
 msgstr "Evenimente sonore"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Adjust the system-wide display scaling"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
 msgid "_Window Scaling"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:50
 msgid "Setti_ngs"
 msgstr "_Opțiuni"
 
@@ -590,6 +621,13 @@ msgstr "RGB vertical"
 msgid "Vertical BGR"
 msgstr "BGR vertical"
 
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
+msgid ""
+"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
+"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
+"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
+msgstr ""
+
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
 msgid "Scanner"
@@ -634,64 +672,74 @@ msgstr ""
 msgid "Configure color profiles for your devices"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:3
+#: ../dialogs/color-settings/color-dialog.glade.h:5
 msgid "<b>No devices found.</b>"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:4
+#: ../dialogs/color-settings/color-dialog.glade.h:6
 msgid "Model:"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:5
+#: ../dialogs/color-settings/color-dialog.glade.h:7
 msgid "Colorspace:"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:6
+#: ../dialogs/color-settings/color-dialog.glade.h:8
 msgid "Vendor:"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:7
+#: ../dialogs/color-settings/color-dialog.glade.h:9
 msgid "Calibrate"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:8
+#: ../dialogs/color-settings/color-dialog.glade.h:10
 msgid "<b>No profiles for the selected device.</b>"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:9
+#: ../dialogs/color-settings/color-dialog.glade.h:11
 msgid "Add a profile to the currently selected device"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "Delete the currently selected profile"
 msgstr ""
 
-#: ../dialogs/color-settings/color-dialog.glade.h:11
-msgid "Enable"
-msgstr ""
-
-#: ../dialogs/color-settings/color-dialog.glade.h:12
-msgid "Enable the selected profile"
-msgstr ""
-
 #: ../dialogs/color-settings/color-dialog.glade.h:13
-msgid "Add Profile to Device"
+msgid "Show detailed information about the selected profile"
 msgstr ""
 
 #: ../dialogs/color-settings/color-dialog.glade.h:14
-msgid "Add a Color Profile to your Device"
+msgid "Enable"
 msgstr ""
 
 #: ../dialogs/color-settings/color-dialog.glade.h:15
-#: ../dialogs/color-settings/main.c:129
+msgid "Enable the selected profile"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:16
+msgid "Add Profile to Device"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:17
+msgid "Add a Color Profile to your Device"
+msgstr ""
+
+#. Create cancel button
+#: ../dialogs/color-settings/color-dialog.glade.h:18
+#: ../dialogs/color-settings/main.c:130
+#: ../dialogs/keyboard-settings/command-dialog.c:111
+#: ../dialogs/keyboard-settings/command-dialog.c:262
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 msgid "_Cancel"
 msgstr "_Renunță"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:16
+#: ../dialogs/color-settings/color-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/command-dialog.c:115
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 msgid "_OK"
 msgstr "_OK"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:17
+#: ../dialogs/color-settings/color-dialog.glade.h:20
 msgid "Import color profile files (*.icc)"
 msgstr ""
 
@@ -760,53 +808,57 @@ msgid "Default Gray"
 msgstr ""
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: ../dialogs/color-settings/main.c:127
+#: ../dialogs/color-settings/main.c:128
 msgid "Select ICC Profile File"
 msgstr ""
 
-#: ../dialogs/color-settings/main.c:130
+#: ../dialogs/color-settings/main.c:131
 msgid "_Import"
 msgstr ""
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: ../dialogs/color-settings/main.c:141
+#: ../dialogs/color-settings/main.c:142
 msgid "Supported ICC profiles"
 msgstr ""
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: ../dialogs/color-settings/main.c:148
+#: ../dialogs/color-settings/main.c:149
 msgid "All files"
 msgstr "Toate fișierele"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: ../dialogs/color-settings/main.c:192
+#: ../dialogs/color-settings/main.c:193
 msgid "Default: "
 msgstr ""
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: ../dialogs/color-settings/main.c:199
+#: ../dialogs/color-settings/main.c:200
 msgid "Colorspace: "
 msgstr ""
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: ../dialogs/color-settings/main.c:205
+#: ../dialogs/color-settings/main.c:206
 msgid "Test profile: "
 msgstr ""
 
-#: ../dialogs/color-settings/main.c:243
+#: ../dialogs/color-settings/main.c:244
 msgid "Compatible Profiles"
 msgstr ""
 
-#: ../dialogs/color-settings/main.c:822 ../dialogs/color-settings/main.c:823
-#: ../dialogs/color-settings/main.c:824
+#: ../dialogs/color-settings/main.c:836 ../dialogs/color-settings/main.c:837
+#: ../dialogs/color-settings/main.c:838
 msgid "Unknown"
 msgstr "Nu se cunoaște"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
 msgid "Set color profiles"
+msgstr ""
+
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
+msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr ""
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
@@ -861,91 +913,96 @@ msgstr "Display"
 msgid "Configure screen settings and layout"
 msgstr "Configurați opțiunile pentru ecrane și monitoare"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "_Mirror displays"
 msgstr "Conținut identic pe toate _displayurile"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Primary Display:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "R_esolution:"
 msgstr "Re_zoluție:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "Refresh _rate:"
 msgstr "R_eîmprospătare:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:12
+#: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "Ro_tation:"
 msgstr "_Rotație:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:13
+#: ../dialogs/display-settings/display-dialog.glade.h:15
 msgid "Ref_lection:"
 msgstr "_Oglindire:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:14
-msgid "_General"
-msgstr "_Generale"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:15
-msgid "<b>Profiles</b>"
-msgstr ""
-
 #: ../dialogs/display-settings/display-dialog.glade.h:16
-msgid "<b>Connecting Displays</b>"
+msgid "A_pply"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:17
-msgid "Delete the currently selected display profile."
-msgstr ""
+msgid "_General"
+msgstr "_Generale"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:18
-msgid "Apply"
+msgid "<b>Profiles</b>"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:19
-msgid "Apply the currently selected display profile."
+msgid "<b>Connecting Displays</b>"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:20
-msgid "Create a new display profile."
+msgid "Delete the currently selected display profile."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:21
-msgid "Update an existing profile."
+msgid "Apply"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:22
-msgid "Automatically enable profiles when new display is connected"
+msgid "Apply the currently selected display profile."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:23
-msgid "Configure new displays when connected"
+msgid "Create a new display profile."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:24
-msgid "Show popup windows to identify displays"
+msgid "Update an existing profile."
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:25
-msgid "<b>Identifying Displays</b>"
+msgid "Automatically enable profiles when new display is connected"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:26
-msgid "_Advanced"
+msgid "Configure new displays when connected"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:27
-msgid "<b>Profile Name</b>"
+msgid "Show popup windows to identify displays"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:28
-msgid "Create"
+msgid "<b>Identifying Displays</b>"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:29
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
+msgid "_Advanced"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:30
+msgid "<b>Profile Name</b>"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:31
+msgid "Create"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:32
 msgid "A profile of this name already exists."
 msgstr ""
 
@@ -969,10 +1026,6 @@ msgstr "Extinde spre dreapta"
 msgid "Only Display 2"
 msgstr "Doar displayul 2"
 
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
-msgid "Advanced"
-msgstr "Avansate"
-
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
 msgstr "buton radio"
@@ -980,12 +1033,6 @@ msgstr "buton radio"
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
 msgid "Update Display Profile"
 msgstr ""
-
-#: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:3944
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
-msgid "_Close"
-msgstr "_Închide"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
 msgid "_Update"
@@ -1002,35 +1049,35 @@ msgid ""
 "your session or disconnecting or connecting a display."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:99
+#: ../dialogs/display-settings/main.c:107
 msgid "Left"
 msgstr "Stânga"
 
-#: ../dialogs/display-settings/main.c:100
+#: ../dialogs/display-settings/main.c:108
 msgid "Inverted"
 msgstr "Inversată"
 
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:109
 msgid "Right"
 msgstr "Dreapta"
 
-#: ../dialogs/display-settings/main.c:110
+#: ../dialogs/display-settings/main.c:118
 msgid "Horizontal"
 msgstr "Orizontală"
 
-#: ../dialogs/display-settings/main.c:111
+#: ../dialogs/display-settings/main.c:119
 msgid "Vertical"
 msgstr "Verticală"
 
-#: ../dialogs/display-settings/main.c:112
+#: ../dialogs/display-settings/main.c:120
 msgid "Horizontal and Vertical"
 msgstr "Orizontală și verticală"
 
-#: ../dialogs/display-settings/main.c:133
+#: ../dialogs/display-settings/main.c:141
 msgid "Minimal interface to set up an external output"
 msgstr "Interfață minimală pentru configurarea unei ieșiri externe"
 
-#: ../dialogs/display-settings/main.c:273
+#: ../dialogs/display-settings/main.c:323
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
@@ -1038,55 +1085,52 @@ msgid ""
 msgstr "Dacă nu răspundeți la această întrebare, configurația anterioară va fi restaurată în %i secunde."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:568
+#: ../dialogs/display-settings/main.c:644
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:878
+#: ../dialogs/display-settings/main.c:1043
 msgid "Display:"
 msgstr "Display:"
 
-#: ../dialogs/display-settings/main.c:883
+#: ../dialogs/display-settings/main.c:1048
 msgid "Resolution:"
 msgstr "Rezoluție:"
 
-#: ../dialogs/display-settings/main.c:1164
+#: ../dialogs/display-settings/main.c:1325
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Ultima ieșire activă nu trebuie dezactivată, altfel sistemul va deveni inutilizabil."
 
-#: ../dialogs/display-settings/main.c:1166
+#: ../dialogs/display-settings/main.c:1327
 msgid "Selected output not disabled"
 msgstr "Ieșirea selectată nu poate fi dezactivată"
 
-#: ../dialogs/display-settings/main.c:1519
+#: ../dialogs/display-settings/main.c:1708
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1524
+#: ../dialogs/display-settings/main.c:1713
 #, c-format
 msgid "_Update '%s'"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1811
+#: ../dialogs/display-settings/main.c:2001
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1813
+#: ../dialogs/display-settings/main.c:2003
 msgid "Delete Profile"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1816
+#: ../dialogs/display-settings/main.c:2006
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr ""
 
-#. Create cancel button
-#: ../dialogs/display-settings/main.c:1817
-#: ../dialogs/keyboard-settings/command-dialog.c:110
-#: ../dialogs/keyboard-settings/command-dialog.c:259
+#: ../dialogs/display-settings/main.c:2007
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:908
@@ -1094,23 +1138,23 @@ msgstr ""
 msgid "Cancel"
 msgstr "Renunță"
 
-#: ../dialogs/display-settings/main.c:1818
+#: ../dialogs/display-settings/main.c:2008
 msgid "Delete"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1919
+#: ../dialogs/display-settings/main.c:2109
 #, c-format
 msgid "%d Xfce Panels"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2923
+#: ../dialogs/display-settings/main.c:3117
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Selectați un monitor pentru a-l reconfigura și trageți-l pentru a-i schimba poziția."
 
-#: ../dialogs/display-settings/main.c:2966
-#: ../dialogs/display-settings/main.c:3042
+#: ../dialogs/display-settings/main.c:3160
+#: ../dialogs/display-settings/main.c:3236
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1119,104 +1163,102 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3244
+#: ../dialogs/display-settings/main.c:3438
 msgid "Mirror Screens"
 msgstr "Ecrane identice"
 
-#: ../dialogs/display-settings/main.c:3294
+#: ../dialogs/display-settings/main.c:3488
 msgid "(Disabled)"
 msgstr "(Dezactivat)"
 
-#: ../dialogs/display-settings/main.c:3711
+#: ../dialogs/display-settings/main.c:3907
 #, c-format
 msgid "Only %s (1)"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3722
+#: ../dialogs/display-settings/main.c:3918
 #, c-format
 msgid "Only %s (2)"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3905
-#: ../dialogs/display-settings/main.c:3942
+#: ../dialogs/display-settings/main.c:4102
+#: ../dialogs/display-settings/main.c:4139
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nu se poate porni fereastra cu opțiunile Xfce pentru display"
 
-#: ../dialogs/display-settings/main.c:3937
+#: ../dialogs/display-settings/main.c:4134
 msgid "ATI Settings"
 msgstr "Opțiuni ATI"
 
-#: ../dialogs/display-settings/main.c:3952
+#: ../dialogs/display-settings/main.c:4149
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nu se poate deschide programul de configurare a driverului proprietar"
 
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
+msgid ""
+"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
+msgstr ""
+
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:106
+#: ../dialogs/keyboard-settings/command-dialog.c:107
 msgid "Shortcut Command"
 msgstr "Comandă pentru combinația de taste"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:114
-msgid "OK"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/command-dialog.c:137
+#: ../dialogs/keyboard-settings/command-dialog.c:136
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr "Introduceți comanda de executat cu această combinație de taste."
 
 #. We are editing an existing shortcut
-#: ../dialogs/keyboard-settings/command-dialog.c:155
+#: ../dialogs/keyboard-settings/command-dialog.c:154
 msgid "Shortcut:"
 msgstr "Combinație de taste:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:168
-msgid "Command:"
-msgstr "Comandă:"
+#: ../dialogs/keyboard-settings/command-dialog.c:167
+msgid "Comm_and:"
+msgstr "Co_mandă:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:184
-#: ../dialogs/keyboard-settings/command-dialog.c:260
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:136
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
-msgid "Open"
-msgstr "Deschide"
-
-#: ../dialogs/keyboard-settings/command-dialog.c:189
+#: ../dialogs/keyboard-settings/command-dialog.c:192
 msgid "Use _startup notification"
 msgstr "Utilizează _notificare la pornire"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:236
+#: ../dialogs/keyboard-settings/command-dialog.c:239
 msgid "The command may not be empty."
 msgstr "Comanda nu poate fi nulă."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:256
+#: ../dialogs/keyboard-settings/command-dialog.c:259
 msgid "Select command"
 msgstr "Selectați comanda"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:264
+#: ../dialogs/keyboard-settings/command-dialog.c:263
+msgid "_Open"
+msgstr "_Deschide"
+
+#: ../dialogs/keyboard-settings/command-dialog.c:267
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:389
 msgid "All Files"
 msgstr "Toate fișierele"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:269
+#: ../dialogs/keyboard-settings/command-dialog.c:272
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:394
 msgid "Executable Files"
 msgstr "Fișierele executabile"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:284
+#: ../dialogs/keyboard-settings/command-dialog.c:287
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:409
 msgid "Perl Scripts"
 msgstr "Scripturile Perl"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:290
+#: ../dialogs/keyboard-settings/command-dialog.c:293
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:415
 msgid "Python Scripts"
 msgstr "Scripturile Python"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:296
+#: ../dialogs/keyboard-settings/command-dialog.c:299
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:421
 msgid "Ruby Scripts"
 msgstr "Scripturile Ruby"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:302
+#: ../dialogs/keyboard-settings/command-dialog.c:305
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:427
 msgid "Shell Scripts"
 msgstr "Scripturile shell"
@@ -1229,130 +1271,130 @@ msgstr "Selectați aranjamentul de tastatură"
 msgid "Select keyboard layout and variant"
 msgstr "Alegeți aranjamentul de tastatură și varianta sa"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
 msgstr "Tastatură"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "Editați opțiunile de tastatură și combinațiile de taste"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "Restore num l_ock state on startup"
 msgstr "Restaurează starea tastei NumLoc_k la pornire"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "General"
 msgstr "Generale"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "_Enable key repeat"
 msgstr "Activ_ează repetarea tastelor"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
 msgstr "La activare, o tastă ținută apăsată va genera la nesfârșit același caracter"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "_Repeat delay:"
 msgstr "Î_ntârzierea repetării:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Întârzierea, în milisecunde, cu care o tastă apăsată începe să se repete"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Repe_at speed:"
 msgstr "_Viteza de repetare:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Frecvența cu care se generează noi caractere atunci când o tastă este apăsată continuu"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Typing Settings"
 msgstr "Opțiuni de tastare"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Show _blinking"
 msgstr "Arată clipirea c_ursorului"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Specifică dacă să clipească sau nu cursorul textului"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Blink _delay:"
 msgstr "Întâr_ziere la clipire:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Întârzierea, în milisecunde, între clipirile succesive ale cursorului"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Cursor"
 msgstr "Cursor"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "_Test area:"
 msgstr "_Loc de testare:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "Beha_vior"
 msgstr "Co_mportament"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "Define shortcuts for la_unching applications:"
 msgstr "_Definiți combinații de taste pentru lansarea programelor:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "Reset to _Defaults"
 msgstr "Reinițiali_zare a opțiunilor"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "A_pplication Shortcuts"
 msgstr "_Scurtături pentru programe"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "_Use system defaults"
 msgstr "Utili_zează opțiunile implicite de sistem"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
 msgstr "Specifică dacă aranjamentul de tastatură este controlat de opțiunile din această fereastră ori de serverul X"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "Mo_del de tastatură"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr "Opțiune pentru sc_himbarea aranjamentului"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr "Tasta C_ompose"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "Mută elementul selectat cu un rând mai sus"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "Mută elementul selectat cu un rând mai jos"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "A_ranjament de tastatură"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "A_ranjament"
 
@@ -1369,53 +1411,52 @@ msgstr "Nu s-a putut efectua conectarea la demonul xfconf. Motiv: %s"
 msgid "Could not create the settings dialog."
 msgstr "Nu s-a putut crea fereastra cu opțiuni."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:398
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
 msgid "Command"
 msgstr "Comandă"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:403
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
 msgstr "Combinație de taste"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
 msgid "Layout"
 msgstr "Aranjament"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:480
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Variant"
 msgstr "Variantă"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1003
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1107
-msgid "Shortcut command may not be empty."
-msgstr "Comanda pentru combinația de taste nu poate fi nulă."
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1246
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1247
 msgid "Reset to Defaults"
 msgstr "Reinițializare a opțiunilor"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1248
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Această acțiune va reinițializa toate combinațiile de taste, revenindu-se la opțiunile implicite. Sigur doriți acest lucru?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1275
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1250
 msgid "No"
 msgstr "Nu"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1276
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1251
 msgid "Yes"
 msgstr "Da"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1352
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
 msgid "The system defaults will be restored next time you log in."
 msgstr "Opțiunile implicite de sistem vor fi restaurate la următoarea autentificare."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1354
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1329
 msgid "Warning"
 msgstr "Atenționare"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
+msgid "numlock;keyboard;layout;shortcuts;"
+msgstr ""
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
@@ -1424,6 +1465,11 @@ msgstr ""
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
 msgstr "Selectați un program"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:136
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
+msgid "Open"
+msgstr "Deschide"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid "Use a c_ustom command:"
@@ -1545,6 +1591,10 @@ msgstr "Revenire la valoarea implicită"
 msgid "Choose Application..."
 msgstr "Selectați un program…"
 
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
+msgid "file;type;extension;association;open with;"
+msgstr ""
+
 #: ../dialogs/mouse-settings/main.c:83
 msgid "Active device in the dialog"
 msgstr "Dispozitiv activ în fereastră"
@@ -1621,173 +1671,178 @@ msgstr "Maus și touchpad"
 msgid "Configure pointer device behavior and appearance"
 msgstr "Configurați aspectul și comportamentul indicatorului de tip cursor"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "De_vice:"
 msgstr "Disp_ozitiv:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Le_ft-handed"
 msgstr "_Stângaci"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Ri_ght-handed"
 msgstr "Dr_eptaci"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Reverse scroll d_irection"
 msgstr "In_versează direcția rotiței de derulare"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "La activare, rotița de derulare a mausului va funcționa invers decât în mod obișnuit"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Buttons"
 msgstr "Ordinea butoanelor"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "_Reset to Defaults"
 msgstr "_Reinițializare"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Revenire la valorile implicite pentru accelerarea și sensibilitatea dispozitivului selectat"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Sensitivit_y:"
 msgstr "Sensi_bilitatea:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Acceleratio_n:"
 msgstr "Accele_rația:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Factorul cu care se va incrementa viteza cursorului de maus când este mișcat"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Numărul de pixeli cu care mausul trebuie mișcat într-un interval scurt de timp înainte să înceapă accelerarea"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Pointer Speed"
 msgstr "Viteza cursorului"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "B_uttons and Feedback"
 msgstr "B_utoane și feedback"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Disable touchpad _while typing"
 msgstr "Dezacti_vează touchpad-ul în timpul tastării"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "La activare, touchpad-ul va fi dezactivat când utilizați tastatura"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Duratio_n:"
 msgstr "D_urată:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Tap touchpad to clic_k"
 msgstr "Atingerea _touchpad-ului produce un clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Scrolling _mode:"
 msgstr "M_od de derulare:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Enable hori_zontal scrolling"
 msgstr "Activează derularea ori_zontală"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Scrolling"
 msgstr "Derulare"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "T_ouchpad"
 msgstr "T_ouchpad"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Trac_king mode:"
 msgstr "Mod de _urmărire:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "_Rotation:"
 msgstr "_Rotație:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Tab_let"
 msgstr "Ta_bletă"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "_Devices"
 msgstr "_Dispozitive"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "Th_reshold:"
 msgstr "_Prag:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Numărul de pixeli cu care mausul trebuie mișcat înainte de a declanșa acțiunea de tragere și plasare"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "Drag and Drop"
 msgstr "Tragere și plasare"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Ti_me:"
 msgstr "Du_rată:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Două clicuri într-un interval de timp (în milisecunde) mai scurt de atât, va fi considerat un dublu-clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "D_istance:"
 msgstr "Di_stanță:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Cursorul de maus nu trebuie mutat mai mult de atâția pixeli între două clicuri pentru a se efectua un dublu-clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "Double Click"
 msgstr "Dublu-clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "_Behavior"
 msgstr "Comportame_nt"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "Cursor si_ze:"
 msgstr "Mă_rimea cursorului:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "Size"
 msgstr "Mărime"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid "Preview"
 msgstr "Previzualizare"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:54
 msgid "_Theme"
 msgstr "Te_mă"
+
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
+msgid ""
+"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
+msgstr ""
 
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
@@ -1798,134 +1853,125 @@ msgstr "Editor de opțiuni"
 msgid "Customize settings stored by Xfconf"
 msgstr "Personalizați opțiunile stocate de Xfconf"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:252
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:253
 msgid "Channel"
 msgstr "Canal"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:286
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:287
 msgid "Property"
 msgstr "Proprietate"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:293
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:294
 msgid "Type"
 msgstr "Tip"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:300
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:301
 msgid "Locked"
 msgstr "Blocat"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:307
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:308
 msgid "Value"
 msgstr "Valoare"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:322
-msgid "New"
-msgstr "Nou"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:325
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:328
 msgid "New property"
 msgstr "Proprietate nouă"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:333
-msgid "Edit"
-msgstr "Editare"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:341
 msgid "Edit selected property"
 msgstr "Editați proprietatea selectată"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:344
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1031
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1370
-msgid "_Reset"
-msgstr "_Reinițializează"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:347
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
 msgid "Reset selected property"
 msgstr "Reinițializează proprietatea selectată"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:454
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:545
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:664
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:461
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:552
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:671
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "Gol"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:457
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:464
 msgid "Array"
 msgstr "Matrice"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:462
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:469
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "Șir"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:470
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:477
 msgid "Integer"
 msgstr "Întreg"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:473
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:480
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "Boolean"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:476
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:483
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "Double"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:810
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:817
 msgid "_Reset Channel"
 msgstr "_Reinițializează canalul"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:811
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:818
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Reinițializarea unui canal va șterge definitiv opțiunile sale personalizate."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:812
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:819
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Sigur doriți să reinițializați canalul „%s” și toate proprietățile sale?"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:887
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:894
 msgid "reset"
 msgstr "reinițializare"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:944
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:951
 #, c-format
 msgid "Monitor %s"
 msgstr "Monitorizează %s"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:952
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:959
 msgid "Watch an Xfconf channel for property changes"
 msgstr "Urmărește un canal Xfconf pentru schimbări ale proprietăților"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:954
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:961
 msgid "Clear"
 msgstr "Golește"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:955
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:962
 msgid "Close"
 msgstr "Închidere"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:988
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:995
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "începe monitorizarea canalului „%s”"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1037
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1038
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1377
+msgid "_Reset"
+msgstr "_Reinițializează"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1044
 msgid "_Monitor"
 msgstr "_Monitorizare"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1047
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1054
 msgid "Refresh"
 msgstr "Reîmprospătare"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1371
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1378
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Reinițializarea unei proprietăți va șterge definitiv opțiunile personalizate asociate."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1372
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1379
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Sigur doriți să reinițializați proprietatea „%s”?"
@@ -2007,28 +2053,28 @@ msgstr "Editați proprietatea"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Editor grafic al opțiunilor Xfconf"
 
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
+msgid "registry;regedit;configuration file;"
+msgstr ""
+
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
 msgstr "Fereastră cu opțiuni de afișat"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:253
 msgid "All _Settings"
 msgstr "_Toate opțiunile"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
-msgid "_Help"
-msgstr "_Ajutor"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:450
 msgid "Settings"
 msgstr "Opțiuni"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:452
 msgid "Customize your desktop"
 msgstr "Personalizați-vă desktopul"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:959
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:970
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nu s-a putut porni „%s”"
@@ -2038,8 +2084,12 @@ msgid "Settings Manager"
 msgstr "Manager de opțiuni"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Manager grafic al opțiunilor Xfce 4"
+msgid "Graphical Settings Manager for Xfce"
+msgstr ""
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
+msgid "control;panel;center;system;settings;personalize;hardware;"
+msgstr ""
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2082,20 +2132,28 @@ msgstr "Taste fără repetiție"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Nu s-a putut lansa comanda „%s”"
 
-#: ../xfsettingsd/main.c:102
+#: ../xfsettingsd/main.c:103
 msgid "Do not fork to the background"
 msgstr "Nu face fork în fundal"
 
-#: ../xfsettingsd/main.c:103
+#: ../xfsettingsd/main.c:104
+msgid "Do not wait for a window manager on startup"
+msgstr "Nu aștepta după managerul de ferestra la pornire"
+
+#: ../xfsettingsd/main.c:105
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Înlocuiește demonul xsettings pornit (dacă există)"
 
 #. value in xfconf isn't a string, so make a default one
-#: ../xfsettingsd/workspaces.c:338 ../xfsettingsd/workspaces.c:396
+#: ../xfsettingsd/workspaces.c:337 ../xfsettingsd/workspaces.c:395
 #, c-format
 msgid "Workspace %d"
 msgstr "Spațiul de lucru %d"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
+msgid "Xfce Settings Daemon"
+msgstr ""
+
+#: ../xfsettingsd/xfsettingsd.desktop.in.h:2
 msgid "The Xfce Settings Daemon"
 msgstr "Demonul opțiunilor Xfce"
