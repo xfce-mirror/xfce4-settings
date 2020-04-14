@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-29 00:31+0100\n"
-"PO-Revision-Date: 2020-03-01 09:02+0000\n"
-"Last-Translator: Zmicer Turok <nashtlumach@gmail.com>\n"
+"POT-Creation-Date: 2020-04-01 12:31+0200\n"
+"PO-Revision-Date: 2020-04-01 10:31+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/xfce4-settings/language/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +28,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Невядома"
 
-#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:4088
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:4101
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Не атрымалася запатрабаваць версію выкарыстоўваемага пашырэння RandR"
@@ -74,7 +74,7 @@ msgstr "Наладка адмысловых магчымасцяў мышы і �
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4128
+#: ../dialogs/display-settings/main.c:4141
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #: ../xfce4-settings-editor/main.c:166
@@ -320,7 +320,7 @@ msgstr "Інфармацыя пра версію"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
 #: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:4056
+#: ../dialogs/display-settings/main.c:4069
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
@@ -332,7 +332,7 @@ msgstr "Увядзіце \"%s --help\" для вываду даведкі."
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4075
+#: ../dialogs/display-settings/main.c:4088
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
@@ -342,7 +342,7 @@ msgstr "Каманда распрацоўкі Xfce. Усе правы абаро
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
 #: ../dialogs/color-settings/main.c:1408
-#: ../dialogs/display-settings/main.c:4076
+#: ../dialogs/display-settings/main.c:4089
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
@@ -353,6 +353,12 @@ msgstr "Калі ласка, паведамляйце пра памылкі на
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
 msgstr "Наладка адмысловых магчымасцяў мышы і клавіятуры"
+
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
+msgid ""
+"assistive;technologies;keys;sticky;bounce;emulation;screen "
+"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
+msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1041
@@ -616,6 +622,13 @@ msgstr "Вертыкальны RGB"
 msgid "Vertical BGR"
 msgstr "Вертыкальны BGR"
 
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
+msgid ""
+"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
+"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
+"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
+msgstr ""
+
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
 msgid "Scanner"
@@ -845,6 +858,10 @@ msgstr "Невядома"
 msgid "Set color profiles"
 msgstr "Абраць каляровы профіль"
 
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
+msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
+msgstr ""
+
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
 msgstr "Пацвярджаць, калі"
@@ -1069,52 +1086,52 @@ msgid ""
 msgstr "Папярэдняя канфігурацыя будзе адноўленая праз %i секунд калі вы не адкажаце на пытанне."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:618
+#: ../dialogs/display-settings/main.c:644
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Гц"
 
-#: ../dialogs/display-settings/main.c:1017
+#: ../dialogs/display-settings/main.c:1043
 msgid "Display:"
 msgstr "Дысплей:"
 
-#: ../dialogs/display-settings/main.c:1022
+#: ../dialogs/display-settings/main.c:1048
 msgid "Resolution:"
 msgstr "Раздзяляльная здольнасць:"
 
-#: ../dialogs/display-settings/main.c:1303
+#: ../dialogs/display-settings/main.c:1325
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Апошні актыўны выхад мусіць быць уключаны, сістэма будзе непрыдатнай для выкарыстання."
 
-#: ../dialogs/display-settings/main.c:1305
+#: ../dialogs/display-settings/main.c:1327
 msgid "Selected output not disabled"
 msgstr "Абраны выхад недаступны"
 
-#: ../dialogs/display-settings/main.c:1697
+#: ../dialogs/display-settings/main.c:1708
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Абнавіць зменены профіль дысплея \"%s\"?"
 
-#: ../dialogs/display-settings/main.c:1702
+#: ../dialogs/display-settings/main.c:1713
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Абнавіць \"%s\""
 
-#: ../dialogs/display-settings/main.c:1989
+#: ../dialogs/display-settings/main.c:2001
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Хочаце выдаліць профіль дысплея \"%s\"?"
 
-#: ../dialogs/display-settings/main.c:1991
+#: ../dialogs/display-settings/main.c:2003
 msgid "Delete Profile"
 msgstr "Выдаліць профіль"
 
-#: ../dialogs/display-settings/main.c:1994
+#: ../dialogs/display-settings/main.c:2006
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Пасля выдалення профілю яго немагчыма будзе аднавіць."
 
-#: ../dialogs/display-settings/main.c:1995
+#: ../dialogs/display-settings/main.c:2007
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:908
@@ -1122,23 +1139,23 @@ msgstr "Пасля выдалення профілю яго немагчыма �
 msgid "Cancel"
 msgstr "Скасаваць"
 
-#: ../dialogs/display-settings/main.c:1996
+#: ../dialogs/display-settings/main.c:2008
 msgid "Delete"
 msgstr "Выдаліць"
 
-#: ../dialogs/display-settings/main.c:2097
+#: ../dialogs/display-settings/main.c:2109
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d панэлі Xfce"
 
-#: ../dialogs/display-settings/main.c:3105
+#: ../dialogs/display-settings/main.c:3117
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Абярыце манітор для змены яго ўласцівасцяў; перацягніце для змены яго размяшчэння."
 
-#: ../dialogs/display-settings/main.c:3148
-#: ../dialogs/display-settings/main.c:3224
+#: ../dialogs/display-settings/main.c:3160
+#: ../dialogs/display-settings/main.c:3236
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1147,36 +1164,41 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3426
+#: ../dialogs/display-settings/main.c:3438
 msgid "Mirror Screens"
 msgstr "Адлюстраваныя экраны"
 
-#: ../dialogs/display-settings/main.c:3476
+#: ../dialogs/display-settings/main.c:3488
 msgid "(Disabled)"
 msgstr "(Выключана)"
 
-#: ../dialogs/display-settings/main.c:3895
+#: ../dialogs/display-settings/main.c:3907
 #, c-format
 msgid "Only %s (1)"
 msgstr "Толькі %s (1)"
 
-#: ../dialogs/display-settings/main.c:3906
+#: ../dialogs/display-settings/main.c:3918
 #, c-format
 msgid "Only %s (2)"
 msgstr "Толькі %s(2)"
 
-#: ../dialogs/display-settings/main.c:4089
-#: ../dialogs/display-settings/main.c:4126
+#: ../dialogs/display-settings/main.c:4102
+#: ../dialogs/display-settings/main.c:4139
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Не атрымалася запусціць налады дысплея Xfce"
 
-#: ../dialogs/display-settings/main.c:4121
+#: ../dialogs/display-settings/main.c:4134
 msgid "ATI Settings"
 msgstr "Налады  ATI"
 
-#: ../dialogs/display-settings/main.c:4136
+#: ../dialogs/display-settings/main.c:4149
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Не атрымалася запусціць налады несвабоднага драйвера"
+
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
+msgid ""
+"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
+msgstr ""
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:107
@@ -1406,37 +1428,36 @@ msgstr "Раскладка"
 msgid "Variant"
 msgstr "Варыянт"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
-msgid "Shortcut command may not be empty."
-msgstr "Загад не можа быць пустым."
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1270
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1271
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1246
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1247
 msgid "Reset to Defaults"
 msgstr "Скінуць да прадвызначанага"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1248
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Гэтае дзеянне скіне ўсе спалучэнні клавіш. Сапраўды зрабіць гэта?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1250
 msgid "No"
 msgstr "Не"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1275
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1251
 msgid "Yes"
 msgstr "Так"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1351
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
 msgid "The system defaults will be restored next time you log in."
 msgstr "Прадвызначаныя налады адновяцца падчас наступнага ўваходу ў сістэму."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1329
 msgid "Warning"
 msgstr "Увага"
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
+msgid "numlock;keyboard;layout;shortcuts;"
+msgstr ""
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
@@ -1571,6 +1592,10 @@ msgstr "Скінуць да прадвызначанага"
 #: ../dialogs/mime-settings/xfce-mime-window.c:976
 msgid "Choose Application..."
 msgstr "Абраць праграму..."
+
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
+msgid "file;type;extension;association;open with;"
+msgstr ""
 
 #: ../dialogs/mouse-settings/main.c:83
 msgid "Active device in the dialog"
@@ -1816,6 +1841,11 @@ msgstr "Папярэдні прагляд"
 msgid "_Theme"
 msgstr "_Тэма"
 
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
+msgid ""
+"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
+msgstr ""
+
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
@@ -2025,6 +2055,10 @@ msgstr "Рэдагаваць уласцівасць"
 msgid "Graphical settings editor for Xfconf"
 msgstr "Графічны рэдактар налад для  Xfconf"
 
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
+msgid "registry;regedit;configuration file;"
+msgstr ""
+
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
 msgstr "Дыялог налад для паказу"
@@ -2052,8 +2086,12 @@ msgid "Settings Manager"
 msgstr "Кіраўнік налад"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Графічны кіраўнік налад для Xfce 4"
+msgid "Graphical Settings Manager for Xfce"
+msgstr ""
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
+msgid "control;panel;center;system;settings;personalize;hardware;"
+msgstr ""
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
