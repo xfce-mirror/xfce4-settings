@@ -63,19 +63,19 @@ BUILT_SOURCES = \
 	identity-popup_ui.h
 
 confirmation-dialog_ui.h: confirmation-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=confirmation_dialog_ui $< >$@
+	xdt-csource --static --strip-comments --strip-content --name=confirmation_dialog_ui $< >$@
 
 display-dialog_ui.h: display-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=display_dialog_ui $< >$@
+	xdt-csource --static --strip-comments --strip-content --name=display_dialog_ui $< >$@
 
 minimal-display-dialog_ui.h: minimal-display-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=minimal_display_dialog_ui $< >$@
+	xdt-csource --static --strip-comments --strip-content --name=minimal_display_dialog_ui $< >$@
 
 profile-changed-dialog_ui.h: profile-changed-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=profile_changed_dialog_ui $< >$@
+	xdt-csource --static --strip-comments --strip-content --name=profile_changed_dialog_ui $< >$@
 
 identity-popup_ui.h: identity-popup.glade
-	exo-csource --static --strip-comments --strip-content --name=identity_popup_ui $< >$@
+	xdt-csource --static --strip-comments --strip-content --name=identity_popup_ui $< >$@
 
 endif
 

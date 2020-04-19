@@ -53,7 +53,7 @@ BUILT_SOURCES = \
 	keyboard-dialog_ui.h
 
 keyboard-dialog_ui.h: keyboard-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=keyboard_dialog_ui $< >$@
+	xdt-csource --static --strip-comments --strip-content --name=keyboard_dialog_ui $< >$@
 
 endif
 

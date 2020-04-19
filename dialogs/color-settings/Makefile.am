@@ -44,7 +44,7 @@ BUILT_SOURCES = \
 	color-dialog_ui.h
 
 color-dialog_ui.h: color-dialog.glade
-	exo-csource --static --strip-comments --strip-content --name=color_dialog_ui $< >$@
+	xdt-csource --static --strip-comments --strip-content --name=color_dialog_ui $< >$@
 
 endif
 
