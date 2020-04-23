@@ -27,11 +27,15 @@
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
 #include <gio/gio.h>
+#include <gdk/gdkkeysyms.h>
+
+#include <exo/exo.h>
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <gio/gdesktopappinfo.h>
 #include <xfconf/xfconf.h>
 
+#include "xfce-mime-helper-chooser.h"
 #include "xfce-mime-window.h"
 #include "xfce-mime-chooser.h"
 
@@ -146,7 +150,6 @@ xfce_mime_window_class_init (XfceMimeWindowClass *klass)
 static void
 xfce_mime_window_init (XfceMimeWindow *window)
 {
-    GtkWidget         *area;
     GtkWidget         *vbox;
     GtkWidget         *hbox;
     GtkWidget         *label;
@@ -158,6 +161,18 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gint               n_mime_types;
     GtkTreeViewColumn *column;
     GtkCellRenderer   *renderer;
+    AtkRelationSet    *relations;
+    AtkRelation       *relation;
+    AtkObject         *object;
+    GtkWidget         *notebook;
+    GtkWidget         *chooser;
+    GtkWidget         *button;
+    GtkWidget         *image;
+    GtkWidget         *frame;
+    GtkWidget         *box;
+
+    /* verify category settings */
+    g_assert (EXO_HELPER_N_CATEGORIES == 4);
 
     window->channel = xfconf_channel_new ("xfce4-mime-settings");
 
@@ -166,23 +181,175 @@ xfce_mime_window_init (XfceMimeWindow *window)
 
     n_mime_types = xfce_mime_window_mime_model (window);
 
-    gtk_window_set_title (GTK_WINDOW (window), _("MIME Type Editor"));
-    gtk_window_set_icon_name (GTK_WINDOW (window), "application-x-executable");
+    gtk_window_set_title (GTK_WINDOW (window), _("Preferred Applications"));
+    gtk_window_set_icon_name (GTK_WINDOW (window), "preferences-desktop-default-applications");
     gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_NORMAL);
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (window),
         _("Associate applications with MIME types"));
+    xfce_titled_dialog_create_action_area (XFCE_TITLED_DIALOG (window));
+    xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (window), _("_Close"), GTK_RESPONSE_CLOSE);
+    xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (window), _("_Help"), GTK_RESPONSE_HELP);
 
     /* restore old user size */
     gtk_window_set_default_size (GTK_WINDOW (window),
         xfconf_channel_get_int (window->channel, "/last/window-width", 550),
         xfconf_channel_get_int (window->channel, "/last/window-height", 400));
 
-    window->plug_child = vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
-    gtk_box_set_spacing (GTK_BOX (vbox), 6);
+    notebook = gtk_notebook_new ();
+    gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (window))), notebook, TRUE, TRUE, 0);
+    gtk_container_set_border_width (GTK_CONTAINER (notebook), 6);
+    gtk_widget_show (notebook);
+    window->plug_child = notebook;
 
-    area = gtk_dialog_get_content_area (GTK_DIALOG (window));
-    gtk_box_pack_start (GTK_BOX (area), vbox, TRUE, TRUE, 0);
+    /*
+       Internet
+     */
+    label = gtk_label_new_with_mnemonic (_("_Internet"));
+    vbox = g_object_new (GTK_TYPE_BOX, "orientation", GTK_ORIENTATION_VERTICAL, "border-width", 12, "spacing", 18, NULL);
+    gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
+    gtk_widget_show (label);
+    gtk_widget_show (vbox);
+
+    /*
+       Web Browser
+     */
+    frame = g_object_new (GTK_TYPE_FRAME, "border-width", 0, "shadow-type", GTK_SHADOW_NONE, NULL);
+    gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, TRUE, 0);
+    gtk_widget_show (frame);
+
+    label = g_object_new (GTK_TYPE_LABEL, "attributes", window->attrs_bold, "label", _("Web Browser"), NULL);
+    gtk_frame_set_label_widget (GTK_FRAME (frame), label);
+    gtk_widget_show (label);
+
+    box = g_object_new (GTK_TYPE_BOX, "orientation", GTK_ORIENTATION_VERTICAL, "margin-top", 6, "margin-left", 12, "spacing", 6, NULL);
+    gtk_container_add (GTK_CONTAINER (frame), box);
+    gtk_widget_show (box);
+
+    label = gtk_label_new (_("The preferred Web Browser will be used to open hyperlinks and display help contents."));
+    g_object_set (label, "xalign", 0.0f, "yalign", 0.0f, "wrap", TRUE, NULL);
+    gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
+    gtk_widget_show (label);
+
+    chooser = exo_helper_chooser_new (EXO_HELPER_WEBBROWSER);
+    gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
+    gtk_widget_show (chooser);
+
+    /* set Atk label relation for the chooser */
+    object = gtk_widget_get_accessible (chooser);
+    relations = atk_object_ref_relation_set (gtk_widget_get_accessible (label));
+    relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
+    atk_relation_set_add (relations, relation);
+    g_object_unref (G_OBJECT (relation));
+
+    /*
+       Mail Reader
+     */
+    frame = g_object_new (GTK_TYPE_FRAME, "border-width", 0, "shadow-type", GTK_SHADOW_NONE, NULL);
+    gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, TRUE, 0);
+    gtk_widget_show (frame);
+
+    label = g_object_new (GTK_TYPE_LABEL, "attributes", window->attrs_bold, "label", _("Mail Reader"), NULL);
+    gtk_frame_set_label_widget (GTK_FRAME (frame), label);
+    gtk_widget_show (label);
+
+    box = g_object_new (GTK_TYPE_BOX, "orientation", GTK_ORIENTATION_VERTICAL, "margin-top", 6, "margin-left", 12, "spacing", 6, NULL);
+    gtk_container_add (GTK_CONTAINER (frame), box);
+    gtk_widget_show (box);
+
+    label = gtk_label_new (_("The preferred Mail Reader will be used to compose emails when you click on email addresses."));
+    g_object_set (label, "xalign", 0.0f, "yalign", 0.0f, "wrap", TRUE, NULL);
+    gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
+    gtk_widget_show (label);
+
+    chooser = exo_helper_chooser_new (EXO_HELPER_MAILREADER);
+    gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
+    gtk_widget_show (chooser);
+
+    /* set Atk label relation for the chooser */
+    object = gtk_widget_get_accessible (chooser);
+    relations = atk_object_ref_relation_set (gtk_widget_get_accessible (label));
+    relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
+    atk_relation_set_add (relations, relation);
+    g_object_unref (G_OBJECT (relation));
+
+    /*
+       Utilities
+     */
+    label = gtk_label_new_with_mnemonic (_("_Utilities"));
+    vbox = g_object_new (GTK_TYPE_BOX, "orientation", GTK_ORIENTATION_VERTICAL, "border-width", 12, "spacing", 18, NULL);
+    gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
+    gtk_widget_show (label);
+    gtk_widget_show (vbox);
+
+    /*
+       File Manager
+     */
+    frame = g_object_new (GTK_TYPE_FRAME, "border-width", 0, "shadow-type", GTK_SHADOW_NONE, NULL);
+    gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, TRUE, 0);
+    gtk_widget_show (frame);
+
+    label = g_object_new (GTK_TYPE_LABEL, "attributes", window->attrs_bold, "label", _("File Manager"), NULL);
+    gtk_frame_set_label_widget (GTK_FRAME (frame), label);
+    gtk_widget_show (label);
+
+    box = g_object_new (GTK_TYPE_BOX, "orientation", GTK_ORIENTATION_VERTICAL, "margin-top", 6, "margin-left", 12, "spacing", 6, NULL);
+    gtk_container_add (GTK_CONTAINER (frame), box);
+    gtk_widget_show (box);
+
+    label = gtk_label_new (_("The preferred File Manager will be used to browse the contents of folders."));
+    g_object_set (label, "xalign", 0.0f, "yalign", 0.0f, "wrap", TRUE, NULL);
+    gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
+    gtk_widget_show (label);
+
+    chooser = exo_helper_chooser_new (EXO_HELPER_FILEMANAGER);
+    gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
+    gtk_widget_show (chooser);
+
+    /* set Atk label relation for the chooser */
+    object = gtk_widget_get_accessible (chooser);
+    relations = atk_object_ref_relation_set (gtk_widget_get_accessible (label));
+    relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
+    atk_relation_set_add (relations, relation);
+    g_object_unref (G_OBJECT (relation));
+
+    /*
+       Terminal Emulator
+     */
+    frame = g_object_new (GTK_TYPE_FRAME, "border-width", 0, "shadow-type", GTK_SHADOW_NONE, NULL);
+    gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, TRUE, 0);
+    gtk_widget_show (frame);
+
+    label = g_object_new (GTK_TYPE_LABEL, "attributes", window->attrs_bold, "label", _("Terminal Emulator"), NULL);
+    gtk_frame_set_label_widget (GTK_FRAME (frame), label);
+    gtk_widget_show (label);
+
+    box = g_object_new (GTK_TYPE_BOX, "orientation", GTK_ORIENTATION_VERTICAL, "margin-top", 6, "margin-left", 12, "spacing", 6, NULL);
+    gtk_container_add (GTK_CONTAINER (frame), box);
+    gtk_widget_show (box);
+
+    label = gtk_label_new (_("The preferred Terminal Emulator will be used to run commands that require a CLI environment."));
+    g_object_set (label, "xalign", 0.0f, "yalign", 0.0f, "wrap", TRUE, NULL);
+    gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
+    gtk_widget_show (label);
+
+    chooser = exo_helper_chooser_new (EXO_HELPER_TERMINALEMULATOR);
+    gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
+    gtk_widget_show (chooser);
+
+    /* set Atk label relation for the chooser */
+    object = gtk_widget_get_accessible (chooser);
+    relations = atk_object_ref_relation_set (gtk_widget_get_accessible (label));
+    relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
+    atk_relation_set_add (relations, relation);
+    g_object_unref (G_OBJECT (relation));
+
+    /*
+       Mimes
+     */
+    label = gtk_label_new_with_mnemonic (_("_Others"));
+    vbox = g_object_new (GTK_TYPE_BOX, "orientation", GTK_ORIENTATION_VERTICAL, "border-width", 12, "spacing", 18, NULL);
+    gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
+    gtk_widget_show (label);
     gtk_widget_show (vbox);
 
     hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
@@ -196,7 +363,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     entry = gtk_entry_new ();
     gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
-    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, "edit-clear");
+    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, "edit-clear-symbolic");
     gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, _("Clear filter"));
     g_signal_connect (G_OBJECT (entry), "icon-release",
         G_CALLBACK (xfce_mime_window_filter_clear), NULL);
