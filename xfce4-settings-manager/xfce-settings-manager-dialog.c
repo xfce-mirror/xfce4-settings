@@ -265,7 +265,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     dialog->filter_entry = entry = gtk_entry_new ();
     gtk_header_bar_pack_end (GTK_HEADER_BAR (gtk_dialog_get_header_bar (GTK_DIALOG (dialog))), entry);
     gtk_widget_set_valign (entry, GTK_ALIGN_CENTER);
-    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, "edit-find");
+    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, "edit-find-symbolic");
     gtk_entry_set_icon_activatable (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, FALSE);
     g_signal_connect (G_OBJECT (entry), "changed",
         G_CALLBACK (xfce_settings_manager_dialog_entry_changed), dialog);
@@ -727,7 +727,7 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget                 *entry,
         {
             gtk_entry_set_icon_from_icon_name (GTK_ENTRY (dialog->filter_entry),
                 GTK_ENTRY_ICON_SECONDARY,
-                filter_text == NULL ? "edit-find" : "edit-clear");
+                filter_text == NULL ? "edit-find-symbolic" : "edit-clear-symbolic");
             gtk_entry_set_icon_activatable (GTK_ENTRY (dialog->filter_entry),
                 GTK_ENTRY_ICON_SECONDARY, filter_text != NULL);
         }
