@@ -114,9 +114,7 @@ gsd_clipboard_manager_class_init (GsdClipboardManagerClass *klass)
 static void
 gsd_clipboard_manager_init (GsdClipboardManager *manager)
 {
-        manager->priv = G_TYPE_INSTANCE_GET_PRIVATE (manager,
-                                                     GSD_TYPE_CLIPBOARD_MANAGER,
-                                                     GsdClipboardManagerPrivate);
+        manager->priv = gsd_clipboard_manager_get_instance_private (manager);
 
         manager->priv->display = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
 

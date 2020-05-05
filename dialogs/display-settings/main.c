@@ -722,7 +722,6 @@ display_setting_resolutions_populate (GtkBuilder *builder)
 {
     GtkTreeModel     *model;
     GObject          *combobox, *label;
-    GtkCellRenderer  *renderer;
     gint              nmode, n;
     gchar            *name;
     gchar            *rratio;
