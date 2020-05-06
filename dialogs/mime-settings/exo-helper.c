@@ -576,7 +576,7 @@ exo_helper_database_lookup (ExoHelperDatabase *database,
   /* load the helper from the file */
   if (G_LIKELY (helper == NULL))
     {
-      //xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
+      xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
       file = xfce_resource_lookup (XFCE_RESOURCE_DATA, spec);
       xfce_resource_pop_path (XFCE_RESOURCE_DATA);
 
@@ -1054,7 +1054,7 @@ exo_helper_database_get_all (ExoHelperDatabase *database,
   g_return_val_if_fail (EXO_IS_HELPER_DATABASE (database), NULL);
   g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, NULL);
 
-  //xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
+  xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
   specs = xfce_resource_match (XFCE_RESOURCE_DATA, "xfce4/helpers/*.desktop", TRUE);
   xfce_resource_pop_path (XFCE_RESOURCE_DATA);
 
