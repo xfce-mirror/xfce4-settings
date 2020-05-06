@@ -166,8 +166,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
     AtkObject         *object;
     GtkWidget         *notebook;
     GtkWidget         *chooser;
-    GtkWidget         *button;
-    GtkWidget         *image;
     GtkWidget         *frame;
     GtkWidget         *box;
 
