@@ -152,6 +152,8 @@ xfce_mime_window_init (XfceMimeWindow *window)
 {
     GtkWidget         *vbox;
     GtkWidget         *hbox;
+    GtkWidget         *button;
+    GtkWidget         *image;
     GtkWidget         *label;
     GtkWidget         *entry;
     GtkWidget         *scroll;
@@ -185,8 +187,12 @@ xfce_mime_window_init (XfceMimeWindow *window)
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (window),
         _("Associate applications with MIME types"));
     xfce_titled_dialog_create_action_area (XFCE_TITLED_DIALOG (window));
-    xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (window), _("_Close"), GTK_RESPONSE_CLOSE);
-    xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (window), _("_Help"), GTK_RESPONSE_HELP);
+    button = xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (window), _("_Close"), GTK_RESPONSE_CLOSE);
+    image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (GTK_BUTTON (button), image);
+    button = xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (window), _("_Help"), GTK_RESPONSE_HELP);
+    image = gtk_image_new_from_icon_name ("help-browser", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (GTK_BUTTON (button), image);
 
     /* restore old user size */
     gtk_window_set_default_size (GTK_WINDOW (window),
