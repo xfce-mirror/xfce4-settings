@@ -221,7 +221,6 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     GtkWidget *viewport;
     GtkWidget *image;
     GtkWidget *button;
-    GList     *children;
     gchar     *path;
 
     dialog->channel = xfconf_channel_get ("xfce4-settings-manager");
