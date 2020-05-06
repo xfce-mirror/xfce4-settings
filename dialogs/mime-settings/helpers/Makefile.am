@@ -38,7 +38,7 @@ desktop_in_in_files =							\
 	nxterm.desktop.in.in						\
 	opera-browser.desktop.in.in					\
 	pcmanfm.desktop.in.in						\
-	pcmanfm-qt.desktop.in.in						\
+	pcmanfm-qt.desktop.in.in					\
 	qterminal.desktop.in.in						\
 	qtfm.desktop.in.in							\
 	qupzilla.desktop.in.in						\
@@ -62,12 +62,8 @@ desktop_in_in_files =							\
 desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 %.desktop.in: %.desktop.in.in
-	sed -e 's,\@HELPERDIR\@,$(HELPER_PATH_PREFIX)/xfce4/exo,g' < $< > $@
+	sed -e 's,\@HELPERDIR\@,$(EXO_HELPER_PATH_PREFIX)/share/xfce4/exo,g' < $< > $@
 @INTLTOOL_DESKTOP_RULE@
-
-exo_composedir = $(HELPER_PATH_PREFIX)/xfce4/exo
-exo_compose_SCRIPTS =							\
-	exo-compose-mail
 
 DISTCLEANFILES =							\
 	$(desktop_in_files)						\
@@ -75,7 +71,6 @@ DISTCLEANFILES =							\
 
 EXTRA_DIST =								\
 	$(defaults_DATA)						\
-	$(desktop_in_in_files)						\
-	exo-compose-mail
+	$(desktop_in_in_files)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
