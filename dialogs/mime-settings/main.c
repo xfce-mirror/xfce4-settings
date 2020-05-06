@@ -123,8 +123,8 @@ main (gint argc, gchar **argv)
         {
         /* Create and run the settings dialog */
         dialog = xfce_mime_window_create_dialog (window);
-        //dialog = exo_helper_chooser_dialog_new ();
-        //plug_child = exo_helper_chooser_dialog_get_plug_child (EXO_HELPER_CHOOSER_DIALOG (dialog));
+        //dialog = xfce_mime_helper_chooser_dialog_new ();
+        //plug_child = xfce_mime_helper_chooser_dialog_get_plug_child (XFCE_MIME_HELPER_CHOOSER_DIALOG (dialog));
 
         g_signal_connect (dialog, "response",
           G_CALLBACK (mime_window_dialog_response), NULL);

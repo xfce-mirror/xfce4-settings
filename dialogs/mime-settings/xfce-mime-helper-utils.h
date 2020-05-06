@@ -16,17 +16,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef __EXO_HELPER_UTILS_H__
-#define __EXO_HELPER_UTILS_H__
+#ifndef __XFCE_MIME_HELPER_UTILS_H__
+#define __XFCE_MIME_HELPER_UTILS_H__
 
-#include "exo-helper.h"
+#include "xfce-mime-helper.h"
 
 G_BEGIN_DECLS
 
-gboolean exo_helper_category_from_string (const gchar       *string,
-                                          ExoHelperCategory *category_return);
-gchar   *exo_helper_category_to_string   (ExoHelperCategory  category) G_GNUC_MALLOC;
+gboolean xfce_mime_helper_category_from_string (const gchar       *string,
+                                          XfceMimeHelperCategory *category_return);
+gchar   *xfce_mime_helper_category_to_string   (XfceMimeHelperCategory  category) G_GNUC_MALLOC;
 
 G_END_DECLS
 
-#endif /* !__EXO_HELPER_UTILS_H__ */
+#endif /* !__XFCE_MIME_HELPER_UTILS_H__ */

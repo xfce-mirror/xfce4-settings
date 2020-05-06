@@ -47,24 +47,24 @@
 #include <gio/gdesktopappinfo.h>
 #endif
 
-#include "exo-helper.h"
+#include "xfce-mime-helper.h"
 #include "xfce-mime-helper-utils.h"
 
 
 
-static void       exo_helper_finalize   (GObject        *object);
-static ExoHelper *exo_helper_new        (const gchar    *id,
+static void       xfce_mime_helper_finalize   (GObject        *object);
+static XfceMimeHelper *xfce_mime_helper_new        (const gchar    *id,
                                          XfceRc         *rc);
 static void       clear_bad_entries     (XfceRc         *rc);
 
 
 
-struct _ExoHelperClass
+struct _XfceMimeHelperClass
 {
   GObjectClass __parent__;
 };
 
-struct _ExoHelper
+struct _XfceMimeHelper
 {
   GObject __parent__;
 
@@ -76,37 +76,37 @@ struct _ExoHelper
   gchar           **commands;
   gchar           **commands_with_parameter;
   gchar           **commands_with_flag;
-  ExoHelperCategory category;
+  XfceMimeHelperCategory category;
 };
 
 
 
-G_DEFINE_TYPE (ExoHelper, exo_helper, G_TYPE_OBJECT)
+G_DEFINE_TYPE (XfceMimeHelper, xfce_mime_helper, G_TYPE_OBJECT)
 
 
 
 static void
-exo_helper_class_init (ExoHelperClass *klass)
+xfce_mime_helper_class_init (XfceMimeHelperClass *klass)
 {
   GObjectClass *gobject_class;
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = exo_helper_finalize;
+  gobject_class->finalize = xfce_mime_helper_finalize;
 }
 
 
 
 static void
-exo_helper_init (ExoHelper *helpers)
+xfce_mime_helper_init (XfceMimeHelper *helpers)
 {
 }
 
 
 
 static void
-exo_helper_finalize (GObject *object)
+xfce_mime_helper_finalize (GObject *object)
 {
-  ExoHelper *helper = EXO_HELPER (object);
+  XfceMimeHelper *helper = XFCE_MIME_HELPER (object);
 
   g_strfreev (helper->commands_with_flag);
   g_strfreev (helper->commands_with_parameter);
@@ -115,7 +115,7 @@ exo_helper_finalize (GObject *object)
   g_free (helper->icon);
   g_free (helper->id);
 
-  (*G_OBJECT_CLASS (exo_helper_parent_class)->finalize) (object);
+  (*G_OBJECT_CLASS (xfce_mime_helper_parent_class)->finalize) (object);
 }
 
 
@@ -156,15 +156,15 @@ substitute_binary (const gchar *commands,
 
 
 
-static ExoHelper*
-exo_helper_new (const gchar *id,
+static XfceMimeHelper*
+xfce_mime_helper_new (const gchar *id,
                 XfceRc      *rc)
 {
   const gchar *commands_with_flag;
   const gchar *commands_with_parameter;
   const gchar *commands;
   const gchar *str;
-  ExoHelper   *helper;
+  XfceMimeHelper   *helper;
   gchar      **binaries;
   gchar       *binary = NULL;
   guint        n;
@@ -175,7 +175,7 @@ exo_helper_new (const gchar *id,
   xfce_rc_set_group (rc, "Desktop Entry");
 
   /* allocate a new helper */
-  helper = g_object_new (EXO_TYPE_HELPER, NULL);
+  helper = g_object_new (XFCE_MIME_TYPE_HELPER, NULL);
   helper->id = g_strdup (id);
   helper->startup_notify = xfce_rc_read_bool_entry (rc, "StartupNotify", FALSE);
 
@@ -186,7 +186,7 @@ exo_helper_new (const gchar *id,
 
   /* determine the category of the helper */
   str = xfce_rc_read_entry_untranslated (rc, "X-XFCE-Category", NULL);
-  if (!exo_helper_category_from_string (str, &helper->category))
+  if (!xfce_mime_helper_category_from_string (str, &helper->category))
     goto failed;
 
   /* determine the name of the helper */
@@ -252,59 +252,59 @@ failed:
 
 
 /**
- * exo_helper_get_category:
- * @helper : an #ExoHelper.
+ * xfce_mime_helper_get_category:
+ * @helper : an #XfceMimeHelper.
  *
- * Returns the #ExoHelperCategory of @helper.
+ * Returns the #XfceMimeHelperCategory of @helper.
  *
- * Return value: the #ExoHelperCategory of @helper.
+ * Return value: the #XfceMimeHelperCategory of @helper.
  **/
-ExoHelperCategory
-exo_helper_get_category (const ExoHelper *helper)
+XfceMimeHelperCategory
+xfce_mime_helper_get_category (const XfceMimeHelper *helper)
 {
-  g_return_val_if_fail (EXO_IS_HELPER (helper), EXO_HELPER_WEBBROWSER);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), XFCE_MIME_HELPER_WEBBROWSER);
   return helper->category;
 }
 
 
 
 /**
- * exo_helper_get_id:
- * @helper : an #ExoHelper.
+ * xfce_mime_helper_get_id:
+ * @helper : an #XfceMimeHelper.
  *
  * Returns the unique id (the .desktop file basename) of @helper.
  *
  * Return value: the unique id of @helper.
  **/
 const gchar*
-exo_helper_get_id (const ExoHelper *helper)
+xfce_mime_helper_get_id (const XfceMimeHelper *helper)
 {
-  g_return_val_if_fail (EXO_IS_HELPER (helper), NULL);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
   return helper->id;
 }
 
 
 
 /**
- * exo_helper_get_name:
- * @helper : an #ExoHelper.
+ * xfce_mime_helper_get_name:
+ * @helper : an #XfceMimeHelper.
  *
  * Returns the (translated) name of the @helper.
  *
  * Return value: the name of @helper.
  **/
 const gchar*
-exo_helper_get_name (const ExoHelper *helper)
+xfce_mime_helper_get_name (const XfceMimeHelper *helper)
 {
-  g_return_val_if_fail (EXO_IS_HELPER (helper), NULL);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
   return helper->name;
 }
 
 
 
 /**
- * exo_helper_get_icon:
- * @helper : an #ExoHelper.
+ * xfce_mime_helper_get_icon:
+ * @helper : an #XfceMimeHelper.
  *
  * Return the name of the themed icon for @helper or
  * the absolute path to an icon file, or %NULL if no
@@ -313,26 +313,26 @@ exo_helper_get_name (const ExoHelper *helper)
  * Return value: the icon for @helper or %NULL.
  **/
 const gchar*
-exo_helper_get_icon (const ExoHelper *helper)
+xfce_mime_helper_get_icon (const XfceMimeHelper *helper)
 {
-  g_return_val_if_fail (EXO_IS_HELPER (helper), NULL);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
   return helper->icon;
 }
 
 
 
 /**
- * exo_helper_get_command:
- * @helper : an #ExoHelper.
+ * xfce_mime_helper_get_command:
+ * @helper : an #XfceMimeHelper.
  *
  * Returns a reasonable command for @helper.
  *
  * Return value: a command for @helper.
  **/
 const gchar*
-exo_helper_get_command (const ExoHelper *helper)
+xfce_mime_helper_get_command (const XfceMimeHelper *helper)
 {
-  g_return_val_if_fail (EXO_IS_HELPER (helper), NULL);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
   return *helper->commands_with_parameter;
 }
 
@@ -344,8 +344,8 @@ set_environment (gchar *display)
 }
 
 /**
- * exo_helper_execute:
- * @helper    : an #ExoHelper.
+ * xfce_mime_helper_execute:
+ * @helper    : an #XfceMimeHelper.
  * @screen    : the #GdkScreen on which to execute @helper or %NULL to use default.
  * @parameter : the parameter to pass to @helper (e.g. URL for WebBrowser) or %NULL
  *              to just run @helper.
@@ -357,7 +357,7 @@ set_environment (gchar *display)
  * Return value: %TRUE on success, %FALSE if @error is set.
  **/
 gboolean
-exo_helper_execute (ExoHelper   *helper,
+xfce_mime_helper_execute (XfceMimeHelper   *helper,
                     GdkScreen   *screen,
                     const gchar *parameter,
                     GError     **error)
@@ -379,7 +379,7 @@ exo_helper_execute (ExoHelper   *helper,
 
   // FIXME: startup-notification
 
-  g_return_val_if_fail (EXO_IS_HELPER (helper), FALSE);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
   g_return_val_if_fail (screen == NULL || GDK_IS_SCREEN (screen), FALSE);
 
@@ -499,19 +499,19 @@ exo_helper_execute (ExoHelper   *helper,
 
 
 
-static void       exo_helper_database_finalize    (GObject                *object);
-static ExoHelper *exo_helper_database_lookup      (ExoHelperDatabase      *database,
-                                                   ExoHelperCategory       category,
+static void       xfce_mime_helper_database_finalize    (GObject                *object);
+static XfceMimeHelper *xfce_mime_helper_database_lookup      (XfceMimeHelperDatabase      *database,
+                                                   XfceMimeHelperCategory       category,
                                                    const gchar            *id);
 
 
 
-struct _ExoHelperDatabaseClass
+struct _XfceMimeHelperDatabaseClass
 {
   GObjectClass __parent__;
 };
 
-struct _ExoHelperDatabase
+struct _XfceMimeHelperDatabase
 {
   GObject     __parent__;
   GHashTable *helpers;
@@ -519,23 +519,23 @@ struct _ExoHelperDatabase
 
 
 
-G_DEFINE_TYPE (ExoHelperDatabase, exo_helper_database, G_TYPE_OBJECT)
+G_DEFINE_TYPE (XfceMimeHelperDatabase, xfce_mime_helper_database, G_TYPE_OBJECT)
 
 
 
 static void
-exo_helper_database_class_init (ExoHelperDatabaseClass *klass)
+xfce_mime_helper_database_class_init (XfceMimeHelperDatabaseClass *klass)
 {
   GObjectClass *gobject_class;
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = exo_helper_database_finalize;
+  gobject_class->finalize = xfce_mime_helper_database_finalize;
 }
 
 
 
 static void
-exo_helper_database_init (ExoHelperDatabase *database)
+xfce_mime_helper_database_init (XfceMimeHelperDatabase *database)
 {
   database->helpers = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
 }
@@ -543,28 +543,28 @@ exo_helper_database_init (ExoHelperDatabase *database)
 
 
 static void
-exo_helper_database_finalize (GObject *object)
+xfce_mime_helper_database_finalize (GObject *object)
 {
-  ExoHelperDatabase *database = EXO_HELPER_DATABASE (object);
+  XfceMimeHelperDatabase *database = XFCE_MIME_HELPER_DATABASE (object);
 
   g_hash_table_destroy (database->helpers);
 
-  (*G_OBJECT_CLASS (exo_helper_database_parent_class)->finalize) (object);
+  (*G_OBJECT_CLASS (xfce_mime_helper_database_parent_class)->finalize) (object);
 }
 
 
 
-static ExoHelper*
-exo_helper_database_lookup (ExoHelperDatabase *database,
-                            ExoHelperCategory  category,
+static XfceMimeHelper*
+xfce_mime_helper_database_lookup (XfceMimeHelperDatabase *database,
+                            XfceMimeHelperCategory  category,
                             const gchar       *id)
 {
-  ExoHelper *helper;
+  XfceMimeHelper *helper;
   XfceRc    *rc;
   gchar     *file;
   gchar     *spec;
 
-  g_return_val_if_fail (EXO_IS_HELPER_DATABASE (database), NULL);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), NULL);
   g_return_val_if_fail (id != NULL, NULL);
 
   /* generate the spec for the helper */
@@ -585,7 +585,7 @@ exo_helper_database_lookup (ExoHelperDatabase *database,
           rc = xfce_rc_simple_open (file, TRUE);
           if (G_LIKELY (rc != NULL))
             {
-              helper = exo_helper_new (id, rc);
+              helper = xfce_mime_helper_new (id, rc);
               xfce_rc_close (rc);
             }
           g_free (file);
@@ -601,7 +601,7 @@ exo_helper_database_lookup (ExoHelperDatabase *database,
 
   if (G_LIKELY (helper != NULL))
     {
-      if (exo_helper_get_category (helper) == category)
+      if (xfce_mime_helper_get_category (helper) == category)
         g_object_ref (G_OBJECT (helper));
       else
         helper = NULL;
@@ -615,23 +615,23 @@ exo_helper_database_lookup (ExoHelperDatabase *database,
 
 
 /**
- * exo_helper_database_get:
+ * xfce_mime_helper_database_get:
  *
- * Returns a reference on the default #ExoHelperDatabase
+ * Returns a reference on the default #XfceMimeHelperDatabase
  * instance. The caller is responsible to free the
  * returned object using g_object_unref() when no longer
  * needed.
  *
- * Return value: a reference to the default #ExoHelperDatabase.
+ * Return value: a reference to the default #XfceMimeHelperDatabase.
  **/
-ExoHelperDatabase*
-exo_helper_database_get (void)
+XfceMimeHelperDatabase*
+xfce_mime_helper_database_get (void)
 {
-  static ExoHelperDatabase *database = NULL;
+  static XfceMimeHelperDatabase *database = NULL;
 
   if (G_LIKELY (database == NULL))
     {
-      database = g_object_new (EXO_TYPE_HELPER_DATABASE, NULL);
+      database = g_object_new (XFCE_MIME_TYPE_HELPER_DATABASE, NULL);
       g_object_add_weak_pointer (G_OBJECT (database), (gpointer) &database);
     }
   else
@@ -645,39 +645,39 @@ exo_helper_database_get (void)
 
 
 /**
- * exo_helper_database_get_default:
- * @database : an #ExoHelperDatabase.
- * @category : an #ExoHelperCategory.
+ * xfce_mime_helper_database_get_default:
+ * @database : an #XfceMimeHelperDatabase.
+ * @category : an #XfceMimeHelperCategory.
  *
- * Returns a reference on the default #ExoHelper for
+ * Returns a reference on the default #XfceMimeHelper for
  * the @category in @database or %NULL if no default
- * #ExoHelper is registered for @category.
+ * #XfceMimeHelper is registered for @category.
  *
  * The caller is responsible to free the returned
  * object using g_object_unref() when no longer needed.
  *
- * Return value: the default #ExoHelper for @category
+ * Return value: the default #XfceMimeHelper for @category
  *               or %NULL.
  **/
-ExoHelper*
-exo_helper_database_get_default (ExoHelperDatabase *database,
-                                 ExoHelperCategory  category)
+XfceMimeHelper*
+xfce_mime_helper_database_get_default (XfceMimeHelperDatabase *database,
+                                 XfceMimeHelperCategory  category)
 {
   const gchar *id;
-  ExoHelper   *helper = NULL;
+  XfceMimeHelper   *helper = NULL;
   XfceRc      *rc;
   gchar       *key;
 
-  g_return_val_if_fail (EXO_IS_HELPER_DATABASE (database), NULL);
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, NULL);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), NULL);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
 
   rc = xfce_rc_config_open (XFCE_RESOURCE_CONFIG, "xfce4/helpers.rc", TRUE);
   if (G_LIKELY (rc != NULL))
     {
-      key = exo_helper_category_to_string (category);
+      key = xfce_mime_helper_category_to_string (category);
       id = xfce_rc_read_entry_untranslated (rc, key, NULL);
       if (G_LIKELY (id != NULL))
-        helper = exo_helper_database_lookup (database, category, id);
+        helper = xfce_mime_helper_database_lookup (database, category, id);
       xfce_rc_close (rc);
       g_free (key);
     }
@@ -705,21 +705,21 @@ mimeapps_open (gboolean readonly)
 
 
 /**
- * exo_helper_database_set_default:
- * @database : an #ExoHelperDatabase.
- * @category : an #ExoHelperCategory.
- * @helper   : an #ExoHelper.
+ * xfce_mime_helper_database_set_default:
+ * @database : an #XfceMimeHelperDatabase.
+ * @category : an #XfceMimeHelperCategory.
+ * @helper   : an #XfceMimeHelper.
  * @error    : return location for errors or %NULL.
  *
- * Sets the default #ExoHelper for @category in @database to
+ * Sets the default #XfceMimeHelper for @category in @database to
  * @helper. Returns %TRUE on success, %FALSE if @error is set.
  *
  * Return value: %TRUE on success, %FALSE if @error is set.
  **/
 gboolean
-exo_helper_database_set_default (ExoHelperDatabase *database,
-                                 ExoHelperCategory  category,
-                                 ExoHelper         *helper,
+xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
+                                 XfceMimeHelperCategory  category,
+                                 XfceMimeHelper         *helper,
                                  GError           **error)
 {
   XfceRc       *rc, *desktop_file;
@@ -730,10 +730,10 @@ exo_helper_database_set_default (ExoHelperDatabase *database,
   gchar        *path;
   gchar        *entry;
 
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, FALSE);
-  g_return_val_if_fail (EXO_IS_HELPER_DATABASE (database), FALSE);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, FALSE);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
-  g_return_val_if_fail (EXO_IS_HELPER (helper), FALSE);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), FALSE);
 
   /* open the helpers.rc for writing */
   rc = xfce_rc_config_open (XFCE_RESOURCE_CONFIG, "xfce4/helpers.rc", FALSE);
@@ -744,12 +744,12 @@ exo_helper_database_set_default (ExoHelperDatabase *database,
     }
 
   /* save the new setting */
-  key = exo_helper_category_to_string (category);
-  xfce_rc_write_entry (rc, key, exo_helper_get_id (helper));
+  key = xfce_mime_helper_category_to_string (category);
+  xfce_rc_write_entry (rc, key, xfce_mime_helper_get_id (helper));
   g_free (key);
 
   /* clear the dismissed preference */
-  key = g_strconcat (exo_helper_category_to_string (category), "Dismissed", NULL);
+  key = g_strconcat (xfce_mime_helper_category_to_string (category), "Dismissed", NULL);
   xfce_rc_delete_entry (rc, key, FALSE);
   xfce_rc_close (rc);
   g_free (key);
@@ -757,15 +757,15 @@ exo_helper_database_set_default (ExoHelperDatabase *database,
   /* get the desktop filename */
   switch (category)
     {
-      case EXO_HELPER_WEBBROWSER:
+      case XFCE_MIME_HELPER_WEBBROWSER:
         filename = "exo-web-browser.desktop";
         break;
 
-      case EXO_HELPER_MAILREADER:
+      case XFCE_MIME_HELPER_MAILREADER:
         filename = "exo-mail-reader.desktop";
         break;
 
-      case EXO_HELPER_FILEMANAGER:
+      case XFCE_MIME_HELPER_FILEMANAGER:
         filename = "exo-file-manager.desktop";
         break;
 
@@ -843,12 +843,12 @@ exo_helper_database_set_default (ExoHelperDatabase *database,
 
 
 /**
- * exo_helper_database_clear_default:
- * @database : an #ExoHelperDatabase.
- * @category : an #ExoHelperCategory.
+ * xfce_mime_helper_database_clear_default:
+ * @database : an #XfceMimeHelperDatabase.
+ * @category : an #XfceMimeHelperCategory.
  * @error    : return location for errors or %NULL.
  *
- * Clears the default #ExoHelper for @category in @database.
+ * Clears the default #XfceMimeHelper for @category in @database.
  * Returns %TRUE on success, %FALSE if @error is set.
  *
  * Return value: %TRUE on success, %FALSE if @error is set.
@@ -856,8 +856,8 @@ exo_helper_database_set_default (ExoHelperDatabase *database,
  * Since: 0.11.3
  **/
 gboolean
-exo_helper_database_clear_default (ExoHelperDatabase *database,
-                                   ExoHelperCategory  category,
+xfce_mime_helper_database_clear_default (XfceMimeHelperDatabase *database,
+                                   XfceMimeHelperCategory  category,
                                    GError           **error)
 {
   XfceRc       *rc, *desktop_file;
@@ -867,8 +867,8 @@ exo_helper_database_clear_default (ExoHelperDatabase *database,
   guint         i;
   gchar        *path;
 
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, FALSE);
-  g_return_val_if_fail (EXO_IS_HELPER_DATABASE (database), FALSE);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, FALSE);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
   /* open the helpers.rc for writing */
@@ -880,12 +880,12 @@ exo_helper_database_clear_default (ExoHelperDatabase *database,
     }
 
   /* save the new setting */
-  key = exo_helper_category_to_string (category);
+  key = xfce_mime_helper_category_to_string (category);
   xfce_rc_delete_entry (rc, key, FALSE);
   g_free (key);
 
   /* clear the dismissed preference */
-  key = g_strconcat (exo_helper_category_to_string (category), "Dismissed", NULL);
+  key = g_strconcat (xfce_mime_helper_category_to_string (category), "Dismissed", NULL);
   xfce_rc_delete_entry (rc, key, FALSE);
   xfce_rc_close (rc);
   g_free (key);
@@ -893,15 +893,15 @@ exo_helper_database_clear_default (ExoHelperDatabase *database,
   /* get the desktop filename */
   switch (category)
     {
-      case EXO_HELPER_WEBBROWSER:
+      case XFCE_MIME_HELPER_WEBBROWSER:
         filename = "exo-web-browser.desktop";
         break;
 
-      case EXO_HELPER_MAILREADER:
+      case XFCE_MIME_HELPER_MAILREADER:
         filename = "exo-mail-reader.desktop";
         break;
 
-      case EXO_HELPER_FILEMANAGER:
+      case XFCE_MIME_HELPER_FILEMANAGER:
         filename = "exo-file-manager.desktop";
         break;
 
@@ -1016,15 +1016,15 @@ static gint
 helper_compare (gconstpointer a,
                 gconstpointer b)
 {
-  return g_utf8_collate (exo_helper_get_name (a), exo_helper_get_name (b));
+  return g_utf8_collate (xfce_mime_helper_get_name (a), xfce_mime_helper_get_name (b));
 }
 
 
 
 /**
- * exo_helper_database_get_all:
- * @database : an #ExoHelperDatabase.
- * @category : an #ExoHelperCategory.
+ * xfce_mime_helper_database_get_all:
+ * @database : an #XfceMimeHelperDatabase.
+ * @category : an #XfceMimeHelperCategory.
  *
  * Looks up all available helpers for @category
  * in @database, sorted in alphabetic order.
@@ -1041,18 +1041,18 @@ helper_compare (gconstpointer a,
  *               in @category.
  **/
 GList*
-exo_helper_database_get_all (ExoHelperDatabase *database,
-                             ExoHelperCategory  category)
+xfce_mime_helper_database_get_all (XfceMimeHelperDatabase *database,
+                             XfceMimeHelperCategory  category)
 {
-  ExoHelper *helper;
+  XfceMimeHelper *helper;
   GList     *helpers = NULL;
   gchar    **specs;
   gchar     *id;
   gchar     *s;
   guint      n;
 
-  g_return_val_if_fail (EXO_IS_HELPER_DATABASE (database), NULL);
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, NULL);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), NULL);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
 
   xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
   specs = xfce_resource_match (XFCE_RESOURCE_DATA, "xfce4/helpers/*.desktop", TRUE);
@@ -1067,7 +1067,7 @@ exo_helper_database_get_all (ExoHelperDatabase *database,
       id = strrchr (specs[n], '/');
       id = (id != NULL) ? id + 1 : specs[n];
 
-      helper = exo_helper_database_lookup (database, category, id);
+      helper = xfce_mime_helper_database_lookup (database, category, id);
       if (G_LIKELY (helper != NULL))
         helpers = g_list_insert_sorted (helpers, helper, helper_compare);
 
@@ -1081,53 +1081,53 @@ exo_helper_database_get_all (ExoHelperDatabase *database,
 
 
 /**
- * exo_helper_database_get_custom:
- * @database : an #ExoHelperDatabase.
- * @category : an #ExoHelperCategory.
+ * xfce_mime_helper_database_get_custom:
+ * @database : an #XfceMimeHelperDatabase.
+ * @category : an #XfceMimeHelperCategory.
  *
- * Returns the custom #ExoHelper set for @database
- * or %NULL if no custom #ExoHelper is set for
+ * Returns the custom #XfceMimeHelper set for @database
+ * or %NULL if no custom #XfceMimeHelper is set for
  * @category.
  *
  * The caller is responsible to free the returned
  * object using g_object_unref() when no longer
  * needed.
  *
- * Return value: the custom #ExoHelper for @category
+ * Return value: the custom #XfceMimeHelper for @category
  *               in @database or %NULL.
  **/
-ExoHelper*
-exo_helper_database_get_custom (ExoHelperDatabase *database,
-                                ExoHelperCategory  category)
+XfceMimeHelper*
+xfce_mime_helper_database_get_custom (XfceMimeHelperDatabase *database,
+                                XfceMimeHelperCategory  category)
 {
   gchar *string;
   gchar  id[256];
 
-  g_return_val_if_fail (EXO_IS_HELPER_DATABASE (database), NULL);
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, NULL);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), NULL);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
 
   /* determine the id for the custom helper */
-  string = exo_helper_category_to_string (category);
+  string = xfce_mime_helper_category_to_string (category);
   g_snprintf (id, sizeof (id), "custom-%s", string);
   g_free (string);
 
-  return exo_helper_database_lookup (database, category, id);
+  return xfce_mime_helper_database_lookup (database, category, id);
 }
 
 
 
 /**
- * exo_helper_database_set_custom:
- * @database : an #ExoHelperDatabase.
- * @category : an #ExoHelperCategory.
+ * xfce_mime_helper_database_set_custom:
+ * @database : an #XfceMimeHelperDatabase.
+ * @category : an #XfceMimeHelperCategory.
  * @command  : the custom command.
  *
  * Sets the custom helper for @category in @database
  * to @command.
  **/
 void
-exo_helper_database_set_custom (ExoHelperDatabase *database,
-                                ExoHelperCategory  category,
+xfce_mime_helper_database_set_custom (XfceMimeHelperDatabase *database,
+                                XfceMimeHelperCategory  category,
                                 const gchar       *command)
 {
   XfceRc *rc;
@@ -1138,12 +1138,12 @@ exo_helper_database_set_custom (ExoHelperDatabase *database,
   gchar  *file;
   gchar   spec[256];
 
-  g_return_if_fail (EXO_IS_HELPER_DATABASE (database));
-  g_return_if_fail (category < EXO_HELPER_N_CATEGORIES);
+  g_return_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database));
+  g_return_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES);
   g_return_if_fail (!exo_str_is_empty (command));
 
   /* determine the spec for the custom helper */
-  category_string = exo_helper_category_to_string (category);
+  category_string = xfce_mime_helper_category_to_string (category);
   g_snprintf (spec, sizeof (spec), "xfce4/helpers/custom-%s.desktop", category_string);
 
   /* lookup the resource save location */
@@ -1208,29 +1208,29 @@ exo_helper_database_set_custom (ExoHelperDatabase *database,
 }
 
 /**
- * exo_helper_database_get_dismissed:
- * @database : an #ExoHelperDatabase.
- * @category : an #ExoHelperCategory.
+ * xfce_mime_helper_database_get_dismissed:
+ * @database : an #XfceMimeHelperDatabase.
+ * @category : an #XfceMimeHelperCategory.
  *
  * Returns %TRUE if errors should no longer be displayed
- * on the default #ExoHelper for the @category in @database.
+ * on the default #XfceMimeHelper for the @category in @database.
  *
  * Return value: %TRUE if dismissed, %FALSE otherwise.
  **/
-gboolean exo_helper_database_get_dismissed (ExoHelperDatabase *database,
-                                            ExoHelperCategory  category)
+gboolean xfce_mime_helper_database_get_dismissed (XfceMimeHelperDatabase *database,
+                                            XfceMimeHelperCategory  category)
 {
   XfceRc      *rc;
   gchar       *key;
   gboolean     dismissed = FALSE;
 
-  g_return_val_if_fail (EXO_IS_HELPER_DATABASE (database), FALSE);
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, FALSE);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), FALSE);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, FALSE);
 
   rc = xfce_rc_config_open (XFCE_RESOURCE_CONFIG, "xfce4/helpers.rc", TRUE);
   if (G_LIKELY (rc != NULL))
     {
-      key = g_strconcat (exo_helper_category_to_string (category), "Dismissed", NULL);
+      key = g_strconcat (xfce_mime_helper_category_to_string (category), "Dismissed", NULL);
       dismissed = xfce_rc_read_bool_entry (rc, key, FALSE);
       xfce_rc_close (rc);
       g_free (key);
@@ -1240,9 +1240,9 @@ gboolean exo_helper_database_get_dismissed (ExoHelperDatabase *database,
 }
 
 /**
- * exo_helper_database_set_dismissed:
- * @database  : an #ExoHelperDatabase.
- * @category  : an #ExoHelperCategory.
+ * xfce_mime_helper_database_set_dismissed:
+ * @database  : an #XfceMimeHelperDatabase.
+ * @category  : an #XfceMimeHelperCategory.
  * @dismissed : TRUE if the errr should no longer be displayed.
  * @error     : return location for errors or %NULL.
  *
@@ -1253,15 +1253,15 @@ gboolean exo_helper_database_get_dismissed (ExoHelperDatabase *database,
  * Return value: %TRUE on success, %FALSE if @error is set.
  **/
 gboolean
-exo_helper_database_set_dismissed (ExoHelperDatabase *database,
-                                   ExoHelperCategory  category,
+xfce_mime_helper_database_set_dismissed (XfceMimeHelperDatabase *database,
+                                   XfceMimeHelperCategory  category,
                                    gboolean           dismissed)
 {
   XfceRc       *rc;
   gchar        *key;
 
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, FALSE);
-  g_return_val_if_fail (EXO_IS_HELPER_DATABASE (database), FALSE);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, FALSE);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), FALSE);
 
   /* open the helpers.rc for writing */
   rc = xfce_rc_config_open (XFCE_RESOURCE_CONFIG, "xfce4/helpers.rc", FALSE);
@@ -1271,7 +1271,7 @@ exo_helper_database_set_dismissed (ExoHelperDatabase *database,
     }
 
   /* save the new setting */
-  key = g_strconcat (exo_helper_category_to_string (category), "Dismissed", NULL);
+  key = g_strconcat (xfce_mime_helper_category_to_string (category), "Dismissed", NULL);
   xfce_rc_write_bool_entry (rc, key, dismissed);
   xfce_rc_close (rc);
   g_free (key);

@@ -20,9 +20,9 @@
 #include <config.h>
 #endif
 
-#include <exo-helper/exo-helper-chooser.h>
-#include <exo-helper/exo-helper-enum-types.h>
-#include <exo-helper/exo-helper-launcher-dialog.h>
+#include <xfce-mime-helper-chooser.h>
+#include <xfce-mime-helper-enum-types.h>
+#include <xfce-mime-helper-launcher-dialog.h>
 #include <gtk/gtkx.h>
 
 
@@ -36,51 +36,51 @@ enum
 
 
 
-static void exo_helper_launcher_dialog_get_property     (GObject                      *object,
+static void xfce_mime_helper_launcher_dialog_get_property     (GObject                      *object,
                                                          guint                         prop_id,
                                                          GValue                       *value,
                                                          GParamSpec                   *pspec);
-static void exo_helper_launcher_dialog_set_property     (GObject                      *object,
+static void xfce_mime_helper_launcher_dialog_set_property     (GObject                      *object,
                                                          guint                         prop_id,
                                                          const GValue                 *value,
                                                          GParamSpec                   *pspec);
-static void exo_helper_launcher_dialog_notify_is_valid  (ExoHelperChooser             *chooser,
+static void xfce_mime_helper_launcher_dialog_notify_is_valid  (XfceMimeHelperChooser             *chooser,
                                                          GParamSpec                   *pspec,
-                                                         ExoHelperLauncherDialog      *launcher_dialog);
+                                                         XfceMimeHelperLauncherDialog      *launcher_dialog);
 
 
 
-struct _ExoHelperLauncherDialogClass
+struct _XfceMimeHelperLauncherDialogClass
 {
   GtkDialogClass __parent__;
 };
 
-struct _ExoHelperLauncherDialog
+struct _XfceMimeHelperLauncherDialog
 {
   GtkDialog         __parent__;
   GtkWidget        *label;
-  ExoHelperCategory category;
+  XfceMimeHelperCategory category;
 };
 
 
 
-G_DEFINE_TYPE (ExoHelperLauncherDialog, exo_helper_launcher_dialog, GTK_TYPE_DIALOG)
+G_DEFINE_TYPE (XfceMimeHelperLauncherDialog, xfce_mime_helper_launcher_dialog, GTK_TYPE_DIALOG)
 
 
 
 static void
-exo_helper_launcher_dialog_class_init (ExoHelperLauncherDialogClass *klass)
+xfce_mime_helper_launcher_dialog_class_init (XfceMimeHelperLauncherDialogClass *klass)
 {
   GObjectClass *gobject_class;
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->get_property = exo_helper_launcher_dialog_get_property;
-  gobject_class->set_property = exo_helper_launcher_dialog_set_property;
+  gobject_class->get_property = xfce_mime_helper_launcher_dialog_get_property;
+  gobject_class->set_property = xfce_mime_helper_launcher_dialog_set_property;
 
   /**
-   * ExoHelperLauncherDialog:category:
+   * XfceMimeHelperLauncherDialog:category:
    *
-   * The #ExoHelperCategory for which a launcher dialog will
+   * The #XfceMimeHelperCategory for which a launcher dialog will
    * be displayed.
    **/
   g_object_class_install_property (gobject_class,
@@ -88,15 +88,15 @@ exo_helper_launcher_dialog_class_init (ExoHelperLauncherDialogClass *klass)
                                    g_param_spec_enum ("category",
                                                       "Category",
                                                       "Category",
-                                                      EXO_TYPE_HELPER_CATEGORY,
-                                                      EXO_HELPER_WEBBROWSER,
+                                                      XFCE_MIME_TYPE_HELPER_CATEGORY,
+                                                      XFCE_MIME_HELPER_WEBBROWSER,
                                                       EXO_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
 
 
 static void
-exo_helper_launcher_dialog_init (ExoHelperLauncherDialog *launcher_dialog)
+xfce_mime_helper_launcher_dialog_init (XfceMimeHelperLauncherDialog *launcher_dialog)
 {
   AtkRelationSet *relations;
   AtkRelation    *relation;
@@ -130,8 +130,8 @@ exo_helper_launcher_dialog_init (ExoHelperLauncherDialog *launcher_dialog)
   gtk_box_pack_start (GTK_BOX (vbox), launcher_dialog->label, FALSE, FALSE, 0);
   gtk_widget_show (launcher_dialog->label);
 
-  chooser = g_object_new (EXO_TYPE_HELPER_CHOOSER, NULL);
-  g_signal_connect (G_OBJECT (chooser), "notify::is-valid", G_CALLBACK (exo_helper_launcher_dialog_notify_is_valid), launcher_dialog);
+  chooser = g_object_new (XFCE_MIME_TYPE_HELPER_CHOOSER, NULL);
+  g_signal_connect (G_OBJECT (chooser), "notify::is-valid", G_CALLBACK (xfce_mime_helper_launcher_dialog_notify_is_valid), launcher_dialog);
   g_object_bind_property (G_OBJECT (launcher_dialog), "category", G_OBJECT (chooser), "category", G_BINDING_SYNC_CREATE);
   gtk_box_pack_start (GTK_BOX (vbox), chooser, FALSE, FALSE, 0);
   gtk_widget_show (chooser);
@@ -147,17 +147,17 @@ exo_helper_launcher_dialog_init (ExoHelperLauncherDialog *launcher_dialog)
 
 
 static void
-exo_helper_launcher_dialog_get_property (GObject    *object,
+xfce_mime_helper_launcher_dialog_get_property (GObject    *object,
                                          guint       prop_id,
                                          GValue     *value,
                                          GParamSpec *pspec)
 {
-  ExoHelperLauncherDialog *launcher_dialog = EXO_HELPER_LAUNCHER_DIALOG (object);
+  XfceMimeHelperLauncherDialog *launcher_dialog = XFCE_MIME_HELPER_LAUNCHER_DIALOG (object);
 
   switch (prop_id)
     {
     case PROP_CATEGORY:
-      g_value_set_enum (value, exo_helper_launcher_dialog_get_category (launcher_dialog));
+      g_value_set_enum (value, xfce_mime_helper_launcher_dialog_get_category (launcher_dialog));
       break;
 
     default:
@@ -169,17 +169,17 @@ exo_helper_launcher_dialog_get_property (GObject    *object,
 
 
 static void
-exo_helper_launcher_dialog_set_property (GObject      *object,
+xfce_mime_helper_launcher_dialog_set_property (GObject      *object,
                                          guint         prop_id,
                                          const GValue *value,
                                          GParamSpec   *pspec)
 {
-  ExoHelperLauncherDialog *launcher_dialog = EXO_HELPER_LAUNCHER_DIALOG (object);
+  XfceMimeHelperLauncherDialog *launcher_dialog = XFCE_MIME_HELPER_LAUNCHER_DIALOG (object);
 
   switch (prop_id)
     {
     case PROP_CATEGORY:
-      exo_helper_launcher_dialog_set_category (launcher_dialog, g_value_get_enum (value));
+      xfce_mime_helper_launcher_dialog_set_category (launcher_dialog, g_value_get_enum (value));
       break;
 
     default:
@@ -191,65 +191,65 @@ exo_helper_launcher_dialog_set_property (GObject      *object,
 
 
 static void
-exo_helper_launcher_dialog_notify_is_valid (ExoHelperChooser        *chooser,
+xfce_mime_helper_launcher_dialog_notify_is_valid (XfceMimeHelperChooser        *chooser,
                                             GParamSpec              *pspec,
-                                            ExoHelperLauncherDialog *launcher_dialog)
+                                            XfceMimeHelperLauncherDialog *launcher_dialog)
 {
-  g_return_if_fail (EXO_IS_HELPER_CHOOSER (chooser));
-  g_return_if_fail (EXO_IS_HELPER_LAUNCHER_DIALOG (launcher_dialog));
+  g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
+  g_return_if_fail (XFCE_MIME_IS_HELPER_LAUNCHER_DIALOG (launcher_dialog));
 
   gtk_dialog_set_response_sensitive (GTK_DIALOG (launcher_dialog), GTK_RESPONSE_OK,
-                                     exo_helper_chooser_get_is_valid (chooser));
+                                     xfce_mime_helper_chooser_get_is_valid (chooser));
 }
 
 
 
 /**
- * exo_helper_launcher_dialog_new:
- * @category : an #ExoHelperCategory.
+ * xfce_mime_helper_launcher_dialog_new:
+ * @category : an #XfceMimeHelperCategory.
  *
- * Allocates a new #ExoHelperLauncherDialog for the
+ * Allocates a new #XfceMimeHelperLauncherDialog for the
  * specified @category.
  *
- * Return value: the newly allocated #ExoHelperLauncherDialog.
+ * Return value: the newly allocated #XfceMimeHelperLauncherDialog.
  **/
 GtkWidget*
-exo_helper_launcher_dialog_new (ExoHelperCategory category)
+xfce_mime_helper_launcher_dialog_new (XfceMimeHelperCategory category)
 {
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, NULL);
-  return g_object_new (EXO_TYPE_HELPER_LAUNCHER_DIALOG, "category", category, NULL);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
+  return g_object_new (XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG, "category", category, NULL);
 }
 
 
 
 /**
- * exo_helper_launcher_dialog_get_category:
- * @launcher_dialog : an #ExoHelperLauncherDialog.
+ * xfce_mime_helper_launcher_dialog_get_category:
+ * @launcher_dialog : an #XfceMimeHelperLauncherDialog.
  *
- * Returns the #ExoHelperCategory for @launcher_dialog.
+ * Returns the #XfceMimeHelperCategory for @launcher_dialog.
  *
- * Return value: the #ExoHelperCategory for @launcher_dialog.
+ * Return value: the #XfceMimeHelperCategory for @launcher_dialog.
  **/
-ExoHelperCategory
-exo_helper_launcher_dialog_get_category (const ExoHelperLauncherDialog *launcher_dialog)
+XfceMimeHelperCategory
+xfce_mime_helper_launcher_dialog_get_category (const XfceMimeHelperLauncherDialog *launcher_dialog)
 {
-  g_return_val_if_fail (EXO_IS_HELPER_LAUNCHER_DIALOG (launcher_dialog), EXO_HELPER_WEBBROWSER);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_LAUNCHER_DIALOG (launcher_dialog), XFCE_MIME_HELPER_WEBBROWSER);
   return launcher_dialog->category;
 }
 
 
 
 /**
- * exo_helper_launcher_dialog_set_category:
- * @launcher_dialog : an #ExoHelperLauncherDialog.
- * @category        : an #ExoHelperCategory.
+ * xfce_mime_helper_launcher_dialog_set_category:
+ * @launcher_dialog : an #XfceMimeHelperLauncherDialog.
+ * @category        : an #XfceMimeHelperCategory.
  *
- * Sets the #ExoHelperCategory for @launcher_dialog to
+ * Sets the #XfceMimeHelperCategory for @launcher_dialog to
  * @category.
  **/
 void
-exo_helper_launcher_dialog_set_category (ExoHelperLauncherDialog *launcher_dialog,
-                                         ExoHelperCategory        category)
+xfce_mime_helper_launcher_dialog_set_category (XfceMimeHelperLauncherDialog *launcher_dialog,
+                                         XfceMimeHelperCategory        category)
 {
   static const gchar *MESSAGES[] =
   {
@@ -264,10 +264,10 @@ exo_helper_launcher_dialog_set_category (ExoHelperLauncherDialog *launcher_dialo
   };
 
   /* sanity check the categories */
-  g_assert (EXO_HELPER_N_CATEGORIES == G_N_ELEMENTS (MESSAGES));
+  g_assert (XFCE_MIME_HELPER_N_CATEGORIES == G_N_ELEMENTS (MESSAGES));
 
-  g_return_if_fail (EXO_IS_HELPER_LAUNCHER_DIALOG (launcher_dialog));
-  g_return_if_fail (category < EXO_HELPER_N_CATEGORIES);
+  g_return_if_fail (XFCE_MIME_IS_HELPER_LAUNCHER_DIALOG (launcher_dialog));
+  g_return_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES);
 
   /* setup the new label text */
   gtk_label_set_text (GTK_LABEL (launcher_dialog->label), gettext (MESSAGES[category]));

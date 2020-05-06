@@ -43,76 +43,76 @@ enum
 
 
 
-static void exo_helper_chooser_finalize     (GObject                *object);
-static void exo_helper_chooser_get_property (GObject                *object,
+static void xfce_mime_helper_chooser_finalize     (GObject                *object);
+static void xfce_mime_helper_chooser_get_property (GObject                *object,
                                              guint                   prop_id,
                                              GValue                 *value,
                                              GParamSpec             *pspec);
-static void exo_helper_chooser_set_property (GObject                *object,
+static void xfce_mime_helper_chooser_set_property (GObject                *object,
                                              guint                   prop_id,
                                              const GValue           *value,
                                              GParamSpec             *pspec);
-static void exo_helper_chooser_update       (ExoHelperChooser       *chooser);
-static void exo_helper_chooser_pressed      (ExoHelperChooser       *chooser,
+static void xfce_mime_helper_chooser_update       (XfceMimeHelperChooser       *chooser);
+static void xfce_mime_helper_chooser_pressed      (XfceMimeHelperChooser       *chooser,
                                              GtkWidget              *button);
 
 
 
-struct _ExoHelperChooserClass
+struct _XfceMimeHelperChooserClass
 {
   GtkBinClass __parent__;
 };
 
-struct _ExoHelperChooser
+struct _XfceMimeHelperChooser
 {
   GtkBin __parent__;
 
   GtkWidget         *image;
   GtkWidget         *label;
 
-  ExoHelperDatabase *database;
-  ExoHelperCategory  category;
+  XfceMimeHelperDatabase *database;
+  XfceMimeHelperCategory  category;
 
   gboolean           is_valid;
 };
 
 
 
-G_DEFINE_TYPE (ExoHelperChooser, exo_helper_chooser, GTK_TYPE_BIN)
+G_DEFINE_TYPE (XfceMimeHelperChooser, xfce_mime_helper_chooser, GTK_TYPE_BIN)
 
 
 
 static void
-exo_helper_chooser_class_init (ExoHelperChooserClass *klass)
+xfce_mime_helper_chooser_class_init (XfceMimeHelperChooserClass *klass)
 {
   GObjectClass *gobject_class;
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = exo_helper_chooser_finalize;
-  gobject_class->get_property = exo_helper_chooser_get_property;
-  gobject_class->set_property = exo_helper_chooser_set_property;
+  gobject_class->finalize = xfce_mime_helper_chooser_finalize;
+  gobject_class->get_property = xfce_mime_helper_chooser_get_property;
+  gobject_class->set_property = xfce_mime_helper_chooser_set_property;
 
   /**
-   * ExoHelperChooser:category:
+   * XfceMimeHelperChooser:category:
    *
-   * The #ExoHelperCategory which should be configured by this
-   * #ExoHelperChooser. See exo_helper_chooser_get_category() and
-   * exo_helper_chooser_set_category() for details.
+   * The #XfceMimeHelperCategory which should be configured by this
+   * #XfceMimeHelperChooser. See xfce_mime_helper_chooser_get_category() and
+   * xfce_mime_helper_chooser_set_category() for details.
    **/
   g_object_class_install_property (gobject_class,
                                    PROP_CATEGORY,
                                    g_param_spec_enum ("category",
                                                       "Helper category",
                                                       "Helper category",
-                                                      EXO_TYPE_HELPER_CATEGORY,
-                                                      EXO_HELPER_WEBBROWSER,
+                                                      XFCE_MIME_TYPE_HELPER_CATEGORY,
+                                                      XFCE_MIME_HELPER_WEBBROWSER,
                                                       EXO_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
   /**
-   * ExoHelperChooser:is-valid:
+   * XfceMimeHelperChooser:is-valid:
    *
-   * %TRUE if a valid #ExoHelper is selected by
-   * this #ExoHelperChooser, else %FALSE.
+   * %TRUE if a valid #XfceMimeHelper is selected by
+   * this #XfceMimeHelperChooser, else %FALSE.
    **/
   g_object_class_install_property (gobject_class,
                                    PROP_IS_VALID,
@@ -126,7 +126,7 @@ exo_helper_chooser_class_init (ExoHelperChooserClass *klass)
 
 
 static void
-exo_helper_chooser_init (ExoHelperChooser *chooser)
+xfce_mime_helper_chooser_init (XfceMimeHelperChooser *chooser)
 {
   AtkRelationSet *relations;
   AtkRelation    *relation;
@@ -136,12 +136,12 @@ exo_helper_chooser_init (ExoHelperChooser *chooser)
   GtkWidget      *arrow;
   GtkWidget      *hbox;
 
-  chooser->database = exo_helper_database_get ();
+  chooser->database = xfce_mime_helper_database_get ();
 
   /*gtk_widget_push_composite_child ();*/
 
   button = gtk_button_new ();
-  g_signal_connect_swapped (G_OBJECT (button), "pressed", G_CALLBACK (exo_helper_chooser_pressed), chooser);
+  g_signal_connect_swapped (G_OBJECT (button), "pressed", G_CALLBACK (xfce_mime_helper_chooser_pressed), chooser);
   gtk_widget_set_tooltip_text (button, _("Press left mouse button to change the selected application."));
   gtk_container_add (GTK_CONTAINER (chooser), button);
   gtk_widget_show (button);
@@ -184,33 +184,33 @@ exo_helper_chooser_init (ExoHelperChooser *chooser)
 
 
 static void
-exo_helper_chooser_finalize (GObject *object)
+xfce_mime_helper_chooser_finalize (GObject *object)
 {
-  ExoHelperChooser *chooser = EXO_HELPER_CHOOSER (object);
+  XfceMimeHelperChooser *chooser = XFCE_MIME_HELPER_CHOOSER (object);
 
   g_object_unref (G_OBJECT (chooser->database));
 
-  (*G_OBJECT_CLASS (exo_helper_chooser_parent_class)->finalize) (object);
+  (*G_OBJECT_CLASS (xfce_mime_helper_chooser_parent_class)->finalize) (object);
 }
 
 
 
 static void
-exo_helper_chooser_get_property (GObject    *object,
+xfce_mime_helper_chooser_get_property (GObject    *object,
                                  guint       prop_id,
                                  GValue     *value,
                                  GParamSpec *pspec)
 {
-  ExoHelperChooser *chooser = EXO_HELPER_CHOOSER (object);
+  XfceMimeHelperChooser *chooser = XFCE_MIME_HELPER_CHOOSER (object);
 
   switch (prop_id)
     {
     case PROP_CATEGORY:
-      g_value_set_enum (value, exo_helper_chooser_get_category (chooser));
+      g_value_set_enum (value, xfce_mime_helper_chooser_get_category (chooser));
       break;
 
     case PROP_IS_VALID:
-      g_value_set_boolean (value, exo_helper_chooser_get_is_valid (chooser));
+      g_value_set_boolean (value, xfce_mime_helper_chooser_get_is_valid (chooser));
       break;
 
     default:
@@ -222,17 +222,17 @@ exo_helper_chooser_get_property (GObject    *object,
 
 
 static void
-exo_helper_chooser_set_property (GObject      *object,
+xfce_mime_helper_chooser_set_property (GObject      *object,
                                  guint         prop_id,
                                  const GValue *value,
                                  GParamSpec   *pspec)
 {
-  ExoHelperChooser *chooser = EXO_HELPER_CHOOSER (object);
+  XfceMimeHelperChooser *chooser = XFCE_MIME_HELPER_CHOOSER (object);
 
   switch (prop_id)
     {
     case PROP_CATEGORY:
-      exo_helper_chooser_set_category (chooser, g_value_get_enum (value));
+      xfce_mime_helper_chooser_set_category (chooser, g_value_get_enum (value));
       break;
 
     default:
@@ -244,27 +244,27 @@ exo_helper_chooser_set_property (GObject      *object,
 
 
 static void
-exo_helper_chooser_update (ExoHelperChooser *chooser)
+xfce_mime_helper_chooser_update (XfceMimeHelperChooser *chooser)
 {
   GtkIconTheme *icon_theme;
   const gchar  *icon_name;
-  ExoHelper    *helper;
+  XfceMimeHelper    *helper;
   GdkPixbuf    *icon = NULL;
   GIcon        *gicon = NULL;
   gint          icon_size = 0;
   gboolean      gicon_set = FALSE;
 
-  g_return_if_fail (EXO_IS_HELPER_CHOOSER (chooser));
+  g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
 
   /* determine the default helper for the category */
-  helper = exo_helper_database_get_default (chooser->database, chooser->category);
+  helper = xfce_mime_helper_database_get_default (chooser->database, chooser->category);
   if (G_LIKELY (helper != NULL))
     {
       /* use the default icon theme here */
       icon_theme = gtk_icon_theme_get_default ();
 
       /* try to load the icon for the helper */
-      icon_name = exo_helper_get_icon (helper);
+      icon_name = xfce_mime_helper_get_icon (helper);
       if (G_LIKELY (icon_name != NULL))
         {
           gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_size, &icon_size);
@@ -294,7 +294,7 @@ exo_helper_chooser_update (ExoHelperChooser *chooser)
             g_object_unref (G_OBJECT (icon));
         }
 
-      gtk_label_set_text (GTK_LABEL (chooser->label), exo_helper_get_name (helper));
+      gtk_label_set_text (GTK_LABEL (chooser->label), xfce_mime_helper_get_name (helper));
       g_object_unref (G_OBJECT (helper));
     }
   else
@@ -312,7 +312,7 @@ exo_helper_chooser_update (ExoHelperChooser *chooser)
 
 static void
 menu_activate (GtkWidget        *item,
-               ExoHelperChooser *chooser)
+               XfceMimeHelperChooser *chooser)
 {
   static const gchar *CATEGORY_ERRORS[] =
   {
@@ -322,21 +322,21 @@ menu_activate (GtkWidget        *item,
     N_("Failed to set default Terminal Emulator"),
   };
 
-  ExoHelper *helper;
+  XfceMimeHelper *helper;
   GtkWidget *message;
   GError    *error = NULL;
 
   /* verify helper category values */
-  g_assert (EXO_HELPER_N_CATEGORIES == G_N_ELEMENTS (CATEGORY_ERRORS));
+  g_assert (XFCE_MIME_HELPER_N_CATEGORIES == G_N_ELEMENTS (CATEGORY_ERRORS));
 
   g_return_if_fail (GTK_IS_WIDGET (item));
-  g_return_if_fail (EXO_IS_HELPER_CHOOSER (chooser));
+  g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
 
   /* determine the helper for the item */
   helper = g_object_get_data (G_OBJECT (item), I_("exo-helper"));
   if (G_LIKELY (helper != NULL))
     {
-      if (!exo_helper_database_set_default (chooser->database, chooser->category, helper, &error))
+      if (!xfce_mime_helper_database_set_default (chooser->database, chooser->category, helper, &error))
         {
           message = gtk_message_dialog_new (GTK_WINDOW (chooser),
                                             GTK_DIALOG_DESTROY_WITH_PARENT
@@ -352,7 +352,7 @@ menu_activate (GtkWidget        *item,
       else
         {
           /* update the chooser state */
-          exo_helper_chooser_update (chooser);
+          xfce_mime_helper_chooser_update (chooser);
         }
     }
 }
@@ -498,7 +498,7 @@ browse_clicked (GtkWidget *button,
 
 static void
 menu_activate_other (GtkWidget        *item,
-                     ExoHelperChooser *chooser)
+                     XfceMimeHelperChooser *chooser)
 {
   static const gchar *BROWSE_TITLES[] =
   {
@@ -517,7 +517,7 @@ menu_activate_other (GtkWidget        *item,
   };
 
   const gchar *command;
-  ExoHelper   *helper;
+  XfceMimeHelper   *helper;
   GtkWidget   *toplevel;
   GtkWidget   *dialog;
   GtkWidget   *hbox;
@@ -528,8 +528,8 @@ menu_activate_other (GtkWidget        *item,
   GtkWidget   *button;
 
   /* sanity check the category values */
-  g_assert (EXO_HELPER_N_CATEGORIES == G_N_ELEMENTS (BROWSE_TITLES));
-  g_assert (EXO_HELPER_N_CATEGORIES == G_N_ELEMENTS (BROWSE_MESSAGES));
+  g_assert (XFCE_MIME_HELPER_N_CATEGORIES == G_N_ELEMENTS (BROWSE_TITLES));
+  g_assert (XFCE_MIME_HELPER_N_CATEGORIES == G_N_ELEMENTS (BROWSE_MESSAGES));
 
   toplevel = gtk_widget_get_toplevel (GTK_WIDGET (chooser));
 
@@ -587,10 +587,10 @@ menu_activate_other (GtkWidget        *item,
   gtk_widget_show (image);
 
   /* set the current custom command (if any) */
-  helper = exo_helper_database_get_custom (chooser->database, chooser->category);
+  helper = xfce_mime_helper_database_get_custom (chooser->database, chooser->category);
   if (G_LIKELY (helper != NULL))
     {
-      command = exo_helper_get_command (helper);
+      command = xfce_mime_helper_get_command (helper);
       if (G_LIKELY (command != NULL))
         gtk_entry_set_text (GTK_ENTRY (entry), command);
     }
@@ -599,10 +599,10 @@ menu_activate_other (GtkWidget        *item,
     {
       /* change the custom command in the database */
       command = gtk_entry_get_text (GTK_ENTRY (entry));
-      exo_helper_database_set_custom (chooser->database, chooser->category, command);
+      xfce_mime_helper_database_set_custom (chooser->database, chooser->category, command);
 
       /* reload the custom helper */
-      helper = exo_helper_database_get_custom (chooser->database, chooser->category);
+      helper = xfce_mime_helper_database_get_custom (chooser->database, chooser->category);
       if (G_LIKELY (helper != NULL))
         {
           /* hide the dialog */
@@ -662,7 +662,7 @@ menu_position (GtkMenu  *menu,
 
 
 static void
-exo_helper_chooser_pressed (ExoHelperChooser *chooser,
+xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
                             GtkWidget        *button)
 {
   AtkRelationSet *relations;
@@ -670,7 +670,7 @@ exo_helper_chooser_pressed (ExoHelperChooser *chooser,
   AtkObject      *object;
   GtkIconTheme   *icon_theme;
   const gchar    *icon_name;
-  ExoHelper      *helper;
+  XfceMimeHelper      *helper;
   GMainLoop      *loop;
   GdkCursor      *cursor;
   GdkPixbuf      *icon;
@@ -691,7 +691,7 @@ exo_helper_chooser_pressed (ExoHelperChooser *chooser,
   GdkEvent       *event;
   gboolean        handled;
 
-  g_return_if_fail (EXO_IS_HELPER_CHOOSER (chooser));
+  g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
   g_return_if_fail (GTK_IS_BUTTON (button));
 
   /* set a watch cursor while loading the menu */
@@ -722,14 +722,14 @@ exo_helper_chooser_pressed (ExoHelperChooser *chooser,
   gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_size, &icon_size);
 
   /* append menu items for all available helpers */
-  helpers = exo_helper_database_get_all (chooser->database, chooser->category);
+  helpers = xfce_mime_helper_database_get_all (chooser->database, chooser->category);
   for (lp = helpers, icon = NULL; lp != NULL; lp = lp->next)
     {
       /* determine the helper */
-      helper = EXO_HELPER (lp->data);
+      helper = XFCE_MIME_HELPER (lp->data);
 
       /* create a menu item for the helper */
-      item_label = gtk_label_new (exo_helper_get_name (helper));
+      item_label = gtk_label_new (xfce_mime_helper_get_name (helper));
       g_object_set (item_label, "xalign", 0.0f, "yalign", 0.5f, NULL);
       item_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
       gtk_box_pack_end (GTK_BOX (item_hbox), item_label, TRUE, TRUE, 0);
@@ -737,7 +737,7 @@ exo_helper_chooser_pressed (ExoHelperChooser *chooser,
       gtk_container_add (GTK_CONTAINER (item), item_hbox);
 
       /* try to load the icon for the helper */
-      icon_name = exo_helper_get_icon (helper);
+      icon_name = xfce_mime_helper_get_icon (helper);
       if (G_LIKELY (icon_name != NULL))
         {
           /* load the icon */
@@ -824,66 +824,66 @@ exo_helper_chooser_pressed (ExoHelperChooser *chooser,
 
 
 /**
- * exo_helper_chooser_new:
- * @category : the #ExoHelperCategory for the chooser.
+ * xfce_mime_helper_chooser_new:
+ * @category : the #XfceMimeHelperCategory for the chooser.
  *
- * Allocates a new #ExoHelperChooser for the given
+ * Allocates a new #XfceMimeHelperChooser for the given
  * @category.
  *
- * Return value: the newly allocated #ExoHelperChooser.
+ * Return value: the newly allocated #XfceMimeHelperChooser.
  **/
 GtkWidget*
-exo_helper_chooser_new (ExoHelperCategory category)
+xfce_mime_helper_chooser_new (XfceMimeHelperCategory category)
 {
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, NULL);
-  return g_object_new (EXO_TYPE_HELPER_CHOOSER, "category", category, NULL);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
+  return g_object_new (XFCE_MIME_TYPE_HELPER_CHOOSER, "category", category, NULL);
 }
 
 
 
 /**
- * exo_helper_chooser_get_category:
- * @chooser : an #ExoHelperChooser.
+ * xfce_mime_helper_chooser_get_category:
+ * @chooser : an #XfceMimeHelperChooser.
  *
- * Returns the #ExoHelperCategory which is configured
+ * Returns the #XfceMimeHelperCategory which is configured
  * by @chooser.
  *
  * Return value: the category for @chooser.
  **/
-ExoHelperCategory
-exo_helper_chooser_get_category (const ExoHelperChooser *chooser)
+XfceMimeHelperCategory
+xfce_mime_helper_chooser_get_category (const XfceMimeHelperChooser *chooser)
 {
-  g_return_val_if_fail (EXO_IS_HELPER_CHOOSER (chooser), EXO_HELPER_WEBBROWSER);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser), XFCE_MIME_HELPER_WEBBROWSER);
   return chooser->category;
 }
 
 
 
 /**
- * exo_helper_chooser_set_category:
- * @chooser  : an #ExoHelperChooser.
- * @category : an #ExoHelperCategory.
+ * xfce_mime_helper_chooser_set_category:
+ * @chooser  : an #XfceMimeHelperChooser.
+ * @category : an #XfceMimeHelperCategory.
  *
  * Sets the category for @chooser to @category.
  **/
 void
-exo_helper_chooser_set_category (ExoHelperChooser *chooser,
-                                 ExoHelperCategory category)
+xfce_mime_helper_chooser_set_category (XfceMimeHelperChooser *chooser,
+                                 XfceMimeHelperCategory category)
 {
-  g_return_if_fail (EXO_IS_HELPER_CHOOSER (chooser));
-  g_return_if_fail (category < EXO_HELPER_N_CATEGORIES);
+  g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
+  g_return_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES);
 
   /* apply the new category */
   chooser->category = category;
-  exo_helper_chooser_update (chooser);
+  xfce_mime_helper_chooser_update (chooser);
   g_object_notify (G_OBJECT (chooser), "category");
 }
 
 
 
 /**
- * exo_helper_chooser_get_is_valid:
- * @chooser : an #ExoHelperChooser.
+ * xfce_mime_helper_chooser_get_is_valid:
+ * @chooser : an #XfceMimeHelperChooser.
  *
  * Returns %TRUE if a valid helper is selected for
  * @chooser.
@@ -891,8 +891,8 @@ exo_helper_chooser_set_category (ExoHelperChooser *chooser,
  * Return value: %TRUE if a valid helper is selected.
  **/
 gboolean
-exo_helper_chooser_get_is_valid (const ExoHelperChooser *chooser)
+xfce_mime_helper_chooser_get_is_valid (const XfceMimeHelperChooser *chooser)
 {
-  g_return_val_if_fail (EXO_IS_HELPER_CHOOSER (chooser), FALSE);
+  g_return_val_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser), FALSE);
   return chooser->is_valid;
 }
