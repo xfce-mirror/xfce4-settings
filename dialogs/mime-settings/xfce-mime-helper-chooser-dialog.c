@@ -24,22 +24,22 @@
 #include <libxfce4ui/libxfce4ui.h>
 
 #include <exo/exo.h>
-#include <exo-helper/exo-helper-chooser-dialog.h>
+#include <xfce-mime-helper-chooser-dialog.h>
 
 
 
 
-static void exo_helper_chooser_dialog_init      (ExoHelperChooserDialog *chooser_dialog);
-static void exo_helper_chooser_dialog_show_help (ExoHelperChooserDialog *dialog);
+static void xfce_mime_helper_chooser_dialog_init      (XfceMimeHelperChooserDialog *chooser_dialog);
+static void xfce_mime_helper_chooser_dialog_show_help (XfceMimeHelperChooserDialog *dialog);
 
 
 
-struct _ExoHelperChooserDialogClass
+struct _XfceMimeHelperChooserDialogClass
 {
   XfceTitledDialogClass __parent__;
 };
 
-struct _ExoHelperChooserDialog
+struct _XfceMimeHelperChooserDialog
 {
   XfceTitledDialog __parent__;
 
@@ -49,7 +49,7 @@ struct _ExoHelperChooserDialog
 
 
 GType
-exo_helper_chooser_dialog_get_type (void)
+xfce_mime_helper_chooser_dialog_get_type (void)
 {
   static GType type = G_TYPE_INVALID;
 
@@ -57,19 +57,19 @@ exo_helper_chooser_dialog_get_type (void)
     {
       static const GTypeInfo info =
       {
-        sizeof (ExoHelperChooserDialogClass),
+        sizeof (XfceMimeHelperChooserDialogClass),
         NULL,
         NULL,
         NULL,
         NULL,
         NULL,
-        sizeof (ExoHelperChooserDialog),
+        sizeof (XfceMimeHelperChooserDialog),
         0,
-        (GInstanceInitFunc) (void (*)(void)) exo_helper_chooser_dialog_init,
+        (GInstanceInitFunc) (void (*)(void)) xfce_mime_helper_chooser_dialog_init,
         NULL,
       };
 
-      type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, I_("ExoHelperChooserDialog"), &info, 0);
+      type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, I_("XfceMimeHelperChooserDialog"), &info, 0);
     }
 
   return type;
@@ -78,7 +78,7 @@ exo_helper_chooser_dialog_get_type (void)
 
 
 static void
-exo_helper_chooser_dialog_init (ExoHelperChooserDialog *chooser_dialog)
+xfce_mime_helper_chooser_dialog_init (XfceMimeHelperChooserDialog *chooser_dialog)
 {
   PangoAttribute *attribute;
   PangoAttrList  *attr_list_bold;
@@ -95,7 +95,7 @@ exo_helper_chooser_dialog_init (ExoHelperChooserDialog *chooser_dialog)
   GtkWidget      *box;
 
   /* verify category settings */
-  g_assert (EXO_HELPER_N_CATEGORIES == 4);
+  g_assert (XFCE_MIME_HELPER_N_CATEGORIES == 4);
 
   gtk_window_set_icon_name (GTK_WINDOW (chooser_dialog), "preferences-desktop-default-applications");
   gtk_window_set_title (GTK_WINDOW (chooser_dialog), _("Preferred Applications"));
@@ -113,7 +113,7 @@ exo_helper_chooser_dialog_init (ExoHelperChooserDialog *chooser_dialog)
   button = gtk_button_new_with_mnemonic (_("_Help"));
   image = gtk_image_new_from_icon_name ("help-browser", GTK_ICON_SIZE_BUTTON);
   gtk_button_set_image (GTK_BUTTON (button), image);
-  g_signal_connect_swapped (G_OBJECT (button), "clicked", G_CALLBACK (exo_helper_chooser_dialog_show_help), chooser_dialog);
+  g_signal_connect_swapped (G_OBJECT (button), "clicked", G_CALLBACK (xfce_mime_helper_chooser_dialog_show_help), chooser_dialog);
   exo_gtk_dialog_add_secondary_button (GTK_DIALOG (chooser_dialog), GTK_WIDGET (button));
   gtk_widget_show (button);
 
@@ -159,7 +159,7 @@ exo_helper_chooser_dialog_init (ExoHelperChooserDialog *chooser_dialog)
   gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
 
-  chooser = exo_helper_chooser_new (EXO_HELPER_WEBBROWSER);
+  chooser = xfce_mime_helper_chooser_new (XFCE_MIME_HELPER_WEBBROWSER);
   gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
   gtk_widget_show (chooser);
 
@@ -190,7 +190,7 @@ exo_helper_chooser_dialog_init (ExoHelperChooserDialog *chooser_dialog)
   gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
 
-  chooser = exo_helper_chooser_new (EXO_HELPER_MAILREADER);
+  chooser = xfce_mime_helper_chooser_new (XFCE_MIME_HELPER_MAILREADER);
   gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
   gtk_widget_show (chooser);
 
@@ -230,7 +230,7 @@ exo_helper_chooser_dialog_init (ExoHelperChooserDialog *chooser_dialog)
   gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
 
-  chooser = exo_helper_chooser_new (EXO_HELPER_FILEMANAGER);
+  chooser = xfce_mime_helper_chooser_new (XFCE_MIME_HELPER_FILEMANAGER);
   gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
   gtk_widget_show (chooser);
 
@@ -261,7 +261,7 @@ exo_helper_chooser_dialog_init (ExoHelperChooserDialog *chooser_dialog)
   gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
 
-  chooser = exo_helper_chooser_new (EXO_HELPER_TERMINALEMULATOR);
+  chooser = xfce_mime_helper_chooser_new (XFCE_MIME_HELPER_TERMINALEMULATOR);
   gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
   gtk_widget_show (chooser);
 
@@ -279,9 +279,9 @@ exo_helper_chooser_dialog_init (ExoHelperChooserDialog *chooser_dialog)
 
 
 static void
-exo_helper_chooser_dialog_show_help (ExoHelperChooserDialog *chooser_dialog)
+xfce_mime_helper_chooser_dialog_show_help (XfceMimeHelperChooserDialog *chooser_dialog)
 {
-  g_return_if_fail (EXO_IS_HELPER_CHOOSER_DIALOG (chooser_dialog));
+  g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER_DIALOG (chooser_dialog));
   xfce_dialog_show_help (GTK_WINDOW (chooser_dialog), "exo",
                          "preferred-applications", NULL);
 }
@@ -289,29 +289,29 @@ exo_helper_chooser_dialog_show_help (ExoHelperChooserDialog *chooser_dialog)
 
 
 /**
- * exo_helper_chooser_dialog_new:
+ * xfce_mime_helper_chooser_dialog_new:
  *
- * Allocates a new #ExoHelperChooserDialog.
+ * Allocates a new #XfceMimeHelperChooserDialog.
  *
- * Return value: the newly allocated #ExoHelperChooserDialog.
+ * Return value: the newly allocated #XfceMimeHelperChooserDialog.
  **/
 GtkWidget*
-exo_helper_chooser_dialog_new (void)
+xfce_mime_helper_chooser_dialog_new (void)
 {
-  return g_object_new (EXO_TYPE_HELPER_CHOOSER_DIALOG, NULL);
+  return g_object_new (XFCE_MIME_TYPE_HELPER_CHOOSER_DIALOG, NULL);
 }
 
 
 /**
- * exo_helper_chooser_dialog_get_plug_child:
- * @dialog: A #ExoHelperChooserDialog.
+ * xfce_mime_helper_chooser_dialog_get_plug_child:
+ * @dialog: A #XfceMimeHelperChooserDialog.
  *
  * Gets the non-window toplevel container of the dialog.
  *
  * Return value: a non-window #GtkWidget.
  **/
 GtkWidget *
-exo_helper_chooser_dialog_get_plug_child (ExoHelperChooserDialog *dialog)
+xfce_mime_helper_chooser_dialog_get_plug_child (XfceMimeHelperChooserDialog *dialog)
 {
   return dialog->plug_child;
 }

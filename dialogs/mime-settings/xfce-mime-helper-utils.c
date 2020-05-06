@@ -26,19 +26,19 @@
 
 
 /**
- * exo_helper_category_from_string:
- * @string          : string representation of an #ExoHelperCategory.
- * @category_return : return location for the #ExoHelperCategory.
+ * xfce_mime_helper_category_from_string:
+ * @string          : string representation of an #XfceMimeHelperCategory.
+ * @category_return : return location for the #XfceMimeHelperCategory.
  *
- * Transforms the @string representation of an #ExoHelperCategory to
- * an #ExoHelperCategory and places it in @category_return.
+ * Transforms the @string representation of an #XfceMimeHelperCategory to
+ * an #XfceMimeHelperCategory and places it in @category_return.
  *
  * Return value: %TRUE if @string was recognized and @category_return
  *               is set, else %FALSE.
  **/
 gboolean
-exo_helper_category_from_string (const gchar       *string,
-                                 ExoHelperCategory *category_return)
+xfce_mime_helper_category_from_string (const gchar       *string,
+                                 XfceMimeHelperCategory *category_return)
 {
   GEnumClass *klass;
   gboolean    found = FALSE;
@@ -48,7 +48,7 @@ exo_helper_category_from_string (const gchar       *string,
 
   if (G_LIKELY (string != NULL))
     {
-      klass = g_type_class_ref (EXO_TYPE_HELPER_CATEGORY);
+      klass = g_type_class_ref (XFCE_MIME_TYPE_HELPER_CATEGORY);
       for (n = 0; !found && n < klass->n_values; ++n)
         if (g_ascii_strcasecmp (string, klass->values[n].value_nick) == 0)
           {
@@ -64,8 +64,8 @@ exo_helper_category_from_string (const gchar       *string,
 
 
 /**
- * exo_helper_category_to_string:
- * @category : an #ExoHelperCategory.
+ * xfce_mime_helper_category_to_string:
+ * @category : an #XfceMimeHelperCategory.
  *
  * Transforms @category to its canonical string represenation.
  * The caller is responsible to free the returned string using
@@ -74,14 +74,14 @@ exo_helper_category_from_string (const gchar       *string,
  * Return value: the string representation for @category.
  **/
 gchar*
-exo_helper_category_to_string (ExoHelperCategory category)
+xfce_mime_helper_category_to_string (XfceMimeHelperCategory category)
 {
   GEnumClass *klass;
   gchar      *string;
 
-  g_return_val_if_fail (category < EXO_HELPER_N_CATEGORIES, NULL);
+  g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
 
-  klass = g_type_class_ref (EXO_TYPE_HELPER_CATEGORY);
+  klass = g_type_class_ref (XFCE_MIME_TYPE_HELPER_CATEGORY);
   string = g_strdup (klass->values[category].value_nick);
   g_type_class_unref (klass);
 

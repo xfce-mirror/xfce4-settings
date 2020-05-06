@@ -16,16 +16,16 @@ xfce4_mime_helper_built_sources =						\
 	xfce-mime-helper-enum-types.c						\
 	xfce-mime-helper-enum-types.h
 
-exo_helper_headers =							\
-	exo-helper.h
+xfce_mime_helper_headers =							\
+	xfce-mime-helper.h
 
 xfce4_mime_settings_SOURCES = \
 	$(xfce4_mime_helper_built_sources)					\
-	$(exo_helper_headers)						\
+	$(xfce_mime_helper_headers)						\
 	main.c \
 	xfce-mime-helper-utils.c						\
 	xfce-mime-helper-utils.h						\
-	exo-helper.c							\
+	xfce-mime-helper.c							\
 	xfce-mime-helper-chooser.c	\
 	xfce-mime-helper-chooser.h	\
 	xfce-mime-chooser.c \

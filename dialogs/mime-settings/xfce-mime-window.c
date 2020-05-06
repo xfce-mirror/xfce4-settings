@@ -172,7 +172,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     GtkWidget         *box;
 
     /* verify category settings */
-    g_assert (EXO_HELPER_N_CATEGORIES == 4);
+    g_assert (XFCE_MIME_HELPER_N_CATEGORIES == 4);
 
     window->channel = xfconf_channel_new ("xfce4-mime-settings");
 
@@ -230,7 +230,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
     gtk_widget_show (label);
 
-    chooser = exo_helper_chooser_new (EXO_HELPER_WEBBROWSER);
+    chooser = xfce_mime_helper_chooser_new (XFCE_MIME_HELPER_WEBBROWSER);
     gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
     gtk_widget_show (chooser);
 
@@ -261,7 +261,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
     gtk_widget_show (label);
 
-    chooser = exo_helper_chooser_new (EXO_HELPER_MAILREADER);
+    chooser = xfce_mime_helper_chooser_new (XFCE_MIME_HELPER_MAILREADER);
     gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
     gtk_widget_show (chooser);
 
@@ -301,7 +301,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
     gtk_widget_show (label);
 
-    chooser = exo_helper_chooser_new (EXO_HELPER_FILEMANAGER);
+    chooser = xfce_mime_helper_chooser_new (XFCE_MIME_HELPER_FILEMANAGER);
     gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
     gtk_widget_show (chooser);
 
@@ -332,7 +332,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
     gtk_widget_show (label);
 
-    chooser = exo_helper_chooser_new (EXO_HELPER_TERMINALEMULATOR);
+    chooser = xfce_mime_helper_chooser_new (XFCE_MIME_HELPER_TERMINALEMULATOR);
     gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
     gtk_widget_show (chooser);
 
