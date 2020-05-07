@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# exo-compose-mail-1 - Perl script to parse mailto:-URIs and invoke the
+# xfce4-compose-mail - Perl script to parse mailto:-URIs and invoke the
 #                      various included MailReaders with the appropriate
 #                      parameters.
 #
@@ -168,7 +168,7 @@ elsif ($style eq 'sylpheed') {
 	if (@attachments > 0) {
 		push (@argv, '--attach');
 		for my $uri (@attachments) {
-			# claws-mail supports URIs, sylpheed and older claws need 
+			# claws-mail supports URIs, sylpheed and older claws need
 			# unescaped local paths
 			if ($binary eq 'claws-mail') {
 				push (@argv, $uri);
@@ -198,6 +198,24 @@ elsif ($style eq 'balsa') {
 	for my $uri (@attachments) {
 		push (@argv, '--attach', $uri->path ());
 	}
+}
+elsif ($style eq 'geary') {
+	# Geary supports everything but attachments
+	my $mailto = 'mailto:' . ((@to > 0) ? uri_escape($to[0]) : "") . '?';
+	for (my $n = 1; $n < @to; $n++) {
+		$mailto .= 'cc=' . uri_escape($to[$n]) . '&';
+	}
+	for my $cc (@cc) {
+		$mailto .= 'cc=' . uri_escape($cc) . '&';
+	}
+	for my $bcc (@bcc) {
+		$mailto .= 'bcc=' . uri_escape($bcc) . '&';
+	}
+	$subject and $mailto .= 'subject=' . uri_escape($subject) . '&';
+	$body and $mailto .= 'body=' . uri_escape($body);
+
+	# and add the parameters to the argv
+	push (@argv, $mailto);
 }
 elsif ($style eq 'mutt') {
 	# generate the parameters for mutt
@@ -230,4 +248,3 @@ exec @argv;
 
 # something went wrong
 exit 1;
-

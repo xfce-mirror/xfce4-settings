@@ -62,8 +62,12 @@ desktop_in_in_files =							\
 desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 %.desktop.in: %.desktop.in.in
-	sed -e 's,\@HELPERDIR\@,$(EXO_HELPER_PATH_PREFIX)/share/xfce4/exo,g' < $< > $@
+	sed -e 's,\@HELPERDIR\@,$(HELPER_PATH_PREFIX)/xfce4,g' < $< > $@
 @INTLTOOL_DESKTOP_RULE@
+
+xfce4_composedir = $(HELPER_PATH_PREFIX)/xfce4
+xfce4_compose_SCRIPTS =						\
+	xfce4-compose-mail
 
 DISTCLEANFILES =							\
 	$(desktop_in_files)						\
@@ -71,6 +75,7 @@ DISTCLEANFILES =							\
 
 EXTRA_DIST =								\
 	$(defaults_DATA)						\
-	$(desktop_in_in_files)
+	$(desktop_in_in_files)					\
+	xfce4-compose-mail
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
