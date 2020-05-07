@@ -758,15 +758,15 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
   switch (category)
     {
       case XFCE_MIME_HELPER_WEBBROWSER:
-        filename = "exo-web-browser.desktop";
+        filename = "xfce4-web-browser.desktop";
         break;
 
       case XFCE_MIME_HELPER_MAILREADER:
-        filename = "exo-mail-reader.desktop";
+        filename = "xfce4-mail-reader.desktop";
         break;
 
       case XFCE_MIME_HELPER_FILEMANAGER:
-        filename = "exo-file-manager.desktop";
+        filename = "xfce4-file-manager.desktop";
         break;
 
       default:
@@ -894,15 +894,15 @@ xfce_mime_helper_database_clear_default (XfceMimeHelperDatabase *database,
   switch (category)
     {
       case XFCE_MIME_HELPER_WEBBROWSER:
-        filename = "exo-web-browser.desktop";
+        filename = "xfce4-web-browser.desktop";
         break;
 
       case XFCE_MIME_HELPER_MAILREADER:
-        filename = "exo-mail-reader.desktop";
+        filename = "xfce4-mail-reader.desktop";
         break;
 
       case XFCE_MIME_HELPER_FILEMANAGER:
-        filename = "exo-file-manager.desktop";
+        filename = "xfce4-file-manager.desktop";
         break;
 
       default:
@@ -1007,7 +1007,7 @@ static void
 clear_bad_entries (XfceRc *rc)
 {
   xfce_rc_set_group (rc, "Added Associations");
-  clear_bad_entry (rc, "x-scheme-handler/file", "exo-file-manager.desktop"); // Xfce #7257
+  clear_bad_entry (rc, "x-scheme-handler/file", "xfce4-file-manager.desktop"); // Xfce #7257
 }
 
 

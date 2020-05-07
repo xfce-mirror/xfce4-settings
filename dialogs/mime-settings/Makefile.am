@@ -93,7 +93,12 @@ xfce4_mime_helper_LDADD =							\
 	$(EXO_LIBS)
 
 desktopdir = $(datadir)/applications
-desktop_in_files = xfce4-mime-settings.desktop.in
+desktop_in_files = 						\
+	xfce4-mime-settings.desktop.in		\
+	xfce4-file-manager.desktop.in					\
+	xfce4-mail-reader.desktop.in					\
+	xfce4-terminal-emulator.desktop.in				\
+	xfce4-web-browser.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @INTLTOOL_DESKTOP_RULE@
