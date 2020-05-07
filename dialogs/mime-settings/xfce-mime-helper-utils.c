@@ -48,7 +48,7 @@ xfce_mime_helper_category_from_string (const gchar       *string,
 
   if (G_LIKELY (string != NULL))
     {
-      klass = g_type_class_ref (XFCE_MIME_TYPE_HELPER_CATEGORY);
+      klass = g_type_class_ref (XFCE_MIME_TYPE_MIME_HELPER_CATEGORY);
       for (n = 0; !found && n < klass->n_values; ++n)
         if (g_ascii_strcasecmp (string, klass->values[n].value_nick) == 0)
           {
@@ -81,7 +81,7 @@ xfce_mime_helper_category_to_string (XfceMimeHelperCategory category)
 
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
 
-  klass = g_type_class_ref (XFCE_MIME_TYPE_HELPER_CATEGORY);
+  klass = g_type_class_ref (XFCE_MIME_TYPE_MIME_HELPER_CATEGORY);
   string = g_strdup (klass->values[category].value_nick);
   g_type_class_unref (klass);
 

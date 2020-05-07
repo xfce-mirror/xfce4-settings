@@ -30,9 +30,9 @@
 #include <string.h>
 #endif
 
-#include <exo-helper/exo-helper-chooser-dialog.h>
-#include <exo-helper/exo-helper-launcher-dialog.h>
-#include <exo-helper/exo-helper-utils.h>
+#include <xfce-mime-helper-chooser-dialog.h>
+#include <xfce-mime-helper-launcher-dialog.h>
+#include <xfce-mime-helper-utils.h>
 #include <gtk/gtkx.h>
 
 
@@ -57,7 +57,7 @@ error_dialog_dismiss_toggled (GtkToggleButton *button,
 
 
 static GtkWidget *
-get_helper_error_dialog (ExoHelperCategory  category,
+get_helper_error_dialog (XfceMimeHelperCategory  category,
                          GError            *error,
                          gboolean          *return_value)
 {
@@ -99,9 +99,9 @@ get_helper_error_dialog (ExoHelperCategory  category,
 int
 main (int argc, char **argv)
 {
-  ExoHelperCategory  category;
-  ExoHelperDatabase *database;
-  ExoHelper         *helper;
+  XfceMimeHelperCategory  category;
+  XfceMimeHelperDatabase *database;
+  XfceMimeHelper         *helper;
   GtkWidget         *dialog;
   GError            *error = NULL;
   gint               result = EXIT_SUCCESS;
@@ -127,11 +127,11 @@ main (int argc, char **argv)
   };
 
   /* sanity check helper categories */
-  g_assert (EXO_HELPER_N_CATEGORIES == G_N_ELEMENTS (CATEGORY_EXEC_ERRORS));
+  g_assert (XFCE_MIME_HELPER_N_CATEGORIES == G_N_ELEMENTS (CATEGORY_EXEC_ERRORS));
 
 #ifdef GETTEXT_PACKAGE
   /* setup i18n support */
-  xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+  xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 #endif
 
   /* steal the startup id, before gtk tries to grab it */
@@ -148,7 +148,7 @@ main (int argc, char **argv)
   g_option_context_add_main_entries (opt_ctx, option_entries, NULL);
   g_option_context_set_ignore_unknown_options (opt_ctx, TRUE);
   /* Note to Translators: Do not translate the TYPEs (WebBrowser, MailReader,
-   * FileManager and TerminalEmulator), since the exo-helper utility will
+   * FileManager and TerminalEmulator), since the xfce-mime-helper utility will
    * not accept localized TYPEs.
    */
   g_option_context_set_description (opt_ctx,
@@ -184,7 +184,7 @@ main (int argc, char **argv)
   /* check for the action to perform */
   if (opt_configure == TRUE)
     {
-      dialog = exo_helper_chooser_dialog_new ();
+      dialog = xfce_mime_helper_chooser_dialog_new ();
 
       if (opt_socket_id != 0)
         {
@@ -192,7 +192,7 @@ main (int argc, char **argv)
           gtk_widget_show (plug);
           g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
 
-          plug_child = exo_helper_chooser_dialog_get_plug_child (EXO_HELPER_CHOOSER_DIALOG (dialog));
+          plug_child = xfce_mime_helper_chooser_dialog_get_plug_child (XFCE_MIME_HELPER_CHOOSER_DIALOG (dialog));
 
           g_object_ref (plug_child);
           if (gtk_widget_get_parent (plug_child))
@@ -219,27 +219,27 @@ main (int argc, char **argv)
   else if (opt_launch_type != NULL)
     {
       /* try to parse the type */
-      if (!exo_helper_category_from_string (opt_launch_type, &category))
+      if (!xfce_mime_helper_category_from_string (opt_launch_type, &category))
         {
           g_warning (_("Invalid helper type \"%s\""), opt_launch_type);
           return EXIT_FAILURE;
         }
 
       /* determine the default helper for the category */
-      database = exo_helper_database_get ();
-      helper = exo_helper_database_get_default (database, category);
+      database = xfce_mime_helper_database_get ();
+      helper = xfce_mime_helper_database_get_default (database, category);
 
       /* check if we have a valid helper */
       if (G_UNLIKELY (helper == NULL))
         {
           /* ask the user to choose a default helper for category */
-          dialog = exo_helper_launcher_dialog_new (category);
+          dialog = xfce_mime_helper_launcher_dialog_new (category);
           if (startup_id != NULL)
             gtk_window_set_startup_id (GTK_WINDOW (dialog), startup_id);
           if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
-            helper = exo_helper_database_get_default (database, category);
+            helper = xfce_mime_helper_database_get_default (database, category);
           else
-            exo_helper_database_clear_default (database, category, NULL);
+            xfce_mime_helper_database_clear_default (database, category, NULL);
           gtk_widget_destroy (dialog);
 
           /* iterate the mainloop until the dialog is fully destroyed */
@@ -251,9 +251,9 @@ main (int argc, char **argv)
       if (G_LIKELY (helper != NULL))
         {
           /* try to execute the helper with the given parameter */
-          if (!exo_helper_execute (helper, NULL, (argc > 1) ? argv[1] : NULL, &error))
+          if (!xfce_mime_helper_execute (helper, NULL, (argc > 1) ? argv[1] : NULL, &error))
             {
-              if (!exo_helper_database_get_dismissed (database, category))
+              if (!xfce_mime_helper_database_get_dismissed (database, category))
                 {
                   gboolean dismissed = FALSE;
                   dialog = get_helper_error_dialog (category, error, &dismissed);
@@ -264,7 +264,7 @@ main (int argc, char **argv)
 
                   if (dismissed)
                     {
-                      exo_helper_database_set_dismissed (database, category, dismissed);
+                      xfce_mime_helper_database_set_dismissed (database, category, dismissed);
                     }
                 }
               g_error_free (error);
@@ -292,15 +292,15 @@ main (int argc, char **argv)
   else if (opt_query_type != NULL)
     {
       /* try to parse the type */
-      if (!exo_helper_category_from_string (opt_query_type, &category))
+      if (!xfce_mime_helper_category_from_string (opt_query_type, &category))
         {
           g_warning (_("Invalid helper type \"%s\""), opt_query_type);
           return EXIT_FAILURE;
         }
 
       /* determine the default helper for the category */
-      database = exo_helper_database_get ();
-      helper = exo_helper_database_get_default (database, category);
+      database = xfce_mime_helper_database_get ();
+      helper = xfce_mime_helper_database_get_default (database, category);
 
       if (G_UNLIKELY (helper == NULL))
         {
@@ -308,7 +308,7 @@ main (int argc, char **argv)
           return EXIT_FAILURE;
         }
 
-      g_print ("%s\n", exo_helper_get_id (helper));
+      g_print ("%s\n", xfce_mime_helper_get_id (helper));
     }
   else
     {
