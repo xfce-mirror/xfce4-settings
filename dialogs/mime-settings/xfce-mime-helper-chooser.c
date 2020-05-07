@@ -843,7 +843,7 @@ xfce_mime_helper_chooser_new (XfceMimeHelperCategory category)
 
 /**
  * xfce_mime_helper_chooser_get_category:
- * @chooser : an #XfceMimeHelperChooser.
+ * @chooser : a #XfceMimeHelperChooser.
  *
  * Returns the #XfceMimeHelperCategory which is configured
  * by @chooser.
@@ -861,8 +861,8 @@ xfce_mime_helper_chooser_get_category (const XfceMimeHelperChooser *chooser)
 
 /**
  * xfce_mime_helper_chooser_set_category:
- * @chooser  : an #XfceMimeHelperChooser.
- * @category : an #XfceMimeHelperCategory.
+ * @chooser  : a #XfceMimeHelperChooser.
+ * @category : a #XfceMimeHelperCategory.
  *
  * Sets the category for @chooser to @category.
  **/
@@ -883,7 +883,7 @@ xfce_mime_helper_chooser_set_category (XfceMimeHelperChooser *chooser,
 
 /**
  * xfce_mime_helper_chooser_get_is_valid:
- * @chooser : an #XfceMimeHelperChooser.
+ * @chooser : a #XfceMimeHelperChooser.
  *
  * Returns %TRUE if a valid helper is selected for
  * @chooser.

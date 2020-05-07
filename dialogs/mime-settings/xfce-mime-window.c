@@ -52,7 +52,7 @@ static void     xfce_mime_window_filter_clear      (GtkEntry             *entry,
                                                     GdkEvent             *event,
                                                     gpointer              user_data);
 static void     xfce_mime_window_statusbar_count   (XfceMimeWindow       *window,
-                                                    gint                 n_mime_types);
+                                                    gint                  n_mime_types);
 static gboolean xfce_mime_window_row_visible_func  (GtkTreeModel         *model,
                                                     GtkTreeIter          *iter,
                                                     gpointer              data);
@@ -80,21 +80,21 @@ struct _XfceMimeWindow
 {
     XfceTitledDialog  __parent__;
 
-    XfconfChannel *channel;
+    XfconfChannel    *channel;
 
-    GtkWidget     *treeview;
-    GtkWidget     *plug_child;
+    GtkWidget        *treeview;
+    GtkWidget        *plug_child;
 
-    PangoAttrList *attrs_bold;
-    GtkTreeModel  *mime_model;
+    PangoAttrList    *attrs_bold;
+    GtkTreeModel     *mime_model;
 
-    GtkTreeModel  *filter_model;
-    gchar         *filter_text;
+    GtkTreeModel     *filter_model;
+    gchar            *filter_text;
 
     /* status bar stuff */
-    GtkWidget     *statusbar;
-    guint          desc_id;
-    guint          count_id;
+    GtkWidget        *statusbar;
+    guint             desc_id;
+    guint             count_id;
 };
 
 
@@ -670,7 +670,7 @@ xfce_mime_window_mime_model (XfceMimeWindow *window)
 
 static void
 xfce_mime_window_filter_changed (GtkEntry       *entry,
-                                   XfceMimeWindow *window)
+                                 XfceMimeWindow *window)
 {
     const gchar *text;
     gint         count;
@@ -693,9 +693,9 @@ xfce_mime_window_filter_changed (GtkEntry       *entry,
 
 static void
 xfce_mime_window_filter_clear (GtkEntry            *entry,
-                                 GtkEntryIconPosition icon_pos,
-                                 GdkEvent            *event,
-                                 gpointer             user_data)
+                               GtkEntryIconPosition icon_pos,
+                               GdkEvent            *event,
+                               gpointer             user_data)
 {
     if (icon_pos == GTK_ENTRY_ICON_SECONDARY)
         gtk_entry_set_text (entry, "");
@@ -705,7 +705,7 @@ xfce_mime_window_filter_clear (GtkEntry            *entry,
 
 static void
 xfce_mime_window_statusbar_count (XfceMimeWindow *window,
-                                    gint            n_mime_types)
+                                  gint            n_mime_types)
 {
     gchar *msg;
 
@@ -722,8 +722,8 @@ xfce_mime_window_statusbar_count (XfceMimeWindow *window,
 
 static gboolean
 xfce_mime_window_row_visible_func (GtkTreeModel *model,
-                                     GtkTreeIter  *iter,
-                                     gpointer      data)
+                                   GtkTreeIter  *iter,
+                                   gpointer      data)
 {
     XfceMimeWindow *window = XFCE_MIME_WINDOW (data);
     const gchar    *mime_type;
@@ -888,7 +888,7 @@ xfce_mime_window_selection_changed (GtkTreeSelection *selection,
 
 static void
 xfce_mime_window_column_clicked (GtkTreeViewColumn *column,
-                                   XfceMimeWindow    *window)
+                                 XfceMimeWindow    *window)
 {
     GtkSortType  sort_type;
     GList       *columns, *li;
@@ -925,8 +925,8 @@ xfce_mime_window_column_clicked (GtkTreeViewColumn *column,
 
 static gboolean
 xfce_mime_window_combo_row_separator_func (GtkTreeModel *model,
-                                             GtkTreeIter  *iter,
-                                             gpointer      data)
+                                           GtkTreeIter  *iter,
+                                           gpointer      data)
 {
     guint type;
 

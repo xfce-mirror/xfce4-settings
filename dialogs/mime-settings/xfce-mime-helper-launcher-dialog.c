@@ -37,16 +37,16 @@ enum
 
 
 static void xfce_mime_helper_launcher_dialog_get_property     (GObject                      *object,
-                                                         guint                         prop_id,
-                                                         GValue                       *value,
-                                                         GParamSpec                   *pspec);
+                                                               guint                         prop_id,
+                                                               GValue                       *value,
+                                                               GParamSpec                   *pspec);
 static void xfce_mime_helper_launcher_dialog_set_property     (GObject                      *object,
-                                                         guint                         prop_id,
-                                                         const GValue                 *value,
-                                                         GParamSpec                   *pspec);
-static void xfce_mime_helper_launcher_dialog_notify_is_valid  (XfceMimeHelperChooser             *chooser,
-                                                         GParamSpec                   *pspec,
-                                                         XfceMimeHelperLauncherDialog      *launcher_dialog);
+                                                               guint                         prop_id,
+                                                               const GValue                 *value,
+                                                               GParamSpec                   *pspec);
+static void xfce_mime_helper_launcher_dialog_notify_is_valid  (XfceMimeHelperChooser        *chooser,
+                                                               GParamSpec                   *pspec,
+                                                               XfceMimeHelperLauncherDialog *launcher_dialog);
 
 
 
@@ -57,8 +57,8 @@ struct _XfceMimeHelperLauncherDialogClass
 
 struct _XfceMimeHelperLauncherDialog
 {
-  GtkDialog         __parent__;
-  GtkWidget        *label;
+  GtkDialog              __parent__;
+  GtkWidget             *label;
   XfceMimeHelperCategory category;
 };
 
@@ -148,9 +148,9 @@ xfce_mime_helper_launcher_dialog_init (XfceMimeHelperLauncherDialog *launcher_di
 
 static void
 xfce_mime_helper_launcher_dialog_get_property (GObject    *object,
-                                         guint       prop_id,
-                                         GValue     *value,
-                                         GParamSpec *pspec)
+                                               guint       prop_id,
+                                               GValue     *value,
+                                               GParamSpec *pspec)
 {
   XfceMimeHelperLauncherDialog *launcher_dialog = XFCE_MIME_HELPER_LAUNCHER_DIALOG (object);
 
@@ -170,9 +170,9 @@ xfce_mime_helper_launcher_dialog_get_property (GObject    *object,
 
 static void
 xfce_mime_helper_launcher_dialog_set_property (GObject      *object,
-                                         guint         prop_id,
-                                         const GValue *value,
-                                         GParamSpec   *pspec)
+                                               guint         prop_id,
+                                               const GValue *value,
+                                               GParamSpec   *pspec)
 {
   XfceMimeHelperLauncherDialog *launcher_dialog = XFCE_MIME_HELPER_LAUNCHER_DIALOG (object);
 
@@ -192,8 +192,8 @@ xfce_mime_helper_launcher_dialog_set_property (GObject      *object,
 
 static void
 xfce_mime_helper_launcher_dialog_notify_is_valid (XfceMimeHelperChooser        *chooser,
-                                            GParamSpec              *pspec,
-                                            XfceMimeHelperLauncherDialog *launcher_dialog)
+                                                  GParamSpec                   *pspec,
+                                                  XfceMimeHelperLauncherDialog *launcher_dialog)
 {
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
   g_return_if_fail (XFCE_MIME_IS_HELPER_LAUNCHER_DIALOG (launcher_dialog));
@@ -206,7 +206,7 @@ xfce_mime_helper_launcher_dialog_notify_is_valid (XfceMimeHelperChooser        *
 
 /**
  * xfce_mime_helper_launcher_dialog_new:
- * @category : an #XfceMimeHelperCategory.
+ * @category : a #XfceMimeHelperCategory.
  *
  * Allocates a new #XfceMimeHelperLauncherDialog for the
  * specified @category.
@@ -224,7 +224,7 @@ xfce_mime_helper_launcher_dialog_new (XfceMimeHelperCategory category)
 
 /**
  * xfce_mime_helper_launcher_dialog_get_category:
- * @launcher_dialog : an #XfceMimeHelperLauncherDialog.
+ * @launcher_dialog : a #XfceMimeHelperLauncherDialog.
  *
  * Returns the #XfceMimeHelperCategory for @launcher_dialog.
  *
@@ -241,15 +241,15 @@ xfce_mime_helper_launcher_dialog_get_category (const XfceMimeHelperLauncherDialo
 
 /**
  * xfce_mime_helper_launcher_dialog_set_category:
- * @launcher_dialog : an #XfceMimeHelperLauncherDialog.
- * @category        : an #XfceMimeHelperCategory.
+ * @launcher_dialog : a #XfceMimeHelperLauncherDialog.
+ * @category        : a #XfceMimeHelperCategory.
  *
  * Sets the #XfceMimeHelperCategory for @launcher_dialog to
  * @category.
  **/
 void
 xfce_mime_helper_launcher_dialog_set_category (XfceMimeHelperLauncherDialog *launcher_dialog,
-                                         XfceMimeHelperCategory        category)
+                                               XfceMimeHelperCategory        category)
 {
   static const gchar *MESSAGES[] =
   {

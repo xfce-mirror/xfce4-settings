@@ -27,11 +27,11 @@
 
 /**
  * xfce_mime_helper_category_from_string:
- * @string          : string representation of an #XfceMimeHelperCategory.
+ * @string          : string representation of a #XfceMimeHelperCategory.
  * @category_return : return location for the #XfceMimeHelperCategory.
  *
- * Transforms the @string representation of an #XfceMimeHelperCategory to
- * an #XfceMimeHelperCategory and places it in @category_return.
+ * Transforms the @string representation of a #XfceMimeHelperCategory to
+ * a #XfceMimeHelperCategory and places it in @category_return.
  *
  * Return value: %TRUE if @string was recognized and @category_return
  *               is set, else %FALSE.
@@ -65,7 +65,7 @@ xfce_mime_helper_category_from_string (const gchar       *string,
 
 /**
  * xfce_mime_helper_category_to_string:
- * @category : an #XfceMimeHelperCategory.
+ * @category : a #XfceMimeHelperCategory.
  *
  * Transforms @category to its canonical string represenation.
  * The caller is responsible to free the returned string using
