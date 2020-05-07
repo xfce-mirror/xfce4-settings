@@ -30,7 +30,6 @@
 #include <string.h>
 #endif
 
-#include <xfce-mime-helper-chooser-dialog.h>
 #include <xfce-mime-helper-launcher-dialog.h>
 #include <xfce-mime-helper-utils.h>
 #include <gtk/gtkx.h>
@@ -105,22 +104,16 @@ main (int argc, char **argv)
   GtkWidget         *dialog;
   GError            *error = NULL;
   gint               result = EXIT_SUCCESS;
-  GtkWidget         *plug;
-  GtkWidget         *plug_child;
   gchar             *startup_id;
 
   gboolean           opt_version = FALSE;
-  gboolean           opt_configure = FALSE;
   gchar             *opt_launch_type = NULL;
   gchar             *opt_query_type = NULL;
-  Window             opt_socket_id = 0;
 
   GOptionContext    *opt_ctx;
   GOptionGroup      *gtk_option_group;
   GOptionEntry       option_entries[] = {
     { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Print version information and exit"), NULL, },
-    { "configure", 'c', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_configure, N_("Open the Preferred Applications\nconfiguration dialog"), NULL, },
-    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID"), },
     { "launch", 'l', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_launch_type, N_("Launch the default helper of TYPE with the optional PARAMETER, where TYPE is one of the following values."), N_("TYPE [PARAMETER]"), },
     { "query", 'q', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_query_type, N_("Query the default helper of TYPE, where TYPE is one of the following values."), N_("TYPE [PARAMETER]"), },
     { NULL, },
@@ -182,41 +175,7 @@ main (int argc, char **argv)
   gtk_window_set_default_icon_name ("preferences-desktop-default-applications");
 
   /* check for the action to perform */
-  if (opt_configure == TRUE)
-    {
-      dialog = xfce_mime_helper_chooser_dialog_new ();
-
-      if (opt_socket_id != 0)
-        {
-          plug = gtk_plug_new (opt_socket_id);
-          gtk_widget_show (plug);
-          g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
-
-          plug_child = xfce_mime_helper_chooser_dialog_get_plug_child (XFCE_MIME_HELPER_CHOOSER_DIALOG (dialog));
-
-          g_object_ref (plug_child);
-          if (gtk_widget_get_parent (plug_child))
-            gtk_container_remove (GTK_CONTAINER (gtk_widget_get_parent (plug_child)), plug_child);
-          gtk_container_add (GTK_CONTAINER (plug), plug_child);
-          g_object_unref (plug_child);
-
-          gtk_widget_show (plug_child);
-
-          /* End startup notification */
-          gdk_notify_startup_complete ();
-
-          gtk_main ();
-        }
-      else
-        {
-          if (startup_id != NULL)
-            gtk_window_set_startup_id (GTK_WINDOW (dialog), startup_id);
-          gtk_dialog_run (GTK_DIALOG (dialog));
-        }
-
-      gtk_widget_destroy (dialog);
-    }
-  else if (opt_launch_type != NULL)
+  if (opt_launch_type != NULL)
     {
       /* try to parse the type */
       if (!xfce_mime_helper_category_from_string (opt_launch_type, &category))

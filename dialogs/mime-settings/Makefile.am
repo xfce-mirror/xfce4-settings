@@ -67,8 +67,6 @@ xfce4_mime_helperdir = $(HELPER_PATH_PREFIX)/xfce4
 xfce4_mime_helper_SOURCES =						\
 	$(xfce4_mime_helper_built_sources)					\
 	$(xfce4_mime_helper_headers)						\
-	xfce-mime-helper-chooser-dialog.c					\
-	xfce-mime-helper-chooser-dialog.h					\
 	xfce-mime-helper-chooser.c						\
 	xfce-mime-helper-chooser.h						\
 	xfce-mime-helper-launcher-dialog.c					\
