@@ -1,0 +1,13 @@
+image: schuellerf/xfce-test:latest
+
+stages:
+  - build
+
+build-distcheck:
+  stage: build
+  script:
+    - ./autogen.sh
+    - make distcheck
+  except:
+    changes:
+      - "po/*.po"
