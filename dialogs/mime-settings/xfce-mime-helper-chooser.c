@@ -104,7 +104,7 @@ xfce_mime_helper_chooser_class_init (XfceMimeHelperChooserClass *klass)
                                    g_param_spec_enum ("category",
                                                       "Helper category",
                                                       "Helper category",
-                                                      XFCE_MIME_TYPE_HELPER_CATEGORY,
+                                                      XFCE_MIME_TYPE_MIME_HELPER_CATEGORY,
                                                       XFCE_MIME_HELPER_WEBBROWSER,
                                                       EXO_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 

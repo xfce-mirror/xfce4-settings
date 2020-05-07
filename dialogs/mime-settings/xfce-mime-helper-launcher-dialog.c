@@ -88,7 +88,7 @@ xfce_mime_helper_launcher_dialog_class_init (XfceMimeHelperLauncherDialogClass *
                                    g_param_spec_enum ("category",
                                                       "Category",
                                                       "Category",
-                                                      XFCE_MIME_TYPE_HELPER_CATEGORY,
+                                                      XFCE_MIME_TYPE_MIME_HELPER_CATEGORY,
                                                       XFCE_MIME_HELPER_WEBBROWSER,
                                                       EXO_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
