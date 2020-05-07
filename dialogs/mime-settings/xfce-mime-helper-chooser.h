@@ -33,15 +33,15 @@ G_BEGIN_DECLS
 typedef struct _XfceMimeHelperChooserClass XfceMimeHelperChooserClass;
 typedef struct _XfceMimeHelperChooser      XfceMimeHelperChooser;
 
-GType              xfce_mime_helper_chooser_get_type      (void) G_GNUC_CONST;
+GType                   xfce_mime_helper_chooser_get_type      (void) G_GNUC_CONST;
 
-GtkWidget         *xfce_mime_helper_chooser_new           (XfceMimeHelperCategory       category) G_GNUC_MALLOC;
+GtkWidget              *xfce_mime_helper_chooser_new           (XfceMimeHelperCategory       category) G_GNUC_MALLOC;
 
 XfceMimeHelperCategory  xfce_mime_helper_chooser_get_category  (const XfceMimeHelperChooser *chooser);
-void               xfce_mime_helper_chooser_set_category  (XfceMimeHelperChooser       *chooser,
-                                                     XfceMimeHelperCategory       category);
+void                    xfce_mime_helper_chooser_set_category  (XfceMimeHelperChooser       *chooser,
+                                                                XfceMimeHelperCategory       category);
 
-gboolean           xfce_mime_helper_chooser_get_is_valid  (const XfceMimeHelperChooser *chooser);
+gboolean                xfce_mime_helper_chooser_get_is_valid  (const XfceMimeHelperChooser *chooser);
 
 G_END_DECLS
 

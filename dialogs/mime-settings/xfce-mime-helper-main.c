@@ -57,8 +57,8 @@ error_dialog_dismiss_toggled (GtkToggleButton *button,
 
 static GtkWidget *
 get_helper_error_dialog (XfceMimeHelperCategory  category,
-                         GError            *error,
-                         gboolean          *return_value)
+                         GError                 *error,
+                         gboolean               *return_value)
 {
   GtkWidget *dialog;
   GtkWidget *message_area;
@@ -101,18 +101,18 @@ main (int argc, char **argv)
   XfceMimeHelperCategory  category;
   XfceMimeHelperDatabase *database;
   XfceMimeHelper         *helper;
-  GtkWidget         *dialog;
-  GError            *error = NULL;
-  gint               result = EXIT_SUCCESS;
-  gchar             *startup_id;
+  GtkWidget              *dialog;
+  GError                 *error = NULL;
+  gint                    result = EXIT_SUCCESS;
+  gchar                  *startup_id;
 
-  gboolean           opt_version = FALSE;
-  gchar             *opt_launch_type = NULL;
-  gchar             *opt_query_type = NULL;
+  gboolean                opt_version = FALSE;
+  gchar                  *opt_launch_type = NULL;
+  gchar                  *opt_query_type = NULL;
 
-  GOptionContext    *opt_ctx;
-  GOptionGroup      *gtk_option_group;
-  GOptionEntry       option_entries[] = {
+  GOptionContext         *opt_ctx;
+  GOptionGroup           *gtk_option_group;
+  GOptionEntry            option_entries[] = {
     { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Print version information and exit"), NULL, },
     { "launch", 'l', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_launch_type, N_("Launch the default helper of TYPE with the optional PARAMETER, where TYPE is one of the following values."), N_("TYPE [PARAMETER]"), },
     { "query", 'q', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_query_type, N_("Query the default helper of TYPE, where TYPE is one of the following values."), N_("TYPE [PARAMETER]"), },

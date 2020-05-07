@@ -253,7 +253,7 @@ failed:
 
 /**
  * xfce_mime_helper_get_category:
- * @helper : an #XfceMimeHelper.
+ * @helper : a #XfceMimeHelper.
  *
  * Returns the #XfceMimeHelperCategory of @helper.
  *
@@ -270,7 +270,7 @@ xfce_mime_helper_get_category (const XfceMimeHelper *helper)
 
 /**
  * xfce_mime_helper_get_id:
- * @helper : an #XfceMimeHelper.
+ * @helper : a #XfceMimeHelper.
  *
  * Returns the unique id (the .desktop file basename) of @helper.
  *
@@ -287,7 +287,7 @@ xfce_mime_helper_get_id (const XfceMimeHelper *helper)
 
 /**
  * xfce_mime_helper_get_name:
- * @helper : an #XfceMimeHelper.
+ * @helper : a #XfceMimeHelper.
  *
  * Returns the (translated) name of the @helper.
  *
@@ -304,7 +304,7 @@ xfce_mime_helper_get_name (const XfceMimeHelper *helper)
 
 /**
  * xfce_mime_helper_get_icon:
- * @helper : an #XfceMimeHelper.
+ * @helper : a #XfceMimeHelper.
  *
  * Return the name of the themed icon for @helper or
  * the absolute path to an icon file, or %NULL if no
@@ -323,7 +323,7 @@ xfce_mime_helper_get_icon (const XfceMimeHelper *helper)
 
 /**
  * xfce_mime_helper_get_command:
- * @helper : an #XfceMimeHelper.
+ * @helper : a #XfceMimeHelper.
  *
  * Returns a reasonable command for @helper.
  *
@@ -345,7 +345,7 @@ set_environment (gchar *display)
 
 /**
  * xfce_mime_helper_execute:
- * @helper    : an #XfceMimeHelper.
+ * @helper    : a #XfceMimeHelper.
  * @screen    : the #GdkScreen on which to execute @helper or %NULL to use default.
  * @parameter : the parameter to pass to @helper (e.g. URL for WebBrowser) or %NULL
  *              to just run @helper.
@@ -646,8 +646,8 @@ xfce_mime_helper_database_get (void)
 
 /**
  * xfce_mime_helper_database_get_default:
- * @database : an #XfceMimeHelperDatabase.
- * @category : an #XfceMimeHelperCategory.
+ * @database : a #XfceMimeHelperDatabase.
+ * @category : a #XfceMimeHelperCategory.
  *
  * Returns a reference on the default #XfceMimeHelper for
  * the @category in @database or %NULL if no default
@@ -706,9 +706,9 @@ mimeapps_open (gboolean readonly)
 
 /**
  * xfce_mime_helper_database_set_default:
- * @database : an #XfceMimeHelperDatabase.
- * @category : an #XfceMimeHelperCategory.
- * @helper   : an #XfceMimeHelper.
+ * @database : a #XfceMimeHelperDatabase.
+ * @category : a #XfceMimeHelperCategory.
+ * @helper   : a #XfceMimeHelper.
  * @error    : return location for errors or %NULL.
  *
  * Sets the default #XfceMimeHelper for @category in @database to
@@ -844,8 +844,8 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
 
 /**
  * xfce_mime_helper_database_clear_default:
- * @database : an #XfceMimeHelperDatabase.
- * @category : an #XfceMimeHelperCategory.
+ * @database : a #XfceMimeHelperDatabase.
+ * @category : a #XfceMimeHelperCategory.
  * @error    : return location for errors or %NULL.
  *
  * Clears the default #XfceMimeHelper for @category in @database.
@@ -1023,8 +1023,8 @@ helper_compare (gconstpointer a,
 
 /**
  * xfce_mime_helper_database_get_all:
- * @database : an #XfceMimeHelperDatabase.
- * @category : an #XfceMimeHelperCategory.
+ * @database : a #XfceMimeHelperDatabase.
+ * @category : a #XfceMimeHelperCategory.
  *
  * Looks up all available helpers for @category
  * in @database, sorted in alphabetic order.
@@ -1082,8 +1082,8 @@ xfce_mime_helper_database_get_all (XfceMimeHelperDatabase *database,
 
 /**
  * xfce_mime_helper_database_get_custom:
- * @database : an #XfceMimeHelperDatabase.
- * @category : an #XfceMimeHelperCategory.
+ * @database : a #XfceMimeHelperDatabase.
+ * @category : a #XfceMimeHelperCategory.
  *
  * Returns the custom #XfceMimeHelper set for @database
  * or %NULL if no custom #XfceMimeHelper is set for
@@ -1118,8 +1118,8 @@ xfce_mime_helper_database_get_custom (XfceMimeHelperDatabase *database,
 
 /**
  * xfce_mime_helper_database_set_custom:
- * @database : an #XfceMimeHelperDatabase.
- * @category : an #XfceMimeHelperCategory.
+ * @database : a #XfceMimeHelperDatabase.
+ * @category : a #XfceMimeHelperCategory.
  * @command  : the custom command.
  *
  * Sets the custom helper for @category in @database
@@ -1209,8 +1209,8 @@ xfce_mime_helper_database_set_custom (XfceMimeHelperDatabase *database,
 
 /**
  * xfce_mime_helper_database_get_dismissed:
- * @database : an #XfceMimeHelperDatabase.
- * @category : an #XfceMimeHelperCategory.
+ * @database : a #XfceMimeHelperDatabase.
+ * @category : a #XfceMimeHelperCategory.
  *
  * Returns %TRUE if errors should no longer be displayed
  * on the default #XfceMimeHelper for the @category in @database.
@@ -1241,8 +1241,8 @@ gboolean xfce_mime_helper_database_get_dismissed (XfceMimeHelperDatabase *databa
 
 /**
  * xfce_mime_helper_database_set_dismissed:
- * @database  : an #XfceMimeHelperDatabase.
- * @category  : an #XfceMimeHelperCategory.
+ * @database  : a #XfceMimeHelperDatabase.
+ * @category  : a #XfceMimeHelperCategory.
  * @dismissed : TRUE if the errr should no longer be displayed.
  * @error     : return location for errors or %NULL.
  *

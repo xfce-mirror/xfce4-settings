@@ -1,4 +1,4 @@
-SUBDIRS =								\
+SUBDIRS = \
 	helpers
 
 AM_CPPFLAGS = \
@@ -13,22 +13,22 @@ bin_PROGRAMS = \
 	xfce4-mime-settings	\
 	xfce4-mime-helper
 
-xfce4_mime_helper_built_sources =						\
-	xfce-mime-helper-enum-types.c						\
+xfce4_mime_helper_built_sources = \
+	xfce-mime-helper-enum-types.c \
 	xfce-mime-helper-enum-types.h
 
-xfce_mime_helper_headers =							\
+xfce_mime_helper_headers = \
 	xfce-mime-helper.h
 
 xfce4_mime_settings_SOURCES = \
-	$(xfce4_mime_helper_built_sources)					\
-	$(xfce_mime_helper_headers)						\
+	$(xfce4_mime_helper_built_sources) \
+	$(xfce_mime_helper_headers) \
 	main.c \
-	xfce-mime-helper-utils.c						\
-	xfce-mime-helper-utils.h						\
-	xfce-mime-helper.c							\
-	xfce-mime-helper-chooser.c	\
-	xfce-mime-helper-chooser.h	\
+	xfce-mime-helper-utils.c \
+	xfce-mime-helper-utils.h \
+	xfce-mime-helper.c \
+	xfce-mime-helper-chooser.c \
+	xfce-mime-helper-chooser.h \
 	xfce-mime-chooser.c \
 	xfce-mime-chooser.h \
 	xfce-mime-window.c \
@@ -58,55 +58,55 @@ xfce4_mime_settings_LDADD = \
 	$(GIO_LIBS) \
 	$(GIO_UNIX_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
-	$(LIBXFCE4UTIL_LIBS)	\
+	$(LIBXFCE4UTIL_LIBS) \
 	$(EXO_LIBS) \
 	$(XFCONF_LIBS)
 
 xfce4_mime_helperdir = $(HELPER_PATH_PREFIX)/xfce4
 
-xfce4_mime_helper_SOURCES =						\
-	$(xfce4_mime_helper_built_sources)					\
-	$(xfce4_mime_helper_headers)						\
-	xfce-mime-helper-chooser.c						\
-	xfce-mime-helper-chooser.h						\
-	xfce-mime-helper-launcher-dialog.c					\
-	xfce-mime-helper-launcher-dialog.h					\
-	xfce-mime-helper-utils.c						\
-	xfce-mime-helper-utils.h						\
-	xfce-mime-helper.c							\
+xfce4_mime_helper_SOURCES = \
+	$(xfce4_mime_helper_built_sources) \
+	$(xfce4_mime_helper_headers) \
+	xfce-mime-helper-chooser.c \
+	xfce-mime-helper-chooser.h \
+	xfce-mime-helper-launcher-dialog.c \
+	xfce-mime-helper-launcher-dialog.h \
+	xfce-mime-helper-utils.c \
+	xfce-mime-helper-utils.h \
+	xfce-mime-helper.c \
 	xfce-mime-helper-main.c
 
-xfce4_mime_helper_CFLAGS =							\
-	$(GTK3_CFLAGS)							\
-	$(GIO_UNIX_CFLAGS)							\
-	$(LIBXFCE4UTIL_CFLAGS)						\
-	$(LIBXFCE4UI_CFLAGS)                   \
+xfce4_mime_helper_CFLAGS = \
+	$(GTK3_CFLAGS) \
+	$(GIO_UNIX_CFLAGS) \
+	$(LIBXFCE4UTIL_CFLAGS) \
+	$(LIBXFCE4UI_CFLAGS) \
     $(EXO_CFLAGS)
 
-xfce4_mime_helper_LDADD =							\
-	$(GTK3_LIBS)							\
-	$(GIO_UNIX_LIBS)							\
-	$(LIBXFCE4UTIL_LIBS)						\
-	$(LIBXFCE4UI_LIBS)						\
+xfce4_mime_helper_LDADD = \
+	$(GTK3_LIBS) \
+	$(GIO_UNIX_LIBS) \
+	$(LIBXFCE4UTIL_LIBS) \
+	$(LIBXFCE4UI_LIBS) \
 	$(EXO_LIBS)
 
 desktopdir = $(datadir)/applications
-desktop_in_files = 						\
-	xfce4-mime-settings.desktop.in		\
-	xfce4-file-manager.desktop.in					\
-	xfce4-mail-reader.desktop.in					\
-	xfce4-terminal-emulator.desktop.in				\
+desktop_in_files = \
+	xfce4-mime-settings.desktop.in \
+	xfce4-file-manager.desktop.in \
+	xfce4-mail-reader.desktop.in \
+	xfce4-terminal-emulator.desktop.in \
 	xfce4-web-browser.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @INTLTOOL_DESKTOP_RULE@
 
 if MAINTAINER_MODE
-DISTCLEANFILES =							\
-	stamp-xfce-mime-helper-enum-types.h					\
+DISTCLEANFILES = \
+	stamp-xfce-mime-helper-enum-types.h \
 	$(xfce4_mime_helper_built_sources)
 
-BUILT_SOURCES =								\
+BUILT_SOURCES = \
 	$(xfce4_mime_helper_built_sources)
 
 xfce-mime-helper-enum-types.h: stamp-xfce-mime-helper-enum-types.h
