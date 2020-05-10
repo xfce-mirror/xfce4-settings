@@ -1360,7 +1360,7 @@ display_settings_profile_list_init (GtkBuilder *builder)
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
     /* Setup Profile name column */
     column = gtk_tree_view_column_new ();
-    gtk_tree_view_column_set_title (column, "Profiles matching the currently connected displays");
+    gtk_tree_view_column_set_title (column, _("Profiles matching the currently connected displays"));
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
     gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_NAME, NULL);
