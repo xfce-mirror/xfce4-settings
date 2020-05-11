@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 12:31+0200\n"
-"PO-Revision-Date: 2020-04-09 02:21+0000\n"
+"POT-Creation-Date: 2020-05-10 12:46+0200\n"
+"PO-Revision-Date: 2020-05-10 23:53+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -1118,6 +1118,10 @@ msgstr "绝不能禁用上一个活动输出，否则系统将不可用。"
 msgid "Selected output not disabled"
 msgstr "未禁用选中的输出"
 
+#: ../dialogs/display-settings/main.c:1502
+msgid "Profiles matching the currently connected displays"
+msgstr "与当前连接的显示器匹配的配置"
+
 #: ../dialogs/display-settings/main.c:1708
 #, c-format
 msgid "Update changed display profile '%s'?"
@@ -2154,7 +2158,7 @@ msgid "Replace running xsettings daemon (if any)"
 msgstr "取代正在运行的 xsettings 守护进程(如果有)"
 
 #. value in xfconf isn't a string, so make a default one
-#: ../xfsettingsd/workspaces.c:337 ../xfsettingsd/workspaces.c:395
+#: ../xfsettingsd/workspaces.c:333 ../xfsettingsd/workspaces.c:390
 #, c-format
 msgid "Workspace %d"
 msgstr "工作区 %d"
