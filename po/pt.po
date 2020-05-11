@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 12:31+0200\n"
-"PO-Revision-Date: 2020-04-03 21:26+0000\n"
+"POT-Creation-Date: 2020-05-10 12:46+0200\n"
+"PO-Revision-Date: 2020-05-10 23:10+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/xfce/xfce4-settings/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "_Ajuda"
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
-msgstr "Quando ligado, o gestor de sessão irá iniciar a aplicação necessária para leitores de ecrã e ampliadores."
+msgstr "Quando ligado, o gestor de sessão irá iniciar a aplicação necessária para leitores de ecrã e lupas."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "_Enable assistive technologies"
@@ -112,7 +112,7 @@ msgstr "Iniciar com sessão"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive technologies will be available the next time you login"
-msgstr "Tecnologias de assistência estarão disponíveis na próxima sessão"
+msgstr "Tecnologias de acessibilidade estarão disponíveis na próxima sessão"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "No AT-SPI provider was found on your system"
@@ -361,7 +361,7 @@ msgstr "Melhorar a acessibilidade do teclado e do rato"
 msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-msgstr ""
+msgstr "acessibilidade;tecnologias;teclas;fixas;saltitantes;emulação;leitores de ecrã;lupas;a11y;i18n;l10n;AT-SPI;ATK;deficiência;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1041
@@ -630,7 +630,7 @@ msgid ""
 "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr ""
+msgstr "temas;interface de utilizador;estilos;ícones;tipo de letra;suavização;hinting;sub-pixel;subpixel;processamento;ClearType;DPI;RGB;BGR;aceleradores de menu;atalhos de teclado;evento;sons;tamanho da janela;HiDPI;ecrã Retina;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -863,7 +863,7 @@ msgstr "Definir perfis de cor"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
-msgstr ""
+msgstr "cor;definições;gestão;ecrã;monitores;impressoras;câmaras web;scanners;"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
@@ -1111,6 +1111,10 @@ msgstr "A última saída ativa não pode ser desativada, pois o sistema ficaria 
 msgid "Selected output not disabled"
 msgstr "A saída anterior não foi desativada"
 
+#: ../dialogs/display-settings/main.c:1502
+msgid "Profiles matching the currently connected displays"
+msgstr "Perfis que correspondem aos ecrãs atualmente ligados"
+
 #: ../dialogs/display-settings/main.c:1708
 #, c-format
 msgid "Update changed display profile '%s'?"
@@ -1201,7 +1205,7 @@ msgstr "Incapaz de iniciar as definições do controlador proprietário"
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
-msgstr ""
+msgstr "ecrã;definições;ecrã;resolução;atualização;taxa;rotação;externo;projectores;monitores;LCD;CRT;HiDPI;"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:107
@@ -1460,7 +1464,7 @@ msgstr "Aviso"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
 msgid "numlock;keyboard;layout;shortcuts;"
-msgstr ""
+msgstr "numlock;teclado;esquema;atalhos;"
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
@@ -1596,7 +1600,7 @@ msgstr "Escolher a aplicação..."
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
 msgid "file;type;extension;association;open with;"
-msgstr ""
+msgstr "ficheiro;tipo;extensão;associação;abre com;"
 
 #: ../dialogs/mouse-settings/main.c:83
 msgid "Active device in the dialog"
@@ -1845,7 +1849,7 @@ msgstr "_Tema"
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-msgstr ""
+msgstr "definições;botões;deslocamento;direcção;ponteiro;velocidade;duplo clique;tema;roda;"
 
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
@@ -2058,7 +2062,7 @@ msgstr "Editor gráfico para as definições Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
 msgid "registry;regedit;configuration file;"
-msgstr ""
+msgstr "registo;regedit;ficheiro de configuração;"
 
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
@@ -2092,7 +2096,7 @@ msgstr "Gestor gráfico de definições do Xfce"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "control;panel;center;system;settings;personalize;hardware;"
-msgstr ""
+msgstr "controlo;painel;centro;sistema;definições;personalizar;equipamento;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2148,7 +2152,7 @@ msgid "Replace running xsettings daemon (if any)"
 msgstr "Substituir o serviço xsettings em execução (se existente)"
 
 #. value in xfconf isn't a string, so make a default one
-#: ../xfsettingsd/workspaces.c:337 ../xfsettingsd/workspaces.c:395
+#: ../xfsettingsd/workspaces.c:333 ../xfsettingsd/workspaces.c:390
 #, c-format
 msgid "Workspace %d"
 msgstr "Área de trabalho %d"
