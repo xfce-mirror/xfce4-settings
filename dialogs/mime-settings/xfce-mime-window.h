@@ -33,7 +33,7 @@ typedef struct _XfceMimeWindow      XfceMimeWindow;
 #define XFCE_IS_MIME_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_MIME_WINDOW))
 #define XFCE_MIME_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MIME_WINDOW, XfceMimeWindowClass))
 
-GType      xfce_mime_window_get_type     (void) G_GNUC_CONST;
+GType           xfce_mime_window_get_type      (void) G_GNUC_CONST;
 
 XfceMimeWindow *xfce_mime_window_new           (void) G_GNUC_MALLOC;
 GtkWidget      *xfce_mime_window_create_dialog (XfceMimeWindow *settings);

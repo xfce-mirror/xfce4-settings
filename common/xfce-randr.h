@@ -97,8 +97,8 @@ struct _XfceOutputInfo
     /* Dimensions */
     gint      width;
     gint      height;
-    gint      pref_width;
-    gint      pref_height;
+    guint      pref_width;
+    guint      pref_height;
     Rotation   rotation;
 
     /* Frequency */
