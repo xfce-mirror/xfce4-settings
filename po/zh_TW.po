@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 12:31+0200\n"
-"PO-Revision-Date: 2020-04-02 02:53+0000\n"
+"POT-Creation-Date: 2020-05-10 12:46+0200\n"
+"PO-Revision-Date: 2020-05-11 03:04+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/xfce/xfce4-settings/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1110,6 +1110,10 @@ msgstr "無法停用最後一個活動中的輸出，否則系統將無法使用
 msgid "Selected output not disabled"
 msgstr "選取的輸出未停用"
 
+#: ../dialogs/display-settings/main.c:1502
+msgid "Profiles matching the currently connected displays"
+msgstr "與目前顯示器相符的設定檔"
+
 #: ../dialogs/display-settings/main.c:1708
 #, c-format
 msgid "Update changed display profile '%s'?"
@@ -2146,7 +2150,7 @@ msgid "Replace running xsettings daemon (if any)"
 msgstr "取代正在執行中的 xsettings 幕後程式 (如果有的話)"
 
 #. value in xfconf isn't a string, so make a default one
-#: ../xfsettingsd/workspaces.c:337 ../xfsettingsd/workspaces.c:395
+#: ../xfsettingsd/workspaces.c:333 ../xfsettingsd/workspaces.c:390
 #, c-format
 msgid "Workspace %d"
 msgstr "工作區 %d"
