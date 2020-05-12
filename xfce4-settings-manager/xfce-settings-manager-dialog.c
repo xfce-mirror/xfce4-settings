@@ -1310,7 +1310,7 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
                         garcon_menu_item_get_name (lp->data),
                         garcon_menu_item_get_comment (lp->data),
                         item_keywords->str);
-                    g_string_free (item_keywords, FALSE);
+                    g_string_free (item_keywords, TRUE);
                     g_list_free (kli);
                     normalized = g_utf8_normalize (item_text, -1, G_NORMALIZE_DEFAULT);
                     g_free (item_text);
