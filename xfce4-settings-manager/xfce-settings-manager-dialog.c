@@ -444,7 +444,7 @@ xfce_settings_manager_dialog_set_title (XfceSettingsManagerDialog *dialog,
     g_return_if_fail (XFCE_IS_SETTINGS_MANAGER_DIALOG (dialog));
 
     if (icon_name == NULL)
-        icon_name = "preferences-desktop";
+        icon_name = "org.xfce.settings.manager";
     if (title == NULL)
         title = _("Settings");
     if (subtitle == NULL)

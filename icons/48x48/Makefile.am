@@ -1,7 +1,15 @@
 
 iconsdir = $(datadir)/icons/hicolor/48x48/apps
 icons_DATA = \
-	xfce4-color-settings.png
+	org.xfce.settings.accessibility.png		\
+	org.xfce.settings.appearance.png		\
+	org.xfce.settings.color.png		\
+	org.xfce.settings.display.png		\
+	org.xfce.settings.editor.png		\
+	org.xfce.settings.keyboard.png		\
+	org.xfce.settings.manager.png		\
+	org.xfce.settings.mouse.png		\
+	org.xfce.settings.preferred-applications.png
 
 EXTRA_DIST = \
 	$(icons_DATA)
