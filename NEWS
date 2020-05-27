@@ -1,3 +1,47 @@
+4.15.1
+======
+This release transitions several exo components to xfce-settings.
+Please use with exo 4.15.1 or later for best results.
+- exo-compose-email -> xfce4-compose-email
+- exo-helper -> xfce4-mime-helper
+- mime-settings now includes preferred applications
+
+Other Updates:
+- Switch to new app icons and rDNS icon names
+- Increase mouse cursor upper bound for HiDPI (Bug #16042)
+- Fix a memory leak
+- Fix typo
+- Add basic GitLab pipeline
+- Make "Profiles matching" sentence translatable (Bug #16679)
+- settings-manager: Use symbolic find/clear icons
+- Move from exo-csource to xdt-csource (Bug #16717)
+- Handle failure to get Xkl engine for display (Bug #16017)
+- settings-manager: Make sure content determines size
+- Fix cast warnings
+- Fix GTimeVal deprecation (Bug #16645)
+- Fix keywords and mark them  as translateable
+- Use proper fallback configuration on "apply" and "toggle off" (Bug #16476)
+- keyboard-settings: Fix log flood (Bug #16521)
+- keyboard: Fix crash when editing shortcut (Bug #15958)
+- Add keywords to .desktop files (Bug #10694)
+- settings-manager: Improve search by including keywords (Bug #10694)
+- xfsettingsd: Add --disable-wm-check flag (Bug #16128)
+- Fix typecasting
+- Set "gtk-titlebar-middle-click" to "lower" by default
+- display: Allow resizing of minimal dialog (Bug #15450)
+- settings-manager: Show min and max buttons
+- dialogs: Ensure dialogs have min and max buttons
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Basque, Belarusian, Belarusian
+  (Tarask), Bulgarian, Catalan, Chinese (China), Chinese (Hong Kong),
+  Chinese (Taiwan), Croatian, Czech, Danish, Dutch, English (Australia),
+  English (Canada), English (United Kingdom), Estonian, Finnish, French,
+  Galician, German, Greek, Hebrew, Hungarian, Icelandic, Indonesian,
+  Interlingue, Italian, Japanese, Kazakh, Korean, Lithuanian, Malay,
+  Norwegian Bokmål, Norwegian Nynorsk, Occitan (post 1500), Polish,
+  Portuguese, Portuguese (Brazil), Romanian, Russian, Serbian, Slovak,
+  Slovenian, Spanish, Swedish, Thai, Turkish, Uighur, Ukrainian
+
 4.15.0
 ======
 - xsettings: Use CSD for GtkDialogs by default
