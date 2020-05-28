@@ -6,15 +6,11 @@ SUBDIRS = \
 	xfce4-settings-manager \
 	xfce4-settings-editor \
 	xfsettingsd \
-	po
-
-if HAVE_COLORD
-SUBDIRS += \
+	po \
 	icons
 
 distuninstallcheck_listfiles = 						\
 	find . -type f -print | grep -v ./share/icons/hicolor/icon-theme.cache
-endif
 
 EXTRA_DIST = \
 	intltool-extract.in \
