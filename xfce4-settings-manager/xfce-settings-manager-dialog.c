@@ -273,6 +273,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     g_signal_connect (G_OBJECT (entry), "key-press-event",
         G_CALLBACK (xfce_settings_manager_dialog_entry_key_press), dialog);
     gtk_widget_show (entry);
+    gtk_widget_grab_focus (dialog->filter_entry);
 
     dialog_vbox = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 
