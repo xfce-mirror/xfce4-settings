@@ -80,12 +80,6 @@ enum {
 	NUM_SYMBOLIC_COLORS
 };
 
-/* String arrays with the settings in combo boxes */
-static const gchar* toolbar_styles_array[] =
-{
-    "icons", "text", "both", "both-horiz"
-};
-
 static const gchar* xft_hint_styles_array[] =
 {
     "hintnone", "hintslight", "hintmedium", "hintfull"
@@ -216,18 +210,6 @@ cb_ui_theme_tree_selection_changed (GtkTreeSelection *selection)
 {
     /* Set the new UI theme */
     cb_theme_tree_selection_changed (selection, "/Net/ThemeName");
-}
-
-static void
-cb_toolbar_style_combo_changed (GtkComboBox *combo)
-{
-    gint active;
-
-    /* Get active item, prevent number outside the array (stay within zero-index) */
-    active = CLAMP (gtk_combo_box_get_active (combo), 0, (gint) G_N_ELEMENTS (toolbar_styles_array)-1);
-
-    /* Save setting */
-    xfconf_channel_set_string (xsettings_channel, "/Gtk/ToolbarStyle", toolbar_styles_array[active]);
 }
 
 static void
@@ -677,20 +659,6 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
         }
         g_free (str);
     }
-    else if (strcmp (property_name, "/Gtk/ToolbarStyle") == 0)
-    {
-        str = xfconf_channel_get_string (xsettings_channel, property_name, toolbar_styles_array[2]);
-        for (i = 0; i < G_N_ELEMENTS (toolbar_styles_array); i++)
-        {
-            if (strcmp (str, toolbar_styles_array[i]) == 0)
-            {
-                object = gtk_builder_get_object (builder, "gtk_toolbar_style_combo_box");
-                gtk_combo_box_set_active (GTK_COMBO_BOX (object), i);
-                break;
-            }
-        }
-        g_free (str);
-    }
     else if (strcmp (property_name, "/Gdk/WindowScalingFactor") == 0)
     {
         i = xfconf_channel_get_int (xsettings_channel, property_name, 1);
@@ -1085,11 +1053,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "gtk_monospace_fontname_button");
     xfconf_g_property_bind (xsettings_channel,  "/Gtk/MonospaceFontName", G_TYPE_STRING,
                             G_OBJECT (object), "font-name");
-
-    /* Toolbar style */
-    object = gtk_builder_get_object (builder, "gtk_toolbar_style_combo_box");
-    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Gtk/ToolbarStyle", NULL, builder);
-    g_signal_connect (G_OBJECT (object), "changed", G_CALLBACK(cb_toolbar_style_combo_changed), NULL);
 
     /* Hinting style */
     object = gtk_builder_get_object (builder, "xft_hinting_style_combo_box");

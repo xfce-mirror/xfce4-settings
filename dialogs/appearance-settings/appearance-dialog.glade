@@ -107,6 +107,21 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
+              <object class="GtkButton" id="button1">
+                <property name="label" translatable="yes">_Close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="image">image1</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="button2">
                 <property name="label" translatable="yes">_Help</property>
                 <property name="visible">True</property>
@@ -120,21 +135,6 @@
                 <property name="fill">False</property>
                 <property name="position">0</property>
                 <property name="secondary">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="button1">
-                <property name="label" translatable="yes">_Close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="image">image1</property>
-                <property name="use_underline">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -572,53 +572,6 @@
                         <property name="orientation">vertical</property>
                         <property name="spacing">18</property>
                         <child>
-                          <object class="GtkFrame" id="frame2">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label_xalign">0</property>
-                            <property name="shadow_type">none</property>
-                            <child>
-                              <object class="GtkAlignment" id="alignment2">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="top_padding">6</property>
-                                <property name="left_padding">12</property>
-                                <child>
-                                  <object class="GtkComboBox" id="gtk_toolbar_style_combo_box">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="tooltip_text" translatable="yes">Specify what should be displayed in toolbar items</property>
-                                    <property name="model">liststore2</property>
-                                    <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
-                                      <attributes>
-                                        <attribute name="text">0</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child type="label">
-                              <object class="GtkLabel" id="label6">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">_Toolbar Style</property>
-                                <property name="use_underline">True</property>
-                                <property name="mnemonic_widget">gtk_toolbar_style_combo_box</property>
-                                <attributes>
-                                  <attribute name="weight" value="bold"/>
-                                </attributes>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkFrame" id="frame1">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -816,7 +769,7 @@
                                 <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">_Window Scaling</property>
                                 <property name="use_underline">True</property>
-                                <property name="mnemonic_widget">gtk_toolbar_style_combo_box</property>
+                                <property name="mnemonic_widget">gdk_window_scaling_factor_combo_box</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -860,8 +813,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-11">button2</action-widget>
       <action-widget response="0">button1</action-widget>
+      <action-widget response="-11">button2</action-widget>
     </action-widgets>
   </object>
 </interface>
