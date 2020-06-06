@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-12 00:46+0200\n"
-"PO-Revision-Date: 2020-05-25 21:49+0000\n"
+"POT-Creation-Date: 2020-05-29 00:46+0200\n"
+"PO-Revision-Date: 2020-06-06 22:38+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce4-settings/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: ../common/xfce-randr.c:574
 msgid "Laptop"
-msgstr ""
+msgstr "Rüperaal"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
@@ -51,11 +51,11 @@ msgstr "Kuvar"
 
 #: ../common/xfce-randr.c:590
 msgid "Television"
-msgstr ""
+msgstr "Televiisor"
 
 #: ../common/xfce-randr.c:594
 msgid "Digital display"
-msgstr ""
+msgstr "Digiekraan"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
@@ -67,7 +67,7 @@ msgid "Configure keyboard and mouse accessibility"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 #: ../dialogs/color-settings/color-dialog.glade.h:3
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
@@ -82,7 +82,7 @@ msgid "_Close"
 msgstr "_Sulge"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 #: ../dialogs/color-settings/color-dialog.glade.h:4
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
@@ -293,7 +293,7 @@ msgid "_Mouse"
 msgstr ""
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:109
+#: ../dialogs/appearance-settings/main.c:103
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
@@ -301,7 +301,7 @@ msgid "Settings manager socket"
 msgstr "Seadistuste halduri sokkel"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:109
+#: ../dialogs/appearance-settings/main.c:103
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
 #: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
@@ -309,7 +309,7 @@ msgid "SOCKET ID"
 msgstr "SOKLI ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:110
+#: ../dialogs/appearance-settings/main.c:104
 #: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
@@ -318,7 +318,7 @@ msgid "Version information"
 msgstr "Versiooniteave"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1166
+#: ../dialogs/appearance-settings/main.c:1129
 #: ../dialogs/color-settings/main.c:1390
 #: ../dialogs/display-settings/main.c:4068
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
@@ -331,7 +331,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Trüki „%s --help” kasutusjuhise saamiseks"
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1185
+#: ../dialogs/appearance-settings/main.c:1148
 #: ../dialogs/color-settings/main.c:1407
 #: ../dialogs/display-settings/main.c:4087
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
@@ -341,7 +341,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce arendusmeeskond. Kõik õigused kaitstud."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1186
+#: ../dialogs/appearance-settings/main.c:1149
 #: ../dialogs/color-settings/main.c:1408
 #: ../dialogs/display-settings/main.c:4088
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
@@ -362,7 +362,7 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1041
+#: ../dialogs/appearance-settings/main.c:1009
 #: ../dialogs/display-settings/main.c:106
 #: ../dialogs/display-settings/main.c:117
 msgid "None"
@@ -502,124 +502,116 @@ msgid "_Fonts"
 msgstr "_Fondid"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
-msgid "Specify what should be displayed in toolbar items"
-msgstr "Määra tööriistaribade kuvamise viis"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
-msgid "_Toolbar Style"
-msgstr "_Tööriistariba stiil"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images on _buttons"
 msgstr "Näita ikoone _nuppudel"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Määratle, kas peaksime kuvama ikoone nuppude tekstide kõrval"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images in _menus"
 msgstr "Näita ikoone _menüüdes"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Määratle, kas peaksime kuvama ikoone menüükirjete ees"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Enable e_ditable accelerators"
 msgstr "Luba muudetava_d kiirklahvid"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Kui see valik on aktiivne, siis on võimalik menüüde kiirklahve muuta liigutades hiirekursori soovitud menüüpunkti kohale ja vajutades soovitud klahvikombinatsiooni"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Menus and Buttons"
 msgstr "Menüüd ja nupud"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable _event sounds"
 msgstr "Lülita _heliteated sisse"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Lülita heliteated sisse või välja (eeldab \"Canberra\" teegi toetust)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable input feedbac_k sounds"
 msgstr "Lülita sisendi _tagasiside helid sisse"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Seadista, kas hiire klõpsimisel või muude sisendseadmete kasutamisel esitatakse helisignaali"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Event sounds"
 msgstr "Helisignaalid"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Adjust the system-wide display scaling"
 msgstr "Kohanda kõikide töölauakeskkonna akende suurust"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "_Window Scaling"
 msgstr "_Akende suurus"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:50
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Setti_ngs"
 msgstr "_Seadistused"
 
-#: ../dialogs/appearance-settings/main.c:463
+#: ../dialogs/appearance-settings/main.c:445
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Hoiatus: sellel ikooniteemal puudub puhverdusfail. Sa võid ta luua käivitades terminalis <i>gtk-update-icon-cache %s/%s/</i>."
 
-#: ../dialogs/appearance-settings/main.c:879
+#: ../dialogs/appearance-settings/main.c:847
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Fail on suurem kui %d MB ja paigaldamine katkestatakse"
 
-#: ../dialogs/appearance-settings/main.c:884
+#: ../dialogs/appearance-settings/main.c:852
 msgid "Failed to create temporary directory"
 msgstr "Ajutist kataloogi ei õnnestunud luua"
 
-#: ../dialogs/appearance-settings/main.c:889
+#: ../dialogs/appearance-settings/main.c:857
 msgid "Failed to extract archive"
 msgstr "Arhiivi lahtipakkimine ebaõnnestus"
 
-#: ../dialogs/appearance-settings/main.c:894
+#: ../dialogs/appearance-settings/main.c:862
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Tundmatu vorming, toetatud on vaid arhiivid ja kaustad"
 
-#: ../dialogs/appearance-settings/main.c:899
+#: ../dialogs/appearance-settings/main.c:867
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Teadmata viga koodiga %d"
 
-#: ../dialogs/appearance-settings/main.c:906
+#: ../dialogs/appearance-settings/main.c:874
 msgid "Failed to install theme"
 msgstr "Teema paigaldaamine ei õnnestunud"
 
-#: ../dialogs/appearance-settings/main.c:1045
+#: ../dialogs/appearance-settings/main.c:1013
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1049
+#: ../dialogs/appearance-settings/main.c:1017
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1053
+#: ../dialogs/appearance-settings/main.c:1021
 msgid "Vertical RGB"
 msgstr "Vertikaalne RGB"
 
-#: ../dialogs/appearance-settings/main.c:1057
+#: ../dialogs/appearance-settings/main.c:1025
 msgid "Vertical BGR"
 msgstr "Vertikaalne BGR"
 
@@ -1213,16 +1205,16 @@ msgstr ""
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:107
 msgid "Shortcut Command"
-msgstr ""
+msgstr "Kiirklahvi käsklus"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:136
 msgid "Enter the command you want to trigger with a shortcut."
-msgstr ""
+msgstr "Sisesta käsklus, mida kiirklahv käivitab."
 
 #. We are editing an existing shortcut
 #: ../dialogs/keyboard-settings/command-dialog.c:154
 msgid "Shortcut:"
-msgstr "Otsetee:"
+msgstr "Kiirklahv:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:167
 msgid "Comm_and:"
@@ -1234,11 +1226,11 @@ msgstr "_Näidatakse käivitusteateid"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:239
 msgid "The command may not be empty."
-msgstr ""
+msgstr "Käsu väli ei tohi olla tühi."
 
 #: ../dialogs/keyboard-settings/command-dialog.c:259
 msgid "Select command"
-msgstr ""
+msgstr "Vali käsklus"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:263
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:396
@@ -1435,7 +1427,7 @@ msgstr "Käsk"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
-msgstr "Otsetee"
+msgstr "Kiirklahv"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
 msgid "Layout"
@@ -2572,16 +2564,16 @@ msgstr ""
 msgid "All _Settings"
 msgstr "Kõik _seadistused"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:449
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:450
 msgid "Settings"
 msgstr "Seaded"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:451
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:452
 msgid "Customize your desktop"
 msgstr "Kohanda oma töölauda"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:958
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:969
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:959
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:970
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr ""
