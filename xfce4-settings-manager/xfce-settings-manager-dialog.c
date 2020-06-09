@@ -685,7 +685,7 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
     gtk_widget_set_sensitive (dialog->button_help, TRUE);
 
-    gtk_widget_set_sensitive (dialog->filter_entry, TRUE);
+    gtk_widget_show (dialog->filter_entry);
     gtk_entry_set_text (GTK_ENTRY (dialog->filter_entry), "");
     gtk_widget_grab_focus (dialog->filter_entry);
 
@@ -862,7 +862,7 @@ xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
     /* button sensitivity */
     gtk_widget_set_sensitive (dialog->button_back, TRUE);
     gtk_widget_set_sensitive (dialog->button_help, dialog->help_page != NULL);
-    gtk_widget_set_sensitive (dialog->filter_entry, FALSE);
+    gtk_widget_hide (dialog->filter_entry);
 
     /* plug startup complete */
     gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
