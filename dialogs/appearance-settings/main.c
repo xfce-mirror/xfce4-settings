@@ -40,6 +40,8 @@
 
 #include <gdk/gdkx.h>
 
+#include <gio/gio.h>
+
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
@@ -80,6 +82,7 @@ enum {
 	NUM_SYMBOLIC_COLORS
 };
 
+static const gchar *gsettings_category_gnome_interface = "org.gnome.desktop.interface";
 static const gchar* xft_hint_styles_array[] =
 {
     "hintnone", "hintslight", "hintmedium", "hintfull"
@@ -641,6 +644,7 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
     guint         i;
     gint          antialias, dpi, custom_dpi;
     GtkTreeModel *model;
+    g_autoptr(GSettings) gsettings = NULL;
 
     g_return_if_fail (property_name != NULL);
     g_return_if_fail (GTK_IS_BUILDER (builder));
@@ -746,6 +750,13 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
             g_free (selected_name);
             g_free (new_name);
         }
+
+        /* Keep gsettings in sync */
+        gsettings = g_settings_new(gsettings_category_gnome_interface);
+        if (gsettings)
+        {
+            g_settings_set_string(gsettings, "gtk-theme", xfconf_channel_get_string (channel, property_name, NULL));
+        }
     }
     else if (strcmp (property_name, "/Net/IconThemeName") == 0)
     {
@@ -785,6 +796,31 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
                              (GSourceFunc) appearance_settings_load_icon_themes,
                              pd,
                              (GDestroyNotify) preview_data_free);
+        }
+
+        /* Keep gsettings in sync */
+        gsettings = g_settings_new(gsettings_category_gnome_interface);
+        if (gsettings)
+        {
+            g_settings_set_string(gsettings, "icon-theme", xfconf_channel_get_string (channel, property_name, NULL));
+        }
+    }
+    else if (strcmp (property_name, "/Gtk/FontName") == 0)
+    {
+        /* Keep gsettings in sync */
+        gsettings = g_settings_new(gsettings_category_gnome_interface);
+        if (gsettings)
+        {
+            g_settings_set_string(gsettings, "font-name", xfconf_channel_get_string (channel, property_name, NULL));
+        }
+    }
+    else if (strcmp (property_name, "/Gtk/MonospaceFontName") == 0)
+    {
+        /* Keep gsettings in sync */
+        gsettings = g_settings_new(gsettings_category_gnome_interface);
+        if (gsettings)
+        {
+            g_settings_set_string(gsettings, "monospace-font-name", xfconf_channel_get_string (channel, property_name, NULL));
         }
     }
 }
