@@ -160,43 +160,12 @@ xfce_settings_manager_queue_resize (XfceSettingsManagerDialog *dialog)
 {
     GList *li;
     DialogCategory *category;
-    GdkWindow *window = gtk_widget_get_window (GTK_WIDGET (dialog));
 
     for (li = dialog->categories; li != NULL; li = li->next)
     {
         category = li->data;
         gtk_widget_queue_resize (GTK_WIDGET (category->iconview));
     }
-
-    if (window == NULL)
-        return FALSE;
-
-    gdk_window_invalidate_rect (window, NULL, TRUE);
-
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-    gdk_window_process_updates (window, TRUE);
-G_GNUC_END_IGNORE_DEPRECATIONS
-
-    return FALSE;
-}
-
-
-
-/* FIXME: This is a hacky patch to ensure the embedded icon views resize on change. */
-static gboolean
-xfce_settings_manager_queue_redraw (XfceSettingsManagerDialog *dialog)
-{
-    GdkWindow *window = gtk_widget_get_window (GTK_WIDGET (dialog));
-    gint h, w;
-
-    if (window == NULL)
-        return FALSE;
-
-    h = gdk_window_get_height (window);
-    w = gdk_window_get_width (window);
-
-    gdk_window_resize (window, w, h+1);
-    gdk_window_resize (window, w, h);
 
     return FALSE;
 }
@@ -750,7 +719,7 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget                 *entry,
             gtk_widget_set_visible (category->box, n_children > 0);
         }
 
-        g_idle_add ((GSourceFunc) xfce_settings_manager_queue_redraw, dialog);
+        g_idle_add ((GSourceFunc) xfce_settings_manager_queue_resize, dialog);
     }
     else
     {
@@ -1343,7 +1312,7 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
         g_error_free (error);
     }
 
-    g_idle_add ((GSourceFunc) xfce_settings_manager_queue_redraw, dialog);
+    g_idle_add ((GSourceFunc) xfce_settings_manager_queue_resize, dialog);
 }
 
 
