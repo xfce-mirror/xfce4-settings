@@ -467,7 +467,7 @@ static void
 display_setting_scale_populate (GtkBuilder *builder)
 {
     GtkTreeModel *model;
-    GObject      *combobox, *revealer, *spin_scalex, *spin_scaley;
+    GObject      *combobox, *label, *revealer, *spin_scalex, *spin_scaley;
     gchar        *scales[] = { "1x", "1.5x", "2x", "Custom" };
     guint         n;
     GtkTreeIter   iter;
@@ -476,9 +476,22 @@ display_setting_scale_populate (GtkBuilder *builder)
     if (!xfce_randr)
         return;
 
+    combobox = gtk_builder_get_object (builder, "randr-scale");
+    label = gtk_builder_get_object (builder, "label-scale");
+
+    /* disable it if no mode is selected */
+    if (xfce_randr->mode[active_output] == None)
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
+        return;
+    }
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (label), TRUE);
+
     scale = xfce_randr->scalex[active_output];
     /* Get the combo box store and clear it */
-    combobox = gtk_builder_get_object (builder, "randr-scale");
+
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
     gtk_list_store_clear (GTK_LIST_STORE (model));
     revealer = gtk_builder_get_object (builder, "revealer-scale");
@@ -487,7 +500,6 @@ display_setting_scale_populate (GtkBuilder *builder)
     spin_scaley = gtk_builder_get_object (builder, "spin-scale-y");
 
     gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), TRUE);
-    g_warning ("x/y: %f/%f", xfce_randr->scalex[active_output], xfce_randr->scaley[active_output]);
     gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scalex), xfce_randr->scalex[active_output]);
     gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scaley), xfce_randr->scaley[active_output]);
 
@@ -500,13 +512,13 @@ display_setting_scale_populate (GtkBuilder *builder)
                             COLUMN_COMBO_NAME, scales[n],
                             COLUMN_COMBO_VALUE, n, -1);
 
-        if (scale != 1.0 && n == 3)
-            gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
-        else if (scale == 1.0 && n == 0)
+        if ((scale == 1.0 || scale == 0.0) && n == 0)
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
         else if (scale == 1.5 && n == 1)
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
         else if (scale == 2.0 && n == 2)
+            gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
+        else if (scale != 1.0 && n == 3)
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
     }
 }
