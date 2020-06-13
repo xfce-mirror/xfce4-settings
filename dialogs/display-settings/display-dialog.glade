@@ -44,6 +44,32 @@
     <property name="can_focus">False</property>
     <property name="icon_name">object-select-symbolic</property>
   </object>
+  <object class="GtkListStore" id="liststore1">
+    <columns>
+      <!-- column-name desc -->
+      <column type="gchararray"/>
+      <!-- column-name val -->
+      <column type="gdouble"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">1x</col>
+        <col id="1">1.0</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">1.5x</col>
+        <col id="1">1.5</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">2x</col>
+        <col id="1">2.0</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Custom:</col>
+        <col id="1">-1.0</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkPopover" id="primary-info">
     <property name="can_focus">False</property>
     <property name="position">bottom</property>
@@ -573,6 +599,7 @@
                               <object class="GtkGrid">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="row_spacing">3</property>
                                 <child>
                                   <object class="GtkLabel" id="label-scale-x">
                                     <property name="visible">True</property>
@@ -639,7 +666,13 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="margin_left">9</property>
-                            <property name="id_column">1</property>
+                            <property name="model">liststore1</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
