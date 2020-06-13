@@ -2651,6 +2651,8 @@ convert_xfce_output_info (gint output_id)
     output->id = output_id;
     output->x = x;
     output->y = y;
+    output->scalex = xfce_randr->scalex[output_id];
+    output->scaley = xfce_randr->scaley[output_id];
     output->user_data = NULL;
     output->display_name = xfce_randr->friendly_name[output_id];
     output->connected = TRUE;
@@ -2777,8 +2779,17 @@ get_geometry (XfceOutputInfo *output, int *w, int *h)
 {
     if (output->on)
     {
-        *h = output->height;
-        *w = output->width;
+        if (output->scalex > 0 && output->scalex != 1.0
+            && output->scaley > 0 && output->scaley != 1.0)
+        {
+            *h = output->height * output->scaley;
+            *w = output->width * output->scalex;
+        }
+        else
+        {
+            *h = output->height;
+            *w = output->width;
+        }
     }
     else
     {
