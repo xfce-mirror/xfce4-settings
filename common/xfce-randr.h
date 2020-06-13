@@ -102,6 +102,8 @@ struct _XfceOutputInfo
     guint      pref_width;
     guint      pref_height;
     Rotation   rotation;
+    gdouble    scalex;
+    gdouble    scaley;
 
     /* Frequency */
     gdouble    rate;
