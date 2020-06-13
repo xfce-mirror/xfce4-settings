@@ -4,10 +4,10 @@
   <requires lib="gtk+" version="3.20"/>
   <requires lib="libxfce4ui-2" version="4.13"/>
   <object class="GtkAdjustment" id="adjustment1">
-    <property name="lower">1</property>
-    <property name="upper">6</property>
+    <property name="lower">0.10000000000000001</property>
+    <property name="upper">10</property>
     <property name="step_increment">0.10000000000000001</property>
-    <property name="page_increment">10</property>
+    <property name="page_increment">1</property>
   </object>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
@@ -43,24 +43,6 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">object-select-symbolic</property>
-  </object>
-  <object class="GtkListStore" id="liststore1">
-    <columns>
-      <!-- column-name value -->
-      <column type="gdouble"/>
-      <!-- column-name guint1 -->
-      <column type="guint"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0">1</col>
-        <col id="1">0</col>
-      </row>
-      <row>
-        <col id="0">2</col>
-        <col id="1">1</col>
-      </row>
-    </data>
   </object>
   <object class="GtkPopover" id="primary-info">
     <property name="can_focus">False</property>
@@ -657,7 +639,6 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="margin_left">9</property>
-                            <property name="model">liststore1</property>
                             <property name="id_column">1</property>
                           </object>
                           <packing>
