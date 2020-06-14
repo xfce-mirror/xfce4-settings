@@ -49,7 +49,7 @@ desktop_in_in_files =							\
 	sylpheed.desktop.in.in						\
 	sylpheed-claws.desktop.in.in				\
 	terminator.desktop.in.in					\
-	Thunar.desktop.in.in						\
+	thunar.desktop.in.in						\
 	thunderbird.desktop.in.in					\
 	urxvt.desktop.in.in							\
 	vimprobable2.desktop.in.in					\
