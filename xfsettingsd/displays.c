@@ -181,6 +181,8 @@ struct _XfceRRCrtc
     gint      y;
     gfloat    scalex;
     gfloat    scaley;
+    gint      eff_mm_width;
+    gint      eff_mm_height;
     gint      noutput;
     RROutput *outputs;
     gint      npossible;
@@ -1053,8 +1055,10 @@ G_GNUC_END_IGNORE_DEPRECATIONS
         /* Translate output->name into xfconf compatible format in place */
         g_strcanon(output->info->name, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_<>", '_');
 
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Detected output %lu %s.", output->id,
-                        output->info->name);
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS,
+                        "Detected output %lu %s, mm_w %ld mm_h %ld.",
+                        output->id, output->info->name,
+                        output->info->mm_width, output->info->mm_height);
 
         /* cache it */
         g_ptr_array_add (outputs, output);
@@ -1121,6 +1125,8 @@ xfce_displays_helper_list_crtcs (XfceDisplaysHelper *helper)
         crtc->y = crtc_info->y;
         crtc->scalex = 1.0;
         crtc->scaley = 1.0;
+        crtc->eff_mm_width = 0;
+        crtc->eff_mm_height = 0;
 
         crtc->noutput = crtc_info->noutput;
         crtc->outputs = NULL;
@@ -1247,6 +1253,7 @@ static void
 xfce_displays_helper_normalize_crtc (XfceRRCrtc         *crtc,
                                      XfceDisplaysHelper *helper)
 {
+    gint sw, sh, x1, y1;
     g_assert (XFCE_IS_DISPLAYS_HELPER (helper) && crtc);
 
     /* ignore disabled outputs for size computations */
@@ -1261,21 +1268,41 @@ xfce_displays_helper_normalize_crtc (XfceRRCrtc         *crtc,
         crtc->changed = TRUE;
     }
 
-    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Normalized CRTC %lu: size=%dx%d, pos=%dx%d.",
-                    crtc->id, crtc->width, crtc->height, crtc->x, crtc->y);
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Normalized CRTC %lu: size=%dx%d, pos=%dx%d, phys=%dx%d.",
+                    crtc->id, crtc->width, crtc->height, crtc->x, crtc->y,
+                    crtc->eff_mm_width, crtc->eff_mm_height);
 
-    /* calculate the total screen size */
-    helper->width = MAX (helper->width, crtc->x + crtc->width * crtc->scalex);
-    helper->height = MAX (helper->height, crtc->y + crtc->height * crtc->scaley);
-
-    /* The 'physical size' of an X screen is meaningless if that screen
-     * can consist of many monitors. So just pick a size that make the
-     * dpi 96.
-     *
-     * Firefox and Evince apparently believe what X tells them.
+    /* Calculate the total screen size, and extend physical size based on this crtc.
+     * We use the rough approximation that the pixels from the previous max up to the
+     * the new max based on this crtc are the same pitch as on this crtc, defaulting to
+     * 96 dpi if we can't tell the pitch on this crtc. We just want something reasonably
+     * in the ballpark since the physical screen dimensions are not very meaningful in
+     * the case of multiple monitors, but we do want to get them right if there is
+     * just one monitor.
      */
-    helper->mm_width = (helper->width / 96.0) * 25.4 + 0.5;
-    helper->mm_height = (helper->height / 96.0) * 25.4 + 0.5;
+    sw = crtc->width * crtc->scalex;
+    sh = crtc->height * crtc->scaley;
+    x1 = crtc->x + sw;
+    y1 = crtc->y + sh;
+    if (x1 > helper->width)
+    {
+        gint e_mm_width = crtc->eff_mm_width;
+        if (e_mm_width == 0)
+            e_mm_width = (sw * 25.4) / 96.0 + 0.5;
+        helper->mm_width += (x1 - helper->width) * e_mm_width / sw;
+        helper->width = x1;
+    }
+    if (y1 > helper->height)
+    {
+        gint e_mm_height = crtc->eff_mm_height;
+        if (e_mm_height == 0)
+            e_mm_height = (sh * 25.4) / 96.0 + 0.5;
+        helper->mm_height += (y1 - helper->height) * e_mm_height / sh;
+        helper->height = y1;
+    }
+
+    xfsettings_dbg  (XFSD_DEBUG_DISPLAYS, "   and screen so far: pix geom=%dx%d, mm geom=%dx%d.",
+                     helper->width, helper->height, helper->mm_width, helper->mm_height);
 }
 
 
@@ -1398,7 +1425,7 @@ static void
 xfce_displays_helper_set_outputs (XfceRRCrtc   *crtc,
                                   XfceRROutput *output)
 {
-    gint n;
+    gint n, o_mm_width, o_mm_height;
 
     g_assert (crtc && output);
 
@@ -1406,13 +1433,27 @@ xfce_displays_helper_set_outputs (XfceRRCrtc   *crtc,
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "CRTC %lu, output list[%d] -> %lu.", crtc->id, n,
                         crtc->outputs[n]);
 
+    /* update the physical dimensions of the crtc if need be */
+    o_mm_width = 0;
+    o_mm_height = 0;
+    if (output->info)
+    {
+        if (output->info->mm_width > 0)
+	    o_mm_width = output->info->mm_width;
+        if (output->info->mm_height > 0)
+	    o_mm_height = output->info->mm_height;
+    }
+    if (crtc->eff_mm_width == 0 || (o_mm_width > 0 && o_mm_width < crtc->eff_mm_width))
+        crtc->eff_mm_width = o_mm_width;
+    if (crtc->eff_mm_height == 0 || (o_mm_height > 0 && o_mm_height < crtc->eff_mm_height))
+        crtc->eff_mm_height = o_mm_height;
+
     /* check if the output is already present */
     for (n = 0; n < crtc->noutput; ++n)
     {
         if (crtc->outputs[n] == output->id)
             return;
     }
-
 
     if (crtc->outputs)
         crtc->outputs = g_realloc (crtc->outputs, (crtc->noutput + 1) * sizeof (RROutput));
