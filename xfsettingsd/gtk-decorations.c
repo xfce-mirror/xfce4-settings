@@ -133,7 +133,7 @@ xfce_decorations_helper_channel_property_changed (XfconfChannel         *channel
 static void
 xfce_decorations_helper_init (XfceDecorationsHelper *helper)
 {
-    const gchar *layout;
+    gchar *layout;
 
     helper->wm_channel = xfconf_channel_get ("xfwm4");
     helper->xsettings_channel = xfconf_channel_get ("xsettings");
@@ -141,6 +141,7 @@ xfce_decorations_helper_init (XfceDecorationsHelper *helper)
     layout = xfconf_channel_get_string  (helper->wm_channel,
                                          "/general/button_layout", DEFAULT_LAYOUT);
     xfce_decorations_set_decoration_layout (helper, layout);
+    g_free (layout);
 
     /* monitor WM channel changes */
     g_signal_connect (G_OBJECT (helper->wm_channel), "property-changed",
