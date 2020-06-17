@@ -1470,6 +1470,7 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
 
         current = g_list_next (current);
         g_free (property);
+        g_free (profile_name);
     }
 
     gtk_widget_show_all (GTK_WIDGET (profile_box));
@@ -2100,6 +2101,7 @@ display_settings_primary_status_info_populate (GtkBuilder *builder)
         else
             gtk_widget_hide (GTK_WIDGET (widget));
         property = g_strdup_printf ("/panels/panel-%u/output-name", panels + 1);
+        g_free (primary_status_panel);
     }
     if (panels_with_primary > 1)
     {

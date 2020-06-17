@@ -53,6 +53,7 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
     while (current)
     {
         gchar **current_elements = g_strsplit (current->data, "/", -1);
+        gchar *old_profile_name;
 
         if (get_size (current_elements) != 2)
         {
@@ -61,8 +62,13 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
             continue;
         }
 
-        if (g_strcmp0 (new_profile_name, xfconf_channel_get_string (channel, current->data, NULL)) == 0)
+        old_profile_name = xfconf_channel_get_string (channel, current->data, NULL);
+        if (g_strcmp0 (new_profile_name, old_profile_name) == 0)
+        {
+            g_free (old_profile_name);
             return FALSE;
+        }
+        g_free (old_profile_name);
 
         current = g_list_next (current);
     }
