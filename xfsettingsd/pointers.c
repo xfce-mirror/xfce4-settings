@@ -939,7 +939,6 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
     GHashTable      *props;
     XfcePointerData  pointer_data;
 #endif
-    const gchar     *mode;
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
     device_list = XListInputDevices (xdisplay, &ndevices);
@@ -951,6 +950,8 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
 
     for (n = 0; n < ndevices; n++)
     {
+        gchar *mode;
+
         /* filter the pointer devices */
         device_info = &device_list[n];
         if (device_info->use != IsXExtensionPointer
@@ -1004,7 +1005,11 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
         mode =  xfconf_channel_get_string  (helper->channel, prop, NULL);
 
         if (mode != NULL)
+        {
             xfce_pointers_helper_change_mode (device_info, device, xdisplay, mode);
+            g_free (mode);
+            mode = NULL;
+        }
 
 #ifdef DEVICE_PROPERTIES
         /* set device properties */
