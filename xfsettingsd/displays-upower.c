@@ -100,6 +100,13 @@ static void
 xfce_displays_upower_init (XfceDisplaysUPower *upower)
 {
     upower->client = up_client_new ();
+    if (!UP_IS_CLIENT (upower->client))
+    {
+        upower->handler = 0;
+        upower->lid_is_closed = 0;
+        return;
+    }
+
     upower->lid_is_closed = up_client_get_lid_is_closed (upower->client);
 #if UP_CHECK_VERSION(0, 99, 0)
     upower->handler = g_signal_connect (G_OBJECT (upower->client),
