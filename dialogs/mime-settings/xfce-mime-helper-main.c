@@ -172,7 +172,7 @@ main (int argc, char **argv)
     g_setenv ("DESKTOP_STARTUP_ID", startup_id, TRUE);
 
   /* setup default window icon */
-  gtk_window_set_default_icon_name ("preferences-desktop-default-applications");
+  gtk_window_set_default_icon_name ("org.xfce.settings.preferred-applications");
 
   /* check for the action to perform */
   if (opt_launch_type != NULL)
