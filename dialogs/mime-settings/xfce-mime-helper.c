@@ -801,7 +801,7 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
 
           for (i = 0; mimetypes[i] != NULL; i++)
             if (!exo_str_is_empty (mimetypes[i]))
-                xfce_rc_write_entry (rc, mimetypes[i], filename);
+              xfce_rc_write_entry (rc, mimetypes[i], filename);
 
           xfce_rc_set_group (rc, "Added Associations");
 
@@ -934,13 +934,13 @@ xfce_mime_helper_database_clear_default (XfceMimeHelperDatabase *database,
           for (i = 0; mimetypes[i] != NULL; i++)
             if (!exo_str_is_empty (mimetypes[i]))
               xfce_rc_delete_entry (rc, mimetypes[i], FALSE);
-          g_strfreev (mimetypes);
 
           xfce_rc_set_group (rc, "Added Associations");
 
           for (i = 0; mimetypes[i] != NULL; i++)
             if (!exo_str_is_empty (mimetypes[i]))
               xfce_rc_delete_entry (rc, mimetypes[i], FALSE);
+
           g_strfreev (mimetypes);
         }
 
