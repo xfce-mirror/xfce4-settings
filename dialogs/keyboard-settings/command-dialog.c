@@ -107,13 +107,25 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_window_set_title (GTK_WINDOW (dialog), _("Shortcut Command"));
   gtk_window_set_icon_name (GTK_WINDOW (dialog), "application-x-executable");
 
+#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+  xfce_titled_dialog_create_action_area (XFCE_TITLED_DIALOG (dialog));
+#endif
+
   /* Create cancel button */
   button = gtk_button_new_with_mnemonic (_("_Cancel"));
+#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+  xfce_titled_dialog_add_action_widget (XFCE_TITLED_DIALOG (dialog), button, GTK_RESPONSE_CANCEL);
+#else
   gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_CANCEL);
+#endif
   gtk_widget_show (button);
 
   button = gtk_button_new_with_mnemonic (_("_OK"));
+#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+  xfce_titled_dialog_add_action_widget (XFCE_TITLED_DIALOG (dialog), button, GTK_RESPONSE_OK);
+#else
   gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_OK);
+#endif
   gtk_widget_set_can_default (GTK_WIDGET(button), TRUE);
   gtk_widget_grab_default (button);
   gtk_widget_show (button);
