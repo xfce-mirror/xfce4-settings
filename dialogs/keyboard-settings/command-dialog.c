@@ -96,12 +96,15 @@ command_dialog_create_contents (CommandDialog *dialog,
                                 const gchar   *action,
                                 gboolean       snotify)
 {
-  GtkWidget *button;
-  GtkWidget *content_box;
-  GtkWidget *hbox;
-  GtkWidget *label;
-  GtkWidget *image;
-  GtkWidget *table;
+  GtkWidget       *button;
+  GtkWidget       *content_box;
+  GtkWidget       *hbox;
+  GtkWidget       *label;
+  GtkWidget       *image;
+  GtkWidget       *table;
+  gchar          **keys;
+  guint            i;
+  GtkStyleContext *context;
 
   /* Set dialog title and icon */
   gtk_window_set_title (GTK_WINDOW (dialog), _("Shortcut Command"));
@@ -160,11 +163,23 @@ command_dialog_create_contents (CommandDialog *dialog,
       gtk_grid_attach (GTK_GRID (table), label, 0, 0, 1, 1);
       gtk_widget_show (label);
 
-      label = gtk_label_new (shortcut);
-      gtk_widget_set_halign (GTK_WIDGET (label), GTK_ALIGN_START);
-      gtk_widget_set_valign (GTK_WIDGET (label), GTK_ALIGN_CENTER);
-      gtk_grid_attach (GTK_GRID (table), label, 1, 0, 1, 1);
-      gtk_widget_show (label);
+      hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+      keys = g_strsplit (shortcut, "+", -1);
+
+      /* Show each key as individual label with the .keycap style class */
+      for (i = 0; i < g_strv_length (keys); i++)
+        {
+          label = gtk_label_new (keys[i]);
+          context = gtk_widget_get_style_context (label);
+          gtk_style_context_add_class (context, "keycap");
+          gtk_widget_show (label);
+          gtk_container_add (GTK_CONTAINER (hbox), label);
+        }
+
+      g_strfreev (keys);
+
+      gtk_grid_attach (GTK_GRID (table), hbox, 1, 0, 1, 1);
+      gtk_widget_show (hbox);
     }
 
   label = gtk_label_new_with_mnemonic (_("Comm_and:"));
