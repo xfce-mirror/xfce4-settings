@@ -867,6 +867,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
     XfceRc         *rc;
     gboolean        pluggable = FALSE;
     gchar          *cmd;
+    gchar          *uri;
     GtkWidget      *socket;
     GdkCursor      *cursor;
 
@@ -874,6 +875,13 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
 
     screen = gtk_window_get_screen (GTK_WINDOW (dialog));
     command = garcon_menu_item_get_command (item);
+
+    /* expand the field codes */
+    uri = garcon_menu_item_get_uri (item);
+    command = xfce_expand_field_codes (command, garcon_menu_item_get_icon_name (item),
+                                       garcon_menu_item_get_name (item), uri,
+                                       garcon_menu_item_requires_terminal (item));
+    g_free (uri);
 
     /* we need to read some more info from the desktop
      *  file that is not supported by garcon */
