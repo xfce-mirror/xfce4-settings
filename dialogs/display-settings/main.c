@@ -418,6 +418,8 @@ display_setting_custom_scale_changed (GtkSpinButton *spinbutton,
     scale = gtk_spin_button_get_value (spinbutton);
     xfce_randr->scalex[active_output] = scale;
     xfce_randr->scaley[active_output] = scale;
+
+    display_settings_changed ();
 }
 
 static void
