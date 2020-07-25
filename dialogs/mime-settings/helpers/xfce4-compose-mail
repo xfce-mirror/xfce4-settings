@@ -1,10 +1,11 @@
-#!/usr/bin/env perl
-#
-# xfce4-compose-mail - Perl script to parse mailto:-URIs and invoke the
+#!/usr/bin/env python3
+# 
+# xfce4-compose-mail - Python script to parse mailto:-URIs and invoke the
 #                      various included MailReaders with the appropriate
 #                      parameters.
 #
 # Copyright (c) 2006 Benedikt Meurer <benny@xfce.org>.
+# Copyright (c) 2013 Seth Vidal - Red Hat, Inc. <skvidal@fedoraproject.org>.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,232 +20,149 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301 USA
-#
 
-use URI::Escape;
-use URI::file;
-use URI::URL;
-use strict;
+import sys
+import os
+import urllib.parse
+import shutil
 
 # check number of arguments
-if ($#ARGV != 2) {
-	print STDERR "Usage: $0 <style> <binary> <mailto>\n";
-	exit 1;
-}
+if len(sys.argv) < 3:
+    print("Usage: %s <style> <binary> <mailto>" % (sys.argv[0]), file=sys.stderr)
+    sys.exit(1)
 
 # determine arguments
-my $style = $ARGV[0];
-my $binary = $ARGV[1];
-my $mailtoUrl = url($ARGV[2]);
+style = sys.argv[1]
+binary = sys.argv[2]
+raw_mailto = sys.argv[3]
+
+def parse_url(mailto):
+    url = urllib.parse.urlparse(mailto)
+    res = {}
+    to = []
+    query = None
+
+    if url.query or '?' not in url.path:
+        if url.path:
+            to.append(urllib.parse.unquote(url.path))
+
+    else:
+        (thisto, ques, query) = url.path.partition('?')
+        if thisto.strip():
+            to.append(urllib.parse.unquote(thisto))
+
+    if not query:
+        query = url.query
+
+    q_dict = urllib.parse.parse_qs(query)
+    to.extend(q_dict.get('to', []))
+    res['to'] = to
+    if 'to' in q_dict:
+        del(q_dict['to'])
+
+    res.update(q_dict)
+    return res
 
 # mailto:-components
-my @to = ();
-my @cc = ();
-my @bcc = ();
-my $subject = undef;
-my $body = undef;
-my @attachments = ();
+mailto = parse_url(raw_mailto)
+to = mailto.get('to', [])
+cc = mailto.get('cc', [])
+bcc = mailto.get('bcc', [])
+subject = ' '.join(mailto.get('subject', []))
+body = '\n'.join(mailto.get('body', []))
+attachments = mailto.get('attach',[])
+attachments += mailto.get('attachment',[])
 
-# parse the mailto:-address
-my @headers = $mailtoUrl->headers();
-for (my $n = 0; $n < $#headers; $n += 2) {
-	if ($headers[$n] =~ /^to$/i) {
-		push (@to, $headers[$n + 1]);
-	}
-	elsif ($headers[$n] =~ /^cc$/i ) {
-		push (@cc, $headers[$n + 1]);
-	}
-	elsif ($headers[$n] =~ /^bcc$/i ) {
-		push (@bcc, $headers[$n + 1]);
-	}
-	elsif ($headers[$n] =~ /^subject$/i ) {
-		$subject = $headers[$n + 1];
-	}
-	elsif ($headers[$n] =~ /^body$/i ) {
-		$body = $headers[$n + 1];
-	}
-	elsif ($headers[$n] =~ /^attach$/i ) {
-		# be sure to add as file:-URI
-		my $f = $headers[$n + 1];
-		push(@attachments, ($f =~ m/^file:\//) ? URI->new($f) : URI::file->new_abs($f));
-	}
-}
+# check if binary is valid
+binary = shutil.which(binary)
+if not binary:
+    print("%s: command not found or not executable: '%s'." %
+            (sys.argv[0], sys.argv[2]), file=sys.stderr)
+    sys.exit(1)
 
 # start with only the binary name
-my @argv = ($binary);
+args = [binary]
 
 # add style-specific parameters
-if ($style eq 'mozilla') {
-	# similar to mozilla-remote, but with --compose
-	my $command = "to='" . join(",", @to) . "'";
-	$command .= ",cc='" . join(",", @cc) . "'";
-	$command .= ",bcc='" . join(",", @bcc) . "'";
-	$command .= ",attachment='" . join(",", @attachments) . "'";
-	$subject and $command .= ",subject='$subject'";
-	$body and $command .= ",body='$body'";
+if style == 'mozilla':
+    # similar to mozilla-remote, but with --compose
+    command = "to='" + ','.join(to) + "'"
+    command += ",cc='" + ','.join(cc) + "'"
+    command += ",bcc='" + ','.join(bcc) + "'"
+    command += ",attachment='" + ','.join(attachments) + "'"
+    if subject:
+         command += ",subject=" + urllib.parse.quote(subject, errors='replace')
+    if body:
+         command += ",body=" + urllib.parse.quote(body, errors='replace')
 
-	# and add the parameters to the argv
-	push (@argv, '-compose');
-	push (@argv, $command);
-}
-elsif ($style eq 'mozilla-remote') {
-	# generate xfeDoCommand(composeMessage, ...) string
-	my $command = 'xfeDoCommand(composeMessage';
-	$command .= ",to='" . join(",", @to) . "'";
-	$command .= ",cc='" . join(",", @cc) . "'";
-	$command .= ",bcc='" . join(",", @bcc) . "'";
-	$command .= ",attachment='" . join(",", @attachments) . "'";
-	$subject and $command .= ",subject='$subject'";
-	$body and $command .= ",body='$body'";
-	$command .= ')';
+    args.append('-compose')
+    args.append(command)
 
-	# and add the parameters to the argv
-	push (@argv, '-remote');
-	push (@argv, $command);
-}
-elsif ($style eq 'evolution') {
-	# generate the mailto:-URI for evolution
-	my $mailto = undef;
-	for my $to (@to) {
-		if ($mailto) {
-			$mailto .= 'to=' . uri_escape($to) . '&';
-		}
-		else {
-			$mailto = 'mailto:' . uri_escape($to) . '?';
-		}
-	}
-	for my $cc (@cc) {
-		$mailto .= 'cc=' . uri_escape($cc) . '&';
-	}
-	for my $bcc (@bcc) {
-		$mailto .= 'bcc=' . uri_escape($bcc) . '&';
-	}
-	for my $attachment (@attachments) {
-		$mailto .= "attach=$attachment&";
-	}
-	$subject and $mailto .= 'subject=' . uri_escape($subject) . '&';
-	$body and $mailto .= 'body=' . uri_escape($body);
+elif style == 'mozilla-remote':
+    command = 'xfeDoCommand(composeMessage'
+    command += ",to='" + ','.join(to) + "'"
+    command += ",cc='" + ','.join(cc) + "'"
+    command += ",bcc='" + ','.join(bcc) + "'"
+    command += ",attachment='" + ','.join(attachments) + "'"
+    if subject:
+         command += ",subject=" + urllib.parse.quote(subject, errors='replace')
+    if body:
+         command += ",body=" + urllib.parse.quote(body, errors='replace')
+    command += ')'
 
-	# and add the parameter to the argv
-	push (@argv, $mailto);
-}
-elsif ($style eq 'kmail') {
-	# generate the parameters for kmail
-	for (my $n = 1; $n < @to; $n++) {
-		push (@argv, '--cc', $to[$n]);
-	}
-	for my $cc (@cc) {
-		push (@argv, '--cc', $cc);
-	}
-	for my $bcc (@bcc) {
-		push (@argv, '--bcc', $bcc);
-	}
-	for my $attachment (@attachments) {
-		push (@argv, '--attach', $attachment);
-	}
-	$subject and push (@argv, '--subject', $subject);
-	$body and push (@argv, '--body', $body);
-	push (@argv, '--composer');
-	(@to > 0) and push (@argv, $to[0]);
-    print @argv;
-}
-elsif ($style eq 'sylpheed') {
-	# generate the mailto:-URI (somewhat like Evolution)
-	my $mailto = 'mailto:' . ((@to > 0) ? $to[0] : "") . '?';
-	for (my $n = 1; $n < @to; $n++) {
-		$mailto .= 'cc=' . $to[$n] . '&';
-	}
-	for my $cc (@cc) {
-		$mailto .= 'cc=' . $cc . '&';
-	}
-	for my $bcc (@bcc) {
-		$mailto .= 'bcc=' . $bcc . '&';
-	}
-	$subject and $mailto .= 'subject=' . uri_escape($subject) . '&';
-	$body and $mailto .= 'body=' . uri_escape($body);
+    args.append('-remote')
+    args.append(command)
 
-	# and add the parameters to the argv
-	push (@argv, '--compose', $mailto);
-	if (@attachments > 0) {
-		push (@argv, '--attach');
-		for my $uri (@attachments) {
-			# claws-mail supports URIs, sylpheed and older claws need
-			# unescaped local paths
-			if ($binary eq 'claws-mail') {
-				push (@argv, $uri);
-			} else {
-				push (@argv, uri_unescape ($uri->path ()));
-			}
-		}
-	}
-}
-elsif ($style eq 'balsa') {
-	# same story with balsa
-	my $mailto = 'mailto:' . ((@to > 0) ? uri_escape($to[0]) : "") . '?';
-	for (my $n = 1; $n < @to; $n++) {
-		$mailto .= 'cc=' . uri_escape($to[$n]) . '&';
-	}
-	for my $cc (@cc) {
-		$mailto .= 'cc=' . uri_escape($cc) . '&';
-	}
-	for my $bcc (@bcc) {
-		$mailto .= 'bcc=' . uri_escape($bcc) . '&';
-	}
-	$subject and $mailto .= 'subject=' . uri_escape($subject) . '&';
-	$body and $mailto .= 'body=' . uri_escape($body);
+elif style in ['evolution', 'kmail', 'geary']:
+     # these take a mailto uri and parse it themselves
+     # just hand back what we were handed originally
+     args.append(raw_mailto)
 
-	# and add the parameters to the argv
-	push (@argv, '--compose', $mailto);
-	for my $uri (@attachments) {
-		push (@argv, '--attach', $uri->path ());
-	}
-}
-elsif ($style eq 'geary') {
-	# Geary supports everything but attachments
-	my $mailto = 'mailto:' . ((@to > 0) ? uri_escape($to[0]) : "") . '?';
-	for (my $n = 1; $n < @to; $n++) {
-		$mailto .= 'cc=' . uri_escape($to[$n]) . '&';
-	}
-	for my $cc (@cc) {
-		$mailto .= 'cc=' . uri_escape($cc) . '&';
-	}
-	for my $bcc (@bcc) {
-		$mailto .= 'bcc=' . uri_escape($bcc) . '&';
-	}
-	$subject and $mailto .= 'subject=' . uri_escape($subject) . '&';
-	$body and $mailto .= 'body=' . uri_escape($body);
+elif style == 'balsa':
+    args.append('--compose')
+    args.append(raw_mailto)
 
-	# and add the parameters to the argv
-	push (@argv, $mailto);
-}
-elsif ($style eq 'mutt') {
-	# generate the parameters for mutt
-	for my $cc (@cc) {
-		push (@argv, '-c', $cc);
-	}
-	for my $bcc (@bcc) {
-		push (@argv, '-b', $bcc);
-	}
-	for my $uri (@attachments) {
-		push (@argv, '-a', $uri->path ());
-	}
-	$subject and push (@argv, '-s', $subject);
-	for my $to (@to) {
-		push (@argv, $to);
-	}
+elif style == 'sylpheed':
+    args.append('--compose')
+    args.append(raw_mailto)
+    # attachments must be passed separately
+    if attachments and not args[0] == 'claws-mail':
+        args.append('--attach')
+        for item in attachments:
+            args.append(item)
 
-	# mutt needs an address, if we don't have
-	# any, just append an empty string and mutt
-	# will prompt for the To: address
-	(not @to) and push (@argv, '');
-}
-else {
-	print STDERR "$0: Unsupported style '$style'.\n";
-	exit 1;
-}
+elif style == 'mutt':
+    if subject:
+        args.append('-s')
+        args.append(subject)
+    for item in cc:
+        args.append('-c')
+        args.append(item)
+    for item in bcc:
+        args.append('-b')
+        args.append(item)
+    if attachments:
+        args.append('-a')
+        for item in attachments:
+            args.append(item)
+    args.append('--')
+    for item in to:
+        args.append(item)
+    if not to:
+        args.append('')
+    if body:
+        args.append('mailto:?body=' + urllib.parse.quote(body, errors='replace'))
+
+else:
+   print("%s: Unsupported style '%s'." % (sys.argv[0], style), file=sys.stderr)
+   sys.exit(1)
 
 # try to execute the generated command
-exec @argv;
+try:
+    os.execv(binary, args)
+except OSError as e:
+    print('{}: Error: {}'.format(sys.argv[0], e), file=sys.stderr)
+    print('Command was: {} {}'.format(binary, args), file=sys.stderr)
 
-# something went wrong
-exit 1;
+# something went wrong (this process was supposed to be replaced)
+sys.exit(1)
