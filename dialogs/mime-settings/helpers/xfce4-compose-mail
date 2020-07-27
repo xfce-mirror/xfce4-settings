@@ -74,10 +74,10 @@ attachments = mailto.get('attach',[])
 attachments += mailto.get('attachment',[])
 
 # check if binary is valid
-binary = shutil.which(binary)
-if not binary:
+binary_path = shutil.which(binary)
+if not binary_path:
     print("%s: command not found or not executable: '%s'." %
-            (sys.argv[0], sys.argv[2]), file=sys.stderr)
+            (sys.argv[0], binary), file=sys.stderr)
     sys.exit(1)
 
 # start with only the binary name
@@ -159,10 +159,10 @@ else:
 
 # try to execute the generated command
 try:
-    os.execv(binary, args)
+    os.execv(binary_path, args)
 except OSError as e:
     print('{}: Error: {}'.format(sys.argv[0], e), file=sys.stderr)
-    print('Command was: {} {}'.format(binary, args), file=sys.stderr)
+    print('Command was: {} {}'.format(binary_path, args), file=sys.stderr)
 
 # something went wrong (this process was supposed to be replaced)
 sys.exit(1)
