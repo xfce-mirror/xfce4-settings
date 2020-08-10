@@ -938,6 +938,11 @@ cb_theme_uri_dropped (GtkWidget        *widget,
         object = gtk_builder_get_object (builder, "gtk_theme_treeview");
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
         gtk_list_store_clear (GTK_LIST_STORE (model));
+        pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+        g_idle_add_full (G_PRIORITY_HIGH_IDLE,
+                         (GSourceFunc) appearance_settings_load_ui_themes,
+                         pd,
+                         (GDestroyNotify) preview_data_free);
     }
 }
 
