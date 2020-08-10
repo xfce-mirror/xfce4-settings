@@ -9,7 +9,7 @@ icons_DATA = \
 	org.xfce.settings.keyboard.svg		\
 	org.xfce.settings.manager.svg		\
 	org.xfce.settings.mouse.svg		\
-	org.xfce.settings.preferred-applications.svg
+	org.xfce.settings.default-applications.svg
 
 EXTRA_DIST = \
 	$(icons_DATA)
