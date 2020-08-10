@@ -9,7 +9,7 @@ icons_DATA = \
 	org.xfce.settings.keyboard.png		\
 	org.xfce.settings.manager.png		\
 	org.xfce.settings.mouse.png		\
-	org.xfce.settings.preferred-applications.png
+	org.xfce.settings.default-applications.png
 
 EXTRA_DIST = \
 	$(icons_DATA)
