@@ -182,7 +182,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     n_mime_types = xfce_mime_window_mime_model (window);
 
     gtk_window_set_title (GTK_WINDOW (window), _("Default Applications"));
-    gtk_window_set_icon_name (GTK_WINDOW (window), "org.xfce.settings.preferred-applications");
+    gtk_window_set_icon_name (GTK_WINDOW (window), "org.xfce.settings.default-applications");
     gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_NORMAL);
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (window),
         _("Associate preferred applications with MIME types"));
@@ -229,7 +229,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_container_add (GTK_CONTAINER (frame), box);
     gtk_widget_show (box);
 
-    label = gtk_label_new (_("The preferred Web Browser will be used to open hyperlinks and display help contents."));
+    label = gtk_label_new (_("The default Web Browser will be used to open hyperlinks and display help contents."));
     g_object_set (label, "xalign", 0.0f, "yalign", 0.0f, "wrap", TRUE, NULL);
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
     gtk_widget_show (label);
@@ -260,7 +260,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_container_add (GTK_CONTAINER (frame), box);
     gtk_widget_show (box);
 
-    label = gtk_label_new (_("The preferred Mail Reader will be used to compose emails when you click on email addresses."));
+    label = gtk_label_new (_("The default Mail Reader will be used to compose emails when you click on email addresses."));
     g_object_set (label, "xalign", 0.0f, "yalign", 0.0f, "wrap", TRUE, NULL);
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
     gtk_widget_show (label);
@@ -300,7 +300,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_container_add (GTK_CONTAINER (frame), box);
     gtk_widget_show (box);
 
-    label = gtk_label_new (_("The preferred File Manager will be used to browse the contents of folders."));
+    label = gtk_label_new (_("The default File Manager will be used to browse the contents of folders."));
     g_object_set (label, "xalign", 0.0f, "yalign", 0.0f, "wrap", TRUE, NULL);
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
     gtk_widget_show (label);
@@ -331,7 +331,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_container_add (GTK_CONTAINER (frame), box);
     gtk_widget_show (box);
 
-    label = gtk_label_new (_("The preferred Terminal Emulator will be used to run commands that require a CLI environment."));
+    label = gtk_label_new (_("The default Terminal Emulator will be used to run commands that require a CLI environment."));
     g_object_set (label, "xalign", 0.0f, "yalign", 0.0f, "wrap", TRUE, NULL);
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
     gtk_widget_show (label);
