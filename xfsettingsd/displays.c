@@ -1097,6 +1097,7 @@ xfce_displays_helper_list_crtcs (XfceDisplaysHelper *helper)
     crtcs = g_ptr_array_new_with_free_func ((GDestroyNotify) xfce_displays_helper_free_crtc);
     for (n = 0; n < helper->resources->ncrtc; ++n)
     {
+        XRRCrtcTransformAttributes  *attr;
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Detected CRTC %lu.", helper->resources->crtcs[n]);
 
         gdk_x11_display_error_trap_push (helper->display);
@@ -1119,8 +1120,17 @@ xfce_displays_helper_list_crtcs (XfceDisplaysHelper *helper)
         crtc->height = crtc_info->height;
         crtc->x = crtc_info->x;
         crtc->y = crtc_info->y;
-        crtc->scalex = 1.0;
-        crtc->scaley = 1.0;
+        if (XRRGetCrtcTransform (helper->xdisplay, helper->resources->crtcs[n], &attr) && attr)
+        {
+            crtc->scalex = XFixedToDouble (attr->currentTransform.matrix[0][0]);
+            crtc->scaley = XFixedToDouble (attr->currentTransform.matrix[1][1]);
+            XFree (attr);
+        }
+        else
+        {
+            crtc->scalex = 1.0;
+            crtc->scaley = 1.0;
+        }
 
         crtc->noutput = crtc_info->noutput;
         crtc->outputs = NULL;

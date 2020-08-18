@@ -410,6 +410,145 @@ display_setting_ask_fallback (GtkBuilder *builder)
 }
 
 static void
+display_setting_custom_scale_changed (GtkSpinButton *spinbutton,
+                                      gpointer       user_data)
+{
+    gdouble scale;
+
+    scale = gtk_spin_button_get_value (spinbutton);
+    xfce_randr->scalex[active_output] = scale;
+    xfce_randr->scaley[active_output] = scale;
+
+    display_settings_changed ();
+}
+
+static void
+display_setting_scale_changed (GtkComboBox *combobox,
+                               GtkBuilder  *builder)
+{
+    GObject      *revealer, *spin_scalex, *spin_scaley;
+    GValue        prop = { 0, };
+    gdouble       scale;
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
+
+    if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
+        return;
+
+    revealer = gtk_builder_get_object (builder, "revealer-scale");
+    spin_scalex = gtk_builder_get_object (builder, "spin-scale-x");
+    spin_scaley = gtk_builder_get_object (builder, "spin-scale-y");
+
+    gtk_combo_box_get_active_iter (combobox, &iter);
+    model = gtk_combo_box_get_model (combobox);
+    gtk_tree_model_get_value (model, &iter, COLUMN_COMBO_VALUE, &prop);
+    scale = g_value_get_double (&prop);
+
+    /* Show the spinbuttons if the combobox is set to "Custom:" */
+    if (scale == -1.0)
+    {
+        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), TRUE);
+    }
+    else
+    {
+        gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scalex), scale);
+        gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scaley), scale);
+        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
+    }
+
+    g_value_unset (&prop);
+    display_settings_changed ();
+}
+
+static gboolean
+display_setting_scale_set_active (GtkTreeModel *model,
+                                  GtkTreePath  *path,
+                                  GtkTreeIter  *iter,
+                                  gpointer      data)
+{
+    GValue    prop = { 0, };
+    GObject  *combobox = data;
+    gboolean  found = FALSE;
+
+    gtk_tree_model_get_value (model, iter, COLUMN_COMBO_VALUE, &prop);
+
+    if (g_value_get_double (&prop) == xfce_randr->scalex[active_output])
+    {
+        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), iter);
+        found = TRUE;
+    }
+    else
+        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), -1);
+
+    g_value_unset (&prop);
+
+    return found;
+}
+
+static void
+display_setting_scale_populate (GtkBuilder *builder)
+{
+    GtkTreeModel *model;
+    GObject      *combobox, *label, *revealer, *spin_scalex, *spin_scaley;
+    guint         n;
+
+    if (!xfce_randr)
+        return;
+
+    combobox = gtk_builder_get_object (builder, "randr-scale");
+    label = gtk_builder_get_object (builder, "label-scale");
+    revealer = gtk_builder_get_object (builder, "revealer-scale");
+
+    /* disable it if no mode is selected */
+    if (xfce_randr->mode[active_output] == None)
+    {
+        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), -1);
+        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
+        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
+        return;
+    }
+
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (label), TRUE);
+
+    /* Sync the current scale value to the spinbuttons */
+    spin_scalex = gtk_builder_get_object (builder, "spin-scale-x");
+    spin_scaley = gtk_builder_get_object (builder, "spin-scale-y");
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scalex), xfce_randr->scalex[active_output]);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scaley), xfce_randr->scaley[active_output]);
+
+    /* Block the "changed" signal while determining the active item */
+    g_signal_handlers_block_by_func (combobox, display_setting_scale_changed,
+                                     builder);
+
+    /* If the current scale is part of the presets set it as active */
+    model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+    gtk_tree_model_foreach (model, display_setting_scale_set_active, combobox);
+
+    /* If the current scale is not found in the presets we select "Custom:", which
+       is the last element of the liststore */
+    if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
+    {
+        GtkTreePath *path;
+        GtkTreeIter  iter;
+
+        n = gtk_tree_model_iter_n_children (model, NULL);
+        path = gtk_tree_path_new_from_indices (n - 1, -1);
+        gtk_tree_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
+        gtk_tree_path_free (path);
+        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
+        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), TRUE);
+    }
+    else
+        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
+
+    /* Unblock the signal */
+    g_signal_handlers_unblock_by_func (combobox, display_setting_scale_changed,
+                                       builder);
+}
+
+static void
 display_setting_reflections_changed (GtkComboBox *combobox,
                                      GtkBuilder  *builder)
 {
@@ -1393,6 +1532,7 @@ display_settings_combobox_selection_changed (GtkComboBox *combobox,
         display_setting_refresh_rates_populate (builder);
         display_setting_rotations_populate (builder);
         display_setting_reflections_populate (builder);
+        display_setting_scale_populate (builder);
 
         /* redraw the two (old active, new active) popups */
         popup = g_hash_table_lookup (display_popups, GINT_TO_POINTER (previous_id));
@@ -2139,6 +2279,7 @@ display_settings_dialog_new (GtkBuilder *builder)
     GObject          *combobox;
     GtkCellRenderer  *renderer;
     GObject          *label, *check, *primary, *mirror, *identify, *primary_indicator;
+    GObject          *revealer, *spinbutton;
     GtkWidget        *button;
     GtkTreeSelection *selection;
 
@@ -2187,6 +2328,17 @@ display_settings_dialog_new (GtkBuilder *builder)
 
     label = gtk_builder_get_object (builder, "label-reflection");
     gtk_widget_show (GTK_WIDGET (label));
+
+    combobox = gtk_builder_get_object (builder, "randr-scale");
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_scale_changed), builder);
+    revealer = gtk_builder_get_object (builder, "revealer-scale");
+    if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
+        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
+    else
+        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), TRUE);
+
+    spinbutton = gtk_builder_get_object (builder, "spin-scale-x");
+    g_signal_connect (G_OBJECT (spinbutton), "value-changed", G_CALLBACK (display_setting_custom_scale_changed), builder);
 
     combobox = gtk_builder_get_object (builder, "randr-reflection");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox), FALSE);
@@ -2501,6 +2653,8 @@ convert_xfce_output_info (gint output_id)
     output->id = output_id;
     output->x = x;
     output->y = y;
+    output->scalex = xfce_randr->scalex[output_id];
+    output->scaley = xfce_randr->scaley[output_id];
     output->user_data = NULL;
     output->display_name = xfce_randr->friendly_name[output_id];
     output->connected = TRUE;
@@ -2627,8 +2781,17 @@ get_geometry (XfceOutputInfo *output, int *w, int *h)
 {
     if (output->on)
     {
-        *h = output->height;
-        *w = output->width;
+        if (output->scalex > 0 && output->scalex != 1.0
+            && output->scaley > 0 && output->scaley != 1.0)
+        {
+            *h = output->height * output->scaley;
+            *w = output->width * output->scalex;
+        }
+        else
+        {
+            *h = output->height;
+            *w = output->width;
+        }
     }
     else
     {

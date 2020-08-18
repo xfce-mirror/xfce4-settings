@@ -68,6 +68,8 @@ struct _XfceRandr
 
     /* selected settings for all connected outputs */
     RRMode              *mode;
+    gfloat              *scalex;
+    gfloat              *scaley;
     Rotation            *rotation;
     Rotation            *rotations;
     XfceOutputPosition  *position;
@@ -100,6 +102,8 @@ struct _XfceOutputInfo
     guint      pref_width;
     guint      pref_height;
     Rotation   rotation;
+    gdouble    scalex;
+    gdouble    scaley;
 
     /* Frequency */
     gdouble    rate;

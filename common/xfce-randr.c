@@ -209,6 +209,8 @@ xfce_randr_populate (XfceRandr *randr,
     randr->priv->modes = g_new0 (XfceRRMode *, randr->noutput);
     randr->priv->edid = g_new0 (gchar *, randr->noutput);
     randr->position = g_new0 (XfceOutputPosition, randr->noutput);
+    randr->scalex = g_new0 (gfloat, randr->noutput);
+    randr->scaley = g_new0 (gfloat, randr->noutput);
     randr->rotation = g_new0 (Rotation, randr->noutput);
     randr->rotations = g_new0 (Rotation, randr->noutput);
     randr->mirrored = g_new0 (gboolean, randr->noutput);
@@ -231,6 +233,7 @@ xfce_randr_populate (XfceRandr *randr,
 
         if (randr->priv->output_info[m]->crtc != None)
         {
+            XRRCrtcTransformAttributes  *attr;
             crtc_info = XRRGetCrtcInfo (xdisplay, randr->priv->resources,
                                         randr->priv->output_info[m]->crtc);
             randr->mode[m] = crtc_info->mode;
@@ -239,6 +242,13 @@ xfce_randr_populate (XfceRandr *randr,
             randr->position[m].x = crtc_info->x;
             randr->position[m].y = crtc_info->y;
             XRRFreeCrtcInfo (crtc_info);
+            if (XRRGetCrtcTransform (xdisplay, randr->priv->output_info[m]->crtc, &attr) && attr)
+            {
+              randr->scalex[m] = XFixedToDouble (attr->currentTransform.matrix[0][0]);
+              randr->scaley[m] = XFixedToDouble (attr->currentTransform.matrix[1][1]);
+              XFree (attr);
+            }
+
         }
         else
         {
@@ -344,6 +354,8 @@ xfce_randr_cleanup (XfceRandr *randr)
     g_free (randr->mode);
     g_free (randr->priv->modes);
     g_free (randr->priv->edid);
+    g_free (randr->scalex);
+    g_free (randr->scaley);
     g_free (randr->rotation);
     g_free (randr->rotations);
     g_free (randr->status);
@@ -478,6 +490,14 @@ xfce_randr_save_output (XfceRandr     *randr,
                 randr->priv->output_info[output]->name);
     xfconf_channel_set_bool (channel, property,
                              randr->status[output] == XFCE_OUTPUT_STATUS_PRIMARY);
+
+    /* save the scale */
+    g_snprintf (property, sizeof (property), "/%s/%s/Scale/X", scheme,
+                randr->priv->output_info[output]->name);
+    xfconf_channel_set_double (channel, property, randr->scalex[output]);
+    g_snprintf (property, sizeof (property), "/%s/%s/Scale/Y", scheme,
+                randr->priv->output_info[output]->name);
+    xfconf_channel_set_double (channel, property, randr->scaley[output]);
 #endif
 
     /* save the position */
