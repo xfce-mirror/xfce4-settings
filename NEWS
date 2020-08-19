@@ -1,3 +1,45 @@
+4.15.2
+======
+- appearance: Fix width of DPI spinbutton (Bug #16125)
+- appearence: Sync theme, icon, font names to gsettings
+- appearance: Fix list refresh on DnD (Fixes #213)
+- appearance: Drop toolbar style setting (Bug #16665)
+- display: Initial fractional scaling support (Fixes #162)
+- display: Custom scale changes are display changes
+- display: Improve layout in settings dialog
+- display: Resize display widget according to scale
+- display: Move scaling presets to glade
+- display: Set minimum scale to 0.1
+- display: Improve state machine for scaling option
+- xfsettingsd: Correctly get current xrandr scale
+- mime-settings: Rename dialog and icon to 'Default Applications'
+- mime-settings: Fix window icon name
+- mime-settings: Fix double free
+- mime-helpers: Fix Nautilus icon name
+- mime-helpers: Rename Thunar to thunar
+- Rename Thunar to thunar in make and potfiles
+- Expand desktop entry field codes
+- keyboard-settings: Support libxfce4ui XfceTitledDialog new API
+- keyboard: Show shortcuts with keycap class
+- settings-manager: Ensure searchbox has initial focus (Bug #16890)
+- settings-manager: Simplify redrawing of search results (Fixes #141)
+- settings-manager: Hide filter entry in plugged dialogs
+- Convert xfce4-compose-mail to Python
+- Add dependency to Python3
+- Use just binary name (instead of full path) as argument
+- Don't crash when upowerd isnt present (bug #60)
+- Always install shiny new icons
+- Drop libxfce4ui 4.15.1 ifdefs
+- Fix xfconf-related memory leaks
+- Update .gitignore
+- Fix typo
+- Translation Updates:
+  Bulgarian, Catalan, Chinese (China), Chinese (Hong Kong), Chinese
+  (Taiwan), Croatian, Danish, Dutch, English (Canada), Estonian, Finnish,
+  French, German, Hebrew, Hungarian, Indonesian, Italian, Japanese,
+  Kazakh, Korean, Lithuanian, Norwegian Bokmål, Serbian, Swedish,
+  Turkish
+
 4.15.1
 ======
 This release transitions several exo components to xfce-settings.
