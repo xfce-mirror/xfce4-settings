@@ -20,7 +20,7 @@ See [NEWS](https://gitlab.xfce.org/xfce/xfce4-settings/-/blob/master/NEWS) for d
 
     % tar xf xfce4-settings-<version>.tar.bz2
     % cd xfce4-settings-<version>
-    % ./configure
+    % ./autogen.sh
     % make
     % make install
 
