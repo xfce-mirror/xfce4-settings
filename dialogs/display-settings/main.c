@@ -3841,6 +3841,37 @@ display_settings_minimal_advanced_clicked (GtkButton  *button,
 }
 
 static void
+display_settings_minimal_activated (GApplication *application,
+                                    gpointer      user_data)
+{
+    GtkWidget  *dialog;
+    GdkDisplay *display;
+    GdkSeat    *seat;
+    GdkMonitor *monitor;
+    GdkRectangle geometry;
+    gint cursorx, cursory, window_width, window_height;
+
+    dialog = GTK_WIDGET (user_data);
+
+    display = gdk_display_get_default ();
+    seat = gdk_display_get_default_seat (display);
+    gdk_window_get_device_position (gdk_get_default_root_window (),
+                                    gdk_seat_get_pointer (seat),
+                                    &cursorx, &cursory, NULL);
+
+    monitor = gdk_display_get_monitor_at_point (display, cursorx, cursory);
+    gdk_monitor_get_geometry (monitor, &geometry);
+
+    gtk_window_get_size (GTK_WINDOW (dialog), &window_width, &window_height);
+
+    gtk_window_move (GTK_WINDOW (dialog),
+                     geometry.x + geometry.width / 2 - window_width / 2,
+                     geometry.y + geometry.height / 2 - window_height / 2);
+
+    gtk_window_present (GTK_WINDOW (dialog));
+}
+
+static void
 display_settings_minimal_load_icon (GtkBuilder  *builder,
                                     const gchar *img_name,
                                     const gchar *icon_name)
@@ -3995,7 +4026,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked),
                           builder);
 
-        g_signal_connect_swapped (app, "activate", G_CALLBACK (gtk_window_present), dialog);
+        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), dialog);
 
         /* Auto-apply the first profile in the list */
         if (xfconf_channel_get_bool (display_channel, "/AutoEnableProfiles", TRUE))
