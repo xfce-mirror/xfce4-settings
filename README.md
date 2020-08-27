@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.gnome.org/GNOME/gnome-control-center/blob/master/COPYING)
+[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/kevinbowen/xfce4-settings/COPYING)
 
 xfce4-settings
 ====================
@@ -28,7 +28,7 @@ See [NEWS](https://gitlab.xfce.org/xfce/xfce4-settings/-/blob/master/NEWS) for d
 ### Installation
 
 From source: 
-    % cd xfce4-settings-<version>
+    % cd xfce4-settings
     % ./autogen
     % make
     % make install
