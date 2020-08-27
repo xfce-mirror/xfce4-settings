@@ -28,12 +28,14 @@ See [NEWS](https://gitlab.xfce.org/xfce/xfce4-settings/-/blob/master/NEWS) for d
 ### Installation
 
 From source: 
+
     % cd xfce4-settings
     % ./autogen
     % make
     % make install
 
 From release tarball:
+
     % tar xf xfce4-settings-<version>.tar.bz2
     % cd xfce4-settings-<version>
     % ./configure
