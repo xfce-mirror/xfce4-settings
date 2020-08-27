@@ -30,7 +30,7 @@ See [NEWS](https://gitlab.xfce.org/xfce/xfce4-settings/-/blob/master/NEWS) for d
 From source: 
 
     % cd xfce4-settings
-    % ./autogen
+    % ./autogen.sh
     % make
     % make install
 
