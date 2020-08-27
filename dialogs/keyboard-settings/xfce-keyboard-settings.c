@@ -395,11 +395,13 @@ xfce_keyboard_settings_constructed (GObject *object)
   /* Create command column */
   renderer = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes (_("Command"), renderer, "text", COMMAND_COLUMN, NULL);
+  gtk_tree_view_column_set_sort_column_id (column, COMMAND_COLUMN);
   gtk_tree_view_append_column (GTK_TREE_VIEW (kbd_shortcuts_view), column);
 
   /* Create shortcut column */
   renderer = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes (_("Shortcut"), renderer, "text", SHORTCUT_LABEL_COLUMN, NULL);
+  gtk_tree_view_column_set_sort_column_id (column, SHORTCUT_LABEL_COLUMN);
   gtk_tree_view_append_column (GTK_TREE_VIEW (kbd_shortcuts_view), column);
 
   /* Connect to add button */
