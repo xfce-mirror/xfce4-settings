@@ -44,5 +44,5 @@ From release tarball:
 
 ### Reporting Bugs
 
-Visit the [reporting bugs](https://docs.xfce.org/xfce/xfce4-settings/bug) page to view currently open bug reports and instructions on reporting new bugs or submitting bugfixes.
+Visit the [reporting bugs](https://docs.xfce.org/xfce/xfce4-settings/bugs) page to view currently open bug reports and instructions on reporting new bugs or submitting bugfixes.
 
