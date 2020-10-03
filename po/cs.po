@@ -6,15 +6,16 @@
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2019
 # Alois Nešpor <info@aloisnespor.info>, 2019
+# Michal Várady <miko.vaji@gmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 00:31+0100\n"
+"POT-Creation-Date: 2020-05-10 12:46+0200\n"
 "PO-Revision-Date: 2019-10-20 16:33+0000\n"
-"Last-Translator: Alois Nešpor <info@aloisnespor.info>, 2019\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/xfce/teams/16840/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +31,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3927
+#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:3940
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nelze zjistit používanou verzi rozšíření RandR"
@@ -78,7 +79,7 @@ msgstr "Konfigurace přístupnosti klávesnice a myši"
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:3967
+#: ../dialogs/display-settings/main.c:3980
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #: ../xfce4-settings-editor/main.c:166
@@ -346,7 +347,7 @@ msgstr "Informace o verzi"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1166
 #: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:3895
+#: ../dialogs/display-settings/main.c:3908
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:237
@@ -358,7 +359,7 @@ msgstr "Informace o použití získáte příkazem '%s --help'"
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1185
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:3914
+#: ../dialogs/display-settings/main.c:3927
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:253
@@ -368,7 +369,7 @@ msgstr "Vývojářský tým Xfce. Všechna práva vyhrazena."
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1186
 #: ../dialogs/color-settings/main.c:1408
-#: ../dialogs/display-settings/main.c:3915
+#: ../dialogs/display-settings/main.c:3928
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:254
@@ -1119,52 +1120,56 @@ msgstr ""
 "sekund."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:568
+#: ../dialogs/display-settings/main.c:594
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:878
+#: ../dialogs/display-settings/main.c:904
 msgid "Display:"
 msgstr "Displej:"
 
-#: ../dialogs/display-settings/main.c:883
+#: ../dialogs/display-settings/main.c:909
 msgid "Resolution:"
 msgstr "Rozlišení:"
 
-#: ../dialogs/display-settings/main.c:1164
+#: ../dialogs/display-settings/main.c:1186
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Poslední aktivní výstup nelze zakázat, systém by byl nepoužitelný."
 
-#: ../dialogs/display-settings/main.c:1166
+#: ../dialogs/display-settings/main.c:1188
 msgid "Selected output not disabled"
 msgstr "Vybraný výstup není zakázaný"
 
-#: ../dialogs/display-settings/main.c:1542
+#: ../dialogs/display-settings/main.c:1363
+msgid "Profiles matching the currently connected displays"
+msgstr "Profily odpovídají aktuálně připojeným displejům"
+
+#: ../dialogs/display-settings/main.c:1553
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Aktualizovat změněný profil displeje %s?"
 
-#: ../dialogs/display-settings/main.c:1547
+#: ../dialogs/display-settings/main.c:1558
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Aktualizovat %s?"
 
-#: ../dialogs/display-settings/main.c:1834
+#: ../dialogs/display-settings/main.c:1846
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Opravdu chcete smazat profil displeje %s?"
 
-#: ../dialogs/display-settings/main.c:1836
+#: ../dialogs/display-settings/main.c:1848
 msgid "Delete Profile"
 msgstr "Smazat profil"
 
-#: ../dialogs/display-settings/main.c:1839
+#: ../dialogs/display-settings/main.c:1851
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Po smazání již nebude možné profil displeje obnovit."
 
-#: ../dialogs/display-settings/main.c:1840
+#: ../dialogs/display-settings/main.c:1852
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:908
@@ -1172,16 +1177,16 @@ msgstr "Po smazání již nebude možné profil displeje obnovit."
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: ../dialogs/display-settings/main.c:1841
+#: ../dialogs/display-settings/main.c:1853
 msgid "Delete"
 msgstr "Smazat"
 
-#: ../dialogs/display-settings/main.c:1942
+#: ../dialogs/display-settings/main.c:1954
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce panely"
 
-#: ../dialogs/display-settings/main.c:2946
+#: ../dialogs/display-settings/main.c:2958
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
@@ -1189,8 +1194,8 @@ msgstr ""
 "Vlastnosti monitoru změníte jeho výběrem. Chcete-li změnit jeho umístění, "
 "přesuňte jej."
 
-#: ../dialogs/display-settings/main.c:2989
-#: ../dialogs/display-settings/main.c:3065
+#: ../dialogs/display-settings/main.c:3001
+#: ../dialogs/display-settings/main.c:3077
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1199,34 +1204,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3267
+#: ../dialogs/display-settings/main.c:3279
 msgid "Mirror Screens"
 msgstr "Zrcadlené obrazovky"
 
-#: ../dialogs/display-settings/main.c:3317
+#: ../dialogs/display-settings/main.c:3329
 msgid "(Disabled)"
 msgstr "(Zakázáno)"
 
-#: ../dialogs/display-settings/main.c:3734
+#: ../dialogs/display-settings/main.c:3746
 #, c-format
 msgid "Only %s (1)"
 msgstr "Pouze %s (1)"
 
-#: ../dialogs/display-settings/main.c:3745
+#: ../dialogs/display-settings/main.c:3757
 #, c-format
 msgid "Only %s (2)"
 msgstr "Pouze %s (2)"
 
-#: ../dialogs/display-settings/main.c:3928
-#: ../dialogs/display-settings/main.c:3965
+#: ../dialogs/display-settings/main.c:3941
+#: ../dialogs/display-settings/main.c:3978
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nelze spustit nastavení displeje Xfce"
 
-#: ../dialogs/display-settings/main.c:3960
+#: ../dialogs/display-settings/main.c:3973
 msgid "ATI Settings"
 msgstr "Nastavení grafické karty ATI"
 
-#: ../dialogs/display-settings/main.c:3975
+#: ../dialogs/display-settings/main.c:3988
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nelze spustit nastavení proprietárního ovladače"
 
