@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-29 00:46+0200\n"
-"PO-Revision-Date: 2020-07-12 12:43+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"POT-Creation-Date: 2020-08-19 12:47+0200\n"
+"PO-Revision-Date: 2020-08-19 10:47+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Korean (http://www.transifex.com/xfce/xfce4-settings/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,34 +29,34 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: ../common/xfce-randr.c:286 ../dialogs/display-settings/main.c:4100
+#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4265
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "사용할 RandR 확장의 버전을 요청할 수 없습니다"
 
 #. 1.2 is required
-#: ../common/xfce-randr.c:294
+#: ../common/xfce-randr.c:304
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "이 시스템은 RandR %d.%d을(를) 사용하고 있습니다. 디스플레이 설정을 동작하려면 적어도 1.2 이상의 버전이 필요합니다"
 
-#: ../common/xfce-randr.c:574
+#: ../common/xfce-randr.c:594
 msgid "Laptop"
 msgstr "랩톱"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: ../common/xfce-randr.c:587 ../dialogs/color-settings/color-device.c:65
+#: ../common/xfce-randr.c:607 ../dialogs/color-settings/color-device.c:65
 msgid "Monitor"
 msgstr "모니터"
 
-#: ../common/xfce-randr.c:590
+#: ../common/xfce-randr.c:610
 msgid "Television"
 msgstr "텔레비전"
 
-#: ../common/xfce-randr.c:594
+#: ../common/xfce-randr.c:614
 msgid "Digital display"
 msgstr "디지털 디스플레이"
 
@@ -72,27 +72,27 @@ msgstr "키보드와 마우스 접근성 설정"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 #: ../dialogs/color-settings/color-dialog.glade.h:3
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4140
+#: ../dialogs/display-settings/main.c:4305
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 #: ../dialogs/mime-settings/xfce-mime-window.c:190
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #: ../xfce4-settings-editor/main.c:166
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:259
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:228
 msgid "_Close"
 msgstr "닫기(_C)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 #: ../dialogs/color-settings/color-dialog.glade.h:4
-#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/mime-settings/xfce-mime-window.c:193
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 #: ../xfce4-settings-editor/main.c:165
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:248
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:217
 msgid "_Help"
 msgstr "도움말(_H)"
 
@@ -296,37 +296,37 @@ msgid "_Mouse"
 msgstr "마우스(_M)"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:103
+#: ../dialogs/appearance-settings/main.c:106
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
-#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:86 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "설정 관리자 소켓"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:103
+#: ../dialogs/appearance-settings/main.c:106
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
-#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:86 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "소켓 ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:104
+#: ../dialogs/appearance-settings/main.c:107
 #: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
+#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:50
 #: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
 msgid "Version information"
 msgstr "버전 정보"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1129
+#: ../dialogs/appearance-settings/main.c:1170
 #: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:4068
+#: ../dialogs/display-settings/main.c:4233
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
-#: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
+#: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
 #: ../xfsettingsd/main.c:280
 #, c-format
@@ -334,21 +334,21 @@ msgid "Type '%s --help' for usage."
 msgstr "사용 방법을 보려면 '%s --help'를 입력하십시오."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1148
+#: ../dialogs/appearance-settings/main.c:1189
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4087
+#: ../dialogs/display-settings/main.c:4252
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
-#: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
+#: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 개발 팀. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1149
+#: ../dialogs/appearance-settings/main.c:1190
 #: ../dialogs/color-settings/main.c:1408
-#: ../dialogs/display-settings/main.c:4088
+#: ../dialogs/display-settings/main.c:4253
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
-#: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
+#: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -365,7 +365,7 @@ msgid ""
 msgstr "assistive;보조;도우미;technologies;기술;keys;키;sticky;끈적이;bounce;튕김;emulation;에뮬레이션;흉내;screen readers;화면 읽기;화면읽기;화면리더;화면리더기;magnifiers;돋보기;a11y;접근성;i18n;국제화;l10n;지역화;AT-SPI;ATK;impairment;장애;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1009
+#: ../dialogs/appearance-settings/main.c:1050
 #: ../dialogs/display-settings/main.c:106
 #: ../dialogs/display-settings/main.c:117
 msgid "None"
@@ -404,6 +404,7 @@ msgid "1x (no scaling)"
 msgstr "1배 (배율 조절 안함)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:2
 msgid "2x"
 msgstr "2배"
 
@@ -569,52 +570,52 @@ msgstr "창 크기 조절(_W)"
 msgid "Setti_ngs"
 msgstr "설정(_N)"
 
-#: ../dialogs/appearance-settings/main.c:445
+#: ../dialogs/appearance-settings/main.c:448
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "경고: 이 아이콘 테마에 캐시 파일이 없습니다. 터미널에서 <i>gtk-update-icon-cache %s/%s/</t> 명령을 실행하면 아이콘 캐시 파일을 만들 수 있습니다."
 
-#: ../dialogs/appearance-settings/main.c:847
+#: ../dialogs/appearance-settings/main.c:883
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "파일이 %d MB 보다 커서 설치를 중단했습니다"
 
-#: ../dialogs/appearance-settings/main.c:852
+#: ../dialogs/appearance-settings/main.c:888
 msgid "Failed to create temporary directory"
 msgstr "임시 디렉터리 만들기에 실패했습니다"
 
-#: ../dialogs/appearance-settings/main.c:857
+#: ../dialogs/appearance-settings/main.c:893
 msgid "Failed to extract archive"
 msgstr "아카이브를 추출하는데 실패했습니다"
 
-#: ../dialogs/appearance-settings/main.c:862
+#: ../dialogs/appearance-settings/main.c:898
 msgid "Unknown format, only archives and directories are supported"
 msgstr "알 수 없는 형식이며, 아카이브와 디렉터리만 지원합니다"
 
-#: ../dialogs/appearance-settings/main.c:867
+#: ../dialogs/appearance-settings/main.c:903
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "알 수 없는 오류, 마침 코드는 %d 입니다"
 
-#: ../dialogs/appearance-settings/main.c:874
+#: ../dialogs/appearance-settings/main.c:910
 msgid "Failed to install theme"
 msgstr "테마 설치에 실패했습니다"
 
-#: ../dialogs/appearance-settings/main.c:1013
+#: ../dialogs/appearance-settings/main.c:1054
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1017
+#: ../dialogs/appearance-settings/main.c:1058
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1021
+#: ../dialogs/appearance-settings/main.c:1062
 msgid "Vertical RGB"
 msgstr "수직 RGB"
 
-#: ../dialogs/appearance-settings/main.c:1025
+#: ../dialogs/appearance-settings/main.c:1066
 msgid "Vertical BGR"
 msgstr "수직 BGR"
 
@@ -724,8 +725,8 @@ msgstr "장치에 색상 프로파일 추가"
 #. Create cancel button
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
-#: ../dialogs/keyboard-settings/command-dialog.c:111
-#: ../dialogs/keyboard-settings/command-dialog.c:262
+#: ../dialogs/keyboard-settings/command-dialog.c:116
+#: ../dialogs/keyboard-settings/command-dialog.c:280
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:395
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:540
@@ -734,7 +735,7 @@ msgid "_Cancel"
 msgstr "취소(_C)"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:19
-#: ../dialogs/keyboard-settings/command-dialog.c:115
+#: ../dialogs/keyboard-settings/command-dialog.c:120
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:541
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
@@ -886,125 +887,145 @@ msgid ""
 msgstr "이 질문에 응답하지 않으면 10초 이후 이전 설정으로 복원합니다."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "1.5x"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+msgid "Custom:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "The primary display is currently configured to show:"
 msgstr "기본 모니터 보기로 설정되어 있습니다:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Xfce Panel"
 msgstr "Xfce 패널"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Desktop icons"
 msgstr "데스크톱 아이콘"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:4
+#: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "Notifications"
 msgstr "알림"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:5
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "Configure..."
 msgstr "설정..."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "디스플레이"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
 msgstr "화면 설정과 배치 설정"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "_Mirror displays"
 msgstr "디스플레이 좌우 반전(_M)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "Primary Display:"
 msgstr "기본 모니터:"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:12
+#: ../dialogs/display-settings/display-dialog.glade.h:15
 msgid "R_esolution:"
 msgstr "해상도(_E):"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:13
+#: ../dialogs/display-settings/display-dialog.glade.h:16
 msgid "Refresh _rate:"
 msgstr "재생율(_R):"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:14
+#: ../dialogs/display-settings/display-dialog.glade.h:17
 msgid "Ro_tation:"
 msgstr "회전(_T):"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:15
+#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "Ref_lection:"
 msgstr "뒤집기(_L):"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:16
+#: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "A_pply"
 msgstr "적용(_P)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:17
+#: ../dialogs/display-settings/display-dialog.glade.h:20
+msgid "_Scale:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:21
+msgid "X:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:22
+msgid "Y:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "_General"
 msgstr "일반(_G)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:18
+#: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "<b>Profiles</b>"
 msgstr "<b>프로파일</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:19
+#: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>화면 연결</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:20
+#: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "Delete the currently selected display profile."
 msgstr "현재 선택한 디스플레이 프로파일을 삭제합니다."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:21
+#: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "Apply"
 msgstr "적용"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:22
+#: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "Apply the currently selected display profile."
 msgstr "현재 선택한 디스플레이 프로파일을 적용합니다."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:23
+#: ../dialogs/display-settings/display-dialog.glade.h:29
 msgid "Create a new display profile."
 msgstr "새 디스플레이 프로파일을 만듭니다."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:24
+#: ../dialogs/display-settings/display-dialog.glade.h:30
 msgid "Update an existing profile."
 msgstr "기존 프로파일을 업데이트합니다."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:25
+#: ../dialogs/display-settings/display-dialog.glade.h:31
 msgid "Automatically enable profiles when new display is connected"
 msgstr "새 디스플레이를 연결하면 자동으로 프로파일을 활성화"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:26
+#: ../dialogs/display-settings/display-dialog.glade.h:32
 msgid "Configure new displays when connected"
 msgstr "새 디스플레이 연결 시 설정"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:27
+#: ../dialogs/display-settings/display-dialog.glade.h:33
 msgid "Show popup windows to identify displays"
 msgstr "디스플레이 식별 풍선 창 표시"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:28
+#: ../dialogs/display-settings/display-dialog.glade.h:34
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>디스플레이 식별</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:29
+#: ../dialogs/display-settings/display-dialog.glade.h:35
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "_Advanced"
 msgstr "고급(_A)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:30
+#: ../dialogs/display-settings/display-dialog.glade.h:36
 msgid "<b>Profile Name</b>"
 msgstr "<b>프로파일 이름</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:31
+#: ../dialogs/display-settings/display-dialog.glade.h:37
 msgid "Create"
 msgstr "만들기"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:32
+#: ../dialogs/display-settings/display-dialog.glade.h:38
 msgid "A profile of this name already exists."
 msgstr "이미 있는 프로파일 이름입니다."
 
@@ -1087,56 +1108,56 @@ msgid ""
 msgstr "이 질문에 응답하지 않으면 %i 초 이후 이전 설정으로 복원합니다."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:644
+#: ../dialogs/display-settings/main.c:783
 #, c-format
 msgid "%.1f Hz"
 msgstr "%.1f Hz"
 
-#: ../dialogs/display-settings/main.c:1042
+#: ../dialogs/display-settings/main.c:1181
 msgid "Display:"
 msgstr "디스플레이:"
 
-#: ../dialogs/display-settings/main.c:1047
+#: ../dialogs/display-settings/main.c:1186
 msgid "Resolution:"
 msgstr "해상도:"
 
-#: ../dialogs/display-settings/main.c:1324
+#: ../dialogs/display-settings/main.c:1463
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "최근 활성화된 출력을 비활성화 하면 안됩니다. 시스템이 사용 불가능하게 됩니다."
 
-#: ../dialogs/display-settings/main.c:1326
+#: ../dialogs/display-settings/main.c:1465
 msgid "Selected output not disabled"
 msgstr "선택한 출력을 비활성화하지 않았습니다"
 
-#: ../dialogs/display-settings/main.c:1501
+#: ../dialogs/display-settings/main.c:1642
 msgid "Profiles matching the currently connected displays"
 msgstr "현재 연결한 디스플레이 장치에 일치하는 프로파일"
 
-#: ../dialogs/display-settings/main.c:1707
+#: ../dialogs/display-settings/main.c:1848
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "변경된 디스플레이 프로파일 '%s'을 업데이트할까요?"
 
-#: ../dialogs/display-settings/main.c:1712
+#: ../dialogs/display-settings/main.c:1853
 #, c-format
 msgid "_Update '%s'"
 msgstr "업데이트하기(_U) '%s'"
 
-#: ../dialogs/display-settings/main.c:2000
+#: ../dialogs/display-settings/main.c:2141
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "디스플레이 프로파일 '%s'을 지우시겠습니까?"
 
-#: ../dialogs/display-settings/main.c:2002
+#: ../dialogs/display-settings/main.c:2143
 msgid "Delete Profile"
 msgstr "프로파일 지우기"
 
-#: ../dialogs/display-settings/main.c:2005
+#: ../dialogs/display-settings/main.c:2146
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "디스플레이 프로파일은 한 번 삭제되면 복원할 수 없습니다."
 
-#: ../dialogs/display-settings/main.c:2006
+#: ../dialogs/display-settings/main.c:2147
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:1079
@@ -1144,23 +1165,23 @@ msgstr "디스플레이 프로파일은 한 번 삭제되면 복원할 수 없�
 msgid "Cancel"
 msgstr "취소"
 
-#: ../dialogs/display-settings/main.c:2007
+#: ../dialogs/display-settings/main.c:2148
 msgid "Delete"
 msgstr "삭제 "
 
-#: ../dialogs/display-settings/main.c:2108
+#: ../dialogs/display-settings/main.c:2250
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d개의 Xfce 패널"
 
-#: ../dialogs/display-settings/main.c:3116
+#: ../dialogs/display-settings/main.c:3281
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "속성을 바꿀 모니터를 선택하십시오. 위치를 바꾸려면 끌어다 놓으십시오."
 
-#: ../dialogs/display-settings/main.c:3159
-#: ../dialogs/display-settings/main.c:3235
+#: ../dialogs/display-settings/main.c:3324
+#: ../dialogs/display-settings/main.c:3400
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1169,34 +1190,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3437
+#: ../dialogs/display-settings/main.c:3602
 msgid "Mirror Screens"
 msgstr "화면 복제"
 
-#: ../dialogs/display-settings/main.c:3487
+#: ../dialogs/display-settings/main.c:3652
 msgid "(Disabled)"
 msgstr "(비활성화됨)"
 
-#: ../dialogs/display-settings/main.c:3906
+#: ../dialogs/display-settings/main.c:4071
 #, c-format
 msgid "Only %s (1)"
 msgstr "%s만 (1)"
 
-#: ../dialogs/display-settings/main.c:3917
+#: ../dialogs/display-settings/main.c:4082
 #, c-format
 msgid "Only %s (2)"
 msgstr "%s만 (2)"
 
-#: ../dialogs/display-settings/main.c:4101
-#: ../dialogs/display-settings/main.c:4138
+#: ../dialogs/display-settings/main.c:4266
+#: ../dialogs/display-settings/main.c:4303
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce 디스플레이 설정을 시작할 수 없습니다"
 
-#: ../dialogs/display-settings/main.c:4133
+#: ../dialogs/display-settings/main.c:4298
 msgid "ATI Settings"
 msgstr "ATI 설정"
 
-#: ../dialogs/display-settings/main.c:4148
+#: ../dialogs/display-settings/main.c:4313
 msgid "Unable to launch the proprietary driver settings"
 msgstr "상업용 드라이버 설정을 실행할 수 없습니다"
 
@@ -1206,71 +1227,71 @@ msgid ""
 msgstr "display;디스플레이;화면;settings;설정;screen;스크린;resolution;해상도;refresh;재생;rate;율;rotation;회전;external;외부;projectors;프로젝터;monitors;모니터;LCD;CRT;HiDPI;"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:107
+#: ../dialogs/keyboard-settings/command-dialog.c:110
 msgid "Shortcut Command"
 msgstr "바로 가기 명령"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:136
+#: ../dialogs/keyboard-settings/command-dialog.c:142
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr "바로 가기 키로 실행할 명령을 입력하십시오."
 
 #. We are editing an existing shortcut
-#: ../dialogs/keyboard-settings/command-dialog.c:154
+#: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Shortcut:"
 msgstr "바로 가기:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:167
+#: ../dialogs/keyboard-settings/command-dialog.c:185
 msgid "Comm_and:"
 msgstr "명령(_A):"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:192
+#: ../dialogs/keyboard-settings/command-dialog.c:210
 msgid "Use _startup notification"
 msgstr "시작 알리미 사용(_S)"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:239
+#: ../dialogs/keyboard-settings/command-dialog.c:257
 msgid "The command may not be empty."
 msgstr "명령이 비어 있으면 안됩니다."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:259
+#: ../dialogs/keyboard-settings/command-dialog.c:277
 msgid "Select command"
 msgstr "명령 선택"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:263
+#: ../dialogs/keyboard-settings/command-dialog.c:281
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:396
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:267
+#: ../dialogs/keyboard-settings/command-dialog.c:285
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:389
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:402
 msgid "All Files"
 msgstr "모든 파일"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:272
+#: ../dialogs/keyboard-settings/command-dialog.c:290
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:394
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:407
 msgid "Executable Files"
 msgstr "실행 가능한 파일"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:287
+#: ../dialogs/keyboard-settings/command-dialog.c:305
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:409
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:422
 msgid "Perl Scripts"
 msgstr "펄 스크립트"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:293
+#: ../dialogs/keyboard-settings/command-dialog.c:311
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:415
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:428
 msgid "Python Scripts"
 msgstr "파이선 스크립트"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:299
+#: ../dialogs/keyboard-settings/command-dialog.c:317
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:421
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:434
 msgid "Ruby Scripts"
 msgstr "루비 스크립트"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:305
+#: ../dialogs/keyboard-settings/command-dialog.c:323
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:427
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:440
 msgid "Shell Scripts"
@@ -1730,13 +1751,13 @@ msgstr "%s을(를) 기록하려면 열지 못했습니다."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:184
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
-msgid "Preferred Applications"
-msgstr "기본 프로그램"
+msgid "Default Applications"
+msgstr ""
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:188
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
-msgid "Associate applications with MIME types"
-msgstr "MIME 형식에 프로그램 연결하기"
+msgid "Associate preferred applications with MIME types"
+msgstr ""
 
 #. Internet
 #: ../dialogs/mime-settings/xfce-mime-window.c:211
@@ -1750,9 +1771,9 @@ msgstr "웹 브라우저"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:232
 msgid ""
-"The preferred Web Browser will be used to open hyperlinks and display help "
+"The default Web Browser will be used to open hyperlinks and display help "
 "contents."
-msgstr "기본 웹 브라우저는 하이퍼링크를 열고 도움말 내용을 표시할 때 사용합니다."
+msgstr ""
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:255
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1761,9 +1782,9 @@ msgstr "메일 리더"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:263
 msgid ""
-"The preferred Mail Reader will be used to compose emails when you click on "
+"The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
-msgstr "기본 메일 리더는 전자메일 주소를 눌러 전자 메일을 작성할 때 사용합니다."
+msgstr ""
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:282
@@ -1777,8 +1798,8 @@ msgstr "파일 관리자"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:303
 msgid ""
-"The preferred File Manager will be used to browse the contents of folders."
-msgstr "기본 파일 관리자는 폴더의 내용을 탐색할 때 사용합니다."
+"The default File Manager will be used to browse the contents of folders."
+msgstr ""
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:326
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
@@ -1787,9 +1808,9 @@ msgstr "터미널 에뮬레이터"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:334
 msgid ""
-"The preferred Terminal Emulator will be used to run commands that require a "
+"The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
-msgstr "기본 터미널 에뮬레이터는 CLI 환경이 필요한 명령을 실행할 때 사용합니다."
+msgstr ""
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:353
@@ -1824,8 +1845,8 @@ msgstr "사용자 셋"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:645
 #: ../dialogs/mime-settings/xfce-mime-window.c:768
-#: ../dialogs/mouse-settings/main.c:383 ../dialogs/mouse-settings/main.c:385
-#: ../dialogs/mouse-settings/main.c:445
+#: ../dialogs/mouse-settings/main.c:397 ../dialogs/mouse-settings/main.c:399
+#: ../dialogs/mouse-settings/main.c:459
 msgid "Default"
 msgstr "기본"
 
@@ -1865,8 +1886,10 @@ msgid "Choose Application..."
 msgstr "프로그램을 선택하십시오..."
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
-msgid "file;type;extension;association;open with;"
-msgstr "file;파일;type;형식;extension;확장자;association;연결프로그램;연결 프로그램;open with;다음 프로그램으로 열기;"
+msgid ""
+"file;type;extension;association;open with;web browser;mail reader;file "
+"manager;terminal emulator;"
+msgstr ""
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -2064,7 +2087,7 @@ msgstr "Claws 메일"
 msgid "Terminator"
 msgstr "터미네이터"
 
-#: ../dialogs/mime-settings/helpers/Thunar.desktop.in.in.h:1
+#: ../dialogs/mime-settings/helpers/thunar.desktop.in.in.h:1
 msgid "Thunar"
 msgstr "투나"
 
@@ -2096,28 +2119,28 @@ msgstr "Xfe 파일 관리자"
 msgid "X Terminal"
 msgstr "X 터미널"
 
-#: ../dialogs/mouse-settings/main.c:83
+#: ../dialogs/mouse-settings/main.c:85
 msgid "Active device in the dialog"
 msgstr "대화 상자에 활성화 된 장치"
 
-#: ../dialogs/mouse-settings/main.c:83
+#: ../dialogs/mouse-settings/main.c:85
 msgid "DEVICE NAME"
 msgstr "장치 이름"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:141
+#: ../dialogs/mouse-settings/main.c:145
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:151
+#: ../dialogs/mouse-settings/main.c:155
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:162
+#: ../dialogs/mouse-settings/main.c:166
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f 초"
@@ -2562,20 +2585,20 @@ msgstr "registry;레지스트리;regedit;configuration file;설정파일;설정 
 msgid "Settings dialog to show"
 msgstr "표시할 대화 상자 설정"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:252
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:221
 msgid "All _Settings"
 msgstr "전체 설정(_S)"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:450
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:419
 msgid "Settings"
 msgstr "설정"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:452
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:421
 msgid "Customize your desktop"
 msgstr "데스크톱 사용자 정의"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:959
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:970
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:937
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:948
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "\"%s\"을(를) 시작할 수 없습니다"
