@@ -74,7 +74,7 @@
     g_object_unref (G_OBJECT(obj))
 
 static gboolean opt_version = FALSE;
-static gboolean opt_no_daemon = FALSE;
+static gboolean opt_daemon = FALSE;
 static gboolean opt_disable_wm_check = FALSE;
 static gboolean opt_replace = FALSE;
 static guint owner_id;
@@ -100,7 +100,7 @@ struct t_data_set
 static GOptionEntry option_entries[] =
 {
     { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
-    { "no-daemon", 0, 0, G_OPTION_ARG_NONE, &opt_no_daemon, N_("Do not fork to the background"), NULL },
+    { "daemon", 0, 0, G_OPTION_ARG_NONE, &opt_daemon, N_("Fork to the background"), NULL },
     { "disable-wm-check", 'D', 0, G_OPTION_ARG_NONE, &opt_disable_wm_check, N_("Do not wait for a window manager on startup"), NULL },
     { "replace", 0, 0, G_OPTION_ARG_NONE, &opt_replace, N_("Replace running xsettings daemon (if any)"), NULL },
     { NULL }
@@ -263,7 +263,7 @@ main (gint argc, gchar **argv)
     }
 
     /* daemonize the process */
-    if (!opt_no_daemon)
+    if (opt_daemon)
     {
         if (daemonize () == -1)
         {
