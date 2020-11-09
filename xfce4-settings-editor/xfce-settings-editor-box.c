@@ -320,7 +320,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     gtk_style_context_add_class (gtk_widget_get_style_context (bbox), "inline-toolbar");
     gtk_widget_show (bbox);
 
-    button = gtk_button_new ();
+    button = gtk_button_new_with_mnemonic (_("_Add"));
     image = gtk_image_new_from_icon_name ("list-add-symbolic", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (button), image);
     gtk_container_add (GTK_CONTAINER (bbox), button);
@@ -333,7 +333,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     g_signal_connect_swapped (G_OBJECT (button), "clicked",
         G_CALLBACK (xfce_settings_editor_box_property_new), self);
 
-    button = gtk_button_new ();
+    button = gtk_button_new_with_mnemonic (_("_Edit"));
     image = gtk_image_new_from_icon_name ("document-edit-symbolic", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (button), image);
     gtk_container_add (GTK_CONTAINER (bbox), button);
@@ -346,7 +346,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     g_signal_connect_swapped (G_OBJECT (button), "clicked",
         G_CALLBACK (xfce_settings_editor_box_property_edit), self);
 
-    button = gtk_button_new ();
+    button = gtk_button_new_with_mnemonic (_("_Reset"));
     image = gtk_image_new_from_icon_name ("document-revert-symbolic", GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (button), image);
     gtk_container_add (GTK_CONTAINER (bbox), button);
