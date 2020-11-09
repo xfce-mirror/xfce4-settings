@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Aljoša Žagar <anthon.manix@gmail.com>, 2013
-# Arnold Marko <arnold.marko@gmail.com>, 2019
+# Arnold Marko <arnold.marko@gmail.com>, 2019-2020
 # Kernc, 2014-2015
 # Kernc, 2017
 # ansich <mojmejlzaforume@gmail.com>, 2014
@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-19 12:47+0200\n"
-"PO-Revision-Date: 2020-08-19 10:47+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"POT-Creation-Date: 2020-10-22 00:46+0200\n"
+"PO-Revision-Date: 2020-11-09 22:32+0000\n"
+"Last-Translator: Arnold Marko <arnold.marko@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/xfce/xfce4-settings/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Neznano"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4265
+#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4296
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Ni mogoče določiti različice uporabljene RandR razširitve"
@@ -76,7 +76,7 @@ msgstr "Nastavi dostopnost tipkovnice in miške"
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4305
+#: ../dialogs/display-settings/main.c:4336
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 #: ../dialogs/mime-settings/xfce-mime-window.c:190
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
@@ -324,7 +324,7 @@ msgstr "Podatki o različici"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1170
 #: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:4233
+#: ../dialogs/display-settings/main.c:4264
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
@@ -337,7 +337,7 @@ msgstr "Za navodila o uporabi zaženite ukaz \"%s --help\"."
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1189
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4252
+#: ../dialogs/display-settings/main.c:4283
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
@@ -347,7 +347,7 @@ msgstr "Xfce razvojna ekipa. Vse pravice pridržane."
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1190
 #: ../dialogs/color-settings/main.c:1408
-#: ../dialogs/display-settings/main.c:4253
+#: ../dialogs/display-settings/main.c:4284
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
@@ -363,7 +363,7 @@ msgstr "Izboljšaj dostopnost tipkovnice in miške"
 msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-msgstr ""
+msgstr "pomožne;tehnologije;tipke;lepljive;odboj;emulacija;zaslonski bralnik;povečevalnik;a11y;l8n;l10n;AT-SPI;ATK;ovira;posebne potrebe;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1050
@@ -625,7 +625,7 @@ msgid ""
 "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr ""
+msgstr "teme;uporabniški vmesnik;slog;ikone;pisave;mehčanje;namigi;sub-piksel;izrisovanje;ClearType;DPI;RGB;BGR;meni pospeševalniki;bližnjice tipkovnice;dogodek;zvoki;povečava okna;HiDPI;retina zaslon;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -863,7 +863,7 @@ msgstr "Nastavi barvne profile"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
-msgstr ""
+msgstr "barva;nastavitve;urejanje;zaslon;monitorji;tislalniki;spletne kamere;skenerji;bralniki;"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
@@ -889,11 +889,11 @@ msgstr "Če ne odgovorite na vprašanje, bodo prejšnje nastavitve obnovljene v 
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "1.5x"
-msgstr ""
+msgstr "1.5x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "Custom:"
-msgstr ""
+msgstr "Prilagojeno:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "The primary display is currently configured to show:"
@@ -955,15 +955,15 @@ msgstr "_Potrdi"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "_Scale:"
-msgstr ""
+msgstr "_Povečava:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "X:"
-msgstr ""
+msgstr "X:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "Y:"
-msgstr ""
+msgstr "Y:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "_General"
@@ -1133,7 +1133,7 @@ msgstr "Izbrani izhod ni onemogočen"
 
 #: ../dialogs/display-settings/main.c:1642
 msgid "Profiles matching the currently connected displays"
-msgstr ""
+msgstr "Profili, ki ustrezajo trenutno priključenim zaslonom"
 
 #: ../dialogs/display-settings/main.c:1848
 #, c-format
@@ -1199,33 +1199,33 @@ msgstr "Podvojeni zasloni"
 msgid "(Disabled)"
 msgstr "(Onemogočeno)"
 
-#: ../dialogs/display-settings/main.c:4071
+#: ../dialogs/display-settings/main.c:4102
 #, c-format
 msgid "Only %s (1)"
 msgstr "Zgolj %s (1)"
 
-#: ../dialogs/display-settings/main.c:4082
+#: ../dialogs/display-settings/main.c:4113
 #, c-format
 msgid "Only %s (2)"
 msgstr "Zgolj %s (2)"
 
-#: ../dialogs/display-settings/main.c:4266
-#: ../dialogs/display-settings/main.c:4303
+#: ../dialogs/display-settings/main.c:4297
+#: ../dialogs/display-settings/main.c:4334
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Ni mogoče zagnati nastavitev zaslona"
 
-#: ../dialogs/display-settings/main.c:4298
+#: ../dialogs/display-settings/main.c:4329
 msgid "ATI Settings"
 msgstr "ATI nastavitve"
 
-#: ../dialogs/display-settings/main.c:4313
+#: ../dialogs/display-settings/main.c:4344
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Ni mogoče zagnati nastavitev lastniškega gonilnika"
 
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
-msgstr ""
+msgstr "zaslon;nastavitve;ekran;ločljivost;hitrost;osveževanje;zasuk;zunanji;projektorji;monitorji;LCD;CRT;HiDPI;"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
@@ -1450,48 +1450,48 @@ msgstr "Okna z nastavitvami ni bilo mogoče ustvariti."
 msgid "Command"
 msgstr "Ukaz"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:403
 msgid "Shortcut"
 msgstr "Bližnjica"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:480
 msgid "Layout"
 msgstr "Razporeditev"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:481
 msgid "Variant"
 msgstr "Varianta"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1246
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1247
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1248
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1249
 msgid "Reset to Defaults"
 msgstr "Ponastavi na privzete vrednosti"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1248
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1250
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Ali ste prepričani, da želite vse bližnjice ponastaviti na privzete vrednosti?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1250
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
 msgid "No"
 msgstr "Ne"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1251
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
 msgid "Yes"
 msgstr "Da"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1329
 msgid "The system defaults will be restored next time you log in."
 msgstr "Sistemske privzete vrednosti bodo obnovljene ob naslednji prijavi."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1329
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1331
 msgid "Warning"
 msgstr "Opozorilo"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
 msgid "numlock;keyboard;layout;shortcuts;"
-msgstr ""
+msgstr "zaklep numeričnega;tipkovnica;razpored;bližnjice;"
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
@@ -1753,12 +1753,12 @@ msgstr "Odpiranje %s za pisanje ni uspelo"
 #: ../dialogs/mime-settings/xfce-mime-window.c:184
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
-msgstr ""
+msgstr "Privzete aplikacije"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:188
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
-msgstr ""
+msgstr "Poveži prednostne aplikacije z MIME vrstami"
 
 #. Internet
 #: ../dialogs/mime-settings/xfce-mime-window.c:211
@@ -1774,7 +1774,7 @@ msgstr "Spletni brskalnik"
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
-msgstr ""
+msgstr "Privzeti spletni brskalnik bo uporabljen za odpiranje hiperpovezav in prikaz pomoči."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:255
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1785,7 +1785,7 @@ msgstr "Bralnik pošte"
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
-msgstr ""
+msgstr "Privzeti bralnik pošte bo uporabljen za ustvarjanje elektronskih sporočil ob kliku na elektronski naslov."
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:282
@@ -1800,7 +1800,7 @@ msgstr "Upravljalnik datotek"
 #: ../dialogs/mime-settings/xfce-mime-window.c:303
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
-msgstr ""
+msgstr "Privzeti datotečni brskalnik bo uporabljen za brskanje po vsebini imenikov."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:326
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
@@ -1811,12 +1811,12 @@ msgstr "Terminalski emulator"
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
-msgstr ""
+msgstr "Privzeti terminalski emulator bo uporabljen za izvajanje ukazov, ki zahtevajo ukazno vrstico."
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:353
 msgid "_Others"
-msgstr ""
+msgstr "Drug_o"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:363
 msgid "_Filter:"
@@ -1893,7 +1893,7 @@ msgstr "Izberi program..."
 msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
-msgstr ""
+msgstr "datoteka;vrsta;končnica;asociacija;odpri z;spletni brksalnik;bralnik pošte;datotečni brslanik;eulator terminala;"
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -2370,7 +2370,7 @@ msgstr "_Tema"
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-msgstr ""
+msgstr "nastavitve;gumbi;pomik;smer;kazalec;hitrost;dvojni klik;tema;kolesce;"
 
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
@@ -2583,7 +2583,7 @@ msgstr "Grafični urejevalnik Xfconf nastavitev"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
 msgid "registry;regedit;configuration file;"
-msgstr ""
+msgstr "ster;regdit;konfiguracijska datoteka;"
 
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
@@ -2613,11 +2613,11 @@ msgstr "Nastavitve"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Graphical Settings Manager for Xfce"
-msgstr ""
+msgstr "Grafični upravljalnik nastavitev za Xfce"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "control;panel;center;system;settings;personalize;hardware;"
-msgstr ""
+msgstr "kontrolna;plošča;center;središče;sistem;nastavitve;perosnalizacija;strojna;oprema;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2661,8 +2661,8 @@ msgid "Failed to launch shortcut \"%s\""
 msgstr "Zaganjanje bližnjice \"%s\" je spodletelo"
 
 #: ../xfsettingsd/main.c:103
-msgid "Do not fork to the background"
-msgstr "Ne forkaj se v ozadje"
+msgid "Fork to the background"
+msgstr "Razveji se v ozadje"
 
 #: ../xfsettingsd/main.c:104
 msgid "Do not wait for a window manager on startup"
