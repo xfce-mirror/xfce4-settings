@@ -41,33 +41,35 @@
 
 
 
-static void     xfce_mime_window_finalize          (GObject              *object);
-static gboolean xfce_mime_window_delete_event      (GtkWidget            *widget,
-                                                    GdkEventAny          *event);
-static gint     xfce_mime_window_mime_model        (XfceMimeWindow       *window);
-static void     xfce_mime_window_filter_changed    (GtkEntry             *entry,
-                                                    XfceMimeWindow       *window);
-static void     xfce_mime_window_filter_clear      (GtkEntry             *entry,
-                                                    GtkEntryIconPosition  icon_pos,
-                                                    GdkEvent             *event,
-                                                    gpointer              user_data);
-static void     xfce_mime_window_statusbar_count   (XfceMimeWindow       *window,
-                                                    gint                  n_mime_types);
-static gboolean xfce_mime_window_row_visible_func  (GtkTreeModel         *model,
-                                                    GtkTreeIter          *iter,
-                                                    gpointer              data);
-static void     xfce_mime_window_row_activated     (GtkTreeView          *tree_view,
-                                                    GtkTreePath          *path,
-                                                    GtkTreeViewColumn    *column,
-                                                    XfceMimeWindow       *window);
-static void     xfce_mime_window_selection_changed (GtkTreeSelection     *selection,
-                                                    XfceMimeWindow       *window);
-static void     xfce_mime_window_column_clicked    (GtkTreeViewColumn    *column,
-                                                    XfceMimeWindow       *window);
-static void     xfce_mime_window_combo_populate    (GtkCellRenderer      *renderer,
-                                                    GtkCellEditable      *editable,
-                                                    const gchar          *path_string,
-                                                    XfceMimeWindow       *window);
+static void     xfce_mime_window_finalize           (GObject              *object);
+static gboolean xfce_mime_window_delete_event       (GtkWidget            *widget,
+                                                     GdkEventAny          *event);
+static gint     xfce_mime_window_mime_model         (XfceMimeWindow       *window);
+static void     xfce_mime_window_set_application_cb (GtkButton            *button,
+                                                     XfceMimeWindow       *window);
+static void     xfce_mime_window_filter_changed     (GtkEntry             *entry,
+                                                     XfceMimeWindow       *window);
+static void     xfce_mime_window_filter_clear       (GtkEntry             *entry,
+                                                     GtkEntryIconPosition  icon_pos,
+                                                     GdkEvent             *event,
+                                                     gpointer              user_data);
+static void     xfce_mime_window_statusbar_count    (XfceMimeWindow       *window,
+                                                     gint                  n_mime_types);
+static gboolean xfce_mime_window_row_visible_func   (GtkTreeModel         *model,
+                                                     GtkTreeIter          *iter,
+                                                     gpointer              data);
+static void     xfce_mime_window_row_activated      (GtkTreeView          *tree_view,
+                                                     GtkTreePath          *path,
+                                                     GtkTreeViewColumn    *column,
+                                                     XfceMimeWindow       *window);
+static void     xfce_mime_window_selection_changed  (GtkTreeSelection     *selection,
+                                                     XfceMimeWindow       *window);
+static void     xfce_mime_window_column_clicked     (GtkTreeViewColumn    *column,
+                                                     XfceMimeWindow       *window);
+static void     xfce_mime_window_combo_populate     (GtkCellRenderer      *renderer,
+                                                     GtkCellEditable      *editable,
+                                                     const gchar          *path_string,
+                                                     XfceMimeWindow       *window);
 
 
 
@@ -84,6 +86,7 @@ struct _XfceMimeWindow
 
     GtkWidget        *treeview;
     GtkWidget        *plug_child;
+    GtkWidget        *set_application;
 
     PangoAttrList    *attrs_bold;
     GtkTreeModel     *mime_model;
@@ -375,17 +378,45 @@ xfce_mime_window_init (XfceMimeWindow *window)
         G_CALLBACK (xfce_mime_window_filter_changed), window);
     gtk_widget_show (entry);
 
+    box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    gtk_box_pack_start (GTK_BOX (vbox), box, TRUE, TRUE, 0);
+    gtk_widget_show (box);
+
     scroll = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
                                     GTK_POLICY_AUTOMATIC,
                                     GTK_POLICY_ALWAYS);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll), GTK_SHADOW_ETCHED_IN);
-    gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (box), scroll, TRUE, TRUE, 0);
     gtk_widget_show (scroll);
+
+    /* inline toolbar holding the edit button and the status bar */
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start (GTK_BOX (box), hbox, FALSE, TRUE, 0);
+    gtk_style_context_add_class (gtk_widget_get_style_context (hbox), "inline-toolbar");
+    gtk_widget_show (hbox);
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start (GTK_BOX (hbox), box, TRUE, TRUE, 0);
+    gtk_widget_show (box);
+
+    window->set_application = button = gtk_button_new ();
+    gtk_button_set_label (GTK_BUTTON (button), _("Open with..."));
+    gtk_button_set_image (GTK_BUTTON (button),
+                          gtk_image_new_from_icon_name ("document-edit-symbolic", GTK_ICON_SIZE_BUTTON));
+    g_signal_connect (G_OBJECT (button), "clicked",
+        G_CALLBACK (xfce_mime_window_set_application_cb), window);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, TRUE, 0);
+    gtk_widget_show (button);
+    gtk_widget_set_sensitive (button, FALSE);
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_end (GTK_BOX (hbox), box, TRUE, TRUE, 0);
+    gtk_widget_show (box);
 
     window->statusbar = statusbar = gtk_statusbar_new ();
     gtk_widget_set_name (statusbar, "mime-statusbar");
-    gtk_box_pack_start (GTK_BOX (vbox), statusbar, FALSE, TRUE, 0);
+    gtk_box_pack_end (GTK_BOX (box), statusbar, TRUE, TRUE, 0);
     window->desc_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "desc");
     window->count_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "count");
     xfce_mime_window_statusbar_count (window, n_mime_types);
@@ -669,6 +700,23 @@ xfce_mime_window_mime_model (XfceMimeWindow *window)
 
 
 static void
+xfce_mime_window_set_application_cb (GtkButton      *button,
+                                     XfceMimeWindow *window)
+{
+    GtkTreeSelection *selection;
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
+    GtkTreePath  *path;
+
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->treeview));
+    gtk_tree_selection_get_selected (selection, &model, &iter);
+    path = gtk_tree_model_get_path (model, &iter);
+    xfce_mime_window_row_activated (GTK_TREE_VIEW (window->treeview), path, NULL, window);
+}
+
+
+
+static void
 xfce_mime_window_filter_changed (GtkEntry       *entry,
                                  XfceMimeWindow *window)
 {
@@ -871,6 +919,8 @@ xfce_mime_window_selection_changed (GtkTreeSelection *selection,
 
     if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
+        gtk_widget_set_sensitive (window->set_application, TRUE);
+
         gtk_tree_model_get (model, &iter, COLUMN_MIME_TYPE, &mime_type, -1);
         description = g_content_type_get_description (mime_type);
         g_free (mime_type);
@@ -881,6 +931,10 @@ xfce_mime_window_selection_changed (GtkTreeSelection *selection,
                                 window->desc_id, description);
             g_free (description);
         }
+    }
+    else
+    {
+        gtk_widget_set_sensitive (window->set_application, FALSE);
     }
 }
 
