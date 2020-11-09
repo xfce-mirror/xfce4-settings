@@ -133,9 +133,10 @@ static void                      xfce_keyboard_settings_reset_button_clicked  (X
 
 #ifdef HAVE_LIBXKLAVIER
 
-static gboolean                  xfce_keyboard_settings_update_sensitive      (GtkToggleButton           *toggle,
+static gboolean                  xfce_keyboard_settings_update_sensitive      (GtkSwitch                 *widget,
                                                                                XfceKeyboardSettings      *settings);
-static void                      xfce_keyboard_settings_system_default_cb     (GtkToggleButton           *toggle,
+static void                      xfce_keyboard_settings_system_default_cb     (GtkSwitch                 *widget,
+                                                                               gboolean                   state,
                                                                                XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_set_layout            (XfceKeyboardSettings      *settings);
 static void                      xfce_keyboard_settings_init_layout           (XfceKeyboardSettings      *settings);
@@ -342,7 +343,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   GObject              *xkb_numlock;
   GObject              *button;
 #ifdef HAVE_LIBXKLAVIER
-  GObject              *xkb_use_system_default_checkbutton;
+  GObject              *xkb_use_system_default_switch;
   GObject              *xkb_tab_layout_vbox;
   GObject              *xkb_layout_view;
   GObject              *xkb_layout_add_button;
@@ -446,14 +447,14 @@ xfce_keyboard_settings_constructed (GObject *object)
   gtk_widget_show (GTK_WIDGET (xkb_tab_layout_vbox));
 
   /* Use system defaults, i.e., disable options */
-  xkb_use_system_default_checkbutton = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_use_system_default_checkbutton");
+  xkb_use_system_default_switch = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_use_system_default_switch");
   xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
-                             (GObject *) xkb_use_system_default_checkbutton, "active");
-  xfce_keyboard_settings_update_sensitive (GTK_TOGGLE_BUTTON (xkb_use_system_default_checkbutton), settings);
-  g_signal_connect (G_OBJECT (xkb_use_system_default_checkbutton),
-                    "toggled",
+                          (GObject *) xkb_use_system_default_switch, "active");
+  g_signal_connect (G_OBJECT (xkb_use_system_default_switch),
+                    "state-set",
                     G_CALLBACK (xfce_keyboard_settings_system_default_cb),
                     settings);
+  xfce_keyboard_settings_update_sensitive (GTK_SWITCH (xkb_use_system_default_switch), settings);
 
   /* Keyboard model combo */
   xfce_keyboard_settings_layouts_combo_populate (settings,
@@ -1291,7 +1292,7 @@ xfce_keyboard_settings_xkb_description (XklConfigItem *config_item)
 
 
 static gboolean
-xfce_keyboard_settings_update_sensitive (GtkToggleButton *toggle, XfceKeyboardSettings *settings)
+xfce_keyboard_settings_update_sensitive (GtkSwitch *widget, XfceKeyboardSettings *settings)
 {
   GObject  *xkb_model_frame;
   GObject  *xkb_layout_frame;
@@ -1301,7 +1302,7 @@ xfce_keyboard_settings_update_sensitive (GtkToggleButton *toggle, XfceKeyboardSe
 
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), FALSE);
 
-  active = gtk_toggle_button_get_active (toggle);
+  active = gtk_switch_get_active (widget);
   xkb_model_frame = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_model_frame");
   xkb_layout_frame = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_frame");
   xkb_grpkey_frame = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_grpkey_frame");
@@ -1318,14 +1319,14 @@ xfce_keyboard_settings_update_sensitive (GtkToggleButton *toggle, XfceKeyboardSe
 
 
 static void
-xfce_keyboard_settings_system_default_cb (GtkToggleButton *toggle, XfceKeyboardSettings *settings)
+xfce_keyboard_settings_system_default_cb (GtkSwitch *widget, gboolean state, XfceKeyboardSettings *settings)
 {
   GtkWidget *warning_dialog;
   gboolean   use_system_defaults;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
 
-  use_system_defaults = xfce_keyboard_settings_update_sensitive (toggle, settings);
+  use_system_defaults = xfce_keyboard_settings_update_sensitive (widget, settings);
   if (use_system_defaults)
     {
       warning_dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK,
