@@ -390,11 +390,14 @@ xfce_keyboard_settings_constructed (GObject *object)
   /* Create list store for keyboard shortcuts */
   list_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COMMAND_COLUMN, GTK_SORT_ASCENDING);
+  gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (kbd_shortcuts_view), COMMAND_COLUMN);
   gtk_tree_view_set_model (GTK_TREE_VIEW (kbd_shortcuts_view), GTK_TREE_MODEL (list_store));
 
   /* Create command column */
   renderer = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes (_("Command"), renderer, "text", COMMAND_COLUMN, NULL);
+  g_object_set (column, "expand", TRUE, "resizable", TRUE, NULL);
+  g_object_set (renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
   gtk_tree_view_column_set_sort_column_id (column, COMMAND_COLUMN);
   gtk_tree_view_append_column (GTK_TREE_VIEW (kbd_shortcuts_view), column);
 
