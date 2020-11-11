@@ -969,7 +969,7 @@ appearance_settings_install_theme_cb (GtkButton *widget, GtkBuilder *builder)
 
     window = gtk_widget_get_toplevel (GTK_WIDGET (widget));
     g_object_get (G_OBJECT (widget), "name", &theme, NULL);
-    title = g_strdup_printf ("Install %s theme", theme);
+    title = g_strdup_printf (_("Install %s theme"), theme);
     dialog = gtk_file_chooser_dialog_new (title,
                                           GTK_WINDOW (window),
                                           action,
