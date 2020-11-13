@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-19 12:47+0200\n"
-"PO-Revision-Date: 2020-09-13 10:35+0000\n"
+"POT-Creation-Date: 2020-11-10 00:47+0100\n"
+"PO-Revision-Date: 2020-11-13 16:51+0000\n"
 "Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/xfce/xfce4-settings/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4265
+#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4296
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Impossible de déterminer la version de l’extension RandR utilisée"
@@ -85,9 +85,9 @@ msgstr "Configurer l’accessibilité du clavier et de la souris"
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4305
+#: ../dialogs/display-settings/main.c:4336
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mime-settings/xfce-mime-window.c:190
+#: ../dialogs/mime-settings/xfce-mime-window.c:193
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #: ../xfce4-settings-editor/main.c:166
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:228
@@ -99,7 +99,7 @@ msgstr "_Fermer"
 #: ../dialogs/color-settings/color-dialog.glade.h:4
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/mime-settings/xfce-mime-window.c:193
+#: ../dialogs/mime-settings/xfce-mime-window.c:196
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 #: ../xfce4-settings-editor/main.c:165
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:217
@@ -333,7 +333,7 @@ msgstr "Informations sur la version"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1170
 #: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:4233
+#: ../dialogs/display-settings/main.c:4264
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
@@ -346,7 +346,7 @@ msgstr "Taper « %s --help » pour obtenir plus d’aide."
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1189
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4252
+#: ../dialogs/display-settings/main.c:4283
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
@@ -356,7 +356,7 @@ msgstr "L’équipe de développement Xfce. Tous droits réservés."
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1190
 #: ../dialogs/color-settings/main.c:1408
-#: ../dialogs/display-settings/main.c:4253
+#: ../dialogs/display-settings/main.c:4284
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
@@ -705,35 +705,44 @@ msgid "<b>No profiles for the selected device.</b>"
 msgstr "<b>Aucun profil pour l’appareil sélectionné.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:11
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
+msgid "_Add"
+msgstr "_Ajouter"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "Add a profile to the currently selected device"
 msgstr "Ajouter un profil à l’appareil actuellement sélectionné"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/color-settings/color-dialog.glade.h:13
+msgid "_Remove"
+msgstr "_Supprimer"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:14
 msgid "Delete the currently selected profile"
 msgstr "Supprimer le profil actuellement sélectionné"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:13
+#: ../dialogs/color-settings/color-dialog.glade.h:15
 msgid "Show detailed information about the selected profile"
 msgstr "Afficher des informations détaillées à propos du profil sélectionné"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:14
+#: ../dialogs/color-settings/color-dialog.glade.h:16
 msgid "Enable"
 msgstr "Activer"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:15
+#: ../dialogs/color-settings/color-dialog.glade.h:17
 msgid "Enable the selected profile"
 msgstr "Activer le profil sélectionné"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:16
+#: ../dialogs/color-settings/color-dialog.glade.h:18
 msgid "Add Profile to Device"
 msgstr "Ajouter le profil à l’appareil"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:17
+#: ../dialogs/color-settings/color-dialog.glade.h:19
 msgid "Add a Color Profile to your Device"
 msgstr "Ajouter un profil de couleur à votre appareil"
 
 #. Create cancel button
-#: ../dialogs/color-settings/color-dialog.glade.h:18
+#: ../dialogs/color-settings/color-dialog.glade.h:20
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
 #: ../dialogs/keyboard-settings/command-dialog.c:280
@@ -744,7 +753,7 @@ msgstr "Ajouter un profil de couleur à votre appareil"
 msgid "_Cancel"
 msgstr "_Annuler"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:19
+#: ../dialogs/color-settings/color-dialog.glade.h:21
 #: ../dialogs/keyboard-settings/command-dialog.c:120
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:541
@@ -752,7 +761,7 @@ msgstr "_Annuler"
 msgid "_OK"
 msgstr "_Valider"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:20
+#: ../dialogs/color-settings/color-dialog.glade.h:22
 msgid "Import color profile files (*.icc)"
 msgstr "Importer des fichiers de profil de couleur (*.icc)"
 
@@ -1170,7 +1179,7 @@ msgstr "Une fois qu’un profil d’affichage est supprimé, il ne peut pas êtr
 #: ../dialogs/display-settings/main.c:2147
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
-#: ../dialogs/mime-settings/xfce-mime-window.c:1079
+#: ../dialogs/mime-settings/xfce-mime-window.c:1133
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "Annuler"
@@ -1208,26 +1217,26 @@ msgstr "Écrans en miroir"
 msgid "(Disabled)"
 msgstr "(Désactivé)"
 
-#: ../dialogs/display-settings/main.c:4071
+#: ../dialogs/display-settings/main.c:4102
 #, c-format
 msgid "Only %s (1)"
 msgstr "%s uniquement (1)"
 
-#: ../dialogs/display-settings/main.c:4082
+#: ../dialogs/display-settings/main.c:4113
 #, c-format
 msgid "Only %s (2)"
 msgstr "%s uniquement (2) "
 
-#: ../dialogs/display-settings/main.c:4266
-#: ../dialogs/display-settings/main.c:4303
+#: ../dialogs/display-settings/main.c:4297
+#: ../dialogs/display-settings/main.c:4334
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Impossible de démarrer les paramètres d’affichage Xfce"
 
-#: ../dialogs/display-settings/main.c:4298
+#: ../dialogs/display-settings/main.c:4329
 msgid "ATI Settings"
 msgstr "Paramètres ATI"
 
-#: ../dialogs/display-settings/main.c:4313
+#: ../dialogs/display-settings/main.c:4344
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Impossible d’exécuter les paramètres du pilote propriétaire"
 
@@ -1405,40 +1414,34 @@ msgid "A_pplication Shortcuts"
 msgstr "_Raccourcis d’applications"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-msgid "_Use system defaults"
-msgstr "_Utiliser les paramètres par défaut"
+msgid "<b>Use system defaults</b>"
+msgstr "<b>Utiliser les paramètres par défaut du système</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
-msgid ""
-"Specifies whether the keyboard layout is controlled with this settings "
-"dialog, or by the X server"
-msgstr "Permet de spécifier si la configuration du clavier est contrôlée par cette fenêtre de paramètres, ou par le serveur X"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "Modèle du c_lavier"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "Change la_yout option"
 msgstr "Modifier l’option de disp_osition"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Co_mpose key"
 msgstr "_Touche de composition"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Move currently selected item up by one row"
 msgstr "Déplacer l’élément sélectionné d’une ligne vers le haut"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item down by one row"
 msgstr "Déplacer l’élément sélectionné d’une ligne vers le bas"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Key_board layout"
 msgstr "Disposition du cla_vier"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "_Layout"
 msgstr "_Disposition"
 
@@ -1455,46 +1458,46 @@ msgstr "Impossible de se connecter au démon xfconf. Raison : %s"
 msgid "Could not create the settings dialog."
 msgstr "Impossible de créer la fenêtre des paramètres."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
 msgid "Command"
 msgstr "Commande"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
 msgid "Shortcut"
 msgstr "Raccourci"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
 msgid "Layout"
 msgstr "Disposition"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
 msgid "Variant"
 msgstr "Variante"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1246
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1247
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
 msgid "Reset to Defaults"
 msgstr "Réinitialiser aux valeurs par défaut"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1248
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Cette action réinitialisera tous les raccourcis à leurs valeurs par défaut. Voulez-vous vraiment continuer ?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1250
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "No"
 msgstr "Non"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1251
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid "Yes"
 msgstr "Oui"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
 msgid "The system defaults will be restored next time you log in."
 msgstr "Les paramètres par défaut du système seront restaurés lors de votre prochaine connexion."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1329
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -1759,140 +1762,144 @@ msgstr "Aucune commande spécifiée"
 msgid "Failed to open %s for writing"
 msgstr "Impossible d’ouvrir %s en écriture"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:184
+#: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
 msgstr "Applications par défaut"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:188
+#: ../dialogs/mime-settings/xfce-mime-window.c:191
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
 msgstr "Associer les applications préférées aux types MIME"
 
 #. Internet
-#: ../dialogs/mime-settings/xfce-mime-window.c:211
+#: ../dialogs/mime-settings/xfce-mime-window.c:214
 msgid "_Internet"
 msgstr "_Internet"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:224
+#: ../dialogs/mime-settings/xfce-mime-window.c:227
 #: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
 msgid "Web Browser"
 msgstr "Navigateur Web"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:232
+#: ../dialogs/mime-settings/xfce-mime-window.c:235
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr "Le navigateur Web par défaut sera utilisé pour ouvrir les hyperliens et afficher le contenu de l’aide."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:255
+#: ../dialogs/mime-settings/xfce-mime-window.c:258
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
 msgid "Mail Reader"
 msgstr "Client de messagerie"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:263
+#: ../dialogs/mime-settings/xfce-mime-window.c:266
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr "Le lecteur de courrier par défaut sera utilisé pour rédiger des e-mails lorsque vous cliquez sur des adresses e-mail."
 
 #. Utilities
-#: ../dialogs/mime-settings/xfce-mime-window.c:282
+#: ../dialogs/mime-settings/xfce-mime-window.c:285
 msgid "_Utilities"
 msgstr "_Utilitaires"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:295
+#: ../dialogs/mime-settings/xfce-mime-window.c:298
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
 msgid "File Manager"
 msgstr "Gestionnaire de fichiers"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:303
+#: ../dialogs/mime-settings/xfce-mime-window.c:306
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr "Le gestionnaire de fichiers par défaut sera utilisé pour parcourir le contenu des dossiers."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:326
+#: ../dialogs/mime-settings/xfce-mime-window.c:329
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
 msgstr "Émulateur de terminal"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:334
+#: ../dialogs/mime-settings/xfce-mime-window.c:337
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr "L’émulateur de terminal par défaut sera utilisé pour exécuter des commandes qui nécessitent un environnement en ligne de commande."
 
 #. Mimes
-#: ../dialogs/mime-settings/xfce-mime-window.c:353
+#: ../dialogs/mime-settings/xfce-mime-window.c:356
 msgid "_Others"
 msgstr "_Autres"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:363
+#: ../dialogs/mime-settings/xfce-mime-window.c:366
 msgid "_Filter:"
 msgstr "_Filtre :"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:371
+#: ../dialogs/mime-settings/xfce-mime-window.c:374
 msgid "Clear filter"
 msgstr "Effacer le filtre"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:420
+#: ../dialogs/mime-settings/xfce-mime-window.c:404
+msgid "Open with..."
+msgstr "Ouvrir avec…"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:451
 msgid "MIME Type"
 msgstr "Type MIME"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:448
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
 msgid "Status"
 msgstr "État"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:468
+#: ../dialogs/mime-settings/xfce-mime-window.c:499
 msgid "Default Application"
 msgstr "Application par défaut"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:643
-#: ../dialogs/mime-settings/xfce-mime-window.c:768
+#: ../dialogs/mime-settings/xfce-mime-window.c:674
+#: ../dialogs/mime-settings/xfce-mime-window.c:816
 msgid "User Set"
 msgstr "Défini par l’utilisateur"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:645
-#: ../dialogs/mime-settings/xfce-mime-window.c:768
+#: ../dialogs/mime-settings/xfce-mime-window.c:676
+#: ../dialogs/mime-settings/xfce-mime-window.c:816
 #: ../dialogs/mouse-settings/main.c:397 ../dialogs/mouse-settings/main.c:399
 #: ../dialogs/mouse-settings/main.c:459
 msgid "Default"
 msgstr "Par défaut"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:714
+#: ../dialogs/mime-settings/xfce-mime-window.c:762
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d type MIME trouvé"
 msgstr[1] "%d types MIME trouvés"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:813
+#: ../dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Impossible de définir l’application « %s » pour le type MIME « %s »."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1070
+#: ../dialogs/mime-settings/xfce-mime-window.c:1124
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Voulez-vous vraiment réinitialiser le type de contenu « %s » à sa valeur par défaut ?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1074
+#: ../dialogs/mime-settings/xfce-mime-window.c:1128
 msgid "Question"
 msgstr "Question"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1077
+#: ../dialogs/mime-settings/xfce-mime-window.c:1131
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Cette action supprimera vos associations MIME personnalisées et restaurera les réglages par défaut du système."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1081
-#: ../dialogs/mime-settings/xfce-mime-window.c:1152
+#: ../dialogs/mime-settings/xfce-mime-window.c:1135
+#: ../dialogs/mime-settings/xfce-mime-window.c:1206
 msgid "Reset to Default"
 msgstr "Réinitialiser aux valeurs par défaut"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1147
+#: ../dialogs/mime-settings/xfce-mime-window.c:1201
 msgid "Choose Application..."
 msgstr "Sélectionner une application…"
 
@@ -2412,9 +2419,19 @@ msgstr "Valeur"
 msgid "New property"
 msgstr "Nouvelle propriété"
 
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
+msgid "_Edit"
+msgstr "M_odifier"
+
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:341
 msgid "Edit selected property"
 msgstr "Modifier la propriété sélectionnée"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:349
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1038
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1377
+msgid "_Reset"
+msgstr "_Réinitialiser"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
 msgid "Reset selected property"
@@ -2488,11 +2505,6 @@ msgstr "Fermer"
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "démarrer la surveillance du canal « %s »"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1038
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1377
-msgid "_Reset"
-msgstr "_Réinitialiser"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1044
 msgid "_Monitor"
@@ -2668,8 +2680,8 @@ msgid "Failed to launch shortcut \"%s\""
 msgstr "Impossible de lancer le raccourci « %s »"
 
 #: ../xfsettingsd/main.c:103
-msgid "Do not fork to the background"
-msgstr "Ne pas démarrer en arrière-plan"
+msgid "Fork to the background"
+msgstr "Basculer à l’arrière-plan"
 
 #: ../xfsettingsd/main.c:104
 msgid "Do not wait for a window manager on startup"
