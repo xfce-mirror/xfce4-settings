@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 00:47+0100\n"
-"PO-Revision-Date: 2020-11-15 10:38+0000\n"
+"PO-Revision-Date: 2020-11-19 19:24+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce4-settings/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -158,7 +158,7 @@ msgstr "Kleepuvad klahvid"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
-msgstr ""
+msgstr "Aeglaste klahvide abil saad vältida juhuslikke klahvivajutusi. Selleks pead klahve hoidma allavajutatuna seni, kuni klahvivajutus loetakse tehtuks."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "Use slow _keys"
@@ -166,13 +166,13 @@ msgstr "Kasuta aeglaseid _klahve"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "Acceptance _delay:"
-msgstr ""
+msgstr "Viivitus _klahvivajutusel:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr ""
+msgstr "Aeg millisekundites enne, kui klahvivajutus loetakse tehtuks"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid "Slow Keys"
@@ -182,7 +182,7 @@ msgstr "Aeglased klahvid"
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
-msgstr ""
+msgstr "Vältimaks mitmeid juhuslikke klahvivajutusi eeldatakse põrkavate klahvide puhul viivitust klahvide vajutamise vahel."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "Use _bounce keys"
@@ -260,11 +260,11 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "pixels/sec"
-msgstr ""
+msgstr "pikslit sekundis"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "Acceleration _profile:"
-msgstr ""
+msgstr "Kiirendus_profiil:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "The ramp used to reach maximum pointer speed"
@@ -272,21 +272,21 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid "Mouse Emulation"
-msgstr ""
+msgstr "Hiire lavastamine"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
-msgstr ""
+msgstr "Sidudes klahvivajutuse xfce4-find-cursor käsuga on sul võimalik kadunud hiirekursorit kergesti leida."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "Show location of pointer on keypress"
-msgstr ""
+msgstr "Klahvivajutusel näita kursori asukohta"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:47
 msgid "Find Cursor"
-msgstr ""
+msgstr "Leia kursor"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:48
 msgid "_Mouse"
@@ -353,7 +353,7 @@ msgstr "Palun teata vigadest aadressil <%s>."
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
-msgstr ""
+msgstr "Paranda klaviatuuri ja hiire hõlbustusvõimalusi"
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
 msgid ""
@@ -656,7 +656,7 @@ msgstr "Sisseehitatud veebikaamera"
 #: ../dialogs/color-settings/color-device.c:195
 #, c-format
 msgid "Enable color management for %s"
-msgstr ""
+msgstr "Luba värvihaldus %s jaoks"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
@@ -677,19 +677,19 @@ msgstr "Mudel:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:7
 msgid "Colorspace:"
-msgstr ""
+msgstr "Värviruum:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:8
 msgid "Vendor:"
-msgstr ""
+msgstr "Tootja:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:9
 msgid "Calibrate"
-msgstr ""
+msgstr "Kalibreeri"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:10
 msgid "<b>No profiles for the selected device.</b>"
-msgstr ""
+msgstr "<b>Valitud seadme jaoks profiilid puuduvad.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:11
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
@@ -698,7 +698,7 @@ msgstr "Lis_a"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "Add a profile to the currently selected device"
-msgstr ""
+msgstr "Lisa profiil hetkel valitud seadme jaoks"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:13
 msgid "_Remove"
@@ -845,7 +845,7 @@ msgstr ""
 #. * profile his a standard space like AdobeRGB
 #: ../dialogs/color-settings/main.c:200
 msgid "Colorspace: "
-msgstr ""
+msgstr "Värviruum:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
