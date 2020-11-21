@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-19 12:47+0200\n"
-"PO-Revision-Date: 2020-09-18 20:50+0000\n"
+"POT-Creation-Date: 2020-11-10 00:47+0100\n"
+"PO-Revision-Date: 2020-11-21 05:43+0000\n"
 "Last-Translator: Triyan W. Nugroho <triyan.wn@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/xfce/xfce4-settings/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Tak Diketahui"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4265
+#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4296
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Tak dapat kueri versi dari ekstensi RandR yang digunakan"
@@ -75,9 +75,9 @@ msgstr "Atur aksesibilitas papan ketik dan tetikus"
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4305
+#: ../dialogs/display-settings/main.c:4336
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mime-settings/xfce-mime-window.c:190
+#: ../dialogs/mime-settings/xfce-mime-window.c:193
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #: ../xfce4-settings-editor/main.c:166
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:228
@@ -89,7 +89,7 @@ msgstr "_Tutup"
 #: ../dialogs/color-settings/color-dialog.glade.h:4
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/mime-settings/xfce-mime-window.c:193
+#: ../dialogs/mime-settings/xfce-mime-window.c:196
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 #: ../xfce4-settings-editor/main.c:165
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:217
@@ -323,7 +323,7 @@ msgstr "Informasi versi"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1170
 #: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:4233
+#: ../dialogs/display-settings/main.c:4264
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
@@ -336,7 +336,7 @@ msgstr "Ketikkan '%s --help' untuk bantuan."
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1189
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4252
+#: ../dialogs/display-settings/main.c:4283
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
@@ -346,7 +346,7 @@ msgstr "Tim pengembang Xfce. Hak cipta dilindungi undang-undang."
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1190
 #: ../dialogs/color-settings/main.c:1408
-#: ../dialogs/display-settings/main.c:4253
+#: ../dialogs/display-settings/main.c:4284
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
@@ -695,35 +695,44 @@ msgid "<b>No profiles for the selected device.</b>"
 msgstr "<b>Tidak menemukan profil pada divais terpilih.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:11
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
+msgid "_Add"
+msgstr "T_ambah"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "Add a profile to the currently selected device"
 msgstr "Tambah profil pada divais terpilih"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/color-settings/color-dialog.glade.h:13
+msgid "_Remove"
+msgstr "_Hapus"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:14
 msgid "Delete the currently selected profile"
 msgstr "Hapus profil terpilih"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:13
+#: ../dialogs/color-settings/color-dialog.glade.h:15
 msgid "Show detailed information about the selected profile"
 msgstr "Tampilkan informasi detail tentang profil yang dipilih"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:14
+#: ../dialogs/color-settings/color-dialog.glade.h:16
 msgid "Enable"
 msgstr "Aktifkan"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:15
+#: ../dialogs/color-settings/color-dialog.glade.h:17
 msgid "Enable the selected profile"
 msgstr "Aktifkan profil terpilih"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:16
+#: ../dialogs/color-settings/color-dialog.glade.h:18
 msgid "Add Profile to Device"
 msgstr "Tambah Profil ke Divais"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:17
+#: ../dialogs/color-settings/color-dialog.glade.h:19
 msgid "Add a Color Profile to your Device"
 msgstr "Tambah Profil Warna ke Divais Anda"
 
 #. Create cancel button
-#: ../dialogs/color-settings/color-dialog.glade.h:18
+#: ../dialogs/color-settings/color-dialog.glade.h:20
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
 #: ../dialogs/keyboard-settings/command-dialog.c:280
@@ -734,7 +743,7 @@ msgstr "Tambah Profil Warna ke Divais Anda"
 msgid "_Cancel"
 msgstr "_Batal"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:19
+#: ../dialogs/color-settings/color-dialog.glade.h:21
 #: ../dialogs/keyboard-settings/command-dialog.c:120
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:541
@@ -742,7 +751,7 @@ msgstr "_Batal"
 msgid "_OK"
 msgstr "_OK"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:20
+#: ../dialogs/color-settings/color-dialog.glade.h:22
 msgid "Import color profile files (*.icc)"
 msgstr "Impor berkas profil warna (*.icc)"
 
@@ -1160,7 +1169,7 @@ msgstr "Profil layar yang telah dihapus tidak dapat dikembalikan."
 #: ../dialogs/display-settings/main.c:2147
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
-#: ../dialogs/mime-settings/xfce-mime-window.c:1079
+#: ../dialogs/mime-settings/xfce-mime-window.c:1133
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "Batal"
@@ -1198,26 +1207,26 @@ msgstr "Tampilan Cermin"
 msgid "(Disabled)"
 msgstr "(Dinonaktifkan)"
 
-#: ../dialogs/display-settings/main.c:4071
+#: ../dialogs/display-settings/main.c:4102
 #, c-format
 msgid "Only %s (1)"
 msgstr "Hanya %s (1)"
 
-#: ../dialogs/display-settings/main.c:4082
+#: ../dialogs/display-settings/main.c:4113
 #, c-format
 msgid "Only %s (2)"
 msgstr "Hanya %s (2)"
 
-#: ../dialogs/display-settings/main.c:4266
-#: ../dialogs/display-settings/main.c:4303
+#: ../dialogs/display-settings/main.c:4297
+#: ../dialogs/display-settings/main.c:4334
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Gagal menjalankan Pengaturan Layar Xfce"
 
-#: ../dialogs/display-settings/main.c:4298
+#: ../dialogs/display-settings/main.c:4329
 msgid "ATI Settings"
 msgstr "Pengaturan ATI"
 
-#: ../dialogs/display-settings/main.c:4313
+#: ../dialogs/display-settings/main.c:4344
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Tidak dapat menjalankan pengaturan dari driver paten"
 
@@ -1395,40 +1404,34 @@ msgid "A_pplication Shortcuts"
 msgstr "_Pintasan Aplikasi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-msgid "_Use system defaults"
-msgstr "_Gunakan standar sistem"
+msgid "<b>Use system defaults</b>"
+msgstr "<b>Gunakan bawaan sistem</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
-msgid ""
-"Specifies whether the keyboard layout is controlled with this settings "
-"dialog, or by the X server"
-msgstr "Menentukan apakah tata letak papan ketik dikendalikan oleh pengaturan ini atau oleh server X"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "Model papan ketik"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "Change la_yout option"
 msgstr "Ubah opsi tata _letak"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Co_mpose key"
 msgstr "Tombol Co_mpose"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Move currently selected item up by one row"
 msgstr "Pindahkan item terpilih satu baris ke atas"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item down by one row"
 msgstr "Pindahkan item terpilih satu baris ke bawah"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Key_board layout"
 msgstr "Tata letak papan _ketik"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "_Layout"
 msgstr "_Tata letak"
 
@@ -1445,46 +1448,46 @@ msgstr "Gagal menyambung ke jurik xfconf. Penyebab: %s"
 msgid "Could not create the settings dialog."
 msgstr "Tak dapat membuat dialog pengaturan."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
 msgid "Command"
 msgstr "Perintah"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
 msgid "Shortcut"
 msgstr "Pintasan"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
 msgid "Layout"
 msgstr "Tata letak"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
 msgid "Variant"
 msgstr "Jenis"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1246
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1247
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
 msgid "Reset to Defaults"
 msgstr "Set Ulang ke Standar"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1248
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Ini akan mengatur ulang semua pintasan ke kondisi standar. Anda yakin ingin melanjutkan?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1250
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "No"
 msgstr "Tidak"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1251
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid "Yes"
 msgstr "Ya"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
 msgid "The system defaults will be restored next time you log in."
 msgstr "Standar sistem akan diterapkan ketika anda log masuk kembali."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1329
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
 msgstr "Peringatan"
 
@@ -1749,139 +1752,143 @@ msgstr "Tidak ada perintah ditentukan"
 msgid "Failed to open %s for writing"
 msgstr "Gagal membuka %s untuk penulisan"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:184
+#: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
 msgstr "Aplikasi Baku"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:188
+#: ../dialogs/mime-settings/xfce-mime-window.c:191
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
 msgstr "Asosiasikan aplikasi yang disukai dengan tipe MIME"
 
 #. Internet
-#: ../dialogs/mime-settings/xfce-mime-window.c:211
+#: ../dialogs/mime-settings/xfce-mime-window.c:214
 msgid "_Internet"
 msgstr "_Internet"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:224
+#: ../dialogs/mime-settings/xfce-mime-window.c:227
 #: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
 msgid "Web Browser"
 msgstr "Peramban Web"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:232
+#: ../dialogs/mime-settings/xfce-mime-window.c:235
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr "Peramban Web baku akan digunakan untuk membuka tautan dan menampilkan halaman bantuan."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:255
+#: ../dialogs/mime-settings/xfce-mime-window.c:258
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
 msgid "Mail Reader"
 msgstr "Pembaca Surat"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:263
+#: ../dialogs/mime-settings/xfce-mime-window.c:266
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr "Pembaca Surel baku akan digunakan untuk menulis surel ketika Anda klik pada alamat surel."
 
 #. Utilities
-#: ../dialogs/mime-settings/xfce-mime-window.c:282
+#: ../dialogs/mime-settings/xfce-mime-window.c:285
 msgid "_Utilities"
 msgstr "_Utilitas"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:295
+#: ../dialogs/mime-settings/xfce-mime-window.c:298
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
 msgid "File Manager"
 msgstr "Manajer Berkas"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:303
+#: ../dialogs/mime-settings/xfce-mime-window.c:306
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr "Manajer Berkas baku akan digunakan untuk meramban isi folder."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:326
+#: ../dialogs/mime-settings/xfce-mime-window.c:329
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
 msgstr "Emulator Terminal"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:334
+#: ../dialogs/mime-settings/xfce-mime-window.c:337
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr "Emulator Terminal baku akan digunakan untuk menjalankan perintah yang memerlukan lingkungan CLI."
 
 #. Mimes
-#: ../dialogs/mime-settings/xfce-mime-window.c:353
+#: ../dialogs/mime-settings/xfce-mime-window.c:356
 msgid "_Others"
 msgstr "_Lainnya"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:363
+#: ../dialogs/mime-settings/xfce-mime-window.c:366
 msgid "_Filter:"
 msgstr "_Filter:"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:371
+#: ../dialogs/mime-settings/xfce-mime-window.c:374
 msgid "Clear filter"
 msgstr "Bersihkan filter"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:420
+#: ../dialogs/mime-settings/xfce-mime-window.c:404
+msgid "Open with..."
+msgstr "Buka dengan..."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:451
 msgid "MIME Type"
 msgstr "Tipe MIME"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:448
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
 msgid "Status"
 msgstr "Status"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:468
+#: ../dialogs/mime-settings/xfce-mime-window.c:499
 msgid "Default Application"
 msgstr "Aplikasi Standar"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:643
-#: ../dialogs/mime-settings/xfce-mime-window.c:768
+#: ../dialogs/mime-settings/xfce-mime-window.c:674
+#: ../dialogs/mime-settings/xfce-mime-window.c:816
 msgid "User Set"
 msgstr "Pengaturan Pengguna"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:645
-#: ../dialogs/mime-settings/xfce-mime-window.c:768
+#: ../dialogs/mime-settings/xfce-mime-window.c:676
+#: ../dialogs/mime-settings/xfce-mime-window.c:816
 #: ../dialogs/mouse-settings/main.c:397 ../dialogs/mouse-settings/main.c:399
 #: ../dialogs/mouse-settings/main.c:459
 msgid "Default"
 msgstr "Standar"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:714
+#: ../dialogs/mime-settings/xfce-mime-window.c:762
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d tipe MIME ditemukan"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:813
+#: ../dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Gagal mengatur aplikasi \"%s\" untuk tipe mime \"%s\"."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1070
+#: ../dialogs/mime-settings/xfce-mime-window.c:1124
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Apakah anda yakin ingin mengatur ulang kanal \"%s\"? dan semua propertinya?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1074
+#: ../dialogs/mime-settings/xfce-mime-window.c:1128
 msgid "Question"
 msgstr "Pertanyaan"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1077
+#: ../dialogs/mime-settings/xfce-mime-window.c:1131
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Perintah ini akan menghapus asosiasi mime suai anda dan mengembalikan standar seluruh sistem."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1081
-#: ../dialogs/mime-settings/xfce-mime-window.c:1152
+#: ../dialogs/mime-settings/xfce-mime-window.c:1135
+#: ../dialogs/mime-settings/xfce-mime-window.c:1206
 msgid "Reset to Default"
 msgstr "Set Ulang ke Standar"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1147
+#: ../dialogs/mime-settings/xfce-mime-window.c:1201
 msgid "Choose Application..."
 msgstr "Pilih Aplikasi..."
 
@@ -2401,9 +2408,19 @@ msgstr "Nilai"
 msgid "New property"
 msgstr "Properti baru"
 
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
+msgid "_Edit"
+msgstr "_Sunting"
+
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:341
 msgid "Edit selected property"
 msgstr "Sunting properti terpilih"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:349
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1038
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1377
+msgid "_Reset"
+msgstr "_Atur Ulang"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
 msgid "Reset selected property"
@@ -2477,11 +2494,6 @@ msgstr "Tutup"
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "mulai pantau kanal \"%s\""
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1038
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1377
-msgid "_Reset"
-msgstr "_Atur Ulang"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1044
 msgid "_Monitor"
@@ -2657,8 +2669,8 @@ msgid "Failed to launch shortcut \"%s\""
 msgstr "Gagal menjalankan jalan pintas \"%s\""
 
 #: ../xfsettingsd/main.c:103
-msgid "Do not fork to the background"
-msgstr "Jangan cabangkan di latar belakang"
+msgid "Fork to the background"
+msgstr "Jalankan di latar belakang"
 
 #: ../xfsettingsd/main.c:104
 msgid "Do not wait for a window manager on startup"
