@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-19 12:47+0200\n"
-"PO-Revision-Date: 2020-10-05 20:39+0000\n"
+"POT-Creation-Date: 2020-11-10 00:47+0100\n"
+"PO-Revision-Date: 2020-11-23 09:30+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/xfce4-settings/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Непознато"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4265
+#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4296
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Нисам успео да пропитам издање проширења Рандра које је у употреби"
@@ -78,9 +78,9 @@ msgstr "Подесите приступачност тастатуре и миш
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4305
+#: ../dialogs/display-settings/main.c:4336
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
-#: ../dialogs/mime-settings/xfce-mime-window.c:190
+#: ../dialogs/mime-settings/xfce-mime-window.c:193
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #: ../xfce4-settings-editor/main.c:166
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:228
@@ -92,7 +92,7 @@ msgstr "_Затвори"
 #: ../dialogs/color-settings/color-dialog.glade.h:4
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/mime-settings/xfce-mime-window.c:193
+#: ../dialogs/mime-settings/xfce-mime-window.c:196
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 #: ../xfce4-settings-editor/main.c:165
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:217
@@ -326,7 +326,7 @@ msgstr "Подаци о издању"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1170
 #: ../dialogs/color-settings/main.c:1390
-#: ../dialogs/display-settings/main.c:4233
+#: ../dialogs/display-settings/main.c:4264
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
@@ -339,7 +339,7 @@ msgstr "Упишите „%s --help“ за коришћење."
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1189
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4252
+#: ../dialogs/display-settings/main.c:4283
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
@@ -349,7 +349,7 @@ msgstr "Развојна дружина.Иксфце-а Сва права су �
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1190
 #: ../dialogs/color-settings/main.c:1408
-#: ../dialogs/display-settings/main.c:4253
+#: ../dialogs/display-settings/main.c:4284
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
@@ -698,35 +698,44 @@ msgid "<b>No profiles for the selected device.</b>"
 msgstr "<b>Нема пресека боја одабраног уређаја.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:11
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
+msgid "_Add"
+msgstr "_Додај"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "Add a profile to the currently selected device"
 msgstr "Додајте пресек боја изабраном уређају"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/color-settings/color-dialog.glade.h:13
+msgid "_Remove"
+msgstr "_Уклони"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:14
 msgid "Delete the currently selected profile"
 msgstr "Избриши тренутни пресек"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:13
+#: ../dialogs/color-settings/color-dialog.glade.h:15
 msgid "Show detailed information about the selected profile"
 msgstr "Прикажи опширно податке о одабраном пресеку"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:14
+#: ../dialogs/color-settings/color-dialog.glade.h:16
 msgid "Enable"
 msgstr "Омогући"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:15
+#: ../dialogs/color-settings/color-dialog.glade.h:17
 msgid "Enable the selected profile"
 msgstr "Омогући изабрани пресек"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:16
+#: ../dialogs/color-settings/color-dialog.glade.h:18
 msgid "Add Profile to Device"
 msgstr "Додај пресек уређају"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:17
+#: ../dialogs/color-settings/color-dialog.glade.h:19
 msgid "Add a Color Profile to your Device"
 msgstr "Додај пресек боја уређају"
 
 #. Create cancel button
-#: ../dialogs/color-settings/color-dialog.glade.h:18
+#: ../dialogs/color-settings/color-dialog.glade.h:20
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
 #: ../dialogs/keyboard-settings/command-dialog.c:280
@@ -737,7 +746,7 @@ msgstr "Додај пресек боја уређају"
 msgid "_Cancel"
 msgstr "_Откажи"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:19
+#: ../dialogs/color-settings/color-dialog.glade.h:21
 #: ../dialogs/keyboard-settings/command-dialog.c:120
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:541
@@ -745,7 +754,7 @@ msgstr "_Откажи"
 msgid "_OK"
 msgstr "_У реду"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:20
+#: ../dialogs/color-settings/color-dialog.glade.h:22
 msgid "Import color profile files (*.icc)"
 msgstr "Увези датотеке пресека боја (*.icc)"
 
@@ -1163,7 +1172,7 @@ msgstr "Ако ли се избрише пресек приказа не мож�
 #: ../dialogs/display-settings/main.c:2147
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
-#: ../dialogs/mime-settings/xfce-mime-window.c:1079
+#: ../dialogs/mime-settings/xfce-mime-window.c:1133
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "Откажи"
@@ -1201,26 +1210,26 @@ msgstr "Пресликај приказе"
 msgid "(Disabled)"
 msgstr "(Онемогућено)"
 
-#: ../dialogs/display-settings/main.c:4071
+#: ../dialogs/display-settings/main.c:4102
 #, c-format
 msgid "Only %s (1)"
 msgstr "Само %s (1)"
 
-#: ../dialogs/display-settings/main.c:4082
+#: ../dialogs/display-settings/main.c:4113
 #, c-format
 msgid "Only %s (2)"
 msgstr "Само %s (2)"
 
-#: ../dialogs/display-settings/main.c:4266
-#: ../dialogs/display-settings/main.c:4303
+#: ../dialogs/display-settings/main.c:4297
+#: ../dialogs/display-settings/main.c:4334
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Нисам успео да покренем поставке приказа Иксфце-а"
 
-#: ../dialogs/display-settings/main.c:4298
+#: ../dialogs/display-settings/main.c:4329
 msgid "ATI Settings"
 msgstr "Подешавања АТИ-а"
 
-#: ../dialogs/display-settings/main.c:4313
+#: ../dialogs/display-settings/main.c:4344
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Нисам успео да покренем поставке власничког управљачког програма"
 
@@ -1398,40 +1407,34 @@ msgid "A_pplication Shortcuts"
 msgstr "П_речице програма"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-msgid "_Use system defaults"
-msgstr "_Користи системски подразумеване"
+msgid "<b>Use system defaults</b>"
+msgstr "<b>Користи системски подразумевано</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
-msgid ""
-"Specifies whether the keyboard layout is controlled with this settings "
-"dialog, or by the X server"
-msgstr "Одредите да ли се распоред тастатуре подешава у прозорчету поставки, или сервером Икса"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "Модел тастатуре"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "Change la_yout option"
 msgstr "Измена могућности _распореда"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Co_mpose key"
 msgstr "Положај дугмета _састави (compoze)"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Move currently selected item up by one row"
 msgstr "Помери тренутно одабрану ставку један ред више"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item down by one row"
 msgstr "Помери тренутно одабрану ставку један ред ниже"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Key_board layout"
 msgstr "Распоред _тастатуре"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "_Layout"
 msgstr "_Распоред"
 
@@ -1448,46 +1451,46 @@ msgstr "Нисам успео да се повежем са домаром Ик�
 msgid "Could not create the settings dialog."
 msgstr "Нисам успео да направим прозорче поставки."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
 msgid "Command"
 msgstr "Наредба"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
 msgid "Shortcut"
 msgstr "Пречица"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
 msgid "Layout"
 msgstr "Распоред"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
 msgid "Variant"
 msgstr "Подврста"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1246
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1247
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
 msgid "Reset to Defaults"
 msgstr "Врати на подразумевано"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1248
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Ово ће вратити све пречице на њихове подразумеване вредности. Да ли то сигурно желите?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1250
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "No"
 msgstr "Не"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1251
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid "Yes"
 msgstr "Да"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
 msgid "The system defaults will be restored next time you log in."
 msgstr "Почетне вредности са система ће бити враћене при следећој пријави."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1329
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
 msgstr "Упозорење"
 
@@ -1752,108 +1755,112 @@ msgstr "Није наведена наредба"
 msgid "Failed to open %s for writing"
 msgstr "Нисам успео да отворим %s за писање"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:184
+#: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
 msgstr "Подразумевани програми"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:188
+#: ../dialogs/mime-settings/xfce-mime-window.c:191
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
 msgstr "Придружите омиљене програме МИМЕ врстама"
 
 #. Internet
-#: ../dialogs/mime-settings/xfce-mime-window.c:211
+#: ../dialogs/mime-settings/xfce-mime-window.c:214
 msgid "_Internet"
 msgstr "_Интернет"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:224
+#: ../dialogs/mime-settings/xfce-mime-window.c:227
 #: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
 msgid "Web Browser"
 msgstr "Прегледник мреже"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:232
+#: ../dialogs/mime-settings/xfce-mime-window.c:235
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr "Омиљени програм за преглед мрежних веза ће се користити за отварање супервеза и приказ садржаја помоћи."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:255
+#: ../dialogs/mime-settings/xfce-mime-window.c:258
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
 msgid "Mail Reader"
 msgstr "Читач поште"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:263
+#: ../dialogs/mime-settings/xfce-mime-window.c:266
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr "Омиљени читач поште ће се користити за писање електронских писама када кликнете на адресу е-поште."
 
 #. Utilities
-#: ../dialogs/mime-settings/xfce-mime-window.c:282
+#: ../dialogs/mime-settings/xfce-mime-window.c:285
 msgid "_Utilities"
 msgstr "_Прибор"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:295
+#: ../dialogs/mime-settings/xfce-mime-window.c:298
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
 msgid "File Manager"
 msgstr "Управник датотека"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:303
+#: ../dialogs/mime-settings/xfce-mime-window.c:306
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr "Омиљени управник датотека ће се користити за преглед садржаја фасцикли."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:326
+#: ../dialogs/mime-settings/xfce-mime-window.c:329
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
 msgstr "Опонашач терминала"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:334
+#: ../dialogs/mime-settings/xfce-mime-window.c:337
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr "Омиљени опонашач терминала ће се користити за извршавање наредби које захтевају наредбено сучеље."
 
 #. Mimes
-#: ../dialogs/mime-settings/xfce-mime-window.c:353
+#: ../dialogs/mime-settings/xfce-mime-window.c:356
 msgid "_Others"
 msgstr "_Остало"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:363
+#: ../dialogs/mime-settings/xfce-mime-window.c:366
 msgid "_Filter:"
 msgstr "_Услов:"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:371
+#: ../dialogs/mime-settings/xfce-mime-window.c:374
 msgid "Clear filter"
 msgstr "Поништи услов"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:420
+#: ../dialogs/mime-settings/xfce-mime-window.c:404
+msgid "Open with..."
+msgstr "Отвори помоћу..."
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:451
 msgid "MIME Type"
 msgstr "МИМЕ врста"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:448
+#: ../dialogs/mime-settings/xfce-mime-window.c:479
 msgid "Status"
 msgstr "Стање"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:468
+#: ../dialogs/mime-settings/xfce-mime-window.c:499
 msgid "Default Application"
 msgstr "Подразумевани програм"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:643
-#: ../dialogs/mime-settings/xfce-mime-window.c:768
+#: ../dialogs/mime-settings/xfce-mime-window.c:674
+#: ../dialogs/mime-settings/xfce-mime-window.c:816
 msgid "User Set"
 msgstr "Корисничкa поставка"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:645
-#: ../dialogs/mime-settings/xfce-mime-window.c:768
+#: ../dialogs/mime-settings/xfce-mime-window.c:676
+#: ../dialogs/mime-settings/xfce-mime-window.c:816
 #: ../dialogs/mouse-settings/main.c:397 ../dialogs/mouse-settings/main.c:399
 #: ../dialogs/mouse-settings/main.c:459
 msgid "Default"
 msgstr "Подразумевано"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:714
+#: ../dialogs/mime-settings/xfce-mime-window.c:762
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
@@ -1861,32 +1868,32 @@ msgstr[0] "Пронашао сам %d МИМЕ врсту"
 msgstr[1] "Пронашао сам %d МИМЕ врсте"
 msgstr[2] "Пронашао сам %d МИМЕ врста"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:813
+#: ../dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Нисам успео да придружим програм „%s“ врсти „%s“."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1070
+#: ../dialogs/mime-settings/xfce-mime-window.c:1124
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Да ли сигурно желите вратити уређивање врста „%s“ на подразумевано?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1074
+#: ../dialogs/mime-settings/xfce-mime-window.c:1128
 msgid "Question"
 msgstr "Упитник"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1077
+#: ../dialogs/mime-settings/xfce-mime-window.c:1131
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Ово ће уклонити корисничко придруживање програма врстама датотека на подразумеване вредности система."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1081
-#: ../dialogs/mime-settings/xfce-mime-window.c:1152
+#: ../dialogs/mime-settings/xfce-mime-window.c:1135
+#: ../dialogs/mime-settings/xfce-mime-window.c:1206
 msgid "Reset to Default"
 msgstr "Враћати на подразумеване вредности"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1147
+#: ../dialogs/mime-settings/xfce-mime-window.c:1201
 msgid "Choose Application..."
 msgstr "Изаберите програм..."
 
@@ -2406,9 +2413,19 @@ msgstr "Вредност"
 msgid "New property"
 msgstr "Нова особина"
 
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
+msgid "_Edit"
+msgstr "_Уређивање"
+
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:341
 msgid "Edit selected property"
 msgstr "Уреди изабрану особину"
+
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:349
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1038
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1377
+msgid "_Reset"
+msgstr "_Врати на подразумевано"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
 msgid "Reset selected property"
@@ -2482,11 +2499,6 @@ msgstr "Затвори"
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "почни надгледање канала „%s“"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1038
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1377
-msgid "_Reset"
-msgstr "_Врати на подразумевано"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1044
 msgid "_Monitor"
@@ -2662,8 +2674,8 @@ msgid "Failed to launch shortcut \"%s\""
 msgstr "Нисам успео да покренем пречицу „%s“"
 
 #: ../xfsettingsd/main.c:103
-msgid "Do not fork to the background"
-msgstr "Не рачвај на рад у позадини"
+msgid "Fork to the background"
+msgstr "Рачвај у позадину"
 
 #: ../xfsettingsd/main.c:104
 msgid "Do not wait for a window manager on startup"
