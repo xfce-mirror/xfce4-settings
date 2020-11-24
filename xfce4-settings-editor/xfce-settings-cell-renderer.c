@@ -161,6 +161,7 @@ xfce_settings_cell_renderer_init (XfceSettingsCellRenderer *renderer)
 {
     renderer->renderer_text = gtk_cell_renderer_text_new ();
     g_object_ref_sink (G_OBJECT (renderer->renderer_text));
+    g_object_set (renderer->renderer_text, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
     renderer->renderer_toggle = gtk_cell_renderer_toggle_new ();
     g_object_ref_sink (G_OBJECT (renderer->renderer_toggle));
