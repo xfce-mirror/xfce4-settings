@@ -118,6 +118,8 @@ typedef struct
 } preview_data;
 
 
+static void install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder);
+
 static preview_data *
 preview_data_new (GtkListStore *list_store,
                   GtkTreeView *tree_view)
@@ -836,6 +838,18 @@ cb_theme_uri_dropped (GtkWidget        *widget,
                       GtkBuilder       *builder)
 {
     gchar        **uris;
+
+    uris = gtk_selection_data_get_uris (data);
+
+    if (uris)
+        install_theme (widget, uris, builder);
+    else
+        return;
+}
+
+static void
+install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder)
+{
     gchar         *argv[3];
     guint          i;
     GError        *error = NULL;
@@ -848,10 +862,6 @@ cb_theme_uri_dropped (GtkWidget        *widget,
     GObject       *object;
     GtkTreeModel  *model;
     preview_data  *pd;
-
-    uris = gtk_selection_data_get_uris (data);
-    if (uris == NULL)
-        return;
 
     argv[0] = HELPERDIR G_DIR_SEPARATOR_S "appearance-install-theme";
     argv[2] = NULL;
@@ -947,6 +957,53 @@ cb_theme_uri_dropped (GtkWidget        *widget,
 }
 
 static void
+appearance_settings_install_theme_cb (GtkButton *widget, GtkBuilder *builder)
+{
+    GtkWidget *window;
+    GtkWidget *dialog;
+    GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
+    GtkFileFilter *filter;
+    gint res;
+    gchar *theme;
+    gchar *title;
+
+    window = gtk_widget_get_toplevel (GTK_WIDGET (widget));
+    g_object_get (G_OBJECT (widget), "name", &theme, NULL);
+    title = g_strdup_printf (_("Install %s theme"), theme);
+    dialog = gtk_file_chooser_dialog_new (title,
+                                          GTK_WINDOW (window),
+                                          action,
+                                          _("_Cancel"),
+                                          GTK_RESPONSE_CANCEL,
+                                          _("_Open"),
+                                          GTK_RESPONSE_ACCEPT,
+                                          NULL);
+    filter = gtk_file_filter_new ();
+    gtk_file_filter_add_pattern (filter, "*.tar*");
+    gtk_file_filter_add_pattern (filter, "*.zip");
+    gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (dialog), filter);
+    gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (dialog), FALSE);
+
+    res = gtk_dialog_run (GTK_DIALOG (dialog));
+    if (res == GTK_RESPONSE_ACCEPT)
+    {
+        gchar *filename;
+        gchar **uris;
+        GtkFileChooser *chooser = GTK_FILE_CHOOSER (dialog);
+
+        uris = g_new0 (gchar *, 1);
+        filename = gtk_file_chooser_get_filename (chooser);
+        uris[0] = g_filename_to_uri (filename, NULL, NULL);
+        install_theme (window, uris, builder);
+        g_free (filename);
+    }
+
+    gtk_widget_destroy (dialog);
+    g_free (title);
+    g_free (theme);
+}
+
+static void
 appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 {
     GObject           *object, *object2;
@@ -958,6 +1015,10 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     preview_data      *pd;
 
     /* Icon themes list */
+    object = gtk_builder_get_object (builder, "install_icon_theme");
+    g_object_set (object, "name", "icon", NULL);
+    g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
+
     object = gtk_builder_get_object (builder, "icon_theme_treeview");
 
     list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
@@ -1042,6 +1103,9 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
                        theme_drop_targets, G_N_ELEMENTS (theme_drop_targets),
                        GDK_ACTION_COPY);
     g_signal_connect (G_OBJECT (object), "drag-data-received", G_CALLBACK (cb_theme_uri_dropped), builder);
+    object = gtk_builder_get_object (builder, "install_gtk_theme");
+    g_object_set (object, "name", "Gtk", NULL);
+    g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
 
     /* Subpixel (rgba) hinting Combo */
     object = gtk_builder_get_object (builder, "xft_rgba_store");
