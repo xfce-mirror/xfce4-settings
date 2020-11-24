@@ -1235,7 +1235,7 @@ xfce_settings_editor_box_selection_changed (GtkTreeSelection         *selection,
  *      subject: Replace the content savely
  *               or keeps it untouched (if no transformation done)
  * Return:
- *      TRUE, if transformation was successfull
+ *      TRUE, if transformation was successful
  *      FALSE, if transformation was unsuccessfull
  **/
 static gboolean
