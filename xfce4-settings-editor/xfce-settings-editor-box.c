@@ -1232,7 +1232,7 @@ xfce_settings_editor_box_selection_changed (GtkTreeSelection         *selection,
  *      Try to transform any GValue type used in the treeview
  *       to a GValue of type G_TYPE_STRING.
  * Param:
- *      subject: Replace the content savely
+ *      subject: Replace the content safely
  *               or keeps it untouched (if no transformation done)
  * Return:
  *      TRUE, if transformation was successful
