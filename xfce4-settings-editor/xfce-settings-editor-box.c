@@ -134,6 +134,11 @@ static void     xfce_settings_editor_box_property_new         (XfceSettingsEdito
 static void     xfce_settings_editor_box_property_edit        (XfceSettingsEditorBox  *self);
 static void     xfce_settings_editor_box_property_reset       (XfceSettingsEditorBox  *self);
 
+static gboolean transform_g_value_to_string_type              (GValue                 *subject);
+static gboolean set_tooltip_from_treemodel_iterator           (GtkTreeModel           *model,
+                                                               GtkTreeIter             iter,
+                                                               gint                    treeview_column_idx,
+                                                               GtkTooltip             *tooltip);
 
 
 G_DEFINE_TYPE (XfceSettingsEditorBox, xfce_settings_editor_box, GTK_TYPE_BOX)
@@ -177,6 +182,7 @@ static void xfce_settings_editor_box_set_property (GObject *object,
 		break;
     }
 }
+
 
 static void
 xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
@@ -1221,6 +1227,97 @@ xfce_settings_editor_box_selection_changed (GtkTreeSelection         *selection,
     gtk_widget_set_sensitive (self->button_reset, can_reset);
 }
 
+/**
+ * transform_g_value_to_string:
+ *      Try to transform any GValue type used in the treeview
+ *       to a GValue of type G_TYPE_STRING.
+ * Param:
+ *      subject: Replace the content safely
+ *               or leave it unaltered
+ * Return:
+ *      TRUE, if transformation was successful
+ *      FALSE, if transformation was unsuccessful
+ **/
+static gboolean
+transform_g_value_to_string_type (GValue * subject)
+{
+    if (NULL == subject)
+        return FALSE;
+
+    /* The GValue might contain a GValue */
+    if (G_VALUE_TYPE (subject) == G_TYPE_VALUE)
+    {
+        GValue* g_value_value = g_value_get_boxed (subject);
+        if (g_value_value)
+        {
+            /* transform to string */
+            GValue  string_value = { 0, };
+            g_value_init (&string_value, G_TYPE_STRING);
+            g_value_transform (g_value_value, &string_value);
+            g_value_unset (g_value_value);
+
+            /* replace subject */
+            g_value_unset (subject);
+            *subject = string_value;
+
+            /* @g_value_unset(string_value)
+            Resources of string_value will be returned (through param)
+            so there's no g_value_unset() */
+        }
+    }
+
+    if (G_VALUE_TYPE (subject) == G_TYPE_STRING)
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+
+/**
+ * Params:
+ *      All params are expected to be valid and not NULL.
+ * Return:
+ *      TRUE, if a tooltip was actually set
+ *      FALSE, if no tooltip was set
+ **/
+static gboolean
+set_tooltip_from_treemodel_iterator (GtkTreeModel *model,
+                                     GtkTreeIter iter,
+                                     gint treeview_column_idx,
+                                     GtkTooltip *tooltip)
+{
+    gboolean     tooltip_set   = FALSE;
+    GValue       value         = { 0, };
+    gint         treemodel_idx = 0;
+    const gchar *tooltip_text  = "";
+
+    /* map view-index (0-3) to model-index (PROP_COLUMN_*) */
+    if(0 == treeview_column_idx)
+        treemodel_idx = PROP_COLUMN_FULL;
+    else if (3 == treeview_column_idx)
+        treemodel_idx = PROP_COLUMN_VALUE;
+    else
+        treemodel_idx = PROP_COLUMN_TYPE;
+
+    gtk_tree_model_get_value (model, &iter, treemodel_idx, &value);
+    if (transform_g_value_to_string_type (&value) == TRUE)
+    {
+        tooltip_text = g_value_get_string (&value);
+
+        if (tooltip_text &&
+            g_str_equal(tooltip_text,"") == FALSE)
+        {
+            gtk_tooltip_set_text (tooltip, tooltip_text);
+            tooltip_set = TRUE;
+        }
+    }
+
+    g_value_unset (&value);
+
+    return tooltip_set;
+}
+
 
 
 static gboolean
@@ -1233,13 +1330,11 @@ xfce_settings_editor_box_query_tooltip (GtkWidget                *treeview,
 {
     GtkTreeIter        iter;
     GtkTreePath       *path;
-    GValue             value = { 0, };
     GtkTreeModel      *model;
     gboolean           show = FALSE;
-    const gchar       *text;
     GtkTreeViewColumn *column;
     GList             *columns;
-    gint               idx;
+    gint               treeview_column_idx;
 
     gtk_tree_view_convert_widget_to_bin_window_coords (GTK_TREE_VIEW (treeview), x, y, &x, &y);
 
@@ -1247,22 +1342,13 @@ xfce_settings_editor_box_query_tooltip (GtkWidget                *treeview,
                                        &column, NULL, NULL))
     {
         columns = gtk_tree_view_get_columns (GTK_TREE_VIEW (treeview));
-        idx = g_list_index (columns, column);
+        treeview_column_idx = g_list_index (columns, column);
         g_list_free (columns);
 
         model = GTK_TREE_MODEL (self->props_store);
-        if (idx < 2 && gtk_tree_model_get_iter (model, &iter, path))
+        if (gtk_tree_model_get_iter (model, &iter, path))
         {
-            gtk_tree_model_get_value (model, &iter,
-                idx == 0 ? PROP_COLUMN_FULL : PROP_COLUMN_TYPE, &value);
-
-            text = g_value_get_string (&value);
-            if (text != NULL)
-            {
-                gtk_tooltip_set_text (tooltip, text);
-                show = TRUE;
-            }
-            g_value_unset (&value);
+            show = set_tooltip_from_treemodel_iterator (model, iter, treeview_column_idx, tooltip);
         }
 
         gtk_tree_path_free (path);
