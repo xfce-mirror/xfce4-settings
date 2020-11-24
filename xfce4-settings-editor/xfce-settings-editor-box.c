@@ -1233,7 +1233,7 @@ xfce_settings_editor_box_selection_changed (GtkTreeSelection         *selection,
  *       to a GValue of type G_TYPE_STRING.
  * Param:
  *      subject: Replace the content safely
- *               or keeps it untouched (if no transformation done)
+ *               or leave it unaltered
  * Return:
  *      TRUE, if transformation was successful
  *      FALSE, if transformation was unsuccessful
