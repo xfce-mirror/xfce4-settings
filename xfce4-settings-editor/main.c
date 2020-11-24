@@ -81,7 +81,7 @@ settings_dialog_response (GtkWidget *dialog,
     if (response_id == GTK_RESPONSE_HELP)
 		xfce_dialog_show_help_with_version (GTK_WINDOW (dialog),
                                             "xfce4-settings",
-                                            "settings-editor", NULL,
+                                            "editor", NULL,
                                             XFCE4_SETTINGS_VERSION_SHORT);
 	else
 	{
