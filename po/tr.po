@@ -7,7 +7,8 @@
 # aybuke <aybuke.147@gmail.com>, 2013
 # Demiray Muhterem <mdemiray@msn.com>, 2018-2020
 # Demiray Muhterem <mdemiray@msn.com>, 2018
-# Emin Tufan <etcetin@gmail.com>, 2020
+# Emin Tufan Çetin <etcetin@gmail.com>, 2020
+# Emin Tufan Çetin <etcetin@gmail.com>, 2020
 # Muhammet Kara <muhammetk@gmail.com>, 2018
 # Natavan Mirzayeva <mirzayevanatavan@gmail.com>, 2015
 # Necdet Yücel <necdetyucel@gmail.com>, 2013-2014,2017
@@ -18,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 00:47+0100\n"
-"PO-Revision-Date: 2020-11-16 00:21+0000\n"
-"Last-Translator: Emin Tufan <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2020-11-25 00:46+0100\n"
+"PO-Revision-Date: 2020-11-25 18:56+0000\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfce4-settings/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -328,7 +329,7 @@ msgid "Version information"
 msgstr "Sürüm bilgisi"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1170
+#: ../dialogs/appearance-settings/main.c:1234
 #: ../dialogs/color-settings/main.c:1390
 #: ../dialogs/display-settings/main.c:4264
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
@@ -341,7 +342,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Kullanım için '%s --help' yazın"
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1189
+#: ../dialogs/appearance-settings/main.c:1253
 #: ../dialogs/color-settings/main.c:1407
 #: ../dialogs/display-settings/main.c:4283
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
@@ -351,7 +352,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce geliştirme takımı. Tüm hakları saklıdır."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1190
+#: ../dialogs/appearance-settings/main.c:1254
 #: ../dialogs/color-settings/main.c:1408
 #: ../dialogs/display-settings/main.c:4284
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
@@ -372,7 +373,7 @@ msgid ""
 msgstr "yardımcı;destekleyici;teknolojiler;tuşlar;yapışkan;zıplayan;sektirme;öykünme;emülasyon;ekran okuyucular;büyüteçler;a11y;i18n;l10n;AT-SPI;ATK;özürlülük;sakatlık;engellilik;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1050
+#: ../dialogs/appearance-settings/main.c:1114
 #: ../dialogs/display-settings/main.c:106
 #: ../dialogs/display-settings/main.c:117
 msgid "None"
@@ -426,203 +427,233 @@ msgid "Customize the look of your desktop"
 msgstr "Masaüstünüzün görünümünü özelleştirin"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/color-settings/color-dialog.glade.h:11
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:328
+msgid "_Add"
+msgstr "_Ekle"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
 msgstr "_Biçim"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "_Icons"
 msgstr "_Simgeler"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "Bu yazı tipi kullanıcı arayüz metni çizilirken öntanımlı olarak kullanılacaktır"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Select a default font"
 msgstr "Öntanımlı yazı tipini seç"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Default Fon_t"
 msgstr "Öntanımlı _Yazı Tipi"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr "Bu yazı tipi öntanımlı eş aralıklı yazı tipidir, örneğin uçbirimce kullanılır."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Select a default monospace font"
 msgstr "Öntanımlı eş aralıklı yazı tipi seç"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Default _Monospace Font"
 msgstr "Öntanımlı  _Eş Aralıklı Yazı Tipi"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "_Enable anti-aliasing"
 msgstr "_Kenar yumuşatmayı etkinleştir"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Yazı tipi kenarlarını yumuşatarak ekrandaki metin görüntüsünü iyileştirebilirsiniz"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid "Hintin_g:"
 msgstr "İ_pucu:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Birçok yazı tipi en iyi biçimde çizilebilmek için ek bilgiler içerir; kişisel tercihinize en çok uyanı seçin"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Sub-_pixel order:"
 msgstr "Alt-_piksel sırası:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "TFT veya LCD ekranlarda doğru alt piksel sırasını seçmek yazı tipi kalitesini ciddi olarak arttıracaktır"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Rendering"
 msgstr "İşleyici"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "Custom _DPI setting:"
 msgstr "Özel _DPI ayarları:"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Yazı tipleri çok büyük veya çok küçük görünürse saptanan ekran çözünürlüğünün üzerine yaz"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "DPI"
 msgstr "DPI"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "_Fonts"
 msgstr "_Yazı Tipleri"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Show images on _buttons"
 msgstr "Düğmelerde görüntüleri _göster"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Düğmelerde metin yanında simgelerin gösterilip gösterilmeyeceğini belirle"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Show images in _menus"
 msgstr "_Menülerde görüntüleri göster"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Menülerde metin yanında simgelerin gösterilip gösterilmeyeceğini belirle"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Enable e_ditable accelerators"
 msgstr "_Düzenlenebilir hızlandırıcıları etkinleştir"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Seçildiğinde menü için klavye kısayolları fareyi menü nesnesinin üzerine getirip yeni tuş kombinasyonuna basarak değiştirilebilir"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Menus and Buttons"
 msgstr "Menüler ve Düğmeler"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Enable _event sounds"
 msgstr "Olay seslerini _etkinleştir"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Eylem seslerini sistem genelinde aç veya kapat (\"Canberra\" desteği gerektirir)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid "Enable input feedbac_k sounds"
 msgstr "Girdi geribesleme seslerini etkinleştir"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Fare tıklaması ve diğer kullanıcı girdilerinin çalışıp çalınmayacağını belirtin"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Event sounds"
 msgstr "Olay sesleri"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "Adjust the system-wide display scaling"
 msgstr "Sistem geneli görüntüleme ölçeklemesini ayarla"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "_Window Scaling"
 msgstr "_Pencere Ölçekleme"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
 msgid "Setti_ngs"
 msgstr "Ay_arlar"
 
-#: ../dialogs/appearance-settings/main.c:448
+#: ../dialogs/appearance-settings/main.c:450
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Uyarı: bu simge temasının önbellek dosyası yok. Bir terminalden <i>gtk-update-icon-cache %s/%s/</i> komutunu çalıştırarak oluşturabilirsiniz."
 
-#: ../dialogs/appearance-settings/main.c:883
+#: ../dialogs/appearance-settings/main.c:893
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Dosya %d MB'tan daha büyük, kurulum iptal edildi"
 
-#: ../dialogs/appearance-settings/main.c:888
+#: ../dialogs/appearance-settings/main.c:898
 msgid "Failed to create temporary directory"
 msgstr "Geçici dizin oluşturulamadı"
 
-#: ../dialogs/appearance-settings/main.c:893
+#: ../dialogs/appearance-settings/main.c:903
 msgid "Failed to extract archive"
 msgstr "Arşiv açılamadı"
 
-#: ../dialogs/appearance-settings/main.c:898
+#: ../dialogs/appearance-settings/main.c:908
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Bilinmeyen biçim, yalnızca arşivler ve dizinler destekleniyor"
 
-#: ../dialogs/appearance-settings/main.c:903
+#: ../dialogs/appearance-settings/main.c:913
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Bilinmeyen hata, çıkış kodu %d"
 
-#: ../dialogs/appearance-settings/main.c:910
+#: ../dialogs/appearance-settings/main.c:920
 msgid "Failed to install theme"
 msgstr "Tema yüklenemedi"
 
-#: ../dialogs/appearance-settings/main.c:1054
+#: ../dialogs/appearance-settings/main.c:972
+#, c-format
+msgid "Install %s theme"
+msgstr "%s temasını kur"
+
+#. Create cancel button
+#: ../dialogs/appearance-settings/main.c:976
+#: ../dialogs/color-settings/color-dialog.glade.h:20
+#: ../dialogs/color-settings/main.c:130
+#: ../dialogs/keyboard-settings/command-dialog.c:116
+#: ../dialogs/keyboard-settings/command-dialog.c:280
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:395
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:109
+msgid "_Cancel"
+msgstr "İ_ptal"
+
+#: ../dialogs/appearance-settings/main.c:978
+#: ../dialogs/keyboard-settings/command-dialog.c:281
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:396
+msgid "_Open"
+msgstr "_Aç"
+
+#: ../dialogs/appearance-settings/main.c:1118
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1058
+#: ../dialogs/appearance-settings/main.c:1122
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1062
+#: ../dialogs/appearance-settings/main.c:1126
 msgid "Vertical RGB"
 msgstr "Dikey RGB"
 
-#: ../dialogs/appearance-settings/main.c:1066
+#: ../dialogs/appearance-settings/main.c:1130
 msgid "Vertical BGR"
 msgstr "Dikey BGR"
 
@@ -701,11 +732,6 @@ msgstr "Kalibrasyon"
 msgid "<b>No profiles for the selected device.</b>"
 msgstr "<b>Seçilen aygıt için profil yok.</b>"
 
-#: ../dialogs/color-settings/color-dialog.glade.h:11
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
-msgid "_Add"
-msgstr "_Ekle"
-
 #: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "Add a profile to the currently selected device"
 msgstr "Seçili aygıta profil ekle"
@@ -737,18 +763,6 @@ msgstr "Aygıta Profil Ekle"
 #: ../dialogs/color-settings/color-dialog.glade.h:19
 msgid "Add a Color Profile to your Device"
 msgstr "Aygıtınıza Renk Profili Ekleyin"
-
-#. Create cancel button
-#: ../dialogs/color-settings/color-dialog.glade.h:20
-#: ../dialogs/color-settings/main.c:130
-#: ../dialogs/keyboard-settings/command-dialog.c:116
-#: ../dialogs/keyboard-settings/command-dialog.c:280
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:395
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:540
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:109
-msgid "_Cancel"
-msgstr "İ_ptal"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:21
 #: ../dialogs/keyboard-settings/command-dialog.c:120
@@ -1271,11 +1285,6 @@ msgstr "Komut boş olamaz"
 #: ../dialogs/keyboard-settings/command-dialog.c:277
 msgid "Select command"
 msgstr "Komut seç"
-
-#: ../dialogs/keyboard-settings/command-dialog.c:281
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:396
-msgid "_Open"
-msgstr "_Aç"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:285
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:389
@@ -2392,130 +2401,130 @@ msgstr "Ayarlar Düzenleyici"
 msgid "Customize settings stored by Xfconf"
 msgstr "Xfconf'un barındırdığı ayarları özelleştir"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:253
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:258
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:287
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:292
 msgid "Property"
 msgstr "Özellik"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:294
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:299
 msgid "Type"
 msgstr "Tür"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:301
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:306
 msgid "Locked"
 msgstr "Kilitli"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:308
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:313
 msgid "Value"
 msgstr "Değer"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:328
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:333
 msgid "New property"
 msgstr "Yeni özellik"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:341
 msgid "_Edit"
 msgstr "_Düzenle"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:341
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:346
 msgid "Edit selected property"
 msgstr "Seçilen özelliği düzenle"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:349
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1038
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1377
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1043
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1465
 msgid "_Reset"
 msgstr "_Sıfırla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:359
 msgid "Reset selected property"
 msgstr "Seçilen özelliği sıfırla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:461
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:552
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:671
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:466
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:557
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:676
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "Boş"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:464
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:469
 msgid "Array"
 msgstr "Dizi"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:469
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:474
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "Dizge"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:477
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:482
 msgid "Integer"
 msgstr "Tam Sayı"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:480
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:485
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "Boolean"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:483
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:488
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "Duble"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:817
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:822
 msgid "_Reset Channel"
 msgstr "Kanalı Sıfı_rla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:818
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:823
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Kanalı sıfırlamak özelleştirilmiş ayarları kalıcı olarak kaldıracaktır."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:819
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:824
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "\"%s\" kanalını ve tüm özelliklerini sıfırlamak istediğinizden emin misiniz?"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:894
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:899
 msgid "reset"
 msgstr "sıfırla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:951
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:956
 #, c-format
 msgid "Monitor %s"
 msgstr "Ekran %s"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:959
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:964
 msgid "Watch an Xfconf channel for property changes"
 msgstr "Özellik değişiklikleri için Xfconf kanalını izle"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:961
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:966
 msgid "Clear"
 msgstr "Temizle"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:962
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:967
 msgid "Close"
 msgstr "Kapat"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:995
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1000
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "\"%s\" kanalını göstermeye başla"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1044
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1049
 msgid "_Monitor"
 msgstr "_Ekran"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1054
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1059
 msgid "Refresh"
 msgstr "Tazele"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1378
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1466
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Özelliği sıfırlamak tüm özel ayarları kalıcı olarak silecektir."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1379
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1467
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "\"%s\" özelliğini sıfırlamak istediğinizden emin misiniz?"
