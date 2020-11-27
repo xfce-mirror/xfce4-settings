@@ -237,7 +237,6 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (self->channels_store));
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), TRUE);
     gtk_tree_view_set_headers_clickable (GTK_TREE_VIEW (treeview), FALSE);
-    gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (treeview), TRUE);
     gtk_tree_view_set_enable_search (GTK_TREE_VIEW (treeview), FALSE);
     gtk_container_add (GTK_CONTAINER (scroll), treeview);
     self->channels_treeview = treeview;
