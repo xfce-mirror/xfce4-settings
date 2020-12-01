@@ -678,6 +678,11 @@ xfce_mime_helper_database_get_default (XfceMimeHelperDatabase *database,
       id = xfce_rc_read_entry_untranslated (rc, key, NULL);
       if (G_LIKELY (id != NULL))
         helper = xfce_mime_helper_database_lookup (database, category, id);
+
+      /* handle migrating from Xfce 4.14 or older */
+      if (helper == NULL && g_strcmp0 (id, "Thunar") == 0)
+        helper = xfce_mime_helper_database_lookup (database, category, "thunar");
+
       xfce_rc_close (rc);
       g_free (key);
     }
