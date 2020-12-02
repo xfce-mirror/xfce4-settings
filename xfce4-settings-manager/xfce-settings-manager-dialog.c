@@ -155,7 +155,7 @@ xfce_settings_manager_dialog_class_init (XfceSettingsManagerDialogClass *klass)
 
 
 
-static gboolean
+static void
 xfce_settings_manager_queue_resize (XfceSettingsManagerDialog *dialog)
 {
     GList *li;
@@ -166,7 +166,14 @@ xfce_settings_manager_queue_resize (XfceSettingsManagerDialog *dialog)
         category = li->data;
         gtk_widget_queue_resize (GTK_WIDGET (category->iconview));
     }
+}
 
+static gboolean
+xfce_settings_manager_queue_resize_cb (gpointer user_data)
+{
+    XfceSettingsManagerDialog *dialog = user_data;
+
+    xfce_settings_manager_queue_resize (dialog);
     return FALSE;
 }
 
@@ -719,7 +726,7 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget                 *entry,
             gtk_widget_set_visible (category->box, n_children > 0);
         }
 
-        g_idle_add ((GSourceFunc) xfce_settings_manager_queue_resize, dialog);
+        g_idle_add (xfce_settings_manager_queue_resize_cb, dialog);
     }
     else
     {
@@ -1323,7 +1330,7 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
         g_error_free (error);
     }
 
-    g_idle_add ((GSourceFunc) xfce_settings_manager_queue_resize, dialog);
+    g_idle_add (xfce_settings_manager_queue_resize_cb, dialog);
 }
 
 

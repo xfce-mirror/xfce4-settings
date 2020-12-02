@@ -334,8 +334,9 @@ cb_enable_event_sounds_check_button_toggled (GtkToggleButton *toggle, GtkWidget 
 #endif
 
 static gboolean
-appearance_settings_load_icon_themes (preview_data *pd)
+appearance_settings_load_icon_themes (gpointer user_data)
 {
+    preview_data *pd = user_data;
     GtkListStore *list_store;
     GtkTreeView  *tree_view;
     GDir         *dir;
@@ -506,8 +507,9 @@ appearance_settings_load_icon_themes (preview_data *pd)
 }
 
 static gboolean
-appearance_settings_load_ui_themes (preview_data *pd)
+appearance_settings_load_ui_themes (gpointer user_data)
 {
+    preview_data *pd = user_data;
     GtkListStore *list_store;
     GtkTreeView  *tree_view;
     GDir         *dir;
@@ -525,8 +527,6 @@ appearance_settings_load_ui_themes (preview_data *pd)
     gchar        *comment_escaped;
     gint          i;
     GSList       *check_list = NULL;
-
-    g_return_val_if_fail (pd != NULL, FALSE);
 
     list_store = pd->list_store;
     tree_view = pd->tree_view;
@@ -794,10 +794,11 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
 
             gtk_list_store_clear (GTK_LIST_STORE (model));
             pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
-            g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
-                             (GSourceFunc) appearance_settings_load_icon_themes,
-                             pd,
-                             (GDestroyNotify) preview_data_free);
+            if (pd)
+                g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                                 appearance_settings_load_icon_themes,
+                                 pd,
+                                 (GDestroyNotify) preview_data_free);
         }
 
         /* Keep gsettings in sync */
@@ -939,20 +940,22 @@ install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder)
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
         gtk_list_store_clear (GTK_LIST_STORE (model));
         pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
-        g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
-                         (GSourceFunc) appearance_settings_load_icon_themes,
-                         pd,
-                         (GDestroyNotify) preview_data_free);
+        if (pd)
+            g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                             appearance_settings_load_icon_themes,
+                             pd,
+                             (GDestroyNotify) preview_data_free);
 
         /* reload gtk theme treeview */
         object = gtk_builder_get_object (builder, "gtk_theme_treeview");
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
         gtk_list_store_clear (GTK_LIST_STORE (model));
         pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
-        g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-                         (GSourceFunc) appearance_settings_load_ui_themes,
-                         pd,
-                         (GDestroyNotify) preview_data_free);
+        if (pd)
+            g_idle_add_full (G_PRIORITY_HIGH_IDLE,
+                             appearance_settings_load_ui_themes,
+                             pd,
+                             (GDestroyNotify) preview_data_free);
     }
 }
 
@@ -1048,10 +1051,11 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_object_set (G_OBJECT (renderer), "icon-name", "dialog-warning", NULL);
 
     pd = preview_data_new (GTK_LIST_STORE (list_store), GTK_TREE_VIEW (object));
-    g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
-                     (GSourceFunc) appearance_settings_load_icon_themes,
-                     pd,
-                     (GDestroyNotify) preview_data_free);
+    if (pd)
+        g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                         appearance_settings_load_icon_themes,
+                         pd,
+                         (GDestroyNotify) preview_data_free);
 
     g_object_unref (G_OBJECT (list_store));
 
@@ -1088,10 +1092,11 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
     pd = preview_data_new (list_store, GTK_TREE_VIEW (object));
-    g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-                     (GSourceFunc) appearance_settings_load_ui_themes,
-                     pd,
-                     (GDestroyNotify) preview_data_free);
+    if (pd)
+        g_idle_add_full (G_PRIORITY_HIGH_IDLE,
+                         appearance_settings_load_ui_themes,
+                         pd,
+                         (GDestroyNotify) preview_data_free);
 
     g_object_unref (G_OBJECT (list_store));
 
