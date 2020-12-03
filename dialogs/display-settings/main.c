@@ -302,8 +302,9 @@ display_setting_combo_box_get_value (GtkComboBox *combobox,
 }
 
 static gboolean
-display_settings_update_time_label (ConfirmationDialog *confirmation_dialog)
+display_settings_update_time_label (gpointer user_data)
 {
+    ConfirmationDialog *confirmation_dialog = user_data;
     GObject *dialog;
 
     dialog = gtk_builder_get_object (confirmation_dialog->builder, "dialog1");
@@ -364,7 +365,7 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
 
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
         gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
-        source_id = g_timeout_add_seconds (1, (GSourceFunc) display_settings_update_time_label,
+        source_id = g_timeout_add_seconds (1, display_settings_update_time_label,
                                            confirmation_dialog);
 
         response_id = gtk_dialog_run (GTK_DIALOG (dialog));
