@@ -959,8 +959,6 @@ xfce_settings_editor_box_channel_monitor (XfceSettingsEditorBox *self)
     gtk_window_set_icon_name (GTK_WINDOW (window), "utilities-system-monitor");
     gtk_window_set_default_size (GTK_WINDOW (window), 600, 400);
     gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_NORMAL);
-    xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (window),
-        _("Watch an Xfconf channel for property changes"));
     gtk_dialog_add_buttons (GTK_DIALOG (window),
                             _("Clear"), GTK_RESPONSE_REJECT,
                             _("Close"), GTK_RESPONSE_CLOSE, NULL);
