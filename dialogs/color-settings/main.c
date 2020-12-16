@@ -513,7 +513,6 @@ color_settings_profile_add_cb (GtkButton *button, ColorSettings *settings)
     window_title = g_strdup_printf ("Add Color Profile to %s",
                                     color_device_get_kind (settings->current_device) ? color_device_get_kind (settings->current_device) : "Device");
     gtk_window_set_title (GTK_WINDOW (settings->dialog_assign), window_title);
-    xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (settings->dialog_assign), color_device_get_title (settings->current_device));
     g_free (window_title);
 
     response = gtk_dialog_run (GTK_DIALOG (settings->dialog_assign));

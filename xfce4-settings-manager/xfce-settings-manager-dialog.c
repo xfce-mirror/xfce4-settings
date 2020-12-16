@@ -117,8 +117,7 @@ static void     xfce_settings_manager_dialog_response        (GtkDialog         
                                                               gint                       response_id);
 static void     xfce_settings_manager_dialog_set_title       (XfceSettingsManagerDialog *dialog,
                                                               const gchar               *title,
-                                                              const gchar               *icon_name,
-                                                              const gchar               *subtitle);
+                                                              const gchar               *icon_name);
 static void     xfce_settings_manager_dialog_go_back         (XfceSettingsManagerDialog *dialog);
 static void     xfce_settings_manager_show_filter_toggled    (GtkToggleButton           *button,
                                                               gpointer                   user_data);
@@ -218,7 +217,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_window_set_default_size (GTK_WINDOW (dialog),
       xfconf_channel_get_int (dialog->channel, "/last/window-width", 640),
       xfconf_channel_get_int (dialog->channel, "/last/window-height", 500));
-    xfce_settings_manager_dialog_set_title (dialog, NULL, NULL, NULL);
+    xfce_settings_manager_dialog_set_title (dialog, NULL, NULL);
 
     /* Add a buttonbox (Help, All Settings, Close) at bottom of the main box */
     xfce_titled_dialog_create_action_area (XFCE_TITLED_DIALOG (dialog));
@@ -429,8 +428,7 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
 static void
 xfce_settings_manager_dialog_set_title (XfceSettingsManagerDialog *dialog,
                                         const gchar               *title,
-                                        const gchar               *icon_name,
-                                        const gchar               *subtitle)
+                                        const gchar               *icon_name)
 {
     g_return_if_fail (XFCE_IS_SETTINGS_MANAGER_DIALOG (dialog));
 
@@ -438,11 +436,8 @@ xfce_settings_manager_dialog_set_title (XfceSettingsManagerDialog *dialog,
         icon_name = "org.xfce.settings.manager";
     if (title == NULL)
         title = _("Settings");
-    if (subtitle == NULL)
-        subtitle = _("Customize your desktop");
 
     gtk_window_set_title (GTK_WINDOW (dialog), title);
-    xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (dialog), subtitle);
     gtk_window_set_icon_name (GTK_WINDOW (dialog), icon_name);
 }
 
@@ -660,7 +655,7 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
     gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
 
     /* reset dialog info */
-    xfce_settings_manager_dialog_set_title (dialog, NULL, NULL, NULL);
+    xfce_settings_manager_dialog_set_title (dialog, NULL, NULL);
 
     gtk_widget_show (dialog->category_scroll);
     gtk_widget_hide (dialog->socket_scroll);
@@ -838,8 +833,7 @@ xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
     /* set dialog information from desktop file */
     xfce_settings_manager_dialog_set_title (dialog,
         garcon_menu_item_get_name (dialog->socket_item),
-        garcon_menu_item_get_icon_name (dialog->socket_item),
-        garcon_menu_item_get_comment (dialog->socket_item));
+        garcon_menu_item_get_icon_name (dialog->socket_item));
 
     /* show socket and hide the categories view */
     gtk_widget_show (dialog->socket_scroll);
