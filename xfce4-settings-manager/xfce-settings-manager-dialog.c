@@ -752,6 +752,7 @@ xfce_settings_manager_show_filter_toggled (GtkToggleButton *button,
     gboolean state;
 
     state = gtk_toggle_button_get_active (button);
+    gtk_widget_show (dialog->revealer);
     gtk_revealer_set_reveal_child (GTK_REVEALER (dialog->revealer), state);
     if (state && GTK_IS_WIDGET (dialog->filter_entry))
         gtk_widget_grab_focus (dialog->filter_entry);
