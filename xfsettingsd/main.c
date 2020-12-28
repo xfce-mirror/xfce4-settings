@@ -25,9 +25,6 @@
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
 #ifdef HAVE_SIGNAL_H
 #include <signal.h>
 #endif
@@ -74,7 +71,6 @@
     g_object_unref (G_OBJECT(obj))
 
 static gboolean opt_version = FALSE;
-static gboolean opt_daemon = FALSE;
 static gboolean opt_disable_wm_check = FALSE;
 static gboolean opt_replace = FALSE;
 static guint owner_id;
@@ -100,7 +96,6 @@ struct t_data_set
 static GOptionEntry option_entries[] =
 {
     { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
-    { "daemon", 0, 0, G_OPTION_ARG_NONE, &opt_daemon, N_("Fork to the background"), NULL },
     { "disable-wm-check", 'D', 0, G_OPTION_ARG_NONE, &opt_disable_wm_check, N_("Do not wait for a window manager on startup"), NULL },
     { "replace", 0, 0, G_OPTION_ARG_NONE, &opt_replace, N_("Replace running xsettings daemon (if any)"), NULL },
     { NULL }
@@ -185,30 +180,6 @@ signal_handler (gint signum,
     gtk_main_quit ();
 }
 
-static gint
-daemonize (void)
-{
-#ifdef HAVE_DAEMON
-    return daemon (1, 1);
-#else
-    pid_t pid;
-
-    pid = fork ();
-    if (pid < 0)
-        return -1;
-
-    if (pid > 0)
-        _exit (EXIT_SUCCESS);
-
-#ifdef HAVE_SETSID
-    if (setsid () < 0)
-        return -1;
-#endif
-
-    return 0;
-#endif
-}
-
 
 
 gint
@@ -260,16 +231,6 @@ main (gint argc, gchar **argv)
         g_print ("\n");
 
         return EXIT_SUCCESS;
-    }
-
-    /* daemonize the process */
-    if (opt_daemon)
-    {
-        if (daemonize () == -1)
-        {
-            /* show message and continue in normal mode */
-            g_warning ("Failed to fork the process: %s. Continuing in non-daemon mode.", g_strerror (errno));
-        }
     }
 
     if (!gtk_init_check (&argc, &argv))
