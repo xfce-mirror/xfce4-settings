@@ -180,7 +180,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static gboolean
-gtk_theme_has_xfwm4_theme (gchar *name)
+gtk_theme_has_xfwm4_theme (const gchar *name)
 {
     gchar       **ui_theme_dirs;
     gint          i;
@@ -587,6 +587,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
     gchar        *comment_escaped;
     gint          i;
     GSList       *check_list = NULL;
+    gboolean      has_xfwm4;
 
     list_store = pd->list_store;
     tree_view = pd->tree_view;
@@ -645,11 +646,21 @@ appearance_settings_load_ui_themes (gpointer user_data)
                     comment_escaped = NULL;
                 }
 
+                has_xfwm4 = gtk_theme_has_xfwm4_theme(theme_name);
+
+                /* Show a warning in the tooltip if there is no xfwm4 theme */
+                if (!has_xfwm4)
+                {
+                    comment_escaped = g_markup_escape_text (_("Warning: this gtk theme has no matching xfwm4 theme.\n"
+                                                              "Window borders of some applications will not change."), -1);
+                }
+                
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
                 gtk_list_store_set (list_store, &iter,
                                     COLUMN_THEME_NAME, file,
                                     COLUMN_THEME_DISPLAY_NAME, theme_name,
+                                    COLUMN_THEME_NO_CACHE, !has_xfwm4,
                                     COLUMN_THEME_COMMENT, comment_escaped, -1);
 
                 /* Cleanup */
@@ -1082,9 +1093,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_object_set (object, "name", "icon", NULL);
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
 
-    object = gtk_builder_get_object (builder, "xfwm4_sync_switch");
-    xfconf_g_property_bind (xsettings_channel, "/Net/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
-
     object = gtk_builder_get_object (builder, "icon_theme_treeview");
 
     list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
@@ -1154,6 +1162,12 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
+    /* Warning Icon */
+    renderer = gtk_cell_renderer_pixbuf_new ();
+    gtk_tree_view_column_pack_start (column, renderer, FALSE);
+    gtk_tree_view_column_set_attributes (column, renderer, "visible", COLUMN_THEME_NO_CACHE, NULL);
+    g_object_set (G_OBJECT (renderer), "icon-name", "dialog-warning", NULL);
+
     pd = preview_data_new (list_store, GTK_TREE_VIEW (object));
     if (pd)
         g_idle_add_full (G_PRIORITY_HIGH_IDLE,
@@ -1174,6 +1188,10 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "install_gtk_theme");
     g_object_set (object, "name", "Gtk", NULL);
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
+
+    /* Switch for xfwm4 theme matching */
+    object = gtk_builder_get_object (builder, "xfwm4_sync_switch");
+    xfconf_g_property_bind (xsettings_channel, "/Net/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
 
     /* Subpixel (rgba) hinting Combo */
     object = gtk_builder_get_object (builder, "xft_rgba_store");
