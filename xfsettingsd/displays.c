@@ -179,8 +179,8 @@ struct _XfceRRCrtc
     gint      height;
     gint      x;
     gint      y;
-    gfloat    scalex;
-    gfloat    scaley;
+    gdouble   scalex;
+    gdouble   scaley;
     gint      noutput;
     RROutput *outputs;
     gint      npossible;
