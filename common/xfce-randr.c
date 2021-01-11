@@ -24,6 +24,9 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 #include <glib.h>
 #include <gdk/gdkx.h>
@@ -209,8 +212,8 @@ xfce_randr_populate (XfceRandr *randr,
     randr->priv->modes = g_new0 (XfceRRMode *, randr->noutput);
     randr->priv->edid = g_new0 (gchar *, randr->noutput);
     randr->position = g_new0 (XfceOutputPosition, randr->noutput);
-    randr->scalex = g_new0 (gfloat, randr->noutput);
-    randr->scaley = g_new0 (gfloat, randr->noutput);
+    randr->scalex = g_new0 (gdouble, randr->noutput);
+    randr->scaley = g_new0 (gdouble, randr->noutput);
     randr->rotation = g_new0 (Rotation, randr->noutput);
     randr->rotations = g_new0 (Rotation, randr->noutput);
     randr->mirrored = g_new0 (gboolean, randr->noutput);
@@ -494,10 +497,10 @@ xfce_randr_save_output (XfceRandr     *randr,
     /* save the scale */
     g_snprintf (property, sizeof (property), "/%s/%s/Scale/X", scheme,
                 randr->priv->output_info[output]->name);
-    xfconf_channel_set_double (channel, property, randr->scalex[output]);
+    xfconf_channel_set_double (channel, property, roundf (randr->scalex[output] * 10) / 10);
     g_snprintf (property, sizeof (property), "/%s/%s/Scale/Y", scheme,
                 randr->priv->output_info[output]->name);
-    xfconf_channel_set_double (channel, property, randr->scaley[output]);
+    xfconf_channel_set_double (channel, property, roundf (randr->scaley[output] * 10) / 10);
 #endif
 
     /* save the position */
