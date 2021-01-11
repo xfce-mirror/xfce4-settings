@@ -64,7 +64,7 @@ enum
     COLUMN_THEME_NAME,
     COLUMN_THEME_DISPLAY_NAME,
     COLUMN_THEME_COMMENT,
-    COLUMN_THEME_NO_CACHE,
+    COLUMN_THEME_WARNING,
     N_THEME_COLUMNS
 };
 
@@ -236,6 +236,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
 {
     GtkTreeModel *model;
     gboolean      has_selection;
+    gboolean      has_xfwm4;
     gchar        *name;
     GtkTreeIter   iter;
 
@@ -243,8 +244,10 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
     {
-        /* Get the theme name */
-        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, -1);
+        has_xfwm4 = FALSE;
+        
+        /* Get the theme name and whether there is a xfwm4 theme as well */
+        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, COLUMN_THEME_WARNING, &has_xfwm4, -1);
 
         /* Store the new theme */
         xfconf_channel_set_string (xsettings_channel, property, name);
@@ -252,7 +255,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
         /* Set the matching xfwm4 theme if the selected theme: is not an icon theme,
          * the xfconf setting is on, and a matching theme is available */
         if (xfconf_channel_get_bool(xsettings_channel, "/Net/SyncThemes", TRUE) == TRUE
-            && gtk_theme_has_xfwm4_theme (name) == TRUE
+            && has_xfwm4 == TRUE
             && strcmp (property, "/Net/ThemeName") == 0)
         {
             xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", name);
@@ -520,7 +523,7 @@ appearance_settings_load_icon_themes (gpointer user_data)
                                         COLUMN_THEME_PREVIEW, preview,
                                         COLUMN_THEME_NAME, file,
                                         COLUMN_THEME_DISPLAY_NAME, visible_name,
-                                        COLUMN_THEME_NO_CACHE, !has_cache,
+                                        COLUMN_THEME_WARNING, !has_cache,
                                         COLUMN_THEME_COMMENT, cache_tooltip,
                                         -1);
 
@@ -660,7 +663,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
                 gtk_list_store_set (list_store, &iter,
                                     COLUMN_THEME_NAME, file,
                                     COLUMN_THEME_DISPLAY_NAME, theme_name,
-                                    COLUMN_THEME_NO_CACHE, !has_xfwm4,
+                                    COLUMN_THEME_WARNING, !has_xfwm4,
                                     COLUMN_THEME_COMMENT, comment_escaped, -1);
 
                 /* Cleanup */
@@ -1118,7 +1121,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Warning Icon */
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_column_pack_start (column, renderer, FALSE);
-    gtk_tree_view_column_set_attributes (column, renderer, "visible", COLUMN_THEME_NO_CACHE, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "visible", COLUMN_THEME_WARNING, NULL);
     g_object_set (G_OBJECT (renderer), "icon-name", "dialog-warning", NULL);
 
     pd = preview_data_new (GTK_LIST_STORE (list_store), GTK_TREE_VIEW (object));
@@ -1165,7 +1168,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Warning Icon */
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_column_pack_start (column, renderer, FALSE);
-    gtk_tree_view_column_set_attributes (column, renderer, "visible", COLUMN_THEME_NO_CACHE, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "visible", COLUMN_THEME_WARNING, NULL);
     g_object_set (G_OBJECT (renderer), "icon-name", "dialog-warning", NULL);
 
     pd = preview_data_new (list_store, GTK_TREE_VIEW (object));
