@@ -179,6 +179,57 @@ G_GNUC_END_IGNORE_DEPRECATIONS
     return dpi;
 }
 
+static gboolean
+gtk_theme_has_xfwm4_theme (gchar *name)
+{
+    gchar       **ui_theme_dirs;
+    gint          i;
+    GDir         *dir;
+    const gchar  *file;
+    gchar        *filename;
+    gboolean      found;
+
+    ui_theme_dirs = xfce_resource_dirs (XFCE_RESOURCE_THEMES);
+    found = FALSE;
+
+    /* Iterate over all base directories */
+    for (i = 0; ui_theme_dirs[i] != NULL; ++i)
+    {
+        /* Return now if found is true */
+        if (G_UNLIKELY (found == TRUE))
+            break;
+
+        /* Open directory handle */
+        dir = g_dir_open (ui_theme_dirs[i], 0, NULL);
+
+        /* Try next base directory if this one cannot be read */
+        if (G_UNLIKELY (dir == NULL))
+            continue;
+
+        /* Iterate over filenames in the directory */
+        while ((file = g_dir_read_name (dir)) != NULL)
+        {
+            /* Build the xfwm4 themerd filename */
+            filename = g_build_filename (ui_theme_dirs[i], name, "xfwm4", "themerc", NULL);
+
+            /* Check if the xfwm4 themerc file exists */
+            if (g_file_test (filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
+            {
+                found = TRUE;
+                break;
+            }
+            
+            g_free (filename);
+        }
+
+        g_free (dir);
+    }
+
+    g_strfreev (ui_theme_dirs);
+    
+    return found;
+}
+
 static void
 cb_theme_tree_selection_changed (GtkTreeSelection *selection,
                                  const gchar      *property)
@@ -197,6 +248,15 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
 
         /* Store the new theme */
         xfconf_channel_set_string (xsettings_channel, property, name);
+
+        /* Set the matching xfwm4 theme if the selected theme: is not an icon theme,
+         * the xfconf setting is on, and a matching theme is available */
+        if (xfconf_channel_get_bool(xsettings_channel, "/Net/SyncThemes", TRUE) == TRUE
+            && gtk_theme_has_xfwm4_theme (name) == TRUE
+            && strcmp (property, "/Net/ThemeName") == 0)
+        {
+            xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", name);
+        }
 
         /* Cleanup */
         g_free (name);
@@ -1021,6 +1081,9 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "install_icon_theme");
     g_object_set (object, "name", "icon", NULL);
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
+
+    object = gtk_builder_get_object (builder, "xfwm4_sync_switch");
+    xfconf_g_property_bind (xsettings_channel, "/Net/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
 
     object = gtk_builder_get_object (builder, "icon_theme_treeview");
 
