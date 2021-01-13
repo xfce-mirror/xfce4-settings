@@ -104,6 +104,7 @@ fi
 # we try $XDG_CACHE_HOME because it is more likely this is on the
 # same partition, so moving the theme after extract is faster
 if test x"`which mktemp 2>/dev/null`" != x""; then
+    TMPDIR="${TMPDIR:-/tmp}"
     tmpdir=`TMPDIR="${XDG_CACHE_HOME:-$TMPDIR}" mktemp -d`
 else
     tmpdir="/tmp/tmp.$$.$RANDOM"
