@@ -284,7 +284,6 @@ static void
 color_profile_constructed (GObject *object)
 {
     ColorProfile *color_profile = SETTINGS_COLOR_PROFILE (object);
-    g_autofree gchar *title = NULL;
 
     /* watch to see if the default changes */
     color_profile->device_changed_id =
