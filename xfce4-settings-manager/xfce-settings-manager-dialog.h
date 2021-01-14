@@ -17,7 +17,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __XFCE_SETTIGNS_MANAGER_DIALOG_H__
+#ifndef __XFCE_SETTINGS_MANAGER_DIALOG_H__
 #define __XFCE_SETTINGS_MANAGER_DIALOG_H__
 
 #include <gtk/gtk.h>
