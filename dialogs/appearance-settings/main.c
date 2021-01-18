@@ -622,16 +622,16 @@ appearance_settings_load_ui_themes (gpointer user_data)
                     comment_escaped = g_markup_escape_text (_("Warning: this theme has no matching window decorations.\nNot every application will look consistent."), -1);
 
                 /* Compose the final markup text */
-                theme_name_markup = g_strdup_printf ("<b>%s</b>\n<small>GTK 3", theme_name);
+                theme_name_markup = g_strdup_printf ("<b>%s</b>\nGtk3", theme_name);
 
                 if (has_gtk2)
-                    theme_name_markup = g_strconcat (theme_name_markup, ", GTK 2", NULL);
+                    theme_name_markup = g_strconcat (theme_name_markup, ", Gtk2", NULL);
                 if (has_xfwm4)
                     theme_name_markup = g_strconcat (theme_name_markup, ", Xfwm4", NULL);
                 if (has_notifyd)
                     theme_name_markup = g_strconcat (theme_name_markup, ", Xfce4-notifyd", NULL);
                 
-                theme_name_markup = g_strconcat (theme_name_markup, "</small>", NULL);
+                
                 
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
