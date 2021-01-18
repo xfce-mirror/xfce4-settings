@@ -204,7 +204,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
         /* Set the matching xfwm4 theme if the selected theme: is not an icon theme,
          * the xfconf setting is on, and a matching theme is available */
         if (xfconf_channel_get_bool(xsettings_channel, "/Net/SyncThemes", TRUE) == TRUE
-            && no_xfwm4 == FALSE
+            && !no_xfwm4
             && strcmp (property, "/Net/ThemeName") == 0)
         {
             xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", name);
@@ -570,7 +570,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
         /* Iterate over filenames in the directory */
         while ((file = g_dir_read_name (dir)) != NULL)
         {
-            /* Build the theme style filename */
+            /* Build the filenames for theme components */
             gtkrc_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-2.0", "gtkrc", NULL);
             gtkcss_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-3.0", "gtk.css", NULL);
             xfwm4_filename = g_build_filename(ui_theme_dirs[i], file, "xfwm4", "themerc", NULL);
@@ -631,8 +631,6 @@ appearance_settings_load_ui_themes (gpointer user_data)
                 if (has_notifyd)
                     theme_name_markup = g_strconcat (theme_name_markup, ", Xfce4-notifyd", NULL);
                 
-                
-                
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
                 gtk_list_store_set (list_store, &iter,
@@ -660,7 +658,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
                 g_free (index_filename);
             }
 
-            /* Free gtkrc filename */
+            /* Free filenames */
             g_free (gtkrc_filename);
             g_free (gtkcss_filename);
             g_free (xfwm4_filename);
