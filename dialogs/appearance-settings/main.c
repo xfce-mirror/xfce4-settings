@@ -537,12 +537,14 @@ appearance_settings_load_ui_themes (gpointer user_data)
     gchar        *gtkrc_filename;
     gchar        *gtkcss_filename;
     gchar        *xfwm4_filename;
-    gchar        *text_escaped;
+    gchar        *notifyd_filename;
+    gchar        *theme_name_markup;
     gchar        *comment_escaped;
     gint          i;
     GSList       *check_list = NULL;
     gboolean      has_xfwm4;
     gboolean      has_gtk2;
+    gboolean      has_notifyd;
 
     list_store = pd->list_store;
     tree_view = pd->tree_view;
@@ -572,6 +574,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
             gtkrc_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-2.0", "gtkrc", NULL);
             gtkcss_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-3.0", "gtk.css", NULL);
             xfwm4_filename = g_build_filename(ui_theme_dirs[i], file, "xfwm4", "themerc", NULL);
+            notifyd_filename = g_build_filename(ui_theme_dirs[i], file, "xfce-notify-4.0", "gtkrc", NULL);
 
             /* Check if the gtk.css file exists and the theme is not already in the list */
             if (g_file_test (gtkcss_filename, G_FILE_TEST_EXISTS)
@@ -602,38 +605,39 @@ appearance_settings_load_ui_themes (gpointer user_data)
                     comment_escaped = NULL;
                 }
 
-                /* Check if the xfwm4 themerc and gtk2 gtkrc files exist */
+                /* Check if the xfwm4 themerc, gtk2 gtkrc, etc. files exist */
                 has_xfwm4 = FALSE;
                 has_gtk2 = FALSE;
+                has_notifyd = FALSE;
 
                 if (g_file_test (xfwm4_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
                     has_xfwm4 = TRUE;
-
                 if (g_file_test (gtkrc_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
                     has_gtk2 = TRUE;
+                if (g_file_test (notifyd_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
+                    has_notifyd = TRUE;
 
                 /* Show a warning in the tooltip if there is no xfwm4 theme */
-                if (has_xfwm4 == FALSE)
+                if (!has_xfwm4)
                     comment_escaped = g_markup_escape_text (_("Warning: this theme has no matching window decorations.\nNot every application will look consistent."), -1);
 
-                if (has_gtk2 && has_xfwm4)
-                    text_escaped = g_strdup_printf ("<b>%s</b>\n<small>Gtk2, Gtk3, Xfwm4</small>", theme_name);
-                
-                if (has_gtk2 && !has_xfwm4)
-                    text_escaped = g_strdup_printf ("<b>%s</b>\n<small>Gtk2, Gtk3</small>", theme_name);
-                
-                /* Does any theme ship only these? */
-                if (!has_gtk2 && has_xfwm4)
-                    text_escaped = g_strdup_printf ("<b>%s</b>\n<small>Gtk3, Xfwm4</small>", theme_name);
-                
-                if (!has_gtk2 && !has_xfwm4)
-                    text_escaped = g_strdup_printf ("<b>%s</b>\n<small>Gtk3</small>", theme_name);
+                /* Compose the final markup text */
+                theme_name_markup = g_strdup_printf ("<b>%s</b>\n<small>GTK 3", theme_name);
 
+                if (has_gtk2)
+                    theme_name_markup = g_strconcat (theme_name_markup, ", GTK 2", NULL);
+                if (has_xfwm4)
+                    theme_name_markup = g_strconcat (theme_name_markup, ", Xfwm4", NULL);
+                if (has_notifyd)
+                    theme_name_markup = g_strconcat (theme_name_markup, ", Xfce4-notifyd", NULL);
+                
+                theme_name_markup = g_strconcat (theme_name_markup, "</small>", NULL);
+                
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
                 gtk_list_store_set (list_store, &iter,
                                     COLUMN_THEME_NAME, file,
-                                    COLUMN_THEME_DISPLAY_NAME, text_escaped,
+                                    COLUMN_THEME_DISPLAY_NAME, theme_name_markup,
                                     COLUMN_THEME_WARNING, !has_xfwm4,
                                     COLUMN_THEME_COMMENT, comment_escaped, -1);
 
@@ -641,6 +645,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
                 if (G_LIKELY (index_file != NULL))
                     xfce_rc_close (index_file);
                 g_free (comment_escaped);
+                g_free (theme_name_markup);
                 
                 /* Check if this is the active theme, if so, select it */
                 if (G_UNLIKELY (g_utf8_collate (file, active_theme_name) == 0))
@@ -659,6 +664,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
             g_free (gtkrc_filename);
             g_free (gtkcss_filename);
             g_free (xfwm4_filename);
+            g_free (notifyd_filename);
         }
 
         /* Close directory handle */
