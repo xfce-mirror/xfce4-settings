@@ -179,64 +179,13 @@ G_GNUC_END_IGNORE_DEPRECATIONS
     return dpi;
 }
 
-static gboolean
-gtk_theme_has_xfwm4_theme (const gchar *name)
-{
-    gchar       **ui_theme_dirs;
-    gint          i;
-    GDir         *dir;
-    const gchar  *file;
-    gchar        *filename;
-    gboolean      found;
-
-    ui_theme_dirs = xfce_resource_dirs (XFCE_RESOURCE_THEMES);
-    found = FALSE;
-
-    /* Iterate over all base directories */
-    for (i = 0; ui_theme_dirs[i] != NULL; ++i)
-    {
-        /* Return now if found is true */
-        if (G_UNLIKELY (found == TRUE))
-            break;
-
-        /* Open directory handle */
-        dir = g_dir_open (ui_theme_dirs[i], 0, NULL);
-
-        /* Try next base directory if this one cannot be read */
-        if (G_UNLIKELY (dir == NULL))
-            continue;
-
-        /* Iterate over filenames in the directory */
-        while ((file = g_dir_read_name (dir)) != NULL)
-        {
-            /* Build the xfwm4 themerd filename */
-            filename = g_build_filename (ui_theme_dirs[i], name, "xfwm4", "themerc", NULL);
-
-            /* Check if the xfwm4 themerc file exists */
-            if (g_file_test (filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
-            {
-                found = TRUE;
-                break;
-            }
-            
-            g_free (filename);
-        }
-
-        g_free (dir);
-    }
-
-    g_strfreev (ui_theme_dirs);
-    
-    return found;
-}
-
 static void
 cb_theme_tree_selection_changed (GtkTreeSelection *selection,
                                  const gchar      *property)
 {
     GtkTreeModel *model;
     gboolean      has_selection;
-    gboolean      has_xfwm4;
+    gboolean      no_xfwm4;
     gchar        *name;
     GtkTreeIter   iter;
 
@@ -244,10 +193,10 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
     {
-        has_xfwm4 = FALSE;
+        no_xfwm4 = FALSE;
         
         /* Get the theme name and whether there is a xfwm4 theme as well */
-        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, COLUMN_THEME_WARNING, &has_xfwm4, -1);
+        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, COLUMN_THEME_WARNING, &no_xfwm4, -1);
 
         /* Store the new theme */
         xfconf_channel_set_string (xsettings_channel, property, name);
@@ -255,7 +204,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
         /* Set the matching xfwm4 theme if the selected theme: is not an icon theme,
          * the xfconf setting is on, and a matching theme is available */
         if (xfconf_channel_get_bool(xsettings_channel, "/Net/SyncThemes", TRUE) == TRUE
-            && has_xfwm4 == TRUE
+            && no_xfwm4 == FALSE
             && strcmp (property, "/Net/ThemeName") == 0)
         {
             xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", name);
@@ -587,10 +536,13 @@ appearance_settings_load_ui_themes (gpointer user_data)
     gchar        *active_theme_name;
     gchar        *gtkrc_filename;
     gchar        *gtkcss_filename;
+    gchar        *xfwm4_filename;
+    gchar        *text_escaped;
     gchar        *comment_escaped;
     gint          i;
     GSList       *check_list = NULL;
     gboolean      has_xfwm4;
+    gboolean      has_gtk2;
 
     list_store = pd->list_store;
     tree_view = pd->tree_view;
@@ -619,11 +571,13 @@ appearance_settings_load_ui_themes (gpointer user_data)
             /* Build the theme style filename */
             gtkrc_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-2.0", "gtkrc", NULL);
             gtkcss_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-3.0", "gtk.css", NULL);
+            xfwm4_filename = g_build_filename(ui_theme_dirs[i], file, "xfwm4", "themerc", NULL);
 
-            /* Check if the gtkrc file exists and the theme is not already in the list */
+            /* Check if the gtk.css file exists and the theme is not already in the list */
             if (g_file_test (gtkcss_filename, G_FILE_TEST_EXISTS)
                 && g_slist_find_custom (check_list, file, (GCompareFunc) g_utf8_collate) == NULL)
             {
+                
                 /* Insert the theme in the check list */
                 check_list = g_slist_prepend (check_list, g_strdup (file));
 
@@ -649,20 +603,38 @@ appearance_settings_load_ui_themes (gpointer user_data)
                     comment_escaped = NULL;
                 }
 
-                has_xfwm4 = gtk_theme_has_xfwm4_theme(theme_name);
+                /* Check if the xfwm4 themerc and gtk2 gtkrc files exist */
+                has_xfwm4 = FALSE;
+                has_gtk2 = FALSE;
+
+                if (g_file_test (xfwm4_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
+                    has_xfwm4 = TRUE;
+
+                if (g_file_test (gtkrc_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
+                    has_gtk2 = TRUE;
 
                 /* Show a warning in the tooltip if there is no xfwm4 theme */
-                if (!has_xfwm4)
-                {
-                    comment_escaped = g_markup_escape_text (_("Warning: this gtk theme has no matching xfwm4 theme.\n"
-                                                              "Window borders of some applications will not change."), -1);
-                }
+                if (has_xfwm4 == FALSE)
+                    comment_escaped = g_markup_escape_text (_("Warning: this theme has no matching window decorations.\nNot every application will look consistent."), -1);
+
+                if (has_gtk2 && has_xfwm4)
+                    text_escaped = g_strdup_printf ("<b>%s</b>\n<small>Gtk2, Gtk3, Xfwm4</small>", theme_name);
                 
+                if (has_gtk2 && !has_xfwm4)
+                    text_escaped = g_strdup_printf ("<b>%s</b>\n<small>Gtk2, Gtk3</small>", theme_name);
+                
+                /* Does any theme ship only these? */
+                if (!has_gtk2 && has_xfwm4)
+                    text_escaped = g_strdup_printf ("<b>%s</b>\n<small>Gtk3, Xfwm4</small>", theme_name);
+                
+                if (!has_gtk2 && !has_xfwm4)
+                    text_escaped = g_strdup_printf ("<b>%s</b>\n<small>Gtk3</small>", theme_name);
+
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
                 gtk_list_store_set (list_store, &iter,
                                     COLUMN_THEME_NAME, file,
-                                    COLUMN_THEME_DISPLAY_NAME, theme_name,
+                                    COLUMN_THEME_DISPLAY_NAME, text_escaped,
                                     COLUMN_THEME_WARNING, !has_xfwm4,
                                     COLUMN_THEME_COMMENT, comment_escaped, -1);
 
@@ -670,7 +642,8 @@ appearance_settings_load_ui_themes (gpointer user_data)
                 if (G_LIKELY (index_file != NULL))
                     xfce_rc_close (index_file);
                 g_free (comment_escaped);
-
+                
+                
                 /* Check if this is the active theme, if so, select it */
                 if (G_UNLIKELY (g_utf8_collate (file, active_theme_name) == 0))
                 {
@@ -687,6 +660,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
             /* Free gtkrc filename */
             g_free (gtkrc_filename);
             g_free (gtkcss_filename);
+            g_free (xfwm4_filename);
         }
 
         /* Close directory handle */
@@ -1162,7 +1136,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Theme Name and Description */
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
-    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "markup", COLUMN_THEME_DISPLAY_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
     /* Warning Icon */
