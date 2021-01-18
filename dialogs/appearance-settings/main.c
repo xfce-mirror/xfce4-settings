@@ -577,7 +577,6 @@ appearance_settings_load_ui_themes (gpointer user_data)
             if (g_file_test (gtkcss_filename, G_FILE_TEST_EXISTS)
                 && g_slist_find_custom (check_list, file, (GCompareFunc) g_utf8_collate) == NULL)
             {
-                
                 /* Insert the theme in the check list */
                 check_list = g_slist_prepend (check_list, g_strdup (file));
 
@@ -642,7 +641,6 @@ appearance_settings_load_ui_themes (gpointer user_data)
                 if (G_LIKELY (index_file != NULL))
                     xfce_rc_close (index_file);
                 g_free (comment_escaped);
-                
                 
                 /* Check if this is the active theme, if so, select it */
                 if (G_UNLIKELY (g_utf8_collate (file, active_theme_name) == 0))
