@@ -574,7 +574,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
             gtkrc_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-2.0", "gtkrc", NULL);
             gtkcss_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-3.0", "gtk.css", NULL);
             xfwm4_filename = g_build_filename(ui_theme_dirs[i], file, "xfwm4", "themerc", NULL);
-            notifyd_filename = g_build_filename(ui_theme_dirs[i], file, "xfce-notify-4.0", "gtkrc", NULL);
+            notifyd_filename = g_build_filename(ui_theme_dirs[i], file, "xfce-notify-4.0", "gtk.css", NULL);
 
             /* Check if the gtk.css file exists and the theme is not already in the list */
             if (g_file_test (gtkcss_filename, G_FILE_TEST_EXISTS)
@@ -616,10 +616,6 @@ appearance_settings_load_ui_themes (gpointer user_data)
                     has_gtk2 = TRUE;
                 if (g_file_test (notifyd_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
                     has_notifyd = TRUE;
-
-                /* Show a warning in the tooltip if there is no xfwm4 theme */
-                if (!has_xfwm4)
-                    comment_escaped = g_markup_escape_text (_("Warning: this theme has no matching window decorations.\nNot every application will look consistent."), -1);
 
                 /* Compose the final markup text */
                 theme_name_markup = g_strdup_printf ("<b>%s</b>\nGtk3", theme_name);
@@ -1140,12 +1136,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
     gtk_tree_view_column_set_attributes (column, renderer, "markup", COLUMN_THEME_DISPLAY_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
-
-    /* Warning Icon */
-    renderer = gtk_cell_renderer_pixbuf_new ();
-    gtk_tree_view_column_pack_start (column, renderer, FALSE);
-    gtk_tree_view_column_set_attributes (column, renderer, "visible", COLUMN_THEME_WARNING, NULL);
-    g_object_set (G_OBJECT (renderer), "icon-name", "dialog-warning", NULL);
 
     pd = preview_data_new (list_store, GTK_TREE_VIEW (object));
     if (pd)
