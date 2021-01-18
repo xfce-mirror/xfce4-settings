@@ -1159,7 +1159,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
 
     /* Switch for xfwm4 theme matching, gets hidden if xfwm4 is not running */
-    if (system ("pgrep xfwm4") == 0) 
+    if (system ("pgrep xfwm4 > /dev/null") == 0) 
     {
         object = gtk_builder_get_object (builder, "xfwm4_sync_switch");
         xfconf_g_property_bind (xsettings_channel, "/Net/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
