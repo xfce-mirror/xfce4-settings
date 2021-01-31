@@ -204,10 +204,14 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
         /* Set the matching xfwm4 theme if the selected theme: is not an icon theme,
          * the xfconf setting is on, and a matching theme is available */
         if (xfconf_channel_get_bool(xsettings_channel, "/Net/SyncThemes", TRUE) == TRUE
-            && !no_xfwm4
             && strcmp (property, "/Net/ThemeName") == 0)
         {
-            xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", name);
+            if (!no_xfwm4)
+                xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", name);
+            
+            /* Use the default theme if Adwaita is selected */
+            else if (strcmp (name, "Adwaita") == 0 || strcmp(name, "Adwaita-dark") == 0)
+                xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", "Default");
         }
 
         /* Cleanup */
