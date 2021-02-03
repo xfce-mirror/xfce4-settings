@@ -6,6 +6,7 @@
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2021
 # Vasyl Khrystiuk <h6.msangel@gmail.com>, 2021
+# Андрій Мізик <andmizyk@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-06 12:51+0100\n"
 "PO-Revision-Date: 2020-12-28 17:23+0000\n"
-"Last-Translator: Vasyl Khrystiuk <h6.msangel@gmail.com>, 2021\n"
+"Last-Translator: Андрій Мізик <andmizyk@gmail.com>, 2021\n"
 "Language-Team: Ukrainian (https://www.transifex.com/xfce/teams/16840/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -387,6 +388,8 @@ msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr ""
+"допоміжні;технології;клавіші;липкі;зрив;емуляція;читачі "
+"екрана;лупи;a11y;i18n;l10n;AT-SPI;ATK;пошкодження;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1119
@@ -698,6 +701,9 @@ msgid ""
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 msgstr ""
+"теми;користувацький інтерфейс;стилі;значки;anti-aliasing;hinting;sub-"
+"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;акселератори меню;клавіятурні"
+" скорочення;подія;звуки;масштабування вікна;HiDPI;монітор Retina;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -732,7 +738,7 @@ msgstr "Вбудована веб-камера"
 #: ../dialogs/color-settings/color-device.c:195
 #, c-format
 msgid "Enable color management for %s"
-msgstr ""
+msgstr "Дозволити керування кольором для %s"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
@@ -761,11 +767,11 @@ msgstr "Калібрування"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:9
 msgid "<b>No profiles for the selected device.</b>"
-msgstr ""
+msgstr "<b>Для вибраного пристрою нема профілю.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:11
 msgid "Add a profile to the currently selected device"
-msgstr ""
+msgstr "Додати профіль для вибраного зараз пристрою"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "_Remove"
@@ -773,11 +779,11 @@ msgstr "В_илучити"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:13
 msgid "Delete the currently selected profile"
-msgstr ""
+msgstr "Видалити вибраний зараз профіль"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:14
 msgid "Show detailed information about the selected profile"
-msgstr ""
+msgstr "Показати детальніше про вибраний профіль"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:15
 msgid "Enable"
@@ -785,11 +791,11 @@ msgstr "Увімкнути"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:16
 msgid "Enable the selected profile"
-msgstr ""
+msgstr "Дозволити вибраний профіль"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:17
 msgid "Add Profile to Device"
-msgstr ""
+msgstr "Додати профіль до пристрою"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:19
 #: ../dialogs/keyboard-settings/command-dialog.c:120
@@ -801,19 +807,19 @@ msgstr "_Гаразд"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:20
 msgid "Import color profile files (*.icc)"
-msgstr ""
+msgstr "Імпорт файлів профілю кольору (*.icc)"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
 #: ../dialogs/color-settings/color-profile.c:94
 msgid "Standard Space"
-msgstr ""
+msgstr "Колірна модель"
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
 #: ../dialogs/color-settings/color-profile.c:99
 msgid "Test Profile"
-msgstr ""
+msgstr "Випробувати профіль"
 
 #. TRANSLATORS: automatic profiles are generated automatically
 #. * by the color management system based on manufacturing data,
@@ -830,13 +836,13 @@ msgstr "Автоматично"
 #: ../dialogs/color-settings/color-profile.c:115
 msgctxt "Profile quality"
 msgid "Low Quality"
-msgstr ""
+msgstr "Низька якість"
 
 #. TRANSLATORS: the profile quality
 #: ../dialogs/color-settings/color-profile.c:119
 msgctxt "Profile quality"
 msgid "Medium Quality"
-msgstr ""
+msgstr "Середня якість"
 
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
@@ -858,7 +864,7 @@ msgstr "Типово RGB"
 #: ../dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
-msgstr ""
+msgstr "Стандартна CMYK"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
@@ -870,16 +876,16 @@ msgstr "Типово сірий"
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
 #: ../dialogs/color-settings/main.c:128
 msgid "Select ICC Profile File"
-msgstr ""
+msgstr "Вибрати файл профілю ICC"
 
 #: ../dialogs/color-settings/main.c:131
 msgid "_Import"
-msgstr ""
+msgstr "_Імпорт"
 
 #. TRANSLATORS: filter name on the file->open dialog
 #: ../dialogs/color-settings/main.c:142
 msgid "Supported ICC profiles"
-msgstr ""
+msgstr "Підтримувані профілі ICC"
 
 #. TRANSLATORS: filter name on the file->open dialog
 #: ../dialogs/color-settings/main.c:149
@@ -896,17 +902,17 @@ msgstr "Типово:"
 #. * profile his a standard space like AdobeRGB
 #: ../dialogs/color-settings/main.c:200
 msgid "Colorspace: "
-msgstr ""
+msgstr "Колірна модель:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
 #: ../dialogs/color-settings/main.c:206
 msgid "Test profile: "
-msgstr ""
+msgstr "Пробний профіль"
 
 #: ../dialogs/color-settings/main.c:244
 msgid "Compatible Profiles"
-msgstr ""
+msgstr "Сумісні профілі"
 
 #: ../dialogs/color-settings/main.c:835 ../dialogs/color-settings/main.c:836
 #: ../dialogs/color-settings/main.c:837
@@ -915,11 +921,12 @@ msgstr "Невідомо"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
 msgid "Set color profiles"
-msgstr ""
+msgstr "Вказати профілі кольору"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr ""
+"колір;налаштування;керування;дисплей;монітори;принтери;вебкамери;сканери;"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
@@ -955,7 +962,7 @@ msgstr "Власні:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "The primary display is currently configured to show:"
-msgstr ""
+msgstr "Основний дисплей зараз налаштований показувати:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Xfce Panel"
@@ -1004,19 +1011,19 @@ msgstr "Відоб_раження:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "A_pply"
-msgstr ""
+msgstr "_Застосувати"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "_Scale:"
-msgstr ""
+msgstr "_Шкала:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "X:"
-msgstr ""
+msgstr "X:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Y:"
-msgstr ""
+msgstr "Y:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "_General"
@@ -1024,15 +1031,15 @@ msgstr "_Загальне"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "<b>Profiles</b>"
-msgstr ""
+msgstr "<b>Профілі</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "<b>Connecting Displays</b>"
-msgstr ""
+msgstr "<b>Підʼєднані дисплеї</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "Delete the currently selected display profile."
-msgstr ""
+msgstr "Видалити вибраний зараз профіль дисплея."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "Apply"
@@ -1040,19 +1047,19 @@ msgstr "Застосувати"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "Apply the currently selected display profile."
-msgstr ""
+msgstr "Застосувати вибраний зараз профіль дисплея."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "Create a new display profile."
-msgstr ""
+msgstr "Створити новий профіль дисплея."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:29
 msgid "Update an existing profile."
-msgstr ""
+msgstr "Оновити існуючий профіль."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:30
 msgid "Automatically enable profiles when new display is connected"
-msgstr ""
+msgstr "Автоматично дозволяти профілі, коли підʼєднано новий дисплей"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:31
 msgid "Configure new displays when connected"
@@ -1064,7 +1071,7 @@ msgstr "Показати значки на дисплеях для їх іден
 
 #: ../dialogs/display-settings/display-dialog.glade.h:33
 msgid "<b>Identifying Displays</b>"
-msgstr ""
+msgstr "<b>Розпізнавання дисплеїв</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:34
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
@@ -1073,7 +1080,7 @@ msgstr "_Просунуті"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:35
 msgid "<b>Profile Name</b>"
-msgstr ""
+msgstr "<b>Назва профілю</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:36
 msgid "Create"
@@ -1113,18 +1120,20 @@ msgstr "Оновити профіль дисплея"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
 msgid "_Update"
-msgstr ""
+msgstr "_Оновити"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:4
 msgid ""
 "<big><b>You have made changes to your previously active profile</b></big>"
-msgstr ""
+msgstr "<big><b>Ви внесли зміни до свого попереднього профілю</b></big>"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
 msgstr ""
+"Якщо ви не оновите профіль, ваші зміни буде втрачено під час "
+"перезавантаження сеансу або відʼєднання чи підʼєднання дисплея."
 
 #: ../dialogs/display-settings/main.c:107
 msgid "Left"
@@ -1190,22 +1199,22 @@ msgstr "Вибраний вихід не відключено"
 
 #: ../dialogs/display-settings/main.c:1643
 msgid "Profiles matching the currently connected displays"
-msgstr ""
+msgstr "Профілі відповідають підключеним зараз дисплеям"
 
 #: ../dialogs/display-settings/main.c:1849
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr ""
+msgstr "Оновити змінений профіль дисплея '%s'?"
 
 #: ../dialogs/display-settings/main.c:1854
 #, c-format
 msgid "_Update '%s'"
-msgstr ""
+msgstr "_Оновити '%s'"
 
 #: ../dialogs/display-settings/main.c:2142
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr ""
+msgstr "Ви дійсно хочете видалити профіль дисплея '%s'?"
 
 #: ../dialogs/display-settings/main.c:2144
 msgid "Delete Profile"
@@ -1213,7 +1222,7 @@ msgstr "Видалити Профіль"
 
 #: ../dialogs/display-settings/main.c:2147
 msgid "Once a display profile is deleted it cannot be restored."
-msgstr ""
+msgstr "Коли профіль дисплея видалено, його не можна відновити."
 
 #: ../dialogs/display-settings/main.c:2148
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -1230,7 +1239,7 @@ msgstr "Видалити"
 #: ../dialogs/display-settings/main.c:2251
 #, c-format
 msgid "%d Xfce Panels"
-msgstr ""
+msgstr "%dПанелі Xfce"
 
 #: ../dialogs/display-settings/main.c:3282
 msgid ""
@@ -1289,6 +1298,7 @@ msgstr "Налаштувати параметри екрану та клавіа
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr ""
+"дисплей;налаштування;екран;розширення;освіжити;rate;зовнішній;проектори;монітори;LCD;CRT;HiDPI;"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
@@ -1448,7 +1458,7 @@ msgstr "_Ярлики програм"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "<b>Use system defaults</b>"
-msgstr ""
+msgstr "<b>Використовувати системні налаштування</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "_Keyboard model"
@@ -1543,7 +1553,7 @@ msgstr "Редагувати властивості клавіатури та я
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
 msgid "numlock;keyboard;layout;shortcuts;"
-msgstr ""
+msgstr "numlock;клавіятура;розкладка;комбінації"
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
@@ -1859,6 +1869,8 @@ msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr ""
+"Типовий вебоглядач використовуватиметься для відкривання гіперпосилань і "
+"відображення вмісту довідки."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:256
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1870,6 +1882,8 @@ msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr ""
+"Типова поштова програма використовуватиметься для створення листів, коли ви "
+"клацнете по поштовій адресі."
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:283
@@ -1885,6 +1899,7 @@ msgstr "Файловий менеджер"
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr ""
+"Типовий керівник файлів використовуватиметься для перегляду вмісту тек."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:327
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
@@ -1896,11 +1911,13 @@ msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr ""
+"Типовий емулятор термінала використовуватиметься для запуску команд, які "
+"вимагають середовище командного рядка."
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:354
 msgid "_Others"
-msgstr ""
+msgstr "_Інше"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:364
 msgid "_Filter:"
@@ -1980,13 +1997,15 @@ msgstr "Вибір програми..."
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
-msgstr ""
+msgstr "Асоціювати програми з відповідними типами MIME"
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
 msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
 msgstr ""
+"файл;тип;розширення;асоціація;відкрити в;вебоглядач;поштова "
+"програма;керівник файлів;емулятор термінала;"
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -2473,6 +2492,8 @@ msgstr "Налаштувати поведінку і зовнішній вигл
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr ""
+"налаштування;кнопки;прокрутка;направлення;вказівник;швидкість;подвійне "
+"клацання;тема;коліщатко;"
 
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
@@ -2688,7 +2709,7 @@ msgstr "Графічний редактор параметрів для Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
 msgid "registry;regedit;configuration file;"
-msgstr ""
+msgstr "реґістр;regedit;файл конфіґурації;"
 
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
@@ -2718,7 +2739,7 @@ msgstr "Графічний менеджер параметрів для Xfce"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "control;panel;center;system;settings;personalize;hardware;"
-msgstr ""
+msgstr "контроль;панель;центр;система;налаштування;персоналізація;залізо;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
