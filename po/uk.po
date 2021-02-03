@@ -9,6 +9,7 @@
 # Andrii Protsun <minamotosoft@gmail.com>, 2020
 # Xfce Bot <transifex@xfce.org>, 2021
 # Vasyl Khrystiuk <h6.msangel@gmail.com>, 2021
+# Андрій Мізик <andmizyk@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -17,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-10 12:46+0200\n"
 "PO-Revision-Date: 2019-10-20 16:33+0000\n"
-"Last-Translator: Vasyl Khrystiuk <h6.msangel@gmail.com>, 2021\n"
+"Last-Translator: Андрій Мізик <andmizyk@gmail.com>, 2021\n"
 "Language-Team: Ukrainian (https://www.transifex.com/xfce/teams/16840/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1013,7 +1014,7 @@ msgstr "Оновити існуючий профіль."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "Automatically enable profiles when new display is connected"
-msgstr ""
+msgstr "Автоматично дозволяти профілі, коли підʼєднано новий дисплей"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "Configure new displays when connected"
@@ -1025,7 +1026,7 @@ msgstr "Показати значки на дисплеях для їх іден
 
 #: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "<b>Identifying Displays</b>"
-msgstr ""
+msgstr "<b>Розпізнавання дисплеїв</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:29
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
@@ -1034,7 +1035,7 @@ msgstr "_Просунуті"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:30
 msgid "<b>Profile Name</b>"
-msgstr ""
+msgstr "<b>Назва профілю</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:31
 msgid "Create"
@@ -1074,18 +1075,20 @@ msgstr "Оновити профіль дисплея"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
 msgid "_Update"
-msgstr ""
+msgstr "_Оновити"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:4
 msgid ""
 "<big><b>You have made changes to your previously active profile</b></big>"
-msgstr ""
+msgstr "<big><b>Ви внесли зміни до свого попереднього профілю</b></big>"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
 msgstr ""
+"Якщо ви не оновите профіль, ваші зміни буде втрачено під час "
+"перезавантаження сеансу або відʼєднання чи підʼєднання дисплея."
 
 #: ../dialogs/display-settings/main.c:99
 msgid "Left"
@@ -1151,22 +1154,22 @@ msgstr "Вибраний вихід не відключено"
 
 #: ../dialogs/display-settings/main.c:1363
 msgid "Profiles matching the currently connected displays"
-msgstr ""
+msgstr "Профілі відповідають підключеним зараз дисплеям"
 
 #: ../dialogs/display-settings/main.c:1553
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr ""
+msgstr "Оновити змінений профіль дисплея '%s'?"
 
 #: ../dialogs/display-settings/main.c:1558
 #, c-format
 msgid "_Update '%s'"
-msgstr ""
+msgstr "_Оновити '%s'"
 
 #: ../dialogs/display-settings/main.c:1846
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr ""
+msgstr "Ви дійсно хочете видалити профіль дисплея '%s'?"
 
 #: ../dialogs/display-settings/main.c:1848
 msgid "Delete Profile"
@@ -1174,7 +1177,7 @@ msgstr "Видалити Профіль"
 
 #: ../dialogs/display-settings/main.c:1851
 msgid "Once a display profile is deleted it cannot be restored."
-msgstr ""
+msgstr "Коли профіль дисплея видалено, його не можна відновити."
 
 #: ../dialogs/display-settings/main.c:1852
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -1191,7 +1194,7 @@ msgstr "Видалити"
 #: ../dialogs/display-settings/main.c:1954
 #, c-format
 msgid "%d Xfce Panels"
-msgstr ""
+msgstr "%dПанелі Xfce"
 
 #: ../dialogs/display-settings/main.c:2958
 msgid ""
