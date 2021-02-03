@@ -1170,7 +1170,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     }
     else
     {
-        object = gtk_builder_get_object (builder, "hide_me");
+        object = gtk_builder_get_object (builder, "xfwm4_sync");
         gtk_widget_hide (GTK_WIDGET (object));
     }
     
