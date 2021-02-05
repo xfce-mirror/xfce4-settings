@@ -203,7 +203,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
 
         /* Set the matching xfwm4 theme if the selected theme: is not an icon theme,
          * the xfconf setting is on, and a matching theme is available */
-        if (xfconf_channel_get_bool(xsettings_channel, "/Net/SyncThemes", TRUE) == TRUE
+        if (xfconf_channel_get_bool (xsettings_channel, "/Net/SyncThemes", TRUE) == TRUE
             && strcmp (property, "/Net/ThemeName") == 0)
         {
             if (!no_xfwm4)
