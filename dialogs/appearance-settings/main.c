@@ -577,8 +577,8 @@ appearance_settings_load_ui_themes (gpointer user_data)
             /* Build the filenames for theme components */
             gtkrc_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-2.0", "gtkrc", NULL);
             gtkcss_filename = g_build_filename (ui_theme_dirs[i], file, "gtk-3.0", "gtk.css", NULL);
-            xfwm4_filename = g_build_filename(ui_theme_dirs[i], file, "xfwm4", "themerc", NULL);
-            notifyd_filename = g_build_filename(ui_theme_dirs[i], file, "xfce-notify-4.0", "gtk.css", NULL);
+            xfwm4_filename = g_build_filename (ui_theme_dirs[i], file, "xfwm4", "themerc", NULL);
+            notifyd_filename = g_build_filename (ui_theme_dirs[i], file, "xfce-notify-4.0", "gtk.css", NULL);
 
             /* Check if the gtk.css file exists and the theme is not already in the list */
             if (g_file_test (gtkcss_filename, G_FILE_TEST_EXISTS)
