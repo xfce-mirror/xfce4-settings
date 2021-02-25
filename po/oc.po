@@ -6,14 +6,14 @@
 # Cédric Valmary <cvalmary@yahoo.fr>, 2013-2014,2016
 # Cédric Valmary <cvalmary@yahoo.fr>, 2013
 # Quentin PAGÈS, 2020
-# Quentin PAGÈS, 2020
+# Quentin PAGÈS, 2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-17 12:47+0100\n"
-"PO-Revision-Date: 2020-12-17 11:47+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"POT-Creation-Date: 2021-02-10 00:46+0100\n"
+"PO-Revision-Date: 2021-02-25 18:03+0000\n"
+"Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Occitan (post 1500) (http://www.transifex.com/xfce/xfce4-settings/language/oc/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,9 +66,9 @@ msgid "Accessibility"
 msgstr "Accessibilitat"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 #: ../dialogs/color-settings/color-dialog.glade.h:2
-#: ../dialogs/display-settings/display-dialog.glade.h:11
+#: ../dialogs/display-settings/display-dialog.glade.h:13
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
 #: ../dialogs/display-settings/main.c:4337
@@ -81,9 +81,9 @@ msgid "_Close"
 msgstr "_Tampar"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 #: ../dialogs/color-settings/color-dialog.glade.h:3
-#: ../dialogs/display-settings/display-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:12
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/mime-settings/xfce-mime-window.c:194
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
@@ -317,7 +317,7 @@ msgid "Version information"
 msgstr "Informacion sus la version"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1239
+#: ../dialogs/appearance-settings/main.c:1301
 #: ../dialogs/color-settings/main.c:1389
 #: ../dialogs/display-settings/main.c:4265
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
@@ -330,7 +330,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Picatz « %s --help » per mai d'ajuda."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1258
+#: ../dialogs/appearance-settings/main.c:1320
 #: ../dialogs/color-settings/main.c:1406
 #: ../dialogs/display-settings/main.c:4284
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
@@ -340,7 +340,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "L'equipa de desvolopament Xfce. Totes los dreches reservats."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1259
+#: ../dialogs/appearance-settings/main.c:1321
 #: ../dialogs/color-settings/main.c:1407
 #: ../dialogs/display-settings/main.c:4285
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
@@ -361,7 +361,7 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1119
+#: ../dialogs/appearance-settings/main.c:1181
 #: ../dialogs/display-settings/main.c:106
 #: ../dialogs/display-settings/main.c:117
 msgid "None"
@@ -400,7 +400,7 @@ msgid "1x (no scaling)"
 msgstr "1x (pas cap de mesa a l’escala)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
-#: ../dialogs/display-settings/display-dialog.glade.h:2
+#: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "2x"
 msgstr "2x"
 
@@ -413,200 +413,204 @@ msgstr "Aparéncia"
 #: ../dialogs/color-settings/color-dialog.glade.h:10
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:327
 msgid "_Add"
-msgstr ""
+msgstr "_Apondre"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+msgid "Set matching Xfwm4 theme if there is one"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
 msgstr "Est_il"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "_Icons"
 msgstr "_Icònas"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "Aquesta poliça serà utilizada coma poliça per defaut utilizada al moment de l'elaboracion del tèxte de l'interfàcia de l'utilizaire"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Select a default font"
 msgstr "Seleccionatz una poliça per defaut"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Default Fon_t"
 msgstr "P_oliça per defaut"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Select a default monospace font"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Default _Monospace Font"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "_Enable anti-aliasing"
 msgstr "Activar l'_anticrenelatge"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "L'anticrenelatge, o lissatge de las poliças, pòt melhorar lo rendut del tèxte a l'ecran."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid "Hintin_g:"
 msgstr "_Hinting :"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Fòrça poliças contenon d'informacions que permeton d'obténer un melhor rendut del tèxte ; causir lo que sembla lo melhor segon vòstras preferéncias personalas"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Sub-_pixel order:"
 msgstr "Òrdre de sos_pixellizacion :"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "La qualitat de poliça sus un ecran TFT o LCD pòt èsser bravament melhorada per la causida de l'òrdre del sospixèl corrècte de l'ecran"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Rendering"
 msgstr "Rendut"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "Custom _DPI setting:"
 msgstr "Paramètre _DPI personalizat :"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Modificar la resolucion de l'ecran se lo tèxte apareis tròp grand o tròp pichon."
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "DPI"
 msgstr "DPI"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "_Fonts"
 msgstr "_Poliças"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Show images on _buttons"
 msgstr "Afichar d'imatges suls _botons"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Especificar se las icònas devon èsser afichadas al costat del tèxte dins los botons"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Show images in _menus"
 msgstr "Afichar d'imatges dins los _menús"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Especificar se las icònas devon èsser afichadas al costat dels elements dins los menús"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Enable e_ditable accelerators"
 msgstr "Activar los accelerators modificables"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Se son seleccionats, los acorchis de clavièr dels elements del menú pòdon èsser modificats en passant la mirga sus l'element del menú en quichant sus la novèla combinason de tòcas per l'acorchi"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Menus and Buttons"
 msgstr "Menús e botons"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Enable _event sounds"
 msgstr "_Activar los sons dels eveniments"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Activar o desactivar los sons dels eveniments globalament (requesís « Canberra »)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid "Enable input feedbac_k sounds"
 msgstr "Activatz los sons de retorn d'entrada"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Determinar se los clics de mirga e d'autras intervencions de l'utilizaire desenclavan dels eveniments sonòrs"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Event sounds"
 msgstr "Sons dels eveniments"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid "Adjust the system-wide display scaling"
 msgstr "Ajustar la mesa a l’escala de l’afichatge per l’ensemble del sistèma"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "_Window Scaling"
 msgstr "_Mesa a l’escala de las fenèstras"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
 msgid "Setti_ngs"
 msgstr "Paramètres"
 
-#: ../dialogs/appearance-settings/main.c:451
+#: ../dialogs/appearance-settings/main.c:467
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Atencion : aqueste tèma d'icònas a pas de fichièr escondedor. Lo podètz crear en executant <i>gtk-update-icon-cache %s/%s/</i> dins un emulator de terminal."
 
-#: ../dialogs/appearance-settings/main.c:894
+#: ../dialogs/appearance-settings/main.c:944
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Lo fichièr depassa %d Mio. Installacion anullada."
 
-#: ../dialogs/appearance-settings/main.c:899
+#: ../dialogs/appearance-settings/main.c:949
 msgid "Failed to create temporary directory"
 msgstr "Impossible de crear lo dorsièr temporari"
 
-#: ../dialogs/appearance-settings/main.c:904
+#: ../dialogs/appearance-settings/main.c:954
 msgid "Failed to extract archive"
 msgstr "Impossible d'extraire l'archiu"
 
-#: ../dialogs/appearance-settings/main.c:909
+#: ../dialogs/appearance-settings/main.c:959
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Format desconegut, sols los dorsièrs e archius son preses en carga"
 
-#: ../dialogs/appearance-settings/main.c:914
+#: ../dialogs/appearance-settings/main.c:964
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Error desconeguda, lo còde de sortida es %d"
 
-#: ../dialogs/appearance-settings/main.c:921
+#: ../dialogs/appearance-settings/main.c:971
 msgid "Failed to install theme"
 msgstr "Impossible d'installar lo tèma"
 
-#: ../dialogs/appearance-settings/main.c:975
+#: ../dialogs/appearance-settings/main.c:1025
 #, c-format
 msgid "Install %s theme"
-msgstr ""
+msgstr "Installar lo tèma %s"
 
 #. Create cancel button
-#: ../dialogs/appearance-settings/main.c:979
+#: ../dialogs/appearance-settings/main.c:1029
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
@@ -618,25 +622,25 @@ msgstr ""
 msgid "_Cancel"
 msgstr "_Anullar"
 
-#: ../dialogs/appearance-settings/main.c:981
+#: ../dialogs/appearance-settings/main.c:1031
 #: ../dialogs/keyboard-settings/command-dialog.c:281
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:396
 msgid "_Open"
 msgstr "_Dobrir"
 
-#: ../dialogs/appearance-settings/main.c:1123
+#: ../dialogs/appearance-settings/main.c:1185
 msgid "RGB"
 msgstr "RVB"
 
-#: ../dialogs/appearance-settings/main.c:1127
+#: ../dialogs/appearance-settings/main.c:1189
 msgid "BGR"
 msgstr "BVR"
 
-#: ../dialogs/appearance-settings/main.c:1131
+#: ../dialogs/appearance-settings/main.c:1193
 msgid "Vertical RGB"
 msgstr "RVB vertical"
 
-#: ../dialogs/appearance-settings/main.c:1135
+#: ../dialogs/appearance-settings/main.c:1197
 msgid "Vertical BGR"
 msgstr "BVR vertical"
 
@@ -721,7 +725,7 @@ msgstr ""
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
 msgid "_Remove"
-msgstr ""
+msgstr "_Suprimir"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:13
 msgid "Delete the currently selected profile"
@@ -896,140 +900,148 @@ msgid ""
 msgstr "La configuracion precedenta serà restablida dins 10 segondas se respondètz pas a aquesta question."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "1.25x"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:2
 msgid "1.5x"
 msgstr "1.5x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
-msgid "Custom:"
-msgstr "Personalizat :"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:4
-msgid "The primary display is currently configured to show:"
+msgid "1.75x"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Custom:"
+msgstr "Personalizat :"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
+msgid "The primary display is currently configured to show:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "Xfce Panel"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:6
+#: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "Desktop icons"
 msgstr "Icònas burèu"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:7
+#: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Notifications"
 msgstr "Notificacions"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Configure..."
 msgstr "Configurar..."
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
+#: ../dialogs/display-settings/display-dialog.glade.h:11
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "Afichatge"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:12
+#: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "_Mirror displays"
 msgstr "Ecrans en _miralh"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:13
+#: ../dialogs/display-settings/display-dialog.glade.h:15
 msgid "Primary Display:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:14
+#: ../dialogs/display-settings/display-dialog.glade.h:16
 msgid "R_esolution:"
 msgstr "_Resolucion :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:15
+#: ../dialogs/display-settings/display-dialog.glade.h:17
 msgid "Refresh _rate:"
 msgstr "Taus de _refrescament :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:16
+#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "Ro_tation:"
 msgstr "Ro_tacion :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:17
+#: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "Ref_lection:"
 msgstr "Ref_lexion :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:18
+#: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "A_pply"
 msgstr "A_plicar"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:19
+#: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "_Scale:"
 msgstr "Es_cala :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:20
+#: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "X:"
 msgstr "X :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:21
+#: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "Y:"
 msgstr "Y :"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:22
+#: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "_General"
 msgstr "_General"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:23
+#: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "<b>Profiles</b>"
 msgstr "<b>Perfils</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:24
+#: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "<b>Connecting Displays</b>"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:25
+#: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "Delete the currently selected display profile."
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:26
+#: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "Apply"
 msgstr "Aplicar"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:27
+#: ../dialogs/display-settings/display-dialog.glade.h:29
 msgid "Apply the currently selected display profile."
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:28
+#: ../dialogs/display-settings/display-dialog.glade.h:30
 msgid "Create a new display profile."
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:29
+#: ../dialogs/display-settings/display-dialog.glade.h:31
 msgid "Update an existing profile."
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:30
+#: ../dialogs/display-settings/display-dialog.glade.h:32
 msgid "Automatically enable profiles when new display is connected"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:31
+#: ../dialogs/display-settings/display-dialog.glade.h:33
 msgid "Configure new displays when connected"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:32
+#: ../dialogs/display-settings/display-dialog.glade.h:34
 msgid "Show popup windows to identify displays"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:33
+#: ../dialogs/display-settings/display-dialog.glade.h:35
 msgid "<b>Identifying Displays</b>"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:34
+#: ../dialogs/display-settings/display-dialog.glade.h:36
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "_Advanced"
 msgstr "_Avançat"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:35
+#: ../dialogs/display-settings/display-dialog.glade.h:37
 msgid "<b>Profile Name</b>"
 msgstr "<b>Nom del perfil</b>"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:36
+#: ../dialogs/display-settings/display-dialog.glade.h:38
 msgid "Create"
 msgstr "Crear"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:37
+#: ../dialogs/display-settings/display-dialog.glade.h:39
 msgid "A profile of this name already exists."
 msgstr ""
 
