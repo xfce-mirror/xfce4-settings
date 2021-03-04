@@ -611,11 +611,11 @@ msgstr "נכשל ליצור ספרייה זמנית"
 
 #: ../dialogs/appearance-settings/main.c:904
 msgid "Failed to extract archive"
-msgstr "נכשל להוציא ארכיון"
+msgstr "כשל בחילוץ הארכיון"
 
 #: ../dialogs/appearance-settings/main.c:909
 msgid "Unknown format, only archives and directories are supported"
-msgstr "פורמט לא ידוע, רק ארכיונים וספריות הינם נתמכים"
+msgstr "פורמט לא ידוע, רק ארכיונים וספריות נתמכים"
 
 #: ../dialogs/appearance-settings/main.c:914
 #, c-format
@@ -1011,7 +1011,7 @@ msgstr "<b>חיבור צגים</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "Delete the currently selected display profile."
-msgstr "מחק את פרופיל הצג הנבחר כעת."
+msgstr "מחק את פרופיל התצוגה הנוכחי שנבחר."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "Apply"
@@ -1019,11 +1019,11 @@ msgstr "יישם"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "Apply the currently selected display profile."
-msgstr "יישם את פרופיל הצג הנבחר כעת."
+msgstr "יישם את פרופיל התצוגה הנוכחי שנבחר."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "Create a new display profile."
-msgstr "צור פרופיל צג חדש."
+msgstr "צור פרופיל תצוגה חדש."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:29
 msgid "Update an existing profile."
@@ -1088,7 +1088,7 @@ msgstr "כפתור רדיו"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
 msgid "Update Display Profile"
-msgstr "עדכן פרופיל מסך"
+msgstr "עדכן את פרופיל התצוגה"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
 msgid "_Update"
@@ -1104,8 +1104,8 @@ msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
 msgstr ""
-"אם אתה לא מעדכן את הפרופיל השינויים שלך יאבדו בעת אתחול הסשן שלך או ניתוק או"
-" חיבור מסך."
+"השינויים שלך יאבדו בעת אתחול הסשן שלך או ניתוק או חיבור צג אם לא תעדכן את "
+"הפרופיל."
 
 #: ../dialogs/display-settings/main.c:107
 msgid "Left"
@@ -1172,7 +1172,7 @@ msgstr "פרופילים מתאימים לצגים המחוברים כעת"
 #: ../dialogs/display-settings/main.c:1849
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr "לעדכן פרופיל מסך שעבר שינוי '%s'?"
+msgstr "לעדכן את פרופיל התצוגה \"%s\" שעבר שינוי?"
 
 #: ../dialogs/display-settings/main.c:1854
 #, c-format
@@ -1182,7 +1182,7 @@ msgstr "_עדכן '%s'"
 #: ../dialogs/display-settings/main.c:2142
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr "האם אתה רוצה למחוק את פרופיל המסך '%s'?"
+msgstr "האם אכן ברצונך למחוק את פרופיל התצוגה \"%s\"?"
 
 #: ../dialogs/display-settings/main.c:2144
 msgid "Delete Profile"
@@ -1190,7 +1190,7 @@ msgstr "מחק פרופיל"
 
 #: ../dialogs/display-settings/main.c:2147
 msgid "Once a display profile is deleted it cannot be restored."
-msgstr "ברגע שפרופיל מסך נמחק אין אפשרות לשחזר אותו."
+msgstr "ברגע שפרופיל תצוגה נמחק אין אפשרות לשחזר אותו."
 
 #: ../dialogs/display-settings/main.c:2148
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -1491,7 +1491,8 @@ msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr ""
-"זו תאפס את כל הקיצורים לערכי ברירת מחדל שלהם. האם באמת ברצונך לעשות זאת?"
+"פעולה זו תאפס את כל הקיצורים לערכי ברירת המחדל שלהם. האם אכן ברצונך לעשות "
+"זאת?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "No"
@@ -1574,11 +1575,11 @@ msgstr "נכשל להוסיף יישום חדש \"%s\""
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:145
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:152
 msgid "Press left mouse button to change the selected application."
-msgstr "לחץ על כפתור העכבר השמאלי לשינוי התוכנה הנבחרת."
+msgstr "לחץ על כפתור העכבר השמאלי לשינוי היישום הנבחר."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:151
 msgid "Application Chooser Button"
-msgstr "כפתור בחירת תוכנה"
+msgstr "כפתור בחירת יישום"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:303
 msgid "No application selected"
@@ -1603,7 +1604,7 @@ msgstr "נכשל בקביעת ברירת המחדל למדמה המסוף"
 #. allocate the chooser
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:392
 msgid "Select application"
-msgstr "בחר תוכנה"
+msgstr "בחר יישום"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:505
 msgid "Choose a custom Web Browser"
@@ -1663,7 +1664,7 @@ msgstr "אחר..."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:790
 msgid "Use a custom application which is not included in the above list."
-msgstr "השתמש בתוכנה מותאמת אישית שלא כלולה ברשימה מעלה."
+msgstr "השתמש ביישום מותאם אישית שאינו כלול ברשימה למעלה."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:113
 msgid "Choose Preferred Application"
