@@ -772,20 +772,28 @@ xfce_mime_window_row_visible_func (GtkTreeModel *model,
                                    gpointer      data)
 {
     XfceMimeWindow *window = XFCE_MIME_WINDOW (data);
-    const gchar    *mime_type;
-    GValue          value = { 0, };
+    const gchar    *mime_type, *app_name;
+    gchar          *app_name_lower;
+    GValue          mime_value = { 0, };
+    GValue          app_value = { 0, };
     gboolean        visible;
 
     if (window->filter_text == NULL)
         return TRUE;
 
-    gtk_tree_model_get_value (model, iter, COLUMN_MIME_TYPE, &value);
+    gtk_tree_model_get_value (model, iter, COLUMN_MIME_TYPE, &mime_value);
+    gtk_tree_model_get_value (model, iter, COLUMN_MIME_DEFAULT, &app_value);
 
-    mime_type = g_value_get_string (&value);
-    visible = mime_type != NULL
-        && strstr (mime_type, window->filter_text) != NULL;
+    mime_type = g_value_get_string (&mime_value);
+    app_name = g_value_get_string (&app_value);
+    app_name_lower = g_ascii_strdown (app_name, -1);
 
-    g_value_unset (&value);
+    visible = (mime_type != NULL && strstr (mime_type, window->filter_text) != NULL) ||
+        (app_name_lower != NULL && strstr (app_name_lower, window->filter_text) != NULL);
+
+    g_value_unset (&mime_value);
+    g_value_unset (&app_value);
+    g_free (app_name_lower);
 
     return visible;
 }
