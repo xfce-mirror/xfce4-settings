@@ -318,15 +318,13 @@ display_settings_update_time_label (gpointer user_data)
     }
     else
     {
-        GObject *label;
         gchar   *label_string;
 
-        label_string = g_strdup_printf (_("The previous configuration will be restored in %i"
-                                          " seconds if you do not reply to this question."),
+        label_string = g_strdup_printf (_("The previous configuration will be restored in <b>%i"
+                                          " seconds</b> if you do not reply to this question."),
                                         confirmation_dialog->count);
 
-        label = gtk_builder_get_object (confirmation_dialog->builder, "label2");
-        gtk_label_set_text (GTK_LABEL (label), label_string);
+        gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog), "%s", label_string);
         g_free (label_string);
 
         return TRUE;
