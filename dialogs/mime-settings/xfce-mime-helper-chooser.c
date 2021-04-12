@@ -550,7 +550,7 @@ menu_activate_other (GtkWidget        *item,
   gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), hbox, TRUE, TRUE, 0);
   gtk_widget_show (hbox);
 
-  image = gtk_image_new_from_icon_name ("preferences-desktop-default-applications", GTK_ICON_SIZE_DIALOG);
+  image = gtk_image_new_from_icon_name ("org.xfce.settings.default-applications", GTK_ICON_SIZE_DIALOG);
   g_object_set (image, "halign", GTK_ALIGN_CENTER, "valign", GTK_ALIGN_START, NULL);
   gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
   gtk_widget_show (image);
