@@ -574,7 +574,7 @@ xfce_mime_chooser_set_mime_type (XfceMimeChooser *chooser,
     recommended = g_app_info_get_all_for_type (mime_type);
     xfce_mime_chooser_model_append (chooser->model,
                                     _("Recommended Applications"),
-                                    "preferences-desktop-default-applications",
+                                    "org.xfce.settings.default-applications",
                                     recommended);
 
     /* filter out recommended apps from all apps */
