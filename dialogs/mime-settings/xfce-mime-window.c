@@ -772,20 +772,42 @@ xfce_mime_window_row_visible_func (GtkTreeModel *model,
                                    gpointer      data)
 {
     XfceMimeWindow *window = XFCE_MIME_WINDOW (data);
-    const gchar    *mime_type;
-    GValue          value = { 0, };
+    const gchar    *mime_type, *app_name;
+    gchar          *normalized, *filtertext_folded, *appname_folded = NULL;
+    GValue          mime_value = { 0, };
+    GValue          app_value = { 0, };
     gboolean        visible;
 
     if (window->filter_text == NULL)
         return TRUE;
 
-    gtk_tree_model_get_value (model, iter, COLUMN_MIME_TYPE, &value);
+    gtk_tree_model_get_value (model, iter, COLUMN_MIME_TYPE, &mime_value);
+    gtk_tree_model_get_value (model, iter, COLUMN_MIME_DEFAULT, &app_value);
 
-    mime_type = g_value_get_string (&value);
-    visible = mime_type != NULL
-        && strstr (mime_type, window->filter_text) != NULL;
+    mime_type = g_value_get_string (&mime_value);
+    app_name = g_value_get_string (&app_value);
 
-    g_value_unset (&value);
+    /* normalize and case-fold filter_text unicode string */
+    normalized = g_utf8_normalize (window->filter_text, -1, G_NORMALIZE_ALL);
+    filtertext_folded = g_utf8_casefold (normalized, -1);
+    g_free (normalized);
+
+    /* normalize and case-fold app_name unicode string */
+    if (app_name != NULL)
+    {
+        normalized = g_utf8_normalize (app_name, -1, G_NORMALIZE_ALL);
+        appname_folded = g_utf8_casefold (normalized, -1);
+        g_free (normalized);
+    }
+
+    visible = (mime_type != NULL && strstr (mime_type, window->filter_text) != NULL) ||
+        (appname_folded != NULL && strstr (appname_folded, filtertext_folded) != NULL);
+
+    g_free (filtertext_folded);
+    g_free (appname_folded);
+
+    g_value_unset (&mime_value);
+    g_value_unset (&app_value);
 
     return visible;
 }
