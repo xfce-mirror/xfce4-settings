@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-28 12:46+0200\n"
-"PO-Revision-Date: 2021-04-10 19:43+0000\n"
+"PO-Revision-Date: 2021-04-22 13:29+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce4-settings/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -414,7 +414,7 @@ msgstr "Lis_a"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Set matching Xfwm4 theme if there is one"
-msgstr ""
+msgstr "Kui leidub vastav Xfwm4 teema, siis vali see"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
@@ -766,7 +766,7 @@ msgstr "Tavaline * sRG värviruum"
 #. * a different color, or swap the red and green channels
 #: ../dialogs/color-settings/color-profile.c:99
 msgid "Test Profile"
-msgstr ""
+msgstr "Testprofiil"
 
 #. TRANSLATORS: automatic profiles are generated automatically
 #. * by the color management system based on manufacturing data,
@@ -804,21 +804,21 @@ msgstr ""
 #: ../dialogs/color-settings/color-profile.c:140
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
-msgstr ""
+msgstr "Vaikimisi RGB värviruum"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
-msgstr ""
+msgstr "Vaikimisi CMYK värviruum"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:152
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
-msgstr ""
+msgstr "Vaikimisi hall värviruum"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
 #: ../dialogs/color-settings/main.c:128
@@ -855,11 +855,11 @@ msgstr "Värviruum:"
 #. * profile is a test profile
 #: ../dialogs/color-settings/main.c:206
 msgid "Test profile: "
-msgstr ""
+msgstr "Testprofiil:"
 
 #: ../dialogs/color-settings/main.c:244
 msgid "Compatible Profiles"
-msgstr ""
+msgstr "Ühilduvad profiilid"
 
 #: ../dialogs/color-settings/main.c:835 ../dialogs/color-settings/main.c:836
 #: ../dialogs/color-settings/main.c:837
@@ -876,13 +876,13 @@ msgstr "color;settings;management;display;monitors;printers;webcams;scanners;vä
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
-msgstr ""
+msgstr "<b><big>Kas sa soovid jätta alles selle seadistuse?</big></b>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid ""
 "The previous configuration will be restored in <b>10 seconds</b> if you do "
 "not reply to this question."
-msgstr ""
+msgstr "Kui sa <b>10 sekundi</b> jooksul ei vasta sellele küsimusele, siis taastatame eelmise seadistuse."
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Keep this configuration"
@@ -910,7 +910,7 @@ msgstr "Kohandatud:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "The primary display is currently configured to show:"
-msgstr ""
+msgstr "Esmane ekraan on hetkel seadistatud näitama:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "Xfce Panel"
@@ -1107,14 +1107,14 @@ msgstr "Horisontaalne ja vertikaalne"
 
 #: ../dialogs/display-settings/main.c:141
 msgid "Minimal interface to set up an external output"
-msgstr ""
+msgstr "Lihtne liides väliste ekraanide seadistamiseks"
 
 #: ../dialogs/display-settings/main.c:323
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
 "not reply to this question."
-msgstr ""
+msgstr "Kui sa <b>%i sekundi</b> jooksul ei vasta sellele küsimusele, siis taastatame eelmise seadistuse."
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:782
@@ -1124,20 +1124,20 @@ msgstr "%.1f Hz"
 
 #: ../dialogs/display-settings/main.c:1180
 msgid "Display:"
-msgstr ""
+msgstr "Monitor:"
 
 #: ../dialogs/display-settings/main.c:1185
 msgid "Resolution:"
-msgstr ""
+msgstr "Lahutusvõime:"
 
 #: ../dialogs/display-settings/main.c:1462
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
-msgstr ""
+msgstr "Kui lülitad viimase toimiva väljundi välja, siis kogu süsteemi kasutamine muutub võimatuks."
 
 #: ../dialogs/display-settings/main.c:1464
 msgid "Selected output not disabled"
-msgstr ""
+msgstr "Valitud väljund ei ole välja lülitatud"
 
 #: ../dialogs/display-settings/main.c:1641
 msgid "Profiles matching the currently connected displays"
@@ -1187,13 +1187,13 @@ msgstr "%d Xfce ribad"
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
-msgstr ""
+msgstr "Omaduste muutmiseks vali monitor; asukoha muutmiseks lohista teda."
 
 #: ../dialogs/display-settings/main.c:3323
 #: ../dialogs/display-settings/main.c:3399
 #, c-format
 msgid "(%i, %i)"
-msgstr ""
+msgstr "(%i, %i)"
 
 #. Translators:  this is the feature where what you see on your laptop's
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
@@ -1205,17 +1205,17 @@ msgstr "Peegelda ekraane"
 
 #: ../dialogs/display-settings/main.c:3651
 msgid "(Disabled)"
-msgstr ""
+msgstr "(ei ole kasutusel)"
 
 #: ../dialogs/display-settings/main.c:4101
 #, c-format
 msgid "Only %s (1)"
-msgstr ""
+msgstr "Vaid %s (1)"
 
 #: ../dialogs/display-settings/main.c:4112
 #, c-format
 msgid "Only %s (2)"
-msgstr ""
+msgstr "Vaid %s (2)"
 
 #: ../dialogs/display-settings/main.c:4296
 #: ../dialogs/display-settings/main.c:4333
@@ -1395,7 +1395,7 @@ msgstr "Rakenduste otseteed"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "<b>Use system defaults</b>"
-msgstr ""
+msgstr "<b>Kasuta süsteemi vaikeseadistusi</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "_Keyboard model"
@@ -1407,7 +1407,7 @@ msgstr "Klaviatuuripaigutuse muutmisklahv"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "Co_mpose key"
-msgstr ""
+msgstr "K_oosteklahv"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "Move currently selected item up by one row"
@@ -1452,7 +1452,7 @@ msgstr "Paigutus"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
 msgid "Variant"
-msgstr ""
+msgstr "Alamvariant"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
@@ -2122,7 +2122,7 @@ msgstr "X Terminal"
 
 #: ../dialogs/mouse-settings/main.c:85
 msgid "Active device in the dialog"
-msgstr ""
+msgstr "Vaates olev aktiivne seade"
 
 #: ../dialogs/mouse-settings/main.c:85
 msgid "DEVICE NAME"
@@ -2152,39 +2152,39 @@ msgstr "Keelatud"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 msgid "Edge scrolling"
-msgstr ""
+msgstr "Servas kerimine"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Two-finger scrolling"
-msgstr ""
+msgstr "Kahe sõrmega kerimine"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Circular scrolling"
-msgstr ""
+msgstr "Ringkerimine"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Pen (absolute)"
-msgstr ""
+msgstr "Pliiats (absoluutne)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Mouse (relative)"
-msgstr ""
+msgstr "Hiir (suhteline)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "None (right-handed)"
-msgstr ""
+msgstr "Puudub (paremakäeline)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "Half (left-handed)"
-msgstr ""
+msgstr "Poolik (vasakukäeline)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Clockwise"
-msgstr ""
+msgstr "Päripäeva"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Counterclockwise"
-msgstr ""
+msgstr "Vastupäeva"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
@@ -2193,23 +2193,23 @@ msgstr "Hiir ja puuteplaat"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "De_vice:"
-msgstr ""
+msgstr "Sea_de:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Le_ft-handed"
-msgstr ""
+msgstr "_Vasakukäeline"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Ri_ght-handed"
-msgstr ""
+msgstr "_Paremakäeline"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Reverse scroll d_irection"
-msgstr ""
+msgstr "Pööra _kerimisratta suund"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr ""
+msgstr "Kui see valik on kasutusel, siis kerimisratta suund toimib teistpidi"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Buttons"
