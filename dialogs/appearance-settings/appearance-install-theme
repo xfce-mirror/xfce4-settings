@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # Copyright (C) 2011 Nick Schermer <nick@xfce.org>
+#               2021 Jarno Suni <8@iki.fi>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -87,30 +88,24 @@ if test -z "$dndfilename" -o -z "$HOME"; then
     exit 1
 fi
 
-# check file size, abort if bigger then 50Mb, only works for files
-if test x"`which stat 2>/dev/null`" != x""; then
-    if [ "`uname -s`" = "DragonFly" ] || [ "`uname -s`" = "FreeBSD" ] || [ "`uname -s`" = "NetBSD" ] || [ "`uname -s`" = "OpenBSD" ]; then
-        dndsize=`stat -f %z "$dndfilename"`
-    else
-        dndsize=`stat -c %s "$dndfilename"`
-    fi
-    if test "$dndsize" -gt 52428800; then
-        # 2: File too big
-        exit 2
-    fi
+# check file size, abort if bigger then 100MiB, only works for regular
+# files
+if test -f "$dndfilename"; then
+    dndsize=$(ls -l "$dndfilename" | awk '{print $5}')
+    test "$dndsize" -gt 104857600 && exit 2  # 2: File too big
 fi
 
-# provide tempdir to extract the tarball or folder
-# we try $XDG_CACHE_HOME because it is more likely this is on the
-# same partition, so moving the theme after extract is faster
-if test x"`which mktemp 2>/dev/null`" != x""; then
-    TMPDIR="${TMPDIR:-/tmp}"
-    tmpdir=`TMPDIR="${XDG_CACHE_HOME:-$TMPDIR}" mktemp -d`
+# Provide tmpdir to extract the tarball or folder to. Use the standard
+# Freedesktop directory for user-specific cached data as base directory.
+cachedir=${XDG_CACHE_HOME:-$HOME/.cache}
+mkdir -p "$cachedir"
+if command -v mktemp >/dev/null; then
+    tmpdir=$(mktemp -d -- "$cachedir"/tmp-theme.XXX)
 else
-    tmpdir="/tmp/tmp.$$.$RANDOM"
+    tmpdir="$cachedir"/tmp-theme.$$
     mkdir "$tmpdir"
 fi
-if test ! -d "$tmpdir"; then
+if test 0 -ne "$?"; then
     # 3: Failed to create temp directory
     exit 3
 fi
