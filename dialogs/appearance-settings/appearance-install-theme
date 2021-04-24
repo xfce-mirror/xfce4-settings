@@ -41,9 +41,9 @@ installtheme()
 
     basedir=${file#$tmpdir/}
     themedir=${basedir%/$suffix}
-    themename=${3:-`basename "$themedir"`}
-    themetype=`dirname "$suffix"`
-    themesrc=`dirname "$basedir"`
+    themename=${3:-$(basename "$themedir")}
+    themetype=$(dirname "$suffix")
+    themesrc=$(dirname "$basedir")
     src="$tmpdir/$themesrc"
 
     dest="$HOME/.themes/$themename"
@@ -60,7 +60,7 @@ installicontheme()
 
     basedir=${file#$tmpdir/}
     themedir=${basedir%/$suffix}
-    themename=${3:-`basename "$themedir"`}
+    themename=${3:-$(basename "$themedir")}
     src="$tmpdir/$themedir"
 
     dest="$HOME/.icons"
@@ -113,18 +113,18 @@ fi
 # check if uri is directory or file
 if test -d "$dndfilename"; then
     cp -r "$dndfilename" "$tmpdir" || retval=1
-    pkgname=`basename "$dndfilename"`
+    pkgname=$(basename "$dndfilename")
 elif test -f "$dndfilename"; then
     case "$dndfilename" in
         *.tar.gz|*.tar.Z|*.tgz|*.tar.bz2|*.tbz2|*.tbz|*.tar|*.tar.xz|*.txz)
             # extract the archive
             tar -C "$tmpdir" -xf "$dndfilename" || retval=4
-            pkgname=`basename "${dndfilename%.*}" .tar`
+            pkgname=$(basename "${dndfilename%.*}" .tar)
         ;;
         *.zip)
             # extract the archive
             unzip -qq -d "$tmpdir" "$dndfilename" || retval=4
-            pkgname=`basename "$dndfilename" .zip`
+            pkgname=$(basename "$dndfilename" .zip)
         ;;
         *)
             # 5: unknow file format
