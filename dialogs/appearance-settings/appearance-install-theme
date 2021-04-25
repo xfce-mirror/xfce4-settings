@@ -110,6 +110,14 @@ if test 0 -ne "$?"; then
     exit 3
 fi
 
+# cleanup on exit
+cleanup() {
+    trap - EXIT
+    rm -rf "$tmpdir"
+}
+trap 'cleanup; exit' EXIT TERM HUP
+trap 'cleanup; trap - INT; kill -s INT -- $$' INT
+
 # check if uri is directory or file
 if test -d "$dndfilename"; then
     cp -r "$dndfilename" "$tmpdir" || retval=1
@@ -159,8 +167,5 @@ if test "$retval" -eq 0; then
         fi
     done
 fi
-
-# cleanup
-rm -rf "$tmpdir"
 
 exit $retval
