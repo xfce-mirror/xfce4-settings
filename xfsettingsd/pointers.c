@@ -861,7 +861,9 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
                          && type == float_atom
                          && format == 32)
                 {
-                    data.f[i] = (float) g_value_get_double (val);
+                    /* Xorg actually uses sizeof(long) bytes per element if format == 32 */
+                    /* See https://gitlab.freedesktop.org/xorg/app/xinput/-/blob/cef07c0c8280d7e7b82c3bcc62a1dfbe8cc43ff8/src/property.c#L80 */
+                    *(float*) &data.l[i] = (float) g_value_get_double (val);
                 }
                 else
                 {
