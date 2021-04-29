@@ -50,6 +50,7 @@ installicontheme()
         # move theme to the users' theme directory
         mkdir -p "$dest" && mv "$src" "$dest"
     fi
+    gtk-update-icon-cache -q "$dest/$themename"
 }
 
 # leave if no file is provided
@@ -136,8 +137,7 @@ for file in $index_files; do
 done
 unset -v IFS
 
-test 0 -eq "$is_icon_theme" || exit $retval
+test "$is_icon_theme" -eq 0 || exit 0
 
 # Not an icon theme, so treat as style theme
-
-mv "$tmpdir/$pkgname" ~/.themes
+mkdir -p "$HOME/.themes" && mv "$tmpdir/"* "$HOME/.themes"
