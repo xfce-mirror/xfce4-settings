@@ -50,6 +50,7 @@ installicontheme()
         # move theme to the users' theme directory
         mkdir -p "$dest" && mv "$src" "$dest"
     fi
+    gtk-update-icon-cache -q "$dest/$themename"
 }
 
 # leave if no file is provided
