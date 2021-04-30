@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-28 12:46+0200\n"
-"PO-Revision-Date: 2021-04-24 07:56+0000\n"
+"PO-Revision-Date: 2021-04-30 21:17+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce4-settings/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Dispositivo desconocido"
 #: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4295
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr "No se pudo obtener la versión de la extensión RandR en uso"
+msgstr "No se ha podido obtener la versión de la extensión RandR en uso"
 
 #. 1.2 is required
 #: ../common/xfce-randr.c:307
@@ -49,7 +49,7 @@ msgstr "No se pudo obtener la versión de la extensión RandR en uso"
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "El sistema está usando RandR %d.%d. Para que funcione la configuración de pantalla es necesaria al menos la versión 1.2"
+msgstr "El sistema está usando RandR %d.%d. Para que funcione la configuración de pantalla se necesita al menos la versión 1.2"
 
 #: ../common/xfce-randr.c:597
 msgid "Laptop"
@@ -105,15 +105,15 @@ msgstr "Ay_uda"
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
-msgstr "Cuando esté habilitado, el administrador de sesión iniciará las aplicaciones requeridas para lectores de pantalla y lupas."
+msgstr "Si se activa, el gestor de sesiones iniciará las aplicaciones requeridas por lectores de pantallas y lupas."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "_Enable assistive technologies"
-msgstr "A_ctivar tecnologías de asistencia"
+msgstr "_Activar las tecnologías de asistencia"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "Start With Session"
-msgstr "Empezar con sesión"
+msgstr "Iniciar con la sesión"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Assistive technologies will be available the next time you login"
@@ -121,7 +121,7 @@ msgstr "Las tecnologías de asistencia estarán disponibles la próxima vez que 
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "No AT-SPI provider was found on your system"
-msgstr "No se encontró ningún proveedor AT-SPI en su sistema"
+msgstr "No se ha encontrado ningún proveedor de tecnologías de asistencia (AT-SPI) en el sistema"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Assistive _Technologies"
@@ -132,31 +132,31 @@ msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
-msgstr "Cuando están habilitadas, las teclas modificadoras (como Control, Alt y Mayús) no necesitan mantenerse presionadas (se pueden presionar y soltar) cuando normalmente se deben presionar varias teclas al mismo tiempo."
+msgstr "Si se activa, no hay que mantener pulsadas las teclas modificadoras (como Control, Alt y Mayúsculas), se pueden pulsar y soltar, en los casos en los que normalmente habría que pulsar varias teclas a la vez."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Use sticky keys"
-msgstr "_Utilizar teclas persistentes"
+msgstr "_Usar las teclas persistentes"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "_Lock sticky keys"
-msgstr "_Bloquear teclas persistentes"
+msgstr "_Bloquear las teclas persistentes"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "Al estar seleccionadas, las teclas de modificación (tales como Control, Alt y Mayús) actuarán como si se mantuviesen pulsadas hasta que vuelvan a pulsarse otra vez"
+msgstr "Si se selecciona, las teclas modificadoras (como Control, Alt y Mayúsculas) permanecerán pulsadas hasta que se vuelvan a pulsar"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "Disable sticky keys if two keys are _pressed"
-msgstr "Desactivar las teclas _persistentes si se pulsan las dos teclas"
+msgstr "_Desactivar las teclas persistentes si se pulsan dos teclas"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "Una vez seleccionado, la característica «teclas persistentes» se desactivará si se pulsan dos teclas simultáneamente"
+msgstr "Si se selecciona, la función de teclas persistentes se desactivará si se pulsan dos teclas simultáneamente"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "Sticky Keys"
@@ -166,21 +166,21 @@ msgstr "Teclas persistentes"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
-msgstr "Para ayudar a prevenir pulsaciones de teclas, las teclas lentas requieren que se mantenga presionada una cierta cantidad de tiempo antes de que se acepte la pulsación de tecla."
+msgstr "Para evitar pulsaciones accidentales, la función de teclas lentas obliga a presionar una tecla durante un tiempo mínimo antes de aceptar la pulsación."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Use slow _keys"
-msgstr "Usar teclas _lentas"
+msgstr "Usar las teclas _lentas"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "Acceptance _delay:"
-msgstr "_Retraso de aceptación:"
+msgstr "Retraso en la _aceptación:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr "La cantidad de tiempo en milisegundos que debe pasar para aceptar la pulsación de una tecla"
+msgstr "El tiempo, en milisegundos, que debe transcurrir antes de aceptar la pulsación de una tecla"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "Slow Keys"
@@ -190,19 +190,19 @@ msgstr "Teclas lentas"
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
-msgstr "Para ayudar a prevenir pulsaciones múltiples accidentales, las teclas de rebote imponen un retraso mínimo entre las pulsaciones de tecla."
+msgstr "Para evitar las pulsaciones múltiples accidentales, la función de rechazo de teclas impone un tiempo de espera mínimo entre cada pulsación."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "Use _bounce keys"
-msgstr "Usar _rechazo de teclas"
+msgstr "Usar el _rechazo de teclas"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "K_eystroke delay:"
-msgstr "Retraso de _teclas lentas:"
+msgstr "Retraso en la p_ulsación:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "El tiempo en milisegundos requerido entre pulsaciones de teclas"
+msgstr "El tiempo, en milisegundos, requerido entre pulsaciones de teclas"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Bounce Keys"
@@ -594,11 +594,11 @@ msgstr "El archivo es mayor que %d MB. Se interrumpió la instalación"
 
 #: ../dialogs/appearance-settings/main.c:949
 msgid "Failed to create temporary directory"
-msgstr "No se pudo crear el directorio temporal"
+msgstr "No se ha podido crear el directorio temporal"
 
 #: ../dialogs/appearance-settings/main.c:954
 msgid "Failed to extract archive"
-msgstr "No se pudo extraer el archivador"
+msgstr "No se ha podido extraer el archivador"
 
 #: ../dialogs/appearance-settings/main.c:959
 msgid "Unknown format, only archives and directories are supported"
@@ -611,7 +611,7 @@ msgstr "Error desconocido, el código de salida es %d"
 
 #: ../dialogs/appearance-settings/main.c:971
 msgid "Failed to install theme"
-msgstr "No se pudo instalar el tema"
+msgstr "No se ha podido instalar el tema"
 
 #: ../dialogs/appearance-settings/main.c:1025
 #, c-format
@@ -1232,7 +1232,7 @@ msgstr "Solo %s (2)"
 #: ../dialogs/display-settings/main.c:4296
 #: ../dialogs/display-settings/main.c:4333
 msgid "Unable to start the Xfce Display Settings"
-msgstr "No se pudo iniciar la configuración de pantalla de Xfce"
+msgstr "No se ha podido iniciar la configuración de pantalla de Xfce"
 
 #: ../dialogs/display-settings/main.c:4328
 msgid "ATI Settings"
@@ -1439,16 +1439,16 @@ msgstr "_Distribución"
 
 #: ../dialogs/keyboard-settings/main.c:84
 msgid "Unable to initialize GTK+."
-msgstr "No se pudo inicializar GTK+."
+msgstr "No se ha podido inicializar GTK+."
 
 #: ../dialogs/keyboard-settings/main.c:104
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
-msgstr "No se pudo conectar al servicio de configuración de Xfce. Motivo: %s"
+msgstr "No se ha podido conectar al servicio de configuración de Xfce. Motivo: %s"
 
 #: ../dialogs/keyboard-settings/main.c:115
 msgid "Could not create the settings dialog."
-msgstr "No se pudo crear el diálogo de configuración."
+msgstr "No se ha podido crear el diálogo de configuración."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
 msgid "Command"
@@ -1503,7 +1503,7 @@ msgstr "panel númerico;teclado;disposición;atajos;"
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
-msgstr "No se pudo crear el diálogo mime."
+msgstr "No se ha podido crear el diálogo mime."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
@@ -1552,7 +1552,7 @@ msgstr "Abrir <i>%s</i> y otros archivos de tipo «%s» con:"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:650
 #, c-format
 msgid "Failed to add new application \"%s\""
-msgstr "No se pudo añadir una nueva aplicación «%s»"
+msgstr "No se ha podido añadir una nueva aplicación «%s»"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:145
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:152
@@ -1569,19 +1569,19 @@ msgstr "No se ha seleccionado ninguna aplicación"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:319
 msgid "Failed to set default Web Browser"
-msgstr "No se pudo establecer el navegador web predeterminado"
+msgstr "No se ha podido establecer el navegador web predeterminado"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:320
 msgid "Failed to set default Mail Reader"
-msgstr "No se pudo establecer el lector de correo predeterminado"
+msgstr "No se ha podido establecer el lector de correo predeterminado"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:321
 msgid "Failed to set default File Manager"
-msgstr "No se pudo establecer el gestor de archivos predeterminado"
+msgstr "No se ha podido establecer el gestor de archivos predeterminado"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:322
 msgid "Failed to set default Terminal Emulator"
-msgstr "No se pudo establecer el emulador de terminal predeterminado"
+msgstr "No se ha podido establecer el emulador de terminal predeterminado"
 
 #. allocate the chooser
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:392
@@ -1670,19 +1670,19 @@ msgstr "Elija su emulador de terminal preferido\ny pulse Aceptar para continuar.
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:41
 msgid "Failed to execute default Web Browser"
-msgstr "No se pudo ejecutar el navegador web predeterminado"
+msgstr "No se ha podido ejecutar el navegador web predeterminado"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:42
 msgid "Failed to execute default Mail Reader"
-msgstr "No se pudo ejecutar el lector de correo predeterminado"
+msgstr "No se ha podido ejecutar el lector de correo predeterminado"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:43
 msgid "Failed to execute default File Manager"
-msgstr "No se pudo ejecutar el gestor de archivos predeterminado"
+msgstr "No se ha podido ejecutar el gestor de archivos predeterminado"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:44
 msgid "Failed to execute default Terminal Emulator"
-msgstr "No se pudo ejecutar el emulador de terminal predeterminado"
+msgstr "No se ha podido ejecutar el emulador de terminal predeterminado"
 
 #. Enable permanently dismissing this error.
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:86
@@ -1756,7 +1756,7 @@ msgstr "No se especificó ninguna orden"
 #: ../dialogs/mime-settings/xfce-mime-helper.c:922
 #, c-format
 msgid "Failed to open %s for writing"
-msgstr "No se pudo abrir %s para escribir"
+msgstr "No se ha podido abrir %s para escribir"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
@@ -1862,13 +1862,13 @@ msgstr "Predeterminado"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] "Se encontró %d tipo MIME"
+msgstr[0] "Se ha encontrado %d tipo MIME"
 msgstr[1] "Se encontraron %d tipos MIME"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:859
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr "No se pudo definir la aplicación «%s» para el tipo MIME «%s»."
+msgstr "No se ha podido definir la aplicación «%s» para el tipo MIME «%s»."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1122
 #, c-format
@@ -2606,7 +2606,7 @@ msgstr "Configuración"
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:961
 #, c-format
 msgid "Unable to start \"%s\""
-msgstr "No se pudo iniciar «%s»"
+msgstr "No se ha podido iniciar «%s»"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Settings Manager"
@@ -2659,7 +2659,7 @@ msgstr "Rebote de teclas"
 #: ../xfsettingsd/keyboard-shortcuts.c:242
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
-msgstr "No se pudo ejecutar el atajo «%s»"
+msgstr "No se ha podido ejecutar el atajo «%s»"
 
 #: ../xfsettingsd/main.c:103
 msgid "Fork to the background"
