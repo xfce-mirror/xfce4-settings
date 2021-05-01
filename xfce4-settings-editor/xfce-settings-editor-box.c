@@ -62,7 +62,7 @@ struct _XfceSettingsEditorBox
     GtkTreeStore      *props_store;
     XfconfChannel     *props_channel;
     GtkWidget         *props_treeview;
-    GtkTreeModelFilter *props_filter;
+    GtkTreeModel      *props_filter;
 
     GtkWidget         *filter_entry;
     GtkWidget         *button_new;
@@ -125,11 +125,9 @@ static gboolean xfce_settings_editor_box_query_tooltip        (GtkWidget        
                                                                gboolean                keyboard_mode,
                                                                GtkTooltip             *tooltip,
                                                                XfceSettingsEditorBox  *self);
-static void     xfce_settings_editor_box_filter_changed       (GtkEntry                 *entry,
-                                                               XfceSettingsEditorBox    *self);
 static gboolean xfce_settings_editor_box_row_visible          (GtkTreeModel           *model,
                                                                GtkTreeIter            *iter,
-                                                               XfceSettingsEditorBox  *self);
+                                                               gpointer                user_data);
 static void     xfce_settings_editor_box_row_activated        (GtkTreeView            *treeview,
                                                                GtkTreePath            *path,
                                                                GtkTreeViewColumn      *column,
@@ -199,6 +197,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     GtkCellRenderer    *render;
     GtkTreeViewColumn  *column;
     GtkTreeSelection   *selection;
+    GtkTreeModel       *filter;
     GtkWidget          *vbox;
     GtkWidget          *bbox;
     GtkWidget          *entry;
@@ -271,8 +270,6 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
 
     entry = gtk_search_entry_new ();
     gtk_box_pack_start (GTK_BOX (vbox), entry, FALSE, FALSE, 6);
-    g_signal_connect (G_OBJECT (entry), "activate",
-                      G_CALLBACK (xfce_settings_editor_box_filter_changed), self);
     self->filter_entry = entry;
     gtk_widget_show (entry);
 
@@ -282,18 +279,23 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
     gtk_widget_show (scroll);
 
-    treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (self->props_store));
+    filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (self->props_store), NULL);
+
+    gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (filter),
+                                            (GtkTreeModelFilterVisibleFunc) xfce_settings_editor_box_row_visible,
+                                            entry, NULL);
+    //gtk_tree_model_filter_set_visible_column (GTK_TREE_MODEL_FILTER (filter), PROP_COLUMN_NAME);
+    g_signal_connect_swapped (G_OBJECT (entry), "changed", G_CALLBACK (gtk_tree_model_filter_refilter), GTK_TREE_MODEL_FILTER (filter));
+
+    treeview = gtk_tree_view_new_with_model (filter);
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), TRUE);
     gtk_tree_view_set_headers_clickable (GTK_TREE_VIEW (treeview), FALSE);
     gtk_tree_view_set_enable_search (GTK_TREE_VIEW (treeview), TRUE);
-    self->props_filter = GTK_TREE_MODEL_FILTER (gtk_tree_model_filter_new (GTK_TREE_MODEL (self->props_store), NULL));
-    gtk_tree_model_filter_set_visible_column (self->props_filter, PROP_COLUMN_NAME);
-    gtk_tree_model_filter_set_visible_func (self->props_filter,
-                                            (GtkTreeModelFilterVisibleFunc) xfce_settings_editor_box_row_visible,
-                                            self, NULL);
     gtk_container_add (GTK_CONTAINER (scroll), treeview);
     self->props_treeview = treeview;
     gtk_widget_show (treeview);
+
+    g_object_unref (filter);
 
     gtk_widget_set_has_tooltip (treeview, TRUE);
     g_signal_connect (G_OBJECT (treeview), "query-tooltip",
@@ -1379,33 +1381,48 @@ xfce_settings_editor_box_query_tooltip (GtkWidget                *treeview,
 
 
 
-static void
-xfce_settings_editor_box_filter_changed (GtkEntry                 *entry,
-                                         XfceSettingsEditorBox    *self)
-{
-    g_warning ("changed!");
-    //store->max_price = gtk_adjustment_get_value (adjustment);
-    gtk_tree_model_filter_refilter (self->props_filter);
-}
-
-
-
 static gboolean
-xfce_settings_editor_box_row_visible (GtkTreeModel             *model,
-                                      GtkTreeIter              *iter,
-                                      XfceSettingsEditorBox    *self)
+xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
+                                      GtkTreeIter   *iter,
+                                      gpointer       user_data)
 {
-    gchar *property;
-    gboolean found = FALSE;
+    GtkEntry    *entry = GTK_ENTRY (user_data);
+    gchar       *property;
+    const gchar *text;
+    gchar       *normalized;
+    gchar       *text_casefolded;
+    gchar       *property_casefolded;
+    gboolean     visible = FALSE;
+
+    /* search string from dialog */
+    text = gtk_entry_get_text (entry);
+    if (G_UNLIKELY ((text) == NULL || *(text) == '\0'))
+      return TRUE;
 
     gtk_tree_model_get (model, iter, PROP_COLUMN_NAME, &property, -1);
-    g_warning ("property %s, %s", property, gtk_entry_get_text (GTK_ENTRY (self->filter_entry)));
-    if (g_strcmp0 (property, gtk_entry_get_text (GTK_ENTRY (self->filter_entry))) == 0)
+
+    /* casefold the search text */
+    normalized = g_utf8_normalize (text, -1, G_NORMALIZE_ALL);
+    text_casefolded = g_utf8_casefold (normalized, -1);
+    g_free (normalized);
+
+    if (G_LIKELY (property != NULL))
     {
-        found = TRUE;
-        g_warning ("found a match");
+        /* casefold the name */
+        normalized = g_utf8_normalize (property, -1, G_NORMALIZE_ALL);
+        property_casefolded = g_utf8_casefold (normalized, -1);
+        g_free (normalized);
+
+        /* search */
+        visible = (strstr (property_casefolded, text_casefolded) != NULL);
+
+        g_free (property_casefolded);
     }
-    return found;
+
+    g_free (text_casefolded);
+    g_free (property);
+
+    return visible;
 }
 
 
