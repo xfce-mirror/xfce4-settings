@@ -294,7 +294,7 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
 
             /*  check if we can auto-enable a profile */
             if (xfconf_channel_get_bool (helper->channel, AUTO_ENABLE_PROFILES, FALSE) &&
-                xfconf_channel_get_bool (helper->channel, NOTIFY_PROP, FALSE))
+                xfconf_channel_get_uint (helper->channel, NOTIFY_PROP, 1) > 0)
             {
                 gchar *matching_profile = NULL;
 
@@ -519,6 +519,7 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
     gint                event_num;
     gint                j;
     guint               n, m, nactive = 0;
+    guint               autoconnect_mode;
     gboolean            found = FALSE, changed = FALSE;
 
     if (!e)
@@ -526,7 +527,9 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
 
     event_num = e->type - helper->event_base;
 
-    if (event_num == RRScreenChangeNotify)
+    autoconnect_mode = xfconf_channel_get_int (helper->channel, NOTIFY_PROP, 1);
+
+    if (event_num == RRScreenChangeNotify && autoconnect_mode > 0)
     {
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "RRScreenChangeNotify event received.");
 
@@ -541,8 +544,7 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
         if (old_outputs->len > helper->outputs->len ||
             old_outputs->len < helper->outputs->len)
         {
-            if (xfconf_channel_get_bool (helper->channel, AUTO_ENABLE_PROFILES, FALSE) &&
-                xfconf_channel_get_bool (helper->channel, NOTIFY_PROP, FALSE))
+            if (xfconf_channel_get_bool (helper->channel, AUTO_ENABLE_PROFILES, FALSE))
             {
                 gchar *matching_profile = NULL;
 
@@ -629,9 +631,16 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
                             crtc->mode = output->preferred_mode;
                             crtc->rotation = RR_Rotate_0;
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-                            if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)) {
+                            if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)
+                                || autoconnect_mode == 2) {
 G_GNUC_END_IGNORE_DEPRECATIONS
                                 crtc->x = crtc->y = 0;
+                            }
+                            /* Extend to the right if configured */
+                            else if (autoconnect_mode == 3)
+                            {
+                                crtc->x = helper->width - crtc->width;
+                                crtc->y = 0;
                             } /* else - leave values from last time we saw the monitor */
                             /* set width and height */
                             for (j = 0; j < helper->resources->nmode; ++j)
@@ -655,7 +664,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
                 xfce_displays_helper_apply_all (helper);
 
             /* Start the minimal dialog according to the user preferences */
-            if (changed && xfconf_channel_get_bool (helper->channel, NOTIFY_PROP, FALSE))
+            if (changed && autoconnect_mode == 1)
                 xfce_spawn_command_line_on_screen (NULL, "xfce4-display-settings -m", FALSE,
                                                    FALSE, NULL);
         }
