@@ -59,7 +59,7 @@ struct _XfceSettingsEditorBox
     GtkListStore      *channels_store;
     GtkWidget         *channels_treeview;
 
-    GtkTreeStore      *props_store;
+    GtkTreeModel      *props_store;
     XfconfChannel     *props_channel;
     GtkWidget         *props_treeview;
     GtkTreeModel      *props_filter;
@@ -197,7 +197,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     GtkCellRenderer    *render;
     GtkTreeViewColumn  *column;
     GtkTreeSelection   *selection;
-    GtkTreeModel       *filter;
+    GtkTreeStore       *filter_store;
     GtkWidget          *vbox;
     GtkWidget          *bbox;
     GtkWidget          *entry;
@@ -211,7 +211,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (self->channels_store),
                                           CHANNEL_COLUMN_NAME, GTK_SORT_ASCENDING);
 
-    self->props_store = gtk_tree_store_new (N_PROP_COLUMNS,
+    filter_store = gtk_tree_store_new (N_PROP_COLUMNS,
                                             G_TYPE_STRING,
                                             G_TYPE_STRING,
                                             G_TYPE_STRING,
@@ -279,15 +279,15 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
     gtk_widget_show (scroll);
 
-    filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (self->props_store), NULL);
+    self->props_store = gtk_tree_model_filter_new (GTK_TREE_MODEL (filter_store), NULL);
 
-    gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (filter),
+    gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (self->props_store),
                                             (GtkTreeModelFilterVisibleFunc) xfce_settings_editor_box_row_visible,
                                             entry, NULL);
     //gtk_tree_model_filter_set_visible_column (GTK_TREE_MODEL_FILTER (filter), PROP_COLUMN_NAME);
-    g_signal_connect_swapped (G_OBJECT (entry), "changed", G_CALLBACK (gtk_tree_model_filter_refilter), GTK_TREE_MODEL_FILTER (filter));
+    g_signal_connect_swapped (G_OBJECT (entry), "changed", G_CALLBACK (gtk_tree_model_filter_refilter), GTK_TREE_MODEL_FILTER (self->props_store));
 
-    treeview = gtk_tree_view_new_with_model (filter);
+    treeview = gtk_tree_view_new_with_model (self->props_store);
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), TRUE);
     gtk_tree_view_set_headers_clickable (GTK_TREE_VIEW (treeview), FALSE);
     gtk_tree_view_set_enable_search (GTK_TREE_VIEW (treeview), TRUE);
@@ -295,7 +295,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     self->props_treeview = treeview;
     gtk_widget_show (treeview);
 
-    g_object_unref (filter);
+    //g_object_unref (filter);
 
     gtk_widget_set_has_tooltip (treeview, TRUE);
     g_signal_connect (G_OBJECT (treeview), "query-tooltip",
@@ -529,9 +529,9 @@ xfce_settings_editor_box_property_load (const gchar               *property,
     GValue        parent_val = { 0,};
     gboolean      found_parent;
     GValue        string_value = { 0, };
-    GtkTreeModel *model = GTK_TREE_MODEL (self->props_store);
+    GtkTreeModel *model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (self->props_store));
 
-    g_return_if_fail (GTK_IS_TREE_STORE (self->props_store));
+    g_return_if_fail (GTK_IS_TREE_MODEL (self->props_store));
     g_return_if_fail (G_IS_VALUE (value));
     g_return_if_fail (property != NULL && *property == '/');
 
@@ -759,7 +759,7 @@ xfce_settings_editor_box_properties_load (XfceSettingsEditorBox *self,
 {
     GHashTable *props;
 
-    g_return_if_fail (GTK_IS_TREE_STORE (self->props_store));
+    g_return_if_fail (GTK_IS_TREE_MODEL (self->props_store));
     g_return_if_fail (XFCONF_IS_CHANNEL (channel));
 
     if (self->props_channel != NULL)
@@ -770,7 +770,7 @@ xfce_settings_editor_box_properties_load (XfceSettingsEditorBox *self,
         self->props_channel = NULL;
     }
 
-    gtk_tree_store_clear (self->props_store);
+    gtk_tree_store_clear (GTK_TREE_STORE (gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (self->props_store))));
 
     self->props_channel = (XfconfChannel *) g_object_ref (G_OBJECT (channel));
 
@@ -1400,6 +1400,7 @@ xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
       return TRUE;
 
     gtk_tree_model_get (model, iter, PROP_COLUMN_NAME, &property, -1);
+    g_warning ("poertpy: %s", property);
 
     /* casefold the search text */
     normalized = g_utf8_normalize (text, -1, G_NORMALIZE_ALL);
