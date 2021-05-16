@@ -352,7 +352,6 @@ xfce_keyboard_settings_constructed (GObject *object)
   GObject              *xkb_layout_up_button;
   GObject              *xkb_layout_down_button;
 #endif /* HAVE_LIBXKLAVIER */
-  gboolean              xkb_disable_setting;
 
   /* XKB settings */
   xkb_key_repeat_check = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_key_repeat_check");
@@ -455,8 +454,6 @@ xfce_keyboard_settings_constructed (GObject *object)
                     "state-set",
                     G_CALLBACK (xfce_keyboard_settings_system_default_cb),
                     settings);
-  xkb_disable_setting = xfconf_channel_get_bool (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", TRUE);
-  gtk_switch_set_state (GTK_SWITCH (xkb_use_system_default_switch), xkb_disable_setting);
   xfce_keyboard_settings_update_sensitive (GTK_SWITCH (xkb_use_system_default_switch), settings);
 
   /* Keyboard model combo */
