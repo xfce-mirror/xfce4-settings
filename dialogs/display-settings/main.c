@@ -4006,14 +4006,19 @@ static void
 display_settings_minimal_activated (GApplication *application,
                                     gpointer      user_data)
 {
-    GtkWidget  *dialog;
-    GdkDisplay *display;
-    GdkSeat    *seat;
-    GdkMonitor *monitor;
-    GdkRectangle geometry;
-    gint cursorx, cursory, window_width, window_height;
+    GtkBuilder      *builder;
+    GtkWidget       *dialog;
+    GdkDisplay      *display;
+    GdkSeat         *seat;
+    GdkMonitor      *monitor;
+    gint             cursorx, cursory;
+    GdkRectangle     monitor_rect, window_rect;
 
-    dialog = GTK_WIDGET (user_data);
+    /* TODO: Add rate limit based on timestamp,
+       to avoid overload when shortcut is pressed many times */
+
+    builder = GTK_BUILDER (user_data);
+    g_object_ref (G_OBJECT (builder));
 
     display = gdk_display_get_default ();
     seat = gdk_display_get_default_seat (display);
@@ -4022,15 +4027,44 @@ display_settings_minimal_activated (GApplication *application,
                                     &cursorx, &cursory, NULL);
 
     monitor = gdk_display_get_monitor_at_point (display, cursorx, cursory);
-    gdk_monitor_get_geometry (monitor, &geometry);
+    gdk_monitor_get_geometry (monitor, &monitor_rect);
 
-    gtk_window_get_size (GTK_WINDOW (dialog), &window_width, &window_height);
+    dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
+    gtk_window_get_position (GTK_WINDOW (dialog), &window_rect.x, &window_rect.y);
+    gtk_window_get_size (GTK_WINDOW (dialog), &window_rect.width, &window_rect.height);
 
-    gtk_window_move (GTK_WINDOW (dialog),
-                     geometry.x + geometry.width / 2 - window_width / 2,
-                     geometry.y + geometry.height / 2 - window_height / 2);
+    if (gdk_rectangle_intersect (&monitor_rect, &window_rect, NULL))
+    {
+        /* Select next preset if dialog is already centered at current monitor */
+        GtkToggleButton *only_display1, *mirror_displays, *extend_right, *only_display2;
+
+        only_display1 = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "display1"));
+        mirror_displays = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "mirror"));
+        extend_right = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "extend_right"));
+        only_display2 = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "display2"));
+
+        if (gtk_toggle_button_get_active (only_display1))
+            if (gtk_widget_get_sensitive (GTK_WIDGET (mirror_displays)))
+                gtk_toggle_button_set_active (mirror_displays, TRUE);
+            else
+                gtk_toggle_button_set_active (extend_right, TRUE);
+        else if (gtk_toggle_button_get_active (mirror_displays))
+            gtk_toggle_button_set_active (extend_right, TRUE);
+        else if (gtk_toggle_button_get_active (extend_right))
+            gtk_toggle_button_set_active (only_display2, TRUE);
+        else
+            gtk_toggle_button_set_active (only_display1, TRUE);
+    }
+    else {
+        /* Center dialog on monitor where cursor is */
+        gtk_window_move (GTK_WINDOW (dialog),
+                        monitor_rect.x + monitor_rect.width / 2 - window_rect.width / 2,
+                        monitor_rect.y + monitor_rect.height / 2 - window_rect.height / 2);
+    }
 
     gtk_window_present (GTK_WINDOW (dialog));
+
+    g_object_unref (G_OBJECT (builder));
 }
 
 static void
@@ -4188,7 +4222,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked),
                           builder);
 
-        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), dialog);
+        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), builder);
 
         /* Auto-apply the first profile in the list */
         if (xfconf_channel_get_bool (display_channel, "/AutoEnableProfiles", TRUE))
