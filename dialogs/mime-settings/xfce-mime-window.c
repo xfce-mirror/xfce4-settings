@@ -239,12 +239,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
     gtk_widget_show (chooser);
 
-    /* set Atk label relation for the chooser */
-    object = gtk_widget_get_accessible (chooser);
-    relations = atk_object_ref_relation_set (gtk_widget_get_accessible (label));
-    relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
-    atk_relation_set_add (relations, relation);
-    g_object_unref (G_OBJECT (relation));
+    xfce_gtk_label_set_a11y_relation (GTK_LABEL (label), GTK_WIDGET (chooser));
 
     /*
        Mail Reader
@@ -270,12 +265,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
     gtk_widget_show (chooser);
 
-    /* set Atk label relation for the chooser */
-    object = gtk_widget_get_accessible (chooser);
-    relations = atk_object_ref_relation_set (gtk_widget_get_accessible (label));
-    relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
-    atk_relation_set_add (relations, relation);
-    g_object_unref (G_OBJECT (relation));
+    xfce_gtk_label_set_a11y_relation (GTK_LABEL (label), GTK_WIDGET (chooser));
 
     /*
        Utilities
@@ -310,12 +300,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
     gtk_widget_show (chooser);
 
-    /* set Atk label relation for the chooser */
-    object = gtk_widget_get_accessible (chooser);
-    relations = atk_object_ref_relation_set (gtk_widget_get_accessible (label));
-    relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
-    atk_relation_set_add (relations, relation);
-    g_object_unref (G_OBJECT (relation));
+    xfce_gtk_label_set_a11y_relation (GTK_LABEL (label), GTK_WIDGET (chooser));
 
     /*
        Terminal Emulator
@@ -341,12 +326,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
     gtk_widget_show (chooser);
 
-    /* set Atk label relation for the chooser */
-    object = gtk_widget_get_accessible (chooser);
-    relations = atk_object_ref_relation_set (gtk_widget_get_accessible (label));
-    relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
-    atk_relation_set_add (relations, relation);
-    g_object_unref (G_OBJECT (relation));
+    xfce_gtk_label_set_a11y_relation (GTK_LABEL (label), GTK_WIDGET (chooser));
 
     /*
        Mimes
