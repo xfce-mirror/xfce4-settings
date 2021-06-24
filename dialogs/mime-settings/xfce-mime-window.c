@@ -166,9 +166,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gint               n_mime_types;
     GtkTreeViewColumn *column;
     GtkCellRenderer   *renderer;
-    AtkRelationSet    *relations;
-    AtkRelation       *relation;
-    AtkObject         *object;
     GtkWidget         *notebook;
     GtkWidget         *chooser;
     GtkWidget         *frame;
