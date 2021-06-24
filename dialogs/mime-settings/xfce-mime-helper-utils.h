@@ -19,6 +19,7 @@
 #ifndef __XFCE_MIME_HELPER_UTILS_H__
 #define __XFCE_MIME_HELPER_UTILS_H__
 
+#include <libxfce4ui/libxfce4ui.h>
 #include "xfce-mime-helper.h"
 
 G_BEGIN_DECLS
@@ -27,6 +28,14 @@ gboolean xfce_mime_helper_category_from_string (const gchar       *string,
                                           XfceMimeHelperCategory *category_return);
 gchar   *xfce_mime_helper_category_to_string   (XfceMimeHelperCategory  category) G_GNUC_MALLOC;
 
+#if LIBXFCE4UI_CHECK_VERSION(4,16,1)
+#else
+void    _xfce_gtk_label_set_a11y_relation      (GtkLabel          *label,
+                                                GtkWidget         *widget);
+#define xfce_gtk_label_set_ally_relation(label,widget) _xfce_gtk_label_set_a11y_relation (label, widget)
+#endif /* LIBXFCE4UI_CHECK_VERSION(4,16,1) */
+
 G_END_DECLS
+
 
 #endif /* !__XFCE_MIME_HELPER_UTILS_H__ */

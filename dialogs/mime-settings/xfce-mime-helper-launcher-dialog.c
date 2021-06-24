@@ -24,6 +24,7 @@
 #include <xfce-mime-helper-chooser.h>
 #include <xfce-mime-helper-enum-types.h>
 #include <xfce-mime-helper-launcher-dialog.h>
+#include <xfce-mime-helper-utils.h>
 #include <gtk/gtkx.h>
 
 
