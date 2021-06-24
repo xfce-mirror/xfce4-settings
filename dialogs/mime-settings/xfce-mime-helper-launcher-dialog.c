@@ -99,9 +99,6 @@ xfce_mime_helper_launcher_dialog_class_init (XfceMimeHelperLauncherDialogClass *
 static void
 xfce_mime_helper_launcher_dialog_init (XfceMimeHelperLauncherDialog *launcher_dialog)
 {
-  AtkRelationSet *relations;
-  AtkRelation    *relation;
-  AtkObject      *object;
   GtkWidget      *chooser;
   GtkWidget      *image;
   GtkWidget      *hbox;
