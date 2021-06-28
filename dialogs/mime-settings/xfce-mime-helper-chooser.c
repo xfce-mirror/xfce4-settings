@@ -163,12 +163,7 @@ xfce_mime_helper_chooser_init (XfceMimeHelperChooser *chooser)
   gtk_box_pack_start (GTK_BOX (hbox), chooser->label, TRUE, TRUE, 0);
   gtk_widget_show (chooser->label);
 
-  /* set Atk label relation for the button */
-  object = gtk_widget_get_accessible (button);
-  relations = atk_object_ref_relation_set (gtk_widget_get_accessible (chooser->label));
-  relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
-  atk_relation_set_add (relations, relation);
-  g_object_unref (G_OBJECT (relation));
+  xfce_gtk_label_set_a11y_relation (GTK_LABEL (chooser->label), GTK_WIDGET (button));
 
   separator = g_object_new (GTK_TYPE_SEPARATOR, "orientation", GTK_ORIENTATION_VERTICAL, "height-request", 16, NULL);
   gtk_box_pack_start (GTK_BOX (hbox), separator, FALSE, FALSE, 0);
