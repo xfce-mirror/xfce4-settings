@@ -87,26 +87,3 @@ xfce_mime_helper_category_to_string (XfceMimeHelperCategory category)
 
   return string;
 }
-
-
-
-#if LIBXFCE4UI_CHECK_VERSION(4,16,1)
-#else
-void
-_xfce_gtk_label_set_a11y_relation (GtkLabel  *label,
-                                   GtkWidget *widget)
-{
-  AtkRelationSet *relations;
-  AtkRelation    *relation;
-  AtkObject      *object;
-
-  g_return_if_fail (GTK_IS_WIDGET (widget));
-  g_return_if_fail (GTK_IS_LABEL (label));
-
-  object = gtk_widget_get_accessible (widget);
-  relations = atk_object_ref_relation_set (gtk_widget_get_accessible (GTK_WIDGET (label)));
-  relation = atk_relation_new (&object, 1, ATK_RELATION_LABEL_FOR);
-  atk_relation_set_add (relations, relation);
-  g_object_unref (G_OBJECT (relation));
-}
-#endif /* LIBXFCE4UI_CHECK_VERSION(4,16,1) */
