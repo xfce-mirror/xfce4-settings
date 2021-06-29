@@ -36,7 +36,6 @@
 #include <xfconf/xfconf.h>
 
 #include "xfce-mime-helper-chooser.h"
-#include "xfce-mime-helper-utils.h"
 #include "xfce-mime-window.h"
 #include "xfce-mime-chooser.h"
 
