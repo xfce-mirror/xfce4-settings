@@ -128,9 +128,6 @@ xfce_mime_helper_chooser_class_init (XfceMimeHelperChooserClass *klass)
 static void
 xfce_mime_helper_chooser_init (XfceMimeHelperChooser *chooser)
 {
-  AtkRelationSet *relations;
-  AtkRelation    *relation;
-  AtkObject      *object;
   GtkWidget      *separator;
   GtkWidget      *button;
   GtkWidget      *arrow;
