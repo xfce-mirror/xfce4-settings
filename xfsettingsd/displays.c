@@ -201,6 +201,31 @@ G_DEFINE_TYPE (XfceDisplaysHelper, xfce_displays_helper, G_TYPE_OBJECT);
 
 
 
+/* related: https://discourse.gnome.org/t/port-your-module-from-g-memdup-to-g-memdup2-now/5538 */
+#if GLIB_CHECK_VERSION (2,67,3)
+  #define _g_memdup g_memdup2
+#else
+/* copied from https://gitlab.gnome.org/GNOME/glib/-/blob/feff097f27aa2962c1eed845d3ccebac4cedfcf3/glib/gstrfuncs.c#L388 */
+static inline gpointer
+_g_memdup (gconstpointer mem,
+           gsize         byte_size)
+{
+  gpointer new_mem;
+
+  if (mem && byte_size != 0)
+    {
+      new_mem = g_malloc (byte_size);
+      memcpy (new_mem, mem, byte_size);
+    }
+  else
+    new_mem = NULL;
+
+  return new_mem;
+}
+#endif /* GLIB_CHECK_VERSION (2,67,3) */
+
+
+
 static void
 xfce_displays_helper_class_init (XfceDisplaysHelperClass *klass)
 {
@@ -1135,14 +1160,14 @@ xfce_displays_helper_list_crtcs (XfceDisplaysHelper *helper)
         crtc->noutput = crtc_info->noutput;
         crtc->outputs = NULL;
         if (crtc_info->noutput > 0)
-            crtc->outputs = g_memdup (crtc_info->outputs,
-                                      crtc_info->noutput * sizeof (RROutput));
+            crtc->outputs = _g_memdup (crtc_info->outputs,
+                                       crtc_info->noutput * sizeof (RROutput));
 
         crtc->npossible = crtc_info->npossible;
         crtc->possible = NULL;
         if (crtc_info->npossible > 0)
-            crtc->possible = g_memdup (crtc_info->possible,
-                                       crtc_info->npossible * sizeof (RROutput));
+            crtc->possible = _g_memdup (crtc_info->possible,
+                                        crtc_info->npossible * sizeof (RROutput));
 
         crtc->changed = FALSE;
         XRRFreeCrtcInfo (crtc_info);
