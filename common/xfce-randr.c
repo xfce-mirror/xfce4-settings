@@ -58,6 +58,31 @@ struct _XfceRandrPrivate
 
 
 
+/* related: https://discourse.gnome.org/t/port-your-module-from-g-memdup-to-g-memdup2-now/5538 */
+#if GLIB_CHECK_VERSION (2,67,3)
+  #define _g_memdup g_memdup2
+#else
+/* copied from https://gitlab.gnome.org/GNOME/glib/-/blob/feff097f27aa2962c1eed845d3ccebac4cedfcf3/glib/gstrfuncs.c#L388 */
+static inline gpointer
+_g_memdup (gconstpointer mem,
+           gsize         byte_size)
+{
+  gpointer new_mem;
+
+  if (mem && byte_size != 0)
+    {
+      new_mem = g_malloc (byte_size);
+      memcpy (new_mem, mem, byte_size);
+    }
+  else
+    new_mem = NULL;
+
+  return new_mem;
+}
+#endif /* GLIB_CHECK_VERSION (2,67,3) */
+
+
+
 static gchar *xfce_randr_friendly_name (XfceRandr *randr,
                                         guint      output,
                                         guint      output_rr_id);
@@ -559,7 +584,7 @@ xfce_randr_read_edid_data (Display  *xdisplay,
                                   &bytes_after, &prop) == Success)
         {
             if (actual_type == XA_INTEGER && actual_format == 8)
-                result = g_memdup (prop, nitems);
+                result = _g_memdup (prop, nitems);
         }
 
         XFree (prop);
