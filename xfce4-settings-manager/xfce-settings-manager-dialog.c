@@ -246,7 +246,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     /* Add the filter bar */
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     dialog->revealer = gtk_revealer_new ();
-    gtk_revealer_set_transition_type (GTK_REVEALER (dialog->revealer), GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN);
+    gtk_revealer_set_transition_type (GTK_REVEALER (dialog->revealer), GTK_REVEALER_TRANSITION_TYPE_NONE);
     gtk_widget_set_margin_top (box, 4);
     gtk_container_add (GTK_CONTAINER (dialog->revealer), box);
     gtk_widget_show (dialog->revealer);
@@ -852,8 +852,8 @@ xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
     gtk_widget_set_sensitive (dialog->button_back, TRUE);
     gtk_widget_set_sensitive (dialog->button_help, dialog->help_page != NULL);
     gtk_widget_hide (dialog->filter_button);
-    gtk_widget_hide (dialog->revealer);
-
+    gtk_revealer_set_reveal_child (GTK_REVEALER (dialog->revealer), FALSE);
+ 
     /* plug startup complete */
     gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
 }
