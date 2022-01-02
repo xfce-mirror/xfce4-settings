@@ -61,8 +61,7 @@ struct _XfceSettingsManagerDialog
 
     GtkListStore   *store;
 
-    GtkWidget      *revealer;
-    GtkWidget      *filter_button;
+    GtkWidget      *filter_bar;
     GtkWidget      *filter_entry;
     gchar          *filter_text;
 
@@ -119,8 +118,6 @@ static void     xfce_settings_manager_dialog_set_title       (XfceSettingsManage
                                                               const gchar               *title,
                                                               const gchar               *icon_name);
 static void     xfce_settings_manager_dialog_go_back         (XfceSettingsManagerDialog *dialog);
-static void     xfce_settings_manager_show_filter_toggled    (GtkToggleButton           *button,
-                                                              gpointer                   user_data);
 static void     xfce_settings_manager_dialog_entry_changed   (GtkWidget                 *entry,
                                                               XfceSettingsManagerDialog *dialog);
 static gboolean xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
@@ -192,7 +189,6 @@ static void
 xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 {
     GtkWidget *dialog_vbox;
-    GtkWidget *box;
     GtkWidget *entry;
     GtkWidget *scroll;
     GtkWidget *viewport;
@@ -238,33 +234,21 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_button_set_image (GTK_BUTTON (button), image);
 
     /* Add the filter bar */
-    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    dialog->revealer = gtk_revealer_new ();
-    gtk_revealer_set_transition_type (GTK_REVEALER (dialog->revealer), GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN);
-    gtk_widget_set_margin_top (box, 4);
-    gtk_container_add (GTK_CONTAINER (dialog->revealer), box);
-    gtk_widget_show (dialog->revealer);
-
-    dialog->filter_button = button = gtk_toggle_button_new ();
-    image = gtk_image_new_from_icon_name ("edit-find-symbolic", GTK_ICON_SIZE_BUTTON);
-    gtk_button_set_image (GTK_BUTTON (button), image);
-    gtk_header_bar_pack_end (GTK_HEADER_BAR (gtk_dialog_get_header_bar (GTK_DIALOG (dialog))), button);
-    gtk_widget_show (button);
-    g_signal_connect (G_OBJECT (button), "toggled", G_CALLBACK (xfce_settings_manager_show_filter_toggled), dialog);
-    xfconf_g_property_bind (dialog->channel, "/last/filter-visible", G_TYPE_BOOLEAN, G_OBJECT (button), "active");
-
+    dialog->filter_bar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_widget_set_margin_top (dialog->filter_bar, 4);
+    gtk_widget_set_margin_end (dialog->filter_bar, 5);
     dialog->filter_entry = entry = gtk_search_entry_new ();
-    gtk_box_pack_start (GTK_BOX (box), entry, TRUE, FALSE, 0);
-    gtk_widget_set_valign (entry, GTK_ALIGN_CENTER);
+    gtk_box_pack_start (GTK_BOX (dialog->filter_bar), entry, TRUE, FALSE, 0);
+    gtk_widget_set_halign (dialog->filter_bar, GTK_ALIGN_END);
     g_signal_connect (G_OBJECT (entry), "changed",
         G_CALLBACK (xfce_settings_manager_dialog_entry_changed), dialog);
     g_signal_connect (G_OBJECT (entry), "key-press-event",
         G_CALLBACK (xfce_settings_manager_dialog_entry_key_press), dialog);
-    gtk_widget_show_all (box);
+    gtk_widget_show_all (dialog->filter_bar);
 
     dialog_vbox = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 
-    gtk_box_pack_start (GTK_BOX (dialog_vbox), dialog->revealer, FALSE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (dialog_vbox), dialog->filter_bar, FALSE, TRUE, 0);
 
     dialog->category_scroll = scroll = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll), GTK_SHADOW_ETCHED_IN);
@@ -670,9 +654,8 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
     gtk_widget_set_sensitive (dialog->button_help, TRUE);
 
-    gtk_widget_show (dialog->filter_button);
-    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->filter_button)))
-        gtk_widget_show (dialog->revealer);
+    gtk_widget_show (dialog->filter_bar);
+
     gtk_entry_set_text (GTK_ENTRY (dialog->filter_entry), "");
     gtk_widget_grab_focus (dialog->filter_entry);
 
@@ -735,22 +718,6 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget                 *entry,
         dialog->filter_text = NULL;
         g_free (filter_text);
     }
-}
-
-
-
-static void
-xfce_settings_manager_show_filter_toggled (GtkToggleButton *button,
-                                           gpointer         user_data)
-{
-    XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG (user_data);
-    gboolean state;
-
-    state = gtk_toggle_button_get_active (button);
-    gtk_widget_show (dialog->revealer);
-    gtk_revealer_set_reveal_child (GTK_REVEALER (dialog->revealer), state);
-    if (state && GTK_IS_WIDGET (dialog->filter_entry))
-        gtk_widget_grab_focus (dialog->filter_entry);
 }
 
 
@@ -843,8 +810,7 @@ xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
     /* button sensitivity */
     gtk_widget_set_sensitive (dialog->button_back, TRUE);
     gtk_widget_set_sensitive (dialog->button_help, dialog->help_page != NULL);
-    gtk_widget_hide (dialog->filter_button);
-    gtk_widget_hide (dialog->revealer);
+    gtk_widget_hide (dialog->filter_bar);
 
     /* plug startup complete */
     gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
@@ -1293,7 +1259,7 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
                 items = g_list_sort (items, xfce_settings_manager_dialog_menu_sort);
                 for (lp = items; lp != NULL; lp = lp->next)
                 {
-                    /* create independent search string based on name, comment and keywords */
+                    /* create independent header string based on name, comment and keywords */
                     keywords = garcon_menu_item_get_keywords (lp->data);
                     item_keywords = g_string_new (NULL);
                     for (kli = keywords; kli != NULL; kli = kli->next)
