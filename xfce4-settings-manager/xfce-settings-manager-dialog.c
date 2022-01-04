@@ -853,7 +853,7 @@ xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
     gtk_widget_set_sensitive (dialog->button_help, dialog->help_page != NULL);
     gtk_widget_hide (dialog->filter_button);
     gtk_revealer_set_reveal_child (GTK_REVEALER (dialog->revealer), FALSE);
- 
+
     /* plug startup complete */
     gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
 }
