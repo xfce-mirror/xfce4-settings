@@ -1259,7 +1259,7 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
                 items = g_list_sort (items, xfce_settings_manager_dialog_menu_sort);
                 for (lp = items; lp != NULL; lp = lp->next)
                 {
-                    /* create independent header string based on name, comment and keywords */
+                    /* create independent search string based on name, comment and keywords */
                     keywords = garcon_menu_item_get_keywords (lp->data);
                     item_keywords = g_string_new (NULL);
                     for (kli = keywords; kli != NULL; kli = kli->next)
