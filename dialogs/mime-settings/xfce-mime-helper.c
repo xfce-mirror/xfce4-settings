@@ -140,7 +140,7 @@ substitute_binary (const gchar *commands,
         }
       else if (binary != NULL)
         {
-          tmp = exo_str_replace (*s, "%B", binary);
+          tmp = xfce_str_replace (*s, "%B", binary);
           g_free (*s);
           *t++ = tmp;
         }
@@ -181,7 +181,7 @@ xfce_mime_helper_new (const gchar *id,
 
   /* verify the type of the desktop file */
   str = xfce_rc_read_entry_untranslated (rc, "Type", NULL);
-  if (G_UNLIKELY (!exo_str_is_equal (str, "X-XFCE-Helper")))
+  if (G_UNLIKELY (g_strcmp0 (str, "X-XFCE-Helper") != 0))
     goto failed;
 
   /* determine the category of the helper */
@@ -191,13 +191,13 @@ xfce_mime_helper_new (const gchar *id,
 
   /* determine the name of the helper */
   str = xfce_rc_read_entry (rc, "Name", NULL);
-  if (G_UNLIKELY (exo_str_is_empty (str)))
+  if (G_UNLIKELY (xfce_str_is_empty (str)))
     goto failed;
   helper->name = g_strdup (str);
 
   /* determine the icon of the helper */
   str = xfce_rc_read_entry_untranslated (rc, "Icon", NULL);
-  if (G_LIKELY (!exo_str_is_empty (str)))
+  if (G_LIKELY (!xfce_str_is_empty (str)))
     helper->icon = g_strdup (str);
 
   /* determine the commands */
@@ -205,7 +205,7 @@ xfce_mime_helper_new (const gchar *id,
   if (G_UNLIKELY (commands == NULL))
     goto failed;
 
-  commands_with_flag = exo_str_replace (commands, ";", " %s;");
+  commands_with_flag = xfce_str_replace (commands, ";", " %s;");
 
   /* determine the commands (with parameter) */
   commands_with_parameter = xfce_rc_read_entry_untranslated (rc, "X-XFCE-CommandsWithParameter", NULL);
@@ -392,9 +392,9 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
     real_parameter = parameter + 7;
 
   /* determine the command set to use */
-  if (exo_str_is_flag (real_parameter)) {
+  if (g_str_has_prefix (real_parameter, "-")) {
     commands = helper->commands_with_flag;
-  } else if (exo_str_is_empty (real_parameter)) {
+  } else if (xfce_str_is_empty (real_parameter)) {
     commands = helper->commands;
   } else {
     commands = helper->commands_with_parameter;
@@ -414,7 +414,7 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
       g_clear_error (&err);
 
       /* parse the command */
-      command = !exo_str_is_empty (real_parameter) ? exo_str_replace (commands[n], "%s", real_parameter) : g_strdup (commands[n]);
+      command = !xfce_str_is_empty (real_parameter) ? xfce_str_replace (commands[n], "%s", real_parameter) : g_strdup (commands[n]);
       succeed = g_shell_parse_argv (command, NULL, &argv, &err);
       g_free (command);
 
@@ -805,13 +805,13 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
           xfce_rc_set_group (rc, "Default Applications");
 
           for (i = 0; mimetypes[i] != NULL; i++)
-            if (!exo_str_is_empty (mimetypes[i]))
+            if (!xfce_str_is_empty (mimetypes[i]))
               xfce_rc_write_entry (rc, mimetypes[i], filename);
 
           xfce_rc_set_group (rc, "Added Associations");
 
           for (i = 0; mimetypes[i] != NULL; i++)
-            if (!exo_str_is_empty (mimetypes[i]))
+            if (!xfce_str_is_empty (mimetypes[i]))
               {
                 entry = g_strconcat (filename, ";", NULL);
                 xfce_rc_write_entry (rc, mimetypes[i], entry);
@@ -937,13 +937,13 @@ xfce_mime_helper_database_clear_default (XfceMimeHelperDatabase *database,
           xfce_rc_set_group (rc, "Default Applications");
 
           for (i = 0; mimetypes[i] != NULL; i++)
-            if (!exo_str_is_empty (mimetypes[i]))
+            if (!xfce_str_is_empty (mimetypes[i]))
               xfce_rc_delete_entry (rc, mimetypes[i], FALSE);
 
           xfce_rc_set_group (rc, "Added Associations");
 
           for (i = 0; mimetypes[i] != NULL; i++)
-            if (!exo_str_is_empty (mimetypes[i]))
+            if (!xfce_str_is_empty (mimetypes[i]))
               xfce_rc_delete_entry (rc, mimetypes[i], FALSE);
 
           g_strfreev (mimetypes);
@@ -978,7 +978,7 @@ clear_bad_entry (XfceRc *rc,
 
           for (i = 0; values[i] != NULL; i++)
             {
-              if (!exo_str_is_empty(values[i]) && g_strcmp0(values[i], filename) != 0)
+              if (!xfce_str_is_empty(values[i]) && g_strcmp0(values[i], filename) != 0)
                 {
                   list = g_slist_append (list, g_strdup(values[i]));
                 }
@@ -1145,7 +1145,7 @@ xfce_mime_helper_database_set_custom (XfceMimeHelperDatabase *database,
 
   g_return_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database));
   g_return_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES);
-  g_return_if_fail (!exo_str_is_empty (command));
+  g_return_if_fail (!xfce_str_is_empty (command));
 
   /* determine the spec for the custom helper */
   category_string = xfce_mime_helper_category_to_string (category);

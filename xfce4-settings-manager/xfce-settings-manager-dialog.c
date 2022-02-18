@@ -571,7 +571,7 @@ xfce_settings_manager_dialog_query_tooltip (GtkWidget                 *iconview,
         g_assert (GARCON_IS_MENU_ITEM (item));
 
         comment = garcon_menu_item_get_comment (item);
-        if (!exo_str_is_empty (comment))
+        if (!xfce_str_is_empty (comment))
             gtk_tooltip_set_text (tooltip, comment);
 
         g_value_unset (&value);
