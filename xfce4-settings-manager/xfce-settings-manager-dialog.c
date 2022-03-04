@@ -908,7 +908,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
 
         /* spawn dialog with socket argument */
         cmd = g_strdup_printf ("%s --socket-id=%d", command, (gint)gtk_socket_get_id (GTK_SOCKET (socket)));
-        if (!xfce_spawn_command_line_on_screen (screen, cmd, FALSE, FALSE, &error))
+        if (!xfce_spawn_command_line (screen, cmd, FALSE, FALSE, TRUE, &error))
         {
             gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
 
@@ -921,7 +921,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
     else
     {
         snotify = garcon_menu_item_supports_startup_notification (item);
-        if (!xfce_spawn_command_line_on_screen (screen, command, FALSE, snotify, &error))
+        if (!xfce_spawn_command_line (screen, command, FALSE, snotify, TRUE, &error))
         {
             xfce_dialog_show_error (GTK_WINDOW (dialog), error,
                                     _("Unable to start \"%s\""), command);
