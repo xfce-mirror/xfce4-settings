@@ -4043,7 +4043,7 @@ display_settings_minimal_center (gpointer user_data)
     gtk_window_move (GTK_WINDOW (dialog),
                      monitor_rect.x + monitor_rect.width / 2 - window_rect.width / 2,
                      monitor_rect.y + monitor_rect.height / 2 - window_rect.height / 2);
-    
+
     return FALSE;
 }
 
@@ -4069,7 +4069,7 @@ display_settings_minimal_cycle (GtkWidget  *dialog,
         gtk_toggle_button_set_active (only_display2, TRUE);
     else
         gtk_toggle_button_set_active (only_display1, TRUE);
-    
+
     g_timeout_add_seconds (1, display_settings_minimal_center, dialog);
 }
 
@@ -4077,29 +4077,26 @@ static void
 display_settings_minimal_activated (GApplication *application,
                                     gpointer      user_data)
 {
+    GtkBuilder *builder;
     GtkWidget  *dialog;
-    GdkDisplay *display;
-    GdkSeat    *seat;
-    GdkMonitor *monitor;
-    GdkRectangle geometry;
-    gint cursorx, cursory, window_width, window_height;
+    GdkRectangle monitor_rect, window_rect;
 
-    dialog = GTK_WIDGET (user_data);
+    builder = GTK_BUILDER (user_data);
 
-    display = gdk_display_get_default ();
-    seat = gdk_display_get_default_seat (display);
-    gdk_window_get_device_position (gdk_get_default_root_window (),
-                                    gdk_seat_get_pointer (seat),
-                                    &cursorx, &cursory, NULL);
+    dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
+    display_settings_minimal_get_positions (dialog, &monitor_rect, &window_rect);
 
-    monitor = gdk_display_get_monitor_at_point (display, cursorx, cursory);
-    gdk_monitor_get_geometry (monitor, &geometry);
-
-    gtk_window_get_size (GTK_WINDOW (dialog), &window_width, &window_height);
-
-    gtk_window_move (GTK_WINDOW (dialog),
-                     geometry.x + geometry.width / 2 - window_width / 2,
-                     geometry.y + geometry.height / 2 - window_height / 2);
+    /* Check if dialog is already at current monitor (where cursor is at) */
+    if (gdk_rectangle_intersect (&monitor_rect, &window_rect, NULL))
+    {
+        /* Select next preset if dialog is already at current monitor */
+        display_settings_minimal_cycle (dialog, builder);
+    }
+    else
+    {
+        /* Center at current monitor if displayed elsewhere */
+        display_settings_minimal_center (dialog);
+    }
 
     gtk_window_present (GTK_WINDOW (dialog));
 }
@@ -4259,7 +4256,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked),
                           builder);
 
-        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), dialog);
+        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), builder);
 
         /* Auto-apply the first profile in the list */
         if (xfconf_channel_get_bool (display_channel, "/AutoEnableProfiles", TRUE))
