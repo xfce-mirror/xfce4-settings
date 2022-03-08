@@ -4011,6 +4011,69 @@ display_settings_minimal_advanced_clicked (GtkButton  *button,
 }
 
 static void
+display_settings_minimal_get_positions (GtkWidget    *dialog,
+                                        GdkRectangle *monitor_rect,
+                                        GdkRectangle *window_rect)
+{
+    GdkDisplay *display;
+    GdkSeat    *seat;
+    GdkMonitor *monitor;
+    gint cursorx, cursory;
+
+    display = gdk_display_get_default ();
+    seat = gdk_display_get_default_seat (display);
+    gdk_window_get_device_position (gdk_get_default_root_window (),
+                                    gdk_seat_get_pointer (seat),
+                                    &cursorx, &cursory, NULL);
+
+    monitor = gdk_display_get_monitor_at_point (display, cursorx, cursory);
+    gdk_monitor_get_geometry (monitor, monitor_rect);
+    gtk_window_get_position (GTK_WINDOW (dialog), &window_rect->x, &window_rect->y);
+    gtk_window_get_size (GTK_WINDOW (dialog), &window_rect->width, &window_rect->height);
+}
+
+static gboolean
+display_settings_minimal_center (gpointer user_data)
+{
+    GdkRectangle monitor_rect, window_rect;
+    GtkWidget *dialog = user_data;
+
+    display_settings_minimal_get_positions (dialog, &monitor_rect, &window_rect);
+
+    gtk_window_move (GTK_WINDOW (dialog),
+                     monitor_rect.x + monitor_rect.width / 2 - window_rect.width / 2,
+                     monitor_rect.y + monitor_rect.height / 2 - window_rect.height / 2);
+    
+    return FALSE;
+}
+
+static void
+display_settings_minimal_cycle (GtkWidget  *dialog,
+                                GtkBuilder *builder)
+{
+    GtkToggleButton *only_display1, *mirror_displays, *extend_right, *only_display2;
+
+    only_display1 = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "display1"));
+    mirror_displays = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "mirror"));
+    extend_right = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "extend_right"));
+    only_display2 = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "display2"));
+
+    if (gtk_toggle_button_get_active (only_display1))
+        if (gtk_widget_get_sensitive (GTK_WIDGET (mirror_displays)))
+            gtk_toggle_button_set_active (mirror_displays, TRUE);
+        else
+            gtk_toggle_button_set_active (extend_right, TRUE);
+    else if (gtk_toggle_button_get_active (mirror_displays))
+        gtk_toggle_button_set_active (extend_right, TRUE);
+    else if (gtk_toggle_button_get_active (extend_right))
+        gtk_toggle_button_set_active (only_display2, TRUE);
+    else
+        gtk_toggle_button_set_active (only_display1, TRUE);
+    
+    g_timeout_add_seconds (1, display_settings_minimal_center, dialog);
+}
+
+static void
 display_settings_minimal_activated (GApplication *application,
                                     gpointer      user_data)
 {
