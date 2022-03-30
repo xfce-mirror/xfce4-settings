@@ -1401,13 +1401,13 @@ xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
     if (G_UNLIKELY ((text) == NULL || *(text) == '\0'))
       return TRUE;
 
-    gtk_tree_model_get (model, iter, PROP_COLUMN_NAME, &property, -1);
-//    g_warning ("property: %s", property);
-
     /* casefold the search text */
     normalized = g_utf8_normalize (text, -1, G_NORMALIZE_ALL);
     text_casefolded = g_utf8_casefold (normalized, -1);
     g_free (normalized);
+
+    gtk_tree_model_get (model, iter, PROP_COLUMN_NAME, &property, -1);
+//    g_warning ("property: %s", property);
 
     if (G_LIKELY (property != NULL))
     {
@@ -1420,6 +1420,21 @@ xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
         visible = (strstr (property_casefolded, text_casefolded) != NULL);
 
         g_free (property_casefolded);
+    }
+
+    if (visible == FALSE && gtk_tree_model_iter_has_child (model, iter))
+    {
+      for (int i = 0; i < gtk_tree_model_iter_n_children (model, iter); i++)
+      {
+        GtkTreeIter child;
+        gtk_tree_model_iter_nth_child (model, &child, iter, i);
+
+        if (xfce_settings_editor_box_row_visible (model, &child, user_data) == TRUE)
+        {
+          visible = TRUE;
+          break;
+        }
+      }
     }
 
     g_free (text_casefolded);
