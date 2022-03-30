@@ -218,7 +218,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
                                             G_TYPE_STRING,
                                             G_TYPE_BOOLEAN,
                                             G_TYPE_VALUE);
-    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (self->props_store),
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (filter_store),
                                           PROP_COLUMN_NAME, GTK_SORT_ASCENDING);
     self->paned = paned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
 
@@ -529,11 +529,13 @@ xfce_settings_editor_box_property_load (const gchar               *property,
     GValue        parent_val = { 0,};
     gboolean      found_parent;
     GValue        string_value = { 0, };
-    GtkTreeModel *model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (self->props_store));
+    GtkTreeModel *model;
 
-    g_return_if_fail (GTK_IS_TREE_MODEL (self->props_store));
+    g_return_if_fail (GTK_IS_TREE_MODEL_FILTER (self->props_store));
     g_return_if_fail (G_IS_VALUE (value));
     g_return_if_fail (property != NULL && *property == '/');
+
+    model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (self->props_store));
 
     paths = g_strsplit (property, "/", -1);
     if (paths == NULL)
@@ -660,7 +662,7 @@ xfce_settings_editor_box_property_changed (XfconfChannel            *channel,
     gboolean          has_parent;
     GtkTreeSelection *selection;
 
-    g_return_if_fail (GTK_IS_TREE_STORE (self->props_store));
+    g_return_if_fail (GTK_IS_TREE_MODEL_FILTER (self->props_store));
     g_return_if_fail (XFCONF_IS_CHANNEL (channel));
     g_return_if_fail (self->props_channel == channel);
 
@@ -1400,7 +1402,7 @@ xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
       return TRUE;
 
     gtk_tree_model_get (model, iter, PROP_COLUMN_NAME, &property, -1);
-    g_warning ("poertpy: %s", property);
+//    g_warning ("property: %s", property);
 
     /* casefold the search text */
     normalized = g_utf8_normalize (text, -1, G_NORMALIZE_ALL);
