@@ -792,7 +792,7 @@ xfce_settings_editor_box_properties_load (XfceSettingsEditorBox *self,
 
 
 static void
-xfce_settings_editor_box_channel_changed (GtkTreeSelection         *selection,
+xfce_settings_editor_box_channel_changed (GtkTreeSelection      *selection,
                                           XfceSettingsEditorBox *self)
 {
     GtkTreeIter    iter;
@@ -819,7 +819,7 @@ xfce_settings_editor_box_channel_changed (GtkTreeSelection         *selection,
     else
     {
         gtk_widget_set_sensitive (self->button_new, FALSE);
-        gtk_tree_store_clear (self->props_store);
+        gtk_tree_store_clear (GTK_TREE_STORE (gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (self->props_store))));
     }
 }
 
