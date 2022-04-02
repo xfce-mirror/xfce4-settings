@@ -284,8 +284,11 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (self->props_store),
                                             (GtkTreeModelFilterVisibleFunc) xfce_settings_editor_box_row_visible,
                                             entry, NULL);
-    //gtk_tree_model_filter_set_visible_column (GTK_TREE_MODEL_FILTER (filter), PROP_COLUMN_NAME);
-    g_signal_connect_swapped (G_OBJECT (entry), "changed", G_CALLBACK (gtk_tree_model_filter_refilter), GTK_TREE_MODEL_FILTER (self->props_store));
+
+    g_signal_connect_swapped (G_OBJECT (entry), "search-changed", G_CALLBACK (gtk_tree_model_filter_refilter), GTK_TREE_MODEL_FILTER (self->props_store));
+
+    /* Let the window execute it's accelerators if there are any, otherwise the entry consumes the accelerator. */
+    g_signal_connect (G_OBJECT (entry), "key-press-event", G_CALLBACK (xfce_settings_editor_box_key_press_event), self);
 
     treeview = gtk_tree_view_new_with_model (self->props_store);
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), TRUE);
@@ -1488,6 +1491,11 @@ xfce_settings_editor_box_key_press_event (GtkTreeView              *treeview,
              && gtk_widget_get_sensitive (self->button_new))
     {
         xfce_settings_editor_box_property_new (self);
+        return TRUE;
+    }
+    else if (event->keyval == GDK_KEY_Escape)
+    {
+        gtk_entry_set_text (GTK_ENTRY (self->filter_entry), "");
         return TRUE;
     }
 
