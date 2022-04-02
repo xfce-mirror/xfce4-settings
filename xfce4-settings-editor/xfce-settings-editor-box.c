@@ -1398,7 +1398,7 @@ xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
 
     /* search string from dialog */
     text = gtk_entry_get_text (entry);
-    if (G_UNLIKELY ((text) == NULL || *(text) == '\0'))
+    if (xfce_str_is_empty (text) == TRUE)
       return TRUE;
 
     /* casefold the search text */
@@ -1417,11 +1417,12 @@ xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
         g_free (normalized);
 
         /* search */
-        visible = (strstr (property_casefolded, text_casefolded) != NULL);
+        visible = (g_strrstr (property_casefolded, text_casefolded) != NULL);
 
         g_free (property_casefolded);
     }
 
+    /* if the element itself doesn't contain the query recursively search its children */
     if (visible == FALSE && gtk_tree_model_iter_has_child (model, iter))
     {
       for (int i = 0; i < gtk_tree_model_iter_n_children (model, iter); i++)
