@@ -780,7 +780,7 @@ display_setting_refresh_rates_populate (GtkBuilder *builder)
             continue;
 
         /* Insert the mode */
-        name = g_strdup_printf (_("%.1f Hz"), modes[n].rate);
+        name = g_strdup_printf (_("%.2f Hz"), modes[n].rate);
         gtk_list_store_append (GTK_LIST_STORE (model), &iter);
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             COLUMN_COMBO_NAME, name,
