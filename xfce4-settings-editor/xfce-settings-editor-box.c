@@ -135,6 +135,8 @@ static void     xfce_settings_editor_box_row_activated        (GtkTreeView      
 static gboolean xfce_settings_editor_box_key_press_event      (gpointer                widget,
                                                                GdkEventKey            *event,
                                                                XfceSettingsEditorBox  *self);
+static gboolean xfce_settings_editor_search_entry_changed     (XfceSettingsEditorBox  *self,
+                                                               GtkSearchEntry         *entry);
 static void     xfce_settings_editor_box_property_new         (XfceSettingsEditorBox  *self);
 static void     xfce_settings_editor_box_property_edit        (XfceSettingsEditorBox  *self);
 static void     xfce_settings_editor_box_property_reset       (XfceSettingsEditorBox  *self);
@@ -253,6 +255,8 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
         G_CALLBACK (xfce_settings_editor_box_channel_menu), self);
     g_signal_connect (G_OBJECT (treeview), "button-press-event",
         G_CALLBACK (xfce_settings_editor_box_channel_button_press), self);
+    g_signal_connect (G_OBJECT (treeview), "key-press-event",
+        G_CALLBACK (xfce_settings_editor_box_key_press_event), self);
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
@@ -285,7 +289,7 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
                                             (GtkTreeModelFilterVisibleFunc) xfce_settings_editor_box_row_visible,
                                             entry, NULL);
 
-    g_signal_connect_swapped (G_OBJECT (entry), "search-changed", G_CALLBACK (gtk_tree_model_filter_refilter), GTK_TREE_MODEL_FILTER (self->props_store));
+    g_signal_connect_swapped (G_OBJECT (entry), "search-changed", G_CALLBACK (xfce_settings_editor_search_entry_changed), self);
 
     /* Let the window execute it's accelerators if there are any, otherwise the entry consumes the accelerator. */
     g_signal_connect (G_OBJECT (entry), "key-press-event", G_CALLBACK (xfce_settings_editor_box_key_press_event), self);
@@ -1481,6 +1485,8 @@ xfce_settings_editor_box_key_press_event (gpointer                  widget,
                                           GdkEventKey              *event,
                                           XfceSettingsEditorBox    *self)
 {
+    guint modifiers = event->state & gtk_accelerator_get_default_mod_mask ();
+
     if (event->keyval == GDK_KEY_Delete
         && gtk_widget_get_sensitive (self->button_reset))
     {
@@ -1498,8 +1504,27 @@ xfce_settings_editor_box_key_press_event (gpointer                  widget,
         gtk_entry_set_text (GTK_ENTRY (self->filter_entry), "");
         return TRUE;
     }
+    else if (modifiers == GDK_CONTROL_MASK && event->keyval == GDK_KEY_F)
+    {
+        gtk_widget_grab_focus (self->filter_entry);
+        return TRUE;
+    }
 
     return FALSE;
+}
+
+
+
+static gboolean
+xfce_settings_editor_search_entry_changed (XfceSettingsEditorBox  *self,
+                                           GtkSearchEntry         *entry)
+{
+  gtk_tree_model_filter_refilter (GTK_TREE_MODEL_FILTER (self->props_store));
+
+  if (gtk_entry_get_text_length (GTK_ENTRY (entry)) == 0)
+    gtk_tree_view_expand_all (GTK_TREE_VIEW (self->props_treeview));
+
+  return TRUE;
 }
 
 
