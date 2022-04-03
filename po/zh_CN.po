@@ -10,19 +10,19 @@
 # Shun <shun98@139.com>, 2018
 # wwj402 <wwj402@gmail.com>, 2018
 # wwj402 <wwj402@gmail.com>, 2018
-# Xiaobo Zhou <zhouxiaobo.500@gmail.com>, 2018
-# Xiaobo Zhou <zhouxiaobo.500@gmail.com>, 2015,2018
+# Cally Mal <zhouxiaobo.500@gmail.com>, 2018
+# Cally Mal <zhouxiaobo.500@gmail.com>, 2015,2018
 # 玉堂白鹤 <yjwork@qq.com>, 2014
-# Xiaobo Zhou <zhouxiaobo.500@gmail.com>, 2015
-# 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2021
+# Cally Mal <zhouxiaobo.500@gmail.com>, 2015
+# 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2022
 # Mingcong Bai <jeffbai@aosc.xyz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 00:47+0200\n"
-"PO-Revision-Date: 2021-07-22 06:01+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
+"POT-Creation-Date: 2022-04-03 00:49+0200\n"
+"PO-Revision-Date: 2013-07-02 20:47+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2022\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "未知"
 
-#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4303
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4361
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "未能查询正在使用的 RandR 扩展的版本"
@@ -80,12 +80,12 @@ msgstr "辅助功能"
 #: ../dialogs/display-settings/display-dialog.glade.h:17
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4343
+#: ../dialogs/display-settings/main.c:4401
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:188
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 #: ../xfce4-settings-editor/main.c:166
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:236
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:232
 msgid "_Close"
 msgstr "关闭(_C)"
 
@@ -97,7 +97,7 @@ msgstr "关闭(_C)"
 #: ../dialogs/mime-settings/xfce-mime-window.c:191
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 #: ../xfce4-settings-editor/main.c:165
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:225
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:221
 msgid "_Help"
 msgstr "帮助(_H)"
 
@@ -303,7 +303,7 @@ msgstr "鼠标(_M)"
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:106
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:86 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "设置管理器套接字"
@@ -311,7 +311,7 @@ msgstr "设置管理器套接字"
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:106
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:86 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "套接字 ID"
@@ -319,7 +319,7 @@ msgstr "套接字 ID"
 #: ../dialogs/accessibility-settings/main.c:47
 #: ../dialogs/appearance-settings/main.c:107
 #: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:141
-#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
+#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:45
 #: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:50
 #: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
 msgid "Version information"
@@ -328,8 +328,8 @@ msgstr "版本信息"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1301
 #: ../dialogs/color-settings/main.c:1389
-#: ../dialogs/display-settings/main.c:4271
-#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
+#: ../dialogs/display-settings/main.c:4329
+#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
@@ -341,8 +341,8 @@ msgstr "输入 ‘%s --help’ 获取用法。"
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1320
 #: ../dialogs/color-settings/main.c:1406
-#: ../dialogs/display-settings/main.c:4290
-#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
+#: ../dialogs/display-settings/main.c:4348
+#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
@@ -351,8 +351,8 @@ msgstr "Xfce 开发团队。保留所有权利。"
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1321
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4291
-#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
+#: ../dialogs/display-settings/main.c:4349
+#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
@@ -1149,8 +1149,8 @@ msgstr "如果您不答复此问题，先前的配置将在 <b>%i</b> 秒内恢�
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:783
 #, c-format
-msgid "%.1f Hz"
-msgstr "%.1f Hz"
+msgid "%.2f Hz"
+msgstr "%.2f Hz"
 
 #: ../dialogs/display-settings/main.c:1181
 msgid "Display:"
@@ -1237,26 +1237,26 @@ msgstr "镜像屏幕"
 msgid "(Disabled)"
 msgstr "(已停用)"
 
-#: ../dialogs/display-settings/main.c:4109
+#: ../dialogs/display-settings/main.c:4167
 #, c-format
 msgid "Only %s (1)"
 msgstr "只有%s（1）"
 
-#: ../dialogs/display-settings/main.c:4120
+#: ../dialogs/display-settings/main.c:4178
 #, c-format
 msgid "Only %s (2)"
 msgstr "只有%s（2）"
 
-#: ../dialogs/display-settings/main.c:4304
-#: ../dialogs/display-settings/main.c:4341
+#: ../dialogs/display-settings/main.c:4362
+#: ../dialogs/display-settings/main.c:4399
 msgid "Unable to start the Xfce Display Settings"
 msgstr "未能启动 Xfce 显示设置"
 
-#: ../dialogs/display-settings/main.c:4336
+#: ../dialogs/display-settings/main.c:4394
 msgid "ATI Settings"
 msgstr "ATI 设置"
 
-#: ../dialogs/display-settings/main.c:4351
+#: ../dialogs/display-settings/main.c:4409
 msgid "Unable to launch the proprietary driver settings"
 msgstr "未能启动非自由驱动设置"
 
@@ -1524,7 +1524,7 @@ msgstr "编辑键盘设置和应用程序快捷键"
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;keyboard;layout;shortcuts;字键;键盘;布局;快捷键;"
 
-#: ../dialogs/mime-settings/main.c:115
+#: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
 msgstr "无法创建 mime 对话框。"
 
@@ -2612,16 +2612,16 @@ msgstr "registry;regedit;configuration file;注册表;注册表编辑;配置文�
 msgid "Settings dialog to show"
 msgstr "要显示的设置对话框"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:229
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:225
 msgid "All _Settings"
 msgstr "所有设置(_S)"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:438
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:422
 msgid "Settings"
 msgstr "设置"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:961
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:916
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:927
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "未能启动 “%s”"
