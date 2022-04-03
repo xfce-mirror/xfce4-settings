@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Dawid Job <hoek@tuta.io>, 2015
-# Marcin Mikołajczak <me@mkljczk.pl>, 2017
-# Marcin Mikołajczak <me@mkljczk.pl>, 2016
-# No Ne, 2020
-# No Ne, 2018-2021
+# hoek <hoek@tuta.io>, 2015
+# marcin mikołajczak <me@mkljczk.pl>, 2017
+# marcin mikołajczak <me@mkljczk.pl>, 2016
+# Marek Adamski, 2022
+# Marek Adamski, 2020
+# Marek Adamski, 2018-2021
 # Piotr Sokół <psokol.l10n@gmail.com>, 2009,2011-2015
 # Piotr Sokół <psokol.l10n@gmail.com>, 2018
 # Piotr Strębski <strebski@gmail.com>, 2014
@@ -15,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 00:47+0200\n"
-"PO-Revision-Date: 2021-08-08 18:49+0000\n"
-"Last-Translator: No Ne\n"
+"POT-Creation-Date: 2022-04-03 00:49+0200\n"
+"PO-Revision-Date: 2013-07-02 20:47+0000\n"
+"Last-Translator: Marek Adamski, 2022\n"
 "Language-Team: Polish (http://www.transifex.com/xfce/xfce4-settings/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4303
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4361
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nie można uzyskać wersji używanego rozszerzenia RandR"
@@ -75,12 +76,12 @@ msgstr "Ułatwienia dostępu"
 #: ../dialogs/display-settings/display-dialog.glade.h:17
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4343
+#: ../dialogs/display-settings/main.c:4401
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:188
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 #: ../xfce4-settings-editor/main.c:166
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:236
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:232
 msgid "_Close"
 msgstr "_Zamknij"
 
@@ -92,7 +93,7 @@ msgstr "_Zamknij"
 #: ../dialogs/mime-settings/xfce-mime-window.c:191
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 #: ../xfce4-settings-editor/main.c:165
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:225
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:221
 msgid "_Help"
 msgstr "Pomo_c"
 
@@ -298,7 +299,7 @@ msgstr "_Mysz"
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:106
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:86 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "Określa gniazdo menedżera ustawień"
@@ -306,7 +307,7 @@ msgstr "Określa gniazdo menedżera ustawień"
 #: ../dialogs/accessibility-settings/main.c:46
 #: ../dialogs/appearance-settings/main.c:106
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:86 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "ID_GNIAZDA"
@@ -314,7 +315,7 @@ msgstr "ID_GNIAZDA"
 #: ../dialogs/accessibility-settings/main.c:47
 #: ../dialogs/appearance-settings/main.c:107
 #: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:141
-#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
+#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:45
 #: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:50
 #: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
 msgid "Version information"
@@ -323,8 +324,8 @@ msgstr "Wypisuje informacje o wersji i kończy"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1301
 #: ../dialogs/color-settings/main.c:1389
-#: ../dialogs/display-settings/main.c:4271
-#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
+#: ../dialogs/display-settings/main.c:4329
+#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
@@ -336,8 +337,8 @@ msgstr "Proszę wprowadzić „%s --help”, aby wypisać komunikat pomocy."
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1320
 #: ../dialogs/color-settings/main.c:1406
-#: ../dialogs/display-settings/main.c:4290
-#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
+#: ../dialogs/display-settings/main.c:4348
+#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
@@ -346,8 +347,8 @@ msgstr "Zespół twórców Xfce. Wszystkie prawa zastrzeżone."
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1321
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4291
-#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
+#: ../dialogs/display-settings/main.c:4349
+#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
@@ -1144,8 +1145,8 @@ msgstr "Poprzednia konfiguracja zostanie przywrócona w przeciągu <b>%i sekund<
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:783
 #, c-format
-msgid "%.1f Hz"
-msgstr "%.1f Hz"
+msgid "%.2f Hz"
+msgstr "%.2f Hz"
 
 #: ../dialogs/display-settings/main.c:1181
 msgid "Display:"
@@ -1232,26 +1233,26 @@ msgstr "Ekrany zewnętrzne"
 msgid "(Disabled)"
 msgstr "(Wyłączone)"
 
-#: ../dialogs/display-settings/main.c:4109
+#: ../dialogs/display-settings/main.c:4167
 #, c-format
 msgid "Only %s (1)"
 msgstr "Tylko %s (1)"
 
-#: ../dialogs/display-settings/main.c:4120
+#: ../dialogs/display-settings/main.c:4178
 #, c-format
 msgid "Only %s (2)"
 msgstr "Tylko %s (2)"
 
-#: ../dialogs/display-settings/main.c:4304
-#: ../dialogs/display-settings/main.c:4341
+#: ../dialogs/display-settings/main.c:4362
+#: ../dialogs/display-settings/main.c:4399
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nie można uruchomić programu konfiguracyjnego ekranów"
 
-#: ../dialogs/display-settings/main.c:4336
+#: ../dialogs/display-settings/main.c:4394
 msgid "ATI Settings"
 msgstr "Sterownik ATI"
 
-#: ../dialogs/display-settings/main.c:4351
+#: ../dialogs/display-settings/main.c:4409
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nie można uruchomić ustawień sterownika własnościowego"
 
@@ -1519,7 +1520,7 @@ msgstr "Konfiguruje ustawienia klawiatury oraz skróty klawiszowe programów"
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;klawiatura;układ;skróty klawiszowe;"
 
-#: ../dialogs/mime-settings/main.c:115
+#: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
 msgstr "Nie można utworzyć okna mime."
 
@@ -2610,16 +2611,16 @@ msgstr "rejestr;edytor rejestru;plik konfiguracyjny;"
 msgid "Settings dialog to show"
 msgstr "Określa wyświetlane okno ustawień"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:229
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:225
 msgid "All _Settings"
 msgstr "_Wszystkie ustawienia"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:438
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:422
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:961
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:916
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:927
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nie można uruchomić „%s”"
