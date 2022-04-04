@@ -1504,7 +1504,7 @@ xfce_settings_editor_box_key_press_event (gpointer                  widget,
         gtk_entry_set_text (GTK_ENTRY (self->filter_entry), "");
         return TRUE;
     }
-    else if (modifiers == GDK_CONTROL_MASK && event->keyval == GDK_KEY_F)
+    else if (modifiers == GDK_CONTROL_MASK && (event->keyval == GDK_KEY_F || event->keyval == GDK_KEY_f))
     {
         gtk_widget_grab_focus (self->filter_entry);
         return TRUE;
