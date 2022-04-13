@@ -1411,7 +1411,6 @@ xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
     g_free (normalized);
 
     gtk_tree_model_get (model, iter, PROP_COLUMN_NAME, &property, -1);
-//    g_warning ("property: %s", property);
 
     if (G_LIKELY (property != NULL))
     {
