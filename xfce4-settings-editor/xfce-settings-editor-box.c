@@ -62,7 +62,6 @@ struct _XfceSettingsEditorBox
     GtkTreeModel      *props_store;
     XfconfChannel     *props_channel;
     GtkWidget         *props_treeview;
-    GtkTreeModel      *props_filter;
 
     GtkWidget         *filter_entry;
     GtkWidget         *button_new;
