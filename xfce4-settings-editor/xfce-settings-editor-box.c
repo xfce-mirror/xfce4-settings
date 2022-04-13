@@ -301,8 +301,6 @@ xfce_settings_editor_box_init (XfceSettingsEditorBox *self)
     self->props_treeview = treeview;
     gtk_widget_show (treeview);
 
-    //g_object_unref (filter);
-
     gtk_widget_set_has_tooltip (treeview, TRUE);
     g_signal_connect (G_OBJECT (treeview), "query-tooltip",
         G_CALLBACK (xfce_settings_editor_box_query_tooltip), self);
