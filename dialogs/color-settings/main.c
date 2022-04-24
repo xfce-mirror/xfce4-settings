@@ -920,7 +920,6 @@ color_settings_profiles_list_box_row_activated_cb (GtkListBox *list_box,
 static void
 color_settings_dialog_destroy (ColorSettings *settings)
 {
-    gtk_widget_destroy (GTK_WIDGET (settings->dialog_assign));
     g_clear_object (&settings->cancellable);
     g_clear_object (&settings->client);
     g_clear_object (&settings->current_device);
@@ -1438,7 +1437,8 @@ main (gint argc, gchar **argv)
         else {
             /* Create plug widget */
             plug = gtk_plug_new (opt_socket_id);
-            g_signal_connect (plug, "delete-event", G_CALLBACK (color_settings_dialog_destroy), settings);
+            g_signal_connect_swapped (plug, "delete-event",
+                                      G_CALLBACK (color_settings_dialog_destroy), settings);
             gtk_widget_show (plug);
 
             /* Stop startup notification */
