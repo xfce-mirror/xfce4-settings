@@ -33,8 +33,7 @@ msgstr "Άγνωστο"
 #: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4297
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr ""
-"Δεν είναι δυνατή η εύρεση έκδοσης της επέκτασης RandR που χρησιμοποιείται"
+msgstr "Δεν βρέθηκε η κατάλληλη έκδοση της RandR"
 
 #. 1.2 is required
 #: ../common/xfce-randr.c:304
@@ -364,7 +363,7 @@ msgstr "Πληροφορίες έκδοσης"
 #: ../xfsettingsd/main.c:280
 #, c-format
 msgid "Type '%s --help' for usage."
-msgstr "Πληκτρολογήστε '%s --help' για χρήση."
+msgstr "Πληκτρολογήστε για βοήθεια '%s --help'."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1258
@@ -465,32 +464,32 @@ msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr ""
-"Η γραμματοσειρά που θα χρησιμοποιηθεί ως προεπιλεγμένη γραμματοσειρά "
-"κειμένων στη διεπαφή του χρήστη"
+"Η γραμματοσειρά που θα χρησιμοποιηθεί ως γραμματοσειρά κειμένων στη διεπαφή "
+"του χρήστη"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "Select a default font"
-msgstr "Επιλογή προεπιλεγμένης γραμματοσειράς"
+msgstr "Επιλογή γραμματοσειράς"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Default Fon_t"
-msgstr "Προεπιλεγμένη γρ_αμματοσειρά"
+msgstr "Γρ_αμματοσειρά"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr ""
-"Η γραμματοσειρά που θα χρησιμοποιηθεί ως προεπιλεγμένη monospace "
-"γραμματοσειρά π.χ. σε προσομοιωτές τερματικού"
+"Η γραμματοσειρά που θα χρησιμοποιηθεί ως γραμματοσειρά monospace π.χ. σε "
+"εφαρμογές τερματικού"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Select a default monospace font"
-msgstr "Επιλογή προεπιλεγμένης monospace γραμματοσειράς"
+msgstr "Επιλογή γραμματοσειράς monospace"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Default _Monospace Font"
-msgstr "Προεπιλεγμένη γραμματοσειρά _monospace"
+msgstr "Γραμματοσειρά _monospace"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "_Enable anti-aliasing"
@@ -635,8 +634,8 @@ msgid ""
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr ""
 "Προσοχή: το παρόν θέμα εικονιδίων δεν έχει αρχείο κρυφής μνήμης. Μπορείτε να"
-" το δημιουργήσετε εκτελώντας <i>gtk-update-icon-cache %s/%s/</i> σε κάποιον "
-"εξομοιωτή τερματικού."
+" το δημιουργήσετε εκτελώντας <i>gtk-update-icon-cache %s/%s/</i> σε ένα "
+"τερματικό."
 
 #: ../dialogs/appearance-settings/main.c:894
 #, c-format
@@ -867,21 +866,21 @@ msgstr "Υψηλή ποιότητα"
 #: ../dialogs/color-settings/color-profile.c:140
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
-msgstr "Γενικό RGB"
+msgstr "RGB"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
-msgstr "Γενικό CMYK"
+msgstr "CMYK"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:152
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
-msgstr "Γενικό γκρι"
+msgstr "Γκρι"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
 #: ../dialogs/color-settings/main.c:128
@@ -1465,7 +1464,7 @@ msgstr "Καθορισμός _συντομεύσεων για την εκκίν�
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "Reset to _Defaults"
-msgstr "Επανα_φορά στις προεπιλογές"
+msgstr "Επανα_φορά"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid "A_pplication Shortcuts"
@@ -1473,7 +1472,7 @@ msgstr "Σ_υντομεύσεις εφαρμογών"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "<b>Use system defaults</b>"
-msgstr "<b>Χρήση προεπιλογών συστήματος</b>"
+msgstr "<b>Χρήση των προεπιλογών του συστήματος</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "_Keyboard model"
@@ -1535,15 +1534,15 @@ msgstr "Παραλλαγή"
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
 msgid "Reset to Defaults"
-msgstr "Επαναφορά στις προεπιλογές"
+msgstr "Επαναφορά προεπιλογών"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr ""
-"Θα επαναφέρει όλες τις συντομεύσεις στις αρχικές τιμές. Θέλετε πραγματικά να"
-" το κάνετε αυτό;"
+"Όλες οι συντομεύσεις θα επανέλθουν στην αρχική τους κατάσταση. Θέλετε "
+"πραγματικά να το κάνετε αυτό;"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "No"
@@ -1556,7 +1555,8 @@ msgstr "Ναι"
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
-"Η επαναφορά στις προεπιλογές θα γίνει την επόμενη φορά που θα συνδεθείτε."
+"Οι προεπιλογές του συστήματος θα επανέλθουν την επόμενη φορά που θα "
+"συνδεθείτε."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
@@ -1585,15 +1585,15 @@ msgstr "Άνοιγμα"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid "Use a c_ustom command:"
-msgstr "Καταχώρηση προσαρμοσμένης εντο_λής:"
+msgstr "Χρήση προσαρμοσμένης εντο_λής:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:206
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
 msgstr ""
-"Καταχώρηση εντολής για μια εφαρμογή που δεν είναι διαθέσιμη από τη παραπάνω "
-"λίστα των εφαρμογών."
+"Χρήση προσαρμοσμένης εντολής για εφαρμογή που δεν είναι διαθέσιμη στη "
+"παραπάνω λίστα."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:224
 msgid "_Browse..."
@@ -1605,11 +1605,11 @@ msgstr "Επιλογή μιας εφαρμογής"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:529
 msgid "None available"
-msgstr "Κανένα διαθέσιμο"
+msgstr "Καμία διαθέσιμη"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:576
 msgid "Recommended Applications"
-msgstr "Συνιστώμενες εφαρμογές"
+msgstr "Προτεινόμενες εφαρμογές"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:594
 msgid "Other Applications"
@@ -1618,7 +1618,7 @@ msgstr "Άλλες εφαρμογές"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:614
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
-msgstr "Άνοιγμα του <i>%s</i> και άλλων αρχείων τύπου \"%s\" με:"
+msgstr "Άνοιγμα του <i>%s</i> και των άλλων αρχείων του τύπου \"%s\" με:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:650
 #, c-format
@@ -1642,19 +1642,19 @@ msgstr "Δεν επιλέχθηκε εφαρμογή"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:319
 msgid "Failed to set default Web Browser"
-msgstr "Απέτυχε ο καθορισμός προεπιλογής περιηγητή διαδικτύου"
+msgstr "Απέτυχε η επιλογή σας για τον περιηγητή διαδικτύου"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:320
 msgid "Failed to set default Mail Reader"
-msgstr "Απέτυχε ο καθορισμός προεπιλογής αναγνώστη αλληλογραφίας"
+msgstr "Απέτυχε η επιλογή σας για τον αναγνώστη αλληλογραφίας"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:321
 msgid "Failed to set default File Manager"
-msgstr "Απέτυχε ο καθορισμός προεπιλογής διαχειριστή αρχείων"
+msgstr "Απέτυχε η επιλογή σας για τον διαχειριστή αρχείων"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:322
 msgid "Failed to set default Terminal Emulator"
-msgstr "Απέτυχε ο καθορισμός προεπιλογής εξομοιωτή τερματικού"
+msgstr "Απέτυχε η επιλογή σας για τον εξομοιωτή τερματικού"
 
 #. allocate the chooser
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:392
@@ -1663,59 +1663,59 @@ msgstr "Επιλογή εφαρμογής"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:505
 msgid "Choose a custom Web Browser"
-msgstr "Επιλογή προσαρμοσμένου περιηγητή διαδικτύου"
+msgstr "Επιλέξτε περιηγητή διαδικτύου"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:506
 msgid "Choose a custom Mail Reader"
-msgstr "Επιλογή προσαρμοσμένου αναγνώστη αλληλογραφίας"
+msgstr "Επιλέξτε εφαρμογή αλληλογραφίας"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:507
 msgid "Choose a custom File Manager"
-msgstr "Επιλογή ενός προσαρμοσμένου διαχειριστή αρχείων"
+msgstr "Επιλέξτε διαχειριστή αρχείων"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:508
 msgid "Choose a custom Terminal Emulator"
-msgstr "Επιλογή προσαρμοσμένου εξομοιωτή τερματικού"
+msgstr "Επιλέξτε εφαρμογή τερματικού"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:513
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr ""
-"Καθορίστε την εφαρμογή που θέλετε να χρησιμοποιείτε\n"
-"ως προεπιλεγμένο περιηγητή διαδικτύου για το xfce:"
+"Καθορίστε την εφαρμογή που θέλετε για\n"
+"τον περιηγητή διαδικτύου στο xfce:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:514
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr ""
-"Καθορίστε την εφαρμογή που θέλετε να χρησιμοποιείτε\n"
-"ως προεπιλεγμένο αναγνώστη αλληλογραφίας για το xfce:"
+"Καθορίστε την εφαρμογή που θέλετε για\n"
+"τον αναγνώστη αλληλογραφίας στο xfce:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:515
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr ""
-"Καθορίστε την εφαρμογή που θέλετε να χρησιμοποιείτε\n"
-"ως προεπιλεγμένο διαχειριστή αρχείων για το xfce:"
+"Καθορίστε την εφαρμογή που θέλετε για\n"
+"το διαχειριστή αρχείων στο xfce:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:516
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr ""
-"Καθορίστε την εφαρμογή που θέλετε να χρησιμοποιείτε\n"
-"ως προεπιλεγμένο εξομοιωτή τερματικού στο Xfce:"
+"Καθορίστε την εφαρμογή που θέλετε για\n"
+"τον εξομοιωτή τερματικού στο xfce:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:580
 msgid "Browse the file system to choose a custom command."
-msgstr "Περιήγηση στο σύστημα αρχείων για την επιλογή της εντολής."
+msgstr "Περιήγηση στο σύστημα αρχείων για να επιλέξετε εντολή."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:789
 msgid "_Other..."
-msgstr "Άλ_λα..."
+msgstr "Άλ_λες..."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:790
 msgid "Use a custom application which is not included in the above list."
@@ -1730,48 +1730,48 @@ msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
 msgstr ""
-"Παρακαλώ επιλέξτε τον περιηγητή ιστού που\n"
-"προτιμάτε και πατήστε εντάξει για να προχωρήσετε."
+"Παρακαλώ επιλέξτε τώρα περιηγητή ιστού\n"
+"και πατήστε εντάξει για να προχωρήσετε."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:258
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
 msgstr ""
-"Παρακαλώ επιλέξτε τον προτιμώμενο αναγνώστη αλληλογραφίας\n"
-"τώρα και πατήστε εντάξει για να προχωρήσετε."
+"Παρακαλώ επιλέξτε τώρα εφαρμογή αλληλογραφίας\n"
+"και πατήστε εντάξει για να προχωρήσετε."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:260
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
 msgstr ""
-"Παρακαλώ επιλέξτε τον προτιμώμενο διαχειριστή αρχείων\n"
-"τώρα και πατήστε εντάξει για να προχωρήσετε."
+"Παρακαλώ επιλέξτε τώρα διαχειριστή αρχείων\n"
+"και πατήστε εντάξει για να προχωρήσετε."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:262
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
 msgstr ""
-"Παρακαλώ επιλέξτε τον εξομοιωτή τερματικού\n"
-"που προτιμάτε και πατήστε εντάξει για να προχωρήσετε."
+"Παρακαλώ επιλέξτε τώρα εφαρμογή τερματικού\n"
+"και πατήστε εντάξει για να προχωρήσετε."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:41
 msgid "Failed to execute default Web Browser"
-msgstr "Απέτυχε η εκτέλεση του προεπιλεγμένου περιηγητή διαδικτύου"
+msgstr "Απέτυχε το άνοιγμα του επιλεγμένου περιηγητή διαδικτύου"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:42
 msgid "Failed to execute default Mail Reader"
-msgstr "Απέτυχε η εκτέλεση του προεπιλεγμένου αναγνώστη αλληλογραφίας"
+msgstr "Απέτυχε το άνοιγμα της επιλεγμένης εφαρμογής για την αλληλογραφία"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:43
 msgid "Failed to execute default File Manager"
-msgstr "Απέτυχε η εκτέλεση του προεπιλεγμένου διαχειριστή αρχείων"
+msgstr "Απέτυχε το άνοιγμα του επιλεγμένου διαχειριστή αρχείων"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:44
 msgid "Failed to execute default Terminal Emulator"
-msgstr "Απέτυχε η εκτέλεση του προεπιλεγμένου εξομοιωτή τερματικού"
+msgstr "Απέτυχε το άνοιγμα της επιλεγμένης εφαρμογής τερματικού"
 
 #. Enable permanently dismissing this error.
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:86
@@ -1787,8 +1787,8 @@ msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr ""
-"Εκκίνηση του προεπιλεγμένου βοηθού ΤΥΠΟΥ με την προαιρετική ΠΑΡΑΜΕΤΡΟ, όπου "
-"ΤΥΠΟΣ είναι μια από τις ακόλουθες τιμές."
+"Εκκίνηση της βοήθειας του ΤΥΠΟΥ με προαιρετική τη ΠΑΡΑΜΕΤΡΟ, όπου ΤΥΠΟΣ "
+"είναι μια από τις ακόλουθες τιμές."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:117
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:118
@@ -1799,8 +1799,7 @@ msgstr "ΤΥΠΟΣ [ΠΑΡΑΜΕΤΡΟΣ]"
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr ""
-"Ερώτημα στον προεπιλεγμένο βοηθό ΤΥΠΟΥ, όπου ΤΥΠΟΣ είναι μια από τις "
-"ακόλουθες τιμές."
+"Ερώτημα στη βοήθεια του ΤΥΠΟΥ, όπου ΤΥΠΟΣ είναι μια από τις ακόλουθες τιμές."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:148
 msgid ""
@@ -1811,7 +1810,7 @@ msgid ""
 "  FileManager      - The preferred File Manager.\n"
 "  TerminalEmulator - The preferred Terminal Emulator."
 msgstr ""
-"Οι ακόλουθοι ΤΥΠΟΙ υποστηρίζονται για τις εντολές --launch και --query:\n"
+"Υποστηρίζονται οι ακόλουθοι ΤΥΠΟΙ  για τις εντολές --launch και --query:\n"
 "\n"
 "  WebBrowser       - Ο προτιμώμενος περιηγητής διαδικτύου.\n"
 "  MailReader       - Ο προτιμώμενος αναγνώστης αλληλογραφίας.\n"
@@ -1887,8 +1886,8 @@ msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr ""
-"Θα χρησιμοποιηθεί ο προεπιλεγμένος περιηγητής διαδικτύου για να ανοίξει "
-"υπερσυνδέσμους και να εμφανίσει περιεχόμενα βοήθειας."
+"Ο επιλεγμένος περιηγητής διαδικτύου θα χρησιμοποιηθεί για να ανοίγει "
+"υπερσυνδέσμους και να εμφανίζει περιεχόμενα βοήθειας."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:256
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1900,8 +1899,8 @@ msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr ""
-"Θα χρησιμοποιηθεί ο προεπιλεγμένος αναγνώστης ταχυδρομείου για τα "
-"ηλεκτρονικά μηνύματα όταν κάνετε κλικ σε διευθύνσεις email."
+"Η επιλεγμένη εφαρμογή αλληλογραφίας θα χρησιμοποιηθεί για τα ηλεκτρονικά "
+"μηνύματα όταν κάνετε κλικ σε διευθύνσεις email."
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:283
@@ -1917,8 +1916,8 @@ msgstr "Διαχειριστής αρχείων"
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr ""
-"Θα χρησιμοποιηθεί ο προεπιλεγμένος διαχειριστής αρχείων για να περιηγηθείτε "
-"στα περιεχόμενα των φακέλων."
+"Ο επιλεγμένος διαχειριστής αρχείων θα χρησιμοποιηθεί για τη περιήγηση στα "
+"περιεχόμενα των φακέλων σας."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:327
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
@@ -1930,8 +1929,8 @@ msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr ""
-"Θα χρησιμοποιηθεί ο προεπιλεγμένος προσομοιωτής τερματικού για να "
-"εκτελεστούν εντολές που απαιτούν περιβάλλον τερματικού."
+"Η επιλεγμένη εφαρμογή για το τερματικό θα χρησιμοποιηθεί για να εκτελεστούν "
+"εντολές που απαιτούν περιβάλλον CLI."
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:354
@@ -1965,7 +1964,7 @@ msgstr "Προεπιλεγμένη εφαρμογή"
 #: ../dialogs/mime-settings/xfce-mime-window.c:672
 #: ../dialogs/mime-settings/xfce-mime-window.c:814
 msgid "User Set"
-msgstr "Ορισμός χρήστη"
+msgstr "Επιλογή"
 
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:674
@@ -1985,7 +1984,7 @@ msgstr[1] "Βρέθηκαν %d τύποι MIME"
 #: ../dialogs/mime-settings/xfce-mime-window.c:859
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr "Αποτυχία καθορισμού για την εφαρμογή \"%s\" του τύπου MIME \"%s\"."
+msgstr "Απέτυχε η επιλογή της εφαρμογής \"%s\" για το τύπο MIME \"%s\"."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1122
 #, c-format
@@ -2001,13 +2000,13 @@ msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr ""
-"Αυτό θα αφαιρέσει τον ορισμό χρήστη για το τύπο MIME και θα επαναφέρει την "
-"προεπιλογή του συστήματος."
+"Θα αφαιρεθεί ο ορισμός της συσχέτισης MIME και θα επανέλθει η προεπιλογή του"
+" συστήματος."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1133
 #: ../dialogs/mime-settings/xfce-mime-window.c:1204
 msgid "Reset to Default"
-msgstr "Επαναφορά στις προεπιλογές"
+msgstr "Επαναφορά"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1199
 msgid "Choose Application..."
@@ -2025,11 +2024,11 @@ msgstr ""
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
-msgstr "Περιήγηση των αρχείων συστήματος"
+msgstr "Περιήγηση στο σύστημα αρχείων"
 
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:2
 msgid "Read your email"
-msgstr "Διαβάστε τα ηλεκτρονικά σας μηνύματα"
+msgstr "Τα ηλεκτρονικά σας μηνύματα"
 
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:2
 msgid "Use the command line"
@@ -2065,7 +2064,7 @@ msgstr "Περιηγητής Sensible Debian"
 
 #: ../dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in.h:1
 msgid "Debian X Terminal Emulator"
-msgstr "Προσομοίωση τερματικού Debian"
+msgstr "Εφαρμογή τερματικού Debian"
 
 #: ../dialogs/mime-settings/helpers/dillo.desktop.in.in.h:1
 msgid "Dillo"
@@ -2081,7 +2080,7 @@ msgstr "Περιηγητής διαδικτύου Epiphany"
 
 #: ../dialogs/mime-settings/helpers/eterm.desktop.in.in.h:1
 msgid "Enlightened Terminal Emulator"
-msgstr "Προσομοίωση τερματικού Enlightenment"
+msgstr "Εφαρμογή τερματικού Enlightenment"
 
 #: ../dialogs/mime-settings/helpers/evolution.desktop.in.in.h:1
 msgid "Evolution"
@@ -2177,7 +2176,7 @@ msgstr "Διαχειριστής αρχείων PCMan"
 
 #: ../dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in.h:1
 msgid "PCManFM-Qt File Manager"
-msgstr "PCManFM-Qt Διαχειριστής Αρχείων"
+msgstr "Διαχειριστής αρχείων PCManFM-Qt"
 
 #: ../dialogs/mime-settings/helpers/qterminal.desktop.in.in.h:1
 msgid "QTerminal"
@@ -2350,7 +2349,7 @@ msgstr "Πλήκτρα"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "_Reset to Defaults"
-msgstr "Επανα_φορά στις προεπιλογές"
+msgstr "Επανα_φορά"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid ""
@@ -2637,9 +2636,7 @@ msgstr "Ανανέωση"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1463
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr ""
-"Η επαναφορά της ιδιότητας θα αφαιρέσει μόνιμα τις προσαρμοσμένες ρυθμίσεις "
-"της."
+msgstr "Η επαναφορά της ιδιότητας θα αφαιρέσει μόνιμα τις ρυθμίσεις της."
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1464
 #, c-format
