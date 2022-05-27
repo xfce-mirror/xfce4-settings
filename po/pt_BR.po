@@ -15,7 +15,7 @@
 # Rafael Fontenelle <rffontenelle@gmail.com>, 2014
 # Rafael Fontenelle <rffontenelle@gmail.com>, 2019
 # secipolla <secipolla@gmail.com>, 2011
-# The Cat, 2020-2021
+# The Cat, 2020-2022
 # Vladimir Melo <vmelo@gnome.org>, 2008,2010
 msgid ""
 msgstr ""
@@ -23,13 +23,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-03 00:49+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: The Cat, 2020-2021\n"
+"Last-Translator: The Cat, 2020-2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/xfce/xfce4-settings/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
@@ -1151,7 +1151,7 @@ msgstr "A configuração anterior será restaurada em <b>%i segundos</b> se voc�
 #: ../dialogs/display-settings/main.c:783
 #, c-format
 msgid "%.2f Hz"
-msgstr ""
+msgstr "%.2f Hz"
 
 #: ../dialogs/display-settings/main.c:1181
 msgid "Display:"
@@ -1888,6 +1888,7 @@ msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d tipo MIME encontrado"
 msgstr[1] "%d tipos MIME encontrados"
+msgstr[2] "%d tipos MIME encontrados"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:858
 #, c-format
