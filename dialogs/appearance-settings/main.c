@@ -203,7 +203,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
 
         /* Set the matching xfwm4 theme if the selected theme: is not an icon theme,
          * the xfconf setting is on, and a matching theme is available */
-        if (xfconf_channel_get_bool (xsettings_channel, "/Net/SyncThemes", TRUE) == TRUE
+        if (xfconf_channel_get_bool (xsettings_channel, "/Xfce/SyncThemes", FALSE) == TRUE
             && strcmp (property, "/Net/ThemeName") == 0)
         {
             if (!has_xfwm4)
@@ -1166,7 +1166,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     if (g_find_program_in_path ("xfwm4"))
     {
         object = gtk_builder_get_object (builder, "xfwm4_sync_switch");
-        xfconf_g_property_bind (xsettings_channel, "/Net/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
+        xfconf_g_property_bind (xsettings_channel, "/Xfce/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
     }
     else
     {
