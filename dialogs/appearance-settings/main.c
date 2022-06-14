@@ -201,7 +201,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
         /* Store the new theme */
         xfconf_channel_set_string (xsettings_channel, property, name);
 
-        /* Set the matching xfwm4 theme if the selected theme: is not an icon theme,
+        /* Set the matching xfwm4 theme if the selected theme is not an icon theme,
          * the xfconf setting is on, and a matching theme is available */
         if (xfconf_channel_get_bool (xsettings_channel, "/Xfce/SyncThemes", FALSE) == TRUE
             && strcmp (property, "/Net/ThemeName") == 0)
@@ -210,7 +210,7 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
                 xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", name);
 
             /* Use the default theme if Adwaita is selected */
-            else if (strcmp (name, "Adwaita") == 0 || strcmp(name, "Adwaita-dark") == 0)
+            else if (strcmp (name, "Adwaita") == 0 || strcmp (name, "Adwaita-dark") == 0)
                 xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", "Default");
         }
 
@@ -546,8 +546,8 @@ appearance_settings_load_ui_themes (gpointer user_data)
     gchar        *comment_escaped;
     gint          i;
     GSList       *check_list = NULL;
-    gboolean      has_xfwm4;
     gboolean      has_gtk2;
+    gboolean      has_xfwm4;
     gboolean      has_notifyd;
 
     list_store = pd->list_store;
@@ -609,15 +609,15 @@ appearance_settings_load_ui_themes (gpointer user_data)
                     comment_escaped = NULL;
                 }
 
-                /* Check if the xfwm4 themerc, gtk2 gtkrc, etc. files exist */
-                has_xfwm4 = FALSE;
+                /* Check if the gtk2 gtkrc, xfwm4 themerc, etc. files exist */
                 has_gtk2 = FALSE;
+                has_xfwm4 = FALSE;
                 has_notifyd = FALSE;
 
-                if (g_file_test (xfwm4_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
-                    has_xfwm4 = TRUE;
                 if (g_file_test (gtkrc_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
                     has_gtk2 = TRUE;
+                if (g_file_test (xfwm4_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
+                    has_xfwm4 = TRUE;
                 if (g_file_test (notifyd_filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR))
                     has_notifyd = TRUE;
 
@@ -1066,6 +1066,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     GtkTreeSelection  *selection;
     GtkTreeViewColumn *column;
     preview_data      *pd;
+    gchar             *path;
 
     /* Icon themes list */
     object = gtk_builder_get_object (builder, "install_icon_theme");
@@ -1163,7 +1164,8 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
 
     /* Switch for xfwm4 theme matching, gets hidden if xfwm4 is not installed */
-    if (g_find_program_in_path ("xfwm4"))
+    path = g_find_program_in_path ("xfwm4");
+    if (path != NULL)
     {
         object = gtk_builder_get_object (builder, "xfwm4_sync_switch");
         xfconf_g_property_bind (xsettings_channel, "/Xfce/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
@@ -1173,6 +1175,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
         object = gtk_builder_get_object (builder, "xfwm4_sync");
         gtk_widget_hide (GTK_WIDGET (object));
     }
+    g_free (path);
 
     /* Subpixel (rgba) hinting Combo */
     object = gtk_builder_get_object (builder, "xft_rgba_store");
