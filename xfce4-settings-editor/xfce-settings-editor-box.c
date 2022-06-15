@@ -688,7 +688,7 @@ xfce_settings_editor_box_property_changed (XfconfChannel            *channel,
         context = g_slice_new0 (DeleteContext);
         context->prop = property;
 
-        model = GTK_TREE_MODEL (self->props_store);
+        model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (self->props_store));
         gtk_tree_model_foreach (model, xfce_settings_editor_box_property_find, context);
 
         if (context->path != NULL)
