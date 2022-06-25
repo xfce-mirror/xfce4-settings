@@ -744,7 +744,8 @@ xfce_settings_editor_box_property_changed (XfconfChannel            *channel,
 
     /* update button sensitivity */
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (self->props_treeview));
-    xfce_settings_editor_box_selection_changed (selection, self);
+    if (gtk_tree_selection_get_selected (selection, NULL, NULL))
+      xfce_settings_editor_box_selection_changed (selection, self);
 }
 
 
@@ -1238,14 +1239,16 @@ xfce_settings_editor_box_selection_changed (GtkTreeSelection         *selection,
         && gtk_widget_get_sensitive (self->button_new))
     {
         property = xfce_settings_editor_box_selected (self, &is_real_prop, &is_array);
+        if (property != NULL)
+        {
+            can_edit = !xfconf_channel_is_property_locked (self->props_channel, property);
+            can_reset = can_edit && is_real_prop;
 
-        can_edit = !xfconf_channel_is_property_locked (self->props_channel, property);
-        can_reset = can_edit && is_real_prop;
+            if (is_array)
+              can_edit = FALSE;
 
-        if (is_array)
-          can_edit = FALSE;
-
-        g_free (property);
+            g_free (property);
+        }
     }
 
     gtk_widget_set_sensitive (self->button_edit, can_edit);
