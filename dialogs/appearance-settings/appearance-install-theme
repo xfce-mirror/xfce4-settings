@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # Copyright (C) 2011 Nick Schermer <nick@xfce.org>
+#               2021 Jarno Suni <8@iki.fi>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,41 +26,23 @@
 # 5: Unknown file format
 # theme-package can be a tar-file zip-file or a directory
 # the following themes types are supported:
-# - Gtk-2
-# - Gtk-3
-# - Xfwm
-# - Icons
+#  - Icon themes (detected by the content of index.theme files found)
+#  - Style themes (if not detected as icon theme)
 
+unset -v IFS
 dndfilename="$1"
 retval=0
-
-installtheme()
-{
-    file="$1"
-    suffix="$2"
-
-    basedir=${file#$tmpdir/}
-    themedir=${basedir%/$suffix}
-    themename=${3:-`basename "$themedir"`}
-    themetype=`dirname "$suffix"`
-    themesrc=`dirname "$basedir"`
-    src="$tmpdir/$themesrc"
-
-    dest="$HOME/.themes/$themename"
-    if test ! -d "$dest/$themetype"; then
-        # move theme to the users' theme directory
-        mkdir -p "$dest" && mv "$src" "$dest"
-    fi
-}
+is_icon_theme=0
 
 installicontheme()
 {
+    is_icon_theme=1
     file="$1"
     suffix="$2"
 
     basedir=${file#$tmpdir/}
     themedir=${basedir%/$suffix}
-    themename=${3:-`basename "$themedir"`}
+    themename=${3:-$(basename "$themedir")}
     src="$tmpdir/$themedir"
 
     dest="$HOME/.icons"
@@ -67,18 +50,7 @@ installicontheme()
         # move theme to the users' theme directory
         mkdir -p "$dest" && mv "$src" "$dest"
     fi
-}
-
-detectthemes()
-{
-    suffix="$1"
-
-    if test -f "$tmpdir/$suffix"; then
-        installtheme "$tmpdir/$suffix" "$suffix" "$pkgname"
-    fi
-    find "$tmpdir" -path "$tmpdir/*/$suffix" -type f | while read file; do
-        installtheme "$file" "$suffix"
-    done
+    gtk-update-icon-cache -q "$dest/$themename"
 }
 
 # leave if no file is provided
@@ -87,49 +59,51 @@ if test -z "$dndfilename" -o -z "$HOME"; then
     exit 1
 fi
 
-# check file size, abort if bigger then 50Mb, only works for files
-if test x"`which stat 2>/dev/null`" != x""; then
-    if [ "`uname -s`" = "DragonFly" ] || [ "`uname -s`" = "FreeBSD" ] || [ "`uname -s`" = "NetBSD" ] || [ "`uname -s`" = "OpenBSD" ]; then
-        dndsize=`stat -f %z "$dndfilename"`
-    else
-        dndsize=`stat -c %s "$dndfilename"`
-    fi
-    if test "$dndsize" -gt 52428800; then
-        # 2: File too big
-        exit 2
-    fi
+# check file size, abort if bigger then 100MiB, only works for regular
+# files
+if test -f "$dndfilename"; then
+    dndsize=$(ls -l "$dndfilename" | awk '{print $5}')
+    test "$dndsize" -gt 104857600 && exit 2  # 2: File too big
 fi
 
-# provide tempdir to extract the tarball or folder
-# we try $XDG_CACHE_HOME because it is more likely this is on the
-# same partition, so moving the theme after extract is faster
-if test x"`which mktemp 2>/dev/null`" != x""; then
-    TMPDIR="${TMPDIR:-/tmp}"
-    tmpdir=`TMPDIR="${XDG_CACHE_HOME:-$TMPDIR}" mktemp -d`
+# Provide tmpdir to extract the tarball or folder to. Use the standard
+# Freedesktop directory for user-specific cached data as base directory.
+cachedir=${XDG_CACHE_HOME:-$HOME/.cache}
+mkdir -p "$cachedir"
+if command -v mktemp >/dev/null; then
+    tmpdir=$(mktemp -d -- "$cachedir"/tmp-theme.XXX)
 else
-    tmpdir="/tmp/tmp.$$.$RANDOM"
+    tmpdir="$cachedir"/tmp-theme.$$
     mkdir "$tmpdir"
 fi
-if test ! -d "$tmpdir"; then
+if test 0 -ne "$?"; then
     # 3: Failed to create temp directory
     exit 3
 fi
 
+# cleanup on exit
+cleanup() {
+    trap - EXIT
+    rm -rf "$tmpdir"
+}
+trap 'cleanup; exit' EXIT TERM HUP
+trap 'cleanup; trap - INT; kill -s INT -- $$' INT
+
 # check if uri is directory or file
 if test -d "$dndfilename"; then
     cp -r "$dndfilename" "$tmpdir" || retval=1
-    pkgname=`basename "$dndfilename"`
+    pkgname=$(basename "$dndfilename")
 elif test -f "$dndfilename"; then
     case "$dndfilename" in
         *.tar.gz|*.tar.Z|*.tgz|*.tar.bz2|*.tbz2|*.tbz|*.tar|*.tar.xz|*.txz)
             # extract the archive
             tar -C "$tmpdir" -xf "$dndfilename" || retval=4
-            pkgname=`basename "${dndfilename%.*}" .tar`
+            pkgname=$(basename "${dndfilename%.*}" .tar)
         ;;
         *.zip)
             # extract the archive
             unzip -qq -d "$tmpdir" "$dndfilename" || retval=4
-            pkgname=`basename "$dndfilename" .zip`
+            pkgname=$(basename "$dndfilename" .zip)
         ;;
         *)
             # 5: unknow file format
@@ -138,34 +112,33 @@ elif test -f "$dndfilename"; then
     esac
 fi
 
+test "$retval" -eq 0 || exit $retval
+
 # detect theme type and move it to the correct location if
 # extracting or copying succeeded
-if test "$retval" -eq 0; then
-    # install gtk-2.0 themes
-    detectthemes "gtk-2.0/gtkrc"
 
-    # install gtk-3.0 themes
-    detectthemes "gtk-3.0/gtk.css"
-
-    # install xfwm4 themes
-    detectthemes "xfwm4/themerc"
-
-    # install icon themes
-    suffix="index.theme"
-    section="Icon Theme"
-    if test -f "$tmpdir/$suffix"; then
-        if grep -q -i "^\\[$section\\]" "$tmpdir/$suffix"; then
-            installicontheme "$tmpdir/$suffix" "$suffix" "$pkgname"
-        fi
+# install possible icon themes
+suffix="index.theme"
+section="Icon Theme"
+if test -f "$tmpdir/$suffix"; then
+    if grep -q -i "^\\[$section\\]" "$tmpdir/$suffix"; then
+        installicontheme "$tmpdir/$suffix" "$suffix" "$pkgname"
     fi
-    find "$tmpdir" -path "$tmpdir/*/$suffix" -type f | while read file; do
-        if grep -q -i "^\\[$section\\]" "$file"; then
-            installicontheme "$file" "$suffix"
-        fi
-    done
 fi
+index_files=$(find "$tmpdir" -path "$tmpdir/*/$suffix" -type f)
 
-# cleanup
-rm -rf "$tmpdir"
+IFS='
+' # that is a newline character; assume paths do not containt that so it
+# can be used as field separator for the list.
+for file in $index_files; do
+    if grep -q -i "^\\[$section\\]" "$file"; then
+        installicontheme "$file" "$suffix"
+    fi
+done
+unset -v IFS
 
-exit $retval
+test 0 -eq "$is_icon_theme" || exit $retval
+
+# Not an icon theme, so treat as style theme
+
+mv "$tmpdir/$pkgname" ~/.themes
