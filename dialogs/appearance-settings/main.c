@@ -1357,7 +1357,6 @@ main (gint argc, gchar **argv)
             {
                 /* build the dialog */
                 dialog = gtk_builder_get_object (builder, "dialog");
-                gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_NORMAL);
 
                 g_signal_connect (dialog, "response",
                     G_CALLBACK (appearance_settings_dialog_response), NULL);
