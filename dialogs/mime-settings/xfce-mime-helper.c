@@ -161,6 +161,47 @@ substitute_binary (const gchar *commands,
 
 
 
+/**
+ * Substitute env command usage.
+ * For launchers that modify the env, such as snaps, this is required
+ * to get a functional command from the commands_with_parameter. Otherwise
+ * the launcher will only run `env`, quietly doing nothing.
+ */
+static gchar **
+substitute_env(const gchar *commands,
+               const gchar *commands_with_parameter,
+               const gchar *binary)
+{
+  gchar **result;
+
+  result = substitute_binary(commands, binary);
+
+  if (G_UNLIKELY(*result != NULL && exo_str_is_equal(*result, "env")))
+  {
+    gchar **replaced;
+    gchar *command = xfce_str_replace(commands_with_parameter, "%s", "");
+    gchar *cleaned = xfce_str_replace(command, "\"\"", "");
+
+    replaced = substitute_binary(cleaned, binary);
+    if (*replaced != NULL && !exo_str_is_equal(*replaced, "env"))
+    {
+      g_strfreev(result);
+      result = replaced;
+    }
+    else
+    {
+      g_strfreev(replaced);
+    }
+
+    g_free(cleaned);
+    g_free(command);
+  }
+
+  return result;
+}
+
+
+
 static XfceMimeHelper*
 xfce_mime_helper_new (const gchar *id,
                 XfceRc      *rc)
@@ -238,7 +279,7 @@ xfce_mime_helper_new (const gchar *id,
     }
 
   /* substitute the binary (if any) */
-  helper->commands = substitute_binary (commands, binary);
+  helper->commands = substitute_env (commands, commands_with_parameter, binary);
   helper->commands_with_flag = substitute_binary (commands_with_flag, binary);
   helper->commands_with_parameter = substitute_binary (commands_with_parameter, binary);
   g_free (binary);
