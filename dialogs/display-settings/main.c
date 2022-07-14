@@ -1231,7 +1231,7 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
 {
     XfceOutputInfo *output;
     guint    n, pos = 0;
-    RRMode   mode;
+    RRMode  *clonable_modes;
 
     if (!xfce_randr)
         return;
@@ -1243,20 +1243,21 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     if (gtk_toggle_button_get_active (togglebutton))
     {
         /* Activate mirror-mode with a single mode for all of them */
-        mode = xfce_randr_clonable_mode (xfce_randr);
+        clonable_modes = xfce_randr_clonable_modes (xfce_randr);
         /* Apply mirror settings to each output */
         for (n = 0; n < xfce_randr->noutput; n++)
         {
             if (xfce_randr->mode[n] == None)
                 continue;
 
-            if (mode != None)
-                xfce_randr->mode[n] = mode;
+            if (clonable_modes != NULL)
+                xfce_randr->mode[n] = clonable_modes[n];
             xfce_randr->rotation[n] = RR_Rotate_0;
             xfce_randr->mirrored[n] = TRUE;
             xfce_randr->position[n].x = 0;
             xfce_randr->position[n].y = 0;
         }
+        g_free (clonable_modes);
     }
     else
     {
@@ -1295,7 +1296,7 @@ static void
 display_setting_mirror_displays_populate (GtkBuilder *builder)
 {
     GObject *check;
-    RRMode   mode = None;
+    RRMode  *clonable_modes = NULL;
     guint    n;
     gboolean cloned = TRUE;
     gboolean mirrored = FALSE;
@@ -1315,10 +1316,10 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
 
     /* Can outputs be cloned? */
     if (display_settings_get_n_active_outputs () > 1)
-        mode = xfce_randr_clonable_mode (xfce_randr);
+        clonable_modes = xfce_randr_clonable_modes (xfce_randr);
 
-    gtk_widget_set_sensitive (GTK_WIDGET (check), mode != None);
-    if (mode == None)
+    gtk_widget_set_sensitive (GTK_WIDGET (check), clonable_modes != NULL);
+    if (clonable_modes == NULL)
     {
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), FALSE);
         return;
@@ -1334,13 +1335,15 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
         if (xfce_randr->mode[n] == None)
             continue;
 
-        cloned &= (xfce_randr->mode[n] == mode &&
+        cloned &= (clonable_modes != NULL &&
+                   xfce_randr->mode[n] == clonable_modes[n] &&
                    xfce_randr->mirrored[n]);
         mirrored = xfce_randr->mirrored[n];
 
         if (!cloned)
             break;
     }
+    g_free (clonable_modes);
 
     /* if two displays are 'mirrored', i.e. their x and y positions are the same
        we set the checkbutton to the inconsistent state */
@@ -2476,7 +2479,7 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
 {
     GObject *buttons;
     guint    n;
-    RRMode   mode;
+    RRMode  *clonable_modes;
 
     if (!gtk_toggle_button_get_active(button))
         return;
@@ -2491,21 +2494,22 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
     gtk_widget_set_sensitive (GTK_WIDGET(buttons), FALSE);
 
     /* Activate mirror-mode with a single mode for all of them */
-    mode = xfce_randr_clonable_mode (xfce_randr);
+    clonable_modes = xfce_randr_clonable_modes (xfce_randr);
     /* Configure each available display for mirroring */
     for (n = 0; n < xfce_randr->noutput; ++n)
     {
         if (xfce_randr->mode[n] == None)
             continue;
 
-        if (mode != None)
-            xfce_randr->mode[n] = mode;
+        if (clonable_modes != NULL)
+            xfce_randr->mode[n] = clonable_modes[n];
         xfce_randr->mirrored[n] = TRUE;
         xfce_randr->rotation[n] = RR_Rotate_0;
         xfce_randr->position[n].x = 0;
         xfce_randr->position[n].y = 0;
         xfce_randr_save_output (xfce_randr, "Default", display_channel, n);
     }
+    g_free (clonable_modes);
 
     /* Apply all changes */
     xfce_randr_apply (xfce_randr, "Default", display_channel);
@@ -2608,7 +2612,7 @@ get_mirrored_configuration (void)
 {
     gboolean cloned = TRUE;
     gboolean mirrored = FALSE;
-    RRMode   mode = None;
+    RRMode  *clonable_modes = NULL;
     guint    n;
 
     if (!xfce_randr)
@@ -2619,9 +2623,9 @@ get_mirrored_configuration (void)
 
     /* Can outputs be cloned? */
     if (display_settings_get_n_active_outputs () > 1)
-        mode = xfce_randr_clonable_mode (xfce_randr);
+        clonable_modes = xfce_randr_clonable_modes (xfce_randr);
 
-    if (mode == None)
+    if (clonable_modes == NULL)
         return 0;
 
     /* Check if mirror settings are on */
@@ -2630,13 +2634,14 @@ get_mirrored_configuration (void)
         if (xfce_randr->mode[n] == None)
             continue;
 
-        cloned &= (xfce_randr->mode[n] == mode &&
+        cloned &= (xfce_randr->mode[n] == clonable_modes[n] &&
                    xfce_randr->mirrored[n]);
         mirrored = xfce_randr->mirrored[n];
 
         if (!cloned)
             break;
     }
+    g_free (clonable_modes);
 
     if (mirrored == TRUE && cloned == FALSE)
         return 2;
@@ -4126,7 +4131,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
     GObject    *extend_right, *advanced, *fake_button, *label, *profile_box;
     GError     *error = NULL;
     gboolean    found = FALSE;
-    RRMode      mode;
+    RRMode     *clonable_modes;
     GtkApplication *app;
 
     builder = gtk_builder_new ();
@@ -4180,12 +4185,13 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
             g_free (only_display2_label);
             /* Can outputs be cloned? */
             if (display_settings_get_n_active_outputs () > 1)
-                mode = xfce_randr_clonable_mode (xfce_randr);
+                clonable_modes = xfce_randr_clonable_modes (xfce_randr);
             else
-                mode = None;
+                clonable_modes = NULL;
 
-            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), mode != None);
-            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays_label), mode != None);
+            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), clonable_modes != NULL);
+            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays_label), clonable_modes != NULL);
+            g_free (clonable_modes);
 
             if (xfce_randr->mode[0] != None)
             {
