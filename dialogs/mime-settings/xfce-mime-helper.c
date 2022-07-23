@@ -176,14 +176,14 @@ substitute_env(const gchar *commands,
 
   result = substitute_binary(commands, binary);
 
-  if (G_UNLIKELY(*result != NULL && exo_str_is_equal(*result, "env")))
+  if (G_UNLIKELY(g_strcmp0(*result, "env") == 0))
   {
     gchar **replaced;
     gchar *command = xfce_str_replace(commands_with_parameter, "%s", "");
     gchar *cleaned = xfce_str_replace(command, "\"\"", "");
 
     replaced = substitute_binary(cleaned, binary);
-    if (*replaced != NULL && !exo_str_is_equal(*replaced, "env"))
+    if (*replaced != NULL && g_strcmp0(*replaced, "env") != 0)
     {
       g_strfreev(result);
       result = replaced;
