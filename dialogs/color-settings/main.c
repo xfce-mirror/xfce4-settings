@@ -920,6 +920,7 @@ color_settings_profiles_list_box_row_activated_cb (GtkListBox *list_box,
 static void
 color_settings_dialog_destroy (ColorSettings *settings)
 {
+    gtk_widget_destroy (GTK_WIDGET (settings->dialog_assign));
     g_clear_object (&settings->cancellable);
     g_clear_object (&settings->client);
     g_clear_object (&settings->current_device);
