@@ -65,6 +65,7 @@ enum
     COLUMN_THEME_DISPLAY_NAME,
     COLUMN_THEME_COMMENT,
     COLUMN_THEME_WARNING,
+    COLUMN_THEME_DIR,
     N_THEME_COLUMNS
 };
 
@@ -181,12 +182,16 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 cb_theme_tree_selection_changed (GtkTreeSelection *selection,
-                                 const gchar      *property)
+                                 const gchar      *property,
+                                 GtkBuilder       *builder)
 {
     GtkTreeModel *model;
+    GObject      *button;
     gboolean      has_selection;
     gboolean      has_xfwm4;
+    gboolean      user_theme;
     gchar        *name;
+    gchar        *path;
     GtkTreeIter   iter;
 
     /* Get the selected list iter */
@@ -194,9 +199,20 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
     if (G_LIKELY (has_selection))
     {
         has_xfwm4 = FALSE;
+        user_theme = FALSE;
 
         /* Get the theme name and whether there is a xfwm4 theme as well */
-        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, COLUMN_THEME_WARNING, &has_xfwm4, -1);
+        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, COLUMN_THEME_WARNING, &has_xfwm4, COLUMN_THEME_DIR, &path, -1);
+
+        /* Set the Remove button in/sensitive based on whether it's in the user's HOME */
+        user_theme = g_str_has_prefix (path, g_get_home_dir());
+        button = gtk_builder_get_object (builder, "remove_gtk_theme");
+        gtk_widget_set_sensitive (GTK_WIDGET (button), user_theme);
+        if (!user_theme)
+        {
+            // TODO: Set helpful tooltip
+            gtk_widget_set_tooltip_text (GTK_WIDGET (button), "The theme %s cannot be deleted because it is ");
+        }
 
         /* Store the new theme */
         xfconf_channel_set_string (xsettings_channel, property, name);
@@ -216,21 +232,24 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
 
         /* Cleanup */
         g_free (name);
+        g_free (path);
     }
 }
 
 static void
-cb_icon_theme_tree_selection_changed (GtkTreeSelection *selection)
+cb_icon_theme_tree_selection_changed (GtkTreeSelection *selection,
+                                      GtkBuilder       *builder)
 {
     /* Set the new icon theme */
-    cb_theme_tree_selection_changed (selection, "/Net/IconThemeName");
+    cb_theme_tree_selection_changed (selection, "/Net/IconThemeName", builder);
 }
 
 static void
-cb_ui_theme_tree_selection_changed (GtkTreeSelection *selection)
+cb_ui_theme_tree_selection_changed (GtkTreeSelection *selection,
+                                    GtkBuilder       *builder)
 {
     /* Set the new UI theme */
-    cb_theme_tree_selection_changed (selection, "/Net/ThemeName");
+    cb_theme_tree_selection_changed (selection, "/Net/ThemeName", builder);
 }
 
 static void
@@ -477,6 +496,7 @@ appearance_settings_load_icon_themes (gpointer user_data)
                                         COLUMN_THEME_NAME, file,
                                         COLUMN_THEME_DISPLAY_NAME, visible_name,
                                         COLUMN_THEME_WARNING, !has_cache,
+                                        COLUMN_THEME_DIR, icon_theme_dirs[i],
                                         COLUMN_THEME_COMMENT, cache_tooltip,
                                         -1);
 
@@ -535,6 +555,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
     const gchar  *file;
     gchar       **ui_theme_dirs;
     gchar        *index_filename;
+    gchar        *theme_path;
     const gchar  *theme_name;
     const gchar  *theme_comment;
     gchar        *active_theme_name;
@@ -587,6 +608,8 @@ appearance_settings_load_ui_themes (gpointer user_data)
                 /* Insert the theme in the check list */
                 check_list = g_slist_prepend (check_list, g_strdup (file));
 
+                theme_path = g_build_filename (ui_theme_dirs[i], file, NULL);
+
                 /* Build filename for the index.theme of the current ui theme directory */
                 index_filename = g_build_filename (ui_theme_dirs[i], file, "index.theme", NULL);
 
@@ -637,13 +660,16 @@ appearance_settings_load_ui_themes (gpointer user_data)
                                     COLUMN_THEME_NAME, file,
                                     COLUMN_THEME_DISPLAY_NAME, theme_name_markup,
                                     COLUMN_THEME_WARNING, !has_xfwm4,
-                                    COLUMN_THEME_COMMENT, comment_escaped, -1);
+                                    COLUMN_THEME_COMMENT, comment_escaped,
+                                    COLUMN_THEME_DIR, theme_path,
+                                    -1);
 
                 /* Cleanup */
                 if (G_LIKELY (index_file != NULL))
                     xfce_rc_close (index_file);
                 g_free (comment_escaped);
                 g_free (theme_name_markup);
+                g_free (theme_path);
 
                 /* Check if this is the active theme, if so, select it */
                 if (G_UNLIKELY (g_utf8_collate (file, active_theme_name) == 0))
@@ -899,6 +925,36 @@ cb_theme_uri_dropped (GtkWidget        *widget,
 }
 
 static void
+appearance_settings_reload_themes (GtkBuilder *builder)
+{
+    GObject       *object;
+    GtkTreeModel  *model;
+    preview_data  *pd;
+
+    /* reload icon theme treeview in an idle loop */
+    object = gtk_builder_get_object (builder, "icon_theme_treeview");
+    model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
+    gtk_list_store_clear (GTK_LIST_STORE (model));
+    pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+    if (pd)
+        g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                         appearance_settings_load_icon_themes,
+                         pd,
+                         (GDestroyNotify) preview_data_free);
+
+    /* reload gtk theme treeview */
+    object = gtk_builder_get_object (builder, "gtk_theme_treeview");
+    model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
+    gtk_list_store_clear (GTK_LIST_STORE (model));
+    pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
+    if (pd)
+        g_idle_add_full (G_PRIORITY_HIGH_IDLE,
+                         appearance_settings_load_ui_themes,
+                         pd,
+                         (GDestroyNotify) preview_data_free);
+}
+
+static void
 install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder)
 {
     gchar         *argv[3];
@@ -910,9 +966,6 @@ install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder)
     GdkCursor     *cursor;
     GdkWindow     *gdkwindow;
     gboolean       something_installed = FALSE;
-    GObject       *object;
-    GtkTreeModel  *model;
-    preview_data  *pd;
 
     argv[0] = HELPERDIR G_DIR_SEPARATOR_S "appearance-install-theme";
     argv[2] = NULL;
@@ -985,27 +1038,49 @@ install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder)
 
     if (something_installed)
     {
-        /* reload icon theme treeview in an idle loop */
-        object = gtk_builder_get_object (builder, "icon_theme_treeview");
-        model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
-        gtk_list_store_clear (GTK_LIST_STORE (model));
-        pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
-        if (pd)
-            g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
-                             appearance_settings_load_icon_themes,
-                             pd,
-                             (GDestroyNotify) preview_data_free);
+        appearance_settings_reload_themes (builder);
+    }
+}
 
-        /* reload gtk theme treeview */
-        object = gtk_builder_get_object (builder, "gtk_theme_treeview");
-        model = gtk_tree_view_get_model (GTK_TREE_VIEW (object));
-        gtk_list_store_clear (GTK_LIST_STORE (model));
-        pd = preview_data_new (GTK_LIST_STORE (model), GTK_TREE_VIEW (object));
-        if (pd)
-            g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-                             appearance_settings_load_ui_themes,
-                             pd,
-                             (GDestroyNotify) preview_data_free);
+static void
+appearance_settings_remove_theme_cb (GtkButton *widget, GtkBuilder *builder)
+{
+    GtkWidget *window;
+    GtkTreeSelection *selection;
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
+    GObject *object;
+    gchar *name;
+    gchar *path;
+    gboolean ret;
+    gboolean has_selection;
+
+    object = gtk_builder_get_object (builder, "gtk_theme_treeview");
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (object));
+    has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
+    if (G_LIKELY (has_selection))
+    {
+        /* Get the theme name and whether there is a xfwm4 theme as well */
+        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, COLUMN_THEME_DIR, &path, -1);
+        window = gtk_widget_get_toplevel (GTK_WIDGET (widget));
+        ret = xfce_dialog_confirm (GTK_WINDOW (window),
+                                   "edit-delete", _("_Delete"),
+                                   NULL,
+                                   "Do you really want to delete the theme %s", name);
+
+        if (ret && path)
+        {
+            g_warning ("now i delete the theme %s in %s", name, path);
+            if (g_remove (path) != 0)
+                g_warning ("Could not remove %s, an error occured.", path);
+
+            appearance_settings_reload_themes (builder);
+        }
+        else
+            g_warning ("do nothing");
+
+        g_free (name);
+        g_free (path);
     }
 }
 
@@ -1075,7 +1150,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     object = gtk_builder_get_object (builder, "icon_theme_treeview");
 
-    list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_STRING);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
@@ -1101,6 +1176,14 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_tree_view_column_set_attributes (column, renderer, "visible", COLUMN_THEME_WARNING, NULL);
     g_object_set (G_OBJECT (renderer), "icon-name", "dialog-warning", NULL);
 
+    /* Hidden column holding the location of the theme */
+    column = gtk_tree_view_column_new ();
+    renderer = gtk_cell_renderer_text_new ();
+    gtk_tree_view_column_pack_start (column, renderer, TRUE);
+    gtk_tree_view_column_set_visible (column, FALSE);
+    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_THEME_DIR, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (object), column);
+
     pd = preview_data_new (GTK_LIST_STORE (list_store), GTK_TREE_VIEW (object));
     if (pd)
         g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
@@ -1112,7 +1195,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (object));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_icon_theme_tree_selection_changed), NULL);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_icon_theme_tree_selection_changed), builder);
 
     gtk_drag_dest_set (GTK_WIDGET (object), GTK_DEST_DEFAULT_ALL,
                        theme_drop_targets, G_N_ELEMENTS (theme_drop_targets),
@@ -1122,7 +1205,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Gtk (UI) themes */
     object = gtk_builder_get_object (builder, "gtk_theme_treeview");
 
-    list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_STRING);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
@@ -1142,6 +1225,15 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_tree_view_column_set_attributes (column, renderer, "markup", COLUMN_THEME_DISPLAY_NAME, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
+    /* Hidden column */
+    column = gtk_tree_view_column_new ();
+    /* Location of the theme */
+    renderer = gtk_cell_renderer_text_new ();
+    gtk_tree_view_column_pack_start (column, renderer, TRUE);
+    gtk_tree_view_column_set_visible (column, FALSE);
+    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_THEME_DIR, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (object), column);
+
     pd = preview_data_new (list_store, GTK_TREE_VIEW (object));
     if (pd)
         g_idle_add_full (G_PRIORITY_HIGH_IDLE,
@@ -1153,7 +1245,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (object));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_ui_theme_tree_selection_changed), NULL);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_ui_theme_tree_selection_changed), builder);
 
     gtk_drag_dest_set (GTK_WIDGET (object), GTK_DEST_DEFAULT_ALL,
                        theme_drop_targets, G_N_ELEMENTS (theme_drop_targets),
@@ -1162,6 +1254,9 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "install_gtk_theme");
     g_object_set (object, "name", "Gtk", NULL);
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
+
+    object = gtk_builder_get_object (builder, "remove_gtk_theme");
+    g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_remove_theme_cb), builder);
 
     /* Switch for xfwm4 theme matching, gets hidden if xfwm4 is not installed */
     path = g_find_program_in_path ("xfwm4");
