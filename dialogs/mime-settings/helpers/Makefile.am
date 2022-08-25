@@ -4,6 +4,7 @@ defaults_DATA = helpers.rc
 
 desktopdir = $(datadir)/xfce4/helpers
 desktop_in_in_files =							\
+	alacritty.desktop.in.in							\
 	aterm.desktop.in.in							\
 	balsa.desktop.in.in							\
 	brave.desktop.in.in							\
@@ -25,6 +26,7 @@ desktop_in_in_files =							\
 	icedove.desktop.in.in						\
 	iceweasel.desktop.in.in						\
 	jumanji.desktop.in.in						\
+	kitty.desktop.in.in							\
 	kmail.desktop.in.in							\
 	konqueror.desktop.in.in						\
 	links.desktop.in.in							\
