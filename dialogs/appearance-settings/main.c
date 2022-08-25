@@ -180,8 +180,8 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void
-cb_theme_tree_selection_changed (GtkTreeSelection *selection,
-                                 const gchar      *property)
+theme_selection_changed (GtkTreeSelection *selection,
+                         const gchar      *property)
 {
     GtkTreeModel *model;
     gboolean      has_selection;
@@ -220,17 +220,17 @@ cb_theme_tree_selection_changed (GtkTreeSelection *selection,
 }
 
 static void
-cb_icon_theme_tree_selection_changed (GtkTreeSelection *selection)
+cb_icon_theme_selection_changed (GtkTreeSelection *selection)
 {
     /* Set the new icon theme */
-    cb_theme_tree_selection_changed (selection, "/Net/IconThemeName");
+    theme_selection_changed (selection, "/Net/IconThemeName");
 }
 
 static void
-cb_ui_theme_tree_selection_changed (GtkTreeSelection *selection)
+cb_ui_theme_selection_changed (GtkTreeSelection *selection)
 {
     /* Set the new UI theme */
-    cb_theme_tree_selection_changed (selection, "/Net/ThemeName");
+    theme_selection_changed (selection, "/Net/ThemeName");
 }
 
 static void
@@ -1112,7 +1112,8 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (object));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_icon_theme_tree_selection_changed), NULL);
+    gtk_tree_view_set_activate_on_single_click (GTK_TREE_VIEW (object), TRUE);
+    g_signal_connect_swapped (G_OBJECT (object), "row-activated", G_CALLBACK (cb_icon_theme_selection_changed), selection);
 
     gtk_drag_dest_set (GTK_WIDGET (object), GTK_DEST_DEFAULT_ALL,
                        theme_drop_targets, G_N_ELEMENTS (theme_drop_targets),
@@ -1153,7 +1154,8 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (object));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_ui_theme_tree_selection_changed), NULL);
+    gtk_tree_view_set_activate_on_single_click (GTK_TREE_VIEW (object), TRUE);
+    g_signal_connect_swapped (G_OBJECT (object), "row-activated", G_CALLBACK (cb_ui_theme_selection_changed), selection);
 
     gtk_drag_dest_set (GTK_WIDGET (object), GTK_DEST_DEFAULT_ALL,
                        theme_drop_targets, G_N_ELEMENTS (theme_drop_targets),
