@@ -183,7 +183,6 @@ xfce_mime_window_init (XfceMimeWindow *window)
 
     gtk_window_set_title (GTK_WINDOW (window), _("Default Applications"));
     gtk_window_set_icon_name (GTK_WINDOW (window), "org.xfce.settings.default-applications");
-    gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_NORMAL);
     xfce_titled_dialog_create_action_area (XFCE_TITLED_DIALOG (window));
     button = xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (window), _("_Close"), GTK_RESPONSE_CLOSE);
     image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_BUTTON);
