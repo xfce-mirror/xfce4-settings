@@ -142,7 +142,7 @@ const XfceRRMode *xfce_randr_find_mode_by_id (XfceRandr        *randr,
 RRMode            xfce_randr_preferred_mode  (XfceRandr        *randr,
                                               guint             output);
 
-RRMode            xfce_randr_clonable_mode   (XfceRandr        *randr);
+RRMode           *xfce_randr_clonable_modes  (XfceRandr        *randr);
 
 gchar *           xfce_randr_get_edid        (XfceRandr        *randr,
                                               guint             noutput);
