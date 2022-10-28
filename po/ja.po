@@ -5,6 +5,7 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2021
+# Green, 2022
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-06 12:51+0100\n"
 "PO-Revision-Date: 2020-12-28 17:23+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>, 2021\n"
+"Last-Translator: Green, 2022\n"
 "Language-Team: Japanese (https://www.transifex.com/xfce/teams/16840/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgstr "デジタルディスプレイ"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
-msgstr "アクセシビリティ"
+msgstr "アクセシビリティ (操作支援)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
@@ -100,7 +101,7 @@ msgstr "このオプションが有効な場合、セッションマネージャ
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "_Enable assistive technologies"
-msgstr "福祉情報技術を有効にする(_E)"
+msgstr "操作支援技術を有効にする(_E)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "Start With Session"
@@ -108,7 +109,7 @@ msgstr "セッションとともに開始"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Assistive technologies will be available the next time you login"
-msgstr "福祉情報技術は次回ログイン時から有効になります"
+msgstr "操作支援技術は次回ログイン時から有効になります"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "No AT-SPI provider was found on your system"
@@ -116,7 +117,7 @@ msgstr "AT-SPI がみつかりませんでした"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Assistive _Technologies"
-msgstr "福祉情報技術(_T)"
+msgstr "操作支援技術(_T)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid ""
@@ -443,7 +444,7 @@ msgstr "デフォルトフォント(_T)"
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
-msgstr "このフォントがターミナルエミュレーターなどで使用されるデフォルト monospace フォントとして使用されます。"
+msgstr "このフォントが端末エミュレーターなどで使用されるデフォルト monospace フォントとして使用されます。"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Select a default monospace font"
@@ -1593,7 +1594,7 @@ msgstr "ファイルマネージャーを選択してください"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:508
 msgid "Choose a custom Terminal Emulator"
-msgstr "ターミナルエミュレーターを選択してください"
+msgstr "端末エミュレーターを選択してください"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:513
 msgid ""
@@ -1831,13 +1832,13 @@ msgstr "ここで指定したデフォルトのファイルマネージャーは
 #: ../dialogs/mime-settings/xfce-mime-window.c:327
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
-msgstr "ターミナルエミュレーター"
+msgstr "端末エミュレーター"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:335
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
-msgstr "ここで指定したでデフォルトのターミナルエミュレーターは、コマンドラインインターフェイスが必要なコマンドを実行する際に使用されます。"
+msgstr "ここで指定したデフォルトの端末エミュレーターは、コマンドラインインターフェイスが必要なコマンドを実行する際に使用されます。"
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:354
@@ -1890,7 +1891,7 @@ msgstr[0] "%d 個の MIME タイプがみつかりました"
 #: ../dialogs/mime-settings/xfce-mime-window.c:859
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr "MIME タイプ \"%2$s\" へのアプリケーション \"%1$s\" の設定に失敗しました。"
+msgstr "MIME タイプ \"%s\" へのアプリケーション \"%s\" の設定に失敗しました。"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1122
 #, c-format
@@ -1924,7 +1925,7 @@ msgstr "MIME タイプにお気に入りのアプリケーションを割り当�
 msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
-msgstr "ファイル;タイプ;拡張子;関連付け;開く;ウェブブラウザー;メーラー;ファイルマネージャー;ターミナルエミュレーター; "
+msgstr "ファイル;タイプ;拡張子;関連付け;開く;ウェブブラウザー;メーラー;ファイルマネージャー;端末エミュレーター; "
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -1968,7 +1969,7 @@ msgstr "Debian Sensible ブラウザー"
 
 #: ../dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in.h:1
 msgid "Debian X Terminal Emulator"
-msgstr "Debian X ターミナルエミュレーター"
+msgstr "Debian X 端末エミュレーター"
 
 #: ../dialogs/mime-settings/helpers/dillo.desktop.in.in.h:1
 msgid "Dillo"
@@ -1984,7 +1985,7 @@ msgstr "Epiphany ウェブブラウザー"
 
 #: ../dialogs/mime-settings/helpers/eterm.desktop.in.in.h:1
 msgid "Enlightened Terminal Emulator"
-msgstr "Enlightened ターミナルエミュレーター"
+msgstr "Enlightened 端末エミュレーター"
 
 #: ../dialogs/mime-settings/helpers/evolution.desktop.in.in.h:1
 msgid "Evolution"
@@ -2096,7 +2097,7 @@ msgstr "QupZilla"
 
 #: ../dialogs/mime-settings/helpers/rodent.desktop.in.in.h:1
 msgid "Rodent File Manager"
-msgstr "Rodent File Manager"
+msgstr "Rodent ファイルマネージャ"
 
 #: ../dialogs/mime-settings/helpers/rox-filer.desktop.in.in.h:1
 msgid "ROX-Filer"
@@ -2144,15 +2145,15 @@ msgstr "W3M テキストブラウザー"
 
 #: ../dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in.h:1
 msgid "Xfce Terminal"
-msgstr "Xfce Terminal"
+msgstr "Xfce 端末"
 
 #: ../dialogs/mime-settings/helpers/xfe.desktop.in.in.h:1
 msgid "Xfe File Manager"
-msgstr "Xfe File Manager"
+msgstr "Xfe ファイルマネージャ"
 
 #: ../dialogs/mime-settings/helpers/xterm.desktop.in.in.h:1
 msgid "X Terminal"
-msgstr "X ターミナル"
+msgstr "X 端末"
 
 #: ../dialogs/mouse-settings/main.c:85
 msgid "Active device in the dialog"
@@ -2624,7 +2625,7 @@ msgstr "一覧(_S)"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:438
 msgid "Settings"
-msgstr "設定マネージャー"
+msgstr "設定"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:961
