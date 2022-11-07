@@ -415,7 +415,7 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
   gint          status;
   gint          result;
   gint          pid;
-  const gchar  *real_parameter = parameter;
+  gchar        *real_parameter = NULL;
 
   // FIXME: startup-notification
 
@@ -427,23 +427,43 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
   if (G_UNLIKELY (screen == NULL))
     screen = gdk_screen_get_default ();
 
-  /* strip the mailto part if needed */
-  if (real_parameter != NULL && g_str_has_prefix (real_parameter, "mailto:"))
-    real_parameter = parameter + 7;
+  if (parameter != NULL)
+    {
+      if (helper->category == XFCE_MIME_HELPER_WEBBROWSER || helper->category == XFCE_MIME_HELPER_FILEMANAGER)
+        {
+          /* escape characters which do not belong into an URI/URL */
+          real_parameter = g_uri_escape_string (parameter, ":/?#[]@!$&'()*+,;=%", TRUE);
+        }
+      else if (g_str_has_prefix (real_parameter, "mailto:"))
+        {
+          /* strip the mailto part if needed */
+          real_parameter = g_strdup (parameter + 7);
+        }
+      else
+        {
+          real_parameter = g_strdup (parameter);
+        }
+    }
 
   /* determine the command set to use */
-  if (exo_str_is_flag (real_parameter)) {
-    commands = helper->commands_with_flag;
-  } else if (exo_str_is_empty (real_parameter)) {
-    commands = helper->commands;
-  } else {
-    commands = helper->commands_with_parameter;
-  }
+  if (exo_str_is_flag (real_parameter))
+    {
+      commands = helper->commands_with_flag;
+    }
+  else if (exo_str_is_empty (real_parameter))
+    {
+      commands = helper->commands;
+    }
+  else
+    {
+      commands = helper->commands_with_parameter;
+    }
 
   /* verify that we have atleast one command */
   if (G_UNLIKELY (*commands == NULL))
     {
       g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_INVAL, _("No command specified"));
+      g_free (real_parameter);
       return FALSE;
     }
 
@@ -533,6 +553,7 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
   if (G_UNLIKELY (!succeed))
     g_propagate_error (error, err);
 
+  g_free (real_parameter);
   return succeed;
 }
 
