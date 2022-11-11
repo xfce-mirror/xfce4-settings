@@ -422,7 +422,7 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
   gint          status;
   gint          result;
   gint          pid;
-  gchar        *real_parameter = NULL;
+  const gchar  *real_parameter = parameter;
 
   // FIXME: startup-notification
 
@@ -434,43 +434,23 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
   if (G_UNLIKELY (screen == NULL))
     screen = gdk_screen_get_default ();
 
-  if (parameter != NULL)
-    {
-      if (helper->category == XFCE_MIME_HELPER_WEBBROWSER || helper->category == XFCE_MIME_HELPER_FILEMANAGER)
-        {
-          /* escape characters which do not belong into an URI/URL */
-          real_parameter = g_uri_escape_string (parameter, ":/?#[]@!$&'()*+,;=%", TRUE);
-        }
-      else if (g_str_has_prefix (real_parameter, "mailto:"))
-        {
-          /* strip the mailto part if needed */
-          real_parameter = g_strdup (parameter + 7);
-        }
-      else
-        {
-          real_parameter = g_strdup (parameter);
-        }
-    }
+  /* strip the mailto part if needed */
+  if (real_parameter != NULL && g_str_has_prefix (real_parameter, "mailto:"))
+    real_parameter = parameter + 7;
 
   /* determine the command set to use */
-  if (real_parameter != NULL && g_str_has_prefix (real_parameter, "-"))
-    {
-      commands = helper->commands_with_flag;
-    }
-  else if (xfce_str_is_empty (real_parameter))
-    {
-      commands = helper->commands;
-    }
-  else
-    {
-      commands = helper->commands_with_parameter;
-    }
+  if (real_parameter != NULL && g_str_has_prefix (real_parameter, "-")) {
+    commands = helper->commands_with_flag;
+  } else if (xfce_str_is_empty (real_parameter)) {
+    commands = helper->commands;
+  } else {
+    commands = helper->commands_with_parameter;
+  }
 
   /* verify that we have atleast one command */
   if (G_UNLIKELY (*commands == NULL))
     {
       g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_INVAL, _("No command specified"));
-      g_free (real_parameter);
       return FALSE;
     }
 
@@ -481,7 +461,33 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
       g_clear_error (&err);
 
       /* parse the command */
-      command = !xfce_str_is_empty (real_parameter) ? xfce_str_replace (commands[n], "%s", real_parameter) : g_strdup (commands[n]);
+      if (xfce_str_is_empty (real_parameter))
+        command = g_strdup (commands[n]);
+      else
+        {
+          gchar **strv = g_regex_split_simple ("(\"[^\"]*\")", commands[n], 0, 0);
+          for (gchar **p = strv; *p != NULL; p++)
+            if (g_str_has_prefix (*p, "\"") && g_str_has_suffix (*p, "\""))
+              {
+                gchar *str = g_strndup (*p + 1, strlen (*p) - 2);
+                g_free (*p);
+                *p = xfce_str_replace (str, "%s", real_parameter);
+                g_free (str);
+                str = g_shell_quote (*p);
+                g_free (*p);
+                *p = str;
+              }
+            else
+              {
+                gchar *str = xfce_str_replace (*p, "%s", real_parameter);
+                g_free (*p);
+                *p = str;
+              }
+
+          command = g_strjoinv (NULL, strv);
+          g_strfreev (strv);
+        }
+
       succeed = g_shell_parse_argv (command, NULL, &argv, &err);
       g_free (command);
 
@@ -563,7 +569,6 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
   if (G_UNLIKELY (!succeed))
     g_propagate_error (error, err);
 
-  g_free (real_parameter);
   return succeed;
 }
 
