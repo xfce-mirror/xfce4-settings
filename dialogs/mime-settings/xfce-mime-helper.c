@@ -460,8 +460,43 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
       /* reset the error */
       g_clear_error (&err);
 
+      /* prepare the command */
+      if (xfce_str_is_empty (real_parameter))
+        command = g_strdup (commands[n]);
+      else
+        {
+          /* split command into "quoted"/unquoted parts */
+          gchar **cmd_parts = g_regex_split_simple ("(\"[^\"]*\")", commands[n], 0, 0);
+
+          /* walk the part array */
+          for (gchar **cmd_part = cmd_parts; *cmd_part != NULL; cmd_part++)
+            {
+              /* quoted part: unquote it, replace %s and re-quote it properly */
+              if (g_str_has_prefix (*cmd_part, "\"") && g_str_has_suffix (*cmd_part, "\""))
+                {
+                  gchar *unquoted = g_strndup (*cmd_part + 1, strlen (*cmd_part) - 2);
+                  gchar *filled = xfce_str_replace (unquoted, "%s", real_parameter);
+                  gchar *quoted = g_shell_quote (filled);
+                  g_free (filled);
+                  g_free (unquoted);
+                  g_free (*cmd_part);
+                  *cmd_part = quoted;
+                }
+              /* unquoted part: just replace %s */
+              else
+                {
+                  gchar *filled = xfce_str_replace (*cmd_part, "%s", real_parameter);
+                  g_free (*cmd_part);
+                  *cmd_part = filled;
+                }
+            }
+
+          /* join parts to reconstitute the command, filled and quoted */
+          command = g_strjoinv (NULL, cmd_parts);
+          g_strfreev (cmd_parts);
+        }
+
       /* parse the command */
-      command = !xfce_str_is_empty (real_parameter) ? xfce_str_replace (commands[n], "%s", real_parameter) : g_strdup (commands[n]);
       succeed = g_shell_parse_argv (command, NULL, &argv, &err);
       g_free (command);
 
