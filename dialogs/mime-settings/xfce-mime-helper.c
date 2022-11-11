@@ -461,7 +461,33 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
       g_clear_error (&err);
 
       /* parse the command */
-      command = !xfce_str_is_empty (real_parameter) ? xfce_str_replace (commands[n], "%s", real_parameter) : g_strdup (commands[n]);
+      if (xfce_str_is_empty (real_parameter))
+        command = g_strdup (commands[n]);
+      else
+        {
+          gchar **strv = g_regex_split_simple ("(\"[^\"]*\")", commands[n], 0, 0);
+          for (gchar **p = strv; *p != NULL; p++)
+            if (g_str_has_prefix (*p, "\"") && g_str_has_suffix (*p, "\""))
+              {
+                gchar *str = g_strndup (*p + 1, strlen (*p) - 2);
+                g_free (*p);
+                *p = xfce_str_replace (str, "%s", real_parameter);
+                g_free (str);
+                str = g_shell_quote (*p);
+                g_free (*p);
+                *p = str;
+              }
+            else
+              {
+                gchar *str = xfce_str_replace (*p, "%s", real_parameter);
+                g_free (*p);
+                *p = str;
+              }
+
+          command = g_strjoinv (NULL, strv);
+          g_strfreev (strv);
+        }
+
       succeed = g_shell_parse_argv (command, NULL, &argv, &err);
       g_free (command);
 
