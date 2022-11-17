@@ -107,7 +107,7 @@ if test x"`which mktemp 2>/dev/null`" != x""; then
     TMPDIR="${TMPDIR:-/tmp}"
     tmpdir=`TMPDIR="${XDG_CACHE_HOME:-$TMPDIR}" mktemp -d`
 else
-    tmpdir="/tmp/tmp.$$.$RANDOM"
+    tmpdir="/tmp/tmp.`od -A n -x -N 8 /dev/urandom | tr -d ' '`"
     mkdir "$tmpdir"
 fi
 if test ! -d "$tmpdir"; then
