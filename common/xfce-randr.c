@@ -688,13 +688,27 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 
 
-RRMode
-xfce_randr_clonable_mode (XfceRandr *randr)
+/**
+ * xfce_randr_clonable_modes:
+ * @randr: an #XfceRandr
+ *
+ * Searches for the largest resolution common to all outputs, among the list of
+ * #XfceRRMode available for each output. Since the refresh rate is ignored, the
+ * selected clonable #RRMode are a priori distinct and are returned in an array
+ * whose size is the number of outputs.
+ *
+ * Returns: (nullable) (transfer full): an array of clonable #RRMode or %NULL if
+ * no common resolution to all outputs could be found. Should be freed with
+ * g_free() when no longer used.
+ **/
+RRMode *
+xfce_randr_clonable_modes (XfceRandr *randr)
 {
-    gint  l, n, candidate, found;
-    guint m;
+    gint   l, n, candidate, found;
+    guint  m;
+    RRMode modes[randr->noutput];
 
-    g_return_val_if_fail (randr != NULL, None);
+    g_return_val_if_fail (randr != NULL, NULL);
 
     /* walk all available modes */
     for (n = 0; n < randr->priv->resources->nmode; ++n)
@@ -707,9 +721,11 @@ xfce_randr_clonable_mode (XfceRandr *randr)
             /* walk supported modes from this output */
             for (l = 0; l < randr->priv->output_info[m]->nmode; ++l)
             {
-                if (randr->priv->resources->modes[n].id == randr->priv->output_info[m]->modes[l])
+                if (randr->priv->resources->modes[n].width == randr->priv->modes[m][l].width
+                    && randr->priv->resources->modes[n].height == randr->priv->modes[m][l].height)
                 {
                     found = TRUE;
+                    modes[m] = randr->priv->output_info[m]->modes[l];
                     break;
                 }
             }
@@ -720,10 +736,10 @@ xfce_randr_clonable_mode (XfceRandr *randr)
 
         /* common to all outputs, can be used for clone mode */
         if (candidate)
-            return randr->priv->resources->modes[n].id;
+            return g_memdup (modes, sizeof (RRMode) * randr->noutput);
     }
 
-    return None;
+    return NULL;
 }
 
 
