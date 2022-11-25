@@ -807,8 +807,18 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
         gsettings = g_settings_new (gsettings_category_gnome_interface);
         if (gsettings)
         {
+            gchar *s;
+
             str = xfconf_channel_get_string (channel, property_name, NULL);
             g_settings_set_string (gsettings, "gtk-theme", str);
+
+            /* Also set the preferred color scheme (needed for GTK4) */
+            s = strrchr (str, '-');
+            if (s != NULL && strcmp (s, "-dark") == 0)
+                g_settings_set_string (gsettings, "color-scheme", "prefer-dark");
+            else
+                g_settings_reset (gsettings, "color-scheme");
+
             g_free (str);
         }
     }
