@@ -280,6 +280,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 
     dialog->socket_viewport = viewport = gtk_viewport_new (NULL, NULL);
     gtk_container_add (GTK_CONTAINER (scroll), viewport);
+    gtk_container_set_border_width (GTK_CONTAINER (viewport), 6); /* reveal scroll effects */
     gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
     gtk_widget_show (viewport);
 
