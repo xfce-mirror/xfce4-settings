@@ -234,6 +234,22 @@ cb_ui_theme_selection_changed (GtkTreeSelection *selection)
 }
 
 static void
+cb_xfwm4_sync_label_link_activated (GtkLabel *label)
+{
+    gchar  *command;
+    GError *error = NULL;
+
+    command = g_find_program_in_path ("xfwm4-settings");
+    if (command != NULL && !g_spawn_command_line_async (NULL, &error))
+    {
+         xfce_dialog_show_error (command, error, _("Failed to display Xfwm4 Settings"));
+         g_error_free (error);
+    }
+
+    g_free (command);
+}
+
+static void
 cb_window_scaling_factor_combo_changed (GtkComboBox *combo)
 {
     gint active;
@@ -1171,6 +1187,9 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     {
         object = gtk_builder_get_object (builder, "xfwm4_sync_switch");
         xfconf_g_property_bind (xsettings_channel, "/Xfce/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
+
+        object = gtk_builder_get_object (builder, "xfwm4_sync_label");
+        g_signal_connect (G_OBJECT (object), "activate-link", G_CALLBACK (cb_xfwm4_sync_label_link_activated), NULL);
     }
     else
     {
