@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 00:48+0200\n"
+"POT-Creation-Date: 2022-11-28 15:00+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>, 2022\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfce4-settings/language/tr/)\n"
@@ -38,7 +38,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4360
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4366
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Kullanılan RandR eklentisinin sürümü sorgulanamadı"
@@ -59,7 +59,7 @@ msgstr "Dizüstü"
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
 #: ../common/xfce-randr.c:610 ../dialogs/color-settings/color-device.c:65
 msgid "Monitor"
-msgstr "Monitör"
+msgstr "Ekran"
 
 #: ../common/xfce-randr.c:613
 msgid "Television"
@@ -80,7 +80,7 @@ msgstr "Erişilebilirlik"
 #: ../dialogs/display-settings/display-dialog.glade.h:17
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4400
+#: ../dialogs/display-settings/main.c:4406
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
@@ -328,7 +328,7 @@ msgstr "Sürüm bilgisi"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1311
 #: ../dialogs/color-settings/main.c:1389
-#: ../dialogs/display-settings/main.c:4328
+#: ../dialogs/display-settings/main.c:4334
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
@@ -341,7 +341,7 @@ msgstr "Kullanım için '%s --help' yazın"
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1330
 #: ../dialogs/color-settings/main.c:1406
-#: ../dialogs/display-settings/main.c:4347
+#: ../dialogs/display-settings/main.c:4353
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
@@ -351,7 +351,7 @@ msgstr "Xfce geliştirme takımı. Tüm hakları saklıdır."
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1331
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4348
+#: ../dialogs/display-settings/main.c:4354
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
@@ -541,7 +541,7 @@ msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr "Seçildiğinde menü için klavye kısayolları fareyi menü nesnesinin üzerine getirip yeni tuş kombinasyonuna basarak değiştirilebilir"
+msgstr "Seçildiğinde menü için klavye kısayolları fareyi menü ögesinin üzerine getirip yeni tuş kombinasyonuna basarak değiştirilebilir"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable header bars in dialo_gs"
@@ -1171,43 +1171,43 @@ msgstr "Ekran:"
 msgid "Resolution:"
 msgstr "Çözünürlük:"
 
-#: ../dialogs/display-settings/main.c:1463
+#: ../dialogs/display-settings/main.c:1466
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Son etkin çıktı kapatılmamalıdır, sistem kullanılamaz hale gelir."
 
-#: ../dialogs/display-settings/main.c:1465
+#: ../dialogs/display-settings/main.c:1468
 msgid "Selected output not disabled"
 msgstr "Seçili çıktı devre dışı bırakılmamış"
 
-#: ../dialogs/display-settings/main.c:1642
+#: ../dialogs/display-settings/main.c:1645
 msgid "Profiles matching the currently connected displays"
 msgstr "Şu anda bağlı olan ekranlarla eşleşen profiller"
 
-#: ../dialogs/display-settings/main.c:1848
+#: ../dialogs/display-settings/main.c:1851
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Değişen ekran profili '%s' güncelleniyor?"
 
-#: ../dialogs/display-settings/main.c:1853
+#: ../dialogs/display-settings/main.c:1856
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Güncelle '%s'"
 
-#: ../dialogs/display-settings/main.c:2141
+#: ../dialogs/display-settings/main.c:2144
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "'%s' ekran profilini silmek istiyor musunuz?"
 
-#: ../dialogs/display-settings/main.c:2143
+#: ../dialogs/display-settings/main.c:2146
 msgid "Delete Profile"
 msgstr "Profili Sil"
 
-#: ../dialogs/display-settings/main.c:2146
+#: ../dialogs/display-settings/main.c:2149
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Ekran profili silindikten sonra geri yüklenemez."
 
-#: ../dialogs/display-settings/main.c:2147
+#: ../dialogs/display-settings/main.c:2150
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:1129
@@ -1215,23 +1215,23 @@ msgstr "Ekran profili silindikten sonra geri yüklenemez."
 msgid "Cancel"
 msgstr "İptal"
 
-#: ../dialogs/display-settings/main.c:2148
+#: ../dialogs/display-settings/main.c:2151
 msgid "Delete"
 msgstr "Sil"
 
-#: ../dialogs/display-settings/main.c:2253
+#: ../dialogs/display-settings/main.c:2256
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce Panelleri"
 
-#: ../dialogs/display-settings/main.c:3288
+#: ../dialogs/display-settings/main.c:3293
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Özellikleri değiştirilecek ekran seç, konumlandırmasını yeniden ayarlamak için sürükle."
 
-#: ../dialogs/display-settings/main.c:3331
-#: ../dialogs/display-settings/main.c:3407
+#: ../dialogs/display-settings/main.c:3336
+#: ../dialogs/display-settings/main.c:3412
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1240,34 +1240,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3609
+#: ../dialogs/display-settings/main.c:3614
 msgid "Mirror Screens"
 msgstr "Yansıyan Ekranlar"
 
-#: ../dialogs/display-settings/main.c:3659
+#: ../dialogs/display-settings/main.c:3664
 msgid "(Disabled)"
 msgstr "(Devre Dışı)"
 
-#: ../dialogs/display-settings/main.c:4166
+#: ../dialogs/display-settings/main.c:4171
 #, c-format
 msgid "Only %s (1)"
 msgstr "Yalnızca %s (1)"
 
-#: ../dialogs/display-settings/main.c:4177
+#: ../dialogs/display-settings/main.c:4182
 #, c-format
 msgid "Only %s (2)"
 msgstr "Yalnızca %s (2)"
 
-#: ../dialogs/display-settings/main.c:4361
-#: ../dialogs/display-settings/main.c:4398
+#: ../dialogs/display-settings/main.c:4367
+#: ../dialogs/display-settings/main.c:4404
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce Görüntü Ayarları başlatılamıyor"
 
-#: ../dialogs/display-settings/main.c:4393
+#: ../dialogs/display-settings/main.c:4399
 msgid "ATI Settings"
 msgstr "ATI Ayarları"
 
-#: ../dialogs/display-settings/main.c:4408
+#: ../dialogs/display-settings/main.c:4414
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Özel sürücü ayarlarına erişilemedi"
 
@@ -1457,11 +1457,11 @@ msgstr "Anahtar _oluştur"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
-msgstr "Seçili nesneyi bir sıra yukarı taşı"
+msgstr "Seçili ögeyi bir satır yukarı taşı"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
-msgstr "Seçili nesneyi bir sıra aşağı taşı"
+msgstr "Seçili ögeyi bir satır aşağı taşı"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
@@ -1784,10 +1784,10 @@ msgstr "\"%s\" için yardımcı tanımlanmadı."
 msgid "No command specified"
 msgstr "Belirlenmiş komut yok"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:797
-#: ../dialogs/mime-settings/xfce-mime-helper.c:836
-#: ../dialogs/mime-settings/xfce-mime-helper.c:933
-#: ../dialogs/mime-settings/xfce-mime-helper.c:972
+#: ../dialogs/mime-settings/xfce-mime-helper.c:832
+#: ../dialogs/mime-settings/xfce-mime-helper.c:871
+#: ../dialogs/mime-settings/xfce-mime-helper.c:968
+#: ../dialogs/mime-settings/xfce-mime-helper.c:1007
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "%s, yazmaya uygun açılamıyor"
@@ -2636,12 +2636,12 @@ msgstr "Gösterilecek ayarlar iletişim penceresi"
 msgid "All _Settings"
 msgstr "Tüm _Ayarlar"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:422
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:423
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:916
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:927
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:917
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:928
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "\"%s\" başlatılamadı"
