@@ -173,9 +173,7 @@ color_settings_liststore_add_profile (ColorSettings *settings,
     gchar *escaped = NULL;
     guint kind = 0;
     const gchar *warning = NULL;
-#if CD_CHECK_VERSION(0,1,25)
     gchar **warnings;
-#endif
 
     /* iter is optional */
     if (iter == NULL)
@@ -193,7 +191,6 @@ color_settings_liststore_add_profile (ColorSettings *settings,
         g_string_prepend (string, _("Default: "));
         kind = 1;
     }
-#if CD_CHECK_VERSION(0,1,14)
     if (g_strcmp0 (id, CD_PROFILE_METADATA_DATA_SOURCE_STANDARD) == 0) {
         /* TRANSLATORS: this is a profile prefix to signify the
          * profile his a standard space like AdobeRGB */
@@ -206,14 +203,11 @@ color_settings_liststore_add_profile (ColorSettings *settings,
         g_string_prepend (string, _("Test profile: "));
         kind = 3;
     }
-#endif
 
     /* is the profile faulty */
-#if CD_CHECK_VERSION(0,1,25)
     warnings = cd_profile_get_warnings (profile);
     if (warnings != NULL && warnings[0] != NULL)
         warning = "dialog-warning-symbolic";
-#endif
 
     escaped = g_markup_escape_text (string->str, -1);
     gtk_list_store_append (GTK_LIST_STORE (settings->liststore_assign), iter);
@@ -377,11 +371,9 @@ color_settings_add_profiles_suitable_for_devices (ColorSettings *settings,
         if (!ret)
             continue;
 
-  #if CD_CHECK_VERSION(0,1,13)
         /* ignore profiles from other user accounts */
         if (!cd_profile_has_access (profile_tmp))
             continue;
-  #endif
 
         /* add */
         color_settings_liststore_add_profile (settings,
@@ -538,7 +530,6 @@ color_settings_profile_import_cb (GtkWidget *widget,
         return;
     }
 
-#if CD_CHECK_VERSION(0,1,12)
     profile = cd_client_import_profile_sync (settings->client,
                                              file,
                                              settings->cancellable,
@@ -547,7 +538,6 @@ color_settings_profile_import_cb (GtkWidget *widget,
         g_warning ("failed to get imported profile: %s", error->message);
         return;
     }
-#endif
 
     color_settings_profile_add_cb (NULL, settings);
 }
