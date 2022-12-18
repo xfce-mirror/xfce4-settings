@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 00:48+0200\n"
+"POT-Creation-Date: 2022-11-28 15:00+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2022\n"
 "Language-Team: Portuguese (http://www.transifex.com/xfce/xfce4-settings/language/pt/)\n"
@@ -31,7 +31,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4360
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4366
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Incapaz de consultar a versão da extensão RandR em utilização"
@@ -73,7 +73,7 @@ msgstr "Acessibilidade"
 #: ../dialogs/display-settings/display-dialog.glade.h:17
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4400
+#: ../dialogs/display-settings/main.c:4406
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
@@ -321,7 +321,7 @@ msgstr "Informações da versão"
 #: ../dialogs/accessibility-settings/main.c:200
 #: ../dialogs/appearance-settings/main.c:1311
 #: ../dialogs/color-settings/main.c:1389
-#: ../dialogs/display-settings/main.c:4328
+#: ../dialogs/display-settings/main.c:4334
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
@@ -334,7 +334,7 @@ msgstr "Digite '%s --help' para informações de utilização."
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1330
 #: ../dialogs/color-settings/main.c:1406
-#: ../dialogs/display-settings/main.c:4347
+#: ../dialogs/display-settings/main.c:4353
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
@@ -344,7 +344,7 @@ msgstr "A equipa de desenvolvimento do Xfce. Todos os direitos reservados."
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1331
 #: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4348
+#: ../dialogs/display-settings/main.c:4354
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
@@ -1164,43 +1164,43 @@ msgstr "Ecrã:"
 msgid "Resolution:"
 msgstr "Resolução:"
 
-#: ../dialogs/display-settings/main.c:1463
+#: ../dialogs/display-settings/main.c:1466
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "A última saída ativa não pode ser desativada, pois o sistema ficaria inutilizado."
 
-#: ../dialogs/display-settings/main.c:1465
+#: ../dialogs/display-settings/main.c:1468
 msgid "Selected output not disabled"
 msgstr "A saída anterior não foi desativada"
 
-#: ../dialogs/display-settings/main.c:1642
+#: ../dialogs/display-settings/main.c:1645
 msgid "Profiles matching the currently connected displays"
 msgstr "Perfis que correspondem aos ecrãs atualmente ligados"
 
-#: ../dialogs/display-settings/main.c:1848
+#: ../dialogs/display-settings/main.c:1851
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Atualizar o perfil de monitor '%s' alterado?"
 
-#: ../dialogs/display-settings/main.c:1853
+#: ../dialogs/display-settings/main.c:1856
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Atualizar '%s'"
 
-#: ../dialogs/display-settings/main.c:2141
+#: ../dialogs/display-settings/main.c:2144
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Quer apagar o perfil de monitor '%s'?"
 
-#: ../dialogs/display-settings/main.c:2143
+#: ../dialogs/display-settings/main.c:2146
 msgid "Delete Profile"
 msgstr "Apagar perfil"
 
-#: ../dialogs/display-settings/main.c:2146
+#: ../dialogs/display-settings/main.c:2149
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Assim que um perfil de monitor é apagado, não pode ser restaurado."
 
-#: ../dialogs/display-settings/main.c:2147
+#: ../dialogs/display-settings/main.c:2150
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:1129
@@ -1208,23 +1208,23 @@ msgstr "Assim que um perfil de monitor é apagado, não pode ser restaurado."
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../dialogs/display-settings/main.c:2148
+#: ../dialogs/display-settings/main.c:2151
 msgid "Delete"
 msgstr "Apagar"
 
-#: ../dialogs/display-settings/main.c:2253
+#: ../dialogs/display-settings/main.c:2256
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Painéis Xfce"
 
-#: ../dialogs/display-settings/main.c:3288
+#: ../dialogs/display-settings/main.c:3293
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Seleccione um monitor para alterar as suas propriedades; arrastá-lo para reorganizar a sua colocação."
 
-#: ../dialogs/display-settings/main.c:3331
-#: ../dialogs/display-settings/main.c:3407
+#: ../dialogs/display-settings/main.c:3336
+#: ../dialogs/display-settings/main.c:3412
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1233,34 +1233,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3609
+#: ../dialogs/display-settings/main.c:3614
 msgid "Mirror Screens"
 msgstr "Ecrãs Espelho"
 
-#: ../dialogs/display-settings/main.c:3659
+#: ../dialogs/display-settings/main.c:3664
 msgid "(Disabled)"
 msgstr "(Desactivado)"
 
-#: ../dialogs/display-settings/main.c:4166
+#: ../dialogs/display-settings/main.c:4171
 #, c-format
 msgid "Only %s (1)"
 msgstr "Apenas %s (1)"
 
-#: ../dialogs/display-settings/main.c:4177
+#: ../dialogs/display-settings/main.c:4182
 #, c-format
 msgid "Only %s (2)"
 msgstr "Apenas %s (2)"
 
-#: ../dialogs/display-settings/main.c:4361
-#: ../dialogs/display-settings/main.c:4398
+#: ../dialogs/display-settings/main.c:4367
+#: ../dialogs/display-settings/main.c:4404
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Incapaz de iniciar as definições de exibição do Xfce"
 
-#: ../dialogs/display-settings/main.c:4393
+#: ../dialogs/display-settings/main.c:4399
 msgid "ATI Settings"
 msgstr "Definições ATI"
 
-#: ../dialogs/display-settings/main.c:4408
+#: ../dialogs/display-settings/main.c:4414
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Incapaz de iniciar as definições do controlador proprietário"
 
@@ -1777,10 +1777,10 @@ msgstr "Sem assistente definido para \" %s\"."
 msgid "No command specified"
 msgstr "Nenhum comando especificado"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:797
-#: ../dialogs/mime-settings/xfce-mime-helper.c:836
-#: ../dialogs/mime-settings/xfce-mime-helper.c:933
-#: ../dialogs/mime-settings/xfce-mime-helper.c:972
+#: ../dialogs/mime-settings/xfce-mime-helper.c:832
+#: ../dialogs/mime-settings/xfce-mime-helper.c:871
+#: ../dialogs/mime-settings/xfce-mime-helper.c:968
+#: ../dialogs/mime-settings/xfce-mime-helper.c:1007
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Falha ao abrir %s para escrita"
@@ -2630,12 +2630,12 @@ msgstr "Diálogo de definições a mostrar"
 msgid "All _Settings"
 msgstr "Toda_s as definições"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:422
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:423
 msgid "Settings"
 msgstr "Definições"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:916
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:927
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:917
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:928
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Incapaz de iniciar \"%s\""
