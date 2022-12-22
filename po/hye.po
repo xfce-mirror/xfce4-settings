@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2021
+# Real School <localization@ehayq.am>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-06 12:51+0100\n"
+"POT-Creation-Date: 2022-11-28 15:00+0100\n"
 "PO-Revision-Date: 2020-12-28 17:23+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>, 2021\n"
+"Last-Translator: Real School <localization@ehayq.am>, 2022\n"
 "Language-Team: Eastern Armenian (https://www.transifex.com/xfce/teams/16840/hye/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,13 +30,13 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Անյայտ"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4297
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4297
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Հնարաւոր չէ հարցնել, գործածուող RandR ընդլայնման տարբերակի վերաբերեալ"
 
 #. 1.2 is required
-#: ../common/xfce-randr.c:304
+#: ../common/xfce-randr.c:307
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -44,21 +45,21 @@ msgstr ""
 "Համակարգն աւգտագործում է RandR %d.%d։ Ցուցադրիչի կարգաւորումների աշխատանքի "
 "համար պահանջուում է, գոնէ 1.2 տարբերակը"
 
-#: ../common/xfce-randr.c:594
+#: ../common/xfce-randr.c:597
 msgid "Laptop"
 msgstr "Ծնկադիր"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: ../common/xfce-randr.c:607 ../dialogs/color-settings/color-device.c:65
+#: ../common/xfce-randr.c:610 ../dialogs/color-settings/color-device.c:65
 msgid "Monitor"
 msgstr "Ցուցասարք"
 
-#: ../common/xfce-randr.c:610
+#: ../common/xfce-randr.c:613
 msgid "Television"
 msgstr "Հեռուստացոյց"
 
-#: ../common/xfce-randr.c:614
+#: ../common/xfce-randr.c:617
 msgid "Digital display"
 msgstr "Թուային ցուցադրիչ"
 
@@ -432,6 +433,7 @@ msgstr "Տեսք"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 #: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:327
 msgid "_Add"
 msgstr "_Աւելացնել"
@@ -764,6 +766,7 @@ msgid "Add a profile to the currently selected device"
 msgstr "Աւելացնել յատկագիր ներկայ ընտրուած սարքում"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Remove"
 msgstr "_Հեռացնել"
 
@@ -1437,43 +1440,48 @@ msgstr "Վար_քագիծ"
 msgid "Define shortcuts for la_unching applications:"
 msgstr "Սահմանել դիւրանցումները ծրագրերի _գործարկման համար․"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
+msgid "_Edit"
+msgstr "_Խմբագրում"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
 msgstr "Վերադարձնել _լռելեայները"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
 msgstr "Ծ_րագրի դիւրանցումներ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "_Ստեղնաշարի տիպար"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr "Փոփոխել շա_րակարգի ընտրանքը"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr "Կազմ_ման ստեղն"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "Տեղափոխել ընտրուած տարրը մեկ տող վերեւ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "Տեղափոխել ընտրուած տարրը մեկ տող ներքեւ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "Ստեղ_նաշարի շարակարգ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "_Շարակարգ"
 
@@ -1490,47 +1498,47 @@ msgstr "Չյաջողուեց կապակցուել xfconf աւժանդակ ծրա
 msgid "Could not create the settings dialog."
 msgstr "Կարգաւորումների երկխաւսութիւնը չի ստեղծուել։"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:400
 msgid "Command"
 msgstr "Հրաման"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:408
 msgid "Shortcut"
 msgstr "Դիւրանցում"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:487
 msgid "Layout"
 msgstr "Շարակարգ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:488
 msgid "Variant"
 msgstr "Տարբերակ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1255
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "Reset to Defaults"
 msgstr "Վերատեղադրել լռելեայները"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr ""
 "Սա կը վերատեղադրի դիւրանցումները, նրանց լռելեայն արժէքներին։ Անե՞լ սա։"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1259
 msgid "No"
 msgstr "Ոչ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1260
 msgid "Yes"
 msgstr "Այո"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1336
 msgid "The system defaults will be restored next time you log in."
 msgstr "Համակարգի լռելեայները կը վերատեղադրուեն ամեն մուտքի ժամանակ։"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1338
 msgid "Warning"
 msgstr "Զգուշացում"
 
@@ -1822,15 +1830,15 @@ msgstr ""
 msgid "No helper defined for \"%s\"."
 msgstr "\"%s\"֊ի համար սահմանուած աջակից չկայ։"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:406
+#: ../dialogs/mime-settings/xfce-mime-helper.c:446
 #, c-format
 msgid "No command specified"
 msgstr "Սահմանուած հրամաններ չկան"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:747
-#: ../dialogs/mime-settings/xfce-mime-helper.c:786
-#: ../dialogs/mime-settings/xfce-mime-helper.c:883
-#: ../dialogs/mime-settings/xfce-mime-helper.c:922
+#: ../dialogs/mime-settings/xfce-mime-helper.c:822
+#: ../dialogs/mime-settings/xfce-mime-helper.c:861
+#: ../dialogs/mime-settings/xfce-mime-helper.c:958
+#: ../dialogs/mime-settings/xfce-mime-helper.c:997
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Չյաջողուեց բացել %s նիշը գրառման համար"
@@ -2497,10 +2505,6 @@ msgstr "Արժէք"
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:332
 msgid "New property"
 msgstr "Նոր յատկութիւն"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
-msgid "_Edit"
-msgstr ""
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Edit selected property"
