@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2021
+# Caarmi, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-06 12:51+0100\n"
+"POT-Creation-Date: 2022-11-28 15:00+0100\n"
 "PO-Revision-Date: 2020-12-28 17:23+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>, 2021\n"
+"Last-Translator: Caarmi, 2022\n"
 "Language-Team: Interlingue (https://www.transifex.com/xfce/teams/16840/ie/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,13 +30,13 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Ínconosset"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4297
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4297
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Ne successat reciver li version del extension RandR in actual usa"
 
 #. 1.2 is required
-#: ../common/xfce-randr.c:304
+#: ../common/xfce-randr.c:307
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -44,21 +45,21 @@ msgstr ""
 "Ti-ci sistema usa RandR %d.%d. Li configuration de monitor besona adminim li"
 " version 1.2."
 
-#: ../common/xfce-randr.c:594
+#: ../common/xfce-randr.c:597
 msgid "Laptop"
 msgstr "Portatibile"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: ../common/xfce-randr.c:607 ../dialogs/color-settings/color-device.c:65
+#: ../common/xfce-randr.c:610 ../dialogs/color-settings/color-device.c:65
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../common/xfce-randr.c:610
+#: ../common/xfce-randr.c:613
 msgid "Television"
 msgstr "Televisor"
 
-#: ../common/xfce-randr.c:614
+#: ../common/xfce-randr.c:617
 msgid "Digital display"
 msgstr "Monitor digital"
 
@@ -417,6 +418,7 @@ msgstr "Aspecte"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 #: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:327
 msgid "_Add"
 msgstr "_Adjunter"
@@ -621,7 +623,7 @@ msgstr "Ne successat installar un tema"
 #: ../dialogs/appearance-settings/main.c:975
 #, c-format
 msgid "Install %s theme"
-msgstr ""
+msgstr "Installar li tema «%s»"
 
 #. Create cancel button
 #: ../dialogs/appearance-settings/main.c:979
@@ -738,6 +740,7 @@ msgid "Add a profile to the currently selected device"
 msgstr "Adjunter un profil por li selectet aparate"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Remove"
 msgstr "_Remover"
 
@@ -917,11 +920,11 @@ msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "1.5x"
-msgstr ""
+msgstr "1,5x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "Custom:"
-msgstr ""
+msgstr "Personal:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "The primary display is currently configured to show:"
@@ -978,15 +981,15 @@ msgstr "A_pplicar"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "_Scale:"
-msgstr ""
+msgstr "_Scale:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "X:"
-msgstr ""
+msgstr "X:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Y:"
-msgstr ""
+msgstr "Y:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "_General"
@@ -1403,43 +1406,48 @@ msgstr "Cond_uida"
 msgid "Define shortcuts for la_unching applications:"
 msgstr "D_efini rapid-tastes por lansar applicationes:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
+msgid "_Edit"
+msgstr "_Modificar"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
 msgstr "Pre_definit valores"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
 msgstr "Ra_pid-tastes"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
-msgstr ""
+msgstr "<b>Usar li predefinit</b>"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "Modelle de _tastatura"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr "Al_terar arangeamentes per"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr "Taste de co_mposter"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "Mover li selectet element al precedent linea"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "Mover li selectet element al sequent linea"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "Arangeament del ta_statura"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "_Arangeament"
 
@@ -1456,28 +1464,28 @@ msgstr "Ne successat connexer a daemon de xfconf. Cause: %s"
 msgid "Could not create the settings dialog."
 msgstr "Ne posset crear li dialog de parametres."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:400
 msgid "Command"
 msgstr "Comande"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:408
 msgid "Shortcut"
 msgstr "Rapid-taste"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:487
 msgid "Layout"
 msgstr "Arangeament"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:488
 msgid "Variant"
 msgstr "Variante"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1255
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "Reset to Defaults"
 msgstr "Predefinit valores"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
@@ -1485,20 +1493,20 @@ msgstr ""
 "To va reverter omni rapid-tastes a su valores predefinit. Esque vu vole far "
 "to?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1259
 msgid "No"
 msgstr "No"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1260
 msgid "Yes"
 msgstr "Yes"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1336
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Li configuration predefinit va esser restituet in vor sequent session."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1338
 msgid "Warning"
 msgstr "Avise"
 
@@ -1792,15 +1800,15 @@ msgstr ""
 msgid "No helper defined for \"%s\"."
 msgstr "Null processor es definit por «%s»."
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:406
+#: ../dialogs/mime-settings/xfce-mime-helper.c:446
 #, c-format
 msgid "No command specified"
 msgstr "Comande ne specificat"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:747
-#: ../dialogs/mime-settings/xfce-mime-helper.c:786
-#: ../dialogs/mime-settings/xfce-mime-helper.c:883
-#: ../dialogs/mime-settings/xfce-mime-helper.c:922
+#: ../dialogs/mime-settings/xfce-mime-helper.c:822
+#: ../dialogs/mime-settings/xfce-mime-helper.c:861
+#: ../dialogs/mime-settings/xfce-mime-helper.c:958
+#: ../dialogs/mime-settings/xfce-mime-helper.c:997
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Ne successat aperter %s por scrition"
@@ -1808,7 +1816,7 @@ msgstr "Ne successat aperter %s por scrition"
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
-msgstr ""
+msgstr "Applicationes predefinit"
 
 #. Internet
 #: ../dialogs/mime-settings/xfce-mime-window.c:212
@@ -1825,6 +1833,8 @@ msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr ""
+"Li preferet Navigator web va esser usat por aperter hiperligamentes e "
+"monstrar li contenete de auxilie."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:256
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1836,6 +1846,8 @@ msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr ""
+"Li preferet Letor de postage va esser usat por composir missages quande vu "
+"fa un clic sur adresses de e-post."
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:283
@@ -1851,6 +1863,8 @@ msgstr "Gerentiator de files"
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr ""
+"Li preferet Gerente de files va esser usat por navigar li contenete de "
+"fólderes."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:327
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
@@ -1862,6 +1876,8 @@ msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr ""
+"Li preferet Emulator de terminal va esser usat por executer comandes que "
+"besona ambientie CLI."
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:354
@@ -1878,7 +1894,7 @@ msgstr "Remover li filtre"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:402
 msgid "Open with..."
-msgstr ""
+msgstr "Aperter per..."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:449
 msgid "MIME Type"
@@ -1945,13 +1961,15 @@ msgstr "Selecter un application..."
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
-msgstr ""
+msgstr "Associar li preferret applicationes con tipes MIME"
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
 msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
 msgstr ""
+"file;tip;extension;association;aperter "
+"per;navigator;web;letor;postage;gerente de files;terminal;emulator;"
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -2458,10 +2476,6 @@ msgstr "Valore"
 msgid "New property"
 msgstr "Nov proprietá"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
-msgid "_Edit"
-msgstr ""
-
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Edit selected property"
 msgstr "Modificar li selectet proprietá"
@@ -2715,7 +2729,7 @@ msgstr "Ne successat lansar li rapid-taste «%s»"
 
 #: ../xfsettingsd/main.c:103
 msgid "Fork to the background"
-msgstr ""
+msgstr "Furcar al funde"
 
 #: ../xfsettingsd/main.c:104
 msgid "Do not wait for a window manager on startup"
