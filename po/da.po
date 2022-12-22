@@ -1,20 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Aputsiak Niels Janussen <aputtu@gmail.com>, 2013-2014
-# Chris Darnell <chris@cedeel.com>, 2013
-# Per Kongstad <p_kongstad@op.pl>, 2015
-# scootergrisen, 2016-2022
+# Xfce Bot <transifex@xfce.org>, 2022
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfce4-settings\n"
+"Project-Id-Version: xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 00:48+0200\n"
-"PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: scootergrisen, 2016-2022\n"
-"Language-Team: Danish (http://www.transifex.com/xfce/xfce4-settings/language/da/)\n"
+"POT-Creation-Date: 2022-12-22 12:33+0100\n"
+"PO-Revision-Date: 2022-12-22 11:33+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>, 2022\n"
+"Language-Team: Danish (https://www.transifex.com/xfce/teams/16840/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,7 +29,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Ukendt"
 
-#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4360
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4366
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Kan ikke forespørge hvilken version af RandR-udvidelsen som anvendes"
@@ -40,7 +40,9 @@ msgstr "Kan ikke forespørge hvilken version af RandR-udvidelsen som anvendes"
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "Dette system bruger RandR %d.%d. For at skærmindstillingerne skal fungere, så kræves der mindst version 1.2"
+msgstr ""
+"Dette system bruger RandR %d.%d. For at skærmindstillingerne skal fungere, "
+"så kræves der mindst version 1.2"
 
 #: ../common/xfce-randr.c:597
 msgid "Laptop"
@@ -71,7 +73,7 @@ msgstr "Tilgængelighed"
 #: ../dialogs/display-settings/display-dialog.glade.h:17
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4400
+#: ../dialogs/display-settings/main.c:4406
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
@@ -96,7 +98,9 @@ msgstr "_Hjælp"
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
-msgstr "Når den aktiveres, så vil sessionshåndteringen starte de krævede programmer for skærmlæsere og forstørrelsesglas."
+msgstr ""
+"Når den aktiveres, så vil sessionshåndteringen starte de krævede programmer "
+"for skærmlæsere og forstørrelsesglas."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "_Enable assistive technologies"
@@ -123,7 +127,10 @@ msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
-msgstr "Når den aktiveres, så er det ikke nødvendigt at holde ændringstaster (såsom Kontrol, Alt og Skift) nede (de kan trykkes og slippes igen), hvor flere taster normalt ville skulle være trykket ned på samme tid."
+msgstr ""
+"Når den aktiveres, så er det ikke nødvendigt at holde ændringstaster (såsom "
+"Kontrol, Alt og Skift) nede (de kan trykkes og slippes igen), hvor flere "
+"taster normalt ville skulle være trykket ned på samme tid."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Use sticky keys"
@@ -137,7 +144,9 @@ msgstr "_Lås klæbetaster"
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "Når den vælges, så vil ændringstaster (såsom Kontrol, Alt og Skift) forblive låste i den trykkede tilstand indtil der tastes på dem igen"
+msgstr ""
+"Når den vælges, så vil ændringstaster (såsom Kontrol, Alt og Skift) forblive"
+" låste i den trykkede tilstand indtil der tastes på dem igen"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "Disable sticky keys if two keys are _pressed"
@@ -147,7 +156,9 @@ msgstr "Deaktivér klæbetaster, hvis der _trykkes på to taster"
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "Når den vælges, så vil funktionen \"klæbetaster\" blive deaktiveret, hvis der trykkes på to taster samtidigt"
+msgstr ""
+"Når den vælges, så vil funktionen \"klæbetaster\" blive deaktiveret, hvis "
+"der trykkes på to taster samtidigt"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "Sticky Keys"
@@ -157,7 +168,9 @@ msgstr "Klæbetaster"
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
-msgstr "For at hjælpe med at undgå uønskede tastetryk, så kræver langsomme taster at tasten holdes i et vist stykke tid, før tastetrykket godtages."
+msgstr ""
+"For at hjælpe med at undgå uønskede tastetryk, så kræver langsomme taster at"
+" tasten holdes i et vist stykke tid, før tastetrykket godtages."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Use slow _keys"
@@ -171,7 +184,9 @@ msgstr "_Forsinkelse før godtagelse:"
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr "Varigheden i tid, målt i millisekunder, der skal gå før et tastetryk godtages"
+msgstr ""
+"Varigheden i tid, målt i millisekunder, der skal gå før et tastetryk "
+"godtages"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "Slow Keys"
@@ -181,7 +196,9 @@ msgstr "Langsomme taster"
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
-msgstr "For at hjælpe med at forhindre uønskede, gentagne tastetryk, så indfører rystetaster et minimum af forsinkelse mellem tastetryk."
+msgstr ""
+"For at hjælpe med at forhindre uønskede, gentagne tastetryk, så indfører "
+"rystetaster et minimum af forsinkelse mellem tastetryk."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "Use _bounce keys"
@@ -207,7 +224,9 @@ msgstr "Tastatu_r"
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
-msgstr "Når den er aktiveres, så kan musemarkøren styres med tastaturets numeriske taster."
+msgstr ""
+"Når den er aktiveres, så kan musemarkøren styres med tastaturets numeriske "
+"taster."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "_Use mouse emulation"
@@ -217,7 +236,8 @@ msgstr "Br_ug emulering af mus"
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
-msgstr "Når den vælges, så kan musemarkøren styres med tastaturets numeriske taster"
+msgstr ""
+"Når den vælges, så kan musemarkøren styres med tastaturets numeriske taster"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "msec"
@@ -227,7 +247,9 @@ msgstr "msek"
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
-msgstr "Tiden, i millisekunder, mellem det første tastetryk og første gentagne bevægelseshændelse"
+msgstr ""
+"Tiden, i millisekunder, mellem det første tastetryk og første gentagne "
+"bevægelseshændelse"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Acceleration delay:"
@@ -277,7 +299,9 @@ msgstr "Emulering af mus"
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
-msgstr "Bind en tastaturgenvej til xfce4-find-cursor for at få visuel tilbagemelding af musemarkørens nuværende placering."
+msgstr ""
+"Bind en tastaturgenvej til xfce4-find-cursor for at få visuel tilbagemelding"
+" af musemarkørens nuværende placering."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
 msgid "Show location of pointer on keypress"
@@ -317,9 +341,9 @@ msgid "Version information"
 msgstr "Versionsinformation"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1311
-#: ../dialogs/color-settings/main.c:1389
-#: ../dialogs/display-settings/main.c:4328
+#: ../dialogs/appearance-settings/main.c:1326
+#: ../dialogs/color-settings/main.c:1379
+#: ../dialogs/display-settings/main.c:4334
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
@@ -330,9 +354,9 @@ msgid "Type '%s --help' for usage."
 msgstr "Skriv \"%s --help\" for anvendelse."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1330
-#: ../dialogs/color-settings/main.c:1406
-#: ../dialogs/display-settings/main.c:4347
+#: ../dialogs/appearance-settings/main.c:1345
+#: ../dialogs/color-settings/main.c:1396
+#: ../dialogs/display-settings/main.c:4353
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
@@ -340,9 +364,9 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce's udviklingshold. Alle rettigheder forbeholdes."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1331
-#: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4348
+#: ../dialogs/appearance-settings/main.c:1346
+#: ../dialogs/color-settings/main.c:1397
+#: ../dialogs/display-settings/main.c:4354
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
@@ -358,10 +382,12 @@ msgstr "Forbedr tilgængeligheden med tastatur og mus"
 msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-msgstr "hjælpeteknologier;taster;klæbe;ryste;emulering;skærmlæsere;forstørrelsesglas;a11y;i18n;l10n;AT-SPI;ATK;hæmmet;"
+msgstr ""
+"hjælpeteknologier;taster;klæbe;ryste;emulering;skærmlæsere;forstørrelsesglas;a11y;i18n;l10n;AT-"
+"SPI;ATK;hæmmet;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1186
+#: ../dialogs/appearance-settings/main.c:1201
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
 msgid "None"
@@ -432,7 +458,9 @@ msgstr "_Ikoner"
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
-msgstr "Skrifttypen vil blive brugt som standardskrifttype når tekst i brugerfladen optegnes"
+msgstr ""
+"Skrifttypen vil blive brugt som standardskrifttype når tekst i brugerfladen "
+"optegnes"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Select a default font"
@@ -446,7 +474,9 @@ msgstr "Standardskrif_ttype"
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
-msgstr "Skrifttypen vil blive brugt som standardskrifttype med fast bredde, f.eks. af terminalemulatorer."
+msgstr ""
+"Skrifttypen vil blive brugt som standardskrifttype med fast bredde, f.eks. "
+"af terminalemulatorer."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Select a default monospace font"
@@ -463,7 +493,8 @@ msgstr "_Aktivér udjævning"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "Udjævning, eller skriftudglatning kan forbedre udseendet af tekst på skærmen"
+msgstr ""
+"Udjævning, eller skriftudglatning kan forbedre udseendet af tekst på skærmen"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid "Hintin_g:"
@@ -473,7 +504,9 @@ msgstr "Hintin_g:"
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr "Mange skrifttyper indeholder informationer, der giver ekstra hints til, hvordan skrifttypen bedst tegnes; vælg den du synes der ser bedst ud"
+msgstr ""
+"Mange skrifttyper indeholder informationer, der giver ekstra hints til, "
+"hvordan skrifttypen bedst tegnes; vælg den du synes der ser bedst ud"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Sub-_pixel order:"
@@ -483,7 +516,9 @@ msgstr "Rækkefølge på under_pixel:"
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
-msgstr "Skriftkvalitet på en TFT- eller LCD-skærm kan i stor grad forbedres ved at vælge den korrekte rækkefølge af underpixler på skærmen"
+msgstr ""
+"Skriftkvalitet på en TFT- eller LCD-skærm kan i stor grad forbedres ved at "
+"vælge den korrekte rækkefølge af underpixler på skærmen"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Rendering"
@@ -497,7 +532,9 @@ msgstr "Brugerdefineret _DPI-indstilling:"
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
-msgstr "Tilsidesæt den registrerede skærmopløsning, hvis skrifttypen ser for stor eller lille ud"
+msgstr ""
+"Tilsidesæt den registrerede skærmopløsning, hvis skrifttypen ser for stor "
+"eller lille ud"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "DPI"
@@ -532,7 +569,10 @@ msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr "Hvis den vælges, så kan tastaturgenveje for menuelementer ændres ved at holde musen over menuelementet, og trykke den nye tastekombination for genvejen"
+msgstr ""
+"Hvis den vælges, så kan tastaturgenveje for menuelementer ændres ved at "
+"holde musen over menuelementet, og trykke den nye tastekombination for "
+"genvejen"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable header bars in dialo_gs"
@@ -555,7 +595,9 @@ msgstr "Aktivér lyde for _hændelser"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "Aktivér eller deaktivér globalt for hændelser (kræver understøttelse af \"Canberra\")"
+msgstr ""
+"Aktivér eller deaktivér globalt for hændelser (kræver understøttelse af "
+"\"Canberra\")"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Enable input feedbac_k sounds"
@@ -565,7 +607,9 @@ msgstr "Aktivér tilbagemeldingsl_yde for input"
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
-msgstr "Angiv om museklik eller andre brugerinput skal føre til, at hændelseslyde afspilles"
+msgstr ""
+"Angiv om museklik eller andre brugerinput skal føre til, at hændelseslyde "
+"afspilles"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Event sounds"
@@ -588,41 +632,43 @@ msgstr "I_ndstillinger"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
-msgstr "Advarsel: ikontemaet har ingen mellemlagringsfil. Du kan oprette den ved at køre <i>gtk-update-icon-cache %s/%s/</i> i en terminalemulator."
+msgstr ""
+"Advarsel: ikontemaet har ingen mellemlagringsfil. Du kan oprette den ved at "
+"køre <i>gtk-update-icon-cache %s/%s/</i> i en terminalemulator."
 
-#: ../dialogs/appearance-settings/main.c:944
+#: ../dialogs/appearance-settings/main.c:959
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Fil er større end %d MB, installationen er afbrudt"
 
-#: ../dialogs/appearance-settings/main.c:949
+#: ../dialogs/appearance-settings/main.c:964
 msgid "Failed to create temporary directory"
 msgstr "Kunne ikke oprette midlertidig mappe"
 
-#: ../dialogs/appearance-settings/main.c:954
+#: ../dialogs/appearance-settings/main.c:969
 msgid "Failed to extract archive"
 msgstr "Kunne ikke udpakke arkiv"
 
-#: ../dialogs/appearance-settings/main.c:959
+#: ../dialogs/appearance-settings/main.c:974
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Ukendt format, kun arkiver og mapper er understøttede"
 
-#: ../dialogs/appearance-settings/main.c:964
+#: ../dialogs/appearance-settings/main.c:979
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "En ukendt fejl, afslutningskode er %d"
 
-#: ../dialogs/appearance-settings/main.c:971
+#: ../dialogs/appearance-settings/main.c:986
 msgid "Failed to install theme"
 msgstr "Kunne ikke installere tema"
 
-#: ../dialogs/appearance-settings/main.c:1025
+#: ../dialogs/appearance-settings/main.c:1040
 #, c-format
 msgid "Install %s theme"
 msgstr "Installer %s tema"
 
 #. Create cancel button
-#: ../dialogs/appearance-settings/main.c:1029
+#: ../dialogs/appearance-settings/main.c:1044
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
@@ -634,25 +680,25 @@ msgstr "Installer %s tema"
 msgid "_Cancel"
 msgstr "_Annuller"
 
-#: ../dialogs/appearance-settings/main.c:1031
+#: ../dialogs/appearance-settings/main.c:1046
 #: ../dialogs/keyboard-settings/command-dialog.c:281
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:389
 msgid "_Open"
 msgstr "_Åbn"
 
-#: ../dialogs/appearance-settings/main.c:1190
+#: ../dialogs/appearance-settings/main.c:1205
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1194
+#: ../dialogs/appearance-settings/main.c:1209
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1198
+#: ../dialogs/appearance-settings/main.c:1213
 msgid "Vertical RGB"
 msgstr "Lodret RGB"
 
-#: ../dialogs/appearance-settings/main.c:1202
+#: ../dialogs/appearance-settings/main.c:1217
 msgid "Vertical BGR"
 msgstr "Lodret BGR"
 
@@ -665,7 +711,10 @@ msgid ""
 "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr "temaer;brugerflade;stile;ikoner;skrifttyper;anti-aliasing;udjævning;hinting;underpixel;gengivelse;ClearType;DPI;RGB;BGR;menugenveje;tastaturgenveje;hændelse;lyde;vinduesskalering;HiDPI;Retina-skærm;"
+msgstr ""
+"temaer;brugerflade;stile;ikoner;skrifttyper;anti-"
+"aliasing;udjævning;hinting;underpixel;gengivelse;ClearType;DPI;RGB;BGR;menugenveje;tastaturgenveje;hændelse;lyde;vinduesskalering;HiDPI;Retina-"
+"skærm;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -857,28 +906,28 @@ msgstr "Alle filer"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: ../dialogs/color-settings/main.c:193
+#: ../dialogs/color-settings/main.c:191
 msgid "Default: "
 msgstr "Standard: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: ../dialogs/color-settings/main.c:200
+#: ../dialogs/color-settings/main.c:197
 msgid "Colorspace: "
 msgstr "Farverum: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: ../dialogs/color-settings/main.c:206
+#: ../dialogs/color-settings/main.c:203
 msgid "Test profile: "
 msgstr "Testprofil: "
 
-#: ../dialogs/color-settings/main.c:244
+#: ../dialogs/color-settings/main.c:238
 msgid "Compatible Profiles"
 msgstr "Kompatible profiler"
 
-#: ../dialogs/color-settings/main.c:835 ../dialogs/color-settings/main.c:836
-#: ../dialogs/color-settings/main.c:837
+#: ../dialogs/color-settings/main.c:825 ../dialogs/color-settings/main.c:826
+#: ../dialogs/color-settings/main.c:827
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -888,7 +937,8 @@ msgstr "Indstil farveprofiler"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
-msgstr "farve;indstillinger;styring;skærm;skærme;printere;webcams;webkameraer;scannere;skannere;"
+msgstr ""
+"farve;indstillinger;styring;skærm;skærme;printere;webcams;webkameraer;scannere;skannere;"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
@@ -898,7 +948,9 @@ msgstr "<b><big>Vil du beholde konfigurationen?</big></b>"
 msgid ""
 "The previous configuration will be restored in <b>10 seconds</b> if you do "
 "not reply to this question."
-msgstr "Den forrige konfiguration genskabes i løbet af <b>10 sekunder</b>, hvis du ikke besvarer dette spørgsmål."
+msgstr ""
+"Den forrige konfiguration genskabes i løbet af <b>10 sekunder</b>, hvis du "
+"ikke besvarer dette spørgsmål."
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Keep this configuration"
@@ -1105,13 +1157,17 @@ msgstr "_Opdater"
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:4
 msgid ""
 "<big><b>You have made changes to your previously active profile</b></big>"
-msgstr "<big><b>Du har foretaget ændringer til din tidligere aktive profil</b></big>"
+msgstr ""
+"<big><b>Du har foretaget ændringer til din tidligere aktive profil</b></big>"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
-msgstr "Hvis du ikke opdaterer profilen, så går dine ændringer tabt når du genstarter din session eller afbryder forbindelse til eller opretter forbindelse til en skærm."
+msgstr ""
+"Hvis du ikke opdaterer profilen, så går dine ændringer tabt når du "
+"genstarter din session eller afbryder forbindelse til eller opretter "
+"forbindelse til en skærm."
 
 #: ../dialogs/display-settings/main.c:108
 msgid "Left"
@@ -1146,7 +1202,9 @@ msgstr "Minimal grænseflade til opsætning af et ekstern output"
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
 "not reply to this question."
-msgstr "Den forrige konfiguration genskabes i løbet af <b>%i sekunder</b>, hvis du ikke besvarer dette spørgsmål."
+msgstr ""
+"Den forrige konfiguration genskabes i løbet af <b>%i sekunder</b>, hvis du "
+"ikke besvarer dette spørgsmål."
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:783
@@ -1162,43 +1220,45 @@ msgstr "Skærm:"
 msgid "Resolution:"
 msgstr "Opløsning:"
 
-#: ../dialogs/display-settings/main.c:1463
+#: ../dialogs/display-settings/main.c:1466
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
-msgstr "Det seneste aktive output må ikke være deaktiveret - systemet ville blive uanvendeligt."
+msgstr ""
+"Det seneste aktive output må ikke være deaktiveret - systemet ville blive "
+"uanvendeligt."
 
-#: ../dialogs/display-settings/main.c:1465
+#: ../dialogs/display-settings/main.c:1468
 msgid "Selected output not disabled"
 msgstr "Valgte output er ikke deaktiveret"
 
-#: ../dialogs/display-settings/main.c:1642
+#: ../dialogs/display-settings/main.c:1645
 msgid "Profiles matching the currently connected displays"
 msgstr "Profiler som matcher de tilsluttede skærme."
 
-#: ../dialogs/display-settings/main.c:1848
+#: ../dialogs/display-settings/main.c:1851
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Opdater ændrede skærmprofil '%s'?"
 
-#: ../dialogs/display-settings/main.c:1853
+#: ../dialogs/display-settings/main.c:1856
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Opdater '%s'"
 
-#: ../dialogs/display-settings/main.c:2141
+#: ../dialogs/display-settings/main.c:2144
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Vil du slette skærmprofilen '%s'?"
 
-#: ../dialogs/display-settings/main.c:2143
+#: ../dialogs/display-settings/main.c:2146
 msgid "Delete Profile"
 msgstr "Slet profil"
 
-#: ../dialogs/display-settings/main.c:2146
+#: ../dialogs/display-settings/main.c:2149
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Når en skærmprofil er blevet slettet kan den ikke genskabes."
 
-#: ../dialogs/display-settings/main.c:2147
+#: ../dialogs/display-settings/main.c:2150
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:1129
@@ -1206,23 +1266,25 @@ msgstr "Når en skærmprofil er blevet slettet kan den ikke genskabes."
 msgid "Cancel"
 msgstr "Annuller"
 
-#: ../dialogs/display-settings/main.c:2148
+#: ../dialogs/display-settings/main.c:2151
 msgid "Delete"
 msgstr "Slet"
 
-#: ../dialogs/display-settings/main.c:2253
+#: ../dialogs/display-settings/main.c:2256
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce-paneler"
 
-#: ../dialogs/display-settings/main.c:3288
+#: ../dialogs/display-settings/main.c:3293
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
-msgstr "Vælg en skærm for at ændre dens egenskaber; træk den for at ændre dens placering."
+msgstr ""
+"Vælg en skærm for at ændre dens egenskaber; træk den for at ændre dens "
+"placering."
 
-#: ../dialogs/display-settings/main.c:3331
-#: ../dialogs/display-settings/main.c:3407
+#: ../dialogs/display-settings/main.c:3336
+#: ../dialogs/display-settings/main.c:3412
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1231,34 +1293,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3609
+#: ../dialogs/display-settings/main.c:3614
 msgid "Mirror Screens"
 msgstr "Klon skærme"
 
-#: ../dialogs/display-settings/main.c:3659
+#: ../dialogs/display-settings/main.c:3664
 msgid "(Disabled)"
 msgstr "(Deaktiveret)"
 
-#: ../dialogs/display-settings/main.c:4166
+#: ../dialogs/display-settings/main.c:4171
 #, c-format
 msgid "Only %s (1)"
 msgstr "Kun %s (1)"
 
-#: ../dialogs/display-settings/main.c:4177
+#: ../dialogs/display-settings/main.c:4182
 #, c-format
 msgid "Only %s (2)"
 msgstr "Kun %s (2)"
 
-#: ../dialogs/display-settings/main.c:4361
-#: ../dialogs/display-settings/main.c:4398
+#: ../dialogs/display-settings/main.c:4367
+#: ../dialogs/display-settings/main.c:4404
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Kunne ikke starte Xfce-skærmindstillingerne"
 
-#: ../dialogs/display-settings/main.c:4393
+#: ../dialogs/display-settings/main.c:4399
 msgid "ATI Settings"
 msgstr "ATI-indstillinger"
 
-#: ../dialogs/display-settings/main.c:4408
+#: ../dialogs/display-settings/main.c:4414
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kan ikke opstarte de proprietære driverindstillinger"
 
@@ -1269,7 +1331,8 @@ msgstr "Konfigurer skærmindstillinger og -layout"
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
-msgstr "skærm;indstillinger;skærm;opløsning;opdateringshastighed;rotation;ekstern;projektorer;skærme;LCD;CRT;HiDPI;"
+msgstr ""
+"skærm;indstillinger;skærm;opløsning;opdateringshastighed;rotation;ekstern;projektorer;skærme;LCD;CRT;HiDPI;"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
@@ -1363,7 +1426,9 @@ msgstr "_Aktivér tastegentagelse"
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
-msgstr "Når den vælges, så udsendes det samme tegn igen og igen når der trykkes og holdes nede på en tast"
+msgstr ""
+"Når den vælges, så udsendes det samme tegn igen og igen når der trykkes og "
+"holdes nede på en tast"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "_Repeat delay:"
@@ -1371,7 +1436,8 @@ msgstr "Forsinkelse for _gentagelse:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "Tiden, i millisekunder, før en nedtrykket tast begynder at gentage sig"
+msgstr ""
+"Tiden, i millisekunder, før en nedtrykket tast begynder at gentage sig"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Repe_at speed:"
@@ -1399,7 +1465,8 @@ msgstr "Forsinkelse for _blink:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Forsinkelsen, i millisekunder, mellem efterfølgende blink fra markøren"
+msgstr ""
+"Forsinkelsen, i millisekunder, mellem efterfølgende blink fra markøren"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Cursor"
@@ -1500,7 +1567,9 @@ msgstr "Nulstil til standarder"
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
-msgstr "Dette vil nulstille alle genveje til deres standardværdier. Vil du virkelig gøre dette?"
+msgstr ""
+"Dette vil nulstille alle genveje til deres standardværdier. Vil du virkelig "
+"gøre dette?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "No"
@@ -1547,7 +1616,9 @@ msgstr "Brug en _tilpasset kommando:"
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
-msgstr "Brug en tilpasset kommando for et program der ikke er tilgængelig fra programlisten ovenfor."
+msgstr ""
+"Brug en tilpasset kommando for et program der ikke er tilgængelig fra "
+"programlisten ovenfor."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:224
 msgid "_Browse..."
@@ -1633,35 +1704,43 @@ msgstr "Vælg en brugerdefineret terminalemulator"
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
-msgstr "Angiv programmet du vil bruge\nsom standardwebbrowser i Xfce:"
+msgstr ""
+"Angiv programmet du vil bruge\n"
+"som standardwebbrowser i Xfce:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:507
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
-msgstr "Angiv programmet du vil bruge\nsom standardpostlæser i Xfce:"
+msgstr ""
+"Angiv programmet du vil bruge\n"
+"som standardpostlæser i Xfce:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:508
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
-msgstr "Angiv programmet du\nvil bruge som standardfilhåndtering i Xfce:"
+msgstr ""
+"Angiv programmet du\n"
+"vil bruge som standardfilhåndtering i Xfce:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:509
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
-msgstr "Angiv programmet du vil bruge\nsom standardterminalemulator i Xfce:"
+msgstr ""
+"Angiv programmet du vil bruge\n"
+"som standardterminalemulator i Xfce:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:573
 msgid "Browse the file system to choose a custom command."
 msgstr "Gennemse filsystemet for at vælge en brugerdefineret kommando."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:782
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:740
 msgid "_Other..."
 msgstr "_Andet ..."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:783
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:741
 msgid "Use a custom application which is not included in the above list."
 msgstr "Brug et brugerdefineret program som ikke er i ovenstående liste."
 
@@ -1673,25 +1752,33 @@ msgstr "Vælg foretrukket program"
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
-msgstr "Vælg venligst din foretrukne webbrowser\nnu og klik på OK for at fortsætte."
+msgstr ""
+"Vælg venligst din foretrukne webbrowser\n"
+"nu og klik på OK for at fortsætte."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
-msgstr "Vælg venligst din foretrukne postlæser\nnu og klik på OK for at fortsætte."
+msgstr ""
+"Vælg venligst din foretrukne postlæser\n"
+"nu og klik på OK for at fortsætte."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
-msgstr "Vælg venligst din foretrukne filhåndtering\nnu og klik på OK for at fortsætte."
+msgstr ""
+"Vælg venligst din foretrukne filhåndtering\n"
+"nu og klik på OK for at fortsætte."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
-msgstr "Vælg venligst din foretrukne terminalemulator\nnu og klik på OK for at fortsætte."
+msgstr ""
+"Vælg venligst din foretrukne terminalemulator\n"
+"nu og klik på OK for at fortsætte."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:41
 msgid "Failed to execute default Web Browser"
@@ -1722,7 +1809,9 @@ msgstr "Udskriv versionsinformation og afslut"
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
-msgstr "Start standardhjælpen af TYPE med mulige PARAMETRE, hvor TYPE er en af følgende værdier."
+msgstr ""
+"Start standardhjælpen af TYPE med mulige PARAMETRE, hvor TYPE er en af "
+"følgende værdier."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:117
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:118
@@ -1732,7 +1821,8 @@ msgstr "TYPE [PARAMETRE]"
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:118
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
-msgstr "Efterspørg standardhjælperen af TYPE, hvor TYPE er en af følgende værdier."
+msgstr ""
+"Efterspørg standardhjælperen af TYPE, hvor TYPE er en af følgende værdier."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:148
 msgid ""
@@ -1742,7 +1832,13 @@ msgid ""
 "  MailReader       - The preferred Mail Reader.\n"
 "  FileManager      - The preferred File Manager.\n"
 "  TerminalEmulator - The preferred Terminal Emulator."
-msgstr "Følgende TYPEr understøttes af kommandoerne --launch og --query:\n\n  WebBrowser       - Den foretrukne webbrowser.\n  MailReader       - Den foretrukne postlæser.\n  FileManager      - Den foretrukne filhåndtering.\n  TerminalEmulator - Den foretrukne terminalemulator."
+msgstr ""
+"Følgende TYPEr understøttes af kommandoerne --launch og --query:\n"
+"\n"
+"  WebBrowser       - Den foretrukne webbrowser.\n"
+"  MailReader       - Den foretrukne postlæser.\n"
+"  FileManager      - Den foretrukne filhåndtering.\n"
+"  TerminalEmulator - Den foretrukne terminalemulator."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:183
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:256
@@ -1763,7 +1859,17 @@ msgid ""
 "Built with Gtk+-%d.%d.%d, running Gtk+-%d.%d.%d.\n"
 "\n"
 "Please report bugs to <%s>.\n"
-msgstr "%s (Xfce %s)\n\nOphavsret (c) 2003-2006\n        os-cillation e.K. Alle rettigheder forbeholdes.\n\nSkrevet af Benedikt Meurer <benny@xfce.org>.\n\nKompileret med Gtk+-%d.%d.%d, kørende Gtk+-%d.%d.%d.\n\nRapportér venligst fejl til <%s>.\n"
+msgstr ""
+"%s (Xfce %s)\n"
+"\n"
+"Ophavsret (c) 2003-2006\n"
+"        os-cillation e.K. Alle rettigheder forbeholdes.\n"
+"\n"
+"Skrevet af Benedikt Meurer <benny@xfce.org>.\n"
+"\n"
+"Kompileret med Gtk+-%d.%d.%d, kørende Gtk+-%d.%d.%d.\n"
+"\n"
+"Rapportér venligst fejl til <%s>.\n"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:266
 #, c-format
@@ -1775,10 +1881,10 @@ msgstr "Ingen hjælper defineret for \"%s\"."
 msgid "No command specified"
 msgstr "Ingen kommando valgt"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:797
-#: ../dialogs/mime-settings/xfce-mime-helper.c:836
-#: ../dialogs/mime-settings/xfce-mime-helper.c:933
-#: ../dialogs/mime-settings/xfce-mime-helper.c:972
+#: ../dialogs/mime-settings/xfce-mime-helper.c:832
+#: ../dialogs/mime-settings/xfce-mime-helper.c:871
+#: ../dialogs/mime-settings/xfce-mime-helper.c:968
+#: ../dialogs/mime-settings/xfce-mime-helper.c:1007
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Kunne ikke åbne %s til skrivning"
@@ -1802,7 +1908,8 @@ msgstr "Webbrowser"
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
-msgstr "Standardwebbrowseren bruges til at åbne hyperlinks og vise hjælp-indhold."
+msgstr ""
+"Standardwebbrowseren bruges til at åbne hyperlinks og vise hjælp-indhold."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:247
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1813,7 +1920,9 @@ msgstr "Postlæser"
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
-msgstr "Standardpostlæseren bruges til at skrive e-mails, når du klikker på e-mailadresser."
+msgstr ""
+"Standardpostlæseren bruges til at skrive e-mails, når du klikker på "
+"e-mailadresser."
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:269
@@ -1839,7 +1948,9 @@ msgstr "Terminalemulator"
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
-msgstr "Standardterminalemulatoren bruges til at køre kommandoer som kræver et CLI-miljø."
+msgstr ""
+"Standardterminalemulatoren bruges til at køre kommandoer som kræver et CLI-"
+"miljø."
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:330
@@ -1898,7 +2009,9 @@ msgstr "Kunne ikke angive program \"%s\" for MIME-type \"%s\"."
 #: ../dialogs/mime-settings/xfce-mime-window.c:1120
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
-msgstr "Er du sikker på, at du vil nulstille indholdstypen \"%s\" til dens standardværdi?"
+msgstr ""
+"Er du sikker på, at du vil nulstille indholdstypen \"%s\" til dens "
+"standardværdi?"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1124
 msgid "Question"
@@ -1908,7 +2021,9 @@ msgstr "Spørgsmål"
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr "Dette vil fjerne dine brugerdefinerede mime-associationer og genskabe systemets standardværdier."
+msgstr ""
+"Dette vil fjerne dine brugerdefinerede mime-associationer og genskabe "
+"systemets standardværdier."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1131
 #: ../dialogs/mime-settings/xfce-mime-window.c:1202
@@ -1927,7 +2042,9 @@ msgstr "Tilknyt foretrukne programmer med MIME-typer"
 msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
-msgstr "fil;type;endelse;tilknytning;åbn med;webbrowser;postlæser;filhåndtering;terminalemulator;"
+msgstr ""
+"fil;type;endelse;tilknytning;åbn "
+"med;webbrowser;postlæser;filhåndtering;terminalemulator;"
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -2268,7 +2385,9 @@ msgstr "_Nulstil til standarder"
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
-msgstr "Angiv accelerationen og følsomheden for den valgte enhed til standardværdierne"
+msgstr ""
+"Angiv accelerationen og følsomheden for den valgte enhed til "
+"standardværdierne"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Sensitivit_y:"
@@ -2281,13 +2400,16 @@ msgstr "Acceleratio_n:"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "Den faktor som markørens hastighed vil blive forøget med, når musen bevæges"
+msgstr ""
+"Den faktor som markørens hastighed vil blive forøget med, når musen bevæges"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
-msgstr "Antallet af pixels som markøren skal flyttes med, i en kort tidsperiode, før den begynder at accelerere"
+msgstr ""
+"Antallet af pixels som markøren skal flyttes med, i en kort tidsperiode, før"
+" den begynder at accelerere"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Pointer Speed"
@@ -2304,7 +2426,8 @@ msgstr "Deaktivér pegeplade _mens der skrives"
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
-msgstr "Når den vælges, så vil pegepladen være deaktiveret, når tastaturet anvendes"
+msgstr ""
+"Når den vælges, så vil pegepladen være deaktiveret, når tastaturet anvendes"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Duratio_n:"
@@ -2354,7 +2477,8 @@ msgstr "G_rænseværdi:"
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
-msgstr "Antallet af pixels som markøren skal flyttes før en trækkehandling starter"
+msgstr ""
+"Antallet af pixels som markøren skal flyttes før en trækkehandling starter"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Drag and Drop"
@@ -2368,7 +2492,9 @@ msgstr "Ti_d:"
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
-msgstr "To museklik inden for dette tidsrum (i millisekunder) anses som et dobbeltklik"
+msgstr ""
+"To museklik inden for dette tidsrum (i millisekunder) anses som et "
+"dobbeltklik"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "D_istance:"
@@ -2378,7 +2504,9 @@ msgstr "Afst_and:"
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
-msgstr "Musemarkøren kan ikke flyttes længere end denne afstand, mellem to klik, før de anses som et dobbeltklik"
+msgstr ""
+"Musemarkøren kan ikke flyttes længere end denne afstand, mellem to klik, før"
+" de anses som et dobbeltklik"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "Double Click"
@@ -2411,7 +2539,8 @@ msgstr "Konfigurer opførsel og udseende for markørenhed"
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-msgstr "indstillinger;knapper;rul;retning;markør;hastighed;dobbeltklik;tema;hjul;"
+msgstr ""
+"indstillinger;knapper;rul;retning;markør;hastighed;dobbeltklik;tema;hjul;"
 
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
@@ -2448,7 +2577,7 @@ msgstr "Rediger valgte egenskab"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:380
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1070
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1582
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1576
 msgid "_Reset"
 msgstr "_Nulstil"
 
@@ -2492,12 +2621,15 @@ msgstr "_Nulstil kanal"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:852
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr "Nulstilling af en kanal vil fjerne disse brugerdefinerede indstillinger permanent."
+msgstr ""
+"Nulstilling af en kanal vil fjerne disse brugerdefinerede indstillinger "
+"permanent."
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:853
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr "Er du sikker på, at du vil nulstille kanalen \"%s\" og alle dens egenskaber?"
+msgstr ""
+"Er du sikker på, at du vil nulstille kanalen \"%s\" og alle dens egenskaber?"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:928
 msgid "reset"
@@ -2529,11 +2661,13 @@ msgstr "_Overvågning"
 msgid "Refresh"
 msgstr "Opdater"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1583
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1577
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr "Nulstilling af en egenskab vil fjerne disse brugerdefinerede indstillinger permanent."
+msgstr ""
+"Nulstilling af en egenskab vil fjerne disse brugerdefinerede indstillinger "
+"permanent."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1584
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1578
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Er du sikker på, at du vil nulstille egenskaben \"%s\"?"
@@ -2595,7 +2729,9 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr "Egenskabsnavne må kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' og '>', såvel som '/' som en separator"
+msgstr ""
+"Egenskabsnavne må kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '_', '-', ':', "
+"'.', ',', '[', ']', '{', '}', '<' og '>', såvel som '/' som en separator"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:423
 #, c-format
@@ -2627,12 +2763,12 @@ msgstr "Indstillingsvindue at vise"
 msgid "All _Settings"
 msgstr "Alle _indstillinger"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:422
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:423
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:916
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:927
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:917
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:928
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kunne ikke starte \"%s\""
