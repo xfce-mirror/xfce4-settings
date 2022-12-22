@@ -238,10 +238,11 @@
                     <property name="can_focus">False</property>
                     <property name="margin_top">12</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="xfwm4_sync_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Set matching Xfwm4 theme if there is one</property>
+                        <property name="label" translatable="yes">Set matching &lt;a href="xfwm4-settings:"&gt;Xfwm4 theme&lt;/a&gt; if there is one</property>
+                        <property name="use_markup">True</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
