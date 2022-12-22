@@ -4,16 +4,18 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Xfce Bot <transifex@xfce.org>, 2021
+# Nick Schermer <nick@xfce.org>, 2022
+# Xfce Bot <transifex@xfce.org>, 2022
+# Gábor P., 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-06 12:51+0100\n"
+"POT-Creation-Date: 2022-11-28 15:00+0100\n"
 "PO-Revision-Date: 2020-12-28 17:23+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>, 2021\n"
+"Last-Translator: Gábor P., 2022\n"
 "Language-Team: Hungarian (https://www.transifex.com/xfce/teams/16840/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,13 +31,13 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4297
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4297
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nem kérdezhető le a használt RandR kiterjesztés verziója"
 
 #. 1.2 is required
-#: ../common/xfce-randr.c:304
+#: ../common/xfce-randr.c:307
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -44,21 +46,21 @@ msgstr ""
 "Ez a rendszer a RandR %d.%d verzióját használja. A kijelzőbeállítások "
 "működéséhez legalább az 1.2 verzió szükséges"
 
-#: ../common/xfce-randr.c:594
+#: ../common/xfce-randr.c:597
 msgid "Laptop"
 msgstr "Noteszgép"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: ../common/xfce-randr.c:607 ../dialogs/color-settings/color-device.c:65
+#: ../common/xfce-randr.c:610 ../dialogs/color-settings/color-device.c:65
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../common/xfce-randr.c:610
+#: ../common/xfce-randr.c:613
 msgid "Television"
 msgstr "Televízió"
 
-#: ../common/xfce-randr.c:614
+#: ../common/xfce-randr.c:617
 msgid "Digital display"
 msgstr "Digitális kijelző"
 
@@ -436,6 +438,7 @@ msgstr "Megjelenés"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 #: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:327
 msgid "_Add"
 msgstr "_Hozzáadás"
@@ -648,7 +651,7 @@ msgstr "A téma telepítése meghiúsult"
 #: ../dialogs/appearance-settings/main.c:975
 #, c-format
 msgid "Install %s theme"
-msgstr ""
+msgstr "%s téma telepítése"
 
 #. Create cancel button
 #: ../dialogs/appearance-settings/main.c:979
@@ -765,6 +768,7 @@ msgid "Add a profile to the currently selected device"
 msgstr "Profil hozzáadása a kiválasztott eszközhöz"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Remove"
 msgstr "_Eltávolítás"
 
@@ -944,11 +948,11 @@ msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "1.5x"
-msgstr ""
+msgstr "1.5x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "Custom:"
-msgstr ""
+msgstr "Egyéni:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "The primary display is currently configured to show:"
@@ -1005,15 +1009,15 @@ msgstr "_Alkalmaz"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "_Scale:"
-msgstr ""
+msgstr "_Méretezés:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "X:"
-msgstr ""
+msgstr "X:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Y:"
-msgstr ""
+msgstr "Y:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "_General"
@@ -1438,43 +1442,48 @@ msgstr "_Viselkedés"
 msgid "Define shortcuts for la_unching applications:"
 msgstr "_Gyorsbillentyűk megadása alkalmazások indításához:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
+msgid "_Edit"
+msgstr "S_zerkesztés"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
 msgstr "Alapértelmezések _visszaállítása"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
 msgstr "Alkalmazás-gyo_rsbillentyűk"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
-msgstr ""
+msgstr "<b>A rendszer alapértelmezéseinek használata</b>"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "_Billentyűzetmodell"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr "Kiosztás beállításának módosítása"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr "Ko_mbináló billentyű"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "A kiválasztott elem mozgatása egy sorral feljebb"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "A kiválasztott elem mozgatása egy sorral lejjebb"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "_Billentyűzetkiosztás"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "Elren_dezés"
 
@@ -1491,28 +1500,28 @@ msgstr "Nem sikerült csatlakozni az xfconf démonhoz. Ok: %s"
 msgid "Could not create the settings dialog."
 msgstr "A beállítások ablak nem hozható létre."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:400
 msgid "Command"
 msgstr "Parancs"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:408
 msgid "Shortcut"
 msgstr "Gyorsbillentyű"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:487
 msgid "Layout"
 msgstr "Elrendezés"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:488
 msgid "Variant"
 msgstr "Változat"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1255
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "Reset to Defaults"
 msgstr "Alapértelmezések visszaállítása"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
@@ -1520,21 +1529,21 @@ msgstr ""
 "Ez minden gyorsbillentyűt visszaállít az alapértelmezett értékére. Valóban "
 "ezt szeretné?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1259
 msgid "No"
 msgstr "Nem"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1260
 msgid "Yes"
 msgstr "Igen"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1336
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "A rendszer alapértelmezései a következő bejelentkezéskor lesznek "
 "visszaállítva."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1338
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
@@ -1830,15 +1839,15 @@ msgstr ""
 msgid "No helper defined for \"%s\"."
 msgstr "Nincs segédprogram meghatározva ehhez: „%s”."
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:406
+#: ../dialogs/mime-settings/xfce-mime-helper.c:446
 #, c-format
 msgid "No command specified"
 msgstr "Nincs megadva parancs"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:747
-#: ../dialogs/mime-settings/xfce-mime-helper.c:786
-#: ../dialogs/mime-settings/xfce-mime-helper.c:883
-#: ../dialogs/mime-settings/xfce-mime-helper.c:922
+#: ../dialogs/mime-settings/xfce-mime-helper.c:822
+#: ../dialogs/mime-settings/xfce-mime-helper.c:861
+#: ../dialogs/mime-settings/xfce-mime-helper.c:958
+#: ../dialogs/mime-settings/xfce-mime-helper.c:997
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "%s megnyitása írásra meghiúsult"
@@ -1846,7 +1855,7 @@ msgstr "%s megnyitása írásra meghiúsult"
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
-msgstr ""
+msgstr "Alapértelmezett alkalmazások"
 
 #. Internet
 #: ../dialogs/mime-settings/xfce-mime-window.c:212
@@ -1863,6 +1872,8 @@ msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr ""
+"A hiperhivatkozások és a súgótartalmak az alapértelmezett webböngészővel "
+"fognak megjelenni."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:256
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1874,6 +1885,8 @@ msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr ""
+"E-mail címekre kattintva az alapértelmezett levelező nyílik meg "
+"levélíráshoz."
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:283
@@ -1889,6 +1902,8 @@ msgstr "Fájlkezelő"
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr ""
+"A mappák tartalmának tallózása az alapértelmezett fájlkezelővel fog "
+"történni."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:327
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
@@ -1900,6 +1915,8 @@ msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr ""
+"A parancssori környezetet igénylő parancsok futtatásához az alapértelmezett "
+"terminál emulátor nyílik meg."
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:354
@@ -1916,7 +1933,7 @@ msgstr "Szűrő törlése"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:402
 msgid "Open with..."
-msgstr ""
+msgstr "Megnyitás ezzel..."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:449
 msgid "MIME Type"
@@ -1986,7 +2003,7 @@ msgstr "Válasszon alkalmazást…"
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
-msgstr ""
+msgstr "Előnyben részesített alkalmazások társítása MIME-típusokhoz"
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
 msgid ""
@@ -2508,10 +2525,6 @@ msgstr "Érték"
 msgid "New property"
 msgstr "Új tulajdonság"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
-msgid "_Edit"
-msgstr ""
-
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Edit selected property"
 msgstr "Kijelölt tulajdonság szerkesztése"
@@ -2768,7 +2781,7 @@ msgstr "Nem indítható a parancsikon: „%s”"
 
 #: ../xfsettingsd/main.c:103
 msgid "Fork to the background"
-msgstr ""
+msgstr "Indítás a háttérbe"
 
 #: ../xfsettingsd/main.c:104
 msgid "Do not wait for a window manager on startup"
