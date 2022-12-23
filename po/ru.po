@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 15:00+0100\n"
+"POT-Creation-Date: 2022-12-23 00:51+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: ndvio, 2022\n"
 "Language-Team: Russian (http://www.transifex.com/xfce/xfce4-settings/language/ru/)\n"
@@ -327,8 +327,8 @@ msgid "Version information"
 msgstr "Информация о версии"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1311
-#: ../dialogs/color-settings/main.c:1389
+#: ../dialogs/appearance-settings/main.c:1345
+#: ../dialogs/color-settings/main.c:1379
 #: ../dialogs/display-settings/main.c:4334
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
@@ -340,8 +340,8 @@ msgid "Type '%s --help' for usage."
 msgstr "Наберите «%s --help» для информации об использовании."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1330
-#: ../dialogs/color-settings/main.c:1406
+#: ../dialogs/appearance-settings/main.c:1364
+#: ../dialogs/color-settings/main.c:1396
 #: ../dialogs/display-settings/main.c:4353
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
@@ -350,8 +350,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Команда разработчиков Xfce. Все права защищены."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1331
-#: ../dialogs/color-settings/main.c:1407
+#: ../dialogs/appearance-settings/main.c:1365
+#: ../dialogs/color-settings/main.c:1397
 #: ../dialogs/display-settings/main.c:4354
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
@@ -371,7 +371,7 @@ msgid ""
 msgstr "реабилитация;технические средства;клавиши;залипание;эмуляция;чтение с экрана;увеличение;a11y;i18n;l10n;AT-SPI;ATK;ограниченные возможности;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1186
+#: ../dialogs/appearance-settings/main.c:1220
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
 msgid "None"
@@ -427,8 +427,8 @@ msgid "_Add"
 msgstr "_Добавить"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
-msgid "Set matching Xfwm4 theme if there is one"
-msgstr "Задействовать соответствующую тему для Xfwm4, если таковая включена в состав"
+msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
+msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
@@ -593,46 +593,50 @@ msgstr "_Масштабирование окон"
 msgid "Setti_ngs"
 msgstr "_Настройки"
 
-#: ../dialogs/appearance-settings/main.c:467
+#: ../dialogs/appearance-settings/main.c:245
+msgid "Failed to display Xfwm4 Settings"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:483
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Внимание: эта тема значков не имеет кэш-файла. Вы можете создать его, выполнив в терминале: <i>gtk-update-icon-cache %s/%s/</i>."
 
-#: ../dialogs/appearance-settings/main.c:944
+#: ../dialogs/appearance-settings/main.c:975
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Файл больше чем %d МБ, установка прекращается"
 
-#: ../dialogs/appearance-settings/main.c:949
+#: ../dialogs/appearance-settings/main.c:980
 msgid "Failed to create temporary directory"
 msgstr "Не удалось создать временный каталог"
 
-#: ../dialogs/appearance-settings/main.c:954
+#: ../dialogs/appearance-settings/main.c:985
 msgid "Failed to extract archive"
 msgstr "Не удалось извлечь архив"
 
-#: ../dialogs/appearance-settings/main.c:959
+#: ../dialogs/appearance-settings/main.c:990
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Неизвестный формат: поддерживаются лишь каталоги и архивы"
 
-#: ../dialogs/appearance-settings/main.c:964
+#: ../dialogs/appearance-settings/main.c:995
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Неизвестная ошибка (код %d)"
 
-#: ../dialogs/appearance-settings/main.c:971
+#: ../dialogs/appearance-settings/main.c:1002
 msgid "Failed to install theme"
 msgstr "Не удалось установить тему оформления"
 
-#: ../dialogs/appearance-settings/main.c:1025
+#: ../dialogs/appearance-settings/main.c:1056
 #, c-format
 msgid "Install %s theme"
 msgstr "Установить тему %s"
 
 #. Create cancel button
-#: ../dialogs/appearance-settings/main.c:1029
+#: ../dialogs/appearance-settings/main.c:1060
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
@@ -644,25 +648,25 @@ msgstr "Установить тему %s"
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: ../dialogs/appearance-settings/main.c:1031
+#: ../dialogs/appearance-settings/main.c:1062
 #: ../dialogs/keyboard-settings/command-dialog.c:281
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:389
 msgid "_Open"
 msgstr "_Открыть"
 
-#: ../dialogs/appearance-settings/main.c:1190
+#: ../dialogs/appearance-settings/main.c:1224
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1194
+#: ../dialogs/appearance-settings/main.c:1228
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1198
+#: ../dialogs/appearance-settings/main.c:1232
 msgid "Vertical RGB"
 msgstr "Вертикальный RGB"
 
-#: ../dialogs/appearance-settings/main.c:1202
+#: ../dialogs/appearance-settings/main.c:1236
 msgid "Vertical BGR"
 msgstr "Вертикальный BGR"
 
@@ -867,28 +871,28 @@ msgstr "Все файлы"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: ../dialogs/color-settings/main.c:193
+#: ../dialogs/color-settings/main.c:191
 msgid "Default: "
 msgstr "По умолчанию:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: ../dialogs/color-settings/main.c:200
+#: ../dialogs/color-settings/main.c:197
 msgid "Colorspace: "
 msgstr "Цветовое пространство:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: ../dialogs/color-settings/main.c:206
+#: ../dialogs/color-settings/main.c:203
 msgid "Test profile: "
 msgstr "Тестовый профиль:"
 
-#: ../dialogs/color-settings/main.c:244
+#: ../dialogs/color-settings/main.c:238
 msgid "Compatible Profiles"
 msgstr "Совместимые профили"
 
-#: ../dialogs/color-settings/main.c:835 ../dialogs/color-settings/main.c:836
-#: ../dialogs/color-settings/main.c:837
+#: ../dialogs/color-settings/main.c:825 ../dialogs/color-settings/main.c:826
+#: ../dialogs/color-settings/main.c:827
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -1667,11 +1671,11 @@ msgstr "Укажите приложение, которое вы хотите и
 msgid "Browse the file system to choose a custom command."
 msgstr "Просмотреть файловую систему для выбора нужной команды."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:782
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:740
 msgid "_Other..."
 msgstr "_Другой..."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:783
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:741
 msgid "Use a custom application which is not included in the above list."
 msgstr "Использовать другое приложение, не из этого списка."
 
@@ -2460,7 +2464,7 @@ msgstr "Изменить выделенное свойство"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:380
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1070
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1582
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1576
 msgid "_Reset"
 msgstr "С_бросить"
 
@@ -2541,11 +2545,11 @@ msgstr "_Наблюдение"
 msgid "Refresh"
 msgstr "Обновить"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1583
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1577
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Сброс значения свойства навсегда удалит ваши настройки для него."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1584
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1578
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Вы действительно хотите сбросить свойство «%s»?"
