@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Andrea Mura <am.soft@outlook.it>, 2020
+# 4c2b67f796130ed0a67c727c3bb62eab_e2d31b6 <a02b10ce7b64361f74969ac22391a1c2_854999>, 2020
 # Automatically generated, 2009
 # Cristian Marchi <cri.penta@gmail.com>, 2009,2013-2016
 # Dmytro Tokayev, 2021
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 00:48+0200\n"
+"POT-Creation-Date: 2022-12-23 00:51+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2019-2022\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce4-settings/language/it/)\n"
@@ -34,7 +34,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4360
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4366
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Impossibile reperire la versione dell'estensione RandR che si sta per utilizzare"
@@ -76,7 +76,7 @@ msgstr "Accessibilità"
 #: ../dialogs/display-settings/display-dialog.glade.h:17
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4400
+#: ../dialogs/display-settings/main.c:4406
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
@@ -322,9 +322,9 @@ msgid "Version information"
 msgstr "Informazioni di versione"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1311
-#: ../dialogs/color-settings/main.c:1389
-#: ../dialogs/display-settings/main.c:4328
+#: ../dialogs/appearance-settings/main.c:1345
+#: ../dialogs/color-settings/main.c:1379
+#: ../dialogs/display-settings/main.c:4334
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
 #: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
@@ -335,9 +335,9 @@ msgid "Type '%s --help' for usage."
 msgstr "Digitare \"%s --help\" per le informazioni d'uso."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1330
-#: ../dialogs/color-settings/main.c:1406
-#: ../dialogs/display-settings/main.c:4347
+#: ../dialogs/appearance-settings/main.c:1364
+#: ../dialogs/color-settings/main.c:1396
+#: ../dialogs/display-settings/main.c:4353
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
 #: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
@@ -345,9 +345,9 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1331
-#: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4348
+#: ../dialogs/appearance-settings/main.c:1365
+#: ../dialogs/color-settings/main.c:1397
+#: ../dialogs/display-settings/main.c:4354
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
 #: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
@@ -366,7 +366,7 @@ msgid ""
 msgstr "assistive;technologies;keys;sticky;bounce;emulation;screen readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1186
+#: ../dialogs/appearance-settings/main.c:1220
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
 msgid "None"
@@ -422,8 +422,8 @@ msgid "_Add"
 msgstr "_Aggiungi"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
-msgid "Set matching Xfwm4 theme if there is one"
-msgstr "Se presente, imposta il corrispondente tema per Xfwm4"
+msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
+msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
@@ -588,46 +588,50 @@ msgstr "Scalat_ura finestra"
 msgid "Setti_ngs"
 msgstr "I_mpostazioni"
 
-#: ../dialogs/appearance-settings/main.c:467
+#: ../dialogs/appearance-settings/main.c:245
+msgid "Failed to display Xfwm4 Settings"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:483
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Attenzione: questo tema delle icone non ha un file di cache. È possibile crearlo eseguendo <i>gtk-update-icon-cache %s/%s/</i> in un emulatore di terminale."
 
-#: ../dialogs/appearance-settings/main.c:944
+#: ../dialogs/appearance-settings/main.c:975
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
 msgstr "Il file supera i %d MB; installazione annullata"
 
-#: ../dialogs/appearance-settings/main.c:949
+#: ../dialogs/appearance-settings/main.c:980
 msgid "Failed to create temporary directory"
 msgstr "Impossibile creare la cartella temporanea"
 
-#: ../dialogs/appearance-settings/main.c:954
+#: ../dialogs/appearance-settings/main.c:985
 msgid "Failed to extract archive"
 msgstr "Impossibile estrarre l'archivio"
 
-#: ../dialogs/appearance-settings/main.c:959
+#: ../dialogs/appearance-settings/main.c:990
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Formato sconosciuto; sono supportati solo archivi e cartelle"
 
-#: ../dialogs/appearance-settings/main.c:964
+#: ../dialogs/appearance-settings/main.c:995
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Errore sconosciuto; codice di uscita %d"
 
-#: ../dialogs/appearance-settings/main.c:971
+#: ../dialogs/appearance-settings/main.c:1002
 msgid "Failed to install theme"
 msgstr "Impossibile installare il tema"
 
-#: ../dialogs/appearance-settings/main.c:1025
+#: ../dialogs/appearance-settings/main.c:1056
 #, c-format
 msgid "Install %s theme"
 msgstr "Installa il tema %s"
 
 #. Create cancel button
-#: ../dialogs/appearance-settings/main.c:1029
+#: ../dialogs/appearance-settings/main.c:1060
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
@@ -639,25 +643,25 @@ msgstr "Installa il tema %s"
 msgid "_Cancel"
 msgstr "A_nnulla"
 
-#: ../dialogs/appearance-settings/main.c:1031
+#: ../dialogs/appearance-settings/main.c:1062
 #: ../dialogs/keyboard-settings/command-dialog.c:281
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:389
 msgid "_Open"
 msgstr "_Apri"
 
-#: ../dialogs/appearance-settings/main.c:1190
+#: ../dialogs/appearance-settings/main.c:1224
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1194
+#: ../dialogs/appearance-settings/main.c:1228
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1198
+#: ../dialogs/appearance-settings/main.c:1232
 msgid "Vertical RGB"
 msgstr "RGB verticale"
 
-#: ../dialogs/appearance-settings/main.c:1202
+#: ../dialogs/appearance-settings/main.c:1236
 msgid "Vertical BGR"
 msgstr "BGR verticale"
 
@@ -862,28 +866,28 @@ msgstr "Tutti i file"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: ../dialogs/color-settings/main.c:193
+#: ../dialogs/color-settings/main.c:191
 msgid "Default: "
 msgstr "Predefinito:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: ../dialogs/color-settings/main.c:200
+#: ../dialogs/color-settings/main.c:197
 msgid "Colorspace: "
 msgstr "Spazio colori:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: ../dialogs/color-settings/main.c:206
+#: ../dialogs/color-settings/main.c:203
 msgid "Test profile: "
 msgstr "Profilo di test:"
 
-#: ../dialogs/color-settings/main.c:244
+#: ../dialogs/color-settings/main.c:238
 msgid "Compatible Profiles"
 msgstr "Profili compatibili"
 
-#: ../dialogs/color-settings/main.c:835 ../dialogs/color-settings/main.c:836
-#: ../dialogs/color-settings/main.c:837
+#: ../dialogs/color-settings/main.c:825 ../dialogs/color-settings/main.c:826
+#: ../dialogs/color-settings/main.c:827
 msgid "Unknown"
 msgstr "Sconosciuto"
 
@@ -1167,43 +1171,43 @@ msgstr "Schermo:"
 msgid "Resolution:"
 msgstr "Risoluzione:"
 
-#: ../dialogs/display-settings/main.c:1463
+#: ../dialogs/display-settings/main.c:1466
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "L'ultima uscita attiva non deve essere disabilitata; il sistema diverrebbe inutilizzabile."
 
-#: ../dialogs/display-settings/main.c:1465
+#: ../dialogs/display-settings/main.c:1468
 msgid "Selected output not disabled"
 msgstr "Uscita selezionata non disabilitata"
 
-#: ../dialogs/display-settings/main.c:1642
+#: ../dialogs/display-settings/main.c:1645
 msgid "Profiles matching the currently connected displays"
 msgstr "Profili che corrispondono agli schermi attualmente connessi"
 
-#: ../dialogs/display-settings/main.c:1848
+#: ../dialogs/display-settings/main.c:1851
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Aggiornare il profilo modificato '%s'?"
 
-#: ../dialogs/display-settings/main.c:1853
+#: ../dialogs/display-settings/main.c:1856
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Aggiorna '%s'"
 
-#: ../dialogs/display-settings/main.c:2141
+#: ../dialogs/display-settings/main.c:2144
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Eliminare veramente il profilo '%s'?"
 
-#: ../dialogs/display-settings/main.c:2143
+#: ../dialogs/display-settings/main.c:2146
 msgid "Delete Profile"
 msgstr "Elimina profilo"
 
-#: ../dialogs/display-settings/main.c:2146
+#: ../dialogs/display-settings/main.c:2149
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Una volta che il profilo viene eliminato non è possibile recuperarlo."
 
-#: ../dialogs/display-settings/main.c:2147
+#: ../dialogs/display-settings/main.c:2150
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
 #: ../dialogs/mime-settings/xfce-mime-window.c:1129
@@ -1211,23 +1215,23 @@ msgstr "Una volta che il profilo viene eliminato non è possibile recuperarlo."
 msgid "Cancel"
 msgstr "Annulla"
 
-#: ../dialogs/display-settings/main.c:2148
+#: ../dialogs/display-settings/main.c:2151
 msgid "Delete"
 msgstr "Elimina"
 
-#: ../dialogs/display-settings/main.c:2253
+#: ../dialogs/display-settings/main.c:2256
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d pannelli Xfce"
 
-#: ../dialogs/display-settings/main.c:3288
+#: ../dialogs/display-settings/main.c:3293
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Selezionare uno schermo per modificarne le proprietà; trascinarlo per modificarne la posizione."
 
-#: ../dialogs/display-settings/main.c:3331
-#: ../dialogs/display-settings/main.c:3407
+#: ../dialogs/display-settings/main.c:3336
+#: ../dialogs/display-settings/main.c:3412
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1236,34 +1240,34 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3609
+#: ../dialogs/display-settings/main.c:3614
 msgid "Mirror Screens"
 msgstr "Specchia schermi"
 
-#: ../dialogs/display-settings/main.c:3659
+#: ../dialogs/display-settings/main.c:3664
 msgid "(Disabled)"
 msgstr "(Disabilitato)"
 
-#: ../dialogs/display-settings/main.c:4166
+#: ../dialogs/display-settings/main.c:4171
 #, c-format
 msgid "Only %s (1)"
 msgstr "Solamente %s (1)"
 
-#: ../dialogs/display-settings/main.c:4177
+#: ../dialogs/display-settings/main.c:4182
 #, c-format
 msgid "Only %s (2)"
 msgstr "Solamente %s (2)"
 
-#: ../dialogs/display-settings/main.c:4361
-#: ../dialogs/display-settings/main.c:4398
+#: ../dialogs/display-settings/main.c:4367
+#: ../dialogs/display-settings/main.c:4404
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Impossibile avviare il gestore delle impostazioni dello schermo di Xfce"
 
-#: ../dialogs/display-settings/main.c:4393
+#: ../dialogs/display-settings/main.c:4399
 msgid "ATI Settings"
 msgstr "Impostazioni ATI"
 
-#: ../dialogs/display-settings/main.c:4408
+#: ../dialogs/display-settings/main.c:4414
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Impossibile avviare le impostazioni per i driver proprietari"
 
@@ -1662,11 +1666,11 @@ msgstr "Specificare l'applicazione che si intende utilizzare\ncome emulatore di 
 msgid "Browse the file system to choose a custom command."
 msgstr "Esplora il file system per scegliere un comando personalizzato."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:782
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:740
 msgid "_Other..."
 msgstr "Altr_o..."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:783
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:741
 msgid "Use a custom application which is not included in the above list."
 msgstr "Usa un'applicazione personalizzata non inclusa nell'elenco."
 
@@ -1780,10 +1784,10 @@ msgstr "Nessun aiutante definito per \"%s\"."
 msgid "No command specified"
 msgstr "Nessun comando specificato"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:797
-#: ../dialogs/mime-settings/xfce-mime-helper.c:836
-#: ../dialogs/mime-settings/xfce-mime-helper.c:933
-#: ../dialogs/mime-settings/xfce-mime-helper.c:972
+#: ../dialogs/mime-settings/xfce-mime-helper.c:832
+#: ../dialogs/mime-settings/xfce-mime-helper.c:871
+#: ../dialogs/mime-settings/xfce-mime-helper.c:968
+#: ../dialogs/mime-settings/xfce-mime-helper.c:1007
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Impossibile aprire %s per la scrittura"
@@ -2454,7 +2458,7 @@ msgstr "Modifica la proprietà selezionata"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:380
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1070
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1582
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1576
 msgid "_Reset"
 msgstr "_Ripristina"
 
@@ -2535,11 +2539,11 @@ msgstr "_Monitora"
 msgid "Refresh"
 msgstr "Aggiorna"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1583
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1577
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Ripristinando una proprietà, saranno rimosse permanentemente le impostazioni personalizzate."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1584
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1578
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Ripristinare davvero la proprietà \"%s\"?"
@@ -2633,12 +2637,12 @@ msgstr "Finestra delle impostazioni da visualizzare"
 msgid "All _Settings"
 msgstr "_Tutte le impostazioni"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:422
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:423
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:916
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:927
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:917
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:928
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Impossibile avviare \"%s\""
