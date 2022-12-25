@@ -32,7 +32,8 @@
 static void command_dialog_create_contents (CommandDialog      *dialog,
                                             const gchar        *shortcut,
                                             const gchar        *action,
-                                            gboolean            snotify);
+                                            gboolean            snotify,
+                                            gboolean            auto_repeat);
 static void command_dialog_button_clicked  (CommandDialog      *dialog);
 
 
@@ -49,6 +50,7 @@ struct _CommandDialog
   GtkWidget *entry;
   GtkWidget *button;
   GtkWidget *sn_option;
+  GtkWidget *ar_option;
 };
 
 
@@ -77,13 +79,14 @@ command_dialog_init (CommandDialog *dialog)
 GtkWidget*
 command_dialog_new (const gchar *shortcut,
                     const gchar *action,
-                    gboolean     snotify)
+                    gboolean     snotify,
+                    gboolean     auto_repeat)
 {
   CommandDialog *dialog;
 
   dialog = COMMAND_DIALOG (g_object_new (TYPE_COMMAND_DIALOG, NULL));
 
-  command_dialog_create_contents (dialog, shortcut, action, snotify);
+  command_dialog_create_contents (dialog, shortcut, action, snotify, auto_repeat);
 
   return GTK_WIDGET (dialog);
 }
@@ -94,7 +97,8 @@ static void
 command_dialog_create_contents (CommandDialog *dialog,
                                 const gchar   *shortcut,
                                 const gchar   *action,
-                                gboolean       snotify)
+                                gboolean       snotify,
+                                gboolean       auto_repeat)
 {
   GtkWidget       *button;
   GtkWidget       *content_box;
@@ -212,6 +216,11 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->sn_option), snotify);
   gtk_widget_show (dialog->sn_option);
 
+  dialog->ar_option = gtk_check_button_new_with_mnemonic (_("Auto _repeat"));
+  gtk_grid_attach (GTK_GRID (table), dialog->ar_option, 0, 3, 2, 1);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->ar_option), auto_repeat);
+  gtk_widget_show (dialog->ar_option);
+
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 }
 
@@ -232,6 +241,15 @@ command_dialog_get_snotify (CommandDialog *dialog)
 {
   g_return_val_if_fail (IS_COMMAND_DIALOG (dialog), FALSE);
   return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->sn_option));
+}
+
+
+
+gboolean
+command_dialog_get_auto_repeat (CommandDialog *dialog)
+{
+  g_return_val_if_fail (IS_COMMAND_DIALOG (dialog), FALSE);
+  return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->ar_option));
 }
 
 
