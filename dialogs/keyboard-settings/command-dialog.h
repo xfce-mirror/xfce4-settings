@@ -38,9 +38,11 @@ GType       command_dialog_get_type     (void) G_GNUC_CONST;
 
 GtkWidget  *command_dialog_new          (const gchar   *shortcut,
                                          const gchar   *action,
-                                         gboolean       snotify);
+                                         gboolean       snotify,
+                                         gboolean       auto_repeat);
 const char *command_dialog_get_command  (CommandDialog *dialog);
 gboolean    command_dialog_get_snotify  (CommandDialog *dialog);
+gboolean    command_dialog_get_auto_repeat (CommandDialog *dialog);
 gint        command_dialog_run          (CommandDialog *dialog,
                                          GtkWidget     *parent);
 
