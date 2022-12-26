@@ -34,15 +34,17 @@ typedef struct _CommandDialog      CommandDialog;
 #define IS_COMMAND_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_COMMAND_DIALOG))
 #define COMMAND_DIALOG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_COMMAND_DIALOG, CommandDialogClass))
 
-GType       command_dialog_get_type     (void) G_GNUC_CONST;
+GType       command_dialog_get_type        (void) G_GNUC_CONST;
 
-GtkWidget  *command_dialog_new          (const gchar   *shortcut,
-                                         const gchar   *action,
-                                         gboolean       snotify);
-const char *command_dialog_get_command  (CommandDialog *dialog);
-gboolean    command_dialog_get_snotify  (CommandDialog *dialog);
-gint        command_dialog_run          (CommandDialog *dialog,
-                                         GtkWidget     *parent);
+GtkWidget  *command_dialog_new             (const gchar   *shortcut,
+                                            const gchar   *action,
+                                            gboolean       snotify,
+                                            gboolean       auto_repeat);
+const char *command_dialog_get_command     (CommandDialog *dialog);
+gboolean    command_dialog_get_snotify     (CommandDialog *dialog);
+gboolean    command_dialog_get_auto_repeat (CommandDialog *dialog);
+gint        command_dialog_run             (CommandDialog *dialog,
+                                            GtkWidget     *parent);
 
 G_END_DECLS
 
