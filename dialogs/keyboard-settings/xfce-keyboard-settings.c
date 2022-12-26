@@ -55,6 +55,7 @@ enum
   COMMAND_COLUMN,
   SHORTCUT_COLUMN,
   SNOTIFY_COLUMN,
+  AUTO_REPEAT_COLUMN,
   SHORTCUT_LABEL_COLUMN,
   N_COLUMNS
 };
@@ -389,7 +390,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   g_signal_connect (kbd_shortcuts_view, "row-activated", G_CALLBACK (xfce_keyboard_settings_row_activated), settings);
 
   /* Create list store for keyboard shortcuts */
-  list_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_STRING);
+  list_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COMMAND_COLUMN, GTK_SORT_ASCENDING);
   gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (kbd_shortcuts_view), COMMAND_COLUMN);
   gtk_tree_view_set_model (GTK_TREE_VIEW (kbd_shortcuts_view), GTK_TREE_MODEL (list_store));
@@ -607,9 +608,10 @@ _xfce_keyboard_settings_load_shortcut (XfceShortcut         *shortcut,
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
   g_return_if_fail (shortcut != NULL);
 
-  DBG ("property = %s, shortcut = %s, command = %s, snotify = %s",
-       shortcut->property_name, shortcut->shortcut,
-       shortcut->command, shortcut->snotify ? "true" : "false");
+  DBG ("property = %s, shortcut = %s, command = %s, snotify = %s, auto_repeat = %s",
+       shortcut->property_name, shortcut->shortcut, shortcut->command,
+       shortcut->snotify ? "true" : "false",
+       shortcut->auto_repeat ? "true" : "false");
 
   tree_view = gtk_builder_get_object (GTK_BUILDER (settings), "kbd_shortcuts_view");
   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree_view));
@@ -623,6 +625,7 @@ _xfce_keyboard_settings_load_shortcut (XfceShortcut         *shortcut,
                       COMMAND_COLUMN, shortcut->command,
                       SHORTCUT_COLUMN, shortcut->shortcut,
                       SNOTIFY_COLUMN, shortcut->snotify,
+                      AUTO_REPEAT_COLUMN, shortcut->auto_repeat,
                       SHORTCUT_LABEL_COLUMN, label, -1);
 
   g_free (label);
@@ -661,7 +664,7 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
   gchar        *shortcut;
   gchar        *command;
   gint          response;
-  gboolean      snotify;
+  gboolean      snotify, auto_repeat;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
   g_return_if_fail (GTK_IS_TREE_VIEW (tree_view));
@@ -676,9 +679,12 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
       gtk_tree_model_get (model, &iter,
                           COMMAND_COLUMN, &command,
                           SHORTCUT_COLUMN, &shortcut,
-                          SNOTIFY_COLUMN, &snotify, -1);
+                          SNOTIFY_COLUMN, &snotify,
+                          AUTO_REPEAT_COLUMN, &auto_repeat,
+                          -1);
 
-      DBG ("shortcut = %s, command = %s, snotify = %s", shortcut, command, snotify ? "true" : "false");
+      DBG ("shortcut = %s, command = %s, snotify = %s, auto_repeat = %s",
+           shortcut, command, snotify ? "true" : "false", auto_repeat ? "true" : "false");
 
       /* Request a new shortcut from the user */
       dialog = xfce_shortcut_dialog_new ("commands", command, command);
@@ -695,7 +701,11 @@ xfce_keyboard_settings_edit_shortcut (XfceKeyboardSettings *settings,
           new_shortcut = xfce_shortcut_dialog_get_shortcut (XFCE_SHORTCUT_DIALOG (dialog));
 
           /* Save new shortcut to the settings */
-          xfce_shortcuts_provider_set_shortcut (settings->priv->provider, new_shortcut, command, snotify);
+          xfce_shortcuts_provider_set_shortcut_extended (settings->priv->provider,
+                                                         new_shortcut, command,
+                                                         "startup-notify", snotify,
+                                                         "auto-repeat", auto_repeat,
+                                                         NULL);
         }
 
       /* Destroy the shortcut dialog */
@@ -721,8 +731,8 @@ xfce_keyboard_settings_edit_command (XfceKeyboardSettings *settings,
   gchar        *shortcut;
   gchar        *command;
   gint          response;
-  gboolean      snotify;
-  gboolean      new_snotify;
+  gboolean      snotify, auto_repeat;
+  gboolean      new_snotify, new_auto_repeat;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
   g_return_if_fail (GTK_IS_TREE_VIEW (tree_view));
@@ -740,10 +750,12 @@ xfce_keyboard_settings_edit_command (XfceKeyboardSettings *settings,
                           COMMAND_COLUMN, &command,
                           SHORTCUT_COLUMN, &shortcut,
                           SHORTCUT_LABEL_COLUMN, &shortcut_label,
-                          SNOTIFY_COLUMN, &snotify, -1);
+                          SNOTIFY_COLUMN, &snotify,
+                          AUTO_REPEAT_COLUMN, &auto_repeat,
+                          -1);
 
       /* Request a new command from the user */
-      dialog = command_dialog_new (shortcut_label, command, snotify);
+      dialog = command_dialog_new (shortcut_label, command, snotify, auto_repeat);
       response = command_dialog_run (COMMAND_DIALOG (dialog), GTK_WIDGET (tree_view));
 
       if (G_LIKELY (response == GTK_RESPONSE_OK))
@@ -751,16 +763,21 @@ xfce_keyboard_settings_edit_command (XfceKeyboardSettings *settings,
           /* Get the command entered by the user */
           new_command = command_dialog_get_command (COMMAND_DIALOG (dialog));
           new_snotify = command_dialog_get_snotify (COMMAND_DIALOG (dialog));
+          new_auto_repeat = command_dialog_get_auto_repeat (COMMAND_DIALOG (dialog));
 
           if (g_strcmp0 (command, new_command) != 0
-              || snotify != new_snotify)
+              || snotify != new_snotify
+              || auto_repeat != new_auto_repeat)
             {
               /* Remove the row because we add new one from the shortcut-added signal */
               gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
 
               /* Save settings */
-              xfce_shortcuts_provider_set_shortcut (settings->priv->provider, shortcut,
-                                                    new_command, new_snotify);
+              xfce_shortcuts_provider_set_shortcut_extended (settings->priv->provider,
+                                                             shortcut, new_command,
+                                                             "startup-notify", new_snotify,
+                                                             "auto-repeat", new_auto_repeat,
+                                                             NULL);
             }
         }
 
@@ -924,6 +941,7 @@ xfce_keyboard_settings_shortcut_added (XfceShortcutsProvider *provider,
                           SHORTCUT_COLUMN, shortcut,
                           COMMAND_COLUMN, sc->command,
                           SNOTIFY_COLUMN, sc->snotify,
+                          AUTO_REPEAT_COLUMN, sc->auto_repeat,
                           SHORTCUT_LABEL_COLUMN, label, -1);
 
       g_free (label);
@@ -990,12 +1008,12 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
   const gchar *shortcut;
   const gchar *command;
   gint         response;
-  gboolean     snotify;
+  gboolean     snotify, auto_repeat;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
 
   /* Request a command from the user */
-  command_dialog = command_dialog_new (NULL, NULL, FALSE);
+  command_dialog = command_dialog_new (NULL, NULL, FALSE, FALSE);
   response = command_dialog_run (COMMAND_DIALOG (command_dialog), GTK_WIDGET (button));
 
   /* Abort if the dialog was cancelled */
@@ -1004,6 +1022,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
       /* Get the command */
       command = command_dialog_get_command (COMMAND_DIALOG (command_dialog));
       snotify = command_dialog_get_snotify (COMMAND_DIALOG (command_dialog));
+      auto_repeat = command_dialog_get_auto_repeat (COMMAND_DIALOG (command_dialog));
 
       /* Hide the command dialog */
       gtk_widget_hide (command_dialog);
@@ -1024,7 +1043,11 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
 
           /* Save the new shortcut to xfconf */
           DBG ("Save shortcut %s with command %s to Xfconf", shortcut, command);
-          xfce_shortcuts_provider_set_shortcut (settings->priv->provider, shortcut, command, snotify);
+          xfce_shortcuts_provider_set_shortcut_extended (settings->priv->provider,
+                                                         shortcut, command,
+                                                         "startup-notify", snotify,
+                                                         "auto-repeat", auto_repeat,
+                                                         NULL);
         }
 
       /* Destroy the shortcut dialog */
@@ -1069,7 +1092,7 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
       if (G_LIKELY (gtk_tree_model_get_iter (model, &iter, path)))
         {
           GtkWidget *command_dialog;
-          gboolean  snotify;
+          gboolean  snotify, auto_repeat;
           gchar    *shortcut_label;
           gchar    *shortcut;
           gchar    *command;
@@ -1081,12 +1104,13 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
                               SHORTCUT_COLUMN, &shortcut,
                               COMMAND_COLUMN, &command,
                               SNOTIFY_COLUMN, &snotify,
+                              AUTO_REPEAT_COLUMN, &auto_repeat,
                               -1);
 
           DBG ("Edit shortcut %s / command %s", shortcut, command);
 
           /* Request a new command from the user */
-          command_dialog = command_dialog_new (shortcut_label, command, snotify);
+          command_dialog = command_dialog_new (shortcut_label, command, snotify, auto_repeat);
           response = command_dialog_run (COMMAND_DIALOG (command_dialog), GTK_WIDGET (view));
 
           /* Abort if the dialog was cancelled */
@@ -1094,12 +1118,13 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
             {
               const gchar *new_command;
               GtkWidget   *shortcut_dialog;
-              gboolean     new_snotify;
+              gboolean     new_snotify, new_auto_repeat;
               GObject     *parent;
 
               /* Get the command */
               new_command = command_dialog_get_command (COMMAND_DIALOG (command_dialog));
               new_snotify = command_dialog_get_snotify (COMMAND_DIALOG (command_dialog));
+              new_auto_repeat = command_dialog_get_auto_repeat (COMMAND_DIALOG (command_dialog));
 
               /* Hide the command dialog */
               gtk_widget_hide (command_dialog);
@@ -1137,7 +1162,8 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
                   new_shortcut =
                     xfce_shortcut_dialog_get_shortcut (XFCE_SHORTCUT_DIALOG (shortcut_dialog));
                   test_new_shortcut = (g_strcmp0 (shortcut, new_shortcut) != 0);
-                  if (g_strcmp0 (command, new_command) != 0 || (test_new_shortcut) || snotify != new_snotify)
+                  if (g_strcmp0 (command, new_command) != 0 || (test_new_shortcut)
+                      || snotify != new_snotify || auto_repeat != new_auto_repeat)
                     {
                       if (test_new_shortcut)
                         {
@@ -1151,10 +1177,11 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
                         }
 
                       /* Save settings */
-                      xfce_shortcuts_provider_set_shortcut (settings->priv->provider,
-                                                            new_shortcut,
-                                                            new_command,
-                                                            new_snotify);
+                      xfce_shortcuts_provider_set_shortcut_extended (settings->priv->provider,
+                                                                     new_shortcut, new_command,
+                                                                     "startup-notify", new_snotify,
+                                                                     "auto-repeat", new_auto_repeat,
+                                                                     NULL);
                     }
 
                 }
