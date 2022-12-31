@@ -236,16 +236,83 @@ xfce_mime_helper_chooser_set_property (GObject      *object,
 
 
 
+static cairo_surface_t *
+xfce_mime_helper_chooser_load_app_icon (const gchar *icon_name,
+                                        gint         scale_factor)
+{
+    cairo_surface_t *surface = NULL;
+    GdkPixbuf       *icon = NULL;
+    GtkIconTheme    *icon_theme;
+    gint             icon_size;
+
+    icon_theme = gtk_icon_theme_get_default ();
+    gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_size, &icon_size);
+
+    if (G_LIKELY (icon_name != NULL))
+      {
+        /* load the icon */
+        if (g_path_is_absolute (icon_name))
+          {
+            icon = gdk_pixbuf_new_from_file_at_size (icon_name,
+                                                     icon_size * scale_factor,
+                                                     icon_size * scale_factor,
+                                                     NULL);
+          }
+        else
+          {
+            GIcon       *gicon;
+            GtkIconInfo *icon_info;
+
+            gicon = g_themed_icon_new_with_default_fallbacks (icon_name);
+            icon_info = gtk_icon_theme_lookup_by_gicon_for_scale (icon_theme, gicon,
+                                                                  icon_size, scale_factor,
+                                                                  GTK_ICON_LOOKUP_FORCE_SIZE);
+            g_object_unref (gicon);
+
+            if (icon_info != NULL)
+              {
+                icon = gtk_icon_info_load_icon (icon_info, NULL);
+                g_object_unref (icon_info);
+              }
+         }
+      }
+
+    /* fallback to application-x-executable */
+    if (G_UNLIKELY (icon == NULL))
+      {
+        icon = gtk_icon_theme_load_icon_for_scale (icon_theme, "application-x-executable",
+                                                   icon_size, scale_factor,
+                                                   GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
+      }
+
+    /* fallback to gnome-mime-application-x-executable */
+    if (G_UNLIKELY (icon == NULL))
+      {
+        icon = gtk_icon_theme_load_icon_for_scale (icon_theme, "gnome-mime-application-x-executable",
+                                                   icon_size, scale_factor,
+                                                   GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
+      }
+
+    if (G_LIKELY (icon != NULL))
+      {
+        surface = gdk_cairo_surface_create_from_pixbuf (icon, scale_factor, NULL);
+        g_object_unref (icon);
+      }
+
+    return surface;
+}
+
+
+
 static void
 xfce_mime_helper_chooser_update (XfceMimeHelperChooser *chooser)
 {
-  GtkIconTheme *icon_theme;
-  const gchar  *icon_name;
-  XfceMimeHelper    *helper;
-  GdkPixbuf    *icon = NULL;
-  GIcon        *gicon = NULL;
-  gint          icon_size = 0;
-  gboolean      gicon_set = FALSE;
+  const gchar     *icon_name;
+  XfceMimeHelper  *helper;
+  cairo_surface_t *surface = NULL;
+  gint             scale_factor;
+
+  DBG("ENTERING");
 
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
 
@@ -253,46 +320,22 @@ xfce_mime_helper_chooser_update (XfceMimeHelperChooser *chooser)
   helper = xfce_mime_helper_database_get_default (chooser->database, chooser->category);
   if (G_LIKELY (helper != NULL))
     {
-      /* use the default icon theme here */
-      icon_theme = gtk_icon_theme_get_default ();
+      scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (chooser));
 
       /* try to load the icon for the helper */
       icon_name = xfce_mime_helper_get_icon (helper);
-      if (G_LIKELY (icon_name != NULL))
-        {
-          gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_size, &icon_size);
-          if (g_path_is_absolute (icon_name)) {
-            icon = gdk_pixbuf_new_from_file_at_size (icon_name, icon_size, icon_size, NULL);
-          }
-          else {
-            gicon = g_themed_icon_new_with_default_fallbacks (icon_name);
-            gicon_set = TRUE;
-          }
-        }
-
-      /* fallback to application-x-executable */
-      if (G_UNLIKELY (icon == NULL) && !gicon_set)
-        icon = gtk_icon_theme_load_icon (icon_theme, "application-x-executable", icon_size, 0, NULL);
-
-      /* setup the icon for the chooser image */
-      if (gicon_set)
-        {
-          gtk_image_set_from_gicon (GTK_IMAGE (chooser->image), gicon, GTK_ICON_SIZE_MENU);
-          gtk_image_set_pixel_size (GTK_IMAGE (chooser->image), icon_size);
-        }
-      else
-        {
-          gtk_image_set_from_pixbuf (GTK_IMAGE (chooser->image), icon);
-          if (G_LIKELY (icon != NULL))
-            g_object_unref (G_OBJECT (icon));
-        }
+      surface = xfce_mime_helper_chooser_load_app_icon (icon_name, scale_factor);
+      gtk_image_set_from_surface (GTK_IMAGE (chooser->image), surface);
+      if (G_LIKELY (surface != NULL))
+        cairo_surface_destroy (surface);
 
       gtk_label_set_text (GTK_LABEL (chooser->label), xfce_mime_helper_get_name (helper));
       g_object_unref (G_OBJECT (helper));
     }
   else
     {
-      gtk_image_set_from_pixbuf (GTK_IMAGE (chooser->image), NULL);
+      DBG("no icon or helper, clearing icon");
+      gtk_image_set_from_surface (GTK_IMAGE (chooser->image), NULL);
       gtk_label_set_text (GTK_LABEL (chooser->label), _("No application selected"));
     }
 
@@ -619,13 +662,10 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   AtkRelationSet *relations;
   AtkRelation    *relation;
   AtkObject      *object;
-  GtkIconTheme   *icon_theme;
   const gchar    *icon_name;
-  XfceMimeHelper      *helper;
+  XfceMimeHelper *helper;
   GMainLoop      *loop;
   GdkCursor      *cursor;
-  GdkPixbuf      *icon;
-  GIcon          *gicon = NULL;
   GtkWidget      *image;
   GtkWidget      *menu;
   GtkAllocation   menu_allocation;
@@ -634,9 +674,8 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   GtkWidget      *item_label;
   GList          *helpers;
   GList          *lp;
-  gint            icon_size;
+  gint            scale_factor;
   GtkAllocation   chooser_allocation;
-  gboolean        gicon_set = FALSE;
 
   /* Catch button-release-event params and discard */
   GdkEvent       *event;
@@ -657,6 +696,7 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   /* allocate a new menu */
   menu = gtk_menu_new ();
   g_object_ref_sink (G_OBJECT (menu));
+  gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
   gtk_menu_set_screen (GTK_MENU (menu), gtk_widget_get_screen (button));
 
   /* set Atk popup-window relation for the menu */
@@ -666,16 +706,14 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   atk_relation_set_add (relations, relation);
   g_object_unref (G_OBJECT (relation));
 
-  /* determine the icon theme to use */
-  icon_theme = gtk_icon_theme_get_default ();
-
-  /* determine the menu icon size */
-  gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_size, &icon_size);
+  scale_factor = gtk_widget_get_scale_factor (button);
 
   /* append menu items for all available helpers */
   helpers = xfce_mime_helper_database_get_all (chooser->database, chooser->category);
-  for (lp = helpers, icon = NULL; lp != NULL; lp = lp->next)
+  for (lp = helpers; lp != NULL; lp = lp->next)
     {
+      cairo_surface_t *surface;
+
       /* determine the helper */
       helper = XFCE_MIME_HELPER (lp->data);
 
@@ -689,38 +727,12 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
 
       /* try to load the icon for the helper */
       icon_name = xfce_mime_helper_get_icon (helper);
-      if (G_LIKELY (icon_name != NULL))
+      surface = xfce_mime_helper_chooser_load_app_icon (icon_name, scale_factor);
+      if (G_LIKELY (surface != NULL))
         {
-          /* load the icon */
-          if (g_path_is_absolute (icon_name)) {
-            icon = gdk_pixbuf_new_from_file_at_size (icon_name, icon_size, icon_size, NULL);
-          }
-          else {
-            gicon = g_themed_icon_new_with_default_fallbacks (icon_name);
-            gicon_set = TRUE;
-          }
-        }
-
-      /* fallback to application-x-executable */
-      if (G_UNLIKELY (icon == NULL) && !gicon_set)
-        icon = gtk_icon_theme_load_icon (icon_theme, "application-x-executable", icon_size, 0, NULL);
-
-      /* fallback to gnome-mime-application-x-executable */
-      if (G_UNLIKELY (icon == NULL) && !gicon_set)
-        icon = gtk_icon_theme_load_icon (icon_theme, "gnome-mime-application-x-executable", icon_size, 0, NULL);
-
-      /* setup the icon */
-      if (gicon_set)
-        {
-          image = gtk_image_new_from_gicon (gicon, GTK_ICON_SIZE_MENU);
-          gtk_image_set_pixel_size (GTK_IMAGE (image), icon_size);
+          image = gtk_image_new_from_surface (surface);
           gtk_box_pack_start (GTK_BOX (item_hbox), image, FALSE, FALSE, 0);
-        }
-      else if (G_LIKELY (icon != NULL))
-        {
-          image = gtk_image_new_from_pixbuf (icon);
-          gtk_box_pack_start (GTK_BOX (item_hbox), image, FALSE, FALSE, 0);
-          g_object_unref (G_OBJECT (icon));
+          cairo_surface_destroy (surface);
         }
 
       /* finish setting up the menu item and add it */
