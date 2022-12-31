@@ -31,6 +31,7 @@
 #include <math.h>
 
 #include <glib.h>
+#include <cairo-gobject.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
 #include <gdk/gdkx.h>
@@ -1628,7 +1629,7 @@ display_settings_profile_list_init (GtkBuilder *builder)
     GtkTreeViewColumn *column;
 
     store = gtk_list_store_new (N_COLUMNS,
-                                GDK_TYPE_PIXBUF,
+                                CAIRO_GOBJECT_TYPE_SURFACE,
                                 G_TYPE_STRING,
                                 G_TYPE_STRING);
 
@@ -1638,7 +1639,7 @@ display_settings_profile_list_init (GtkBuilder *builder)
     column = gtk_tree_view_column_new ();
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
-    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", COLUMN_ICON, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "surface", COLUMN_ICON, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
     /* Setup Profile name column */
     column = gtk_tree_view_column_new ();
@@ -1668,10 +1669,11 @@ display_settings_profile_list_populate (GtkBuilder *builder)
     GList            *profiles = NULL;
     GList            *current;
     gchar           **display_infos;
+    gint              scale_factor;
 
     /* create a new list store */
     store = gtk_list_store_new (N_COLUMNS,
-                                GDK_TYPE_PIXBUF,
+                                CAIRO_GOBJECT_TYPE_SURFACE,
                                 G_TYPE_STRING,
                                 G_TYPE_STRING);
 
@@ -1683,6 +1685,8 @@ display_settings_profile_list_populate (GtkBuilder *builder)
     profiles = display_settings_get_profiles (display_infos, display_channel);
     g_strfreev (display_infos);
 
+    scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (treeview));
+
     /* Populate treeview */
     current = g_list_first (profiles);
     while (current)
@@ -1691,6 +1695,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
         gchar *profile_name;
         gchar *active_profile_hash;
         GdkPixbuf *pixbuf = NULL;
+        cairo_surface_t *surface = NULL;
 
         /* use the display string value of the profile hash property */
         property = g_strdup_printf ("/%s", (gchar *)current->data);
@@ -1699,13 +1704,19 @@ display_settings_profile_list_populate (GtkBuilder *builder)
 
         /* highlight the currently active profile */
         if (g_strcmp0 ((gchar *)current->data, active_profile_hash) == 0)
-            pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                                               "object-select-symbolic", 16,
-                                               GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
+        {
+            pixbuf = gtk_icon_theme_load_icon_for_scale (gtk_icon_theme_get_default (),
+                                                         "object-select-symbolic",
+                                                         16, scale_factor,
+                                                         GTK_ICON_LOOKUP_GENERIC_FALLBACK
+                                                         | GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
+            if (pixbuf != NULL)
+                surface = gdk_cairo_surface_create_from_pixbuf (pixbuf, scale_factor, NULL);
+        }
 
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
-                            COLUMN_ICON, pixbuf,
+                            COLUMN_ICON, surface,
                             COLUMN_NAME, profile_name,
                             COLUMN_HASH, (gchar *)current->data,
                             -1);
@@ -1716,6 +1727,8 @@ display_settings_profile_list_populate (GtkBuilder *builder)
         g_free (active_profile_hash);
         if (pixbuf)
             g_object_unref (pixbuf);
+        if (surface)
+            cairo_surface_destroy (surface);
     }
 
     /* Release the store */
@@ -3447,7 +3460,7 @@ paint_background (FooScrollArea *area,
 }
 
 static void
-paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
+paint_output (cairo_t *cr, int i, gint scale_factor, double *snap_x, double *snap_y)
 {
     int w, h;
     double scale = compute_scale();
@@ -3592,15 +3605,23 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
         GtkIconInfo *icon_info;
         GdkRGBA      fg;
 
-        icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (),
-                                                "help-about-symbolic",
-                                                16,
-                                                GTK_ICON_LOOKUP_GENERIC_FALLBACK);
+        icon_info = gtk_icon_theme_lookup_icon_for_scale (gtk_icon_theme_get_default (),
+                                                          "help-about-symbolic",
+                                                          16,
+                                                          scale_factor,
+                                                          GTK_ICON_LOOKUP_GENERIC_FALLBACK
+                                                          | GTK_ICON_LOOKUP_FORCE_SIZE);
 
         gdk_rgba_parse (&fg, "#000000");
         pixbuf = gtk_icon_info_load_symbolic (icon_info, &fg, NULL, NULL, NULL, NULL, NULL);
-        gdk_cairo_set_source_pixbuf (cr, pixbuf, x + 1, y + 1);
-        cairo_paint (cr);
+        if (G_LIKELY (pixbuf != NULL))
+        {
+            cairo_surface_t *surface = gdk_cairo_surface_create_from_pixbuf (pixbuf, scale_factor, NULL);
+            cairo_set_source_surface (cr, surface, x + scale_factor, y + scale_factor);
+            cairo_paint (cr);
+            g_object_unref (pixbuf);
+            cairo_surface_destroy (surface);
+        }
     }
 
     /* Display name label*/
@@ -3729,6 +3750,7 @@ on_area_paint (FooScrollArea  *area,
     GList *connected_outputs = NULL;
     GList *list;
     double x = 0.0, y = 0.0;
+    gint scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (area));
 
     paint_background (area, cr);
 
@@ -3744,13 +3766,13 @@ on_area_paint (FooScrollArea  *area,
         if (i >= 0 && (guint)i == active_output) {
             continue;
         }
-        paint_output (cr, i, &x, &y);
+        paint_output (cr, i, scale_factor, &x, &y);
 
         if (get_mirrored_configuration () == 1)
             break;
     }
     /* Finally also paint the active output */
-    paint_output (cr, active_output, &x, &y);
+    paint_output (cr, active_output, scale_factor, &x, &y);
 }
 
 static XfceOutputInfo *
@@ -4108,18 +4130,29 @@ display_settings_minimal_load_icon (GtkBuilder  *builder,
                                     const gchar *img_name,
                                     const gchar *icon_name)
 {
-    GObject      *dialog;
-    GtkImage     *img;
-    GtkIconTheme *icon_theme;
-    GdkPixbuf    *icon;
+    GObject         *dialog;
+    GtkImage        *img;
+    GtkIconTheme    *icon_theme;
+    GdkPixbuf       *icon;
+    cairo_surface_t *surface = NULL;
+    gint             scale_factor;
 
     dialog = gtk_builder_get_object (builder, "dialog");
     img = GTK_IMAGE (gtk_builder_get_object (builder, img_name));
     g_return_if_fail (dialog && img);
+    scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (dialog));
 
     icon_theme = gtk_icon_theme_get_for_screen (gtk_window_get_screen (GTK_WINDOW (dialog)));
-    icon = gtk_icon_theme_load_icon (icon_theme, icon_name, 128, 0, NULL);
-    gtk_image_set_from_pixbuf (GTK_IMAGE (img), icon);
+    icon = gtk_icon_theme_load_icon_for_scale (icon_theme, icon_name, 128, scale_factor, GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
+    if (G_LIKELY (icon != NULL))
+    {
+        surface = gdk_cairo_surface_create_from_pixbuf (icon, scale_factor, NULL);
+        g_object_unref (icon);
+    }
+    gtk_image_set_from_surface (GTK_IMAGE (img), surface);
+
+    if (G_LIKELY (surface != NULL))
+        cairo_surface_destroy (surface);
 }
 
 static void

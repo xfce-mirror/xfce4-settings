@@ -32,15 +32,15 @@
 #endif
 
 #include <unistd.h>
+#include <fcntl.h>
+
 #include <glib.h>
 #include <glib/gstdio.h>
-#include <fcntl.h>
+#include <gio/gio.h>
+#include <cairo-gobject.h>
+#include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
-
-#include <gdk/gdkx.h>
-
-#include <gio/gio.h>
 
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
@@ -368,38 +368,41 @@ cb_enable_event_sounds_check_button_toggled (GtkToggleButton *toggle, GtkWidget 
 static gboolean
 appearance_settings_load_icon_themes (gpointer user_data)
 {
-    preview_data *pd = user_data;
-    GtkListStore *list_store;
-    GtkTreeView  *tree_view;
-    GDir         *dir;
-    GtkTreePath  *tree_path;
-    GtkTreeIter   iter;
-    XfceRc       *index_file;
-    const gchar  *file;
-    gchar       **icon_theme_dirs;
-    gchar        *index_filename;
-    const gchar  *theme_name;
-    const gchar  *theme_comment;
-    gchar        *name_escaped;
-    gchar        *comment_escaped;
-    gchar        *visible_name;
-    gchar        *active_theme_name;
-    gsize         i;
-    gsize         p;
-    GSList       *check_list = NULL;
-    gchar        *cache_filename;
-    gboolean      has_cache;
-    gchar        *cache_tooltip;
-    GtkIconTheme *icon_theme;
-    GdkPixbuf    *preview;
-    GdkPixbuf    *icon;
-    gchar*        preview_icons[4] = { "folder", "go-down", "audio-volume-high", "web-browser" };
-    int           coords[4][2] = { { 4, 4 }, { 24, 4 }, { 4, 24 }, { 24, 24 } };
+    preview_data    *pd = user_data;
+    GtkListStore    *list_store;
+    GtkTreeView     *tree_view;
+    GDir            *dir;
+    GtkTreePath     *tree_path;
+    GtkTreeIter      iter;
+    XfceRc          *index_file;
+    const gchar     *file;
+    gchar          **icon_theme_dirs;
+    gchar           *index_filename;
+    const gchar     *theme_name;
+    const gchar     *theme_comment;
+    gchar           *name_escaped;
+    gchar           *comment_escaped;
+    gchar           *visible_name;
+    gchar           *active_theme_name;
+    gsize            i;
+    gsize            p;
+    GSList          *check_list = NULL;
+    gchar           *cache_filename;
+    gboolean         has_cache;
+    gchar           *cache_tooltip;
+    GtkIconTheme    *icon_theme;
+    cairo_surface_t *preview;
+    cairo_t         *cr;
+    GdkPixbuf       *icon;
+    gchar           *preview_icons[4] = { "folder", "go-down", "audio-volume-high", "web-browser" };
+    int              coords[4][2] = { { 4, 4 }, { 24, 4 }, { 4, 24 }, { 24, 24 } };
+    gint             scale_factor;
 
     g_return_val_if_fail (pd != NULL, FALSE);
 
     list_store = pd->list_store;
     tree_view = pd->tree_view;
+    scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (tree_view));
 
     /* Determine current theme */
     active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Rodent");
@@ -442,8 +445,10 @@ appearance_settings_load_icon_themes (gpointer user_data)
                     check_list = g_slist_prepend (check_list, g_strdup (file));
 
                     /* Create the icon-theme preview */
-                    preview = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8, 44, 44);
-                    gdk_pixbuf_fill (preview, 0x00);
+                    preview = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 44 * scale_factor, 44 * scale_factor);
+                    cairo_surface_set_device_scale (preview, scale_factor, scale_factor);
+                    cr = cairo_create (preview);
+
                     icon_theme = gtk_icon_theme_new ();
                     gtk_icon_theme_set_custom_theme (icon_theme, file);
 
@@ -451,16 +456,26 @@ appearance_settings_load_icon_themes (gpointer user_data)
                     {
                         icon = NULL;
                         if (gtk_icon_theme_has_icon (icon_theme, preview_icons[p]))
-                            icon = gtk_icon_theme_load_icon (icon_theme, preview_icons[p], 16, 0, NULL);
+                            icon = gtk_icon_theme_load_icon_for_scale (icon_theme, preview_icons[p], 16, scale_factor, GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
                         else if (gtk_icon_theme_has_icon (icon_theme, "image-missing"))
-                            icon = gtk_icon_theme_load_icon (icon_theme, "image-missing", 16, 0, NULL);
+                            icon = gtk_icon_theme_load_icon_for_scale (icon_theme, "image-missing", 16, scale_factor, GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
 
                         if (icon)
                         {
-                            gdk_pixbuf_copy_area (icon, 0, 0, 16, 16, preview, coords[p][0], coords[p][1]);
+                            cairo_save (cr);
+
+                            cairo_translate (cr, coords[p][0], coords[p][1]);
+                            cairo_scale (cr, 1.0 / scale_factor, 1.0 / scale_factor);
+
+                            gdk_cairo_set_source_pixbuf (cr, icon, 0, 0);
+                            cairo_paint (cr);
+
+                            cairo_restore (cr);
                             g_object_unref (icon);
                         }
                     }
+
+                    cairo_destroy (cr);
 
                     /* Get translated icon theme name and comment */
                     theme_name = xfce_rc_read_entry (index_file, "Name", file);
@@ -506,7 +521,7 @@ appearance_settings_load_icon_themes (gpointer user_data)
                     }
 
                     g_object_unref (icon_theme);
-                    g_object_unref (preview);
+                    cairo_surface_destroy (preview);
                 }
             }
 
@@ -1106,7 +1121,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     object = gtk_builder_get_object (builder, "icon_theme_treeview");
 
-    list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS, CAIRO_GOBJECT_TYPE_SURFACE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
@@ -1117,7 +1132,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Icon Previews */
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_column_pack_start (column, renderer, FALSE);
-    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", COLUMN_THEME_PREVIEW, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "surface", COLUMN_THEME_PREVIEW, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (object), column);
 
     /* Theme Name and Description */
@@ -1154,7 +1169,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Gtk (UI) themes */
     object = gtk_builder_get_object (builder, "gtk_theme_treeview");
 
-    list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS, CAIRO_GOBJECT_TYPE_SURFACE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
@@ -1165,7 +1180,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Icon Previews */
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_column_pack_start (column, renderer, FALSE);
-    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", COLUMN_THEME_PREVIEW, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "surface", COLUMN_THEME_PREVIEW, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (object), column);
 
     /* Theme Name and Description */
