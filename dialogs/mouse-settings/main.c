@@ -42,6 +42,7 @@
 #include "libinput-properties.h"
 #endif /* HAVE_LIBINPUT */
 
+#include <cairo-gobject.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
 #include <gdk/gdkx.h>
@@ -173,7 +174,8 @@ mouse_settings_format_value_s (GtkScale *scale,
 #ifdef HAVE_XCURSOR
 static GdkPixbuf *
 mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
-                                            guint        size)
+                                            guint        size,
+                                            gint         scale_factor)
 {
     XcursorImage *image;
     GdkPixbuf    *scaled, *pixbuf = NULL;
@@ -181,9 +183,10 @@ mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
     guchar       *buffer, *p, tmp;
     gdouble       wratio, hratio;
     gint          dest_width, dest_height;
+    guint         full_size = size * scale_factor;
 
     /* load the image */
-    image = XcursorFilenameLoadImage (filename, size);
+    image = XcursorFilenameLoadImage (filename, full_size);
     if (G_LIKELY (image))
     {
         /* buffer size */
@@ -214,14 +217,14 @@ mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
             g_free (buffer);
 
         /* scale pixbuf if needed */
-        if (pixbuf && (image->height > size || image->width > size))
+        if (pixbuf && (image->height > full_size || image->width > full_size))
         {
             /* calculate the ratio */
-            wratio = (gdouble) image->width / (gdouble) size;
-            hratio = (gdouble) image->height / (gdouble) size;
+            wratio = (gdouble) image->width / (gdouble) full_size;
+            hratio = (gdouble) image->height / (gdouble) full_size;
 
             /* init */
-            dest_width = dest_height = size;
+            dest_width = dest_height = full_size;
 
             /* set dest size */
             if (hratio > wratio)
@@ -247,7 +250,8 @@ mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
 
 
 static GdkPixbuf *
-mouse_settings_themes_preview_icon (const gchar *path)
+mouse_settings_themes_preview_icon (const gchar *path,
+                                    gint         scale_factor)
 {
     GdkPixbuf *pixbuf = NULL;
     gchar     *filename;
@@ -256,7 +260,7 @@ mouse_settings_themes_preview_icon (const gchar *path)
     filename = g_build_filename (path, "left_ptr", NULL);
 
     /* try to load the pixbuf */
-    pixbuf = mouse_settings_themes_pixbuf_from_filename (filename, PREVIEW_SIZE);
+    pixbuf = mouse_settings_themes_pixbuf_from_filename (filename, PREVIEW_SIZE, scale_factor);
 
     /* cleanup */
     g_free (filename);
@@ -270,63 +274,57 @@ static void
 mouse_settings_themes_preview_image (const gchar *path,
                                      GtkImage    *image)
 {
-    GdkPixbuf *pixbuf;
-    GdkPixbuf *preview;
-    guint      i, position;
-    gchar     *filename;
-    gint       dest_x, dest_y;
+    cairo_surface_t *preview;
+    cairo_t         *cr;
+    guint            i, position;
+    gint             scale_factor;
 
     /* create an empty preview image */
-    preview = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8,
-                              (PREVIEW_SIZE + PREVIEW_SPACING) * PREVIEW_COLUMNS - PREVIEW_SPACING,
-                              (PREVIEW_SIZE + PREVIEW_SPACING) * PREVIEW_ROWS - PREVIEW_SPACING);
+    scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (image));
+    preview = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
+                                          ((PREVIEW_SIZE + PREVIEW_SPACING) * PREVIEW_COLUMNS - PREVIEW_SPACING) * scale_factor,
+                                          ((PREVIEW_SIZE + PREVIEW_SPACING) * PREVIEW_ROWS - PREVIEW_SPACING) * scale_factor);
+    cairo_surface_set_device_scale (preview, scale_factor, scale_factor);
+    cr = cairo_create (preview);
 
-    if (G_LIKELY (preview))
+    for (i = 0, position = 0; i < G_N_ELEMENTS (preview_names); i++)
     {
-        /* make the pixbuf transparent */
-        gdk_pixbuf_fill (preview, 0x00000000);
+        /* create cursor filename and try to load the pixbuf */
+        gchar     *filename = g_build_filename (path, preview_names[i], NULL);
+        GdkPixbuf *pixbuf = mouse_settings_themes_pixbuf_from_filename (filename, PREVIEW_SIZE, scale_factor);
 
-        for (i = 0, position = 0; i < G_N_ELEMENTS (preview_names); i++)
+        g_free (filename);
+
+        if (G_LIKELY (pixbuf))
         {
-            /* create cursor filename and try to load the pixbuf */
-            filename = g_build_filename (path, preview_names[i], NULL);
-            pixbuf = mouse_settings_themes_pixbuf_from_filename (filename, PREVIEW_SIZE);
-            g_free (filename);
+            gint dest_x, dest_y;
 
-            if (G_LIKELY (pixbuf))
-            {
-                /* calculate the icon position */
-                dest_x = (position % PREVIEW_COLUMNS) * (PREVIEW_SIZE + PREVIEW_SPACING);
-                dest_y = (position / PREVIEW_COLUMNS) * (PREVIEW_SIZE + PREVIEW_SPACING);
+            cairo_save (cr);
 
-                /* render it in the preview */
-                gdk_pixbuf_scale (pixbuf, preview, dest_x, dest_y,
-                                  gdk_pixbuf_get_width (pixbuf),
-                                  gdk_pixbuf_get_height (pixbuf),
-                                  dest_x, dest_y,
-                                  1.00, 1.00, GDK_INTERP_BILINEAR);
+            /* calculate the icon position */
+            dest_x = (position % PREVIEW_COLUMNS) * (PREVIEW_SIZE + PREVIEW_SPACING);
+            dest_y = (position / PREVIEW_COLUMNS) * (PREVIEW_SIZE + PREVIEW_SPACING);
+            cairo_translate (cr, dest_x, dest_y);
 
+            cairo_scale (cr, 1.0 / scale_factor, 1.0 / scale_factor);
+            gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
+            cairo_paint (cr);
 
-                /* release the pixbuf */
-                g_object_unref (G_OBJECT (pixbuf));
+            /* release the pixbuf */
+            g_object_unref (G_OBJECT (pixbuf));
 
-                /* break if we've added enough icons */
-                if (++position >= PREVIEW_ROWS * PREVIEW_COLUMNS)
-                    break;
-            }
+            cairo_restore (cr);
+
+            /* break if we've added enough icons */
+            if (++position >= PREVIEW_ROWS * PREVIEW_COLUMNS)
+                break;
         }
-
-        /* set the image */
-        gtk_image_set_from_pixbuf (GTK_IMAGE (image), preview);
-
-        /* release the pixbuf */
-        g_object_unref (G_OBJECT (preview));
     }
-    else
-    {
-        /* clear the image */
-        gtk_image_clear (GTK_IMAGE (image));
-    }
+
+    cairo_destroy (cr);
+
+    gtk_image_set_from_surface (image, preview);
+    cairo_surface_destroy (preview);
 }
 
 
@@ -435,6 +433,7 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
     GObject            *treeview;
     GtkTreeSelection   *selection;
     gchar              *comment_escaped;
+    gint                scale_factor;
 
     /* get the cursor paths */
 #if XCURSOR_LIB_MAJOR == 1 && XCURSOR_LIB_MINOR < 1
@@ -449,8 +448,11 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
     /* get the active theme */
     active_theme = xfconf_channel_get_string (xsettings_channel, "/Gtk/CursorThemeName", "default");
 
+    treeview = gtk_builder_get_object (builder, "theme-treeview");
+    scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (treeview));
+
     /* create the store */
-    store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING,
+    store = gtk_list_store_new (N_THEME_COLUMNS, CAIRO_GOBJECT_TYPE_SURFACE, G_TYPE_STRING,
                                 G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
     /* insert default */
@@ -492,15 +494,27 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
                     /* check if it looks like a cursor theme */
                     if (g_file_test (filename, G_FILE_TEST_IS_DIR))
                     {
+                        cairo_surface_t *surface = NULL;
+
                         /* try to load a pixbuf */
-                        pixbuf = mouse_settings_themes_preview_icon (filename);
+                        pixbuf = mouse_settings_themes_preview_icon (filename, scale_factor);
+                        if (G_LIKELY (pixbuf != NULL))
+                        {
+                            surface = gdk_cairo_surface_create_from_pixbuf (pixbuf, scale_factor, NULL);
+                            g_object_unref (pixbuf);
+                        }
 
                         /* insert in the store */
                         gtk_list_store_insert_with_values (store, &iter, position++,
-                                                           COLUMN_THEME_PIXBUF, pixbuf,
+                                                           COLUMN_THEME_PIXBUF, surface,
                                                            COLUMN_THEME_NAME, theme,
                                                            COLUMN_THEME_DISPLAY_NAME, theme,
                                                            COLUMN_THEME_PATH, filename, -1);
+
+                        if (G_LIKELY (surface != NULL))
+                        {
+                            cairo_surface_destroy (surface);
+                        }
 
                         /* check if this is the active theme, set the path */
                         if (strcmp (active_theme, theme) == 0)
@@ -508,10 +522,6 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
                             gtk_tree_path_free (active_path);
                             active_path = gtk_tree_model_get_path (GTK_TREE_MODEL (store), &iter);
                         }
-
-                        /* release pixbuf */
-                        if (G_LIKELY (pixbuf))
-                            g_object_unref (G_OBJECT (pixbuf));
 
                         /* check for a index.theme file for additional information */
                         index_file = g_build_filename (path, theme, "index.theme", NULL);
@@ -572,13 +582,12 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
     g_free (active_theme);
 
     /* set the treeview store */
-    treeview = gtk_builder_get_object (builder, "theme-treeview");
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), COLUMN_THEME_COMMENT);
 
     /* setup the columns */
     renderer = gtk_cell_renderer_pixbuf_new ();
-    column = gtk_tree_view_column_new_with_attributes ("", renderer, "pixbuf", COLUMN_THEME_PIXBUF, NULL);
+    column = gtk_tree_view_column_new_with_attributes ("", renderer, "surface", COLUMN_THEME_PIXBUF, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
     renderer = gtk_cell_renderer_text_new ();
