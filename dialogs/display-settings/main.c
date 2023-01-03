@@ -3447,7 +3447,7 @@ paint_background (FooScrollArea *area,
 }
 
 static void
-paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
+paint_output (cairo_t *cr, int i, gint scale_factor, double *snap_x, double *snap_y)
 {
     int w, h;
     double scale = compute_scale();
@@ -3591,16 +3591,29 @@ paint_output (cairo_t *cr, int i, double *snap_x, double *snap_y)
         GdkPixbuf   *pixbuf;
         GtkIconInfo *icon_info;
         GdkRGBA      fg;
+        gint         icon_size;
 
-        icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (),
-                                                "help-about-symbolic",
-                                                16,
-                                                GTK_ICON_LOOKUP_GENERIC_FALLBACK);
+        gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_size, &icon_size);
+        icon_info = gtk_icon_theme_lookup_icon_for_scale (gtk_icon_theme_get_default (),
+                                                          "help-about-symbolic",
+                                                          icon_size,
+                                                          scale_factor,
+                                                          GTK_ICON_LOOKUP_GENERIC_FALLBACK
+                                                          | GTK_ICON_LOOKUP_FORCE_SIZE);
 
         gdk_rgba_parse (&fg, "#000000");
         pixbuf = gtk_icon_info_load_symbolic (icon_info, &fg, NULL, NULL, NULL, NULL, NULL);
-        gdk_cairo_set_source_pixbuf (cr, pixbuf, x + 1, y + 1);
-        cairo_paint (cr);
+        if (G_LIKELY (pixbuf != NULL))
+        {
+            cairo_save (cr);
+            cairo_translate (cr, x + scale_factor, y + scale_factor);
+            cairo_scale (cr, 1.0 / scale_factor, 1.0 / scale_factor);
+            gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
+            cairo_paint (cr);
+            cairo_restore (cr);
+
+            g_object_unref (pixbuf);
+        }
     }
 
     /* Display name label*/
@@ -3729,6 +3742,7 @@ on_area_paint (FooScrollArea  *area,
     GList *connected_outputs = NULL;
     GList *list;
     double x = 0.0, y = 0.0;
+    gint scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (area));
 
     paint_background (area, cr);
 
@@ -3744,13 +3758,13 @@ on_area_paint (FooScrollArea  *area,
         if (i >= 0 && (guint)i == active_output) {
             continue;
         }
-        paint_output (cr, i, &x, &y);
+        paint_output (cr, i, scale_factor, &x, &y);
 
         if (get_mirrored_configuration () == 1)
             break;
     }
     /* Finally also paint the active output */
-    paint_output (cr, active_output, &x, &y);
+    paint_output (cr, active_output, scale_factor, &x, &y);
 }
 
 static XfceOutputInfo *
