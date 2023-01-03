@@ -193,8 +193,8 @@ xfce_mime_window_init (XfceMimeWindow *window)
 
     /* restore old user size */
     gtk_window_set_default_size (GTK_WINDOW (window),
-        xfconf_channel_get_int (window->channel, "/last/window-width", 550),
-        xfconf_channel_get_int (window->channel, "/last/window-height", 400));
+        xfconf_channel_get_int (window->channel, "/last/window-width", 600),
+        xfconf_channel_get_int (window->channel, "/last/window-height", 450));
 
     notebook = gtk_notebook_new ();
     gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (window))), notebook, TRUE, TRUE, 0);
