@@ -93,8 +93,17 @@ icons_DATA = \
 	xfce-display-mirror.png \
 	xfce-display-profile.png
 
+scalableiconsdir = $(datadir)/icons/hicolor/scalable/devices
+scalableicons_DATA = \
+	xfce-display-extend.svg \
+	xfce-display-external.svg \
+	xfce-display-internal.svg \
+	xfce-display-mirror.svg \
+	xfce-display-profile.svg
+
 EXTRA_DIST = \
 	$(icons_DATA) \
+	$(scalableicons_DATA) \
 	$(desktop_in_files) \
 	confirmation-dialog.glade \
 	display-dialog.glade \
