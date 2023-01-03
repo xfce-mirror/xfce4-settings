@@ -1628,7 +1628,7 @@ display_settings_profile_list_init (GtkBuilder *builder)
     GtkTreeViewColumn *column;
 
     store = gtk_list_store_new (N_COLUMNS,
-                                GDK_TYPE_PIXBUF,
+                                G_TYPE_ICON,
                                 G_TYPE_STRING,
                                 G_TYPE_STRING);
 
@@ -1638,7 +1638,7 @@ display_settings_profile_list_init (GtkBuilder *builder)
     column = gtk_tree_view_column_new ();
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
-    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", COLUMN_ICON, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "gicon", COLUMN_ICON, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
     /* Setup Profile name column */
     column = gtk_tree_view_column_new ();
@@ -1671,7 +1671,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
 
     /* create a new list store */
     store = gtk_list_store_new (N_COLUMNS,
-                                GDK_TYPE_PIXBUF,
+                                G_TYPE_ICON,
                                 G_TYPE_STRING,
                                 G_TYPE_STRING);
 
@@ -1690,7 +1690,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
         gchar *property;
         gchar *profile_name;
         gchar *active_profile_hash;
-        GdkPixbuf *pixbuf = NULL;
+        GIcon *icon = NULL;
 
         /* use the display string value of the profile hash property */
         property = g_strdup_printf ("/%s", (gchar *)current->data);
@@ -1699,13 +1699,13 @@ display_settings_profile_list_populate (GtkBuilder *builder)
 
         /* highlight the currently active profile */
         if (g_strcmp0 ((gchar *)current->data, active_profile_hash) == 0)
-            pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                                               "object-select-symbolic", 16,
-                                               GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
+        {
+            icon = g_themed_icon_new_with_default_fallbacks ("object-select-symbolic");
+        }
 
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
-                            COLUMN_ICON, pixbuf,
+                            COLUMN_ICON, icon,
                             COLUMN_NAME, profile_name,
                             COLUMN_HASH, (gchar *)current->data,
                             -1);
@@ -1714,8 +1714,8 @@ display_settings_profile_list_populate (GtkBuilder *builder)
         g_free (property);
         g_free (profile_name);
         g_free (active_profile_hash);
-        if (pixbuf)
-            g_object_unref (pixbuf);
+        if (icon)
+            g_object_unref (icon);
     }
 
     /* Release the store */
