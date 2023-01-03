@@ -32,22 +32,21 @@
 #endif
 
 #include <unistd.h>
+#include <fcntl.h>
+
 #include <glib.h>
 #include <glib/gstdio.h>
-#include <fcntl.h>
+#include <gio/gio.h>
+#include <cairo-gobject.h>
+#include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
-
-#include <gdk/gdkx.h>
-
-#include <gio/gio.h>
 
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
 #include "appearance-dialog_ui.h"
-#include "images.h"
 
 #define INCH_MM      25.4
 
@@ -391,15 +390,18 @@ appearance_settings_load_icon_themes (gpointer user_data)
     gboolean      has_cache;
     gchar        *cache_tooltip;
     GtkIconTheme *icon_theme;
-    GdkPixbuf    *preview;
+    cairo_surface_t *preview;
+    cairo_t      *cr;
     GdkPixbuf    *icon;
     gchar*        preview_icons[4] = { "folder", "go-down", "audio-volume-high", "web-browser" };
     int           coords[4][2] = { { 4, 4 }, { 24, 4 }, { 4, 24 }, { 24, 24 } };
+    gint          scale_factor;
 
     g_return_val_if_fail (pd != NULL, FALSE);
 
     list_store = pd->list_store;
     tree_view = pd->tree_view;
+    scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (tree_view));
 
     /* Determine current theme */
     active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Rodent");
@@ -442,8 +444,10 @@ appearance_settings_load_icon_themes (gpointer user_data)
                     check_list = g_slist_prepend (check_list, g_strdup (file));
 
                     /* Create the icon-theme preview */
-                    preview = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8, 44, 44);
-                    gdk_pixbuf_fill (preview, 0x00);
+                    preview = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 44 * scale_factor, 44 * scale_factor);
+                    cairo_surface_set_device_scale (preview, scale_factor, scale_factor);
+                    cr = cairo_create (preview);
+
                     icon_theme = gtk_icon_theme_new ();
                     gtk_icon_theme_set_custom_theme (icon_theme, file);
 
@@ -451,16 +455,26 @@ appearance_settings_load_icon_themes (gpointer user_data)
                     {
                         icon = NULL;
                         if (gtk_icon_theme_has_icon (icon_theme, preview_icons[p]))
-                            icon = gtk_icon_theme_load_icon (icon_theme, preview_icons[p], 16, 0, NULL);
+                            icon = gtk_icon_theme_load_icon_for_scale (icon_theme, preview_icons[p], 16, scale_factor, GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
                         else if (gtk_icon_theme_has_icon (icon_theme, "image-missing"))
-                            icon = gtk_icon_theme_load_icon (icon_theme, "image-missing", 16, 0, NULL);
+                            icon = gtk_icon_theme_load_icon_for_scale (icon_theme, "image-missing", 16, scale_factor, GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
 
                         if (icon)
                         {
-                            gdk_pixbuf_copy_area (icon, 0, 0, 16, 16, preview, coords[p][0], coords[p][1]);
+                            cairo_save (cr);
+
+                            cairo_translate (cr, coords[p][0], coords[p][1]);
+                            cairo_scale (cr, 1.0 / scale_factor, 1.0 / scale_factor);
+
+                            gdk_cairo_set_source_pixbuf (cr, icon, 0, 0);
+                            cairo_paint (cr);
+
+                            cairo_restore (cr);
                             g_object_unref (icon);
                         }
                     }
+
+                    cairo_destroy (cr);
 
                     /* Get translated icon theme name and comment */
                     theme_name = xfce_rc_read_entry (index_file, "Name", file);
@@ -506,7 +520,7 @@ appearance_settings_load_icon_themes (gpointer user_data)
                     }
 
                     g_object_unref (icon_theme);
-                    g_object_unref (preview);
+                    cairo_surface_destroy (preview);
                 }
             }
 
@@ -1087,17 +1101,69 @@ appearance_settings_install_theme_cb (GtkButton *widget, GtkBuilder *builder)
     g_free (theme);
 }
 
+static cairo_surface_t *
+appearance_settings_draw_subpixel_icon (gboolean is_rgb,
+                                        gboolean is_vertical,
+                                        gint     size,
+                                        gint     scale_factor)
+{
+    cairo_surface_t *surface;
+    cairo_t         *cr;
+    gint             color_width;
+    double           colors[3][3] = { { 0.0, }, };
+
+    surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, size * scale_factor, size * scale_factor);
+    cairo_surface_set_device_scale (surface, scale_factor, scale_factor);
+
+    cr = cairo_create (surface);
+    cairo_scale (cr, 1.0 / scale_factor, 1.0 / scale_factor);
+
+    if (is_rgb)
+    {
+        colors[0][0] = 1.0;  // red
+        colors[1][1] = 1.0;  // green
+        colors[2][2] = 1.0;  // blue
+    }
+    else
+    {
+        colors[0][2] = 1.0;  // blue
+        colors[1][1] = 1.0;  // green
+        colors[2][0] = 1.0;  // red
+    }
+
+    color_width = (size * scale_factor) / 3;
+
+    for (gsize i = 0; i < G_N_ELEMENTS (colors); ++i)
+    {
+        cairo_save (cr);
+        cairo_set_source_rgb (cr, colors[i][0], colors[i][1], colors[i][2]);
+        cairo_rectangle (cr,
+                         is_vertical ? 0 : color_width * i,
+                         is_vertical ? color_width * i : 0,
+                         is_vertical ? size * scale_factor : color_width,
+                         is_vertical ? color_width : size * scale_factor);
+        cairo_fill (cr);
+        cairo_restore (cr);
+    }
+
+    cairo_destroy (cr);
+
+    return surface;
+}
+
 static void
 appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 {
     GObject           *object, *object2;
     GtkListStore      *list_store;
     GtkCellRenderer   *renderer;
-    GdkPixbuf         *pixbuf;
+    cairo_surface_t   *surface;
     GtkTreeSelection  *selection;
     GtkTreeViewColumn *column;
     preview_data      *pd;
     gchar             *path;
+    gint               menu_icon_size;
+    gint               scale_factor;
 
     /* Icon themes list */
     object = gtk_builder_get_object (builder, "install_icon_theme");
@@ -1105,8 +1171,9 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
 
     object = gtk_builder_get_object (builder, "icon_theme_treeview");
+    scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (object));
 
-    list_store = gtk_list_store_new (N_THEME_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+    list_store = gtk_list_store_new (N_THEME_COLUMNS, CAIRO_GOBJECT_TYPE_SURFACE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
     gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (object), COLUMN_THEME_COMMENT);
@@ -1117,7 +1184,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Icon Previews */
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_column_pack_start (column, renderer, FALSE);
-    gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", COLUMN_THEME_PREVIEW, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "surface", COLUMN_THEME_PREVIEW, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (object), column);
 
     /* Theme Name and Description */
@@ -1216,25 +1283,28 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Subpixel (rgba) hinting Combo */
     object = gtk_builder_get_object (builder, "xft_rgba_store");
 
-    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_none_xpm);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 0, 0, pixbuf, 1, _("None"), -1);
-    g_object_unref (G_OBJECT (pixbuf));
+    gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &menu_icon_size, &menu_icon_size);
 
-    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_rgb_xpm);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 1, 0, pixbuf, 1, _("RGB"), -1);
-    g_object_unref (G_OBJECT (pixbuf));
+    surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, menu_icon_size * scale_factor, menu_icon_size * scale_factor);
+    cairo_surface_set_device_scale (surface, scale_factor, scale_factor);
+    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 0, 0, surface, 1, _("None"), -1);
+    cairo_surface_destroy (surface);
 
-    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_bgr_xpm);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 2, 0, pixbuf, 1, _("BGR"), -1);
-    g_object_unref (G_OBJECT (pixbuf));
+    surface = appearance_settings_draw_subpixel_icon (TRUE, FALSE, menu_icon_size, scale_factor);
+    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 1, 0, surface, 1, _("RGB"), -1);
+    cairo_surface_destroy (surface);
 
-    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_vrgb_xpm);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 3, 0, pixbuf, 1, _("Vertical RGB"), -1);
-    g_object_unref (G_OBJECT (pixbuf));
+    surface = appearance_settings_draw_subpixel_icon (FALSE, FALSE, menu_icon_size, scale_factor);
+    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 2, 0, surface, 1, _("BGR"), -1);
+    cairo_surface_destroy (surface);
 
-    pixbuf = gdk_pixbuf_new_from_xpm_data (rgba_image_vbgr_xpm);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 4, 0, pixbuf, 1, _("Vertical BGR"), -1);
-    g_object_unref (G_OBJECT (pixbuf));
+    surface = appearance_settings_draw_subpixel_icon (TRUE, TRUE, menu_icon_size, scale_factor);
+    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 3, 0, surface, 1, _("Vertical RGB"), -1);
+    cairo_surface_destroy (surface);
+
+    surface = appearance_settings_draw_subpixel_icon (FALSE, TRUE, menu_icon_size, scale_factor);
+    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 4, 0, surface, 1, _("Vertical BGR"), -1);
+    cairo_surface_destroy (surface);
 
     object = gtk_builder_get_object (builder, "xft_rgba_combo_box");
     appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/RGBA", NULL, builder);
