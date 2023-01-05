@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2022
-# Ioannis LM, 2022
+# Ioannis LM, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-settings\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-22 12:33+0100\n"
+"POT-Creation-Date: 2022-12-22 12:57+0100\n"
 "PO-Revision-Date: 2022-12-22 11:33+0000\n"
-"Last-Translator: Ioannis LM, 2022\n"
+"Last-Translator: Ioannis LM, 2023\n"
 "Language-Team: Greek (https://www.transifex.com/xfce/teams/16840/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,8 +100,8 @@ msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr ""
-"Όταν ενεργοποιείται, ο διαχειριστής συνεδρίας θα ξεκινήσει τις απαραίτητες "
-"εφαρμογές για αναγνώστες και μεγεθυντές οθόνης."
+"Όταν ενεργοποιείται, ο διαχειριστής συνεδρίας θα ξεκινήσει τις απαιτούμενες "
+"εφαρμογές για ανάγνωση και μεγέθυνση της οθόνης."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "_Enable assistive technologies"
@@ -395,25 +395,27 @@ msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr ""
+"υποβοήθηση;τεχνολογίες;πλήκτρα;κολλημένα;αναπήδηση;εξομοίωση;ανάγνωση "
+"οθόνης;μεγέθυνση;a11y;i18n;l10n;AT-SPI;ATK;δυσλειτουργία;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1201
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
 msgid "None"
-msgstr "Κανένα"
+msgstr "Καμία"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "Slight"
-msgstr "Ελαφρύ"
+msgstr "Ελαφρά"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 msgid "Medium"
-msgstr "Μεσαίο"
+msgstr "Μεσαία"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
 msgid "Full"
-msgstr "Πλήρες"
+msgstr "Πλήρη"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid "Icons"
@@ -454,7 +456,7 @@ msgstr "_Προσθήκη"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Set matching Xfwm4 theme if there is one"
-msgstr "Ορισμός θέματος με Xfwm4, εάν υπάρχει"
+msgstr "Ορισμός του αντίστοιχου θέματος Xfwm4, αν υπάρχει"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
@@ -522,7 +524,7 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Sub-_pixel order:"
-msgstr "Σειρά υπό-_πίξελ:"
+msgstr "Διάταξη sub-pixel:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
@@ -530,7 +532,7 @@ msgid ""
 "correct sub-pixel order of the screen"
 msgstr ""
 "Η ποιότητα της γραμματοσειράς σε μία οθόνη TFT ή LCD μπορεί να βελτιωθεί "
-"σημαντικά επιλέγοντας το σωστό υπο-πίξελ για την οθόνη"
+"σημαντικά επιλέγοντας το σωστό sub-pixel για την οθόνη"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Rendering"
@@ -558,7 +560,7 @@ msgstr "_Γραμματοσειρές"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Show images on _buttons"
-msgstr "Εμφάνιση εικόνων στα κουμ_πιά"
+msgstr "Εμφάνιση εικονιδίων στα κουμ_πιά"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Specify whether icons should be displayed next to text in buttons"
@@ -568,7 +570,7 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Show images in _menus"
-msgstr "Εμφάνιση εικόνων στα _μενού"
+msgstr "Εμφάνιση εικονιδίων στα _μενού"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Specify whether icons should be displayed next to items in menus"
@@ -615,20 +617,20 @@ msgstr "_Ενεργοποίηση ήχων συμβάντων"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr ""
-"Καθολική ενεργοποίηση ή απενεργοποίηση συμβάντων ήχου (απαιτείται η "
-"υποστήριξη της βιβλιοθήκης \"Canberra\")"
+"Ενεργοποίηση ή απενεργοποίηση συμβάντων ήχου (απαιτείται η υποστήριξη της "
+"βιβλιοθήκης \"Canberra\")"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Enable input feedbac_k sounds"
-msgstr "Ε_νεργοποίηση ήχων επιβεβαίωσης εισαγωγής"
+msgstr "Ε_νεργοποίηση ήχων πληροφόρησης παρεμβάσεων"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr ""
-"Καθορίζει αν τα κλικ του ποντικιού και άλλων εισόδων θα προκαλέσουν "
-"αναπαραγωγή συμβάντων ήχου"
+"Καθορίζει αν τα κλικ του ποντικιού και άλλων παρεμβάσεων του χρήστη θα "
+"προκαλέσουν αναπαραγωγή ήχου"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Event sounds"
@@ -732,6 +734,10 @@ msgid ""
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 msgstr ""
+"Θέματα;διεπαφή του χρήστη;styles;εικονίδια;γραμματοσειρές;anti-"
+"aliasing;υπόδειξη;sub-"
+"pixel;subpixel;απόδοση;ClearType;DPI;RGB;BGR;επεξεργαστές μενού;συντομεύσεις"
+" πληκτολογίου;γεγονός;ήχοι;κλίμακα παραθύρων;HiDPI;Retina display;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -1483,8 +1489,8 @@ msgstr "Κα_θυστέρηση αναβοσβησίματος:"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr ""
-"Η καθυστέρηση σε χιλιοστά δευτερολέπτου, ανάμεσα σε συνεχόμενα αναβοσβήματα "
-"του δείκτη"
+"Η καθυστέρηση σε χιλιοστά δευτερολέπτου, ανάμεσα σε διαδοχικά αναβοσβησίματα"
+" του δείκτη"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Cursor"
@@ -1500,7 +1506,7 @@ msgstr "_Συμπεριφορά"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "Define shortcuts for la_unching applications:"
-msgstr "Καθορισμός _συντομεύσεων για την εκκίνηση εφαρμογών:"
+msgstr "Συν_τομεύσεις για την εκκίνηση εφαρμογών:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:367
