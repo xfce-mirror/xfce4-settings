@@ -100,8 +100,8 @@ msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr ""
-"Όταν ενεργοποιείται, ο διαχειριστής συνεδρίας θα ξεκινήσει τις απαραίτητες "
-"εφαρμογές για αναγνώστες και μεγεθυντές οθόνης."
+"Όταν ενεργοποιείται, ο διαχειριστής συνεδρίας θα ξεκινήσει τις απαιτούμενες "
+"εφαρμογές για ανάγνωση και μεγέθυνση της οθόνης."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "_Enable assistive technologies"
@@ -403,19 +403,19 @@ msgstr ""
 #: ../dialogs/display-settings/main.c:106
 #: ../dialogs/display-settings/main.c:117
 msgid "None"
-msgstr "Κανένα"
+msgstr "Καμία"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "Slight"
-msgstr "Ελαφρύ"
+msgstr "Ελαφρά"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 msgid "Medium"
-msgstr "Μεσαίο"
+msgstr "Μεσαία"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
 msgid "Full"
-msgstr "Πλήρες"
+msgstr "Πλήρη"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid "Icons"
@@ -520,7 +520,7 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Sub-_pixel order:"
-msgstr "Σειρά υπό-_πίξελ:"
+msgstr "Διάταξη sub-pixel:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid ""
@@ -556,17 +556,17 @@ msgstr "_Γραμματοσειρές"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "Show images on _buttons"
-msgstr "Εμφάνιση εικόνων στα κουμ_πιά"
+msgstr "Εμφάνιση εικονιδίων στα κουμ_πιά"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr ""
-"Καθορίζει αν τα εικονίδια θα πρέπει να εμφανίζονται δίπλα από το κείμενο των"
+"Καθορίζει αν τα εικονίδια θα πρέπει να εμφανίζονται δίπλα από το κείμενο στα"
 " κουμπιών"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Show images in _menus"
-msgstr "Εμφάνιση εικόνων στα _μενού"
+msgstr "Εμφάνιση εικονιδίων στα _μενού"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Specify whether icons should be displayed next to items in menus"
@@ -599,20 +599,20 @@ msgstr "_Ενεργοποίηση ήχων συμβάντων"
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr ""
-"Καθολική ενεργοποίηση ή απενεργοποίηση συμβάντων ήχου (απαιτείται η "
-"υποστήριξη της βιβλιοθήκης \"Canberra\")"
+"Ενεργοποίηση ή απενεργοποίηση συμβάντων ήχου (απαιτείται η υποστήριξη της "
+"βιβλιοθήκης \"Canberra\")"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Enable input feedbac_k sounds"
-msgstr "Ε_νεργοποίηση ήχων επιβεβαίωσης εισαγωγής"
+msgstr "Ε_νεργοποίηση ήχων πληροφόρησης παρεμβάσεων"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr ""
-"Καθορίζει αν τα κλικ του ποντικιού και άλλων εισόδων θα προκαλέσουν "
-"αναπαραγωγή συμβάντων ήχου"
+"Καθορίζει αν τα κλικ του ποντικιού και άλλων παρεμβάσεων του χρήστη θα "
+"προκαλέσουν αναπαραγωγή ήχου"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Event sounds"
@@ -716,7 +716,7 @@ msgid ""
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 msgstr ""
-"Θέματα;διεπαφή του χρήστη;styles;εικονίδια;γραμματοσειρές;anti-"
+"θέματα;διεπαφή του χρήστη;στυλ;εικονίδια;γραμματοσειρές;anti-"
 "aliasing;υπόδειξη;sub-"
 "pixel;subpixel;απόδοση;ClearType;DPI;RGB;BGR;επεξεργαστές μενού;συντομεύσεις"
 " πληκτολογίου;γεγονός;ήχοι;κλίμακα παραθύρων;HiDPI;Retina display;"
@@ -943,6 +943,8 @@ msgstr "Ορισμός χρωματικών προφίλ"
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr ""
+"χρώμα;ρυθμίσεις;διαχείριση;εμφάνιση;οθόνες;εκτυπωτές;διαδικτυακές "
+"κάμερες;σαρωτές;"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
@@ -1124,7 +1126,7 @@ msgstr "Επέκταση προς τα δεξιά"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Only Display 2"
-msgstr "Μόνο Οθόνη 2"
+msgstr "Μόνο στην οθόνη 2"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
@@ -1315,6 +1317,7 @@ msgstr "Διαμόρφωση ρυθμίσεων και διάταξης οθον
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr ""
+"εμφάνιση;ρυθμίσεις;οθόνη;ανάλυση;ανανέωση;ρυθμός;περιστροφή;εξωτερική;βιντεοπροβολείς;οθόνες;LCD;CRT;HiDPI;"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
@@ -1451,8 +1454,8 @@ msgstr "Κα_θυστέρηση αναβοσβησίματος:"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr ""
-"Η καθυστέρηση σε χιλιοστά δευτερολέπτου, ανάμεσα σε συνεχόμενα αναβοσβήματα "
-"του δείκτη"
+"Η καθυστέρηση σε χιλιοστά δευτερολέπτου, ανάμεσα σε διαδοχικά αναβοσβησίματα"
+" του δείκτη"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Cursor"
@@ -1468,7 +1471,7 @@ msgstr "_Συμπεριφορά"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "Define shortcuts for la_unching applications:"
-msgstr "Καθορισμός _συντομεύσεων για την εκκίνηση εφαρμογών:"
+msgstr "Συν_τομεύσεις για την εκκίνηση εφαρμογών:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
@@ -1581,7 +1584,7 @@ msgstr "Επεξεργασία ρυθμίσεων πληκτρολογίου κ�
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
 msgid "numlock;keyboard;layout;shortcuts;"
-msgstr ""
+msgstr "numlock;πληκτρολόγιο;διάταξη;συντομεύσεις;"
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
@@ -1704,7 +1707,7 @@ msgid ""
 "as default Mail Reader for Xfce:"
 msgstr ""
 "Καθορίστε την εφαρμογή που θέλετε για\n"
-"τον αναγνώστη αλληλογραφίας στο xfce:"
+"την αλληλογραφίας σας στο xfce:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:515
 msgid ""
@@ -2034,6 +2037,8 @@ msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
 msgstr ""
+"αρχείο;τύπος;επέκταση;συσχέτιση;άνοιγμα με;περιηγητής διαδικτύου;εφαρμογή "
+"αλληλογραφίας;διαχειριστής αρχείων;εξομοιωτής τερματικού;"
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -2526,6 +2531,7 @@ msgstr "Διαμόρφωση συμπεριφοράς και εμφάνισης 
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr ""
+"ρυθμίσεις;πλήκτρα;κύλιση;κατεύθυνση;δείκτης;ταχύτητα;διπλό κλικ;θέμα;ροδέλα;"
 
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
@@ -2737,7 +2743,7 @@ msgstr "Επεξεργαστής ρυθμίσεων για το Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
 msgid "registry;regedit;configuration file;"
-msgstr ""
+msgstr "μητρώο;regedit;αρχείο ρυθμίσεων;"
 
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
@@ -2767,7 +2773,7 @@ msgstr "Διαχειριστής ρυθμίσεων για το Xfce"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "control;panel;center;system;settings;personalize;hardware;"
-msgstr ""
+msgstr "έλεγχος;ταμπλό;κέντρο;σύστημα;ρυθμίσεις;εξατομίκευση;υλικό;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
