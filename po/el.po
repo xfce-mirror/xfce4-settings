@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 00:51+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Ioannis LM, 2018,2022-2023\n"
+"Last-Translator: Markos Dimitsas <dimitsas.markos@gmail.com>, 2013\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce4-settings/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr "Άγνωστο"
 #: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4366
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr "Δεν βρέθηκε η κατάλληλη έκδοση της RandR"
+msgstr "Αδύνατη η αναζήτηση έκδοσης της επέκτασης RandR που χρησιμοιείται"
 
 #. 1.2 is required
 #: ../common/xfce-randr.c:307
@@ -1262,7 +1262,7 @@ msgstr "Μόνο %s (2)"
 #: ../dialogs/display-settings/main.c:4367
 #: ../dialogs/display-settings/main.c:4404
 msgid "Unable to start the Xfce Display Settings"
-msgstr "Αδύνατη η εκκίνηση των ρυθμίσεων οθόνης του XFCE"
+msgstr "Αδύνατη η εκκίνηση των ρυθμίσεων εμφάνισης Xfce"
 
 #: ../dialogs/display-settings/main.c:4399
 msgid "ATI Settings"
@@ -1270,7 +1270,7 @@ msgstr "Ρυθμίσεις ATI"
 
 #: ../dialogs/display-settings/main.c:4414
 msgid "Unable to launch the proprietary driver settings"
-msgstr "Αδύνατη η έναρξη του προγράμματος ρύθμισης του οδηγού κλειστού κώδικα"
+msgstr "Αδύνατη η έναρξη ρυθμίσεων του οδηγού κλειστού κώδικα"
 
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
@@ -1474,7 +1474,7 @@ msgstr "_Διάταξη"
 
 #: ../dialogs/keyboard-settings/main.c:84
 msgid "Unable to initialize GTK+."
-msgstr "Αδυναμία αρχικοποίησης GTK+."
+msgstr "Αδύνατη η προετοιμασία GTK+."
 
 #: ../dialogs/keyboard-settings/main.c:104
 #, c-format
@@ -1625,19 +1625,19 @@ msgstr "Επιλογή εφαρμογής"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:498
 msgid "Choose a custom Web Browser"
-msgstr "Επιλέξτε περιηγητή διαδικτύου"
+msgstr "Επιλογή περιηγητή διαδικτύου"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:499
 msgid "Choose a custom Mail Reader"
-msgstr "Επιλέξτε εφαρμογή αλληλογραφίας"
+msgstr "Επιλογή εφαρμογής αλληλογραφίας"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:500
 msgid "Choose a custom File Manager"
-msgstr "Επιλέξτε διαχειριστή αρχείων"
+msgstr "Επιλογή διαχειριστή αρχείων"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:501
 msgid "Choose a custom Terminal Emulator"
-msgstr "Επιλέξτε εφαρμογή τερματικού"
+msgstr "Επιλογή εφαρμογής τερματικού"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:506
 msgid ""
@@ -1705,19 +1705,19 @@ msgstr "Παρακαλώ επιλέξτε τώρα εφαρμογή τερματ
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:41
 msgid "Failed to execute default Web Browser"
-msgstr "Απέτυχε το άνοιγμα του επιλεγμένου περιηγητή διαδικτύου"
+msgstr "Απέτυχε η εκτέλεση του επιλεγμένου περιηγητή διαδικτύου"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:42
 msgid "Failed to execute default Mail Reader"
-msgstr "Απέτυχε το άνοιγμα της επιλεγμένης εφαρμογής για την αλληλογραφία"
+msgstr "Απέτυχε η εκτέλεση της επιλεγμένης εφαρμογής για την αλληλογραφία"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:43
 msgid "Failed to execute default File Manager"
-msgstr "Απέτυχε το άνοιγμα του επιλεγμένου διαχειριστή αρχείων"
+msgstr "Απέτυχε η εκτέλεση του επιλεγμένου διαχειριστή αρχείων"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:44
 msgid "Failed to execute default Terminal Emulator"
-msgstr "Απέτυχε το άνοιγμα της επιλεγμένης εφαρμογής τερματικού"
+msgstr "Απέτυχε η εκτέλεση της επιλεγμένης εφαρμογής τερματικού"
 
 #. Enable permanently dismissing this error.
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:86
@@ -2645,7 +2645,7 @@ msgstr "Ρυθμίσεις"
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:928
 #, c-format
 msgid "Unable to start \"%s\""
-msgstr "Αδυναμία εκκίνησης του \"%s\""
+msgstr "Αδύνατη η εκκίνηση του \"%s\""
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Settings Manager"
