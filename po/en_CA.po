@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2022
+# Steve Harris <steve@jbs.ca>, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-settings\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-22 12:33+0100\n"
+"POT-Creation-Date: 2022-12-22 12:57+0100\n"
 "PO-Revision-Date: 2022-12-22 11:33+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>, 2022\n"
+"Last-Translator: Steve Harris <steve@jbs.ca>, 2023\n"
 "Language-Team: English (Canada) (https://www.transifex.com/xfce/teams/16840/en_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -445,7 +446,7 @@ msgstr "_Add"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Set matching Xfwm4 theme if there is one"
-msgstr ""
+msgstr "Set matching Xfwm4 theme if there is one"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
@@ -577,7 +578,7 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable header bars in dialo_gs"
-msgstr ""
+msgstr "Enable header bars in dialo_gs"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid ""
@@ -585,6 +586,9 @@ msgid ""
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr ""
+"Defines whether GTK dialogs may place widgets such as buttons in the "
+"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
+"opened dialogs."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Menus and Buttons"
@@ -664,7 +668,7 @@ msgstr "Failed to install theme"
 #: ../dialogs/appearance-settings/main.c:1040
 #, c-format
 msgid "Install %s theme"
-msgstr ""
+msgstr "Install %s theme"
 
 #. Create cancel button
 #: ../dialogs/appearance-settings/main.c:1044
@@ -941,13 +945,15 @@ msgstr ""
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
-msgstr ""
+msgstr "<b><big>Would you like to keep this configuration?</big></b>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid ""
 "The previous configuration will be restored in <b>10 seconds</b> if you do "
 "not reply to this question."
 msgstr ""
+"The previous configuration will be restored in <b>10 seconds</b> if you do "
+"not reply to this question."
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Keep this configuration"
@@ -959,19 +965,19 @@ msgstr "Restore the previous configuration"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "1.25x"
-msgstr ""
+msgstr "1.25x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 msgid "1.5x"
-msgstr ""
+msgstr "1.5x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "1.75x"
-msgstr ""
+msgstr "1.75x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Custom:"
-msgstr ""
+msgstr "Custom:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Do nothing"
@@ -979,15 +985,15 @@ msgstr "Do nothing"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "Show dialog"
-msgstr ""
+msgstr "Show dialog"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "Mirror"
-msgstr ""
+msgstr "Mirror"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Extend"
-msgstr ""
+msgstr "Extend"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "The primary display is currently configured to show:"
@@ -1044,15 +1050,15 @@ msgstr "A_pply"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "_Scale:"
-msgstr ""
+msgstr "_Scale:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "X:"
-msgstr ""
+msgstr "X:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "Y:"
-msgstr ""
+msgstr "Y:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "_General"
@@ -1092,7 +1098,7 @@ msgstr "Automatically enable profiles when new display is connected"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:37
 msgid "When new displays are connected:"
-msgstr ""
+msgstr "When new displays are connected:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:38
 msgid "Show popup windows to identify displays"
@@ -1199,12 +1205,14 @@ msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
 "not reply to this question."
 msgstr ""
+"The previous configuration will be restored in <b>%i seconds</b> if you do "
+"not reply to this question."
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:783
 #, c-format
 msgid "%.2f Hz"
-msgstr ""
+msgstr "%.2f Hz"
 
 #: ../dialogs/display-settings/main.c:1181
 msgid "Display:"
@@ -1490,7 +1498,7 @@ msgstr "A_pplication Shortcuts"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
-msgstr ""
+msgstr "<b>Use system defaults</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
@@ -1883,7 +1891,7 @@ msgstr "Failed to open %s for writing"
 #: ../dialogs/mime-settings/xfce-mime-window.c:184
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
-msgstr ""
+msgstr "Default Applications"
 
 #. Internet
 #: ../dialogs/mime-settings/xfce-mime-window.c:208
@@ -1900,6 +1908,8 @@ msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr ""
+"The default Web Browser will be used to open hyperlinks and display help "
+"contents."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:247
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1911,6 +1921,8 @@ msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr ""
+"The default Mail Reader will be used to compose emails when you click on "
+"email addresses."
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:269
@@ -1926,6 +1938,7 @@ msgstr "File Manager"
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr ""
+"The default File Manager will be used to browse the contents of folders."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:308
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
@@ -1937,6 +1950,8 @@ msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr ""
+"The default Terminal Emulator will be used to run commands that require a "
+"CLI environment."
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:330
@@ -1953,7 +1968,7 @@ msgstr "Clear filter"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:378
 msgid "Open with..."
-msgstr ""
+msgstr "Open with..."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:425
 msgid "MIME Type"
@@ -2020,13 +2035,15 @@ msgstr "Choose Application..."
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
-msgstr ""
+msgstr "Associate preferred applications with MIME types"
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
 msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
 msgstr ""
+"file;type;extension;association;open with;web browser;mail reader;file "
+"manager;terminal emulator;"
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -2046,7 +2063,7 @@ msgstr "Browse the web"
 
 #: ../dialogs/mime-settings/helpers/alacritty.desktop.in.in.h:1
 msgid "Alacritty"
-msgstr ""
+msgstr "Alacritty"
 
 #: ../dialogs/mime-settings/helpers/aterm.desktop.in.in.h:1
 msgid "aterm"
@@ -2134,7 +2151,7 @@ msgstr "Jumanji"
 
 #: ../dialogs/mime-settings/helpers/kitty.desktop.in.in.h:1
 msgid "kitty"
-msgstr ""
+msgstr "kitty"
 
 #: ../dialogs/mime-settings/helpers/kmail.desktop.in.in.h:1
 msgid "KMail"
