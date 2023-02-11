@@ -12,7 +12,6 @@ bin_PROGRAMS = \
 
 xfce4_appearance_settings_SOURCES = \
 	main.c \
-	images.h \
 	appearance-dialog_ui.h
 
 xfce4_appearance_settings_CFLAGS = \

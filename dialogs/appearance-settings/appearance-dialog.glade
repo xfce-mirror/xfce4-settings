@@ -96,8 +96,8 @@
   </object>
   <object class="GtkListStore" id="xft_rgba_store">
     <columns>
-      <!-- column-name pixbuf -->
-      <column type="GdkPixbuf"/>
+      <!-- column-name surface -->
+      <column type="CairoSurface"/>
       <!-- column-name title -->
       <column type="gchararray"/>
     </columns>
@@ -567,7 +567,7 @@
                                                 <child>
                                                   <object class="GtkCellRendererPixbuf" id="cellrendererpixbuf1"/>
                                                   <attributes>
-                                                    <attribute name="pixbuf">0</attribute>
+                                                    <attribute name="surface">0</attribute>
                                                   </attributes>
                                                 </child>
                                               </object>
