@@ -1368,11 +1368,16 @@ xfce_displays_helper_apply_crtc_transform (XfceRRCrtc         *crtc,
         transform.matrix[1][1] = XDoubleToFixed(crtc->scaley);
         transform.matrix[2][2] = XDoubleToFixed(1.0);
 
+        gdk_x11_display_error_trap_push (helper->display);
         XRRSetCrtcTransform(helper->xdisplay, crtc->id,
                             &transform,
                             filter,
                             NULL,
                             0);
+        if (gdk_x11_display_error_trap_pop (helper->display) != 0)
+        {
+            g_warning("Failed to apply the scale, maybe the CRTC does not support transforms");
+        }
     }
 #endif
 }
