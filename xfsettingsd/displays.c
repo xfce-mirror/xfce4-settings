@@ -1376,7 +1376,7 @@ xfce_displays_helper_apply_crtc_transform (XfceRRCrtc         *crtc,
                             0);
         if (gdk_x11_display_error_trap_pop (helper->display) != 0)
         {
-            g_warning("Failed to apply the scale, maybe the CRTC does not support transforms");
+            g_warning ("Failed to apply the scale, maybe the CRTC does not support transforms");
         }
     }
 #endif
