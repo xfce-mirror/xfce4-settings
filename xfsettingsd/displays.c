@@ -455,6 +455,8 @@ xfce_displays_helper_get_display_infos (gint       noutput,
 
         if (edid_data)
             display_infos[m] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
+        else if (output->info->name)
+            display_infos[m] = g_strdup_printf ("NOEDID-%s", output->info->name);
         else
             display_infos[m] = g_strdup ("");
     }
