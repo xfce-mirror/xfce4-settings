@@ -247,8 +247,8 @@ xfce_randr_populate (XfceRandr *randr,
             XRRFreeCrtcInfo (crtc_info);
             if (XRRGetCrtcTransform (xdisplay, randr->priv->output_info[m]->crtc, &attr) && attr)
             {
-              randr->scalex[m] = XFixedToDouble (attr->currentTransform.matrix[0][0]);
-              randr->scaley[m] = XFixedToDouble (attr->currentTransform.matrix[1][1]);
+              randr->scalex[m] = 1 / XFixedToDouble (attr->currentTransform.matrix[0][0]);
+              randr->scaley[m] = 1 / XFixedToDouble (attr->currentTransform.matrix[1][1]);
               XFree (attr);
             }
 
@@ -497,10 +497,10 @@ xfce_randr_save_output (XfceRandr     *randr,
     /* save the scale */
     g_snprintf (property, sizeof (property), "/%s/%s/Scale/X", scheme,
                 randr->priv->output_info[output]->name);
-    xfconf_channel_set_double (channel, property, roundf (randr->scalex[output] * 10) / 10);
+    xfconf_channel_set_double (channel, property, 1 / randr->scalex[output]);
     g_snprintf (property, sizeof (property), "/%s/%s/Scale/Y", scheme,
                 randr->priv->output_info[output]->name);
-    xfconf_channel_set_double (channel, property, roundf (randr->scaley[output] * 10) / 10);
+    xfconf_channel_set_double (channel, property, 1 / randr->scaley[output]);
 #endif
 
     /* save the position */
