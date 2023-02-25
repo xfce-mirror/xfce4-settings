@@ -588,6 +588,8 @@ xfce_randr_friendly_name (XfceRandr *randr,
     if (edid_data) {
         info = decode_edid (edid_data);
         randr->priv->edid[output] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
+    } else if (name) {
+        randr->priv->edid[output] = g_strdup_printf ("NOEDID-%s", name);
     }
 
     /* special case, a laptop */
