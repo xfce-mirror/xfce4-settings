@@ -62,6 +62,7 @@
 #include "workspaces.h"
 #include "clipboard-manager.h"
 #include "gtk-decorations.h"
+#include "gtk-settings.h"
 #include "xsettings.h"
 
 #ifdef HAVE_XRANDR
@@ -90,6 +91,7 @@ struct t_data_set
     GObject              *shortcuts_helper;
     GObject              *keyboard_layout_helper;
     GObject              *gtk_decorations_helper;
+    GObject              *gtk_settings_helper;
     GObject              *xsettings_helper;
     GObject              *clipboard_daemon;
 #ifdef HAVE_XRANDR
@@ -150,6 +152,7 @@ on_name_acquired (GDBusConnection *connection,
     }
 
     s_data->gtk_decorations_helper = g_object_new (XFCE_TYPE_DECORATIONS_HELPER, NULL);
+    s_data->gtk_settings_helper = g_object_new (XFCE_TYPE_GTK_SETTINGS_HELPER, NULL);
 
     /* connect to session always, even if we quit below.  this way the
      * session manager won't wait for us to time out. */
@@ -375,6 +378,7 @@ main (gint argc, gchar **argv)
     UNREF_GOBJECT (s_data.keyboard_layout_helper);
     UNREF_GOBJECT (s_data.workspaces_helper);
     UNREF_GOBJECT (s_data.gtk_decorations_helper);
+    UNREF_GOBJECT (s_data.gtk_settings_helper);
 
     if (G_LIKELY (s_data.clipboard_daemon != NULL))
     {
