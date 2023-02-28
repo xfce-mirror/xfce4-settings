@@ -60,8 +60,13 @@ AC_PROG_CC()
 AM_PROG_CC_C_O
 LT_PATH_LD([])
 AC_PROG_INSTALL()
+AC_PROG_SED
 IT_PROG_INTLTOOL([0.35.0], [no-xml])
-AC_CHECK_PROGS([PYTHON], [python3 python])
+AC_ARG_VAR([XMLLINT], [xmllint])
+AC_PATH_PROG([XMLLINT], [xmllint], [xmllint])
+if test -z "$XMLLINT"; then
+  AC_MSG_ERROR([Could not find xmllint in PATH])
+fi
 
 dnl **************************
 dnl *** Initialize libtool ***
