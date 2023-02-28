@@ -11,7 +11,11 @@ AM_CPPFLAGS = \
 bin_PROGRAMS = \
 	xfsettingsd
 
+xfsettingsd_built_SOURCES = \
+	xsettings-properties.h
+
 xfsettingsd_SOURCES = \
+	$(xfsettingsd_built_SOURCES) \
 	main.c \
 	accessibility.c \
 	accessibility.h \
@@ -21,6 +25,8 @@ xfsettingsd_SOURCES = \
 	clipboard-manager.h \
 	gtk-decorations.c \
 	gtk-decorations.h \
+	gtk-settings.c \
+	gtk-settings.h \
 	keyboards.c \
 	keyboards.h \
 	keyboard-shortcuts.c \
@@ -51,14 +57,15 @@ xfsettingsd_CFLAGS = \
 	$(LIBX11_CFLAGS) \
 	$(LIBNOTIFY_CFLAGS) \
 	$(FONTCONFIG_CFLAGS) \
+	$(GSETTINGS_DESKTOP_SCHEMAS_CFLAGS) \
 	$(LIBINPUT_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
-    -DGTK_DISABLE_SINGLE_INCLUDES \
-    -DGDK_DISABLE_DEPRECATED \
-    -DGTK_DISABLE_DEPRECATED \
-    -DGSEAL_ENABLE \
-    -DGDK_PIXBUF_DISABLE_DEPRECATED \
-    -DG_DISABLE_DEPRECATED
+	-DGTK_DISABLE_SINGLE_INCLUDES \
+	-DGDK_DISABLE_DEPRECATED \
+	-DGTK_DISABLE_DEPRECATED \
+	-DGSEAL_ENABLE \
+	-DGDK_PIXBUF_DISABLE_DEPRECATED \
+	-DG_DISABLE_DEPRECATED
 
 xfsettingsd_LDFLAGS = \
 	-no-undefined \
@@ -78,6 +85,7 @@ xfsettingsd_LDADD = \
 	$(LIBX11_LIBS) \
 	$(LIBNOTIFY_LIBS) \
 	$(FONTCONFIG_LIBS) \
+	$(GSETTINGS_DESKTOP_SCHEMAS_LIBS) \
 	$(LIBINPUT_LIBS) \
 	-lm
 
@@ -117,11 +125,32 @@ autostart_in_files = xfsettingsd.desktop.in
 autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+xsettings-properties.h: $(settings_DATA)
+	$(AM_V_GEN) \
+	printf '%s\n' \
+		'#if G_GNUC_CHECK_VERSION (4, 6)' \
+		'# pragma GCC diagnostic push' \
+		'# pragma GCC diagnostic ignored "-Wunused-variable"' \
+		'#endif' > $@; \
+	for _prefix in $(shell $(XMLLINT) --xpath '//channel/property/@name' $< | $(SED) -E 's/name="(.*)"/\1/'); do \
+		echo "static const gchar *xsettings_properties_$${_prefix}[] = {" \
+		&& $(XMLLINT) --xpath "//channel/property[@name=\"$${_prefix}\"]/property/@name" $< | $(SED) -E 's/name=(.*)/\1,/' \
+		&& echo '};'; \
+	done >> $@; \
+	printf '%s\n' \
+		'#if G_GNUC_CHECK_VERSION (4, 6)' \
+		'# pragma GCC diagnostic pop' \
+		'#endif' >> $@;
+
+BUILT_SOURCES = \
+	$(xfsettingsd_built_SOURCES)
+
 EXTRA_DIST = \
 	$(settings_DATA) \
 	$(autostart_in_files)
 
 DISTCLEANFILES = \
-	$(autostart_DATA)
+	$(autostart_DATA) \
+	$(xfsettingsd_built_SOURCES)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
