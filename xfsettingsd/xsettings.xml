@@ -6,8 +6,8 @@
 
 <channel name="xsettings" version="1.0">
   <property name="Net" type="empty">
-    <property name="ThemeName" type="empty"/>
-    <property name="IconThemeName" type="empty"/>
+    <property name="ThemeName" type="string" value="Adwaita"/>
+    <property name="IconThemeName" type="string" value="Adwaita"/>
     <property name="DoubleClickTime" type="int" value="400"/>
     <property name="DoubleClickDistance" type="int" value="5"/>
     <property name="DndDragThreshold" type="int" value="8"/>
@@ -18,12 +18,11 @@
     <property name="EnableInputFeedbackSounds" type="bool" value="false"/>
   </property>
   <property name="Xft" type="empty">
-    <property name="DPI" type="empty"/>
+    <property name="DPI" type="int" value="-1"/>
     <property name="Antialias" type="int" value="-1"/>
     <property name="Hinting" type="int" value="-1"/>
     <property name="HintStyle" type="string" value="hintnone"/>
     <property name="RGBA" type="string" value="none"/>
-    <!-- <property name="Lcdfilter" type="string" value="none"/> -->
   </property>
   <property name="Gtk" type="empty">
     <property name="CanChangeAccels" type="bool" value="false"/>
@@ -32,11 +31,6 @@
     <property name="MonospaceFontName" type="string" value="Monospace 10"/>
     <property name="IconSizes" type="string" value=""/>
     <property name="KeyThemeName" type="string" value=""/>
-    <property name="ToolbarStyle" type="string" value="icons"/>
-    <property name="ToolbarIconSize" type="int" value="3"/>
-    <!-- <property name="IMPreeditStyle" type="string" value=""/> -->
-    <!-- <property name="IMStatusStyle" type="string" value=""/> -->
-    <!-- <property name="IMModule" type="string" value=""/> -->
     <property name="MenuImages" type="bool" value="true"/>
     <property name="ButtonImages" type="bool" value="true"/>
     <property name="MenuBarAccel" type="string" value="F10"/>
