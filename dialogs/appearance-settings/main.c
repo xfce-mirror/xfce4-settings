@@ -970,7 +970,7 @@ install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder)
             {
                 case 2:
                     g_set_error (&error, G_SPAWN_ERROR, 0,
-                        _("File is larger than %d MB, installation aborted"), 50);
+                        _("File is too large, installation aborted"));
                     break;
 
                 case 3:
