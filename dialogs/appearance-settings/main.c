@@ -1004,6 +1004,11 @@ install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder)
                         _("Unknown format, only archives and directories are supported"));
                     break;
 
+                case 6:
+                    g_set_error_literal (&error, G_SPAWN_ERROR, 0,
+                        _("Not a valid theme package, nothing installed"));
+                    break;
+
                 default:
                     g_set_error (&error, G_SPAWN_ERROR,
                         0, _("An unknown error, exit code is %d"), WEXITSTATUS (status));
