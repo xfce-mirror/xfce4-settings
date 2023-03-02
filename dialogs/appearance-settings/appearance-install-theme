@@ -24,37 +24,20 @@
 # 3: Failed to create temp directory
 # 4: Failed to extract archive
 # 5: Unknown file format
+# 6: Not a valid theme package
 # theme-package can be a tar-file zip-file or a directory
 # the following themes types are supported:
-# - Gtk-2
-# - Gtk-3
-# - Xfwm
-# - Icons
+#  - Icon themes (detected by the content of index.theme files found)
+#  - Style themes (if not detected as icon theme)
 
+unset -v IFS
 dndfilename="$1"
 retval=0
-
-installtheme()
-{
-    file="$1"
-    suffix="$2"
-
-    basedir=${file#$tmpdir/}
-    themedir=${basedir%/$suffix}
-    themename=${3:-$(basename "$themedir")}
-    themetype=$(dirname "$suffix")
-    themesrc=$(dirname "$basedir")
-    src="$tmpdir/$themesrc"
-
-    dest="$HOME/.themes/$themename"
-    if test ! -d "$dest/$themetype"; then
-        # move theme to the users' theme directory
-        mkdir -p "$dest" && mv "$src" "$dest"
-    fi
-}
+is_icon_theme=0
 
 installicontheme()
 {
+    is_icon_theme=1
     file="$1"
     suffix="$2"
 
@@ -68,18 +51,7 @@ installicontheme()
         # move theme to the users' theme directory
         mkdir -p "$dest" && mv "$src" "$dest"
     fi
-}
-
-detectthemes()
-{
-    suffix="$1"
-
-    if test -f "$tmpdir/$suffix"; then
-        installtheme "$tmpdir/$suffix" "$suffix" "$pkgname"
-    fi
-    find "$tmpdir" -path "$tmpdir/*/$suffix" -type f | while read file; do
-        installtheme "$file" "$suffix"
-    done
+    gtk-update-icon-cache -q "$dest/$themename"
 }
 
 # leave if no file is provided
@@ -141,31 +113,42 @@ elif test -f "$dndfilename"; then
     esac
 fi
 
+test "$retval" -eq 0 || exit $retval
+
 # detect theme type and move it to the correct location if
 # extracting or copying succeeded
-if test "$retval" -eq 0; then
-    # install gtk-2.0 themes
-    detectthemes "gtk-2.0/gtkrc"
 
-    # install gtk-3.0 themes
-    detectthemes "gtk-3.0/gtk.css"
-
-    # install xfwm4 themes
-    detectthemes "xfwm4/themerc"
-
-    # install icon themes
-    suffix="index.theme"
-    section="Icon Theme"
-    if test -f "$tmpdir/$suffix"; then
-        if grep -q -i "^\\[$section\\]" "$tmpdir/$suffix"; then
-            installicontheme "$tmpdir/$suffix" "$suffix" "$pkgname"
-        fi
+# install possible icon themes
+suffix="index.theme"
+section="Icon Theme"
+if test -f "$tmpdir/$suffix"; then
+    if grep -q -i "^\\[$section\\]" "$tmpdir/$suffix"; then
+        installicontheme "$tmpdir/$suffix" "$suffix" "$pkgname"
     fi
-    find "$tmpdir" -path "$tmpdir/*/$suffix" -type f | while read file; do
-        if grep -q -i "^\\[$section\\]" "$file"; then
-            installicontheme "$file" "$suffix"
-        fi
-    done
 fi
+index_files=$(find "$tmpdir" -path "$tmpdir/*/$suffix" -type f)
 
-exit $retval
+IFS='
+' # that is a newline character; assume paths do not containt that so it
+# can be used as field separator for the list.
+for file in $index_files; do
+    if grep -q -i "^\\[$section\\]" "$file"; then
+        installicontheme "$file" "$suffix"
+    fi
+done
+unset -v IFS
+
+test "$is_icon_theme" -eq 0 || exit 0
+
+# Not an icon theme, so treat as style theme
+
+# likely: archive contains a unique root dir and an index.theme file in it
+if test -d "$(echo "$tmpdir/"*)" && test -f "$tmpdir/"*"/index.theme"; then
+    mkdir -p "$HOME/.themes" && mv "$tmpdir/"* "$HOME/.themes"
+# unlikely: no root dir but still a root index.theme file
+elif test -f "$tmpdir/index.theme"; then
+    mkdir -p "$HOME/.themes/$pkgname" && mv "$tmpdir/"* "$HOME/.themes/$pkgname"
+# not a valid theme package
+else
+    exit 6
+fi

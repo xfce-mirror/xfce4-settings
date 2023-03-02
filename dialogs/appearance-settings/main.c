@@ -986,7 +986,7 @@ install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder)
             {
                 case 2:
                     g_set_error (&error, G_SPAWN_ERROR, 0,
-                        _("File is larger than %d MB, installation aborted"), 50);
+                        _("File is too large, installation aborted"));
                     break;
 
                 case 3:
@@ -1002,6 +1002,11 @@ install_theme (GtkWidget *widget, gchar **uris, GtkBuilder *builder)
                 case 5:
                     g_set_error_literal (&error, G_SPAWN_ERROR, 0,
                         _("Unknown format, only archives and directories are supported"));
+                    break;
+
+                case 6:
+                    g_set_error_literal (&error, G_SPAWN_ERROR, 0,
+                        _("Not a valid theme package, nothing installed"));
                     break;
 
                 default:
