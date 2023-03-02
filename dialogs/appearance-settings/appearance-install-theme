@@ -24,6 +24,7 @@
 # 3: Failed to create temp directory
 # 4: Failed to extract archive
 # 5: Unknown file format
+# 6: Not a valid theme package
 # theme-package can be a tar-file zip-file or a directory
 # the following themes types are supported:
 #  - Icon themes (detected by the content of index.theme files found)
@@ -140,4 +141,14 @@ unset -v IFS
 test "$is_icon_theme" -eq 0 || exit 0
 
 # Not an icon theme, so treat as style theme
-mkdir -p "$HOME/.themes" && mv "$tmpdir/"* "$HOME/.themes"
+
+# likely: archive contains a unique root dir and an index.theme file in it
+if test -d "$(echo "$tmpdir/"*)" && test -f "$tmpdir/"*"/index.theme"; then
+    mkdir -p "$HOME/.themes" && mv "$tmpdir/"* "$HOME/.themes"
+# unlikely: no root dir but still a root index.theme file
+elif test -f "$tmpdir/index.theme"; then
+    mkdir -p "$HOME/.themes/$pkgname" && mv "$tmpdir/"* "$HOME/.themes/$pkgname"
+# not a valid theme package
+else
+    exit 6
+fi
