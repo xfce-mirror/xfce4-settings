@@ -1015,6 +1015,28 @@ mouse_settings_synaptics_hscroll_sensitive (GtkBuilder *builder)
 
 
 
+#ifdef HAVE_LIBINPUT
+static void
+mouse_settings_libinput_disable_touchpad_while_typing_toggled (GObject     *object,
+                                                               GtkBuilder  *builder)
+{
+    gchar *name = NULL, *prop;
+
+    if (mouse_settings_device_get_selected (builder, NULL, &name))
+    {
+        prop = g_strconcat ("/", name, "/Properties/" LIBINPUT_PROP_DISABLE_WHILE_TYPING, NULL);
+        g_strdelimit (prop, " ", '_');
+        xfconf_channel_set_int (pointers_channel, prop,
+                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)));
+        g_free (prop);
+    }
+
+    g_free (name);
+}
+#endif
+
+
+
 #if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
 mouse_settings_synaptics_set_scrolling (GtkComboBox *combobox,
@@ -1202,8 +1224,10 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 #endif /* HAVE_LIBINPUT */
 #if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
 #ifdef HAVE_LIBINPUT
+    Atom               libinput_disable_while_typing_prop;
     Atom               libinput_tap_prop;
     Atom               libinput_scroll_methods_prop;
+    gint               libinput_disable_while_typing = -1;
 #endif /* HAVE_LIBINPUT */
     Atom               synaptics_prop;
     Atom               wacom_prop;
@@ -1332,6 +1356,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 #if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
 #ifdef HAVE_LIBINPUT
         /* lininput properties */
+        libinput_disable_while_typing_prop = XInternAtom (xdisplay, LIBINPUT_PROP_DISABLE_WHILE_TYPING, True);
         libinput_tap_prop = XInternAtom (xdisplay, LIBINPUT_PROP_TAP, True);
         libinput_scroll_methods_prop = XInternAtom (xdisplay, LIBINPUT_PROP_SCROLL_METHOD_ENABLED, True);
 #endif /* HAVE_LIBINPUT */
@@ -1369,6 +1394,11 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                 else if (props[i] == wacom_rotation_prop)
                     wacom_rotation = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
 #ifdef HAVE_LIBINPUT
+                else if (props[i] == libinput_disable_while_typing_prop)
+                {
+                    is_synaptics = TRUE;
+                    mouse_settings_get_libinput_boolean (xdisplay, device, LIBINPUT_PROP_DISABLE_WHILE_TYPING, &libinput_disable_while_typing);
+                }
                 else if (props[i] == libinput_tap_prop)
                 {
                     is_synaptics = TRUE;
@@ -1498,6 +1528,14 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 
         object = gtk_builder_get_object (builder, "synaptics-disable-while-type");
         gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
+
+        object = gtk_builder_get_object (builder, "libinput-disable-while-type");
+        if (is_libinput)
+        {
+            gtk_widget_set_sensitive (GTK_WIDGET (object), libinput_disable_while_typing != -1);
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), libinput_disable_while_typing > 0);
+        }
+        gtk_widget_set_visible (GTK_WIDGET (object), is_libinput);
 
         object = gtk_builder_get_object (builder, "synaptics-disable-duration-box");
         gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
@@ -2010,6 +2048,12 @@ main (gint argc, gchar **argv)
             g_object_bind_property (G_OBJECT (synaptics_disable_while_type), "active",
                                     G_OBJECT (synaptics_disable_duration_table), "sensitive",
                                     G_BINDING_SYNC_CREATE);
+
+#ifdef HAVE_LIBINPUT
+            object = gtk_builder_get_object (builder, "libinput-disable-while-type");
+            g_signal_connect (G_OBJECT (object), "toggled",
+                              G_CALLBACK (mouse_settings_libinput_disable_touchpad_while_typing_toggled), builder);
+#endif
 
             object = gtk_builder_get_object (builder, "synaptics-disable-duration-scale");
             g_signal_connect (G_OBJECT (object), "format-value",
