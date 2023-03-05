@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Alexandre Fidalgo <alexandremagnos15@gmail.com>, 2014
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2022
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2023
 # José Vieira <jvieira33@sapo.pt>, 2017-2020
 # Nuno Miguel <nunomgue@gmail.com>, 2014-2019
 # Rui <xymarior@yandex.com>, 2019
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-03 00:46+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2022\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2023\n"
 "Language-Team: Portuguese (http://www.transifex.com/xfce/xfce4-settings/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -420,7 +420,7 @@ msgstr "_Adicionar"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
-msgstr "Definir um <a href=\"xfwm4-settings:\">tema Xfwm4</a> correspondente, se existir"
+msgstr "Definir <a href=\"xfwm4-settings:\">tema Xfwm4</a> correspondente, se existir um"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
@@ -587,19 +587,19 @@ msgstr "Defi_nições"
 
 #: ../dialogs/appearance-settings/main.c:244
 msgid "Failed to display Xfwm4 Settings"
-msgstr "Falha ao mostrar as definições Xfwm4"
+msgstr "Ocorreu um erro ao mostrar as definições Xfwm4"
 
 #: ../dialogs/appearance-settings/main.c:497
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
-msgstr "Aviso: este tema de ícones não tem ficheiro de cache. Pode criar o ficheiro com o comando <i>gtk-update-icon-cache %s/%s/</i> no emulador de terminal."
+msgstr "Aviso: este tema de ícones não tem ficheiro de cache. Pode criar o ficheiro com o comando <i>gtk-update-icon-cache %s/%s/</i> no terminal."
 
 #: ../dialogs/appearance-settings/main.c:989
 #, c-format
 msgid "File is too large, installation aborted"
-msgstr ""
+msgstr "O ficheiro é demasiado grande, instalação cancelada"
 
 #: ../dialogs/appearance-settings/main.c:994
 msgid "Failed to create temporary directory"
@@ -615,7 +615,7 @@ msgstr "O formato não é conhecido, só são suportados arquivos e diretórios"
 
 #: ../dialogs/appearance-settings/main.c:1009
 msgid "Not a valid theme package"
-msgstr ""
+msgstr "Não é um pacote de tema válido"
 
 #: ../dialogs/appearance-settings/main.c:1014
 #, c-format
@@ -675,7 +675,7 @@ msgid ""
 "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr "temas;interface de utilizador;estilos;ícones;tipo de letra;suavização;hinting;sub-pixel;subpixel;processamento;ClearType;DPI;RGB;BGR;aceleradores de menu;atalhos de teclado;evento;sons;tamanho da janela;HiDPI;ecrã Retina;"
+msgstr "temas;interface de utilizador;estilos;ícones;tipo de letra;suavização;hinting;sub-pixel;subpixel;processamento;ClearType;DPI;RGB;BGR;aceleradores de menu;atalhos de teclado;teclas de atalho;evento;sons;tamanho da janela;HiDPI;ecrã Retina;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -685,7 +685,7 @@ msgstr "Digitalizador"
 #. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
 #: ../dialogs/color-settings/color-device.c:71
 msgid "Camera"
-msgstr "Máquina fotográfica"
+msgstr "Câmara"
 
 #. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
 #: ../dialogs/color-settings/color-device.c:74
@@ -695,7 +695,7 @@ msgstr "Impressora"
 #. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
 #: ../dialogs/color-settings/color-device.c:77
 msgid "Webcam"
-msgstr "Câmara web"
+msgstr "Webcam"
 
 #. TRANSLATORS: This refers to the TFT display on a laptop
 #: ../dialogs/color-settings/color-device.c:94
@@ -705,7 +705,7 @@ msgstr "Ecrã de portátil"
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
 #: ../dialogs/color-settings/color-device.c:102
 msgid "Built-in Webcam"
-msgstr "Câmara web incorporada"
+msgstr "Webcam embutida"
 
 #: ../dialogs/color-settings/color-device.c:195
 #, c-format
@@ -776,7 +776,7 @@ msgstr "Adicionar perfil ao dispositivo"
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:574
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:108
 msgid "_OK"
-msgstr "_OK"
+msgstr "_Aceitar"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:20
 msgid "Import color profile files (*.icc)"
@@ -1029,7 +1029,7 @@ msgstr "<b>Monitores ligados</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:31
 msgid "Delete the currently selected display profile."
-msgstr "Apagar o perfil de monitor selecionado."
+msgstr "Eliminar o perfil de monitor selecionado."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:32
 msgid "Apply"
