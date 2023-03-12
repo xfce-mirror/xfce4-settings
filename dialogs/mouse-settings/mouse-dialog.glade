@@ -51,6 +51,28 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-revert-to-saved</property>
   </object>
+  <object class="GtkListStore" id="libinput-click-methods-store">
+    <columns>
+      <!-- column-name title -->
+      <column type="gchararray"/>
+      <!-- column-name sensitive -->
+      <column type="gboolean"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">None</col>
+        <col id="1">True</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Use bottom areas of the touchpad as left, middle or right buttons</col>
+        <col id="1">True</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Click with 1, 2 or 3 fingers as a left, right, or middle click</col>
+        <col id="1">True</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkAdjustment" id="synaptics-disable-duration">
     <property name="lower">0.10000000000000001</property>
     <property name="upper">4</property>
@@ -535,6 +557,23 @@
                                       </packing>
                                     </child>
                                     <child>
+                                      <object class="GtkCheckButton" id="libinput-disable-while-type">
+                                        <property name="label" translatable="yes">Disable touchpad _while typing</property>
+                                        <property name="visible">False</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">When selected, the touchpad will be disabled when the keyboard is being used</property>
+                                        <property name="halign">start</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_indicator">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
                                       <object class="GtkAlignment" id="alignment8">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
@@ -578,7 +617,7 @@
                                       <packing>
                                         <property name="expand">True</property>
                                         <property name="fill">True</property>
-                                        <property name="position">1</property>
+                                        <property name="position">2</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -594,7 +633,50 @@
                                       <packing>
                                         <property name="expand">True</property>
                                         <property name="fill">True</property>
-                                        <property name="position">2</property>
+                                        <property name="position">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="hbox5">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="spacing">12</property>
+                                        <child>
+                                          <object class="GtkLabel" id="label24">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="label" translatable="yes">Click method:</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkComboBox" id="libinput-click-method-box">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="model">libinput-click-methods-store</property>
+                                            <child>
+                                              <object class="GtkCellRendererText" id="cellrenderertext4"/>
+                                              <attributes>
+                                                <attribute name="text">0</attribute>
+                                                <attribute name="sensitive">1</attribute>
+                                              </attributes>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">True</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">4</property>
                                       </packing>
                                     </child>
                                   </object>
