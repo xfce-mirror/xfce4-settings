@@ -23,7 +23,6 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <gdk/gdkx.h>
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 #include "gtk-decorations.h"
