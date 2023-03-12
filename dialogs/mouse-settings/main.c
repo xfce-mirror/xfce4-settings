@@ -136,6 +136,14 @@ typedef union
     Atom    a;
 } propdata_t;
 
+#ifdef HAVE_LIBINPUT
+typedef struct
+{
+    gboolean available;
+    gboolean button_areas;
+    gboolean click_finger;
+} click_method_t;
+#endif
 
 
 static gchar *
@@ -752,6 +760,28 @@ mouse_settings_get_libinput_boolean (Display     *xdisplay,
 
     return FALSE;
 }
+
+
+
+static gboolean
+mouse_settings_get_libinput_click_method (Display        *xdisplay,
+                                          XDevice        *device,
+                                          const gchar    *prop_name,
+                                          click_method_t *click_method)
+{
+    propdata_t pdata[2];
+
+    if (mouse_settings_get_device_prop (xdisplay, device, prop_name, XA_INTEGER, 2, &pdata[0]))
+    {
+        click_method->available = TRUE;
+        click_method->button_areas = pdata[0].c;
+        click_method->click_finger = pdata[1].c;
+
+        return TRUE;
+    }
+
+    return FALSE;
+}
 #endif /* HAVE_LIBINPUT */
 
 
@@ -1015,6 +1045,70 @@ mouse_settings_synaptics_hscroll_sensitive (GtkBuilder *builder)
 
 
 
+#ifdef HAVE_LIBINPUT
+static void
+mouse_settings_libinput_disable_touchpad_while_typing_toggled (GObject     *object,
+                                                               GtkBuilder  *builder)
+{
+    gchar *name = NULL, *prop;
+
+    if (mouse_settings_device_get_selected (builder, NULL, &name))
+    {
+        prop = g_strconcat ("/", name, "/Properties/" LIBINPUT_PROP_DISABLE_WHILE_TYPING, NULL);
+        g_strdelimit (prop, " ", '_');
+        xfconf_channel_set_int (pointers_channel, prop,
+                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)));
+        g_free (prop);
+    }
+
+    g_free (name);
+}
+
+
+
+static void
+mouse_settings_libinput_click_method_changed (GObject     *object,
+                                              GtkBuilder  *builder)
+{
+    gchar *name = NULL, *prop;
+    gint combo_box_val;
+    gint button_areas = 0;
+    gint click_finger = 0;
+
+    if (mouse_settings_device_get_selected (builder, NULL, &name))
+    {
+        prop = g_strconcat ("/", name, "/Properties/" LIBINPUT_PROP_CLICK_METHOD_ENABLED, NULL);
+        g_strdelimit (prop, " ", '_');
+
+        /* Possible values:
+         * 0 - off
+         * 1 - button areas
+         * 2 - click finger
+         */
+        combo_box_val = gtk_combo_box_get_active (GTK_COMBO_BOX (object));
+
+        /* Possible arrays:
+         * [0, 0] - off
+         * [1, 0] - button areas
+         * [0, 1] - click finger
+         */
+        if (combo_box_val == 1)
+            button_areas = 1;
+        else if (combo_box_val == 2)
+            click_finger = 1;
+
+        xfconf_channel_set_array (pointers_channel, prop,
+                                  G_TYPE_INT, &button_areas, G_TYPE_INT, &click_finger, G_TYPE_INVALID);
+
+        g_free (prop);
+    }
+
+    g_free (name);
+}
+#endif
+
+
+
 #if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
 mouse_settings_synaptics_set_scrolling (GtkComboBox *combobox,
@@ -1202,8 +1296,13 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 #endif /* HAVE_LIBINPUT */
 #if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
 #ifdef HAVE_LIBINPUT
+    Atom               libinput_disable_while_typing_prop;
     Atom               libinput_tap_prop;
     Atom               libinput_scroll_methods_prop;
+    Atom               libinput_click_method_prop;
+    gint               libinput_disable_while_typing = -1;
+    click_method_t     libinput_click_methods_available = {FALSE};
+    click_method_t     libinput_click_method = {FALSE};
 #endif /* HAVE_LIBINPUT */
     Atom               synaptics_prop;
     Atom               wacom_prop;
@@ -1332,8 +1431,10 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 #if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
 #ifdef HAVE_LIBINPUT
         /* lininput properties */
+        libinput_disable_while_typing_prop = XInternAtom (xdisplay, LIBINPUT_PROP_DISABLE_WHILE_TYPING, True);
         libinput_tap_prop = XInternAtom (xdisplay, LIBINPUT_PROP_TAP, True);
         libinput_scroll_methods_prop = XInternAtom (xdisplay, LIBINPUT_PROP_SCROLL_METHOD_ENABLED, True);
+        libinput_click_method_prop = XInternAtom (xdisplay, LIBINPUT_PROP_CLICK_METHOD_ENABLED, True);
 #endif /* HAVE_LIBINPUT */
         /* wacom and synaptics specific properties */
         device_enabled_prop = XInternAtom (xdisplay, "Device Enabled", True);
@@ -1369,6 +1470,11 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                 else if (props[i] == wacom_rotation_prop)
                     wacom_rotation = mouse_settings_device_get_int_property (device, props[i], 0, NULL);
 #ifdef HAVE_LIBINPUT
+                else if (props[i] == libinput_disable_while_typing_prop)
+                {
+                    is_synaptics = TRUE;
+                    mouse_settings_get_libinput_boolean (xdisplay, device, LIBINPUT_PROP_DISABLE_WHILE_TYPING, &libinput_disable_while_typing);
+                }
                 else if (props[i] == libinput_tap_prop)
                 {
                     is_synaptics = TRUE;
@@ -1400,6 +1506,20 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                             synaptics_two_scroll = -1;
                         if (!pdata[1].c)
                             synaptics_edge_scroll = -1;
+                    }
+                }
+                else if (props[i] == libinput_click_method_prop)
+                {
+                    gboolean success;
+
+                    success = mouse_settings_get_libinput_click_method (xdisplay, device,
+                                                                        LIBINPUT_PROP_CLICK_METHODS_AVAILABLE,
+                                                                        &libinput_click_methods_available);
+
+                    if (success)
+                    {
+                        mouse_settings_get_libinput_click_method (xdisplay, device,
+                                                                  LIBINPUT_PROP_CLICK_METHOD_ENABLED, &libinput_click_method);
                     }
                 }
 #endif /* HAVE_LIBINPUT */
@@ -1498,6 +1618,41 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 
         object = gtk_builder_get_object (builder, "synaptics-disable-while-type");
         gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
+
+        object = gtk_builder_get_object (builder, "libinput-disable-while-type");
+        if (is_libinput)
+        {
+            gtk_widget_set_sensitive (GTK_WIDGET (object), libinput_disable_while_typing != -1);
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), libinput_disable_while_typing > 0);
+        }
+        gtk_widget_set_visible (GTK_WIDGET (object), is_libinput);
+
+        object = gtk_builder_get_object (builder, "libinput-click-method-box");
+        if (is_libinput)
+        {
+            gtk_widget_set_sensitive (GTK_WIDGET (object), libinput_click_method.available);
+            /*
+             * Both values can't be enabled at a time according to documentation.
+             * When I set both values the driver behaves like click_finger, so
+             * prioritize the click_finger value.
+             */
+            if (libinput_click_method.click_finger)
+                gtk_combo_box_set_active (GTK_COMBO_BOX (object), 2);
+            else if (libinput_click_method.button_areas)
+                gtk_combo_box_set_active (GTK_COMBO_BOX (object), 1);
+            else
+                gtk_combo_box_set_active (GTK_COMBO_BOX (object), 0);
+        }
+        gtk_widget_set_visible (GTK_WIDGET (object), is_libinput);
+        if (is_libinput)
+        {
+            object = gtk_builder_get_object (builder, "libinput-click-methods-store");
+            if (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (object), &iter, NULL, 1))
+                gtk_list_store_set (GTK_LIST_STORE (object), &iter, 1, libinput_click_methods_available.button_areas, -1);
+
+            if (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (object), &iter, NULL, 2))
+                gtk_list_store_set (GTK_LIST_STORE (object), &iter, 1, libinput_click_methods_available.click_finger, -1);
+        }
 
         object = gtk_builder_get_object (builder, "synaptics-disable-duration-box");
         gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
@@ -2010,6 +2165,16 @@ main (gint argc, gchar **argv)
             g_object_bind_property (G_OBJECT (synaptics_disable_while_type), "active",
                                     G_OBJECT (synaptics_disable_duration_table), "sensitive",
                                     G_BINDING_SYNC_CREATE);
+
+#ifdef HAVE_LIBINPUT
+            object = gtk_builder_get_object (builder, "libinput-disable-while-type");
+            g_signal_connect (G_OBJECT (object), "toggled",
+                              G_CALLBACK (mouse_settings_libinput_disable_touchpad_while_typing_toggled), builder);
+
+            object = gtk_builder_get_object (builder, "libinput-click-method-box");
+            g_signal_connect (G_OBJECT (object), "changed",
+                              G_CALLBACK (mouse_settings_libinput_click_method_changed), builder);
+#endif
 
             object = gtk_builder_get_object (builder, "synaptics-disable-duration-scale");
             g_signal_connect (G_OBJECT (object), "format-value",
