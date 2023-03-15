@@ -6,16 +6,16 @@
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2012
 # Ivailo Panamski <ipanamski@gmail.com>, 2018
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2012
-# Kiril Kirilov <cybercop_montana@abv.bg>, 2014-2022
+# Kiril Kirilov <cybercop_montana@abv.bg>, 2014-2023
 # Любомир Василев, 2015
 # Красимир Беров, 2017,2019,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-03 00:46+0100\n"
+"POT-Creation-Date: 2023-03-15 00:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>, 2014-2022\n"
+"Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>, 2014-2023\n"
 "Language-Team: Bulgarian (http://www.transifex.com/xfce/xfce4-settings/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +76,7 @@ msgstr "Достъпност"
 #: ../dialogs/display-settings/main.c:4431
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 #: ../xfce4-settings-editor/main.c:166
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:232
 msgid "_Close"
@@ -88,7 +88,7 @@ msgstr "_Затваряне"
 #: ../dialogs/display-settings/display-dialog.glade.h:16
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/mime-settings/xfce-mime-window.c:190
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 #: ../xfce4-settings-editor/main.c:165
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:221
 msgid "_Help"
@@ -324,7 +324,7 @@ msgstr "Сведения за изданието"
 #: ../dialogs/display-settings/main.c:4359
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
-#: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:120
+#: ../dialogs/mouse-settings/main.c:2042 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
 #: ../xfsettingsd/main.c:280
 #, c-format
@@ -336,7 +336,7 @@ msgstr "Напишете „%s --help“ за показване на потре
 #: ../dialogs/color-settings/main.c:1396
 #: ../dialogs/display-settings/main.c:4378
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
-#: ../dialogs/mouse-settings/main.c:1911 ../xfce4-settings-editor/main.c:139
+#: ../dialogs/mouse-settings/main.c:2061 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Екипът по разрабоката на Xfce. Всички права са запазени."
@@ -346,7 +346,7 @@ msgstr "Екипът по разрабоката на Xfce. Всички пра�
 #: ../dialogs/color-settings/main.c:1397
 #: ../dialogs/display-settings/main.c:4379
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
-#: ../dialogs/mouse-settings/main.c:1912 ../xfce4-settings-editor/main.c:140
+#: ../dialogs/mouse-settings/main.c:2062 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -366,6 +366,7 @@ msgstr "спомагателни;технологии;клавиши;лепка�
 #: ../dialogs/appearance-settings/main.c:1295
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "None"
 msgstr "Няма"
 
@@ -1361,7 +1362,7 @@ msgid "Restore num l_ock state on startup"
 msgstr "Възстановяване на състоянието на клавиша Num Lock при стартиране"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "General"
 msgstr "Общи"
 
@@ -1888,8 +1889,8 @@ msgstr "Потребителски"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:650
 #: ../dialogs/mime-settings/xfce-mime-window.c:812
-#: ../dialogs/mouse-settings/main.c:401 ../dialogs/mouse-settings/main.c:403
-#: ../dialogs/mouse-settings/main.c:466
+#: ../dialogs/mouse-settings/main.c:409 ../dialogs/mouse-settings/main.c:411
+#: ../dialogs/mouse-settings/main.c:474
 msgid "Default"
 msgstr "Стандартен"
 
@@ -2184,233 +2185,245 @@ msgid "DEVICE NAME"
 msgstr "ИМЕ НА УСТРОЙСТВО"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:146
+#: ../dialogs/mouse-settings/main.c:154
 #, c-format
 msgid "%g px"
 msgstr "%g пиксела"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:156
+#: ../dialogs/mouse-settings/main.c:164
 #, c-format
 msgid "%g ms"
 msgstr "%g мсек"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:167
+#: ../dialogs/mouse-settings/main.c:175
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+msgid "Use bottom areas as left, middle or right buttons"
+msgstr "Използване на областите по- долу, като леви, средни или десни бутони"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
+msgstr "Кликване с 1, 2 или 3 пръста като кликване с ляв, десен или среден бутон"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Disabled"
 msgstr "Изключено"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Edge scrolling"
 msgstr "Превъртане по краищата"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Two-finger scrolling"
 msgstr "Превъртане с два пръста"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Circular scrolling"
 msgstr "Циклично превъртане"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "Pen (absolute)"
 msgstr "Писалка (абсолютно)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Mouse (relative)"
 msgstr "Мишка (относително)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "None (right-handed)"
 msgstr "Без (за дясна ръка)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Half (left-handed)"
 msgstr "Наполовина (за лява ръка)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Clockwise"
 msgstr "По часовниковата стрелка"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Counterclockwise"
 msgstr "Обратно на часовниковата стрелка"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
 msgstr "Мишка и тъчпад"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "De_vice:"
 msgstr "Устройство:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Le_ft-handed"
 msgstr "За лява ръка"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Ri_ght-handed"
 msgstr "За дясна ръка"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Reverse scroll d_irection"
 msgstr "Обръщане на посоката на превъртане"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Когато е избрано, колелото на мишката ще работи в обратна посока"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Buttons"
 msgstr "Бутони"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "_Reset to Defaults"
 msgstr "Възстановяване на стандартните настройки"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Задаване на ускорението и чувствителността на избраното устройство до стандартните стойности"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "Sensitivit_y:"
 msgstr "_Чувствителност:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Acceleratio_n:"
 msgstr "Ускорение:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Коефициент, по който да бъде умножена стойността на показалеца, при движение на мишката"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Брой пиксели, което трябва за кратко време да измине показалецът на мишката, за да започне ускорение"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Pointer Speed"
 msgstr "Скорост на показалеца"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "B_uttons and Feedback"
 msgstr "Бутони и обратна връзка"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Disable touchpad _while typing"
 msgstr "Заключване на тъчпада по време на писане"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Когато е избрано, тъчпада ще се заключва, когато ползвате клавиатурата"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Duratio_n:"
 msgstr "Продължителност:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Tap touchpad to clic_k"
 msgstr "Натиснете тъчпада за да кликнете"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+msgid "Click m_ethod:"
+msgstr "Метод на кликване:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Scrolling _mode:"
 msgstr "Режим на превъртане:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Enable hori_zontal scrolling"
 msgstr "Включване на превъртане настрани"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Scrolling"
 msgstr "Превъртане"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "T_ouchpad"
 msgstr "Тъчпад"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Trac_king mode:"
 msgstr "Режим на проследяване: "
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "_Rotation:"
 msgstr "Завъртане:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Tab_let"
 msgstr "Таблет"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "_Devices"
 msgstr "Устройства"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Th_reshold:"
 msgstr "Праг:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Брой пиксели, което трябва да измине показалецът, преди началото на преместване на обекта"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "Drag and Drop"
 msgstr "Влачене и Пускане"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "Ti_me:"
 msgstr "Време:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Две кликвания на мишката  с интервал по- малък от този (в милисекуни) ще се считат за двойно кликване"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "D_istance:"
 msgstr "_Разстояние:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "За да се счита за двойно кликване, показалецът на мишката не трябва да се премества между две кликвания на по- голямо от зададеното разстояние"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "Double Click"
 msgstr "Двойно кликване"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid "_Behavior"
 msgstr "_Поведение"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:54
 msgid "Cursor si_ze:"
 msgstr "Размер на показалеца:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:55
 msgid "Size"
 msgstr "Размер"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:56
 msgid "Preview"
 msgstr "Преглед"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:57
 msgid "_Theme"
 msgstr "Тема"
 
