@@ -76,6 +76,7 @@ struct _XfceSettingsManagerDialog
     GtkWidget      *socket_scroll;
     GtkWidget      *socket_viewport;
     GarconMenuItem *socket_item;
+    GModule        *embedded_module;
 
     GtkWidget      *button_back;
     GtkWidget      *button_help;
@@ -309,6 +310,9 @@ xfce_settings_manager_dialog_finalize (GObject *object)
 
     if (dialog->socket_item != NULL)
         g_object_unref (G_OBJECT (dialog->socket_item));
+
+    if (dialog->embedded_module != NULL)
+        g_module_close (dialog->embedded_module);
 
     g_object_unref (G_OBJECT (dialog->menu));
     g_object_unref (G_OBJECT (dialog->store));
@@ -629,6 +633,12 @@ xfce_settings_manager_dialog_remove_socket (XfceSettingsManagerDialog *dialog)
         g_object_unref (G_OBJECT (dialog->socket_item));
         dialog->socket_item = NULL;
     }
+
+    if (dialog->embedded_module != NULL)
+    {
+        g_module_close (dialog->embedded_module);
+        dialog->embedded_module = NULL;
+    }
 }
 
 
@@ -846,6 +856,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
     gchar          *filename;
     XfceRc         *rc;
     gboolean        pluggable = FALSE;
+    gboolean        in_process = FALSE;
     gchar          *cmd;
     gchar          *uri;
     GtkWidget      *socket;
@@ -877,6 +888,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         pluggable = xfce_rc_read_bool_entry (rc, "X-XfcePluggable", FALSE);
         if (pluggable)
         {
+            in_process = xfce_rc_read_bool_entry (rc, "X-XfcePluggableInProcess", FALSE);
             dialog->help_page = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpPage", NULL));
             dialog->help_component = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpComponent", NULL));
             dialog->help_version = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpVersion", NULL));
@@ -885,7 +897,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         xfce_rc_close (rc);
     }
 
-    if (pluggable)
+    if (pluggable && !in_process)
     {
         /* fake startup notification */
         display = gdk_display_get_default ();
@@ -918,6 +930,60 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
             g_error_free (error);
         }
         g_free (cmd);
+    }
+    else if (pluggable & in_process)
+    {
+        gchar *name = g_file_get_basename (desktop_file);
+        gchar *module_path;
+        GModule *module;
+
+        xfce_settings_manager_dialog_remove_socket (dialog);
+
+        if (G_LIKELY (g_str_has_suffix (name, ".desktop")))
+        {
+            name[strlen(name) - 8] = '\0';
+        }
+
+        module_path = g_module_build_path (LIBDIR "/xfce4/settings/dialogs", name);
+        module = g_module_open(module_path, G_MODULE_BIND_LOCAL);
+        if (G_UNLIKELY (module == NULL))
+        {
+            // TODO: show error dialog
+            g_warning ("Failed to load %s for dialog '%s'", name, garcon_menu_item_get_name (item));
+        }
+        else
+        {
+            GtkWidget *(*get_dialog_widget_func)(GError **) = NULL;
+            GError *error = NULL;
+
+            if (G_LIKELY (g_module_symbol (module, "xfce_settings_dialog_impl_get_dialog_widget", (gpointer *)&get_dialog_widget_func)))
+            {
+                GtkWidget *dialog_widget = get_dialog_widget_func(&error);
+
+                if (G_UNLIKELY (dialog_widget == NULL))
+                {
+                    // TODO: show error dialog
+                    g_warning ("Failed to load widget for dialog '%s': %s", garcon_menu_item_get_name (item), error->message);
+                    g_error_free (error);
+                    g_module_close (module);
+                }
+                else
+                {
+                    gtk_container_add (GTK_CONTAINER (dialog->socket_viewport), dialog_widget);
+                    dialog->socket_item = g_object_ref (item);
+                    dialog->embedded_module = module;  // TODO: ensure this gets closed when dialog_widget destroyed
+                    xfce_settings_manager_dialog_plug_added(NULL, dialog);
+                }
+            }
+            else
+            {
+                // TODO: show error dialog
+                g_warning ("Unable to find required symbols in dialog library for '%s'", garcon_menu_item_get_name (item));
+                g_module_close (module);
+            }
+        }
+
+        g_free (module_path);
     }
     else
     {
