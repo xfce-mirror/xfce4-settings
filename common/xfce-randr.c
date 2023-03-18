@@ -559,7 +559,7 @@ xfce_randr_read_edid_data (Display  *xdisplay,
                                   &bytes_after, &prop) == Success)
         {
             if (actual_type == XA_INTEGER && actual_format == 8)
-                result = g_memdup (prop, nitems);
+                result = g_memdup2 (prop, nitems);
         }
 
         XFree (prop);
@@ -736,7 +736,7 @@ xfce_randr_clonable_modes (XfceRandr *randr)
 
         /* common to all outputs, can be used for clone mode */
         if (candidate)
-            return g_memdup (modes, sizeof (RRMode) * randr->noutput);
+            return g_memdup2 (modes, sizeof (RRMode) * randr->noutput);
     }
 
     return NULL;
