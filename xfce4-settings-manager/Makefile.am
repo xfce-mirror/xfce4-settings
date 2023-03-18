@@ -1,6 +1,7 @@
 AM_CPPFLAGS = \
 	-I${top_srcdir} \
 	-DMENUFILE=\"$(sysconfdir)/xdg/menus/xfce-settings-manager.menu\" \
+	-DSETTINGS_DIALOG_LIBRARY_DIR=\"$(SETTINGS_DIALOG_LIBRARY_DIR)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-settings-manager\" \
 	$(PLATFORM_CPPFLAGS)
@@ -14,6 +15,7 @@ xfce4_settings_manager_SOURCES = \
 	xfce-settings-manager-dialog.h
 
 xfce4_settings_manager_CFLAGS = \
+	$(GMODULE_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
@@ -29,12 +31,17 @@ xfce4_settings_manager_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_settings_manager_LDADD = \
+	$(GMODULE_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
 	$(EXO_LIBS) \
 	$(GARCON_LIBS)
+
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_in_files = xfce4-settings-manager.pc.in
+pkgconfig_DATA = $(pkgconfig_in_files:.pc.in=.pc)
 
 menudir = $(sysconfdir)/xdg/menus
 menu_DATA = xfce-settings-manager.menu
@@ -46,10 +53,13 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
+	$(pkgconfig_in_files) \
 	$(desktop_in_files) \
-	$(menu_DATA)
+	$(menu_DATA) \
+	README.md
 
 DISTCLEANFILES = \
+	$(pkgconfig_DATA) \
 	$(desktop_DATA)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
