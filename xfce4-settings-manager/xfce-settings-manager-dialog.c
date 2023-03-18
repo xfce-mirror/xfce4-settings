@@ -34,6 +34,10 @@
 #include <gtk/gtkx.h>
 #include <gdk/gdkkeysyms.h>
 
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#endif
+
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <xfconf/xfconf.h>
@@ -76,6 +80,7 @@ struct _XfceSettingsManagerDialog
     GtkWidget      *socket_scroll;
     GtkWidget      *socket_viewport;
     GarconMenuItem *socket_item;
+    GModule        *embedded_module;
 
     GtkWidget      *button_back;
     GtkWidget      *button_help;
@@ -309,6 +314,9 @@ xfce_settings_manager_dialog_finalize (GObject *object)
 
     if (dialog->socket_item != NULL)
         g_object_unref (G_OBJECT (dialog->socket_item));
+
+    if (dialog->embedded_module != NULL)
+        g_module_close (dialog->embedded_module);
 
     g_object_unref (G_OBJECT (dialog->menu));
     g_object_unref (G_OBJECT (dialog->store));
@@ -629,6 +637,12 @@ xfce_settings_manager_dialog_remove_socket (XfceSettingsManagerDialog *dialog)
         g_object_unref (G_OBJECT (dialog->socket_item));
         dialog->socket_item = NULL;
     }
+
+    if (dialog->embedded_module != NULL)
+    {
+        g_module_close (dialog->embedded_module);
+        dialog->embedded_module = NULL;
+    }
 }
 
 
@@ -796,8 +810,7 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
 
 
 static void
-xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
-                                         XfceSettingsManagerDialog *dialog)
+xfce_settings_manager_dialog_plug_added (XfceSettingsManagerDialog *dialog)
 {
     /* set dialog information from desktop file */
     xfce_settings_manager_dialog_set_title (dialog,
@@ -833,7 +846,7 @@ xfce_settings_manager_dialog_plug_removed (GtkWidget                 *socket,
 
 
 
-static void
+static gboolean
 xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
                                     GarconMenuItem            *item)
 {
@@ -846,12 +859,15 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
     gchar          *filename;
     XfceRc         *rc;
     gboolean        pluggable = FALSE;
+    gboolean        in_process = FALSE;
+    gchar          *module_path = NULL;
     gchar          *cmd;
     gchar          *uri;
     GtkWidget      *socket;
     GdkCursor      *cursor;
+    gboolean        success = FALSE;
 
-    g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+    g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
 
     screen = gtk_window_get_screen (GTK_WINDOW (dialog));
 
@@ -877,6 +893,8 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         pluggable = xfce_rc_read_bool_entry (rc, "X-XfcePluggable", FALSE);
         if (pluggable)
         {
+            in_process = xfce_rc_read_bool_entry (rc, "X-XfcePluggableInProcess", FALSE);
+            module_path = g_strdup (xfce_rc_read_entry (rc, "X-XfcePluggableModulePath", NULL));
             dialog->help_page = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpPage", NULL));
             dialog->help_component = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpComponent", NULL));
             dialog->help_version = g_strdup (xfce_rc_read_entry (rc, "X-XfceHelpVersion", NULL));
@@ -885,7 +903,8 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         xfce_rc_close (rc);
     }
 
-    if (pluggable)
+#ifdef GDK_WINDOWING_X11
+    if (pluggable && !in_process && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {
         /* fake startup notification */
         display = gdk_display_get_default ();
@@ -898,7 +917,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         /* create fresh socket */
         socket = gtk_socket_new ();
         gtk_container_add (GTK_CONTAINER (dialog->socket_viewport), socket);
-        g_signal_connect (G_OBJECT (socket), "plug-added",
+        g_signal_connect_swapped (G_OBJECT (socket), "plug-added",
             G_CALLBACK (xfce_settings_manager_dialog_plug_added), dialog);
         g_signal_connect (G_OBJECT (socket), "plug-removed",
             G_CALLBACK (xfce_settings_manager_dialog_plug_removed), dialog);
@@ -909,7 +928,8 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
 
         /* spawn dialog with socket argument */
         cmd = g_strdup_printf ("%s --socket-id=%d", command, (gint)gtk_socket_get_id (GTK_SOCKET (socket)));
-        if (!xfce_spawn_command_line (screen, cmd, FALSE, FALSE, TRUE, &error))
+        success = xfce_spawn_command_line (screen, cmd, FALSE, FALSE, TRUE, &error);
+        if (!success)
         {
             gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
 
@@ -918,11 +938,71 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
             g_error_free (error);
         }
         g_free (cmd);
+    } else
+#endif
+    if (pluggable & in_process)
+    {
+        GModule *module = NULL;
+        GError *error = NULL;
+
+        xfce_settings_manager_dialog_remove_socket (dialog);
+
+        if (module_path == NULL)
+        {
+            gchar *name = g_file_get_basename (desktop_file);
+            if (G_LIKELY (g_str_has_suffix (name, ".desktop")))
+            {
+                name[strlen(name) - 8] = '\0';
+            }
+            module_path = g_module_build_path (SETTINGS_DIALOG_LIBRARY_DIR, name);
+            g_free (name);
+        }
+
+        module = g_module_open_full (module_path, G_MODULE_BIND_LOCAL, &error);
+        if (G_LIKELY (module != NULL))
+        {
+            GtkWidget *(*get_dialog_widget_func)(GError **) = NULL;
+
+            if (G_LIKELY (g_module_symbol (module, "xfce_settings_dialog_impl_get_dialog_widget", (gpointer *)&get_dialog_widget_func)))
+            {
+                GtkWidget *dialog_widget = get_dialog_widget_func(&error);
+
+                if (G_LIKELY (dialog_widget != NULL))
+                {
+                    success = TRUE;
+
+                    gtk_container_add (GTK_CONTAINER (dialog->socket_viewport), dialog_widget);
+                    gtk_widget_show (dialog_widget);
+
+                    dialog->socket_item = g_object_ref (item);
+                    dialog->embedded_module = module;
+
+                    xfce_settings_manager_dialog_plug_added (dialog);
+                }
+            }
+            else
+            {
+                error = g_error_new (G_MODULE_ERROR, G_MODULE_ERROR_FAILED, _("Unable to find required symbols in dialog library '%s'"), module_path);
+            }
+        }
+
+        if (G_UNLIKELY (!success))
+        {
+            if (module != NULL)
+            {
+                g_module_close (module);
+            }
+
+            xfce_dialog_show_error (GTK_WINDOW (dialog), error,
+                                    _("Unable to start \%s\""), garcon_menu_item_get_name (item));
+            g_error_free (error);
+        }
     }
     else
     {
         snotify = garcon_menu_item_supports_startup_notification (item);
-        if (!xfce_spawn_command_line (screen, command, FALSE, snotify, TRUE, &error))
+        success = xfce_spawn_command_line (screen, command, FALSE, snotify, TRUE, &error);
+        if (!success)
         {
             xfce_dialog_show_error (GTK_WINDOW (dialog), error,
                                     _("Unable to start \"%s\""), command);
@@ -930,7 +1010,10 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         }
     }
 
+  g_free (module_path);
   g_free (command);
+
+  return success;
 }
 
 
@@ -1317,7 +1400,8 @@ xfce_settings_manager_dialog_new (void)
 
 gboolean
 xfce_settings_manager_dialog_show_dialog (XfceSettingsManagerDialog *dialog,
-                                          const gchar               *dialog_name)
+                                          const gchar               *dialog_name,
+                                          gboolean                   standalone)
 {
     GtkTreeModel   *model = GTK_TREE_MODEL (dialog->store);
     GtkTreeIter     iter;
@@ -1340,8 +1424,14 @@ xfce_settings_manager_dialog_show_dialog (XfceSettingsManagerDialog *dialog,
              desktop_id = garcon_menu_item_get_desktop_id (item);
              if (g_strcmp0 (desktop_id, name) == 0)
              {
-                  xfce_settings_manager_dialog_spawn (dialog, item);
-                  found = TRUE;
+                  if (xfce_settings_manager_dialog_spawn (dialog, item))
+                  {
+                      if (standalone)
+                      {
+                          gtk_widget_hide (dialog->button_back);
+                      }
+                      found = TRUE;
+                  }
              }
 
              g_object_unref (G_OBJECT (item));
