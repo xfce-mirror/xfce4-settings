@@ -34,6 +34,10 @@
 #include <gtk/gtkx.h>
 #include <gdk/gdkkeysyms.h>
 
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#endif
+
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <xfconf/xfconf.h>
@@ -897,7 +901,8 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         xfce_rc_close (rc);
     }
 
-    if (pluggable && !in_process)
+#ifdef GDK_WINDOWING_X11
+    if (pluggable && !in_process && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {
         /* fake startup notification */
         display = gdk_display_get_default ();
@@ -931,8 +936,9 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
             g_error_free (error);
         }
         g_free (cmd);
-    }
-    else if (pluggable & in_process)
+    } else
+#endif
+    if (pluggable & in_process)
     {
         gchar *name;
         gchar *module_path;
