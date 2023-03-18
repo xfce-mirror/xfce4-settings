@@ -37,11 +37,13 @@
 
 static gboolean opt_version = FALSE;
 static gchar   *opt_dialog = NULL;
+static gboolean opt_standalone = FALSE;
 
 static GOptionEntry option_entries[] =
 {
     { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
     { "dialog", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_dialog, N_("Settings dialog to show"), NULL },
+    { "standalone", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_standalone, N_("Show only the selected dialog (requires --dialog)"), NULL },
     { NULL }
 };
 
@@ -103,7 +105,7 @@ main(int argc,
     gtk_window_present (GTK_WINDOW (dialog));
 
     if (opt_dialog != NULL
-        && !xfce_settings_manager_dialog_show_dialog (XFCE_SETTINGS_MANAGER_DIALOG(dialog), opt_dialog))
+        && !xfce_settings_manager_dialog_show_dialog (XFCE_SETTINGS_MANAGER_DIALOG(dialog), opt_dialog, opt_standalone))
     {
         g_message ("Dialog \"%s\" not found.", opt_dialog);
     }
