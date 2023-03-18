@@ -1,6 +1,7 @@
 AM_CPPFLAGS = \
 	-I${top_srcdir} \
 	-DMENUFILE=\"$(sysconfdir)/xdg/menus/xfce-settings-manager.menu\" \
+	-DLIBDIR=\"$(libdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfce4-settings-manager\" \
 	$(PLATFORM_CPPFLAGS)
@@ -14,6 +15,7 @@ xfce4_settings_manager_SOURCES = \
 	xfce-settings-manager-dialog.h
 
 xfce4_settings_manager_CFLAGS = \
+	$(GMODULE_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
@@ -29,6 +31,7 @@ xfce4_settings_manager_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_settings_manager_LDADD = \
+	$(GMODULE_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
@@ -47,7 +50,8 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	$(menu_DATA)
+	$(menu_DATA) \
+	README.md
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
