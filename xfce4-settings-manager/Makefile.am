@@ -55,7 +55,8 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 EXTRA_DIST = \
 	$(pkgconfig_in_files) \
 	$(desktop_in_files) \
-	$(menu_DATA)
+	$(menu_DATA) \
+	README.md
 
 DISTCLEANFILES = \
 	$(pkgconfig_DATA) \
