@@ -1144,14 +1144,14 @@ xfce_displays_helper_list_crtcs (XfceDisplaysHelper *helper)
         crtc->noutput = crtc_info->noutput;
         crtc->outputs = NULL;
         if (crtc_info->noutput > 0)
-            crtc->outputs = g_memdup (crtc_info->outputs,
-                                      crtc_info->noutput * sizeof (RROutput));
+            crtc->outputs = g_memdup2 (crtc_info->outputs,
+                                       crtc_info->noutput * sizeof (RROutput));
 
         crtc->npossible = crtc_info->npossible;
         crtc->possible = NULL;
         if (crtc_info->npossible > 0)
-            crtc->possible = g_memdup (crtc_info->possible,
-                                       crtc_info->npossible * sizeof (RROutput));
+            crtc->possible = g_memdup2 (crtc_info->possible,
+                                        crtc_info->npossible * sizeof (RROutput));
 
         crtc->changed = FALSE;
         XRRFreeCrtcInfo (crtc_info);
