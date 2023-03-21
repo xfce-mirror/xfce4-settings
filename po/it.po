@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-03 00:46+0100\n"
+"POT-Creation-Date: 2023-03-15 00:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Dmytro Tokayev, 2021,2023\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce4-settings/language/it/)\n"
@@ -79,7 +79,7 @@ msgstr "Accessibilità"
 #: ../dialogs/display-settings/main.c:4431
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 #: ../xfce4-settings-editor/main.c:166
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:232
 msgid "_Close"
@@ -91,7 +91,7 @@ msgstr "_Chiudi"
 #: ../dialogs/display-settings/display-dialog.glade.h:16
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/mime-settings/xfce-mime-window.c:190
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 #: ../xfce4-settings-editor/main.c:165
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:221
 msgid "_Help"
@@ -327,7 +327,7 @@ msgstr "Informazioni di versione"
 #: ../dialogs/display-settings/main.c:4359
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
-#: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:120
+#: ../dialogs/mouse-settings/main.c:2042 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
 #: ../xfsettingsd/main.c:280
 #, c-format
@@ -339,7 +339,7 @@ msgstr "Digitare \"%s --help\" per le informazioni d'uso."
 #: ../dialogs/color-settings/main.c:1396
 #: ../dialogs/display-settings/main.c:4378
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
-#: ../dialogs/mouse-settings/main.c:1911 ../xfce4-settings-editor/main.c:139
+#: ../dialogs/mouse-settings/main.c:2061 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
@@ -349,7 +349,7 @@ msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
 #: ../dialogs/color-settings/main.c:1397
 #: ../dialogs/display-settings/main.c:4379
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
-#: ../dialogs/mouse-settings/main.c:1912 ../xfce4-settings-editor/main.c:140
+#: ../dialogs/mouse-settings/main.c:2062 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -369,6 +369,7 @@ msgstr "assistive;technologies;keys;sticky;bounce;emulation;screen readers;magni
 #: ../dialogs/appearance-settings/main.c:1295
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "None"
 msgstr "Nessuno"
 
@@ -1364,7 +1365,7 @@ msgid "Restore num l_ock state on startup"
 msgstr "Ripristina lo stato di num l_ock all'avvio"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "General"
 msgstr "Generali"
 
@@ -1891,8 +1892,8 @@ msgstr "Impostato dall'utente"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:650
 #: ../dialogs/mime-settings/xfce-mime-window.c:812
-#: ../dialogs/mouse-settings/main.c:401 ../dialogs/mouse-settings/main.c:403
-#: ../dialogs/mouse-settings/main.c:466
+#: ../dialogs/mouse-settings/main.c:409 ../dialogs/mouse-settings/main.c:411
+#: ../dialogs/mouse-settings/main.c:474
 msgid "Default"
 msgstr "Predefinito"
 
@@ -2188,233 +2189,245 @@ msgid "DEVICE NAME"
 msgstr "NOME DISPOSITIVO"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:146
+#: ../dialogs/mouse-settings/main.c:154
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:156
+#: ../dialogs/mouse-settings/main.c:164
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:167
+#: ../dialogs/mouse-settings/main.c:175
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+msgid "Use bottom areas as left, middle or right buttons"
+msgstr "Usa aree in fondo come tasti sinistro, medio oppure destro"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
+msgstr "Clicca con 1, 2 oppure 3 dita come click sinistro, destro o medio"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Disabled"
 msgstr "Disabilitato"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Edge scrolling"
 msgstr "Scorrimento al bordo"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Two-finger scrolling"
 msgstr "Scorrimento a due dita"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Circular scrolling"
 msgstr "Scorrimento circolare"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "Pen (absolute)"
 msgstr "Penna (assoluto)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Mouse (relative)"
 msgstr "Mouse (relativo)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "None (right-handed)"
 msgstr "Nessuno (destri)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Half (left-handed)"
 msgstr "Metà (mancini)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Clockwise"
 msgstr "In senso orario"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Counterclockwise"
 msgstr "In senso antiorario"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
 msgstr "Mouse e touchpad"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "De_vice:"
 msgstr "Dispositi_vi"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Le_ft-handed"
 msgstr "_Mancino"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Ri_ght-handed"
 msgstr "Dest_ro"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Reverse scroll d_irection"
 msgstr "Inverti direzione rote_lla"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Se selezionata, la rotella del mouse funzionerà al contrario"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Buttons"
 msgstr "Pulsanti"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "_Reset to Defaults"
 msgstr "Ripristina pre_definiti"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Imposta l'accelerazione e la sensibilità ai valori predefiniti per il dispositivo selezionato"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "Sensitivit_y:"
 msgstr "_Sensibilità:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Acceleratio_n:"
 msgstr "_Accelerazione:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Il fattore con cui verrà aumentata la velocità del puntatore al movimento del mouse"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Il numero di pixel di cui deve spostarsi il puntatore, in un breve intervallo di tempo, prima che acceleri"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Pointer Speed"
 msgstr "Velocità puntatore"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "B_uttons and Feedback"
 msgstr "P_ulsanti e feedback"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Disable touchpad _while typing"
 msgstr "Disabilita il to_uchpad quando si digita"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Se selezionata, il touchpad verrà disabilitato quando viene usata la tastiera"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Duratio_n:"
 msgstr "D_urata:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Tap touchpad to clic_k"
 msgstr "T_occo del touchpad per fare clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+msgid "Click m_ethod:"
+msgstr "M_etodo di click:"
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Scrolling _mode:"
 msgstr "Modalità di sco_rrimento:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "Enable hori_zontal scrolling"
 msgstr "Attiva lo scorrimento oriz_zontale"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Scrolling"
 msgstr "Scorrimento"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "T_ouchpad"
 msgstr "T_ouchpad"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Trac_king mode:"
 msgstr "Modalità pu_ntamento:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "_Rotation:"
 msgstr "Rota_zione:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Tab_let"
 msgstr "Tab_let"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "_Devices"
 msgstr "_Dispositivi"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Th_reshold:"
 msgstr "So_glia:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Il numero di pixel di cui si deve spostare il puntatore per avviare l'operazione di trascinamento"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "Drag and Drop"
 msgstr "Drag and Drop"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "Ti_me:"
 msgstr "Te_mpo:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Due clic successivi con il mouse in questo intervallo di tempo (in millisecondi) saranno considerati come un doppio clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "D_istance:"
 msgstr "_Distanza:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Il puntatore del mouse non deve spostarsi più di questa distanza tra due clic affinché questi siano interpretati come un doppio clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "Double Click"
 msgstr "Doppio clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid "_Behavior"
 msgstr "C_omportamento"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:54
 msgid "Cursor si_ze:"
 msgstr "Dimen_sione del cursore:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:55
 msgid "Size"
 msgstr "Dimensione"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:56
 msgid "Preview"
 msgstr "Anteprima"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:57
 msgid "_Theme"
 msgstr "_Tema"
 
