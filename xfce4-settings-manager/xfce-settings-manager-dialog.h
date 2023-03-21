@@ -39,7 +39,8 @@ GType      xfce_settings_manager_dialog_get_type    (void) G_GNUC_CONST;
 GtkWidget *xfce_settings_manager_dialog_new         (void);
 
 gboolean   xfce_settings_manager_dialog_show_dialog (XfceSettingsManagerDialog *dialog,
-                                                     const gchar               *dialog_name);
+                                                     const gchar               *dialog_name,
+                                                     gboolean                   standalone);
 
 G_END_DECLS
 
