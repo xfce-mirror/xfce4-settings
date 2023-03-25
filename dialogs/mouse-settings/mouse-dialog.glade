@@ -373,7 +373,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
-                                        <property name="tooltip_text" translatable="yes">If disabled, high resolution wheel scroll events are discarded</property>
+                                        <property name="tooltip_text" translatable="yes">When enabled, scrolling will be much more sensitive on supported devices</property>
                                         <property name="halign">start</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
@@ -659,8 +659,8 @@
                                         <property name="can-focus">False</property>
                                         <property name="spacing">12</property>
                                         <child>
-                                          <object class="GtkLabel" id="label24">
-                                            <property name="visible">True</property>
+                                          <object class="GtkLabel" id="libinput-click-method-label">
+                                            <property name="visible">False</property>
                                             <property name="can-focus">False</property>
                                             <property name="label" translatable="yes">Click m_ethod:</property>
                                             <property name="use_underline">True</property>
@@ -674,7 +674,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkComboBox" id="libinput-click-method-box">
-                                            <property name="visible">True</property>
+                                            <property name="visible">False</property>
                                             <property name="can-focus">False</property>
                                             <property name="model">libinput-click-methods-store</property>
                                             <child>

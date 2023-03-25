@@ -1077,7 +1077,7 @@ mouse_settings_libinput_toggled (GObject     *object,
 
 
 static void
-mouse_settings_libinput_hires_scrolling_changed (GObject     *object,
+mouse_settings_libinput_hires_scrolling_toggled (GObject     *object,
                                                  GtkBuilder  *builder)
 {
     mouse_settings_libinput_toggled (object, builder, LIBINPUT_PROP_HIRES_WHEEL_SCROLL_ENABLED);
@@ -1572,6 +1572,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 
     object = gtk_builder_get_object (builder, "libinput-hires-scrolling");
 #ifdef HAVE_LIBINPUT
+    /* don't show hires scrolling for touchpads, it's only for mouse wheels */
     if (is_libinput && has_hires_scrolling && !is_synaptics)
     {
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), hires_scrolling);
@@ -1691,6 +1692,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
             if (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (object), &iter, NULL, 2))
                 gtk_list_store_set (GTK_LIST_STORE (object), &iter, 1, libinput_click_methods_available & LIBINPUT_CLICK_METHOD_CLICK_FINGER, -1);
         }
+
+        object = gtk_builder_get_object (builder, "libinput-click-method-label");
+        gtk_widget_set_visible (GTK_WIDGET (object), is_libinput);
 
         object = gtk_builder_get_object (builder, "synaptics-disable-duration-box");
         gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
@@ -2189,7 +2193,7 @@ main (gint argc, gchar **argv)
 #ifdef HAVE_LIBINPUT
             object = gtk_builder_get_object (builder, "libinput-hires-scrolling");
             g_signal_connect (G_OBJECT (object), "toggled",
-                              G_CALLBACK (mouse_settings_libinput_hires_scrolling_changed), builder);
+                              G_CALLBACK (mouse_settings_libinput_hires_scrolling_toggled), builder);
 #endif
 
             object = gtk_builder_get_object (builder, "device-reset-feedback");
