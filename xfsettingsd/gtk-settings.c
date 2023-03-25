@@ -271,14 +271,11 @@ xfce_gtk_settings_helper_init (XfceGtkSettingsHelper *helper)
     for (guint i = 0; i < n_pspecs; i++)
     {
         gchar *xfconf_prop = gtk_setting_to_xfconf_prop (g_param_spec_get_name (pspecs[i]), net_properties);
-        if (g_hash_table_contains (helper->gsettings_data, xfconf_prop))
-            g_free (xfconf_prop);
-        else
+        if (! g_hash_table_contains (helper->gsettings_data, xfconf_prop))
         {
-            GSettingsData *gsettings_data = g_new0 (GSettingsData, 1);
-            gsettings_data->gtksetting = g_param_spec_get_name (pspecs[i]);
-            g_hash_table_insert (helper->gsettings_data, xfconf_prop, gsettings_data);
+            /* TODO: check that properties not synchronized with GSettings are handled via gtk-modules */
         }
+        g_free (xfconf_prop);
     }
 
     helper->channel = xfconf_channel_get ("xsettings");
@@ -287,7 +284,7 @@ xfce_gtk_settings_helper_init (XfceGtkSettingsHelper *helper)
     /*
      * Initialize GSettings with Xfconf. Since we have no natural way to decide who was
      * last modified, a choice must be made. We might as well choose to give precedence
-     * to our settings manager, this allows for example the restoration of Xfce settings.
+     * to our settings manager, this allows for example a restoration of Xfce settings.
      */
     g_hash_table_iter_init (&iter, helper->xfconf_data);
     while (g_hash_table_iter_next (&iter, NULL, (gpointer *) &data))
@@ -368,6 +365,10 @@ xfce_gtk_settings_helper_channel_property_changed (XfconfChannel *channel,
     GSettingsData *data;
     GParamSpec *pspec;
     const GValue *default_value;
+    GSettings *gsettings;
+    GVariant *old_variant;
+    GVariant *new_variant;
+    GValue new_value = G_VALUE_INIT;
 
     settings = gtk_settings_get_default ();
     if (settings == NULL)
@@ -378,7 +379,7 @@ xfce_gtk_settings_helper_channel_property_changed (XfconfChannel *channel,
 
     data = g_hash_table_lookup (helper->gsettings_data, property);
 
-    /* not a GtkSettings property since the table contains them all */
+    /* not a synchronized property */
     if (data == NULL)
         return;
 
@@ -396,37 +397,25 @@ xfce_gtk_settings_helper_channel_property_changed (XfconfChannel *channel,
         return;
     }
 
-    /* property synchronized with GSettings */
-    if (data->schema != NULL)
-    {
-        GSettings *gsettings = g_hash_table_lookup (helper->gsettings_objs, data->schema);
-        GVariant *old_variant = g_settings_get_value (gsettings, data->key);
-        GVariant *new_variant;
-        GValue new_value = G_VALUE_INIT;
+    /* conversion rules of g_dbus_gvalue_to_gvariant() do not correspond to those of
+     * g_value_transform() so this intermediate conversion is necessary in general */
+    gsettings = g_hash_table_lookup (helper->gsettings_objs, data->schema);
+    old_variant = g_settings_get_value (gsettings, data->key);
+    g_dbus_gvariant_to_gvalue (old_variant, &new_value);
+    g_value_reset (&new_value);
+    g_value_transform (value, &new_value);
+    new_variant = g_dbus_gvalue_to_gvariant (&new_value, g_variant_get_type (old_variant));
 
-        /* conversion rules of g_dbus_gvalue_to_gvariant() do not correspond to those of
-         * g_value_transform() so this intermediate conversion is necessary in general */
-        g_dbus_gvariant_to_gvalue (old_variant, &new_value);
-        g_value_reset (&new_value);
-        g_value_transform (value, &new_value);
-        new_variant = g_dbus_gvalue_to_gvariant (&new_value, g_variant_get_type (old_variant));
+    /* avoid cycling */
+    g_signal_handlers_block_by_func (gsettings, xfce_gtk_settings_helper_gsettings_changed, helper);
 
-        /* avoid cycling */
-        g_signal_handlers_block_by_func (gsettings, xfce_gtk_settings_helper_gsettings_changed, helper);
+    /* we checked what we could but the value could be out of range for example */
+    if (! g_settings_set_value (gsettings, data->key, new_variant))
+        g_warning ("Failed to set GSettings id '%s.%s'", data->schema, data->key);
 
-        /* we checked what we could but the value could be out of range for example */
-        if (! g_settings_set_value (gsettings, data->key, new_variant))
-            g_warning ("Failed to set GSettings id '%s.%s'", data->schema, data->key);
+    g_signal_handlers_unblock_by_func (gsettings, xfce_gtk_settings_helper_gsettings_changed, helper);
 
-        g_signal_handlers_unblock_by_func (gsettings, xfce_gtk_settings_helper_gsettings_changed, helper);
-
-        g_value_unset (&new_value);
-        g_variant_unref (new_variant);
-        g_variant_unref (old_variant);
-    }
-    /* property synchronized via gtk-modules */
-    else
-    {
-        /* TODO */
-    }
+    g_variant_unref (new_variant);
+    g_value_unset (&new_value);
+    g_variant_unref (old_variant);
 }
