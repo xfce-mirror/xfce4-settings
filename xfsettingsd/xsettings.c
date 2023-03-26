@@ -459,7 +459,7 @@ xfce_xsettings_helper_prop_changed (XfconfChannel       *channel,
     xfsettings_dbg_filtered (XFSD_DEBUG_XSETTINGS, "prop \"%s\" changed (type=%s)",
                              prop_name, G_VALUE_TYPE_NAME (value));
 
-    if (G_LIKELY (value != NULL))
+    if (G_LIKELY (G_VALUE_TYPE (value) != G_TYPE_INVALID))
     {
         setting = g_hash_table_lookup (helper->settings, prop_name);
         if (G_LIKELY (setting != NULL))
