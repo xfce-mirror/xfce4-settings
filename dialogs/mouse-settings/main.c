@@ -90,8 +90,6 @@ static GOptionEntry option_entries[] =
 };
 
 #ifdef HAVE_XCURSOR
-static const gchar *gsettings_category_gnome_interface = "org.gnome.desktop.interface";
-
 /* icon names for the preview widget */
 static const gchar *preview_names[] = {
     "left_ptr",            "left_ptr_watch",    "watch",             "hand2",
@@ -352,7 +350,6 @@ mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
     gboolean      has_selection;
     gchar        *path, *name;
     GObject      *image;
-    g_autoptr(GSettings) gsettings = NULL;
 
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
@@ -369,13 +366,6 @@ mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
         if (locked == 0)
         {
             xfconf_channel_set_string (xsettings_channel, "/Gtk/CursorThemeName", name);
-
-            /* Keep gsettings in sync */
-            gsettings = g_settings_new (gsettings_category_gnome_interface);
-            if (gsettings)
-            {
-                g_settings_set_string (gsettings, "cursor-theme", name);
-            }
         }
 
         /* cleanup */
