@@ -67,6 +67,7 @@ AC_PATH_PROG([XMLLINT], [xmllint], [xmllint])
 if test -z "$XMLLINT"; then
   AC_MSG_ERROR([Could not find xmllint in PATH])
 fi
+XDT_CHECK_PACKAGE_BINARY([GDBUS_CODEGEN], [gio-2.0], [gdbus_codegen], [gdbus-codegen])
 
 dnl **************************
 dnl *** Initialize libtool ***
