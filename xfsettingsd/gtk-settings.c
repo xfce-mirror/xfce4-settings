@@ -22,10 +22,16 @@
 
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_WAYLAND
+#include <gdk/gdkwayland.h>
+#else
+#define GDK_IS_WAYLAND_DISPLAY(display) FALSE
+#endif
 #include <xfconf/xfconf.h>
 
 #include "gtk-settings.h"
 #include "xsettings-properties.h"
+#include "gtk-settings-exported.h"
 
 
 
@@ -43,6 +49,8 @@ static void         xfce_gtk_settings_helper_channel_property_changed      (Xfco
 struct _XfceGtkSettingsHelper
 {
     GObject parent;
+
+    XfceGtkSettingsHelperExported *skeleton;
 
     GHashTable *gsettings_objs;
     XfconfChannel *channel;
@@ -155,6 +163,45 @@ gtk_setting_to_xfconf_prop (const gchar *setting,
 
 
 static void
+bus_acquired (GDBusConnection *connection,
+              const gchar *name,
+              gpointer user_data)
+{
+    XfceGtkSettingsHelper *helper = user_data;
+    GError *error = NULL;
+
+    helper->skeleton = xfce_gtk_settings_helper_exported_skeleton_new ();
+    if (! g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (helper->skeleton),
+                                            connection, "/org/gtk/Settings", &error))
+    {
+        g_warning ("Failed to export object at path '/org/gtk/Settings': %s", error->message);
+        g_error_free (error);
+    }
+    else
+        xfce_gtk_settings_helper_exported_set_modules (helper->skeleton, "xfsettingsd-gtk-settings-sync");
+
+    g_object_unref (helper);
+}
+
+
+
+static void
+name_lost (GDBusConnection *connection,
+           const gchar *name,
+           gpointer user_data)
+{
+    if (connection == NULL)
+    {
+        g_warning ("Failed to connect to session bus");
+        g_object_unref (user_data);
+    }
+    else
+        g_warning ("Name '%s' lost on session bus", name);
+}
+
+
+
+static void
 xfce_gtk_settings_helper_init (XfceGtkSettingsHelper *helper)
 {
     GHashTable *net_properties;
@@ -162,6 +209,11 @@ xfce_gtk_settings_helper_init (XfceGtkSettingsHelper *helper)
     GSettingsSchemaSource *source;
     GHashTableIter iter;
     XfconfData *data;
+
+    /* synchronization via gtk-modules */
+    if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
+        g_bus_own_name (G_BUS_TYPE_SESSION, "org.gtk.Settings", G_BUS_NAME_OWNER_FLAGS_NONE,
+                        bus_acquired, NULL, name_lost, g_object_ref (helper), NULL);
 
     settings = gtk_settings_get_default ();
     if (settings == NULL)
@@ -289,6 +341,9 @@ static void
 xfce_gtk_settings_helper_finalize (GObject *object)
 {
     XfceGtkSettingsHelper *helper = XFCE_GTK_SETTINGS_HELPER (object);
+
+    if (helper->skeleton != NULL)
+        g_object_unref (helper->skeleton);
 
     if (helper->gsettings_objs != NULL)
     {

@@ -12,6 +12,8 @@ bin_PROGRAMS = \
 	xfsettingsd
 
 xfsettingsd_built_SOURCES = \
+	gtk-settings-exported.c \
+	gtk-settings-exported.h \
 	xsettings-properties.h
 
 xfsettingsd_SOURCES = \
@@ -117,6 +119,29 @@ xfsettingsd_LDADD += \
 endif
 endif
 
+moduledir = $(libdir)/gtk-3.0/modules
+
+module_LTLIBRARIES = \
+	libxfsettingsd-gtk-settings-sync.la
+
+libxfsettingsd_gtk_settings_sync_la_SOURCES = \
+	gtk-settings-module.c
+
+libxfsettingsd_gtk_settings_sync_la_CFLAGS = \
+	$(GTK_CFLAGS) \
+	$(XFCONF_CFLAGS)
+
+libxfsettingsd_gtk_settings_sync_la_LDFLAGS = \
+	-avoid-version \
+	-module \
+	-no-undefined \
+	-export-symbols-regex '^(g_module_check|gtk_module)_init' \
+	$(PLATFORM_LDFLAGS)
+
+libxfsettingsd_gtk_settings_sync_la_LIBADD = \
+	$(GTK_LIBS) \
+	$(XFCONF_LIBS)
+
 settingsdir = $(sysconfdir)/xdg/xfce4/xfconf/xfce-perchannel-xml
 settings_DATA = xsettings.xml
 
@@ -142,12 +167,21 @@ xsettings-properties.h: $(settings_DATA)
 		'# pragma GCC diagnostic pop' \
 		'#endif' >> $@;
 
+gtk-settings-exported.c:
+gtk-settings-exported.h: gtk-settings-exported.xml Makefile
+	$(AM_V_GEN) $(GDBUS_CODEGEN) \
+	--interface-prefix org.gtk.Settings \
+	--c-namespace XfceGtkSettingsHelper \
+	--generate-c-code gtk-settings-exported \
+	$(srcdir)/gtk-settings-exported.xml
+
 BUILT_SOURCES = \
 	$(xfsettingsd_built_SOURCES)
 
 EXTRA_DIST = \
 	$(settings_DATA) \
-	$(autostart_in_files)
+	$(autostart_in_files) \
+	gtk-settings-exported.xml
 
 DISTCLEANFILES = \
 	$(autostart_DATA) \
