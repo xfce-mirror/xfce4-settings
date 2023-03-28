@@ -11,7 +11,13 @@ AM_CPPFLAGS = \
 bin_PROGRAMS = \
 	xfsettingsd
 
+xfsettingsd_built_SOURCES = \
+	gtk-settings-exported.c \
+	gtk-settings-exported.h \
+	xsettings-properties.h
+
 xfsettingsd_SOURCES = \
+	$(xfsettingsd_built_SOURCES) \
 	main.c \
 	accessibility.c \
 	accessibility.h \
@@ -21,6 +27,8 @@ xfsettingsd_SOURCES = \
 	clipboard-manager.h \
 	gtk-decorations.c \
 	gtk-decorations.h \
+	gtk-settings.c \
+	gtk-settings.h \
 	keyboards.c \
 	keyboards.h \
 	keyboard-shortcuts.c \
@@ -53,12 +61,12 @@ xfsettingsd_CFLAGS = \
 	$(FONTCONFIG_CFLAGS) \
 	$(LIBINPUT_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
-    -DGTK_DISABLE_SINGLE_INCLUDES \
-    -DGDK_DISABLE_DEPRECATED \
-    -DGTK_DISABLE_DEPRECATED \
-    -DGSEAL_ENABLE \
-    -DGDK_PIXBUF_DISABLE_DEPRECATED \
-    -DG_DISABLE_DEPRECATED
+	-DGTK_DISABLE_SINGLE_INCLUDES \
+	-DGDK_DISABLE_DEPRECATED \
+	-DGTK_DISABLE_DEPRECATED \
+	-DGSEAL_ENABLE \
+	-DGDK_PIXBUF_DISABLE_DEPRECATED \
+	-DG_DISABLE_DEPRECATED
 
 xfsettingsd_LDFLAGS = \
 	-no-undefined \
@@ -109,6 +117,29 @@ xfsettingsd_LDADD += \
 endif
 endif
 
+moduledir = $(libdir)/gtk-3.0/modules
+
+module_LTLIBRARIES = \
+	libxfsettingsd-gtk-settings-sync.la
+
+libxfsettingsd_gtk_settings_sync_la_SOURCES = \
+	gtk-settings-module.c
+
+libxfsettingsd_gtk_settings_sync_la_CFLAGS = \
+	$(GTK_CFLAGS) \
+	$(XFCONF_CFLAGS)
+
+libxfsettingsd_gtk_settings_sync_la_LDFLAGS = \
+	-avoid-version \
+	-module \
+	-no-undefined \
+	-export-symbols-regex '^(g_module_check|gtk_module)_init' \
+	$(PLATFORM_LDFLAGS)
+
+libxfsettingsd_gtk_settings_sync_la_LIBADD = \
+	$(GTK_LIBS) \
+	$(XFCONF_LIBS)
+
 settingsdir = $(sysconfdir)/xdg/xfce4/xfconf/xfce-perchannel-xml
 settings_DATA = xsettings.xml
 
@@ -117,11 +148,41 @@ autostart_in_files = xfsettingsd.desktop.in
 autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+xsettings-properties.h: $(settings_DATA)
+	$(AM_V_GEN) \
+	printf '%s\n' \
+		'#if G_GNUC_CHECK_VERSION (4, 6)' \
+		'# pragma GCC diagnostic push' \
+		'# pragma GCC diagnostic ignored "-Wunused-variable"' \
+		'#endif' > $@; \
+	for _prefix in $(shell $(XMLLINT) --xpath '//channel/property/@name' $< | $(SED) -E 's/name="(.*)"/\1/'); do \
+		echo "static const gchar *xsettings_properties_$${_prefix}[] = {" \
+		&& $(XMLLINT) --xpath "//channel/property[@name=\"$${_prefix}\"]/property/@name" $< | $(SED) -E 's/name=(.*)/\1,/' \
+		&& echo '};'; \
+	done >> $@; \
+	printf '%s\n' \
+		'#if G_GNUC_CHECK_VERSION (4, 6)' \
+		'# pragma GCC diagnostic pop' \
+		'#endif' >> $@;
+
+gtk-settings-exported.c:
+gtk-settings-exported.h: gtk-settings-exported.xml Makefile
+	$(AM_V_GEN) $(GDBUS_CODEGEN) \
+	--interface-prefix org.gtk.Settings \
+	--c-namespace XfceGtkSettingsHelper \
+	--generate-c-code gtk-settings-exported \
+	$(srcdir)/gtk-settings-exported.xml
+
+BUILT_SOURCES = \
+	$(xfsettingsd_built_SOURCES)
+
 EXTRA_DIST = \
 	$(settings_DATA) \
-	$(autostart_in_files)
+	$(autostart_in_files) \
+	gtk-settings-exported.xml
 
 DISTCLEANFILES = \
-	$(autostart_DATA)
+	$(autostart_DATA) \
+	$(xfsettingsd_built_SOURCES)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
