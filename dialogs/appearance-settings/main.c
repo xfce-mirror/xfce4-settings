@@ -81,7 +81,6 @@ enum {
 	NUM_SYMBOLIC_COLORS
 };
 
-static const gchar *gsettings_category_gnome_interface = "org.gnome.desktop.interface";
 static const gchar* xft_hint_styles_array[] =
 {
     "hintnone", "hintslight", "hintmedium", "hintfull"
@@ -109,6 +108,7 @@ static GOptionEntry option_entries[] =
 
 /* Global xfconf channel */
 static XfconfChannel *xsettings_channel;
+static GSettings *desktop_interface_gsettings;
 
 typedef struct
 {
@@ -710,7 +710,6 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
     guint         i;
     gint          antialias, dpi, custom_dpi;
     GtkTreeModel *model;
-    g_autoptr(GSettings) gsettings = NULL;
 
     g_return_if_fail (property_name != NULL);
     g_return_if_fail (GTK_IS_BUILDER (builder));
@@ -818,17 +817,16 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
         }
 
         /* Keep gsettings in sync */
-        gsettings = g_settings_new (gsettings_category_gnome_interface);
-        if (gsettings)
+        if (desktop_interface_gsettings != NULL)
         {
             str = xfconf_channel_get_string (channel, property_name, NULL);
-            g_settings_set_string (gsettings, "gtk-theme", str);
+            g_settings_set_string (desktop_interface_gsettings, "gtk-theme", str);
 
             /* Also set the preferred color scheme (needed for GTK4) */
             if (str != NULL && g_str_has_suffix (str, "-dark"))
-                g_settings_set_string (gsettings, "color-scheme", "prefer-dark");
+                g_settings_set_string (desktop_interface_gsettings, "color-scheme", "prefer-dark");
             else
-                g_settings_reset (gsettings, "color-scheme");
+                g_settings_reset (desktop_interface_gsettings, "color-scheme");
 
             g_free (str);
         }
@@ -875,33 +873,30 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
         }
 
         /* Keep gsettings in sync */
-        gsettings = g_settings_new (gsettings_category_gnome_interface);
-        if (gsettings)
+        if (desktop_interface_gsettings != NULL)
         {
             str = xfconf_channel_get_string (channel, property_name, NULL);
-            g_settings_set_string (gsettings, "icon-theme", str);
+            g_settings_set_string (desktop_interface_gsettings, "icon-theme", str);
             g_free (str);
         }
     }
     else if (strcmp (property_name, "/Gtk/FontName") == 0)
     {
         /* Keep gsettings in sync */
-        gsettings = g_settings_new (gsettings_category_gnome_interface);
-        if (gsettings)
+        if (desktop_interface_gsettings != NULL)
         {
             str = xfconf_channel_get_string (channel, property_name, NULL);
-            g_settings_set_string (gsettings, "font-name", str);
+            g_settings_set_string (desktop_interface_gsettings, "font-name", str);
             g_free (str);
         }
     }
     else if (strcmp (property_name, "/Gtk/MonospaceFontName") == 0)
     {
         /* Keep gsettings in sync */
-        gsettings = g_settings_new (gsettings_category_gnome_interface);
-        if (gsettings)
+        if (desktop_interface_gsettings != NULL)
         {
             str = xfconf_channel_get_string (channel, property_name, NULL);
-            g_settings_set_string (gsettings, "monospace-font-name", str);
+            g_settings_set_string (desktop_interface_gsettings, "monospace-font-name", str);
             g_free (str);
         }
     }
@@ -1438,9 +1433,23 @@ main (gint argc, gchar **argv)
     xsettings_channel = xfconf_channel_new ("xsettings");
     if (G_LIKELY (xsettings_channel))
     {
+        GSettingsSchemaSource *source;
+
         /* hook to make sure the libxfce4ui library is linked */
         if (xfce_titled_dialog_get_type () == 0)
             return EXIT_FAILURE;
+
+        /* to synchronize some properties with GSettings */
+        source = g_settings_schema_source_get_default ();
+        if (source != NULL)
+          {
+            GSettingsSchema *schema = g_settings_schema_source_lookup (source, "org.gnome.desktop.interface", TRUE);
+            if (schema != NULL)
+              {
+                desktop_interface_gsettings = g_settings_new ("org.gnome.desktop.interface");
+                g_settings_schema_unref (schema);
+              }
+          }
 
         /* load the gtk user interface file*/
         builder = gtk_builder_new ();
@@ -1500,6 +1509,8 @@ main (gint argc, gchar **argv)
 
         /* release the channel */
         g_object_unref (G_OBJECT (xsettings_channel));
+        if (desktop_interface_gsettings != NULL)
+          g_object_unref (desktop_interface_gsettings);
     }
 
     /* shutdown xfconf */

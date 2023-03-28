@@ -63,8 +63,9 @@
 
 
 /* global setting channels */
-XfconfChannel *xsettings_channel;
-XfconfChannel *pointers_channel;
+static XfconfChannel *xsettings_channel;
+static XfconfChannel *pointers_channel;
+static GSettings *desktop_interface_gsettings;
 
 /* lock counter to avoid signals during updates */
 static gint locked = 0;
@@ -90,8 +91,6 @@ static GOptionEntry option_entries[] =
 };
 
 #ifdef HAVE_XCURSOR
-static const gchar *gsettings_category_gnome_interface = "org.gnome.desktop.interface";
-
 /* icon names for the preview widget */
 static const gchar *preview_names[] = {
     "left_ptr",            "left_ptr_watch",    "watch",             "hand2",
@@ -344,7 +343,6 @@ mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
     gboolean      has_selection;
     gchar        *path, *name;
     GObject      *image;
-    g_autoptr(GSettings) gsettings = NULL;
 
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
@@ -363,10 +361,9 @@ mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
             xfconf_channel_set_string (xsettings_channel, "/Gtk/CursorThemeName", name);
 
             /* Keep gsettings in sync */
-            gsettings = g_settings_new (gsettings_category_gnome_interface);
-            if (gsettings)
+            if (desktop_interface_gsettings != NULL)
             {
-                g_settings_set_string (gsettings, "cursor-theme", name);
+                g_settings_set_string (desktop_interface_gsettings, "cursor-theme", name);
             }
         }
 
@@ -1953,6 +1950,17 @@ main (gint argc, gchar **argv)
 
     if (G_LIKELY (pointers_channel && xsettings_channel))
     {
+        GSettingsSchemaSource *source = g_settings_schema_source_get_default ();
+        if (source != NULL)
+          {
+            GSettingsSchema *schema = g_settings_schema_source_lookup (source, "org.gnome.desktop.interface", TRUE);
+            if (schema != NULL)
+              {
+                desktop_interface_gsettings = g_settings_new ("org.gnome.desktop.interface");
+                g_settings_schema_unref (schema);
+              }
+          }
+
         /* load the Gtk+ user-interface file */
         builder = gtk_builder_new ();
         if (gtk_builder_add_from_string (builder, mouse_dialog_ui,
@@ -2140,6 +2148,8 @@ main (gint argc, gchar **argv)
         /* release the channels */
         g_object_unref (G_OBJECT (xsettings_channel));
         g_object_unref (G_OBJECT (pointers_channel));
+        if (desktop_interface_gsettings != NULL)
+          g_object_unref (desktop_interface_gsettings);
     }
 
     /* shutdown xfconf */
