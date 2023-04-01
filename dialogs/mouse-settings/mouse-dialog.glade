@@ -642,8 +642,8 @@
                                         <property name="can-focus">False</property>
                                         <property name="spacing">12</property>
                                         <child>
-                                          <object class="GtkLabel" id="label24">
-                                            <property name="visible">True</property>
+                                          <object class="GtkLabel" id="libinput-click-method-label">
+                                            <property name="visible">False</property>
                                             <property name="can-focus">False</property>
                                             <property name="label" translatable="yes">Click m_ethod:</property>
                                             <property name="use_underline">True</property>
@@ -657,7 +657,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkComboBox" id="libinput-click-method-box">
-                                            <property name="visible">True</property>
+                                            <property name="visible">False</property>
                                             <property name="can-focus">False</property>
                                             <property name="model">libinput-click-methods-store</property>
                                             <child>
