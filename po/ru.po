@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2021
-# Andrei Stepanov, 2022
+# Andrei Stepanov, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-06 12:51+0100\n"
+"POT-Creation-Date: 2022-11-28 15:00+0100\n"
 "PO-Revision-Date: 2020-12-28 17:23+0000\n"
-"Last-Translator: Andrei Stepanov, 2022\n"
+"Last-Translator: Andrei Stepanov, 2023\n"
 "Language-Team: Russian (https://www.transifex.com/xfce/teams/16840/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,13 +30,13 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4297
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4297
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Невозможно запросить версию используемого расширения RandR"
 
 #. 1.2 is required
-#: ../common/xfce-randr.c:304
+#: ../common/xfce-randr.c:307
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -45,21 +45,21 @@ msgstr ""
 "Эта система использует RandR %d.%d. Для работы настроек дисплея необходима "
 "версия 1.2 или выше"
 
-#: ../common/xfce-randr.c:594
+#: ../common/xfce-randr.c:597
 msgid "Laptop"
 msgstr "Ноутбук"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: ../common/xfce-randr.c:607 ../dialogs/color-settings/color-device.c:65
+#: ../common/xfce-randr.c:610 ../dialogs/color-settings/color-device.c:65
 msgid "Monitor"
 msgstr "Монитор"
 
-#: ../common/xfce-randr.c:610
+#: ../common/xfce-randr.c:613
 msgid "Television"
 msgstr "ТВ"
 
-#: ../common/xfce-randr.c:614
+#: ../common/xfce-randr.c:617
 msgid "Digital display"
 msgstr "Цифровой дисплей"
 
@@ -118,7 +118,7 @@ msgstr ""
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "No AT-SPI provider was found on your system"
-msgstr "В вашей системе не найден провайдер AP-SPI"
+msgstr "В вашей системе не найден поставщик AP-SPI"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Assistive _Technologies"
@@ -396,7 +396,7 @@ msgstr ""
 #: ../dialogs/display-settings/main.c:106
 #: ../dialogs/display-settings/main.c:117
 msgid "None"
-msgstr "Отсутствует"
+msgstr "Нет"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "Slight"
@@ -442,6 +442,7 @@ msgstr "Внешний вид"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 #: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:327
 msgid "_Add"
 msgstr "_Добавить"
@@ -510,7 +511,7 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Sub-_pixel order:"
-msgstr "Распределение внутри _пикселя:"
+msgstr "Компоновка пиксе_ля:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid ""
@@ -522,7 +523,7 @@ msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Rendering"
-msgstr "Визуализация"
+msgstr "Отрисовка"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Custom _DPI setting:"
@@ -774,6 +775,7 @@ msgid "Add a profile to the currently selected device"
 msgstr "Добавить профиль к выбранному устройству"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Remove"
 msgstr "_Удалить"
 
@@ -1448,43 +1450,48 @@ msgstr "Поведе_ние"
 msgid "Define shortcuts for la_unching applications:"
 msgstr "Задать _комбинации клавиш для запуска приложений:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
+msgid "_Edit"
+msgstr "_Правка"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
 msgstr "С_бросить настройки"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
 msgstr "Ком_бинации клавиш"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
 msgstr "<b>Использовать системные настройки по умолчанию</b>"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "_Модель клавиатуры"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
-msgstr "Изменить параметры рас_кладки"
+msgstr "П_ереключить раскладку"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
-msgstr "Клави_ша Compose"
+msgstr "Клавиша трет_ьго уровня"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "Переместить выбранный элемент на одну строку вверх"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "Переместить выбранный элемент на одну строку вниз"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "Раскладка к_лавиатуры"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "_Раскладка"
 
@@ -1501,28 +1508,28 @@ msgstr "Не удалось соединиться с диспетчером xfc
 msgid "Could not create the settings dialog."
 msgstr "Не удалось отобразить меню настроек."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:400
 msgid "Command"
 msgstr "Команда"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:408
 msgid "Shortcut"
 msgstr "Комбинация клавиш"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:487
 msgid "Layout"
 msgstr "Раскладка"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:488
 msgid "Variant"
 msgstr "Вариант"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1255
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "Reset to Defaults"
 msgstr "Сбросить настройки"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
@@ -1530,20 +1537,20 @@ msgstr ""
 "Это действие сбросит все настройки комбинаций клавиш на их стандартное "
 "значение. Вы действительно хотите сделать это?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1259
 msgid "No"
 msgstr "Нет"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1260
 msgid "Yes"
 msgstr "Да"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1336
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Настройки по умолчанию будут восстановлены при следующем входе в систему."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1338
 msgid "Warning"
 msgstr "Внимание"
 
@@ -1836,15 +1843,15 @@ msgstr ""
 msgid "No helper defined for \"%s\"."
 msgstr "Отсутствует вспомогательное приложение для «%s»."
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:406
+#: ../dialogs/mime-settings/xfce-mime-helper.c:446
 #, c-format
 msgid "No command specified"
 msgstr "Не указана команда"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:747
-#: ../dialogs/mime-settings/xfce-mime-helper.c:786
-#: ../dialogs/mime-settings/xfce-mime-helper.c:883
-#: ../dialogs/mime-settings/xfce-mime-helper.c:922
+#: ../dialogs/mime-settings/xfce-mime-helper.c:822
+#: ../dialogs/mime-settings/xfce-mime-helper.c:861
+#: ../dialogs/mime-settings/xfce-mime-helper.c:958
+#: ../dialogs/mime-settings/xfce-mime-helper.c:997
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Не удалось открыть файл %s для записи"
@@ -2529,10 +2536,6 @@ msgstr "Значение"
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:332
 msgid "New property"
 msgstr "Новое свойство"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
-msgid "_Edit"
-msgstr "_Правка"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Edit selected property"
