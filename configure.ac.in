@@ -85,13 +85,20 @@ dnl *** Version string for the docs ***
 dnl ***********************************
 AC_DEFINE([XFCE4_SETTINGS_VERSION_SHORT], [xfce4_settings_version_short], [Short version string of xfce4-settings])
 
+dnl ****************************************************
+dnl *** Location to look for dialog shared libraries ***
+dnl ****************************************************
+SETTINGS_DIALOG_LIBRARY_DIR="${libdir}/xfce4/settings/dialogs"
+AC_SUBST([SETTINGS_DIALOG_LIBRARY_DIR])
+
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
 XDT_CHECK_PACKAGE([EXO], [exo-2], [0.11.0])
 XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.24.0])
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.70.0])
+XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.70.0])
+XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [2.70.0])
 XDT_CHECK_PACKAGE([GARCON], [garcon-1], [0.1.10])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.17.2])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.17.0])
@@ -167,7 +174,7 @@ XDT_CHECK_OPTIONAL_PACKAGE([COLORD], [colord], [1.0.2],
 dnl *********************
 dnl *** Mime settings ***
 dnl *********************
-XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.66.0],
+XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.70.0],
                            [gio-unix], [Mime settings])
 
 dnl ************************************
@@ -272,6 +279,7 @@ icons/128x128/Makefile
 icons/scalable/Makefile
 xfsettingsd/Makefile
 xfce4-settings-manager/Makefile
+xfce4-settings-manager/xfce4-settings-manager.pc
 xfce4-settings-editor/Makefile
 ])
 AC_OUTPUT
