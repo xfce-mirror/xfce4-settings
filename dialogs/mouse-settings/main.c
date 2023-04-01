@@ -1646,6 +1646,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                 gtk_list_store_set (GTK_LIST_STORE (object), &iter, 1, libinput_click_methods_available & LIBINPUT_CLICK_METHOD_CLICK_FINGER, -1);
         }
 
+        object = gtk_builder_get_object (builder, "libinput-click-method-label");
+        gtk_widget_set_visible (GTK_WIDGET (object), is_libinput);
+
         object = gtk_builder_get_object (builder, "synaptics-disable-duration-box");
         gtk_widget_set_visible (GTK_WIDGET (object), !is_libinput);
 #endif /* HAVE_LIBINPUT */
