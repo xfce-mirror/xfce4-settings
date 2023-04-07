@@ -832,13 +832,10 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
             g_free (new_name);
         }
 
-        /* Keep gsettings in sync */
+        /* Set the preferred color scheme (needed for GTK4) */
         if (desktop_interface_gsettings != NULL)
         {
             str = xfconf_channel_get_string (channel, property_name, NULL);
-            g_settings_set_string (desktop_interface_gsettings, "gtk-theme", str);
-
-            /* Also set the preferred color scheme (needed for GTK4) */
             if (str != NULL && g_str_has_suffix (str, "-dark"))
                 g_settings_set_string (desktop_interface_gsettings, "color-scheme", "prefer-dark");
             else
@@ -886,24 +883,6 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
                                  appearance_settings_load_icon_themes,
                                  pd,
                                  (GDestroyNotify) preview_data_free);
-        }
-
-        /* Keep gsettings in sync */
-        if (desktop_interface_gsettings != NULL)
-        {
-            str = xfconf_channel_get_string (channel, property_name, NULL);
-            g_settings_set_string (desktop_interface_gsettings, "icon-theme", str);
-            g_free (str);
-        }
-    }
-    else if (strcmp (property_name, "/Gtk/FontName") == 0)
-    {
-        /* Keep gsettings in sync */
-        if (desktop_interface_gsettings != NULL)
-        {
-            str = xfconf_channel_get_string (channel, property_name, NULL);
-            g_settings_set_string (desktop_interface_gsettings, "font-name", str);
-            g_free (str);
         }
     }
     else if (strcmp (property_name, "/Gtk/MonospaceFontName") == 0)
