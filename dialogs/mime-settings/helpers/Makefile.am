@@ -65,7 +65,9 @@ desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 %.desktop.in: %.desktop.in.in
 	sed -e 's,\@HELPERDIR\@,$(HELPER_PATH_PREFIX)/xfce4,g' < $< > $@
-@INTLTOOL_DESKTOP_RULE@
+
+%.desktop: %.desktop.in
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 xfce4_composedir = $(HELPER_PATH_PREFIX)/xfce4
 xfce4_compose_SCRIPTS =						\

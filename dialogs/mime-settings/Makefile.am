@@ -42,12 +42,12 @@ xfce4_mime_settings_CFLAGS = \
 	$(EXO_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
-    -DGTK_DISABLE_SINGLE_INCLUDES \
-    -DGDK_DISABLE_DEPRECATED \
-    -DGTK_DISABLE_DEPRECATED \
-    -DGSEAL_ENABLE \
-    -DGDK_PIXBUF_DISABLE_DEPRECATED \
-    -DG_DISABLE_DEPRECATED
+	-DGTK_DISABLE_SINGLE_INCLUDES \
+	-DGDK_DISABLE_DEPRECATED \
+	-DGTK_DISABLE_DEPRECATED \
+	-DGSEAL_ENABLE \
+	-DGDK_PIXBUF_DISABLE_DEPRECATED \
+	-DG_DISABLE_DEPRECATED
 
 xfce4_mime_settings_LDFLAGS = \
 	-no-undefined \
@@ -81,7 +81,7 @@ xfce4_mime_helper_CFLAGS = \
 	$(GIO_UNIX_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
-    $(EXO_CFLAGS)
+	$(EXO_CFLAGS)
 
 xfce4_mime_helper_LDADD = \
 	$(GTK3_LIBS) \
@@ -99,7 +99,8 @@ desktop_in_files = \
 	xfce4-web-browser.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-@INTLTOOL_DESKTOP_RULE@
+%.desktop: %.desktop.in
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 if MAINTAINER_MODE
 DISTCLEANFILES = \
@@ -139,5 +140,4 @@ endif
 
 EXTRA_DIST = \
 	$(desktop_in_files)
-
 

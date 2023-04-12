@@ -21,8 +21,8 @@ xfce4_settings_manager_CFLAGS = \
 	$(XFCONF_CFLAGS) \
 	$(EXO_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
-    -DGTK_DISABLE_SINGLE_INCLUDES \
-    -DGSEAL_ENABLE
+	-DGTK_DISABLE_SINGLE_INCLUDES \
+	-DGSEAL_ENABLE
 
 xfce4_settings_manager_LDFLAGS = \
 	-no-undefined \
@@ -43,7 +43,8 @@ desktopdir = $(datadir)/applications
 desktop_in_files = xfce-settings-manager.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-@INTLTOOL_DESKTOP_RULE@
+%.desktop: %.desktop.in
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 EXTRA_DIST = \
 	$(desktop_in_files) \

@@ -23,12 +23,12 @@ xfce4_mouse_settings_CFLAGS = \
 	$(LIBX11_CFLAGS) \
 	$(LIBINPUT_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
-    -DGTK_DISABLE_SINGLE_INCLUDES \
-    -DGDK_DISABLE_DEPRECATED \
-    -DGTK_DISABLE_DEPRECATED \
-    -DGSEAL_ENABLE \
-    -DGDK_PIXBUF_DISABLE_DEPRECATED \
-    -DG_DISABLE_DEPRECATED
+	-DGTK_DISABLE_SINGLE_INCLUDES \
+	-DGDK_DISABLE_DEPRECATED \
+	-DGTK_DISABLE_DEPRECATED \
+	-DGSEAL_ENABLE \
+	-DGDK_PIXBUF_DISABLE_DEPRECATED \
+	-DG_DISABLE_DEPRECATED
 
 xfce4_mouse_settings_LDFLAGS = \
 	-no-undefined \
@@ -66,7 +66,8 @@ desktopdir = $(datadir)/applications
 desktop_in_files = xfce-mouse-settings.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-@INTLTOOL_DESKTOP_RULE@
+%.desktop: %.desktop.in
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 EXTRA_DIST = \
 	$(desktop_in_files) \

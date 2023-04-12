@@ -29,12 +29,12 @@ xfce4_settings_editor_CFLAGS = \
 	$(XFCONF_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
-    -DGTK_DISABLE_SINGLE_INCLUDES \
-    -DGDK_DISABLE_DEPRECATED \
-    -DGTK_DISABLE_DEPRECATED \
-    -DGSEAL_ENABLE \
-    -DGDK_PIXBUF_DISABLE_DEPRECATED \
-    -DG_DISABLE_DEPRECATED
+	-DGTK_DISABLE_SINGLE_INCLUDES \
+	-DGDK_DISABLE_DEPRECATED \
+	-DGTK_DISABLE_DEPRECATED \
+	-DGSEAL_ENABLE \
+	-DGDK_PIXBUF_DISABLE_DEPRECATED \
+	-DG_DISABLE_DEPRECATED
 
 xfce4_settings_editor_LDFLAGS = \
 	-no-undefined \
@@ -50,7 +50,8 @@ desktopdir = $(datadir)/applications
 desktop_in_files = xfce4-settings-editor.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-@INTLTOOL_DESKTOP_RULE@
+%.desktop: %.desktop.in
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 #
 # Build sources

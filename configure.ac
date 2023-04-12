@@ -9,35 +9,48 @@ dnl
 dnl ***************************
 dnl *** Version information ***
 dnl ***************************
-m4_define([xfce4_settings_version_major], [4])
-m4_define([xfce4_settings_version_minor], [18])
-m4_define([xfce4_settings_version_micro], [0])
-m4_define([xfce4_settings_version_nano], [])
-m4_define([xfce4_settings_version_build], [@REVISION@])
-m4_define([xfce4_settings_version_tag], [git]) # Leave empty for releases
-m4_define([xfce4_settings_version], [xfce4_settings_version_major().xfce4_settings_version_minor().xfce4_settings_version_micro()ifelse(xfce4_settings_version_nano(), [], [], [.xfce4_settings_version_nano()])ifelse(xfce4_settings_version_tag(), [git], [xfce4_settings_version_tag()-xfce4_settings_version_build()], [xfce4_settings_version_tag()])])
+XDT_VERSION_INIT([4.18.0], [git])
+
+dnl minimum required versions
+m4_define([glib_min_version], [2.66.0])
+m4_define([gtk_min_version], [3.24.0])
+m4_define([x11_minimum_version], [1.6.7])
+m4_define([garcon_min_version], [0.1.10])
+m4_define([exo_min_version], [0.11.0])
+m4_define([libxfce4util_min_version], [4.17.2])
+m4_define([libxfce4ui_min_version], [4.17.0])
+m4_define([xfconf_min_version], [4.13.0])
+
+m4_define([fontconfig_min_version], [2.6.0])
+m4_define([xi_min_version], [1.2.0])
+m4_define([inputproto_min_version], [1.4.0])
+
+m4_define([xrandr_min_version], [1.2.0])
+m4_define([upower_glib_min_version], [0.9.8])
+m4_define([libnotify_min_version], [0.1.3])
+m4_define([colord_min_version], [1.0.2])
+m4_define([xcursor_min_version], [1.1.0])
+m4_define([xorg_libinput_min_version], [0.6.0])
+m4_define([libxklavier_min_version], [0.3.0])
+m4_define([libxklavier4_min_version], [4.0])
+m4_define([libxklavier5_min_version], [5.0])
 
 dnl define a short version string for xfce4-settings
 m4_append([xfce4_settings_version_short], ["])
-m4_append([xfce4_settings_version_short], [xfce4_settings_version_major])
+m4_append([xfce4_settings_version_short], [xdt_version_major])
 m4_append([xfce4_settings_version_short], [.])
-m4_append([xfce4_settings_version_short], [xfce4_settings_version_minor])
+m4_append([xfce4_settings_version_short], [xdt_version_minor])
 m4_append([xfce4_settings_version_short], ["])
-
-dnl *******************************************
-dnl *** Debugging support for GIT snapshots ***
-dnl *******************************************
-m4_define([xfce4_settings_debug_default], [ifelse(xfce4_settings_version_tag(), [git], [yes], [minimum])])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2008-2023
         The Xfce development team. All rights reserved.])
-AC_INIT([xfce4-settings], [xfce4_settings_version], [https://gitlab.xfce.org/xfce/xfce4-settings])
-AC_PREREQ([2.60])
+AC_INIT([xfce4-settings], [xdt_version], [https://gitlab.xfce.org/xfce/xfce4-settings])
+AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
-AC_REVISION([@REVISION@])
+AC_REVISION([xdt_version_build])
 
 dnl ***************************
 dnl *** Initialize automake ***
@@ -61,7 +74,6 @@ AM_PROG_CC_C_O
 LT_PATH_LD([])
 AC_PROG_INSTALL()
 AC_PROG_SED
-IT_PROG_INTLTOOL([0.35.0], [no-xml])
 AC_ARG_VAR([XMLLINT], [xmllint])
 AC_PATH_PROG([XMLLINT], [xmllint], [xmllint])
 if test -z "$XMLLINT"; then
@@ -84,7 +96,11 @@ AC_CHECK_FUNCS([daemon setsid])
 dnl ******************************
 dnl *** Check for i18n support ***
 dnl ******************************
-XDT_I18N([@LINGUAS@])
+GETTEXT_PACKAGE="$PACKAGE"
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Name of default gettext domain])
+AC_SUBST([GETTEXT_PACKAGE])
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
 
 dnl ***********************************
 dnl *** Version string for the docs ***
@@ -94,18 +110,20 @@ AC_DEFINE([XFCE4_SETTINGS_VERSION_SHORT], [xfce4_settings_version_short], [Short
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
-XDT_CHECK_PACKAGE([EXO], [exo-2], [0.11.0])
-XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.24.0])
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([GARCON], [garcon-1], [0.1.10])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.17.2])
-XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.17.0])
-XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-3], [4.12.0])
-XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.13.0])
-XDT_CHECK_PACKAGE([FONTCONFIG], [fontconfig], [2.6.0])
+XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [gtk_min_version])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GIO], [gio-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([LIBX11], [x11], [x11_min_version])
+XDT_CHECK_PACKAGE([GARCON], [garcon-1], [garcon_min_version])
+XDT_CHECK_PACKAGE([EXO], [exo-2], [exo_min_version])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [libxfce4util_min_version])
+XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [libxfce4ui_min_version])
+XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-3], [libxfce4ui_min_version])
+XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [xfconf_min_version])
 
-XDT_CHECK_PACKAGE([XI], [xi], [1.2.0], [],
+XDT_CHECK_PACKAGE([FONTCONFIG], [fontconfig], [fontconfig_min_version])
+
+XDT_CHECK_PACKAGE([XI], [xi], [xi_min_version], [],
 [
   for dir in /usr/X11R6 /usr/X11 /opt/X11R6 /opt/X11; do
     test -z "$XI_CFLAGS" || break
@@ -132,13 +150,12 @@ XDT_CHECK_PACKAGE([XI], [xi], [1.2.0], [],
   fi
 ])
 
-XDT_CHECK_PACKAGE([LIBX11], [x11], [1.0.0], [], [XDT_CHECK_LIBX11_REQUIRE])
-XDT_CHECK_PACKAGE([INPUTPROTO], [inputproto], [1.4.0])
+XDT_CHECK_PACKAGE([INPUTPROTO], [inputproto], [inputproto_min_version])
 
 dnl ***********************************
 dnl *** Optional support for Xrandr ***
 dnl ***********************************
-XDT_CHECK_OPTIONAL_PACKAGE([XRANDR], [xrandr], [1.2.0],
+XDT_CHECK_OPTIONAL_PACKAGE([XRANDR], [xrandr], [xrandr_min_version],
                            [xrandr], [Xrandr support])
 
 dnl ***********************************
@@ -154,48 +171,48 @@ AC_SUBST(PNP_IDS)
 dnl ***********************************
 dnl *** Optional support for UPower ***
 dnl ***********************************
-XDT_CHECK_OPTIONAL_PACKAGE([UPOWERGLIB], [upower-glib], [0.9.8],
+XDT_CHECK_OPTIONAL_PACKAGE([UPOWERGLIB], [upower-glib], [upower_glib_min_version],
                            [upower-glib], [UPower support], [no])
 
 dnl **************************************
 dnl *** Optional support for Libnotify ***
 dnl **************************************
-XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [0.1.3],
+XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [libnotify_min_version],
                            [libnotify], [Notification support])
 
 dnl **************************************
 dnl *** Optional support for colord ***
 dnl **************************************
-XDT_CHECK_OPTIONAL_PACKAGE([COLORD], [colord], [1.0.2],
+XDT_CHECK_OPTIONAL_PACKAGE([COLORD], [colord], [colord_min_version],
                           [colord], [colord support])
 
 
 dnl *********************
 dnl *** Mime settings ***
 dnl *********************
-XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.66.0],
+XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0], [glib_min_version],
                            [gio-unix], [Mime settings])
 
 dnl ************************************
 dnl *** Optional support for Xcursor ***
 dnl ************************************
-XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [1.1.0],
+XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [xcursor_min_version],
                            [xcursor], [Cursor themes support])
 
 dnl *************************************************
 dnl *** Optional support for libinput Xorg driver ***
 dnl *************************************************
-XDT_CHECK_OPTIONAL_PACKAGE([LIBINPUT], [xorg-libinput], [0.6.0],
+XDT_CHECK_OPTIONAL_PACKAGE([LIBINPUT], [xorg-libinput], [xorg_libinput_min_version],
                            [xorg-libinput], [libinput Xorg driver support])
 
 dnl ****************************************
 dnl *** Optional support for Libxklavier ***
 dnl ****************************************
-XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER], [libxklavier], [0.3.0],
+XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER], [libxklavier], [libxklavier_min_version],
                            [libxklavier], [Keyboard layout selection])
-XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER4], [libxklavier], [4.0],
+XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER4], [libxklavier], [libxklavier4_min_version],
                            [libxklavier], [Keyboard layout selection])
-XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER5], [libxklavier], [5.0],
+XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER5], [libxklavier], [libxklavier5_min_version],
                            [libxklavier], [Keyboard layout selection])
 
 dnl make pluggable settings dialogs optional
@@ -236,7 +253,7 @@ AC_SUBST([HELPER_PATH_PREFIX])
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
-XDT_FEATURE_DEBUG([xfce4_settings_debug_default])
+XDT_FEATURE_DEBUG([xdt_debug_default])
 
 dnl **************************************
 dnl *** Check for linker optimizations ***
