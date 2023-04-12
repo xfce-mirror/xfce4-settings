@@ -9,35 +9,24 @@ dnl
 dnl ***************************
 dnl *** Version information ***
 dnl ***************************
-m4_define([xfce4_settings_version_major], [4])
-m4_define([xfce4_settings_version_minor], [18])
-m4_define([xfce4_settings_version_micro], [0])
-m4_define([xfce4_settings_version_nano], [])
-m4_define([xfce4_settings_version_build], [@REVISION@])
-m4_define([xfce4_settings_version_tag], [git]) # Leave empty for releases
-m4_define([xfce4_settings_version], [xfce4_settings_version_major().xfce4_settings_version_minor().xfce4_settings_version_micro()ifelse(xfce4_settings_version_nano(), [], [], [.xfce4_settings_version_nano()])ifelse(xfce4_settings_version_tag(), [git], [xfce4_settings_version_tag()-xfce4_settings_version_build()], [xfce4_settings_version_tag()])])
+XDT_VERSION_INIT([4.18.0], [git])
 
 dnl define a short version string for xfce4-settings
 m4_append([xfce4_settings_version_short], ["])
-m4_append([xfce4_settings_version_short], [xfce4_settings_version_major])
+m4_append([xfce4_settings_version_short], [xdt_version_major])
 m4_append([xfce4_settings_version_short], [.])
-m4_append([xfce4_settings_version_short], [xfce4_settings_version_minor])
+m4_append([xfce4_settings_version_short], [xdt_version_minor])
 m4_append([xfce4_settings_version_short], ["])
-
-dnl *******************************************
-dnl *** Debugging support for GIT snapshots ***
-dnl *******************************************
-m4_define([xfce4_settings_debug_default], [ifelse(xfce4_settings_version_tag(), [git], [yes], [minimum])])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2008-2023
         The Xfce development team. All rights reserved.])
-AC_INIT([xfce4-settings], [xfce4_settings_version], [https://gitlab.xfce.org/xfce/xfce4-settings])
-AC_PREREQ([2.60])
+AC_INIT([xfce4-settings], [xdt_version], [https://gitlab.xfce.org/xfce/xfce4-settings])
+AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
-AC_REVISION([@REVISION@])
+AC_REVISION([xdt_version_build])
 
 dnl ***************************
 dnl *** Initialize automake ***
@@ -239,7 +228,7 @@ AC_SUBST([HELPER_PATH_PREFIX])
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
-XDT_FEATURE_DEBUG([xfce4_settings_debug_default])
+XDT_FEATURE_DEBUG([xdt_debug_default])
 
 dnl **************************************
 dnl *** Check for linker optimizations ***
