@@ -61,7 +61,6 @@ AM_PROG_CC_C_O
 LT_PATH_LD([])
 AC_PROG_INSTALL()
 AC_PROG_SED
-IT_PROG_INTLTOOL([0.35.0], [no-xml])
 AC_ARG_VAR([XMLLINT], [xmllint])
 AC_PATH_PROG([XMLLINT], [xmllint], [xmllint])
 if test -z "$XMLLINT"; then
@@ -84,7 +83,11 @@ AC_CHECK_FUNCS([daemon setsid])
 dnl ******************************
 dnl *** Check for i18n support ***
 dnl ******************************
-XDT_I18N([@LINGUAS@])
+GETTEXT_PACKAGE="$PACKAGE"
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Name of default gettext domain])
+AC_SUBST([GETTEXT_PACKAGE])
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
 
 dnl ***********************************
 dnl *** Version string for the docs ***

@@ -83,7 +83,8 @@ desktopdir = $(datadir)/applications
 desktop_in_files = xfce-display-settings.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-@INTLTOOL_DESKTOP_RULE@
+%.desktop: %.desktop.in
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 iconsdir = $(datadir)/icons/hicolor/128x128/devices
 icons_DATA = \

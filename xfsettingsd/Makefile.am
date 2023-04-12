@@ -146,7 +146,9 @@ settings_DATA = xsettings.xml
 autostartdir = $(sysconfdir)/xdg/autostart
 autostart_in_files = xfsettingsd.desktop.in
 autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
-@INTLTOOL_DESKTOP_RULE@
+
+%.desktop: %.desktop.in
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 # Needed for XfceGtkSettingsHelper to translate GtkSettings property names into
 # Xfconf property names
