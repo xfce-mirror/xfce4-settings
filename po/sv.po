@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-08 12:47+0200\n"
+"POT-Creation-Date: 2023-04-13 01:18+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>, 2020-2023\n"
 "Language-Team: Swedish (http://app.transifex.com/xfce/xfce4-settings/language/sv/)\n"
@@ -67,7 +67,6 @@ msgid "Digital display"
 msgstr "Digital skärm"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
 msgstr "Hjälpmedelsfunktioner"
 
@@ -356,16 +355,6 @@ msgstr "The Xfce development team. Alla rättigheter förbehållna."
 msgid "Please report bugs to <%s>."
 msgstr "Rapportera fel till <%s>."
 
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
-msgid "Improve keyboard and mouse accessibility"
-msgstr "Förbättra hjälpfunktioner för tangentbord och mus"
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
-msgid ""
-"assistive;technologies;keys;sticky;bounce;emulation;screen "
-"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-msgstr "hjälpmedel; teknologier; tangenter; klibbig; studs; emulering; skärmläsare; förstoringsglas; a11y; i18n; l10n; AT-SPI; ATK;nedsättning;"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1269
 #: ../dialogs/display-settings/main.c:107
@@ -412,7 +401,6 @@ msgid "2x"
 msgstr "2x"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
 msgstr "Utseende"
 
@@ -671,17 +659,6 @@ msgstr "Vertikal RGB"
 msgid "Vertical BGR"
 msgstr "Vertikal BGR"
 
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
-msgid "Customize the look of your desktop"
-msgstr "Anpassa utseendet på ditt skrivbord"
-
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
-msgid ""
-"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
-"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
-"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr "teman; användargränssnitt; stilar; ikoner; teckensnitt; anti-aliasing; antydningar; subpixel; subpixel; rendering; ClearType; DPI; RGB; BGR; menyacceleratorer; kortkommandon; händelser; ljud; fönsterskalning; HiDPI; Retina-skärm;"
-
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
 msgid "Scanner"
@@ -718,7 +695,6 @@ msgid "Enable color management for %s"
 msgstr "Aktivera färghantering för %s"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
 msgid "Color Profiles"
 msgstr "Färgprofiler"
 
@@ -897,14 +873,6 @@ msgstr "Kompatibla profiler"
 msgid "Unknown"
 msgstr "Okänd"
 
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
-msgid "Set color profiles"
-msgstr "Välj färgprofiler"
-
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
-msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
-msgstr "färg;inställningar;hantering;skärmar;skrivare;webbkameror;skannrar;"
-
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
 msgstr "<b><big>Vill du behålla denna konfiguration?</big></b>"
@@ -976,7 +944,6 @@ msgid "Configure..."
 msgstr "Konfigurera"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:15
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "Bildskärm"
 
@@ -1277,15 +1244,6 @@ msgstr "ATI-inställningar"
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Det gick inte att starta inställningar för proprietär drivrutin"
 
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
-msgid "Configure screen settings and layout"
-msgstr "Ställ in skärminställningar och -layout"
-
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
-msgid ""
-"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
-msgstr "skärm; inställningar; skärm; upplösning; uppdatering; frekvens; rotation; extern; projektorer; bildskärmar; LCD; CRT; HiDPI;"
-
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 msgid "Shortcut Command"
@@ -1357,7 +1315,6 @@ msgid "Keyboard layout selection"
 msgstr "Val av tangentbordslayout"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
 msgstr "Tangentbord"
 
@@ -1532,14 +1489,6 @@ msgstr "Systemets standardvärden kommer att återställas nästa gång du logga
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
 msgstr "Varning"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "Redigera tangentbordsinställningar och programgenvägar"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
-msgid "numlock;keyboard;layout;shortcuts;"
-msgstr "numlock;tangentbord;layout;genvägar;"
 
 #: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
@@ -1799,7 +1748,6 @@ msgid "Failed to open %s for writing"
 msgstr "Det gick inte att öppna %s för skrivning"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:184
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
 msgstr "Standardprogram"
 
@@ -1809,7 +1757,6 @@ msgid "_Internet"
 msgstr "_Internet"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:221
-#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
 msgid "Web Browser"
 msgstr "Webbläsare"
 
@@ -1820,7 +1767,6 @@ msgid ""
 msgstr "Den föredragna webbläsaren kommer att användas för att öppna hyperlänkar och visa hjälpinnehåll."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:247
-#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
 msgid "Mail Reader"
 msgstr "E-postklient"
 
@@ -1836,7 +1782,6 @@ msgid "_Utilities"
 msgstr "Ver_ktyg"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:282
-#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
 msgid "File Manager"
 msgstr "Filhanterare"
 
@@ -1846,7 +1791,6 @@ msgid ""
 msgstr "Den föredragna filhanteraren kommer att användas för att bläddra i innehållet i mappar."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:308
-#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
 msgstr "Terminalemulator"
 
@@ -1934,252 +1878,6 @@ msgstr "Återställ till standardvärden"
 msgid "Choose Application..."
 msgstr "Välj program..."
 
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
-msgid "Associate preferred applications with MIME types"
-msgstr "Associera föredragna program med MIME-typer"
-
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
-msgid ""
-"file;type;extension;association;open with;web browser;mail reader;file "
-"manager;terminal emulator;"
-msgstr "fil;typ;ändelse;association;öppna med;webbläsare;e-post läsare;filhanterare;terminal emulator;"
-
-#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
-msgid "Browse the file system"
-msgstr "Bläddra i filsystemet"
-
-#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:2
-msgid "Read your email"
-msgstr "Läs din e-post"
-
-#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:2
-msgid "Use the command line"
-msgstr "Använd kommandoraden"
-
-#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:2
-msgid "Browse the web"
-msgstr "Surfa på webben"
-
-#: ../dialogs/mime-settings/helpers/alacritty.desktop.in.in.h:1
-msgid "Alacritty"
-msgstr "Alacritty"
-
-#: ../dialogs/mime-settings/helpers/aterm.desktop.in.in.h:1
-msgid "aterm"
-msgstr "aterm"
-
-#: ../dialogs/mime-settings/helpers/balsa.desktop.in.in.h:1
-msgid "Balsa"
-msgstr "Balsa"
-
-#: ../dialogs/mime-settings/helpers/brave.desktop.in.in.h:1
-msgid "Brave"
-msgstr "Brave"
-
-#: ../dialogs/mime-settings/helpers/caja.desktop.in.in.h:1
-msgid "Caja File Manager"
-msgstr "Filhanteraren Caja"
-
-#: ../dialogs/mime-settings/helpers/chromium.desktop.in.in.h:1
-msgid "Chromium"
-msgstr "Chromium"
-
-#: ../dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in.h:1
-msgid "Debian Sensible Browser"
-msgstr "Debians sensible-browser"
-
-#: ../dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in.h:1
-msgid "Debian X Terminal Emulator"
-msgstr "Debian X-terminalemulator"
-
-#: ../dialogs/mime-settings/helpers/dillo.desktop.in.in.h:1
-msgid "Dillo"
-msgstr "Dillo"
-
-#: ../dialogs/mime-settings/helpers/encompass.desktop.in.in.h:1
-msgid "Encompass"
-msgstr "Encompass"
-
-#: ../dialogs/mime-settings/helpers/epiphany.desktop.in.in.h:1
-msgid "Epiphany Web Browser"
-msgstr "Webbläsaren Epiphany"
-
-#: ../dialogs/mime-settings/helpers/eterm.desktop.in.in.h:1
-msgid "Enlightened Terminal Emulator"
-msgstr "Enlightened terminalemulator"
-
-#: ../dialogs/mime-settings/helpers/evolution.desktop.in.in.h:1
-msgid "Evolution"
-msgstr "Evolution"
-
-#: ../dialogs/mime-settings/helpers/firefox.desktop.in.in.h:1
-msgid "Mozilla Firefox"
-msgstr "Mozilla Firefox"
-
-#: ../dialogs/mime-settings/helpers/galeon.desktop.in.in.h:1
-msgid "Galeon Web Browser"
-msgstr "Webbläsaren Galeon"
-
-#: ../dialogs/mime-settings/helpers/geary.desktop.in.in.h:1
-msgid "Geary"
-msgstr "Geary"
-
-#: ../dialogs/mime-settings/helpers/google-chrome.desktop.in.in.h:1
-msgid "Google Chrome"
-msgstr "Google Chrome"
-
-#: ../dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in.h:1
-msgid "GNOME Terminal"
-msgstr "GNOME-terminal"
-
-#: ../dialogs/mime-settings/helpers/icecat.desktop.in.in.h:1
-msgid "Icecat"
-msgstr "Icecat"
-
-#: ../dialogs/mime-settings/helpers/icedove.desktop.in.in.h:1
-msgid "Icedove"
-msgstr "Icedove"
-
-#: ../dialogs/mime-settings/helpers/iceweasel.desktop.in.in.h:1
-msgid "Iceweasel"
-msgstr "Iceweasel"
-
-#: ../dialogs/mime-settings/helpers/jumanji.desktop.in.in.h:1
-msgid "Jumanji"
-msgstr "Jumanji"
-
-#: ../dialogs/mime-settings/helpers/kitty.desktop.in.in.h:1
-msgid "kitty"
-msgstr "kitty"
-
-#: ../dialogs/mime-settings/helpers/kmail.desktop.in.in.h:1
-msgid "KMail"
-msgstr "KMail"
-
-#: ../dialogs/mime-settings/helpers/konqueror.desktop.in.in.h:1
-msgid "Konqueror Web Browser"
-msgstr "Webbläsaren Konqueror"
-
-#: ../dialogs/mime-settings/helpers/links.desktop.in.in.h:1
-msgid "Links Text Browser"
-msgstr "Textwebbläsaren Links"
-
-#: ../dialogs/mime-settings/helpers/lynx.desktop.in.in.h:1
-msgid "Lynx Text Browser"
-msgstr "Textwebbläsaren Lynx"
-
-#: ../dialogs/mime-settings/helpers/midori.desktop.in.in.h:1
-msgid "Midori"
-msgstr "Midori"
-
-#: ../dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in.h:1
-msgid "Mozilla Browser"
-msgstr "Webbläsaren Mozilla"
-
-#: ../dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in.h:1
-msgid "Mozilla Mail"
-msgstr "Mozilla e-post"
-
-#: ../dialogs/mime-settings/helpers/mutt.desktop.in.in.h:1
-msgid "Mutt"
-msgstr "Mutt"
-
-#: ../dialogs/mime-settings/helpers/nautilus.desktop.in.in.h:1
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: ../dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in.h:1
-msgid "Netscape Navigator"
-msgstr "Netscape Navigator"
-
-#: ../dialogs/mime-settings/helpers/nxterm.desktop.in.in.h:1
-msgid "NXterm"
-msgstr "NXterm"
-
-#: ../dialogs/mime-settings/helpers/opera-browser.desktop.in.in.h:1
-msgid "Opera Browser"
-msgstr "Webbläsaren Opera"
-
-#: ../dialogs/mime-settings/helpers/pcmanfm.desktop.in.in.h:1
-msgid "PCMan File Manager"
-msgstr "Filhanteraren PCMan"
-
-#: ../dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in.h:1
-msgid "PCManFM-Qt File Manager"
-msgstr "PCManFM-Qt Filhanterare"
-
-#: ../dialogs/mime-settings/helpers/qterminal.desktop.in.in.h:1
-msgid "QTerminal"
-msgstr "QTerminal"
-
-#: ../dialogs/mime-settings/helpers/qtfm.desktop.in.in.h:1
-msgid "qtFM"
-msgstr "qtFM"
-
-#: ../dialogs/mime-settings/helpers/qupzilla.desktop.in.in.h:1
-msgid "QupZilla"
-msgstr "QupZilla"
-
-#: ../dialogs/mime-settings/helpers/rodent.desktop.in.in.h:1
-msgid "Rodent File Manager"
-msgstr "Filhanteraren Rodent"
-
-#: ../dialogs/mime-settings/helpers/rox-filer.desktop.in.in.h:1
-msgid "ROX-Filer"
-msgstr "ROX-Filer"
-
-#: ../dialogs/mime-settings/helpers/sakura.desktop.in.in.h:1
-msgid "Sakura"
-msgstr "Sakura"
-
-#: ../dialogs/mime-settings/helpers/surf.desktop.in.in.h:1
-msgid "Surf"
-msgstr "Surf"
-
-#: ../dialogs/mime-settings/helpers/sylpheed.desktop.in.in.h:1
-msgid "Sylpheed"
-msgstr "Sylpheed"
-
-#: ../dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in.h:1
-msgid "Claws Mail"
-msgstr "Claws Mail"
-
-#: ../dialogs/mime-settings/helpers/terminator.desktop.in.in.h:1
-msgid "Terminator"
-msgstr "Terminator"
-
-#: ../dialogs/mime-settings/helpers/thunar.desktop.in.in.h:1
-msgid "Thunar"
-msgstr "Thunar"
-
-#: ../dialogs/mime-settings/helpers/thunderbird.desktop.in.in.h:1
-msgid "Mozilla Thunderbird"
-msgstr "Mozilla Thunderbird"
-
-#: ../dialogs/mime-settings/helpers/urxvt.desktop.in.in.h:1
-msgid "RXVT Unicode"
-msgstr "RXVT Unicode"
-
-#: ../dialogs/mime-settings/helpers/vimprobable2.desktop.in.in.h:1
-msgid "Vimprobable2"
-msgstr "Vimprobable2"
-
-#: ../dialogs/mime-settings/helpers/w3m.desktop.in.in.h:1
-msgid "W3M Text Browser"
-msgstr "Textwebbläsaren W3M"
-
-#: ../dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in.h:1
-msgid "Xfce Terminal"
-msgstr "Xfce-terminalen"
-
-#: ../dialogs/mime-settings/helpers/xfe.desktop.in.in.h:1
-msgid "Xfe File Manager"
-msgstr "Filhanteraren Xfe"
-
-#: ../dialogs/mime-settings/helpers/xterm.desktop.in.in.h:1
-msgid "X Terminal"
-msgstr "X-terminal"
-
 #: ../dialogs/mouse-settings/main.c:93
 msgid "Active device in the dialog"
 msgstr "Aktiv enhet i dialogrutan"
@@ -2255,7 +1953,6 @@ msgid "Counterclockwise"
 msgstr "Moturs"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
 msgstr "Mus och pekplatta"
 
@@ -2441,17 +2138,7 @@ msgstr "Förhandsgranska"
 msgid "_Theme"
 msgstr "_Tema"
 
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
-msgid "Configure pointer device behavior and appearance"
-msgstr "Ställ in muspekarens beteende och utseende"
-
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
-msgid ""
-"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-msgstr "inställningar; knappar; scroll; riktning; pekare; hastighet; dubbelklicka; tema; hjul;"
-
 #: ../xfce4-settings-editor/main.c:163
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
 msgstr "Inställningsredigerare"
 
@@ -2648,14 +2335,6 @@ msgstr "Egenskapsnamn får inte avslutas med tecknet \"/\""
 msgid "Edit Property"
 msgstr "Redigera egenskap"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-msgid "Graphical settings editor for Xfconf"
-msgstr "Grafisk inställningsredigerare för Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
-msgid "registry;regedit;configuration file;"
-msgstr "registret;regedit;konfigurations fil;"
-
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
 msgstr "Inställningsdialog att visa"
@@ -2673,18 +2352,6 @@ msgstr "Inställningar"
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Det gick inte att starta \"%s\""
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Settings Manager"
-msgstr "Inställningshanterare"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce"
-msgstr "Grafisk inställningshanterare för Xfce"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
-msgid "control;panel;center;system;settings;personalize;hardware;"
-msgstr "kontroll; panel; center; system; inställningar; personalisera; hårdvara;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2744,11 +2411,3 @@ msgstr "Ersätt körande xsettings-demon (om någon)"
 #, c-format
 msgid "Workspace %d"
 msgstr "Skrivbord %d"
-
-#: ../xfsettingsd/xfsettingsd.desktop.in.h:1
-msgid "Xfce Settings Daemon"
-msgstr "Konfigurationsdemon för Xfce"
-
-#: ../xfsettingsd/xfsettingsd.desktop.in.h:2
-msgid "The Xfce Settings Daemon"
-msgstr "Inställningshanteraren för Xfce"
