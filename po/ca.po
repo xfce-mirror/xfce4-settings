@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-03 00:46+0100\n"
+"POT-Creation-Date: 2023-04-13 01:18+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2016-2021\n"
-"Language-Team: Catalan (http://www.transifex.com/xfce/xfce4-settings/language/ca/)\n"
+"Language-Team: Catalan (http://app.transifex.com/xfce/xfce4-settings/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,7 +62,6 @@ msgid "Digital display"
 msgstr "Pantalla digital"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
 msgstr "Accessibilitat"
 
@@ -75,7 +74,7 @@ msgstr "Accessibilitat"
 #: ../dialogs/display-settings/main.c:4431
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 #: ../xfce4-settings-editor/main.c:166
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:232
 msgid "_Close"
@@ -87,7 +86,7 @@ msgstr "Tan_ca"
 #: ../dialogs/display-settings/display-dialog.glade.h:16
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/mime-settings/xfce-mime-window.c:190
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 #: ../xfce4-settings-editor/main.c:165
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:221
 msgid "_Help"
@@ -293,78 +292,69 @@ msgid "_Mouse"
 msgstr "_Ratolí"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/appearance-settings/main.c:104
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:94 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "Sòcol del gestor d'ajusts"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/appearance-settings/main.c:104
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:94 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "SÒCOL ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:106
+#: ../dialogs/appearance-settings/main.c:105
 #: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:141
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:45
-#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:50
-#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
+#: ../dialogs/mouse-settings/main.c:95 ../xfce4-settings-editor/main.c:50
+#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:106
 msgid "Version information"
 msgstr "Informació de la versió"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1420
+#: ../dialogs/appearance-settings/main.c:1394
 #: ../dialogs/color-settings/main.c:1379
 #: ../dialogs/display-settings/main.c:4359
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
-#: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:120
-#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
-#: ../xfsettingsd/main.c:280
+#: ../dialogs/mouse-settings/main.c:2082 ../xfce4-settings-editor/main.c:120
+#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:249
+#: ../xfsettingsd/main.c:287
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Teclegeu «%s --help» per a l'ús."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1439
+#: ../dialogs/appearance-settings/main.c:1413
 #: ../dialogs/color-settings/main.c:1396
 #: ../dialogs/display-settings/main.c:4378
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
-#: ../dialogs/mouse-settings/main.c:1911 ../xfce4-settings-editor/main.c:139
-#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
+#: ../dialogs/mouse-settings/main.c:2101 ../xfce4-settings-editor/main.c:139
+#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1440
+#: ../dialogs/appearance-settings/main.c:1414
 #: ../dialogs/color-settings/main.c:1397
 #: ../dialogs/display-settings/main.c:4379
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
-#: ../dialogs/mouse-settings/main.c:1912 ../xfce4-settings-editor/main.c:140
-#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
+#: ../dialogs/mouse-settings/main.c:2102 ../xfce4-settings-editor/main.c:140
+#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:266
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Envieu els errors a <%s>."
 
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
-msgid "Improve keyboard and mouse accessibility"
-msgstr "Milloreu l'accessibilitat del teclat i del ratolí"
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
-msgid ""
-"assistive;technologies;keys;sticky;bounce;emulation;screen "
-"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-msgstr "assistència;tecnologies;tecles;enganxosa;rebot;emulació;lectors de pantalla;magnificadors;a11y;i18n;l10n;AT-SPI;ATK;cecs;"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1295
+#: ../dialogs/appearance-settings/main.c:1269
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "None"
 msgstr "Cap"
 
@@ -406,7 +396,6 @@ msgid "2x"
 msgstr "2x"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
 msgstr "Aparença"
 
@@ -595,43 +584,43 @@ msgid ""
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Advertència: aquest tema d'icones no té un fitxer de memòria cau. Pots crear-lo executant <i>gtk-update-icon-cache %s/%s/</i> en un emulador de terminal."
 
-#: ../dialogs/appearance-settings/main.c:989
+#: ../dialogs/appearance-settings/main.c:963
 #, c-format
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:994
+#: ../dialogs/appearance-settings/main.c:968
 msgid "Failed to create temporary directory"
 msgstr "Ha fallat la creació del directori temporal"
 
-#: ../dialogs/appearance-settings/main.c:999
+#: ../dialogs/appearance-settings/main.c:973
 msgid "Failed to extract archive"
 msgstr "Ha fallat l'extracció de l'arxiu"
 
-#: ../dialogs/appearance-settings/main.c:1004
+#: ../dialogs/appearance-settings/main.c:978
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Format desconegut, només es permeten arxius i directoris"
 
-#: ../dialogs/appearance-settings/main.c:1009
+#: ../dialogs/appearance-settings/main.c:983
 msgid "Not a valid theme package"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:1014
+#: ../dialogs/appearance-settings/main.c:988
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Error desconegut, el codi d'eixida és %d"
 
-#: ../dialogs/appearance-settings/main.c:1021
+#: ../dialogs/appearance-settings/main.c:995
 msgid "Failed to install theme"
 msgstr "Ha fallat la instal·lació del tema"
 
-#: ../dialogs/appearance-settings/main.c:1075
+#: ../dialogs/appearance-settings/main.c:1049
 #, c-format
 msgid "Install %s theme"
 msgstr "Instal·la el tema %s "
 
 #. Create cancel button
-#: ../dialogs/appearance-settings/main.c:1079
+#: ../dialogs/appearance-settings/main.c:1053
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
@@ -643,38 +632,27 @@ msgstr "Instal·la el tema %s "
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
-#: ../dialogs/appearance-settings/main.c:1081
+#: ../dialogs/appearance-settings/main.c:1055
 #: ../dialogs/keyboard-settings/command-dialog.c:281
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Obre"
 
-#: ../dialogs/appearance-settings/main.c:1299
+#: ../dialogs/appearance-settings/main.c:1273
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1303
+#: ../dialogs/appearance-settings/main.c:1277
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1307
+#: ../dialogs/appearance-settings/main.c:1281
 msgid "Vertical RGB"
 msgstr "RGB vertical"
 
-#: ../dialogs/appearance-settings/main.c:1311
+#: ../dialogs/appearance-settings/main.c:1285
 msgid "Vertical BGR"
 msgstr "BGR vertical"
-
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
-msgid "Customize the look of your desktop"
-msgstr "Personalitzeu l'aparença del vostre escriptori"
-
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
-msgid ""
-"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
-"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
-"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr "temes;interfície d'usuari;estils;icones;lletres;antialiàsing;consell;subpíxel;renderització;ClearType;DPI;RGB;BGR;acceleradors de menú;dreceres de teclat;esdeveniments;sons;canvi d'escala de dels finestres;HiDPI;Retina Display;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -712,7 +690,6 @@ msgid "Enable color management for %s"
 msgstr "Habilita la gestió del color per %s"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
 msgid "Color Profiles"
 msgstr "Perfils de colors"
 
@@ -891,14 +868,6 @@ msgstr "Perfils compatibles"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
-msgid "Set color profiles"
-msgstr "Estableix els perfils de colors"
-
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
-msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
-msgstr "color;ajusts;gestió;pantalla;monitors;impressores;webcam;escànners;"
-
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
 msgstr "<b><big>Voleu mantenir aquesta configuració?</big></b>"
@@ -970,7 +939,6 @@ msgid "Configure..."
 msgstr "Configura..."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:15
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "Pantalla"
 
@@ -1271,15 +1239,6 @@ msgstr "Ajusts d'ATI"
 msgid "Unable to launch the proprietary driver settings"
 msgstr "No es pot executar el gestor d'ajusts del controlador propietari"
 
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
-msgid "Configure screen settings and layout"
-msgstr "Configureu els ajusts i la disposició de la pantalla"
-
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
-msgid ""
-"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
-msgstr "monitor;ajusts;pantalla;resolució;refresc;freqüència;gir;extern;projectors;monitors;LCD;CRT;HiDPI;"
-
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 msgid "Shortcut Command"
@@ -1351,7 +1310,6 @@ msgid "Keyboard layout selection"
 msgstr "Selecció del tipus de teclat"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
 msgstr "Teclat"
 
@@ -1360,7 +1318,7 @@ msgid "Restore num l_ock state on startup"
 msgstr "Restaura l'estat de la tecla de _fixació del teclat numèric amb la inicialització"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "General"
 msgstr "General"
 
@@ -1526,14 +1484,6 @@ msgstr "Els valors predeterminats del sistema es recuperaran el pròxim cop que 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
 msgstr "Advertència"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "Editeu els ajusts del teclat i les dreceres de les aplicacions"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
-msgid "numlock;keyboard;layout;shortcuts;"
-msgstr "bloqueig numèric;teclat;disposició;dreceres;"
 
 #: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
@@ -1793,7 +1743,6 @@ msgid "Failed to open %s for writing"
 msgstr "Ha fallat l'obriment de %s per a l'escriptura"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:184
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
 msgstr "Aplicacions predeterminades"
 
@@ -1803,7 +1752,6 @@ msgid "_Internet"
 msgstr "_Internet"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:221
-#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
 msgid "Web Browser"
 msgstr "Navegador web"
 
@@ -1814,7 +1762,6 @@ msgid ""
 msgstr "El navegador web predeterminat que s'utilitzarà per obrir els hiperenllaços i per visualitzar el contingut de l'ajuda."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:247
-#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
 msgid "Mail Reader"
 msgstr "Client de correu"
 
@@ -1830,7 +1777,6 @@ msgid "_Utilities"
 msgstr "_Utilitats"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:282
-#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
 msgid "File Manager"
 msgstr "Gestor de fitxers"
 
@@ -1840,7 +1786,6 @@ msgid ""
 msgstr "El gestor de fitxers predeterminat que s'utilitzarà per visualitzar el contingut de les carpetes."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:308
-#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
 msgstr "Emulador de terminal"
 
@@ -1887,8 +1832,8 @@ msgstr "Establert per l'usuari"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:650
 #: ../dialogs/mime-settings/xfce-mime-window.c:812
-#: ../dialogs/mouse-settings/main.c:401 ../dialogs/mouse-settings/main.c:403
-#: ../dialogs/mouse-settings/main.c:466
+#: ../dialogs/mouse-settings/main.c:406 ../dialogs/mouse-settings/main.c:408
+#: ../dialogs/mouse-settings/main.c:471
 msgid "Default"
 msgstr "Predeterminat"
 
@@ -1928,502 +1873,267 @@ msgstr "Restableix als valors predeterminats"
 msgid "Choose Application..."
 msgstr "Escolliu una Aplicació..."
 
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
-msgid "Associate preferred applications with MIME types"
-msgstr "Associeu les aplicacions preferides amb els tipus MIME"
-
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
-msgid ""
-"file;type;extension;association;open with;web browser;mail reader;file "
-"manager;terminal emulator;"
-msgstr "fitxer;tipus;extensió;associació;obre amb;navegador web;lector de correu;gestor de fitxers;emulador de terminal;"
-
-#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
-msgid "Browse the file system"
-msgstr "Navega pel sistema de fitxers"
-
-#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:2
-msgid "Read your email"
-msgstr "Llegiu el vostre correu electrònic"
-
-#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:2
-msgid "Use the command line"
-msgstr "Utilitzeu la línia d'ordres"
-
-#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:2
-msgid "Browse the web"
-msgstr "Navegueu pel web"
-
-#: ../dialogs/mime-settings/helpers/alacritty.desktop.in.in.h:1
-msgid "Alacritty"
-msgstr ""
-
-#: ../dialogs/mime-settings/helpers/aterm.desktop.in.in.h:1
-msgid "aterm"
-msgstr "aterm"
-
-#: ../dialogs/mime-settings/helpers/balsa.desktop.in.in.h:1
-msgid "Balsa"
-msgstr "Balsa"
-
-#: ../dialogs/mime-settings/helpers/brave.desktop.in.in.h:1
-msgid "Brave"
-msgstr "Brave"
-
-#: ../dialogs/mime-settings/helpers/caja.desktop.in.in.h:1
-msgid "Caja File Manager"
-msgstr "Gestor de fitxers Caja"
-
-#: ../dialogs/mime-settings/helpers/chromium.desktop.in.in.h:1
-msgid "Chromium"
-msgstr "Chromium"
-
-#: ../dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in.h:1
-msgid "Debian Sensible Browser"
-msgstr "Navegador sensat de Debian"
-
-#: ../dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in.h:1
-msgid "Debian X Terminal Emulator"
-msgstr "Emulador de Terminal X de Debian"
-
-#: ../dialogs/mime-settings/helpers/dillo.desktop.in.in.h:1
-msgid "Dillo"
-msgstr "Dillo"
-
-#: ../dialogs/mime-settings/helpers/encompass.desktop.in.in.h:1
-msgid "Encompass"
-msgstr "Encompass"
-
-#: ../dialogs/mime-settings/helpers/epiphany.desktop.in.in.h:1
-msgid "Epiphany Web Browser"
-msgstr "Navegador web Epiphany"
-
-#: ../dialogs/mime-settings/helpers/eterm.desktop.in.in.h:1
-msgid "Enlightened Terminal Emulator"
-msgstr "Emulador de terminal Enlightened"
-
-#: ../dialogs/mime-settings/helpers/evolution.desktop.in.in.h:1
-msgid "Evolution"
-msgstr "Evolution"
-
-#: ../dialogs/mime-settings/helpers/firefox.desktop.in.in.h:1
-msgid "Mozilla Firefox"
-msgstr "Mozilla Firefox"
-
-#: ../dialogs/mime-settings/helpers/galeon.desktop.in.in.h:1
-msgid "Galeon Web Browser"
-msgstr "Navegador web Galeon"
-
-#: ../dialogs/mime-settings/helpers/geary.desktop.in.in.h:1
-msgid "Geary"
-msgstr "Geary"
-
-#: ../dialogs/mime-settings/helpers/google-chrome.desktop.in.in.h:1
-msgid "Google Chrome"
-msgstr "Google Chrome"
-
-#: ../dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in.h:1
-msgid "GNOME Terminal"
-msgstr "Terminal del GNOME"
-
-#: ../dialogs/mime-settings/helpers/icecat.desktop.in.in.h:1
-msgid "Icecat"
-msgstr "Icecat"
-
-#: ../dialogs/mime-settings/helpers/icedove.desktop.in.in.h:1
-msgid "Icedove"
-msgstr "Icedove"
-
-#: ../dialogs/mime-settings/helpers/iceweasel.desktop.in.in.h:1
-msgid "Iceweasel"
-msgstr "Iceweasel"
-
-#: ../dialogs/mime-settings/helpers/jumanji.desktop.in.in.h:1
-msgid "Jumanji"
-msgstr "Jumanji"
-
-#: ../dialogs/mime-settings/helpers/kitty.desktop.in.in.h:1
-msgid "kitty"
-msgstr ""
-
-#: ../dialogs/mime-settings/helpers/kmail.desktop.in.in.h:1
-msgid "KMail"
-msgstr "KMail"
-
-#: ../dialogs/mime-settings/helpers/konqueror.desktop.in.in.h:1
-msgid "Konqueror Web Browser"
-msgstr "Navegador web Konqueror"
-
-#: ../dialogs/mime-settings/helpers/links.desktop.in.in.h:1
-msgid "Links Text Browser"
-msgstr "Navegador web de text Links"
-
-#: ../dialogs/mime-settings/helpers/lynx.desktop.in.in.h:1
-msgid "Lynx Text Browser"
-msgstr "Navegador web de text Lynx"
-
-#: ../dialogs/mime-settings/helpers/midori.desktop.in.in.h:1
-msgid "Midori"
-msgstr "Midori"
-
-#: ../dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in.h:1
-msgid "Mozilla Browser"
-msgstr "Navegador Mozilla"
-
-#: ../dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in.h:1
-msgid "Mozilla Mail"
-msgstr "Mozilla Mail"
-
-#: ../dialogs/mime-settings/helpers/mutt.desktop.in.in.h:1
-msgid "Mutt"
-msgstr "Mutt"
-
-#: ../dialogs/mime-settings/helpers/nautilus.desktop.in.in.h:1
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: ../dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in.h:1
-msgid "Netscape Navigator"
-msgstr "Navegador Netscape"
-
-#: ../dialogs/mime-settings/helpers/nxterm.desktop.in.in.h:1
-msgid "NXterm"
-msgstr "NXterm"
-
-#: ../dialogs/mime-settings/helpers/opera-browser.desktop.in.in.h:1
-msgid "Opera Browser"
-msgstr "Navegador Opera"
-
-#: ../dialogs/mime-settings/helpers/pcmanfm.desktop.in.in.h:1
-msgid "PCMan File Manager"
-msgstr "Gestor de fitxers PCMan"
-
-#: ../dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in.h:1
-msgid "PCManFM-Qt File Manager"
-msgstr "Gestor de fitxers PCManFM-Qt"
-
-#: ../dialogs/mime-settings/helpers/qterminal.desktop.in.in.h:1
-msgid "QTerminal"
-msgstr "QTerminal"
-
-#: ../dialogs/mime-settings/helpers/qtfm.desktop.in.in.h:1
-msgid "qtFM"
-msgstr "qtFM"
-
-#: ../dialogs/mime-settings/helpers/qupzilla.desktop.in.in.h:1
-msgid "QupZilla"
-msgstr "QupZilla"
-
-#: ../dialogs/mime-settings/helpers/rodent.desktop.in.in.h:1
-msgid "Rodent File Manager"
-msgstr "Gestor de fitxers Rodent"
-
-#: ../dialogs/mime-settings/helpers/rox-filer.desktop.in.in.h:1
-msgid "ROX-Filer"
-msgstr "ROX-Filer"
-
-#: ../dialogs/mime-settings/helpers/sakura.desktop.in.in.h:1
-msgid "Sakura"
-msgstr "Sakura"
-
-#: ../dialogs/mime-settings/helpers/surf.desktop.in.in.h:1
-msgid "Surf"
-msgstr "Surf"
-
-#: ../dialogs/mime-settings/helpers/sylpheed.desktop.in.in.h:1
-msgid "Sylpheed"
-msgstr "Sylpheed"
-
-#: ../dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in.h:1
-msgid "Claws Mail"
-msgstr "Claws Mail"
-
-#: ../dialogs/mime-settings/helpers/terminator.desktop.in.in.h:1
-msgid "Terminator"
-msgstr "Terminator"
-
-#: ../dialogs/mime-settings/helpers/thunar.desktop.in.in.h:1
-msgid "Thunar"
-msgstr "Thunar"
-
-#: ../dialogs/mime-settings/helpers/thunderbird.desktop.in.in.h:1
-msgid "Mozilla Thunderbird"
-msgstr "Mozilla Thunderbird"
-
-#: ../dialogs/mime-settings/helpers/urxvt.desktop.in.in.h:1
-msgid "RXVT Unicode"
-msgstr "RXVT Unicode"
-
-#: ../dialogs/mime-settings/helpers/vimprobable2.desktop.in.in.h:1
-msgid "Vimprobable2"
-msgstr "Vimprobable2"
-
-#: ../dialogs/mime-settings/helpers/w3m.desktop.in.in.h:1
-msgid "W3M Text Browser"
-msgstr "Navegador web de text W3M"
-
-#: ../dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in.h:1
-msgid "Xfce Terminal"
-msgstr "Terminal de Xfce"
-
-#: ../dialogs/mime-settings/helpers/xfe.desktop.in.in.h:1
-msgid "Xfe File Manager"
-msgstr "Gestor de fitxers Xfce"
-
-#: ../dialogs/mime-settings/helpers/xterm.desktop.in.in.h:1
-msgid "X Terminal"
-msgstr "Terminal X"
-
-#: ../dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:93
 msgid "Active device in the dialog"
 msgstr "Activa el dispositiu al diàleg"
 
-#: ../dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:93
 msgid "DEVICE NAME"
 msgstr "NOM DEL DISPOSITIU"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:146
+#: ../dialogs/mouse-settings/main.c:159
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:156
+#: ../dialogs/mouse-settings/main.c:169
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:167
+#: ../dialogs/mouse-settings/main.c:180
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+msgid "Use bottom areas as left, middle or right buttons"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Disabled"
 msgstr "Inhabilitat"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Edge scrolling"
 msgstr "Desplaçament amb la vora"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Two-finger scrolling"
 msgstr "Desplaçament amb dos dits"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Circular scrolling"
 msgstr "Desplaçament circular"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "Pen (absolute)"
 msgstr "Llapis (absolut)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Mouse (relative)"
 msgstr "Ratolí (relatiu)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "None (right-handed)"
 msgstr "Cap (dretà)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Half (left-handed)"
 msgstr "Mig (esquerrà)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Clockwise"
 msgstr "Sentit horari"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Counterclockwise"
 msgstr "Sentit antihorari"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "Mouse and Touchpad"
 msgstr "Ratolí normal i tàctil"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "De_vice:"
 msgstr "_Dispositiu:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Le_ft-handed"
 msgstr "_Esquerrà"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Ri_ght-handed"
 msgstr "_Dretà"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Reverse scroll d_irection"
 msgstr "_Inverteix el sentit del desplaçament"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Quan estigui seleccionat, la rodeta del ratolí funcionarà en el sentit contrari"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "Allow high _resolution scrolling (experimental)"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid ""
+"Only supported on some mice (mostly Logitech) and requires driver support. "
+"On supported devices makes scrolling more precise."
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Buttons"
 msgstr "Botons"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "_Reset to Defaults"
 msgstr "_Restableix als valors predeterminats"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Estableix l'acceleració i la sensibilitat del dispositiu seleccionat als valors predeterminats"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Sensitivit_y:"
 msgstr "_Sensibilitat:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Acceleratio_n:"
 msgstr "_Acceleració:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "El factor amb què s'incrementarà la velocitat del punter en moure el ratolí"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "El nombre de píxels que el punter ha de moure en un espai de temps petit abans que s'iniciï l'acceleració"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Pointer Speed"
 msgstr "Velocitat del punter"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "B_uttons and Feedback"
 msgstr "_Botons i retroacció"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Disable touchpad _while typing"
 msgstr "_Inhabilita el ratolí tàctil mentre s'està teclejant"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Quan estigui seleccionat, el ratolí tàctil estarà inhabilitat mentre s'utilitzi el teclat"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Duratio_n:"
 msgstr "_Duració:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Tap touchpad to clic_k"
 msgstr "Fer un t_oc al ratolí tàctil per clicar"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+msgid "Click m_ethod:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Scrolling _mode:"
 msgstr "_Mode de desplaçament:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Enable hori_zontal scrolling"
 msgstr "Habilita el desplaçament horit_zontal"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Scrolling"
 msgstr "Desplaçament"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "T_ouchpad"
 msgstr "Ratolí _tàctil"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Trac_king mode:"
 msgstr "Mode de de_splaçament:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "_Rotation:"
 msgstr "_Rotació:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Tab_let"
 msgstr "Tau_leta"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "_Devices"
 msgstr "_Dispositius"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "Th_reshold:"
 msgstr "_Llindar:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "El nombre de píxels que el punter ha de moure abans d'una operació d'arrossegament"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "Drag and Drop"
 msgstr "Arrossega i deixa anar"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "Ti_me:"
 msgstr "Te_mps:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Els dos clics del ratolí que es facin en menys que aquest interval de temps (en mil·lisegons) es considerarà com un doble clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "D_istance:"
 msgstr "Dis_tància:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "El punter del ratolí no es pot moure més lluny que aquesta distància entre dos clics perquè aquests es puguin considerar com un doble clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:54
 msgid "Double Click"
 msgstr "Doble clic"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:55
 msgid "_Behavior"
 msgstr "_Comportament"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:56
 msgid "Cursor si_ze:"
 msgstr "Mida del cur_sor:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:57
 msgid "Size"
 msgstr "Mida"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:58
 msgid "Preview"
 msgstr "Vista prèvia"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:59
 msgid "_Theme"
 msgstr "_Tema"
 
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
-msgid "Configure pointer device behavior and appearance"
-msgstr "Configureu el comportament i l'aparença del dispositiu del punter"
-
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
-msgid ""
-"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-msgstr "ajusts;botons;desplaçament;direcció;punter;velocitat;doble clic;tema;rodona;"
-
 #: ../xfce4-settings-editor/main.c:163
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
 msgstr "Editor d'ajusts"
 
@@ -2620,14 +2330,6 @@ msgstr "Els noms de les propietats no poden acabar amb el caràcter «/»"
 msgid "Edit Property"
 msgstr "Edita la propietat"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-msgid "Graphical settings editor for Xfconf"
-msgstr "Editor gràfic d'ajusts de Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
-msgid "registry;regedit;configuration file;"
-msgstr "registre;regedit;fitxer de configuració;"
-
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
 msgstr "Diàleg d'ajusts a mostrar"
@@ -2645,18 +2347,6 @@ msgstr "Ajusts"
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "No es pot iniciar «%s»"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Settings Manager"
-msgstr "Gestor d'ajusts"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce"
-msgstr "Gestor d'ajusts gràfics per a Xfce"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
-msgid "control;panel;center;system;settings;personalize;hardware;"
-msgstr "control;tauler;centre;sistema;ajusts;personalitzar;maquinari;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2699,15 +2389,15 @@ msgstr "Rebot de tecles"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Ha fallat el llançament de la drecera «%s»"
 
-#: ../xfsettingsd/main.c:103
+#: ../xfsettingsd/main.c:107
 msgid "Fork to the background"
 msgstr "Executar-se com a procés de fons"
 
-#: ../xfsettingsd/main.c:104
+#: ../xfsettingsd/main.c:108
 msgid "Do not wait for a window manager on startup"
 msgstr "No esperis un gestor de finestres a l'inici"
 
-#: ../xfsettingsd/main.c:105
+#: ../xfsettingsd/main.c:109
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Substitueix el dimoni «xsettings» en execució (si n'hi ha algun)"
 
@@ -2716,11 +2406,3 @@ msgstr "Substitueix el dimoni «xsettings» en execució (si n'hi ha algun)"
 #, c-format
 msgid "Workspace %d"
 msgstr "Espai de treball %d"
-
-#: ../xfsettingsd/xfsettingsd.desktop.in.h:1
-msgid "Xfce Settings Daemon"
-msgstr "Dimoni del gestor d'ajusts de Xfce"
-
-#: ../xfsettingsd/xfsettingsd.desktop.in.h:2
-msgid "The Xfce Settings Daemon"
-msgstr "El dimoni del gestor d'ajusts de Xfce"
