@@ -18,10 +18,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 00:47+0100\n"
+"POT-Creation-Date: 2023-04-13 01:18+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2020-2023\n"
-"Language-Team: Hebrew (http://www.transifex.com/xfce/xfce4-settings/language/he/)\n"
+"Language-Team: Hebrew (http://app.transifex.com/xfce/xfce4-settings/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -68,7 +68,6 @@ msgid "Digital display"
 msgstr "תצוגה דיגיטלית"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
 msgstr "נגישות"
 
@@ -299,76 +298,66 @@ msgid "_Mouse"
 msgstr "עכ_בר"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/appearance-settings/main.c:104
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:94 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "שקע מנהל הגדרות"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/appearance-settings/main.c:104
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:94 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "זהות שקע"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:106
+#: ../dialogs/appearance-settings/main.c:105
 #: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:141
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:45
-#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:50
-#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
+#: ../dialogs/mouse-settings/main.c:95 ../xfce4-settings-editor/main.c:50
+#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:106
 msgid "Version information"
 msgstr "מידע גרסה"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1420
+#: ../dialogs/appearance-settings/main.c:1394
 #: ../dialogs/color-settings/main.c:1379
 #: ../dialogs/display-settings/main.c:4359
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
-#: ../dialogs/mouse-settings/main.c:2042 ../xfce4-settings-editor/main.c:120
-#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
-#: ../xfsettingsd/main.c:280
+#: ../dialogs/mouse-settings/main.c:2082 ../xfce4-settings-editor/main.c:120
+#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:249
+#: ../xfsettingsd/main.c:287
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "הקלד '%s --help' לשימוש."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1439
+#: ../dialogs/appearance-settings/main.c:1413
 #: ../dialogs/color-settings/main.c:1396
 #: ../dialogs/display-settings/main.c:4378
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
-#: ../dialogs/mouse-settings/main.c:2061 ../xfce4-settings-editor/main.c:139
-#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
+#: ../dialogs/mouse-settings/main.c:2101 ../xfce4-settings-editor/main.c:139
+#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
 msgstr "קבוצת הפיתוח של Xfce. כל הזכויות שמורות."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1440
+#: ../dialogs/appearance-settings/main.c:1414
 #: ../dialogs/color-settings/main.c:1397
 #: ../dialogs/display-settings/main.c:4379
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
-#: ../dialogs/mouse-settings/main.c:2062 ../xfce4-settings-editor/main.c:140
-#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
+#: ../dialogs/mouse-settings/main.c:2102 ../xfce4-settings-editor/main.c:140
+#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:266
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "אנא דווח באגים ל-<%s>."
 
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
-msgid "Improve keyboard and mouse accessibility"
-msgstr "שיפור נגישות מקלדת ועכבר"
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
-msgid ""
-"assistive;technologies;keys;sticky;bounce;emulation;screen "
-"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-msgstr "assistive;technologies;keys;sticky;bounce;emulation;screen readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1295
+#: ../dialogs/appearance-settings/main.c:1269
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
@@ -413,7 +402,6 @@ msgid "2x"
 msgstr "2x"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
 msgstr "מראה"
 
@@ -602,43 +590,43 @@ msgid ""
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "אזהרה: לערכת נושא איקון זו אין קובץ מטמון. באפשרותך ליצור כזה על ידי הפעלת <i>gtk-update-icon-cache %s/%s/</i> בתוך מדמה מסוף."
 
-#: ../dialogs/appearance-settings/main.c:989
+#: ../dialogs/appearance-settings/main.c:963
 #, c-format
 msgid "File is too large, installation aborted"
 msgstr "קובץ גדול מדי, התקנה בוטלה"
 
-#: ../dialogs/appearance-settings/main.c:994
+#: ../dialogs/appearance-settings/main.c:968
 msgid "Failed to create temporary directory"
 msgstr "נכשל ליצור ספרייה זמנית"
 
-#: ../dialogs/appearance-settings/main.c:999
+#: ../dialogs/appearance-settings/main.c:973
 msgid "Failed to extract archive"
 msgstr "נכשל להוציא ארכיון"
 
-#: ../dialogs/appearance-settings/main.c:1004
+#: ../dialogs/appearance-settings/main.c:978
 msgid "Unknown format, only archives and directories are supported"
 msgstr "פורמט לא ידוע, רק ארכיונים וספריות הינם נתמכים"
 
-#: ../dialogs/appearance-settings/main.c:1009
+#: ../dialogs/appearance-settings/main.c:983
 msgid "Not a valid theme package"
 msgstr "לא חבילת ערכת נושא תקנית"
 
-#: ../dialogs/appearance-settings/main.c:1014
+#: ../dialogs/appearance-settings/main.c:988
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "שגיאה לא ידועה, קוד יציאה %d "
 
-#: ../dialogs/appearance-settings/main.c:1021
+#: ../dialogs/appearance-settings/main.c:995
 msgid "Failed to install theme"
 msgstr "נכשל להתקין ערכת נושא"
 
-#: ../dialogs/appearance-settings/main.c:1075
+#: ../dialogs/appearance-settings/main.c:1049
 #, c-format
 msgid "Install %s theme"
 msgstr "התקן ערכת נושא %s"
 
 #. Create cancel button
-#: ../dialogs/appearance-settings/main.c:1079
+#: ../dialogs/appearance-settings/main.c:1053
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
@@ -650,38 +638,27 @@ msgstr "התקן ערכת נושא %s"
 msgid "_Cancel"
 msgstr "_ביטול"
 
-#: ../dialogs/appearance-settings/main.c:1081
+#: ../dialogs/appearance-settings/main.c:1055
 #: ../dialogs/keyboard-settings/command-dialog.c:281
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_פתח"
 
-#: ../dialogs/appearance-settings/main.c:1299
+#: ../dialogs/appearance-settings/main.c:1273
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1303
+#: ../dialogs/appearance-settings/main.c:1277
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1307
+#: ../dialogs/appearance-settings/main.c:1281
 msgid "Vertical RGB"
 msgstr "‏RGB אנכי"
 
-#: ../dialogs/appearance-settings/main.c:1311
+#: ../dialogs/appearance-settings/main.c:1285
 msgid "Vertical BGR"
 msgstr "‏BGR אנכי"
-
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
-msgid "Customize the look of your desktop"
-msgstr "התאם אישית את המראה של שולחן העבודה שלך"
-
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
-msgid ""
-"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
-"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
-"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -719,7 +696,6 @@ msgid "Enable color management for %s"
 msgstr "הפעל ניהול צבע עבור %s"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
 msgid "Color Profiles"
 msgstr "פרופילי צבע"
 
@@ -898,14 +874,6 @@ msgstr "פרופילים מתאימים"
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
-msgid "Set color profiles"
-msgstr "קבע פרופילי צבע"
-
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
-msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
-msgstr "color;settings;management;display;monitors;printers;webcams;scanners;"
-
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
 msgstr "<b><big>האם תרצה לשמור את התצורה הזאת? </big></b>"
@@ -977,7 +945,6 @@ msgid "Configure..."
 msgstr "הגדר..."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:15
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "תצוגה"
 
@@ -1278,15 +1245,6 @@ msgstr "הגדרות ATI"
 msgid "Unable to launch the proprietary driver settings"
 msgstr "לא יכול להפעיל את הגדרות מנהל ההתקן הקנייני "
 
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
-msgid "Configure screen settings and layout"
-msgstr "הגדרת סידור והגדרות מסך"
-
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
-msgid ""
-"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
-msgstr "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
-
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 msgid "Shortcut Command"
@@ -1358,7 +1316,6 @@ msgid "Keyboard layout selection"
 msgstr "בחירת סידור מקלדת"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
 msgstr "מקלדת"
 
@@ -1367,7 +1324,7 @@ msgid "Restore num l_ock state on startup"
 msgstr "שחזר מצב num l_ock בהפעלה"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "General"
 msgstr "כללי"
 
@@ -1533,14 +1490,6 @@ msgstr "הברירות מחדל של המערכת תשוחזרנה עם כניס
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
 msgstr "אזהרה"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "עריכת הגדרות מקלדת וקיצורי יישומים"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
-msgid "numlock;keyboard;layout;shortcuts;"
-msgstr "numlock;keyboard;layout;shortcuts;"
 
 #: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
@@ -1800,7 +1749,6 @@ msgid "Failed to open %s for writing"
 msgstr "נכשל לפתוח את %s לכתיבה"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:184
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
 msgstr "ישומי ברירת מחדל"
 
@@ -1810,7 +1758,6 @@ msgid "_Internet"
 msgstr "_אינטרנט"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:221
-#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
 msgid "Web Browser"
 msgstr "דפדפן רשת"
 
@@ -1821,7 +1768,6 @@ msgid ""
 msgstr "דפדפן הרשת ברירת המחדל ישמש לפתיחת היפרלינקים ולהצגת תכני עזרה."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:247
-#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
 msgid "Mail Reader"
 msgstr "קורא דואר"
 
@@ -1837,7 +1783,6 @@ msgid "_Utilities"
 msgstr "_עזרים"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:282
-#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
 msgid "File Manager"
 msgstr "מנהל קבצים"
 
@@ -1847,7 +1792,6 @@ msgid ""
 msgstr "מנהל הקבצים ברירת המחדל ישמש לדפדוף בתוכן של תיקיות."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:308
-#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
 msgstr "מדמה מסוף"
 
@@ -1894,8 +1838,8 @@ msgstr "הגדרת משתמש"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:650
 #: ../dialogs/mime-settings/xfce-mime-window.c:812
-#: ../dialogs/mouse-settings/main.c:409 ../dialogs/mouse-settings/main.c:411
-#: ../dialogs/mouse-settings/main.c:474
+#: ../dialogs/mouse-settings/main.c:406 ../dialogs/mouse-settings/main.c:408
+#: ../dialogs/mouse-settings/main.c:471
 msgid "Default"
 msgstr "ברירת מחדל"
 
@@ -1937,274 +1881,28 @@ msgstr "אפס לברירת מחדל"
 msgid "Choose Application..."
 msgstr "בחר יישום..."
 
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
-msgid "Associate preferred applications with MIME types"
-msgstr "קשר ישומים מועדפים עם סוגי MIME "
-
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
-msgid ""
-"file;type;extension;association;open with;web browser;mail reader;file "
-"manager;terminal emulator;"
-msgstr "file;type;extension;association;open with;web browser;mail reader;file manager;terminal emulator;"
-
-#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
-msgid "Browse the file system"
-msgstr "סייר במערכת הקבצים"
-
-#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:2
-msgid "Read your email"
-msgstr "קרא את הדוא״ל שלך"
-
-#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:2
-msgid "Use the command line"
-msgstr "השתמש בשורת הפקודה"
-
-#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:2
-msgid "Browse the web"
-msgstr "סייר ברשת"
-
-#: ../dialogs/mime-settings/helpers/alacritty.desktop.in.in.h:1
-msgid "Alacritty"
-msgstr "Alacritty"
-
-#: ../dialogs/mime-settings/helpers/aterm.desktop.in.in.h:1
-msgid "aterm"
-msgstr "aterm"
-
-#: ../dialogs/mime-settings/helpers/balsa.desktop.in.in.h:1
-msgid "Balsa"
-msgstr "Balsa"
-
-#: ../dialogs/mime-settings/helpers/brave.desktop.in.in.h:1
-msgid "Brave"
-msgstr "Brave"
-
-#: ../dialogs/mime-settings/helpers/caja.desktop.in.in.h:1
-msgid "Caja File Manager"
-msgstr "מנהל הקבצים Caja"
-
-#: ../dialogs/mime-settings/helpers/chromium.desktop.in.in.h:1
-msgid "Chromium"
-msgstr "כרומיום"
-
-#: ../dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in.h:1
-msgid "Debian Sensible Browser"
-msgstr "דפדפן בשימוש דביאן"
-
-#: ../dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in.h:1
-msgid "Debian X Terminal Emulator"
-msgstr "מדמה מסוף X דביאן"
-
-#: ../dialogs/mime-settings/helpers/dillo.desktop.in.in.h:1
-msgid "Dillo"
-msgstr "Dillo"
-
-#: ../dialogs/mime-settings/helpers/encompass.desktop.in.in.h:1
-msgid "Encompass"
-msgstr "Encompass"
-
-#: ../dialogs/mime-settings/helpers/epiphany.desktop.in.in.h:1
-msgid "Epiphany Web Browser"
-msgstr "דפדפן רשת Epiphany"
-
-#: ../dialogs/mime-settings/helpers/eterm.desktop.in.in.h:1
-msgid "Enlightened Terminal Emulator"
-msgstr "מדמה המסוף Enlightened"
-
-#: ../dialogs/mime-settings/helpers/evolution.desktop.in.in.h:1
-msgid "Evolution"
-msgstr "Evolution"
-
-#: ../dialogs/mime-settings/helpers/firefox.desktop.in.in.h:1
-msgid "Mozilla Firefox"
-msgstr "Mozilla Firefox"
-
-#: ../dialogs/mime-settings/helpers/galeon.desktop.in.in.h:1
-msgid "Galeon Web Browser"
-msgstr "דפדפן הרשת Galeon"
-
-#: ../dialogs/mime-settings/helpers/geary.desktop.in.in.h:1
-msgid "Geary"
-msgstr "Geary"
-
-#: ../dialogs/mime-settings/helpers/google-chrome.desktop.in.in.h:1
-msgid "Google Chrome"
-msgstr "גוגל כרום"
-
-#: ../dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in.h:1
-msgid "GNOME Terminal"
-msgstr "מסוף GNOME"
-
-#: ../dialogs/mime-settings/helpers/icecat.desktop.in.in.h:1
-msgid "Icecat"
-msgstr "Icecat"
-
-#: ../dialogs/mime-settings/helpers/icedove.desktop.in.in.h:1
-msgid "Icedove"
-msgstr "Icedove"
-
-#: ../dialogs/mime-settings/helpers/iceweasel.desktop.in.in.h:1
-msgid "Iceweasel"
-msgstr "Iceweasel"
-
-#: ../dialogs/mime-settings/helpers/jumanji.desktop.in.in.h:1
-msgid "Jumanji"
-msgstr "Jumanji"
-
-#: ../dialogs/mime-settings/helpers/kitty.desktop.in.in.h:1
-msgid "kitty"
-msgstr "kitty"
-
-#: ../dialogs/mime-settings/helpers/kmail.desktop.in.in.h:1
-msgid "KMail"
-msgstr "KMail"
-
-#: ../dialogs/mime-settings/helpers/konqueror.desktop.in.in.h:1
-msgid "Konqueror Web Browser"
-msgstr "דפדפן הרשת Konqueror"
-
-#: ../dialogs/mime-settings/helpers/links.desktop.in.in.h:1
-msgid "Links Text Browser"
-msgstr "דפדפן טקסטואלי Links"
-
-#: ../dialogs/mime-settings/helpers/lynx.desktop.in.in.h:1
-msgid "Lynx Text Browser"
-msgstr "דפדפן טקסטואלי Lynx"
-
-#: ../dialogs/mime-settings/helpers/midori.desktop.in.in.h:1
-msgid "Midori"
-msgstr "Midori"
-
-#: ../dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in.h:1
-msgid "Mozilla Browser"
-msgstr "דפדפן Mozilla"
-
-#: ../dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in.h:1
-msgid "Mozilla Mail"
-msgstr "דואר Mozilla"
-
-#: ../dialogs/mime-settings/helpers/mutt.desktop.in.in.h:1
-msgid "Mutt"
-msgstr "Mutt"
-
-#: ../dialogs/mime-settings/helpers/nautilus.desktop.in.in.h:1
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: ../dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in.h:1
-msgid "Netscape Navigator"
-msgstr "Netscape Navigator"
-
-#: ../dialogs/mime-settings/helpers/nxterm.desktop.in.in.h:1
-msgid "NXterm"
-msgstr "NXterm"
-
-#: ../dialogs/mime-settings/helpers/opera-browser.desktop.in.in.h:1
-msgid "Opera Browser"
-msgstr "דפדפן Opera "
-
-#: ../dialogs/mime-settings/helpers/pcmanfm.desktop.in.in.h:1
-msgid "PCMan File Manager"
-msgstr "מנהל הקבצים PCMan"
-
-#: ../dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in.h:1
-msgid "PCManFM-Qt File Manager"
-msgstr "מנהל הקבצים PCManFM-Qt"
-
-#: ../dialogs/mime-settings/helpers/qterminal.desktop.in.in.h:1
-msgid "QTerminal"
-msgstr "QTerminal"
-
-#: ../dialogs/mime-settings/helpers/qtfm.desktop.in.in.h:1
-msgid "qtFM"
-msgstr "qtFM"
-
-#: ../dialogs/mime-settings/helpers/qupzilla.desktop.in.in.h:1
-msgid "QupZilla"
-msgstr "QupZilla"
-
-#: ../dialogs/mime-settings/helpers/rodent.desktop.in.in.h:1
-msgid "Rodent File Manager"
-msgstr "מנהל קבצים Rodent"
-
-#: ../dialogs/mime-settings/helpers/rox-filer.desktop.in.in.h:1
-msgid "ROX-Filer"
-msgstr "ROX-Filer"
-
-#: ../dialogs/mime-settings/helpers/sakura.desktop.in.in.h:1
-msgid "Sakura"
-msgstr "Sakura"
-
-#: ../dialogs/mime-settings/helpers/surf.desktop.in.in.h:1
-msgid "Surf"
-msgstr "Surf"
-
-#: ../dialogs/mime-settings/helpers/sylpheed.desktop.in.in.h:1
-msgid "Sylpheed"
-msgstr "Sylpheed"
-
-#: ../dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in.h:1
-msgid "Claws Mail"
-msgstr "Claws Mail"
-
-#: ../dialogs/mime-settings/helpers/terminator.desktop.in.in.h:1
-msgid "Terminator"
-msgstr "מסיים"
-
-#: ../dialogs/mime-settings/helpers/thunar.desktop.in.in.h:1
-msgid "Thunar"
-msgstr "Thunar"
-
-#: ../dialogs/mime-settings/helpers/thunderbird.desktop.in.in.h:1
-msgid "Mozilla Thunderbird"
-msgstr "Mozilla Thunderbird"
-
-#: ../dialogs/mime-settings/helpers/urxvt.desktop.in.in.h:1
-msgid "RXVT Unicode"
-msgstr "RXVT Unicode"
-
-#: ../dialogs/mime-settings/helpers/vimprobable2.desktop.in.in.h:1
-msgid "Vimprobable2"
-msgstr "Vimprobable2"
-
-#: ../dialogs/mime-settings/helpers/w3m.desktop.in.in.h:1
-msgid "W3M Text Browser"
-msgstr "דפדפן טקסטואלי W3M"
-
-#: ../dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in.h:1
-msgid "Xfce Terminal"
-msgstr "מסוף Xfce"
-
-#: ../dialogs/mime-settings/helpers/xfe.desktop.in.in.h:1
-msgid "Xfe File Manager"
-msgstr "מנהל קבצים Xfe"
-
-#: ../dialogs/mime-settings/helpers/xterm.desktop.in.in.h:1
-msgid "X Terminal"
-msgstr "מסוף X"
-
-#: ../dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:93
 msgid "Active device in the dialog"
 msgstr "התקן פעיל בדו שיח"
 
-#: ../dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:93
 msgid "DEVICE NAME"
 msgstr "שם התקן"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:154
+#: ../dialogs/mouse-settings/main.c:159
 #, c-format
 msgid "%g px"
 msgstr "%g פיקסלים"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:164
+#: ../dialogs/mouse-settings/main.c:169
 #, c-format
 msgid "%g ms"
 msgstr "%g אלפיות שנייה"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:175
+#: ../dialogs/mouse-settings/main.c:180
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f sש׳"
@@ -2258,7 +1956,6 @@ msgid "Counterclockwise"
 msgstr "נגד כיוון שעון"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
 msgstr "עכבר ולוח מגע"
 
@@ -2283,168 +1980,168 @@ msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "כאשר נבחרת, גלגל הגלילה יעבוד בכיוון ההפוך"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "Allow high _resolution scrolling (experimental)"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid ""
+"Only supported on some mice (mostly Logitech) and requires driver support. "
+"On supported devices makes scrolling more precise."
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Buttons"
 msgstr "כפתורים"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "_Reset to Defaults"
 msgstr "אפס ל_ברירות מחדל"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "קבע את ההאצה והרגישות של ההתקן הנבחר אל ערכי ברירת המחדל"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Sensitivit_y:"
 msgstr "_רגישות:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Acceleratio_n:"
 msgstr "ה_אצה:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "היחס בו מהירות הסמן תגדל כאשר העכבר מוזז"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "המספר של פיקסלים שהסמן חייב לעבור בזמן קצר בטרם זה מתחיל להאיץ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Pointer Speed"
 msgstr "מהירות סמן"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "B_uttons and Feedback"
 msgstr "כ_פתורים ומשוב"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Disable touchpad _while typing"
 msgstr "נטרל לוח מ_גע במהלך הקלדה"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "כאשר נבחרת, בלוח מגע ינוטרל כאשר המקלדת מצויה בשימוש"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Duratio_n:"
 msgstr "מ_שך:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Tap touchpad to clic_k"
 msgstr "הק_ש על לוח מגע כדי להקליק"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Click m_ethod:"
 msgstr "_שיטת הקלקה:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Scrolling _mode:"
 msgstr "מ_צב גלילה:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Enable hori_zontal scrolling"
 msgstr "אפשר גלילה אופ_קית"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Scrolling"
 msgstr "גלילה"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "T_ouchpad"
 msgstr "_לוח מגע"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Trac_king mode:"
 msgstr "מצב _עקיבה:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "_Rotation:"
 msgstr "ה_טיה:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Tab_let"
 msgstr "_טאבלט"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "_Devices"
 msgstr "_התקנים"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "Th_reshold:"
 msgstr "ס_ף:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "המספר של פיקסלים שהסמן חייב לעבור בטרם פעולת גרירה מתחילה"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "Drag and Drop"
 msgstr "גרירה ושחרור"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "Ti_me:"
 msgstr "_זמן:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "שני קליקים בעכבר בתוך פחות מאורך זמן זה (באלפיות שנייה) ייחשבו בתור קליק כפול"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "D_istance:"
 msgstr "_מרחק:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "סמן העכבר לא יכול לזוז יותר רחוק מאשר מרחק זה בין שני קליקים כדי שאלו ייחשבו כקליק כפול"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:54
 msgid "Double Click"
 msgstr "קליק כפול"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:55
 msgid "_Behavior"
 msgstr "ה_תנהגות"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:54
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:56
 msgid "Cursor si_ze:"
 msgstr "_גודל סמן:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:55
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:57
 msgid "Size"
 msgstr "גודל"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:56
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:58
 msgid "Preview"
 msgstr "תצוגה מקדימה"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:57
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:59
 msgid "_Theme"
 msgstr "ערכת _נושא"
 
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
-msgid "Configure pointer device behavior and appearance"
-msgstr "הגדר התנהגות ומראה התקן הצבעה"
-
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
-msgid ""
-"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-msgstr "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-
 #: ../xfce4-settings-editor/main.c:163
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
 msgstr "עורך הגדרות"
 
@@ -2641,14 +2338,6 @@ msgstr "שמות מאפיין לא יכולים להסתיים עם תו '/'"
 msgid "Edit Property"
 msgstr "עריכת מאפיין"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-msgid "Graphical settings editor for Xfconf"
-msgstr "עורך הגדרות גרפי עבור Xfconf"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
-msgid "registry;regedit;configuration file;"
-msgstr "registry;regedit;configuration file;"
-
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
 msgstr "דו שיח הגדרות להצגה"
@@ -2666,18 +2355,6 @@ msgstr "הגדרות"
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "לא יכול להתחיל את \"%s\""
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Settings Manager"
-msgstr "מנהל הגדרות"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce"
-msgstr "מנהל הגדרות גרפי עבור Xfce"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
-msgid "control;panel;center;system;settings;personalize;hardware;"
-msgstr "control;panel;center;system;settings;personalize;hardware;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2720,15 +2397,15 @@ msgstr "מקשים קופצניים"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Failed to launch shortcut \"%s\""
 
-#: ../xfsettingsd/main.c:103
+#: ../xfsettingsd/main.c:107
 msgid "Fork to the background"
 msgstr "Fork to the background"
 
-#: ../xfsettingsd/main.c:104
+#: ../xfsettingsd/main.c:108
 msgid "Do not wait for a window manager on startup"
 msgstr "אל תחכה למנהל החלונות בעת ההפעלה"
 
-#: ../xfsettingsd/main.c:105
+#: ../xfsettingsd/main.c:109
 msgid "Replace running xsettings daemon (if any)"
 msgstr "החלף תהליך רקע xsettings פועל (אם ישנו)"
 
@@ -2737,11 +2414,3 @@ msgstr "החלף תהליך רקע xsettings פועל (אם ישנו)"
 #, c-format
 msgid "Workspace %d"
 msgstr "מרחב עבודה %d"
-
-#: ../xfsettingsd/xfsettingsd.desktop.in.h:1
-msgid "Xfce Settings Daemon"
-msgstr "שדון ההגדרות של Xfce"
-
-#: ../xfsettingsd/xfsettingsd.desktop.in.h:2
-msgid "The Xfce Settings Daemon"
-msgstr "תהליך רקע הגדרות של Xfce"
