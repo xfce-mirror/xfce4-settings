@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-03 00:46+0100\n"
+"POT-Creation-Date: 2023-04-13 01:18+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022\n"
-"Language-Team: Korean (http://www.transifex.com/xfce/xfce4-settings/language/ko/)\n"
+"Language-Team: Korean (http://app.transifex.com/xfce/xfce4-settings/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,7 +62,6 @@ msgid "Digital display"
 msgstr "디지털 디스플레이"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
 msgstr "접근성"
 
@@ -75,7 +74,7 @@ msgstr "접근성"
 #: ../dialogs/display-settings/main.c:4431
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 #: ../dialogs/mime-settings/xfce-mime-window.c:187
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 #: ../xfce4-settings-editor/main.c:166
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:232
 msgid "_Close"
@@ -87,7 +86,7 @@ msgstr "닫기(_C)"
 #: ../dialogs/display-settings/display-dialog.glade.h:16
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/mime-settings/xfce-mime-window.c:190
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 #: ../xfce4-settings-editor/main.c:165
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:221
 msgid "_Help"
@@ -293,78 +292,69 @@ msgid "_Mouse"
 msgstr "마우스(_M)"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/appearance-settings/main.c:104
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:94 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "설정 관리자 소켓"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/appearance-settings/main.c:104
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:94 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "소켓 ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:106
+#: ../dialogs/appearance-settings/main.c:105
 #: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:141
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:45
-#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:50
-#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
+#: ../dialogs/mouse-settings/main.c:95 ../xfce4-settings-editor/main.c:50
+#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:106
 msgid "Version information"
 msgstr "버전 정보"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1420
+#: ../dialogs/appearance-settings/main.c:1394
 #: ../dialogs/color-settings/main.c:1379
 #: ../dialogs/display-settings/main.c:4359
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
-#: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:120
-#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
-#: ../xfsettingsd/main.c:280
+#: ../dialogs/mouse-settings/main.c:2082 ../xfce4-settings-editor/main.c:120
+#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:249
+#: ../xfsettingsd/main.c:287
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "사용 방법을 보려면 '%s --help'를 입력하십시오."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1439
+#: ../dialogs/appearance-settings/main.c:1413
 #: ../dialogs/color-settings/main.c:1396
 #: ../dialogs/display-settings/main.c:4378
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
-#: ../dialogs/mouse-settings/main.c:1911 ../xfce4-settings-editor/main.c:139
-#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
+#: ../dialogs/mouse-settings/main.c:2101 ../xfce4-settings-editor/main.c:139
+#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 개발 팀. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1440
+#: ../dialogs/appearance-settings/main.c:1414
 #: ../dialogs/color-settings/main.c:1397
 #: ../dialogs/display-settings/main.c:4379
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
-#: ../dialogs/mouse-settings/main.c:1912 ../xfce4-settings-editor/main.c:140
-#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
+#: ../dialogs/mouse-settings/main.c:2102 ../xfce4-settings-editor/main.c:140
+#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:266
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "<%s>(으)로 버그를 알려주십시오."
 
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
-msgid "Improve keyboard and mouse accessibility"
-msgstr "키보드와 마우스의 접근성을 개선합니다"
-
-#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
-msgid ""
-"assistive;technologies;keys;sticky;bounce;emulation;screen "
-"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-msgstr "assistive;보조;도우미;technologies;기술;keys;키;sticky;끈적이;bounce;튕김;emulation;에뮬레이션;흉내;screen readers;화면 읽기;화면읽기;화면리더;화면리더기;magnifiers;돋보기;a11y;접근성;i18n;국제화;l10n;지역화;AT-SPI;ATK;impairment;장애;"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1295
+#: ../dialogs/appearance-settings/main.c:1269
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "None"
 msgstr "없음"
 
@@ -406,7 +396,6 @@ msgid "2x"
 msgstr "2배"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
 msgstr "모양새"
 
@@ -595,43 +584,43 @@ msgid ""
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "경고: 이 아이콘 테마에 캐시 파일이 없습니다. 터미널에서 <i>gtk-update-icon-cache %s/%s/</t> 명령을 실행하면 아이콘 캐시 파일을 만들 수 있습니다."
 
-#: ../dialogs/appearance-settings/main.c:989
+#: ../dialogs/appearance-settings/main.c:963
 #, c-format
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:994
+#: ../dialogs/appearance-settings/main.c:968
 msgid "Failed to create temporary directory"
 msgstr "임시 디렉터리 만들기에 실패했습니다"
 
-#: ../dialogs/appearance-settings/main.c:999
+#: ../dialogs/appearance-settings/main.c:973
 msgid "Failed to extract archive"
 msgstr "아카이브를 추출하는데 실패했습니다"
 
-#: ../dialogs/appearance-settings/main.c:1004
+#: ../dialogs/appearance-settings/main.c:978
 msgid "Unknown format, only archives and directories are supported"
 msgstr "알 수 없는 형식이며, 아카이브와 디렉터리만 지원합니다"
 
-#: ../dialogs/appearance-settings/main.c:1009
+#: ../dialogs/appearance-settings/main.c:983
 msgid "Not a valid theme package"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:1014
+#: ../dialogs/appearance-settings/main.c:988
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "알 수 없는 오류, 마침 코드는 %d 입니다"
 
-#: ../dialogs/appearance-settings/main.c:1021
+#: ../dialogs/appearance-settings/main.c:995
 msgid "Failed to install theme"
 msgstr "테마 설치에 실패했습니다"
 
-#: ../dialogs/appearance-settings/main.c:1075
+#: ../dialogs/appearance-settings/main.c:1049
 #, c-format
 msgid "Install %s theme"
 msgstr "%s 테마 설치"
 
 #. Create cancel button
-#: ../dialogs/appearance-settings/main.c:1079
+#: ../dialogs/appearance-settings/main.c:1053
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
@@ -643,38 +632,27 @@ msgstr "%s 테마 설치"
 msgid "_Cancel"
 msgstr "취소(_C)"
 
-#: ../dialogs/appearance-settings/main.c:1081
+#: ../dialogs/appearance-settings/main.c:1055
 #: ../dialogs/keyboard-settings/command-dialog.c:281
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: ../dialogs/appearance-settings/main.c:1299
+#: ../dialogs/appearance-settings/main.c:1273
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1303
+#: ../dialogs/appearance-settings/main.c:1277
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1307
+#: ../dialogs/appearance-settings/main.c:1281
 msgid "Vertical RGB"
 msgstr "수직 RGB"
 
-#: ../dialogs/appearance-settings/main.c:1311
+#: ../dialogs/appearance-settings/main.c:1285
 msgid "Vertical BGR"
 msgstr "수직 BGR"
-
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
-msgid "Customize the look of your desktop"
-msgstr "데스크톱 모양 사용자 정의"
-
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
-msgid ""
-"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
-"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
-"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr "themes;테마;user interface;사용자인터페이스;사용자 인터페이스;styles;모양새;icons;아이콘;fonts;글꼴;폰트;anti-aliasing;안티알리아싱;안티에일리어싱;안티애일리어싱;안티 알리아싱;안티 에일리어싱;안티 애일리어싱;hinting;힌팅;sub-pixel;subpixel;서브픽셀;하위픽셀;rendering;렌더링;표현;ClearType;클리어타입;DPI;RGB;BGR;menu accelerators;메뉴 가속;메뉴 단축키;메뉴 바로가기 키;메뉴단축키;메뉴바로가기키;keyboard shortcuts;키보드단축키;키보드 단축키;키보드바로가기키;키보드 바로가기 키;event;이벤트;sounds;사운드;소리;window scaling;창크기조절;창 크기 조절;창크기 조절;HiDPI;Retina display;레티나디스플레이;레티나 디스플레이;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -712,7 +690,6 @@ msgid "Enable color management for %s"
 msgstr "%s 색상 관리자 활성"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
 msgid "Color Profiles"
 msgstr "색상 프로파일"
 
@@ -891,14 +868,6 @@ msgstr "호환 프로파일"
 msgid "Unknown"
 msgstr "모름"
 
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
-msgid "Set color profiles"
-msgstr "색상 프로파일 설정"
-
-#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
-msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
-msgstr "color;색상;settings;설정;management;관리;display;디스플레이;화면;monitors;모니터;printers;프린터;webcams;웹캠;scanners;스캐너;"
-
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
 msgstr "<b><big>이 구성을 유지하시겠습니까?</big></b>"
@@ -970,7 +939,6 @@ msgid "Configure..."
 msgstr "설정..."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:15
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "디스플레이"
 
@@ -1271,15 +1239,6 @@ msgstr "ATI 설정"
 msgid "Unable to launch the proprietary driver settings"
 msgstr "상업용 드라이버 설정을 실행할 수 없습니다"
 
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
-msgid "Configure screen settings and layout"
-msgstr "화면 설정과 배치 설정"
-
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
-msgid ""
-"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
-msgstr "display;디스플레이;화면;settings;설정;screen;스크린;resolution;해상도;refresh;재생;rate;율;rotation;회전;external;외부;projectors;프로젝터;monitors;모니터;LCD;CRT;HiDPI;"
-
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 msgid "Shortcut Command"
@@ -1351,7 +1310,6 @@ msgid "Keyboard layout selection"
 msgstr "키보드 배치 선택"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
 msgstr "키보드"
 
@@ -1360,7 +1318,7 @@ msgid "Restore num l_ock state on startup"
 msgstr "시작시 num lock 상태 복구(_O)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "General"
 msgstr "일반"
 
@@ -1526,14 +1484,6 @@ msgstr "다음에 로그인할 때 시스템 기본값으로 복원합니다."
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
 msgstr "경고"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "키보드 설정과 프로그램 바로 가기를 편집합니다"
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
-msgid "numlock;keyboard;layout;shortcuts;"
-msgstr "numlock;keyboard;키보드;layout;배치;shortcuts;단축키;바로가기키;바로가기 키;"
 
 #: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
@@ -1793,7 +1743,6 @@ msgid "Failed to open %s for writing"
 msgstr "%s을(를) 기록하려면 열지 못했습니다."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:184
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
 msgstr "기본 애플리케이션"
 
@@ -1803,7 +1752,6 @@ msgid "_Internet"
 msgstr "인터넷(_I)"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:221
-#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
 msgid "Web Browser"
 msgstr "웹 브라우저"
 
@@ -1814,7 +1762,6 @@ msgid ""
 msgstr "기본 웹 브라우저는 하이퍼링크를 열거나 화면에 대한 도움말 내용을 표시할 때 사용합니다."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:247
-#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
 msgid "Mail Reader"
 msgstr "메일 리더"
 
@@ -1830,7 +1777,6 @@ msgid "_Utilities"
 msgstr "유틸리티(_U)"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:282
-#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
 msgid "File Manager"
 msgstr "파일 관리자"
 
@@ -1840,7 +1786,6 @@ msgid ""
 msgstr "기본 파일 관리자는 폴더의 내용을 탐색할 때 사용합니다."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:308
-#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
 msgstr "터미널 에뮬레이터"
 
@@ -1887,8 +1832,8 @@ msgstr "사용자 셋"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:650
 #: ../dialogs/mime-settings/xfce-mime-window.c:812
-#: ../dialogs/mouse-settings/main.c:401 ../dialogs/mouse-settings/main.c:403
-#: ../dialogs/mouse-settings/main.c:466
+#: ../dialogs/mouse-settings/main.c:406 ../dialogs/mouse-settings/main.c:408
+#: ../dialogs/mouse-settings/main.c:471
 msgid "Default"
 msgstr "기본"
 
@@ -1927,502 +1872,267 @@ msgstr "기본값으로 초기화"
 msgid "Choose Application..."
 msgstr "프로그램을 선택하십시오..."
 
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
-msgid "Associate preferred applications with MIME types"
-msgstr "MIME 형식에 프로그램 연결하기"
-
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
-msgid ""
-"file;type;extension;association;open with;web browser;mail reader;file "
-"manager;terminal emulator;"
-msgstr "file;type;extension;association;open with;web browser;mail reader;file manager;terminal emulator;"
-
-#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
-msgid "Browse the file system"
-msgstr "파일 시스템 탐색"
-
-#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:2
-msgid "Read your email"
-msgstr "이메일 읽기"
-
-#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:2
-msgid "Use the command line"
-msgstr "명령줄 사용"
-
-#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:2
-msgid "Browse the web"
-msgstr "웹 탐색"
-
-#: ../dialogs/mime-settings/helpers/alacritty.desktop.in.in.h:1
-msgid "Alacritty"
-msgstr "Alacritty"
-
-#: ../dialogs/mime-settings/helpers/aterm.desktop.in.in.h:1
-msgid "aterm"
-msgstr "aterm"
-
-#: ../dialogs/mime-settings/helpers/balsa.desktop.in.in.h:1
-msgid "Balsa"
-msgstr "Balsa"
-
-#: ../dialogs/mime-settings/helpers/brave.desktop.in.in.h:1
-msgid "Brave"
-msgstr "브레이브"
-
-#: ../dialogs/mime-settings/helpers/caja.desktop.in.in.h:1
-msgid "Caja File Manager"
-msgstr "Caja 파일 관리자"
-
-#: ../dialogs/mime-settings/helpers/chromium.desktop.in.in.h:1
-msgid "Chromium"
-msgstr "크로미움"
-
-#: ../dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in.h:1
-msgid "Debian Sensible Browser"
-msgstr "데비안 센서블 브라우저"
-
-#: ../dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in.h:1
-msgid "Debian X Terminal Emulator"
-msgstr "데비안 X 터미널 에뮬레이터"
-
-#: ../dialogs/mime-settings/helpers/dillo.desktop.in.in.h:1
-msgid "Dillo"
-msgstr "Dillo"
-
-#: ../dialogs/mime-settings/helpers/encompass.desktop.in.in.h:1
-msgid "Encompass"
-msgstr "Encompass"
-
-#: ../dialogs/mime-settings/helpers/epiphany.desktop.in.in.h:1
-msgid "Epiphany Web Browser"
-msgstr "에피파니 웹 브라우저"
-
-#: ../dialogs/mime-settings/helpers/eterm.desktop.in.in.h:1
-msgid "Enlightened Terminal Emulator"
-msgstr "가벼워진 터미널 에뮬레이터"
-
-#: ../dialogs/mime-settings/helpers/evolution.desktop.in.in.h:1
-msgid "Evolution"
-msgstr "에볼루션"
-
-#: ../dialogs/mime-settings/helpers/firefox.desktop.in.in.h:1
-msgid "Mozilla Firefox"
-msgstr "모질라 파이어폭스"
-
-#: ../dialogs/mime-settings/helpers/galeon.desktop.in.in.h:1
-msgid "Galeon Web Browser"
-msgstr "갈레온 웹 브라우저"
-
-#: ../dialogs/mime-settings/helpers/geary.desktop.in.in.h:1
-msgid "Geary"
-msgstr "기어리"
-
-#: ../dialogs/mime-settings/helpers/google-chrome.desktop.in.in.h:1
-msgid "Google Chrome"
-msgstr "구글 크롬"
-
-#: ../dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in.h:1
-msgid "GNOME Terminal"
-msgstr "그놈 터미널"
-
-#: ../dialogs/mime-settings/helpers/icecat.desktop.in.in.h:1
-msgid "Icecat"
-msgstr "아이스캣"
-
-#: ../dialogs/mime-settings/helpers/icedove.desktop.in.in.h:1
-msgid "Icedove"
-msgstr "아이스도브"
-
-#: ../dialogs/mime-settings/helpers/iceweasel.desktop.in.in.h:1
-msgid "Iceweasel"
-msgstr "아이스위즐"
-
-#: ../dialogs/mime-settings/helpers/jumanji.desktop.in.in.h:1
-msgid "Jumanji"
-msgstr "쥬만지"
-
-#: ../dialogs/mime-settings/helpers/kitty.desktop.in.in.h:1
-msgid "kitty"
-msgstr "kitty"
-
-#: ../dialogs/mime-settings/helpers/kmail.desktop.in.in.h:1
-msgid "KMail"
-msgstr "KMail"
-
-#: ../dialogs/mime-settings/helpers/konqueror.desktop.in.in.h:1
-msgid "Konqueror Web Browser"
-msgstr "컹커러 웹 브라우저"
-
-#: ../dialogs/mime-settings/helpers/links.desktop.in.in.h:1
-msgid "Links Text Browser"
-msgstr "Links 텍스트 브라우저"
-
-#: ../dialogs/mime-settings/helpers/lynx.desktop.in.in.h:1
-msgid "Lynx Text Browser"
-msgstr "Lynx 텍스트 브라우저"
-
-#: ../dialogs/mime-settings/helpers/midori.desktop.in.in.h:1
-msgid "Midori"
-msgstr "미도리"
-
-#: ../dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in.h:1
-msgid "Mozilla Browser"
-msgstr "모질라 브라우저"
-
-#: ../dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in.h:1
-msgid "Mozilla Mail"
-msgstr "모질라 메일"
-
-#: ../dialogs/mime-settings/helpers/mutt.desktop.in.in.h:1
-msgid "Mutt"
-msgstr "Mutt"
-
-#: ../dialogs/mime-settings/helpers/nautilus.desktop.in.in.h:1
-msgid "Nautilus"
-msgstr "노틸러스"
-
-#: ../dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in.h:1
-msgid "Netscape Navigator"
-msgstr "넷스케이프 네비게이터"
-
-#: ../dialogs/mime-settings/helpers/nxterm.desktop.in.in.h:1
-msgid "NXterm"
-msgstr "NXTerm"
-
-#: ../dialogs/mime-settings/helpers/opera-browser.desktop.in.in.h:1
-msgid "Opera Browser"
-msgstr "오페라 브라우저"
-
-#: ../dialogs/mime-settings/helpers/pcmanfm.desktop.in.in.h:1
-msgid "PCMan File Manager"
-msgstr "PCMan 파일 관리자"
-
-#: ../dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in.h:1
-msgid "PCManFM-Qt File Manager"
-msgstr "PCManFM-Qt 파일 관리자"
-
-#: ../dialogs/mime-settings/helpers/qterminal.desktop.in.in.h:1
-msgid "QTerminal"
-msgstr "QTerminal"
-
-#: ../dialogs/mime-settings/helpers/qtfm.desktop.in.in.h:1
-msgid "qtFM"
-msgstr "qtFM"
-
-#: ../dialogs/mime-settings/helpers/qupzilla.desktop.in.in.h:1
-msgid "QupZilla"
-msgstr "QupZilla"
-
-#: ../dialogs/mime-settings/helpers/rodent.desktop.in.in.h:1
-msgid "Rodent File Manager"
-msgstr "Rodent 파일 관리자"
-
-#: ../dialogs/mime-settings/helpers/rox-filer.desktop.in.in.h:1
-msgid "ROX-Filer"
-msgstr "ROX-Filer"
-
-#: ../dialogs/mime-settings/helpers/sakura.desktop.in.in.h:1
-msgid "Sakura"
-msgstr "Sakura"
-
-#: ../dialogs/mime-settings/helpers/surf.desktop.in.in.h:1
-msgid "Surf"
-msgstr "Surf"
-
-#: ../dialogs/mime-settings/helpers/sylpheed.desktop.in.in.h:1
-msgid "Sylpheed"
-msgstr "Sylpheed"
-
-#: ../dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in.h:1
-msgid "Claws Mail"
-msgstr "Claws 메일"
-
-#: ../dialogs/mime-settings/helpers/terminator.desktop.in.in.h:1
-msgid "Terminator"
-msgstr "터미네이터"
-
-#: ../dialogs/mime-settings/helpers/thunar.desktop.in.in.h:1
-msgid "Thunar"
-msgstr "투나"
-
-#: ../dialogs/mime-settings/helpers/thunderbird.desktop.in.in.h:1
-msgid "Mozilla Thunderbird"
-msgstr "모질라 썬더버드"
-
-#: ../dialogs/mime-settings/helpers/urxvt.desktop.in.in.h:1
-msgid "RXVT Unicode"
-msgstr "RXVT 유니코드"
-
-#: ../dialogs/mime-settings/helpers/vimprobable2.desktop.in.in.h:1
-msgid "Vimprobable2"
-msgstr "Vimprobable2"
-
-#: ../dialogs/mime-settings/helpers/w3m.desktop.in.in.h:1
-msgid "W3M Text Browser"
-msgstr "W3M 텍스트 브라우저"
-
-#: ../dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in.h:1
-msgid "Xfce Terminal"
-msgstr "Xfce 터미널"
-
-#: ../dialogs/mime-settings/helpers/xfe.desktop.in.in.h:1
-msgid "Xfe File Manager"
-msgstr "Xfe 파일 관리자"
-
-#: ../dialogs/mime-settings/helpers/xterm.desktop.in.in.h:1
-msgid "X Terminal"
-msgstr "X 터미널"
-
-#: ../dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:93
 msgid "Active device in the dialog"
 msgstr "대화 상자에 활성화 된 장치"
 
-#: ../dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:93
 msgid "DEVICE NAME"
 msgstr "장치 이름"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:146
+#: ../dialogs/mouse-settings/main.c:159
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:156
+#: ../dialogs/mouse-settings/main.c:169
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:167
+#: ../dialogs/mouse-settings/main.c:180
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f 초"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+msgid "Use bottom areas as left, middle or right buttons"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Disabled"
 msgstr "비활성화"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Edge scrolling"
 msgstr "가장자리 스크롤"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Two-finger scrolling"
 msgstr "두 손가락 스크롤"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Circular scrolling"
 msgstr "순환 스크롤"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "Pen (absolute)"
 msgstr "펜(절대적)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Mouse (relative)"
 msgstr "마우스(상대적)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "None (right-handed)"
 msgstr "없음(오른손잡이)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "Half (left-handed)"
 msgstr "절반(왼손잡이)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "Clockwise"
 msgstr "시계방향"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Counterclockwise"
 msgstr "시계 반대방향"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "Mouse and Touchpad"
 msgstr "마우스와 터치패드"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "De_vice:"
 msgstr "장치(_V):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Le_ft-handed"
 msgstr "왼손잡이(_F)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Ri_ght-handed"
 msgstr "오른손잡이(_G)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "Reverse scroll d_irection"
 msgstr "스크롤 방향 반전(_I)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "이 항목을 선택하면, 스크롤 휠은 반대로 동작합니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+msgid "Allow high _resolution scrolling (experimental)"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+msgid ""
+"Only supported on some mice (mostly Logitech) and requires driver support. "
+"On supported devices makes scrolling more precise."
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Buttons"
 msgstr "단추"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "_Reset to Defaults"
 msgstr "기본값으로 초기화(_R)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "선택한 장치에 대해 가속값과 민감도를 기본값으로 설정합니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "Sensitivit_y:"
 msgstr "민감도(_Y):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Acceleratio_n:"
 msgstr "가속(_N):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "마우스가 움직였을 때 포인터의 이동속도를 증가할 계수입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "가속을 시작하기 전 짧은 시간동안 포인터가 반드시 움직여야 할 픽셀의 수 입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Pointer Speed"
 msgstr "포인터 속도"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "B_uttons and Feedback"
 msgstr "단추와 반응(_U)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Disable touchpad _while typing"
 msgstr "입력하는 동안 터치패드 비활성화(_W)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "이 항목을 선택하면, 키보드를 사용중일 때 터치패드가 비활성화 됩니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Duratio_n:"
 msgstr "지속시간(_N):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "Tap touchpad to clic_k"
 msgstr "누르려면 터치패드를 가볍게 두드림(_K)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+msgid "Click m_ethod:"
+msgstr ""
+
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Scrolling _mode:"
 msgstr "스크롤 모드(_M):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "Enable hori_zontal scrolling"
 msgstr "수평 스크롤 활성화(_Z)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Scrolling"
 msgstr "스크롤"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "T_ouchpad"
 msgstr "터치패드(_O)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Trac_king mode:"
 msgstr "추적 모드(_K):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "_Rotation:"
 msgstr "회전(_R):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid "Tab_let"
 msgstr "태블릿(_L)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "_Devices"
 msgstr "장치(_D)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "Th_reshold:"
 msgstr "임계값(_R):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "끌기 동작을 시작하기 전 포인터가 반드시 움직여야 할 픽셀의 수 입니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "Drag and Drop"
 msgstr "끌어 놓기"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "Ti_me:"
 msgstr "시간(_M):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "이 시간(밀리초) 동안 마우스 단추를 두번 누르면 두번 누른 것으로 간주합니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "D_istance:"
 msgstr "거리(_I):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "두 번 누르기로 처리하려 두 번 누르는 동안 마우스 포인터는 이 거리보다 더 멀리 움직일 수 없습니다"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:54
 msgid "Double Click"
 msgstr "두번 누르기"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:55
 msgid "_Behavior"
 msgstr "동작(_B)"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:56
 msgid "Cursor si_ze:"
 msgstr "커서 크기(_Z):"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:57
 msgid "Size"
 msgstr "크기"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:58
 msgid "Preview"
 msgstr "미리보기"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:59
 msgid "_Theme"
 msgstr "테마(_T)"
 
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
-msgid "Configure pointer device behavior and appearance"
-msgstr "포인터 장치 동작과 표시 설정"
-
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
-msgid ""
-"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-msgstr "settings;설정;buttons;버튼;보턴;단추;scroll;스크롤;direction;방향;pointer;포인터;speed;속도;double click;더블클릭;더블 클릭;두번누르기;두번 누르기;두 번 누르기;theme;테마;wheel;휠;"
-
 #: ../xfce4-settings-editor/main.c:163
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
 msgstr "설정 편집기"
 
@@ -2619,14 +2329,6 @@ msgstr "속성 이름은 '/' 문자로 끝날 수 없습니다"
 msgid "Edit Property"
 msgstr "속성 편집"
 
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
-msgid "Graphical settings editor for Xfconf"
-msgstr "Xfconf 그래픽 설정 편집기"
-
-#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
-msgid "registry;regedit;configuration file;"
-msgstr "registry;레지스트리;regedit;configuration file;설정파일;설정 파일;"
-
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
 msgstr "표시할 대화 상자 설정"
@@ -2644,18 +2346,6 @@ msgstr "설정"
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "\"%s\"을(를) 시작할 수 없습니다"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Settings Manager"
-msgstr "설정 관리자"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce"
-msgstr "Xfce용 그래픽 설정 관리자"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
-msgid "control;panel;center;system;settings;personalize;hardware;"
-msgstr "control;설정;panel;패널;창;center;가운데;센터;system;시스템;settings;personalize;개인화;개인설정;개인 설정;hardware;하드웨어;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2698,15 +2388,15 @@ msgstr "탄력 키"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "\"%s\" 바로 가기를 실행할 수 없습니다"
 
-#: ../xfsettingsd/main.c:103
+#: ../xfsettingsd/main.c:107
 msgid "Fork to the background"
 msgstr "바탕 화면으로 쪼개기"
 
-#: ../xfsettingsd/main.c:104
+#: ../xfsettingsd/main.c:108
 msgid "Do not wait for a window manager on startup"
 msgstr "시동시 창 관리자를 기다리지 않습니다"
 
-#: ../xfsettingsd/main.c:105
+#: ../xfsettingsd/main.c:109
 msgid "Replace running xsettings daemon (if any)"
 msgstr "(실행 중일 때) 실행 중인 xsettings 데몬으로 바꾸기"
 
@@ -2715,11 +2405,3 @@ msgstr "(실행 중일 때) 실행 중인 xsettings 데몬으로 바꾸기"
 #, c-format
 msgid "Workspace %d"
 msgstr "작업공간 %d"
-
-#: ../xfsettingsd/xfsettingsd.desktop.in.h:1
-msgid "Xfce Settings Daemon"
-msgstr "Xfce 설정 데몬"
-
-#: ../xfsettingsd/xfsettingsd.desktop.in.h:2
-msgid "The Xfce Settings Daemon"
-msgstr "Xfce 설정 데몬"
