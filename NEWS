@@ -1,3 +1,57 @@
+4.19.0 (2023-04-18)
+======
+- build: Use m4_defined min versions and cleanup
+- build: Use XDT_VERSION_INIT and get rid of configure.ac.in
+- build: Switch from intltool to gettext
+- Add UI to toggle libinput's hires scrolling events
+- xfsettingsd: Add comment about GTK 3.24.38 required for gtk-modules
+- xfsettingsd: Add GtkSettings synchronization via gtk-modules
+- dialogs: Remove GSettings syncs handled by XfceGtkSettingsHelper
+- xfsettingsd: Add XfceGtkSettingsHelper
+- xfsettingsd: Guard X11-specific code
+- xfsettingsd: xsettings.xml cleanup
+- Hide libinput UI when we don't use libinput
+- dialogs: Secure use of GSettings
+- xfsettingsd: Fix wrong test for property removal
+- xfsettingsd: Update also the type when updating a value
+- Add combo box to set click method with libinput
+- Add check box for libinput disable while typing
+- keyboard-settings: Fix critical when opening layout selection dialog
+- appearance-install-theme: Fix error message
+- appearance-install-theme: Do not mention file size in error message
+- appearance-install-theme: Check for theme package validity
+- appearance-install-theme: Update GTK icon cache after installing
+- appearance-install-theme: detect icon themes first (#271)
+- Update bug report address
+- display: Check for XError on transform apply
+- Update copyright year
+- appearance-install-theme: make cleanup safer
+- appearance-install-theme: Use recommended way of command substitution.
+- appearance-install-theme: Convert to POSIX
+- mime-settings: Increase dialog size
+- display: fix blurry 'help' indicator on output
+- display: fix blurry icon in profiles treeview
+- display: fix blurry icons in minimal display settings dialog
+- mime: fix blurry icons in default app menus
+- mouse: fix blurriness in cursor theme previews
+- appearance: fix blurry subpixel antialias icons
+- appearance: fix blurry icon theme previews
+- xfsettingsd: Make xsettings.xml well-formed (Fixes #431)
+- xfsettingsd: Remove duplicated config line (Fixes #425)
+- appearance: Add clickable link to xfwm4_sync label
+- xfsettingsd: Make CSD opt-in
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Asturian, Basque, Belarusian,
+  Belarusian (Tarask), Bulgarian, Catalan, Chinese (China), Chinese
+  (Hong Kong), Chinese (Taiwan), Croatian, Czech, Danish, Dutch,
+  Eastern Armenian, English (Australia), English (Canada), English
+  (United Kingdom), Estonian, Finnish, French, Galician, German, Greek,
+  Hebrew, Hungarian, Icelandic, Indonesian, Interlingue, Italian,
+  Japanese, Kabyle, Kazakh, Korean, Lithuanian, Malay, Norwegian
+  Bokmål, Norwegian Nynorsk, Occitan (post 1500), Polish, Portuguese,
+  Portuguese (Brazil), Romanian, Russian, Serbian, Slovak, Slovenian,
+  Spanish, Swedish, Thai, Turkish, Ukrainian, Uyghur
+
 4.18.0 (2022-12-15)
 ======
 - build: Bump requirements for Xfce 4.18
