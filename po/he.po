@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-13 12:48+0200\n"
+"POT-Creation-Date: 2023-05-05 10:51+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2020-2023\n"
 "Language-Team: Hebrew (http://app.transifex.com/xfce/xfce4-settings/language/he/)\n"
@@ -365,10 +365,6 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "assistive;technologies;keys;sticky;bounce;emulation;screen readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 
-#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:8
-msgid "org.xfce.settings.accessibility"
-msgstr ""
-
 #: dialogs/appearance-settings/appearance-dialog.glade:39
 #: dialogs/appearance-settings/main.c:1269 dialogs/display-settings/main.c:107
 #: dialogs/display-settings/main.c:118
@@ -685,10 +681,6 @@ msgid ""
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 msgstr "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:8
-msgid "org.xfce.settings.appearance"
-msgstr ""
-
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: dialogs/color-settings/color-device.c:68
 msgid "Scanner"
@@ -913,10 +905,6 @@ msgstr "קבע פרופילי צבע"
 #: dialogs/color-settings/xfce4-color-settings.desktop.in:6
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr "color;settings;management;display;monitors;printers;webcams;scanners;"
-
-#: dialogs/color-settings/xfce4-color-settings.desktop.in:8
-msgid "org.xfce.settings.color"
-msgstr ""
 
 #: dialogs/display-settings/confirmation-dialog.glade:13
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
@@ -1301,10 +1289,6 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:8
-msgid "org.xfce.settings.display"
-msgstr ""
-
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:110
 msgid "Shortcut Command"
@@ -1561,10 +1545,6 @@ msgstr "עריכת הגדרות מקלדת וקיצורי יישומים"
 #: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;keyboard;layout;shortcuts;"
-
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:8
-msgid "org.xfce.settings.keyboard"
-msgstr ""
 
 #: dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
@@ -1970,89 +1950,45 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "file;type;extension;association;open with;web browser;mail reader;file manager;terminal emulator;"
 
-#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:8
-msgid "org.xfce.settings.default-applications"
-msgstr ""
-
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:6
-msgid "org.xfce.filemanager"
-msgstr ""
-
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "Browse the file system"
 msgstr "סייר במערכת הקבצים"
-
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:6
-msgid "org.xfce.mailreader"
-msgstr ""
 
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Read your email"
 msgstr "קרא את הדוא״ל שלך"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:6
-msgid "org.xfce.terminalemulator"
-msgstr ""
-
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Use the command line"
 msgstr "השתמש בשורת הפקודה"
-
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:6
-msgid "org.xfce.webbrowser"
-msgstr ""
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Browse the web"
 msgstr "סייר ברשת"
 
-#: dialogs/mime-settings/helpers/alacritty.desktop.in.in:5
 #: dialogs/mime-settings/helpers/alacritty.desktop.in.in:6
 msgid "Alacritty"
 msgstr "Alacritty"
 
-#: dialogs/mime-settings/helpers/aterm.desktop.in.in:4
 #: dialogs/mime-settings/helpers/aterm.desktop.in.in:6
-#: dialogs/mime-settings/helpers/lynx.desktop.in.in:4
 msgid "aterm"
 msgstr "aterm"
-
-#: dialogs/mime-settings/helpers/balsa.desktop.in.in:4
-msgid "gnome-balsa2"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/balsa.desktop.in.in:6
 msgid "Balsa"
 msgstr "Balsa"
 
-#: dialogs/mime-settings/helpers/brave.desktop.in.in:5
-msgid "brave"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/brave.desktop.in.in:7
 msgid "Brave"
 msgstr "Brave"
-
-#: dialogs/mime-settings/helpers/caja.desktop.in.in:4
-msgid "system-file-manager"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/caja.desktop.in.in:6
 msgid "Caja File Manager"
 msgstr "מנהל קבצים Caja"
 
-#: dialogs/mime-settings/helpers/chromium.desktop.in.in:5
-msgid "chromium"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/chromium.desktop.in.in:7
 msgid "Chromium"
 msgstr "Chromium"
-
-#: dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in:4
-#: dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in:4
-msgid "debian"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in:6
 msgid "Debian Sensible Browser"
@@ -2062,142 +1998,73 @@ msgstr "דפדפן בשימוש דביאן"
 msgid "Debian X Terminal Emulator"
 msgstr "מדמה מסוף X דביאן"
 
-#: dialogs/mime-settings/helpers/dillo.desktop.in.in:4
-msgid "networking_www_section"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/dillo.desktop.in.in:6
 msgid "Dillo"
 msgstr "Dillo"
-
-#: dialogs/mime-settings/helpers/encompass.desktop.in.in:4
-msgid "encompass"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/encompass.desktop.in.in:6
 msgid "Encompass"
 msgstr "Encompass"
 
-#: dialogs/mime-settings/helpers/epiphany.desktop.in.in:4
-msgid "web-browser"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/epiphany.desktop.in.in:6
 msgid "Epiphany Web Browser"
 msgstr "דפדפן רשת Epiphany"
-
-#: dialogs/mime-settings/helpers/eterm.desktop.in.in:4
-msgid "Eterm"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/eterm.desktop.in.in:6
 msgid "Enlightened Terminal Emulator"
 msgstr "מדמה מסוף Enlightened"
 
-#: dialogs/mime-settings/helpers/evolution.desktop.in.in:4
-msgid "evolution"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/evolution.desktop.in.in:6
 msgid "Evolution"
 msgstr "Evolution"
-
-#: dialogs/mime-settings/helpers/firefox.desktop.in.in:4
-msgid "firefox"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/firefox.desktop.in.in:6
 msgid "Mozilla Firefox"
 msgstr "Mozilla Firefox"
 
-#: dialogs/mime-settings/helpers/galeon.desktop.in.in:4
-msgid "galeon"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/galeon.desktop.in.in:6
 msgid "Galeon Web Browser"
 msgstr "דפדפן רשת Galeon"
-
-#: dialogs/mime-settings/helpers/geary.desktop.in.in:4
-msgid "geary"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/geary.desktop.in.in:6
 msgid "Geary"
 msgstr "Geary"
 
-#: dialogs/mime-settings/helpers/google-chrome.desktop.in.in:5
-msgid "google-chrome"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/google-chrome.desktop.in.in:7
 msgid "Google Chrome"
 msgstr "גוגל כרום"
-
-#: dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in:4
-msgid "gnome-terminal"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in:6
 msgid "GNOME Terminal"
 msgstr "מסוף GNOME"
 
-#: dialogs/mime-settings/helpers/icecat.desktop.in.in:4
-msgid "icecat"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/icecat.desktop.in.in:6
 msgid "Icecat"
 msgstr "Icecat"
-
-#: dialogs/mime-settings/helpers/icedove.desktop.in.in:4
-msgid "icedove"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/icedove.desktop.in.in:6
 msgid "Icedove"
 msgstr "Icedove"
 
-#: dialogs/mime-settings/helpers/iceweasel.desktop.in.in:4
-msgid "iceweasel"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/iceweasel.desktop.in.in:6
 msgid "Iceweasel"
 msgstr "Iceweasel"
-
-#: dialogs/mime-settings/helpers/jumanji.desktop.in.in:4
-msgid "jumanji"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/jumanji.desktop.in.in:6
 msgid "Jumanji"
 msgstr "Jumanji"
 
-#: dialogs/mime-settings/helpers/kitty.desktop.in.in:5
 #: dialogs/mime-settings/helpers/kitty.desktop.in.in:6
 msgid "kitty"
 msgstr "kitty"
-
-#: dialogs/mime-settings/helpers/kmail.desktop.in.in:4
-msgid "kmail"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/kmail.desktop.in.in:6
 msgid "KMail"
 msgstr "KMail"
 
-#: dialogs/mime-settings/helpers/konqueror.desktop.in.in:4
-msgid "konqueror"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/konqueror.desktop.in.in:6
 msgid "Konqueror Web Browser"
 msgstr "דפדפן רשת Konqueror"
-
-#: dialogs/mime-settings/helpers/links.desktop.in.in:4
-msgid "links"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/links.desktop.in.in:6
 msgid "Links Text Browser"
@@ -2207,19 +2074,9 @@ msgstr "דפדפן טקסטואלי Links"
 msgid "Lynx Text Browser"
 msgstr "דפדפן טקסטואלי Lynx"
 
-#: dialogs/mime-settings/helpers/midori.desktop.in.in:5
-msgid "midori"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/midori.desktop.in.in:7
 msgid "Midori"
 msgstr "Midori"
-
-#: dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in:4
-#: dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in:4
-#: dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in:4
-msgid "mozilla"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in:6
 msgid "Mozilla Browser"
@@ -2229,17 +2086,9 @@ msgstr "דפדפן Mozilla"
 msgid "Mozilla Mail"
 msgstr "דואר Mozilla"
 
-#: dialogs/mime-settings/helpers/mutt.desktop.in.in:4
-msgid "mutt"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/mutt.desktop.in.in:6
 msgid "Mutt"
 msgstr "Mutt"
-
-#: dialogs/mime-settings/helpers/nautilus.desktop.in.in:4
-msgid "org.gnome.Nautilus"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/nautilus.desktop.in.in:6
 msgid "Nautilus"
@@ -2249,25 +2098,13 @@ msgstr "Nautilus"
 msgid "Netscape Navigator"
 msgstr "Netscape Navigator"
 
-#: dialogs/mime-settings/helpers/nxterm.desktop.in.in:4
-msgid "nxterm"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/nxterm.desktop.in.in:6
 msgid "NXterm"
 msgstr "NXterm"
 
-#: dialogs/mime-settings/helpers/opera-browser.desktop.in.in:4
-msgid "opera"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/opera-browser.desktop.in.in:6
 msgid "Opera Browser"
 msgstr "דפדפן Opera "
-
-#: dialogs/mime-settings/helpers/pcmanfm.desktop.in.in:5
-msgid "pcmanfm"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/pcmanfm.desktop.in.in:7
 msgid "PCMan File Manager"
@@ -2277,122 +2114,61 @@ msgstr "מנהל קבצים PCMan"
 msgid "PCManFM-Qt File Manager"
 msgstr "מנהל הקבצים PCManFM-Qt"
 
-#: dialogs/mime-settings/helpers/qterminal.desktop.in.in:4
-#: dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in:4
-msgid "utilities-terminal"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/qterminal.desktop.in.in:6
 msgid "QTerminal"
 msgstr "QTerminal"
-
-#: dialogs/mime-settings/helpers/qtfm.desktop.in.in:4
-msgid "qtfm"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/qtfm.desktop.in.in:6
 msgid "qtFM"
 msgstr "qtFM"
 
-#: dialogs/mime-settings/helpers/qupzilla.desktop.in.in:4
-msgid "qupzilla"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/qupzilla.desktop.in.in:6
 msgid "QupZilla"
 msgstr "QupZilla"
-
-#: dialogs/mime-settings/helpers/rodent.desktop.in.in:4
-msgid "folder"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/rodent.desktop.in.in:6
 msgid "Rodent File Manager"
 msgstr "מנהל קבצים Rodent"
 
-#: dialogs/mime-settings/helpers/rox-filer.desktop.in.in:4
-msgid "/usr/libexec/ROX-Filer/.DirIcon"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/rox-filer.desktop.in.in:6
 msgid "ROX-Filer"
 msgstr "ROX-Filer"
-
-#: dialogs/mime-settings/helpers/sakura.desktop.in.in:4
-msgid "terminal-tango"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/sakura.desktop.in.in:6
 msgid "Sakura"
 msgstr "Sakura"
 
-#: dialogs/mime-settings/helpers/surf.desktop.in.in:4
-msgid "surf"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/surf.desktop.in.in:6
 msgid "Surf"
 msgstr "Surf"
-
-#: dialogs/mime-settings/helpers/sylpheed.desktop.in.in:4
-msgid "sylpheed"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/sylpheed.desktop.in.in:6
 msgid "Sylpheed"
 msgstr "Sylpheed"
 
-#: dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in:4
-msgid "claws-mail"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in:6
 msgid "Claws Mail"
 msgstr "Claws Mail"
-
-#: dialogs/mime-settings/helpers/terminator.desktop.in.in:4
-msgid "terminator"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/terminator.desktop.in.in:6
 msgid "Terminator"
 msgstr "מסיים"
 
-#: dialogs/mime-settings/helpers/thunar.desktop.in.in:5
-msgid "org.xfce.thunar"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/thunar.desktop.in.in:7
 msgid "Thunar"
 msgstr "תונאר"
-
-#: dialogs/mime-settings/helpers/thunderbird.desktop.in.in:4
-msgid "thunderbird"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/thunderbird.desktop.in.in:6
 msgid "Mozilla Thunderbird"
 msgstr "Mozilla Thunderbird"
 
-#: dialogs/mime-settings/helpers/urxvt.desktop.in.in:4
-msgid "rxvt"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/urxvt.desktop.in.in:6
 msgid "RXVT Unicode"
 msgstr "RXVT Unicode"
 
-#: dialogs/mime-settings/helpers/vimprobable2.desktop.in.in:4
-msgid "vimprobable2"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/vimprobable2.desktop.in.in:6
 msgid "Vimprobable2"
 msgstr "Vimprobable2"
-
-#: dialogs/mime-settings/helpers/w3m.desktop.in.in:4
-msgid "w3m"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/w3m.desktop.in.in:6
 msgid "W3M Text Browser"
@@ -2402,17 +2178,9 @@ msgstr "דפדפן טקסטואלי W3M"
 msgid "Xfce Terminal"
 msgstr "מסוף Xfce"
 
-#: dialogs/mime-settings/helpers/xfe.desktop.in.in:4
-msgid "xfe"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/xfe.desktop.in.in:6
 msgid "Xfe File Manager"
 msgstr "מנהל קבצים Xfe"
-
-#: dialogs/mime-settings/helpers/xterm.desktop.in.in:4
-msgid "xterm"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/xterm.desktop.in.in:6
 msgid "X Terminal"
@@ -2519,13 +2287,13 @@ msgstr "כאשר נבחרת, גלגל הגלילה יעבוד בכיוון הה�
 
 #: dialogs/mouse-settings/mouse-dialog.glade:372
 msgid "Allow high _resolution scrolling (experimental)"
-msgstr ""
+msgstr "הרשה גלילה ב_רזולוציה גבוהה (נסיוני)"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:376
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
-msgstr ""
+msgstr "נתמך רק בעכברים מסוימים (בעיקר לוג'יטק) ודורש תמיכת דרייבר. בהתקנים נתמכים הופך את הגלילה ליותר מדויקת."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:395
 msgid "Buttons"
@@ -2689,10 +2457,6 @@ msgstr "הגדר התנהגות ומראה התקן הצבעה"
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:8
-msgid "org.xfce.settings.mouse"
-msgstr ""
 
 #: xfce4-settings-editor/main.c:163
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
@@ -2895,10 +2659,6 @@ msgstr "עורך הגדרות גרפי עבור Xfconf"
 msgid "registry;regedit;configuration file;"
 msgstr "registry;regedit;configuration file;"
 
-#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:7
-msgid "org.xfce.settings.editor"
-msgstr ""
-
 #: xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
 msgstr "דו שיח הגדרות להצגה"
@@ -2928,11 +2688,6 @@ msgstr "מנהל הגדרות גרפי עבור Xfce"
 #: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr "control;panel;center;system;settings;personalize;hardware;"
-
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:7
-#: xfsettingsd/xfsettingsd.desktop.in:7
-msgid "org.xfce.settings.manager"
-msgstr ""
 
 #: xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
