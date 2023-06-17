@@ -911,7 +911,7 @@ xfce_displays_helper_load_from_xfconf (XfceDisplaysHelper *helper,
                         helper->resources->modes[m].height);
 
             /* find the mode corresponding to the saved values */
-            if (rint (rate * 10) == rint (output_rate * 10)
+            if (rint (rate * 100) == rint (output_rate * 100)
                 && (g_strcmp0 (property, str_value) == 0))
             {
                 valid_mode = helper->resources->modes[m].id;
