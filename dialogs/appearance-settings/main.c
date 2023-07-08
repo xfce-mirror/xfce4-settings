@@ -1256,7 +1256,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     {
         object = gtk_builder_get_object (builder, "xfwm4_sync_switch");
         xfconf_g_property_bind (xsettings_channel, "/Xfce/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
-	g_signal_connect (G_OBJECT (object), "notify::active", G_CALLBACK (cb_xfwm4_sync_switch_toggled), selection);
+        g_signal_connect (G_OBJECT (object), "notify::active", G_CALLBACK (cb_xfwm4_sync_switch_toggled), selection);
 
         object = gtk_builder_get_object (builder, "xfwm4_sync_label");
         g_signal_connect (G_OBJECT (object), "activate-link", G_CALLBACK (cb_xfwm4_sync_label_link_activated), NULL);
