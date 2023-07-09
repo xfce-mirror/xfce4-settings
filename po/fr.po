@@ -5,21 +5,22 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2021
+# Wallon Wallon, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-06 12:51+0100\n"
+"POT-Creation-Date: 2023-05-30 00:50+0200\n"
 "PO-Revision-Date: 2020-12-28 17:23+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>, 2021\n"
-"Language-Team: French (https://www.transifex.com/xfce/teams/16840/fr/)\n"
+"Last-Translator: Wallon Wallon, 2023\n"
+"Language-Team: French (https://app.transifex.com/xfce/teams/16840/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
@@ -29,13 +30,13 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4297
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4297
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Impossible de déterminer la version de l’extension RandR utilisée"
 
 #. 1.2 is required
-#: ../common/xfce-randr.c:304
+#: ../common/xfce-randr.c:307
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -44,21 +45,21 @@ msgstr ""
 "Ce système utilise RandR %d.%d. Pour que les paramètres d’affichage "
 "fonctionnent, la version 1.2 ou ultérieure est nécessaire."
 
-#: ../common/xfce-randr.c:594
+#: ../common/xfce-randr.c:597
 msgid "Laptop"
 msgstr "Portable"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: ../common/xfce-randr.c:607 ../dialogs/color-settings/color-device.c:65
+#: ../common/xfce-randr.c:610 ../dialogs/color-settings/color-device.c:65
 msgid "Monitor"
 msgstr "Moniteur"
 
-#: ../common/xfce-randr.c:610
+#: ../common/xfce-randr.c:613
 msgid "Television"
 msgstr "Téléviseur"
 
-#: ../common/xfce-randr.c:614
+#: ../common/xfce-randr.c:617
 msgid "Digital display"
 msgstr "Écran numérique"
 
@@ -386,7 +387,7 @@ msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr ""
-"assistance;technologies;touches;collant;rebond;émulation;lecteurs d'écran; "
+"assistance;technologies;touches;collant;rebond;émulation;lecteurs d’écran; "
 "loupes;a11y;i18n;l10n;AT-SPI;ATK;déficience;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
@@ -440,6 +441,7 @@ msgstr "Apparence"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 #: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:327
 msgid "_Add"
 msgstr "_Ajouter"
@@ -706,10 +708,11 @@ msgid ""
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 msgstr ""
-"thèmes;interface utilisateur;styles;icônes;polices;anticrénelage;conseil"
-";sous-pixel;sous-pixel;rendu;ClearType;DPI;RGB;BGR;accélérateurs de "
-"menu;raccourcis clavier;événement;sons;mise à l'échelle de la fenêtre;HiDPI;"
-" affichage Retina;"
+"thèmes;interface "
+"utilisateur;styles;icônes;polices;anticrénelage;conseil;sous-pixel;sous-"
+"pixel;rendu;ClearType;DPI;RGB;BGR;accélérateurs de menu;raccourcis "
+"clavier;événement;sons;mise à l’échelle de la fenêtre;HiDPI; affichage "
+"Retina;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -780,6 +783,7 @@ msgid "Add a profile to the currently selected device"
 msgstr "Ajouter un profil à l’appareil actuellement sélectionné"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Remove"
 msgstr "_Supprimer"
 
@@ -1463,43 +1467,48 @@ msgstr "_Comportement"
 msgid "Define shortcuts for la_unching applications:"
 msgstr "Définir les raccourcis pour lancer les _applications :"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
+msgid "_Edit"
+msgstr "M_odifier"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
 msgstr "Rétablir les _paramètres par défaut"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
 msgstr "_Raccourcis d’applications"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
 msgstr "<b>Utiliser les paramètres par défaut du système</b>"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "Modèle du c_lavier"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr "Modifier l’option de disp_osition"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr "_Touche de composition"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "Déplacer l’élément sélectionné d’une ligne vers le haut"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "Déplacer l’élément sélectionné d’une ligne vers le bas"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "Disposition du cla_vier"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "_Disposition"
 
@@ -1516,28 +1525,28 @@ msgstr "Impossible de se connecter au démon xfconf. Raison : %s"
 msgid "Could not create the settings dialog."
 msgstr "Impossible de créer la fenêtre des paramètres."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:400
 msgid "Command"
 msgstr "Commande"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:408
 msgid "Shortcut"
 msgstr "Raccourci"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:487
 msgid "Layout"
 msgstr "Disposition"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:488
 msgid "Variant"
 msgstr "Variante"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1255
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "Reset to Defaults"
 msgstr "Réinitialiser aux valeurs par défaut"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
@@ -1545,21 +1554,21 @@ msgstr ""
 "Cette action réinitialisera tous les raccourcis à leurs valeurs par défaut. "
 "Voulez-vous vraiment continuer ?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1259
 msgid "No"
 msgstr "Non"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1260
 msgid "Yes"
 msgstr "Oui"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1336
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Les paramètres par défaut du système seront restaurés lors de votre "
 "prochaine connexion."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1338
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -1859,15 +1868,15 @@ msgstr ""
 msgid "No helper defined for \"%s\"."
 msgstr "Aucun assistant défini pour « %s »."
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:406
+#: ../dialogs/mime-settings/xfce-mime-helper.c:446
 #, c-format
 msgid "No command specified"
 msgstr "Aucune commande spécifiée"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:747
-#: ../dialogs/mime-settings/xfce-mime-helper.c:786
-#: ../dialogs/mime-settings/xfce-mime-helper.c:883
-#: ../dialogs/mime-settings/xfce-mime-helper.c:922
+#: ../dialogs/mime-settings/xfce-mime-helper.c:822
+#: ../dialogs/mime-settings/xfce-mime-helper.c:861
+#: ../dialogs/mime-settings/xfce-mime-helper.c:958
+#: ../dialogs/mime-settings/xfce-mime-helper.c:997
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Impossible d’ouvrir %s en écriture"
@@ -1986,6 +1995,7 @@ msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d type MIME trouvé"
 msgstr[1] "%d types MIME trouvés"
+msgstr[2] "%d types MIME trouvés"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:859
 #, c-format
@@ -2553,10 +2563,6 @@ msgstr "Valeur"
 msgid "New property"
 msgstr "Nouvelle propriété"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
-msgid "_Edit"
-msgstr "M_odifier"
-
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Edit selected property"
 msgstr "Modifier la propriété sélectionnée"
@@ -2615,8 +2621,8 @@ msgstr ""
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr ""
-"Voulez-vous vraiment réinitialiser le canal « %s » et toutes ses propriétés "
-"?"
+"Voulez-vous vraiment réinitialiser le canal « %s » et toutes ses "
+"propriétés ?"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:898
 msgid "reset"
@@ -2718,8 +2724,8 @@ msgid ""
 "separator"
 msgstr ""
 "Les noms de propriété peuvent seulement inclure les caractères ASCII A-Z, "
-"a-z, 0-9, « _ », « - », « : », « . », « , », « [ », « ] », « { », « } », « <"
-" » et « > », ainsi que « / » en guise de séparateur"
+"a-z, 0-9, « _ », « - », « : », « . », « , », « [ », « ] », « { », « } », "
+"« < » et « > », ainsi que « / » en guise de séparateur"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:423
 #, c-format
