@@ -1535,7 +1535,7 @@ xfce_displays_helper_channel_apply (XfceDisplaysHelper *helper,
     /* safety check */
     if (nactive == 0)
     {
-        g_critical ("Stored Xfconf properties disable all outputs, aborting.");
+        g_warning ("Stored Xfconf properties disable all outputs, aborting.");
         goto err_cleanup;
     }
 
