@@ -36,7 +36,8 @@ typedef struct _XfceMimeChooser      XfceMimeChooser;
 GType      xfce_mime_chooser_get_type      (void) G_GNUC_CONST;
 
 void       xfce_mime_chooser_set_mime_type (XfceMimeChooser *chooser,
-                                            const gchar     *mime_type);
+                                            const gchar     *mime_type,
+                                            gint             selected_mime_type_count);
 
 GAppInfo  *xfce_mime_chooser_get_app_info  (XfceMimeChooser *chooser);
 
