@@ -555,7 +555,8 @@ xfce_mime_chooser_sort_app_info (gconstpointer a,
 
 void
 xfce_mime_chooser_set_mime_type (XfceMimeChooser *chooser,
-                                 const gchar     *mime_type)
+                                 const gchar     *mime_type,
+                                 gint             selected_mime_type_count)
 {
     GList *recommended;
     GList *all, *li;
@@ -611,8 +612,9 @@ xfce_mime_chooser_set_mime_type (XfceMimeChooser *chooser,
     g_object_unref (G_OBJECT (icon));
 
     description = g_content_type_get_description (mime_type);
-    label = g_strdup_printf (_("Open <i>%s</i> and other files of type \"%s\" with:"),
-                             mime_type, description);
+    label = g_strdup_printf (ngettext ("Open <i>%s</i> and other files of type \"%s\" with:",
+                                       "Open <i>%s</i>, other files of type \"%s\", and %d other MIME types with:",
+                                       selected_mime_type_count), mime_type, description, selected_mime_type_count);
     gtk_label_set_markup (GTK_LABEL (chooser->label), label);
     g_free (label);
     g_free (description);
