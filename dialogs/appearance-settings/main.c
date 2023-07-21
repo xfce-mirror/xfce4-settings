@@ -254,7 +254,6 @@ cb_xfwm4_sync_switch_toggled (GObject *self, GParamSpec* pspec, gpointer user_da
     /* Set the new XFWM4 theme */
     if (gtk_switch_get_active (GTK_SWITCH (self)))
         theme_selection_changed (GTK_TREE_SELECTION (user_data), "/Net/ThemeName");
-
     else
         xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", "Default");
 }
