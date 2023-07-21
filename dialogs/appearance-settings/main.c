@@ -233,6 +233,16 @@ cb_ui_theme_selection_changed (GtkTreeSelection *selection)
 }
 
 static void
+cb_xfwm4_sync_switch_toggled (GObject *self, GParamSpec* pspec, gpointer user_data)
+{
+    /* Set the new XFWM4 theme */
+    if (gtk_switch_get_active (GTK_SWITCH (self)))
+        theme_selection_changed (GTK_TREE_SELECTION (user_data), "/Net/ThemeName");
+    else
+        xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", "Default");
+}
+
+static void
 cb_window_scaling_factor_combo_changed (GtkComboBox *combo)
 {
     gint active;
@@ -1252,7 +1262,8 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     if (path != NULL)
     {
         object = gtk_builder_get_object (builder, "xfwm4_sync_switch");
-        xfconf_g_property_bind (xsettings_channel, "/Xfce/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "state");
+        xfconf_g_property_bind (xsettings_channel, "/Xfce/SyncThemes", G_TYPE_BOOLEAN, G_OBJECT (object), "active");
+        g_signal_connect (G_OBJECT (object), "notify::active", G_CALLBACK (cb_xfwm4_sync_switch_toggled), selection);
     }
     else
     {
