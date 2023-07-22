@@ -613,8 +613,8 @@ xfce_mime_chooser_set_mime_type (XfceMimeChooser *chooser,
 
     description = g_content_type_get_description (mime_type);
     label = g_strdup_printf (ngettext ("Open <i>%s</i> and other files of type \"%s\" with:",
-                                       "Open <i>%s</i>, other files of type \"%s\", and %d other MIME types with:",
-                                       selected_mime_type_count), mime_type, description, selected_mime_type_count);
+                                       "Open <i>%s</i>, other files of type \"%s\", and other selected MIME types with:",
+                                       selected_mime_type_count), mime_type, description);
     gtk_label_set_markup (GTK_LABEL (chooser->label), label);
     g_free (label);
     g_free (description);
