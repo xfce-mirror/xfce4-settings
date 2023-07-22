@@ -411,6 +411,8 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_tree_view_set_headers_clickable (GTK_TREE_VIEW (treeview), TRUE);
     gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (treeview), TRUE);
     gtk_tree_view_set_enable_search (GTK_TREE_VIEW (treeview), FALSE);
+    gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview)),
+                                 GTK_SELECTION_MULTIPLE);
     gtk_container_add (GTK_CONTAINER (scroll), treeview);
     gtk_widget_show (treeview);
     window->treeview = treeview;
@@ -679,13 +681,15 @@ xfce_mime_window_set_application_cb (GtkButton      *button,
 {
     GtkTreeSelection *selection;
     GtkTreeModel *model;
-    GtkTreeIter   iter;
+    GList        *list;
     GtkTreePath  *path;
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->treeview));
-    gtk_tree_selection_get_selected (selection, &model, &iter);
-    path = gtk_tree_model_get_path (model, &iter);
+    list = gtk_tree_selection_get_selected_rows (selection, &model);
+    /* Use first item in selection as activated row */
+    path = list->data;
     xfce_mime_window_row_activated (GTK_TREE_VIEW (window->treeview), path, NULL, window);
+    g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
 }
 
 
@@ -872,28 +876,49 @@ xfce_mime_window_row_activated (GtkTreeView       *tree_view,
                                 GtkTreeViewColumn *column,
                                 XfceMimeWindow    *window)
 {
-    GtkTreeIter  iter;
-    gchar       *mime_type;
-    GtkWidget   *dialog;
-    GAppInfo    *app_info;
+    GtkTreeModel     *model;
+    GtkTreeSelection *selection;
+    gint              selected_row_count;
+    GList            *selected_rows, *li;
+    GtkTreeIter       iter;
+    gchar            *mime_type;
+    GtkWidget        *dialog;
+    GAppInfo         *app_info;
+    GtkTreePath      *row_path;
 
     if (gtk_tree_model_get_iter (window->filter_model, &iter, path))
     {
         gtk_tree_model_get (window->filter_model, &iter, COLUMN_MIME_TYPE, &mime_type, -1);
 
+        selection = gtk_tree_view_get_selection (tree_view);
+        selected_row_count = gtk_tree_selection_count_selected_rows (selection);
+        selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
+
         dialog = g_object_new (XFCE_TYPE_MIME_CHOOSER, NULL);
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-        xfce_mime_chooser_set_mime_type (XFCE_MIME_CHOOSER (dialog), mime_type);
+        xfce_mime_chooser_set_mime_type (XFCE_MIME_CHOOSER (dialog), mime_type, selected_row_count);
 
         if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_YES)
         {
             app_info = xfce_mime_chooser_get_app_info (XFCE_MIME_CHOOSER (dialog));
             if (G_LIKELY (app_info != NULL))
             {
-                xfce_mime_window_set_default_for_type (window, app_info, mime_type, path);
+                for (li = selected_rows; li != NULL; li = li->next)
+                {
+                    row_path = li->data; 
+                    if (gtk_tree_model_get_iter (window->filter_model, &iter, row_path))
+                    {
+                        gtk_tree_model_get (window->filter_model, &iter, COLUMN_MIME_TYPE, &mime_type, -1);
+                        xfce_mime_window_set_default_for_type (window, app_info, mime_type, row_path);
+                        g_free (mime_type);
+                    }
+                }
+
                 g_object_unref (G_OBJECT (app_info));
             }
         }
+        
+        g_list_free_full (selected_rows, (GDestroyNotify) gtk_tree_path_free);
 
         gtk_widget_destroy (dialog);
     }
@@ -905,33 +930,54 @@ static void
 xfce_mime_window_selection_changed (GtkTreeSelection *selection,
                                     XfceMimeWindow   *window)
 {
+    gint          selected_rows_count;
     gchar        *mime_type;
     gchar        *description;
+    GList        *list;
     GtkTreeModel *model;
     GtkTreeIter   iter;
+    GtkTreePath  *tree_path;
 
     gtk_statusbar_pop (GTK_STATUSBAR (window->statusbar),
                        window->desc_id);
 
-    if (gtk_tree_selection_get_selected (selection, &model, &iter))
+    selected_rows_count = gtk_tree_selection_count_selected_rows (selection);
+
+    if (selected_rows_count <= 0)
     {
-        gtk_widget_set_sensitive (window->set_application, TRUE);
+        gtk_widget_set_sensitive (window->set_application, FALSE);
+        return;
+    }
+
+    gtk_widget_set_sensitive (window->set_application, TRUE);
+    list = gtk_tree_selection_get_selected_rows (selection, &model);
+
+    if (selected_rows_count == 1)
+    {
+        tree_path = list->data;
+        if (!gtk_tree_model_get_iter (model, &iter, tree_path))
+        {
+            g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
+            return;
+        }
 
         gtk_tree_model_get (model, &iter, COLUMN_MIME_TYPE, &mime_type, -1);
         description = g_content_type_get_description (mime_type);
         g_free (mime_type);
-
-        if (G_LIKELY (description != NULL))
-        {
-            gtk_statusbar_push (GTK_STATUSBAR (window->statusbar),
-                                window->desc_id, description);
-            g_free (description);
-        }
     }
     else
     {
-        gtk_widget_set_sensitive (window->set_application, FALSE);
+        description = g_strdup_printf (ngettext ("%d MIME type selected",
+                                                 "%d MIME types selected",
+                                                 selected_rows_count), selected_rows_count);
     }
+    if (G_LIKELY (description != NULL))
+    {
+        gtk_statusbar_push (GTK_STATUSBAR (window->statusbar),
+                            window->desc_id, description);
+        g_free (description);
+    }
+    g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
 }
 
 
@@ -1106,7 +1152,7 @@ xfce_mime_window_combo_changed (GtkWidget       *combo,
     {
         dialog = g_object_new (XFCE_TYPE_MIME_CHOOSER, NULL);
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-        xfce_mime_chooser_set_mime_type (XFCE_MIME_CHOOSER (dialog), data->mime_type);
+        xfce_mime_chooser_set_mime_type (XFCE_MIME_CHOOSER (dialog), data->mime_type, 1);
 
         /* ref data */
         data->ref_count++;
