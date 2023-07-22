@@ -910,6 +910,7 @@ xfce_mime_window_row_activated (GtkTreeView       *tree_view,
                     {
                         gtk_tree_model_get (window->filter_model, &iter, COLUMN_MIME_TYPE, &mime_type, -1);
                         xfce_mime_window_set_default_for_type (window, app_info, mime_type, row_path);
+                        g_free (mime_type);
                     }
                 }
 
@@ -955,6 +956,7 @@ xfce_mime_window_selection_changed (GtkTreeSelection *selection,
         tree_path = list->data;
         if (!gtk_tree_model_get_iter (model, &iter, tree_path))
         {
+            g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
             return;
         }
 
@@ -974,6 +976,7 @@ xfce_mime_window_selection_changed (GtkTreeSelection *selection,
                             window->desc_id, description);
         g_free (description);
     }
+    g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
 }
 
 
