@@ -412,7 +412,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (treeview), TRUE);
     gtk_tree_view_set_enable_search (GTK_TREE_VIEW (treeview), FALSE);
     gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview)),
-                                GTK_SELECTION_MULTIPLE);
+                                 GTK_SELECTION_MULTIPLE);
     gtk_container_add (GTK_CONTAINER (scroll), treeview);
     gtk_widget_show (treeview);
     window->treeview = treeview;
@@ -886,13 +886,13 @@ xfce_mime_window_row_activated (GtkTreeView       *tree_view,
     GAppInfo         *app_info;
     GtkTreePath      *row_path;
 
-    selection = gtk_tree_view_get_selection (tree_view);
-    selected_row_count = gtk_tree_selection_count_selected_rows (selection);
-    selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
-
     if (gtk_tree_model_get_iter (window->filter_model, &iter, path))
     {
         gtk_tree_model_get (window->filter_model, &iter, COLUMN_MIME_TYPE, &mime_type, -1);
+
+        selection = gtk_tree_view_get_selection (tree_view);
+        selected_row_count = gtk_tree_selection_count_selected_rows (selection);
+        selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
 
         dialog = g_object_new (XFCE_TYPE_MIME_CHOOSER, NULL);
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
@@ -905,7 +905,7 @@ xfce_mime_window_row_activated (GtkTreeView       *tree_view,
             {
                 for (li = selected_rows; li != NULL; li = li->next)
                 {
-                    row_path = li->data;
+                    row_path = li->data; 
                     if (gtk_tree_model_get_iter (window->filter_model, &iter, row_path))
                     {
                         gtk_tree_model_get (window->filter_model, &iter, COLUMN_MIME_TYPE, &mime_type, -1);
@@ -915,9 +915,10 @@ xfce_mime_window_row_activated (GtkTreeView       *tree_view,
                 }
 
                 g_object_unref (G_OBJECT (app_info));
-                g_list_free_full (selected_rows, (GDestroyNotify) gtk_tree_path_free);
             }
         }
+        
+        g_list_free_full (selected_rows, (GDestroyNotify) gtk_tree_path_free);
 
         gtk_widget_destroy (dialog);
     }
