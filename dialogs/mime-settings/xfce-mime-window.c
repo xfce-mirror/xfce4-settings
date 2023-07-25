@@ -919,7 +919,6 @@ xfce_mime_window_row_activated (GtkTreeView       *tree_view,
         }
         
         g_list_free_full (selected_rows, (GDestroyNotify) gtk_tree_path_free);
-
         gtk_widget_destroy (dialog);
     }
 }
@@ -930,7 +929,7 @@ static void
 xfce_mime_window_selection_changed (GtkTreeSelection *selection,
                                     XfceMimeWindow   *window)
 {
-    gint          selected_rows_count;
+    gint          selected_row_count;
     gchar        *mime_type;
     gchar        *description;
     GList        *list;
