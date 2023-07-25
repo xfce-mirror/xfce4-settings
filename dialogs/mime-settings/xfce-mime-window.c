@@ -940,9 +940,9 @@ xfce_mime_window_selection_changed (GtkTreeSelection *selection,
     gtk_statusbar_pop (GTK_STATUSBAR (window->statusbar),
                        window->desc_id);
 
-    selected_rows_count = gtk_tree_selection_count_selected_rows (selection);
+    selected_row_count = gtk_tree_selection_count_selected_rows (selection);
 
-    if (selected_rows_count <= 0)
+    if (selected_row_count <= 0)
     {
         gtk_widget_set_sensitive (window->set_application, FALSE);
         return;
@@ -951,7 +951,7 @@ xfce_mime_window_selection_changed (GtkTreeSelection *selection,
     gtk_widget_set_sensitive (window->set_application, TRUE);
     list = gtk_tree_selection_get_selected_rows (selection, &model);
 
-    if (selected_rows_count == 1)
+    if (selected_row_count == 1)
     {
         tree_path = list->data;
         if (!gtk_tree_model_get_iter (model, &iter, tree_path))
@@ -968,7 +968,7 @@ xfce_mime_window_selection_changed (GtkTreeSelection *selection,
     {
         description = g_strdup_printf (ngettext ("%d MIME type selected",
                                                  "%d MIME types selected",
-                                                 selected_rows_count), selected_rows_count);
+                                                 selected_row_count), selected_row_count);
     }
     if (G_LIKELY (description != NULL))
     {
