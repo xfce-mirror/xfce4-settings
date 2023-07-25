@@ -917,7 +917,6 @@ xfce_mime_window_row_activated (GtkTreeView       *tree_view,
                 g_object_unref (G_OBJECT (app_info));
             }
         }
-        
         g_list_free_full (selected_rows, (GDestroyNotify) gtk_tree_path_free);
         gtk_widget_destroy (dialog);
     }
