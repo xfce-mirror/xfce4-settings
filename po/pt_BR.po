@@ -3,9 +3,9 @@
 # This file is distributed under the same license as the xfce4-settings.master package.
 # 
 # Translators:
-# Andre Miranda <andre42m@gmail.com>, 2018-2020
-# Andre Miranda <andre42m@gmail.com>, 2016-2017
-# Andre Miranda <andre42m@gmail.com>, 2014-2015
+# Andre Miranda <andre@andreldm.com>, 2018-2020
+# Andre Miranda <andre@andreldm.com>, 2016-2017
+# Andre Miranda <andre@andreldm.com>, 2014-2015
 # C. E., 2020
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008
 # Felipe Nogueira <contato.fnog@gmail.com>, 2023
@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-05-05 10:51+0200\n"
+"POT-Creation-Date: 2023-07-28 00:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: The Cat, 2023\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/xfce/xfce4-settings/language/pt_BR/)\n"
@@ -330,7 +330,7 @@ msgid "Version information"
 msgstr "Informações da versão"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1394 dialogs/color-settings/main.c:1379
+#: dialogs/appearance-settings/main.c:1405 dialogs/color-settings/main.c:1379
 #: dialogs/display-settings/main.c:4359 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:83
 #: dialogs/mime-settings/xfce-mime-helper-main.c:158
@@ -342,7 +342,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Digite \"%s --help\" para informações de uso."
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1413 dialogs/color-settings/main.c:1396
+#: dialogs/appearance-settings/main.c:1424 dialogs/color-settings/main.c:1396
 #: dialogs/display-settings/main.c:4378 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:102 dialogs/mouse-settings/main.c:2101
 #: xfce4-settings-editor/main.c:139 xfce4-settings-manager/main.c:80
@@ -351,7 +351,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "A equipe de desenvolvimento do Xfce. Todos os direitos reservados."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1414 dialogs/color-settings/main.c:1397
+#: dialogs/appearance-settings/main.c:1425 dialogs/color-settings/main.c:1397
 #: dialogs/display-settings/main.c:4379 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2102
 #: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:81
@@ -371,7 +371,7 @@ msgid ""
 msgstr "assistência;tecnologias;teclas;adesivo;bounce;emulação;leitores de tela;lupas;a11y;i18n;l10n;AT-SPI;ATK;imparidade;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1269 dialogs/display-settings/main.c:107
+#: dialogs/appearance-settings/main.c:1280 dialogs/display-settings/main.c:107
 #: dialogs/display-settings/main.c:118
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -599,49 +599,49 @@ msgstr "_Configurações"
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Falha ao mostrar as definições do Xfwm4"
 
-#: dialogs/appearance-settings/main.c:497
+#: dialogs/appearance-settings/main.c:507
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Aviso: este tema de ícones não possui arquivo de cache. Você pode criá-lo executando <i>gtk-update-icon-cache %s/%s/</i> em um emulador de terminal."
 
-#: dialogs/appearance-settings/main.c:963
+#: dialogs/appearance-settings/main.c:973
 msgid "File is too large, installation aborted"
 msgstr "O arquivo é muito grande, instalação abortada"
 
-#: dialogs/appearance-settings/main.c:968
+#: dialogs/appearance-settings/main.c:978
 msgid "Failed to create temporary directory"
 msgstr "Falha ao criar diretório temporário"
 
-#: dialogs/appearance-settings/main.c:973
+#: dialogs/appearance-settings/main.c:983
 msgid "Failed to extract archive"
 msgstr "Falha ao extrair arquivo"
 
-#: dialogs/appearance-settings/main.c:978
+#: dialogs/appearance-settings/main.c:988
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Formato desconhecido, apenas arquivos e diretórios são suportados."
 
-#: dialogs/appearance-settings/main.c:983
+#: dialogs/appearance-settings/main.c:993
 msgid "Not a valid theme package"
 msgstr "Não é um pacote de tema válido"
 
-#: dialogs/appearance-settings/main.c:988
+#: dialogs/appearance-settings/main.c:998
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Um erro desconhecido, código de saída é %d"
 
-#: dialogs/appearance-settings/main.c:995
+#: dialogs/appearance-settings/main.c:1005
 msgid "Failed to install theme"
 msgstr "Falha ao instalar tema"
 
-#: dialogs/appearance-settings/main.c:1049
+#: dialogs/appearance-settings/main.c:1059
 #, c-format
 msgid "Install %s theme"
 msgstr "Instalar o tema %s"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1053
+#: dialogs/appearance-settings/main.c:1063
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:130
 #: dialogs/keyboard-settings/command-dialog.c:116
@@ -653,25 +653,25 @@ msgstr "Instalar o tema %s"
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: dialogs/appearance-settings/main.c:1055
+#: dialogs/appearance-settings/main.c:1065
 #: dialogs/keyboard-settings/command-dialog.c:281
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Abrir"
 
-#: dialogs/appearance-settings/main.c:1273
+#: dialogs/appearance-settings/main.c:1284
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1277
+#: dialogs/appearance-settings/main.c:1288
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1281
+#: dialogs/appearance-settings/main.c:1292
 msgid "Vertical RGB"
 msgstr "RGB vertical"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1296
 msgid "Vertical BGR"
 msgstr "BGR vertical"
 
@@ -1226,7 +1226,7 @@ msgstr "Quando um perfil de monitor é excluído, ele não pode ser restaurado."
 #: dialogs/display-settings/main.c:2150
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
-#: dialogs/mime-settings/xfce-mime-window.c:1129
+#: dialogs/mime-settings/xfce-mime-window.c:1174
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "Cancelar"
@@ -1586,20 +1586,32 @@ msgstr "Selecione um aplicativo"
 msgid "None available"
 msgstr "Nenhum disponível"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:576
+#: dialogs/mime-settings/xfce-mime-chooser.c:577
 msgid "Recommended Applications"
 msgstr "Aplicativos recomendados"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:594
+#: dialogs/mime-settings/xfce-mime-chooser.c:595
 msgid "Other Applications"
 msgstr "Outros aplicativos"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:614
+#: dialogs/mime-settings/xfce-mime-chooser.c:617
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "Abrir <i>%s</i> e outros arquivos do tipo \"%s\" com:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:650
+#: dialogs/mime-settings/xfce-mime-chooser.c:622
+#, c-format
+msgid ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
+"with:"
+msgid_plural ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
+" with:"
+msgstr[0] "Abrir <i>%s</i>, outro arquivo do tipo \"%s\", e %d outro tipo MIME selecionado com:"
+msgstr[1] "Abrir <i>%s</i>, outros arquivos do tipo \"%s\", e %d outros tipos MIME selecionados com:"
+msgstr[2] "Abrir <i>%s</i>, outros arquivos do tipo \"%s\", e %d outros tipos MIME selecionados com:"
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:661
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "Falha ao adicionar o novo aplicativo \"%s\""
@@ -1882,32 +1894,32 @@ msgstr "Limpar filtro"
 msgid "Open with..."
 msgstr "Abrir com..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:425
+#: dialogs/mime-settings/xfce-mime-window.c:427
 msgid "MIME Type"
 msgstr "Tipo MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:453
+#: dialogs/mime-settings/xfce-mime-window.c:455
 msgid "Status"
 msgstr "Status"
 
-#: dialogs/mime-settings/xfce-mime-window.c:473
+#: dialogs/mime-settings/xfce-mime-window.c:475
 msgid "Default Application"
 msgstr "Aplicativo padrão"
 
-#: dialogs/mime-settings/xfce-mime-window.c:648
-#: dialogs/mime-settings/xfce-mime-window.c:812
+#: dialogs/mime-settings/xfce-mime-window.c:650
+#: dialogs/mime-settings/xfce-mime-window.c:816
 msgid "User Set"
 msgstr "Conjunto do usuário"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:650
-#: dialogs/mime-settings/xfce-mime-window.c:812
+#: dialogs/mime-settings/xfce-mime-window.c:652
+#: dialogs/mime-settings/xfce-mime-window.c:816
 #: dialogs/mouse-settings/main.c:406 dialogs/mouse-settings/main.c:408
 #: dialogs/mouse-settings/main.c:471
 msgid "Default"
 msgstr "Padrão"
 
-#: dialogs/mime-settings/xfce-mime-window.c:736
+#: dialogs/mime-settings/xfce-mime-window.c:740
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
@@ -1915,32 +1927,40 @@ msgstr[0] "%d tipo MIME encontrado"
 msgstr[1] "%d tipos MIME encontrados"
 msgstr[2] "%d tipos MIME encontrados"
 
-#: dialogs/mime-settings/xfce-mime-window.c:857
+#: dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Falha ao definir o aplicativo \"%s\" para o tipo MIME \"%s\"."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1120
+#: dialogs/mime-settings/xfce-mime-window.c:969
+#, c-format
+msgid "%d MIME type selected"
+msgid_plural "%d MIME types selected"
+msgstr[0] "%d tipo de MIME selecionado"
+msgstr[1] "%d tipos de MIME selecionados"
+msgstr[2] "%d tipos de MIME selecionados"
+
+#: dialogs/mime-settings/xfce-mime-window.c:1165
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Tem certeza de que quer restaurar os valores padrão do tipo de conteúdo \"%s\"?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1124
+#: dialogs/mime-settings/xfce-mime-window.c:1169
 msgid "Question"
 msgstr "Pergunta"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1127
+#: dialogs/mime-settings/xfce-mime-window.c:1172
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Isto irá remover sua associação MIME personalizada e restaurar os valores padrão do sistema."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1131
-#: dialogs/mime-settings/xfce-mime-window.c:1202
+#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1247
 msgid "Reset to Default"
 msgstr "Restaurar padrão"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1197
+#: dialogs/mime-settings/xfce-mime-window.c:1242
 msgid "Choose Application..."
 msgstr "Escolher aplicativo..."
 
