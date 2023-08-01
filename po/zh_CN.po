@@ -7,7 +7,7 @@
 # Chris K. Zhang <plutino@gmail.com>, 2009
 # Hunt Xu <huntxu@live.cn>, 2009-2010,2012
 # Mingcong Bai <jeffbai@aosc.xyz>, 2015-2016
-# No Body, 2022
+# No Body, 2022-2023
 # Shun <shun98@139.com>, 2018
 # wwj402 <wwj402@gmail.com>, 2018
 # wwj402 <wwj402@gmail.com>, 2018
@@ -22,9 +22,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-05-05 10:51+0200\n"
+"POT-Creation-Date: 2023-07-28 00:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2023\n"
+"Last-Translator: No Body, 2022-2023\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -329,7 +329,7 @@ msgid "Version information"
 msgstr "版本信息"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1394 dialogs/color-settings/main.c:1379
+#: dialogs/appearance-settings/main.c:1405 dialogs/color-settings/main.c:1379
 #: dialogs/display-settings/main.c:4359 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:83
 #: dialogs/mime-settings/xfce-mime-helper-main.c:158
@@ -341,7 +341,7 @@ msgid "Type '%s --help' for usage."
 msgstr "输入 ‘%s --help’ 获取用法。"
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1413 dialogs/color-settings/main.c:1396
+#: dialogs/appearance-settings/main.c:1424 dialogs/color-settings/main.c:1396
 #: dialogs/display-settings/main.c:4378 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:102 dialogs/mouse-settings/main.c:2101
 #: xfce4-settings-editor/main.c:139 xfce4-settings-manager/main.c:80
@@ -350,7 +350,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发团队。保留所有权利。"
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1414 dialogs/color-settings/main.c:1397
+#: dialogs/appearance-settings/main.c:1425 dialogs/color-settings/main.c:1397
 #: dialogs/display-settings/main.c:4379 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2102
 #: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:81
@@ -370,7 +370,7 @@ msgid ""
 msgstr "辅助;技术;按键;粘滞;反弹;仿真;屏幕阅读;放大镜;a11y;i18n;l10n;AT-SPI;ATK;缺陷;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1269 dialogs/display-settings/main.c:107
+#: dialogs/appearance-settings/main.c:1280 dialogs/display-settings/main.c:107
 #: dialogs/display-settings/main.c:118
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -598,49 +598,49 @@ msgstr "设置(_N)"
 msgid "Failed to display Xfwm4 Settings"
 msgstr "无法显示 Xfwm4 设置"
 
-#: dialogs/appearance-settings/main.c:497
+#: dialogs/appearance-settings/main.c:507
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "警告：此图标主题没有缓存文件。您可以在终端模拟器中运行 <i>gtk-update-icon-cache %s/%s/</i> 创建它。"
 
-#: dialogs/appearance-settings/main.c:963
+#: dialogs/appearance-settings/main.c:973
 msgid "File is too large, installation aborted"
 msgstr "文件太大，安装已中止"
 
-#: dialogs/appearance-settings/main.c:968
+#: dialogs/appearance-settings/main.c:978
 msgid "Failed to create temporary directory"
 msgstr "无法创建临时目录"
 
-#: dialogs/appearance-settings/main.c:973
+#: dialogs/appearance-settings/main.c:983
 msgid "Failed to extract archive"
 msgstr "无法提取归档文件"
 
-#: dialogs/appearance-settings/main.c:978
+#: dialogs/appearance-settings/main.c:988
 msgid "Unknown format, only archives and directories are supported"
 msgstr "未知格式，仅支持归档文件和目录"
 
-#: dialogs/appearance-settings/main.c:983
+#: dialogs/appearance-settings/main.c:993
 msgid "Not a valid theme package"
 msgstr "不是有效的主题包"
 
-#: dialogs/appearance-settings/main.c:988
+#: dialogs/appearance-settings/main.c:998
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "未知错误，退出代码是 %d"
 
-#: dialogs/appearance-settings/main.c:995
+#: dialogs/appearance-settings/main.c:1005
 msgid "Failed to install theme"
 msgstr "无法安装主题"
 
-#: dialogs/appearance-settings/main.c:1049
+#: dialogs/appearance-settings/main.c:1059
 #, c-format
 msgid "Install %s theme"
 msgstr "安装 %s 主题"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1053
+#: dialogs/appearance-settings/main.c:1063
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:130
 #: dialogs/keyboard-settings/command-dialog.c:116
@@ -652,25 +652,25 @@ msgstr "安装 %s 主题"
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: dialogs/appearance-settings/main.c:1055
+#: dialogs/appearance-settings/main.c:1065
 #: dialogs/keyboard-settings/command-dialog.c:281
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: dialogs/appearance-settings/main.c:1273
+#: dialogs/appearance-settings/main.c:1284
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1277
+#: dialogs/appearance-settings/main.c:1288
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1281
+#: dialogs/appearance-settings/main.c:1292
 msgid "Vertical RGB"
 msgstr "竖直 RGB"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1296
 msgid "Vertical BGR"
 msgstr "竖直 BGR"
 
@@ -1225,7 +1225,7 @@ msgstr "一旦删除显示配置文件后，将无法恢复。"
 #: dialogs/display-settings/main.c:2150
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
-#: dialogs/mime-settings/xfce-mime-window.c:1129
+#: dialogs/mime-settings/xfce-mime-window.c:1174
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "取消"
@@ -1585,20 +1585,30 @@ msgstr "选择默认字体"
 msgid "None available"
 msgstr "无可用的"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:576
+#: dialogs/mime-settings/xfce-mime-chooser.c:577
 msgid "Recommended Applications"
 msgstr "推荐的应用程序"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:594
+#: dialogs/mime-settings/xfce-mime-chooser.c:595
 msgid "Other Applications"
 msgstr "其它应用程序"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:614
+#: dialogs/mime-settings/xfce-mime-chooser.c:617
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "用此打开 <i>%s</i> 和其它类型 “%s” 的文件："
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:650
+#: dialogs/mime-settings/xfce-mime-chooser.c:622
+#, c-format
+msgid ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
+"with:"
+msgid_plural ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
+" with:"
+msgstr[0] "用于打开 <i>%s</i>, 其他类型的文件 \"%s\", 以及 %d 其他选定的 MIME 类型:"
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:661
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "无法添加新应用程序 “%s”"
@@ -1881,63 +1891,69 @@ msgstr "清除过滤器"
 msgid "Open with..."
 msgstr "打开方式..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:425
+#: dialogs/mime-settings/xfce-mime-window.c:427
 msgid "MIME Type"
 msgstr "MIME 类型"
 
-#: dialogs/mime-settings/xfce-mime-window.c:453
+#: dialogs/mime-settings/xfce-mime-window.c:455
 msgid "Status"
 msgstr "状态"
 
-#: dialogs/mime-settings/xfce-mime-window.c:473
+#: dialogs/mime-settings/xfce-mime-window.c:475
 msgid "Default Application"
 msgstr "默认应用程序"
 
-#: dialogs/mime-settings/xfce-mime-window.c:648
-#: dialogs/mime-settings/xfce-mime-window.c:812
+#: dialogs/mime-settings/xfce-mime-window.c:650
+#: dialogs/mime-settings/xfce-mime-window.c:816
 msgid "User Set"
 msgstr "用户设置"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:650
-#: dialogs/mime-settings/xfce-mime-window.c:812
+#: dialogs/mime-settings/xfce-mime-window.c:652
+#: dialogs/mime-settings/xfce-mime-window.c:816
 #: dialogs/mouse-settings/main.c:406 dialogs/mouse-settings/main.c:408
 #: dialogs/mouse-settings/main.c:471
 msgid "Default"
 msgstr "默认"
 
-#: dialogs/mime-settings/xfce-mime-window.c:736
+#: dialogs/mime-settings/xfce-mime-window.c:740
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "找到了 %d 个 MIME 类型"
 
-#: dialogs/mime-settings/xfce-mime-window.c:857
+#: dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "无法为 mime 类型 “%2$s” 设置应用程序 “%1$s”。"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1120
+#: dialogs/mime-settings/xfce-mime-window.c:969
+#, c-format
+msgid "%d MIME type selected"
+msgid_plural "%d MIME types selected"
+msgstr[0] "已选中 %d 个 MIME 类型"
+
+#: dialogs/mime-settings/xfce-mime-window.c:1165
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "您确定要重置内容类型 “%s” 为其默认值吗？"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1124
+#: dialogs/mime-settings/xfce-mime-window.c:1169
 msgid "Question"
 msgstr "问题"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1127
+#: dialogs/mime-settings/xfce-mime-window.c:1172
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "这样会移除您的自定义 mime 绑定并恢复系统范围的默认。"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1131
-#: dialogs/mime-settings/xfce-mime-window.c:1202
+#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1247
 msgid "Reset to Default"
 msgstr "重置为默认"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1197
+#: dialogs/mime-settings/xfce-mime-window.c:1242
 msgid "Choose Application..."
 msgstr "选择应用程序..."
 
