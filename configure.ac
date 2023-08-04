@@ -75,7 +75,7 @@ LT_PATH_LD([])
 AC_PROG_INSTALL()
 AC_PROG_SED
 AC_ARG_VAR([XMLLINT], [xmllint])
-AC_PATH_PROG([XMLLINT], [xmllint], [xmllint])
+AC_PATH_PROG([XMLLINT], [xmllint])
 if test -z "$XMLLINT"; then
   AC_MSG_ERROR([Could not find xmllint in PATH])
 fi
