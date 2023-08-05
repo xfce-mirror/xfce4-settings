@@ -70,6 +70,7 @@ static void     xfce_mime_window_combo_populate     (GtkCellRenderer      *rende
                                                      GtkCellEditable      *editable,
                                                      const gchar          *path_string,
                                                      XfceMimeWindow       *window);
+static void     xfce_mime_window_disable_sorting    (XfceMimeWindow       *window);
 
 
 
@@ -431,8 +432,9 @@ xfce_mime_window_init (XfceMimeWindow *window)
     gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
     g_signal_connect (G_OBJECT (column), "clicked",
         G_CALLBACK (xfce_mime_window_column_clicked), window);
+    gtk_tree_view_column_set_sort_order (column, GTK_SORT_ASCENDING);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (window->mime_model), COLUMN_MIME_TYPE, GTK_SORT_ASCENDING);
     gtk_tree_view_column_set_min_width (column, 300);
     gtk_tree_view_column_set_fixed_width (column, xfconf_channel_get_int (window->channel,
                                                                           "/last/mime-width",
@@ -800,7 +802,6 @@ xfce_mime_window_set_filter_model (XfceMimeWindow *window,
                                    const gchar    *app_name,
                                    gboolean        user_set)
 {
-    GtkTreePath *path;
     GtkTreeIter  filter_iter;
     GtkTreeIter  mime_iter;
 
@@ -820,14 +821,6 @@ xfce_mime_window_set_filter_model (XfceMimeWindow *window,
     gtk_tree_model_filter_convert_child_iter_to_iter (
         GTK_TREE_MODEL_FILTER (window->filter_model),
         &filter_iter, &mime_iter);
-
-    /* scroll */
-    path = gtk_tree_model_get_path (window->filter_model, &filter_iter);
-    if (G_LIKELY (path != NULL))
-    {
-        gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->treeview), path, NULL, FALSE);
-        gtk_tree_path_free (path);
-    }
 }
 
 
@@ -852,6 +845,7 @@ xfce_mime_window_set_default_for_type (XfceMimeWindow *window,
     {
         if (g_app_info_set_as_default_for_type (app_info, mime_type, &error))
         {
+            xfce_mime_window_disable_sorting (window);
             xfce_mime_window_set_filter_model (window, filter_path,
                                                g_app_info_get_name (app_info), TRUE);
         }
@@ -900,6 +894,7 @@ xfce_mime_window_row_activated (GtkTreeView       *tree_view,
 
         if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_YES)
         {
+            xfce_mime_window_disable_sorting (window);
             app_info = xfce_mime_chooser_get_app_info (XFCE_MIME_CHOOSER (dialog));
             if (G_LIKELY (app_info != NULL))
             {
@@ -1108,6 +1103,7 @@ xfce_mime_window_reset_response (GtkWidget       *dialog,
         else
           app_name = NULL;
 
+        xfce_mime_window_disable_sorting (data->window);
         xfce_mime_window_set_filter_model (data->window, data->filter_path, app_name, FALSE);
 
         if (app_default != NULL)
@@ -1311,4 +1307,28 @@ xfce_mime_window_create_plug (XfceMimeWindow *window,
   gtk_widget_show (GTK_WIDGET (child));
 
   return plug;
+}
+
+static void
+xfce_mime_window_disable_sorting (XfceMimeWindow *window)
+{
+    gint               sort_column_id;
+    GtkTreeViewColumn *active_sort_column;
+
+    if (!gtk_tree_sortable_get_sort_column_id (GTK_TREE_SORTABLE (window->mime_model),
+                                               &sort_column_id,
+                                               NULL))
+    {
+        return;
+    }
+
+    active_sort_column = gtk_tree_view_get_column (GTK_TREE_VIEW (window->treeview),
+                                                   sort_column_id);
+
+    if (active_sort_column != NULL)
+        gtk_tree_view_column_set_sort_indicator (active_sort_column, FALSE);
+    
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (window->mime_model),
+                                          GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID,
+                                          GTK_SORT_ASCENDING);
 }
