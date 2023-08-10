@@ -845,13 +845,18 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
         /* Set the preferred color scheme (needed for GTK4) */
         if (desktop_interface_gsettings != NULL)
         {
-            str = xfconf_channel_get_string (channel, property_name, NULL);
-            if (str != NULL && g_str_has_suffix (str, "-dark"))
-                g_settings_set_string (desktop_interface_gsettings, "color-scheme", "prefer-dark");
-            else
-                g_settings_reset (desktop_interface_gsettings, "color-scheme");
-
-            g_free (str);
+            GSettingsSchema *schema;
+            g_object_get (desktop_interface_gsettings, "settings-schema", &schema, NULL);
+            if (g_settings_schema_has_key (schema, "color-scheme"))
+              {
+                str = xfconf_channel_get_string (channel, property_name, NULL);
+                if (str != NULL && g_str_has_suffix (str, "-dark"))
+                    g_settings_set_string (desktop_interface_gsettings, "color-scheme", "prefer-dark");
+                else
+                    g_settings_reset (desktop_interface_gsettings, "color-scheme");
+                g_free (str);
+              }
+            g_settings_schema_unref (schema);
         }
     }
     else if (strcmp (property_name, "/Net/IconThemeName") == 0)
