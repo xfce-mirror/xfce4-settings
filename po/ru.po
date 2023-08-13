@@ -17,14 +17,14 @@
 # ivmazurenko <ivmazurenko@yandex.ru>, 2020
 # ndvio, 2022
 # Sergey Alyoshin <alyoshin.s@gmail.com>, 2013-2016,2018,2020-2021
-# Артём Котлубай <artemkotlubai@yandex.ru>, 2022
+# Темак, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-05-05 10:51+0200\n"
+"POT-Creation-Date: 2023-07-28 00:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Andrei Stepanov, 2022-2023\n"
+"Last-Translator: Igor Vornovskii, 2023\n"
 "Language-Team: Russian (http://app.transifex.com/xfce/xfce4-settings/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -329,7 +329,7 @@ msgid "Version information"
 msgstr "Информация о версии"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1394 dialogs/color-settings/main.c:1379
+#: dialogs/appearance-settings/main.c:1405 dialogs/color-settings/main.c:1379
 #: dialogs/display-settings/main.c:4359 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:83
 #: dialogs/mime-settings/xfce-mime-helper-main.c:158
@@ -341,7 +341,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Наберите «%s --help» для информации об использовании."
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1413 dialogs/color-settings/main.c:1396
+#: dialogs/appearance-settings/main.c:1424 dialogs/color-settings/main.c:1396
 #: dialogs/display-settings/main.c:4378 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:102 dialogs/mouse-settings/main.c:2101
 #: xfce4-settings-editor/main.c:139 xfce4-settings-manager/main.c:80
@@ -350,7 +350,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Команда разработчиков Xfce. Все права защищены."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1414 dialogs/color-settings/main.c:1397
+#: dialogs/appearance-settings/main.c:1425 dialogs/color-settings/main.c:1397
 #: dialogs/display-settings/main.c:4379 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2102
 #: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:81
@@ -370,7 +370,7 @@ msgid ""
 msgstr "реабилитация;технические средства;клавиши;залипание;эмуляция;чтение с экрана;увеличение;a11y;i18n;l10n;AT-SPI;ATK;ограниченные возможности;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1269 dialogs/display-settings/main.c:107
+#: dialogs/appearance-settings/main.c:1280 dialogs/display-settings/main.c:107
 #: dialogs/display-settings/main.c:118
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -598,49 +598,49 @@ msgstr "_Настройки"
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Не удалось отобразить Настройки Xfwm4"
 
-#: dialogs/appearance-settings/main.c:497
+#: dialogs/appearance-settings/main.c:507
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Внимание: эта тема значков не имеет кэш-файла. Вы можете создать его, выполнив в терминале: <i>gtk-update-icon-cache %s/%s/</i>."
 
-#: dialogs/appearance-settings/main.c:963
+#: dialogs/appearance-settings/main.c:973
 msgid "File is too large, installation aborted"
 msgstr "Файл слишком большой, установка прервана"
 
-#: dialogs/appearance-settings/main.c:968
+#: dialogs/appearance-settings/main.c:978
 msgid "Failed to create temporary directory"
 msgstr "Не удалось создать временный каталог"
 
-#: dialogs/appearance-settings/main.c:973
+#: dialogs/appearance-settings/main.c:983
 msgid "Failed to extract archive"
 msgstr "Не удалось извлечь архив"
 
-#: dialogs/appearance-settings/main.c:978
+#: dialogs/appearance-settings/main.c:988
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Неизвестный формат: поддерживаются лишь каталоги и архивы"
 
-#: dialogs/appearance-settings/main.c:983
+#: dialogs/appearance-settings/main.c:993
 msgid "Not a valid theme package"
 msgstr "Недопустимый пакет темы"
 
-#: dialogs/appearance-settings/main.c:988
+#: dialogs/appearance-settings/main.c:998
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Неизвестная ошибка (код %d)"
 
-#: dialogs/appearance-settings/main.c:995
+#: dialogs/appearance-settings/main.c:1005
 msgid "Failed to install theme"
 msgstr "Не удалось установить тему оформления"
 
-#: dialogs/appearance-settings/main.c:1049
+#: dialogs/appearance-settings/main.c:1059
 #, c-format
 msgid "Install %s theme"
 msgstr "Установить тему %s"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1053
+#: dialogs/appearance-settings/main.c:1063
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:130
 #: dialogs/keyboard-settings/command-dialog.c:116
@@ -652,25 +652,25 @@ msgstr "Установить тему %s"
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: dialogs/appearance-settings/main.c:1055
+#: dialogs/appearance-settings/main.c:1065
 #: dialogs/keyboard-settings/command-dialog.c:281
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Открыть"
 
-#: dialogs/appearance-settings/main.c:1273
+#: dialogs/appearance-settings/main.c:1284
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1277
+#: dialogs/appearance-settings/main.c:1288
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1281
+#: dialogs/appearance-settings/main.c:1292
 msgid "Vertical RGB"
 msgstr "Вертикальный RGB"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1296
 msgid "Vertical BGR"
 msgstr "Вертикальный BGR"
 
@@ -1225,7 +1225,7 @@ msgstr "Профиль экрана будет невозможно восста
 #: dialogs/display-settings/main.c:2150
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
-#: dialogs/mime-settings/xfce-mime-window.c:1129
+#: dialogs/mime-settings/xfce-mime-window.c:1174
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "Отмена"
@@ -1585,20 +1585,33 @@ msgstr "Выбор приложения"
 msgid "None available"
 msgstr "Нет приложений"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:576
+#: dialogs/mime-settings/xfce-mime-chooser.c:577
 msgid "Recommended Applications"
 msgstr "Рекомендуемые приложения"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:594
+#: dialogs/mime-settings/xfce-mime-chooser.c:595
 msgid "Other Applications"
 msgstr "Прочие приложения"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:614
+#: dialogs/mime-settings/xfce-mime-chooser.c:617
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "Открывать <i>%s</i> и другие файлы типа «%s» при помощи:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:650
+#: dialogs/mime-settings/xfce-mime-chooser.c:622
+#, c-format
+msgid ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
+"with:"
+msgid_plural ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
+" with:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:661
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "Не удалось добавить приложение «%s»"
@@ -1881,32 +1894,32 @@ msgstr "Сброс фильтра"
 msgid "Open with..."
 msgstr "Открыть с..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:425
+#: dialogs/mime-settings/xfce-mime-window.c:427
 msgid "MIME Type"
 msgstr "Тип MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:453
+#: dialogs/mime-settings/xfce-mime-window.c:455
 msgid "Status"
 msgstr "Состояние"
 
-#: dialogs/mime-settings/xfce-mime-window.c:473
+#: dialogs/mime-settings/xfce-mime-window.c:475
 msgid "Default Application"
 msgstr "Приложение по умолчанию"
 
-#: dialogs/mime-settings/xfce-mime-window.c:648
-#: dialogs/mime-settings/xfce-mime-window.c:812
+#: dialogs/mime-settings/xfce-mime-window.c:650
+#: dialogs/mime-settings/xfce-mime-window.c:816
 msgid "User Set"
 msgstr "Пользовательский"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:650
-#: dialogs/mime-settings/xfce-mime-window.c:812
+#: dialogs/mime-settings/xfce-mime-window.c:652
+#: dialogs/mime-settings/xfce-mime-window.c:816
 #: dialogs/mouse-settings/main.c:406 dialogs/mouse-settings/main.c:408
 #: dialogs/mouse-settings/main.c:471
 msgid "Default"
 msgstr "Стандартный"
 
-#: dialogs/mime-settings/xfce-mime-window.c:736
+#: dialogs/mime-settings/xfce-mime-window.c:740
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
@@ -1915,32 +1928,41 @@ msgstr[1] "Найдены %d типа MIME"
 msgstr[2] "Найдено %d типов MIME"
 msgstr[3] "Найдено %d типа MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:857
+#: dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Не удалось связать приложение «%s» с типом MIME «%s»"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1120
+#: dialogs/mime-settings/xfce-mime-window.c:969
+#, c-format
+msgid "%d MIME type selected"
+msgid_plural "%d MIME types selected"
+msgstr[0] "Выбран %d MIME тип"
+msgstr[1] "Выбрано %d MIME типа"
+msgstr[2] "Выбрано %d MIME типов"
+msgstr[3] "Выбрано %d MIME типов"
+
+#: dialogs/mime-settings/xfce-mime-window.c:1165
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Вы действительно хотите сбросить настройки для типа «%s» к значениям по умолчанию?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1124
+#: dialogs/mime-settings/xfce-mime-window.c:1169
 msgid "Question"
 msgstr "Вопрос"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1127
+#: dialogs/mime-settings/xfce-mime-window.c:1172
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Выбранная вами связь для типа MIME будет заменена на используемую системой по умолчанию."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1131
-#: dialogs/mime-settings/xfce-mime-window.c:1202
+#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1247
 msgid "Reset to Default"
 msgstr "Сброс"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1197
+#: dialogs/mime-settings/xfce-mime-window.c:1242
 msgid "Choose Application..."
 msgstr "Выбрать приложение..."
 
