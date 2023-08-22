@@ -113,6 +113,7 @@ dnl ***********************************
 XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [gtk_min_version])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GIO], [gio-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([LIBX11], [x11], [x11_min_version])
 XDT_CHECK_PACKAGE([GARCON], [garcon-1], [garcon_min_version])
 XDT_CHECK_PACKAGE([EXO], [exo-2], [exo_min_version])
