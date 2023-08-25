@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Alois Nešpor <info@aloisnespor.info>, 2013-2014,2019
+# Martin Šiška, 2023
 # Michal Várady <miko.vaji@gmail.com>, 2014-2021
 # Pavel Borecki <pavel.borecki@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-13 12:48+0200\n"
+"POT-Creation-Date: 2023-07-28 00:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2014-2021\n"
+"Last-Translator: Martin Šiška, 2023\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce4-settings/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -317,7 +318,7 @@ msgid "Version information"
 msgstr "Informace o verzi"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1394 dialogs/color-settings/main.c:1379
+#: dialogs/appearance-settings/main.c:1405 dialogs/color-settings/main.c:1379
 #: dialogs/display-settings/main.c:4359 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:83
 #: dialogs/mime-settings/xfce-mime-helper-main.c:158
@@ -329,7 +330,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Informace o použití získáte příkazem '%s --help'"
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1413 dialogs/color-settings/main.c:1396
+#: dialogs/appearance-settings/main.c:1424 dialogs/color-settings/main.c:1396
 #: dialogs/display-settings/main.c:4378 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:102 dialogs/mouse-settings/main.c:2101
 #: xfce4-settings-editor/main.c:139 xfce4-settings-manager/main.c:80
@@ -338,7 +339,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Vývojářský tým Xfce. Všechna práva vyhrazena."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1414 dialogs/color-settings/main.c:1397
+#: dialogs/appearance-settings/main.c:1425 dialogs/color-settings/main.c:1397
 #: dialogs/display-settings/main.c:4379 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2102
 #: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:81
@@ -357,12 +358,8 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "asistivní;technologie;klávesy;lepicí;"
 
-#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:8
-msgid "org.xfce.settings.accessibility"
-msgstr ""
-
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1269 dialogs/display-settings/main.c:107
+#: dialogs/appearance-settings/main.c:1280 dialogs/display-settings/main.c:107
 #: dialogs/display-settings/main.c:118
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -421,7 +418,7 @@ msgstr "_Přidat"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:244
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
-msgstr ""
+msgstr "Nastavit odpovídající <a href=\"xfwm4-settings:\">motiv Xfwm4</a>, pokud je dostupný"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:278
 msgid "St_yle"
@@ -539,14 +536,14 @@ msgstr "Vyberete-li, můžete změnit klávesové zkratky položek nabídky pře
 
 #: dialogs/appearance-settings/appearance-dialog.glade:790
 msgid "Enable header bars in dialo_gs"
-msgstr ""
+msgstr "Povolit záhlaví v oknech dialogu"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:794
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
-msgstr ""
+msgstr "Určuje, zda dialogy GTK mohou umístit tlačka do záhlaví okna. Týká se pouze CSD. Má vliv pouze na nově otevřená okna dialogu."
 
 #: dialogs/appearance-settings/appearance-dialog.glade:813
 msgid "Menus and Buttons"
@@ -588,51 +585,51 @@ msgstr "_Nastavení"
 
 #: dialogs/appearance-settings/main.c:244
 msgid "Failed to display Xfwm4 Settings"
-msgstr ""
+msgstr "Nepodařilo se zobrazit nastavení Xfwm4"
 
-#: dialogs/appearance-settings/main.c:497
+#: dialogs/appearance-settings/main.c:507
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Varování: tento motiv ikon nemá soubor mezipaměti. Můžete ji vytvořit spuštěním příkazu <i>gtk-update-icon-cache %s/%s/</i> v emulátoru terminálu."
 
-#: dialogs/appearance-settings/main.c:963
+#: dialogs/appearance-settings/main.c:973
 msgid "File is too large, installation aborted"
-msgstr ""
+msgstr "Soubor je příliš velký, instalace byla zrušena"
 
-#: dialogs/appearance-settings/main.c:968
+#: dialogs/appearance-settings/main.c:978
 msgid "Failed to create temporary directory"
 msgstr "Vytvoření dočasného adresáře se nezdařilo"
 
-#: dialogs/appearance-settings/main.c:973
+#: dialogs/appearance-settings/main.c:983
 msgid "Failed to extract archive"
 msgstr "Rozbalení archivu se nezdařilo"
 
-#: dialogs/appearance-settings/main.c:978
+#: dialogs/appearance-settings/main.c:988
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Neznámý formát, podporovány jsou pouze archivy a adresáře"
 
-#: dialogs/appearance-settings/main.c:983
+#: dialogs/appearance-settings/main.c:993
 msgid "Not a valid theme package"
-msgstr ""
+msgstr "Neplatný balíček vzhledu"
 
-#: dialogs/appearance-settings/main.c:988
+#: dialogs/appearance-settings/main.c:998
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Neznámá chyba, ukončovací kód je %d"
 
-#: dialogs/appearance-settings/main.c:995
+#: dialogs/appearance-settings/main.c:1005
 msgid "Failed to install theme"
 msgstr "Instalace motivu se nezdařila"
 
-#: dialogs/appearance-settings/main.c:1049
+#: dialogs/appearance-settings/main.c:1059
 #, c-format
 msgid "Install %s theme"
 msgstr "Nainstalovat motiv %s"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1053
+#: dialogs/appearance-settings/main.c:1063
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:130
 #: dialogs/keyboard-settings/command-dialog.c:116
@@ -644,25 +641,25 @@ msgstr "Nainstalovat motiv %s"
 msgid "_Cancel"
 msgstr "_Zrušit"
 
-#: dialogs/appearance-settings/main.c:1055
+#: dialogs/appearance-settings/main.c:1065
 #: dialogs/keyboard-settings/command-dialog.c:281
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: dialogs/appearance-settings/main.c:1273
+#: dialogs/appearance-settings/main.c:1284
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1277
+#: dialogs/appearance-settings/main.c:1288
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1281
+#: dialogs/appearance-settings/main.c:1292
 msgid "Vertical RGB"
 msgstr "Svislé RGB"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1296
 msgid "Vertical BGR"
 msgstr "Svislé BGR"
 
@@ -676,10 +673,6 @@ msgid ""
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 msgstr "motivy;uživatelské rozhraní;styly;ikony;fonty;písma;vyhlazování;antialiasing;subpixel;vykreslování;ClearType;DPI;RGB;BGR;akcelerátory nabídky;klávesové zkratky;události;zvuky;škálování oken;HiDPI;Retina displej;"
-
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:8
-msgid "org.xfce.settings.appearance"
-msgstr ""
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: dialogs/color-settings/color-device.c:68
@@ -906,10 +899,6 @@ msgstr "Nastavit barevné profily"
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr "barva;nastavení;správa;displej;monitory;tiskárny;webové kamery;skenery;"
 
-#: dialogs/color-settings/xfce4-color-settings.desktop.in:8
-msgid "org.xfce.settings.color"
-msgstr ""
-
 #: dialogs/display-settings/confirmation-dialog.glade:13
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
 msgstr "<b><big>Chcete ponechat toto nastavení?</big></b>"
@@ -950,15 +939,15 @@ msgstr "Žádná akce"
 
 #: dialogs/display-settings/display-dialog.glade:94
 msgid "Show dialog"
-msgstr ""
+msgstr "Zobrazit okno dialogu"
 
 #: dialogs/display-settings/display-dialog.glade:98
 msgid "Mirror"
-msgstr ""
+msgstr "Zrcadlit"
 
 #: dialogs/display-settings/display-dialog.glade:102
 msgid "Extend"
-msgstr ""
+msgstr "Rozšířit"
 
 #: dialogs/display-settings/display-dialog.glade:160
 msgid "The primary display is currently configured to show:"
@@ -1065,7 +1054,7 @@ msgstr "Automaticky zapínat profily při připojení nové obrazovky"
 
 #: dialogs/display-settings/display-dialog.glade:1007
 msgid "When new displays are connected:"
-msgstr ""
+msgstr "Pokud jsou připojeny nové monitory:"
 
 #: dialogs/display-settings/display-dialog.glade:1020
 msgid "Show popup windows to identify displays"
@@ -1176,7 +1165,7 @@ msgstr "Neodpovíte-li na tuto otázku, bude předchozí nastavení obnoveno za 
 #: dialogs/display-settings/main.c:783
 #, c-format
 msgid "%.2f Hz"
-msgstr ""
+msgstr "%.2f Hz"
 
 #: dialogs/display-settings/main.c:1181
 msgid "Display:"
@@ -1225,7 +1214,7 @@ msgstr "Po smazání již nebude možné profil displeje obnovit."
 #: dialogs/display-settings/main.c:2150
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
-#: dialogs/mime-settings/xfce-mime-window.c:1129
+#: dialogs/mime-settings/xfce-mime-window.c:1174
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "Zrušit"
@@ -1292,10 +1281,6 @@ msgstr "Konfiguruje nastavení obrazovky a rozložení"
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "displej;nastavení;obrazovka;rozlišení;obnovení;míra;rotace;otočení;externí;vnější;projektory;monitory;LCD;CRT;HiDPI;"
-
-#: dialogs/display-settings/xfce-display-settings.desktop.in:8
-msgid "org.xfce.settings.display"
-msgstr ""
 
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:110
@@ -1554,10 +1539,6 @@ msgstr "Úprava nastavení klávesnice a klávesových zkratek"
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;klávesnice;rozložení;klávesové zkratky;"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:8
-msgid "org.xfce.settings.keyboard"
-msgstr ""
-
 #: dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
 msgstr "Nelze vytvořit dialogové okno mime."
@@ -1593,20 +1574,33 @@ msgstr "Vyberte aplikaci"
 msgid "None available"
 msgstr "Žádné dostupné"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:576
+#: dialogs/mime-settings/xfce-mime-chooser.c:577
 msgid "Recommended Applications"
 msgstr "Doporučené aplikace"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:594
+#: dialogs/mime-settings/xfce-mime-chooser.c:595
 msgid "Other Applications"
 msgstr "Ostatní aplikace"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:614
+#: dialogs/mime-settings/xfce-mime-chooser.c:617
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "Otevřít <i>%s</i> a ostatní soubory typu „%s“ pomocí:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:650
+#: dialogs/mime-settings/xfce-mime-chooser.c:622
+#, c-format
+msgid ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
+"with:"
+msgid_plural ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
+" with:"
+msgstr[0] "Otevřít 1%s1, ostatní soubory typu \"%s\" a%d další vybraný typ MIME s:"
+msgstr[1] "Otevřít 1%s1, ostatní soubory typu \"%s\" a%d další vybrané typy MIME s:"
+msgstr[2] "Otevřít 1%s1, ostatní soubory typu \"%s\" a%d další vybrané typy MIME s:"
+msgstr[3] "Otevřít <i>%s</i>, ostatní soubory typu \"%s\" a%d další vybrané typy MIME s:"
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:661
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "Přidání nové aplikace „%s“ se nezdařilo"
@@ -1889,32 +1883,32 @@ msgstr "Zrušit filtr"
 msgid "Open with..."
 msgstr "Otevřít pomocí..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:425
+#: dialogs/mime-settings/xfce-mime-window.c:427
 msgid "MIME Type"
 msgstr "Typ MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:453
+#: dialogs/mime-settings/xfce-mime-window.c:455
 msgid "Status"
 msgstr "Stav"
 
-#: dialogs/mime-settings/xfce-mime-window.c:473
+#: dialogs/mime-settings/xfce-mime-window.c:475
 msgid "Default Application"
 msgstr "Výchozí aplikace"
 
-#: dialogs/mime-settings/xfce-mime-window.c:648
-#: dialogs/mime-settings/xfce-mime-window.c:812
+#: dialogs/mime-settings/xfce-mime-window.c:650
+#: dialogs/mime-settings/xfce-mime-window.c:816
 msgid "User Set"
 msgstr "Uživatelské nastavení"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:650
-#: dialogs/mime-settings/xfce-mime-window.c:812
+#: dialogs/mime-settings/xfce-mime-window.c:652
+#: dialogs/mime-settings/xfce-mime-window.c:816
 #: dialogs/mouse-settings/main.c:406 dialogs/mouse-settings/main.c:408
 #: dialogs/mouse-settings/main.c:471
 msgid "Default"
 msgstr "Výchozí"
 
-#: dialogs/mime-settings/xfce-mime-window.c:736
+#: dialogs/mime-settings/xfce-mime-window.c:740
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
@@ -1923,32 +1917,41 @@ msgstr[1] "Nalezeny %d typy MIME"
 msgstr[2] "Nalezeno %d typů MIME"
 msgstr[3] "Nalezeno %d typů MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:857
+#: dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Aplikaci \"%s\" se nepodařilo nastavit typ MIME \"%s\"."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1120
+#: dialogs/mime-settings/xfce-mime-window.c:969
+#, c-format
+msgid "%d MIME type selected"
+msgid_plural "%d MIME types selected"
+msgstr[0] "%d typ MIME vybrán"
+msgstr[1] "%d typy MIME vybrány"
+msgstr[2] "%d typy MIME vybrány"
+msgstr[3] "%d typy MIME vybrány"
+
+#: dialogs/mime-settings/xfce-mime-window.c:1165
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Opravdu chcete obnovit typ obsahu „%s“ na jeho výchozí hodnotu?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1124
+#: dialogs/mime-settings/xfce-mime-window.c:1169
 msgid "Question"
 msgstr "Otázka"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1127
+#: dialogs/mime-settings/xfce-mime-window.c:1172
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Tato akce odebere vaše vlastní asociace podle MIME a obnoví výchozí nastavení systému."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1131
-#: dialogs/mime-settings/xfce-mime-window.c:1202
+#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1247
 msgid "Reset to Default"
 msgstr "Obnovit výchozí"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1197
+#: dialogs/mime-settings/xfce-mime-window.c:1242
 msgid "Choose Application..."
 msgstr "Zvolit aplikaci…"
 
@@ -1962,89 +1965,45 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "soubor;typ;přípona;asociace;otevřít v programu;webový prohlížeč;poštovní klient;správce souborů;emulátor terminálu;"
 
-#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:8
-msgid "org.xfce.settings.default-applications"
-msgstr ""
-
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:6
-msgid "org.xfce.filemanager"
-msgstr ""
-
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "Browse the file system"
 msgstr "Procházet systém souborů"
-
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:6
-msgid "org.xfce.mailreader"
-msgstr ""
 
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Read your email"
 msgstr "Číst poštu"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:6
-msgid "org.xfce.terminalemulator"
-msgstr ""
-
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Use the command line"
 msgstr "Použít příkazový řádek"
-
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:6
-msgid "org.xfce.webbrowser"
-msgstr ""
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Browse the web"
 msgstr "Procházet web"
 
-#: dialogs/mime-settings/helpers/alacritty.desktop.in.in:5
 #: dialogs/mime-settings/helpers/alacritty.desktop.in.in:6
 msgid "Alacritty"
-msgstr ""
+msgstr "Alacritty"
 
-#: dialogs/mime-settings/helpers/aterm.desktop.in.in:4
 #: dialogs/mime-settings/helpers/aterm.desktop.in.in:6
-#: dialogs/mime-settings/helpers/lynx.desktop.in.in:4
 msgid "aterm"
 msgstr "aterm"
-
-#: dialogs/mime-settings/helpers/balsa.desktop.in.in:4
-msgid "gnome-balsa2"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/balsa.desktop.in.in:6
 msgid "Balsa"
 msgstr "Balsa"
 
-#: dialogs/mime-settings/helpers/brave.desktop.in.in:5
-msgid "brave"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/brave.desktop.in.in:7
 msgid "Brave"
 msgstr "Brave"
-
-#: dialogs/mime-settings/helpers/caja.desktop.in.in:4
-msgid "system-file-manager"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/caja.desktop.in.in:6
 msgid "Caja File Manager"
 msgstr "Správce souborů Caja"
 
-#: dialogs/mime-settings/helpers/chromium.desktop.in.in:5
-msgid "chromium"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/chromium.desktop.in.in:7
 msgid "Chromium"
 msgstr "Chromium"
-
-#: dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in:4
-#: dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in:4
-msgid "debian"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in:6
 msgid "Debian Sensible Browser"
@@ -2054,142 +2013,73 @@ msgstr "Debian Sensible Browser"
 msgid "Debian X Terminal Emulator"
 msgstr "Debian X Terminal Emulator"
 
-#: dialogs/mime-settings/helpers/dillo.desktop.in.in:4
-msgid "networking_www_section"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/dillo.desktop.in.in:6
 msgid "Dillo"
 msgstr "Dillo"
-
-#: dialogs/mime-settings/helpers/encompass.desktop.in.in:4
-msgid "encompass"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/encompass.desktop.in.in:6
 msgid "Encompass"
 msgstr "Encompass"
 
-#: dialogs/mime-settings/helpers/epiphany.desktop.in.in:4
-msgid "web-browser"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/epiphany.desktop.in.in:6
 msgid "Epiphany Web Browser"
 msgstr "Webový prohlížeč Epiphany"
-
-#: dialogs/mime-settings/helpers/eterm.desktop.in.in:4
-msgid "Eterm"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/eterm.desktop.in.in:6
 msgid "Enlightened Terminal Emulator"
 msgstr "Enlightened Terminal Emulator"
 
-#: dialogs/mime-settings/helpers/evolution.desktop.in.in:4
-msgid "evolution"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/evolution.desktop.in.in:6
 msgid "Evolution"
 msgstr "Evolution"
-
-#: dialogs/mime-settings/helpers/firefox.desktop.in.in:4
-msgid "firefox"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/firefox.desktop.in.in:6
 msgid "Mozilla Firefox"
 msgstr "Mozilla Firefox"
 
-#: dialogs/mime-settings/helpers/galeon.desktop.in.in:4
-msgid "galeon"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/galeon.desktop.in.in:6
 msgid "Galeon Web Browser"
 msgstr "Webový prohlížeč Galeon"
-
-#: dialogs/mime-settings/helpers/geary.desktop.in.in:4
-msgid "geary"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/geary.desktop.in.in:6
 msgid "Geary"
 msgstr "Geary"
 
-#: dialogs/mime-settings/helpers/google-chrome.desktop.in.in:5
-msgid "google-chrome"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/google-chrome.desktop.in.in:7
 msgid "Google Chrome"
 msgstr "Google Chrome"
-
-#: dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in:4
-msgid "gnome-terminal"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in:6
 msgid "GNOME Terminal"
 msgstr "GNOME Terminál"
 
-#: dialogs/mime-settings/helpers/icecat.desktop.in.in:4
-msgid "icecat"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/icecat.desktop.in.in:6
 msgid "Icecat"
 msgstr "Icecat"
-
-#: dialogs/mime-settings/helpers/icedove.desktop.in.in:4
-msgid "icedove"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/icedove.desktop.in.in:6
 msgid "Icedove"
 msgstr "Icedove"
 
-#: dialogs/mime-settings/helpers/iceweasel.desktop.in.in:4
-msgid "iceweasel"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/iceweasel.desktop.in.in:6
 msgid "Iceweasel"
 msgstr "Iceweasel"
-
-#: dialogs/mime-settings/helpers/jumanji.desktop.in.in:4
-msgid "jumanji"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/jumanji.desktop.in.in:6
 msgid "Jumanji"
 msgstr "Jumanji"
 
-#: dialogs/mime-settings/helpers/kitty.desktop.in.in:5
 #: dialogs/mime-settings/helpers/kitty.desktop.in.in:6
 msgid "kitty"
-msgstr ""
-
-#: dialogs/mime-settings/helpers/kmail.desktop.in.in:4
-msgid "kmail"
-msgstr ""
+msgstr "kitty"
 
 #: dialogs/mime-settings/helpers/kmail.desktop.in.in:6
 msgid "KMail"
 msgstr "KMail"
 
-#: dialogs/mime-settings/helpers/konqueror.desktop.in.in:4
-msgid "konqueror"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/konqueror.desktop.in.in:6
 msgid "Konqueror Web Browser"
 msgstr "Webový prohlížeč Konqueror"
-
-#: dialogs/mime-settings/helpers/links.desktop.in.in:4
-msgid "links"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/links.desktop.in.in:6
 msgid "Links Text Browser"
@@ -2199,19 +2089,9 @@ msgstr "Textový prohlížeč Links"
 msgid "Lynx Text Browser"
 msgstr "Textový prohlížeč Lynx"
 
-#: dialogs/mime-settings/helpers/midori.desktop.in.in:5
-msgid "midori"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/midori.desktop.in.in:7
 msgid "Midori"
 msgstr "Midori"
-
-#: dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in:4
-#: dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in:4
-#: dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in:4
-msgid "mozilla"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in:6
 msgid "Mozilla Browser"
@@ -2221,17 +2101,9 @@ msgstr "Mozilla Browser"
 msgid "Mozilla Mail"
 msgstr "Mozilla Mail"
 
-#: dialogs/mime-settings/helpers/mutt.desktop.in.in:4
-msgid "mutt"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/mutt.desktop.in.in:6
 msgid "Mutt"
 msgstr "Mutt"
-
-#: dialogs/mime-settings/helpers/nautilus.desktop.in.in:4
-msgid "org.gnome.Nautilus"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/nautilus.desktop.in.in:6
 msgid "Nautilus"
@@ -2241,25 +2113,13 @@ msgstr "Nautilus"
 msgid "Netscape Navigator"
 msgstr "Netscape Navigator"
 
-#: dialogs/mime-settings/helpers/nxterm.desktop.in.in:4
-msgid "nxterm"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/nxterm.desktop.in.in:6
 msgid "NXterm"
 msgstr "NXterm"
 
-#: dialogs/mime-settings/helpers/opera-browser.desktop.in.in:4
-msgid "opera"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/opera-browser.desktop.in.in:6
 msgid "Opera Browser"
 msgstr "Opera"
-
-#: dialogs/mime-settings/helpers/pcmanfm.desktop.in.in:5
-msgid "pcmanfm"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/pcmanfm.desktop.in.in:7
 msgid "PCMan File Manager"
@@ -2269,122 +2129,61 @@ msgstr "Správce souborů PCMan"
 msgid "PCManFM-Qt File Manager"
 msgstr "Správce souborů PCManFM-Qt"
 
-#: dialogs/mime-settings/helpers/qterminal.desktop.in.in:4
-#: dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in:4
-msgid "utilities-terminal"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/qterminal.desktop.in.in:6
 msgid "QTerminal"
 msgstr "QTerminal"
-
-#: dialogs/mime-settings/helpers/qtfm.desktop.in.in:4
-msgid "qtfm"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/qtfm.desktop.in.in:6
 msgid "qtFM"
 msgstr "qtFM"
 
-#: dialogs/mime-settings/helpers/qupzilla.desktop.in.in:4
-msgid "qupzilla"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/qupzilla.desktop.in.in:6
 msgid "QupZilla"
 msgstr "QupZilla"
-
-#: dialogs/mime-settings/helpers/rodent.desktop.in.in:4
-msgid "folder"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/rodent.desktop.in.in:6
 msgid "Rodent File Manager"
 msgstr "Správce souborů Rodent"
 
-#: dialogs/mime-settings/helpers/rox-filer.desktop.in.in:4
-msgid "/usr/libexec/ROX-Filer/.DirIcon"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/rox-filer.desktop.in.in:6
 msgid "ROX-Filer"
 msgstr "ROX-Filer"
-
-#: dialogs/mime-settings/helpers/sakura.desktop.in.in:4
-msgid "terminal-tango"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/sakura.desktop.in.in:6
 msgid "Sakura"
 msgstr "Sakura"
 
-#: dialogs/mime-settings/helpers/surf.desktop.in.in:4
-msgid "surf"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/surf.desktop.in.in:6
 msgid "Surf"
 msgstr "Surf"
-
-#: dialogs/mime-settings/helpers/sylpheed.desktop.in.in:4
-msgid "sylpheed"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/sylpheed.desktop.in.in:6
 msgid "Sylpheed"
 msgstr "Sylpheed"
 
-#: dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in:4
-msgid "claws-mail"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in:6
 msgid "Claws Mail"
 msgstr "Claws Mail"
-
-#: dialogs/mime-settings/helpers/terminator.desktop.in.in:4
-msgid "terminator"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/terminator.desktop.in.in:6
 msgid "Terminator"
 msgstr "Terminator"
 
-#: dialogs/mime-settings/helpers/thunar.desktop.in.in:5
-msgid "org.xfce.thunar"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/thunar.desktop.in.in:7
 msgid "Thunar"
 msgstr "Thunar"
-
-#: dialogs/mime-settings/helpers/thunderbird.desktop.in.in:4
-msgid "thunderbird"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/thunderbird.desktop.in.in:6
 msgid "Mozilla Thunderbird"
 msgstr "Mozilla Thunderbird"
 
-#: dialogs/mime-settings/helpers/urxvt.desktop.in.in:4
-msgid "rxvt"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/urxvt.desktop.in.in:6
 msgid "RXVT Unicode"
 msgstr "RXVT Unicode"
 
-#: dialogs/mime-settings/helpers/vimprobable2.desktop.in.in:4
-msgid "vimprobable2"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/vimprobable2.desktop.in.in:6
 msgid "Vimprobable2"
 msgstr "Vimprobable2"
-
-#: dialogs/mime-settings/helpers/w3m.desktop.in.in:4
-msgid "w3m"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/w3m.desktop.in.in:6
 msgid "W3M Text Browser"
@@ -2394,17 +2193,9 @@ msgstr "Textový prohlížeč W3M"
 msgid "Xfce Terminal"
 msgstr "Terminál Xfce"
 
-#: dialogs/mime-settings/helpers/xfe.desktop.in.in:4
-msgid "xfe"
-msgstr ""
-
 #: dialogs/mime-settings/helpers/xfe.desktop.in.in:6
 msgid "Xfe File Manager"
 msgstr "Správce souborů Xfe"
-
-#: dialogs/mime-settings/helpers/xterm.desktop.in.in:4
-msgid "xterm"
-msgstr ""
 
 #: dialogs/mime-settings/helpers/xterm.desktop.in.in:6
 msgid "X Terminal"
@@ -2438,11 +2229,11 @@ msgstr "%.1f s"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:67
 msgid "Use bottom areas as left, middle or right buttons"
-msgstr ""
+msgstr "Použít spodní část jako levé, prostřední, nebo pravé tlačítko"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:71
 msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
-msgstr ""
+msgstr "Kliknutí 1, 2, nebo 3 prsty jako levé, pravé, nebo prostřední kliknutí"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:92
 msgid "Disabled"
@@ -2511,13 +2302,13 @@ msgstr "Vyberete-li tuto volbu, bude kolečko myši pracovat obráceně"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:372
 msgid "Allow high _resolution scrolling (experimental)"
-msgstr ""
+msgstr "Podpořit scrollování ve vysokém rozlišení (experimentální)"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:376
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
-msgstr ""
+msgstr "Podporováno pouze na některých myších (především Logitech) a vyžaduje podporu ovladačů. Na podporovaných zařízeních zpřesňuje scrollování."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:395
 msgid "Buttons"
@@ -2581,7 +2372,7 @@ msgstr "_Kliknout klepnutím na touchpad"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:665
 msgid "Click m_ethod:"
-msgstr ""
+msgstr "Metoda klikání:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:750
 msgid "Scrolling _mode:"
@@ -2681,10 +2472,6 @@ msgstr "Konfiguruje chování a vzhled ukazatele zařízení"
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "nastavení;tlačítka;posun;směr;ukazatel;rychlost;dvojité kliknutí;motiv;kolečko;"
-
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:8
-msgid "org.xfce.settings.mouse"
-msgstr ""
 
 #: xfce4-settings-editor/main.c:163
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
@@ -2887,10 +2674,6 @@ msgstr "Grafický editor nastavení služby Xfconf"
 msgid "registry;regedit;configuration file;"
 msgstr "registr;regedit;soubor s nastavením;"
 
-#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:7
-msgid "org.xfce.settings.editor"
-msgstr ""
-
 #: xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
 msgstr "Zobrazené dialogové okno nastavení"
@@ -2920,11 +2703,6 @@ msgstr "Grafický správce nastavení pro Xfce"
 #: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr "ovládání;panel;centrum;systém;nastavení;přizpůsobení;hardware;"
-
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:7
-#: xfsettingsd/xfsettingsd.desktop.in:7
-msgid "org.xfce.settings.manager"
-msgstr ""
 
 #: xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
