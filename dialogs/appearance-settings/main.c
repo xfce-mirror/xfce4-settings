@@ -850,7 +850,7 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
             if (g_settings_schema_has_key (schema, "color-scheme"))
               {
                 str = xfconf_channel_get_string (channel, property_name, NULL);
-                if (str != NULL && g_str_has_suffix (str, "-dark"))
+                if (str != NULL && g_strstr_len (g_ascii_strdown(str, -1), -1, "-dark"))
                     g_settings_set_string (desktop_interface_gsettings, "color-scheme", "prefer-dark");
                 else
                     g_settings_reset (desktop_interface_gsettings, "color-scheme");
