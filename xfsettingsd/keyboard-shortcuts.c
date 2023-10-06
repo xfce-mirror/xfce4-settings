@@ -225,14 +225,14 @@ xfce_keyboard_shortcuts_helper_shortcut_activated (XfceShortcutsGrabber        *
                   "activated \"%s\" (command=\"%s\", snotify=%d, stamp=%d)",
                   shortcut, sc->command, sc->snotify, timestamp);
 
-  /* Handle the argv ourselfs, because xfce_spawn_command_line_on_screen() does
+  /* Handle the argv ourselfs, because xfce_spawn_command_line() does
    * not accept a custom timestamp for startup notification */
   succeed = g_shell_parse_argv (sc->command, NULL, &argv, &error);
   if (G_LIKELY (succeed))
     {
-      succeed = xfce_spawn_on_screen (xfce_gdk_screen_get_active (NULL),
-                                      NULL, argv, NULL, G_SPAWN_SEARCH_PATH,
-                                      sc->snotify, timestamp, NULL, &error);
+      succeed = xfce_spawn (xfce_gdk_screen_get_active (NULL),
+                            NULL, argv, NULL, G_SPAWN_SEARCH_PATH,
+                            sc->snotify, timestamp, NULL, TRUE, &error);
 
       g_strfreev (argv);
     }
