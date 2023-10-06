@@ -665,8 +665,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
             /* Start the minimal dialog according to the user preferences */
             if (changed && autoconnect_mode == 1)
-                xfce_spawn_command_line_on_screen (NULL, "xfce4-display-settings -m", FALSE,
-                                                   FALSE, NULL);
+                xfce_spawn_command_line (NULL, "xfce4-display-settings -m", FALSE, FALSE, TRUE, NULL);
         }
         g_ptr_array_unref (old_outputs);
     }
