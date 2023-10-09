@@ -14,19 +14,18 @@ XDT_VERSION_INIT([4.19.0], [git])
 dnl minimum required versions
 m4_define([glib_min_version], [2.66.0])
 m4_define([gtk_min_version], [3.24.0])
-m4_define([x11_minimum_version], [1.6.7])
 m4_define([garcon_min_version], [0.1.10])
 m4_define([exo_min_version], [0.11.0])
 m4_define([libxfce4util_min_version], [4.17.2])
 m4_define([libxfce4ui_min_version], [4.17.0])
 m4_define([xfconf_min_version], [4.13.0])
 
+m4_define([x11_minimum_version], [1.6.7])
 m4_define([fontconfig_min_version], [2.6.0])
 m4_define([xi_min_version], [1.2.0])
 m4_define([inputproto_min_version], [1.4.0])
 
 m4_define([xrandr_min_version], [1.2.0])
-m4_define([upower_glib_min_version], [0.9.8])
 m4_define([libnotify_min_version], [0.1.3])
 m4_define([colord_min_version], [1.0.2])
 m4_define([xcursor_min_version], [1.1.0])
@@ -34,6 +33,8 @@ m4_define([xorg_libinput_min_version], [0.6.0])
 m4_define([libxklavier_min_version], [0.3.0])
 m4_define([libxklavier4_min_version], [4.0])
 m4_define([libxklavier5_min_version], [5.0])
+
+m4_define([upower_glib_min_version], [0.9.8])
 
 dnl define a short version string for xfce4-settings
 m4_append([xfce4_settings_version_short], ["])
@@ -114,50 +115,62 @@ XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [gtk_min_version])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GIO], [gio-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [glib_min_version])
-XDT_CHECK_PACKAGE([LIBX11], [x11], [x11_min_version])
 XDT_CHECK_PACKAGE([GARCON], [garcon-1], [garcon_min_version])
 XDT_CHECK_PACKAGE([EXO], [exo-2], [exo_min_version])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [libxfce4util_min_version])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [libxfce4ui_min_version])
-XDT_CHECK_PACKAGE([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-3], [libxfce4ui_min_version])
 XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [xfconf_min_version])
 
-XDT_CHECK_PACKAGE([FONTCONFIG], [fontconfig], [fontconfig_min_version])
-
-XDT_CHECK_PACKAGE([XI], [xi], [xi_min_version], [],
-[
-  for dir in /usr/X11R6 /usr/X11 /opt/X11R6 /opt/X11; do
-    test -z "$XI_CFLAGS" || break
-    saved_CFLAGS="$CFLAGS"
-    saved_LIBS="$LIBS"
-    CFLAGS="$CFLAGS -I$dir/include"
-    LIBS="$LIBS -L$dir/lib"
-    AC_CHECK_LIB([Xi], [XListInputDevices],
-    [
-      XI_CFLAGS="-I$dir/include"
-      XI_LIBS="-L$dir/lib -lXi"
-      AC_SUBST(XI_CFLAGS)
-      AC_SUBST(XI_LIBS)
-    ])
-    CFLAGS="$saved_CFLAGS"
-    LIBS="$saved_LIBS"
-  done
-  if test -z "$XI_CFLAGS"; then
-    echo "*** The required package Xi was not found on your system."
-    echo "*** Please install Xi or adjust the PKG_CONFIG_PATH environment"
-    echo "*** variable if you installed the package in a nonstandard"
-    echo "*** prefix so that pkg-config is able to find it."
-    exit 1
-  fi
-])
-
-XDT_CHECK_PACKAGE([INPUTPROTO], [inputproto], [inputproto_min_version])
-
 dnl ***********************************
-dnl *** Optional support for Xrandr ***
+dnl *** Check for optional packages ***
 dnl ***********************************
-XDT_CHECK_OPTIONAL_PACKAGE([XRANDR], [xrandr], [xrandr_min_version],
-                           [xrandr], [Xrandr support])
+XDT_CHECK_OPTIONAL_FEATURE([X11],
+                           [x11],
+                           [
+                             XDT_FEATURE_DEPENDENCY([LIBX11], [x11], [libx11_min_version])
+                             XDT_FEATURE_DEPENDENCY([GDK_X11], [gdk-x11-3.0], [gtk_min_version])
+                             XDT_FEATURE_DEPENDENCY([GTK_X11], [gtk+-x11-3.0], [gtk_min_version])
+                             XDT_FEATURE_DEPENDENCY([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-3], [libxfce4ui_min_version])
+                             XDT_FEATURE_DEPENDENCY([FONTCONFIG], [fontconfig], [fontconfig_min_version])
+                             XDT_FEATURE_DEPENDENCY([XI], [xi], [xi_min_version])
+                             XDT_FEATURE_DEPENDENCY([INPUTPROTO], [inputproto], [inputproto_min_version])
+                           ],
+                           [the X11 windowing system])
+XDT_CHECK_OPTIONAL_FEATURE([WAYLAND],
+                           [wayland],
+                           [
+                             XDT_FEATURE_DEPENDENCY([GDK_WAYLAND], [gdk-wayland-3.0], [gtk_min_version])
+                           ],
+                           [the Wayland windowing system])
+if test x"$ENABLE_X11" != x"yes" -a x"$ENABLE_WAYLAND" != x"yes"; then
+  AC_MSG_ERROR([Either both X11 and Wayland support was disabled, or required dependencies are missing. One of the two must be enabled.])
+fi
+
+if test x"$ENABLE_X11" != x"yes"; then
+  dnl Do not check for optional X11 packages if X11 is disabled
+  enable_xrandr=no
+  enable_xcursor=no
+  enable_xorg_libinput=no
+  enable_libxklavier=no
+  enable_libnotify=no
+fi
+XDT_CHECK_OPTIONAL_PACKAGE([XRANDR], [xrandr], [xrandr_min_version], [xrandr], [Xrandr support])
+XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [xcursor_min_version], [xcursor], [Cursor themes support])
+XDT_CHECK_OPTIONAL_PACKAGE([LIBINPUT], [xorg-libinput], [xorg_libinput_min_version], [xorg-libinput], [libinput Xorg driver support])
+XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER], [libxklavier], [libxklavier_min_version], [libxklavier], [Keyboard layout selection])
+XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER4], [libxklavier], [libxklavier4_min_version], [libxklavier], [Keyboard layout selection])
+XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER5], [libxklavier], [libxklavier5_min_version], [libxklavier], [Keyboard layout selection])
+XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [libnotify_min_version], [libnotify], [Notification support])
+
+if test x"$XRANDR_FOUND" != x"yes" -a x"$ENABLE_WAYLAND" != x"yes"; then
+  dnl Do not check for upower-glib if xrandr is not found and Wayland is disabled
+  enable_upower_glib=no
+else
+  ENABLE_DISPLAY_SETTINGS="yes"
+  AC_DEFINE([ENABLE_DISPLAY_SETTINGS], [1], [Enable display seetings])
+fi
+AM_CONDITIONAL([ENABLE_DISPLAY_SETTINGS], [test x"$XRANDR_FOUND" = x"yes" -o x"$ENABLE_WAYLAND" = x"yes"])
+XDT_CHECK_OPTIONAL_PACKAGE([UPOWERGLIB], [upower-glib], [upower_glib_min_version], [upower-glib], [UPower support], [no])
 
 dnl ***********************************
 dnl *** Optional support for hwdata ***
@@ -169,63 +182,17 @@ AC_ARG_WITH([pnp-ids-path],
 PNP_IDS=$with_pnp_ids_path
 AC_SUBST(PNP_IDS)
 
-dnl ***********************************
-dnl *** Optional support for UPower ***
-dnl ***********************************
-XDT_CHECK_OPTIONAL_PACKAGE([UPOWERGLIB], [upower-glib], [upower_glib_min_version],
-                           [upower-glib], [UPower support], [no])
-
-dnl **************************************
-dnl *** Optional support for Libnotify ***
-dnl **************************************
-XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [libnotify_min_version],
-                           [libnotify], [Notification support])
-
 dnl **************************************
 dnl *** Optional support for colord ***
 dnl **************************************
 XDT_CHECK_OPTIONAL_PACKAGE([COLORD], [colord], [colord_min_version],
-                          [colord], [colord support])
-
+                           [colord], [colord support])
 
 dnl *********************
 dnl *** Mime settings ***
 dnl *********************
 XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0], [glib_min_version],
                            [gio-unix], [Mime settings])
-
-dnl ************************************
-dnl *** Optional support for Xcursor ***
-dnl ************************************
-XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [xcursor_min_version],
-                           [xcursor], [Cursor themes support])
-
-dnl *************************************************
-dnl *** Optional support for libinput Xorg driver ***
-dnl *************************************************
-XDT_CHECK_OPTIONAL_PACKAGE([LIBINPUT], [xorg-libinput], [xorg_libinput_min_version],
-                           [xorg-libinput], [libinput Xorg driver support])
-
-dnl ****************************************
-dnl *** Optional support for Libxklavier ***
-dnl ****************************************
-XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER], [libxklavier], [libxklavier_min_version],
-                           [libxklavier], [Keyboard layout selection])
-XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER4], [libxklavier], [libxklavier4_min_version],
-                           [libxklavier], [Keyboard layout selection])
-XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER5], [libxklavier], [libxklavier5_min_version],
-                           [libxklavier], [Keyboard layout selection])
-
-dnl make pluggable settings dialogs optional
-AC_ARG_ENABLE([pluggable-dialogs],
-              [AS_HELP_STRING([--enable-pluggable-dialogs],[Enable support for embedded settings dialogs (default=disabled)])],
-              [enable_pluggable_dialogs=$enableval],
-              [enable_pluggable_dialogs=no])
-if test x"$enable_pluggable_dialogs" = x"yes"; then
-  AC_DEFINE([ENABLE_PLUGGABLE_DIALOGS], [1], [Define to enable embedded settings dialogs])
-  ENABLE_PLUGGABLE_DIALOGS=1
-fi
-AC_SUBST(ENABLE_PLUGGABLE_DIALOGS)
 
 dnl ****************************************
 dnl *** Optional support for Libcanberra ***
@@ -306,56 +273,21 @@ dnl ***************************
 echo
 echo "Build Configuration:"
 echo
-echo "* Installation prefix:       $prefix"
-echo "* Debug Support:             $enable_debug"
-if test x"$XRANDR_FOUND" = x"yes"; then
-echo "* Xrandr support:            yes"
-else
-echo "* Xrandr support:            no"
+echo "* Installation prefix:              $prefix"
+echo "* Debug Support:                    $enable_debug"
+echo "* X11 Support:                      ${ENABLE_X11:-no}"
+if test x"$ENABLE_X11" = x"yes"; then
+echo "  * Xrandr support:                 ${XRANDR_FOUND:-no}"
+echo "  * Xcursor support:                ${XCURSOR_FOUND:-no}"
+echo "  * Xorg libinput support:          ${LIBINPUT_FOUND:-no}"
+echo "  * Libxklavier support:            ${LIBXKLAVIER_FOUND:-no}"
+echo "  * Libnotify support:              ${LIBNOTIFY_FOUND:-no}"
 fi
-if test x"$UPOWERGLIB_FOUND" = x"yes"; then
-echo "* UPower support:            yes"
-else
-echo "* UPower support:            no"
+echo "* Wayland Support:                  ${ENABLE_WAYLAND:-no}"
+if test x"$ENABLE_DISPLAY_SETTINGS" = x"yes"; then
+echo "* UPower support:                   ${UPOWERGLIB_FOUND:-no}"
 fi
-if test x"$LIBNOTIFY_FOUND" = x"yes"; then
-echo "* Libnotify support:         yes"
-else
-echo "* Libnotify support:         no"
-fi
-if test x"$COLORD_FOUND" = x"yes"; then
-echo "* colord support:            yes"
-else
-echo "* colord support:            no"
-fi
-if test x"$XCURSOR_FOUND" = x"yes"; then
-echo "* Xcursor support:           yes"
-else
-echo "* Xcursor support:           no"
-fi
-if test x"$LIBINPUT_FOUND" = x"yes"; then
-echo "* Xorg libinput support:     yes"
-else
-echo "* Xorg libinput support:     no"
-fi
-if test x"$ENABLE_PLUGGABLE_DIALOGS" = x"1"; then
-echo "* Embedded settings dialogs  yes"
-else
-echo "* Embedded settings dialogs  no"
-fi
-if test x"$ENABLE_SOUND_SETTINGS" = x"1"; then
-echo "* Sounds settings support    yes"
-else
-echo "* Sounds settings support    no"
-fi
-if test x"$LIBXKLAVIER_FOUND" = x"yes"; then
-echo "* Libxklavier support:       yes"
-else
-echo "* Libxklavier support:       no"
-fi
-if test x"$GIO_UNIX_FOUND" = x"yes"; then
-echo "* Mime settings (gio-unix):  yes"
-else
-echo "* Mime settings (gio-unix):  no"
-fi
+echo "* Colord support:                   ${COLORD_FOUND:-no}"
+echo "* Mime settings (gio-unix) support: ${GIO_UNIX_FOUND:-no}"
+echo "* Sounds settings support:          $enable_sound_settings"
 echo

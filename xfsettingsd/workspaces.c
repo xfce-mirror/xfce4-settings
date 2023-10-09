@@ -25,13 +25,10 @@
 
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
-#include <gdk/gdk.h>
 
-#ifdef GDK_WINDOWING_X11
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <gdk/gdkx.h>
-#endif
 
 #include "debug.h"
 #include "workspaces.h"
@@ -63,12 +60,8 @@ struct _XfceWorkspacesHelper
     GObject parent;
 
     XfconfChannel *channel;
-
     gint64         timestamp;
-
-#ifdef GDK_WINDOWING_X11
     guint          wait_for_wm_timeout_id;
-#endif
 };
 
 struct _XfceWorkspacesHelperClass
@@ -76,7 +69,6 @@ struct _XfceWorkspacesHelperClass
     GObjectClass parent;
 };
 
-#ifdef GDK_WINDOWING_X11
 static Atom atom_net_number_of_desktops = 0;
 static Atom atom_net_desktop_names = 0;
 static gboolean xfsettingsd_disable_wm_check = FALSE;
@@ -92,7 +84,6 @@ typedef struct
   guint                 counter;
 }
 WaitForWM;
-#endif
 
 
 
@@ -107,10 +98,8 @@ xfce_workspaces_helper_class_init(XfceWorkspacesHelperClass *klass)
 
     gobject_class->finalize = xfce_workspaces_helper_finalize;
 
-#ifdef GDK_WINDOWING_X11
     atom_net_number_of_desktops = gdk_x11_get_xatom_by_name ("_NET_NUMBER_OF_DESKTOPS");
     atom_net_desktop_names = gdk_x11_get_xatom_by_name ("_NET_DESKTOP_NAMES");
-#endif
 }
 
 
@@ -156,7 +145,6 @@ xfce_workspaces_helper_filter_func (GdkXEvent  *gdkxevent,
                                     GdkEvent   *event,
                                     gpointer    user_data)
 {
-#ifdef GDK_WINDOWING_X11
     XfceWorkspacesHelper  *helper = XFCE_WORKSPACES_HELPER (user_data);
     XEvent                *xevent = gdkxevent;
 
@@ -183,7 +171,6 @@ xfce_workspaces_helper_filter_func (GdkXEvent  *gdkxevent,
             }
         }
     }
-#endif
 
     return GDK_FILTER_CONTINUE;
 }
@@ -406,7 +393,6 @@ xfce_workspaces_helper_set_names_real (XfceWorkspacesHelper *helper)
 
 
 
-#ifdef GDK_WINDOWING_X11
 static gboolean
 xfce_workspaces_helper_wait_for_window_manager (gpointer data)
 {
@@ -457,7 +443,6 @@ xfce_workspaces_helper_wait_for_window_manager_destroyed (gpointer data)
   /* set the names anyway... */
   xfce_workspaces_helper_set_names_real (helper);
 }
-#endif
 
 
 
@@ -465,7 +450,6 @@ static void
 xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper,
                                   gboolean              disable_wm_check)
 {
-#ifdef GDK_WINDOWING_X11
     WaitForWM  *wfwm;
     guint       i;
     gchar     **atom_names;
@@ -498,7 +482,6 @@ xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper,
                               wfwm, xfce_workspaces_helper_wait_for_window_manager_destroyed);
     }
     else
-#endif
     {
         /* directly launch */
         xfce_workspaces_helper_set_names_real (helper);
@@ -589,10 +572,8 @@ xfce_workspaces_helper_prop_changed (XfconfChannel        *channel,
 
 
 
-#ifdef GDK_WINDOWING_X11
 void
 xfce_workspaces_helper_disable_wm_check (gboolean disable_wm_check)
 {
     xfsettingsd_disable_wm_check = disable_wm_check;
 }
-#endif
