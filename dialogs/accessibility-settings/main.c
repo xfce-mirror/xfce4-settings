@@ -223,6 +223,12 @@ main (gint argc, gchar **argv)
         return EXIT_SUCCESS;
     }
 
+    if (!GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    {
+        g_warning ("Accessibility settings are only available on X11");
+        return EXIT_FAILURE;
+    }
+
     /* initialize xfconf */
     if (!xfconf_init (&error))
     {

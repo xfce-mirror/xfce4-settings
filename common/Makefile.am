@@ -11,16 +11,13 @@ libxfce4_settings_la_SOURCES = \
 	display-profiles.c \
 	display-profiles.h \
 	edid-parse.c \
-	edid.h \
-	xfce-randr.c \
-	xfce-randr.h
+	edid.h
 
 libxfce4_settings_la_CFLAGS = \
+	$(GLIB_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(XFCONF_CFLAGS) \
-	$(XRANDR_CFLAGS) \
-	$(LIBX11_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 libxfce4_settings_la_LDFLAGS = \
@@ -28,8 +25,22 @@ libxfce4_settings_la_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 libxfce4_settings_la_LIBADD = \
+	$(GLIB_LIBS) \
 	$(GTK_LIBS) \
+	$(LIBXFCE4UTIL_LIBS) \
 	$(XFCONF_LIBS) \
-	$(LIBX11_LIBS) -lm \
+	-lm
+
+if HAVE_XRANDR
+libxfce4_settings_la_SOURCES += \
+	xfce-randr.c \
+	xfce-randr.h
+
+libxfce4_settings_la_CFLAGS += \
+	$(XRANDR_CFLAGS) \
+	$(LIBX11_CFLAGS)
+
+libxfce4_settings_la_LIBADD += \
 	$(XRANDR_LIBS) \
-	$(GLIB_LIBS)
+	$(LIBX11_LIBS)
+endif
