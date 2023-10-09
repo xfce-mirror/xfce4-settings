@@ -28,9 +28,10 @@
 #include <colord.h>
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkx.h>
-
+#ifdef ENABLE_X11
 #include <gdk/gdkx.h>
+#include <gtk/gtkx.h>
+#endif
 
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
@@ -68,7 +69,11 @@ struct _ColorSettings
     GObject       *model;
     GObject       *vendor;
     GObject       *colorspace;
+#ifdef ENABLE_X11
     GObject       *device_calibrate;
+    GObject       *profiles_info;
+    GObject       *button_assign_info;
+#endif
     GtkListBox    *list_box;
     gchar         *list_box_filter;
     guint          list_box_selected_id;
@@ -79,7 +84,6 @@ struct _ColorSettings
     GObject       *profiles_enable;
     GObject       *profiles_add;
     GObject       *profiles_remove;
-    GObject       *profiles_info;
     GtkListBox    *profiles_list_box;
     gchar         *profiles_list_box_filter;
     guint          profiles_list_box_selected_id;
@@ -89,7 +93,6 @@ struct _ColorSettings
     GObject       *treeview_assign;
     GObject       *liststore_assign;
     GObject       *button_assign_import;
-    GObject       *button_assign_info;
     GObject       *button_assign_ok;
     GObject       *button_assign_cancel;
 } ColorSettings;
@@ -578,6 +581,7 @@ color_settings_profile_remove_cb (GtkWidget *widget, ColorSettings *settings)
 
 
 
+#ifdef ENABLE_X11
 static void
 color_settings_device_calibrate_cb (CdProfile *profile, ColorSettings *settings)
 {
@@ -686,6 +690,7 @@ color_settings_profile_info_cb (GtkWidget *widget, ColorSettings *settings)
     }
     color_settings_profile_info_view (profile, settings);
 }
+#endif /* ENABLE_X11 */
 
 
 
@@ -845,19 +850,23 @@ color_settings_list_box_row_activated_cb (GtkListBox *list_box,
     if (cd_device_get_enabled (settings->current_device))
     {
         color_settings_device_changed_cb (settings->current_device, settings);
+#ifdef ENABLE_X11
         gtk_widget_set_sensitive (GTK_WIDGET (settings->device_calibrate), TRUE);
+        gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
+#endif
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), TRUE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
-        gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), FALSE);
     }
     else
     {
         gtk_widget_show (GTK_WIDGET (settings->label_no_profiles));
+#ifdef ENABLE_X11
         gtk_widget_set_sensitive (GTK_WIDGET (settings->device_calibrate), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
+#endif
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
-        gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), FALSE);
         gtk_widget_hide (GTK_WIDGET (settings->scrolled_profiles));
     }
@@ -874,10 +883,12 @@ color_settings_device_enabled_changed_cb (ColorDevice *widget,
     gtk_list_box_select_row (settings->list_box, GTK_LIST_BOX_ROW (widget));
     gtk_widget_set_visible (GTK_WIDGET (settings->label_no_profiles), !is_enabled);
     gtk_widget_set_visible (GTK_WIDGET (settings->scrolled_profiles), is_enabled);
+#ifdef ENABLE_X11
     gtk_widget_set_sensitive (GTK_WIDGET (settings->device_calibrate), is_enabled);
+    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), is_enabled);
+#endif
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_add), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), is_enabled);
-    gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), is_enabled);
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), is_enabled);
 }
 
@@ -889,7 +900,9 @@ color_settings_profiles_list_box_row_selected_cb (GtkListBox *list_box,
                                                   ColorSettings *settings)
 {
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), TRUE);
+#ifdef ENABLE_X11
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), TRUE);
+#endif
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), TRUE);
 }
 
@@ -1276,12 +1289,19 @@ color_settings_dialog_init (GtkBuilder *builder)
     gtk_container_add (GTK_CONTAINER (settings->scrolled_devices), GTK_WIDGET (settings->list_box));
     gtk_widget_show_all (GTK_WIDGET (settings->list_box));
 
+#ifdef ENABLE_X11
     /* Conditionally show/hide the calibrate button, based on the availability of gnome-color-manager */
     settings->device_calibrate = gtk_builder_get_object (builder, "device-calibrate");
-    if (g_find_program_in_path ("gcm-calibrate") == NULL)
-        gtk_widget_hide (GTK_WIDGET (settings->device_calibrate));
+    if (GDK_IS_X11_DISPLAY (gdk_display_get_default ())) {
+        gchar *path = g_find_program_in_path ("gcm-calibrate");
+        if (path != NULL) {
+            gtk_widget_show (GTK_WIDGET (settings->device_calibrate));
+            g_free (path);
+        }
+    }
     gtk_widget_set_sensitive (GTK_WIDGET (settings->device_calibrate), FALSE);
     g_signal_connect (settings->device_calibrate, "clicked", G_CALLBACK (color_settings_device_calibrate_cb), settings);
+#endif
 
     /* Profiles ListBox */
     settings->profiles_add = gtk_builder_get_object (builder, "profiles-add");
@@ -1292,9 +1312,11 @@ color_settings_dialog_init (GtkBuilder *builder)
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_remove), FALSE);
     g_signal_connect (settings->profiles_remove, "clicked", G_CALLBACK (color_settings_profile_remove_cb), settings);
 
+#ifdef ENABLE_X11
     settings->profiles_info = gtk_builder_get_object (builder, "profiles-info");
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_info), FALSE);
     g_signal_connect (settings->profiles_info, "clicked", G_CALLBACK (color_settings_profile_info_cb), settings);
+#endif
 
     settings->profiles_enable = gtk_builder_get_object (builder, "profiles-enable");
     gtk_widget_set_sensitive (GTK_WIDGET (settings->profiles_enable), FALSE);
@@ -1336,8 +1358,10 @@ color_settings_dialog_init (GtkBuilder *builder)
                       settings);
     settings->button_assign_import = gtk_builder_get_object (builder, "assign-import");
     g_signal_connect (settings->button_assign_import, "clicked", G_CALLBACK (color_settings_profile_import_cb), settings);
+#ifdef ENABLE_X11
     settings->button_assign_info = gtk_builder_get_object (builder, "assign-info");
     g_signal_connect (settings->button_assign_info, "clicked", G_CALLBACK (color_settings_assign_profile_info_cb), settings);
+#endif
     settings->button_assign_ok = gtk_builder_get_object (builder, "assign-ok");
     g_signal_connect (settings->button_assign_ok, "clicked",
                       G_CALLBACK (color_settings_button_assign_ok_cb), settings);
@@ -1345,11 +1369,17 @@ color_settings_dialog_init (GtkBuilder *builder)
     g_signal_connect (settings->button_assign_cancel, "clicked",
                       G_CALLBACK (color_settings_button_assign_cancel_cb), settings);
 
+#ifdef ENABLE_X11
     /* Conditionally show/hide the info buttons, based on the availability of gnome-color-manager */
-    if (g_find_program_in_path ("gcm-viewer") == NULL) {
-        gtk_widget_hide (GTK_WIDGET (settings->profiles_info));
-        gtk_widget_hide (GTK_WIDGET (settings->button_assign_info));
+    if (GDK_IS_X11_DISPLAY (gdk_display_get_default ())) {
+        gchar *path = g_find_program_in_path ("gcm-viewer");
+        if (path != NULL) {
+            gtk_widget_show (GTK_WIDGET (settings->profiles_info));
+            gtk_widget_show (GTK_WIDGET (settings->button_assign_info));
+            g_free (path);
+        }
     }
+#endif
 
     cd_client_connect (settings->client,
                        settings->cancellable,
@@ -1363,7 +1393,6 @@ color_settings_dialog_init (GtkBuilder *builder)
 gint
 main (gint argc, gchar **argv)
 {
-    GtkWidget     *plug;
     GtkBuilder    *builder;
     GError        *error = NULL;
     ColorSettings *settings;
@@ -1411,22 +1440,10 @@ main (gint argc, gchar **argv)
         /* Initialize the dialog */
         settings = color_settings_dialog_init (builder);
 
-        if (G_UNLIKELY (opt_socket_id == 0)) {
-            /* Get the dialog widget */
-            settings->dialog = gtk_builder_get_object (builder, "dialog");
-
-            g_signal_connect (settings->dialog, "response",
-                              G_CALLBACK (color_settings_dialog_response), settings);
-            gtk_window_present (GTK_WINDOW (settings->dialog));
-
-            /* To prevent the settings dialog to be saved in the session */
-            gdk_x11_set_sm_client_id ("FAKE ID");
-
-            gtk_main ();
-        }
-        else {
+#ifdef ENABLE_X11
+        if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ())) {
             /* Create plug widget */
-            plug = gtk_plug_new (opt_socket_id);
+            GtkWidget *plug = gtk_plug_new (opt_socket_id);
             g_signal_connect_swapped (plug, "delete-event",
                                       G_CALLBACK (color_settings_dialog_destroy), settings);
             gtk_widget_show (plug);
@@ -1443,6 +1460,22 @@ main (gint argc, gchar **argv)
             gdk_x11_set_sm_client_id ("FAKE ID");
 
             /* Enter main loop */
+            gtk_main ();
+        }
+        else
+#endif
+        {
+            /* Get the dialog widget */
+            settings->dialog = gtk_builder_get_object (builder, "dialog");
+
+            g_signal_connect (settings->dialog, "response",
+                              G_CALLBACK (color_settings_dialog_response), settings);
+            gtk_window_present (GTK_WINDOW (settings->dialog));
+#ifdef ENABLE_X11
+            /* To prevent the settings dialog to be saved in the session */
+            if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+                gdk_x11_set_sm_client_id ("FAKE ID");
+#endif
             gtk_main ();
         }
     }

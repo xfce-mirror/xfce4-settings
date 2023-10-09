@@ -19,8 +19,6 @@
 #include <glib.h>
 #include <xfconf/xfconf.h>
 
-#include "xfce-randr.h"
-
 
 gboolean display_settings_profile_name_exists   (XfconfChannel  *channel,
                                                  const gchar    *new_profile_name);

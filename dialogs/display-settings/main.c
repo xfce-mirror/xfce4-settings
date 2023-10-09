@@ -4385,6 +4385,12 @@ main (gint argc, gchar **argv)
         return EXIT_SUCCESS;
     }
 
+    if (!GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    {
+        g_warning ("Display settings are only available on X11");
+        return EXIT_FAILURE;
+    }
+
     /* Get the default display */
     display = gdk_display_get_default ();
 

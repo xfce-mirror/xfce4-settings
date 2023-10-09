@@ -1,7 +1,13 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = \
-	common \
+SUBDIRS =
+
+if ENABLE_DISPLAY_SETTINGS
+SUBDIRS += \
+	common
+endif
+
+SUBDIRS += \
 	dialogs \
 	xfce4-settings-manager \
 	xfce4-settings-editor \

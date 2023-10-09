@@ -6,8 +6,10 @@ AM_CPPFLAGS = \
 	-DG_LOG_DOMAIN=\"xfce4-display-settings\" \
 	$(PLATFORM_CPPFLAGS)
 
+if HAVE_XRANDR
 bin_PROGRAMS = \
 	xfce4-display-settings
+endif
 
 xfce4_display_settings_SOURCES = \
 	main.c \
@@ -22,12 +24,11 @@ xfce4_display_settings_SOURCES = \
 	foo-marshal.h
 
 xfce4_display_settings_CFLAGS = \
+	$(GLIB_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(EXO_CFLAGS) \
-	$(XRANDR_CFLAGS) \
-	$(LIBX11_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfce4_display_settings_LDFLAGS = \
@@ -35,22 +36,22 @@ xfce4_display_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_display_settings_LDADD = \
+	$(top_builddir)/common/libxfce4-settings.la \
+	$(GLIB_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
 	$(EXO_LIBS) \
-	$(LIBX11_LIBS) -lm \
-	$(XRANDR_LIBS) \
-	$(GLIB_LIBS) \
-	$(top_builddir)/common/libxfce4-settings.la
+	-lm
 
-# Optional support for colord
-if HAVE_COLORD
+if HAVE_XRANDR
 xfce4_display_settings_CFLAGS += \
-	$(COLORD_CFLAGS)
+	$(XRANDR_CFLAGS) \
+	$(LIBX11_CFLAGS)
 
 xfce4_display_settings_LDADD += \
-	$(COLORD_LIBS)
+	$(XRANDR_LIBS) \
+	$(LIBX11_LIBS)
 endif
 
 if MAINTAINER_MODE

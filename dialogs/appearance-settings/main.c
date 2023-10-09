@@ -38,9 +38,11 @@
 #include <glib/gstdio.h>
 #include <gio/gio.h>
 #include <cairo-gobject.h>
-#include <gdk/gdkx.h>
 #include <gtk/gtk.h>
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
 #include <gtk/gtkx.h>
+#endif
 
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
@@ -258,6 +260,7 @@ cb_xfwm4_sync_switch_toggled (GObject *self, GParamSpec* pspec, gpointer user_da
         xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", "Default");
 }
 
+#ifdef ENABLE_X11
 static void
 cb_window_scaling_factor_combo_changed (GtkComboBox *combo)
 {
@@ -269,6 +272,7 @@ cb_window_scaling_factor_combo_changed (GtkComboBox *combo)
     /* Save setting */
     xfconf_channel_set_int (xsettings_channel, "/Gdk/WindowScalingFactor", active);
 }
+#endif
 
 static void
 cb_antialias_check_button_toggled (GtkToggleButton *toggle)
@@ -1361,9 +1365,19 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (object2), "value-changed", G_CALLBACK (cb_custom_dpi_spin_button_changed), object);
 
     /* Window scaling factor */
-    object = gtk_builder_get_object (builder, "gdk_window_scaling_factor_combo_box");
-    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Gdk/WindowScalingFactor", NULL, builder);
-    g_signal_connect (G_OBJECT (object), "changed", G_CALLBACK(cb_window_scaling_factor_combo_changed), NULL);
+#ifdef ENABLE_X11
+    if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    {
+        object = gtk_builder_get_object (builder, "gdk_window_scaling_factor_combo_box");
+        appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Gdk/WindowScalingFactor", NULL, builder);
+        g_signal_connect (G_OBJECT (object), "changed", G_CALLBACK(cb_window_scaling_factor_combo_changed), NULL);
+    }
+    else
+#endif
+    {
+        object = gtk_builder_get_object (builder, "frame6");
+        gtk_widget_hide (GTK_WIDGET (object));
+    }
 
 #ifdef ENABLE_SOUND_SETTINGS
     /* Sounds */
@@ -1399,8 +1413,7 @@ appearance_settings_dialog_response (GtkWidget *dialog,
 gint
 main (gint argc, gchar **argv)
 {
-    GObject    *dialog, *plug_child;
-    GtkWidget  *plug;
+    GObject    *dialog;
     GtkBuilder *builder;
     GError     *error = NULL;
 
@@ -1483,22 +1496,12 @@ main (gint argc, gchar **argv)
 
             appearance_settings_dialog_configure_widgets (builder);
 
-            if (G_UNLIKELY (opt_socket_id == 0))
+#ifdef ENABLE_X11
+            if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
             {
-                /* build the dialog */
-                dialog = gtk_builder_get_object (builder, "dialog");
+                GtkWidget *plug;
+                GObject *plug_child;
 
-                g_signal_connect (dialog, "response",
-                    G_CALLBACK (appearance_settings_dialog_response), NULL);
-                gtk_window_present (GTK_WINDOW (dialog));
-
-                /* To prevent the settings dialog to be saved in the session */
-                gdk_x11_set_sm_client_id ("FAKE ID");
-
-                gtk_main ();
-            }
-            else
-            {
                 /* Create plug widget */
                 plug = gtk_plug_new (opt_socket_id);
                 g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
@@ -1516,6 +1519,22 @@ main (gint argc, gchar **argv)
                 gdk_x11_set_sm_client_id ("FAKE ID");
 
                 /* Enter main loop */
+                gtk_main ();
+            }
+            else
+#endif
+            {
+                /* build the dialog */
+                dialog = gtk_builder_get_object (builder, "dialog");
+
+                g_signal_connect (dialog, "response",
+                    G_CALLBACK (appearance_settings_dialog_response), NULL);
+                gtk_window_present (GTK_WINDOW (dialog));
+#ifdef ENABLE_X11
+                /* To prevent the settings dialog to be saved in the session */
+                if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+                    gdk_x11_set_sm_client_id ("FAKE ID");
+#endif
                 gtk_main ();
             }
         }
