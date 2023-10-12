@@ -99,7 +99,7 @@ DialogCategory;
 enum
 {
     COLUMN_NAME,
-    COLUMN_ICON_NAME,
+    COLUMN_GICON,
     COLUMN_TOOLTIP,
     COLUMN_MENU_ITEM,
     COLUMN_MENU_DIRECTORY,
@@ -200,7 +200,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
 
     dialog->store = gtk_list_store_new (N_COLUMNS,
                                         G_TYPE_STRING,
-                                        G_TYPE_STRING,
+                                        G_TYPE_OBJECT,
                                         G_TYPE_STRING,
                                         GARCON_TYPE_MENU_ITEM,
                                         GARCON_TYPE_MENU_DIRECTORY,
@@ -1141,7 +1141,7 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
 
     render = gtk_cell_renderer_pixbuf_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (iconview), render, FALSE);
-    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (iconview), render, "icon-name", COLUMN_ICON_NAME);
+    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (iconview), render, "gicon", COLUMN_GICON);
     g_object_set (G_OBJECT (render),
                   "stock-size", GTK_ICON_SIZE_DIALOG,
                   "follow-state", TRUE,
@@ -1214,6 +1214,9 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
     gchar               *item_text;
     gchar               *normalized;
     gchar               *filter_text;
+    GtkIconTheme        *icon_theme = gtk_icon_theme_get_default ();
+    const gchar         *icon_name;
+    GIcon               *icon;
     GString             *item_keywords;
     DialogCategory      *category;
 
@@ -1278,15 +1281,28 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
                     filter_text = g_utf8_casefold (normalized, -1);
                     g_free (normalized);
 
+                    icon_name = garcon_menu_item_get_icon_name (lp->data);
+                    if (gtk_icon_theme_has_icon (icon_theme, icon_name))
+                    {
+                        icon = g_themed_icon_new (icon_name);
+                    }
+                    else
+                    {
+                        GFile *file = g_file_new_for_path (icon_name);
+                        icon = g_file_icon_new (file);
+                        g_object_unref (file);
+                    }
+
                     gtk_list_store_insert_with_values (dialog->store, NULL, i++,
                         COLUMN_NAME, garcon_menu_item_get_name (lp->data),
-                        COLUMN_ICON_NAME, garcon_menu_item_get_icon_name (lp->data),
+                        COLUMN_GICON, icon,
                         COLUMN_TOOLTIP, garcon_menu_item_get_comment (lp->data),
                         COLUMN_MENU_ITEM, lp->data,
                         COLUMN_MENU_DIRECTORY, directory,
                         COLUMN_FILTER_TEXT, filter_text, -1);
 
                     g_free (filter_text);
+                    g_object_unref (icon);
                 }
                 g_list_free (items);
 
