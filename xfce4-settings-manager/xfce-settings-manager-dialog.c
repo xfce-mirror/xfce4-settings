@@ -216,7 +216,9 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     xfce_settings_manager_dialog_set_title (dialog, NULL, NULL);
 
     /* Add a buttonbox (Help, All Settings, Close) at bottom of the main box */
+#if !LIBXFCE4UI_CHECK_VERSION (4, 19, 3)
     xfce_titled_dialog_create_action_area (XFCE_TITLED_DIALOG (dialog));
+#endif
 
     dialog->button_help = xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (dialog), _("_Help"), GTK_RESPONSE_HELP);
     image = gtk_image_new_from_icon_name ("help-browser", GTK_ICON_SIZE_BUTTON);
