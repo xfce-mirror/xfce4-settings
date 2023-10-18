@@ -2673,3 +2673,12 @@ make_display_name (const MonitorInfo *info, guint output)
     else
         return g_strdup_printf ("%s ", vendor);
 }
+
+gboolean
+display_name_is_laptop_name (const gchar *name)
+{
+    return name != NULL && (
+        g_str_has_prefix (name, "LVDS")
+        || g_str_has_prefix (name, "eDP")
+        || strcmp (name, "PANEL") == 0);
+}
