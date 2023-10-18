@@ -105,13 +105,17 @@ endif # ENABLE_X11
 #
 if ENABLE_DISPLAY_SETTINGS
 
+xfsettingsd_SOURCES += \
+	displays.c \
+	displays.h
+
 xfsettingsd_LDADD += \
 	$(top_builddir)/common/libxfce4-settings.la
 
 if HAVE_XRANDR
 xfsettingsd_SOURCES += \
-	displays.c \
-	displays.h
+	displays-x11.c \
+	displays-x11.h
 
 xfsettingsd_CFLAGS += \
 	$(XRANDR_CFLAGS)

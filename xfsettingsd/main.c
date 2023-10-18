@@ -154,7 +154,7 @@ on_name_acquired (GDBusConnection *connection,
     s_data->gtk_decorations_helper = g_object_new (XFCE_TYPE_DECORATIONS_HELPER, NULL);
     s_data->gtk_settings_helper = g_object_new (XFCE_TYPE_GTK_SETTINGS_HELPER, NULL);
 #ifdef ENABLE_DISPLAY_SETTINGS
-    s_data->displays_helper = g_object_new (XFCE_TYPE_DISPLAYS_HELPER, NULL);
+    s_data->displays_helper = xfce_displays_helper_new ();
 #endif
 
     /* connect to session always, even if we quit below.  this way the
