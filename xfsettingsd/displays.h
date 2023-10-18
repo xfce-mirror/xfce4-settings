@@ -59,7 +59,7 @@ struct _XfceDisplaysHelperClass
 };
 
 GObject           *xfce_displays_helper_new                     (void);
-gchar             *xfce_displays_helper_get_matching_profile    (XfceDisplaysHelper     *helper);
+const gchar       *xfce_displays_helper_get_matching_profile    (XfceDisplaysHelper     *helper);
 XfconfChannel     *xfce_displays_helper_get_channel             (XfceDisplaysHelper     *helper);
 
 G_END_DECLS
