@@ -995,8 +995,6 @@ xfce_displays_helper_list_outputs (XfceDisplaysHelper *helper)
 
     g_assert (XFCE_IS_DISPLAYS_HELPER (helper) && helper->xdisplay && helper->resources);
 
-    outputs = g_ptr_array_new ();
-
     /* get all connected outputs */
     outputs = g_ptr_array_new_with_free_func ((GDestroyNotify) xfce_displays_helper_free_output);
     for (n = 0; n < helper->resources->noutput; ++n)
