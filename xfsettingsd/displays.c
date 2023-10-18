@@ -527,9 +527,7 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
 
     event_num = e->type - helper->event_base;
 
-    autoconnect_mode = xfconf_channel_get_int (helper->channel, NOTIFY_PROP, 1);
-
-    if (event_num == RRScreenChangeNotify && autoconnect_mode > 0)
+    if (event_num == RRScreenChangeNotify)
     {
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "RRScreenChangeNotify event received.");
 
@@ -539,12 +537,15 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Noutput: before = %d, after = %d.",
                         old_outputs->len, helper->outputs->len);
 
+        autoconnect_mode = xfconf_channel_get_int (helper->channel, NOTIFY_PROP, 1);
+
         /* Check if we have different amount of outputs and a matching profile and
            apply it if there's only one */
         if (old_outputs->len > helper->outputs->len ||
             old_outputs->len < helper->outputs->len)
         {
-            if (xfconf_channel_get_bool (helper->channel, AUTO_ENABLE_PROFILES, FALSE))
+            if (xfconf_channel_get_bool (helper->channel, AUTO_ENABLE_PROFILES, FALSE)
+                && autoconnect_mode > 0)
             {
                 gchar *matching_profile = NULL;
 
