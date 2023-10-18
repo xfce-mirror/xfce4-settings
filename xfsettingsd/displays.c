@@ -44,24 +44,15 @@
     xfce_displays_helper_get_instance_private (XFCE_DISPLAYS_HELPER (instance)))
 
 static void             xfce_displays_helper_constructed                    (GObject                 *object);
-static void             xfce_displays_helper_dispose                        (GObject                 *object);
 static void             xfce_displays_helper_finalize                       (GObject                 *object);
-static void             xfce_displays_helper_channel_property_changed       (XfconfChannel           *channel,
-                                                                             const gchar             *property_name,
-                                                                             const GValue            *value,
-                                                                             XfceDisplaysHelper      *helper);
 
 
 
 typedef struct _XfceDisplaysHelperPrivate
 {
-    /* xfconf channel */
-    XfconfChannel      *channel;
-    guint               handler;
-
+    XfconfChannel *channel;
 #ifdef HAVE_UPOWERGLIB
     XfceDisplaysUPower *power;
-    gint                phandler;
 #endif
 } XfceDisplaysHelperPrivate;
 
@@ -77,7 +68,6 @@ xfce_displays_helper_class_init (XfceDisplaysHelperClass *klass)
     GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
     gobject_class->constructed = xfce_displays_helper_constructed;
-    gobject_class->dispose = xfce_displays_helper_dispose;
     gobject_class->finalize = xfce_displays_helper_finalize;
 }
 
@@ -86,104 +76,6 @@ xfce_displays_helper_class_init (XfceDisplaysHelperClass *klass)
 static void
 xfce_displays_helper_init (XfceDisplaysHelper *helper)
 {
-    XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
-
-#ifdef HAVE_UPOWERGLIB
-    priv->power = NULL;
-    priv->phandler = 0;
-#endif
-    priv->handler = 0;
-}
-
-
-
-static void
-xfce_displays_helper_constructed (GObject *object)
-{
-    XfceDisplaysHelper *helper = XFCE_DISPLAYS_HELPER (object);
-    XfceDisplaysHelperPrivate *priv = get_instance_private (object);
-
-    /* if X11/Wayland impl init suceeded */
-    if (XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_outputs (helper) != NULL)
-    {
-#ifdef HAVE_UPOWERGLIB
-        priv->power = g_object_new (XFCE_TYPE_DISPLAYS_UPOWER, NULL);
-        priv->phandler = g_signal_connect (G_OBJECT (priv->power),
-                                           "lid-changed",
-                                           G_CALLBACK (XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->toggle_internal),
-                                           helper);
-#endif
-
-        /* open the channel */
-        priv->channel = xfconf_channel_get ("displays");
-
-        /* remove any leftover apply property before setting the monitor */
-        xfconf_channel_reset_property (priv->channel, APPLY_SCHEME_PROP, FALSE);
-        xfconf_channel_set_string (priv->channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
-
-        /* monitor channel changes */
-        priv->handler = g_signal_connect (G_OBJECT (priv->channel),
-                                          "property-changed",
-                                          G_CALLBACK (xfce_displays_helper_channel_property_changed),
-                                          helper);
-
-        /*  check if we can auto-enable a profile */
-        if (xfconf_channel_get_bool (priv->channel, AUTO_ENABLE_PROFILES, FALSE) &&
-            xfconf_channel_get_int (priv->channel, NOTIFY_PROP, 1) > 0)
-        {
-            gchar *matching_profile = NULL;
-
-            matching_profile = xfce_displays_helper_get_matching_profile (helper);
-            if (matching_profile)
-            {
-                XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, matching_profile);
-            }
-            else {
-                XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, DEFAULT_SCHEME_NAME);
-            }
-        }
-        /* restore the default scheme */
-        else {
-            XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, DEFAULT_SCHEME_NAME);
-        }
-    }
-
-    (*G_OBJECT_CLASS (xfce_displays_helper_parent_class)->constructed) (object);
-}
-
-
-
-static void
-xfce_displays_helper_dispose (GObject *object)
-{
-    XfceDisplaysHelperPrivate *priv = get_instance_private (object);
-
-    if (priv->handler > 0)
-    {
-        g_signal_handler_disconnect (G_OBJECT (priv->channel),
-                                     priv->handler);
-        priv->handler = 0;
-    }
-
-#ifdef HAVE_UPOWERGLIB
-    if (priv->phandler > 0)
-    {
-        g_signal_handler_disconnect (G_OBJECT (priv->power),
-                                     priv->phandler);
-        g_object_unref (priv->power);
-        priv->phandler = 0;
-    }
-#endif
-
-    (*G_OBJECT_CLASS (xfce_displays_helper_parent_class)->dispose) (object);
-}
-
-
-
-static void
-xfce_displays_helper_finalize (GObject *object)
-{
-    (*G_OBJECT_CLASS (xfce_displays_helper_parent_class)->finalize) (object);
 }
 
 
@@ -206,6 +98,69 @@ xfce_displays_helper_channel_property_changed (XfconfChannel      *channel,
 
 
 
+static void
+xfce_displays_helper_constructed (GObject *object)
+{
+    XfceDisplaysHelper *helper = XFCE_DISPLAYS_HELPER (object);
+    XfceDisplaysHelperPrivate *priv = get_instance_private (object);
+
+    /* if X11/Wayland impl init suceeded */
+    if (XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_outputs (helper) != NULL)
+    {
+        const gchar *matching_profile;
+
+#ifdef HAVE_UPOWERGLIB
+        priv->power = g_object_new (XFCE_TYPE_DISPLAYS_UPOWER, NULL);
+        g_signal_connect (G_OBJECT (priv->power),
+                          "lid-changed",
+                          G_CALLBACK (XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->toggle_internal),
+                          helper);
+#endif
+
+        /* open the channel */
+        priv->channel = xfconf_channel_get ("displays");
+
+        /* remove any leftover apply property before setting the monitor */
+        xfconf_channel_reset_property (priv->channel, APPLY_SCHEME_PROP, FALSE);
+        xfconf_channel_set_string (priv->channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
+
+        /* monitor channel changes */
+        g_signal_connect_object (G_OBJECT (priv->channel),
+                                 "property-changed",
+                                 G_CALLBACK (xfce_displays_helper_channel_property_changed),
+                                 helper, 0);
+
+        /*  check if we can auto-enable a profile */
+        matching_profile = xfce_displays_helper_get_matching_profile (helper);
+        if (matching_profile != NULL)
+        {
+            XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, matching_profile);
+        }
+        else
+        {
+            XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, DEFAULT_SCHEME_NAME);
+        }
+    }
+
+    G_OBJECT_CLASS (xfce_displays_helper_parent_class)->constructed (object);
+}
+
+
+
+static void
+xfce_displays_helper_finalize (GObject *object)
+{
+#ifdef HAVE_UPOWERGLIB
+    XfceDisplaysHelperPrivate *priv = get_instance_private (object);
+    if (priv->power != NULL)
+        g_object_unref (priv->power);
+#endif
+
+    G_OBJECT_CLASS (xfce_displays_helper_parent_class)->finalize (object);
+}
+
+
+
 GObject *
 xfce_displays_helper_new (void)
 {
@@ -221,18 +176,19 @@ xfce_displays_helper_new (void)
 
 
 
-gchar *
+const gchar *
 xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
 {
     XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
-    GList              *profiles = NULL;
-    gpointer           *profile;
-    gchar              *profile_name;
-    gchar              *property;
-    gchar             **display_infos;
+    GList *profiles = NULL;
+    gchar **display_infos;
+
+    if (xfconf_channel_get_bool (priv->channel, AUTO_ENABLE_PROFILES, FALSE)
+        || xfconf_channel_get_int (priv->channel, NOTIFY_PROP, 1) == 0)
+        return NULL;
 
     display_infos = XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_display_infos (helper);
-    if (display_infos)
+    if (display_infos != NULL)
     {
         profiles = display_settings_get_profiles (display_infos, priv->channel);
         g_strfreev (display_infos);
@@ -244,13 +200,12 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
     }
     else if (g_list_length (profiles) == 1)
     {
-        profile = g_list_nth_data (profiles, 0);
-        property = g_strdup_printf ("/%s", (gchar *) profile);
-        profile_name = xfconf_channel_get_string (priv->channel, property, NULL);
+        gchar *property = g_strdup_printf ("/%s", (gchar *) profiles->data);
+        gchar *profile_name = xfconf_channel_get_string (priv->channel, property, NULL);
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applied the only matching display profile: %s", profile_name);
         g_free (profile_name);
         g_free (property);
-        return (gchar *)profile;
+        return profiles->data;
     }
     else
     {
