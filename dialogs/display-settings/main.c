@@ -475,7 +475,7 @@ display_setting_scale_set_active (GtkTreeModel *model,
 
     gtk_tree_model_get_value (model, iter, COLUMN_COMBO_VALUE, &prop);
 
-    if (g_value_get_double (&prop) == xfce_randr->scalex[active_output])
+    if (lround (g_value_get_double (&prop) * 100) == lround (xfce_randr->scalex[active_output] * 100))
     {
         gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), iter);
         found = TRUE;
