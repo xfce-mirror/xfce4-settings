@@ -128,6 +128,7 @@ typedef struct
 {
     GtkBuilder *builder;
     gint count;
+    guint source_id;
 } ConfirmationDialog;
 
 
@@ -314,6 +315,7 @@ display_settings_update_time_label (gpointer user_data)
     if (confirmation_dialog->count <= 0)
     {
         gtk_dialog_response (GTK_DIALOG (dialog), 1);
+        confirmation_dialog->source_id = 0;
 
         return FALSE;
     }
@@ -343,7 +345,6 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
     GObject    *main_dialog;
     GError     *error = NULL;
     gint        response_id;
-    gint        source_id;
 
     /* Lock the main UI */
     main_dialog = gtk_builder_get_object (main_builder, "display-dialog");
@@ -364,12 +365,14 @@ display_setting_timed_confirmation (GtkBuilder *main_builder)
 
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (main_dialog));
         gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
-        source_id = g_timeout_add_seconds (1, display_settings_update_time_label,
-                                           confirmation_dialog);
+        confirmation_dialog->source_id =
+            g_timeout_add_seconds (1, display_settings_update_time_label, confirmation_dialog);
 
         response_id = gtk_dialog_run (GTK_DIALOG (dialog));
-        g_source_remove (source_id);
         gtk_widget_destroy (GTK_WIDGET (dialog));
+        if (confirmation_dialog->source_id != 0)
+            g_source_remove (confirmation_dialog->source_id);
+        g_free (confirmation_dialog);
     }
     else
     {
