@@ -169,7 +169,7 @@ gchar *active_profile = NULL;
 GtkWidget *randr_gui_area = NULL;
 GList *current_outputs = NULL;
 
-/* Outputs Combobox TODO Use App() to store constant widgets once the cruft is cleaned */
+/* Outputs Combobox */
 GtkWidget *randr_outputs_combobox = NULL;
 GtkWidget *apply_button = NULL;
 
@@ -2709,15 +2709,7 @@ convert_xfce_output_info (gint output_id)
     return output;
 }
 
-typedef struct App App;
 typedef struct GrabInfo GrabInfo;
-
-struct App
-{
-    XfceOutputInfo     *current_output;
-
-    GtkWidget          *dialog;
-};
 
 static gboolean output_overlaps (XfceOutputInfo *output);
 static void get_geometry (XfceOutputInfo *output, int *w, int *h);
@@ -3306,8 +3298,6 @@ on_output_event (FooScrollArea      *area,
     XfceOutputInfo *output = data;
     gint            mirrored;
 
-    //App *app = g_object_get_data (G_OBJECT (area), "app");
-
     mirrored = get_mirrored_configuration ();
     /* If the mouse is inside the outputs, set the cursor to "you can move me".  See
      * on_canvas_event() for where we reset the cursor to the default if it
@@ -3770,132 +3760,6 @@ on_area_paint (FooScrollArea  *area,
     paint_output (cr, active_output, scale_factor, &x, &y);
 }
 
-static XfceOutputInfo *
-get_nearest_output (gint x, gint y)
-{
-    int nearest_index;
-    guint nearest_dist;
-    guint m;
-
-    nearest_index = -1;
-    nearest_dist = G_MAXINT;
-
-    /* Walk all the connected outputs */
-    for (m = 0; m < xfce_randr->noutput; ++m)
-    {
-        XfceOutputInfo *output;
-        guint dist_x, dist_y;
-
-        output = convert_xfce_output_info (m);
-
-        if (!(output->connected && output->on))
-            continue;
-
-        if (x < output->x)
-            dist_x = output->x - x;
-        else if (x >= output->x + (gint)output->width)
-            dist_x = x - (output->x + output->width) + 1;
-        else
-            dist_x = 0;
-
-        if (y < output->y)
-            dist_y = output->y - y;
-        else if (y >= output->y + (gint)output->height)
-            dist_y = y - (output->y + output->height) + 1;
-        else
-            dist_y = 0;
-
-        if (MIN (dist_x, dist_y) < nearest_dist)
-        {
-            nearest_dist = MIN (dist_x, dist_y);
-            nearest_index = m;
-        }
-    }
-
-    if (nearest_index != -1)
-        return convert_xfce_output_info (nearest_index);
-    else
-        return NULL;
-}
-
-/* Gets the output that contains the largest intersection with the window.
- * Logic stolen from gdk_screen_get_monitor_at_window().
- */
-static XfceOutputInfo *
-get_output_for_window (GdkWindow *window)
-{
-    GdkRectangle win_rect;
-    int largest_area;
-    int largest_index;
-    guint m;
-
-    gdk_window_get_geometry (window, &win_rect.x, &win_rect.y, &win_rect.width, &win_rect.height);
-    gdk_window_get_origin (window, &win_rect.x, &win_rect.y);
-
-    largest_area = 0;
-    largest_index = -1;
-
-    /* Walk all the connected outputs */
-    for (m = 0; m < xfce_randr->noutput; ++m)
-    {
-        XfceOutputInfo *output;
-        GdkRectangle output_rect, intersection;
-
-        output = convert_xfce_output_info (m);
-
-        output_rect.x      = output->x;
-        output_rect.y      = output->y;
-        output_rect.width  = output->width;
-        output_rect.height = output->height;
-
-        if (xfce_randr->mode[m] != None)
-        {
-            if (gdk_rectangle_intersect (&win_rect, &output_rect, &intersection))
-            {
-                int area;
-
-                area = intersection.width * intersection.height;
-                if (area > largest_area)
-                {
-                    largest_area = area;
-                    largest_index = m;
-                }
-            }
-        }
-    }
-
-    if (largest_index != -1)
-        return convert_xfce_output_info (largest_index);
-    else
-        return get_nearest_output ( win_rect.x + win_rect.width / 2,
-                                    win_rect.y + win_rect.height / 2);
-}
-
-/* We select the current output, i.e. select the one being edited, based on
- * which output is showing the configuration dialog.
- */
-static void
-select_current_output_from_dialog_position (App *app)
-{
-    if (gtk_widget_get_realized (app->dialog))
-        app->current_output = get_output_for_window (gtk_widget_get_window (app->dialog));
-    else
-        app->current_output = NULL;
-}
-
-/* This is a GtkWidget::map-event handler.  We wait for the display-properties
- * dialog to be mapped, and then we select the output which corresponds to the
- * monitor on which the dialog is being shown.
- */
-static gboolean
-dialog_map_event_cb (GtkWidget *widget, GdkEventAny *event, gpointer data)
-{
-    App *app = data;
-
-    select_current_output_from_dialog_position (app);
-    return FALSE;
-}
-
 static GtkWidget*
 _gtk_builder_get_widget (GtkBuilder *builder, const gchar *name)
 {
@@ -3911,7 +3775,6 @@ display_settings_show_main_dialog (GdkDisplay *display)
     GObject     *plug_child;
     GError      *error = NULL;
     GtkWidget   *gui_container;
-    App *app;
 
     /* Load the Gtk user-interface file */
     builder = gtk_builder_new ();
@@ -3930,29 +3793,19 @@ display_settings_show_main_dialog (GdkDisplay *display)
                                               RRNotify + 1);
         gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, builder);
 
-        app = g_new0 (App, 1);
-
         initialize_connected_outputs();
-
-        app->dialog = _gtk_builder_get_widget (builder, "display-dialog");
-        g_signal_connect_after (app->dialog, "map-event",
-                    G_CALLBACK (dialog_map_event_cb), app);
 
         /* Scroll Area */
         randr_gui_area = (GtkWidget *)foo_scroll_area_new ();
         randr_outputs_combobox = _gtk_builder_get_widget (builder, "randr-outputs");
-
-        g_object_set_data (G_OBJECT (randr_gui_area), "app", app);
 
         set_monitors_tooltip (NULL);
 
         /* FIXME: this should be computed dynamically */
         foo_scroll_area_set_min_size (FOO_SCROLL_AREA (randr_gui_area), -1, 200);
         gtk_widget_show (randr_gui_area);
-        g_signal_connect (randr_gui_area, "paint",
-                  G_CALLBACK (on_area_paint), app);
-        g_signal_connect (randr_gui_area, "viewport_changed",
-                  G_CALLBACK (on_viewport_changed), app);
+        g_signal_connect (randr_gui_area, "paint", G_CALLBACK (on_area_paint), NULL);
+        g_signal_connect (randr_gui_area, "viewport_changed", G_CALLBACK (on_viewport_changed), NULL);
 
         gui_container = GTK_WIDGET (gtk_builder_get_object (builder, "randr-dnd"));
         gtk_container_add (GTK_CONTAINER (gui_container), GTK_WIDGET (randr_gui_area));
@@ -3990,7 +3843,6 @@ display_settings_show_main_dialog (GdkDisplay *display)
         gtk_main ();
 
         gtk_widget_destroy (dialog);
-        g_free (app);
     }
     else
     {
