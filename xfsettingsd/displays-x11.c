@@ -544,7 +544,7 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
     gint                event_num;
     gint                j;
     guint               n, m, nactive = 0;
-    guint               autoconnect_mode;
+    gint                action;
     gboolean            found = FALSE, changed = FALSE;
 
     if (!e)
@@ -625,7 +625,7 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
         }
         else
         {
-            autoconnect_mode = xfconf_channel_get_int (channel, NOTIFY_PROP, 1);
+            action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_SHOW_DIALOG);
 
             /* Diff the new and old output list to find new outputs */
             for (n = 0; n < helper->outputs->len; ++n)
@@ -652,12 +652,12 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
                             crtc->rotation = RR_Rotate_0;
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                             if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)
-                                || autoconnect_mode == 2) {
+                                || action == ACTION_ON_NEW_OUTPUT_MIRROR) {
 G_GNUC_END_IGNORE_DEPRECATIONS
                                 crtc->x = crtc->y = 0;
                             }
                             /* Extend to the right if configured */
-                            else if (autoconnect_mode == 3)
+                            else if (action == ACTION_ON_NEW_OUTPUT_EXTEND)
                             {
                                 crtc->x = helper->width - crtc->width;
                                 crtc->y = 0;
@@ -684,7 +684,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
                 xfce_displays_helper_x11_apply_all (helper);
 
             /* Start the minimal dialog according to the user preferences */
-            if (changed && autoconnect_mode == 1)
+            if (changed && action == ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
                 xfce_spawn_command_line (NULL, "xfce4-display-settings -m", FALSE, FALSE, TRUE, NULL);
         }
         g_ptr_array_unref (old_outputs);
