@@ -515,20 +515,6 @@ xfce_randr_save_output (XfceRandr     *randr,
 
 
 void
-xfce_randr_apply (XfceRandr     *randr,
-                  const gchar   *scheme,
-                  XfconfChannel *channel)
-{
-    g_return_if_fail (randr != NULL && scheme != NULL);
-    g_return_if_fail (XFCONF_IS_CHANNEL (channel));
-
-    /* tell the helper to apply this theme */
-    xfconf_channel_set_string (channel, "/Schemes/Apply", scheme);
-}
-
-
-
-void
 xfce_randr_load (XfceRandr     *randr,
                  const gchar   *scheme,
                  XfconfChannel *channel)
@@ -786,6 +772,19 @@ xfce_randr_get_positions (XfceRandr *randr,
     *x = randr->position[output].x;
     *y = randr->position[output].y;
     return TRUE;
+}
+
+
+
+gchar **
+xfce_randr_get_display_infos (XfceRandr *randr)
+{
+    gchar **display_infos = g_new0 (gchar *, randr->noutput + 1);
+
+    for (guint n = 0; n < randr->noutput; n++)
+        display_infos[n] = g_strdup_printf ("%s", xfce_randr_get_edid (randr, n));
+
+    return display_infos;
 }
 
 

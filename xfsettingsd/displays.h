@@ -45,6 +45,14 @@ G_BEGIN_DECLS
 #define XFCE_TYPE_DISPLAYS_HELPER (xfce_displays_helper_get_type ())
 G_DECLARE_DERIVABLE_TYPE (XfceDisplaysHelper, xfce_displays_helper, XFCE, DISPLAYS_HELPER, GObject)
 
+enum
+{
+    ACTION_ON_NEW_OUTPUT_DO_NOTHING,
+    ACTION_ON_NEW_OUTPUT_SHOW_DIALOG,
+    ACTION_ON_NEW_OUTPUT_MIRROR,
+    ACTION_ON_NEW_OUTPUT_EXTEND,
+};
+
 struct _XfceDisplaysHelperClass
 {
     GObjectClass __parent__;
