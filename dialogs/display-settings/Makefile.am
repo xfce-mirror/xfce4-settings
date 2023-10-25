@@ -6,10 +6,8 @@ AM_CPPFLAGS = \
 	-DG_LOG_DOMAIN=\"xfce4-display-settings\" \
 	$(PLATFORM_CPPFLAGS)
 
-if HAVE_XRANDR
 bin_PROGRAMS = \
 	xfce4-display-settings
-endif
 
 xfce4_display_settings_SOURCES = \
 	main.c \
@@ -21,14 +19,15 @@ xfce4_display_settings_SOURCES = \
 	scrollarea.c \
 	scrollarea.h \
 	foo-marshal.c \
-	foo-marshal.h
+	foo-marshal.h \
+	display-settings.c \
+	display-settings.h
 
 xfce4_display_settings_CFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
-	$(EXO_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfce4_display_settings_LDFLAGS = \
@@ -41,10 +40,13 @@ xfce4_display_settings_LDADD = \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
-	$(EXO_LIBS) \
 	-lm
 
 if HAVE_XRANDR
+xfce4_display_settings_SOURCES += \
+	display-settings-x11.c \
+	display-settings-x11.h
+
 xfce4_display_settings_CFLAGS += \
 	$(XRANDR_CFLAGS) \
 	$(LIBX11_CFLAGS)
