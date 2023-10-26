@@ -26,7 +26,7 @@
 
 #include <upower.h>
 
-#include "debug.h"
+#include "common/debug.h"
 #include "displays-upower.h"
 
 

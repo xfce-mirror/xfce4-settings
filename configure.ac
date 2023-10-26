@@ -34,6 +34,8 @@ m4_define([libxklavier_min_version], [0.3.0])
 m4_define([libxklavier4_min_version], [4.0])
 m4_define([libxklavier5_min_version], [5.0])
 
+m4_define([wayland_min_version], [1.15])
+
 m4_define([upower_glib_min_version], [0.9.8])
 
 dnl define a short version string for xfce4-settings
@@ -140,6 +142,8 @@ XDT_CHECK_OPTIONAL_FEATURE([WAYLAND],
                            [wayland],
                            [
                              XDT_FEATURE_DEPENDENCY([GDK_WAYLAND], [gdk-wayland-3.0], [gtk_min_version])
+                             XDT_FEATURE_DEPENDENCY([WAYLAND_CLIENT], [wayland-client], [wayland_min_version])
+                             XDT_FEATURE_DEPENDENCY([WAYLAND_SCANNER], [wayland-scanner], [wayland_min_version])
                            ],
                            [the Wayland windowing system])
 if test x"$ENABLE_X11" != x"yes" -a x"$ENABLE_WAYLAND" != x"yes"; then
@@ -161,6 +165,19 @@ XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER], [libxklavier], [libxklavier_min_versio
 XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER4], [libxklavier], [libxklavier4_min_version], [libxklavier], [Keyboard layout selection])
 XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER5], [libxklavier], [libxklavier5_min_version], [libxklavier], [Keyboard layout selection])
 XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [libnotify_min_version], [libnotify], [Notification support])
+
+if test x"$ENABLE_WAYLAND" = x"yes"; then
+  WLR_PROTOCOLS_PKGDATADIR=`$PKG_CONFIG --variable=pkgdatadir wlr-protocols 2>/dev/null || true`
+  if test x"$WLR_PROTOCOLS_PKGDATADIR" = x""; then
+    WLR_PROTOCOLS_PKGDATADIR="$ac_abs_confdir/protocols/wlr-protocols"
+    if test "$(echo "$WLR_PROTOCOLS_PKGDATADIR/"*)" = "$WLR_PROTOCOLS_PKGDATADIR/*"; then
+      AC_MSG_ERROR([$WLR_PROTOCOLS_PKGDATADIR seems empty, did you clone the wlr-protocols submodule?])
+    fi
+  fi
+  AC_MSG_CHECKING([for wlr-protocols])
+  AC_MSG_RESULT([$WLR_PROTOCOLS_PKGDATADIR])
+  AC_SUBST([WLR_PROTOCOLS_PKGDATADIR])
+fi
 
 if test x"$XRANDR_FOUND" != x"yes" -a x"$ENABLE_WAYLAND" != x"yes"; then
   dnl Do not check for upower-glib if xrandr is not found and Wayland is disabled
@@ -244,6 +261,7 @@ AC_SUBST([PLATFORM_LDFLAGS])
 AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
+protocols/Makefile
 common/Makefile
 dialogs/Makefile
 dialogs/appearance-settings/Makefile

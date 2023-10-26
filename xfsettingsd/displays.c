@@ -27,7 +27,7 @@
 
 #include "common/display-profiles.h"
 
-#include "debug.h"
+#include "common/debug.h"
 #include "displays.h"
 #ifdef HAVE_UPOWERGLIB
 #include "displays-upower.h"
