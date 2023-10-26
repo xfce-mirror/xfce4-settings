@@ -37,6 +37,10 @@
 #include <gdk/gdkx.h>
 #include "displays-x11.h"
 #endif
+#ifdef ENABLE_WAYLAND
+#include <gdk/gdkwayland.h>
+#include "displays-wayland.h"
+#endif
 
 
 
@@ -167,6 +171,10 @@ xfce_displays_helper_new (void)
 #ifdef HAVE_XRANDR
     if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
         return g_object_new (XFCE_TYPE_DISPLAYS_HELPER_X11, NULL);
+#endif
+#ifdef ENABLE_WAYLAND
+    if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
+        return g_object_new (XFCE_TYPE_DISPLAYS_HELPER_WAYLAND, NULL);
 #endif
 
     g_critical ("Display settings are not supported on this windowing environment");
