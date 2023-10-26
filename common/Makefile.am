@@ -7,6 +7,8 @@ noinst_LTLIBRARIES = \
 	libxfce4-settings.la
 
 libxfce4_settings_la_SOURCES = \
+	debug.c \
+	debug.h \
 	display-name.c \
 	display-profiles.c \
 	display-profiles.h \
@@ -43,4 +45,17 @@ libxfce4_settings_la_CFLAGS += \
 libxfce4_settings_la_LIBADD += \
 	$(XRANDR_LIBS) \
 	$(LIBX11_LIBS)
+endif
+
+if ENABLE_WAYLAND
+libxfce4_settings_la_SOURCES += \
+	xfce-wlr-output-manager.c \
+	xfce-wlr-output-manager.h
+
+libxfce4_settings_la_CFLAGS += \
+	$(WAYLAND_CLIENT_CFLAGS)
+
+libxfce4_settings_la_LIBADD += \
+	$(top_builddir)/protocols/libprotocols.la \
+	$(WAYLAND_CLIENT_LIBS)
 endif
