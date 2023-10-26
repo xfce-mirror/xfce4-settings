@@ -19,8 +19,6 @@ xfsettingsd_built_SOURCES = \
 xfsettingsd_SOURCES = \
 	$(xfsettingsd_built_SOURCES) \
 	main.c \
-	debug.c \
-	debug.h \
 	gtk-decorations.c \
 	gtk-decorations.h \
 	gtk-settings.c \

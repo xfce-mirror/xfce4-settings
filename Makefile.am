@@ -2,6 +2,11 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS =
 
+if ENABLE_WAYLAND
+SUBDIRS += \
+	protocols
+endif
+
 if ENABLE_DISPLAY_SETTINGS
 SUBDIRS += \
 	common

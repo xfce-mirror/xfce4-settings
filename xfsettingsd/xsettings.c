@@ -50,7 +50,7 @@
 #include <fontconfig/fontconfig.h>
 
 #include "xsettings.h"
-#include "debug.h"
+#include "common/debug.h"
 
 #define XSettingsTypeInteger 0
 #define XSettingsTypeString  1
