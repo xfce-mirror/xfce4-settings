@@ -40,6 +40,18 @@
 #define POSY_PROP            OUTPUT_FMT "/Position/Y"
 #define NOTIFY_PROP          "/Notify"
 
+/* some messages belonging to parts of code common to X11/Wayland implementations
+ * that are not easy to share in the parent class */
+#define WARNING_MESSAGE_UNKNOWN_MODE "Unknown mode '%s @ %.1f' for output %s, aborting."
+#define WARNING_MESSAGE_ALL_DISABLED "Stored Xfconf properties disable all outputs, aborting."
+#define DEBUG_MESSAGE_TOGGLING_INTERNAL "Toggling internal output %s."
+#define DEBUG_MESSAGE_DISABLING_INTERNAL "%s will be disabled."
+#define DEBUG_MESSAGE_ENABLING_INTERNAL "%s will be re-enabled."
+#define DEBUG_MESSAGE_TOTAL_ACTIVE "Total %d active output(s)."
+#define DEBUG_MESSAGE_DIFF_N_OUTPUTS "Noutput: before = %d, after = %d."
+#define DEBUG_MESSAGE_ALL_DISABLED "No active output anymore! Attempting to re-enable the internal output."
+#define DEBUG_MESSAGE_NEW_OUTPUT "New output connected: %s"
+
 G_BEGIN_DECLS
 
 #define XFCE_TYPE_DISPLAYS_HELPER (xfce_displays_helper_get_type ())
