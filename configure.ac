@@ -34,6 +34,8 @@ m4_define([libxklavier_min_version], [0.3.0])
 m4_define([libxklavier4_min_version], [4.0])
 m4_define([libxklavier5_min_version], [5.0])
 
+m4_define([wayland_min_version], [1.15])
+
 m4_define([upower_glib_min_version], [0.9.8])
 
 dnl define a short version string for xfce4-settings
@@ -140,6 +142,8 @@ XDT_CHECK_OPTIONAL_FEATURE([WAYLAND],
                            [wayland],
                            [
                              XDT_FEATURE_DEPENDENCY([GDK_WAYLAND], [gdk-wayland-3.0], [gtk_min_version])
+                             XDT_FEATURE_DEPENDENCY([WAYLAND_CLIENT], [wayland-client], [wayland_min_version])
+                             XDT_FEATURE_DEPENDENCY([WAYLAND_SCANNER], [wayland-scanner], [wayland_min_version])
                            ],
                            [the Wayland windowing system])
 if test x"$ENABLE_X11" != x"yes" -a x"$ENABLE_WAYLAND" != x"yes"; then
@@ -244,6 +248,7 @@ AC_SUBST([PLATFORM_LDFLAGS])
 AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
+protocols/Makefile
 common/Makefile
 dialogs/Makefile
 dialogs/appearance-settings/Makefile

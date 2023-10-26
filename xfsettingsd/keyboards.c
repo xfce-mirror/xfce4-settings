@@ -40,7 +40,7 @@
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include "debug.h"
+#include "common/debug.h"
 #include "keyboards.h"
 
 

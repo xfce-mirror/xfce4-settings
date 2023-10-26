@@ -26,7 +26,7 @@
 
 #include <glib.h>
 
-#include "debug.h"
+#include "common/debug.h"
 
 
 
