@@ -122,6 +122,19 @@ xfsettingsd_LDADD += \
 	$(XRANDR_LIBS)
 endif
 
+if ENABLE_WAYLAND
+xfsettingsd_SOURCES += \
+	displays-wayland.c \
+	displays-wayland.h
+
+xfsettingsd_CFLAGS += \
+	$(WAYLAND_CLIENT_CFLAGS)
+
+xfsettingsd_LDADD += \
+	$(top_builddir)/protocols/libprotocols.la \
+	$(WAYLAND_CLIENT_LIBS)
+endif
+
 if HAVE_UPOWERGLIB
 xfsettingsd_SOURCES += \
 	displays-upower.c \
