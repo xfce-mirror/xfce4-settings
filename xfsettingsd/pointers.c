@@ -41,7 +41,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <locale.h>
 
-#include "debug.h"
+#include "common/debug.h"
 #include "pointers.h"
 #include "pointers-defines.h"
 
