@@ -330,8 +330,7 @@ xfce_displays_helper_x11_toggle_internal (gpointer           *power,
     if (!lvds)
         return;
 
-    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Toggling internal output %s.",
-                    lvds->info->name);
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_TOGGLING_INTERNAL, lvds->info->name);
 
     if (lvds->active && lid_is_closed)
     {
@@ -342,7 +341,7 @@ xfce_displays_helper_x11_toggle_internal (gpointer           *power,
         crtc->mode = None;
         crtc->noutput = 0;
         crtc->changed = TRUE;
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "%s will be disabled.", lvds->info->name);
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_DISABLING_INTERNAL, lvds->info->name);
     }
     else if (!lvds->active && !lid_is_closed)
     {
@@ -395,8 +394,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
             xfce_displays_helper_x11_set_outputs (crtc, lvds);
             crtc->changed = TRUE;
         }
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "%s will be re-enabled.",
-                        lvds->info->name);
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_ENABLING_INTERNAL, lvds->info->name);
     }
     else
         return;
@@ -469,12 +467,12 @@ xfce_displays_helper_x11_channel_apply (XfceDisplaysHelper *_helper,
             ++nactive;
     }
 
-    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Total %d active output(s).", nactive);
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_TOTAL_ACTIVE, nactive);
 
     /* safety check */
     if (nactive == 0)
     {
-        g_warning ("Stored Xfconf properties disable all outputs, aborting.");
+        g_warning (WARNING_MESSAGE_ALL_DISABLED);
         goto err_cleanup;
     }
 
@@ -559,7 +557,7 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
         old_outputs = g_ptr_array_ref (helper->outputs);
         xfce_displays_helper_x11_reload (helper);
 
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Noutput: before = %d, after = %d.",
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_DIFF_N_OUTPUTS,
                         old_outputs->len, helper->outputs->len);
 
         /* Check if we have different amount of outputs and a matching profile and
@@ -616,8 +614,7 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
             }
             if (nactive == 0)
             {
-                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "No active output anymore! "
-                                "Attempting to re-enable the internal output.");
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_ALL_DISABLED);
                 xfce_displays_helper_x11_toggle_internal (NULL, FALSE, XFCE_DISPLAYS_HELPER (helper));
             }
             else if (changed)
@@ -639,8 +636,7 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
                 }
                 if (!found)
                 {
-                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "New output connected: %s",
-                                    output->info->name);
+                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_NEW_OUTPUT, output->info->name);
                     /* need to enable crtc for output ? */
                     if (output->info->crtc == None)
                     {
@@ -945,8 +941,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     if (valid_mode == None)
     {
         /* unsupported mode, abort for this output */
-        g_warning ("Unknown mode '%s @ %.1f' for output %s, aborting.",
-                   str_value, output_rate, output->info->name);
+        g_warning (WARNING_MESSAGE_UNKNOWN_MODE, str_value, output_rate, output->info->name);
         return active;
     }
     else if (crtc->mode != valid_mode)

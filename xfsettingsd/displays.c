@@ -37,6 +37,10 @@
 #include <gdk/gdkx.h>
 #include "displays-x11.h"
 #endif
+#ifdef ENABLE_WAYLAND
+#include <gdk/gdkwayland.h>
+#include "displays-wayland.h"
+#endif
 
 
 
