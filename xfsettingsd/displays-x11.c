@@ -37,7 +37,7 @@
 #include "common/display-profiles.h"
 #include "common/edid.h"
 #include "common/xfce-randr.h"
-#include "debug.h"
+#include "common/debug.h"
 #include "displays-x11.h"
 #ifdef HAVE_UPOWERGLIB
 #include "displays-upower.h"

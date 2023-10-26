@@ -51,7 +51,7 @@
 
 #include <locale.h>
 
-#include "debug.h"
+#include "common/debug.h"
 #include "gtk-decorations.h"
 #include "gtk-settings.h"
 #ifdef ENABLE_DISPLAY_SETTINGS
