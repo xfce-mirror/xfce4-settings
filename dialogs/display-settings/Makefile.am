@@ -56,6 +56,19 @@ xfce4_display_settings_LDADD += \
 	$(LIBX11_LIBS)
 endif
 
+if ENABLE_WAYLAND
+xfce4_display_settings_SOURCES += \
+	display-settings-wayland.c \
+	display-settings-wayland.h
+
+xfce4_display_settings_CFLAGS += \
+	$(WAYLAND_CLIENT_CFLAGS)
+
+xfce4_display_settings_LDADD += \
+	$(top_builddir)/protocols/libprotocols.la \
+	$(WAYLAND_CLIENT_LIBS)
+endif
+
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
