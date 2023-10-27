@@ -589,16 +589,9 @@ xfce_randr_friendly_name (XfceRandr *randr,
         return friendly_name;
 
     /* last attempt to return a better name */
-    if (g_str_has_prefix (name, "VGA")
-             || g_str_has_prefix (name, "Analog"))
-        return g_strdup (_("Monitor"));
-    else if (g_str_has_prefix (name, "TV")
-             || strcmp (name, "S-video") == 0)
-        return g_strdup (_("Television"));
-    else if (g_str_has_prefix (name, "TMDS")
-             || g_str_has_prefix (name, "DVI")
-             || g_str_has_prefix (name, "Digital"))
-        return g_strdup (_("Digital display"));
+    friendly_name = (gchar *) display_name_get_fallback (name);
+    if (friendly_name)
+        return g_strdup (friendly_name);
 
     /* everything failed, fallback */
     return g_strdup (name);
