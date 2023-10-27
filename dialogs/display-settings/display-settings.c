@@ -26,6 +26,10 @@
 #include <gdk/gdkx.h>
 #include "display-settings-x11.h"
 #endif
+#ifdef ENABLE_WAYLAND
+#include <gdk/gdkwayland.h>
+#include "display-settings-wayland.h"
+#endif
 #include "common/display-profiles.h"
 #include "identity-popup_ui.h"
 #include "scrollarea.h"
@@ -121,6 +125,10 @@ xfce_display_settings_new (gboolean opt_minimal,
 #ifdef HAVE_XRANDR
     if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
         settings = xfce_display_settings_x11_new (opt_minimal, error);
+#endif
+#ifdef ENABLE_WAYLAND
+    if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
+        settings = xfce_display_settings_wayland_new (opt_minimal, error);
 #endif
 
     if (settings != NULL)
