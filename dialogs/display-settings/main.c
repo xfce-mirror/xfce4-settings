@@ -1001,7 +1001,7 @@ display_setting_output_toggled (GtkSwitch  *widget,
                                 gboolean output_on,
                                 XfceDisplaySettings *settings)
 {
-    guint selected_id;
+    guint selected_id, n_outputs;
 
     if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return FALSE;
@@ -1024,7 +1024,9 @@ display_setting_output_toggled (GtkSwitch  *widget,
     }
 
     /* Apply the changes */
-    xfce_display_settings_save (settings, selected_id, "Default");
+    n_outputs = xfce_display_settings_get_n_outputs (settings);
+    for (guint n = 0; n < n_outputs; n++)
+        xfce_display_settings_save (settings, n, "Default");
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
 
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
