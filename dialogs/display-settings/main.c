@@ -40,6 +40,11 @@
 #else
 #define WINDOWING_IS_X11() FALSE
 #endif
+#ifdef HAVE_GTK_LAYER_SHELL
+#include <gtk-layer-shell/gtk-layer-shell.h>
+#else
+#define gtk_layer_is_supported() FALSE
+#endif
 
 #include <xfconf/xfconf.h>
 #include <libxfce4ui/libxfce4ui.h>
@@ -1069,8 +1074,6 @@ display_settings_combobox_selection_changed (GtkComboBox *combobox,
 
     if (gtk_combo_box_get_active_iter (combobox, &iter))
     {
-        GHashTable *display_popups;
-
         /* Get the output info */
         model = gtk_combo_box_get_model (combobox);
         gtk_tree_model_get (model, &iter, COLUMN_OUTPUT_ID, &selected_id, -1);
@@ -1091,13 +1094,16 @@ display_settings_combobox_selection_changed (GtkComboBox *combobox,
         display_setting_scale_populate (settings, selected_id);
 
         /* redraw the two (old active, new active) popups */
-        display_popups = xfce_display_settings_get_popups (settings);
-        popup = g_hash_table_lookup (display_popups, GINT_TO_POINTER (previous_id));
-        if (popup)
-            gtk_widget_queue_draw (popup);
-        popup = g_hash_table_lookup (display_popups, GINT_TO_POINTER (selected_id));
-        if (popup)
-            gtk_widget_queue_draw (popup);
+        if (WINDOWING_IS_X11 () || gtk_layer_is_supported ())
+        {
+            GHashTable *display_popups = xfce_display_settings_get_popups (settings);
+            popup = g_hash_table_lookup (display_popups, GINT_TO_POINTER (previous_id));
+            if (popup)
+                gtk_widget_queue_draw (popup);
+            popup = g_hash_table_lookup (display_popups, GINT_TO_POINTER (selected_id));
+            if (popup)
+                gtk_widget_queue_draw (popup);
+        }
 
         foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
     }
@@ -1711,12 +1717,20 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
     /* Identification popups */
-    xfce_display_settings_populate_popups (settings);
     identify = gtk_builder_get_object (builder, "identify-displays");
-    g_signal_connect (G_OBJECT (identify), "state-set", G_CALLBACK (on_identify_displays_toggled), settings);
-    xfconf_g_property_bind (channel, "/IdentityPopups", G_TYPE_BOOLEAN, identify,
-                            "active");
-    xfce_display_settings_set_popups_visible (settings, gtk_switch_get_active (GTK_SWITCH (identify)));
+    if (WINDOWING_IS_X11 () || gtk_layer_is_supported ())
+    {
+        xfce_display_settings_populate_popups (settings);
+        g_signal_connect (G_OBJECT (identify), "state-set", G_CALLBACK (on_identify_displays_toggled), settings);
+        xfconf_g_property_bind (channel, "/IdentityPopups", G_TYPE_BOOLEAN, identify, "active");
+        xfce_display_settings_set_popups_visible (settings, gtk_switch_get_active (GTK_SWITCH (identify)));
+    }
+    else
+    {
+        gtk_widget_hide (GTK_WIDGET (identify));
+        gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "identify-displays-label")));
+        gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "label-profile2")));
+    }
 
     /* Display selection combobox */
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_settings_combobox_selection_changed), settings);

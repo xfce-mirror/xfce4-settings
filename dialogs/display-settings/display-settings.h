@@ -112,6 +112,8 @@ struct _XfceDisplaySettingsClass
     guint            (*get_n_active_outputs)          (XfceDisplaySettings      *settings);
     gchar          **(*get_display_infos)             (XfceDisplaySettings      *settings);
     MirroredState    (*get_mirrored_state)            (XfceDisplaySettings      *settings);
+    GdkMonitor      *(*get_monitor)                   (XfceDisplaySettings      *settings,
+                                                       guint                     output_id);
     const gchar     *(*get_friendly_name)             (XfceDisplaySettings      *settings,
                                                        guint                     output_id);
     void             (*get_geometry)                  (XfceDisplaySettings      *settings,
@@ -199,6 +201,8 @@ guint                    xfce_display_settings_get_n_outputs           (XfceDisp
 guint                    xfce_display_settings_get_n_active_outputs    (XfceDisplaySettings     *settings);
 gchar                  **xfce_display_settings_get_display_infos       (XfceDisplaySettings     *settings);
 MirroredState            xfce_display_settings_get_mirrored_state      (XfceDisplaySettings     *settings);
+GdkMonitor              *xfce_display_settings_get_monitor             (XfceDisplaySettings     *settings,
+                                                                        guint                    output_id);
 const gchar             *xfce_display_settings_get_friendly_name       (XfceDisplaySettings     *settings,
                                                                         guint                    output_id);
 void                     xfce_display_settings_get_geometry            (XfceDisplaySettings     *settings,
