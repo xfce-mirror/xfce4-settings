@@ -36,6 +36,8 @@ static guint            xfce_display_settings_x11_get_n_outputs              (Xf
 static guint            xfce_display_settings_x11_get_n_active_outputs       (XfceDisplaySettings      *settings);
 static gchar          **xfce_display_settings_x11_get_display_infos          (XfceDisplaySettings      *settings);
 static MirroredState    xfce_display_settings_x11_get_mirrored_state         (XfceDisplaySettings      *settings);
+static GdkMonitor      *xfce_display_settings_x11_get_monitor                (XfceDisplaySettings      *settings,
+                                                                              guint                     output_id);
 static const gchar     *xfce_display_settings_x11_get_friendly_name          (XfceDisplaySettings      *settings,
                                                                               guint                     output_id);
 static void             xfce_display_settings_x11_get_geometry               (XfceDisplaySettings      *settings,
@@ -129,6 +131,7 @@ xfce_display_settings_x11_class_init (XfceDisplaySettingsX11Class *klass)
     settings_class->get_n_active_outputs = xfce_display_settings_x11_get_n_active_outputs;
     settings_class->get_display_infos = xfce_display_settings_x11_get_display_infos;
     settings_class->get_mirrored_state = xfce_display_settings_x11_get_mirrored_state;
+    settings_class->get_monitor = xfce_display_settings_x11_get_monitor;
     settings_class->get_friendly_name = xfce_display_settings_x11_get_friendly_name;
     settings_class->get_geometry = xfce_display_settings_x11_get_geometry;
     settings_class->get_rotation = xfce_display_settings_x11_get_rotation;
@@ -274,6 +277,15 @@ xfce_display_settings_x11_get_mirrored_state (XfceDisplaySettings *settings)
         return MIRRORED_STATE_CLONED;
 
     return mirrored ? MIRRORED_STATE_MIRRORED : MIRRORED_STATE_NONE;
+}
+
+
+
+static GdkMonitor *
+xfce_display_settings_x11_get_monitor (XfceDisplaySettings *settings,
+                                       guint output_id)
+{
+    return NULL;
 }
 
 
