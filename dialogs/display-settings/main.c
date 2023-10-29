@@ -36,6 +36,9 @@
 #ifdef HAVE_XRANDR
 #include <gdk/gdkx.h>
 #include <gtk/gtkx.h>
+#define WINDOWING_IS_X11() GDK_IS_X11_DISPLAY (gdk_display_get_default ())
+#else
+#define WINDOWING_IS_X11() FALSE
 #endif
 
 #include <xfconf/xfconf.h>
@@ -1078,7 +1081,8 @@ display_settings_combobox_selection_changed (GtkComboBox *combobox,
 
         /* Update the combo boxes */
         display_setting_output_status_populate (settings, selected_id);
-        display_setting_primary_populate (settings, selected_id);
+        if (WINDOWING_IS_X11 ())
+            display_setting_primary_populate (settings, selected_id);
         display_setting_mirror_displays_populate (settings);
         display_setting_resolutions_populate (settings, selected_id);
         display_setting_refresh_rates_populate (settings, selected_id);
@@ -1719,10 +1723,8 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
 
     /* Setup the combo boxes */
     check = gtk_builder_get_object (builder, "output-on");
-    primary = gtk_builder_get_object (builder, "primary");
     mirror = gtk_builder_get_object (builder, "mirror-displays");
     g_signal_connect (G_OBJECT (check), "state-set", G_CALLBACK (display_setting_output_toggled), settings);
-    g_signal_connect (G_OBJECT (primary), "state-set", G_CALLBACK (display_setting_primary_toggled), settings);
     g_signal_connect (G_OBJECT (mirror), "toggled", G_CALLBACK (display_setting_mirror_displays_toggled), settings);
     if (xfce_display_settings_get_n_outputs (settings) > 1)
     {
@@ -1735,10 +1737,24 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
         gtk_widget_hide (GTK_WIDGET (mirror));
     }
 
-    /* Set up primary status info button */
-    display_settings_primary_status_info_populate (builder);
+    /* Set up primary monitor widgets */
+    primary = gtk_builder_get_object (builder, "primary");
     primary_indicator = gtk_builder_get_object (builder, "primary-indicator");
-    gtk_widget_set_visible (GTK_WIDGET (primary_indicator), gtk_switch_get_active (GTK_SWITCH (primary)));
+    label = gtk_builder_get_object (builder, "label-primary");
+    button = GTK_WIDGET (gtk_builder_get_object (builder, "primary-info-button"));
+    if (WINDOWING_IS_X11 ())
+    {
+        g_signal_connect (G_OBJECT (primary), "state-set", G_CALLBACK (display_setting_primary_toggled), settings);
+        display_settings_primary_status_info_populate (builder);
+        gtk_widget_set_visible (GTK_WIDGET (primary_indicator), gtk_switch_get_active (GTK_SWITCH (primary)));
+    }
+    else
+    {
+        gtk_widget_hide (GTK_WIDGET (primary));
+        gtk_widget_hide (GTK_WIDGET (primary_indicator));
+        gtk_widget_hide (GTK_WIDGET (label));
+        gtk_widget_hide (button);
+    }
 
     label = gtk_builder_get_object (builder, "label-reflection");
     gtk_widget_show (GTK_WIDGET (label));
