@@ -25,6 +25,14 @@
 #ifdef HAVE_XRANDR
 #include <gdk/gdkx.h>
 #include "display-settings-x11.h"
+#define WINDOWING_IS_X11() GDK_IS_X11_DISPLAY (gdk_display_get_default ())
+#else
+#define WINDOWING_IS_X11() FALSE
+#endif
+#ifdef HAVE_GTK_LAYER_SHELL
+#include <gtk-layer-shell/gtk-layer-shell.h>
+#else
+#define gtk_layer_is_supported() FALSE
 #endif
 #ifdef ENABLE_WAYLAND
 #include <gdk/gdkwayland.h>
@@ -444,15 +452,35 @@ G_GNUC_END_IGNORE_DEPRECATIONS
         gtk_label_set_markup (GTK_LABEL (label), text);
         g_free (text);
 
+        popup_screen_changed (GTK_WIDGET (popup), NULL, settings);
         gtk_window_get_size (GTK_WINDOW (popup), &window_width, &window_height);
 
-        gtk_window_move (GTK_WINDOW (popup),
-                         geom.x + (geom.width - window_width) / 2,
-                         geom.y + geom.height - window_height);
-
-        popup_screen_changed (GTK_WIDGET (popup), NULL, settings);
-
-        gtk_window_present (GTK_WINDOW (popup));
+#ifdef HAVE_GTK_LAYER_SHELL
+        if (gtk_layer_is_supported ())
+        {
+            GdkMonitor *monitor = xfce_display_settings_get_monitor (settings, output_id);
+            if (monitor != NULL)
+            {
+                gtk_layer_init_for_window (GTK_WINDOW (popup));
+                gtk_layer_set_layer (GTK_WINDOW (popup), GTK_LAYER_SHELL_LAYER_OVERLAY);
+                gtk_layer_set_exclusive_zone (GTK_WINDOW (popup), -1);
+                gtk_layer_set_anchor (GTK_WINDOW (popup), GTK_LAYER_SHELL_EDGE_LEFT, TRUE);
+                gtk_layer_set_anchor (GTK_WINDOW (popup), GTK_LAYER_SHELL_EDGE_TOP, TRUE);
+                gtk_layer_set_margin (GTK_WINDOW (popup), GTK_LAYER_SHELL_EDGE_LEFT, (geom.width - window_width) / 2);
+                gtk_layer_set_margin (GTK_WINDOW (popup), GTK_LAYER_SHELL_EDGE_TOP, geom.height - window_height);
+                gtk_layer_set_monitor (GTK_WINDOW (popup), xfce_display_settings_get_monitor (settings, output_id));
+                gtk_widget_set_size_request (popup, window_width, window_height);
+                gtk_window_present (GTK_WINDOW (popup));
+            }
+        }
+        else
+#endif
+        {
+            gtk_window_move (GTK_WINDOW (popup),
+                             geom.x + (geom.width - window_width) / 2,
+                             geom.y + geom.height - window_height);
+            gtk_window_present (GTK_WINDOW (popup));
+        }
     }
 
     return popup;
@@ -581,19 +609,22 @@ xfce_display_settings_populate_combobox (XfceDisplaySettings *settings)
 void
 xfce_display_settings_populate_popups (XfceDisplaySettings *settings)
 {
-    XfceDisplaySettingsPrivate *priv = get_instance_private (settings);
-    guint n_outputs = xfce_display_settings_get_n_outputs (settings);
-
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
 
-    if (priv->popups != NULL)
-        g_hash_table_destroy (priv->popups);
-    priv->popups = g_hash_table_new_full (g_direct_hash, g_direct_equal, NULL, (GDestroyNotify) gtk_widget_destroy);
-
-    for (guint n = 0; n < n_outputs; n++)
+    if (WINDOWING_IS_X11 () || gtk_layer_is_supported ())
     {
-        if (xfce_display_settings_is_active (settings, n))
-            g_hash_table_insert (priv->popups, GINT_TO_POINTER (n), popup_get (settings, n));
+        XfceDisplaySettingsPrivate *priv = get_instance_private (settings);
+        guint n_outputs = xfce_display_settings_get_n_outputs (settings);
+
+        if (priv->popups != NULL)
+            g_hash_table_destroy (priv->popups);
+        priv->popups = g_hash_table_new_full (g_direct_hash, g_direct_equal, NULL, (GDestroyNotify) gtk_widget_destroy);
+
+        for (guint n = 0; n < n_outputs; n++)
+        {
+            if (xfce_display_settings_is_active (settings, n))
+                g_hash_table_insert (priv->popups, GINT_TO_POINTER (n), popup_get (settings, n));
+        }
     }
 }
 
@@ -667,6 +698,16 @@ xfce_display_settings_get_mirrored_state (XfceDisplaySettings *settings)
 {
     g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), MIRRORED_STATE_NONE);
     return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->get_mirrored_state (settings);
+}
+
+
+
+GdkMonitor *
+xfce_display_settings_get_monitor (XfceDisplaySettings *settings,
+                                   guint output_id)
+{
+    g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), NULL);
+    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->get_monitor (settings, output_id);
 }
 
 
