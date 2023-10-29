@@ -98,6 +98,12 @@ main (int    argc,
       return EXIT_SUCCESS;
     }
 
+    if (!GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    {
+        g_warning ("Keyboard settings are only available on X11");
+        return EXIT_FAILURE;
+    }
+
   /* Initialize xfconf */
   if (G_UNLIKELY (!xfconf_init (&error)))
     {
