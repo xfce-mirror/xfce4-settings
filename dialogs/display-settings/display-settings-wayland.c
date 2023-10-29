@@ -35,6 +35,8 @@ static guint            xfce_display_settings_wayland_get_n_outputs             
 static guint            xfce_display_settings_wayland_get_n_active_outputs       (XfceDisplaySettings      *settings);
 static gchar          **xfce_display_settings_wayland_get_display_infos          (XfceDisplaySettings      *settings);
 static MirroredState    xfce_display_settings_wayland_get_mirrored_state         (XfceDisplaySettings      *settings);
+static GdkMonitor      *xfce_display_settings_wayland_get_monitor                (XfceDisplaySettings      *settings,
+                                                                                  guint                     output_id);
 static const gchar     *xfce_display_settings_wayland_get_friendly_name          (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id);
 static void             xfce_display_settings_wayland_get_geometry               (XfceDisplaySettings      *settings,
@@ -128,6 +130,7 @@ xfce_display_settings_wayland_class_init (XfceDisplaySettingsWaylandClass *klass
     settings_class->get_n_active_outputs = xfce_display_settings_wayland_get_n_active_outputs;
     settings_class->get_display_infos = xfce_display_settings_wayland_get_display_infos;
     settings_class->get_mirrored_state = xfce_display_settings_wayland_get_mirrored_state;
+    settings_class->get_monitor = xfce_display_settings_wayland_get_monitor;
     settings_class->get_friendly_name = xfce_display_settings_wayland_get_friendly_name;
     settings_class->get_geometry = xfce_display_settings_wayland_get_geometry;
     settings_class->get_rotation = xfce_display_settings_wayland_get_rotation;
@@ -296,6 +299,34 @@ xfce_display_settings_wayland_get_mirrored_state (XfceDisplaySettings *settings)
         return MIRRORED_STATE_CLONED;
 
     return mirrored ? MIRRORED_STATE_MIRRORED : MIRRORED_STATE_NONE;
+}
+
+
+
+static GdkMonitor *
+xfce_display_settings_wayland_get_monitor (XfceDisplaySettings *settings,
+                                           guint output_id)
+{
+    GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
+    XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
+    GdkDisplay *display = gdk_display_get_default ();
+    gint n_monitors = gdk_display_get_n_monitors (display);
+
+    /* try to find the right monitor based on info that the protocol ensures is the same
+     * as wl-output, i.e. what GTK uses */
+    for (gint n = 0; n < n_monitors; n++)
+    {
+        GdkMonitor *monitor = gdk_display_get_monitor (display, n);
+        if (g_strcmp0 (gdk_monitor_get_model (monitor), output->model) == 0
+            && g_strcmp0 (gdk_monitor_get_manufacturer (monitor), output->manufacturer) == 0
+            && gdk_monitor_get_width_mm (monitor) == output->width
+            && gdk_monitor_get_height_mm (monitor) == output->height)
+        {
+            return monitor;
+        }
+    }
+
+    return NULL;
 }
 
 
