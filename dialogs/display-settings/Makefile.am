@@ -62,11 +62,13 @@ xfce4_display_settings_SOURCES += \
 	display-settings-wayland.h
 
 xfce4_display_settings_CFLAGS += \
-	$(WAYLAND_CLIENT_CFLAGS)
+	$(WAYLAND_CLIENT_CFLAGS) \
+	$(GTK_LAYER_SHELL_CFLAGS)
 
 xfce4_display_settings_LDADD += \
 	$(top_builddir)/protocols/libprotocols.la \
-	$(WAYLAND_CLIENT_LIBS)
+	$(WAYLAND_CLIENT_LIBS) \
+	$(GTK_LAYER_SHELL_LIBS)
 endif
 
 if MAINTAINER_MODE
