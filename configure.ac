@@ -36,6 +36,8 @@ m4_define([libxklavier5_min_version], [5.0])
 
 m4_define([wayland_min_version], [1.15])
 
+m4_define([gtk_mayer_shell_min_version], [0.7.0])
+
 m4_define([upower_glib_min_version], [0.9.8])
 
 dnl define a short version string for xfce4-settings
@@ -166,6 +168,12 @@ XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER4], [libxklavier], [libxklavier4_min_vers
 XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER5], [libxklavier], [libxklavier5_min_version], [libxklavier], [Keyboard layout selection])
 XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [libnotify_min_version], [libnotify], [Notification support])
 
+if test x"$ENABLE_WAYLAND" != x"yes"; then
+  dnl Do not check for optional Wayland packages if Wayland is disabled
+  enable_gtk_layer_shell=no
+fi
+XDT_CHECK_OPTIONAL_PACKAGE([GTK_LAYER_SHELL], [gtk-layer-shell-0], [gtk_layer_shell_min_version], [gtk-layer-shell], [GTK Layer Shell support])
+
 if test x"$XRANDR_FOUND" != x"yes" -a x"$ENABLE_WAYLAND" != x"yes"; then
   dnl Do not check for upower-glib if xrandr is not found and Wayland is disabled
   enable_upower_glib=no
@@ -289,6 +297,9 @@ echo "  * Libxklavier support:            ${LIBXKLAVIER_FOUND:-no}"
 echo "  * Libnotify support:              ${LIBNOTIFY_FOUND:-no}"
 fi
 echo "* Wayland Support:                  ${ENABLE_WAYLAND:-no}"
+if test x"$ENABLE_WAYLAND" = x"yes"; then
+echo "  * GTK Layer Shell support:        ${GTK_LAYER_SHELL_FOUND:-no}"
+fi
 if test x"$ENABLE_DISPLAY_SETTINGS" = x"yes"; then
 echo "* UPower support:                   ${UPOWERGLIB_FOUND:-no}"
 fi
