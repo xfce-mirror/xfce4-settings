@@ -39,7 +39,7 @@
 #include <libxfce4kbd-private/xfce-shortcuts-provider.h>
 #include <libxfce4kbd-private/xfce-shortcuts-grabber.h>
 
-#include "debug.h"
+#include "common/debug.h"
 #include "keyboard-shortcuts.h"
 
 

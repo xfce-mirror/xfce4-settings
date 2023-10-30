@@ -30,9 +30,7 @@ typedef struct _XfceWorkspacesHelper       XfceWorkspacesHelper;
 typedef struct _XfceWorkspacesHelperClass  XfceWorkspacesHelperClass;
 
 GType xfce_workspaces_helper_get_type(void) G_GNUC_CONST;
-#ifdef GDK_WINDOWING_X11
 void xfce_workspaces_helper_disable_wm_check (gboolean disable_wm_check);
-#endif
 
 G_END_DECLS
 

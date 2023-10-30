@@ -22,10 +22,11 @@
 
 #include <gio/gio.h>
 #include <gtk/gtk.h>
-#ifdef GDK_WINDOWING_WAYLAND
+#ifdef ENABLE_WAYLAND
 #include <gdk/gdkwayland.h>
+#define WINDOWING_IS_WAYLAND() GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ())
 #else
-#define GDK_IS_WAYLAND_DISPLAY(display) FALSE
+#define WINDOWING_IS_WAYLAND() FALSE
 #endif
 #include <xfconf/xfconf.h>
 
@@ -210,7 +211,7 @@ xfce_gtk_settings_helper_init (XfceGtkSettingsHelper *helper)
     XfconfData *data;
 
     /* synchronization via gtk-modules: requires GTK 3.24.38 to work properly (see MR !104) */
-    if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
+    if (WINDOWING_IS_WAYLAND ())
         g_bus_own_name (G_BUS_TYPE_SESSION, "org.gtk.Settings", G_BUS_NAME_OWNER_FLAGS_NONE,
                         bus_acquired, NULL, name_lost, g_object_ref (helper), NULL);
 
