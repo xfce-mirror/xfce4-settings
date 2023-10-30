@@ -29,7 +29,10 @@
 #endif
 
 #include <gtk/gtk.h>
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
 #include <gtk/gtkx.h>
+#endif
 
 #include <xfconf/xfconf.h>
 #include <libxfce4util/libxfce4util.h>
@@ -90,6 +93,7 @@ settings_dialog_response (GtkWidget *dialog,
 	}
 }
 
+#ifdef ENABLE_X11
 static gboolean plug_delete_event (GtkWidget *widget,
 								   GdkEvent *ev,
 								   XfceSettingsEditorBox *settings_editor)
@@ -98,13 +102,13 @@ static gboolean plug_delete_event (GtkWidget *widget,
 	gtk_main_quit ();
 	return TRUE;
 }
+#endif
 
 gint
 main(gint argc, gchar **argv)
 {
 	GtkWidget     *dialog;
-    GtkWidget     *settings_editor;
-	GtkWidget     *plug;
+	GtkWidget     *settings_editor;
 	GError        *error = NULL;
 
     /* setup translation domain */
@@ -158,8 +162,29 @@ main(gint argc, gchar **argv)
 	settings_editor = xfce_settings_editor_box_new (
 		xfconf_channel_get_int (channel, "/last/paned-position", 180));
 
-	if (G_UNLIKELY (opt_socket_id == 0))
-    {
+#ifdef ENABLE_X11
+	if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+	{
+		/* Create plug widget */
+		GtkWidget *plug = gtk_plug_new (opt_socket_id);
+		g_signal_connect (plug, "delete-event", G_CALLBACK (plug_delete_event), settings_editor);
+
+		gtk_window_set_default_size (GTK_WINDOW (plug),
+		  xfconf_channel_get_int (channel, "/last/window-width", 640),
+          xfconf_channel_get_int (channel, "/last/window-height", 500));
+
+		gtk_widget_show (plug);
+
+		gtk_container_add (GTK_CONTAINER(plug), settings_editor);
+
+		/* Stop startup notification */
+		gdk_notify_startup_complete ();
+
+		gtk_widget_show (GTK_WIDGET (settings_editor));
+	}
+	else
+#endif
+	{
 		dialog = xfce_titled_dialog_new_with_mixed_buttons (_("Settings Editor"), NULL,
 					GTK_DIALOG_DESTROY_WITH_PARENT,
 					"help-browser", _("_Help"), GTK_RESPONSE_HELP,
@@ -183,26 +208,6 @@ main(gint argc, gchar **argv)
                     G_CALLBACK (settings_dialog_response), settings_editor);
 
 		gtk_widget_show_all (dialog);
-
-	}
-	else
-	{
-		/* Create plug widget */
-		plug = gtk_plug_new (opt_socket_id);
-		g_signal_connect (plug, "delete-event", G_CALLBACK (plug_delete_event), settings_editor);
-
-		gtk_window_set_default_size (GTK_WINDOW (plug),
-		  xfconf_channel_get_int (channel, "/last/window-width", 640),
-          xfconf_channel_get_int (channel, "/last/window-height", 500));
-
-		gtk_widget_show (plug);
-
-		gtk_container_add (GTK_CONTAINER(plug), settings_editor);
-
-		/* Stop startup notification */
-		gdk_notify_startup_complete ();
-
-		gtk_widget_show (GTK_WIDGET (settings_editor));
 	}
 
     gtk_main ();

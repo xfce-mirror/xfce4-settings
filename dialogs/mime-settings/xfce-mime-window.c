@@ -25,7 +25,9 @@
 #endif
 
 #include <gtk/gtk.h>
+#ifdef ENABLE_X11
 #include <gtk/gtkx.h>
+#endif
 #include <gio/gio.h>
 #include <gdk/gdkkeysyms.h>
 
@@ -1296,6 +1298,7 @@ xfce_mime_window_create_dialog (XfceMimeWindow *window)
 
 
 
+#ifdef ENABLE_X11
 GtkWidget *
 xfce_mime_window_create_plug (XfceMimeWindow *window,
                               gint            socket_id)
@@ -1314,3 +1317,4 @@ xfce_mime_window_create_plug (XfceMimeWindow *window,
 
   return plug;
 }
+#endif

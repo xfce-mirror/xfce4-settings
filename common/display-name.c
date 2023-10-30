@@ -2673,3 +2673,32 @@ make_display_name (const MonitorInfo *info, guint output)
     else
         return g_strdup_printf ("%s ", vendor);
 }
+
+gboolean
+display_name_is_laptop_name (const gchar *name)
+{
+    return name != NULL && (
+        g_str_has_prefix (name, "LVDS")
+        || g_str_has_prefix (name, "eDP")
+        || strcmp (name, "PANEL") == 0);
+}
+
+const gchar *
+display_name_get_fallback (const gchar *name)
+{
+    if (name == NULL)
+        return NULL;
+
+    if (g_str_has_prefix (name, "VGA")
+        || g_str_has_prefix (name, "Analog"))
+        return _("Monitor");
+    else if (g_str_has_prefix (name, "TV")
+             || strcmp (name, "S-video") == 0)
+        return _("Television");
+    else if (g_str_has_prefix (name, "TMDS")
+             || g_str_has_prefix (name, "DVI")
+             || g_str_has_prefix (name, "Digital"))
+        return _("Digital display");
+
+    return NULL;
+}

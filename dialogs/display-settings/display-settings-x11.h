@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2019 Simon Steinbeiß <simon@xfce.org>
+ *  Copyright (C) 2023 Gaël Bonithon <gael@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,11 +16,19 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <glib.h>
-#include <xfconf/xfconf.h>
+#ifndef __DISPLAY_SETTINGS_X11_H__
+#define __DISPLAY_SETTINGS_X11_H__
 
+#include "display-settings.h"
 
-gboolean display_settings_profile_name_exists   (XfconfChannel  *channel,
-                                                 const gchar    *new_profile_name);
-GList*   display_settings_get_profiles          (gchar         **display_infos,
-                                                 XfconfChannel  *channel);
+G_BEGIN_DECLS
+
+#define XFCE_TYPE_DISPLAY_SETTINGS_X11 (xfce_display_settings_x11_get_type ())
+G_DECLARE_FINAL_TYPE (XfceDisplaySettingsX11, xfce_display_settings_x11, XFCE, DISPLAY_SETTINGS_X11, XfceDisplaySettings)
+
+XfceDisplaySettings *xfce_display_settings_x11_new (gboolean opt_minimal,
+                                                    GError **error);
+
+G_END_DECLS
+
+#endif /* !__DISPLAY_SETTINGS_X11_H__ */
