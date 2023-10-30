@@ -37,7 +37,6 @@
 typedef struct _XfceRandr          XfceRandr;
 typedef struct _XfceRandrPrivate   XfceRandrPrivate;
 typedef struct _XfceRRMode         XfceRRMode;
-typedef struct _XfceOutputInfo     XfceOutputInfo;
 typedef enum   _XfceOutputStatus   XfceOutputStatus;
 typedef struct _XfceOutputPosition XfceOutputPosition;
 
@@ -81,37 +80,6 @@ struct _XfceRandr
     XfceRandrPrivate    *priv;
 };
 
-struct _XfceOutputInfo
-{
-    /* Identifiers */
-    guint      id;
-    gchar     *display_name;
-
-    /* Status */
-    gboolean   on;
-    gboolean   connected;
-    gboolean   mirrored;
-
-    /* Position */
-    gint      x;
-    gint      y;
-
-    /* Dimensions */
-    gint      width;
-    gint      height;
-    guint      pref_width;
-    guint      pref_height;
-    Rotation   rotation;
-    gdouble    scalex;
-    gdouble    scaley;
-
-    /* Frequency */
-    gdouble    rate;
-
-    /* User Data (e.g. GrabInfo) */
-    gpointer   user_data;
-};
-
 XfceRandr        *xfce_randr_new             (GdkDisplay      *display,
                                               GError         **error);
 
@@ -123,10 +91,6 @@ void              xfce_randr_save_output     (XfceRandr        *randr,
                                               const gchar      *scheme,
                                               XfconfChannel    *channel,
                                               guint             output);
-
-void              xfce_randr_apply           (XfceRandr        *randr,
-                                              const gchar      *scheme,
-                                              XfconfChannel    *channel);
 
 void              xfce_randr_load            (XfceRandr        *randr,
                                               const gchar      *scheme,
@@ -158,6 +122,8 @@ gboolean          xfce_randr_get_positions   (XfceRandr        *randr,
                                               guint             output,
                                               gint             *x,
                                               gint             *y);
+
+gchar           **xfce_randr_get_display_infos (XfceRandr      *randr);
 
 guint             xfce_randr_mode_width      (const XfceRRMode *mode,
                                               Rotation          rot);

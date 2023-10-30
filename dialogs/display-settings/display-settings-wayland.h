@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2019 Simon Steinbeiß <simon@xfce.org>
+ *  Copyright (C) 2023 Gaël Bonithon <gael@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,11 +16,19 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <glib.h>
-#include <xfconf/xfconf.h>
+#ifndef __DISPLAY_SETTINGS_WAYLAND_H__
+#define __DISPLAY_SETTINGS_WAYLAND_H__
 
+#include "display-settings.h"
 
-gboolean display_settings_profile_name_exists   (XfconfChannel  *channel,
-                                                 const gchar    *new_profile_name);
-GList*   display_settings_get_profiles          (gchar         **display_infos,
-                                                 XfconfChannel  *channel);
+G_BEGIN_DECLS
+
+#define XFCE_TYPE_DISPLAY_SETTINGS_WAYLAND (xfce_display_settings_wayland_get_type ())
+G_DECLARE_FINAL_TYPE (XfceDisplaySettingsWayland, xfce_display_settings_wayland, XFCE, DISPLAY_SETTINGS_WAYLAND, XfceDisplaySettings)
+
+XfceDisplaySettings *xfce_display_settings_wayland_new (gboolean opt_minimal,
+                                                        GError **error);
+
+G_END_DECLS
+
+#endif /* !__DISPLAY_SETTINGS_WAYLAND_H__ */
