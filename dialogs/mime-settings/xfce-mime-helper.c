@@ -48,7 +48,7 @@
 #endif
 
 #include <gdk/gdk.h>
-#ifdef GDK_WINDOWING_X11
+#ifdef ENABLE_X11
 #include <gdk/gdkx.h>
 #endif
 
@@ -411,7 +411,6 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
 {
   gint64        previous;
   gint64        current;
-  GdkDisplay   *display = NULL;
   gboolean      succeed = FALSE;
   GError       *err = NULL;
   gchar       **commands;
@@ -505,11 +504,10 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
         continue;
 
       /* set the display variable */
-#ifdef GDK_WINDOWING_X11
-      display = gdk_screen_get_display (screen);
-      if (display != NULL && GDK_IS_X11_DISPLAY (display))
-        display_name = g_strdup (gdk_display_get_name (display));
-#endif /* GDK_WINDOWING_X11 */
+#ifdef ENABLE_X11
+      if (GDK_IS_X11_DISPLAY (gdk_screen_get_display (screen)))
+        display_name = g_strdup (gdk_display_get_name (gdk_screen_get_display (screen)));
+#endif
 
       /* try to run the command */
       succeed = g_spawn_async (NULL,

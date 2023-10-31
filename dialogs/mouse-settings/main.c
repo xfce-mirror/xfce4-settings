@@ -2105,6 +2105,12 @@ main (gint argc, gchar **argv)
         return EXIT_SUCCESS;
     }
 
+    if (!GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    {
+        g_warning ("Mouse settings are only available on X11");
+        return EXIT_FAILURE;
+    }
+
     /* initialize xfconf */
     if (G_UNLIKELY (!xfconf_init (&error)))
     {

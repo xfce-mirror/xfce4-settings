@@ -37,8 +37,10 @@ GType           xfce_mime_window_get_type      (void) G_GNUC_CONST;
 
 XfceMimeWindow *xfce_mime_window_new           (void) G_GNUC_MALLOC;
 GtkWidget      *xfce_mime_window_create_dialog (XfceMimeWindow *settings);
+#ifdef ENABLE_X11
 GtkWidget      *xfce_mime_window_create_plug   (XfceMimeWindow *settings,
                                                 gint            socket_id);
+#endif
 
 G_END_DECLS
 
