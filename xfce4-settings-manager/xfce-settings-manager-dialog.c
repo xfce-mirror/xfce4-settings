@@ -31,7 +31,10 @@
 #endif
 
 #include <gtk/gtk.h>
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
 #include <gtk/gtkx.h>
+#endif
 #include <gdk/gdkkeysyms.h>
 
 #include <libxfce4util/libxfce4util.h>
@@ -797,6 +800,7 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
 
 
 
+#ifdef ENABLE_X11
 static void
 xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
                                          XfceSettingsManagerDialog *dialog)
@@ -832,6 +836,7 @@ xfce_settings_manager_dialog_plug_removed (GtkWidget                 *socket,
     /* restore dialog */
     xfce_settings_manager_dialog_go_back (dialog);
 }
+#endif
 
 
 
@@ -842,16 +847,12 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
     gchar          *command;
     gboolean        snotify;
     GdkScreen      *screen;
-    GdkDisplay     *display;
     GError         *error = NULL;
     GFile          *desktop_file;
     gchar          *filename;
     XfceRc         *rc;
     gboolean        pluggable = FALSE;
-    gchar          *cmd;
     gchar          *uri;
-    GtkWidget      *socket;
-    GdkCursor      *cursor;
 
     g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -887,11 +888,15 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         xfce_rc_close (rc);
     }
 
-    if (pluggable)
+#ifdef ENABLE_X11
+    if (pluggable && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {
+        GdkCursor *cursor;
+        GtkWidget *socket;
+        gchar *cmd;
+
         /* fake startup notification */
-        display = gdk_display_get_default ();
-        cursor = gdk_cursor_new_for_display (display, GDK_WATCH);
+        cursor = gdk_cursor_new_for_display (gdk_display_get_default (), GDK_WATCH);
         gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), cursor);
         g_object_unref (cursor);
 
@@ -922,6 +927,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         g_free (cmd);
     }
     else
+#endif
     {
         snotify = garcon_menu_item_supports_startup_notification (item);
         if (!xfce_spawn_command_line (screen, command, FALSE, snotify, TRUE, &error))

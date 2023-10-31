@@ -19,15 +19,15 @@ xfce4_display_settings_SOURCES = \
 	scrollarea.c \
 	scrollarea.h \
 	foo-marshal.c \
-	foo-marshal.h
+	foo-marshal.h \
+	display-settings.c \
+	display-settings.h
 
 xfce4_display_settings_CFLAGS = \
+	$(GLIB_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
-	$(EXO_CFLAGS) \
-	$(XRANDR_CFLAGS) \
-	$(LIBX11_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfce4_display_settings_LDFLAGS = \
@@ -35,22 +35,40 @@ xfce4_display_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_display_settings_LDADD = \
+	$(top_builddir)/common/libxfce4-settings.la \
+	$(GLIB_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
-	$(EXO_LIBS) \
-	$(LIBX11_LIBS) -lm \
-	$(XRANDR_LIBS) \
-	$(GLIB_LIBS) \
-	$(top_builddir)/common/libxfce4-settings.la
+	-lm
 
-# Optional support for colord
-if HAVE_COLORD
+if HAVE_XRANDR
+xfce4_display_settings_SOURCES += \
+	display-settings-x11.c \
+	display-settings-x11.h
+
 xfce4_display_settings_CFLAGS += \
-	$(COLORD_CFLAGS)
+	$(XRANDR_CFLAGS) \
+	$(LIBX11_CFLAGS)
 
 xfce4_display_settings_LDADD += \
-	$(COLORD_LIBS)
+	$(XRANDR_LIBS) \
+	$(LIBX11_LIBS)
+endif
+
+if ENABLE_WAYLAND
+xfce4_display_settings_SOURCES += \
+	display-settings-wayland.c \
+	display-settings-wayland.h
+
+xfce4_display_settings_CFLAGS += \
+	$(WAYLAND_CLIENT_CFLAGS) \
+	$(GTK_LAYER_SHELL_CFLAGS)
+
+xfce4_display_settings_LDADD += \
+	$(top_builddir)/protocols/libprotocols.la \
+	$(WAYLAND_CLIENT_LIBS) \
+	$(GTK_LAYER_SHELL_LIBS)
 endif
 
 if MAINTAINER_MODE

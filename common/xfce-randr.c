@@ -515,20 +515,6 @@ xfce_randr_save_output (XfceRandr     *randr,
 
 
 void
-xfce_randr_apply (XfceRandr     *randr,
-                  const gchar   *scheme,
-                  XfconfChannel *channel)
-{
-    g_return_if_fail (randr != NULL && scheme != NULL);
-    g_return_if_fail (XFCONF_IS_CHANNEL (channel));
-
-    /* tell the helper to apply this theme */
-    xfconf_channel_set_string (channel, "/Schemes/Apply", scheme);
-}
-
-
-
-void
 xfce_randr_load (XfceRandr     *randr,
                  const gchar   *scheme,
                  XfconfChannel *channel)
@@ -591,9 +577,7 @@ xfce_randr_friendly_name (XfceRandr *randr,
     }
 
     /* special case, a laptop */
-    if (g_str_has_prefix (name, "LVDS")
-        || g_str_has_prefix (name, "eDP")
-        || strcmp (name, "PANEL") == 0)
+    if (display_name_is_laptop_name (name))
         friendly_name = g_strdup (_("Laptop"));
     else if (info)
         friendly_name = make_display_name (info, output);
@@ -605,16 +589,9 @@ xfce_randr_friendly_name (XfceRandr *randr,
         return friendly_name;
 
     /* last attempt to return a better name */
-    if (g_str_has_prefix (name, "VGA")
-             || g_str_has_prefix (name, "Analog"))
-        return g_strdup (_("Monitor"));
-    else if (g_str_has_prefix (name, "TV")
-             || strcmp (name, "S-video") == 0)
-        return g_strdup (_("Television"));
-    else if (g_str_has_prefix (name, "TMDS")
-             || g_str_has_prefix (name, "DVI")
-             || g_str_has_prefix (name, "Digital"))
-        return g_strdup (_("Digital display"));
+    friendly_name = (gchar *) display_name_get_fallback (name);
+    if (friendly_name)
+        return g_strdup (friendly_name);
 
     /* everything failed, fallback */
     return g_strdup (name);
@@ -788,6 +765,19 @@ xfce_randr_get_positions (XfceRandr *randr,
     *x = randr->position[output].x;
     *y = randr->position[output].y;
     return TRUE;
+}
+
+
+
+gchar **
+xfce_randr_get_display_infos (XfceRandr *randr)
+{
+    gchar **display_infos = g_new0 (gchar *, randr->noutput + 1);
+
+    for (guint n = 0; n < randr->noutput; n++)
+        display_infos[n] = g_strdup_printf ("%s", xfce_randr_get_edid (randr, n));
+
+    return display_infos;
 }
 
 
