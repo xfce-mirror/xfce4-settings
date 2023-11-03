@@ -43,7 +43,7 @@
 #include <libnotify/notify.h>
 #endif /* !HAVE_LIBNOTIFY */
 
-#include "debug.h"
+#include "common/debug.h"
 #include "accessibility.h"
 
 
