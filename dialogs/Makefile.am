@@ -1,10 +1,14 @@
 SUBDIRS = \
-	appearance-settings \
+	appearance-settings
+
+if ENABLE_X11
+SUBDIRS += \
 	accessibility-settings \
 	keyboard-settings \
 	mouse-settings
+endif
 
-if HAVE_XRANDR
+if ENABLE_DISPLAY_SETTINGS
 SUBDIRS += \
 	display-settings
 endif

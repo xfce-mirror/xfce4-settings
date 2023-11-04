@@ -41,7 +41,7 @@
 #include <libxklavier/xklavier.h>
 #endif /* HAVE_LIBXKLAVIER */
 
-#include "debug.h"
+#include "common/debug.h"
 #include "keyboard-layout.h"
 
 static void xfce_keyboard_layout_helper_finalize                  (GObject                       *object);

@@ -26,8 +26,9 @@
 #endif
 
 #include <gtk/gtk.h>
-
+#ifdef ENABLE_X11
 #include <gdk/gdkx.h>
+#endif
 
 #include <libxfce4util/libxfce4util.h>
 #include <garcon/garcon.h>
@@ -108,8 +109,11 @@ main(int argc,
         g_message ("Dialog \"%s\" not found.", opt_dialog);
     }
 
+#ifdef ENABLE_X11
     /* To prevent the settings dialog to be saved in the session */
-    gdk_x11_set_sm_client_id ("FAKE ID");
+    if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+        gdk_x11_set_sm_client_id ("FAKE ID");
+#endif
 
     gtk_main();
 
