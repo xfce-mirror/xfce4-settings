@@ -61,6 +61,7 @@ typedef struct _XfceDisplaySettingsPrivate
     GList *outputs;
     guint selected_output_id;
     gboolean supports_alpha;
+    gboolean opt_minimal;
 } XfceDisplaySettingsPrivate;
 
 
@@ -141,6 +142,8 @@ xfce_display_settings_new (gboolean opt_minimal,
 
     if (settings != NULL)
     {
+        get_instance_private (settings)->opt_minimal = opt_minimal;
+
         /* store a Fallback of the current settings */
         guint n_outputs = xfce_display_settings_get_n_outputs (settings);
         for (guint n = 0; n < n_outputs; n++)
@@ -152,6 +155,15 @@ xfce_display_settings_new (gboolean opt_minimal,
     }
 
     return settings;
+}
+
+
+
+gboolean
+xfce_display_settings_is_minimal (XfceDisplaySettings *settings)
+{
+    g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), FALSE);
+    return get_instance_private (settings)->opt_minimal;
 }
 
 
@@ -748,14 +760,15 @@ xfce_display_settings_set_rotation (XfceDisplaySettings *settings,
                                     guint output_id,
                                     RotationFlags rotation)
 {
-    XfceOutput *output;
-
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
     g_return_if_fail (xfce_display_settings_get_n_outputs (settings) > output_id);
 
     XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_rotation (settings, output_id, rotation);
-    output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
-    output->rotation = rotation;
+    if (!get_instance_private (settings)->opt_minimal)
+    {
+        XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
+        output->rotation = rotation;
+    }
 }
 
 
@@ -785,14 +798,15 @@ xfce_display_settings_set_scale_x (XfceDisplaySettings *settings,
                                    guint output_id,
                                    gdouble scale_x)
 {
-    XfceOutput *output;
-
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
     g_return_if_fail (xfce_display_settings_get_n_outputs (settings) > output_id);
 
     XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_scale_x (settings, output_id, scale_x);
-    output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
-    output->scale_x = scale_x;
+    if (!get_instance_private (settings)->opt_minimal)
+    {
+        XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
+        output->scale_x = scale_x;
+    }
 }
 
 
@@ -812,14 +826,15 @@ xfce_display_settings_set_scale_y (XfceDisplaySettings *settings,
                                    guint output_id,
                                    gdouble scale_y)
 {
-    XfceOutput *output;
-
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
     g_return_if_fail (xfce_display_settings_get_n_outputs (settings) > output_id);
 
     XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_scale_y (settings, output_id, scale_y);
-    output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
-    output->scale_y = scale_y;
+    if (!get_instance_private (settings)->opt_minimal)
+    {
+        XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
+        output->scale_y = scale_y;
+    }
 }
 
 
@@ -829,14 +844,15 @@ xfce_display_settings_set_mode (XfceDisplaySettings *settings,
                                 guint output_id,
                                 guint mode_id)
 {
-    XfceOutput *output;
-
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
     g_return_if_fail (xfce_display_settings_get_n_outputs (settings) > output_id);
 
     XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_mode (settings, output_id, mode_id);
-    output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
-    XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->update_output_mode (settings, output, mode_id);
+    if (!get_instance_private (settings)->opt_minimal)
+    {
+        XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
+        XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->update_output_mode (settings, output, mode_id);
+    }
 }
 
 
@@ -847,15 +863,16 @@ xfce_display_settings_set_position (XfceDisplaySettings *settings,
                                     gint x,
                                     gint y)
 {
-    XfceOutput *output;
-
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
     g_return_if_fail (xfce_display_settings_get_n_outputs (settings) > output_id);
 
     XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_position (settings, output_id, x, y);
-    output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
-    output->x = x;
-    output->y = y;
+    if (!get_instance_private (settings)->opt_minimal)
+    {
+        XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
+        output->x = x;
+        output->y = y;
+    }
 }
 
 
@@ -875,15 +892,16 @@ xfce_display_settings_set_active (XfceDisplaySettings *settings,
                                   guint output_id,
                                   gboolean active)
 {
-    XfceOutput *output;
-
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
     g_return_if_fail (xfce_display_settings_get_n_outputs (settings) > output_id);
 
     XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_active (settings, output_id, active);
-    output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
-    output->active = active;
-    XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->update_output_active (settings, output, active);
+    if (!get_instance_private (settings)->opt_minimal)
+    {
+        XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
+        output->active = active;
+        XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->update_output_active (settings, output, active);
+    }
 }
 
 

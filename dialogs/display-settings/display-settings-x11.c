@@ -110,7 +110,6 @@ struct _XfceDisplaySettingsX11
 
     XfceRandr *randr;
     gint event_base;
-    gboolean opt_minimal;
 };
 
 
@@ -207,7 +206,7 @@ xfce_display_settings_x11_finalize (GObject *object)
     XfceDisplaySettingsX11 *settings = XFCE_DISPLAY_SETTINGS_X11 (object);
 
     xfce_randr_free (settings->randr);
-    if (!settings->opt_minimal)
+    if (!xfce_display_settings_is_minimal (XFCE_DISPLAY_SETTINGS (settings)))
         gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, settings);
 
     G_OBJECT_CLASS (xfce_display_settings_x11_parent_class)->finalize (object);
@@ -752,7 +751,6 @@ xfce_display_settings_x11_new (gboolean opt_minimal,
     settings = g_object_new (XFCE_TYPE_DISPLAY_SETTINGS_X11, NULL);
     settings->randr = randr;
     settings->event_base = event_base;
-    settings->opt_minimal = opt_minimal;
     if (!opt_minimal)
     {
         /* set up notifications */
