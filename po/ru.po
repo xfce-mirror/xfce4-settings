@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-07-28 00:48+0200\n"
+"POT-Creation-Date: 2023-11-05 00:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Andrei Stepanov, 2022-2023\n"
 "Language-Team: Russian (http://app.transifex.com/xfce/xfce4-settings/language/ru/)\n"
@@ -40,7 +40,21 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/main.c:4391
+#. TRANSLATORS: an externally connected display, where %s is either the
+#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
+#: common/display-name.c:2694 dialogs/color-settings/color-device.c:65
+msgid "Monitor"
+msgstr "Монитор"
+
+#: common/display-name.c:2697
+msgid "Television"
+msgstr "ТВ"
+
+#: common/display-name.c:2701
+msgid "Digital display"
+msgstr "Цифровой дисплей"
+
+#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:743
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Невозможно запросить версию используемого расширения RandR"
 
@@ -52,23 +66,10 @@ msgid ""
 "1.2 is required at least"
 msgstr "Эта система использует RandR %d.%d. Для работы настроек дисплея необходима версия 1.2 или выше"
 
-#: common/xfce-randr.c:597
+#: common/xfce-randr.c:581
+#: dialogs/display-settings/display-settings-wayland.c:344
 msgid "Laptop"
 msgstr "Ноутбук"
-
-#. TRANSLATORS: an externally connected display, where %s is either the
-#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: common/xfce-randr.c:610 dialogs/color-settings/color-device.c:65
-msgid "Monitor"
-msgstr "Монитор"
-
-#: common/xfce-randr.c:613
-msgid "Television"
-msgstr "ТВ"
-
-#: common/xfce-randr.c:617
-msgid "Digital display"
-msgstr "Цифровой дисплей"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:66
 #: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:4
@@ -81,12 +82,12 @@ msgstr "Специальные возможности"
 #: dialogs/display-settings/display-dialog.glade:293
 #: dialogs/display-settings/minimal-display-dialog.glade:300
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:4431
+#: dialogs/display-settings/main.c:3404
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
-#: dialogs/mime-settings/xfce-mime-window.c:187
+#: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
-#: xfce4-settings-editor/main.c:166
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:232
+#: xfce4-settings-editor/main.c:191
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:237
 msgid "_Close"
 msgstr "_Закрыть"
 
@@ -95,10 +96,10 @@ msgstr "_Закрыть"
 #: dialogs/color-settings/color-dialog.glade:80
 #: dialogs/display-settings/display-dialog.glade:277
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
-#: dialogs/mime-settings/xfce-mime-window.c:190
+#: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:179
-#: xfce4-settings-editor/main.c:165
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:221
+#: xfce4-settings-editor/main.c:190
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:226
 msgid "_Help"
 msgstr "_Справка"
 
@@ -304,57 +305,57 @@ msgid "_Mouse"
 msgstr "_Мышь"
 
 #: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:104 dialogs/color-settings/main.c:48
-#: dialogs/display-settings/main.c:140 dialogs/keyboard-settings/main.c:40
-#: dialogs/mime-settings/main.c:44 dialogs/mouse-settings/main.c:94
-#: xfce4-settings-editor/main.c:49
+#: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
+#: dialogs/display-settings/main.c:113 dialogs/keyboard-settings/main.c:40
+#: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
+#: xfce4-settings-editor/main.c:52
 msgid "Settings manager socket"
 msgstr "Сокет диспетчера настроек"
 
 #: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:104 dialogs/color-settings/main.c:48
-#: dialogs/display-settings/main.c:140 dialogs/keyboard-settings/main.c:40
-#: dialogs/mime-settings/main.c:44 dialogs/mouse-settings/main.c:94
-#: xfce4-settings-editor/main.c:49
+#: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
+#: dialogs/display-settings/main.c:113 dialogs/keyboard-settings/main.c:40
+#: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
+#: xfce4-settings-editor/main.c:52
 msgid "SOCKET ID"
 msgstr "ID сокета"
 
 #: dialogs/accessibility-settings/main.c:47
-#: dialogs/appearance-settings/main.c:105 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:141 dialogs/keyboard-settings/main.c:41
-#: dialogs/mime-settings/main.c:45 dialogs/mouse-settings/main.c:95
-#: xfce4-settings-editor/main.c:50 xfce4-settings-manager/main.c:43
-#: xfsettingsd/main.c:106
+#: dialogs/appearance-settings/main.c:107 dialogs/color-settings/main.c:50
+#: dialogs/display-settings/main.c:114 dialogs/keyboard-settings/main.c:41
+#: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
+#: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
+#: xfsettingsd/main.c:107
 msgid "Version information"
 msgstr "Информация о версии"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1405 dialogs/color-settings/main.c:1379
-#: dialogs/display-settings/main.c:4359 dialogs/keyboard-settings/main.c:78
-#: dialogs/mime-settings/main.c:83
-#: dialogs/mime-settings/xfce-mime-helper-main.c:158
-#: dialogs/mouse-settings/main.c:2082 xfce4-settings-editor/main.c:120
-#: xfce4-settings-manager/main.c:64 xfsettingsd/main.c:249
-#: xfsettingsd/main.c:287
+#: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
+#: dialogs/display-settings/main.c:3352 dialogs/keyboard-settings/main.c:78
+#: dialogs/mime-settings/main.c:84
+#: dialogs/mime-settings/xfce-mime-helper-main.c:157
+#: dialogs/mouse-settings/main.c:2082 xfce4-settings-editor/main.c:124
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:254
+#: xfsettingsd/main.c:292
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Наберите «%s --help» для информации об использовании."
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1424 dialogs/color-settings/main.c:1396
-#: dialogs/display-settings/main.c:4378 dialogs/keyboard-settings/main.c:94
-#: dialogs/mime-settings/main.c:102 dialogs/mouse-settings/main.c:2101
-#: xfce4-settings-editor/main.c:139 xfce4-settings-manager/main.c:80
-#: xfsettingsd/main.c:265
+#: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
+#: dialogs/display-settings/main.c:3371 dialogs/keyboard-settings/main.c:94
+#: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2101
+#: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
+#: xfsettingsd/main.c:270
 msgid "The Xfce development team. All rights reserved."
 msgstr "Команда разработчиков Xfce. Все права защищены."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1425 dialogs/color-settings/main.c:1397
-#: dialogs/display-settings/main.c:4379 dialogs/keyboard-settings/main.c:95
-#: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2102
-#: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:266
+#: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
+#: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:95
+#: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2102
+#: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
+#: xfsettingsd/main.c:271
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Об ошибках сообщайте на <%s>."
@@ -370,8 +371,8 @@ msgid ""
 msgstr "реабилитация;технические средства;клавиши;залипание;эмуляция;чтение с экрана;увеличение;a11y;i18n;l10n;AT-SPI;ATK;ограниченные возможности;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1280 dialogs/display-settings/main.c:107
-#: dialogs/display-settings/main.c:118
+#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:90
+#: dialogs/display-settings/main.c:99
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
 msgstr "Отсутствует"
@@ -594,83 +595,83 @@ msgstr "_Масштабирование окон"
 msgid "Setti_ngs"
 msgstr "_Настройки"
 
-#: dialogs/appearance-settings/main.c:244
+#: dialogs/appearance-settings/main.c:246
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Не удалось отобразить Настройки Xfwm4"
 
-#: dialogs/appearance-settings/main.c:507
+#: dialogs/appearance-settings/main.c:511
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Внимание: эта тема значков не имеет кэш-файла. Вы можете создать его, выполнив в терминале: <i>gtk-update-icon-cache %s/%s/</i>."
 
-#: dialogs/appearance-settings/main.c:973
+#: dialogs/appearance-settings/main.c:989
 msgid "File is too large, installation aborted"
 msgstr "Файл слишком большой, установка прервана"
 
-#: dialogs/appearance-settings/main.c:978
+#: dialogs/appearance-settings/main.c:994
 msgid "Failed to create temporary directory"
 msgstr "Не удалось создать временный каталог"
 
-#: dialogs/appearance-settings/main.c:983
+#: dialogs/appearance-settings/main.c:999
 msgid "Failed to extract archive"
 msgstr "Не удалось извлечь архив"
 
-#: dialogs/appearance-settings/main.c:988
+#: dialogs/appearance-settings/main.c:1004
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Неизвестный формат: поддерживаются лишь каталоги и архивы"
 
-#: dialogs/appearance-settings/main.c:993
+#: dialogs/appearance-settings/main.c:1009
 msgid "Not a valid theme package"
 msgstr "Недопустимый пакет темы"
 
-#: dialogs/appearance-settings/main.c:998
+#: dialogs/appearance-settings/main.c:1014
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Неизвестная ошибка (код %d)"
 
-#: dialogs/appearance-settings/main.c:1005
+#: dialogs/appearance-settings/main.c:1021
 msgid "Failed to install theme"
 msgstr "Не удалось установить тему оформления"
 
-#: dialogs/appearance-settings/main.c:1059
+#: dialogs/appearance-settings/main.c:1075
 #, c-format
 msgid "Install %s theme"
 msgstr "Установить тему %s"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1063
+#: dialogs/appearance-settings/main.c:1079
 #: dialogs/color-settings/color-dialog.glade:529
-#: dialogs/color-settings/main.c:130
-#: dialogs/keyboard-settings/command-dialog.c:116
-#: dialogs/keyboard-settings/command-dialog.c:280
+#: dialogs/color-settings/main.c:133
+#: dialogs/keyboard-settings/command-dialog.c:118
+#: dialogs/keyboard-settings/command-dialog.c:282
 #: dialogs/keyboard-settings/keyboard-dialog.glade:71
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:428
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:573
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:106
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: dialogs/appearance-settings/main.c:1065
-#: dialogs/keyboard-settings/command-dialog.c:281
+#: dialogs/appearance-settings/main.c:1081
+#: dialogs/keyboard-settings/command-dialog.c:283
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Открыть"
 
-#: dialogs/appearance-settings/main.c:1284
+#: dialogs/appearance-settings/main.c:1300
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1288
+#: dialogs/appearance-settings/main.c:1304
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1292
+#: dialogs/appearance-settings/main.c:1308
 msgid "Vertical RGB"
 msgstr "Вертикальный RGB"
 
-#: dialogs/appearance-settings/main.c:1296
+#: dialogs/appearance-settings/main.c:1312
 msgid "Vertical BGR"
 msgstr "Вертикальный BGR"
 
@@ -781,10 +782,10 @@ msgid "Add Profile to Device"
 msgstr "Добавить профиль к устройству"
 
 #: dialogs/color-settings/color-dialog.glade:543
-#: dialogs/keyboard-settings/command-dialog.c:120
+#: dialogs/keyboard-settings/command-dialog.c:122
 #: dialogs/keyboard-settings/keyboard-dialog.glade:86
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:574
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:108
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
 msgid "_OK"
 msgstr "_ОК"
 
@@ -857,48 +858,48 @@ msgid "Default Gray"
 msgstr "Серый по умолчанию"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: dialogs/color-settings/main.c:128
+#: dialogs/color-settings/main.c:131
 msgid "Select ICC Profile File"
 msgstr "Выбрать файл профиля ICC"
 
-#: dialogs/color-settings/main.c:131
+#: dialogs/color-settings/main.c:134
 msgid "_Import"
 msgstr "_Импортировать"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:142
+#: dialogs/color-settings/main.c:145
 msgid "Supported ICC profiles"
 msgstr "Поддерживаемые профили ICC"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:149
+#: dialogs/color-settings/main.c:152
 msgid "All files"
 msgstr "Все файлы"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: dialogs/color-settings/main.c:191
+#: dialogs/color-settings/main.c:194
 msgid "Default: "
 msgstr "По умолчанию:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: dialogs/color-settings/main.c:197
+#: dialogs/color-settings/main.c:200
 msgid "Colorspace: "
 msgstr "Цветовое пространство:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: dialogs/color-settings/main.c:203
+#: dialogs/color-settings/main.c:206
 msgid "Test profile: "
 msgstr "Тестовый профиль:"
 
-#: dialogs/color-settings/main.c:238
+#: dialogs/color-settings/main.c:241
 msgid "Compatible Profiles"
 msgstr "Совместимые профили"
 
-#: dialogs/color-settings/main.c:825 dialogs/color-settings/main.c:826
-#: dialogs/color-settings/main.c:827
+#: dialogs/color-settings/main.c:830 dialogs/color-settings/main.c:831
+#: dialogs/color-settings/main.c:832
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -1137,35 +1138,35 @@ msgid ""
 "your session or disconnecting or connecting a display."
 msgstr "Если вы не обновите профиль, ваши изменения будут потеряны при перезапуске сессии или при отключении и подключении экрана."
 
-#: dialogs/display-settings/main.c:108
+#: dialogs/display-settings/main.c:91
 msgid "Left"
 msgstr "Влево"
 
-#: dialogs/display-settings/main.c:109
+#: dialogs/display-settings/main.c:92
 msgid "Inverted"
 msgstr "Инвертировано"
 
-#: dialogs/display-settings/main.c:110
+#: dialogs/display-settings/main.c:93
 msgid "Right"
 msgstr "Вправо"
 
-#: dialogs/display-settings/main.c:119
+#: dialogs/display-settings/main.c:100
 msgid "Horizontal"
 msgstr "Горизонтально"
 
-#: dialogs/display-settings/main.c:120
+#: dialogs/display-settings/main.c:101
 msgid "Vertical"
 msgstr "Вертикально"
 
-#: dialogs/display-settings/main.c:121
+#: dialogs/display-settings/main.c:102
 msgid "Horizontal and Vertical"
 msgstr "Горизонтально и вертикально"
 
-#: dialogs/display-settings/main.c:142
+#: dialogs/display-settings/main.c:115
 msgid "Minimal interface to set up an external output"
 msgstr "Минимальный интерфейс для настройки внешнего вывода"
 
-#: dialogs/display-settings/main.c:324
+#: dialogs/display-settings/main.c:231
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1173,79 +1174,71 @@ msgid ""
 msgstr "Предыдущая конфигурация будет восстановлена через <b>%i секунды</b> если вы не ответите на этот вопрос."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:783
+#: dialogs/display-settings/main.c:679
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Гц"
 
-#: dialogs/display-settings/main.c:1181
-msgid "Display:"
-msgstr "Дисплей:"
-
-#: dialogs/display-settings/main.c:1186
-msgid "Resolution:"
-msgstr "Разрешение:"
-
-#: dialogs/display-settings/main.c:1466
+#: dialogs/display-settings/main.c:1026
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Последний активный выход не должен быть отключён, система будет непригодна для использования."
 
-#: dialogs/display-settings/main.c:1468
+#: dialogs/display-settings/main.c:1028
 msgid "Selected output not disabled"
 msgstr "Выбранный выход не отключён"
 
-#: dialogs/display-settings/main.c:1645
+#: dialogs/display-settings/main.c:1191
 msgid "Profiles matching the currently connected displays"
 msgstr "Профили, соответствующие подключённым в настоящее время экранам"
 
-#: dialogs/display-settings/main.c:1851
+#: dialogs/display-settings/main.c:1280
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Обновить изменённый профиль экрана «%s»?"
 
-#: dialogs/display-settings/main.c:1856
+#: dialogs/display-settings/main.c:1285
 #, c-format
 msgid "_Update '%s'"
 msgstr "О_бновить \"%s\""
 
-#: dialogs/display-settings/main.c:2144
+#: dialogs/display-settings/main.c:1562
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Хотите удалить профиль экрана «%s»?"
 
-#: dialogs/display-settings/main.c:2146
+#: dialogs/display-settings/main.c:1564
 msgid "Delete Profile"
 msgstr "Удалить профиль"
 
-#: dialogs/display-settings/main.c:2149
+#: dialogs/display-settings/main.c:1567
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Профиль экрана будет невозможно восстановить после удаления."
 
-#: dialogs/display-settings/main.c:2150
+#: dialogs/display-settings/main.c:1568
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
-#: dialogs/mime-settings/xfce-mime-window.c:1174
+#: dialogs/mime-settings/xfce-mime-window.c:1178
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "Отмена"
 
-#: dialogs/display-settings/main.c:2151
+#: dialogs/display-settings/main.c:1569
 msgid "Delete"
 msgstr "Удалить"
 
-#: dialogs/display-settings/main.c:2256
+#: dialogs/display-settings/main.c:1674
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d панел(ей) Xfce"
 
-#: dialogs/display-settings/main.c:3293
+#: dialogs/display-settings/main.c:2458
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Выберите монитор для изменения его свойств и перетащите для изменения его расположения."
 
-#: dialogs/display-settings/main.c:3336 dialogs/display-settings/main.c:3412
+#: dialogs/display-settings/main.c:2501 dialogs/display-settings/main.c:2578
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1254,33 +1247,33 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:3627
+#: dialogs/display-settings/main.c:2800
 msgid "Mirror Screens"
 msgstr "Зеркальные экраны"
 
-#: dialogs/display-settings/main.c:3677
+#: dialogs/display-settings/main.c:2850
 msgid "(Disabled)"
 msgstr "(выключено)"
 
-#: dialogs/display-settings/main.c:4196
+#: dialogs/display-settings/main.c:3210
 #, c-format
 msgid "Only %s (1)"
 msgstr "Только %s (1)"
 
-#: dialogs/display-settings/main.c:4207
+#: dialogs/display-settings/main.c:3221
 #, c-format
 msgid "Only %s (2)"
 msgstr "Только %s (2)"
 
-#: dialogs/display-settings/main.c:4392 dialogs/display-settings/main.c:4429
-msgid "Unable to start the Xfce Display Settings"
-msgstr "Не удалось запустить настройки дисплея"
-
-#: dialogs/display-settings/main.c:4424
+#: dialogs/display-settings/main.c:3398
 msgid "ATI Settings"
 msgstr "Настройки ATI"
 
-#: dialogs/display-settings/main.c:4439
+#: dialogs/display-settings/main.c:3403
+msgid "Unable to start the Xfce Display Settings"
+msgstr "Не удалось запустить настройки дисплея"
+
+#: dialogs/display-settings/main.c:3411
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Не удалось запустить настройки проприетарного драйвера"
 
@@ -1293,67 +1286,80 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "настройки;экран;разрешение;обновление;частота;поворот;внешний;проекторы;мониторы;LCD;CRT;HiDPI;"
 
+#: dialogs/display-settings/display-settings.c:456
+msgid "Display:"
+msgstr "Дисплей:"
+
+#: dialogs/display-settings/display-settings.c:463
+msgid "Resolution:"
+msgstr "Разрешение:"
+
+#: dialogs/display-settings/display-settings-wayland.c:1073
+msgid ""
+"Your compositor does not seem to support the wlr-output-management protocol"
+msgstr "Похоже, что ваш композитор не поддерживает протокол wlr-output-management"
+
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:110
 msgid "Shortcut Command"
 msgstr "Команда для комбинаций клавиш"
 
-#: dialogs/keyboard-settings/command-dialog.c:142
+#: dialogs/keyboard-settings/command-dialog.c:144
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr "Введите команду для вызова по комбинации клавиш."
 
 #. We are editing an existing shortcut
-#: dialogs/keyboard-settings/command-dialog.c:160
+#: dialogs/keyboard-settings/command-dialog.c:162
 msgid "Shortcut:"
 msgstr "Комбинации клавиш:"
 
-#: dialogs/keyboard-settings/command-dialog.c:185
+#: dialogs/keyboard-settings/command-dialog.c:187
 msgid "Comm_and:"
 msgstr "К_оманда:"
 
-#: dialogs/keyboard-settings/command-dialog.c:210
+#: dialogs/keyboard-settings/command-dialog.c:212
 msgid "Use _startup notification"
 msgstr "Использовать у_ведомление при запуске"
 
-#: dialogs/keyboard-settings/command-dialog.c:257
+#: dialogs/keyboard-settings/command-dialog.c:259
 msgid "The command may not be empty."
 msgstr "Команда не может быть пустой."
 
-#: dialogs/keyboard-settings/command-dialog.c:277
+#: dialogs/keyboard-settings/command-dialog.c:279
 msgid "Select command"
 msgstr "Выберите команду"
 
-#: dialogs/keyboard-settings/command-dialog.c:285
+#: dialogs/keyboard-settings/command-dialog.c:287
 #: dialogs/mime-settings/xfce-mime-chooser.c:389
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:435
 msgid "All Files"
 msgstr "Все файлы"
 
-#: dialogs/keyboard-settings/command-dialog.c:290
+#: dialogs/keyboard-settings/command-dialog.c:292
 #: dialogs/mime-settings/xfce-mime-chooser.c:394
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:440
 msgid "Executable Files"
 msgstr "Исполняемые файлы"
 
-#: dialogs/keyboard-settings/command-dialog.c:305
+#: dialogs/keyboard-settings/command-dialog.c:307
 #: dialogs/mime-settings/xfce-mime-chooser.c:409
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:455
 msgid "Perl Scripts"
 msgstr "Скрипты Perl"
 
-#: dialogs/keyboard-settings/command-dialog.c:311
+#: dialogs/keyboard-settings/command-dialog.c:313
 #: dialogs/mime-settings/xfce-mime-chooser.c:415
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:461
 msgid "Python Scripts"
 msgstr "Скрипты Python"
 
-#: dialogs/keyboard-settings/command-dialog.c:317
+#: dialogs/keyboard-settings/command-dialog.c:319
 #: dialogs/mime-settings/xfce-mime-chooser.c:421
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:467
 msgid "Ruby Scripts"
 msgstr "Скрипты Ruby"
 
-#: dialogs/keyboard-settings/command-dialog.c:323
+#: dialogs/keyboard-settings/command-dialog.c:325
 #: dialogs/mime-settings/xfce-mime-chooser.c:427
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:473
 msgid "Shell Scripts"
@@ -1490,12 +1496,12 @@ msgstr "_Раскладка"
 msgid "Unable to initialize GTK+."
 msgstr "Не удалось активировать GTK+."
 
-#: dialogs/keyboard-settings/main.c:104
+#: dialogs/keyboard-settings/main.c:110
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Не удалось соединиться с диспетчером xfconf: %s"
 
-#: dialogs/keyboard-settings/main.c:115
+#: dialogs/keyboard-settings/main.c:121
 msgid "Could not create the settings dialog."
 msgstr "Не удалось отобразить меню настроек."
 
@@ -1550,7 +1556,7 @@ msgstr "Изменение настроек клавиатуры и комбин
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;клавиатура;раскладка;сочетания клавиш;"
 
-#: dialogs/mime-settings/main.c:120
+#: dialogs/mime-settings/main.c:121
 msgid "Could not create the mime dialog."
 msgstr "Не удалось создать диалоговое окно mime."
 
@@ -1702,76 +1708,76 @@ msgstr "_Другой..."
 msgid "Use a custom application which is not included in the above list."
 msgstr "Использовать другое приложение, не из этого списка."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
 msgid "Choose Preferred Application"
 msgstr "Выбор предпочитаемого приложения"
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:249
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:248
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
 msgstr "Пожалуйста, выберите предпочитаемый\nбраузер и щёлкните «OK» для продолжения."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:250
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
 msgstr "Пожалуйста, выберите предпочитаемый почтовик\nи щёлкните «OK» для продолжения."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:252
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
 msgstr "Пожалуйста, выберите предпочитаемый проводник\nи щёлкните «OK» для продолжения."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:254
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
 msgstr "Пожалуйста, выберите предпочитаемый терминал\nи щёлкните «OK» для продолжения."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:41
+#: dialogs/mime-settings/xfce-mime-helper-main.c:40
 msgid "Failed to execute default Web Browser"
 msgstr "Не удалось запустить браузер по умолчанию"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:42
+#: dialogs/mime-settings/xfce-mime-helper-main.c:41
 msgid "Failed to execute default Mail Reader"
 msgstr "Не удалось запустить почтовик по умолчанию"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:43
+#: dialogs/mime-settings/xfce-mime-helper-main.c:42
 msgid "Failed to execute default File Manager"
 msgstr "Не удалось запустить проводник по умолчанию"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:44
+#: dialogs/mime-settings/xfce-mime-helper-main.c:43
 msgid "Failed to execute default Terminal Emulator"
 msgstr "Не удалось запустить терминал по умолчанию"
 
 #. Enable permanently dismissing this error.
-#: dialogs/mime-settings/xfce-mime-helper-main.c:86
+#: dialogs/mime-settings/xfce-mime-helper-main.c:85
 msgid "Do _not show this message again"
 msgstr "Больше _не показывать это сообщение"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:116
+#: dialogs/mime-settings/xfce-mime-helper-main.c:115
 msgid "Print version information and exit"
 msgstr "Показать информацию о версии и выйти"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:117
+#: dialogs/mime-settings/xfce-mime-helper-main.c:116
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr "Запустить вспомогательное предпочитаемое приложение выбранного ТИПа c необязательным ПАРАМЕТРом, где ТИП может принимать одно из следующих значений."
 
+#: dialogs/mime-settings/xfce-mime-helper-main.c:116
 #: dialogs/mime-settings/xfce-mime-helper-main.c:117
-#: dialogs/mime-settings/xfce-mime-helper-main.c:118
 msgid "TYPE [PARAMETER]"
 msgstr "ТИП [ПАРАМЕТР]"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:118
+#: dialogs/mime-settings/xfce-mime-helper-main.c:117
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr "Запросить предпочитаемое вспомогательное приложение указанного ТИПа, где ТИП может принимать одно из следующих значений."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:148
+#: dialogs/mime-settings/xfce-mime-helper-main.c:147
 msgid ""
 "The following TYPEs are supported for the --launch and --query commands:\n"
 "\n"
@@ -1781,13 +1787,13 @@ msgid ""
 "  TerminalEmulator - The preferred Terminal Emulator."
 msgstr "Для ключей «--launch» и «--query» поддерживаются следующие ТИПы:\n\n  WebBrowser       - предпочитаемый браузер.\n  MailReader       - предпочитаемый почтовик.\n  FileManager      - предпочитаемый проводник.\n  TerminalEmulator - предпочитаемый терминал."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:183
-#: dialogs/mime-settings/xfce-mime-helper-main.c:256
+#: dialogs/mime-settings/xfce-mime-helper-main.c:182
+#: dialogs/mime-settings/xfce-mime-helper-main.c:255
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "Неверный тип вспомогательного приложения «%s»"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:240
+#: dialogs/mime-settings/xfce-mime-helper-main.c:239
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -1802,124 +1808,124 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nАвторские права (c) 2003-2006\n        os-cillation e.K. Все права защищены.\n\nАвтор: Benedikt Meurer <benny@xfce.org>.\n\nСобрано с Gtk+-%d.%d.%d, используется Gtk+-%d.%d.%d.\n\nОб ошибках сообщайте на <%s>.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:266
+#: dialogs/mime-settings/xfce-mime-helper-main.c:265
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Отсутствует вспомогательное приложение для «%s»."
 
-#: dialogs/mime-settings/xfce-mime-helper.c:453
+#: dialogs/mime-settings/xfce-mime-helper.c:452
 msgid "No command specified"
 msgstr "Не указана команда"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:832
-#: dialogs/mime-settings/xfce-mime-helper.c:871
-#: dialogs/mime-settings/xfce-mime-helper.c:968
-#: dialogs/mime-settings/xfce-mime-helper.c:1007
+#: dialogs/mime-settings/xfce-mime-helper.c:830
+#: dialogs/mime-settings/xfce-mime-helper.c:869
+#: dialogs/mime-settings/xfce-mime-helper.c:966
+#: dialogs/mime-settings/xfce-mime-helper.c:1005
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Не удалось открыть файл %s для записи"
 
-#: dialogs/mime-settings/xfce-mime-window.c:184
+#: dialogs/mime-settings/xfce-mime-window.c:186
 #: dialogs/mime-settings/xfce4-mime-settings.desktop.in:4
 msgid "Default Applications"
 msgstr "Приложения по умолчанию"
 
 #. Internet
-#: dialogs/mime-settings/xfce-mime-window.c:208
+#: dialogs/mime-settings/xfce-mime-window.c:212
 msgid "_Internet"
 msgstr "_Интернет"
 
-#: dialogs/mime-settings/xfce-mime-window.c:221
+#: dialogs/mime-settings/xfce-mime-window.c:225
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
 msgid "Web Browser"
 msgstr "Браузер"
 
-#: dialogs/mime-settings/xfce-mime-window.c:229
+#: dialogs/mime-settings/xfce-mime-window.c:233
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr "Для открытия гиперссылок и просмотра справки будет использован веб-браузер по умолчанию."
 
-#: dialogs/mime-settings/xfce-mime-window.c:247
+#: dialogs/mime-settings/xfce-mime-window.c:251
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
 msgid "Mail Reader"
 msgstr "Почтовик"
 
-#: dialogs/mime-settings/xfce-mime-window.c:255
+#: dialogs/mime-settings/xfce-mime-window.c:259
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr "Для создания писем при щелчке по адресу электронной почты будет использована почтовая программа по умолчанию."
 
 #. Utilities
-#: dialogs/mime-settings/xfce-mime-window.c:269
+#: dialogs/mime-settings/xfce-mime-window.c:273
 msgid "_Utilities"
 msgstr "_Утилиты"
 
-#: dialogs/mime-settings/xfce-mime-window.c:282
+#: dialogs/mime-settings/xfce-mime-window.c:286
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
 msgid "File Manager"
 msgstr "Проводник"
 
-#: dialogs/mime-settings/xfce-mime-window.c:290
+#: dialogs/mime-settings/xfce-mime-window.c:294
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr "Для просмотра содержимого каталогов будет использован файловый менеджер по умолчанию."
 
-#: dialogs/mime-settings/xfce-mime-window.c:308
+#: dialogs/mime-settings/xfce-mime-window.c:312
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
 msgid "Terminal Emulator"
 msgstr "Терминал"
 
-#: dialogs/mime-settings/xfce-mime-window.c:316
+#: dialogs/mime-settings/xfce-mime-window.c:320
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr "Для запуска команд, которым требуется окружение командной строки, будет использован эмулятор терминала по умолчанию."
 
 #. Mimes
-#: dialogs/mime-settings/xfce-mime-window.c:330
+#: dialogs/mime-settings/xfce-mime-window.c:334
 msgid "_Others"
 msgstr "_Другие"
 
-#: dialogs/mime-settings/xfce-mime-window.c:340
+#: dialogs/mime-settings/xfce-mime-window.c:344
 msgid "_Filter:"
 msgstr "_Фильтр:"
 
-#: dialogs/mime-settings/xfce-mime-window.c:348
+#: dialogs/mime-settings/xfce-mime-window.c:352
 msgid "Clear filter"
 msgstr "Сброс фильтра"
 
-#: dialogs/mime-settings/xfce-mime-window.c:378
+#: dialogs/mime-settings/xfce-mime-window.c:382
 msgid "Open with..."
 msgstr "Открыть с..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:427
+#: dialogs/mime-settings/xfce-mime-window.c:431
 msgid "MIME Type"
 msgstr "Тип MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:455
+#: dialogs/mime-settings/xfce-mime-window.c:459
 msgid "Status"
 msgstr "Состояние"
 
-#: dialogs/mime-settings/xfce-mime-window.c:475
+#: dialogs/mime-settings/xfce-mime-window.c:479
 msgid "Default Application"
 msgstr "Приложение по умолчанию"
 
-#: dialogs/mime-settings/xfce-mime-window.c:650
-#: dialogs/mime-settings/xfce-mime-window.c:816
+#: dialogs/mime-settings/xfce-mime-window.c:654
+#: dialogs/mime-settings/xfce-mime-window.c:820
 msgid "User Set"
 msgstr "Пользовательский"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:652
-#: dialogs/mime-settings/xfce-mime-window.c:816
+#: dialogs/mime-settings/xfce-mime-window.c:656
+#: dialogs/mime-settings/xfce-mime-window.c:820
 #: dialogs/mouse-settings/main.c:406 dialogs/mouse-settings/main.c:408
 #: dialogs/mouse-settings/main.c:471
 msgid "Default"
 msgstr "Стандартный"
 
-#: dialogs/mime-settings/xfce-mime-window.c:740
+#: dialogs/mime-settings/xfce-mime-window.c:744
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
@@ -1928,12 +1934,12 @@ msgstr[1] "Найдены %d типа MIME"
 msgstr[2] "Найдено %d типов MIME"
 msgstr[3] "Найдено %d типа MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:861
+#: dialogs/mime-settings/xfce-mime-window.c:865
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Не удалось связать приложение «%s» с типом MIME «%s»"
 
-#: dialogs/mime-settings/xfce-mime-window.c:969
+#: dialogs/mime-settings/xfce-mime-window.c:973
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
@@ -1942,27 +1948,27 @@ msgstr[1] "Выбрано %d MIME типа"
 msgstr[2] "Выбрано %d MIME типов"
 msgstr[3] "Выбрано %d MIME типов"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1165
+#: dialogs/mime-settings/xfce-mime-window.c:1169
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Вы действительно хотите сбросить настройки для типа «%s» к значениям по умолчанию?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1169
+#: dialogs/mime-settings/xfce-mime-window.c:1173
 msgid "Question"
 msgstr "Вопрос"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1172
+#: dialogs/mime-settings/xfce-mime-window.c:1176
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Выбранная вами связь для типа MIME будет заменена на используемую системой по умолчанию."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1176
-#: dialogs/mime-settings/xfce-mime-window.c:1247
+#: dialogs/mime-settings/xfce-mime-window.c:1180
+#: dialogs/mime-settings/xfce-mime-window.c:1251
 msgid "Reset to Default"
 msgstr "Сброс"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1242
+#: dialogs/mime-settings/xfce-mime-window.c:1246
 msgid "Choose Application..."
 msgstr "Выбрать приложение..."
 
@@ -2484,7 +2490,7 @@ msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "настройки;кнопки;прокрутка;направление;указатель;скорость;двойной щелчок;тема;колёсико;"
 
-#: xfce4-settings-editor/main.c:163
+#: xfce4-settings-editor/main.c:188
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
 msgid "Settings Editor"
 msgstr "Редактор настроек"
@@ -2685,20 +2691,20 @@ msgstr "Графический редактор настроек для Xfconf"
 msgid "registry;regedit;configuration file;"
 msgstr "реестр;редактор;файл настроек;"
 
-#: xfce4-settings-manager/main.c:44
+#: xfce4-settings-manager/main.c:45
 msgid "Settings dialog to show"
 msgstr "Диалог свойств для отображения"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:225
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
 msgid "All _Settings"
 msgstr "Вс_е настройки"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:423
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:428
 msgid "Settings"
 msgstr "Настройки"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:917
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:928
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Не удалось запустить «%s»"
@@ -2756,20 +2762,20 @@ msgstr "«Прыгающие» клавиши"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Не удалось запустить «%s»"
 
-#: xfsettingsd/main.c:107
+#: xfsettingsd/main.c:108
 msgid "Fork to the background"
 msgstr "Перевести в фоновый режим"
 
-#: xfsettingsd/main.c:108
+#: xfsettingsd/main.c:109
 msgid "Do not wait for a window manager on startup"
 msgstr "Не ожидать менеджера окон при запуске"
 
-#: xfsettingsd/main.c:109
+#: xfsettingsd/main.c:110
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Заменить запущенный сервис xsettings (если есть)"
 
 #. value in xfconf isn't a string, so make a default one
-#: xfsettingsd/workspaces.c:333 xfsettingsd/workspaces.c:390
+#: xfsettingsd/workspaces.c:320 xfsettingsd/workspaces.c:377
 #, c-format
 msgid "Workspace %d"
 msgstr "Рабочее место %d"
