@@ -1,18 +1,8 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS =
-
-if ENABLE_WAYLAND
-SUBDIRS += \
-	protocols
-endif
-
-if ENABLE_DISPLAY_SETTINGS
-SUBDIRS += \
-	common
-endif
-
-SUBDIRS += \
+SUBDIRS = \
+	protocols \
+	common \
 	dialogs \
 	xfce4-settings-manager \
 	xfce4-settings-editor \
