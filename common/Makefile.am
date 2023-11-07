@@ -1,3 +1,5 @@
+if ENABLE_DISPLAY_SETTINGS
+
 AM_CPPFLAGS = \
 	-I${top_srcdir}	\
 	-DPNP_IDS=\"$(PNP_IDS)\" \
@@ -59,3 +61,5 @@ libxfce4_settings_la_LIBADD += \
 	$(top_builddir)/protocols/libprotocols.la \
 	$(WAYLAND_CLIENT_LIBS)
 endif
+
+endif # ENABLE_DISPLAY_SETTINGS

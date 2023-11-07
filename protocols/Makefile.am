@@ -1,3 +1,5 @@
+if ENABLE_WAYLAND
+
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-DG_LOG_DOMAIN=\"libprotocols\" \
@@ -10,7 +12,7 @@ libprotocols_built_sources = \
 	wlr-output-management-unstable-v1.c \
 	wlr-output-management-unstable-v1-client.h
 
-libprotocols_la_SOURCES = \
+nodist_libprotocols_la_SOURCES = \
 	wlr-output-management-unstable-v1.c
 
 libprotocols_la_CFLAGS = \
@@ -35,6 +37,8 @@ DISTCLEANFILES = \
 
 BUILT_SOURCES = \
 	$(libprotocols_built_sources)
+
+endif # ENABLE_WAYLAND
 
 EXTRA_DIST = \
 	wlr-protocols/unstable/wlr-output-management-unstable-v1.xml
