@@ -1,3 +1,41 @@
+4.19.1 (2023-11-15)
+======
+- build: Fix make dist when configured with --disable-wayland
+- display-settings: Fix crash when using minimal dialog
+- display-settings: Use GTK Layer Shell for popups on Wayland
+- display-settings: Hide primary monitor widgets on Wayland
+- display-settings: Add XfceDisplaySettingsWayland
+- xfsettingsd: Add XfceDisplaysHelperWayland
+- wayland: Add support for wlr-output-management
+- display-settings: Add XfceDisplaySettings and move X11 code to X11 
+impl
+- display-settings: Remove dead code
+- xfsettingsd: Clean up displays.c a bit
+- xfsettingsd: Make XfceDisplaysHelper derivable and add X11 impl
+- build: Properly distinguish X11/Wayland code paths
+- display-settings: Fix memory management of confirmation dialog
+- xfsettingsd: displays: Always do some actions on RRScreenChangeNotify
+- xfsettingsd: displays: Fix memory leak
+- Fix xfce_titled_dialog_create_action_area() deprecation
+- settings-manager: Support absolute path as icon name
+- Replace deprecated xfce_spawn(_command_line)?_on_screen
+- appearance: Match more dark themes (fixes #495)
+- build: Check for gmodule-2.0
+- appearance: Check for presence of color-scheme key
+- build: Properly check for xmllint at configure time
+- mime-settings: Add multiselection (Fixes #346)
+- Apply matching xfwm4 when the switch is clicked
+- displays: Lower warning level
+- Displays: Fix finding a valid mode by refresh rate
+- I18n: Update po/LINGUAS list
+- I18n: Update po/LINGUAS list
+- Translation Updates:
+  Albanian, Basque, Bulgarian, Catalan, Chinese (China), Chinese
+  (Taiwan), Czech, Danish, Dutch, English (United Kingdom), Estonian,
+  French, German, Greek, Hebrew, Italian, Japanese, Kazakh, Korean,
+  Lithuanian, Norwegian Bokmål, Polish, Portuguese, Portuguese
+  (Brazil), Russian, Serbian, Slovenian, Spanish, Swedish, Ukrainian
+
 4.19.0 (2023-04-18)
 ======
 - build: Use m4_defined min versions and cleanup
