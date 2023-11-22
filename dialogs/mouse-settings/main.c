@@ -148,6 +148,20 @@ typedef enum
     LIBINPUT_CLICK_METHOD_BUTTON_AREAS = 1 << 0,
     LIBINPUT_CLICK_METHOD_CLICK_FINGER = 1 << 1,
 } LibinputClickMethod;
+
+
+
+typedef enum
+{
+    LIBINPUT_ACCEL_PROFILE_NONE = 0,
+    LIBINPUT_ACCEL_PROFILE_ADAPTIVE = 1 << 0,
+    LIBINPUT_ACCEL_PROFILE_FLAT = 1 << 1,
+    LIBINPUT_ACCEL_PROFILE_CUSTOM = 1 << 2,
+} LibinputAccelProfile;
+
+
+
+static gboolean libinput_supports_custom_accel_profile = FALSE; // Requires libinput 1.23.0
 #endif
 
 
@@ -781,6 +795,39 @@ mouse_settings_get_libinput_click_method (Display             *xdisplay,
 
     return FALSE;
 }
+
+
+
+static gboolean
+mouse_settings_get_libinput_accel_profile (Display              *xdisplay,
+                                           XDevice              *device,
+                                           const gchar          *prop_name,
+                                           LibinputAccelProfile *accel_profile)
+{
+    propdata_t pdata[3] = {};
+    gboolean ok = FALSE;
+
+    ok = mouse_settings_get_device_prop (xdisplay, device, prop_name, XA_INTEGER, 3, &pdata[0]);
+    if (ok)
+        libinput_supports_custom_accel_profile = TRUE;
+    else if (!libinput_supports_custom_accel_profile)
+        ok = mouse_settings_get_device_prop (xdisplay, device, prop_name, XA_INTEGER, 2, &pdata[0]);
+
+    if (ok)
+    {
+        *accel_profile = LIBINPUT_ACCEL_PROFILE_NONE;
+        if (pdata[0].c)
+            *accel_profile |= LIBINPUT_ACCEL_PROFILE_ADAPTIVE;
+        if (pdata[1].c)
+            *accel_profile |= LIBINPUT_ACCEL_PROFILE_FLAT;
+        if (pdata[2].c)
+            *accel_profile |= LIBINPUT_ACCEL_PROFILE_CUSTOM;
+
+        return TRUE;
+    }
+
+    return FALSE;
+}
 #endif /* HAVE_LIBINPUT */
 
 
@@ -1123,6 +1170,52 @@ mouse_settings_libinput_click_method_changed (GObject     *object,
 
     g_free (name);
 }
+
+
+
+static void
+mouse_settings_libinput_accel_profile_changed (GObject     *object,
+                                               GtkBuilder  *builder)
+{
+    gchar *name = NULL, *prop;
+    gboolean toggle_button_value;
+    gint adaptive = 0;
+    gint flat = 0;
+    gint custom = 0;
+
+    if (mouse_settings_device_get_selected (builder, NULL, &name))
+    {
+        prop = g_strconcat ("/", name, "/Properties/" LIBINPUT_PROP_ACCEL_PROFILE_ENABLED, NULL);
+        g_strdelimit (prop, " ", '_');
+
+        toggle_button_value = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
+
+        /* Possible arrays:
+         * [1, 0, 0] - adaptive
+         * [0, 1, 0] - flat
+         * [0, 0, 1] - custom (unused)
+         */
+        if (toggle_button_value)
+            adaptive = 1;
+        else
+            flat = 1;
+
+        if (libinput_supports_custom_accel_profile)
+        {
+            xfconf_channel_set_array (pointers_channel, prop,
+                                    G_TYPE_INT, &adaptive, G_TYPE_INT, &flat, G_TYPE_INT, &custom, G_TYPE_INVALID);
+        }
+        else
+        {
+            xfconf_channel_set_array (pointers_channel, prop,
+                                    G_TYPE_INT, &adaptive, G_TYPE_INT, &flat, G_TYPE_INVALID);
+        }
+
+        g_free (prop);
+    }
+
+    g_free (name);
+}
 #endif
 
 
@@ -1313,6 +1406,9 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 #ifdef HAVE_LIBINPUT
     gboolean           has_hires_scrolling = FALSE;
     gboolean           hires_scrolling = FALSE;
+    gboolean           libinput_has_accel_profile = FALSE;
+    LibinputAccelProfile libinput_accel_profile_available = LIBINPUT_ACCEL_PROFILE_NONE;
+    LibinputAccelProfile libinput_accel_profile = LIBINPUT_ACCEL_PROFILE_NONE;
     gboolean           is_libinput = FALSE;
 #endif /* HAVE_LIBINPUT */
 #if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
@@ -1387,6 +1483,14 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         is_libinput = mouse_settings_get_libinput_boolean (xdisplay, device, LIBINPUT_PROP_LEFT_HANDED, &left_handed);
         mouse_settings_get_libinput_boolean (xdisplay, device, LIBINPUT_PROP_NATURAL_SCROLL, &reverse_scrolling);
         has_hires_scrolling = mouse_settings_get_libinput_boolean (xdisplay, device, LIBINPUT_PROP_HIRES_WHEEL_SCROLL_ENABLED, &hires_scrolling);
+        if (mouse_settings_get_libinput_accel_profile (xdisplay, device,
+                                                       LIBINPUT_PROP_ACCEL_PROFILES_AVAILABLE,
+                                                       &libinput_accel_profile_available))
+        {
+            libinput_has_accel_profile = mouse_settings_get_libinput_accel_profile (xdisplay, device,
+                                                                                    LIBINPUT_PROP_ACCEL_PROFILE_ENABLED,
+                                                                                    &libinput_accel_profile);
+        }
         if (!is_libinput)
 #endif /* HAVE_LIBINPUT */
         {
@@ -1570,6 +1674,20 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     {
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), hires_scrolling);
         gtk_widget_set_sensitive (GTK_WIDGET (object), scroll_wheel_available);
+        gtk_widget_set_visible (GTK_WIDGET (object), TRUE);
+    }
+    else
+#endif
+    {
+        gtk_widget_set_visible (GTK_WIDGET (object), FALSE);
+    }
+
+    object = gtk_builder_get_object (builder, "libinput-accel-profile");
+#ifdef HAVE_LIBINPUT
+    if (is_libinput && libinput_has_accel_profile)
+    {
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object), libinput_accel_profile == LIBINPUT_ACCEL_PROFILE_ADAPTIVE);
+        gtk_widget_set_sensitive (GTK_WIDGET (object), libinput_accel_profile_available & LIBINPUT_ACCEL_PROFILE_ADAPTIVE);
         gtk_widget_set_visible (GTK_WIDGET (object), TRUE);
     }
     else
@@ -2193,6 +2311,10 @@ main (gint argc, gchar **argv)
             object = gtk_builder_get_object (builder, "libinput-hires-scrolling");
             g_signal_connect (G_OBJECT (object), "toggled",
                               G_CALLBACK (mouse_settings_libinput_hires_scrolling_toggled), builder);
+
+            object = gtk_builder_get_object (builder, "libinput-accel-profile");
+            g_signal_connect (G_OBJECT (object), "toggled",
+                              G_CALLBACK (mouse_settings_libinput_accel_profile_changed), builder);
 #endif
 
             object = gtk_builder_get_object (builder, "device-reset-feedback");
