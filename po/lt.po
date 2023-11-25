@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-11-05 00:47+0100\n"
+"POT-Creation-Date: 2023-11-25 12:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Moo, 2023\n"
 "Language-Team: Lithuanian (http://app.transifex.com/xfce/xfce4-settings/language/lt/)\n"
@@ -206,7 +206,7 @@ msgstr "K_laviatūra"
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
-msgstr "Kai įjungta, pelės žymeklis gali būti valdomas klaviatūros skaičių sritimi."
+msgstr "Kai įjungta, pelės rodyklė gali būti valdoma klaviatūros skaitmenų sritimi."
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:792
 msgid "_Use mouse emulation"
@@ -216,7 +216,7 @@ msgstr "_Naudoti pelės emuliaciją"
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
-msgstr "Pasirinkus pelės žymeklis gali būti valdomas klaviatūros skaičių sritimi"
+msgstr "Pasirinkus, pelės rodyklė gali būti valdoma klaviatūros skaitmenų sritimi"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:824
 #: dialogs/accessibility-settings/accessibility-dialog.glade:894
@@ -256,7 +256,7 @@ msgstr "_Didžiausias greitis:"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:960
 msgid "The maximum pointer speed after acceleration"
-msgstr "Didžiausias žymeklio greitis po pagreitinimo"
+msgstr "Didžiausias rodyklės greitis po pagreitinimo"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:978
 msgid "pixels/sec"
@@ -268,7 +268,7 @@ msgstr "Pagreičio _profilis:"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:1002
 msgid "The ramp used to reach maximum pointer speed"
-msgstr "Rampa naudojama pasiekti didžiausią žymeklio greitį"
+msgstr "Rampa naudojama pasiekti didžiausią rodyklės greitį"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:1048
 msgid "Mouse Emulation"
@@ -322,9 +322,9 @@ msgstr "Versijos infomacija"
 #: dialogs/display-settings/main.c:3352 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
-#: dialogs/mouse-settings/main.c:2082 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:254
-#: xfsettingsd/main.c:292
+#: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:260
+#: xfsettingsd/main.c:298
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Bandykite „%s –help“, jei norite išsamesnės informacijos."
@@ -332,18 +332,18 @@ msgstr "Bandykite „%s –help“, jei norite išsamesnės informacijos."
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
 #: dialogs/display-settings/main.c:3371 dialogs/keyboard-settings/main.c:94
-#: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2101
+#: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:270
+#: xfsettingsd/main.c:276
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce kūrėjų komanda. Visos teisės saugomos."
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
 #: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:95
-#: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2102
+#: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:271
+#: xfsettingsd/main.c:277
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Apie klaidas praneškite <%s>."
@@ -1367,8 +1367,8 @@ msgid "Restore num l_ock state on startup"
 msgstr "Paleidimo metu atkurti klaviatūros skaitmenų (Num _lock) būseną"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:267
-#: dialogs/mouse-settings/mouse-dialog.glade:709
-#: dialogs/mouse-settings/mouse-dialog.glade:936
+#: dialogs/mouse-settings/mouse-dialog.glade:726
+#: dialogs/mouse-settings/mouse-dialog.glade:953
 msgid "General"
 msgstr "Bendra"
 
@@ -1908,8 +1908,8 @@ msgstr "Naudotojo nustatyta"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:656
 #: dialogs/mime-settings/xfce-mime-window.c:820
-#: dialogs/mouse-settings/main.c:406 dialogs/mouse-settings/main.c:408
-#: dialogs/mouse-settings/main.c:471
+#: dialogs/mouse-settings/main.c:420 dialogs/mouse-settings/main.c:422
+#: dialogs/mouse-settings/main.c:485
 msgid "Default"
 msgstr "Numatyta"
 
@@ -2215,19 +2215,19 @@ msgid "DEVICE NAME"
 msgstr "ĮRENGINIO PAVADINIMAS"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:159
+#: dialogs/mouse-settings/main.c:173
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:169
+#: dialogs/mouse-settings/main.c:183
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:180
+#: dialogs/mouse-settings/main.c:194
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f sek."
@@ -2340,132 +2340,143 @@ msgstr "Pagreiti_s:"
 #: dialogs/mouse-settings/mouse-dialog.glade:473
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "Faktorius ties kuriuo žymeklio greitis didės judant pelei"
+msgstr "Faktorius ties kuriuo rodyklės greitis didės judinant pelę"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:488
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
-msgstr "Pikselių skaičius kurį turi nukeliauti žymeklis, kad prasidėtų greitėjimas"
+msgstr "Pikselių skaičius kurį turi nukeliauti rodyklė, kad prasidėtų greitėjimas"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:508
+#: dialogs/mouse-settings/mouse-dialog.glade:502
+msgid "Adaptive pointer acceleration"
+msgstr "Adaptyvus rodyklės pagreitis"
+
+#: dialogs/mouse-settings/mouse-dialog.glade:505
+msgid ""
+"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
+"current speed of the device into account when deciding on acceleration. "
+"Custom acceleration profile is not supported via xfce4-settings."
+msgstr "Perjungia tarp adaptyvaus ir pastovaus pagreičio profilio. Adaptyvus profilis, nutardamas ar reikia pagreičio, atsižvelgia į esamą įrenginio greitį. Xfce4-settings nepalaiko tinkinto pagreičio profilio."
+
+#: dialogs/mouse-settings/mouse-dialog.glade:525
 msgid "Pointer Speed"
-msgstr "Žymeklio greitis"
+msgstr "Rodyklės greitis"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:527
+#: dialogs/mouse-settings/mouse-dialog.glade:544
 msgid "B_uttons and Feedback"
 msgstr "_Mygtukai ir grįžtamasis ryšys"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:561
 #: dialogs/mouse-settings/mouse-dialog.glade:578
+#: dialogs/mouse-settings/mouse-dialog.glade:595
 msgid "Disable touchpad _while typing"
 msgstr "_Renkant tekstą, išjungti jutiklinį kilimėlį"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:565
 #: dialogs/mouse-settings/mouse-dialog.glade:582
+#: dialogs/mouse-settings/mouse-dialog.glade:599
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Pasirinkus, naudojant klaviatūrą bus išjungtas jutiklinis kilimėlis"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:607
+#: dialogs/mouse-settings/mouse-dialog.glade:624
 msgid "Duratio_n:"
 msgstr "Truk_mė:"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:642
+#: dialogs/mouse-settings/mouse-dialog.glade:659
 msgid "Tap touchpad to clic_k"
 msgstr "Bakstelėti jutiklinį kilimėlį, norint spustelėti"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:665
+#: dialogs/mouse-settings/mouse-dialog.glade:682
 msgid "Click m_ethod:"
 msgstr "Spustelėjimo m_etodas:"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:750
+#: dialogs/mouse-settings/mouse-dialog.glade:767
 msgid "Scrolling _mode:"
 msgstr "Slinkties _veiksena:"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:788
+#: dialogs/mouse-settings/mouse-dialog.glade:805
 msgid "Enable hori_zontal scrolling"
 msgstr "Horizontali _kampų slinktis"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:810
+#: dialogs/mouse-settings/mouse-dialog.glade:827
 msgid "Scrolling"
 msgstr "Slinktis"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:833
+#: dialogs/mouse-settings/mouse-dialog.glade:850
 msgid "T_ouchpad"
 msgstr "_Jutiklinis kilimėlis"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:871
+#: dialogs/mouse-settings/mouse-dialog.glade:888
 msgid "Trac_king mode:"
 msgstr "Se_kimo veiksena:"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:884
+#: dialogs/mouse-settings/mouse-dialog.glade:901
 msgid "_Rotation:"
 msgstr "_Pasukimas:"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:959
+#: dialogs/mouse-settings/mouse-dialog.glade:976
 msgid "Tab_let"
 msgstr "P_lanšetė"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:980
+#: dialogs/mouse-settings/mouse-dialog.glade:997
 msgid "_Devices"
 msgstr "Į_renginiai"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1017
+#: dialogs/mouse-settings/mouse-dialog.glade:1034
 msgid "Th_reshold:"
 msgstr "_Slenkstis:"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1031
+#: dialogs/mouse-settings/mouse-dialog.glade:1048
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
-msgstr "Pikselių skaičius kurį turi nukeliauti žymeklis, kad būtų pradėtas vilkimas"
+msgstr "Pikselių skaičius kurį turi nukeliauti rodyklė, kad būtų pradėtas vilkimas"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1050
+#: dialogs/mouse-settings/mouse-dialog.glade:1067
 msgid "Drag and Drop"
 msgstr "Vilkimas"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1086
+#: dialogs/mouse-settings/mouse-dialog.glade:1103
 msgid "Ti_me:"
 msgstr "_Laikas:"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1100
+#: dialogs/mouse-settings/mouse-dialog.glade:1117
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Du pelės spustelėjimai per trumpesnį, nei šis, laiką (milisekundėmis), bus laikomi dvikarčiu spustelėjimu"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1116
+#: dialogs/mouse-settings/mouse-dialog.glade:1133
 msgid "D_istance:"
 msgstr "_Atstumas:"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1130
+#: dialogs/mouse-settings/mouse-dialog.glade:1147
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
-msgstr "Pelės žymeklis negali judėti toliau nei šis atstumas tarp dviejų spustelėjimų, kad jie būtų laikomi dvikarčiu spustelėjimu"
+msgstr "Pelės rodyklė negali judėti toliau nei šis atstumas tarp dviejų spustelėjimų, kad jie būtų laikomi dvikarčiu spustelėjimu"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1149
+#: dialogs/mouse-settings/mouse-dialog.glade:1166
 msgid "Double Click"
 msgstr "Dvikartis spustelėjimas"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1171
+#: dialogs/mouse-settings/mouse-dialog.glade:1188
 msgid "_Behavior"
 msgstr "_Elgsena"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1236
+#: dialogs/mouse-settings/mouse-dialog.glade:1253
 msgid "Cursor si_ze:"
 msgstr "Žymeklio d_ydis:"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1270
+#: dialogs/mouse-settings/mouse-dialog.glade:1287
 msgid "Size"
 msgstr "Dydis"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1310
+#: dialogs/mouse-settings/mouse-dialog.glade:1327
 msgid "Preview"
 msgstr "Peržiūra"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1339
+#: dialogs/mouse-settings/mouse-dialog.glade:1356
 msgid "_Theme"
 msgstr "_Apipavidalinimas"
 
@@ -2476,7 +2487,7 @@ msgstr "Konfigūruoti žymėjimo įrenginio elgseną ir išvaizdą"
 #: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:6
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-msgstr "nustatymai;nuostatos;mygtukai;slinkti;slinkimo;kryptis;rodyklė;žymeklis;zymeklis;greitis;dvikartis spustelėjimas;dvikartis spustelejimas;dvikartis spragtelėjimas;dvigubas;spustelėjimas;spragtelėjimas;spustelejimas;spragtelejimas;ratukas;ratas;tema;apipavidalinimas;pelės ratukas;peles ratukas;"
+msgstr "nustatymai;nuostatos;mygtukai;slinkti;slinkimo;kryptis;rodyklė;rodykle;žymeklis;zymeklis;greitis;dvikartis spustelėjimas;dvikartis spustelejimas;dvikartis spragtelėjimas;dvigubas;spustelėjimas;spragtelėjimas;spustelejimas;spragtelejimas;ratukas;ratas;tema;apipavidalinimas;pelės ratukas;peles ratukas;"
 
 #: xfce4-settings-editor/main.c:188
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
