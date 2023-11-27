@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-11-05 00:47+0100\n"
+"POT-Creation-Date: 2023-11-25 12:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Quentin PAGÈS, 2020-2023\n"
 "Language-Team: Occitan (post 1500) (http://app.transifex.com/xfce/xfce4-settings/language/oc/)\n"
@@ -323,9 +323,9 @@ msgstr "Informacion sus la version"
 #: dialogs/display-settings/main.c:3352 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
-#: dialogs/mouse-settings/main.c:2082 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:254
-#: xfsettingsd/main.c:292
+#: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:260
+#: xfsettingsd/main.c:298
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Picatz « %s --help » per mai d'ajuda."
@@ -333,18 +333,18 @@ msgstr "Picatz « %s --help » per mai d'ajuda."
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
 #: dialogs/display-settings/main.c:3371 dialogs/keyboard-settings/main.c:94
-#: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2101
+#: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:270
+#: xfsettingsd/main.c:276
 msgid "The Xfce development team. All rights reserved."
 msgstr "L'equipa de desvolopament Xfce. Totes los dreches reservats."
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
 #: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:95
-#: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2102
+#: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:271
+#: xfsettingsd/main.c:277
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Se vos plai senhalatz los bugs a <%s>."
@@ -1368,8 +1368,8 @@ msgid "Restore num l_ock state on startup"
 msgstr "Restablir l'estat del _varrolhatge numeric a l'aviada"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:267
-#: dialogs/mouse-settings/mouse-dialog.glade:709
-#: dialogs/mouse-settings/mouse-dialog.glade:936
+#: dialogs/mouse-settings/mouse-dialog.glade:726
+#: dialogs/mouse-settings/mouse-dialog.glade:953
 msgid "General"
 msgstr "General"
 
@@ -1907,8 +1907,8 @@ msgstr "Definit per l'utilizaire"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:656
 #: dialogs/mime-settings/xfce-mime-window.c:820
-#: dialogs/mouse-settings/main.c:406 dialogs/mouse-settings/main.c:408
-#: dialogs/mouse-settings/main.c:471
+#: dialogs/mouse-settings/main.c:420 dialogs/mouse-settings/main.c:422
+#: dialogs/mouse-settings/main.c:485
 msgid "Default"
 msgstr "Per defaut"
 
@@ -2210,19 +2210,19 @@ msgid "DEVICE NAME"
 msgstr "NOM DEL PERIFERIC"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:159
+#: dialogs/mouse-settings/main.c:173
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:169
+#: dialogs/mouse-settings/main.c:183
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:180
+#: dialogs/mouse-settings/main.c:194
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
@@ -2343,124 +2343,135 @@ msgid ""
 "accelerating"
 msgstr "Lo nombre de pixèls que se deu desplaçar lo puntador dins un cort relambi de temps abans que comence d'accelerar"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:508
+#: dialogs/mouse-settings/mouse-dialog.glade:502
+msgid "Adaptive pointer acceleration"
+msgstr "Acceleracion del puntador adaptativa"
+
+#: dialogs/mouse-settings/mouse-dialog.glade:505
+msgid ""
+"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
+"current speed of the device into account when deciding on acceleration. "
+"Custom acceleration profile is not supported via xfce4-settings."
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:525
 msgid "Pointer Speed"
 msgstr "Velocitat del puntador"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:527
+#: dialogs/mouse-settings/mouse-dialog.glade:544
 msgid "B_uttons and Feedback"
 msgstr "B_otons e retorn d'experiéncia"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:561
 #: dialogs/mouse-settings/mouse-dialog.glade:578
+#: dialogs/mouse-settings/mouse-dialog.glade:595
 msgid "Disable touchpad _while typing"
 msgstr "Desactivar lo pavat tactil pendent la quichada"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:565
 #: dialogs/mouse-settings/mouse-dialog.glade:582
+#: dialogs/mouse-settings/mouse-dialog.glade:599
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Un còp seleccionat, lo pavat tactil es desactivat quand lo clavièr es utilizat"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:607
+#: dialogs/mouse-settings/mouse-dialog.glade:624
 msgid "Duratio_n:"
 msgstr "Durada :"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:642
+#: dialogs/mouse-settings/mouse-dialog.glade:659
 msgid "Tap touchpad to clic_k"
 msgstr "Pic_anhejar lo pavat tactil per clicar"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:665
+#: dialogs/mouse-settings/mouse-dialog.glade:682
 msgid "Click m_ethod:"
-msgstr ""
+msgstr "Metòde de clic :"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:750
+#: dialogs/mouse-settings/mouse-dialog.glade:767
 msgid "Scrolling _mode:"
 msgstr "Mòde de desfi_lament :"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:788
+#: dialogs/mouse-settings/mouse-dialog.glade:805
 msgid "Enable hori_zontal scrolling"
 msgstr "Activar lo desfilament ori_zontal"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:810
+#: dialogs/mouse-settings/mouse-dialog.glade:827
 msgid "Scrolling"
 msgstr "Desfilament"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:833
+#: dialogs/mouse-settings/mouse-dialog.glade:850
 msgid "T_ouchpad"
 msgstr "Pavat tactil"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:871
+#: dialogs/mouse-settings/mouse-dialog.glade:888
 msgid "Trac_king mode:"
 msgstr "_Mòde de recèrca :"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:884
+#: dialogs/mouse-settings/mouse-dialog.glade:901
 msgid "_Rotation:"
 msgstr "Ro_tacion :"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:959
+#: dialogs/mouse-settings/mouse-dialog.glade:976
 msgid "Tab_let"
 msgstr "Tab_leta"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:980
+#: dialogs/mouse-settings/mouse-dialog.glade:997
 msgid "_Devices"
 msgstr "_Periferics"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1017
+#: dialogs/mouse-settings/mouse-dialog.glade:1034
 msgid "Th_reshold:"
 msgstr "_Sulhet :"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1031
+#: dialogs/mouse-settings/mouse-dialog.glade:1048
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Lo nombre de pixèls que lo puntador ne se deu desplaçar abans qu'una operacion de desplaçament va començar"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1050
+#: dialogs/mouse-settings/mouse-dialog.glade:1067
 msgid "Drag and Drop"
 msgstr "Lisar/depausar"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1086
+#: dialogs/mouse-settings/mouse-dialog.glade:1103
 msgid "Ti_me:"
 msgstr "_Temps :"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1100
+#: dialogs/mouse-settings/mouse-dialog.glade:1117
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Temps maximum (en millisegondas) entre dos clics per la deteccion d'un clic doble"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1116
+#: dialogs/mouse-settings/mouse-dialog.glade:1133
 msgid "D_istance:"
 msgstr "_Distància :"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1130
+#: dialogs/mouse-settings/mouse-dialog.glade:1147
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Lo puntador de la mirga se pòt pas desplaçar mai luènh que la distància entre dos clics per èsser considerat coma un clic doble"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1149
+#: dialogs/mouse-settings/mouse-dialog.glade:1166
 msgid "Double Click"
 msgstr "Clic doble"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1171
+#: dialogs/mouse-settings/mouse-dialog.glade:1188
 msgid "_Behavior"
 msgstr "_Comportament"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1236
+#: dialogs/mouse-settings/mouse-dialog.glade:1253
 msgid "Cursor si_ze:"
 msgstr "Talha del _cursor :"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1270
+#: dialogs/mouse-settings/mouse-dialog.glade:1287
 msgid "Size"
 msgstr "Talha"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1310
+#: dialogs/mouse-settings/mouse-dialog.glade:1327
 msgid "Preview"
 msgstr "Previsualizacion"
 
-#: dialogs/mouse-settings/mouse-dialog.glade:1339
+#: dialogs/mouse-settings/mouse-dialog.glade:1356
 msgid "_Theme"
 msgstr "_Tèma"
 
