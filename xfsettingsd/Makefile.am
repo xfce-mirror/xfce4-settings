@@ -158,6 +158,7 @@ libxfsettingsd_gtk_settings_sync_la_SOURCES = \
 	gtk-settings-module.c
 
 libxfsettingsd_gtk_settings_sync_la_CFLAGS = \
+	$(GMODULE_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(XFCONF_CFLAGS)
 
@@ -169,6 +170,7 @@ libxfsettingsd_gtk_settings_sync_la_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 libxfsettingsd_gtk_settings_sync_la_LIBADD = \
+	$(GMODULE_LIBS) \
 	$(GTK_LIBS) \
 	$(XFCONF_LIBS)
 
