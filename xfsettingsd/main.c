@@ -248,8 +248,7 @@ main (gint argc, gchar **argv)
        g_option_context_add_group (context, gtk_get_option_group (FALSE));
     */
 #ifdef ENABLE_X11
-    if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
-      g_option_context_add_group (context, xfce_sm_client_get_option_group (argc, argv));
+    g_option_context_add_group (context, xfce_sm_client_get_option_group (argc, argv));
 #endif
     g_option_context_set_ignore_unknown_options(context, TRUE);
 
