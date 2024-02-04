@@ -873,7 +873,7 @@ xfce_display_settings_wayland_save (XfceDisplaySettings *settings,
 
     /* stop here if output is disabled */
     property = g_strdup_printf ("/%s/%s/Active", scheme, output->name);
-    xfconf_channel_set_bool (channel, property, mode != NULL);
+    xfconf_channel_set_bool (channel, property, output->enabled);
     g_free (property);
     if (!output->enabled)
         return;
