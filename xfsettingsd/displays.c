@@ -633,8 +633,8 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
                             crtc->rotation = RR_Rotate_0;
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                             if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)
-                                || autoconnect_mode == 2) {
-G_GNUC_END_IGNORE_DEPRECATIONS
+                                || autoconnect_mode == 2)
+                            {
                                 crtc->x = crtc->y = 0;
                             }
                             /* Extend to the right if configured */
@@ -643,6 +643,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
                                 crtc->x = helper->width - crtc->width;
                                 crtc->y = 0;
                             } /* else - leave values from last time we saw the monitor */
+G_GNUC_END_IGNORE_DEPRECATIONS
                             /* set width and height */
                             for (j = 0; j < helper->resources->nmode; ++j)
                             {
