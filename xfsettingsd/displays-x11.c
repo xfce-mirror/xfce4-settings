@@ -648,8 +648,8 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
                             crtc->rotation = RR_Rotate_0;
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                             if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)
-                                || action == ACTION_ON_NEW_OUTPUT_MIRROR) {
-G_GNUC_END_IGNORE_DEPRECATIONS
+                                || action == ACTION_ON_NEW_OUTPUT_MIRROR)
+                            {
                                 crtc->x = crtc->y = 0;
                             }
                             /* Extend to the right if configured */
@@ -658,6 +658,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
                                 crtc->x = helper->width - crtc->width;
                                 crtc->y = 0;
                             } /* else - leave values from last time we saw the monitor */
+G_GNUC_END_IGNORE_DEPRECATIONS
                             /* set width and height */
                             for (j = 0; j < helper->resources->nmode; ++j)
                             {
