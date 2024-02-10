@@ -126,7 +126,6 @@ xfce_displays_helper_constructed (GObject *object)
 
         /* remove any leftover apply property before setting the monitor */
         xfconf_channel_reset_property (priv->channel, APPLY_SCHEME_PROP, FALSE);
-        xfconf_channel_set_string (priv->channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
 
         /* monitor channel changes */
         g_signal_connect_object (G_OBJECT (priv->channel),
