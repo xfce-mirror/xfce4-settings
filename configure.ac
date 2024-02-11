@@ -17,7 +17,7 @@ m4_define([gtk_min_version], [3.24.0])
 m4_define([garcon_min_version], [0.1.10])
 m4_define([exo_min_version], [0.11.0])
 m4_define([libxfce4util_min_version], [4.17.2])
-m4_define([libxfce4ui_min_version], [4.17.0])
+m4_define([libxfce4ui_min_version], [4.19.5])
 m4_define([xfconf_min_version], [4.13.0])
 
 m4_define([x11_minimum_version], [1.6.7])
