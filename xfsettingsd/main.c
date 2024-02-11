@@ -64,7 +64,6 @@
 #include "keyboard-layout.h"
 #include "keyboard-shortcuts.h"
 #include "workspaces.h"
-#include "clipboard-manager.h"
 #include "xsettings.h"
 #endif
 
@@ -175,12 +174,9 @@ on_name_acquired (GDBusConnection *connection,
 
         if (g_getenv ("XFSETTINGSD_NO_CLIPBOARD") == NULL)
         {
-            s_data->clipboard_daemon = g_object_new (GSD_TYPE_CLIPBOARD_MANAGER, NULL);
-            if (!gsd_clipboard_manager_start (GSD_CLIPBOARD_MANAGER (s_data->clipboard_daemon), opt_replace))
+            s_data->clipboard_daemon = xfce_clipboard_manager_new (opt_replace);
+            if (s_data->clipboard_daemon == NULL)
             {
-                UNREF_GOBJECT (G_OBJECT (s_data->clipboard_daemon));
-                s_data->clipboard_daemon = NULL;
-
                 g_warning ("Another clipboard manager is already running.");
             }
         }
@@ -384,11 +380,7 @@ main (gint argc, gchar **argv)
     UNREF_GOBJECT (s_data.shortcuts_helper);
     UNREF_GOBJECT (s_data.keyboard_layout_helper);
     UNREF_GOBJECT (s_data.workspaces_helper);
-    if (G_LIKELY (s_data.clipboard_daemon != NULL))
-    {
-        gsd_clipboard_manager_stop (GSD_CLIPBOARD_MANAGER (s_data.clipboard_daemon));
-        UNREF_GOBJECT (s_data.clipboard_daemon);
-    }
+    UNREF_GOBJECT (s_data.clipboard_daemon);
 #endif
     UNREF_GOBJECT (s_data.gtk_decorations_helper);
     UNREF_GOBJECT (s_data.gtk_settings_helper);
