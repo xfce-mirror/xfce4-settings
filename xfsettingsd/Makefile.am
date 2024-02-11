@@ -62,8 +62,6 @@ if ENABLE_X11
 xfsettingsd_SOURCES += \
 	accessibility.c \
 	accessibility.h \
-	clipboard-manager.c \
-	clipboard-manager.h \
 	keyboards.c \
 	keyboards.h \
 	keyboard-shortcuts.c \
