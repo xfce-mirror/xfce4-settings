@@ -98,7 +98,7 @@ static void             xfce_display_settings_x11_mirror                     (Xf
 static void             xfce_display_settings_x11_unmirror                   (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_x11_update_output_mirror       (XfceDisplaySettings      *settings,
                                                                               XfceOutput               *output);
-static void             xfce_display_settings_x11_extend_right               (XfceDisplaySettings      *settings,
+static void             xfce_display_settings_x11_extend                     (XfceDisplaySettings      *settings,
                                                                               guint                     output_id_1,
                                                                               guint                     output_id_2);
 
@@ -156,7 +156,7 @@ xfce_display_settings_x11_class_init (XfceDisplaySettingsX11Class *klass)
     settings_class->mirror = xfce_display_settings_x11_mirror;
     settings_class->unmirror = xfce_display_settings_x11_unmirror;
     settings_class->update_output_mirror = xfce_display_settings_x11_update_output_mirror;
-    settings_class->extend_right = xfce_display_settings_x11_extend_right;
+    settings_class->extend = xfce_display_settings_x11_extend;
 }
 
 
@@ -710,9 +710,9 @@ xfce_display_settings_x11_update_output_mirror (XfceDisplaySettings *settings,
 
 
 static void
-xfce_display_settings_x11_extend_right (XfceDisplaySettings *settings,
-                                        guint output_id_1,
-                                        guint output_id_2)
+xfce_display_settings_x11_extend (XfceDisplaySettings *settings,
+                                  guint output_id_1,
+                                  guint output_id_2)
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
     const XfceRRMode *mode = xfce_randr_find_mode_by_id (randr, output_id_1, randr->mode[output_id_1]);

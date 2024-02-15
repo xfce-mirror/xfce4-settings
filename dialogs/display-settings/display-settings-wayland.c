@@ -97,7 +97,7 @@ static void             xfce_display_settings_wayland_mirror                    
 static void             xfce_display_settings_wayland_unmirror                   (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_wayland_update_output_mirror       (XfceDisplaySettings      *settings,
                                                                                   XfceOutput               *output);
-static void             xfce_display_settings_wayland_extend_right               (XfceDisplaySettings      *settings,
+static void             xfce_display_settings_wayland_extend                     (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id_1,
                                                                                   guint                     output_id_2);
 
@@ -156,7 +156,7 @@ xfce_display_settings_wayland_class_init (XfceDisplaySettingsWaylandClass *klass
     settings_class->mirror = xfce_display_settings_wayland_mirror;
     settings_class->unmirror = xfce_display_settings_wayland_unmirror;
     settings_class->update_output_mirror = xfce_display_settings_wayland_update_output_mirror;
-    settings_class->extend_right = xfce_display_settings_wayland_extend_right;
+    settings_class->extend = xfce_display_settings_wayland_extend;
 }
 
 
@@ -1000,9 +1000,9 @@ xfce_display_settings_wayland_update_output_mirror (XfceDisplaySettings *setting
 
 
 static void
-xfce_display_settings_wayland_extend_right (XfceDisplaySettings *settings,
-                                            guint output_id_1,
-                                            guint output_id_2)
+xfce_display_settings_wayland_extend (XfceDisplaySettings *settings,
+                                      guint output_id_1,
+                                      guint output_id_2)
 {
     XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
