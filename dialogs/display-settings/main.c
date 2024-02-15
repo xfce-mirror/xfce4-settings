@@ -119,7 +119,7 @@ static GOptionEntry option_entries[] =
 };
 
 /* Keep track of the initially active profile */
-gchar *active_profile = NULL;
+gchar *initial_active_profile = NULL;
 
 /* Outputs Combobox */
 GtkWidget *apply_button = NULL;
@@ -1122,6 +1122,7 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
     GList    *profiles = NULL;
     GList    *current;
     gchar   **display_infos;
+    gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", NULL);
 
     profile_box  = gtk_builder_get_object (builder, "profile-box");
     profile_display1  = gtk_builder_get_object (builder, "display1");
@@ -1155,6 +1156,8 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
         gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (profile_radio), FALSE);
         gtk_widget_set_size_request (GTK_WIDGET (profile_radio), 128, 128);
         gtk_widget_set_halign (GTK_WIDGET (profile_radio), GTK_ALIGN_CENTER);
+        if (g_strcmp0 (active_profile, current->data) == 0)
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (profile_radio), TRUE);
 
         box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_box_pack_start (GTK_BOX (box), profile_radio, FALSE, TRUE, 0);
@@ -1170,6 +1173,7 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
 
     gtk_widget_show_all (GTK_WIDGET (profile_box));
     g_list_free (profiles);
+    g_free (active_profile);
 }
 
 static void
@@ -1257,13 +1261,13 @@ display_settings_dialog_response (GtkDialog *dialog,
     else if (response_id == GTK_RESPONSE_CLOSE)
     {
         XfconfChannel *channel = xfce_display_settings_get_channel (settings);
-        gchar *new_active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", NULL);
-        gchar *property = g_strdup_printf ("/%s", active_profile);
+        gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", NULL);
+        gchar *property = g_strdup_printf ("/%s", initial_active_profile);
         gchar *profile_name = xfconf_channel_get_string (channel, property, NULL);
 
-        if (g_strcmp0 (active_profile, new_active_profile) != 0 &&
+        if (g_strcmp0 (initial_active_profile, active_profile) != 0 &&
             profile_name != NULL &&
-            g_strcmp0 (active_profile, "Default") != 0)
+            g_strcmp0 (initial_active_profile, "Default") != 0)
         {
             GtkBuilder *profile_changed_builder = xfce_display_settings_get_builder (settings);
             GError     *error = NULL;
@@ -1309,15 +1313,15 @@ display_settings_dialog_response (GtkDialog *dialog,
             {
                 guint n_outputs = xfce_display_settings_get_n_outputs (settings);
                 for (guint n = 0; n < n_outputs; n++)
-                    xfce_display_settings_save (settings, n, active_profile);
+                    xfce_display_settings_save (settings, n, initial_active_profile);
 
-                xfconf_channel_set_string (channel, "/ActiveProfile", active_profile);
+                xfconf_channel_set_string (channel, "/ActiveProfile", initial_active_profile);
             }
         }
         g_free (profile_name);
         g_free (property);
-        g_free (new_active_profile);
         g_free (active_profile);
+        g_free (initial_active_profile);
         gtk_widget_destroy (GTK_WIDGET (dialog));
     }
 }
@@ -2959,7 +2963,7 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
         gtk_widget_show_all (gui_container);
 
         /* Keep track of the profile that was active when the dialog was launched */
-        active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
+        initial_active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
 
 #ifdef HAVE_XRANDR
         if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
@@ -3169,11 +3173,10 @@ display_settings_minimal_switch_layout (XfceDisplaySettings *settings)
 static void
 display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
 {
-    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GtkWidget  *dialog, *cancel;
     GObject    *only_display1, *only_display2, *mirror_displays, *mirror_displays_label;
-    GObject    *extend_right, *advanced, *label, *profile_box;
+    GObject    *extend_right, *advanced, *label;
     GError     *error = NULL;
 
     if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
@@ -3200,9 +3203,6 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
         extend_right = gtk_builder_get_object (builder, "extend-right");
         only_display2 = gtk_builder_get_object (builder, "display2");
         advanced = gtk_builder_get_object (builder, "advanced-button");
-
-        /* Create the profile radiobuttons */
-        display_settings_minimal_profile_populate (settings);
 
         label = gtk_builder_get_object (builder, "label-display1");
         only_display1_label = g_strdup_printf (ONLY_DISPLAY_1, xfce_display_settings_get_friendly_name (settings, 0));
@@ -3259,44 +3259,14 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
             gtk_widget_set_sensitive (GTK_WIDGET (only_display2), FALSE);
         }
 
+        /* Create the profile radiobuttons */
+        display_settings_minimal_profile_populate (settings);
+
         g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display_n_toggled), settings);
         g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled), settings);
         g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled), settings);
         g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display_n_toggled), settings);
         g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked), settings);
-
-        /* Auto-apply the first profile in the list */
-        if (xfconf_channel_get_bool (channel, "/AutoEnableProfiles", TRUE))
-        {
-            /* Walk down the widget hierarchy: profile-box -> gtkbox -> gtkradiobutton */
-            profile_box  = gtk_builder_get_object (builder, "profile-box");
-            if (GTK_IS_CONTAINER (profile_box))
-            {
-                GList *children = NULL;
-                GList *first_profile_box;
-
-                children = gtk_container_get_children (GTK_CONTAINER (profile_box));
-                first_profile_box = g_list_first (children);
-                if (first_profile_box)
-                {
-                    GList *grand_children = NULL;
-                    GList *current;
-                    GtkWidget *box = GTK_WIDGET (first_profile_box->data);
-
-                    grand_children = gtk_container_get_children (GTK_CONTAINER (box));
-                    current = g_list_first (grand_children);
-                    if (current)
-                    {
-                        GtkWidget* widget = GTK_WIDGET (grand_children->data);
-
-                        if (GTK_IS_TOGGLE_BUTTON (widget))
-                        {
-                            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
-                        }
-                    }
-                }
-            }
-        }
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));
