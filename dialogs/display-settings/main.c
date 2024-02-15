@@ -1961,7 +1961,7 @@ display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
             xfce_display_settings_set_active (settings, n, TRUE);
     }
 
-    xfce_display_settings_extend_right (settings, 0, 1);
+    xfce_display_settings_extend (settings, 0, 1);
 
     /* Save changes to both displays */
     xfce_display_settings_save (settings, 0, "Default");
