@@ -3143,7 +3143,7 @@ display_settings_minimal_load_icon (GtkBuilder  *builder,
     GtkImage     *img;
     GtkIconTheme *icon_theme;
     GdkPixbuf    *icon;
-    cairo_surface_t *surface = NULL;
+    cairo_surface_t *surface;
     gint scale_factor;
 
     dialog = gtk_builder_get_object (builder, "dialog");
@@ -3156,12 +3156,10 @@ display_settings_minimal_load_icon (GtkBuilder  *builder,
     if (G_LIKELY (icon != NULL))
     {
         surface = gdk_cairo_surface_create_from_pixbuf (icon, scale_factor, NULL);
+        gtk_image_set_from_surface (GTK_IMAGE (img), surface);
+        cairo_surface_destroy (surface);
         g_object_unref (icon);
     }
-    gtk_image_set_from_surface (GTK_IMAGE (img), surface);
-
-    if (G_LIKELY (surface != NULL))
-        cairo_surface_destroy (surface);
 }
 
 static void
