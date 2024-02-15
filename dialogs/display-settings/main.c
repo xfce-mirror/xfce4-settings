@@ -3173,7 +3173,6 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
     GObject    *extend_right, *advanced, *fake_button, *label, *profile_box;
     GError     *error = NULL;
     gboolean    found = FALSE;
-    GtkApplication *app;
 
     if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
                                      minimal_display_dialog_ui_length, &error) != 0)
@@ -3262,31 +3261,11 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
             gtk_widget_set_sensitive (GTK_WIDGET (only_display2), FALSE);
         }
 
-        /* Initialize application to ensure single instance */
-        app = gtk_application_new ("org.xfce.display.settings", 0);
-
-        g_application_register (G_APPLICATION (app), NULL, &error);
-        if (error != NULL)
-          {
-            g_warning ("Unable to register GApplication: %s", error->message);
-            g_error_free (error);
-            error = NULL;
-          }
-
-        if (g_application_get_is_remote (G_APPLICATION (app)))
-          {
-            g_application_activate (G_APPLICATION (app));
-            g_object_unref (app);
-            return;
-          }
-
         g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled), settings);
         g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled), settings);
         g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled), settings);
         g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled), settings);
         g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked), settings);
-
-        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), settings);
 
         /* Auto-apply the first profile in the list */
         if (xfconf_channel_get_bool (channel, "/AutoEnableProfiles", TRUE))
@@ -3332,6 +3311,29 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
     }
 }
 
+static gint
+handle_local_options (GApplication *app,
+                      GVariantDict *options,
+                      XfceDisplaySettings *settings)
+{
+    GError *error = NULL;
+
+    if (!g_application_register (app, NULL, &error))
+    {
+        g_warning ("Unable to register GApplication: %s", error->message);
+        g_error_free (error);
+    }
+
+    if (!g_application_get_is_remote (app))
+    {
+        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), settings);
+        display_settings_show_minimal_dialog (settings);
+        return EXIT_SUCCESS;
+    }
+
+    /* activate primary instance */
+    return -1;
+}
 
 gint
 main (gint argc, gchar **argv)
@@ -3421,7 +3423,13 @@ main (gint argc, gchar **argv)
     if (xfce_display_settings_get_n_outputs (settings) <= 1 || !opt_minimal)
         display_settings_show_main_dialog (settings);
     else
-        display_settings_show_minimal_dialog (settings);
+    {
+        /* Use GtkApplication to ensure single instance */
+        GtkApplication *app = gtk_application_new ("org.xfce.display.settings", 0);
+        g_signal_connect (app, "handle-local-options", G_CALLBACK (handle_local_options), settings);
+        g_application_run (G_APPLICATION (app), 0, NULL);
+        g_object_unref (app);
+    }
 
     /* Cleanup */
     g_object_unref (settings);
