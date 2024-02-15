@@ -3091,7 +3091,7 @@ display_settings_minimal_cycle (GtkWidget  *dialog,
 
     only_display1 = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "display1"));
     mirror_displays = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "mirror"));
-    extend_right = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "extend_right"));
+    extend_right = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "extend-right"));
     only_display2 = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "display2"));
 
     if (gtk_toggle_button_get_active (only_display1))
@@ -3170,7 +3170,7 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GtkWidget  *dialog, *cancel;
     GObject    *only_display1, *only_display2, *mirror_displays, *mirror_displays_label;
-    GObject    *extend_right, *advanced, *fake_button, *label, *profile_box;
+    GObject    *extend_right, *advanced, *label, *profile_box;
     GError     *error = NULL;
     gboolean    found = FALSE;
 
@@ -3181,34 +3181,30 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
 
         /* Build the minimal dialog */
         dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
-        cancel = GTK_WIDGET (gtk_builder_get_object (builder, "cancel_button"));
+        cancel = GTK_WIDGET (gtk_builder_get_object (builder, "cancel-button"));
 
         g_signal_connect (dialog, "key-press-event", G_CALLBACK (display_settings_minimal_dialog_key_press_event), NULL);
         g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
         g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
 
-        display_settings_minimal_load_icon (builder, "image1", "xfce-display-internal");
-        display_settings_minimal_load_icon (builder, "image2", "xfce-display-mirror");
-        display_settings_minimal_load_icon (builder, "image3", "xfce-display-extend");
-        display_settings_minimal_load_icon (builder, "image4", "xfce-display-external");
+        display_settings_minimal_load_icon (builder, "image-display1", "xfce-display-internal");
+        display_settings_minimal_load_icon (builder, "image-mirror", "xfce-display-mirror");
+        display_settings_minimal_load_icon (builder, "image-extend-right", "xfce-display-extend");
+        display_settings_minimal_load_icon (builder, "image-display2", "xfce-display-external");
 
         only_display1 = gtk_builder_get_object (builder, "display1");
         mirror_displays = gtk_builder_get_object (builder, "mirror");
-        mirror_displays_label = gtk_builder_get_object (builder, "label2");
-        extend_right = gtk_builder_get_object (builder, "extend_right");
+        mirror_displays_label = gtk_builder_get_object (builder, "label-mirror");
+        extend_right = gtk_builder_get_object (builder, "extend-right");
         only_display2 = gtk_builder_get_object (builder, "display2");
-        advanced = gtk_builder_get_object (builder, "advanced_button");
-        fake_button = gtk_builder_get_object (builder, "fake_button");
+        advanced = gtk_builder_get_object (builder, "advanced-button");
 
         /* Create the profile radiobuttons */
         display_settings_minimal_profile_populate (settings);
 
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
-
-        label = gtk_builder_get_object (builder, "label1");
+        label = gtk_builder_get_object (builder, "label-display1");
         only_display1_label = g_strdup_printf (_("Only %s (1)"), xfce_display_settings_get_friendly_name (settings, 0));
         gtk_label_set_text (GTK_LABEL (label), only_display1_label);
-        gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display1_label);
         g_free (only_display1_label);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1), xfce_display_settings_is_active (settings, 0));
@@ -3216,10 +3212,9 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
         if (xfce_display_settings_get_n_outputs (settings) > 1)
         {
             gboolean clonable = xfce_display_settings_is_clonable (settings);
-            label = gtk_builder_get_object (builder, "label4");
+            label = gtk_builder_get_object (builder, "label-display2");
             only_display2_label = g_strdup_printf (_("Only %s (2)"), xfce_display_settings_get_friendly_name (settings, 1));
             gtk_label_set_text (GTK_LABEL (label), only_display2_label);
-            gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display2_label);
             g_free (only_display2_label);
             gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), clonable);
             gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays_label), clonable);
