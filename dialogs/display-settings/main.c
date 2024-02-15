@@ -1954,10 +1954,11 @@ display_settings_profile_changed (GtkTreeSelection *selection, GtkBuilder *build
 static void
 display_settings_minimal_profile_apply (GtkToggleButton *widget, GtkBuilder *builder)
 {
-    gchar  *profile_hash;
-
-    profile_hash = (gchar *) g_object_get_data (G_OBJECT (widget), "profile");
-    xfce_randr_apply (xfce_randr, profile_hash, display_channel);
+    if (gtk_toggle_button_get_active (widget))
+    {
+        const gchar *profile_hash = g_object_get_data (G_OBJECT (widget), "profile");
+        xfce_randr_apply (xfce_randr, profile_hash, display_channel);
+    }
 }
 
 static void
