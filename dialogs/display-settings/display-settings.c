@@ -557,7 +557,7 @@ xfce_display_settings_populate_profile_list (XfceDisplaySettings *settings)
     }
 
     /* release the store */
-    g_list_free (profiles);
+    g_list_free_full (profiles, g_free);
     g_object_unref (G_OBJECT (store));
 }
 
