@@ -1601,7 +1601,7 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
 
         profile_radio = gtk_radio_button_new_from_widget (GTK_RADIO_BUTTON (profile_display1));
         gtk_container_add (GTK_CONTAINER (profile_radio), image);
-        g_object_set_data (G_OBJECT (profile_radio), "profile", (gchar *)current->data);
+        g_object_set_data_full (G_OBJECT (profile_radio), "profile", current->data, g_free);
         gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (profile_radio), FALSE);
         gtk_widget_set_size_request (GTK_WIDGET (profile_radio), 128, 128);
 
@@ -1620,6 +1620,7 @@ display_settings_minimal_profile_populate (GtkBuilder *builder)
     }
 
     gtk_widget_show_all (GTK_WIDGET (profile_box));
+    g_list_free (profiles);
 }
 
 static void

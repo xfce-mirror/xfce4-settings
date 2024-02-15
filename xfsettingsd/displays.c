@@ -501,6 +501,8 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles.", g_list_length (profiles));
     }
 
+    g_list_free_full (profiles, g_free);
+
     return NULL;
 }
 
