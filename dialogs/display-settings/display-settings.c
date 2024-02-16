@@ -557,7 +557,7 @@ xfce_display_settings_populate_profile_list (XfceDisplaySettings *settings)
     }
 
     /* release the store */
-    g_list_free (profiles);
+    g_list_free_full (profiles, g_free);
     g_object_unref (G_OBJECT (store));
 }
 
@@ -992,10 +992,10 @@ xfce_display_settings_unmirror (XfceDisplaySettings *settings)
 
 
 void
-xfce_display_settings_extend_right (XfceDisplaySettings *settings,
-                                    guint output_id_1,
-                                    guint output_id_2)
+xfce_display_settings_extend (XfceDisplaySettings *settings,
+                              guint output_id_1,
+                              guint output_id_2)
 {
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
-    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->extend_right (settings, output_id_1, output_id_2);
+    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->extend (settings, output_id_1, output_id_2);
 }
