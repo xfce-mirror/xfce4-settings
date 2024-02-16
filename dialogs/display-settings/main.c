@@ -1927,20 +1927,26 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
 {
     guint n_outputs;
 
-    if (!gtk_toggle_button_get_active(button))
-        return;
-
     if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return;
 
-    /* Activate mirror-mode with a single mode for all of them */
-    xfce_display_settings_mirror (settings);
-    n_outputs = xfce_display_settings_get_n_outputs (settings);
-    for (guint n = 0; n < n_outputs; n++)
-        xfce_display_settings_save (settings, n, "Default");
+    if (gtk_toggle_button_get_active(button))
+    {
+        /* Activate mirror-mode with a single mode for all of them */
+        xfce_display_settings_mirror (settings);
 
-    /* Apply all changes */
-    xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
+        n_outputs = xfce_display_settings_get_n_outputs (settings);
+        for (guint n = 0; n < n_outputs; n++)
+            xfce_display_settings_save (settings, n, "Default");
+
+        /* Apply all changes */
+        xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
+    }
+    else
+    {
+        /* Set all outputs to their preferred mode, that will be applied in next preset */
+        xfce_display_settings_unmirror (settings);
+    }
 }
 
 static void
