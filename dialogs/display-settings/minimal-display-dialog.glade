@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkImage" id="image5">
+  <object class="GtkImage" id="image-cancel-button">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">window-close-symbolic</property>
@@ -24,30 +24,24 @@
         <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <child>
-          <object class="GtkGrid" id="buttons">
+          <object class="GtkGrid" id="profile-grid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="row_spacing">3</property>
-            <child>
-              <object class="GtkBox" id="profile-box">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">4</property>
-                <property name="top_attach">0</property>
-              </packing>
-            </child>
+            <property name="row_spacing">6</property>
+            <property name="column_spacing">24</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="preset-grid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="row_spacing">6</property>
+            <property name="column_spacing">24</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
@@ -66,7 +60,7 @@
                     <property name="active">True</property>
                     <property name="draw_indicator">False</property>
                     <child>
-                      <object class="GtkImage" id="image1">
+                      <object class="GtkImage" id="image-display1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -79,7 +73,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label1">
+                  <object class="GtkLabel" id="label-display1">
                     <property name="width_request">128</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -102,7 +96,6 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">24</property>
                 <property name="hexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
@@ -118,7 +111,7 @@
                     <property name="draw_indicator">False</property>
                     <property name="group">display1</property>
                     <child>
-                      <object class="GtkImage" id="image2">
+                      <object class="GtkImage" id="image-mirror">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -131,65 +124,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label2">
+                  <object class="GtkLabel" id="label-mirror">
                     <property name="width_request">128</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">Mirror Displays</property>
                     <property name="label" translatable="yes">Mirror Displays</property>
-                    <property name="ellipsize">middle</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">24</property>
-                <property name="hexpand">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">3</property>
-                <child>
-                  <object class="GtkRadioButton" id="extend_right">
-                    <property name="width_request">128</property>
-                    <property name="height_request">128</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="halign">center</property>
-                    <property name="active">True</property>
-                    <property name="draw_indicator">False</property>
-                    <property name="group">display1</property>
-                    <child>
-                      <object class="GtkImage" id="image3">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="label3">
-                    <property name="width_request">128</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">Extend to the right</property>
-                    <property name="label" translatable="yes">Extend to the right</property>
                     <property name="ellipsize">middle</property>
                   </object>
                   <packing>
@@ -208,7 +147,108 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">24</property>
+                <property name="hexpand">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">3</property>
+                <child>
+                  <object class="GtkRadioButton" id="extend-right">
+                    <property name="width_request">128</property>
+                    <property name="height_request">128</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="halign">center</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">False</property>
+                    <property name="group">display1</property>
+                    <child>
+                      <object class="GtkImage" id="image-extend-right">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label-extend-right">
+                    <property name="width_request">128</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Extend to the right</property>
+                    <property name="ellipsize">middle</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">3</property>
+                <child>
+                  <object class="GtkRadioButton" id="extend-left">
+                    <property name="width_request">128</property>
+                    <property name="height_request">128</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="halign">center</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">False</property>
+                    <property name="group">display1</property>
+                    <child>
+                      <object class="GtkImage" id="image-extend-left">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label-extend-left">
+                    <property name="width_request">128</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Extend to the left</property>
+                    <property name="ellipsize">middle</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">3</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
@@ -224,7 +264,7 @@
                     <property name="draw_indicator">False</property>
                     <property name="group">display1</property>
                     <child>
-                      <object class="GtkImage" id="image4">
+                      <object class="GtkImage" id="image-display2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -237,7 +277,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label4">
+                  <object class="GtkLabel" id="label-display2">
                     <property name="width_request">128</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -252,7 +292,7 @@
                 </child>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -267,9 +307,11 @@
           <object class="GtkButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="layout_style">GTK_BUTTONBOX_START</property>
+            <property name="spacing">3</property>
             <child>
-              <object class="GtkButton" id="advanced_button">
-                <property name="label" translatable="yes">_Advanced</property>
+              <object class="GtkToggleButton" id="profiles-button">
+                <property name="label" translatable="yes">_Profiles</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -282,40 +324,40 @@
               </packing>
             </child>
             <child>
-              <object class="GtkRadioButton" id="fake_button">
-                <property name="label" translatable="yes">radiobutton</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">False</property>
-                <property name="active">True</property>
-                <property name="draw_indicator">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="cancel_button">
-                <property name="label" translatable="yes">_Close</property>
+              <object class="GtkButton" id="advanced-button">
+                <property name="label" translatable="yes">_Advanced</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="image">image5</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
-                <property name="position">4</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="cancel-button">
+                <property name="label" translatable="yes">_Close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="image">image-cancel-button</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="secondary">True</property>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
