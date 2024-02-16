@@ -60,6 +60,8 @@
 
 #define MARGIN  16
 #define NOTIFY_PROP_DEFAULT 1
+#define ONLY_DISPLAY_1 _("Only %s (1)")
+#define ONLY_DISPLAY_2 _("Only %s (2)")
 
 enum
 {
@@ -1923,20 +1925,26 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
 {
     guint n_outputs;
 
-    if (!gtk_toggle_button_get_active(button))
-        return;
-
     if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return;
 
-    /* Activate mirror-mode with a single mode for all of them */
-    xfce_display_settings_mirror (settings);
-    n_outputs = xfce_display_settings_get_n_outputs (settings);
-    for (guint n = 0; n < n_outputs; n++)
-        xfce_display_settings_save (settings, n, "Default");
+    if (gtk_toggle_button_get_active(button))
+    {
+        /* Activate mirror-mode with a single mode for all of them */
+        xfce_display_settings_mirror (settings);
 
-    /* Apply all changes */
-    xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
+        n_outputs = xfce_display_settings_get_n_outputs (settings);
+        for (guint n = 0; n < n_outputs; n++)
+            xfce_display_settings_save (settings, n, "Default");
+
+        /* Apply all changes */
+        xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
+    }
+    else
+    {
+        /* Set all outputs to their preferred mode, that will be applied in next preset */
+        xfce_display_settings_unmirror (settings);
+    }
 }
 
 static void
@@ -3057,17 +3065,17 @@ display_settings_minimal_switch_clicked (GtkButton *button,
     gchar *text1, *text2;
     gboolean switched;
 
-    switched = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (button), "switched"));
-    g_object_set_data (G_OBJECT (button), "switched", GINT_TO_POINTER (!switched));
+    switched = !GPOINTER_TO_INT (g_object_get_data (G_OBJECT (button), "switched"));
+    g_object_set_data (G_OBJECT (button), "switched", GINT_TO_POINTER (switched));
 
     label1 = gtk_builder_get_object (builder, "label-display1");
     label2 = gtk_builder_get_object (builder, "label-display2");
-    text1 = g_strdup (gtk_label_get_text (GTK_LABEL (label1)));
-    text2 = g_strdup (gtk_label_get_text (GTK_LABEL (label2)));
-    gtk_label_set_text (GTK_LABEL (label1), text2);
-    gtk_label_set_text (GTK_LABEL (label2), text1);
-    gtk_widget_set_tooltip_text (GTK_WIDGET (label1), text2);
-    gtk_widget_set_tooltip_text (GTK_WIDGET (label2), text1);
+    text1 = g_strdup_printf (ONLY_DISPLAY_1, xfce_display_settings_get_friendly_name (settings, switched ? 1 : 0));
+    text2 = g_strdup_printf (ONLY_DISPLAY_2, xfce_display_settings_get_friendly_name (settings, switched ? 0 : 1));
+    gtk_label_set_text (GTK_LABEL (label1), text1);
+    gtk_label_set_text (GTK_LABEL (label2), text2);
+    gtk_widget_set_tooltip_text (GTK_WIDGET (label1), text1);
+    gtk_widget_set_tooltip_text (GTK_WIDGET (label2), text2);
     g_free (text1);
     g_free (text2);
 
@@ -3253,7 +3261,7 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
         _switch = gtk_builder_get_object (builder, "switch-button");
 
         label = gtk_builder_get_object (builder, "label-display1");
-        only_display1_label = g_strdup_printf (_("Only %s (1)"), xfce_display_settings_get_friendly_name (settings, 0));
+        only_display1_label = g_strdup_printf (ONLY_DISPLAY_1, xfce_display_settings_get_friendly_name (settings, 0));
         gtk_label_set_text (GTK_LABEL (label), only_display1_label);
         gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display1_label);
         g_free (only_display1_label);
@@ -3262,7 +3270,7 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
         {
             gboolean clonable = xfce_display_settings_is_clonable (settings);
             label = gtk_builder_get_object (builder, "label-display2");
-            only_display2_label = g_strdup_printf (_("Only %s (2)"), xfce_display_settings_get_friendly_name (settings, 1));
+            only_display2_label = g_strdup_printf (ONLY_DISPLAY_2, xfce_display_settings_get_friendly_name (settings, 1));
             gtk_label_set_text (GTK_LABEL (label), only_display2_label);
             gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display2_label);
             g_free (only_display2_label);
