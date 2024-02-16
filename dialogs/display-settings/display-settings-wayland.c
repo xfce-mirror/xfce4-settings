@@ -833,16 +833,11 @@ xfce_display_settings_wayland_is_extended (XfceDisplaySettings *settings,
 static gboolean
 xfce_display_settings_wayland_is_clonable (XfceDisplaySettings *settings)
 {
-    if (xfce_display_settings_wayland_get_n_active_outputs (settings) > 1)
-    {
-        GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
-        XfceWlrMode **clonable_modes = get_clonable_modes (outputs);
-        gboolean clonable = clonable_modes != NULL;
-        g_free (clonable_modes);
-        return clonable;
-    }
-
-    return FALSE;
+    GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
+    XfceWlrMode **clonable_modes = get_clonable_modes (outputs);
+    gboolean clonable = clonable_modes != NULL;
+    g_free (clonable_modes);
+    return clonable;
 }
 
 
@@ -944,15 +939,17 @@ xfce_display_settings_wayland_mirror (XfceDisplaySettings *settings)
 {
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
     XfceWlrMode **clonable_modes = get_clonable_modes (outputs);
+    if (clonable_modes == NULL)
+    {
+        g_warn_if_reached ();
+        return;
+    }
 
     for (guint n = 0; n < outputs->len; n++)
     {
         XfceWlrOutput *output = g_ptr_array_index (outputs, n);
-        if (!output->enabled)
-            continue;
-
-        if (clonable_modes != NULL)
-            output->wl_mode = clonable_modes[n]->wl_mode;
+        output->enabled = TRUE;
+        output->wl_mode = clonable_modes[n]->wl_mode;
         output->transform = ROTATION_FLAGS_0;
         output->x = 0;
         output->y = 0;
@@ -995,6 +992,7 @@ xfce_display_settings_wayland_update_output_mirror (XfceDisplaySettings *setting
     output->y = xfwl_output->y;
     output->mirrored = xfce_display_settings_wayland_is_mirrored (settings, output->id);
     output_set_mode (output, mode, g_list_index (xfwl_output->modes, mode), xfwl_output->transform);
+    output->active = xfwl_output->enabled;
 }
 
 
