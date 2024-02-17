@@ -117,7 +117,7 @@ static GOptionEntry option_entries[] =
 };
 
 /* Keep track of the initially active profile */
-gchar *active_profile = NULL;
+gchar *initial_active_profile = NULL;
 
 /* Outputs Combobox */
 GtkWidget *apply_button = NULL;
@@ -1116,13 +1116,21 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
 {
     XfconfChannel *channel = xfce_display_settings_get_channel (settings);
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
-    GObject  *profile_box, *profile_display1;
+    GObject  *profile_grid, *profiles_button, *profile_display1;
     GList    *profiles = NULL;
-    GList    *current;
+    GList    *current, *presets;
     gchar   **display_infos;
+    gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", NULL);
+    gboolean profile_found = FALSE;
+    guint n_presets, col = 0, row = 0;
 
-    profile_box  = gtk_builder_get_object (builder, "profile-box");
-    profile_display1  = gtk_builder_get_object (builder, "display1");
+    profile_grid = gtk_builder_get_object (builder, "profile-grid");
+    profiles_button = gtk_builder_get_object (builder, "profiles-button");
+    profile_display1 = gtk_builder_get_object (builder, "display1");
+
+    presets = gtk_container_get_children (GTK_CONTAINER (gtk_builder_get_object (builder, "preset-grid")));
+    n_presets = g_list_length (presets);
+    g_list_free (presets);
 
     display_infos = xfce_display_settings_get_display_infos (settings);
     profiles = display_settings_get_profiles (display_infos, channel);
@@ -1140,20 +1148,34 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
         profile_name = xfconf_channel_get_string (channel, property, NULL);
 
         label = gtk_label_new (profile_name);
+        gtk_widget_set_tooltip_text (label, profile_name);
+        gtk_widget_set_size_request (label, 128, -1);
+        gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_MIDDLE);
+        gtk_label_set_max_width_chars (GTK_LABEL (label), 0);
         image = gtk_image_new_from_icon_name ("xfce-display-profile", 128);
         gtk_image_set_pixel_size (GTK_IMAGE (image), 128);
 
         profile_radio = gtk_radio_button_new_from_widget (GTK_RADIO_BUTTON (profile_display1));
         gtk_container_add (GTK_CONTAINER (profile_radio), image);
-        g_object_set_data (G_OBJECT (profile_radio), "profile", (gchar *)current->data);
+        g_object_set_data_full (G_OBJECT (profile_radio), "profile", current->data, g_free);
         gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (profile_radio), FALSE);
         gtk_widget_set_size_request (GTK_WIDGET (profile_radio), 128, 128);
+        gtk_widget_set_halign (GTK_WIDGET (profile_radio), GTK_ALIGN_CENTER);
+        if (g_strcmp0 (active_profile, current->data) == 0)
+        {
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (profile_radio), TRUE);
+            profile_found = TRUE;
+        }
 
         box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_box_pack_start (GTK_BOX (box), profile_radio, FALSE, TRUE, 0);
         gtk_box_pack_start (GTK_BOX (box), label, FALSE, TRUE, 3);
-        gtk_widget_set_margin_start (GTK_WIDGET (box), 24);
-        gtk_box_pack_start (GTK_BOX (profile_box), box, FALSE, FALSE, 0);
+        gtk_grid_attach (GTK_GRID (profile_grid), box, col, row, 1, 1);
+        if (++col == n_presets)
+        {
+            col = 0;
+            row++;
+        }
 
         g_signal_connect (profile_radio, "toggled", G_CALLBACK (display_settings_minimal_profile_apply), channel);
 
@@ -1162,7 +1184,12 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
         g_free (profile_name);
     }
 
-    gtk_widget_show_all (GTK_WIDGET (profile_box));
+    gtk_widget_show_all (GTK_WIDGET (profile_grid));
+    gtk_widget_set_visible (GTK_WIDGET (profile_grid), profile_found);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (profiles_button), profile_found);
+    gtk_widget_set_visible (GTK_WIDGET (profiles_button), profiles != NULL);
+    g_list_free (profiles);
+    g_free (active_profile);
 }
 
 static void
@@ -1250,13 +1277,13 @@ display_settings_dialog_response (GtkDialog *dialog,
     else if (response_id == GTK_RESPONSE_CLOSE)
     {
         XfconfChannel *channel = xfce_display_settings_get_channel (settings);
-        gchar *new_active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", NULL);
-        gchar *property = g_strdup_printf ("/%s", active_profile);
+        gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", NULL);
+        gchar *property = g_strdup_printf ("/%s", initial_active_profile);
         gchar *profile_name = xfconf_channel_get_string (channel, property, NULL);
 
-        if (g_strcmp0 (active_profile, new_active_profile) != 0 &&
+        if (g_strcmp0 (initial_active_profile, active_profile) != 0 &&
             profile_name != NULL &&
-            g_strcmp0 (active_profile, "Default") != 0)
+            g_strcmp0 (initial_active_profile, "Default") != 0)
         {
             GtkBuilder *profile_changed_builder = xfce_display_settings_get_builder (settings);
             GError     *error = NULL;
@@ -1302,15 +1329,15 @@ display_settings_dialog_response (GtkDialog *dialog,
             {
                 guint n_outputs = xfce_display_settings_get_n_outputs (settings);
                 for (guint n = 0; n < n_outputs; n++)
-                    xfce_display_settings_save (settings, n, active_profile);
+                    xfce_display_settings_save (settings, n, initial_active_profile);
 
-                xfconf_channel_set_string (channel, "/ActiveProfile", active_profile);
+                xfconf_channel_set_string (channel, "/ActiveProfile", initial_active_profile);
             }
         }
         g_free (profile_name);
         g_free (property);
-        g_free (new_active_profile);
         g_free (active_profile);
+        g_free (initial_active_profile);
         gtk_widget_destroy (GTK_WIDGET (dialog));
     }
 }
@@ -1360,10 +1387,11 @@ display_settings_profile_changed (GtkTreeSelection *selection, GtkBuilder *build
 static void
 display_settings_minimal_profile_apply (GtkToggleButton *widget, XfconfChannel *channel)
 {
-    gchar  *profile_hash;
-
-    profile_hash = (gchar *) g_object_get_data (G_OBJECT (widget), "profile");
-    xfconf_channel_set_string (channel, "/Schemes/Apply", profile_hash);
+    if (gtk_toggle_button_get_active (widget))
+    {
+        const gchar *profile_hash = g_object_get_data (G_OBJECT (widget), "profile");
+        xfconf_channel_set_string (channel, "/Schemes/Apply", profile_hash);
+    }
 }
 
 static void
@@ -1857,16 +1885,11 @@ static void
 display_settings_minimal_only_display1_toggled (GtkToggleButton *button,
                                                 XfceDisplaySettings *settings)
 {
-    GObject *buttons;
-
     if (!gtk_toggle_button_get_active (button))
         return;
 
     if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return;
-
-    buttons = gtk_builder_get_object (xfce_display_settings_get_builder (settings), "buttons");
-    gtk_widget_set_sensitive (GTK_WIDGET(buttons), FALSE);
 
     /* Put Display1 in its preferred mode and deactivate Display2 */
     xfce_display_settings_set_active (settings, 0, TRUE);
@@ -1876,24 +1899,17 @@ display_settings_minimal_only_display1_toggled (GtkToggleButton *button,
     xfce_display_settings_save (settings, 0, "Default");
     xfce_display_settings_save (settings, 1, "Default");
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
-
-    gtk_widget_set_sensitive (GTK_WIDGET(buttons), TRUE);
 }
 
 static void
 display_settings_minimal_only_display2_toggled (GtkToggleButton *button,
                                                 XfceDisplaySettings *settings)
 {
-    GObject *buttons;
-
     if (!gtk_toggle_button_get_active(button) )
         return;
 
     if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return;
-
-    buttons = gtk_builder_get_object (xfce_display_settings_get_builder (settings), "buttons");
-    gtk_widget_set_sensitive (GTK_WIDGET(buttons), FALSE);
 
     /* Put Display2 in its preferred mode and deactivate Display1 */
     xfce_display_settings_set_active (settings, 1, TRUE);
@@ -1903,43 +1919,40 @@ display_settings_minimal_only_display2_toggled (GtkToggleButton *button,
     xfce_display_settings_save (settings, 0, "Default");
     xfce_display_settings_save (settings, 1, "Default");
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
-
-    gtk_widget_set_sensitive (GTK_WIDGET(buttons), TRUE);
 }
 
 static void
 display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
                                                   XfceDisplaySettings *settings)
 {
-    GObject *buttons;
     guint n_outputs;
-
-    if (!gtk_toggle_button_get_active(button))
-        return;
 
     if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return;
 
-    buttons = gtk_builder_get_object (xfce_display_settings_get_builder (settings), "buttons");
-    gtk_widget_set_sensitive (GTK_WIDGET(buttons), FALSE);
+    if (gtk_toggle_button_get_active(button))
+    {
+        /* Activate mirror-mode with a single mode for all of them */
+        xfce_display_settings_mirror (settings);
 
-    /* Activate mirror-mode with a single mode for all of them */
-    xfce_display_settings_mirror (settings);
-    n_outputs = xfce_display_settings_get_n_outputs (settings);
-    for (guint n = 0; n < n_outputs; n++)
-        xfce_display_settings_save (settings, n, "Default");
+        n_outputs = xfce_display_settings_get_n_outputs (settings);
+        for (guint n = 0; n < n_outputs; n++)
+            xfce_display_settings_save (settings, n, "Default");
 
-    /* Apply all changes */
-    xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
-
-    gtk_widget_set_sensitive (GTK_WIDGET(buttons), TRUE);
+        /* Apply all changes */
+        xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
+    }
+    else
+    {
+        /* Set all outputs to their preferred mode, that will be applied in next preset */
+        xfce_display_settings_unmirror (settings);
+    }
 }
 
 static void
-display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
-                                               XfceDisplaySettings *settings)
+display_settings_minimal_extend_toggled (GtkToggleButton *button,
+                                         XfceDisplaySettings *settings)
 {
-    GObject *buttons;
     guint n_outputs;
 
     if (!gtk_toggle_button_get_active(button))
@@ -1949,9 +1962,6 @@ display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
     if (n_outputs <= 1)
         return;
 
-    buttons = gtk_builder_get_object (xfce_display_settings_get_builder (settings), "buttons");
-    gtk_widget_set_sensitive (GTK_WIDGET (buttons), FALSE);
-
     /* Activate all inactive displays */
     for (guint n = 0; n < n_outputs; n++)
     {
@@ -1959,7 +1969,10 @@ display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
             xfce_display_settings_set_active (settings, n, TRUE);
     }
 
-    xfce_display_settings_extend_right (settings, 0, 1);
+    if (G_OBJECT (button) == gtk_builder_get_object (xfce_display_settings_get_builder (settings), "extend-right"))
+        xfce_display_settings_extend (settings, 0, 1);
+    else
+        xfce_display_settings_extend (settings, 1, 0);
 
     /* Save changes to both displays */
     xfce_display_settings_save (settings, 0, "Default");
@@ -1967,8 +1980,6 @@ display_settings_minimal_extend_right_toggled (GtkToggleButton *button,
 
     /* Apply all changes */
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
-
-    gtk_widget_set_sensitive (GTK_WIDGET (buttons), TRUE);
 }
 
 /* Xfce RANDR GUI **TODO** Place these functions in a sensible location */
@@ -2976,7 +2987,7 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
         gtk_widget_show_all (gui_container);
 
         /* Keep track of the profile that was active when the dialog was launched */
-        active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
+        initial_active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
 
 #ifdef HAVE_XRANDR
         if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
@@ -3045,6 +3056,14 @@ display_settings_minimal_advanced_clicked (GtkButton *button,
 }
 
 static void
+display_settings_minimal_profiles_toggled (GtkButton *button,
+                                           GtkWidget *profile_grid)
+{
+    gtk_widget_set_visible (profile_grid, !gtk_widget_get_visible (profile_grid));
+    gtk_window_resize (GTK_WINDOW (gtk_widget_get_toplevel (profile_grid)), 1, 1);
+}
+
+static void
 display_settings_minimal_get_positions (GtkWidget    *dialog,
                                         GdkRectangle *monitor_rect,
                                         GdkRectangle *window_rect)
@@ -3085,21 +3104,24 @@ static void
 display_settings_minimal_cycle (GtkWidget  *dialog,
                                 GtkBuilder *builder)
 {
-    GtkToggleButton *only_display1, *mirror_displays, *extend_right, *only_display2;
+    GtkToggleButton *only_display1, *extend_right, *mirror_displays, *extend_left, *only_display2;
 
     only_display1 = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "display1"));
+    extend_right = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "extend-right"));
     mirror_displays = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "mirror"));
-    extend_right = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "extend_right"));
+    extend_left = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "extend-left"));
     only_display2 = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "display2"));
 
     if (gtk_toggle_button_get_active (only_display1))
+        gtk_toggle_button_set_active (extend_right, TRUE);
+    else if (gtk_toggle_button_get_active (extend_right))
         if (gtk_widget_get_sensitive (GTK_WIDGET (mirror_displays)))
             gtk_toggle_button_set_active (mirror_displays, TRUE);
         else
-            gtk_toggle_button_set_active (extend_right, TRUE);
+            gtk_toggle_button_set_active (extend_left, TRUE);
     else if (gtk_toggle_button_get_active (mirror_displays))
-        gtk_toggle_button_set_active (extend_right, TRUE);
-    else if (gtk_toggle_button_get_active (extend_right))
+        gtk_toggle_button_set_active (extend_left, TRUE);
+    else if (gtk_toggle_button_get_active (extend_left))
         gtk_toggle_button_set_active (only_display2, TRUE);
     else
         gtk_toggle_button_set_active (only_display1, TRUE);
@@ -3142,7 +3164,7 @@ display_settings_minimal_load_icon (GtkBuilder  *builder,
     GtkImage     *img;
     GtkIconTheme *icon_theme;
     GdkPixbuf    *icon;
-    cairo_surface_t *surface = NULL;
+    cairo_surface_t *surface;
     gint scale_factor;
 
     dialog = gtk_builder_get_object (builder, "dialog");
@@ -3155,25 +3177,20 @@ display_settings_minimal_load_icon (GtkBuilder  *builder,
     if (G_LIKELY (icon != NULL))
     {
         surface = gdk_cairo_surface_create_from_pixbuf (icon, scale_factor, NULL);
+        gtk_image_set_from_surface (GTK_IMAGE (img), surface);
+        cairo_surface_destroy (surface);
         g_object_unref (icon);
     }
-    gtk_image_set_from_surface (GTK_IMAGE (img), surface);
-
-    if (G_LIKELY (surface != NULL))
-        cairo_surface_destroy (surface);
 }
 
 static void
 display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
 {
-    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
-    GtkWidget  *dialog, *cancel;
+    GtkWidget  *dialog, *cancel, *profiles, *profile_grid;
     GObject    *only_display1, *only_display2, *mirror_displays, *mirror_displays_label;
-    GObject    *extend_right, *advanced, *fake_button, *label, *profile_box;
+    GObject    *extend_right, *extend_left, *advanced, *label;
     GError     *error = NULL;
-    gboolean    found = FALSE;
-    GtkApplication *app;
 
     if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
                                      minimal_display_dialog_ui_length, &error) != 0)
@@ -3182,42 +3199,38 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
 
         /* Build the minimal dialog */
         dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
-        cancel = GTK_WIDGET (gtk_builder_get_object (builder, "cancel_button"));
+        cancel = GTK_WIDGET (gtk_builder_get_object (builder, "cancel-button"));
 
         g_signal_connect (dialog, "key-press-event", G_CALLBACK (display_settings_minimal_dialog_key_press_event), NULL);
         g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
         g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
 
-        display_settings_minimal_load_icon (builder, "image1", "xfce-display-internal");
-        display_settings_minimal_load_icon (builder, "image2", "xfce-display-mirror");
-        display_settings_minimal_load_icon (builder, "image3", "xfce-display-extend");
-        display_settings_minimal_load_icon (builder, "image4", "xfce-display-external");
+        display_settings_minimal_load_icon (builder, "image-display1", "xfce-display-left");
+        display_settings_minimal_load_icon (builder, "image-extend-right", "xfce-display-extend-right");
+        display_settings_minimal_load_icon (builder, "image-mirror", "xfce-display-mirror");
+        display_settings_minimal_load_icon (builder, "image-extend-left", "xfce-display-extend-left");
+        display_settings_minimal_load_icon (builder, "image-display2", "xfce-display-right");
 
         only_display1 = gtk_builder_get_object (builder, "display1");
         mirror_displays = gtk_builder_get_object (builder, "mirror");
-        mirror_displays_label = gtk_builder_get_object (builder, "label2");
-        extend_right = gtk_builder_get_object (builder, "extend_right");
+        mirror_displays_label = gtk_builder_get_object (builder, "label-mirror");
+        extend_right = gtk_builder_get_object (builder, "extend-right");
+        extend_left = gtk_builder_get_object (builder, "extend-left");
         only_display2 = gtk_builder_get_object (builder, "display2");
-        advanced = gtk_builder_get_object (builder, "advanced_button");
-        fake_button = gtk_builder_get_object (builder, "fake_button");
+        advanced = gtk_builder_get_object (builder, "advanced-button");
+        profiles = GTK_WIDGET (gtk_builder_get_object (builder, "profiles-button"));
+        profile_grid = GTK_WIDGET (gtk_builder_get_object (builder, "profile-grid"));
 
-        /* Create the profile radiobuttons */
-        display_settings_minimal_profile_populate (settings);
-
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fake_button), TRUE);
-
-        label = gtk_builder_get_object (builder, "label1");
+        label = gtk_builder_get_object (builder, "label-display1");
         only_display1_label = g_strdup_printf (_("Only %s (1)"), xfce_display_settings_get_friendly_name (settings, 0));
         gtk_label_set_text (GTK_LABEL (label), only_display1_label);
         gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display1_label);
         g_free (only_display1_label);
 
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1), xfce_display_settings_is_active (settings, 0));
-
         if (xfce_display_settings_get_n_outputs (settings) > 1)
         {
             gboolean clonable = xfce_display_settings_is_clonable (settings);
-            label = gtk_builder_get_object (builder, "label4");
+            label = gtk_builder_get_object (builder, "label-display2");
             only_display2_label = g_strdup_printf (_("Only %s (2)"), xfce_display_settings_get_friendly_name (settings, 1));
             gtk_label_set_text (GTK_LABEL (label), only_display2_label);
             gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display2_label);
@@ -3229,97 +3242,50 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
             {
                 if (xfce_display_settings_is_active (settings, 1))
                 {
-                    /* Check for mirror */
                     if (xfce_display_settings_is_mirrored (settings, 0) && xfce_display_settings_is_mirrored (settings, 1))
                     {
                         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mirror_displays), TRUE);
-                        found = TRUE;
                     }
-                    /* Check for Extend Right */
-                    if (!found && xfce_display_settings_is_extended (settings, 0, 1))
+                    else if (xfce_display_settings_is_extended (settings, 0, 1))
                     {
                         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_right), TRUE);
-                        found = TRUE;
+                    }
+                    else if (xfce_display_settings_is_extended (settings, 1, 0))
+                    {
+                        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_left), TRUE);
                     }
                 }
-                /* Toggle Primary */
-                if (!found)
+                else
                 {
                     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1), TRUE);
                 }
             }
-            /* Toggle Secondary */
             else
             {
-                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display2), TRUE);
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display2), xfce_display_settings_is_active (settings, 1));
             }
         }
         else
         {
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1), TRUE);
+
             /* Only one output, disable other buttons */
             gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), FALSE);
             gtk_widget_set_sensitive (GTK_WIDGET (extend_right), FALSE);
+            gtk_widget_set_sensitive (GTK_WIDGET (extend_left), FALSE);
             gtk_widget_set_sensitive (GTK_WIDGET (only_display2), FALSE);
         }
 
-        /* Initialize application to ensure single instance */
-        app = gtk_application_new ("org.xfce.display.settings", 0);
-
-        g_application_register (G_APPLICATION (app), NULL, &error);
-        if (error != NULL)
-          {
-            g_warning ("Unable to register GApplication: %s", error->message);
-            g_error_free (error);
-            error = NULL;
-          }
-
-        if (g_application_get_is_remote (G_APPLICATION (app)))
-          {
-            g_application_activate (G_APPLICATION (app));
-            g_object_unref (app);
-            return;
-          }
+        /* Create the profile radiobuttons */
+        display_settings_minimal_profile_populate (settings);
 
         g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display1_toggled), settings);
         g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled), settings);
-        g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_right_toggled), settings);
+        g_signal_connect (extend_right, "toggled", G_CALLBACK (display_settings_minimal_extend_toggled), settings);
+        g_signal_connect (extend_left, "toggled", G_CALLBACK (display_settings_minimal_extend_toggled), settings);
         g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display2_toggled), settings);
         g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked), settings);
-
-        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), settings);
-
-        /* Auto-apply the first profile in the list */
-        if (xfconf_channel_get_bool (channel, "/AutoEnableProfiles", TRUE))
-        {
-            /* Walk down the widget hierarchy: profile-box -> gtkbox -> gtkradiobutton */
-            profile_box  = gtk_builder_get_object (builder, "profile-box");
-            if (GTK_IS_CONTAINER (profile_box))
-            {
-                GList *children = NULL;
-                GList *first_profile_box;
-
-                children = gtk_container_get_children (GTK_CONTAINER (profile_box));
-                first_profile_box = g_list_first (children);
-                if (first_profile_box)
-                {
-                    GList *grand_children = NULL;
-                    GList *current;
-                    GtkWidget *box = GTK_WIDGET (first_profile_box->data);
-
-                    grand_children = gtk_container_get_children (GTK_CONTAINER (box));
-                    current = g_list_first (grand_children);
-                    if (current)
-                    {
-                        GtkWidget* widget = GTK_WIDGET (grand_children->data);
-
-                        if (GTK_IS_TOGGLE_BUTTON (widget))
-                        {
-                            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
-                        }
-                    }
-                }
-            }
-        }
+        g_signal_connect (profiles, "toggled", G_CALLBACK (display_settings_minimal_profiles_toggled), profile_grid);
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));
@@ -3332,6 +3298,29 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
     }
 }
 
+static gint
+handle_local_options (GApplication *app,
+                      GVariantDict *options,
+                      XfceDisplaySettings *settings)
+{
+    GError *error = NULL;
+
+    if (!g_application_register (app, NULL, &error))
+    {
+        g_warning ("Unable to register GApplication: %s", error->message);
+        g_error_free (error);
+    }
+
+    if (!g_application_get_is_remote (app))
+    {
+        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), settings);
+        display_settings_show_minimal_dialog (settings);
+        return EXIT_SUCCESS;
+    }
+
+    /* activate primary instance */
+    return -1;
+}
 
 gint
 main (gint argc, gchar **argv)
@@ -3421,7 +3410,13 @@ main (gint argc, gchar **argv)
     if (xfce_display_settings_get_n_outputs (settings) <= 1 || !opt_minimal)
         display_settings_show_main_dialog (settings);
     else
-        display_settings_show_minimal_dialog (settings);
+    {
+        /* Use GtkApplication to ensure single instance */
+        GtkApplication *app = gtk_application_new ("org.xfce.display.settings", 0);
+        g_signal_connect (app, "handle-local-options", G_CALLBACK (handle_local_options), settings);
+        g_application_run (G_APPLICATION (app), 0, NULL);
+        g_object_unref (app);
+    }
 
     /* Cleanup */
     g_object_unref (settings);

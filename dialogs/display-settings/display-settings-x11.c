@@ -98,7 +98,7 @@ static void             xfce_display_settings_x11_mirror                     (Xf
 static void             xfce_display_settings_x11_unmirror                   (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_x11_update_output_mirror       (XfceDisplaySettings      *settings,
                                                                               XfceOutput               *output);
-static void             xfce_display_settings_x11_extend_right               (XfceDisplaySettings      *settings,
+static void             xfce_display_settings_x11_extend                     (XfceDisplaySettings      *settings,
                                                                               guint                     output_id_1,
                                                                               guint                     output_id_2);
 
@@ -156,7 +156,7 @@ xfce_display_settings_x11_class_init (XfceDisplaySettingsX11Class *klass)
     settings_class->mirror = xfce_display_settings_x11_mirror;
     settings_class->unmirror = xfce_display_settings_x11_unmirror;
     settings_class->update_output_mirror = xfce_display_settings_x11_update_output_mirror;
-    settings_class->extend_right = xfce_display_settings_x11_extend_right;
+    settings_class->extend = xfce_display_settings_x11_extend;
 }
 
 
@@ -624,15 +624,10 @@ static gboolean
 xfce_display_settings_x11_is_clonable (XfceDisplaySettings *settings)
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
-    if (xfce_display_settings_x11_get_n_active_outputs (settings) > 1)
-    {
-        RRMode *clonable_modes = xfce_randr_clonable_modes (randr);
-        gboolean clonable = clonable_modes != NULL;
-        g_free (clonable_modes);
-        return clonable;
-    }
-
-    return FALSE;
+    RRMode *clonable_modes = xfce_randr_clonable_modes (randr);
+    gboolean clonable = clonable_modes != NULL;
+    g_free (clonable_modes);
+    return clonable;
 }
 
 
@@ -654,14 +649,15 @@ xfce_display_settings_x11_mirror (XfceDisplaySettings *settings)
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
     RRMode *clonable_modes = xfce_randr_clonable_modes (randr);
+    if (clonable_modes == NULL)
+    {
+        g_warn_if_reached ();
+        return;
+    }
 
     for (guint n = 0; n < randr->noutput; n++)
     {
-        if (!xfce_display_settings_x11_is_active (settings, n))
-            continue;
-
-        if (clonable_modes != NULL)
-            randr->mode[n] = clonable_modes[n];
+        randr->mode[n] = clonable_modes[n];
         randr->mirrored[n] = TRUE;
         randr->rotation[n] = RR_Rotate_0;
         randr->position[n].x = 0;
@@ -705,14 +701,15 @@ xfce_display_settings_x11_update_output_mirror (XfceDisplaySettings *settings,
     output->y = randr->position[output->id].y;
     output->mirrored = randr->mirrored[output->id];
     output_set_mode (output, mode, randr->rotation[output->id]);
+    output->active = (mode != NULL);
 }
 
 
 
 static void
-xfce_display_settings_x11_extend_right (XfceDisplaySettings *settings,
-                                        guint output_id_1,
-                                        guint output_id_2)
+xfce_display_settings_x11_extend (XfceDisplaySettings *settings,
+                                  guint output_id_1,
+                                  guint output_id_2)
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
     const XfceRRMode *mode = xfce_randr_find_mode_by_id (randr, output_id_1, randr->mode[output_id_1]);

@@ -106,17 +106,19 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 iconsdir = $(datadir)/icons/hicolor/128x128/devices
 icons_DATA = \
-	xfce-display-extend.png \
-	xfce-display-external.png \
-	xfce-display-internal.png \
+	xfce-display-extend-left.png \
+	xfce-display-extend-right.png \
+	xfce-display-right.png \
+	xfce-display-left.png \
 	xfce-display-mirror.png \
 	xfce-display-profile.png
 
 scalableiconsdir = $(datadir)/icons/hicolor/scalable/devices
 scalableicons_DATA = \
-	xfce-display-extend.svg \
-	xfce-display-external.svg \
-	xfce-display-internal.svg \
+	xfce-display-extend-left.svg \
+	xfce-display-extend-right.svg \
+	xfce-display-right.svg \
+	xfce-display-left.svg \
 	xfce-display-mirror.svg \
 	xfce-display-profile.svg
 
