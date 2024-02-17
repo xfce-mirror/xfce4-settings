@@ -3161,10 +3161,10 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
         g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
         g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
 
-        display_settings_minimal_load_icon (builder, "image-display1", "xfce-display-internal");
+        display_settings_minimal_load_icon (builder, "image-display1", "xfce-display-left");
         display_settings_minimal_load_icon (builder, "image-mirror", "xfce-display-mirror");
-        display_settings_minimal_load_icon (builder, "image-extend-right", "xfce-display-extend");
-        display_settings_minimal_load_icon (builder, "image-display2", "xfce-display-external");
+        display_settings_minimal_load_icon (builder, "image-extend-right", "xfce-display-extend-right");
+        display_settings_minimal_load_icon (builder, "image-display2", "xfce-display-right");
 
         only_display1 = gtk_builder_get_object (builder, "display1");
         mirror_displays = gtk_builder_get_object (builder, "mirror");
