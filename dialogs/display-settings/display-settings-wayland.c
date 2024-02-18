@@ -97,7 +97,7 @@ static void             xfce_display_settings_wayland_mirror                    
 static void             xfce_display_settings_wayland_unmirror                   (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_wayland_update_output_mirror       (XfceDisplaySettings      *settings,
                                                                                   XfceOutput               *output);
-static void             xfce_display_settings_wayland_extend_right               (XfceDisplaySettings      *settings,
+static void             xfce_display_settings_wayland_extend                     (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id_1,
                                                                                   guint                     output_id_2);
 
@@ -156,7 +156,7 @@ xfce_display_settings_wayland_class_init (XfceDisplaySettingsWaylandClass *klass
     settings_class->mirror = xfce_display_settings_wayland_mirror;
     settings_class->unmirror = xfce_display_settings_wayland_unmirror;
     settings_class->update_output_mirror = xfce_display_settings_wayland_update_output_mirror;
-    settings_class->extend_right = xfce_display_settings_wayland_extend_right;
+    settings_class->extend = xfce_display_settings_wayland_extend;
 }
 
 
@@ -833,16 +833,11 @@ xfce_display_settings_wayland_is_extended (XfceDisplaySettings *settings,
 static gboolean
 xfce_display_settings_wayland_is_clonable (XfceDisplaySettings *settings)
 {
-    if (xfce_display_settings_wayland_get_n_active_outputs (settings) > 1)
-    {
-        GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
-        XfceWlrMode **clonable_modes = get_clonable_modes (outputs);
-        gboolean clonable = clonable_modes != NULL;
-        g_free (clonable_modes);
-        return clonable;
-    }
-
-    return FALSE;
+    GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
+    XfceWlrMode **clonable_modes = get_clonable_modes (outputs);
+    gboolean clonable = clonable_modes != NULL;
+    g_free (clonable_modes);
+    return clonable;
 }
 
 
@@ -944,15 +939,17 @@ xfce_display_settings_wayland_mirror (XfceDisplaySettings *settings)
 {
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
     XfceWlrMode **clonable_modes = get_clonable_modes (outputs);
+    if (clonable_modes == NULL)
+    {
+        g_warn_if_reached ();
+        return;
+    }
 
     for (guint n = 0; n < outputs->len; n++)
     {
         XfceWlrOutput *output = g_ptr_array_index (outputs, n);
-        if (!output->enabled)
-            continue;
-
-        if (clonable_modes != NULL)
-            output->wl_mode = clonable_modes[n]->wl_mode;
+        output->enabled = TRUE;
+        output->wl_mode = clonable_modes[n]->wl_mode;
         output->transform = ROTATION_FLAGS_0;
         output->x = 0;
         output->y = 0;
@@ -995,14 +992,15 @@ xfce_display_settings_wayland_update_output_mirror (XfceDisplaySettings *setting
     output->y = xfwl_output->y;
     output->mirrored = xfce_display_settings_wayland_is_mirrored (settings, output->id);
     output_set_mode (output, mode, g_list_index (xfwl_output->modes, mode), xfwl_output->transform);
+    output->active = xfwl_output->enabled;
 }
 
 
 
 static void
-xfce_display_settings_wayland_extend_right (XfceDisplaySettings *settings,
-                                            guint output_id_1,
-                                            guint output_id_2)
+xfce_display_settings_wayland_extend (XfceDisplaySettings *settings,
+                                      guint output_id_1,
+                                      guint output_id_2)
 {
     XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);

@@ -174,7 +174,7 @@ struct _XfceDisplaySettingsClass
     void             (*unmirror)                      (XfceDisplaySettings      *settings);
     void             (*update_output_mirror)          (XfceDisplaySettings      *settings,
                                                        XfceOutput               *output);
-    void             (*extend_right)                  (XfceDisplaySettings      *settings,
+    void             (*extend)                        (XfceDisplaySettings      *settings,
                                                        guint                     output_id_1,
                                                        guint                     output_id_2);
 };
@@ -253,7 +253,7 @@ void                     xfce_display_settings_save                    (XfceDisp
                                                                         const gchar             *scheme);
 void                     xfce_display_settings_mirror                  (XfceDisplaySettings     *settings);
 void                     xfce_display_settings_unmirror                (XfceDisplaySettings     *settings);
-void                     xfce_display_settings_extend_right            (XfceDisplaySettings     *settings,
+void                     xfce_display_settings_extend                  (XfceDisplaySettings     *settings,
                                                                         guint                    output_id_1,
                                                                         guint                    output_id_2);
 
