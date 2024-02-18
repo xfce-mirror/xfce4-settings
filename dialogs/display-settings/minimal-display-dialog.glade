@@ -27,7 +27,8 @@
           <object class="GtkGrid" id="buttons">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="row_spacing">3</property>
+            <property name="row_spacing">6</property>
+            <property name="column_spacing">24</property>
             <child>
               <object class="GtkBox" id="profile-box">
                 <property name="visible">True</property>
@@ -74,8 +75,10 @@
                     <property name="width_request">128</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Only Display 1</property>
                     <property name="label" translatable="yes">Only Display 1</property>
                     <property name="ellipsize">middle</property>
+                    <property name="max-width-chars">0</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -93,7 +96,6 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">24</property>
                 <property name="hexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
@@ -129,6 +131,7 @@
                     <property name="tooltip_text" translatable="yes">Mirror Displays</property>
                     <property name="label" translatable="yes">Mirror Displays</property>
                     <property name="ellipsize">middle</property>
+                    <property name="max-width-chars">0</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -146,7 +149,6 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">24</property>
                 <property name="hexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
@@ -182,6 +184,7 @@
                     <property name="tooltip_text" translatable="yes">Extend to the right</property>
                     <property name="label" translatable="yes">Extend to the right</property>
                     <property name="ellipsize">middle</property>
+                    <property name="max-width-chars">0</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -199,7 +202,6 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">24</property>
                 <property name="hexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
@@ -232,8 +234,10 @@
                     <property name="width_request">128</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Only Display 2</property>
                     <property name="label" translatable="yes">Only Display 2</property>
                     <property name="ellipsize">middle</property>
+                    <property name="max-width-chars">0</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>

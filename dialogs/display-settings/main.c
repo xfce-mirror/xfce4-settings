@@ -1140,6 +1140,10 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
         profile_name = xfconf_channel_get_string (channel, property, NULL);
 
         label = gtk_label_new (profile_name);
+        gtk_widget_set_tooltip_text (label, profile_name);
+        gtk_widget_set_size_request (label, 128, -1);
+        gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_MIDDLE);
+        gtk_label_set_max_width_chars (GTK_LABEL (label), 0);
         image = gtk_image_new_from_icon_name ("xfce-display-profile", 128);
         gtk_image_set_pixel_size (GTK_IMAGE (image), 128);
 
@@ -1148,11 +1152,11 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
         g_object_set_data_full (G_OBJECT (profile_radio), "profile", current->data, g_free);
         gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (profile_radio), FALSE);
         gtk_widget_set_size_request (GTK_WIDGET (profile_radio), 128, 128);
+        gtk_widget_set_halign (GTK_WIDGET (profile_radio), GTK_ALIGN_CENTER);
 
         box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_box_pack_start (GTK_BOX (box), profile_radio, FALSE, TRUE, 0);
         gtk_box_pack_start (GTK_BOX (box), label, FALSE, TRUE, 3);
-        gtk_widget_set_margin_start (GTK_WIDGET (box), 24);
         gtk_box_pack_start (GTK_BOX (profile_box), box, FALSE, FALSE, 0);
 
         g_signal_connect (profile_radio, "toggled", G_CALLBACK (display_settings_minimal_profile_apply), channel);
