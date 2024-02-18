@@ -106,6 +106,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 iconsdir = $(datadir)/icons/hicolor/128x128/devices
 icons_DATA = \
+	xfce-display-extend-left.png \
 	xfce-display-extend-right.png \
 	xfce-display-right.png \
 	xfce-display-left.png \
@@ -114,6 +115,7 @@ icons_DATA = \
 
 scalableiconsdir = $(datadir)/icons/hicolor/scalable/devices
 scalableicons_DATA = \
+	xfce-display-extend-left.svg \
 	xfce-display-extend-right.svg \
 	xfce-display-right.svg \
 	xfce-display-left.svg \
