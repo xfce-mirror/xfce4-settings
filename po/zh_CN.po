@@ -11,18 +11,18 @@
 # Shun <shun98@139.com>, 2018
 # wwj402 <wwj402@gmail.com>, 2018
 # wwj402 <wwj402@gmail.com>, 2018
-# ccoc <zhouxiaobo.500@gmail.com>, 2018
-# ccoc <zhouxiaobo.500@gmail.com>, 2015,2018
+# Cally Mal <zhouxiaobo.500@gmail.com>, 2018
+# Cally Mal <zhouxiaobo.500@gmail.com>, 2015,2018
 # 玉堂白鹤 <yjwork@qq.com>, 2014
 # Zhou Yuheng <wojiushixxx@126.com>, 2022
-# ccoc <zhouxiaobo.500@gmail.com>, 2015
+# Cally Mal <zhouxiaobo.500@gmail.com>, 2015
 # 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2023
 # Mingcong Bai <jeffbai@aosc.xyz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-11-25 12:47+0100\n"
+"POT-Creation-Date: 2024-02-19 00:50+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2023\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
@@ -54,7 +54,7 @@ msgstr "电视"
 msgid "Digital display"
 msgstr "数字显示"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:743
+#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:740
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "未能查询正在使用的 RandR 扩展的版本"
 
@@ -80,9 +80,9 @@ msgstr "辅助功能"
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
 #: dialogs/display-settings/display-dialog.glade:293
-#: dialogs/display-settings/minimal-display-dialog.glade:300
+#: dialogs/display-settings/minimal-display-dialog.glade:281
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3404
+#: dialogs/display-settings/main.c:3380
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -306,7 +306,7 @@ msgstr "鼠标(_M)"
 
 #: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:113 dialogs/keyboard-settings/main.c:40
+#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
 #: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
 #: xfce4-settings-editor/main.c:52
 msgid "Settings manager socket"
@@ -314,7 +314,7 @@ msgstr "设置管理器套接字"
 
 #: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:113 dialogs/keyboard-settings/main.c:40
+#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
 #: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
 #: xfce4-settings-editor/main.c:52
 msgid "SOCKET ID"
@@ -322,7 +322,7 @@ msgstr "套接字 ID"
 
 #: dialogs/accessibility-settings/main.c:47
 #: dialogs/appearance-settings/main.c:107 dialogs/color-settings/main.c:50
-#: dialogs/display-settings/main.c:114 dialogs/keyboard-settings/main.c:41
+#: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
 #: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
 #: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
 #: xfsettingsd/main.c:107
@@ -331,31 +331,31 @@ msgstr "版本信息"
 
 #: dialogs/accessibility-settings/main.c:200
 #: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3352 dialogs/keyboard-settings/main.c:78
+#: dialogs/display-settings/main.c:3328 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:260
-#: xfsettingsd/main.c:298
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:259
+#: xfsettingsd/main.c:297
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "输入 ‘%s --help’ 获取用法。"
 
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3371 dialogs/keyboard-settings/main.c:94
+#: dialogs/display-settings/main.c:3347 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:276
+#: xfsettingsd/main.c:275
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发团队。保留所有权利。"
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:95
+#: dialogs/display-settings/main.c:3348 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:277
+#: xfsettingsd/main.c:276
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "请向 <%s> 报告缺陷。"
@@ -371,8 +371,8 @@ msgid ""
 msgstr "辅助;技术;按键;粘滞;反弹;仿真;屏幕阅读;放大镜;a11y;i18n;l10n;AT-SPI;ATK;缺陷;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:90
-#: dialogs/display-settings/main.c:99
+#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:92
+#: dialogs/display-settings/main.c:101
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
 msgstr "无"
@@ -1077,7 +1077,7 @@ msgid "<b>Identifying Displays</b>"
 msgstr "<b>识别显示器</b>"
 
 #: dialogs/display-settings/display-dialog.glade:1105
-#: dialogs/display-settings/minimal-display-dialog.glade:272
+#: dialogs/display-settings/minimal-display-dialog.glade:267
 msgid "_Advanced"
 msgstr "高级(_A)"
 
@@ -1097,27 +1097,25 @@ msgstr "此名称的配置文件已存在。"
 msgid "Displays"
 msgstr "显示"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:86
+#: dialogs/display-settings/minimal-display-dialog.glade:78
+#: dialogs/display-settings/minimal-display-dialog.glade:79
 msgid "Only Display 1"
 msgstr "只在显示 1"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:138
-#: dialogs/display-settings/minimal-display-dialog.glade:139
+#: dialogs/display-settings/minimal-display-dialog.glade:131
+#: dialogs/display-settings/minimal-display-dialog.glade:132
 msgid "Mirror Displays"
 msgstr "镜像显示"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:191
-#: dialogs/display-settings/minimal-display-dialog.glade:192
+#: dialogs/display-settings/minimal-display-dialog.glade:184
+#: dialogs/display-settings/minimal-display-dialog.glade:185
 msgid "Extend to the right"
 msgstr "扩展至右方"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:244
+#: dialogs/display-settings/minimal-display-dialog.glade:237
+#: dialogs/display-settings/minimal-display-dialog.glade:238
 msgid "Only Display 2"
 msgstr "只在显示 2"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:286
-msgid "radiobutton"
-msgstr "单选框"
 
 #: dialogs/display-settings/profile-changed-dialog.glade:12
 msgid "Update Display Profile"
@@ -1138,35 +1136,45 @@ msgid ""
 "your session or disconnecting or connecting a display."
 msgstr "如果您不更新配置文件，则在重新启动会话或断开连接或连接显示器时，您的更改将会丢失。"
 
-#: dialogs/display-settings/main.c:91
+#: dialogs/display-settings/main.c:63
+#, c-format
+msgid "Only %s (1)"
+msgstr "只有%s（1）"
+
+#: dialogs/display-settings/main.c:64
+#, c-format
+msgid "Only %s (2)"
+msgstr "只有%s（2）"
+
+#: dialogs/display-settings/main.c:93
 msgid "Left"
 msgstr "左"
 
-#: dialogs/display-settings/main.c:92
+#: dialogs/display-settings/main.c:94
 msgid "Inverted"
 msgstr "翻转"
 
-#: dialogs/display-settings/main.c:93
+#: dialogs/display-settings/main.c:95
 msgid "Right"
 msgstr "右"
 
-#: dialogs/display-settings/main.c:100
+#: dialogs/display-settings/main.c:102
 msgid "Horizontal"
 msgstr "水平"
 
-#: dialogs/display-settings/main.c:101
+#: dialogs/display-settings/main.c:103
 msgid "Vertical"
 msgstr "竖直"
 
-#: dialogs/display-settings/main.c:102
+#: dialogs/display-settings/main.c:104
 msgid "Horizontal and Vertical"
 msgstr "水平和竖直"
 
-#: dialogs/display-settings/main.c:115
+#: dialogs/display-settings/main.c:117
 msgid "Minimal interface to set up an external output"
 msgstr "设置外部输出的最小界面"
 
-#: dialogs/display-settings/main.c:231
+#: dialogs/display-settings/main.c:233
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1174,48 +1182,48 @@ msgid ""
 msgstr "如果您不答复此问题，先前的配置将在 <b>%i</b> 秒内恢复。"
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:679
+#: dialogs/display-settings/main.c:681
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:1026
+#: dialogs/display-settings/main.c:1028
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "绝不能禁用上一个活动输出，否则系统将不可用。"
 
-#: dialogs/display-settings/main.c:1028
+#: dialogs/display-settings/main.c:1030
 msgid "Selected output not disabled"
 msgstr "未禁用选中的输出"
 
-#: dialogs/display-settings/main.c:1191
+#: dialogs/display-settings/main.c:1202
 msgid "Profiles matching the currently connected displays"
 msgstr "与当前连接的显示器匹配的配置"
 
-#: dialogs/display-settings/main.c:1280
+#: dialogs/display-settings/main.c:1291
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "更新已更改的显示配置 '%s'?"
 
-#: dialogs/display-settings/main.c:1285
+#: dialogs/display-settings/main.c:1296
 #, c-format
 msgid "_Update '%s'"
 msgstr "更新 '%s'(_U)"
 
-#: dialogs/display-settings/main.c:1562
+#: dialogs/display-settings/main.c:1574
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "您真的要删除显示配置文件 '%s'吗?"
 
-#: dialogs/display-settings/main.c:1564
+#: dialogs/display-settings/main.c:1576
 msgid "Delete Profile"
 msgstr "删除配置文件"
 
-#: dialogs/display-settings/main.c:1567
+#: dialogs/display-settings/main.c:1579
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "一旦删除显示配置文件后，将无法恢复。"
 
-#: dialogs/display-settings/main.c:1568
+#: dialogs/display-settings/main.c:1580
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1223,22 +1231,22 @@ msgstr "一旦删除显示配置文件后，将无法恢复。"
 msgid "Cancel"
 msgstr "取消"
 
-#: dialogs/display-settings/main.c:1569
+#: dialogs/display-settings/main.c:1581
 msgid "Delete"
 msgstr "删除"
 
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1686
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "Xfce 面板 %d"
 
-#: dialogs/display-settings/main.c:2458
+#: dialogs/display-settings/main.c:2451
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "选取一个屏幕以改变其属性；拖曳以重新排列其位置。"
 
-#: dialogs/display-settings/main.c:2501 dialogs/display-settings/main.c:2578
+#: dialogs/display-settings/main.c:2494 dialogs/display-settings/main.c:2571
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1247,33 +1255,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2800
+#: dialogs/display-settings/main.c:2793
 msgid "Mirror Screens"
 msgstr "镜像屏幕"
 
-#: dialogs/display-settings/main.c:2850
+#: dialogs/display-settings/main.c:2843
 msgid "(Disabled)"
 msgstr "(已停用)"
 
-#: dialogs/display-settings/main.c:3210
-#, c-format
-msgid "Only %s (1)"
-msgstr "只有%s（1）"
-
-#: dialogs/display-settings/main.c:3221
-#, c-format
-msgid "Only %s (2)"
-msgstr "只有%s（2）"
-
-#: dialogs/display-settings/main.c:3398
+#: dialogs/display-settings/main.c:3374
 msgid "ATI Settings"
 msgstr "ATI 设置"
 
-#: dialogs/display-settings/main.c:3403
+#: dialogs/display-settings/main.c:3379
 msgid "Unable to start the Xfce Display Settings"
 msgstr "未能启动 Xfce 显示设置"
 
-#: dialogs/display-settings/main.c:3411
+#: dialogs/display-settings/main.c:3387
 msgid "Unable to launch the proprietary driver settings"
 msgstr "未能启动非自由驱动设置"
 
@@ -1294,7 +1292,7 @@ msgstr "显示:"
 msgid "Resolution:"
 msgstr "分辨率："
 
-#: dialogs/display-settings/display-settings-wayland.c:1073
+#: dialogs/display-settings/display-settings-wayland.c:1081
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "您的合成器似乎不支持 wlr-output-management （wlr 输出管理）协议"
