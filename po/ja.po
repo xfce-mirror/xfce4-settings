@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-11-25 12:47+0100\n"
+"POT-Creation-Date: 2024-02-19 00:50+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008,2016-2020,2022-2023\n"
 "Language-Team: Japanese (http://app.transifex.com/xfce/xfce4-settings/language/ja/)\n"
@@ -41,7 +41,7 @@ msgstr "テレビ"
 msgid "Digital display"
 msgstr "デジタルディスプレイ"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:743
+#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:740
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "使用している RandR エクステンションのバージョンを問い合わせることができません"
 
@@ -67,9 +67,9 @@ msgstr "アクセシビリティ"
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
 #: dialogs/display-settings/display-dialog.glade:293
-#: dialogs/display-settings/minimal-display-dialog.glade:300
+#: dialogs/display-settings/minimal-display-dialog.glade:281
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3404
+#: dialogs/display-settings/main.c:3380
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -293,7 +293,7 @@ msgstr "マウス(_M)"
 
 #: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:113 dialogs/keyboard-settings/main.c:40
+#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
 #: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
 #: xfce4-settings-editor/main.c:52
 msgid "Settings manager socket"
@@ -301,7 +301,7 @@ msgstr "設定マネージャーソケット"
 
 #: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:113 dialogs/keyboard-settings/main.c:40
+#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
 #: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
 #: xfce4-settings-editor/main.c:52
 msgid "SOCKET ID"
@@ -309,7 +309,7 @@ msgstr "SOCKET ID"
 
 #: dialogs/accessibility-settings/main.c:47
 #: dialogs/appearance-settings/main.c:107 dialogs/color-settings/main.c:50
-#: dialogs/display-settings/main.c:114 dialogs/keyboard-settings/main.c:41
+#: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
 #: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
 #: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
 #: xfsettingsd/main.c:107
@@ -318,31 +318,31 @@ msgstr "バージョン情報を表示する"
 
 #: dialogs/accessibility-settings/main.c:200
 #: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3352 dialogs/keyboard-settings/main.c:78
+#: dialogs/display-settings/main.c:3328 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:260
-#: xfsettingsd/main.c:298
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:259
+#: xfsettingsd/main.c:297
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "'%s --help' と入力すると使用方法が表示されます。"
 
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3371 dialogs/keyboard-settings/main.c:94
+#: dialogs/display-settings/main.c:3347 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:276
+#: xfsettingsd/main.c:275
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:95
+#: dialogs/display-settings/main.c:3348 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:277
+#: xfsettingsd/main.c:276
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "バグの報告は <%s> までお願いします。"
@@ -358,8 +358,8 @@ msgid ""
 msgstr "補助;技術;キー;付箋;バウンス;エミュレーション;スクリーンリーダー;拡大鏡;a11y;i18n;l10n;AT-SPI;ATK;障害;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:90
-#: dialogs/display-settings/main.c:99
+#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:92
+#: dialogs/display-settings/main.c:101
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
 msgstr "なし"
@@ -1064,7 +1064,7 @@ msgid "<b>Identifying Displays</b>"
 msgstr "<b>ディスプレイの識別</b>"
 
 #: dialogs/display-settings/display-dialog.glade:1105
-#: dialogs/display-settings/minimal-display-dialog.glade:272
+#: dialogs/display-settings/minimal-display-dialog.glade:267
 msgid "_Advanced"
 msgstr "詳細(_A)"
 
@@ -1084,27 +1084,25 @@ msgstr "この名前のプロファイルはすでに存在しています。"
 msgid "Displays"
 msgstr "ディスプレイ"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:86
+#: dialogs/display-settings/minimal-display-dialog.glade:78
+#: dialogs/display-settings/minimal-display-dialog.glade:79
 msgid "Only Display 1"
 msgstr "ディスプレイ 1 のみ"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:138
-#: dialogs/display-settings/minimal-display-dialog.glade:139
+#: dialogs/display-settings/minimal-display-dialog.glade:131
+#: dialogs/display-settings/minimal-display-dialog.glade:132
 msgid "Mirror Displays"
 msgstr "ミラー表示"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:191
-#: dialogs/display-settings/minimal-display-dialog.glade:192
+#: dialogs/display-settings/minimal-display-dialog.glade:184
+#: dialogs/display-settings/minimal-display-dialog.glade:185
 msgid "Extend to the right"
 msgstr "右側に拡張"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:244
+#: dialogs/display-settings/minimal-display-dialog.glade:237
+#: dialogs/display-settings/minimal-display-dialog.glade:238
 msgid "Only Display 2"
 msgstr "ディスプレイ 2 のみ"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:286
-msgid "radiobutton"
-msgstr "ラジオボタン"
 
 #: dialogs/display-settings/profile-changed-dialog.glade:12
 msgid "Update Display Profile"
@@ -1125,35 +1123,45 @@ msgid ""
 "your session or disconnecting or connecting a display."
 msgstr "変更されたプロファイルを更新しない場合、セッションの再起動、ディスプレイの切断または接続時に変更が失われます。"
 
-#: dialogs/display-settings/main.c:91
+#: dialogs/display-settings/main.c:63
+#, c-format
+msgid "Only %s (1)"
+msgstr "%s のみ (1)"
+
+#: dialogs/display-settings/main.c:64
+#, c-format
+msgid "Only %s (2)"
+msgstr "%s のみ (2)"
+
+#: dialogs/display-settings/main.c:93
 msgid "Left"
 msgstr "左"
 
-#: dialogs/display-settings/main.c:92
+#: dialogs/display-settings/main.c:94
 msgid "Inverted"
 msgstr "反転"
 
-#: dialogs/display-settings/main.c:93
+#: dialogs/display-settings/main.c:95
 msgid "Right"
 msgstr "右"
 
-#: dialogs/display-settings/main.c:100
+#: dialogs/display-settings/main.c:102
 msgid "Horizontal"
 msgstr "水平"
 
-#: dialogs/display-settings/main.c:101
+#: dialogs/display-settings/main.c:103
 msgid "Vertical"
 msgstr "垂直"
 
-#: dialogs/display-settings/main.c:102
+#: dialogs/display-settings/main.c:104
 msgid "Horizontal and Vertical"
 msgstr "垂直および水平"
 
-#: dialogs/display-settings/main.c:115
+#: dialogs/display-settings/main.c:117
 msgid "Minimal interface to set up an external output"
 msgstr "外部出力を設定する最小限のインターフェイス"
 
-#: dialogs/display-settings/main.c:231
+#: dialogs/display-settings/main.c:233
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1161,48 +1169,48 @@ msgid ""
 msgstr "この質問に<b>%i秒</b>以内に回答しない場合は、以前の設定に戻されます。"
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:679
+#: dialogs/display-settings/main.c:681
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:1026
+#: dialogs/display-settings/main.c:1028
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "最後に有効だった出力を無効にしてはいけません。システムが使用できなくなります。"
 
-#: dialogs/display-settings/main.c:1028
+#: dialogs/display-settings/main.c:1030
 msgid "Selected output not disabled"
 msgstr "選択した出力は無効になっていません"
 
-#: dialogs/display-settings/main.c:1191
+#: dialogs/display-settings/main.c:1202
 msgid "Profiles matching the currently connected displays"
 msgstr "現在接続しているディスプレイと一致するプロファイル"
 
-#: dialogs/display-settings/main.c:1280
+#: dialogs/display-settings/main.c:1291
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "変更されたディスプレイプロファイル '%s' を更新しますか?"
 
-#: dialogs/display-settings/main.c:1285
+#: dialogs/display-settings/main.c:1296
 #, c-format
 msgid "_Update '%s'"
 msgstr "更新 '%s'(_U)"
 
-#: dialogs/display-settings/main.c:1562
+#: dialogs/display-settings/main.c:1574
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "ディスプレイプロファイル '%s' を削除しますか?"
 
-#: dialogs/display-settings/main.c:1564
+#: dialogs/display-settings/main.c:1576
 msgid "Delete Profile"
 msgstr "プロファイルを削除"
 
-#: dialogs/display-settings/main.c:1567
+#: dialogs/display-settings/main.c:1579
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "一度削除されたディスプレイプロファイルは復元できません。"
 
-#: dialogs/display-settings/main.c:1568
+#: dialogs/display-settings/main.c:1580
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1210,22 +1218,22 @@ msgstr "一度削除されたディスプレイプロファイルは復元でき
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: dialogs/display-settings/main.c:1569
+#: dialogs/display-settings/main.c:1581
 msgid "Delete"
 msgstr "削除"
 
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1686
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce パネル"
 
-#: dialogs/display-settings/main.c:2458
+#: dialogs/display-settings/main.c:2451
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "プロパティを変更したいモニターを選択してください。ドラッグで配置を変更できます。"
 
-#: dialogs/display-settings/main.c:2501 dialogs/display-settings/main.c:2578
+#: dialogs/display-settings/main.c:2494 dialogs/display-settings/main.c:2571
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1234,33 +1242,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2800
+#: dialogs/display-settings/main.c:2793
 msgid "Mirror Screens"
 msgstr "ミラー表示"
 
-#: dialogs/display-settings/main.c:2850
+#: dialogs/display-settings/main.c:2843
 msgid "(Disabled)"
 msgstr "(無効)"
 
-#: dialogs/display-settings/main.c:3210
-#, c-format
-msgid "Only %s (1)"
-msgstr "%s のみ (1)"
-
-#: dialogs/display-settings/main.c:3221
-#, c-format
-msgid "Only %s (2)"
-msgstr "%s のみ (2)"
-
-#: dialogs/display-settings/main.c:3398
+#: dialogs/display-settings/main.c:3374
 msgid "ATI Settings"
 msgstr "ATI 設定"
 
-#: dialogs/display-settings/main.c:3403
+#: dialogs/display-settings/main.c:3379
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce ディスプレイ設定を開始できません"
 
-#: dialogs/display-settings/main.c:3411
+#: dialogs/display-settings/main.c:3387
 msgid "Unable to launch the proprietary driver settings"
 msgstr "プロプライエタリドライバー設定を起動できません"
 
@@ -1281,7 +1279,7 @@ msgstr "ディスプレイ:"
 msgid "Resolution:"
 msgstr "解像度:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1073
+#: dialogs/display-settings/display-settings-wayland.c:1081
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "コンポジターは wlr-output-management プロトコルをサポートしていないようです"
