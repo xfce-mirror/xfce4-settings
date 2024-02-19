@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-11-25 12:47+0100\n"
+"POT-Creation-Date: 2024-02-19 00:50+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>, 2014-2023\n"
 "Language-Team: Bulgarian (http://app.transifex.com/xfce/xfce4-settings/language/bg/)\n"
@@ -45,7 +45,7 @@ msgstr "Телевизор"
 msgid "Digital display"
 msgstr "Цифров дисплей"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:743
+#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:740
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Не може да променяте версията на разширението RandR, докато се използва"
 
@@ -71,9 +71,9 @@ msgstr "Достъпност"
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
 #: dialogs/display-settings/display-dialog.glade:293
-#: dialogs/display-settings/minimal-display-dialog.glade:300
+#: dialogs/display-settings/minimal-display-dialog.glade:281
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3404
+#: dialogs/display-settings/main.c:3380
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -297,7 +297,7 @@ msgstr "Мишка"
 
 #: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:113 dialogs/keyboard-settings/main.c:40
+#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
 #: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
 #: xfce4-settings-editor/main.c:52
 msgid "Settings manager socket"
@@ -305,7 +305,7 @@ msgstr "Гнездо на управлението на настройките"
 
 #: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:113 dialogs/keyboard-settings/main.c:40
+#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
 #: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
 #: xfce4-settings-editor/main.c:52
 msgid "SOCKET ID"
@@ -313,7 +313,7 @@ msgstr "Гнездо ID"
 
 #: dialogs/accessibility-settings/main.c:47
 #: dialogs/appearance-settings/main.c:107 dialogs/color-settings/main.c:50
-#: dialogs/display-settings/main.c:114 dialogs/keyboard-settings/main.c:41
+#: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
 #: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
 #: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
 #: xfsettingsd/main.c:107
@@ -322,31 +322,31 @@ msgstr "Сведения за изданието"
 
 #: dialogs/accessibility-settings/main.c:200
 #: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3352 dialogs/keyboard-settings/main.c:78
+#: dialogs/display-settings/main.c:3328 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:260
-#: xfsettingsd/main.c:298
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:259
+#: xfsettingsd/main.c:297
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Напишете „%s --help“ за показване на потребителско ръководство"
 
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3371 dialogs/keyboard-settings/main.c:94
+#: dialogs/display-settings/main.c:3347 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:276
+#: xfsettingsd/main.c:275
 msgid "The Xfce development team. All rights reserved."
 msgstr "Екипът по разрабоката на Xfce. Всички права са запазени."
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:95
+#: dialogs/display-settings/main.c:3348 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:277
+#: xfsettingsd/main.c:276
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Моля, докладвайте грешки на <%s>."
@@ -362,8 +362,8 @@ msgid ""
 msgstr "спомагателни;технологии;клавиши;лепкави;отскачане;емулация;екранен четец;луши;a11y;i18n;l10n;AT-SPI;ATK;намаляване;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:90
-#: dialogs/display-settings/main.c:99
+#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:92
+#: dialogs/display-settings/main.c:101
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
 msgstr "Няма"
@@ -1068,7 +1068,7 @@ msgid "<b>Identifying Displays</b>"
 msgstr "<b>Идентифициране на дисплеите</b>"
 
 #: dialogs/display-settings/display-dialog.glade:1105
-#: dialogs/display-settings/minimal-display-dialog.glade:272
+#: dialogs/display-settings/minimal-display-dialog.glade:267
 msgid "_Advanced"
 msgstr "Разширени"
 
@@ -1088,27 +1088,25 @@ msgstr "Вече съществува профил с това име."
 msgid "Displays"
 msgstr "Дисплеи"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:86
+#: dialogs/display-settings/minimal-display-dialog.glade:78
+#: dialogs/display-settings/minimal-display-dialog.glade:79
 msgid "Only Display 1"
 msgstr "Само дисплей 1"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:138
-#: dialogs/display-settings/minimal-display-dialog.glade:139
+#: dialogs/display-settings/minimal-display-dialog.glade:131
+#: dialogs/display-settings/minimal-display-dialog.glade:132
 msgid "Mirror Displays"
 msgstr "Огледални дисплеи"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:191
-#: dialogs/display-settings/minimal-display-dialog.glade:192
+#: dialogs/display-settings/minimal-display-dialog.glade:184
+#: dialogs/display-settings/minimal-display-dialog.glade:185
 msgid "Extend to the right"
 msgstr "Разширяване надясно"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:244
+#: dialogs/display-settings/minimal-display-dialog.glade:237
+#: dialogs/display-settings/minimal-display-dialog.glade:238
 msgid "Only Display 2"
 msgstr "Само дисплей 2"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:286
-msgid "radiobutton"
-msgstr "Радиобутон (превключвател)"
 
 #: dialogs/display-settings/profile-changed-dialog.glade:12
 msgid "Update Display Profile"
@@ -1129,35 +1127,45 @@ msgid ""
 "your session or disconnecting or connecting a display."
 msgstr "Ако не обновите профила си, промените ще бъдат загубени при рестартиране на сесията, прекъсване на връзката или свързване на дисплей."
 
-#: dialogs/display-settings/main.c:91
+#: dialogs/display-settings/main.c:63
+#, c-format
+msgid "Only %s (1)"
+msgstr "Само %s (1)"
+
+#: dialogs/display-settings/main.c:64
+#, c-format
+msgid "Only %s (2)"
+msgstr "Само %s (2)"
+
+#: dialogs/display-settings/main.c:93
 msgid "Left"
 msgstr "Ляво"
 
-#: dialogs/display-settings/main.c:92
+#: dialogs/display-settings/main.c:94
 msgid "Inverted"
 msgstr "Обърнат"
 
-#: dialogs/display-settings/main.c:93
+#: dialogs/display-settings/main.c:95
 msgid "Right"
 msgstr "Дясно"
 
-#: dialogs/display-settings/main.c:100
+#: dialogs/display-settings/main.c:102
 msgid "Horizontal"
 msgstr "Водоравно"
 
-#: dialogs/display-settings/main.c:101
+#: dialogs/display-settings/main.c:103
 msgid "Vertical"
 msgstr "Отвесно"
 
-#: dialogs/display-settings/main.c:102
+#: dialogs/display-settings/main.c:104
 msgid "Horizontal and Vertical"
 msgstr "Водоравно и отвесно"
 
-#: dialogs/display-settings/main.c:115
+#: dialogs/display-settings/main.c:117
 msgid "Minimal interface to set up an external output"
 msgstr "Минимален интерфейс за създаване на външен изход"
 
-#: dialogs/display-settings/main.c:231
+#: dialogs/display-settings/main.c:233
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1165,48 +1173,48 @@ msgid ""
 msgstr "Предишната конфигурация ще бъде възстановена след <b>%i секунди</b>, ако не отговорите на този въпрос."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:679
+#: dialogs/display-settings/main.c:681
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2fHz"
 
-#: dialogs/display-settings/main.c:1026
+#: dialogs/display-settings/main.c:1028
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Последният активен изход не трябва да се заключва, системата ще стане негодна за ползване."
 
-#: dialogs/display-settings/main.c:1028
+#: dialogs/display-settings/main.c:1030
 msgid "Selected output not disabled"
 msgstr "Избраният изход не е заключен"
 
-#: dialogs/display-settings/main.c:1191
+#: dialogs/display-settings/main.c:1202
 msgid "Profiles matching the currently connected displays"
 msgstr "Профили, отговарящи на текущо свързани дисплеи"
 
-#: dialogs/display-settings/main.c:1280
+#: dialogs/display-settings/main.c:1291
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Да се обнови ли променeния профил на дисплей \"%s\"?"
 
-#: dialogs/display-settings/main.c:1285
+#: dialogs/display-settings/main.c:1296
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Обновяване на \"%s\""
 
-#: dialogs/display-settings/main.c:1562
+#: dialogs/display-settings/main.c:1574
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Искате ли да изтриете профил на дисплей \"%s\"?"
 
-#: dialogs/display-settings/main.c:1564
+#: dialogs/display-settings/main.c:1576
 msgid "Delete Profile"
 msgstr "Изтриване на профил"
 
-#: dialogs/display-settings/main.c:1567
+#: dialogs/display-settings/main.c:1579
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "След изтриване, профила на дисплея не може да бъде възстановен."
 
-#: dialogs/display-settings/main.c:1568
+#: dialogs/display-settings/main.c:1580
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1214,22 +1222,22 @@ msgstr "След изтриване, профила на дисплея не м�
 msgid "Cancel"
 msgstr "Отказ"
 
-#: dialogs/display-settings/main.c:1569
+#: dialogs/display-settings/main.c:1581
 msgid "Delete"
 msgstr "Изтриване"
 
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1686
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce Панели"
 
-#: dialogs/display-settings/main.c:2458
+#: dialogs/display-settings/main.c:2451
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Изберете монитор, на който да промените настройките; променете местоположението му с влачене."
 
-#: dialogs/display-settings/main.c:2501 dialogs/display-settings/main.c:2578
+#: dialogs/display-settings/main.c:2494 dialogs/display-settings/main.c:2571
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1238,33 +1246,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2800
+#: dialogs/display-settings/main.c:2793
 msgid "Mirror Screens"
 msgstr "Огледални екрани"
 
-#: dialogs/display-settings/main.c:2850
+#: dialogs/display-settings/main.c:2843
 msgid "(Disabled)"
 msgstr "(Изключено)"
 
-#: dialogs/display-settings/main.c:3210
-#, c-format
-msgid "Only %s (1)"
-msgstr "Само %s (1)"
-
-#: dialogs/display-settings/main.c:3221
-#, c-format
-msgid "Only %s (2)"
-msgstr "Само %s (2)"
-
-#: dialogs/display-settings/main.c:3398
+#: dialogs/display-settings/main.c:3374
 msgid "ATI Settings"
 msgstr "Настройки на ATI"
 
-#: dialogs/display-settings/main.c:3403
+#: dialogs/display-settings/main.c:3379
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Не могат да стартират настройките на дисплея"
 
-#: dialogs/display-settings/main.c:3411
+#: dialogs/display-settings/main.c:3387
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Не могат да стартират настройките на лицензирания драйвър"
 
@@ -1285,7 +1283,7 @@ msgstr "Дисплей"
 msgid "Resolution:"
 msgstr "Разделителна способност:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1073
+#: dialogs/display-settings/display-settings-wayland.c:1081
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Вашият композитор изглежда не поддържа wlr-протокола за управление на изхода"
