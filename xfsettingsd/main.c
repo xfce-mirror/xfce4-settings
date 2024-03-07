@@ -174,7 +174,7 @@ on_name_acquired (GDBusConnection *connection,
 
         if (g_getenv ("XFSETTINGSD_NO_CLIPBOARD") == NULL)
         {
-            s_data->clipboard_daemon = xfce_clipboard_manager_new (opt_replace);
+            s_data->clipboard_daemon = G_OBJECT (xfce_clipboard_manager_new (opt_replace));
             if (s_data->clipboard_daemon == NULL)
             {
                 g_warning ("Another clipboard manager is already running.");
