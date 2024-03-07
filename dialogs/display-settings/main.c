@@ -1172,6 +1172,7 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
     }
 
     gtk_widget_show_all (GTK_WIDGET (profile_box));
+    gtk_widget_set_visible (GTK_WIDGET (profile_box), profiles != NULL);
     g_list_free (profiles);
     g_free (active_profile);
 }
