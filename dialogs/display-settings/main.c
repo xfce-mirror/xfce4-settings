@@ -3112,8 +3112,8 @@ display_settings_minimal_activated (GApplication *application,
     dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
     display_settings_minimal_get_positions (dialog, &monitor_rect, &window_rect);
 
-    /* Check if dialog is already at current monitor (where cursor is at) */
-    if (gdk_rectangle_intersect (&monitor_rect, &window_rect, NULL))
+    /* Check if dialog is already at current monitor (where cursor is at): only possible on X11 */
+    if (!WINDOWING_IS_X11 () || gdk_rectangle_intersect (&monitor_rect, &window_rect, NULL))
     {
         /* Select next preset if dialog is already at current monitor */
         display_settings_minimal_cycle (dialog, builder);
