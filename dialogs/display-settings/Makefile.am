@@ -108,6 +108,8 @@ iconsdir = $(datadir)/icons/hicolor/128x128/devices
 icons_DATA = \
 	xfce-display-extend-right.png \
 	xfce-display-extend-left.png \
+	xfce-display-extend-up.png \
+	xfce-display-extend-down.png \
 	xfce-display-right.png \
 	xfce-display-left.png \
 	xfce-display-mirror.png \
@@ -117,6 +119,8 @@ scalableiconsdir = $(datadir)/icons/hicolor/scalable/devices
 scalableicons_DATA = \
 	xfce-display-extend-right.svg \
 	xfce-display-extend-left.svg \
+	xfce-display-extend-up.svg \
+	xfce-display-extend-down.svg \
 	xfce-display-right.svg \
 	xfce-display-left.svg \
 	xfce-display-mirror.svg \
