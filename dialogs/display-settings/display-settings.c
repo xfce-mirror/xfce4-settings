@@ -937,13 +937,13 @@ xfce_display_settings_is_mirrored (XfceDisplaySettings *settings,
 
 
 
-gboolean
-xfce_display_settings_is_extended (XfceDisplaySettings *settings,
-                                   guint output_id_1,
-                                   guint output_id_2)
+ExtendedMode
+xfce_display_settings_get_extended_mode (XfceDisplaySettings *settings,
+                                         guint output_id_1,
+                                         guint output_id_2)
 {
-    g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), FALSE);
-    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->is_extended (settings, output_id_1, output_id_2);
+    g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), EXTENDED_MODE_NONE);
+    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->get_extended_mode (settings, output_id_1, output_id_2);
 }
 
 
@@ -994,8 +994,10 @@ xfce_display_settings_unmirror (XfceDisplaySettings *settings)
 void
 xfce_display_settings_extend (XfceDisplaySettings *settings,
                               guint output_id_1,
-                              guint output_id_2)
+                              guint output_id_2,
+                              ExtendedMode mode)
 {
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
-    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->extend (settings, output_id_1, output_id_2);
+    g_return_if_fail (mode != EXTENDED_MODE_NONE);
+    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->extend (settings, output_id_1, output_id_2, mode);
 }
