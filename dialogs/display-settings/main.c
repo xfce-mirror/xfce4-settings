@@ -1939,13 +1939,23 @@ display_settings_minimal_combobox_extend_changed (GtkComboBox *box,
     gtk_widget_set_tooltip_text (GTK_WIDGET (box), text);
     g_free (text);
 
-    if (gtk_combo_box_get_active (box) == 0)
+    switch (gtk_combo_box_get_active (box))
     {
-        display_settings_minimal_load_icon (builder, "image-extend", "xfce-display-extend-right");
-    }
-    else
-    {
-        display_settings_minimal_load_icon (builder, "image-extend", "xfce-display-extend-left");
+        case EXTENDED_MODE_RIGHT:
+            display_settings_minimal_load_icon (builder, "image-extend", "xfce-display-extend-right");
+            break;
+        case EXTENDED_MODE_LEFT:
+            display_settings_minimal_load_icon (builder, "image-extend", "xfce-display-extend-left");
+            break;
+        case EXTENDED_MODE_UP:
+            display_settings_minimal_load_icon (builder, "image-extend", "xfce-display-extend-up");
+            break;
+        case EXTENDED_MODE_DOWN:
+            display_settings_minimal_load_icon (builder, "image-extend", "xfce-display-extend-down");
+            break;
+        default:
+            g_warn_if_reached ();
+            break;
     }
 
     if (gtk_toggle_button_get_active (extend_displays))
@@ -1987,6 +1997,7 @@ display_settings_minimal_extend_displays_toggled (GtkToggleButton *button,
                                                   XfceDisplaySettings *settings)
 {
     GtkBuilder *builder;
+    ExtendedMode mode;
     guint n_outputs;
 
     if (!gtk_toggle_button_get_active(button))
@@ -2004,10 +2015,8 @@ display_settings_minimal_extend_displays_toggled (GtkToggleButton *button,
     }
 
     builder = xfce_display_settings_get_builder (settings);
-    if (gtk_combo_box_get_active (GTK_COMBO_BOX (gtk_builder_get_object (builder, "combobox-extend"))) == 1)
-        xfce_display_settings_extend (settings, 1, 0);
-    else
-        xfce_display_settings_extend (settings, 0, 1);
+    mode = gtk_combo_box_get_active (GTK_COMBO_BOX (gtk_builder_get_object (builder, "combobox-extend")));
+    xfce_display_settings_extend (settings, 0, 1, mode);
 
     /* Save changes to both displays */
     xfce_display_settings_save (settings, 0, "Default");
@@ -3240,15 +3249,15 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
                     {
                         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mirror_displays), TRUE);
                     }
-                    else if (xfce_display_settings_is_extended (settings, 0, 1))
+                    else
                     {
-                        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_displays), TRUE);
-                    }
-                    else if (xfce_display_settings_is_extended (settings, 1, 0))
-                    {
-                        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox_extend), 1);
-                        display_settings_minimal_combobox_extend_changed (GTK_COMBO_BOX (combobox_extend), settings);
-                        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_displays), TRUE);
+                        ExtendedMode mode = xfce_display_settings_get_extended_mode (settings, 0, 1);
+                        if (mode != EXTENDED_MODE_NONE)
+                        {
+                            gtk_combo_box_set_active (GTK_COMBO_BOX (combobox_extend), mode);
+                            display_settings_minimal_combobox_extend_changed (GTK_COMBO_BOX (combobox_extend), settings);
+                            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_displays), TRUE);
+                        }
                     }
                 }
                 else
