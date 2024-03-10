@@ -64,6 +64,15 @@ typedef enum _RotationFlags
     ROTATION_FLAGS_ALL       = (1 << 5) - 1,
 } RotationFlags;
 
+typedef enum _ExtendedMode
+{
+    EXTENDED_MODE_NONE = -1,
+    EXTENDED_MODE_RIGHT,
+    EXTENDED_MODE_LEFT,
+    EXTENDED_MODE_UP,
+    EXTENDED_MODE_DOWN,
+} ExtendedMode;
+
 typedef struct _XfceMode
 {
     guint id;
@@ -163,7 +172,7 @@ struct _XfceDisplaySettingsClass
                                                        gboolean                  primary);
     gboolean         (*is_mirrored)                   (XfceDisplaySettings      *settings,
                                                        guint                     output_id);
-    gboolean         (*is_extended)                   (XfceDisplaySettings      *settings,
+    ExtendedMode     (*get_extended_mode)             (XfceDisplaySettings      *settings,
                                                        guint                     output_id_1,
                                                        guint                     output_id_2);
     gboolean         (*is_clonable)                   (XfceDisplaySettings      *settings);
@@ -176,7 +185,8 @@ struct _XfceDisplaySettingsClass
                                                        XfceOutput               *output);
     void             (*extend)                        (XfceDisplaySettings      *settings,
                                                        guint                     output_id_1,
-                                                       guint                     output_id_2);
+                                                       guint                     output_id_2,
+                                                       ExtendedMode              mode);
 };
 
 XfceDisplaySettings     *xfce_display_settings_new                     (gboolean                 opt_minimal,
@@ -244,7 +254,7 @@ void                     xfce_display_settings_set_primary             (XfceDisp
                                                                         gboolean                 primary);
 gboolean                 xfce_display_settings_is_mirrored             (XfceDisplaySettings     *settings,
                                                                         guint                    output_id);
-gboolean                 xfce_display_settings_is_extended             (XfceDisplaySettings     *settings,
+ExtendedMode             xfce_display_settings_get_extended_mode       (XfceDisplaySettings     *settings,
                                                                         guint                    output_id_1,
                                                                         guint                    output_id_2);
 gboolean                 xfce_display_settings_is_clonable             (XfceDisplaySettings     *settings);
@@ -255,7 +265,8 @@ void                     xfce_display_settings_mirror                  (XfceDisp
 void                     xfce_display_settings_unmirror                (XfceDisplaySettings     *settings);
 void                     xfce_display_settings_extend                  (XfceDisplaySettings     *settings,
                                                                         guint                    output_id_1,
-                                                                        guint                    output_id_2);
+                                                                        guint                    output_id_2,
+                                                                        ExtendedMode             mode);
 
 G_END_DECLS
 
