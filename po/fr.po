@@ -17,15 +17,15 @@
 # roxfr <roxfr@outlook.fr>, 2020
 # Silvère Latchurié <slatchurie@gmail.com>, 2017
 # Urien Desterres <urien.desterres@gmail.com>, 2014
-# Wallon Wallon, 2022-2023
+# Wallon Wallon, 2022-2024
 # Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-02-19 00:50+0100\n"
+"POT-Creation-Date: 2024-03-10 12:48+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Wallon Wallon, 2022-2023\n"
+"Last-Translator: Wallon Wallon, 2022-2024\n"
 "Language-Team: French (http://app.transifex.com/xfce/xfce4-settings/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +55,7 @@ msgstr "Téléviseur"
 msgid "Digital display"
 msgstr "Écran numérique"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:740
+#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:771
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Impossible de déterminer la version de l’extension RandR utilisée"
 
@@ -68,7 +68,7 @@ msgid ""
 msgstr "Ce système utilise RandR %d.%d. Pour que les paramètres d’affichage fonctionnent, la version 1.2 ou ultérieure est nécessaire."
 
 #: common/xfce-randr.c:581
-#: dialogs/display-settings/display-settings-wayland.c:344
+#: dialogs/display-settings/display-settings-wayland.c:345
 msgid "Laptop"
 msgstr "Portable"
 
@@ -81,9 +81,9 @@ msgstr "Accessibilité"
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
 #: dialogs/display-settings/display-dialog.glade:293
-#: dialogs/display-settings/minimal-display-dialog.glade:281
+#: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3380
+#: dialogs/display-settings/main.c:3399
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -326,37 +326,37 @@ msgstr "ID SOCKET"
 #: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
 #: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
 #: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
-#: xfsettingsd/main.c:107
+#: xfsettingsd/main.c:106
 msgid "Version information"
 msgstr "Informations sur la version"
 
 #: dialogs/accessibility-settings/main.c:200
 #: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3328 dialogs/keyboard-settings/main.c:78
+#: dialogs/display-settings/main.c:3347 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:259
-#: xfsettingsd/main.c:297
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:255
+#: xfsettingsd/main.c:293
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Taper « %s --help » pour obtenir plus d’aide."
 
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3347 dialogs/keyboard-settings/main.c:94
+#: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:275
+#: xfsettingsd/main.c:271
 msgid "The Xfce development team. All rights reserved."
 msgstr "L’équipe de développement Xfce. Tous droits réservés."
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3348 dialogs/keyboard-settings/main.c:95
+#: dialogs/display-settings/main.c:3367 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:276
+#: xfsettingsd/main.c:272
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Veuillez signaler les bogues à <%s>."
@@ -1078,7 +1078,7 @@ msgid "<b>Identifying Displays</b>"
 msgstr "<b>Identification des écrans</b>"
 
 #: dialogs/display-settings/display-dialog.glade:1105
-#: dialogs/display-settings/minimal-display-dialog.glade:267
+#: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr "_Avancé"
 
@@ -1094,27 +1094,42 @@ msgstr "Créer"
 msgid "A profile of this name already exists."
 msgstr "Un profil avec ce nom existe déjà."
 
-#: dialogs/display-settings/minimal-display-dialog.glade:12
+#: dialogs/display-settings/minimal-display-dialog.glade:16
+msgid "Extend right"
+msgstr "Étendre vers la droite"
+
+#: dialogs/display-settings/minimal-display-dialog.glade:19
+msgid "Extend left"
+msgstr "Étendre vers la gauche"
+
+#: dialogs/display-settings/minimal-display-dialog.glade:22
+msgid "Extend up"
+msgstr "Étendre vers le haut"
+
+#: dialogs/display-settings/minimal-display-dialog.glade:25
+msgid "Extend down"
+msgstr "Étendre vers le bas"
+
+#: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
 msgstr "Écrans"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:78
-#: dialogs/display-settings/minimal-display-dialog.glade:79
+#: dialogs/display-settings/minimal-display-dialog.glade:92
+#: dialogs/display-settings/minimal-display-dialog.glade:93
 msgid "Only Display 1"
 msgstr "Écran 1 uniquement"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:131
-#: dialogs/display-settings/minimal-display-dialog.glade:132
+#: dialogs/display-settings/minimal-display-dialog.glade:145
+#: dialogs/display-settings/minimal-display-dialog.glade:146
 msgid "Mirror Displays"
 msgstr "Écrans en miroir"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:184
-#: dialogs/display-settings/minimal-display-dialog.glade:185
+#: dialogs/display-settings/minimal-display-dialog.glade:201
 msgid "Extend to the right"
 msgstr "Étendre vers la droite"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:237
-#: dialogs/display-settings/minimal-display-dialog.glade:238
+#: dialogs/display-settings/minimal-display-dialog.glade:262
+#: dialogs/display-settings/minimal-display-dialog.glade:263
 msgid "Only Display 2"
 msgstr "Écran 2 uniquement"
 
@@ -1197,34 +1212,34 @@ msgstr "La dernière sortie active ne doit pas être désactivée, le système d
 msgid "Selected output not disabled"
 msgstr "La sortie sélectionnée n’est pas désactivée"
 
-#: dialogs/display-settings/main.c:1202
+#: dialogs/display-settings/main.c:1234
 msgid "Profiles matching the currently connected displays"
 msgstr "Profils correspondant aux écrans actuellement connectés"
 
-#: dialogs/display-settings/main.c:1291
+#: dialogs/display-settings/main.c:1323
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Mettre à jour le profil d’affichage modifié « %s » ?"
 
-#: dialogs/display-settings/main.c:1296
+#: dialogs/display-settings/main.c:1328
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Mettre à jour « %s »"
 
-#: dialogs/display-settings/main.c:1574
+#: dialogs/display-settings/main.c:1606
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Voulez-vous supprimer le profil d’affichage « %s » ?"
 
-#: dialogs/display-settings/main.c:1576
+#: dialogs/display-settings/main.c:1608
 msgid "Delete Profile"
 msgstr "Supprimer le profil"
 
-#: dialogs/display-settings/main.c:1579
+#: dialogs/display-settings/main.c:1611
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Une fois qu’un profil d’affichage est supprimé, il ne peut pas être restauré."
 
-#: dialogs/display-settings/main.c:1580
+#: dialogs/display-settings/main.c:1612
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1232,22 +1247,22 @@ msgstr "Une fois qu’un profil d’affichage est supprimé, il ne peut pas êtr
 msgid "Cancel"
 msgstr "Annuler"
 
-#: dialogs/display-settings/main.c:1581
+#: dialogs/display-settings/main.c:1613
 msgid "Delete"
 msgstr "Supprimer"
 
-#: dialogs/display-settings/main.c:1686
+#: dialogs/display-settings/main.c:1718
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d tableaux de bord Xfce"
 
-#: dialogs/display-settings/main.c:2451
+#: dialogs/display-settings/main.c:2516
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Sélectionner un moniteur pour modifier ses propriétés ; le faire glisser pour réorganiser sa position."
 
-#: dialogs/display-settings/main.c:2494 dialogs/display-settings/main.c:2571
+#: dialogs/display-settings/main.c:2559 dialogs/display-settings/main.c:2636
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1256,23 +1271,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2793
+#: dialogs/display-settings/main.c:2858
 msgid "Mirror Screens"
 msgstr "Écrans en miroir"
 
-#: dialogs/display-settings/main.c:2843
+#: dialogs/display-settings/main.c:2908
 msgid "(Disabled)"
 msgstr "(Désactivé)"
 
-#: dialogs/display-settings/main.c:3374
+#: dialogs/display-settings/main.c:3393
 msgid "ATI Settings"
 msgstr "Paramètres ATI"
 
-#: dialogs/display-settings/main.c:3379
+#: dialogs/display-settings/main.c:3398
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Impossible de démarrer les paramètres d’affichage Xfce"
 
-#: dialogs/display-settings/main.c:3387
+#: dialogs/display-settings/main.c:3406
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Impossible d’exécuter les paramètres du pilote propriétaire"
 
@@ -1293,7 +1308,7 @@ msgstr "Écran :"
 msgid "Resolution:"
 msgstr "Résolution :"
 
-#: dialogs/display-settings/display-settings-wayland.c:1081
+#: dialogs/display-settings/display-settings-wayland.c:1113
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Votre compositeur ne semble pas prendre en charge le protocole wlr-output-management"
@@ -2769,15 +2784,15 @@ msgstr "Touches rebond"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Impossible de lancer le raccourci « %s »"
 
-#: xfsettingsd/main.c:108
+#: xfsettingsd/main.c:107
 msgid "Fork to the background"
 msgstr "Basculer à l’arrière-plan"
 
-#: xfsettingsd/main.c:109
+#: xfsettingsd/main.c:108
 msgid "Do not wait for a window manager on startup"
 msgstr "Ne pas attendre un gestionnaire de fenêtres au démarrage"
 
-#: xfsettingsd/main.c:110
+#: xfsettingsd/main.c:109
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Remplacer le démon xsettings en cours d’exécution (le cas échéant)"
 
