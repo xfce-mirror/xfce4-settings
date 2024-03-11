@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-02-19 00:50+0100\n"
+"POT-Creation-Date: 2024-03-11 12:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: b537cbea55af75c3f49fe8b21c4cf8ea_f0ce149, 2023\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce4-settings/language/cs/)\n"
@@ -43,7 +43,7 @@ msgstr "Televize"
 msgid "Digital display"
 msgstr "Digitální displej"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:740
+#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:771
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nelze zjistit používanou verzi rozšíření RandR"
 
@@ -56,7 +56,7 @@ msgid ""
 msgstr "Tento systém používá rozšíření RandR ve verzi %d.%d. Potřebujete alespoň verzi 1.2, aby nastavení displeje pracovalo správně"
 
 #: common/xfce-randr.c:581
-#: dialogs/display-settings/display-settings-wayland.c:344
+#: dialogs/display-settings/display-settings-wayland.c:345
 msgid "Laptop"
 msgstr "Laptop"
 
@@ -68,10 +68,10 @@ msgstr "Přístupnost"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:85
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:293
-#: dialogs/display-settings/minimal-display-dialog.glade:281
+#: dialogs/display-settings/display-dialog.glade:297
+#: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3380
+#: dialogs/display-settings/main.c:3365
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -83,7 +83,7 @@ msgstr "_Zavřít"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:100
 #: dialogs/appearance-settings/appearance-dialog.glade:126
 #: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:277
+#: dialogs/display-settings/display-dialog.glade:281
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
 #: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:179
@@ -314,37 +314,37 @@ msgstr "SOCKET ID"
 #: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
 #: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
 #: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
-#: xfsettingsd/main.c:107
+#: xfsettingsd/main.c:106
 msgid "Version information"
 msgstr "Informace o verzi"
 
 #: dialogs/accessibility-settings/main.c:200
 #: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3328 dialogs/keyboard-settings/main.c:78
+#: dialogs/display-settings/main.c:3313 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:259
-#: xfsettingsd/main.c:297
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:255
+#: xfsettingsd/main.c:293
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Informace o použití získáte příkazem '%s --help'"
 
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3347 dialogs/keyboard-settings/main.c:94
+#: dialogs/display-settings/main.c:3332 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:275
+#: xfsettingsd/main.c:271
 msgid "The Xfce development team. All rights reserved."
 msgstr "Vývojářský tým Xfce. Všechna práva vyhrazena."
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3348 dialogs/keyboard-settings/main.c:95
+#: dialogs/display-settings/main.c:3333 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:276
+#: xfsettingsd/main.c:272
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Prosíme, abyste chyby hlásili na <%s>."
@@ -950,159 +950,174 @@ msgstr "Zrcadlit"
 msgid "Extend"
 msgstr "Rozšířit"
 
-#: dialogs/display-settings/display-dialog.glade:160
+#: dialogs/display-settings/display-dialog.glade:106
+msgid "Enable profile"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:164
 msgid "The primary display is currently configured to show:"
 msgstr "Primární displej je nyní nakonfigurovaný pro zobrazování:"
 
-#: dialogs/display-settings/display-dialog.glade:174
+#: dialogs/display-settings/display-dialog.glade:178
 msgid "Xfce Panel"
 msgstr "Xfce panel"
 
-#: dialogs/display-settings/display-dialog.glade:187
+#: dialogs/display-settings/display-dialog.glade:191
 msgid "Desktop icons"
 msgstr "Ikony na ploše"
 
-#: dialogs/display-settings/display-dialog.glade:200
+#: dialogs/display-settings/display-dialog.glade:204
 msgid "Notifications"
 msgstr "Oznámení"
 
-#: dialogs/display-settings/display-dialog.glade:210
-#: dialogs/display-settings/display-dialog.glade:225
-#: dialogs/display-settings/display-dialog.glade:240
+#: dialogs/display-settings/display-dialog.glade:214
+#: dialogs/display-settings/display-dialog.glade:229
+#: dialogs/display-settings/display-dialog.glade:244
 msgid "Configure..."
 msgstr "Konfigurovat..."
 
-#: dialogs/display-settings/display-dialog.glade:258
+#: dialogs/display-settings/display-dialog.glade:262
 #: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "Displej"
 
-#: dialogs/display-settings/display-dialog.glade:371
+#: dialogs/display-settings/display-dialog.glade:375
 msgid "_Mirror displays"
 msgstr "_Zrcadlené displeje"
 
-#: dialogs/display-settings/display-dialog.glade:472
+#: dialogs/display-settings/display-dialog.glade:476
 msgid "Primary Display:"
 msgstr "Primární displej:"
 
-#: dialogs/display-settings/display-dialog.glade:498
+#: dialogs/display-settings/display-dialog.glade:502
 msgid "R_esolution:"
 msgstr "Rozliš_ení:"
 
-#: dialogs/display-settings/display-dialog.glade:524
+#: dialogs/display-settings/display-dialog.glade:528
 msgid "Refresh _rate:"
 msgstr "Obnovovací f_rekvence:"
 
-#: dialogs/display-settings/display-dialog.glade:550
+#: dialogs/display-settings/display-dialog.glade:554
 msgid "Ro_tation:"
 msgstr "O_točení:"
 
-#: dialogs/display-settings/display-dialog.glade:574
+#: dialogs/display-settings/display-dialog.glade:578
 msgid "Ref_lection:"
 msgstr "Od_raz:"
 
-#: dialogs/display-settings/display-dialog.glade:617
+#: dialogs/display-settings/display-dialog.glade:621
 msgid "A_pply"
 msgstr "_Použít"
 
-#: dialogs/display-settings/display-dialog.glade:644
+#: dialogs/display-settings/display-dialog.glade:648
 msgid "_Scale:"
 msgstr "_Zvětšení:"
 
-#: dialogs/display-settings/display-dialog.glade:671
+#: dialogs/display-settings/display-dialog.glade:675
 msgid "X:"
 msgstr "X:"
 
-#: dialogs/display-settings/display-dialog.glade:684
+#: dialogs/display-settings/display-dialog.glade:688
 msgid "Y:"
 msgstr "Y:"
 
-#: dialogs/display-settings/display-dialog.glade:814
+#: dialogs/display-settings/display-dialog.glade:818
 msgid "_General"
 msgstr "_Obecné"
 
-#: dialogs/display-settings/display-dialog.glade:834
+#: dialogs/display-settings/display-dialog.glade:838
 msgid "<b>Profiles</b>"
 msgstr "<b>Profily</b>"
 
-#: dialogs/display-settings/display-dialog.glade:850
+#: dialogs/display-settings/display-dialog.glade:854
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>Připojování obrazovek</b>"
 
-#: dialogs/display-settings/display-dialog.glade:900
+#: dialogs/display-settings/display-dialog.glade:904
 msgid "Delete the currently selected display profile."
 msgstr "Smazat aktuálně označený profil zobrazení."
 
-#: dialogs/display-settings/display-dialog.glade:913
+#: dialogs/display-settings/display-dialog.glade:917
 msgid "Apply"
 msgstr "Použít"
 
-#: dialogs/display-settings/display-dialog.glade:917
+#: dialogs/display-settings/display-dialog.glade:921
 msgid "Apply the currently selected display profile."
 msgstr "Použít aktuálně označený profil zobrazení."
 
-#: dialogs/display-settings/display-dialog.glade:933
+#: dialogs/display-settings/display-dialog.glade:937
 msgid "Create a new display profile."
 msgstr "Vytvořit nový profil zobrazení."
 
-#: dialogs/display-settings/display-dialog.glade:949
+#: dialogs/display-settings/display-dialog.glade:953
 msgid "Update an existing profile."
 msgstr "Aktualizovat existující profil."
 
-#: dialogs/display-settings/display-dialog.glade:982
-msgid "Automatically enable profiles when new display is connected"
-msgstr "Automaticky zapínat profily při připojení nové obrazovky"
-
-#: dialogs/display-settings/display-dialog.glade:1007
+#: dialogs/display-settings/display-dialog.glade:986
 msgid "When new displays are connected:"
 msgstr "Pokud jsou připojeny nové monitory:"
 
-#: dialogs/display-settings/display-dialog.glade:1020
+#: dialogs/display-settings/display-dialog.glade:999
 msgid "Show popup windows to identify displays"
 msgstr "Zobrazit vyskakovací okna pro rozpoznání obrazovek"
 
-#: dialogs/display-settings/display-dialog.glade:1046
+#: dialogs/display-settings/display-dialog.glade:1025
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Identifikují se obrazovky</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1105
-#: dialogs/display-settings/minimal-display-dialog.glade:267
+#: dialogs/display-settings/display-dialog.glade:1065
+#: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr "_Pokročilé"
 
-#: dialogs/display-settings/display-dialog.glade:1163
+#: dialogs/display-settings/display-dialog.glade:1123
 msgid "<b>Profile Name</b>"
 msgstr "<b>Název profilu</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1186
+#: dialogs/display-settings/display-dialog.glade:1146
 msgid "Create"
 msgstr "Vytvořit"
 
-#: dialogs/display-settings/display-dialog.glade:1221
+#: dialogs/display-settings/display-dialog.glade:1181
 msgid "A profile of this name already exists."
 msgstr "Profil s tímto názvem již existuje."
 
-#: dialogs/display-settings/minimal-display-dialog.glade:12
+#: dialogs/display-settings/minimal-display-dialog.glade:16
+msgid "Extend right"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:19
+msgid "Extend left"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:22
+msgid "Extend up"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:25
+msgid "Extend down"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
 msgstr "Displej"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:78
-#: dialogs/display-settings/minimal-display-dialog.glade:79
+#: dialogs/display-settings/minimal-display-dialog.glade:92
+#: dialogs/display-settings/minimal-display-dialog.glade:93
 msgid "Only Display 1"
 msgstr "Pouze Displej 1"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:131
-#: dialogs/display-settings/minimal-display-dialog.glade:132
+#: dialogs/display-settings/minimal-display-dialog.glade:145
+#: dialogs/display-settings/minimal-display-dialog.glade:146
 msgid "Mirror Displays"
 msgstr "Zrcadlené displeje"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:184
-#: dialogs/display-settings/minimal-display-dialog.glade:185
+#: dialogs/display-settings/minimal-display-dialog.glade:201
 msgid "Extend to the right"
 msgstr "Rozšířit doprava"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:237
-#: dialogs/display-settings/minimal-display-dialog.glade:238
+#: dialogs/display-settings/minimal-display-dialog.glade:262
+#: dialogs/display-settings/minimal-display-dialog.glade:263
 msgid "Only Display 2"
 msgstr "Pouze Displej 2"
 
@@ -1185,34 +1200,34 @@ msgstr "Poslední aktivní výstup nelze zakázat, systém by byl nepoužitelný
 msgid "Selected output not disabled"
 msgstr "Vybraný výstup není zakázaný"
 
-#: dialogs/display-settings/main.c:1202
+#: dialogs/display-settings/main.c:1234
 msgid "Profiles matching the currently connected displays"
 msgstr "Profily odpovídají aktuálně připojeným displejům"
 
-#: dialogs/display-settings/main.c:1291
+#: dialogs/display-settings/main.c:1323
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Aktualizovat změněný profil displeje %s?"
 
-#: dialogs/display-settings/main.c:1296
+#: dialogs/display-settings/main.c:1328
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Aktualizovat %s?"
 
-#: dialogs/display-settings/main.c:1574
+#: dialogs/display-settings/main.c:1606
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Opravdu chcete smazat profil displeje %s?"
 
-#: dialogs/display-settings/main.c:1576
+#: dialogs/display-settings/main.c:1608
 msgid "Delete Profile"
 msgstr "Smazat profil"
 
-#: dialogs/display-settings/main.c:1579
+#: dialogs/display-settings/main.c:1611
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Po smazání již nebude možné profil displeje obnovit."
 
-#: dialogs/display-settings/main.c:1580
+#: dialogs/display-settings/main.c:1612
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1220,22 +1235,22 @@ msgstr "Po smazání již nebude možné profil displeje obnovit."
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: dialogs/display-settings/main.c:1581
+#: dialogs/display-settings/main.c:1613
 msgid "Delete"
 msgstr "Smazat"
 
-#: dialogs/display-settings/main.c:1686
+#: dialogs/display-settings/main.c:1699
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce panely"
 
-#: dialogs/display-settings/main.c:2451
+#: dialogs/display-settings/main.c:2482
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Vlastnosti monitoru změníte jeho výběrem. Chcete-li změnit jeho umístění, přesuňte jej."
 
-#: dialogs/display-settings/main.c:2494 dialogs/display-settings/main.c:2571
+#: dialogs/display-settings/main.c:2525 dialogs/display-settings/main.c:2602
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1244,23 +1259,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2793
+#: dialogs/display-settings/main.c:2824
 msgid "Mirror Screens"
 msgstr "Zrcadlené obrazovky"
 
-#: dialogs/display-settings/main.c:2843
+#: dialogs/display-settings/main.c:2874
 msgid "(Disabled)"
 msgstr "(Zakázáno)"
 
-#: dialogs/display-settings/main.c:3374
+#: dialogs/display-settings/main.c:3359
 msgid "ATI Settings"
 msgstr "Nastavení grafické karty ATI"
 
-#: dialogs/display-settings/main.c:3379
+#: dialogs/display-settings/main.c:3364
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nelze spustit nastavení displeje Xfce"
 
-#: dialogs/display-settings/main.c:3387
+#: dialogs/display-settings/main.c:3372
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nelze spustit nastavení proprietárního ovladače"
 
@@ -1281,7 +1296,7 @@ msgstr "Displej:"
 msgid "Resolution:"
 msgstr "Rozlišení:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1081
+#: dialogs/display-settings/display-settings-wayland.c:1113
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
@@ -2760,15 +2775,15 @@ msgstr "Zdvojené klávesy"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Nelze spustit odkaz „%s“"
 
-#: xfsettingsd/main.c:108
+#: xfsettingsd/main.c:107
 msgid "Fork to the background"
 msgstr "Přesunout do pozadí"
 
-#: xfsettingsd/main.c:109
+#: xfsettingsd/main.c:108
 msgid "Do not wait for a window manager on startup"
 msgstr "Nečekat na správce oken při startu"
 
-#: xfsettingsd/main.c:110
+#: xfsettingsd/main.c:109
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Nahradit spuštěného démona služby xsettings (pokud existuje)"
 
