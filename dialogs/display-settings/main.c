@@ -1971,8 +1971,6 @@ static void
 display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
                                                   XfceDisplaySettings *settings)
 {
-    guint n_outputs;
-
     if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return;
 
@@ -1981,11 +1979,9 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
         /* Activate mirror-mode with a single mode for all of them */
         xfce_display_settings_mirror (settings);
 
-        n_outputs = xfce_display_settings_get_n_outputs (settings);
-        for (guint n = 0; n < n_outputs; n++)
-            xfce_display_settings_save (settings, n, "Default");
-
         /* Apply all changes */
+        xfce_display_settings_save (settings, 0, "Default");
+        xfce_display_settings_save (settings, 1, "Default");
         xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
     }
     else
@@ -2001,21 +1997,16 @@ display_settings_minimal_extend_displays_toggled (GtkToggleButton *button,
 {
     GtkBuilder *builder;
     ExtendedMode mode;
-    guint n_outputs;
 
     if (!gtk_toggle_button_get_active(button))
         return;
 
-    n_outputs = xfce_display_settings_get_n_outputs (settings);
-    if (n_outputs <= 1)
+    if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return;
 
-    /* Activate all inactive displays */
-    for (guint n = 0; n < n_outputs; n++)
-    {
-        if (!xfce_display_settings_is_active (settings, n))
-            xfce_display_settings_set_active (settings, n, TRUE);
-    }
+    /* Activate displays if needed */
+    xfce_display_settings_set_active (settings, 0, TRUE);
+    xfce_display_settings_set_active (settings, 1, TRUE);
 
     builder = xfce_display_settings_get_builder (settings);
     mode = gtk_combo_box_get_active (GTK_COMBO_BOX (gtk_builder_get_object (builder, "combobox-extend")));
