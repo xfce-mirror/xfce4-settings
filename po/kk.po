@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-02-19 00:50+0100\n"
+"POT-Creation-Date: 2024-03-11 12:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009,2014-2023\n"
 "Language-Team: Kazakh (http://app.transifex.com/xfce/xfce4-settings/language/kk/)\n"
@@ -40,7 +40,7 @@ msgstr "Теледидар"
 msgid "Digital display"
 msgstr "Цифрлық дисплей"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:740
+#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:771
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Қолданулы тұрған RandR кеңейтуінің нұсқасын анықтау мүмкін емес"
 
@@ -53,7 +53,7 @@ msgid ""
 msgstr "Жүйеңіздегі RandR нұсқасы %d.%d. Дисплей баптауларының жұмысы үшін кем дегенде 1.2 нұсқасы керек"
 
 #: common/xfce-randr.c:581
-#: dialogs/display-settings/display-settings-wayland.c:344
+#: dialogs/display-settings/display-settings-wayland.c:345
 msgid "Laptop"
 msgstr "Ноутбук"
 
@@ -65,10 +65,10 @@ msgstr "Қолжетерлілік"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:85
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:293
-#: dialogs/display-settings/minimal-display-dialog.glade:281
+#: dialogs/display-settings/display-dialog.glade:297
+#: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3380
+#: dialogs/display-settings/main.c:3365
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -80,7 +80,7 @@ msgstr "_Жабу"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:100
 #: dialogs/appearance-settings/appearance-dialog.glade:126
 #: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:277
+#: dialogs/display-settings/display-dialog.glade:281
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
 #: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:179
@@ -311,37 +311,37 @@ msgstr "SOCKET ID"
 #: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
 #: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
 #: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
-#: xfsettingsd/main.c:107
+#: xfsettingsd/main.c:106
 msgid "Version information"
 msgstr "Нұсқа ақпараты"
 
 #: dialogs/accessibility-settings/main.c:200
 #: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3328 dialogs/keyboard-settings/main.c:78
+#: dialogs/display-settings/main.c:3313 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:259
-#: xfsettingsd/main.c:297
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:255
+#: xfsettingsd/main.c:293
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Көмек үшін '%s --help' енгізіңіз."
 
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3347 dialogs/keyboard-settings/main.c:94
+#: dialogs/display-settings/main.c:3332 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:275
+#: xfsettingsd/main.c:271
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce өндіру тобы. Барлық құқықтары қорғалған."
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3348 dialogs/keyboard-settings/main.c:95
+#: dialogs/display-settings/main.c:3333 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:276
+#: xfsettingsd/main.c:272
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Ақаулықтар жөнінде хабарласыңыз: <%s>."
@@ -947,159 +947,174 @@ msgstr "Айналы"
 msgid "Extend"
 msgstr "Кеңейту"
 
-#: dialogs/display-settings/display-dialog.glade:160
+#: dialogs/display-settings/display-dialog.glade:106
+msgid "Enable profile"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:164
 msgid "The primary display is currently configured to show:"
 msgstr "Біріншілік экран ағымдағы уақытта келесіні көрсетуді бапталған:"
 
-#: dialogs/display-settings/display-dialog.glade:174
+#: dialogs/display-settings/display-dialog.glade:178
 msgid "Xfce Panel"
 msgstr "Xfce панелі"
 
-#: dialogs/display-settings/display-dialog.glade:187
+#: dialogs/display-settings/display-dialog.glade:191
 msgid "Desktop icons"
 msgstr "Жұмыс үстел таңбашалары"
 
-#: dialogs/display-settings/display-dialog.glade:200
+#: dialogs/display-settings/display-dialog.glade:204
 msgid "Notifications"
 msgstr "Хабарламалар"
 
-#: dialogs/display-settings/display-dialog.glade:210
-#: dialogs/display-settings/display-dialog.glade:225
-#: dialogs/display-settings/display-dialog.glade:240
+#: dialogs/display-settings/display-dialog.glade:214
+#: dialogs/display-settings/display-dialog.glade:229
+#: dialogs/display-settings/display-dialog.glade:244
 msgid "Configure..."
 msgstr "Баптау..."
 
-#: dialogs/display-settings/display-dialog.glade:258
+#: dialogs/display-settings/display-dialog.glade:262
 #: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "Дисплей"
 
-#: dialogs/display-settings/display-dialog.glade:371
+#: dialogs/display-settings/display-dialog.glade:375
 msgid "_Mirror displays"
 msgstr "А_йналы дисплейдер"
 
-#: dialogs/display-settings/display-dialog.glade:472
+#: dialogs/display-settings/display-dialog.glade:476
 msgid "Primary Display:"
 msgstr "Біріншілік экран:"
 
-#: dialogs/display-settings/display-dialog.glade:498
+#: dialogs/display-settings/display-dialog.glade:502
 msgid "R_esolution:"
 msgstr "Кең_ейтілуі:"
 
-#: dialogs/display-settings/display-dialog.glade:524
+#: dialogs/display-settings/display-dialog.glade:528
 msgid "Refresh _rate:"
 msgstr "Жаңарту ж_иілігі:"
 
-#: dialogs/display-settings/display-dialog.glade:550
+#: dialogs/display-settings/display-dialog.glade:554
 msgid "Ro_tation:"
 msgstr "Бұ_рылуы:"
 
-#: dialogs/display-settings/display-dialog.glade:574
+#: dialogs/display-settings/display-dialog.glade:578
 msgid "Ref_lection:"
 msgstr "Шағ_ылысу:"
 
-#: dialogs/display-settings/display-dialog.glade:617
+#: dialogs/display-settings/display-dialog.glade:621
 msgid "A_pply"
 msgstr "Іске _асыру"
 
-#: dialogs/display-settings/display-dialog.glade:644
+#: dialogs/display-settings/display-dialog.glade:648
 msgid "_Scale:"
 msgstr "Ма_сштаб:"
 
-#: dialogs/display-settings/display-dialog.glade:671
+#: dialogs/display-settings/display-dialog.glade:675
 msgid "X:"
 msgstr "X:"
 
-#: dialogs/display-settings/display-dialog.glade:684
+#: dialogs/display-settings/display-dialog.glade:688
 msgid "Y:"
 msgstr "Y:"
 
-#: dialogs/display-settings/display-dialog.glade:814
+#: dialogs/display-settings/display-dialog.glade:818
 msgid "_General"
 msgstr "Жал_пы"
 
-#: dialogs/display-settings/display-dialog.glade:834
+#: dialogs/display-settings/display-dialog.glade:838
 msgid "<b>Profiles</b>"
 msgstr "<b>Профильдер</b>"
 
-#: dialogs/display-settings/display-dialog.glade:850
+#: dialogs/display-settings/display-dialog.glade:854
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>Экрандарды жалғау</b>"
 
-#: dialogs/display-settings/display-dialog.glade:900
+#: dialogs/display-settings/display-dialog.glade:904
 msgid "Delete the currently selected display profile."
 msgstr "Ағымдағы таңдаулы тұрған экран профилін өшіру."
 
-#: dialogs/display-settings/display-dialog.glade:913
+#: dialogs/display-settings/display-dialog.glade:917
 msgid "Apply"
 msgstr "Іске асыру"
 
-#: dialogs/display-settings/display-dialog.glade:917
+#: dialogs/display-settings/display-dialog.glade:921
 msgid "Apply the currently selected display profile."
 msgstr "Ағымдағы таңдаулы тұрған экран профилін іске асыру."
 
-#: dialogs/display-settings/display-dialog.glade:933
+#: dialogs/display-settings/display-dialog.glade:937
 msgid "Create a new display profile."
 msgstr "Жаңа экран профилін жасау."
 
-#: dialogs/display-settings/display-dialog.glade:949
+#: dialogs/display-settings/display-dialog.glade:953
 msgid "Update an existing profile."
 msgstr "Бар болып тұрған профильді жаңарту."
 
-#: dialogs/display-settings/display-dialog.glade:982
-msgid "Automatically enable profiles when new display is connected"
-msgstr "Жаңа экран қосылған кезде, профильдерді автоматты түрде іске қосу"
-
-#: dialogs/display-settings/display-dialog.glade:1007
+#: dialogs/display-settings/display-dialog.glade:986
 msgid "When new displays are connected:"
 msgstr "Жаңа экрандар қосылған кезде"
 
-#: dialogs/display-settings/display-dialog.glade:1020
+#: dialogs/display-settings/display-dialog.glade:999
 msgid "Show popup windows to identify displays"
 msgstr "Экрандарды тану үшін, қалқымалы терезелерді көрсету"
 
-#: dialogs/display-settings/display-dialog.glade:1046
+#: dialogs/display-settings/display-dialog.glade:1025
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Экрандарды тану</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1105
-#: dialogs/display-settings/minimal-display-dialog.glade:267
+#: dialogs/display-settings/display-dialog.glade:1065
+#: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr "К_еңейтілген"
 
-#: dialogs/display-settings/display-dialog.glade:1163
+#: dialogs/display-settings/display-dialog.glade:1123
 msgid "<b>Profile Name</b>"
 msgstr "<b>Профиль аты</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1186
+#: dialogs/display-settings/display-dialog.glade:1146
 msgid "Create"
 msgstr "Жасау"
 
-#: dialogs/display-settings/display-dialog.glade:1221
+#: dialogs/display-settings/display-dialog.glade:1181
 msgid "A profile of this name already exists."
 msgstr "Осылай аталатын профиль бар болып тұр."
 
-#: dialogs/display-settings/minimal-display-dialog.glade:12
+#: dialogs/display-settings/minimal-display-dialog.glade:16
+msgid "Extend right"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:19
+msgid "Extend left"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:22
+msgid "Extend up"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:25
+msgid "Extend down"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
 msgstr "Дисплейдер"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:78
-#: dialogs/display-settings/minimal-display-dialog.glade:79
+#: dialogs/display-settings/minimal-display-dialog.glade:92
+#: dialogs/display-settings/minimal-display-dialog.glade:93
 msgid "Only Display 1"
 msgstr "Тек 1-ші дисплей"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:131
-#: dialogs/display-settings/minimal-display-dialog.glade:132
+#: dialogs/display-settings/minimal-display-dialog.glade:145
+#: dialogs/display-settings/minimal-display-dialog.glade:146
 msgid "Mirror Displays"
 msgstr "Айналы дисплейдер"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:184
-#: dialogs/display-settings/minimal-display-dialog.glade:185
+#: dialogs/display-settings/minimal-display-dialog.glade:201
 msgid "Extend to the right"
 msgstr "Оңға қарай созу"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:237
-#: dialogs/display-settings/minimal-display-dialog.glade:238
+#: dialogs/display-settings/minimal-display-dialog.glade:262
+#: dialogs/display-settings/minimal-display-dialog.glade:263
 msgid "Only Display 2"
 msgstr "Тек 2-ші дисплей"
 
@@ -1182,34 +1197,34 @@ msgstr "Соңғы белсенді шығысты сөндіруге болма
 msgid "Selected output not disabled"
 msgstr "Таңдалған шығыс сөндірілген емес"
 
-#: dialogs/display-settings/main.c:1202
+#: dialogs/display-settings/main.c:1234
 msgid "Profiles matching the currently connected displays"
 msgstr "Жалғанған экрандарға сәйкес келетін профильдер"
 
-#: dialogs/display-settings/main.c:1291
+#: dialogs/display-settings/main.c:1323
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Өзгертілген '%s' экран профилін жаңарту керек пе?"
 
-#: dialogs/display-settings/main.c:1296
+#: dialogs/display-settings/main.c:1328
 #, c-format
 msgid "_Update '%s'"
 msgstr "'%s' ж_аңарту"
 
-#: dialogs/display-settings/main.c:1574
+#: dialogs/display-settings/main.c:1606
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "'%s' экран профилін өшіруді қалайсыз ба?"
 
-#: dialogs/display-settings/main.c:1576
+#: dialogs/display-settings/main.c:1608
 msgid "Delete Profile"
 msgstr "Профильді өшіру"
 
-#: dialogs/display-settings/main.c:1579
+#: dialogs/display-settings/main.c:1611
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Экран профилін өшіргеннен кейін, оны қалпына келтіруге болмайды."
 
-#: dialogs/display-settings/main.c:1580
+#: dialogs/display-settings/main.c:1612
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1217,22 +1232,22 @@ msgstr "Экран профилін өшіргеннен кейін, оны қа
 msgid "Cancel"
 msgstr "Бас тарту"
 
-#: dialogs/display-settings/main.c:1581
+#: dialogs/display-settings/main.c:1613
 msgid "Delete"
 msgstr "Өшіру"
 
-#: dialogs/display-settings/main.c:1686
+#: dialogs/display-settings/main.c:1699
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce панелі"
 
-#: dialogs/display-settings/main.c:2451
+#: dialogs/display-settings/main.c:2482
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Қасиеттерін өзгерту үшін мониторды таңдаңыз; орналасуын өзгерту үшін оны тартып апарыңыз."
 
-#: dialogs/display-settings/main.c:2494 dialogs/display-settings/main.c:2571
+#: dialogs/display-settings/main.c:2525 dialogs/display-settings/main.c:2602
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1241,23 +1256,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2793
+#: dialogs/display-settings/main.c:2824
 msgid "Mirror Screens"
 msgstr "Бірдей экрандар"
 
-#: dialogs/display-settings/main.c:2843
+#: dialogs/display-settings/main.c:2874
 msgid "(Disabled)"
 msgstr "(Сөндірулі)"
 
-#: dialogs/display-settings/main.c:3374
+#: dialogs/display-settings/main.c:3359
 msgid "ATI Settings"
 msgstr "ATI баптаулары"
 
-#: dialogs/display-settings/main.c:3379
+#: dialogs/display-settings/main.c:3364
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce экран баптауларын жөнелту мүмкін емес"
 
-#: dialogs/display-settings/main.c:3387
+#: dialogs/display-settings/main.c:3372
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Проприетарлы драйвер баптауларын жөнелту мүмкін емес"
 
@@ -1278,7 +1293,7 @@ msgstr "Дисплей:"
 msgid "Resolution:"
 msgstr "Кеңейтілуі:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1081
+#: dialogs/display-settings/display-settings-wayland.c:1113
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
@@ -2751,15 +2766,15 @@ msgstr "Қайталанатын пернелер"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "\"%s\" жарлығын жөнелту сәтсіз"
 
-#: xfsettingsd/main.c:108
+#: xfsettingsd/main.c:107
 msgid "Fork to the background"
 msgstr "Фонда орындау"
 
-#: xfsettingsd/main.c:109
+#: xfsettingsd/main.c:108
 msgid "Do not wait for a window manager on startup"
 msgstr "Іске қосылғанда, терезелер басқарушысын күтпеу"
 
-#: xfsettingsd/main.c:110
+#: xfsettingsd/main.c:109
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Қосулы тұрған xsettings қызметін алмастыру (бар болса)"
 
