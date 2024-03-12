@@ -495,12 +495,20 @@ xfce_randr_save_output (XfceRandr     *randr,
                              randr->status[output] == XFCE_OUTPUT_STATUS_PRIMARY);
 
     /* save the scale */
-    g_snprintf (property, sizeof (property), "/%s/%s/Scale/X", scheme,
+    g_snprintf (property, sizeof (property), "/%s/%s/Scale", scheme,
                 randr->priv->output_info[output]->name);
     xfconf_channel_set_double (channel, property, randr->scalex[output]);
-    g_snprintf (property, sizeof (property), "/%s/%s/Scale/Y", scheme,
+
+    /* clean up old properties so backward compatibility is triggered only once in xfsettingsd */
+    g_snprintf (property, sizeof (property), "/%s/%s/Scale/X", scheme,
                 randr->priv->output_info[output]->name);
-    xfconf_channel_set_double (channel, property, randr->scaley[output]);
+    if (xfconf_channel_has_property (channel, property))
+    {
+        xfconf_channel_reset_property (channel, property, TRUE);
+        g_snprintf (property, sizeof (property), "/%s/%s/Scale/Y", scheme,
+                    randr->priv->output_info[output]->name);
+        xfconf_channel_reset_property (channel, property, TRUE);
+    }
 #endif
 
     /* save the position */
