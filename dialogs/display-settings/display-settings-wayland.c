@@ -810,6 +810,9 @@ xfce_display_settings_wayland_is_mirrored (XfceDisplaySettings *settings,
             continue;
 
         output = g_ptr_array_index (outputs, n);
+        if (!output->enabled)
+            continue;
+
         if (output->x == x && output->y == y)
             return TRUE;
     }
