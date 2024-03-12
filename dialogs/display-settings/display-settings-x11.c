@@ -552,9 +552,9 @@ xfce_display_settings_x11_set_active (XfceDisplaySettings *settings,
                                       gboolean active)
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
-    if (active)
+    if (active && randr->mode[output_id] == None)
         randr->mode[output_id] = xfce_randr_preferred_mode (randr, output_id);
-    else
+    else if (!active && randr->mode[output_id] != None)
         randr->mode[output_id] = None;
 }
 

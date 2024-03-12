@@ -719,6 +719,9 @@ xfce_display_settings_wayland_set_active (XfceDisplaySettings *settings,
     XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
     XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
+    if (active == output->enabled)
+        return;
+
     if (active)
     {
         XfceWlrMode *mode = get_preferred_mode (wsettings, output);
