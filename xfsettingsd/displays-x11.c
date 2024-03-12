@@ -751,7 +751,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     const gchar *str_value;
     gchar        property[512];
     gdouble      output_rate, rate;
-    gdouble      scalex, scaley;
+    gdouble      scale;
     RRMode       valid_mode;
     Rotation     rot;
     gint         x, y, n, m, int_value;
@@ -874,33 +874,27 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
 #ifdef HAS_RANDR_ONE_POINT_THREE
     if (helper->has_1_3)
     {
-        /* scaling X */
-        g_snprintf (property, sizeof (property), SCALEX_PROP, scheme,
-                    output->info->name);
+        /* scaling */
+        g_snprintf (property, sizeof (property), SCALE_PROP, scheme, output->info->name);
         value = g_hash_table_lookup (saved_outputs, property);
         if (G_VALUE_HOLDS_DOUBLE (value))
-            scalex = g_value_get_double (value);
+            scale = g_value_get_double (value);
         else
-            scalex = 1.0;
+            scale = 1.0;
 
-        /* scaling Y */
-        g_snprintf (property, sizeof (property), SCALEY_PROP, scheme,
-                    output->info->name);
+        /* backward compatibility; old properties are reset in xfce-randr.c when saving  */
+        g_snprintf (property, sizeof (property), SCALEX_PROP, scheme, output->info->name);
         value = g_hash_table_lookup (saved_outputs, property);
         if (G_VALUE_HOLDS_DOUBLE (value))
-            scaley = g_value_get_double (value);
-        else
-            scaley = 1.0;
+            scale = g_value_get_double (value);
 
-        if (scalex <= 0.0 || scaley <= 0.0) {
-            scalex = 1.0;
-            scaley = 1.0;
-        }
+        if (scale <= 0.0)
+            scale = 1.0;
 
-        if (crtc->scalex != scalex || crtc->scaley != scaley)
+        if (crtc->scalex != scale || crtc->scaley != scale)
         {
-            crtc->scalex = scalex;
-            crtc->scaley = scaley;
+            crtc->scalex = scale;
+            crtc->scaley = scale;
             crtc->changed = TRUE;
         }
     }
