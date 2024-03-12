@@ -6,7 +6,7 @@
   <object class="GtkAdjustment" id="adjustment1">
     <property name="lower">0.10</property>
     <property name="upper">10</property>
-    <property name="step-increment">0.10</property>
+    <property name="step-increment">0.25</property>
     <property name="page-increment">1</property>
   </object>
   <object class="GtkImage" id="image1">
@@ -43,40 +43,6 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="icon-name">object-select-symbolic</property>
-  </object>
-  <object class="GtkListStore" id="liststore1">
-    <columns>
-      <!-- column-name desc -->
-      <column type="gchararray"/>
-      <!-- column-name val -->
-      <column type="gdouble"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0">1x</col>
-        <col id="1">1</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">1.25x</col>
-        <col id="1">1.25</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">1.5x</col>
-        <col id="1">1.5</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">1.75x</col>
-        <col id="1">1.75</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">2x</col>
-        <col id="1">2</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Custom:</col>
-        <col id="1">-1</col>
-      </row>
-    </data>
   </object>
   <object class="GtkListStore" id="liststore2">
     <columns>
@@ -355,13 +321,7 @@
                                 <property name="width-request">350</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <child>
-                                  <placeholder/>
-                                </child>
                               </object>
-                            </child>
-                            <child type="label_item">
-                              <placeholder/>
                             </child>
                           </object>
                           <packing>
@@ -444,9 +404,6 @@
                             <property name="receives-default">True</property>
                             <property name="relief">none</property>
                             <property name="popover">primary-info</property>
-                            <child>
-                              <placeholder/>
-                            </child>
                           </object>
                           <packing>
                             <property name="left-attach">3</property>
@@ -614,9 +571,6 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
-                              <placeholder/>
-                            </child>
-                            <child>
                               <object class="GtkButton" id="apply">
                                 <property name="label" translatable="yes">A_pply</property>
                                 <property name="visible">True</property>
@@ -644,6 +598,7 @@
                           <object class="GtkLabel" id="label-scale">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="margin-bottom">3</property>
                             <property name="halign">start</property>
                             <property name="label" translatable="yes">_Scale:</property>
                             <property name="use-underline">True</property>
@@ -654,152 +609,20 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRevealer" id="revealer-scale">
+                          <object class="GtkSpinButton" id="spin-scale">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="reveal-child">True</property>
-                            <child>
-                              <!-- n-columns=3 n-rows=3 -->
-                              <object class="GtkGrid">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-left">9</property>
-                                <property name="margin-top">3</property>
-                                <property name="margin-bottom">3</property>
-                                <property name="row-spacing">3</property>
-                                <child>
-                                  <object class="GtkLabel" id="label-scale-x">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="halign">end</property>
-                                    <property name="label" translatable="yes">X:</property>
-                                    <property name="xalign">1</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left-attach">0</property>
-                                    <property name="top-attach">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="label-scale-y">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="halign">end</property>
-                                    <property name="label" translatable="yes">Y:</property>
-                                    <property name="xalign">1</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left-attach">0</property>
-                                    <property name="top-attach">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkSpinButton" id="spin-scale-x">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="halign">end</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="adjustment">adjustment1</property>
-                                    <property name="digits">1</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left-attach">1</property>
-                                    <property name="top-attach">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkSpinButton" id="spin-scale-y">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="halign">end</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="adjustment">adjustment1</property>
-                                    <property name="digits">1</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left-attach">1</property>
-                                    <property name="top-attach">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">4</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="randr-scale">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
+                            <property name="can-focus">True</property>
                             <property name="margin-left">9</property>
-                            <property name="model">liststore1</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
+                            <property name="margin-bottom">3</property>
+                            <property name="adjustment">adjustment1</property>
+                            <property name="digits">2</property>
+                            <property name="numeric">True</property>
+                            <property name="value">1.00</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
                             <property name="top-attach">3</property>
                           </packing>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
                         </child>
                       </object>
                       <packing>
@@ -1070,12 +893,6 @@
                     <property name="tab-fill">False</property>
                   </packing>
                 </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child type="tab">
-                  <placeholder/>
-                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1192,18 +1009,6 @@
                 <property name="top-attach">2</property>
                 <property name="width">2</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>
