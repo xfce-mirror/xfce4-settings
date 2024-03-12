@@ -304,6 +304,29 @@ xfce_display_settings_wayland_get_mirrored_state (XfceDisplaySettings *settings)
 
 
 
+static void
+get_geometry_mm (XfceWlrOutput *output,
+                 GdkRectangle *geometry)
+{
+    switch (output->transform)
+    {
+        case XFCE_WLR_TRANSFORM_90:
+        case XFCE_WLR_TRANSFORM_270:
+        case XFCE_WLR_TRANSFORM_FLIPPED_90:
+        case XFCE_WLR_TRANSFORM_FLIPPED_270:
+            geometry->width = output->height;
+            geometry->height = output->width;
+            break;
+
+        default:
+            geometry->width = output->width;
+            geometry->height = output->height;
+            break;
+    }
+}
+
+
+
 static GdkMonitor *
 xfce_display_settings_wayland_get_monitor (XfceDisplaySettings *settings,
                                            guint output_id)
@@ -312,16 +335,18 @@ xfce_display_settings_wayland_get_monitor (XfceDisplaySettings *settings,
     XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
     GdkDisplay *display = gdk_display_get_default ();
     gint n_monitors = gdk_display_get_n_monitors (display);
+    GdkRectangle geom;
 
     /* try to find the right monitor based on info that the protocol ensures is the same
      * as wl-output, i.e. what GTK uses */
+    get_geometry_mm (output, &geom);
     for (gint n = 0; n < n_monitors; n++)
     {
         GdkMonitor *monitor = gdk_display_get_monitor (display, n);
         if (g_strcmp0 (gdk_monitor_get_model (monitor), output->model) == 0
             && g_strcmp0 (gdk_monitor_get_manufacturer (monitor), output->manufacturer) == 0
-            && gdk_monitor_get_width_mm (monitor) == output->width
-            && gdk_monitor_get_height_mm (monitor) == output->height)
+            && gdk_monitor_get_width_mm (monitor) == geom.width
+            && gdk_monitor_get_height_mm (monitor) == geom.height)
         {
             return monitor;
         }
@@ -420,6 +445,7 @@ xfce_display_settings_wayland_get_geometry (XfceDisplaySettings *settings,
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
     XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
     XfceWlrMode *mode = get_current_mode (wsettings, output);
+    gdouble scale = wl_fixed_to_double (output->scale);
 
     geometry->x = output->x;
     geometry->y = output->y;
@@ -429,13 +455,13 @@ xfce_display_settings_wayland_get_geometry (XfceDisplaySettings *settings,
         case XFCE_WLR_TRANSFORM_270:
         case XFCE_WLR_TRANSFORM_FLIPPED_90:
         case XFCE_WLR_TRANSFORM_FLIPPED_270:
-            geometry->width = mode->height;
-            geometry->height = mode->width;
+            geometry->width = mode->height / scale;
+            geometry->height = mode->width / scale;
             break;
 
         default:
-            geometry->width = mode->width;
-            geometry->height = mode->height;
+            geometry->width = mode->width / scale;
+            geometry->height = mode->height / scale;
             break;
     }
 }
@@ -735,8 +761,9 @@ xfce_display_settings_wayland_set_active (XfceDisplaySettings *settings,
             XfceWlrOutput *output_n = g_ptr_array_index (outputs, n);
             if (output_n->enabled)
             {
-                XfceWlrMode *mode_n = get_current_mode (wsettings, output_n);
-                output->x = MAX (output->x, output_n->x + mode_n->width);
+                GdkRectangle geom;
+                xfce_display_settings_wayland_get_geometry (settings, n, &geom);
+                output->x = MAX (output->x, output_n->x + geom.width);
                 output->y = MAX (output->y, output_n->y);
             }
         }
@@ -744,16 +771,17 @@ xfce_display_settings_wayland_set_active (XfceDisplaySettings *settings,
     else
     {
         /* realign other outputs if needed */
-        XfceWlrMode *mode = get_current_mode (wsettings, output);
+        GdkRectangle geom;
+        xfce_display_settings_wayland_get_geometry (settings, output_id, &geom);
         for (guint n = 0; n < outputs->len; n++)
         {
             XfceWlrOutput *output_n = g_ptr_array_index (outputs, n);
             if (output_n->enabled && n != output_id)
             {
                 if (output_n->x > output->x)
-                    output_n->x -= mode->width;
+                    output_n->x -= geom.width;
                 if (output_n->y > output->y)
-                    output_n->y -= mode->height;
+                    output_n->y -= geom.height;
             }
         }
     }
@@ -831,16 +859,17 @@ xfce_display_settings_wayland_get_extended_mode (XfceDisplaySettings *settings,
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
     XfceWlrOutput *output_1 = g_ptr_array_index (outputs, output_id_1);
     XfceWlrOutput *output_2 = g_ptr_array_index (outputs, output_id_2);
-    XfceWlrMode *mode_1 = get_current_mode (wsettings, output_1);
-    XfceWlrMode *mode_2 = get_current_mode (wsettings, output_2);
+    GdkRectangle geom_1, geom_2;
 
-    if (output_2->x == output_1->x + (gint) mode_1->width)
+    xfce_display_settings_wayland_get_geometry (settings, output_id_1, &geom_1);
+    xfce_display_settings_wayland_get_geometry (settings, output_id_2, &geom_2);
+    if (output_2->x == output_1->x + geom_1.width)
         return EXTENDED_MODE_RIGHT;
-    else if (output_1->x == output_2->x + (gint) mode_2->width)
+    else if (output_1->x == output_2->x + geom_2.width)
         return EXTENDED_MODE_LEFT;
-    else if (output_1->y == output_2->y + (gint) mode_2->height)
+    else if (output_1->y == output_2->y + geom_2.height)
         return EXTENDED_MODE_UP;
-    else if (output_2->y == output_1->y + (gint) mode_1->height)
+    else if (output_2->y == output_1->y + geom_1.height)
         return EXTENDED_MODE_DOWN;
     else
         return EXTENDED_MODE_NONE;
@@ -989,10 +1018,12 @@ xfce_display_settings_wayland_unmirror (XfceDisplaySettings *settings)
     {
         XfceWlrOutput *output = g_ptr_array_index (outputs, n);
         XfceWlrMode *mode = get_preferred_mode (wsettings, output);
+        GdkRectangle geom;
+        xfce_display_settings_wayland_get_geometry (settings, n, &geom);
         output->wl_mode = mode->wl_mode;
         output->x = x;
         output->y = 0;
-        x += mode->width;
+        x += geom.width;
     }
 }
 
@@ -1025,9 +1056,10 @@ xfce_display_settings_wayland_extend (XfceDisplaySettings *settings,
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
     XfceWlrOutput *output_1 = g_ptr_array_index (outputs, output_id_1);
     XfceWlrOutput *output_2 = g_ptr_array_index (outputs, output_id_2);
-    XfceWlrMode *mode_1 = get_current_mode (wsettings, output_1);
-    XfceWlrMode *mode_2 = get_current_mode (wsettings, output_2);
+    GdkRectangle geom_1, geom_2;
 
+    xfce_display_settings_wayland_get_geometry (settings, output_id_1, &geom_1);
+    xfce_display_settings_wayland_get_geometry (settings, output_id_2, &geom_2);
     output_1->x = 0;
     output_1->y = 0;
     output_2->x = 0;
@@ -1035,16 +1067,16 @@ xfce_display_settings_wayland_extend (XfceDisplaySettings *settings,
     switch (mode)
     {
         case EXTENDED_MODE_RIGHT:
-            output_2->x = mode_1->width;
+            output_2->x = geom_1.width;
             break;
         case EXTENDED_MODE_LEFT:
-            output_1->x = mode_2->width;
+            output_1->x = geom_2.width;
             break;
         case EXTENDED_MODE_UP:
-            output_1->y = mode_2->height;
+            output_1->y = geom_2.height;
             break;
         case EXTENDED_MODE_DOWN:
-            output_2->y = mode_1->height;
+            output_2->y = geom_1.height;
             break;
         default:
             break;

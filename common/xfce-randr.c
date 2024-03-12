@@ -783,27 +783,29 @@ xfce_randr_get_display_infos (XfceRandr *randr)
 
 
 guint
-xfce_randr_mode_width (const XfceRRMode *mode,
-                       Rotation          rot)
+xfce_randr_mode_width (XfceRandr        *randr,
+                       guint             output,
+                       const XfceRRMode *mode)
 {
     g_return_val_if_fail (mode != NULL, 0);
 
-    if ((rot & (RR_Rotate_90|RR_Rotate_270)) != 0)
-        return mode->height;
+    if ((randr->rotation[output] & (RR_Rotate_90 | RR_Rotate_270)) != 0)
+        return mode->height * randr->scaley[output];
     else
-        return mode->width;
+        return mode->width * randr->scalex[output];
 }
 
 
 
 guint
-xfce_randr_mode_height (const XfceRRMode *mode,
-                        Rotation          rot)
+xfce_randr_mode_height (XfceRandr        *randr,
+                        guint             output,
+                        const XfceRRMode *mode)
 {
     g_return_val_if_fail (mode != NULL, 0);
 
-    if ((rot & (RR_Rotate_90|RR_Rotate_270)) != 0)
-        return mode->width;
+    if ((randr->rotation[output] & (RR_Rotate_90 | RR_Rotate_270)) != 0)
+        return mode->width * randr->scalex[output];
     else
-        return mode->height;
+        return mode->height * randr->scaley[output];
 }

@@ -242,8 +242,10 @@ xfce_display_settings_set_outputs (XfceDisplaySettings *settings)
         XfceOutput *output = lp->data;
         if (output->active)
         {
+            GdkRectangle geom;
+            xfce_display_settings_get_geometry (settings, output->id, &geom);
             y = MAX (output->y, y);
-            x = MAX (output->x + (gint) output->mode->width, x);
+            x = MAX (output->x + geom.width, x);
         }
     }
 
@@ -480,7 +482,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
                 gtk_layer_set_anchor (GTK_WINDOW (popup), GTK_LAYER_SHELL_EDGE_TOP, TRUE);
                 gtk_layer_set_margin (GTK_WINDOW (popup), GTK_LAYER_SHELL_EDGE_LEFT, (geom.width - window_width) / 2);
                 gtk_layer_set_margin (GTK_WINDOW (popup), GTK_LAYER_SHELL_EDGE_TOP, geom.height - window_height);
-                gtk_layer_set_monitor (GTK_WINDOW (popup), xfce_display_settings_get_monitor (settings, output_id));
+                gtk_layer_set_monitor (GTK_WINDOW (popup), monitor);
                 gtk_widget_set_size_request (popup, window_width, window_height);
                 gtk_window_present (GTK_WINDOW (popup));
             }

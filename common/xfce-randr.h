@@ -125,10 +125,12 @@ gboolean          xfce_randr_get_positions   (XfceRandr        *randr,
 
 gchar           **xfce_randr_get_display_infos (XfceRandr      *randr);
 
-guint             xfce_randr_mode_width      (const XfceRRMode *mode,
-                                              Rotation          rot);
+guint             xfce_randr_mode_width      (XfceRandr        *randr,
+                                              guint             output,
+                                              const XfceRRMode *mode);
 
-guint             xfce_randr_mode_height     (const XfceRRMode *mode,
-                                              Rotation          rot);
+guint             xfce_randr_mode_height     (XfceRandr        *randr,
+                                              guint             output,
+                                              const XfceRRMode *mode);
 
 #endif /* !__XFCE_RANDR_H__ */

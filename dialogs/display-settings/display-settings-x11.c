@@ -321,8 +321,8 @@ xfce_display_settings_x11_get_geometry (XfceDisplaySettings *settings,
     }
     else
     {
-        geometry->width = xfce_randr_mode_width (mode, randr->rotation[output_id]);
-        geometry->height = xfce_randr_mode_height (mode, randr->rotation[output_id]);
+        geometry->width = xfce_randr_mode_width (randr, output_id, mode);
+        geometry->height = xfce_randr_mode_height (randr, output_id, mode);
     }
 }
 
@@ -618,13 +618,13 @@ xfce_display_settings_x11_get_extended_mode (XfceDisplaySettings *settings,
         return EXTENDED_MODE_NONE;
     }
 
-    if (randr->position[output_id_2].x == randr->position[output_id_1].x + (gint) xfce_randr_mode_width (mode_1, 0))
+    if (randr->position[output_id_2].x == randr->position[output_id_1].x + (gint) xfce_randr_mode_width (randr, output_id_1, mode_1))
         return EXTENDED_MODE_RIGHT;
-    else if (randr->position[output_id_1].x == randr->position[output_id_2].x + (gint) xfce_randr_mode_width (mode_2, 0))
+    else if (randr->position[output_id_1].x == randr->position[output_id_2].x + (gint) xfce_randr_mode_width (randr, output_id_2, mode_2))
         return EXTENDED_MODE_LEFT;
-    else if (randr->position[output_id_1].y == randr->position[output_id_2].y + (gint) xfce_randr_mode_height (mode_2, 0))
+    else if (randr->position[output_id_1].y == randr->position[output_id_2].y + (gint) xfce_randr_mode_height (randr, output_id_2, mode_2))
         return EXTENDED_MODE_UP;
-    else if (randr->position[output_id_2].y == randr->position[output_id_1].y + (gint) xfce_randr_mode_height (mode_1, 0))
+    else if (randr->position[output_id_2].y == randr->position[output_id_1].y + (gint) xfce_randr_mode_height (randr, output_id_1, mode_1))
         return EXTENDED_MODE_DOWN;
     else
         return EXTENDED_MODE_NONE;
@@ -696,7 +696,7 @@ xfce_display_settings_x11_unmirror (XfceDisplaySettings *settings)
         randr->position[n].y = 0;
         mode = xfce_randr_find_mode_by_id (randr, n, randr->mode[n]);
         if (mode != NULL)
-            x += xfce_randr_mode_width (mode, 0);
+            x += xfce_randr_mode_width (randr, n, mode);
     }
 }
 
@@ -740,16 +740,16 @@ xfce_display_settings_x11_extend (XfceDisplaySettings *settings,
     switch (mode)
     {
         case EXTENDED_MODE_RIGHT:
-            randr->position[output_id_2].x = xfce_randr_mode_width (mode_1, 0);
+            randr->position[output_id_2].x = xfce_randr_mode_width (randr, output_id_1, mode_1);
             break;
         case EXTENDED_MODE_LEFT:
-            randr->position[output_id_1].x = xfce_randr_mode_width (mode_2, 0);
+            randr->position[output_id_1].x = xfce_randr_mode_width (randr, output_id_2, mode_2);
             break;
         case EXTENDED_MODE_UP:
-            randr->position[output_id_1].y = xfce_randr_mode_height (mode_2, 0);
+            randr->position[output_id_1].y = xfce_randr_mode_height (randr, output_id_2, mode_2);
             break;
         case EXTENDED_MODE_DOWN:
-            randr->position[output_id_2].y = xfce_randr_mode_height (mode_1, 0);
+            randr->position[output_id_2].y = xfce_randr_mode_height (randr, output_id_1, mode_1);
             break;
         default:
             break;
