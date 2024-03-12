@@ -50,16 +50,11 @@ static void             xfce_display_settings_x11_set_rotation               (Xf
                                                                               RotationFlags             rotation);
 static RotationFlags    xfce_display_settings_x11_get_rotations              (XfceDisplaySettings      *settings,
                                                                               guint                     output_id);
-static gdouble          xfce_display_settings_x11_get_scale_x                (XfceDisplaySettings      *settings,
+static gdouble          xfce_display_settings_x11_get_scale                  (XfceDisplaySettings      *settings,
                                                                               guint                     output_id);
-static void             xfce_display_settings_x11_set_scale_x                (XfceDisplaySettings      *settings,
+static void             xfce_display_settings_x11_set_scale                  (XfceDisplaySettings      *settings,
                                                                               guint                     output_id,
-                                                                              gdouble                   scale_x);
-static gdouble          xfce_display_settings_x11_get_scale_y                (XfceDisplaySettings      *settings,
-                                                                              guint                     output_id);
-static void             xfce_display_settings_x11_set_scale_y                (XfceDisplaySettings      *settings,
-                                                                              guint                     output_id,
-                                                                              gdouble                   scale_y);
+                                                                              gdouble                   scale);
 static void             xfce_display_settings_x11_set_mode                   (XfceDisplaySettings      *settings,
                                                                               guint                     output_id,
                                                                               guint                     mode_id);
@@ -137,10 +132,8 @@ xfce_display_settings_x11_class_init (XfceDisplaySettingsX11Class *klass)
     settings_class->get_rotation = xfce_display_settings_x11_get_rotation;
     settings_class->set_rotation = xfce_display_settings_x11_set_rotation;
     settings_class->get_rotations = xfce_display_settings_x11_get_rotations;
-    settings_class->get_scale_x = xfce_display_settings_x11_get_scale_x;
-    settings_class->set_scale_x = xfce_display_settings_x11_set_scale_x;
-    settings_class->get_scale_y = xfce_display_settings_x11_get_scale_y;
-    settings_class->set_scale_y = xfce_display_settings_x11_set_scale_y;
+    settings_class->get_scale = xfce_display_settings_x11_get_scale;
+    settings_class->set_scale = xfce_display_settings_x11_set_scale;
     settings_class->set_mode = xfce_display_settings_x11_set_mode;
     settings_class->update_output_mode = xfce_display_settings_x11_update_output_mode;
     settings_class->set_position = xfce_display_settings_x11_set_position;
@@ -387,7 +380,7 @@ xfce_display_settings_x11_get_rotations (XfceDisplaySettings *settings,
 
 
 static gdouble
-xfce_display_settings_x11_get_scale_x (XfceDisplaySettings *settings,
+xfce_display_settings_x11_get_scale (XfceDisplaySettings *settings,
                                        guint output_id)
 {
     return 1.0 / XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scalex[output_id];
@@ -396,30 +389,12 @@ xfce_display_settings_x11_get_scale_x (XfceDisplaySettings *settings,
 
 
 static void
-xfce_display_settings_x11_set_scale_x (XfceDisplaySettings *settings,
-                                       guint output_id,
-                                       gdouble scale_x)
+xfce_display_settings_x11_set_scale (XfceDisplaySettings *settings,
+                                     guint output_id,
+                                     gdouble scale)
 {
-    XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scalex[output_id] = 1.0 / scale_x;
-}
-
-
-
-static gdouble
-xfce_display_settings_x11_get_scale_y (XfceDisplaySettings *settings,
-                                       guint output_id)
-{
-    return 1.0 / XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scaley[output_id];
-}
-
-
-
-static void
-xfce_display_settings_x11_set_scale_y (XfceDisplaySettings *settings,
-                                       guint output_id,
-                                       gdouble scale_y)
-{
-    XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scaley[output_id] = 1.0 / scale_y;
+    XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scalex[output_id] = 1.0 / scale;
+    XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scaley[output_id] = 1.0 / scale;
 }
 
 
@@ -497,8 +472,7 @@ xfce_display_settings_x11_get_output (XfceDisplaySettings *settings,
     output->friendly_name = randr->friendly_name[output_id];
 
     xfce_randr_get_positions (randr, output_id, &output->x, &output->y);
-    output->scale_x = 1.0 / randr->scalex[output_id];
-    output->scale_y = 1.0 / randr->scaley[output_id];
+    output->scale = 1.0 / randr->scalex[output_id];
     output->active = randr->mode[output_id] != None;
     output->mirrored = randr->mirrored[output_id];
 
