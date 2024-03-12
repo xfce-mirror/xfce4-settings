@@ -390,7 +390,7 @@ static gdouble
 xfce_display_settings_x11_get_scale_x (XfceDisplaySettings *settings,
                                        guint output_id)
 {
-    return XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scalex[output_id];
+    return 1.0 / XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scalex[output_id];
 }
 
 
@@ -400,7 +400,7 @@ xfce_display_settings_x11_set_scale_x (XfceDisplaySettings *settings,
                                        guint output_id,
                                        gdouble scale_x)
 {
-    XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scalex[output_id] = scale_x;
+    XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scalex[output_id] = 1.0 / scale_x;
 }
 
 
@@ -409,7 +409,7 @@ static gdouble
 xfce_display_settings_x11_get_scale_y (XfceDisplaySettings *settings,
                                        guint output_id)
 {
-    return XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scaley[output_id];
+    return 1.0 / XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scaley[output_id];
 }
 
 
@@ -419,7 +419,7 @@ xfce_display_settings_x11_set_scale_y (XfceDisplaySettings *settings,
                                        guint output_id,
                                        gdouble scale_y)
 {
-    XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scaley[output_id] = scale_y;
+    XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->scaley[output_id] = 1.0 / scale_y;
 }
 
 
@@ -497,8 +497,8 @@ xfce_display_settings_x11_get_output (XfceDisplaySettings *settings,
     output->friendly_name = randr->friendly_name[output_id];
 
     xfce_randr_get_positions (randr, output_id, &output->x, &output->y);
-    output->scale_x = randr->scalex[output_id];
-    output->scale_y = randr->scaley[output_id];
+    output->scale_x = 1.0 / randr->scalex[output_id];
+    output->scale_y = 1.0 / randr->scaley[output_id];
     output->active = randr->mode[output_id] != None;
     output->mirrored = randr->mirrored[output_id];
 
