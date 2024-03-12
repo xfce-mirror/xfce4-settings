@@ -2030,8 +2030,8 @@ get_geometry (XfceOutput *output, int *w, int *h)
         if (output->scale_x > 0 && output->scale_x != 1.0
             && output->scale_y > 0 && output->scale_y != 1.0)
         {
-            *h = output->mode->height * output->scale_y;
-            *w = output->mode->width * output->scale_x;
+            *h = output->mode->height / output->scale_y;
+            *w = output->mode->width / output->scale_x;
         }
         else
         {
