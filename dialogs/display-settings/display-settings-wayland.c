@@ -626,10 +626,10 @@ xfce_display_settings_wayland_set_mode (XfceDisplaySettings *settings,
 
 
 static void
-output_set_mode (XfceOutput *output,
-                 XfceWlrMode *mode,
-                 guint mode_id,
-                 int32_t transform)
+output_set_mode_and_tranformation (XfceOutput *output,
+                                   XfceWlrMode *mode,
+                                   guint mode_id,
+                                   XfceWlrOutput *xfwl_output)
 {
     if (output->active)
     {
@@ -637,7 +637,9 @@ output_set_mode (XfceOutput *output,
         output->mode->width = mode->width;
         output->mode->height = mode->height;
         output->mode->rate = (gdouble) mode->refresh / 1000;
-        output->rotation = convert_rotation_from_transform (transform);
+        output->rotation = convert_rotation_from_transform (xfwl_output->transform);
+        output->scale_x = wl_fixed_to_double (xfwl_output->scale);
+        output->scale_y = wl_fixed_to_double (xfwl_output->scale);
     }
     else
     {
@@ -646,6 +648,8 @@ output_set_mode (XfceOutput *output,
         output->mode->height = output->pref_height;
         output->mode->rate = 0;
         output->rotation = ROTATION_FLAGS_0;
+        output->scale_x = 1.0;
+        output->scale_y = 1.0;
     }
 }
 
@@ -660,7 +664,7 @@ xfce_display_settings_wayland_update_output_mode (XfceDisplaySettings *settings,
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
     XfceWlrOutput *xfwl_output = g_ptr_array_index (outputs, output->id);
     XfceWlrMode *mode = get_nth_mode (wsettings, xfwl_output, mode_id);
-    output_set_mode (output, mode, mode_id, xfwl_output->transform);
+    output_set_mode_and_tranformation (output, mode, mode_id, xfwl_output);
 }
 
 
@@ -695,8 +699,6 @@ xfce_display_settings_wayland_get_output (XfceDisplaySettings *settings,
 
     output->x = xfwl_output->x;
     output->y = xfwl_output->y;
-    output->scale_x = wl_fixed_to_double (xfwl_output->scale);
-    output->scale_y = wl_fixed_to_double (xfwl_output->scale);
     output->active = xfwl_output->enabled;
     output->mirrored = xfce_display_settings_wayland_is_mirrored (settings, output_id);
 
@@ -706,7 +708,7 @@ xfce_display_settings_wayland_get_output (XfceDisplaySettings *settings,
 
     xfwl_mode = get_current_mode (wsettings, xfwl_output);
     output->mode = g_new0 (XfceMode, 1);
-    output_set_mode (output, xfwl_mode, g_list_index (xfwl_output->modes, xfwl_mode), xfwl_output->transform);
+    output_set_mode_and_tranformation (output, xfwl_mode, g_list_index (xfwl_output->modes, xfwl_mode), xfwl_output);
 
     output->n_modes = g_list_length (xfwl_output->modes);
     output->modes = g_new (XfceMode *, output->n_modes);
@@ -800,7 +802,7 @@ xfce_display_settings_wayland_update_output_active (XfceDisplaySettings *setting
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
     XfceWlrOutput *xfwl_output = g_ptr_array_index (outputs, output->id);
     XfceWlrMode *mode = get_current_mode (wsettings, xfwl_output);
-    output_set_mode (output, mode, g_list_index (xfwl_output->modes, mode), xfwl_output->transform);
+    output_set_mode_and_tranformation (output, mode, g_list_index (xfwl_output->modes, mode), xfwl_output);
 }
 
 
@@ -1040,7 +1042,7 @@ xfce_display_settings_wayland_update_output_mirror (XfceDisplaySettings *setting
     output->x = xfwl_output->x;
     output->y = xfwl_output->y;
     output->mirrored = xfce_display_settings_wayland_is_mirrored (settings, output->id);
-    output_set_mode (output, mode, g_list_index (xfwl_output->modes, mode), xfwl_output->transform);
+    output_set_mode_and_tranformation (output, mode, g_list_index (xfwl_output->modes, mode), xfwl_output);
     output->active = xfwl_output->enabled;
 }
 

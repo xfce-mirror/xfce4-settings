@@ -435,9 +435,9 @@ xfce_display_settings_x11_set_mode (XfceDisplaySettings *settings,
 
 
 static void
-output_set_mode (XfceOutput *output,
-                 const XfceRRMode *mode,
-                 Rotation rotation)
+output_set_mode_and_tranformation (XfceOutput *output,
+                                   const XfceRRMode *mode,
+                                   XfceRandr *randr)
 {
     if (mode != NULL)
     {
@@ -445,7 +445,9 @@ output_set_mode (XfceOutput *output,
         output->mode->width = mode->width;
         output->mode->height = mode->height;
         output->mode->rate = mode->rate;
-        output->rotation = convert_rotation_from_randr (rotation);
+        output->rotation = convert_rotation_from_randr (randr->rotation[output->id]);
+        output->scale_x = 1.0 / randr->scalex[output->id];
+        output->scale_y = 1.0 / randr->scaley[output->id];
     }
     else
     {
@@ -454,6 +456,8 @@ output_set_mode (XfceOutput *output,
         output->mode->height = output->pref_height;
         output->mode->rate = 0;
         output->rotation = ROTATION_FLAGS_0;
+        output->scale_x = 1.0;
+        output->scale_y = 1.0;
     }
 }
 
@@ -466,7 +470,7 @@ xfce_display_settings_x11_update_output_mode (XfceDisplaySettings *settings,
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
     const XfceRRMode *mode = xfce_randr_find_mode_by_id (randr, output->id, mode_id);
-    output_set_mode (output, mode, randr->rotation[output->id]);
+    output_set_mode_and_tranformation (output, mode, randr);
 }
 
 
@@ -497,8 +501,6 @@ xfce_display_settings_x11_get_output (XfceDisplaySettings *settings,
     output->friendly_name = randr->friendly_name[output_id];
 
     xfce_randr_get_positions (randr, output_id, &output->x, &output->y);
-    output->scale_x = 1.0 / randr->scalex[output_id];
-    output->scale_y = 1.0 / randr->scaley[output_id];
     output->active = randr->mode[output_id] != None;
     output->mirrored = randr->mirrored[output_id];
 
@@ -517,7 +519,7 @@ xfce_display_settings_x11_get_output (XfceDisplaySettings *settings,
 
     xfrr_mode = xfce_randr_find_mode_by_id (randr, output_id, randr->mode[output_id]);
     output->mode = g_new0 (XfceMode, 1);
-    output_set_mode (output, xfrr_mode, randr->rotation[output_id]);
+    output_set_mode_and_tranformation (output, xfrr_mode, randr);
 
     xfrr_modes = xfce_randr_get_modes (randr, output_id, &n_modes);
     output->n_modes = n_modes;
@@ -567,7 +569,7 @@ xfce_display_settings_x11_update_output_active (XfceDisplaySettings *settings,
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
     const XfceRRMode *mode = xfce_randr_find_mode_by_id (randr, output->id, randr->mode[output->id]);
-    output_set_mode (output, mode, randr->rotation[output->id]);
+    output_set_mode_and_tranformation (output, mode, randr);
 }
 
 
@@ -712,7 +714,7 @@ xfce_display_settings_x11_update_output_mirror (XfceDisplaySettings *settings,
     output->x = randr->position[output->id].x;
     output->y = randr->position[output->id].y;
     output->mirrored = randr->mirrored[output->id];
-    output_set_mode (output, mode, randr->rotation[output->id]);
+    output_set_mode_and_tranformation (output, mode, randr);
     output->active = (mode != NULL);
 }
 
