@@ -497,10 +497,10 @@ xfce_randr_save_output (XfceRandr     *randr,
     /* save the scale */
     g_snprintf (property, sizeof (property), "/%s/%s/Scale/X", scheme,
                 randr->priv->output_info[output]->name);
-    xfconf_channel_set_double (channel, property, roundf (randr->scalex[output] * 10) / 10);
+    xfconf_channel_set_double (channel, property, randr->scalex[output]);
     g_snprintf (property, sizeof (property), "/%s/%s/Scale/Y", scheme,
                 randr->priv->output_info[output]->name);
-    xfconf_channel_set_double (channel, property, roundf (randr->scaley[output] * 10) / 10);
+    xfconf_channel_set_double (channel, property, randr->scaley[output]);
 #endif
 
     /* save the position */
