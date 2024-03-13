@@ -84,9 +84,6 @@ static gboolean         xfce_display_settings_x11_is_primary                 (Xf
 static void             xfce_display_settings_x11_set_primary                (XfceDisplaySettings      *settings,
                                                                               guint                     output_id,
                                                                               gboolean                  primary);
-static ExtendedMode     xfce_display_settings_x11_get_extended_mode          (XfceDisplaySettings      *settings,
-                                                                              guint                     output_id_1,
-                                                                              guint                     output_id_2);
 static gboolean         xfce_display_settings_x11_is_clonable                (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_x11_save                       (XfceDisplaySettings      *settings,
                                                                               guint                     output_id,
@@ -146,7 +143,6 @@ xfce_display_settings_x11_class_init (XfceDisplaySettingsX11Class *klass)
     settings_class->update_output_active = xfce_display_settings_x11_update_output_active;
     settings_class->is_primary = xfce_display_settings_x11_is_primary;
     settings_class->set_primary = xfce_display_settings_x11_set_primary;
-    settings_class->get_extended_mode = xfce_display_settings_x11_get_extended_mode;
     settings_class->is_clonable = xfce_display_settings_x11_is_clonable;
     settings_class->save = xfce_display_settings_x11_save;
     settings_class->mirror = xfce_display_settings_x11_mirror;
@@ -555,34 +551,6 @@ xfce_display_settings_x11_set_primary (XfceDisplaySettings *settings,
         randr->status[output_id] = XFCE_OUTPUT_STATUS_PRIMARY;
     else
         randr->status[output_id] = XFCE_OUTPUT_STATUS_SECONDARY;
-}
-
-
-
-static ExtendedMode
-xfce_display_settings_x11_get_extended_mode (XfceDisplaySettings *settings,
-                                             guint output_id_1,
-                                             guint output_id_2)
-{
-    XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
-    const XfceRRMode *mode_1 = xfce_randr_find_mode_by_id (randr, output_id_1, randr->mode[output_id_1]);
-    const XfceRRMode *mode_2 = xfce_randr_find_mode_by_id (randr, output_id_2, randr->mode[output_id_2]);
-    if (mode_1 == NULL || mode_2 == NULL)
-    {
-        g_warn_if_reached ();
-        return EXTENDED_MODE_NONE;
-    }
-
-    if (randr->position[output_id_2].x == randr->position[output_id_1].x + (gint) xfce_randr_mode_width (randr, output_id_1, mode_1))
-        return EXTENDED_MODE_RIGHT;
-    else if (randr->position[output_id_1].x == randr->position[output_id_2].x + (gint) xfce_randr_mode_width (randr, output_id_2, mode_2))
-        return EXTENDED_MODE_LEFT;
-    else if (randr->position[output_id_1].y == randr->position[output_id_2].y + (gint) xfce_randr_mode_height (randr, output_id_2, mode_2))
-        return EXTENDED_MODE_UP;
-    else if (randr->position[output_id_2].y == randr->position[output_id_1].y + (gint) xfce_randr_mode_height (randr, output_id_1, mode_1))
-        return EXTENDED_MODE_DOWN;
-    else
-        return EXTENDED_MODE_NONE;
 }
 
 

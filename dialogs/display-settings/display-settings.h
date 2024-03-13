@@ -168,9 +168,6 @@ struct _XfceDisplaySettingsClass
     void             (*set_primary)                   (XfceDisplaySettings      *settings,
                                                        guint                     output_id,
                                                        gboolean                  primary);
-    ExtendedMode     (*get_extended_mode)             (XfceDisplaySettings      *settings,
-                                                       guint                     output_id_1,
-                                                       guint                     output_id_2);
     gboolean         (*is_clonable)                   (XfceDisplaySettings      *settings);
     void             (*save)                          (XfceDisplaySettings      *settings,
                                                        guint                     output_id,

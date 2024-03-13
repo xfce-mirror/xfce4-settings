@@ -83,9 +83,6 @@ static gboolean         xfce_display_settings_wayland_is_primary                
 static void             xfce_display_settings_wayland_set_primary                (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id,
                                                                                   gboolean                  primary);
-static ExtendedMode     xfce_display_settings_wayland_get_extended_mode          (XfceDisplaySettings      *settings,
-                                                                                  guint                     output_id_1,
-                                                                                  guint                     output_id_2);
 static gboolean         xfce_display_settings_wayland_is_clonable                (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_wayland_save                       (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id,
@@ -146,7 +143,6 @@ xfce_display_settings_wayland_class_init (XfceDisplaySettingsWaylandClass *klass
     settings_class->update_output_active = xfce_display_settings_wayland_update_output_active;
     settings_class->is_primary = xfce_display_settings_wayland_is_primary;
     settings_class->set_primary = xfce_display_settings_wayland_set_primary;
-    settings_class->get_extended_mode = xfce_display_settings_wayland_get_extended_mode;
     settings_class->is_clonable = xfce_display_settings_wayland_is_clonable;
     settings_class->save = xfce_display_settings_wayland_save;
     settings_class->mirror = xfce_display_settings_wayland_mirror;
@@ -780,33 +776,6 @@ xfce_display_settings_wayland_set_primary (XfceDisplaySettings *settings,
                                            guint output_id,
                                            gboolean primary)
 {
-}
-
-
-
-static ExtendedMode
-xfce_display_settings_wayland_get_extended_mode (XfceDisplaySettings *settings,
-                                                 guint output_id_1,
-                                                 guint output_id_2)
-{
-    XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
-    GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
-    XfceWlrOutput *output_1 = g_ptr_array_index (outputs, output_id_1);
-    XfceWlrOutput *output_2 = g_ptr_array_index (outputs, output_id_2);
-    GdkRectangle geom_1, geom_2;
-
-    xfce_display_settings_wayland_get_geometry (settings, output_id_1, &geom_1);
-    xfce_display_settings_wayland_get_geometry (settings, output_id_2, &geom_2);
-    if (output_2->x == output_1->x + geom_1.width)
-        return EXTENDED_MODE_RIGHT;
-    else if (output_1->x == output_2->x + geom_2.width)
-        return EXTENDED_MODE_LEFT;
-    else if (output_1->y == output_2->y + geom_2.height)
-        return EXTENDED_MODE_UP;
-    else if (output_2->y == output_1->y + geom_1.height)
-        return EXTENDED_MODE_DOWN;
-    else
-        return EXTENDED_MODE_NONE;
 }
 
 

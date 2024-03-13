@@ -971,8 +971,26 @@ xfce_display_settings_get_extended_mode (XfceDisplaySettings *settings,
                                          guint output_id_1,
                                          guint output_id_2)
 {
+    GdkRectangle geom_1, geom_2;
+
     g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), EXTENDED_MODE_NONE);
-    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->get_extended_mode (settings, output_id_1, output_id_2);
+
+    if (!xfce_display_settings_is_active (settings, output_id_1)
+        || !xfce_display_settings_is_active (settings, output_id_2))
+        return EXTENDED_MODE_NONE;
+
+    xfce_display_settings_get_geometry (settings, output_id_1, &geom_1);
+    xfce_display_settings_get_geometry (settings, output_id_2, &geom_2);
+    if (geom_2.x == geom_1.x + geom_1.width)
+        return EXTENDED_MODE_RIGHT;
+    else if (geom_1.x == geom_2.x + geom_2.width)
+        return EXTENDED_MODE_LEFT;
+    else if (geom_1.y == geom_2.y + geom_2.height)
+        return EXTENDED_MODE_UP;
+    else if (geom_2.y == geom_1.y + geom_1.height)
+        return EXTENDED_MODE_DOWN;
+    else
+        return EXTENDED_MODE_NONE;
 }
 
 
