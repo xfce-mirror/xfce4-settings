@@ -1095,6 +1095,7 @@ manager_listener (XfceWlrOutputManager *manager,
     XfceDisplaySettings *settings = xfce_wlr_output_manager_get_listener_data (manager);
     XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (manager);
+    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
 
     /* initialization: nothing to update */
     if (wsettings->serial == 0)
@@ -1131,7 +1132,7 @@ manager_listener (XfceWlrOutputManager *manager,
     xfce_display_settings_populate_combobox (settings);
     xfce_display_settings_populate_profile_list (settings);
     xfce_display_settings_populate_popups (settings);
-    xfce_display_settings_set_popups_visible (settings, FALSE);
+    xfce_display_settings_set_popups_visible (settings, xfconf_channel_get_bool (channel, "/IdentityPopups", FALSE));
 
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
 }

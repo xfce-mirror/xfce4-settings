@@ -89,6 +89,8 @@ xfce_display_settings_init (XfceDisplaySettings *settings)
     priv->builder = gtk_builder_new ();
     priv->scroll_area = (GtkWidget *) foo_scroll_area_new ();
     g_signal_connect (priv->scroll_area, "destroy", G_CALLBACK (gtk_widget_destroyed), &priv->scroll_area);
+    if (!priv->opt_minimal)
+        priv->popups = g_hash_table_new_full (g_direct_hash, g_direct_equal, NULL, (GDestroyNotify) gtk_widget_destroy);
 }
 
 
@@ -424,20 +426,6 @@ popup_get (XfceDisplaySettings *settings,
         g_signal_connect (G_OBJECT (popup), "draw", G_CALLBACK (popup_draw), settings);
         g_signal_connect (G_OBJECT (popup), "screen-changed", G_CALLBACK (popup_screen_changed), settings);
 
-        if (xfce_display_settings_get_n_active_outputs (settings) > 1)
-        {
-            xfce_display_settings_get_geometry (settings, output_id, &geom);
-        }
-        else
-        {
-            geom.x = 0;
-            geom.y = 0;
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-            geom.width = gdk_screen_width ();
-            geom.height = gdk_screen_height ();
-G_GNUC_END_IGNORE_DEPRECATIONS
-        }
-
         label = gtk_builder_get_object (priv->builder, "display_number");
         if (xfce_display_settings_get_n_outputs (settings) > 1)
         {
@@ -460,6 +448,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
         gtk_label_set_markup (GTK_LABEL (label), text);
         g_free (text);
 
+        xfce_display_settings_get_geometry (settings, output_id, &geom);
         label = gtk_builder_get_object (priv->builder, "display_details");
         text = g_markup_printf_escaped ("<span foreground='%s' font='Light 10'>%s %i x %i</span>", color_hex,
                                         _("Resolution:"), geom.width, geom.height);
@@ -630,10 +619,7 @@ xfce_display_settings_populate_popups (XfceDisplaySettings *settings)
         XfceDisplaySettingsPrivate *priv = get_instance_private (settings);
         guint n_outputs = xfce_display_settings_get_n_outputs (settings);
 
-        if (priv->popups != NULL)
-            g_hash_table_destroy (priv->popups);
-        priv->popups = g_hash_table_new_full (g_direct_hash, g_direct_equal, NULL, (GDestroyNotify) gtk_widget_destroy);
-
+        g_hash_table_remove_all (priv->popups);
         for (guint n = 0; n < n_outputs; n++)
         {
             if (xfce_display_settings_is_active (settings, n))
