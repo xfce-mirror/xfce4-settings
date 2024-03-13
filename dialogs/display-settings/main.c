@@ -163,8 +163,9 @@ static void display_settings_combobox_selection_changed      (GtkComboBox       
                                                               XfceDisplaySettings *settings);
 
 static void
-display_settings_changed (void)
+display_settings_changed (XfceDisplaySettings *settings)
 {
+    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
     gtk_widget_set_sensitive (GTK_WIDGET (apply_button), TRUE);
 }
 
@@ -328,7 +329,7 @@ display_setting_custom_scale_changed (GtkSpinButton *spinbutton,
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
 
-    display_settings_changed ();
+    display_settings_changed (settings);
 }
 
 static void
@@ -371,7 +372,7 @@ display_setting_scale_changed (GtkComboBox *combobox,
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
 
-    display_settings_changed ();
+    display_settings_changed (settings);
 }
 
 static gboolean
@@ -486,8 +487,7 @@ display_setting_reflections_changed (GtkComboBox *combobox,
     display_setting_mirror_displays_populate (settings);
 
     /* Apply the changes */
-    display_settings_changed ();
-    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    display_settings_changed (settings);
 }
 
 static void
@@ -569,8 +569,7 @@ display_setting_rotations_changed (GtkComboBox *combobox,
     display_setting_mirror_displays_populate (settings);
 
     /* Apply the changes */
-    display_settings_changed ();
-    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    display_settings_changed (settings);
 }
 
 static void
@@ -645,8 +644,7 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
     xfce_display_settings_set_mode (settings, selected_id, value);
 
     /* Apply the changes */
-    display_settings_changed ();
-    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    display_settings_changed (settings);
 }
 
 static void
@@ -730,8 +728,7 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     display_setting_mirror_displays_populate (settings);
 
     /* Apply the changes */
-    display_settings_changed ();
-    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    display_settings_changed (settings);
 }
 
 /* Greatest common divisor */
@@ -904,8 +901,7 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     display_settings_combobox_selection_changed (GTK_COMBO_BOX (combobox), settings);
 
     /* Apply the changes */
-    display_settings_changed ();
-    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    display_settings_changed (settings);
 }
 
 static void
@@ -2613,7 +2609,7 @@ on_output_event (FooScrollArea      *area,
                 output->user_data = NULL;
 
                 initialize_connected_outputs_at_zero (settings);
-                display_settings_changed ();
+                display_settings_changed (settings);
             }
             else
             {
