@@ -3214,7 +3214,7 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
             {
                 if (xfce_display_settings_is_active (settings, 1))
                 {
-                    if (xfce_display_settings_is_mirrored (settings, 0) && xfce_display_settings_is_mirrored (settings, 1))
+                    if (xfce_display_settings_is_mirrored (settings, 0, 1))
                     {
                         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mirror_displays), TRUE);
                     }

@@ -48,7 +48,7 @@ enum
 
 typedef enum _MirroredState
 {
-    MIRRORED_STATE_NONE, // all outputs have different x/y
+    MIRRORED_STATE_NONE, // at least 2 outputs have different x/y
     MIRRORED_STATE_MIRRORED, // all outputs have same x/y, at least two of them have different resolutions
     MIRRORED_STATE_CLONED, // all outputs have same x/y and same resolution
 } MirroredState;
@@ -89,7 +89,6 @@ typedef struct _XfceOutput
 
     /* Status */
     gboolean active;
-    gboolean mirrored;
 
     /* Position */
     gint x;
@@ -120,7 +119,6 @@ struct _XfceDisplaySettingsClass
     guint            (*get_n_outputs)                 (XfceDisplaySettings      *settings);
     guint            (*get_n_active_outputs)          (XfceDisplaySettings      *settings);
     gchar          **(*get_display_infos)             (XfceDisplaySettings      *settings);
-    MirroredState    (*get_mirrored_state)            (XfceDisplaySettings      *settings);
     GdkMonitor      *(*get_monitor)                   (XfceDisplaySettings      *settings,
                                                        guint                     output_id);
     const gchar     *(*get_friendly_name)             (XfceDisplaySettings      *settings,
@@ -170,8 +168,6 @@ struct _XfceDisplaySettingsClass
     void             (*set_primary)                   (XfceDisplaySettings      *settings,
                                                        guint                     output_id,
                                                        gboolean                  primary);
-    gboolean         (*is_mirrored)                   (XfceDisplaySettings      *settings,
-                                                       guint                     output_id);
     ExtendedMode     (*get_extended_mode)             (XfceDisplaySettings      *settings,
                                                        guint                     output_id_1,
                                                        guint                     output_id_2);
@@ -253,7 +249,8 @@ void                     xfce_display_settings_set_primary             (XfceDisp
                                                                         guint                    output_id,
                                                                         gboolean                 primary);
 gboolean                 xfce_display_settings_is_mirrored             (XfceDisplaySettings     *settings,
-                                                                        guint                    output_id);
+                                                                        guint                    output_id_1,
+                                                                        guint                    output_id_2);
 ExtendedMode             xfce_display_settings_get_extended_mode       (XfceDisplaySettings     *settings,
                                                                         guint                    output_id_1,
                                                                         guint                    output_id_2);

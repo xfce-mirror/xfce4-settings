@@ -34,7 +34,6 @@ static void             xfce_display_settings_wayland_finalize                  
 static guint            xfce_display_settings_wayland_get_n_outputs              (XfceDisplaySettings      *settings);
 static guint            xfce_display_settings_wayland_get_n_active_outputs       (XfceDisplaySettings      *settings);
 static gchar          **xfce_display_settings_wayland_get_display_infos          (XfceDisplaySettings      *settings);
-static MirroredState    xfce_display_settings_wayland_get_mirrored_state         (XfceDisplaySettings      *settings);
 static GdkMonitor      *xfce_display_settings_wayland_get_monitor                (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id);
 static const gchar     *xfce_display_settings_wayland_get_friendly_name          (XfceDisplaySettings      *settings,
@@ -84,8 +83,6 @@ static gboolean         xfce_display_settings_wayland_is_primary                
 static void             xfce_display_settings_wayland_set_primary                (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id,
                                                                                   gboolean                  primary);
-static gboolean         xfce_display_settings_wayland_is_mirrored                (XfceDisplaySettings      *settings,
-                                                                                  guint                     output_id);
 static ExtendedMode     xfce_display_settings_wayland_get_extended_mode          (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id_1,
                                                                                   guint                     output_id_2);
@@ -130,7 +127,6 @@ xfce_display_settings_wayland_class_init (XfceDisplaySettingsWaylandClass *klass
     settings_class->get_n_outputs = xfce_display_settings_wayland_get_n_outputs;
     settings_class->get_n_active_outputs = xfce_display_settings_wayland_get_n_active_outputs;
     settings_class->get_display_infos = xfce_display_settings_wayland_get_display_infos;
-    settings_class->get_mirrored_state = xfce_display_settings_wayland_get_mirrored_state;
     settings_class->get_monitor = xfce_display_settings_wayland_get_monitor;
     settings_class->get_friendly_name = xfce_display_settings_wayland_get_friendly_name;
     settings_class->get_geometry = xfce_display_settings_wayland_get_geometry;
@@ -150,7 +146,6 @@ xfce_display_settings_wayland_class_init (XfceDisplaySettingsWaylandClass *klass
     settings_class->update_output_active = xfce_display_settings_wayland_update_output_active;
     settings_class->is_primary = xfce_display_settings_wayland_is_primary;
     settings_class->set_primary = xfce_display_settings_wayland_set_primary;
-    settings_class->is_mirrored = xfce_display_settings_wayland_is_mirrored;
     settings_class->get_extended_mode = xfce_display_settings_wayland_get_extended_mode;
     settings_class->is_clonable = xfce_display_settings_wayland_is_clonable;
     settings_class->save = xfce_display_settings_wayland_save;
@@ -265,41 +260,6 @@ get_clonable_modes (GPtrArray *outputs)
         return g_memdup (modes, sizeof (XfceWlrMode *) * outputs->len);
 
     return NULL;
-}
-
-
-
-static MirroredState
-xfce_display_settings_wayland_get_mirrored_state (XfceDisplaySettings *settings)
-{
-    GPtrArray *outputs;
-    gboolean cloned = TRUE;
-    gboolean mirrored = TRUE;
-    XfceWlrMode **clonable_modes;
-
-    if (!xfce_display_settings_wayland_is_clonable (settings))
-        return MIRRORED_STATE_NONE;
-
-    /* check if mirror settings are on */
-    outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
-    clonable_modes = get_clonable_modes (outputs);
-    for (guint n = 0; n < outputs->len; n++)
-    {
-        XfceWlrOutput *output = g_ptr_array_index (outputs, n);
-        if (!output->enabled)
-            continue;
-
-        mirrored &= xfce_display_settings_wayland_is_mirrored (settings, n);
-        cloned &= mirrored && output->wl_mode == clonable_modes[n]->wl_mode;
-        if (!mirrored)
-            break;
-    }
-    g_free (clonable_modes);
-
-    if (cloned == TRUE)
-        return MIRRORED_STATE_CLONED;
-
-    return mirrored ? MIRRORED_STATE_MIRRORED : MIRRORED_STATE_NONE;
 }
 
 
@@ -700,7 +660,6 @@ xfce_display_settings_wayland_get_output (XfceDisplaySettings *settings,
     output->x = xfwl_output->x;
     output->y = xfwl_output->y;
     output->active = xfwl_output->enabled;
-    output->mirrored = xfce_display_settings_wayland_is_mirrored (settings, output_id);
 
     preferred = get_preferred_mode (wsettings, xfwl_output);
     output->pref_width = preferred->width;
@@ -821,33 +780,6 @@ xfce_display_settings_wayland_set_primary (XfceDisplaySettings *settings,
                                            guint output_id,
                                            gboolean primary)
 {
-}
-
-
-
-static gboolean
-xfce_display_settings_wayland_is_mirrored (XfceDisplaySettings *settings,
-                                           guint output_id)
-{
-    GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
-    XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
-    gint x = output->x;
-    gint y = output->y;
-
-    for (guint n = 0; n < outputs->len; n++)
-    {
-        if (n == output_id)
-            continue;
-
-        output = g_ptr_array_index (outputs, n);
-        if (!output->enabled)
-            continue;
-
-        if (output->x == x && output->y == y)
-            return TRUE;
-    }
-
-    return FALSE;
 }
 
 
@@ -1042,7 +974,6 @@ xfce_display_settings_wayland_update_output_mirror (XfceDisplaySettings *setting
     XfceWlrMode *mode = get_current_mode (wsettings, xfwl_output);
     output->x = xfwl_output->x;
     output->y = xfwl_output->y;
-    output->mirrored = xfce_display_settings_wayland_is_mirrored (settings, output->id);
     output_set_mode_and_tranformation (output, mode, g_list_index (xfwl_output->modes, mode), xfwl_output);
     output->active = xfwl_output->enabled;
 }

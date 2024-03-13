@@ -35,7 +35,6 @@ static void             xfce_display_settings_x11_finalize                   (GO
 static guint            xfce_display_settings_x11_get_n_outputs              (XfceDisplaySettings      *settings);
 static guint            xfce_display_settings_x11_get_n_active_outputs       (XfceDisplaySettings      *settings);
 static gchar          **xfce_display_settings_x11_get_display_infos          (XfceDisplaySettings      *settings);
-static MirroredState    xfce_display_settings_x11_get_mirrored_state         (XfceDisplaySettings      *settings);
 static GdkMonitor      *xfce_display_settings_x11_get_monitor                (XfceDisplaySettings      *settings,
                                                                               guint                     output_id);
 static const gchar     *xfce_display_settings_x11_get_friendly_name          (XfceDisplaySettings      *settings,
@@ -85,8 +84,6 @@ static gboolean         xfce_display_settings_x11_is_primary                 (Xf
 static void             xfce_display_settings_x11_set_primary                (XfceDisplaySettings      *settings,
                                                                               guint                     output_id,
                                                                               gboolean                  primary);
-static gboolean         xfce_display_settings_x11_is_mirrored                (XfceDisplaySettings      *settings,
-                                                                              guint                     output_id);
 static ExtendedMode     xfce_display_settings_x11_get_extended_mode          (XfceDisplaySettings      *settings,
                                                                               guint                     output_id_1,
                                                                               guint                     output_id_2);
@@ -130,7 +127,6 @@ xfce_display_settings_x11_class_init (XfceDisplaySettingsX11Class *klass)
     settings_class->get_n_outputs = xfce_display_settings_x11_get_n_outputs;
     settings_class->get_n_active_outputs = xfce_display_settings_x11_get_n_active_outputs;
     settings_class->get_display_infos = xfce_display_settings_x11_get_display_infos;
-    settings_class->get_mirrored_state = xfce_display_settings_x11_get_mirrored_state;
     settings_class->get_monitor = xfce_display_settings_x11_get_monitor;
     settings_class->get_friendly_name = xfce_display_settings_x11_get_friendly_name;
     settings_class->get_geometry = xfce_display_settings_x11_get_geometry;
@@ -150,7 +146,6 @@ xfce_display_settings_x11_class_init (XfceDisplaySettingsX11Class *klass)
     settings_class->update_output_active = xfce_display_settings_x11_update_output_active;
     settings_class->is_primary = xfce_display_settings_x11_is_primary;
     settings_class->set_primary = xfce_display_settings_x11_set_primary;
-    settings_class->is_mirrored = xfce_display_settings_x11_is_mirrored;
     settings_class->get_extended_mode = xfce_display_settings_x11_get_extended_mode;
     settings_class->is_clonable = xfce_display_settings_x11_is_clonable;
     settings_class->save = xfce_display_settings_x11_save;
@@ -245,39 +240,6 @@ static gchar **
 xfce_display_settings_x11_get_display_infos (XfceDisplaySettings *settings)
 {
     return xfce_randr_get_display_infos (XFCE_DISPLAY_SETTINGS_X11 (settings)->randr);
-}
-
-
-
-static MirroredState
-xfce_display_settings_x11_get_mirrored_state (XfceDisplaySettings *settings)
-{
-    XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
-    gboolean cloned = TRUE;
-    gboolean mirrored = TRUE;
-    RRMode *clonable_modes;
-
-    if (!xfce_display_settings_x11_is_clonable (settings))
-        return MIRRORED_STATE_NONE;
-
-    /* check if mirror settings are on */
-    clonable_modes = xfce_randr_clonable_modes (randr);
-    for (guint n = 0; n < randr->noutput; n++)
-    {
-        if (!xfce_display_settings_x11_is_active (settings, n))
-            continue;
-
-        mirrored &= randr->mirrored[n];
-        cloned &= mirrored && randr->mode[n] == clonable_modes[n];
-        if (!mirrored)
-            break;
-    }
-    g_free (clonable_modes);
-
-    if (cloned == TRUE)
-        return MIRRORED_STATE_CLONED;
-
-    return mirrored ? MIRRORED_STATE_MIRRORED : MIRRORED_STATE_NONE;
 }
 
 
@@ -503,7 +465,6 @@ xfce_display_settings_x11_get_output (XfceDisplaySettings *settings,
 
     xfce_randr_get_positions (randr, output_id, &output->x, &output->y);
     output->active = randr->mode[output_id] != None;
-    output->mirrored = randr->mirrored[output_id];
 
     preferred = xfce_randr_find_mode_by_id (randr, output_id, xfce_randr_preferred_mode (randr, output_id));
     if (preferred != NULL)
@@ -594,15 +555,6 @@ xfce_display_settings_x11_set_primary (XfceDisplaySettings *settings,
         randr->status[output_id] = XFCE_OUTPUT_STATUS_PRIMARY;
     else
         randr->status[output_id] = XFCE_OUTPUT_STATUS_SECONDARY;
-}
-
-
-
-static gboolean
-xfce_display_settings_x11_is_mirrored (XfceDisplaySettings *settings,
-                                       guint output_id)
-{
-    return XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->mirrored[output_id];
 }
 
 
@@ -719,7 +671,6 @@ xfce_display_settings_x11_update_output_mirror (XfceDisplaySettings *settings,
 
     output->x = randr->position[output->id].x;
     output->y = randr->position[output->id].y;
-    output->mirrored = randr->mirrored[output->id];
     output_set_mode_and_tranformation (output, mode, randr);
     output->active = (mode != NULL);
 }

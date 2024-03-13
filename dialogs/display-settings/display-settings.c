@@ -696,8 +696,39 @@ xfce_display_settings_get_display_infos (XfceDisplaySettings *settings)
 MirroredState
 xfce_display_settings_get_mirrored_state (XfceDisplaySettings *settings)
 {
+    GdkRectangle geom_1, geom_2;
+    guint n_outputs = xfce_display_settings_get_n_outputs (settings);
+    gboolean cloned = TRUE;
+    gboolean mirrored = TRUE;
+
     g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), MIRRORED_STATE_NONE);
-    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->get_mirrored_state (settings);
+
+    if (xfce_display_settings_get_n_active_outputs (settings) <= 1)
+        return MIRRORED_STATE_NONE;
+
+    /* get geometry of first active output */
+    for (guint n = 0; n < n_outputs; n++)
+    {
+        if (!xfce_display_settings_is_active (settings, n))
+            continue;
+        xfce_display_settings_get_geometry (settings, n, &geom_1);
+        break;
+    }
+
+    /* check if mirror settings are on */
+    for (guint n = 0; n < n_outputs; n++)
+    {
+        if (!xfce_display_settings_is_active (settings, n))
+            continue;
+
+        xfce_display_settings_get_geometry (settings, n, &geom_2);
+        mirrored &= geom_1.x == geom_2.x && geom_1.y == geom_2.y;
+        cloned &= gdk_rectangle_equal (&geom_1, &geom_2);
+        if (!mirrored)
+            break;
+    }
+
+    return cloned ? MIRRORED_STATE_CLONED : mirrored ? MIRRORED_STATE_MIRRORED : MIRRORED_STATE_NONE;
 }
 
 
@@ -917,10 +948,20 @@ xfce_display_settings_set_primary (XfceDisplaySettings *settings,
 
 gboolean
 xfce_display_settings_is_mirrored (XfceDisplaySettings *settings,
-                                   guint output_id)
+                                   guint output_id_1,
+                                   guint output_id_2)
 {
+    GdkRectangle geom_1, geom_2;
+
     g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), FALSE);
-    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->is_mirrored (settings, output_id);
+
+    if (!xfce_display_settings_is_active (settings, output_id_1)
+        || !xfce_display_settings_is_active (settings, output_id_2))
+        return FALSE;
+
+    xfce_display_settings_get_geometry (settings, output_id_1, &geom_1);
+    xfce_display_settings_get_geometry (settings, output_id_2, &geom_2);
+    return geom_1.x == geom_2.x && geom_1.y == geom_2.y;
 }
 
 
