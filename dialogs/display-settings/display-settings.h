@@ -101,8 +101,7 @@ typedef struct _XfceOutput
 
     /* Transformation */
     RotationFlags rotation;
-    gdouble scale_x;
-    gdouble scale_y;
+    gdouble scale;
 
     /* Modes */
     XfceMode *mode;
@@ -135,16 +134,11 @@ struct _XfceDisplaySettingsClass
                                                        RotationFlags             rotation);
     RotationFlags    (*get_rotations)                 (XfceDisplaySettings      *settings,
                                                        guint                     output_id);
-    gdouble          (*get_scale_x)                   (XfceDisplaySettings      *settings,
+    gdouble          (*get_scale)                     (XfceDisplaySettings      *settings,
                                                        guint                     output_id);
-    void             (*set_scale_x)                   (XfceDisplaySettings      *settings,
+    void             (*set_scale)                     (XfceDisplaySettings      *settings,
                                                        guint                     output_id,
-                                                       gdouble                   scale_x);
-    gdouble          (*get_scale_y)                   (XfceDisplaySettings      *settings,
-                                                       guint                     output_id);
-    void             (*set_scale_y)                   (XfceDisplaySettings      *settings,
-                                                       guint                     output_id,
-                                                       gdouble                   scale_y);
+                                                       gdouble                   scale);
     void             (*set_mode)                      (XfceDisplaySettings      *settings,
                                                        guint                     output_id,
                                                        guint                     mode_id);
@@ -225,16 +219,11 @@ void                     xfce_display_settings_set_rotation            (XfceDisp
                                                                         RotationFlags            rotation);
 RotationFlags            xfce_display_settings_get_rotations           (XfceDisplaySettings     *settings,
                                                                         guint                    output_id);
-gdouble                  xfce_display_settings_get_scale_x             (XfceDisplaySettings     *settings,
+gdouble                  xfce_display_settings_get_scale               (XfceDisplaySettings     *settings,
                                                                         guint                    output_id);
-void                     xfce_display_settings_set_scale_x             (XfceDisplaySettings     *settings,
+void                     xfce_display_settings_set_scale               (XfceDisplaySettings     *settings,
                                                                         guint                    output_id,
-                                                                        gdouble                  scale_x);
-gdouble                  xfce_display_settings_get_scale_y             (XfceDisplaySettings     *settings,
-                                                                        guint                    output_id);
-void                     xfce_display_settings_set_scale_y             (XfceDisplaySettings     *settings,
-                                                                        guint                    output_id,
-                                                                        gdouble                  scale_y);
+                                                                        gdouble                  scale);
 void                     xfce_display_settings_set_mode                (XfceDisplaySettings     *settings,
                                                                         guint                    output_id,
                                                                         guint                    mode_id);
