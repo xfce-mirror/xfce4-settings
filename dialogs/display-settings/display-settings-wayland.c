@@ -1000,6 +1000,7 @@ xfce_display_settings_wayland_mirror (XfceDisplaySettings *settings)
         output->enabled = TRUE;
         output->wl_mode = clonable_modes[n]->wl_mode;
         output->transform = ROTATION_FLAGS_0;
+        output->scale = wl_fixed_from_double (1.0);
         output->x = 0;
         output->y = 0;
     }
@@ -1020,12 +1021,12 @@ xfce_display_settings_wayland_unmirror (XfceDisplaySettings *settings)
     {
         XfceWlrOutput *output = g_ptr_array_index (outputs, n);
         XfceWlrMode *mode = get_preferred_mode (wsettings, output);
-        GdkRectangle geom;
-        xfce_display_settings_wayland_get_geometry (settings, n, &geom);
         output->wl_mode = mode->wl_mode;
+        output->transform = ROTATION_FLAGS_0;
+        output->scale = wl_fixed_from_double (1.0);
         output->x = x;
         output->y = 0;
-        x += geom.width;
+        x += mode->width;
     }
 }
 

@@ -675,6 +675,8 @@ xfce_display_settings_x11_mirror (XfceDisplaySettings *settings)
         randr->mode[n] = clonable_modes[n];
         randr->mirrored[n] = TRUE;
         randr->rotation[n] = RR_Rotate_0;
+        randr->scalex[n] = 1.0;
+        randr->scaley[n] = 1.0;
         randr->position[n].x = 0;
         randr->position[n].y = 0;
     }
@@ -695,11 +697,14 @@ xfce_display_settings_x11_unmirror (XfceDisplaySettings *settings)
     {
         randr->mode[n] = xfce_randr_preferred_mode (randr, n);
         randr->mirrored[n] = FALSE;
+        randr->rotation[n] = RR_Rotate_0;
+        randr->scalex[n] = 1.0;
+        randr->scaley[n] = 1.0;
         randr->position[n].x = x;
         randr->position[n].y = 0;
         mode = xfce_randr_find_mode_by_id (randr, n, randr->mode[n]);
         if (mode != NULL)
-            x += xfce_randr_mode_width (randr, n, mode);
+            x += mode->width;
     }
 }
 
