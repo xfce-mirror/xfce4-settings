@@ -159,6 +159,8 @@ static void display_setting_mirror_displays_populate         (XfceDisplaySetting
 
 static void display_settings_minimal_profile_apply           (GtkToggleButton *widget,
                                                               XfconfChannel   *channel);
+static void display_settings_combobox_selection_changed      (GtkComboBox         *combobox,
+                                                              XfceDisplaySettings *settings);
 
 static void
 display_settings_changed (void)
@@ -323,13 +325,17 @@ display_setting_custom_scale_changed (GtkSpinButton *spinbutton,
     xfce_display_settings_set_scale_x (settings, selected_id, scale);
     xfce_display_settings_set_scale_y (settings, selected_id, scale);
 
+    /* Check if we're now in mirror mode */
+    display_setting_mirror_displays_populate (settings);
+
     display_settings_changed ();
 }
 
 static void
 display_setting_scale_changed (GtkComboBox *combobox,
-                               GtkBuilder  *builder)
+                               XfceDisplaySettings *settings)
 {
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GObject      *revealer, *spin_scalex, *spin_scaley;
     GValue        prop = { 0, };
     gdouble       scale;
@@ -361,6 +367,10 @@ display_setting_scale_changed (GtkComboBox *combobox,
     }
 
     g_value_unset (&prop);
+
+    /* Check if we're now in mirror mode */
+    display_setting_mirror_displays_populate (settings);
+
     display_settings_changed ();
 }
 
@@ -427,8 +437,7 @@ display_setting_scale_populate (XfceDisplaySettings *settings,
                                xfce_display_settings_get_scale_y (settings, selected_id));
 
     /* Block the "changed" signal while determining the active item */
-    g_signal_handlers_block_by_func (combobox, display_setting_scale_changed,
-                                     builder);
+    g_signal_handlers_block_by_func (combobox, display_setting_scale_changed, settings);
 
     /* If the current scale is part of the presets set it as active */
     model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
@@ -452,8 +461,7 @@ display_setting_scale_populate (XfceDisplaySettings *settings,
         gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
 
     /* Unblock the signal */
-    g_signal_handlers_unblock_by_func (combobox, display_setting_scale_changed,
-                                       builder);
+    g_signal_handlers_unblock_by_func (combobox, display_setting_scale_changed, settings);
 }
 
 static void
@@ -473,6 +481,9 @@ display_setting_reflections_changed (GtkComboBox *combobox,
     rotation &= ~REFLECTION_MASK;
     rotation |= value;
     xfce_display_settings_set_rotation (settings, selected_id, rotation);
+
+    /* Check if we're now in mirror mode */
+    display_setting_mirror_displays_populate (settings);
 
     /* Apply the changes */
     display_settings_changed ();
@@ -554,6 +565,9 @@ display_setting_rotations_changed (GtkComboBox *combobox,
     rotation |= value;
     xfce_display_settings_set_rotation (settings, selected_id, rotation);
 
+    /* Check if we're now in mirror mode */
+    display_setting_mirror_displays_populate (settings);
+
     /* Apply the changes */
     display_settings_changed ();
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
@@ -630,9 +644,6 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
     selected_id = xfce_display_settings_get_selected_output_id (settings);
     xfce_display_settings_set_mode (settings, selected_id, value);
 
-    /* In any case, check if we're now in mirror mode */
-    display_setting_mirror_displays_populate (settings);
-
     /* Apply the changes */
     display_settings_changed ();
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
@@ -694,9 +705,6 @@ display_setting_refresh_rates_populate (XfceDisplaySettings *settings,
     if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
         gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
 
-    /* In any case, check if we're now in mirror mode */
-    display_setting_mirror_displays_populate (settings);
-
     /* Unblock the signal */
     g_signal_handlers_unblock_by_func (combobox, display_setting_refresh_rates_changed, settings);
 }
@@ -717,6 +725,9 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
 
     /* Update refresh rates */
     display_setting_refresh_rates_populate (settings, selected_id);
+
+    /* Check if we're now in mirror mode */
+    display_setting_mirror_displays_populate (settings);
 
     /* Apply the changes */
     display_settings_changed ();
@@ -873,6 +884,9 @@ static void
 display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
                                          XfceDisplaySettings *settings)
 {
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
+    GObject *combobox = gtk_builder_get_object (builder, "randr-outputs");
+
     /* reset the inconsistent state, since the mirror checkbutton is being toggled */
     if (gtk_toggle_button_get_inconsistent (togglebutton))
         gtk_toggle_button_set_inconsistent (togglebutton, FALSE);
@@ -886,6 +900,9 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
         xfce_display_settings_unmirror (settings);
     }
 
+    /* Update all widgets */
+    display_settings_combobox_selection_changed (GTK_COMBO_BOX (combobox), settings);
+
     /* Apply the changes */
     display_settings_changed ();
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
@@ -895,10 +912,7 @@ static void
 display_setting_mirror_displays_populate (XfceDisplaySettings *settings)
 {
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
-    GObject *check;
-    MirroredState state;
-
-    check = gtk_builder_get_object (builder, "mirror-displays");
+    GObject *check = gtk_builder_get_object (builder, "mirror-displays");
 
     if (xfce_display_settings_get_n_outputs (settings) > 1)
         gtk_widget_show (GTK_WIDGET (check));
@@ -909,22 +923,26 @@ display_setting_mirror_displays_populate (XfceDisplaySettings *settings)
     }
 
     gtk_widget_set_sensitive (GTK_WIDGET (check), xfce_display_settings_is_clonable (settings));
-
-    state = xfce_display_settings_get_mirrored_state (settings);
-    if (state == MIRRORED_STATE_NONE)
-    {
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), FALSE);
-        return;
-    }
+    gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (check), FALSE);
 
     /* Block the "changed" signal to avoid triggering the confirmation dialog */
     g_signal_handlers_block_by_func (check, display_setting_mirror_displays_toggled, settings);
 
-    /* if two displays are 'mirrored', i.e. their resolutions are not the same
-       we set the checkbutton to the inconsistent state */
-    gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (check), state == MIRRORED_STATE_MIRRORED);
-    if (state == MIRRORED_STATE_CLONED)
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), TRUE);
+    switch (xfce_display_settings_get_mirrored_state (settings))
+    {
+        case MIRRORED_STATE_NONE:
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), FALSE);
+            break;
+        case MIRRORED_STATE_MIRRORED:
+            gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (check), TRUE);
+            break;
+        case MIRRORED_STATE_CLONED:
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), TRUE);
+            break;
+        default:
+            g_warn_if_reached ();
+            break;
+    }
 
     /* Unblock the signal */
     g_signal_handlers_unblock_by_func (check, display_setting_mirror_displays_toggled, settings);
@@ -1090,12 +1108,12 @@ display_settings_combobox_selection_changed (GtkComboBox *combobox,
         display_setting_output_status_populate (settings, selected_id);
         if (WINDOWING_IS_X11 ())
             display_setting_primary_populate (settings, selected_id);
-        display_setting_mirror_displays_populate (settings);
         display_setting_resolutions_populate (settings, selected_id);
         display_setting_refresh_rates_populate (settings, selected_id);
         display_setting_rotations_populate (settings, selected_id);
         display_setting_reflections_populate (settings, selected_id);
         display_setting_scale_populate (settings, selected_id);
+        display_setting_mirror_displays_populate (settings);
 
         /* redraw the two (old active, new active) popups */
         if (WINDOWING_IS_X11 () || gtk_layer_is_supported ())
@@ -1801,7 +1819,7 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     gtk_widget_show (GTK_WIDGET (label));
 
     combobox = gtk_builder_get_object (builder, "randr-scale");
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_scale_changed), builder);
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_scale_changed), settings);
     revealer = gtk_builder_get_object (builder, "revealer-scale");
     if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
         gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
