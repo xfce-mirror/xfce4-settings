@@ -896,9 +896,12 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         gchar *cmd;
 
         /* fake startup notification */
-        cursor = gdk_cursor_new_for_display (gdk_display_get_default (), GDK_WATCH);
-        gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), cursor);
-        g_object_unref (cursor);
+        cursor = gdk_cursor_new_from_name (gdk_display_get_default (), "wait");
+        if (cursor != NULL)
+        {
+            gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), cursor);
+            g_object_unref (cursor);
+        }
 
         xfce_settings_manager_dialog_remove_socket (dialog);
 

@@ -2464,15 +2464,15 @@ compare_snaps (gconstpointer v1, gconstpointer v2)
  * window's cursor to its default).
  */
 static void
-set_cursor (GtkWidget *widget, GdkCursorType type)
+set_cursor (GtkWidget *widget, const gchar *name)
 {
     GdkCursor *cursor;
     GdkWindow *window;
 
-    if (type == GDK_BLANK_CURSOR)
+    if (name == NULL)
         cursor = NULL;
     else
-        cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget), type);
+        cursor = gdk_cursor_new_from_name (gtk_widget_get_display (widget), name);
 
     window = gtk_widget_get_window (widget);
 
@@ -2515,7 +2515,7 @@ on_output_event (FooScrollArea      *area,
         return;
 
     if (state == MIRRORED_STATE_NONE && xfce_display_settings_get_n_outputs (settings) > 1)
-        set_cursor (GTK_WIDGET (area), GDK_FLEUR);
+        set_cursor (GTK_WIDGET (area), "move");
 
     if (event->type == FOO_BUTTON_PRESS)
     {
@@ -2630,7 +2630,7 @@ on_canvas_event (FooScrollArea      *area,
      * on_output_event() for where we set the cursor to the movement cursor if
      * it is over one of the outputs.
      */
-    set_cursor (GTK_WIDGET (area), GDK_BLANK_CURSOR);
+    set_cursor (GTK_WIDGET (area), NULL);
 }
 
 static void

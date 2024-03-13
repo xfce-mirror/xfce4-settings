@@ -684,9 +684,12 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   /* set a watch cursor while loading the menu */
   if (G_LIKELY (gtk_widget_get_window (button) != NULL))
     {
-      cursor = gdk_cursor_new_for_display (gdk_window_get_display (gtk_widget_get_window (button)), GDK_WATCH);
-      gdk_window_set_cursor (gtk_widget_get_window (button), cursor);
-      g_object_unref (cursor);
+      cursor = gdk_cursor_new_from_name (gdk_window_get_display (gtk_widget_get_window (button)), "wait");
+      if (cursor != NULL)
+        {
+          gdk_window_set_cursor (gtk_widget_get_window (button), cursor);
+          g_object_unref (cursor);
+        }
       gdk_display_flush (gdk_display_get_default ());
     }
 
