@@ -49,16 +49,11 @@ static void             xfce_display_settings_wayland_set_rotation              
                                                                                   RotationFlags             rotation);
 static RotationFlags    xfce_display_settings_wayland_get_rotations              (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id);
-static gdouble          xfce_display_settings_wayland_get_scale_x                (XfceDisplaySettings      *settings,
+static gdouble          xfce_display_settings_wayland_get_scale                  (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id);
-static void             xfce_display_settings_wayland_set_scale_x                (XfceDisplaySettings      *settings,
+static void             xfce_display_settings_wayland_set_scale                  (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id,
-                                                                                  gdouble                   scale_x);
-static gdouble          xfce_display_settings_wayland_get_scale_y                (XfceDisplaySettings      *settings,
-                                                                                  guint                     output_id);
-static void             xfce_display_settings_wayland_set_scale_y                (XfceDisplaySettings      *settings,
-                                                                                  guint                     output_id,
-                                                                                  gdouble                   scale_y);
+                                                                                  gdouble                   scale);
 static void             xfce_display_settings_wayland_set_mode                   (XfceDisplaySettings      *settings,
                                                                                   guint                     output_id,
                                                                                   guint                     mode_id);
@@ -137,10 +132,8 @@ xfce_display_settings_wayland_class_init (XfceDisplaySettingsWaylandClass *klass
     settings_class->get_rotation = xfce_display_settings_wayland_get_rotation;
     settings_class->set_rotation = xfce_display_settings_wayland_set_rotation;
     settings_class->get_rotations = xfce_display_settings_wayland_get_rotations;
-    settings_class->get_scale_x = xfce_display_settings_wayland_get_scale_x;
-    settings_class->set_scale_x = xfce_display_settings_wayland_set_scale_x;
-    settings_class->get_scale_y = xfce_display_settings_wayland_get_scale_y;
-    settings_class->set_scale_y = xfce_display_settings_wayland_set_scale_y;
+    settings_class->get_scale = xfce_display_settings_wayland_get_scale;
+    settings_class->set_scale = xfce_display_settings_wayland_set_scale;
     settings_class->set_mode = xfce_display_settings_wayland_set_mode;
     settings_class->update_output_mode = xfce_display_settings_wayland_update_output_mode;
     settings_class->set_position = xfce_display_settings_wayland_set_position;
@@ -564,8 +557,8 @@ xfce_display_settings_wayland_get_rotations (XfceDisplaySettings *settings,
 
 
 static gdouble
-xfce_display_settings_wayland_get_scale_x (XfceDisplaySettings *settings,
-                                           guint output_id)
+xfce_display_settings_wayland_get_scale (XfceDisplaySettings *settings,
+                                         guint output_id)
 {
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
     XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
@@ -575,38 +568,13 @@ xfce_display_settings_wayland_get_scale_x (XfceDisplaySettings *settings,
 
 
 static void
-xfce_display_settings_wayland_set_scale_x (XfceDisplaySettings *settings,
-                                           guint output_id,
-                                           gdouble scale_x)
+xfce_display_settings_wayland_set_scale (XfceDisplaySettings *settings,
+                                         guint output_id,
+                                         gdouble scale)
 {
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
     XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
-    output->scale = wl_fixed_from_double (scale_x);
-}
-
-
-
-static gdouble
-xfce_display_settings_wayland_get_scale_y (XfceDisplaySettings *settings,
-                                           guint output_id)
-{
-    GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
-    XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
-    return wl_fixed_to_double (output->scale);
-}
-
-
-
-static void
-xfce_display_settings_wayland_set_scale_y (XfceDisplaySettings *settings,
-                                           guint output_id,
-                                           gdouble scale_y)
-{
-    GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (XFCE_DISPLAY_SETTINGS_WAYLAND (settings)->manager);
-    XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
-    if (wl_fixed_to_double (output->scale) != scale_y)
-        g_warning ("Scale y (%f) != Scale x (%f): ignored (only one scale is actually supported)",
-                   scale_y, wl_fixed_to_double (output->scale));
+    output->scale = wl_fixed_from_double (scale);
 }
 
 
@@ -638,8 +606,7 @@ output_set_mode_and_tranformation (XfceOutput *output,
         output->mode->height = mode->height;
         output->mode->rate = (gdouble) mode->refresh / 1000;
         output->rotation = convert_rotation_from_transform (xfwl_output->transform);
-        output->scale_x = wl_fixed_to_double (xfwl_output->scale);
-        output->scale_y = wl_fixed_to_double (xfwl_output->scale);
+        output->scale = wl_fixed_to_double (xfwl_output->scale);
     }
     else
     {
@@ -648,8 +615,7 @@ output_set_mode_and_tranformation (XfceOutput *output,
         output->mode->height = output->pref_height;
         output->mode->rate = 0;
         output->rotation = ROTATION_FLAGS_0;
-        output->scale_x = 1.0;
-        output->scale_y = 1.0;
+        output->scale = 1.0;
     }
 }
 
@@ -965,10 +931,7 @@ xfce_display_settings_wayland_save (XfceDisplaySettings *settings,
 
     /* save the scale */
     scale = wl_fixed_to_double (output->scale);
-    property = g_strdup_printf ("/%s/%s/Scale/X", scheme, output->name);
-    xfconf_channel_set_double (channel, property, scale);
-    g_free (property);
-    property = g_strdup_printf ("/%s/%s/Scale/Y", scheme, output->name);
+    property = g_strdup_printf ("/%s/%s/Scale", scheme, output->name);
     xfconf_channel_set_double (channel, property, scale);
     g_free (property);
 
