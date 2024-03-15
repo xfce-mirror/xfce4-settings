@@ -318,151 +318,43 @@ display_setting_ask_fallback (XfceDisplaySettings *settings)
 }
 
 static void
-display_setting_custom_scale_changed (GtkSpinButton *spinbutton,
-                                      XfceDisplaySettings *settings)
+display_setting_scale_changed (GtkSpinButton *spinbutton,
+                               XfceDisplaySettings *settings)
 {
     guint selected_id = xfce_display_settings_get_selected_output_id (settings);
     gdouble scale = gtk_spin_button_get_value (spinbutton);
-    xfce_display_settings_set_scale_x (settings, selected_id, scale);
-    xfce_display_settings_set_scale_y (settings, selected_id, scale);
+    xfce_display_settings_set_scale (settings, selected_id, scale);
 
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
 
     display_settings_changed (settings);
-}
-
-static void
-display_setting_scale_changed (GtkComboBox *combobox,
-                               XfceDisplaySettings *settings)
-{
-    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
-    GObject      *revealer, *spin_scalex, *spin_scaley;
-    GValue        prop = { 0, };
-    gdouble       scale;
-    GtkTreeModel *model;
-    GtkTreeIter   iter;
-
-    if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
-        return;
-
-    revealer = gtk_builder_get_object (builder, "revealer-scale");
-    spin_scalex = gtk_builder_get_object (builder, "spin-scale-x");
-    spin_scaley = gtk_builder_get_object (builder, "spin-scale-y");
-
-    gtk_combo_box_get_active_iter (combobox, &iter);
-    model = gtk_combo_box_get_model (combobox);
-    gtk_tree_model_get_value (model, &iter, COLUMN_COMBO_VALUE, &prop);
-    scale = g_value_get_double (&prop);
-
-    /* Show the spinbuttons if the combobox is set to "Custom:" */
-    if (scale == -1.0)
-    {
-        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), TRUE);
-    }
-    else
-    {
-        gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scalex), scale);
-        gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scaley), scale);
-        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
-    }
-
-    g_value_unset (&prop);
-
-    /* Check if we're now in mirror mode */
-    display_setting_mirror_displays_populate (settings);
-
-    display_settings_changed (settings);
-}
-
-static gboolean
-display_setting_scale_set_active (GtkTreeModel *model,
-                                  GtkTreePath  *path,
-                                  GtkTreeIter  *iter,
-                                  gpointer      data)
-{
-    XfceDisplaySettings *settings = data;
-    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
-    GObject *combobox = gtk_builder_get_object (builder, "randr-scale");
-    guint selected_id = xfce_display_settings_get_selected_output_id (settings);
-    GValue prop = { 0, };
-    gboolean found = FALSE;
-
-    gtk_tree_model_get_value (model, iter, COLUMN_COMBO_VALUE, &prop);
-
-    if (g_value_get_double (&prop) == xfce_display_settings_get_scale_x (settings, selected_id))
-    {
-        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), iter);
-        found = TRUE;
-    }
-    else
-        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), -1);
-
-    g_value_unset (&prop);
-
-    return found;
 }
 
 static void
 display_setting_scale_populate (XfceDisplaySettings *settings,
                                 guint selected_id)
 {
-    GtkBuilder   *builder = xfce_display_settings_get_builder (settings);
-    GtkTreeModel *model;
-    GObject      *combobox, *label, *revealer, *spin_scalex, *spin_scaley;
-    guint         n;
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
+    GObject *spin = gtk_builder_get_object (builder, "spin-scale");
+    GObject *label = gtk_builder_get_object (builder, "label-scale");
 
-    combobox = gtk_builder_get_object (builder, "randr-scale");
-    label = gtk_builder_get_object (builder, "label-scale");
-    revealer = gtk_builder_get_object (builder, "revealer-scale");
-
-    /* disable it if no mode is selected */
+    /* disable it if output is disabled */
     if (!xfce_display_settings_is_active (settings, selected_id))
     {
-        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), -1);
-        gtk_widget_set_sensitive (GTK_WIDGET (combobox), FALSE);
+        gtk_entry_set_text (GTK_ENTRY (spin), "");
+        gtk_widget_set_sensitive (GTK_WIDGET (spin), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
-        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
         return;
     }
 
-    gtk_widget_set_sensitive (GTK_WIDGET (combobox), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (spin), TRUE);
     gtk_widget_set_sensitive (GTK_WIDGET (label), TRUE);
 
     /* Sync the current scale value to the spinbuttons */
-    spin_scalex = gtk_builder_get_object (builder, "spin-scale-x");
-    spin_scaley = gtk_builder_get_object (builder, "spin-scale-y");
-    gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scalex),
-                               xfce_display_settings_get_scale_x (settings, selected_id));
-    gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin_scaley),
-                               xfce_display_settings_get_scale_y (settings, selected_id));
-
-    /* Block the "changed" signal while determining the active item */
-    g_signal_handlers_block_by_func (combobox, display_setting_scale_changed, settings);
-
-    /* If the current scale is part of the presets set it as active */
-    model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
-    gtk_tree_model_foreach (model, display_setting_scale_set_active, settings);
-
-    /* If the current scale is not found in the presets we select "Custom:", which
-       is the last element of the liststore */
-    if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
-    {
-        GtkTreePath *path;
-        GtkTreeIter  iter;
-
-        n = gtk_tree_model_iter_n_children (model, NULL);
-        path = gtk_tree_path_new_from_indices (n - 1, -1);
-        gtk_tree_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
-        gtk_tree_path_free (path);
-        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
-        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), TRUE);
-    }
-    else
-        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
-
-    /* Unblock the signal */
-    g_signal_handlers_unblock_by_func (combobox, display_setting_scale_changed, settings);
+    g_signal_handlers_block_by_func (spin, display_setting_scale_changed, settings);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (spin), xfce_display_settings_get_scale (settings, selected_id));
+    g_signal_handlers_unblock_by_func (spin, display_setting_scale_changed, settings);
 }
 
 static void
@@ -1736,6 +1628,17 @@ display_settings_primary_status_info_populate (GtkBuilder *builder)
     g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfce4-notifyd-config");
 }
 
+static gboolean
+spin_scale_force_init (gpointer data)
+{
+    /* We need to do this because GTK returns a numerical value in our back if
+     * the output selected at startup is disabled */
+    XfceDisplaySettings *settings = data;
+    guint selected_id = xfce_display_settings_get_selected_output_id (settings);
+    display_setting_scale_populate (settings, selected_id);
+    return FALSE;
+}
+
 static GtkWidget *
 display_settings_dialog_new (XfceDisplaySettings *settings)
 {
@@ -1744,7 +1647,7 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     GObject          *combobox;
     GtkCellRenderer  *renderer;
     GObject          *label, *check, *primary, *mirror, *identify, *primary_indicator;
-    GObject          *revealer, *spinbutton;
+    GObject          *spinbutton;
     GtkWidget        *button;
     GtkTreeSelection *selection;
 
@@ -1814,16 +1717,9 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     label = gtk_builder_get_object (builder, "label-reflection");
     gtk_widget_show (GTK_WIDGET (label));
 
-    combobox = gtk_builder_get_object (builder, "randr-scale");
-    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_scale_changed), settings);
-    revealer = gtk_builder_get_object (builder, "revealer-scale");
-    if (gtk_combo_box_get_active (GTK_COMBO_BOX (combobox)) == -1)
-        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), FALSE);
-    else
-        gtk_revealer_set_reveal_child (GTK_REVEALER (revealer), TRUE);
-
-    spinbutton = gtk_builder_get_object (builder, "spin-scale-x");
-    g_signal_connect (G_OBJECT (spinbutton), "value-changed", G_CALLBACK (display_setting_custom_scale_changed), settings);
+    spinbutton = gtk_builder_get_object (builder, "spin-scale");
+    g_signal_connect (G_OBJECT (spinbutton), "value-changed", G_CALLBACK (display_setting_scale_changed), settings);
+    g_idle_add (spin_scale_force_init, settings);
 
     combobox = gtk_builder_get_object (builder, "randr-reflection");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox), FALSE);
@@ -2041,11 +1937,10 @@ get_geometry (XfceOutput *output, int *w, int *h)
 {
     if (output->active)
     {
-        if (output->scale_x > 0 && output->scale_x != 1.0
-            && output->scale_y > 0 && output->scale_y != 1.0)
+        if (output->scale > 0 && output->scale != 1.0)
         {
-            *h = output->mode->height / output->scale_y;
-            *w = output->mode->width / output->scale_x;
+            *h = output->mode->height / output->scale;
+            *w = output->mode->width / output->scale;
         }
         else
         {
