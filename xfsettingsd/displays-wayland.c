@@ -243,22 +243,14 @@ load_from_xfconf (XfceDisplaysHelperWayland *helper,
         }
     }
 
-    /* scaling X */
-    property = g_strdup_printf (SCALEX_PROP, scheme, output->name);
+    /* scaling */
+    property = g_strdup_printf (SCALE_PROP, scheme, output->name);
     value = g_hash_table_lookup (saved_outputs, property);
     g_free (property);
     if (G_VALUE_HOLDS_DOUBLE (value))
         double_value = g_value_get_double (value);
     else
         double_value = 1.0;
-
-    /* scaling Y (ignored) */
-    property = g_strdup_printf (SCALEY_PROP, scheme, output->name);
-    value = g_hash_table_lookup (saved_outputs, property);
-    g_free (property);
-    if (!G_VALUE_HOLDS_DOUBLE (value) || g_value_get_double (value) != double_value)
-        g_warning ("Scale y (%f) != Scale x (%f): ignored (only one scale is actually supported)",
-                   g_value_get_double (value), double_value);
 
     output->scale = wl_fixed_from_double (double_value);
 
