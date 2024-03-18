@@ -878,6 +878,16 @@ display_setting_primary_populate (XfceDisplaySettings *settings,
 }
 
 static gboolean
+show_no_output_dialog (gpointer data)
+{
+    xfce_dialog_show_warning (NULL,
+                              _("The last active output must not be disabled, the system would"
+                                " be unusable."),
+                              _("Selected output not disabled"));
+    return FALSE;
+}
+
+static gboolean
 display_setting_output_toggled (GtkSwitch  *widget,
                                 gboolean output_on,
                                 XfceDisplaySettings *settings)
@@ -899,10 +909,8 @@ display_setting_output_toggled (GtkSwitch  *widget,
             GObject *check = gtk_builder_get_object (builder, "output-on");
             gtk_switch_set_active (GTK_SWITCH (check), TRUE);
 
-            xfce_dialog_show_warning (NULL,
-                                      _("The last active output must not be disabled, the system would"
-                                        " be unusable."),
-                                      _("Selected output not disabled"));
+            /* Run dialog after this signal handler to avoid random freeze */
+            g_idle_add (show_no_output_dialog, NULL);
             return TRUE;
         }
         xfce_display_settings_set_active (settings, selected_id, FALSE);
@@ -1268,6 +1276,29 @@ initialize_connected_outputs_at_zero (XfceDisplaySettings *settings)
     }
 }
 
+static gboolean
+show_confirmation_dialog (gpointer data)
+{
+    XfceDisplaySettings *settings = data;
+
+    /* Ask user confirmation (or recover to'Fallback on timeout') */
+    if (display_setting_timed_confirmation (settings))
+    {
+        /* Update the Fallback */
+        guint n_outputs = xfce_display_settings_get_n_outputs (settings);
+        for (guint n = 0; n < n_outputs; n++)
+            xfce_display_settings_save (settings, n, "Fallback");
+    }
+    else
+    {
+        /* Recover to Fallback (will as well overwrite default xfconf settings) */
+        xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Fallback");
+        foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    }
+
+    return FALSE;
+}
+
 static void
 display_setting_apply (GtkWidget *widget, XfceDisplaySettings *settings)
 {
@@ -1308,19 +1339,8 @@ display_setting_apply (GtkWidget *widget, XfceDisplaySettings *settings)
         xfce_display_settings_save (settings, n, "Default");
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
 
-    /* Ask user confirmation (or recover to'Fallback on timeout') */
-    if (display_setting_timed_confirmation (settings))
-    {
-        /* Update the Fallback */
-        for (guint n = 0; n < n_outputs; n++)
-            xfce_display_settings_save (settings, n, "Fallback");
-    }
-    else
-    {
-        /* Recover to Fallback (will as well overwrite default xfconf settings) */
-        xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Fallback");
-        foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
-    }
+    /* Run dialog after this signal handler to avoid random freeze */
+    g_idle_add (show_confirmation_dialog, settings);
 
     gtk_widget_set_sensitive(widget, FALSE);
 }
