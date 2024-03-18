@@ -292,31 +292,6 @@ display_setting_timed_confirmation (XfceDisplaySettings *settings)
     return ((response_id == 2) ? TRUE : FALSE);
 }
 
-/*
- * Encapsulates display_setting_timed_confirmation, automatically uses Fallback on FALSE
- * Returns TRUE if the configuration was kept, FALSE if the configuration was replaced with the Fallback
- */
-static gboolean
-display_setting_ask_fallback (XfceDisplaySettings *settings)
-{
-    /* Ask user confirmation (or recover to'Fallback on timeout') */
-    if (display_setting_timed_confirmation (settings))
-    {
-        /* Update the Fallback */
-        guint n_outputs = xfce_display_settings_get_n_outputs (settings);
-        for (guint n = 0; n < n_outputs; n++)
-            xfce_display_settings_save (settings, n, "Fallback");
-        return TRUE;
-    }
-    else
-    {
-        /* Recover to Fallback (will as well overwrite default xfconf settings) */
-        xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Fallback");
-        foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
-        return FALSE;
-    }
-}
-
 static void
 display_setting_scale_changed (GtkSpinButton *spinbutton,
                                XfceDisplaySettings *settings)
@@ -378,7 +353,6 @@ display_setting_reflections_changed (GtkComboBox *combobox,
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
 
-    /* Apply the changes */
     display_settings_changed (settings);
 }
 
@@ -460,7 +434,6 @@ display_setting_rotations_changed (GtkComboBox *combobox,
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
 
-    /* Apply the changes */
     display_settings_changed (settings);
 }
 
@@ -535,7 +508,6 @@ display_setting_refresh_rates_changed (GtkComboBox *combobox,
     selected_id = xfce_display_settings_get_selected_output_id (settings);
     xfce_display_settings_set_mode (settings, selected_id, value);
 
-    /* Apply the changes */
     display_settings_changed (settings);
 }
 
@@ -619,7 +591,6 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
 
-    /* Apply the changes */
     display_settings_changed (settings);
 }
 
@@ -792,7 +763,6 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     /* Update all widgets */
     display_settings_combobox_selection_changed (GTK_COMBO_BOX (combobox), settings);
 
-    /* Apply the changes */
     display_settings_changed (settings);
 }
 
@@ -849,7 +819,6 @@ display_setting_primary_toggled (GtkWidget *widget,
 
         /* Set currently active display as primary */
         xfce_display_settings_set_primary (settings, selected_id, TRUE);
-        xfce_display_settings_save (settings, selected_id, "Default");
 
         /* and all others as secondary */
         for (guint n = 0; n < n_outputs; n++)
@@ -857,21 +826,17 @@ display_setting_primary_toggled (GtkWidget *widget,
             if (n != selected_id)
             {
                 xfce_display_settings_set_primary (settings, n, FALSE);
-                xfce_display_settings_save (settings, n, "Default");
             }
         }
     }
     else
     {
         xfce_display_settings_set_primary (settings, selected_id, FALSE);
-        xfce_display_settings_save (settings, selected_id, "Default");
     }
 
-    /* Apply the changes */
-    xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
-    gtk_switch_set_state (GTK_SWITCH (widget), primary);
+    display_settings_changed (settings);
 
-    return TRUE;
+    return FALSE;
 }
 
 static void
@@ -917,12 +882,12 @@ display_setting_output_toggled (GtkSwitch  *widget,
                                 gboolean output_on,
                                 XfceDisplaySettings *settings)
 {
-    guint selected_id, n_outputs;
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
+    GObject *combobox = gtk_builder_get_object (builder, "randr-outputs");
+    guint selected_id = xfce_display_settings_get_selected_output_id (settings);
 
     if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return FALSE;
-
-    selected_id = xfce_display_settings_get_selected_output_id (settings);
 
     if (output_on)
         xfce_display_settings_set_active (settings, selected_id, TRUE);
@@ -939,15 +904,12 @@ display_setting_output_toggled (GtkSwitch  *widget,
         xfce_display_settings_set_active (settings, selected_id, FALSE);
     }
 
-    /* Apply the changes */
-    n_outputs = xfce_display_settings_get_n_outputs (settings);
-    for (guint n = 0; n < n_outputs; n++)
-        xfce_display_settings_save (settings, n, "Default");
-    xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
+    /* Update all widgets */
+    display_settings_combobox_selection_changed (GTK_COMBO_BOX (combobox), settings);
 
-    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    display_settings_changed (settings);
 
-    return display_setting_ask_fallback (settings);
+    return FALSE;
 }
 
 static void
@@ -1283,7 +1245,19 @@ display_setting_apply (GtkWidget *widget, XfceDisplaySettings *settings)
         xfce_display_settings_save (settings, n, "Default");
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
 
-    display_setting_ask_fallback (settings);
+    /* Ask user confirmation (or recover to'Fallback on timeout') */
+    if (display_setting_timed_confirmation (settings))
+    {
+        /* Update the Fallback */
+        for (guint n = 0; n < n_outputs; n++)
+            xfce_display_settings_save (settings, n, "Fallback");
+    }
+    else
+    {
+        /* Recover to Fallback (will as well overwrite default xfconf settings) */
+        xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Fallback");
+        foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    }
 
     gtk_widget_set_sensitive(widget, FALSE);
 }
