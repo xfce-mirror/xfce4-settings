@@ -259,6 +259,8 @@ xfce_randr_populate (XfceRandr *randr,
             randr->mode[m] = None;
             randr->rotation[m] = RR_Rotate_0;
             randr->rotations[m] = xfce_randr_get_safe_rotations (randr, xdisplay, m);
+            randr->scalex[m] = 1.0;
+            randr->scaley[m] = 1.0;
         }
 
         /* fill in the name used by the UI */

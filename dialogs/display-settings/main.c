@@ -1238,9 +1238,68 @@ on_identify_displays_toggled (GtkWidget *widget,
 }
 
 static void
+initialize_connected_outputs_at_zero (XfceDisplaySettings *settings)
+{
+    GList *outputs = xfce_display_settings_get_outputs (settings);
+    GList *list = NULL;
+    gint start_x, start_y;
+
+    start_x = G_MAXINT;
+    start_y = G_MAXINT;
+
+    /* Get the left-most and top-most coordinates */
+    for (list = outputs; list != NULL; list = list->next)
+    {
+        XfceOutput *output = list->data;
+
+        start_x = MIN(start_x, output->x);
+        start_y = MIN(start_y, output->y);
+    }
+
+    /* Realign at zero */
+    for (list = outputs; list != NULL; list = list->next)
+    {
+        XfceOutput *output = list->data;
+        xfce_display_settings_set_position (settings, output->id, output->x - start_x, output->y - start_y);
+    }
+}
+
+static void
 display_setting_apply (GtkWidget *widget, XfceDisplaySettings *settings)
 {
+    /* Put disabled outputs on the right before applying changes */
     guint n_outputs = xfce_display_settings_get_n_outputs (settings);
+    for (guint n = 0; n < n_outputs; n++)
+    {
+        if (!xfce_display_settings_is_active (settings, n))
+        {
+            GdkRectangle geom_n;
+            gint x = 0, y = 0;
+
+            xfce_display_settings_get_geometry (settings, n, &geom_n);
+            for (guint m = 0; m < n_outputs; m++)
+            {
+                GdkRectangle geom_m;
+                if (m == n)
+                    continue;
+
+                xfce_display_settings_get_geometry (settings, m, &geom_m);
+                if (geom_m.x > geom_n.x)
+                    geom_m.x -= geom_n.width;
+                if (geom_m.y > geom_n.y)
+                    geom_m.y -= geom_n.height;
+                xfce_display_settings_set_position (settings, m, geom_m.x, geom_m.y);
+                x = MAX (x, geom_m.x + geom_m.width);
+                y = MAX (y, geom_m.y);
+            }
+            xfce_display_settings_set_position (settings, n, x, y);
+        }
+    }
+
+    initialize_connected_outputs_at_zero (settings);
+    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+
+    /* Apply changes */
     for (guint n = 0; n < n_outputs; n++)
         xfce_display_settings_save (settings, n, "Default");
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
@@ -1768,17 +1827,18 @@ display_settings_minimal_only_display_n_toggled (GtkToggleButton *button,
     if (xfce_display_settings_get_n_outputs (settings) <= 1)
         return;
 
-    /* Put display to activate in its preferred mode and deactivate the other one */
     builder = xfce_display_settings_get_builder (settings);
     if (button == GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "display1")))
     {
         xfce_display_settings_set_active (settings, 0, TRUE);
         xfce_display_settings_set_active (settings, 1, FALSE);
+        xfce_display_settings_set_position (settings, 0, 0, 0);
     }
     else
     {
         xfce_display_settings_set_active (settings, 1, TRUE);
         xfce_display_settings_set_active (settings, 0, FALSE);
+        xfce_display_settings_set_position (settings, 1, 0, 0);
     }
 
     /* Apply the changes */
@@ -1933,33 +1993,6 @@ get_geometry (XfceOutput *output, int *w, int *h)
         tmp = *h;
         *h = *w;
         *w = tmp;
-    }
-}
-
-static void
-initialize_connected_outputs_at_zero (XfceDisplaySettings *settings)
-{
-    GList *outputs = xfce_display_settings_get_outputs (settings);
-    GList *list = NULL;
-    gint start_x, start_y;
-
-    start_x = G_MAXINT;
-    start_y = G_MAXINT;
-
-    /* Get the left-most and top-most coordinates */
-    for (list = outputs; list != NULL; list = list->next)
-    {
-        XfceOutput *output = list->data;
-
-        start_x = MIN(start_x, output->x);
-        start_y = MIN(start_y, output->y);
-    }
-
-    /* Realign at zero */
-    for (list = outputs; list != NULL; list = list->next)
-    {
-        XfceOutput *output = list->data;
-        xfce_display_settings_set_position (settings, output->id, output->x - start_x, output->y - start_y);
     }
 }
 

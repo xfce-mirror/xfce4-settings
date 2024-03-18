@@ -258,6 +258,8 @@ xfce_display_settings_x11_get_geometry (XfceDisplaySettings *settings,
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
     const XfceRRMode *mode = xfce_randr_find_mode_by_id (randr, output_id, randr->mode[output_id]);
+    if (mode == NULL)
+        mode = xfce_randr_find_mode_by_id (randr, output_id, xfce_randr_preferred_mode (randr, output_id));
 
     if (!xfce_randr_get_positions (randr, output_id, &geometry->x, &geometry->y))
     {
@@ -363,7 +365,8 @@ xfce_display_settings_x11_set_mode (XfceDisplaySettings *settings,
                                     guint output_id,
                                     guint mode_id)
 {
-    XFCE_DISPLAY_SETTINGS_X11 (settings)->randr->mode[output_id] = mode_id;
+    XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
+    randr->mode[output_id] = (mode_id == -1U ? xfce_randr_preferred_mode (randr, output_id) : mode_id);
 }
 
 
@@ -485,10 +488,7 @@ xfce_display_settings_x11_set_active (XfceDisplaySettings *settings,
                                       gboolean active)
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
-    if (active && randr->mode[output_id] == None)
-        randr->mode[output_id] = xfce_randr_preferred_mode (randr, output_id);
-    else if (!active && randr->mode[output_id] != None)
-        randr->mode[output_id] = None;
+    randr->mode[output_id] = active ? xfce_randr_preferred_mode (randr, output_id) : None;
 }
 
 

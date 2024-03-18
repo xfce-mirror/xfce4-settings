@@ -258,6 +258,7 @@ xfce_display_settings_set_outputs (XfceDisplaySettings *settings)
         {
             output->x = x;
             output->y = y;
+            xfce_display_settings_set_position (settings, output->id, x, y);
             x += output->mode->width;
         }
     }
@@ -886,7 +887,16 @@ xfce_display_settings_set_active (XfceDisplaySettings *settings,
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
     g_return_if_fail (xfce_display_settings_get_n_outputs (settings) > output_id);
 
+    if (xfce_display_settings_is_active (settings, output_id) == active)
+        return;
+
+    /* init/reset geometry except position */
+    xfce_display_settings_set_mode (settings, output_id, -1U);
+    xfce_display_settings_set_scale (settings, output_id, 1.0);
+    xfce_display_settings_set_rotation (settings, output_id, ROTATION_FLAGS_0);
+
     XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_active (settings, output_id, active);
+
     if (!get_instance_private (settings)->opt_minimal)
     {
         XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;

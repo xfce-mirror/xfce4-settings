@@ -376,6 +376,9 @@ get_nth_mode (XfceDisplaySettingsWayland *settings,
               XfceWlrOutput *output,
               guint mode_id)
 {
+    if (mode_id == -1U)
+        return get_preferred_mode (settings, output);
+
     GList *lp = g_list_nth (output->modes, mode_id);
     if (lp != NULL)
         return lp->data;
@@ -668,47 +671,6 @@ xfce_display_settings_wayland_set_active (XfceDisplaySettings *settings,
     XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
     XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
-    if (active == output->enabled)
-        return;
-
-    if (active)
-    {
-        XfceWlrMode *mode = get_preferred_mode (wsettings, output);
-        output->wl_mode = mode->wl_mode;
-
-        /* position output at bottom right as it was when disabled */
-        output->x = 0;
-        output->y = 0;
-        for (guint n = 0; n < outputs->len; n++)
-        {
-            XfceWlrOutput *output_n = g_ptr_array_index (outputs, n);
-            if (output_n->enabled)
-            {
-                GdkRectangle geom;
-                xfce_display_settings_wayland_get_geometry (settings, n, &geom);
-                output->x = MAX (output->x, output_n->x + geom.width);
-                output->y = MAX (output->y, output_n->y);
-            }
-        }
-    }
-    else
-    {
-        /* realign other outputs if needed */
-        GdkRectangle geom;
-        xfce_display_settings_wayland_get_geometry (settings, output_id, &geom);
-        for (guint n = 0; n < outputs->len; n++)
-        {
-            XfceWlrOutput *output_n = g_ptr_array_index (outputs, n);
-            if (output_n->enabled && n != output_id)
-            {
-                if (output_n->x > output->x)
-                    output_n->x -= geom.width;
-                if (output_n->y > output->y)
-                    output_n->y -= geom.height;
-            }
-        }
-    }
-
     output->enabled = active;
 }
 
