@@ -803,56 +803,28 @@ xfce_display_settings_get_rotations (XfceDisplaySettings *settings,
 
 
 gdouble
-xfce_display_settings_get_scale_x (XfceDisplaySettings *settings,
-                                   guint output_id)
+xfce_display_settings_get_scale (XfceDisplaySettings *settings,
+                                 guint output_id)
 {
     g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), 0);
-    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->get_scale_x (settings, output_id);
+    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->get_scale (settings, output_id);
 }
 
 
 
 void
-xfce_display_settings_set_scale_x (XfceDisplaySettings *settings,
-                                   guint output_id,
-                                   gdouble scale_x)
+xfce_display_settings_set_scale (XfceDisplaySettings *settings,
+                                 guint output_id,
+                                 gdouble scale)
 {
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
     g_return_if_fail (xfce_display_settings_get_n_outputs (settings) > output_id);
 
-    XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_scale_x (settings, output_id, scale_x);
+    XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_scale (settings, output_id, scale);
     if (!get_instance_private (settings)->opt_minimal)
     {
         XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
-        output->scale_x = scale_x;
-    }
-}
-
-
-
-gdouble
-xfce_display_settings_get_scale_y (XfceDisplaySettings *settings,
-                                   guint output_id)
-{
-    g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), 0);
-    return XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->get_scale_x (settings, output_id);
-}
-
-
-
-void
-xfce_display_settings_set_scale_y (XfceDisplaySettings *settings,
-                                   guint output_id,
-                                   gdouble scale_y)
-{
-    g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
-    g_return_if_fail (xfce_display_settings_get_n_outputs (settings) > output_id);
-
-    XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->set_scale_y (settings, output_id, scale_y);
-    if (!get_instance_private (settings)->opt_minimal)
-    {
-        XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
-        output->scale_y = scale_y;
+        output->scale = scale;
     }
 }
 
