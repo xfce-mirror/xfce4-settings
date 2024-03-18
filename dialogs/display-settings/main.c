@@ -155,12 +155,51 @@ static XfceRatio ratio_table[] = {
     { FALSE, 0.0 , NULL }
 };
 
+typedef struct _GrabInfo
+{
+    int grab_x;
+    int grab_y;
+    int output_x;
+    int output_y;
+} GrabInfo;
+
 static void display_setting_mirror_displays_populate         (XfceDisplaySettings *settings);
 
 static void display_settings_minimal_profile_apply           (GtkToggleButton *widget,
                                                               XfconfChannel   *channel);
 static void display_settings_combobox_selection_changed      (GtkComboBox         *combobox,
                                                               XfceDisplaySettings *settings);
+static void keep_output_snapped                              (XfceOutput          *output,
+                                                              FooScrollAreaEvent  *event,
+                                                              GrabInfo            *info,
+                                                              XfceDisplaySettings *settings);
+
+static void
+initialize_connected_outputs_at_zero (XfceDisplaySettings *settings)
+{
+    GList *outputs = xfce_display_settings_get_outputs (settings);
+    GList *list = NULL;
+    gint start_x, start_y;
+
+    start_x = G_MAXINT;
+    start_y = G_MAXINT;
+
+    /* Get the left-most and top-most coordinates */
+    for (list = outputs; list != NULL; list = list->next)
+    {
+        XfceOutput *output = list->data;
+
+        start_x = MIN(start_x, output->x);
+        start_y = MIN(start_y, output->y);
+    }
+
+    /* Realign at zero */
+    for (list = outputs; list != NULL; list = list->next)
+    {
+        XfceOutput *output = list->data;
+        xfce_display_settings_set_position (settings, output->id, output->x - start_x, output->y - start_y);
+    }
+}
 
 static void
 display_settings_changed (XfceDisplaySettings *settings)
@@ -293,12 +332,28 @@ display_setting_timed_confirmation (XfceDisplaySettings *settings)
 }
 
 static void
+update_output_positions (XfceDisplaySettings *settings,
+                         guint selected_id)
+{
+    XfceOutput *output = get_nth_xfce_output (settings, selected_id);
+    FooScrollAreaEvent event = { 0 };
+    GrabInfo info = { 0 };
+
+    info.output_x = output->x;
+    info.output_y = output->y;
+    keep_output_snapped (output, &event, &info, settings);
+    initialize_connected_outputs_at_zero (settings);
+}
+
+static void
 display_setting_scale_changed (GtkSpinButton *spinbutton,
                                XfceDisplaySettings *settings)
 {
     guint selected_id = xfce_display_settings_get_selected_output_id (settings);
     gdouble scale = gtk_spin_button_get_value (spinbutton);
     xfce_display_settings_set_scale (settings, selected_id, scale);
+
+    update_output_positions (settings, selected_id);
 
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
@@ -357,6 +412,8 @@ display_setting_reflections_changed (GtkComboBox *combobox,
     rotation &= ~REFLECTION_MASK;
     rotation |= value;
     xfce_display_settings_set_rotation (settings, selected_id, rotation);
+
+    update_output_positions (settings, selected_id);
 
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
@@ -438,6 +495,8 @@ display_setting_rotations_changed (GtkComboBox *combobox,
     rotation &= ~ROTATION_MASK;
     rotation |= value;
     xfce_display_settings_set_rotation (settings, selected_id, rotation);
+
+    update_output_positions (settings, selected_id);
 
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
@@ -595,6 +654,8 @@ display_setting_resolutions_changed (GtkComboBox *combobox,
 
     /* Update refresh rates */
     display_setting_refresh_rates_populate (settings, selected_id);
+
+    update_output_positions (settings, selected_id);
 
     /* Check if we're now in mirror mode */
     display_setting_mirror_displays_populate (settings);
@@ -1255,33 +1316,6 @@ on_identify_displays_toggled (GtkWidget *widget,
     gtk_switch_set_state (GTK_SWITCH (widget), state);
 
     return TRUE;
-}
-
-static void
-initialize_connected_outputs_at_zero (XfceDisplaySettings *settings)
-{
-    GList *outputs = xfce_display_settings_get_outputs (settings);
-    GList *list = NULL;
-    gint start_x, start_y;
-
-    start_x = G_MAXINT;
-    start_y = G_MAXINT;
-
-    /* Get the left-most and top-most coordinates */
-    for (list = outputs; list != NULL; list = list->next)
-    {
-        XfceOutput *output = list->data;
-
-        start_x = MIN(start_x, output->x);
-        start_y = MIN(start_y, output->y);
-    }
-
-    /* Realign at zero */
-    for (list = outputs; list != NULL; list = list->next)
-    {
-        XfceOutput *output = list->data;
-        xfce_display_settings_set_position (settings, output->id, output->x - start_x, output->y - start_y);
-    }
 }
 
 static gboolean
@@ -2330,14 +2364,6 @@ xfce_rr_config_is_aligned (GList *outputs,
     return TRUE;
 }
 
-typedef struct _GrabInfo
-{
-    int grab_x;
-    int grab_y;
-    int output_x;
-    int output_y;
-} GrabInfo;
-
 static gboolean
 is_corner_snap (const Snap *s)
 {
@@ -2421,6 +2447,62 @@ set_monitors_tooltip (XfceDisplaySettings *settings,
 }
 
 static void
+keep_output_snapped (XfceOutput *output,
+                     FooScrollAreaEvent *event,
+                     GrabInfo *info,
+                     XfceDisplaySettings *settings)
+{
+    GList *outputs = xfce_display_settings_get_outputs (settings);
+    double scale = compute_scale (settings);
+    int new_x, new_y;
+    GArray *edges, *snaps;
+
+    new_x = info->output_x + (event->x - info->grab_x) / scale;
+    new_y = info->output_y + (event->y - info->grab_y) / scale;
+
+    output->x = new_x;
+    output->y = new_y;
+
+    edges = g_array_new (TRUE, TRUE, sizeof (Edge));
+    snaps = g_array_new (TRUE, TRUE, sizeof (Snap));
+
+    list_edges (outputs, edges);
+    list_snaps (output, edges, snaps);
+
+    g_array_sort (snaps, compare_snaps);
+
+    output->x = info->output_x;
+    output->y = info->output_y;
+
+    for (guint i = 0; i < snaps->len; ++i)
+    {
+        Snap *snap = &(g_array_index (snaps, Snap, i));
+        GArray *new_edges = g_array_new (TRUE, TRUE, sizeof (Edge));
+
+        output->x = new_x + snap->dx;
+        output->y = new_y + snap->dy;
+
+        g_array_set_size (new_edges, 0);
+        list_edges (outputs, new_edges);
+
+        if (xfce_rr_config_is_aligned (outputs, new_edges))
+        {
+            g_array_free (new_edges, TRUE);
+            break;
+        }
+        else
+        {
+            output->x = info->output_x;
+            output->y = info->output_y;
+            g_array_free (new_edges, TRUE);
+        }
+    }
+
+    g_array_free (snaps, TRUE);
+    g_array_free (edges, TRUE);
+}
+
+static void
 on_output_event (FooScrollArea      *area,
                  FooScrollAreaEvent *event,
                  gpointer            data)
@@ -2471,56 +2553,7 @@ on_output_event (FooScrollArea      *area,
     {
         if (foo_scroll_area_is_grabbed (area))
         {
-            GList *outputs = xfce_display_settings_get_outputs (settings);
-            GrabInfo *info = output->user_data;
-            double scale = compute_scale (settings);
-            int new_x, new_y;
-            guint i;
-            GArray *edges, *snaps;
-
-            new_x = info->output_x + (event->x - info->grab_x) / scale;
-            new_y = info->output_y + (event->y - info->grab_y) / scale;
-
-            output->x = new_x;
-            output->y = new_y;
-
-            edges = g_array_new (TRUE, TRUE, sizeof (Edge));
-            snaps = g_array_new (TRUE, TRUE, sizeof (Snap));
-
-            list_edges (outputs, edges);
-            list_snaps (output, edges, snaps);
-
-            g_array_sort (snaps, compare_snaps);
-
-            output->x = info->output_x;
-            output->y = info->output_y;
-
-            for (i = 0; i < snaps->len; ++i)
-            {
-                Snap *snap = &(g_array_index (snaps, Snap, i));
-                GArray *new_edges = g_array_new (TRUE, TRUE, sizeof (Edge));
-
-                output->x = new_x + snap->dx;
-                output->y = new_y + snap->dy;
-
-                g_array_set_size (new_edges, 0);
-                list_edges (outputs, new_edges);
-
-                if (xfce_rr_config_is_aligned (outputs, new_edges))
-                {
-                    g_array_free (new_edges, TRUE);
-                    break;
-                }
-                else
-                {
-                    output->x = info->output_x;
-                    output->y = info->output_y;
-                    g_array_free (new_edges, TRUE);
-                }
-            }
-
-            g_array_free (snaps, TRUE);
-            g_array_free (edges, TRUE);
+            keep_output_snapped (output, event, output->user_data, settings);
 
             if (event->type == FOO_BUTTON_RELEASE)
             {
