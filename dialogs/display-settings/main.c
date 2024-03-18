@@ -2557,6 +2557,11 @@ on_output_event (FooScrollArea      *area,
 
             if (event->type == FOO_BUTTON_RELEASE)
             {
+                GtkAllocation alloc;
+                gtk_widget_get_allocation (GTK_WIDGET (area), &alloc);
+                if (event->x <= 0 || event->y <= 0 || event->x >= alloc.width || event->y >= alloc.height)
+                    set_cursor (GTK_WIDGET (area), NULL);
+
                 foo_scroll_area_end_grab (area);
                 set_monitors_tooltip (settings, NULL);
 
