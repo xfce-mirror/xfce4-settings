@@ -306,6 +306,14 @@ display_setting_scale_changed (GtkSpinButton *spinbutton,
     display_settings_changed (settings);
 }
 
+static gboolean
+empty_spin_scale (gpointer data)
+{
+    /* We need to delay this because GTK returns a numerical value in our back sometimes */
+    gtk_entry_set_text (data, "");
+    return FALSE;
+}
+
 static void
 display_setting_scale_populate (XfceDisplaySettings *settings,
                                 guint selected_id)
@@ -317,7 +325,7 @@ display_setting_scale_populate (XfceDisplaySettings *settings,
     /* disable it if output is disabled */
     if (!xfce_display_settings_is_active (settings, selected_id))
     {
-        gtk_entry_set_text (GTK_ENTRY (spin), "");
+        g_idle_add (empty_spin_scale, spin);
         gtk_widget_set_sensitive (GTK_WIDGET (spin), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
         return;
@@ -1685,17 +1693,6 @@ display_settings_primary_status_info_populate (GtkBuilder *builder)
     g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfce4-notifyd-config");
 }
 
-static gboolean
-spin_scale_force_init (gpointer data)
-{
-    /* We need to do this because GTK returns a numerical value in our back if
-     * the output selected at startup is disabled */
-    XfceDisplaySettings *settings = data;
-    guint selected_id = xfce_display_settings_get_selected_output_id (settings);
-    display_setting_scale_populate (settings, selected_id);
-    return FALSE;
-}
-
 static GtkWidget *
 display_settings_dialog_new (XfceDisplaySettings *settings)
 {
@@ -1776,7 +1773,6 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
 
     spinbutton = gtk_builder_get_object (builder, "spin-scale");
     g_signal_connect (G_OBJECT (spinbutton), "value-changed", G_CALLBACK (display_setting_scale_changed), settings);
-    g_idle_add (spin_scale_force_init, settings);
 
     combobox = gtk_builder_get_object (builder, "randr-reflection");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox), FALSE);
