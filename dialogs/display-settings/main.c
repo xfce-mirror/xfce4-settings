@@ -895,11 +895,15 @@ display_setting_output_toggled (GtkSwitch  *widget,
     {
         if (xfce_display_settings_get_n_active_outputs (settings) == 1)
         {
+            /* Revert switching off display */
+            GObject *check = gtk_builder_get_object (builder, "output-on");
+            gtk_switch_set_active (GTK_SWITCH (check), TRUE);
+
             xfce_dialog_show_warning (NULL,
                                       _("The last active output must not be disabled, the system would"
                                         " be unusable."),
                                       _("Selected output not disabled"));
-            return FALSE;
+            return TRUE;
         }
         xfce_display_settings_set_active (settings, selected_id, FALSE);
     }
