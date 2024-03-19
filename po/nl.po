@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-03-11 12:47+0100\n"
+"POT-Creation-Date: 2024-03-19 00:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Pjotr <pjotrvertaalt@gmail.com>, 2014-2024\n"
 "Language-Team: Dutch (http://app.transifex.com/xfce/xfce4-settings/language/nl/)\n"
@@ -43,20 +43,20 @@ msgstr "Televisie"
 msgid "Digital display"
 msgstr "Digitaal beeldscherm"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:771
+#: common/xfce-randr.c:301 dialogs/display-settings/display-settings-x11.c:671
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Kan de versie van de gebruikte RandR-extensie niet bepalen"
 
 #. 1.2 is required
-#: common/xfce-randr.c:307
+#: common/xfce-randr.c:309
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Dit systeem maakt gebruik van RandR %d.%d. Voor het bewerken van de weergave-instellingen is minstens versie 1.2 vereist"
 
-#: common/xfce-randr.c:581
-#: dialogs/display-settings/display-settings-wayland.c:345
+#: common/xfce-randr.c:591
+#: dialogs/display-settings/display-settings-wayland.c:319
 msgid "Laptop"
 msgstr "Laptop"
 
@@ -68,10 +68,10 @@ msgstr "Toegankelijkheid"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:85
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:297
+#: dialogs/display-settings/display-dialog.glade:263
 #: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3365
+#: dialogs/display-settings/main.c:3339
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -83,7 +83,7 @@ msgstr "_Sluiten"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:100
 #: dialogs/appearance-settings/appearance-dialog.glade:126
 #: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:281
+#: dialogs/display-settings/display-dialog.glade:247
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
 #: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:179
@@ -319,8 +319,8 @@ msgid "Version information"
 msgstr "Versie-informatie"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3313 dialogs/keyboard-settings/main.c:78
+#: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
+#: dialogs/display-settings/main.c:3287 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
@@ -331,8 +331,8 @@ msgid "Type '%s --help' for usage."
 msgstr "Tik '%s --help' voor een gebruiksaanwijzing."
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3332 dialogs/keyboard-settings/main.c:94
+#: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
+#: dialogs/display-settings/main.c:3306 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
 #: xfsettingsd/main.c:271
@@ -340,8 +340,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "De Xfce-ontwikkelploeg. Alle rechten voorbehouden."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3333 dialogs/keyboard-settings/main.c:95
+#: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
+#: dialogs/display-settings/main.c:3307 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
 #: xfsettingsd/main.c:272
@@ -360,7 +360,7 @@ msgid ""
 msgstr "ondersteunend;technologieën;toetsen;kleef;kaats;nabootsing;schermlezers;vergrootglazen;a11y;i18n;l10n;AT-SPI;ATK;handicap;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:92
+#: dialogs/appearance-settings/main.c:1299 dialogs/display-settings/main.c:92
 #: dialogs/display-settings/main.c:101
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -399,7 +399,6 @@ msgid "1x (no scaling)"
 msgstr "1 x (zonder schalen)"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:86
-#: dialogs/display-settings/display-dialog.glade:72
 msgid "2x"
 msgstr "2 x"
 
@@ -595,42 +594,42 @@ msgid ""
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Waarschuwing: dit pictogramthema heeft geen tijdelijk opslagbestand. U kunt dit maken door de opdracht <i>gtk-update-icon-cache %s/%s/</i> uit te voeren in een terminalvenster."
 
-#: dialogs/appearance-settings/main.c:989
+#: dialogs/appearance-settings/main.c:993
 msgid "File is too large, installation aborted"
 msgstr "Bestand is te groot, installatie is afgebroken"
 
-#: dialogs/appearance-settings/main.c:994
+#: dialogs/appearance-settings/main.c:998
 msgid "Failed to create temporary directory"
 msgstr "Kon geen tijdelijke map maken"
 
-#: dialogs/appearance-settings/main.c:999
+#: dialogs/appearance-settings/main.c:1003
 msgid "Failed to extract archive"
 msgstr "Kon archief niet uitpakken"
 
-#: dialogs/appearance-settings/main.c:1004
+#: dialogs/appearance-settings/main.c:1008
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Onbekende bestandopmaak, alleen archieven en mappen worden ondersteund"
 
-#: dialogs/appearance-settings/main.c:1009
+#: dialogs/appearance-settings/main.c:1013
 msgid "Not a valid theme package"
 msgstr "Geen geldig themapakket"
 
-#: dialogs/appearance-settings/main.c:1014
+#: dialogs/appearance-settings/main.c:1018
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Onbekende fout, afsluitcode is %d"
 
-#: dialogs/appearance-settings/main.c:1021
+#: dialogs/appearance-settings/main.c:1025
 msgid "Failed to install theme"
 msgstr "Kon thema niet installeren"
 
-#: dialogs/appearance-settings/main.c:1075
+#: dialogs/appearance-settings/main.c:1078
 #, c-format
 msgid "Install %s theme"
 msgstr "Installeer %s thema"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1079
+#: dialogs/appearance-settings/main.c:1082
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:133
 #: dialogs/keyboard-settings/command-dialog.c:118
@@ -642,25 +641,25 @@ msgstr "Installeer %s thema"
 msgid "_Cancel"
 msgstr "_Afbreken"
 
-#: dialogs/appearance-settings/main.c:1081
+#: dialogs/appearance-settings/main.c:1084
 #: dialogs/keyboard-settings/command-dialog.c:283
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Openen"
 
-#: dialogs/appearance-settings/main.c:1300
+#: dialogs/appearance-settings/main.c:1303
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1304
+#: dialogs/appearance-settings/main.c:1307
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1308
+#: dialogs/appearance-settings/main.c:1311
 msgid "Vertical RGB"
 msgstr "Verticaal RGB"
 
-#: dialogs/appearance-settings/main.c:1312
+#: dialogs/appearance-settings/main.c:1315
 msgid "Vertical BGR"
 msgstr "Verticaal BGR"
 
@@ -918,167 +917,143 @@ msgstr "Behoud deze instellingen"
 msgid "Restore the previous configuration"
 msgstr "Herstel de vorige instellingen"
 
-#: dialogs/display-settings/display-dialog.glade:60
-msgid "1.25x"
-msgstr "1,25x"
-
-#: dialogs/display-settings/display-dialog.glade:64
-msgid "1.5x"
-msgstr "1,5 x"
-
-#: dialogs/display-settings/display-dialog.glade:68
-msgid "1.75x"
-msgstr "1,75x"
-
-#: dialogs/display-settings/display-dialog.glade:76
-msgid "Custom:"
-msgstr "Aangepast:"
-
-#: dialogs/display-settings/display-dialog.glade:90
+#: dialogs/display-settings/display-dialog.glade:56
 msgid "Do nothing"
 msgstr "Niets doen"
 
-#: dialogs/display-settings/display-dialog.glade:94
+#: dialogs/display-settings/display-dialog.glade:60
 msgid "Show dialog"
 msgstr "Dialoog tonen"
 
-#: dialogs/display-settings/display-dialog.glade:98
+#: dialogs/display-settings/display-dialog.glade:64
 msgid "Mirror"
 msgstr "Spiegelen"
 
-#: dialogs/display-settings/display-dialog.glade:102
+#: dialogs/display-settings/display-dialog.glade:68
 msgid "Extend"
 msgstr "Uitrekken"
 
-#: dialogs/display-settings/display-dialog.glade:106
+#: dialogs/display-settings/display-dialog.glade:72
 msgid "Enable profile"
 msgstr "Profiel inschakelen"
 
-#: dialogs/display-settings/display-dialog.glade:164
+#: dialogs/display-settings/display-dialog.glade:130
 msgid "The primary display is currently configured to show:"
 msgstr "Het primaire beeldscherm is thans ingesteld om te tonen:"
 
-#: dialogs/display-settings/display-dialog.glade:178
+#: dialogs/display-settings/display-dialog.glade:144
 msgid "Xfce Panel"
 msgstr "Xfce-werkbalk"
 
-#: dialogs/display-settings/display-dialog.glade:191
+#: dialogs/display-settings/display-dialog.glade:157
 msgid "Desktop icons"
 msgstr "Bureaubladpictogrammen"
 
-#: dialogs/display-settings/display-dialog.glade:204
+#: dialogs/display-settings/display-dialog.glade:170
 msgid "Notifications"
 msgstr "Meldingen"
 
-#: dialogs/display-settings/display-dialog.glade:214
-#: dialogs/display-settings/display-dialog.glade:229
-#: dialogs/display-settings/display-dialog.glade:244
+#: dialogs/display-settings/display-dialog.glade:180
+#: dialogs/display-settings/display-dialog.glade:195
+#: dialogs/display-settings/display-dialog.glade:210
 msgid "Configure..."
 msgstr "Instellen..."
 
-#: dialogs/display-settings/display-dialog.glade:262
+#: dialogs/display-settings/display-dialog.glade:228
 #: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "Beeldscherm"
 
-#: dialogs/display-settings/display-dialog.glade:375
+#: dialogs/display-settings/display-dialog.glade:335
 msgid "_Mirror displays"
 msgstr "Beeldschermen spiegelen"
 
-#: dialogs/display-settings/display-dialog.glade:476
+#: dialogs/display-settings/display-dialog.glade:433
 msgid "Primary Display:"
 msgstr "Primaire beeldscherm:"
 
-#: dialogs/display-settings/display-dialog.glade:502
+#: dialogs/display-settings/display-dialog.glade:459
 msgid "R_esolution:"
 msgstr "R_esolutie:"
 
-#: dialogs/display-settings/display-dialog.glade:528
+#: dialogs/display-settings/display-dialog.glade:485
 msgid "Refresh _rate:"
 msgstr "Verversingsf_requentie:"
 
-#: dialogs/display-settings/display-dialog.glade:554
+#: dialogs/display-settings/display-dialog.glade:511
 msgid "Ro_tation:"
 msgstr "Ro_tatie:"
 
-#: dialogs/display-settings/display-dialog.glade:578
+#: dialogs/display-settings/display-dialog.glade:535
 msgid "Ref_lection:"
 msgstr "Spiegelbeeld:"
 
-#: dialogs/display-settings/display-dialog.glade:621
+#: dialogs/display-settings/display-dialog.glade:575
 msgid "A_pply"
 msgstr "_Toepassen"
 
-#: dialogs/display-settings/display-dialog.glade:648
+#: dialogs/display-settings/display-dialog.glade:603
 msgid "_Scale:"
 msgstr "_Schaal:"
 
-#: dialogs/display-settings/display-dialog.glade:675
-msgid "X:"
-msgstr "X:"
-
-#: dialogs/display-settings/display-dialog.glade:688
-msgid "Y:"
-msgstr "Y:"
-
-#: dialogs/display-settings/display-dialog.glade:818
+#: dialogs/display-settings/display-dialog.glade:641
 msgid "_General"
 msgstr "_Algemeen"
 
-#: dialogs/display-settings/display-dialog.glade:838
+#: dialogs/display-settings/display-dialog.glade:661
 msgid "<b>Profiles</b>"
 msgstr "<b>Profielen</b>"
 
-#: dialogs/display-settings/display-dialog.glade:854
+#: dialogs/display-settings/display-dialog.glade:677
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>Beeldschermen aansluiten</b>"
 
-#: dialogs/display-settings/display-dialog.glade:904
+#: dialogs/display-settings/display-dialog.glade:727
 msgid "Delete the currently selected display profile."
 msgstr "Verwijder het thans gekozen beeldschermprofiel."
 
-#: dialogs/display-settings/display-dialog.glade:917
+#: dialogs/display-settings/display-dialog.glade:740
 msgid "Apply"
 msgstr "Toepassen"
 
-#: dialogs/display-settings/display-dialog.glade:921
+#: dialogs/display-settings/display-dialog.glade:744
 msgid "Apply the currently selected display profile."
 msgstr "Pas het thans gekozen beeldschermprofiel toe."
 
-#: dialogs/display-settings/display-dialog.glade:937
+#: dialogs/display-settings/display-dialog.glade:760
 msgid "Create a new display profile."
 msgstr "Maak een nieuw beeldschermprofiel."
 
-#: dialogs/display-settings/display-dialog.glade:953
+#: dialogs/display-settings/display-dialog.glade:776
 msgid "Update an existing profile."
 msgstr "Werk een bestaand profiel bij."
 
-#: dialogs/display-settings/display-dialog.glade:986
+#: dialogs/display-settings/display-dialog.glade:809
 msgid "When new displays are connected:"
 msgstr "Wanneer er nieuwe beeldschermen worden verbonden:"
 
-#: dialogs/display-settings/display-dialog.glade:999
+#: dialogs/display-settings/display-dialog.glade:822
 msgid "Show popup windows to identify displays"
 msgstr "Opduikvenster tonen om beeldschermen te identificeren"
 
-#: dialogs/display-settings/display-dialog.glade:1025
+#: dialogs/display-settings/display-dialog.glade:848
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Beeldschermen identificeren</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1065
+#: dialogs/display-settings/display-dialog.glade:888
 #: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr "Geavanceerd"
 
-#: dialogs/display-settings/display-dialog.glade:1123
+#: dialogs/display-settings/display-dialog.glade:940
 msgid "<b>Profile Name</b>"
 msgstr "<b>Profielnaam</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1146
+#: dialogs/display-settings/display-dialog.glade:963
 msgid "Create"
 msgstr "Maken"
 
-#: dialogs/display-settings/display-dialog.glade:1181
+#: dialogs/display-settings/display-dialog.glade:998
 msgid "A profile of this name already exists."
 msgstr "Er bestaat reeds een profiel met deze naam."
 
@@ -1178,7 +1153,7 @@ msgstr "Horizontaal en verticaal"
 msgid "Minimal interface to set up an external output"
 msgstr "Minimaal bedieningspaneel om een externe uitvoer in te stellen"
 
-#: dialogs/display-settings/main.c:233
+#: dialogs/display-settings/main.c:275
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1186,48 +1161,48 @@ msgid ""
 msgstr "De vorige instellingen zullen worden teruggezet over <b>%i seconden</b> als u deze vraag niet beantwoordt."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:681
+#: dialogs/display-settings/main.c:621
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:1028
+#: dialogs/display-settings/main.c:953
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "De laatst actieve uitvoer moet niet worden uitgeschakeld, omdat het systeem daardoor onbruikbaar zou worden."
 
-#: dialogs/display-settings/main.c:1030
+#: dialogs/display-settings/main.c:955
 msgid "Selected output not disabled"
 msgstr "Gekozen uitvoer niet uitgeschakeld"
 
-#: dialogs/display-settings/main.c:1234
+#: dialogs/display-settings/main.c:1183
 msgid "Profiles matching the currently connected displays"
 msgstr "Profielen die overeenkomen met de thans aangesloten beeldschermen"
 
-#: dialogs/display-settings/main.c:1323
+#: dialogs/display-settings/main.c:1272
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Gewijzigd schermprofiel '%s' bijwerken?"
 
-#: dialogs/display-settings/main.c:1328
+#: dialogs/display-settings/main.c:1277
 #, c-format
 msgid "_Update '%s'"
 msgstr "'%s' _bijwerken"
 
-#: dialogs/display-settings/main.c:1606
+#: dialogs/display-settings/main.c:1611
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Wilt u het schermprofiel '%s' verwijderen?"
 
-#: dialogs/display-settings/main.c:1608
+#: dialogs/display-settings/main.c:1613
 msgid "Delete Profile"
 msgstr "Profiel verwijderen"
 
-#: dialogs/display-settings/main.c:1611
+#: dialogs/display-settings/main.c:1616
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Wanneer een schermprofiel is verwijderd, kan het niet worden hersteld."
 
-#: dialogs/display-settings/main.c:1612
+#: dialogs/display-settings/main.c:1617
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1235,22 +1210,22 @@ msgstr "Wanneer een schermprofiel is verwijderd, kan het niet worden hersteld."
 msgid "Cancel"
 msgstr "Afbreken"
 
-#: dialogs/display-settings/main.c:1613
+#: dialogs/display-settings/main.c:1618
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: dialogs/display-settings/main.c:1699
+#: dialogs/display-settings/main.c:1704
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Xfce-werkbalken"
 
-#: dialogs/display-settings/main.c:2482
+#: dialogs/display-settings/main.c:2444
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Kies een beeldscherm om er de eigenschappen van te veranderen; versleep het om zijn plaatsing te veranderen."
 
-#: dialogs/display-settings/main.c:2525 dialogs/display-settings/main.c:2602
+#: dialogs/display-settings/main.c:2543 dialogs/display-settings/main.c:2576
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1259,23 +1234,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2824
+#: dialogs/display-settings/main.c:2798
 msgid "Mirror Screens"
 msgstr "Schermen spiegelen"
 
-#: dialogs/display-settings/main.c:2874
+#: dialogs/display-settings/main.c:2848
 msgid "(Disabled)"
 msgstr "(Uitgeschakeld)"
 
-#: dialogs/display-settings/main.c:3359
+#: dialogs/display-settings/main.c:3333
 msgid "ATI Settings"
 msgstr "ATI-Instellingen"
 
-#: dialogs/display-settings/main.c:3364
+#: dialogs/display-settings/main.c:3338
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Kon de Xfce 4-Beeldscherminstellingen niet starten"
 
-#: dialogs/display-settings/main.c:3372
+#: dialogs/display-settings/main.c:3346
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kon de instellingen van het niet-vrije stuurprogramma niet starten"
 
@@ -1288,15 +1263,15 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "beeldscherm;instellingen;scherm;resolutie;verversen;snelheid;draaiing;extern;projectors;beeldschermen;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:456
+#: dialogs/display-settings/display-settings.c:447
 msgid "Display:"
 msgstr "Beeldscherm:"
 
-#: dialogs/display-settings/display-settings.c:463
+#: dialogs/display-settings/display-settings.c:455
 msgid "Resolution:"
 msgstr "Resolutie:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1113
+#: dialogs/display-settings/display-settings-wayland.c:980
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Uw samensteller lijkt het wlr-output-management-protocol niet te ondersteunen"
@@ -1700,11 +1675,11 @@ msgstr "Kies de toepassing die u als standaard-\nterminalvenster voor Xfce wilt 
 msgid "Browse the file system to choose a custom command."
 msgstr "Het bestandssysteem verkennen om een aangepaste opdracht te kiezen."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:749
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:752
 msgid "_Other..."
 msgstr "_Overige..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:750
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:753
 msgid "Use a custom application which is not included in the above list."
 msgstr "Gebruik een aangepaste toepassing die niet in bovenstaande lijst staat."
 
@@ -2710,8 +2685,8 @@ msgstr "_Alle instellingen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:927
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:939
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kan '%s' niet starten"
