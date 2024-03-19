@@ -59,7 +59,7 @@
 #include "display-settings.h"
 
 #define MARGIN  16
-#define NOTIFY_PROP_PROFILE 4
+#define NOTIFY_PROP_DEFAULT 1
 #define ONLY_DISPLAY_1 _("Only %s (1)")
 #define ONLY_DISPLAY_2 _("Only %s (2)")
 
@@ -1641,6 +1641,25 @@ display_settings_profile_delete (GtkWidget *widget, XfceDisplaySettings *setting
 }
 
 static void
+display_setting_minimal_autoconnect_mode_changed (GtkComboBox *combobox,
+                                                  GtkBuilder  *builder)
+{
+    gint value;
+    gboolean state = TRUE;
+    GObject *auto_enable_profiles;
+
+    value = gtk_combo_box_get_active (combobox);
+    /* On "Do nothing" disable the "auto-enable-profiles" option */
+    if (value == 0)
+      state = FALSE;
+
+    auto_enable_profiles = gtk_builder_get_object (builder, "auto-enable-profiles");
+    gtk_widget_set_sensitive (GTK_WIDGET (auto_enable_profiles), state);
+    auto_enable_profiles = gtk_builder_get_object (builder, "auto-enable-profiles-label");
+    gtk_widget_set_sensitive (GTK_WIDGET (auto_enable_profiles), state);
+}
+
+static void
 display_settings_launch_settings_dialogs (GtkButton *button,
                                           gpointer   user_data)
 {
@@ -1834,17 +1853,23 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     g_signal_connect (G_OBJECT (combobox), "row-activated", G_CALLBACK (display_settings_profile_row_activated), settings);
 
     combobox = gtk_builder_get_object (builder, "autoconnect-mode");
-    xfconf_g_property_bind (channel, "/Notify", G_TYPE_INT, combobox, "active");
-    if (xfconf_channel_get_bool (channel, "/AutoEnableProfiles", FALSE))
+    g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_minimal_autoconnect_mode_changed), builder);
+    xfconf_g_property_bind (channel, "/Notify", G_TYPE_INT, combobox,
+                            "active");
+    /* Correctly initialize the state of the auto-enable-profiles setting based on autoconnect-mode */
+    if (xfconf_channel_get_int (channel, "/Notify", -1) == -1)
     {
-        /* Backward compatibility */
-        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), NOTIFY_PROP_PROFILE);
-        xfconf_channel_reset_property (channel, "/AutoEnableProfiles", TRUE);
+        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), NOTIFY_PROP_DEFAULT);
+        display_setting_minimal_autoconnect_mode_changed ((GTK_COMBO_BOX (combobox)), builder);
     }
 
     apply_button = GTK_WIDGET (gtk_builder_get_object (builder, "apply"));
     g_signal_connect (G_OBJECT (apply_button), "clicked", G_CALLBACK (display_setting_apply), settings);
     gtk_widget_set_sensitive (apply_button, FALSE);
+
+    check = gtk_builder_get_object (builder, "auto-enable-profiles");
+    xfconf_g_property_bind (channel, "/AutoEnableProfiles", G_TYPE_BOOLEAN, check,
+                            "active");
 
     button = GTK_WIDGET (gtk_builder_get_object (builder, "button-profile-save"));
     gtk_widget_set_sensitive (button, FALSE);

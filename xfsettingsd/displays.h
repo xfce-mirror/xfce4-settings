@@ -26,6 +26,7 @@
 #define APPLY_SCHEME_PROP    "/Schemes/Apply"
 #define DEFAULT_SCHEME_NAME  "Default"
 #define ACTIVE_PROFILE       "/ActiveProfile"
+#define AUTO_ENABLE_PROFILES "/AutoEnableProfiles"
 #define OUTPUT_FMT           "/%s/%s"
 #define PRIMARY_PROP         OUTPUT_FMT "/Primary"
 #define ACTIVE_PROP          OUTPUT_FMT "/Active"
@@ -62,7 +63,6 @@ enum
     ACTION_ON_NEW_OUTPUT_SHOW_DIALOG,
     ACTION_ON_NEW_OUTPUT_MIRROR,
     ACTION_ON_NEW_OUTPUT_EXTEND,
-    ACTION_ON_NEW_OUTPUT_ENABLE_PROFILE,
 };
 
 struct _XfceDisplaysHelperClass

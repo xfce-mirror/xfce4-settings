@@ -190,7 +190,8 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
     GList *profiles = NULL;
     gchar **display_infos;
 
-    if (xfconf_channel_get_int (priv->channel, NOTIFY_PROP, -1) != ACTION_ON_NEW_OUTPUT_ENABLE_PROFILE)
+    if (!xfconf_channel_get_bool (priv->channel, AUTO_ENABLE_PROFILES, FALSE)
+        || xfconf_channel_get_int (priv->channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_SHOW_DIALOG) == ACTION_ON_NEW_OUTPUT_DO_NOTHING)
         return NULL;
 
     display_infos = XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_display_infos (helper);
