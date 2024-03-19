@@ -2966,6 +2966,7 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
         gtk_widget_show (scroll_area);
         g_signal_connect (scroll_area, "paint", G_CALLBACK (on_area_paint), settings);
         g_signal_connect (scroll_area, "viewport_changed", G_CALLBACK (on_viewport_changed), NULL);
+        g_signal_connect (scroll_area, "leave-notify-event", G_CALLBACK (on_canvas_event), NULL);
 
         gui_container = GTK_WIDGET (gtk_builder_get_object (builder, "randr-dnd"));
         gtk_container_add (GTK_CONTAINER (gui_container), scroll_area);
