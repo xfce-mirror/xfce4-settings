@@ -449,12 +449,18 @@ manager_listener (XfceWlrOutputManager *manager,
        apply it if there's only one */
     if (outputs->len != helper->previous_n_outputs)
     {
-        const gchar *matching_profile = xfce_displays_helper_get_matching_profile (XFCE_DISPLAYS_HELPER (helper));
-        if (matching_profile != NULL)
+        gint mode = xfconf_channel_get_int (channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_NEVER);
+        if (mode == AUTO_ENABLE_PROFILES_ALWAYS
+            || (mode == AUTO_ENABLE_PROFILES_ON_CONNECT && outputs->len > helper->previous_n_outputs)
+            || (mode == AUTO_ENABLE_PROFILES_ON_DISCONNECT && outputs->len < helper->previous_n_outputs))
         {
-            xfce_displays_helper_wayland_channel_apply (XFCE_DISPLAYS_HELPER (helper), matching_profile);
-            helper->previous_n_outputs = outputs->len;
-            return;
+            const gchar *matching_profile = xfce_displays_helper_get_matching_profile (XFCE_DISPLAYS_HELPER (helper));
+            if (matching_profile != NULL)
+            {
+                xfce_displays_helper_wayland_channel_apply (XFCE_DISPLAYS_HELPER (helper), matching_profile);
+                helper->previous_n_outputs = outputs->len;
+                return;
+            }
         }
         xfconf_channel_set_string (channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
     }

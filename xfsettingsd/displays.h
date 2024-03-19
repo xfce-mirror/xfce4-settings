@@ -65,6 +65,14 @@ enum
     ACTION_ON_NEW_OUTPUT_EXTEND,
 };
 
+enum
+{
+    AUTO_ENABLE_PROFILES_NEVER,
+    AUTO_ENABLE_PROFILES_ON_CONNECT,
+    AUTO_ENABLE_PROFILES_ON_DISCONNECT,
+    AUTO_ENABLE_PROFILES_ALWAYS,
+};
+
 struct _XfceDisplaysHelperClass
 {
     GObjectClass __parent__;

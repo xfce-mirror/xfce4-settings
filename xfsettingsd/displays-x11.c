@@ -562,14 +562,19 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
 
         /* Check if we have different amount of outputs and a matching profile and
            apply it if there's only one */
-        if (old_outputs->len > helper->outputs->len ||
-            old_outputs->len < helper->outputs->len)
+        if (helper->outputs->len != old_outputs->len)
         {
-            const gchar *matching_profile = xfce_displays_helper_get_matching_profile (XFCE_DISPLAYS_HELPER (helper));
-            if (matching_profile != NULL)
+            gint mode = xfconf_channel_get_int (channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_NEVER);
+            if (mode == AUTO_ENABLE_PROFILES_ALWAYS
+                || (mode == AUTO_ENABLE_PROFILES_ON_CONNECT && helper->outputs->len > old_outputs->len)
+                || (mode == AUTO_ENABLE_PROFILES_ON_DISCONNECT && helper->outputs->len < old_outputs->len))
             {
-                xfce_displays_helper_x11_channel_apply (XFCE_DISPLAYS_HELPER (helper), matching_profile);
-                return GDK_FILTER_CONTINUE;
+                const gchar *matching_profile = xfce_displays_helper_get_matching_profile (XFCE_DISPLAYS_HELPER (helper));
+                if (matching_profile != NULL)
+                {
+                    xfce_displays_helper_x11_channel_apply (XFCE_DISPLAYS_HELPER (helper), matching_profile);
+                    return GDK_FILTER_CONTINUE;
+                }
             }
             xfconf_channel_set_string (channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
         }

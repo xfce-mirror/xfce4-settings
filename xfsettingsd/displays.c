@@ -112,6 +112,7 @@ xfce_displays_helper_constructed (GObject *object)
     if (XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_outputs (helper) != NULL)
     {
         const gchar *matching_profile;
+        gint mode;
 
 #ifdef HAVE_UPOWERGLIB
         priv->power = g_object_new (XFCE_TYPE_DISPLAYS_UPOWER, NULL);
@@ -135,7 +136,8 @@ xfce_displays_helper_constructed (GObject *object)
 
         /*  check if we can auto-enable a profile */
         matching_profile = xfce_displays_helper_get_matching_profile (helper);
-        if (matching_profile != NULL)
+        mode = xfconf_channel_get_int (priv->channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_NEVER);
+        if (matching_profile != NULL && (mode == AUTO_ENABLE_PROFILES_ON_CONNECT || mode == AUTO_ENABLE_PROFILES_ALWAYS))
         {
             XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, matching_profile);
         }
@@ -188,13 +190,8 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
 {
     XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
     GList *profiles = NULL;
-    gchar **display_infos;
+    gchar **display_infos = XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_display_infos (helper);
 
-    if (!xfconf_channel_get_bool (priv->channel, AUTO_ENABLE_PROFILES, FALSE)
-        || xfconf_channel_get_int (priv->channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_SHOW_DIALOG) == ACTION_ON_NEW_OUTPUT_DO_NOTHING)
-        return NULL;
-
-    display_infos = XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_display_infos (helper);
     if (display_infos != NULL)
     {
         profiles = display_settings_get_profiles (display_infos, priv->channel);
