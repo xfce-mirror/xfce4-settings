@@ -880,16 +880,16 @@ display_setting_primary_toggled (GtkWidget *widget,
                                  gboolean primary,
                                  XfceDisplaySettings *settings)
 {
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
+    GObject *primary_indicator = gtk_builder_get_object (builder, "primary-indicator");
     guint selected_id = xfce_display_settings_get_selected_output_id (settings);
 
+    xfce_display_settings_set_primary (settings, selected_id, primary);
+    gtk_widget_set_visible (GTK_WIDGET (primary_indicator), primary);
     if (primary)
     {
+        /* Set all other outputs as secondary */
         guint n_outputs = xfce_display_settings_get_n_outputs (settings);
-
-        /* Set currently active display as primary */
-        xfce_display_settings_set_primary (settings, selected_id, TRUE);
-
-        /* and all others as secondary */
         for (guint n = 0; n < n_outputs; n++)
         {
             if (n != selected_id)
@@ -897,10 +897,6 @@ display_setting_primary_toggled (GtkWidget *widget,
                 xfce_display_settings_set_primary (settings, n, FALSE);
             }
         }
-    }
-    else
-    {
-        xfce_display_settings_set_primary (settings, selected_id, FALSE);
     }
 
     display_settings_changed (settings);
