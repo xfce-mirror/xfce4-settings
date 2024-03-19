@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-02-19 00:50+0100\n"
+"POT-Creation-Date: 2024-03-19 00:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Slimane Selyan AMIRI <selyan.kab@protonmail.com>, 2020\n"
 "Language-Team: Kabyle (http://app.transifex.com/xfce/xfce4-settings/language/kab/)\n"
@@ -43,20 +43,20 @@ msgstr "Tiliẓri"
 msgid "Digital display"
 msgstr "Askan umḍin"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:740
+#: common/xfce-randr.c:301 dialogs/display-settings/display-settings-x11.c:671
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Asuter n lqem n usiɣzef RandR yettusqedcen d awezɣi"
 
 #. 1.2 is required
-#: common/xfce-randr.c:307
+#: common/xfce-randr.c:309
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Anagraw-a isseqdac RandR %d.%d. I wakken ad ddun yiɣewwaren n uskan, xerṣum lqem 1.2 yettusra"
 
-#: common/xfce-randr.c:581
-#: dialogs/display-settings/display-settings-wayland.c:344
+#: common/xfce-randr.c:591
+#: dialogs/display-settings/display-settings-wayland.c:319
 msgid "Laptop"
 msgstr "Aselkim aziraz"
 
@@ -68,10 +68,10 @@ msgstr "Tanekcumt"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:85
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:293
-#: dialogs/display-settings/minimal-display-dialog.glade:281
+#: dialogs/display-settings/display-dialog.glade:263
+#: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3380
+#: dialogs/display-settings/main.c:3339
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -83,7 +83,7 @@ msgstr "_Mdel"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:100
 #: dialogs/appearance-settings/appearance-dialog.glade:126
 #: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:277
+#: dialogs/display-settings/display-dialog.glade:247
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
 #: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:179
@@ -314,37 +314,37 @@ msgstr "ASULAY N UGRUDEM"
 #: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
 #: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
 #: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
-#: xfsettingsd/main.c:107
+#: xfsettingsd/main.c:106
 msgid "Version information"
 msgstr "Talɣut n lqem"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3328 dialogs/keyboard-settings/main.c:78
+#: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
+#: dialogs/display-settings/main.c:3287 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:259
-#: xfsettingsd/main.c:297
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:255
+#: xfsettingsd/main.c:293
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Aru '%s --help' i useqdec."
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3347 dialogs/keyboard-settings/main.c:94
+#: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
+#: dialogs/display-settings/main.c:3306 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:275
+#: xfsettingsd/main.c:271
 msgid "The Xfce development team. All rights reserved."
 msgstr "Tarbaɛt n tneflit n Xfce. Izerfan akk ttwaḥerzen."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3348 dialogs/keyboard-settings/main.c:95
+#: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
+#: dialogs/display-settings/main.c:3307 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:276
+#: xfsettingsd/main.c:272
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Ttxil-k·m azen aneqqis ɣer <%s>."
@@ -360,7 +360,7 @@ msgid ""
 msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:92
+#: dialogs/appearance-settings/main.c:1299 dialogs/display-settings/main.c:92
 #: dialogs/display-settings/main.c:101
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -399,7 +399,6 @@ msgid "1x (no scaling)"
 msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:86
-#: dialogs/display-settings/display-dialog.glade:72
 msgid "2x"
 msgstr "2x"
 
@@ -595,42 +594,42 @@ msgid ""
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:989
+#: dialogs/appearance-settings/main.c:993
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:994
+#: dialogs/appearance-settings/main.c:998
 msgid "Failed to create temporary directory"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:999
+#: dialogs/appearance-settings/main.c:1003
 msgid "Failed to extract archive"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1004
+#: dialogs/appearance-settings/main.c:1008
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Amasal arussin, ala iɣbaren d yikaramen i yettusefraken"
 
-#: dialogs/appearance-settings/main.c:1009
+#: dialogs/appearance-settings/main.c:1013
 msgid "Not a valid theme package"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1014
+#: dialogs/appearance-settings/main.c:1018
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Tuccḍa tarussint, tangalt yellan d %d"
 
-#: dialogs/appearance-settings/main.c:1021
+#: dialogs/appearance-settings/main.c:1025
 msgid "Failed to install theme"
 msgstr "Asebded n usentel ur yeddi ara"
 
-#: dialogs/appearance-settings/main.c:1075
+#: dialogs/appearance-settings/main.c:1078
 #, c-format
 msgid "Install %s theme"
 msgstr "Sebded asentel %s"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1079
+#: dialogs/appearance-settings/main.c:1082
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:133
 #: dialogs/keyboard-settings/command-dialog.c:118
@@ -642,25 +641,25 @@ msgstr "Sebded asentel %s"
 msgid "_Cancel"
 msgstr "Sefsex (_C)"
 
-#: dialogs/appearance-settings/main.c:1081
+#: dialogs/appearance-settings/main.c:1084
 #: dialogs/keyboard-settings/command-dialog.c:283
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Ldi"
 
-#: dialogs/appearance-settings/main.c:1300
+#: dialogs/appearance-settings/main.c:1303
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1304
+#: dialogs/appearance-settings/main.c:1307
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1308
+#: dialogs/appearance-settings/main.c:1311
 msgid "Vertical RGB"
 msgstr "RGB ubdid"
 
-#: dialogs/appearance-settings/main.c:1312
+#: dialogs/appearance-settings/main.c:1315
 msgid "Vertical BGR"
 msgstr "RGB ubdid"
 
@@ -918,191 +917,182 @@ msgstr "Eǧǧ tawila-a"
 msgid "Restore the previous configuration"
 msgstr "Err-d tawila yezrin"
 
-#: dialogs/display-settings/display-dialog.glade:60
-msgid "1.25x"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:64
-msgid "1.5x"
-msgstr "1.5x"
-
-#: dialogs/display-settings/display-dialog.glade:68
-msgid "1.75x"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:76
-msgid "Custom:"
-msgstr "Asagen:"
-
-#: dialogs/display-settings/display-dialog.glade:90
+#: dialogs/display-settings/display-dialog.glade:56
 msgid "Do nothing"
 msgstr "Ur teg kra"
 
-#: dialogs/display-settings/display-dialog.glade:94
+#: dialogs/display-settings/display-dialog.glade:60
 msgid "Show dialog"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:98
+#: dialogs/display-settings/display-dialog.glade:64
 msgid "Mirror"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:102
+#: dialogs/display-settings/display-dialog.glade:68
 msgid "Extend"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:160
+#: dialogs/display-settings/display-dialog.glade:72
+msgid "Enable profile"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:130
 msgid "The primary display is currently configured to show:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:174
+#: dialogs/display-settings/display-dialog.glade:144
 msgid "Xfce Panel"
 msgstr "Agalis Xfce"
 
-#: dialogs/display-settings/display-dialog.glade:187
+#: dialogs/display-settings/display-dialog.glade:157
 msgid "Desktop icons"
 msgstr "Tignitin n tnarit"
 
-#: dialogs/display-settings/display-dialog.glade:200
+#: dialogs/display-settings/display-dialog.glade:170
 msgid "Notifications"
 msgstr "Ilɣa"
 
+#: dialogs/display-settings/display-dialog.glade:180
+#: dialogs/display-settings/display-dialog.glade:195
 #: dialogs/display-settings/display-dialog.glade:210
-#: dialogs/display-settings/display-dialog.glade:225
-#: dialogs/display-settings/display-dialog.glade:240
 msgid "Configure..."
 msgstr "Swel..."
 
-#: dialogs/display-settings/display-dialog.glade:258
+#: dialogs/display-settings/display-dialog.glade:228
 #: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "Affichage"
 
-#: dialogs/display-settings/display-dialog.glade:371
+#: dialogs/display-settings/display-dialog.glade:335
 msgid "_Mirror displays"
 msgstr "_Tisit yettwaskanen"
 
-#: dialogs/display-settings/display-dialog.glade:472
+#: dialogs/display-settings/display-dialog.glade:433
 msgid "Primary Display:"
 msgstr "Askan agejdan:"
 
-#: dialogs/display-settings/display-dialog.glade:498
+#: dialogs/display-settings/display-dialog.glade:459
 msgid "R_esolution:"
 msgstr "A_fray:"
 
-#: dialogs/display-settings/display-dialog.glade:524
+#: dialogs/display-settings/display-dialog.glade:485
 msgid "Refresh _rate:"
 msgstr "Smiren _afmiḍi:"
 
-#: dialogs/display-settings/display-dialog.glade:550
+#: dialogs/display-settings/display-dialog.glade:511
 msgid "Ro_tation:"
 msgstr "Tu_zzya"
 
-#: dialogs/display-settings/display-dialog.glade:574
+#: dialogs/display-settings/display-dialog.glade:535
 msgid "Ref_lection:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:617
+#: dialogs/display-settings/display-dialog.glade:575
 msgid "A_pply"
 msgstr "S_nes"
 
-#: dialogs/display-settings/display-dialog.glade:644
+#: dialogs/display-settings/display-dialog.glade:603
 msgid "_Scale:"
 msgstr "_Sellum"
 
-#: dialogs/display-settings/display-dialog.glade:671
-msgid "X:"
-msgstr "X:"
-
-#: dialogs/display-settings/display-dialog.glade:684
-msgid "Y:"
-msgstr "Y:"
-
-#: dialogs/display-settings/display-dialog.glade:814
+#: dialogs/display-settings/display-dialog.glade:641
 msgid "_General"
 msgstr "_Amatu"
 
-#: dialogs/display-settings/display-dialog.glade:834
+#: dialogs/display-settings/display-dialog.glade:661
 msgid "<b>Profiles</b>"
 msgstr "<b>Imaɣunen</b>"
 
-#: dialogs/display-settings/display-dialog.glade:850
+#: dialogs/display-settings/display-dialog.glade:677
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>Tuqqna n yigdilen</b>"
 
-#: dialogs/display-settings/display-dialog.glade:900
+#: dialogs/display-settings/display-dialog.glade:727
 msgid "Delete the currently selected display profile."
 msgstr "Kkes amaɣnu n uskan yettwafernen melmi kan."
 
-#: dialogs/display-settings/display-dialog.glade:913
+#: dialogs/display-settings/display-dialog.glade:740
 msgid "Apply"
 msgstr "Snes"
 
-#: dialogs/display-settings/display-dialog.glade:917
+#: dialogs/display-settings/display-dialog.glade:744
 msgid "Apply the currently selected display profile."
 msgstr "Snes amaɣnu n uskan yettwafernen melmi kan."
 
-#: dialogs/display-settings/display-dialog.glade:933
+#: dialogs/display-settings/display-dialog.glade:760
 msgid "Create a new display profile."
 msgstr "Rnu amaɣnu n ugdil amaynut."
 
-#: dialogs/display-settings/display-dialog.glade:949
+#: dialogs/display-settings/display-dialog.glade:776
 msgid "Update an existing profile."
 msgstr "Leqqem amaɣnu i yellan."
 
-#: dialogs/display-settings/display-dialog.glade:982
-msgid "Automatically enable profiles when new display is connected"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:1007
+#: dialogs/display-settings/display-dialog.glade:809
 msgid "When new displays are connected:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:1020
+#: dialogs/display-settings/display-dialog.glade:822
 msgid "Show popup windows to identify displays"
 msgstr "Sken isfuyla udhimen i yigdilen n timagit"
 
-#: dialogs/display-settings/display-dialog.glade:1046
+#: dialogs/display-settings/display-dialog.glade:848
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Asbadu n yigdilen</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1105
-#: dialogs/display-settings/minimal-display-dialog.glade:267
+#: dialogs/display-settings/display-dialog.glade:888
+#: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr "_Leqqayen"
 
-#: dialogs/display-settings/display-dialog.glade:1163
+#: dialogs/display-settings/display-dialog.glade:940
 msgid "<b>Profile Name</b>"
 msgstr "<b>Isem n umaɣnu</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1186
+#: dialogs/display-settings/display-dialog.glade:963
 msgid "Create"
 msgstr "Snulfu-d"
 
-#: dialogs/display-settings/display-dialog.glade:1221
+#: dialogs/display-settings/display-dialog.glade:998
 msgid "A profile of this name already exists."
 msgstr "Amaɣnu s yisem-a yella yakan."
 
-#: dialogs/display-settings/minimal-display-dialog.glade:12
+#: dialogs/display-settings/minimal-display-dialog.glade:16
+msgid "Extend right"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:19
+msgid "Extend left"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:22
+msgid "Extend up"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:25
+msgid "Extend down"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
 msgstr "Ibeqqiḍen"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:78
-#: dialogs/display-settings/minimal-display-dialog.glade:79
+#: dialogs/display-settings/minimal-display-dialog.glade:92
+#: dialogs/display-settings/minimal-display-dialog.glade:93
 msgid "Only Display 1"
 msgstr "Sken kan 1"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:131
-#: dialogs/display-settings/minimal-display-dialog.glade:132
+#: dialogs/display-settings/minimal-display-dialog.glade:145
+#: dialogs/display-settings/minimal-display-dialog.glade:146
 msgid "Mirror Displays"
 msgstr "Tisit yettwaskanen"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:184
-#: dialogs/display-settings/minimal-display-dialog.glade:185
+#: dialogs/display-settings/minimal-display-dialog.glade:201
 msgid "Extend to the right"
 msgstr ""
 
-#: dialogs/display-settings/minimal-display-dialog.glade:237
-#: dialogs/display-settings/minimal-display-dialog.glade:238
+#: dialogs/display-settings/minimal-display-dialog.glade:262
+#: dialogs/display-settings/minimal-display-dialog.glade:263
 msgid "Only Display 2"
 msgstr "Sken kan 2"
 
@@ -1163,7 +1153,7 @@ msgstr "Aglawan akked Ubdid"
 msgid "Minimal interface to set up an external output"
 msgstr "Agrudem adday i usbadu n tuffɣa tanmeggagt"
 
-#: dialogs/display-settings/main.c:233
+#: dialogs/display-settings/main.c:275
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1171,48 +1161,48 @@ msgid ""
 msgstr ""
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:681
+#: dialogs/display-settings/main.c:621
 #, c-format
 msgid "%.2f Hz"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1028
+#: dialogs/display-settings/main.c:953
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Anekcum aneggaru urmid ur ilaq ara ad yens, anagraw ad yuɣal ur yettuseqdac ara."
 
-#: dialogs/display-settings/main.c:1030
+#: dialogs/display-settings/main.c:955
 msgid "Selected output not disabled"
 msgstr "Tuffɣa i yettwafernen ur tensi ara"
 
-#: dialogs/display-settings/main.c:1202
+#: dialogs/display-settings/main.c:1183
 msgid "Profiles matching the currently connected displays"
 msgstr "Imuɣna yemṣadan d teskanin yeqqnen akka tura"
 
-#: dialogs/display-settings/main.c:1291
+#: dialogs/display-settings/main.c:1272
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Leqqem amaɣnu n uskan yettusneflen '%s'?"
 
-#: dialogs/display-settings/main.c:1296
+#: dialogs/display-settings/main.c:1277
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Leqqem '%s'"
 
-#: dialogs/display-settings/main.c:1574
+#: dialogs/display-settings/main.c:1611
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Tebɣiḍ ad tekkseḍ amaɣnu yettwaskanen '%s'?"
 
-#: dialogs/display-settings/main.c:1576
+#: dialogs/display-settings/main.c:1613
 msgid "Delete Profile"
 msgstr "Kkes amaɣnu"
 
-#: dialogs/display-settings/main.c:1579
+#: dialogs/display-settings/main.c:1616
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Akken ara yettwakkes umaɣnu n uskan, ur tettizmireḍ ara ad t-id-terreḍ."
 
-#: dialogs/display-settings/main.c:1580
+#: dialogs/display-settings/main.c:1617
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1220,22 +1210,22 @@ msgstr "Akken ara yettwakkes umaɣnu n uskan, ur tettizmireḍ ara ad t-id-terre
 msgid "Cancel"
 msgstr "Sefex"
 
-#: dialogs/display-settings/main.c:1581
+#: dialogs/display-settings/main.c:1618
 msgid "Delete"
 msgstr "Kkes"
 
-#: dialogs/display-settings/main.c:1686
+#: dialogs/display-settings/main.c:1704
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d n yigalisen Xfce"
 
-#: dialogs/display-settings/main.c:2451
+#: dialogs/display-settings/main.c:2444
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Fren agdil iwakken ad tbeddeleḍ iraten-is, zuɣer-it iwakken ad alseḍ aseggem n wadig-ines."
 
-#: dialogs/display-settings/main.c:2494 dialogs/display-settings/main.c:2571
+#: dialogs/display-settings/main.c:2543 dialogs/display-settings/main.c:2576
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1244,23 +1234,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2793
+#: dialogs/display-settings/main.c:2798
 msgid "Mirror Screens"
 msgstr "Igdilen n tisit"
 
-#: dialogs/display-settings/main.c:2843
+#: dialogs/display-settings/main.c:2848
 msgid "(Disabled)"
 msgstr "(Yensa)"
 
-#: dialogs/display-settings/main.c:3374
+#: dialogs/display-settings/main.c:3333
 msgid "ATI Settings"
 msgstr "Iɣewwaren n ATI"
 
-#: dialogs/display-settings/main.c:3379
+#: dialogs/display-settings/main.c:3338
 msgid "Unable to start the Xfce Display Settings"
 msgstr "D awezɣi beddu n yiɣewwaren n uskan Xfce"
 
-#: dialogs/display-settings/main.c:3387
+#: dialogs/display-settings/main.c:3346
 msgid "Unable to launch the proprietary driver settings"
 msgstr "D awezɣi usenker n yiɣewwaren n unuḍaf amaẓlay"
 
@@ -1273,15 +1263,15 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "sken;iɣewwaren;agdil;afray;smiren;afmiḍi;tuzzya;azɣaray;imagaren;isefraken;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:456
+#: dialogs/display-settings/display-settings.c:447
 msgid "Display:"
 msgstr "Sken:"
 
-#: dialogs/display-settings/display-settings.c:463
+#: dialogs/display-settings/display-settings.c:455
 msgid "Resolution:"
 msgstr "Ferru:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1081
+#: dialogs/display-settings/display-settings-wayland.c:980
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
@@ -1685,11 +1675,11 @@ msgstr ""
 msgid "Browse the file system to choose a custom command."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:749
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:752
 msgid "_Other..."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:750
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:753
 msgid "Use a custom application which is not included in the above list."
 msgstr ""
 
@@ -2695,8 +2685,8 @@ msgstr "Meṛṛa _Iɣewwaren"
 msgid "Settings"
 msgstr "Iɣewwaren"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:927
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:939
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Yugguma ad yebdu \"%s\""
@@ -2754,15 +2744,15 @@ msgstr "Tiqeffalin yettbumbin"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Ur yeddi ara usenker n unegzum \"%s\""
 
-#: xfsettingsd/main.c:108
+#: xfsettingsd/main.c:107
 msgid "Fork to the background"
 msgstr ""
 
-#: xfsettingsd/main.c:109
+#: xfsettingsd/main.c:108
 msgid "Do not wait for a window manager on startup"
 msgstr ""
 
-#: xfsettingsd/main.c:110
+#: xfsettingsd/main.c:109
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Senfel aselkem n Daemon yellan (ma yella)"
 
