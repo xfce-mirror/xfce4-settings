@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-03-11 12:47+0100\n"
+"POT-Creation-Date: 2024-03-19 00:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2020-2024\n"
 "Language-Team: Albanian (http://app.transifex.com/xfce/xfce4-settings/language/sq/)\n"
@@ -41,20 +41,20 @@ msgstr "Televizion"
 msgid "Digital display"
 msgstr "Ekran dixhital"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:771
+#: common/xfce-randr.c:301 dialogs/display-settings/display-settings-x11.c:671
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "S’arrihet të kërkohet për versionin e zgjerimit RandR që po përdoret"
 
 #. 1.2 is required
-#: common/xfce-randr.c:307
+#: common/xfce-randr.c:309
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "Ky sistem përdor RandR %d.%d. Që të funksionojnë rregullimet e ekranit, lypset të paktën version 1.2"
 
-#: common/xfce-randr.c:581
-#: dialogs/display-settings/display-settings-wayland.c:345
+#: common/xfce-randr.c:591
+#: dialogs/display-settings/display-settings-wayland.c:319
 msgid "Laptop"
 msgstr "Laptop"
 
@@ -66,10 +66,10 @@ msgstr "Përdorshmëri"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:85
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:297
+#: dialogs/display-settings/display-dialog.glade:263
 #: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3365
+#: dialogs/display-settings/main.c:3339
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -81,7 +81,7 @@ msgstr "_Mbylle"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:100
 #: dialogs/appearance-settings/appearance-dialog.glade:126
 #: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:281
+#: dialogs/display-settings/display-dialog.glade:247
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
 #: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:179
@@ -317,8 +317,8 @@ msgid "Version information"
 msgstr "Të dhëna versioni"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3313 dialogs/keyboard-settings/main.c:78
+#: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
+#: dialogs/display-settings/main.c:3287 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
@@ -329,8 +329,8 @@ msgid "Type '%s --help' for usage."
 msgstr "Për përdorimin, shtypni '%s --help'."
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3332 dialogs/keyboard-settings/main.c:94
+#: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
+#: dialogs/display-settings/main.c:3306 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
 #: xfsettingsd/main.c:271
@@ -338,8 +338,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Ekipi i zhvillimit të Xfce-së. Tërë të drejtat të rezervuara."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3333 dialogs/keyboard-settings/main.c:95
+#: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
+#: dialogs/display-settings/main.c:3307 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
 #: xfsettingsd/main.c:272
@@ -358,7 +358,7 @@ msgid ""
 msgstr "asistive;teknologji;taste;ngjitës;bounce;emulim;lexues ekrani;zmadhues;a11y;i18n;l10n;AT-SPI;ATK;dobësim;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:92
+#: dialogs/appearance-settings/main.c:1299 dialogs/display-settings/main.c:92
 #: dialogs/display-settings/main.c:101
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -397,7 +397,6 @@ msgid "1x (no scaling)"
 msgstr "1x (pa përshkallëzim)"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:86
-#: dialogs/display-settings/display-dialog.glade:72
 msgid "2x"
 msgstr "2x"
 
@@ -593,42 +592,42 @@ msgid ""
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "Kujdes: kjo temë ikonash nuk ka kartelë fshehtine. Këtë mund ta krijoni duke xhiruar <i>gtk-update-icon-cache %s/%s/</i> në një emulues terminali."
 
-#: dialogs/appearance-settings/main.c:989
+#: dialogs/appearance-settings/main.c:993
 msgid "File is too large, installation aborted"
 msgstr "Kartela është shumë e madhe, instalimi u ndërpre"
 
-#: dialogs/appearance-settings/main.c:994
+#: dialogs/appearance-settings/main.c:998
 msgid "Failed to create temporary directory"
 msgstr "S’u arrit të krijohej drejtori e përkohshme"
 
-#: dialogs/appearance-settings/main.c:999
+#: dialogs/appearance-settings/main.c:1003
 msgid "Failed to extract archive"
 msgstr "S’u arrit të përftohej arkiv"
 
-#: dialogs/appearance-settings/main.c:1004
+#: dialogs/appearance-settings/main.c:1008
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Format i panjohur, mbulohen vetëm arkiva dhe drejtori"
 
-#: dialogs/appearance-settings/main.c:1009
+#: dialogs/appearance-settings/main.c:1013
 msgid "Not a valid theme package"
 msgstr "S’është paketë e vlefshme teme"
 
-#: dialogs/appearance-settings/main.c:1014
+#: dialogs/appearance-settings/main.c:1018
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Një gabim i panjohur, kodi i daljes është %d"
 
-#: dialogs/appearance-settings/main.c:1021
+#: dialogs/appearance-settings/main.c:1025
 msgid "Failed to install theme"
 msgstr "S’u arrit të instalohej temë"
 
-#: dialogs/appearance-settings/main.c:1075
+#: dialogs/appearance-settings/main.c:1078
 #, c-format
 msgid "Install %s theme"
 msgstr "Instalo temën %s"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1079
+#: dialogs/appearance-settings/main.c:1082
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:133
 #: dialogs/keyboard-settings/command-dialog.c:118
@@ -640,25 +639,25 @@ msgstr "Instalo temën %s"
 msgid "_Cancel"
 msgstr "_Anuloje"
 
-#: dialogs/appearance-settings/main.c:1081
+#: dialogs/appearance-settings/main.c:1084
 #: dialogs/keyboard-settings/command-dialog.c:283
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Hape"
 
-#: dialogs/appearance-settings/main.c:1300
+#: dialogs/appearance-settings/main.c:1303
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1304
+#: dialogs/appearance-settings/main.c:1307
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1308
+#: dialogs/appearance-settings/main.c:1311
 msgid "Vertical RGB"
 msgstr "RGB Vertikale"
 
-#: dialogs/appearance-settings/main.c:1312
+#: dialogs/appearance-settings/main.c:1315
 msgid "Vertical BGR"
 msgstr "BGR Vertikale"
 
@@ -916,167 +915,143 @@ msgstr "Mbaje këtë formësim"
 msgid "Restore the previous configuration"
 msgstr "Rikthe formësimin e mëparshëm"
 
-#: dialogs/display-settings/display-dialog.glade:60
-msgid "1.25x"
-msgstr "1.25x"
-
-#: dialogs/display-settings/display-dialog.glade:64
-msgid "1.5x"
-msgstr "1.5x"
-
-#: dialogs/display-settings/display-dialog.glade:68
-msgid "1.75x"
-msgstr "1.75x"
-
-#: dialogs/display-settings/display-dialog.glade:76
-msgid "Custom:"
-msgstr "Vetjak:"
-
-#: dialogs/display-settings/display-dialog.glade:90
+#: dialogs/display-settings/display-dialog.glade:56
 msgid "Do nothing"
 msgstr "Mos bëj gjë"
 
-#: dialogs/display-settings/display-dialog.glade:94
+#: dialogs/display-settings/display-dialog.glade:60
 msgid "Show dialog"
 msgstr "Shfaq dialog"
 
-#: dialogs/display-settings/display-dialog.glade:98
+#: dialogs/display-settings/display-dialog.glade:64
 msgid "Mirror"
 msgstr "Pasqyroje"
 
-#: dialogs/display-settings/display-dialog.glade:102
+#: dialogs/display-settings/display-dialog.glade:68
 msgid "Extend"
 msgstr "Zgjeroje"
 
-#: dialogs/display-settings/display-dialog.glade:106
+#: dialogs/display-settings/display-dialog.glade:72
 msgid "Enable profile"
 msgstr "Aktivizoje profilin"
 
-#: dialogs/display-settings/display-dialog.glade:164
+#: dialogs/display-settings/display-dialog.glade:130
 msgid "The primary display is currently configured to show:"
 msgstr "Ekrani parësor është aktualisht i formësuar për të shfaqur:"
 
-#: dialogs/display-settings/display-dialog.glade:178
+#: dialogs/display-settings/display-dialog.glade:144
 msgid "Xfce Panel"
 msgstr "Panel Xfce"
 
-#: dialogs/display-settings/display-dialog.glade:191
+#: dialogs/display-settings/display-dialog.glade:157
 msgid "Desktop icons"
 msgstr "Ikona desktopi"
 
-#: dialogs/display-settings/display-dialog.glade:204
+#: dialogs/display-settings/display-dialog.glade:170
 msgid "Notifications"
 msgstr "Njoftime"
 
-#: dialogs/display-settings/display-dialog.glade:214
-#: dialogs/display-settings/display-dialog.glade:229
-#: dialogs/display-settings/display-dialog.glade:244
+#: dialogs/display-settings/display-dialog.glade:180
+#: dialogs/display-settings/display-dialog.glade:195
+#: dialogs/display-settings/display-dialog.glade:210
 msgid "Configure..."
 msgstr "Formësojeni…"
 
-#: dialogs/display-settings/display-dialog.glade:262
+#: dialogs/display-settings/display-dialog.glade:228
 #: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "Shfaqje"
 
-#: dialogs/display-settings/display-dialog.glade:375
+#: dialogs/display-settings/display-dialog.glade:335
 msgid "_Mirror displays"
 msgstr "_Pasqyro ekrane"
 
-#: dialogs/display-settings/display-dialog.glade:476
+#: dialogs/display-settings/display-dialog.glade:433
 msgid "Primary Display:"
 msgstr "Ekran Parësor:"
 
-#: dialogs/display-settings/display-dialog.glade:502
+#: dialogs/display-settings/display-dialog.glade:459
 msgid "R_esolution:"
 msgstr "_Qartësi:"
 
-#: dialogs/display-settings/display-dialog.glade:528
+#: dialogs/display-settings/display-dialog.glade:485
 msgid "Refresh _rate:"
 msgstr "Shp_ejtësi rifreskimi:"
 
-#: dialogs/display-settings/display-dialog.glade:554
+#: dialogs/display-settings/display-dialog.glade:511
 msgid "Ro_tation:"
 msgstr "Rro_tullim:"
 
-#: dialogs/display-settings/display-dialog.glade:578
+#: dialogs/display-settings/display-dialog.glade:535
 msgid "Ref_lection:"
 msgstr "Ref_lektim:"
 
-#: dialogs/display-settings/display-dialog.glade:621
+#: dialogs/display-settings/display-dialog.glade:575
 msgid "A_pply"
 msgstr "_Zbatoje"
 
-#: dialogs/display-settings/display-dialog.glade:648
+#: dialogs/display-settings/display-dialog.glade:603
 msgid "_Scale:"
 msgstr "_Ripërmasoje:"
 
-#: dialogs/display-settings/display-dialog.glade:675
-msgid "X:"
-msgstr "X:"
-
-#: dialogs/display-settings/display-dialog.glade:688
-msgid "Y:"
-msgstr "Y:"
-
-#: dialogs/display-settings/display-dialog.glade:818
+#: dialogs/display-settings/display-dialog.glade:641
 msgid "_General"
 msgstr "Të përgjithsh_me"
 
-#: dialogs/display-settings/display-dialog.glade:838
+#: dialogs/display-settings/display-dialog.glade:661
 msgid "<b>Profiles</b>"
 msgstr "<b>Profile</b>"
 
-#: dialogs/display-settings/display-dialog.glade:854
+#: dialogs/display-settings/display-dialog.glade:677
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>Lidhje Ekranesh</b>"
 
-#: dialogs/display-settings/display-dialog.glade:904
+#: dialogs/display-settings/display-dialog.glade:727
 msgid "Delete the currently selected display profile."
 msgstr "Fshi profilin e ekranit të tanishëm të përzgjedhur."
 
-#: dialogs/display-settings/display-dialog.glade:917
+#: dialogs/display-settings/display-dialog.glade:740
 msgid "Apply"
 msgstr "Zbatoje"
 
-#: dialogs/display-settings/display-dialog.glade:921
+#: dialogs/display-settings/display-dialog.glade:744
 msgid "Apply the currently selected display profile."
 msgstr "Apliko profilin e ekranit të përzgjedhur të tanishëm."
 
-#: dialogs/display-settings/display-dialog.glade:937
+#: dialogs/display-settings/display-dialog.glade:760
 msgid "Create a new display profile."
 msgstr "Krijoni profil të ri monitori."
 
-#: dialogs/display-settings/display-dialog.glade:953
+#: dialogs/display-settings/display-dialog.glade:776
 msgid "Update an existing profile."
 msgstr "Përditësoni një profil ekzistues."
 
-#: dialogs/display-settings/display-dialog.glade:986
+#: dialogs/display-settings/display-dialog.glade:809
 msgid "When new displays are connected:"
 msgstr "Kur lidhen ekrane të rinj:"
 
-#: dialogs/display-settings/display-dialog.glade:999
+#: dialogs/display-settings/display-dialog.glade:822
 msgid "Show popup windows to identify displays"
 msgstr "Shfaq dritare flluskë për identifikim ekranesh"
 
-#: dialogs/display-settings/display-dialog.glade:1025
+#: dialogs/display-settings/display-dialog.glade:848
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Identifikim Ekranesh</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1065
+#: dialogs/display-settings/display-dialog.glade:888
 #: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr "Të _mëtejshme"
 
-#: dialogs/display-settings/display-dialog.glade:1123
+#: dialogs/display-settings/display-dialog.glade:940
 msgid "<b>Profile Name</b>"
 msgstr "<b>Emër Profili</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1146
+#: dialogs/display-settings/display-dialog.glade:963
 msgid "Create"
 msgstr "Krijoje"
 
-#: dialogs/display-settings/display-dialog.glade:1181
+#: dialogs/display-settings/display-dialog.glade:998
 msgid "A profile of this name already exists."
 msgstr "Ka tashmë një profil me këtë emër."
 
@@ -1176,7 +1151,7 @@ msgstr "Horizontalisht dhe Vertikalisht"
 msgid "Minimal interface to set up an external output"
 msgstr "Ndërfaqe minimale për të ujdisur një output të jashtëm"
 
-#: dialogs/display-settings/main.c:233
+#: dialogs/display-settings/main.c:275
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1184,48 +1159,48 @@ msgid ""
 msgstr "Formësimi i mëparshëm do të rikthehet pas <b>%i sekondash</b>, nëse s’i përgjigjeni kësaj pyetje."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:681
+#: dialogs/display-settings/main.c:621
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:1028
+#: dialogs/display-settings/main.c:953
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "S’duhet çaktivizuar output-i i fundit aktiv, sistemi mund të bëhet i papërdorshëm."
 
-#: dialogs/display-settings/main.c:1030
+#: dialogs/display-settings/main.c:955
 msgid "Selected output not disabled"
 msgstr "Output-i i përzgjedhur s’është çaktivizuar"
 
-#: dialogs/display-settings/main.c:1234
+#: dialogs/display-settings/main.c:1183
 msgid "Profiles matching the currently connected displays"
 msgstr "Profile që kanë përputhje me ekranet e lidhur aktualisht"
 
-#: dialogs/display-settings/main.c:1323
+#: dialogs/display-settings/main.c:1272
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Të përditësohet profili i ndryshuar i ekranit '%s'?"
 
-#: dialogs/display-settings/main.c:1328
+#: dialogs/display-settings/main.c:1277
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Përditëso '%s'"
 
-#: dialogs/display-settings/main.c:1606
+#: dialogs/display-settings/main.c:1611
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Doni të fshihet profili i ekranit '%s'?"
 
-#: dialogs/display-settings/main.c:1608
+#: dialogs/display-settings/main.c:1613
 msgid "Delete Profile"
 msgstr "Fshije Profilin"
 
-#: dialogs/display-settings/main.c:1611
+#: dialogs/display-settings/main.c:1616
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Pasi të fshihet një profil ekrani, s’mund të rikthehet."
 
-#: dialogs/display-settings/main.c:1612
+#: dialogs/display-settings/main.c:1617
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1233,22 +1208,22 @@ msgstr "Pasi të fshihet një profil ekrani, s’mund të rikthehet."
 msgid "Cancel"
 msgstr "Anuloje"
 
-#: dialogs/display-settings/main.c:1613
+#: dialogs/display-settings/main.c:1618
 msgid "Delete"
 msgstr "Fshije"
 
-#: dialogs/display-settings/main.c:1699
+#: dialogs/display-settings/main.c:1704
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "Panele Xfce %d"
 
-#: dialogs/display-settings/main.c:2482
+#: dialogs/display-settings/main.c:2444
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Përzgjidhni një monitor për t’i ndryshuar vetitë; që t’i risistemoni vendosjen, tërhiqeni."
 
-#: dialogs/display-settings/main.c:2525 dialogs/display-settings/main.c:2602
+#: dialogs/display-settings/main.c:2543 dialogs/display-settings/main.c:2576
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1257,23 +1232,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2824
+#: dialogs/display-settings/main.c:2798
 msgid "Mirror Screens"
 msgstr "Pasqyro Ekranet"
 
-#: dialogs/display-settings/main.c:2874
+#: dialogs/display-settings/main.c:2848
 msgid "(Disabled)"
 msgstr "(Çaktivizuar)"
 
-#: dialogs/display-settings/main.c:3359
+#: dialogs/display-settings/main.c:3333
 msgid "ATI Settings"
 msgstr "Rregullime ATI"
 
-#: dialogs/display-settings/main.c:3364
+#: dialogs/display-settings/main.c:3338
 msgid "Unable to start the Xfce Display Settings"
 msgstr "S’arrihet të nisen Rregullime Ekrani Xfce"
 
-#: dialogs/display-settings/main.c:3372
+#: dialogs/display-settings/main.c:3346
 msgid "Unable to launch the proprietary driver settings"
 msgstr "S’arrihet të nisen rregullimet e përudhësit pronësor"
 
@@ -1286,15 +1261,15 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "ekran;rregullime;ekran;qartësi;rifreskoje;frekuencë;rrotullim;i jashtëm;projektorë;monitorë;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:456
+#: dialogs/display-settings/display-settings.c:447
 msgid "Display:"
 msgstr "Ekran:"
 
-#: dialogs/display-settings/display-settings.c:463
+#: dialogs/display-settings/display-settings.c:455
 msgid "Resolution:"
 msgstr "Qartësi:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1113
+#: dialogs/display-settings/display-settings-wayland.c:980
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Hartuesi juaj s’duket se mbulon protokollin wlr-output-management"
@@ -1698,11 +1673,11 @@ msgstr "Caktoni aplikacionin që doni të përdoret\nsi Emulues Terminal parazgj
 msgid "Browse the file system to choose a custom command."
 msgstr "Shfletoni sistemin e kartelave për të zgjedhur një urdhër vetjak."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:749
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:752
 msgid "_Other..."
 msgstr "_Tjetër…"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:750
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:753
 msgid "Use a custom application which is not included in the above list."
 msgstr "Përdor një aplikacion vetjak që s’përfshihet në listën më sipër."
 
@@ -2708,8 +2683,8 @@ msgstr "Krejt _Rregullimet"
 msgid "Settings"
 msgstr "Rregullime"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:927
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:939
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "S’arrihet të niset \"%s\""
