@@ -335,13 +335,29 @@ static void
 update_output_positions (XfceDisplaySettings *settings,
                          guint selected_id)
 {
-    XfceOutput *output = get_nth_xfce_output (settings, selected_id);
-    FooScrollAreaEvent event = { 0 };
-    GrabInfo info = { 0 };
+    guint n_outputs = xfce_display_settings_get_n_outputs (settings);
+    gboolean mirrored = FALSE;
 
-    info.output_x = output->x;
-    info.output_y = output->y;
-    keep_output_snapped (output, &event, &info, settings);
+    for (guint n = 0; n < n_outputs; n++)
+    {
+        if (n != selected_id && xfce_display_settings_is_mirrored (settings, selected_id, n))
+        {
+            mirrored = TRUE;
+            break;
+        }
+    }
+
+    if (!mirrored)
+    {
+        XfceOutput *output = get_nth_xfce_output (settings, selected_id);
+        FooScrollAreaEvent event = { 0 };
+        GrabInfo info = { 0 };
+
+        info.output_x = output->x;
+        info.output_y = output->y;
+        keep_output_snapped (output, &event, &info, settings);
+    }
+
     initialize_connected_outputs_at_zero (settings);
 }
 
