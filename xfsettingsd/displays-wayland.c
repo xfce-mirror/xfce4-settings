@@ -516,9 +516,12 @@ manager_listener (XfceWlrOutputManager *manager,
             }
         }
 
-        /* start the minimal dialog according to the user preferences */
+        /* start the display dialog according to the user preferences */
         if (action == ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
-            xfce_spawn_command_line (NULL, "xfce4-display-settings -m", FALSE, FALSE, TRUE, NULL);
+        {
+            const gchar *cmd = outputs->len <= 2 ? "xfce4-display-settings -m" : "xfce4-display-settings";
+            xfce_spawn_command_line (NULL, cmd, FALSE, FALSE, TRUE, NULL);
+        }
     }
 
     if (update_needed)

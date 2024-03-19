@@ -685,9 +685,12 @@ G_GNUC_END_IGNORE_DEPRECATIONS
             if (changed)
                 xfce_displays_helper_x11_apply_all (helper);
 
-            /* Start the minimal dialog according to the user preferences */
+            /* Start the display dialog according to the user preferences */
             if (changed && action == ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
-                xfce_spawn_command_line (NULL, "xfce4-display-settings -m", FALSE, FALSE, TRUE, NULL);
+            {
+                const gchar *cmd = helper->outputs->len <= 2 ? "xfce4-display-settings -m" : "xfce4-display-settings";
+                xfce_spawn_command_line (NULL, cmd, FALSE, FALSE, TRUE, NULL);
+            }
         }
         g_ptr_array_unref (old_outputs);
     }
