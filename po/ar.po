@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-02-19 00:50+0100\n"
+"POT-Creation-Date: 2024-03-20 00:48+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: 7f91df02564a1feba5fdc4d7b990b7f2_5fb95ff, 2021\n"
 "Language-Team: Arabic (http://app.transifex.com/xfce/xfce4-settings/language/ar/)\n"
@@ -50,20 +50,20 @@ msgstr "تلفاز"
 msgid "Digital display"
 msgstr "العرض الرقمي"
 
-#: common/xfce-randr.c:299 dialogs/display-settings/display-settings-x11.c:740
+#: common/xfce-randr.c:301 dialogs/display-settings/display-settings-x11.c:671
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "غير قادر على الاستعلام عن إصدار الملحق RandR قيد الاستخدام"
 
 #. 1.2 is required
-#: common/xfce-randr.c:307
+#: common/xfce-randr.c:309
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr "هذا النظام يستخدم RandR %d.%d. إعدادات العرض للعمل يتطلب الإصدار 1.2 على الأقل"
 
-#: common/xfce-randr.c:581
-#: dialogs/display-settings/display-settings-wayland.c:344
+#: common/xfce-randr.c:591
+#: dialogs/display-settings/display-settings-wayland.c:319
 msgid "Laptop"
 msgstr "حاسوب محمول"
 
@@ -75,10 +75,10 @@ msgstr "الإتاحة"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:85
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:293
-#: dialogs/display-settings/minimal-display-dialog.glade:281
+#: dialogs/display-settings/display-dialog.glade:285
+#: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3380
+#: dialogs/display-settings/main.c:3354
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -90,7 +90,7 @@ msgstr "_غلق"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:100
 #: dialogs/appearance-settings/appearance-dialog.glade:126
 #: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:277
+#: dialogs/display-settings/display-dialog.glade:269
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
 #: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:179
@@ -321,37 +321,37 @@ msgstr "مُعرف المقبس"
 #: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
 #: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
 #: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
-#: xfsettingsd/main.c:107
+#: xfsettingsd/main.c:106
 msgid "Version information"
 msgstr "معلومات النسخة"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1430 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3328 dialogs/keyboard-settings/main.c:78
+#: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
+#: dialogs/display-settings/main.c:3302 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:259
-#: xfsettingsd/main.c:297
+#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:255
+#: xfsettingsd/main.c:293
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "اكتب '%s --help' لدليل المستخدم."
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1449 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3347 dialogs/keyboard-settings/main.c:94
+#: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
+#: dialogs/display-settings/main.c:3321 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:275
+#: xfsettingsd/main.c:271
 msgid "The Xfce development team. All rights reserved."
 msgstr "فريق تطوير إكسفس. كل الحقوق محفوظة."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1450 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3348 dialogs/keyboard-settings/main.c:95
+#: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
+#: dialogs/display-settings/main.c:3322 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:276
+#: xfsettingsd/main.c:272
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "الرجاء الإبلاغ عن علة في <%s>."
@@ -367,7 +367,7 @@ msgid ""
 msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1296 dialogs/display-settings/main.c:92
+#: dialogs/appearance-settings/main.c:1299 dialogs/display-settings/main.c:92
 #: dialogs/display-settings/main.c:101
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -406,7 +406,6 @@ msgid "1x (no scaling)"
 msgstr "x1(لا قياس)"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:86
-#: dialogs/display-settings/display-dialog.glade:72
 msgid "2x"
 msgstr "x2"
 
@@ -602,42 +601,42 @@ msgid ""
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr "تحذير: سمة هذه الأيقونة ليس لها ملف ذاكرة تخزين مؤقت. يمكنك إنشاء هذا عن طريق تشغيل <i>gtk-update-icon-cache %s/%s/</i> في محاكي الطرفية."
 
-#: dialogs/appearance-settings/main.c:989
+#: dialogs/appearance-settings/main.c:993
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:994
+#: dialogs/appearance-settings/main.c:998
 msgid "Failed to create temporary directory"
 msgstr "فشل إنشاء مجلد مؤقت"
 
-#: dialogs/appearance-settings/main.c:999
+#: dialogs/appearance-settings/main.c:1003
 msgid "Failed to extract archive"
 msgstr "فشل إستخراج الأرشيف"
 
-#: dialogs/appearance-settings/main.c:1004
+#: dialogs/appearance-settings/main.c:1008
 msgid "Unknown format, only archives and directories are supported"
 msgstr "صيغة مجهولة, يتم دعم الأرشيفات والمجلدات فقط"
 
-#: dialogs/appearance-settings/main.c:1009
+#: dialogs/appearance-settings/main.c:1013
 msgid "Not a valid theme package"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1014
+#: dialogs/appearance-settings/main.c:1018
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "خطأ مجهول, رمز الخروج هو %d"
 
-#: dialogs/appearance-settings/main.c:1021
+#: dialogs/appearance-settings/main.c:1025
 msgid "Failed to install theme"
 msgstr "فشل تثبيت السمة"
 
-#: dialogs/appearance-settings/main.c:1075
+#: dialogs/appearance-settings/main.c:1078
 #, c-format
 msgid "Install %s theme"
 msgstr "تثبيت %s سمة"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1079
+#: dialogs/appearance-settings/main.c:1082
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:133
 #: dialogs/keyboard-settings/command-dialog.c:118
@@ -649,25 +648,25 @@ msgstr "تثبيت %s سمة"
 msgid "_Cancel"
 msgstr "_إلغاء"
 
-#: dialogs/appearance-settings/main.c:1081
+#: dialogs/appearance-settings/main.c:1084
 #: dialogs/keyboard-settings/command-dialog.c:283
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_فتح"
 
-#: dialogs/appearance-settings/main.c:1300
+#: dialogs/appearance-settings/main.c:1303
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1304
+#: dialogs/appearance-settings/main.c:1307
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1308
+#: dialogs/appearance-settings/main.c:1311
 msgid "Vertical RGB"
 msgstr "RGB عمودي"
 
-#: dialogs/appearance-settings/main.c:1312
+#: dialogs/appearance-settings/main.c:1315
 msgid "Vertical BGR"
 msgstr "BGR عمودي"
 
@@ -925,191 +924,198 @@ msgstr "الحفاظ على هذا الإعداد"
 msgid "Restore the previous configuration"
 msgstr "إستعادة الإعداد السابق"
 
+#: dialogs/display-settings/display-dialog.glade:56
+msgid "Never"
+msgstr "أبدًا"
+
 #: dialogs/display-settings/display-dialog.glade:60
-msgid "1.25x"
+msgid "When a display is connected"
 msgstr ""
 
 #: dialogs/display-settings/display-dialog.glade:64
-msgid "1.5x"
+msgid "When a display is disconnected"
 msgstr ""
 
 #: dialogs/display-settings/display-dialog.glade:68
-msgid "1.75x"
-msgstr ""
+msgid "Always"
+msgstr "دائماً"
 
-#: dialogs/display-settings/display-dialog.glade:76
-msgid "Custom:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:90
+#: dialogs/display-settings/display-dialog.glade:82
 msgid "Do nothing"
 msgstr "لا تفعل شيء"
 
-#: dialogs/display-settings/display-dialog.glade:94
+#: dialogs/display-settings/display-dialog.glade:86
 msgid "Show dialog"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:98
+#: dialogs/display-settings/display-dialog.glade:90
 msgid "Mirror"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:102
+#: dialogs/display-settings/display-dialog.glade:94
 msgid "Extend"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:160
-msgid "The primary display is currently configured to show:"
+#: dialogs/display-settings/display-dialog.glade:152
+msgid "The primary display can be configured to show:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:174
+#: dialogs/display-settings/display-dialog.glade:166
 msgid "Xfce Panel"
 msgstr "شريط إكسفس"
 
-#: dialogs/display-settings/display-dialog.glade:187
+#: dialogs/display-settings/display-dialog.glade:179
 msgid "Desktop icons"
 msgstr "أيقونات سطح المكتب"
 
-#: dialogs/display-settings/display-dialog.glade:200
+#: dialogs/display-settings/display-dialog.glade:192
 msgid "Notifications"
 msgstr "اﻹشعارات"
 
-#: dialogs/display-settings/display-dialog.glade:210
-#: dialogs/display-settings/display-dialog.glade:225
-#: dialogs/display-settings/display-dialog.glade:240
+#: dialogs/display-settings/display-dialog.glade:202
+#: dialogs/display-settings/display-dialog.glade:217
+#: dialogs/display-settings/display-dialog.glade:232
 msgid "Configure..."
 msgstr "تعديل…"
 
-#: dialogs/display-settings/display-dialog.glade:258
+#: dialogs/display-settings/display-dialog.glade:250
 #: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "العرض"
 
-#: dialogs/display-settings/display-dialog.glade:371
+#: dialogs/display-settings/display-dialog.glade:357
 msgid "_Mirror displays"
 msgstr "_عرض المرآة"
 
-#: dialogs/display-settings/display-dialog.glade:472
+#: dialogs/display-settings/display-dialog.glade:455
 msgid "Primary Display:"
 msgstr "جهاز العرض اﻷساسي: "
 
-#: dialogs/display-settings/display-dialog.glade:498
+#: dialogs/display-settings/display-dialog.glade:481
 msgid "R_esolution:"
 msgstr "الدقة:"
 
-#: dialogs/display-settings/display-dialog.glade:524
+#: dialogs/display-settings/display-dialog.glade:507
 msgid "Refresh _rate:"
 msgstr "م_عدل التحديث:"
 
-#: dialogs/display-settings/display-dialog.glade:550
+#: dialogs/display-settings/display-dialog.glade:533
 msgid "Ro_tation:"
 msgstr "دوران:"
 
-#: dialogs/display-settings/display-dialog.glade:574
+#: dialogs/display-settings/display-dialog.glade:557
 msgid "Ref_lection:"
 msgstr "إنعكاس:"
 
-#: dialogs/display-settings/display-dialog.glade:617
+#: dialogs/display-settings/display-dialog.glade:597
 msgid "A_pply"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:644
+#: dialogs/display-settings/display-dialog.glade:625
 msgid "_Scale:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:671
-msgid "X:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:684
-msgid "Y:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:814
+#: dialogs/display-settings/display-dialog.glade:663
 msgid "_General"
 msgstr "_عام"
 
-#: dialogs/display-settings/display-dialog.glade:834
+#: dialogs/display-settings/display-dialog.glade:683
 msgid "<b>Profiles</b>"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:850
+#: dialogs/display-settings/display-dialog.glade:699
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>توصيل أجهزة العرض</b>"
 
-#: dialogs/display-settings/display-dialog.glade:900
+#: dialogs/display-settings/display-dialog.glade:749
 msgid "Delete the currently selected display profile."
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:913
+#: dialogs/display-settings/display-dialog.glade:762
 msgid "Apply"
 msgstr "تطبيق"
 
-#: dialogs/display-settings/display-dialog.glade:917
+#: dialogs/display-settings/display-dialog.glade:766
 msgid "Apply the currently selected display profile."
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:933
+#: dialogs/display-settings/display-dialog.glade:782
 msgid "Create a new display profile."
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:949
+#: dialogs/display-settings/display-dialog.glade:798
 msgid "Update an existing profile."
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:982
-msgid "Automatically enable profiles when new display is connected"
+#: dialogs/display-settings/display-dialog.glade:831
+msgid "First try to automatically enable a profile:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:1007
-msgid "When new displays are connected:"
+#: dialogs/display-settings/display-dialog.glade:863
+msgid "When a display is connected:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:1020
+#: dialogs/display-settings/display-dialog.glade:876
 msgid "Show popup windows to identify displays"
 msgstr "إظهار نوافذ منبثقة لتحديد أجهزة العرض"
 
-#: dialogs/display-settings/display-dialog.glade:1046
+#: dialogs/display-settings/display-dialog.glade:902
 msgid "<b>Identifying Displays</b>"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:1105
-#: dialogs/display-settings/minimal-display-dialog.glade:267
+#: dialogs/display-settings/display-dialog.glade:940
+#: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:1163
+#: dialogs/display-settings/display-dialog.glade:992
 msgid "<b>Profile Name</b>"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:1186
+#: dialogs/display-settings/display-dialog.glade:1015
 msgid "Create"
 msgstr "إنشاء"
 
-#: dialogs/display-settings/display-dialog.glade:1221
+#: dialogs/display-settings/display-dialog.glade:1050
 msgid "A profile of this name already exists."
 msgstr ""
 
-#: dialogs/display-settings/minimal-display-dialog.glade:12
+#: dialogs/display-settings/minimal-display-dialog.glade:16
+msgid "Extend right"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:19
+msgid "Extend left"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:22
+msgid "Extend up"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:25
+msgid "Extend down"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
 msgstr "العرض"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:78
-#: dialogs/display-settings/minimal-display-dialog.glade:79
+#: dialogs/display-settings/minimal-display-dialog.glade:92
+#: dialogs/display-settings/minimal-display-dialog.glade:93
 msgid "Only Display 1"
 msgstr "عرض 1 فقط"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:131
-#: dialogs/display-settings/minimal-display-dialog.glade:132
+#: dialogs/display-settings/minimal-display-dialog.glade:145
+#: dialogs/display-settings/minimal-display-dialog.glade:146
 msgid "Mirror Displays"
 msgstr "عرض المرآة"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:184
-#: dialogs/display-settings/minimal-display-dialog.glade:185
+#: dialogs/display-settings/minimal-display-dialog.glade:201
 msgid "Extend to the right"
 msgstr "مدد إلى اليمين"
 
-#: dialogs/display-settings/minimal-display-dialog.glade:237
-#: dialogs/display-settings/minimal-display-dialog.glade:238
+#: dialogs/display-settings/minimal-display-dialog.glade:262
+#: dialogs/display-settings/minimal-display-dialog.glade:263
 msgid "Only Display 2"
 msgstr "عرض 2 فقط"
 
@@ -1170,7 +1176,7 @@ msgstr "أفقي و عمودي"
 msgid "Minimal interface to set up an external output"
 msgstr "واجهة الحد الأدنى لإعداد المخرجات الخارجية"
 
-#: dialogs/display-settings/main.c:233
+#: dialogs/display-settings/main.c:275
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1178,48 +1184,48 @@ msgid ""
 msgstr ""
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:681
+#: dialogs/display-settings/main.c:637
 #, c-format
 msgid "%.2f Hz"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1028
+#: dialogs/display-settings/main.c:965
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "يجب عدم تعطيل آخر إخراج نشط، سيكون النظام غير قابل للاستخدام."
 
-#: dialogs/display-settings/main.c:1030
+#: dialogs/display-settings/main.c:967
 msgid "Selected output not disabled"
 msgstr "الإخراج المحدد غير معطل"
 
-#: dialogs/display-settings/main.c:1202
+#: dialogs/display-settings/main.c:1195
 msgid "Profiles matching the currently connected displays"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1291
+#: dialogs/display-settings/main.c:1284
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1296
+#: dialogs/display-settings/main.c:1289
 #, c-format
 msgid "_Update '%s'"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1574
+#: dialogs/display-settings/main.c:1623
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1576
+#: dialogs/display-settings/main.c:1625
 msgid "Delete Profile"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1579
+#: dialogs/display-settings/main.c:1628
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr ""
 
-#: dialogs/display-settings/main.c:1580
+#: dialogs/display-settings/main.c:1629
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1227,22 +1233,22 @@ msgstr ""
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: dialogs/display-settings/main.c:1581
+#: dialogs/display-settings/main.c:1630
 msgid "Delete"
 msgstr "حذف"
 
-#: dialogs/display-settings/main.c:1686
+#: dialogs/display-settings/main.c:1716
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%dأشرطة إكسفس"
 
-#: dialogs/display-settings/main.c:2451
+#: dialogs/display-settings/main.c:2458
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "اختر رصدا لتغيير خصائصه، اسحبه إلى إعادة ترتيب الموقع"
 
-#: dialogs/display-settings/main.c:2494 dialogs/display-settings/main.c:2571
+#: dialogs/display-settings/main.c:2557 dialogs/display-settings/main.c:2590
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1251,23 +1257,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2793
+#: dialogs/display-settings/main.c:2812
 msgid "Mirror Screens"
 msgstr "شاشات المرآة"
 
-#: dialogs/display-settings/main.c:2843
+#: dialogs/display-settings/main.c:2862
 msgid "(Disabled)"
 msgstr "(Disabled)"
 
-#: dialogs/display-settings/main.c:3374
+#: dialogs/display-settings/main.c:3348
 msgid "ATI Settings"
 msgstr "إعدادات ATI"
 
-#: dialogs/display-settings/main.c:3379
+#: dialogs/display-settings/main.c:3353
 msgid "Unable to start the Xfce Display Settings"
 msgstr "غير قادر على بدء مدير عرض إكسفس"
 
-#: dialogs/display-settings/main.c:3387
+#: dialogs/display-settings/main.c:3361
 msgid "Unable to launch the proprietary driver settings"
 msgstr "غير قادر على إطلاق مدير خصائص برنامج التشغيل"
 
@@ -1280,15 +1286,15 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr ""
 
-#: dialogs/display-settings/display-settings.c:456
+#: dialogs/display-settings/display-settings.c:447
 msgid "Display:"
 msgstr "جهاز العرض:"
 
-#: dialogs/display-settings/display-settings.c:463
+#: dialogs/display-settings/display-settings.c:455
 msgid "Resolution:"
 msgstr "الدقة:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1081
+#: dialogs/display-settings/display-settings-wayland.c:980
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
@@ -1696,11 +1702,11 @@ msgstr "حدد التطبيق الذي تريد إستعماله\nكمحاكي �
 msgid "Browse the file system to choose a custom command."
 msgstr "تصفح نظام الملفات لإختيار امر مخصص."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:749
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:752
 msgid "_Other..."
 msgstr "_أخرى..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:750
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:753
 msgid "Use a custom application which is not included in the above list."
 msgstr "إستعمل تطبيق مخصص غير وجود في اللائحة أعلاه."
 
@@ -2714,8 +2720,8 @@ msgstr "كل الإعدادات"
 msgid "Settings"
 msgstr "إعدادات"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:927
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:939
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "تعذر بدء \"%s\""
@@ -2773,15 +2779,15 @@ msgstr "تكرر المفاتيح"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "فشل بدء تشغيل الاختصار \"%s\""
 
-#: xfsettingsd/main.c:108
+#: xfsettingsd/main.c:107
 msgid "Fork to the background"
 msgstr "تفرغ إلى الخلفية"
 
-#: xfsettingsd/main.c:109
+#: xfsettingsd/main.c:108
 msgid "Do not wait for a window manager on startup"
 msgstr "عدم إنتظار مدير النوافذ عند بدء التشغيل"
 
-#: xfsettingsd/main.c:110
+#: xfsettingsd/main.c:109
 msgid "Replace running xsettings daemon (if any)"
 msgstr "استبدال تشغيل إعدادx للبرنامج الخفي (إن وجد)"
 
