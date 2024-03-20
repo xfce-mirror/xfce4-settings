@@ -320,15 +320,24 @@ xfce_displays_helper_wayland_toggle_internal (gpointer *power,
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (helper->manager);
     XfceWlrOutput *lvds = NULL;
 
-    for (guint n = 0; n < outputs->len; n++)
+    if (outputs->len == 1)
     {
-        XfceWlrOutput *output = g_ptr_array_index (outputs, n);
-
-        /* try to find the internal display */
-        if (display_name_is_laptop_name (output->name))
+        /* if there's only one output left and we pass here, it's supposed to be the
+         * internal display or an output we want to reactivate anyway */
+        lvds = g_ptr_array_index (outputs, 0);
+    }
+    else
+    {
+        for (guint n = 0; n < outputs->len; n++)
         {
-            lvds = output;
-            break;
+            XfceWlrOutput *output = g_ptr_array_index (outputs, n);
+
+            /* try to find the internal display */
+            if (display_name_is_laptop_name (output->name))
+            {
+                lvds = output;
+                break;
+            }
         }
     }
 

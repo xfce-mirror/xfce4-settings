@@ -314,16 +314,25 @@ xfce_displays_helper_x11_toggle_internal (gpointer           *power,
     guint          n;
     gint           m;
 
-    for (n = 0; n < helper->outputs->len; ++n)
+    if (helper->outputs->len == 1)
     {
-        output = g_ptr_array_index (helper->outputs, n);
-        g_assert (output);
-
-        /* Try to find the internal display */
-        if (display_name_is_laptop_name (output->info->name))
+        /* If there's only one output left and we pass here, it's supposed to be the
+         * internal display or an output we want to reactivate anyway */
+        lvds = g_ptr_array_index (helper->outputs, 0);
+    }
+    else
+    {
+        for (n = 0; n < helper->outputs->len; ++n)
         {
-            lvds = output;
-            break;
+            output = g_ptr_array_index (helper->outputs, n);
+            g_assert (output);
+
+            /* Try to find the internal display */
+            if (display_name_is_laptop_name (output->info->name))
+            {
+                lvds = output;
+                break;
+            }
         }
     }
 
