@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-03-19 00:47+0100\n"
+"POT-Creation-Date: 2024-03-20 00:48+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2020-2023\n"
 "Language-Team: Hebrew (http://app.transifex.com/xfce/xfce4-settings/language/he/)\n"
@@ -75,10 +75,10 @@ msgstr "נגישות"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:85
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:263
+#: dialogs/display-settings/display-dialog.glade:285
 #: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3339
+#: dialogs/display-settings/main.c:3354
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -90,7 +90,7 @@ msgstr "_סגור"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:100
 #: dialogs/appearance-settings/appearance-dialog.glade:126
 #: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:247
+#: dialogs/display-settings/display-dialog.glade:269
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
 #: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:179
@@ -327,7 +327,7 @@ msgstr "מידע גרסה"
 
 #: dialogs/accessibility-settings/main.c:200
 #: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3287 dialogs/keyboard-settings/main.c:78
+#: dialogs/display-settings/main.c:3302 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
@@ -339,7 +339,7 @@ msgstr "הקלד '%s --help' לשימוש."
 
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3306 dialogs/keyboard-settings/main.c:94
+#: dialogs/display-settings/main.c:3321 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
 #: xfsettingsd/main.c:271
@@ -348,7 +348,7 @@ msgstr "קבוצת הפיתוח של Xfce. כל הזכויות שמורות."
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3307 dialogs/keyboard-settings/main.c:95
+#: dialogs/display-settings/main.c:3322 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
 #: xfsettingsd/main.c:272
@@ -925,142 +925,158 @@ msgid "Restore the previous configuration"
 msgstr "שחזר את התצורה הקודמת"
 
 #: dialogs/display-settings/display-dialog.glade:56
+msgid "Never"
+msgstr "אף פעם"
+
+#: dialogs/display-settings/display-dialog.glade:60
+msgid "When a display is connected"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:64
+msgid "When a display is disconnected"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:68
+msgid "Always"
+msgstr "תמיד"
+
+#: dialogs/display-settings/display-dialog.glade:82
 msgid "Do nothing"
 msgstr "אל תעשה דבר"
 
-#: dialogs/display-settings/display-dialog.glade:60
+#: dialogs/display-settings/display-dialog.glade:86
 msgid "Show dialog"
 msgstr "הצג דו שיח"
 
-#: dialogs/display-settings/display-dialog.glade:64
+#: dialogs/display-settings/display-dialog.glade:90
 msgid "Mirror"
 msgstr "מראה"
 
-#: dialogs/display-settings/display-dialog.glade:68
+#: dialogs/display-settings/display-dialog.glade:94
 msgid "Extend"
 msgstr "הרחב"
 
-#: dialogs/display-settings/display-dialog.glade:72
-msgid "Enable profile"
+#: dialogs/display-settings/display-dialog.glade:152
+msgid "The primary display can be configured to show:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:130
-msgid "The primary display is currently configured to show:"
-msgstr "המסך הראשי מוגדר כעת להציג:"
-
-#: dialogs/display-settings/display-dialog.glade:144
+#: dialogs/display-settings/display-dialog.glade:166
 msgid "Xfce Panel"
 msgstr "לוח Xfce"
 
-#: dialogs/display-settings/display-dialog.glade:157
+#: dialogs/display-settings/display-dialog.glade:179
 msgid "Desktop icons"
 msgstr "אייקונים בשולחן העבודה"
 
-#: dialogs/display-settings/display-dialog.glade:170
+#: dialogs/display-settings/display-dialog.glade:192
 msgid "Notifications"
 msgstr "הודעות"
 
-#: dialogs/display-settings/display-dialog.glade:180
-#: dialogs/display-settings/display-dialog.glade:195
-#: dialogs/display-settings/display-dialog.glade:210
+#: dialogs/display-settings/display-dialog.glade:202
+#: dialogs/display-settings/display-dialog.glade:217
+#: dialogs/display-settings/display-dialog.glade:232
 msgid "Configure..."
 msgstr "הגדר..."
 
-#: dialogs/display-settings/display-dialog.glade:228
+#: dialogs/display-settings/display-dialog.glade:250
 #: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "תצוגה"
 
-#: dialogs/display-settings/display-dialog.glade:335
+#: dialogs/display-settings/display-dialog.glade:357
 msgid "_Mirror displays"
 msgstr "_שקף תצוגות"
 
-#: dialogs/display-settings/display-dialog.glade:433
+#: dialogs/display-settings/display-dialog.glade:455
 msgid "Primary Display:"
 msgstr "צג ראשי:"
 
-#: dialogs/display-settings/display-dialog.glade:459
+#: dialogs/display-settings/display-dialog.glade:481
 msgid "R_esolution:"
 msgstr "_רזולוציה:"
 
-#: dialogs/display-settings/display-dialog.glade:485
+#: dialogs/display-settings/display-dialog.glade:507
 msgid "Refresh _rate:"
 msgstr "קצב _רענון:"
 
-#: dialogs/display-settings/display-dialog.glade:511
+#: dialogs/display-settings/display-dialog.glade:533
 msgid "Ro_tation:"
 msgstr "_סיבוב:"
 
-#: dialogs/display-settings/display-dialog.glade:535
+#: dialogs/display-settings/display-dialog.glade:557
 msgid "Ref_lection:"
 msgstr "ה_שתקפות:"
 
-#: dialogs/display-settings/display-dialog.glade:575
+#: dialogs/display-settings/display-dialog.glade:597
 msgid "A_pply"
 msgstr "י_ישם"
 
-#: dialogs/display-settings/display-dialog.glade:603
+#: dialogs/display-settings/display-dialog.glade:625
 msgid "_Scale:"
 msgstr "_קנה מידה:"
 
-#: dialogs/display-settings/display-dialog.glade:641
+#: dialogs/display-settings/display-dialog.glade:663
 msgid "_General"
 msgstr "_כללי"
 
-#: dialogs/display-settings/display-dialog.glade:661
+#: dialogs/display-settings/display-dialog.glade:683
 msgid "<b>Profiles</b>"
 msgstr "<b>פרופילים</b>"
 
-#: dialogs/display-settings/display-dialog.glade:677
+#: dialogs/display-settings/display-dialog.glade:699
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>חיבור צגים</b>"
 
-#: dialogs/display-settings/display-dialog.glade:727
+#: dialogs/display-settings/display-dialog.glade:749
 msgid "Delete the currently selected display profile."
 msgstr "מחק את פרופיל התצוגה הנוכחי שנבחר."
 
-#: dialogs/display-settings/display-dialog.glade:740
+#: dialogs/display-settings/display-dialog.glade:762
 msgid "Apply"
 msgstr "יישם"
 
-#: dialogs/display-settings/display-dialog.glade:744
+#: dialogs/display-settings/display-dialog.glade:766
 msgid "Apply the currently selected display profile."
 msgstr "יישם את פרופיל התצוגה הנוכחי שנבחר."
 
-#: dialogs/display-settings/display-dialog.glade:760
+#: dialogs/display-settings/display-dialog.glade:782
 msgid "Create a new display profile."
 msgstr "צור פרופיל תצוגה חדש."
 
-#: dialogs/display-settings/display-dialog.glade:776
+#: dialogs/display-settings/display-dialog.glade:798
 msgid "Update an existing profile."
 msgstr "עדכן פרופיל קיים."
 
-#: dialogs/display-settings/display-dialog.glade:809
-msgid "When new displays are connected:"
-msgstr "כאשר מחוברות תצוגות חדשות:"
+#: dialogs/display-settings/display-dialog.glade:831
+msgid "First try to automatically enable a profile:"
+msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:822
+#: dialogs/display-settings/display-dialog.glade:863
+msgid "When a display is connected:"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:876
 msgid "Show popup windows to identify displays"
 msgstr "הצג חלונות קופצים לזיהוי צגים"
 
-#: dialogs/display-settings/display-dialog.glade:848
+#: dialogs/display-settings/display-dialog.glade:902
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>זיהוי צגים</b>"
 
-#: dialogs/display-settings/display-dialog.glade:888
+#: dialogs/display-settings/display-dialog.glade:940
 #: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr "_מתקדם"
 
-#: dialogs/display-settings/display-dialog.glade:940
+#: dialogs/display-settings/display-dialog.glade:992
 msgid "<b>Profile Name</b>"
 msgstr "<b>שם פרופיל</b>"
 
-#: dialogs/display-settings/display-dialog.glade:963
+#: dialogs/display-settings/display-dialog.glade:1015
 msgid "Create"
 msgstr "צור"
 
-#: dialogs/display-settings/display-dialog.glade:998
+#: dialogs/display-settings/display-dialog.glade:1050
 msgid "A profile of this name already exists."
 msgstr "פרופיל בשם הזה כבר קיים."
 
@@ -1168,48 +1184,48 @@ msgid ""
 msgstr "התצורה הקודמת תשוחזר בתוך <b>%i שניות</b> אם לא תענה על השאלה הזאת."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:621
+#: dialogs/display-settings/main.c:637
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:953
+#: dialogs/display-settings/main.c:965
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "הפלט הפעיל לאחרונה חייב לא להיות מנוטרל, המערכת תהפוך ללא שמישה."
 
-#: dialogs/display-settings/main.c:955
+#: dialogs/display-settings/main.c:967
 msgid "Selected output not disabled"
 msgstr "פלט נבחר לא מנוטרל"
 
-#: dialogs/display-settings/main.c:1183
+#: dialogs/display-settings/main.c:1195
 msgid "Profiles matching the currently connected displays"
 msgstr "פרופילים מתאימים לצגים המחוברים כעת"
 
-#: dialogs/display-settings/main.c:1272
+#: dialogs/display-settings/main.c:1284
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "לעדכן את פרופיל התצוגה \"%s\" שעבר שינוי?"
 
-#: dialogs/display-settings/main.c:1277
+#: dialogs/display-settings/main.c:1289
 #, c-format
 msgid "_Update '%s'"
 msgstr "_עדכן '%s'"
 
-#: dialogs/display-settings/main.c:1611
+#: dialogs/display-settings/main.c:1623
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "האם ברצונך למחוק את פרופיל התצוגה \"%s\"?"
 
-#: dialogs/display-settings/main.c:1613
+#: dialogs/display-settings/main.c:1625
 msgid "Delete Profile"
 msgstr "מחק פרופיל"
 
-#: dialogs/display-settings/main.c:1616
+#: dialogs/display-settings/main.c:1628
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "ברגע שפרופיל תצוגה נמחק אין אפשרות לשחזר אותו."
 
-#: dialogs/display-settings/main.c:1617
+#: dialogs/display-settings/main.c:1629
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1217,22 +1233,22 @@ msgstr "ברגע שפרופיל תצוגה נמחק אין אפשרות לשחז
 msgid "Cancel"
 msgstr "בטל"
 
-#: dialogs/display-settings/main.c:1618
+#: dialogs/display-settings/main.c:1630
 msgid "Delete"
 msgstr "מחק"
 
-#: dialogs/display-settings/main.c:1704
+#: dialogs/display-settings/main.c:1716
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d לוחות Xfce"
 
-#: dialogs/display-settings/main.c:2444
+#: dialogs/display-settings/main.c:2458
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "בחר צג כדי לשנות את מאפייניו; גרור אותו כדי להסדיר מחדש את מיקומו."
 
-#: dialogs/display-settings/main.c:2543 dialogs/display-settings/main.c:2576
+#: dialogs/display-settings/main.c:2557 dialogs/display-settings/main.c:2590
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1241,23 +1257,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2798
+#: dialogs/display-settings/main.c:2812
 msgid "Mirror Screens"
 msgstr "שכפול מסכים"
 
-#: dialogs/display-settings/main.c:2848
+#: dialogs/display-settings/main.c:2862
 msgid "(Disabled)"
 msgstr "(מנוטרל)"
 
-#: dialogs/display-settings/main.c:3333
+#: dialogs/display-settings/main.c:3348
 msgid "ATI Settings"
 msgstr "הגדרות ATI"
 
-#: dialogs/display-settings/main.c:3338
+#: dialogs/display-settings/main.c:3353
 msgid "Unable to start the Xfce Display Settings"
 msgstr "לא יכול להתחיל את הגדרות תצוגת Xfce "
 
-#: dialogs/display-settings/main.c:3346
+#: dialogs/display-settings/main.c:3361
 msgid "Unable to launch the proprietary driver settings"
 msgstr "לא יכול להפעיל את הגדרות מנהל ההתקן הקנייני "
 
