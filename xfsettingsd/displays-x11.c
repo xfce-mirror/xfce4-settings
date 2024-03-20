@@ -1515,6 +1515,6 @@ xfce_displays_helper_x11_apply_all (XfceDisplaysHelperX11 *helper)
     gdk_x11_display_ungrab (helper->display);
     if (gdk_x11_display_error_trap_pop (helper->display) != 0)
     {
-        g_critical ("Failed to apply display settings");
+        g_warning ("Failed to apply display settings");
     }
 }
