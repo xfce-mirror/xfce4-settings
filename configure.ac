@@ -97,6 +97,7 @@ dnl *** Check for standard headers ***
 dnl **********************************
 AC_CHECK_HEADERS([errno.h memory.h math.h stdlib.h string.h unistd.h signal.h time.h sys/types.h sys/wait.h])
 AC_CHECK_FUNCS([daemon setsid])
+AC_SEARCH_LIBS([round], [m], [], [AC_MSG_ERROR([unable to find the round() function in math library])])
 
 dnl ******************************
 dnl *** Check for i18n support ***
