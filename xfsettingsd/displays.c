@@ -136,7 +136,7 @@ xfce_displays_helper_constructed (GObject *object)
 
         /*  check if we can auto-enable a profile */
         matching_profile = xfce_displays_helper_get_matching_profile (helper);
-        mode = xfconf_channel_get_int (priv->channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_NEVER);
+        mode = xfconf_channel_get_int (priv->channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_DEFAULT);
         if (matching_profile != NULL && (mode == AUTO_ENABLE_PROFILES_ON_CONNECT || mode == AUTO_ENABLE_PROFILES_ALWAYS))
         {
             XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, matching_profile);

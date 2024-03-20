@@ -27,6 +27,7 @@
 #include "common/xfce-wlr-output-manager.h"
 #include "common/debug.h"
 #include "common/edid.h"
+#include "common/display-profiles.h"
 #include "displays-wayland.h"
 
 
@@ -449,7 +450,7 @@ manager_listener (XfceWlrOutputManager *manager,
        apply it if there's only one */
     if (outputs->len != helper->previous_n_outputs)
     {
-        gint mode = xfconf_channel_get_int (channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_NEVER);
+        gint mode = xfconf_channel_get_int (channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_DEFAULT);
         if (mode == AUTO_ENABLE_PROFILES_ALWAYS
             || (mode == AUTO_ENABLE_PROFILES_ON_CONNECT && outputs->len > helper->previous_n_outputs)
             || (mode == AUTO_ENABLE_PROFILES_ON_DISCONNECT && outputs->len < helper->previous_n_outputs))
@@ -487,7 +488,7 @@ manager_listener (XfceWlrOutputManager *manager,
     }
     else
     {
-        gint action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_SHOW_DIALOG);
+        gint action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT);
         update_needed = TRUE;
 
         for (guint n = 0; n < outputs->len; n++)

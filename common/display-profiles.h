@@ -19,6 +19,24 @@
 #include <glib.h>
 #include <xfconf/xfconf.h>
 
+enum
+{
+    ACTION_ON_NEW_OUTPUT_DO_NOTHING,
+    ACTION_ON_NEW_OUTPUT_SHOW_DIALOG,
+    ACTION_ON_NEW_OUTPUT_MIRROR,
+    ACTION_ON_NEW_OUTPUT_EXTEND,
+};
+
+enum
+{
+    AUTO_ENABLE_PROFILES_NEVER,
+    AUTO_ENABLE_PROFILES_ON_CONNECT,
+    AUTO_ENABLE_PROFILES_ON_DISCONNECT,
+    AUTO_ENABLE_PROFILES_ALWAYS,
+};
+
+#define ACTION_ON_NEW_OUTPUT_DEFAULT ACTION_ON_NEW_OUTPUT_SHOW_DIALOG
+#define AUTO_ENABLE_PROFILES_DEFAULT AUTO_ENABLE_PROFILES_NEVER
 
 gboolean display_settings_profile_name_exists   (XfconfChannel  *channel,
                                                  const gchar    *new_profile_name);

@@ -59,7 +59,6 @@
 #include "display-settings.h"
 
 #define MARGIN  16
-#define NOTIFY_PROP_DEFAULT 1
 #define ONLY_DISPLAY_1 _("Only %s (1)")
 #define ONLY_DISPLAY_2 _("Only %s (2)")
 
@@ -1847,10 +1846,9 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
 
     combobox = gtk_builder_get_object (builder, "autoconnect-mode");
     xfconf_g_property_bind (channel, "/Notify", G_TYPE_INT, combobox, "active");
-    /* Correctly initialize the state of the auto-enable-profiles setting based on autoconnect-mode */
     if (xfconf_channel_get_int (channel, "/Notify", -1) == -1)
     {
-        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), NOTIFY_PROP_DEFAULT);
+        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), ACTION_ON_NEW_OUTPUT_DEFAULT);
     }
 
     apply_button = GTK_WIDGET (gtk_builder_get_object (builder, "apply"));
@@ -1859,6 +1857,10 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
 
     combobox = gtk_builder_get_object (builder, "auto-enable-profiles");
     xfconf_g_property_bind (channel, "/AutoEnableProfiles", G_TYPE_INT, combobox, "active");
+    if (xfconf_channel_get_int (channel, "/AutoEnableProfiles", -1) == -1)
+    {
+        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), AUTO_ENABLE_PROFILES_DEFAULT);
+    }
 
     button = GTK_WIDGET (gtk_builder_get_object (builder, "button-profile-save"));
     gtk_widget_set_sensitive (button, FALSE);

@@ -564,7 +564,7 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
            apply it if there's only one */
         if (helper->outputs->len != old_outputs->len)
         {
-            gint mode = xfconf_channel_get_int (channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_NEVER);
+            gint mode = xfconf_channel_get_int (channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_DEFAULT);
             if (mode == AUTO_ENABLE_PROFILES_ALWAYS
                 || (mode == AUTO_ENABLE_PROFILES_ON_CONNECT && helper->outputs->len > old_outputs->len)
                 || (mode == AUTO_ENABLE_PROFILES_ON_DISCONNECT && helper->outputs->len < old_outputs->len))
@@ -627,7 +627,7 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
         }
         else
         {
-            action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_SHOW_DIALOG);
+            action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT);
 
             /* Diff the new and old output list to find new outputs */
             for (n = 0; n < helper->outputs->len; ++n)
