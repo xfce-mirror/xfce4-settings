@@ -3123,6 +3123,14 @@ display_settings_minimal_cycle (GtkWidget  *dialog,
 }
 
 static void
+display_settings_activated (GApplication *application,
+                            XfceDisplaySettings *settings)
+{
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
+    gtk_window_present (GTK_WINDOW (gtk_builder_get_object (builder, "display-dialog")));
+}
+
+static void
 display_settings_minimal_activated (GApplication *application,
                                     XfceDisplaySettings *settings)
 {
@@ -3276,8 +3284,16 @@ handle_local_options (GApplication *app,
 
     if (!g_application_get_is_remote (app))
     {
-        g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), settings);
-        display_settings_show_minimal_dialog (settings);
+        if (xfce_display_settings_get_n_outputs (settings) <= 1 || !xfce_display_settings_is_minimal (settings))
+        {
+            g_signal_connect (app, "activate", G_CALLBACK (display_settings_activated), settings);
+            display_settings_show_main_dialog (settings);
+        }
+        else
+        {
+            g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), settings);
+            display_settings_show_minimal_dialog (settings);
+        }
         return EXIT_SUCCESS;
     }
 
@@ -3370,18 +3386,13 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    if (xfce_display_settings_get_n_outputs (settings) <= 1 || !opt_minimal)
-        display_settings_show_main_dialog (settings);
-    else
-    {
-        /* Use GtkApplication to ensure single instance */
-        GtkApplication *app = gtk_application_new ("org.xfce.display.settings", 0);
-        g_signal_connect (app, "handle-local-options", G_CALLBACK (handle_local_options), settings);
-        g_application_run (G_APPLICATION (app), 0, NULL);
-        g_object_unref (app);
-    }
+    /* Use GtkApplication to ensure single instance */
+    GtkApplication *app = gtk_application_new ("org.xfce.display.settings", 0);
+    g_signal_connect (app, "handle-local-options", G_CALLBACK (handle_local_options), settings);
+    g_application_run (G_APPLICATION (app), 0, NULL);
 
     /* Cleanup */
+    g_object_unref (app);
     g_object_unref (settings);
     xfconf_shutdown ();
 
