@@ -39,8 +39,7 @@ xfce4_display_settings_LDADD = \
 	$(GLIB_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
-	$(XFCONF_LIBS) \
-	-lm
+	$(XFCONF_LIBS)
 
 if HAVE_XRANDR
 xfce4_display_settings_SOURCES += \

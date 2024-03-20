@@ -32,8 +32,7 @@ libxfce4_settings_la_LIBADD = \
 	$(GLIB_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
-	$(XFCONF_LIBS) \
-	-lm
+	$(XFCONF_LIBS)
 
 if HAVE_XRANDR
 libxfce4_settings_la_SOURCES += \

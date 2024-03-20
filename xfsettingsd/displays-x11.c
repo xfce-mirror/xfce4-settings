@@ -1308,8 +1308,8 @@ xfce_displays_helper_x11_normalize_crtc (XfceRRCrtc            *crtc,
                     crtc->id, crtc->width, crtc->height, crtc->x, crtc->y);
 
     /* calculate the total screen size */
-    helper->width = MAX (helper->width, crtc->x + crtc->width * crtc->scalex);
-    helper->height = MAX (helper->height, crtc->y + crtc->height * crtc->scaley);
+    helper->width = MAX (helper->width, crtc->x + round (crtc->width * crtc->scalex));
+    helper->height = MAX (helper->height, crtc->y + round (crtc->height * crtc->scaley));
 
     /* The 'physical size' of an X screen is meaningless if that screen
      * can consist of many monitors. So just pick a size that make the

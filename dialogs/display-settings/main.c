@@ -28,8 +28,9 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-
+#ifdef HAVE_MATH_H
 #include <math.h>
+#endif
 
 #include <glib.h>
 #include <gtk/gtk.h>
@@ -2043,8 +2044,8 @@ get_geometry (XfceOutput *output, int *w, int *h)
     {
         if (output->scale > 0 && output->scale != 1.0)
         {
-            *h = output->mode->height / output->scale;
-            *w = output->mode->width / output->scale;
+            *h = round (output->mode->height / output->scale);
+            *w = round (output->mode->width / output->scale);
         }
         else
         {

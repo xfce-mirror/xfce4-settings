@@ -800,9 +800,9 @@ xfce_randr_mode_width (XfceRandr        *randr,
     g_return_val_if_fail (mode != NULL, 0);
 
     if ((randr->rotation[output] & (RR_Rotate_90 | RR_Rotate_270)) != 0)
-        return mode->height * randr->scaley[output];
+        return round (mode->height * randr->scaley[output]);
     else
-        return mode->width * randr->scalex[output];
+        return round (mode->width * randr->scalex[output]);
 }
 
 
@@ -815,7 +815,7 @@ xfce_randr_mode_height (XfceRandr        *randr,
     g_return_val_if_fail (mode != NULL, 0);
 
     if ((randr->rotation[output] & (RR_Rotate_90 | RR_Rotate_270)) != 0)
-        return mode->width * randr->scalex[output];
+        return round (mode->width * randr->scalex[output]);
     else
-        return mode->height * randr->scaley[output];
+        return round (mode->height * randr->scaley[output]);
 }

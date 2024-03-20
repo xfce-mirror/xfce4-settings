@@ -41,8 +41,7 @@ xfce4_mouse_settings_LDADD = \
 	$(XFCONF_LIBS) \
 	$(XI_LIBS) \
 	$(LIBX11_LIBS) \
-	$(LIBINPUT_LIBS) \
-	-lm
+	$(LIBINPUT_LIBS)
 
 if HAVE_XCURSOR
 xfce4_mouse_settings_CFLAGS += \

@@ -54,8 +54,7 @@ xfsettingsd_LDADD = \
 	$(GMODULE_LIBS) \
 	$(XFCONF_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
-	$(LIBXFCE4UI_LIBS) \
-	-lm
+	$(LIBXFCE4UI_LIBS)
 
 if ENABLE_X11
 

@@ -20,6 +20,10 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
+
 #include <gdk/gdkwayland.h>
 #include <libxfce4util/libxfce4util.h>
 
@@ -407,13 +411,13 @@ xfce_display_settings_wayland_get_geometry (XfceDisplaySettings *settings,
         case XFCE_WLR_TRANSFORM_270:
         case XFCE_WLR_TRANSFORM_FLIPPED_90:
         case XFCE_WLR_TRANSFORM_FLIPPED_270:
-            geometry->width = mode->height / scale;
-            geometry->height = mode->width / scale;
+            geometry->width = round (mode->height / scale);
+            geometry->height = round (mode->width / scale);
             break;
 
         default:
-            geometry->width = mode->width / scale;
-            geometry->height = mode->height / scale;
+            geometry->width = round (mode->width / scale);
+            geometry->height = round (mode->height / scale);
             break;
     }
 }
