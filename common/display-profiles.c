@@ -84,25 +84,16 @@ display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
     GList      *channel_contents;
     GList      *profiles = NULL;
     GList      *current;
-    guint       m;
-    guint       noutput;
 
     properties = xfconf_channel_get_properties (channel, NULL);
     channel_contents = g_hash_table_get_keys (properties);
-    noutput = g_strv_length (display_infos);
 
     /* get all profiles */
     current = g_list_first (channel_contents);
     while (current)
     {
-        GHashTable     *props;
-        gchar          *property_profile;
-        GHashTableIter  iter;
-        gpointer        key, value;
-        guint           profile_match = 0;
-        guint           monitors = 0;
-        gchar         **current_elements = g_strsplit (current->data, "/", -1);
-        gchar          *profile_name;
+        gchar **current_elements = g_strsplit (current->data, "/", -1);
+        gchar *profile_name;
 
         /* Only process the profiles and skip all other xfconf properties */
         /* If xfconf ever supports just getting the first-level children of a property
@@ -117,49 +108,12 @@ display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
         profile_name = g_strdup_printf ("%s", *(current_elements + 1));
         g_strfreev (current_elements);
 
-        /* Walk through the profile and check if every EDID referenced there is also currently available */
-        property_profile = g_strdup_printf ("/%s", profile_name);
-        props = xfconf_channel_get_properties (channel, property_profile);
-        g_hash_table_iter_init (&iter, props);
-
-        while (g_hash_table_iter_next (&iter, &key, &value))
-        {
-            gchar *property;
-            gchar *current_edid;
-
-            gchar ** property_elements = g_strsplit (key, "/", -1);
-            if (get_size (property_elements) == 3) {
-                monitors++;
-
-                property = g_strdup_printf ("%s/EDID", (gchar*)key);
-                current_edid = xfconf_channel_get_string (channel, property, NULL);
-
-                if (current_edid) {
-
-                    for (m = 0; m < noutput; ++m)
-                    {
-                        if (g_strcmp0 (display_infos[m], current_edid) == 0)
-                        {
-                            profile_match ++;
-                        }
-                    }
-                }
-                g_free (property);
-                g_free (current_edid);
-            }
-
-            g_strfreev (property_elements);
-        }
-        g_free (property_profile);
-        g_hash_table_destroy (props);
-
         /* filter the content of the combobox to only matching profiles and exclude "Notify", "Default" and "Schemes" */
         if (!g_list_find_custom (profiles, profile_name, (GCompareFunc) strcmp) &&
             strcmp (profile_name, "Notify") &&
             strcmp (profile_name, "Default") &&
             strcmp (profile_name, "Schemes") &&
-            profile_match == monitors &&
-            noutput == profile_match)
+            display_settings_profile_matches (current->data, display_infos, channel))
         {
             profiles = g_list_prepend (profiles, g_strdup (profile_name));
         }
@@ -172,4 +126,44 @@ display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
     g_hash_table_destroy (properties);
 
     return profiles;
+}
+
+gboolean
+display_settings_profile_matches (const gchar *profile,
+                                  gchar **display_infos,
+                                  XfconfChannel *channel)
+{
+    /* Walk through the profile and check if every EDID referenced there is also currently available */
+    GHashTable *props = xfconf_channel_get_properties (channel, profile);
+    GHashTableIter iter;
+    gpointer key, value;
+    guint n_infos = g_strv_length (display_infos);
+    guint n_outputs = 0;
+    gboolean all_match = FALSE;
+
+    g_hash_table_iter_init (&iter, props);
+    while (g_hash_table_iter_next (&iter, &key, &value))
+    {
+        gchar **tokens = g_strsplit (key, "/", -1);
+        guint n_tokens = g_strv_length (tokens);
+        g_strfreev (tokens);
+        if (n_tokens == 3)
+        {
+            gchar *property;
+            gchar *edid;
+            if (++n_outputs > n_infos)
+                break;
+
+            property = g_strdup_printf ("%s/EDID", (gchar*) key);
+            edid = xfconf_channel_get_string (channel, property, NULL);
+            all_match = g_strv_contains ((const gchar *const *) display_infos, edid);
+            g_free (edid);
+            g_free (property);
+            if (!all_match)
+                break;
+        }
+    }
+    g_hash_table_destroy (props);
+
+    return all_match && n_outputs == n_infos;
 }

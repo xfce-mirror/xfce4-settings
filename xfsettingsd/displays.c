@@ -197,6 +197,11 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
     if (display_infos != NULL)
     {
         profiles = display_settings_get_profiles (display_infos, priv->channel);
+        if (profiles == NULL && display_settings_profile_matches ("/Default", display_infos, priv->channel))
+        {
+            /* if user profile matching failed, use Default if possible */
+            profiles = g_list_prepend (profiles, g_strdup ("Default"));
+        }
         g_strfreev (display_infos);
     }
 
