@@ -1131,7 +1131,7 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
             /* register this xsettings window for this screen */
             xev.type = ClientMessage;
             xev.window = root_window;
-            xev.message_type = XInternAtom (xdisplay, "MANAGER", True);
+            xev.message_type = XInternAtom (xdisplay, "MANAGER", False);
             xev.format = 32;
             xev.data.l[0] = timestamp;
             xev.data.l[1] = selection_atom;
