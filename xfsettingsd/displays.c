@@ -111,7 +111,7 @@ xfce_displays_helper_constructed (GObject *object)
     /* if X11/Wayland impl init suceeded */
     if (XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_outputs (helper) != NULL)
     {
-        const gchar *matching_profile;
+        gchar *matching_profile;
         gint mode;
 
 #ifdef HAVE_UPOWERGLIB
@@ -145,6 +145,7 @@ xfce_displays_helper_constructed (GObject *object)
         {
             XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, DEFAULT_SCHEME_NAME);
         }
+        g_free (matching_profile);
     }
 
     G_OBJECT_CLASS (xfce_displays_helper_parent_class)->constructed (object);
@@ -185,12 +186,13 @@ xfce_displays_helper_new (void)
 
 
 
-const gchar *
+gchar *
 xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
 {
     XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
     GList *profiles = NULL;
     gchar **display_infos = XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_display_infos (helper);
+    gchar *profile = NULL;
 
     if (display_infos != NULL)
     {
@@ -204,12 +206,8 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
     }
     else if (g_list_length (profiles) == 1)
     {
-        gchar *property = g_strdup_printf ("/%s", (gchar *) profiles->data);
-        gchar *profile_name = xfconf_channel_get_string (priv->channel, property, NULL);
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applied the only matching display profile: %s", profile_name);
-        g_free (profile_name);
-        g_free (property);
-        return profiles->data;
+        profile = g_strdup (profiles->data);
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applied the only matching display profile: %s", profile);
     }
     else
     {
@@ -218,7 +216,7 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
 
     g_list_free_full (profiles, g_free);
 
-    return NULL;
+    return profile;
 }
 
 
