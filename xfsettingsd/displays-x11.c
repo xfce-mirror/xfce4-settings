@@ -1317,8 +1317,8 @@ xfce_displays_helper_x11_normalize_crtc (XfceRRCrtc            *crtc,
      *
      * Firefox and Evince apparently believe what X tells them.
      */
-    helper->mm_width = (helper->width / 96.0) * 25.4 + 0.5;
-    helper->mm_height = (helper->height / 96.0) * 25.4 + 0.5;
+    helper->mm_width = round ((helper->width / 96.0) * 25.4 + 0.5);
+    helper->mm_height = round ((helper->height / 96.0) * 25.4 + 0.5);
 }
 
 
