@@ -81,7 +81,6 @@ static void             xfce_display_settings_x11_set_primary                (Xf
                                                                               gboolean                  primary);
 static gboolean         xfce_display_settings_x11_is_clonable                (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_x11_save                       (XfceDisplaySettings      *settings,
-                                                                              guint                     output_id,
                                                                               const gchar              *scheme);
 static void             xfce_display_settings_x11_mirror                     (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_x11_unmirror                   (XfceDisplaySettings      *settings);
@@ -542,12 +541,14 @@ xfce_display_settings_x11_is_clonable (XfceDisplaySettings *settings)
 
 static void
 xfce_display_settings_x11_save (XfceDisplaySettings *settings,
-                                guint output_id,
                                 const gchar *scheme)
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
     XfconfChannel *channel = xfce_display_settings_get_channel (settings);
-    xfce_randr_save_output (randr, scheme, channel, output_id);
+    for (guint n = 0; n < randr->noutput; n++)
+    {
+        xfce_randr_save_output (randr, scheme, channel, n);
+    }
 }
 
 

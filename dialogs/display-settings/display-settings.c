@@ -147,9 +147,7 @@ xfce_display_settings_new (gboolean opt_minimal,
         get_instance_private (settings)->opt_minimal = opt_minimal;
 
         /* store a Fallback of the current settings */
-        guint n_outputs = xfce_display_settings_get_n_outputs (settings);
-        for (guint n = 0; n < n_outputs; n++)
-            xfce_display_settings_save (settings, n, "Fallback");
+        xfce_display_settings_save (settings, "Fallback");
     }
     else if (error != NULL && *error == NULL)
     {
@@ -988,11 +986,17 @@ xfce_display_settings_is_clonable (XfceDisplaySettings *settings)
 
 void
 xfce_display_settings_save (XfceDisplaySettings *settings,
-                            guint output_id,
                             const gchar *scheme)
 {
+    gchar *prop;
+
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
-    XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->save (settings, output_id, scheme);
+
+    prop = g_strdup_printf ("/%s", scheme);
+    xfconf_channel_reset_property (get_instance_private (settings)->channel, prop, TRUE);
+    g_free (prop);
+
+    XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->save (settings, scheme);
 }
 
 

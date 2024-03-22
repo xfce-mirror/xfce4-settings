@@ -1304,10 +1304,7 @@ display_settings_dialog_response (GtkDialog *dialog,
             /* update the profile */
             if (profile_response_id == GTK_RESPONSE_OK)
             {
-                guint n_outputs = xfce_display_settings_get_n_outputs (settings);
-                for (guint n = 0; n < n_outputs; n++)
-                    xfce_display_settings_save (settings, n, initial_active_profile);
-
+                xfce_display_settings_save (settings, initial_active_profile);
                 xfconf_channel_set_string (channel, "/ActiveProfile", initial_active_profile);
             }
         }
@@ -1339,9 +1336,7 @@ show_confirmation_dialog (gpointer data)
     if (display_setting_timed_confirmation (settings))
     {
         /* Update the Fallback */
-        guint n_outputs = xfce_display_settings_get_n_outputs (settings);
-        for (guint n = 0; n < n_outputs; n++)
-            xfce_display_settings_save (settings, n, "Fallback");
+        xfce_display_settings_save (settings, "Fallback");
     }
     else
     {
@@ -1389,8 +1384,7 @@ display_setting_apply (GtkWidget *widget, XfceDisplaySettings *settings)
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
 
     /* Apply changes */
-    for (guint n = 0; n < n_outputs; n++)
-        xfce_display_settings_save (settings, n, "Default");
+    xfce_display_settings_save (settings, "Default");
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
 
     /* Run dialog after this signal handler to avoid random freeze */
@@ -1442,16 +1436,13 @@ display_settings_profile_save (GtkWidget *widget, XfceDisplaySettings *settings)
     if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
         XfconfChannel *channel = xfce_display_settings_get_channel (settings);
-        guint n_outputs = xfce_display_settings_get_n_outputs (settings);
         gchar *property;
         gchar *profile_hash;
         gchar *profile_name;
 
         gtk_tree_model_get (model, &iter, COLUMN_NAME, &profile_name, COLUMN_HASH, &profile_hash, -1);
         property = g_strdup_printf ("/%s", profile_hash);
-
-        for (guint n = 0; n < n_outputs; n++)
-            xfce_display_settings_save (settings, n, profile_hash);
+        xfce_display_settings_save (settings, profile_hash);
 
         /* save the human-readable name of the profile as string value */
         xfconf_channel_set_string (channel, property, profile_name);
@@ -1512,14 +1503,12 @@ display_settings_profile_create_cb (GtkWidget *widget, XfceDisplaySettings *sett
 
     if (profile_name)
     {
-        guint n_outputs = xfce_display_settings_get_n_outputs (settings);
         gchar *property;
         gchar *profile_hash;
 
         profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen(profile_name));
         property = g_strdup_printf ("/%s", profile_hash);
-        for (guint n = 0; n < n_outputs; n++)
-            xfce_display_settings_save (settings, n, profile_hash);
+        xfce_display_settings_save (settings, profile_hash);
 
         /* save the human-readable name of the profile as string value */
         xfconf_channel_set_string (channel, property, profile_name);
@@ -1913,8 +1902,7 @@ display_settings_minimal_only_display_n_toggled (GtkToggleButton *button,
     }
 
     /* Apply the changes */
-    xfce_display_settings_save (settings, 0, "Default");
-    xfce_display_settings_save (settings, 1, "Default");
+    xfce_display_settings_save (settings, "Default");
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
 }
 
@@ -1970,8 +1958,7 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
         xfce_display_settings_mirror (settings);
 
         /* Apply all changes */
-        xfce_display_settings_save (settings, 0, "Default");
-        xfce_display_settings_save (settings, 1, "Default");
+        xfce_display_settings_save (settings, "Default");
         xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
     }
     else
@@ -2003,8 +1990,7 @@ display_settings_minimal_extend_displays_toggled (GtkToggleButton *button,
     xfce_display_settings_extend (settings, 0, 1, mode);
 
     /* Save changes to both displays */
-    xfce_display_settings_save (settings, 0, "Default");
-    xfce_display_settings_save (settings, 1, "Default");
+    xfce_display_settings_save (settings, "Default");
 
     /* Apply all changes */
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");

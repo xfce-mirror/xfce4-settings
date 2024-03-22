@@ -164,7 +164,6 @@ struct _XfceDisplaySettingsClass
                                                        gboolean                  primary);
     gboolean         (*is_clonable)                   (XfceDisplaySettings      *settings);
     void             (*save)                          (XfceDisplaySettings      *settings,
-                                                       guint                     output_id,
                                                        const gchar              *scheme);
     void             (*mirror)                        (XfceDisplaySettings      *settings);
     void             (*unmirror)                      (XfceDisplaySettings      *settings);
@@ -242,7 +241,6 @@ ExtendedMode             xfce_display_settings_get_extended_mode       (XfceDisp
                                                                         guint                    output_id_2);
 gboolean                 xfce_display_settings_is_clonable             (XfceDisplaySettings     *settings);
 void                     xfce_display_settings_save                    (XfceDisplaySettings     *settings,
-                                                                        guint                    output_id,
                                                                         const gchar             *scheme);
 void                     xfce_display_settings_mirror                  (XfceDisplaySettings     *settings);
 void                     xfce_display_settings_unmirror                (XfceDisplaySettings     *settings);

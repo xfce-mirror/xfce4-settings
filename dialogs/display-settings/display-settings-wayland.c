@@ -84,7 +84,6 @@ static void             xfce_display_settings_wayland_set_primary               
                                                                                   gboolean                  primary);
 static gboolean         xfce_display_settings_wayland_is_clonable                (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_wayland_save                       (XfceDisplaySettings      *settings,
-                                                                                  guint                     output_id,
                                                                                   const gchar              *scheme);
 static void             xfce_display_settings_wayland_mirror                     (XfceDisplaySettings      *settings);
 static void             xfce_display_settings_wayland_unmirror                   (XfceDisplaySettings      *settings);
@@ -725,15 +724,12 @@ xfce_display_settings_wayland_is_clonable (XfceDisplaySettings *settings)
 
 
 static void
-xfce_display_settings_wayland_save (XfceDisplaySettings *settings,
-                                    guint output_id,
-                                    const gchar *scheme)
+output_save (XfceWlrOutput *output,
+             XfceWlrMode *mode,
+             const gchar *friendly_name,
+             XfconfChannel *channel,
+             const gchar *scheme)
 {
-    XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
-    GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
-    XfceWlrOutput *output = g_ptr_array_index (outputs, output_id);
-    XfceWlrMode *mode = get_current_mode (wsettings, output);
-    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
     RotationFlags rotation;
     gchar *property, *str_value;
     gdouble scale;
@@ -741,7 +737,7 @@ xfce_display_settings_wayland_save (XfceDisplaySettings *settings,
 
     /* save the device name */
     property = g_strdup_printf ("/%s/%s", scheme, output->name);
-    xfconf_channel_set_string (channel, property, xfce_display_settings_wayland_get_friendly_name (settings, output_id));
+    xfconf_channel_set_string (channel, property, friendly_name);
     g_free (property);
 
     property = g_strdup_printf ("/%s/%s/EDID", scheme, output->name);
@@ -809,6 +805,24 @@ xfce_display_settings_wayland_save (XfceDisplaySettings *settings,
     property = g_strdup_printf ("/%s/%s/Position/Y", scheme, output->name);
     xfconf_channel_set_int (channel, property, MAX (output->y, 0));
     g_free (property);
+}
+
+
+
+static void
+xfce_display_settings_wayland_save (XfceDisplaySettings *settings,
+                                    const gchar *scheme)
+{
+    XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
+    GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
+    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
+    for (guint n = 0; n < outputs->len; n++)
+    {
+        XfceWlrOutput *output = g_ptr_array_index (outputs, n);
+        XfceWlrMode *mode = get_current_mode (wsettings, output);
+        const gchar *friendly_name = xfce_display_settings_wayland_get_friendly_name (settings, n);
+        output_save (output, mode, friendly_name, channel, scheme);
+    }
 }
 
 
@@ -956,8 +970,7 @@ manager_listener (XfceWlrOutputManager *manager,
      * should be reversed to avoid this, by saving temporary changes under a temporary
      * property, and only modifying the Default property in the event of confirmation.
      */
-    for (guint n = 0; n < outputs->len; n++)
-        xfce_display_settings_wayland_save (settings, n, "Default");
+    xfce_display_settings_wayland_save (settings, "Default");
 
     xfce_display_settings_populate_combobox (settings);
     xfce_display_settings_populate_profile_list (settings);
