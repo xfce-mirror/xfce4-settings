@@ -27,13 +27,6 @@
 #define XFCE_RANDR_ROTATIONS_MASK             (RR_Rotate_0|RR_Rotate_90|RR_Rotate_180|RR_Rotate_270)
 #define XFCE_RANDR_REFLECTIONS_MASK           (RR_Reflect_X|RR_Reflect_Y)
 
-/* check for randr 1.3 or better */
-#if RANDR_MAJOR > 1 || (RANDR_MAJOR == 1 && RANDR_MINOR >= 3)
-#define HAS_RANDR_ONE_POINT_THREE
-#else
-#undef HAS_RANDR_ONE_POINT_THREE
-#endif
-
 typedef struct _XfceRandr          XfceRandr;
 typedef struct _XfceRandrPrivate   XfceRandrPrivate;
 typedef struct _XfceRRMode         XfceRRMode;

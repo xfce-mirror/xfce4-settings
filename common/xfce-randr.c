@@ -42,12 +42,8 @@
 
 struct _XfceRandrPrivate
 {
-    /* xrandr 1.3 capable */
-    gint                 has_1_3;
-
     GdkDisplay          *display;
     XRRScreenResources  *resources;
-
 
     /* cache for the output/mode info */
     XRROutputInfo      **output_info;
@@ -226,12 +222,10 @@ xfce_randr_populate (XfceRandr *randr,
         /* fill in supported modes */
         randr->priv->modes[m] = xfce_randr_list_supported_modes (randr->priv->resources, randr->priv->output_info[m]);
 
-#ifdef HAS_RANDR_ONE_POINT_THREE
-        /* find the primary screen if supported */
-        if (randr->priv->has_1_3 && XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->priv->resources->outputs[output_ids[m]])
+        /* find the primary screen */
+        if (XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->priv->resources->outputs[output_ids[m]])
             randr->status[m] = XFCE_OUTPUT_STATUS_PRIMARY;
         else
-#endif
             randr->status[m] = XFCE_OUTPUT_STATUS_SECONDARY;
 
         if (randr->priv->output_info[m]->crtc != None)
@@ -302,20 +296,9 @@ xfce_randr_new (GdkDisplay  *display,
         return NULL;
     }
 
-    /* we need atleast randr 1.2, 2.0 will probably break the api */
-    if (major < 1 || (major == 1 && minor < 2))
-    {
-        /* 1.2 is required */
-        g_set_error (error, 0, 0, _("This system is using RandR %d.%d. For the display settings to work "
-                                    "version 1.2 is required at least"), major, minor);
-        return NULL;
-    }
-
     /* allocate the structure */
     randr = g_slice_new0 (XfceRandr);
     randr->priv = g_slice_new0 (XfceRandrPrivate);
-
-    randr->priv->has_1_3 = (major > 1 || (major == 1 && minor >= 3));
 
     /* set display */
     randr->priv->display = display;
@@ -398,15 +381,10 @@ xfce_randr_reload (XfceRandr *randr)
     root_window = gdk_get_default_root_window ();
 
     /* get the screen resource */
-#ifdef HAS_RANDR_ONE_POINT_THREE
     /* xfce_randr_reload() is only called after a xrandr notification, which
        means that X is aware of the new hardware already. So, if possible,
        do not reprobe the hardware again. */
-    if (randr->priv->has_1_3)
-        randr->priv->resources = XRRGetScreenResourcesCurrent (xdisplay, GDK_WINDOW_XID (root_window));
-    else
-#endif
-    randr->priv->resources = XRRGetScreenResources (xdisplay, GDK_WINDOW_XID (root_window));
+    randr->priv->resources = XRRGetScreenResourcesCurrent (xdisplay, GDK_WINDOW_XID (root_window));
 
     /* repopulate */
     xfce_randr_populate (randr, xdisplay, root_window);
@@ -489,7 +467,6 @@ xfce_randr_save_output (XfceRandr     *randr,
                 randr->priv->output_info[output]->name);
     xfconf_channel_set_string (channel, property, str_value);
 
-#ifdef HAS_RANDR_ONE_POINT_THREE
     /* is it the primary output? */
     g_snprintf (property, sizeof (property), "/%s/%s/Primary", scheme,
                 randr->priv->output_info[output]->name);
@@ -511,7 +488,6 @@ xfce_randr_save_output (XfceRandr     *randr,
                     randr->priv->output_info[output]->name);
         xfconf_channel_reset_property (channel, property, TRUE);
     }
-#endif
 
     /* save the position */
     g_snprintf (property, sizeof (property), "/%s/%s/Position/X", scheme,

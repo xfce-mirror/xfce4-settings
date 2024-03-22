@@ -99,10 +99,7 @@ struct _XfceDisplaysHelperX11
 {
     XfceDisplaysHelper  __parent__;
 
-#ifdef HAS_RANDR_ONE_POINT_THREE
-    gint                has_1_3;
     gint                primary;
-#endif
 
     GdkDisplay         *display;
     GdkWindow          *root_window;
@@ -177,7 +174,6 @@ xfce_displays_helper_x11_class_init (XfceDisplaysHelperX11Class *klass)
 static void
 xfce_displays_helper_x11_init (XfceDisplaysHelperX11 *helper)
 {
-    gint major = 0, minor = 0;
     gint error_base, err;
 
     helper->resources = NULL;
@@ -192,48 +188,33 @@ xfce_displays_helper_x11_init (XfceDisplaysHelperX11 *helper)
     /* check if the randr extension is running */
     if (XRRQueryExtension (helper->xdisplay, &helper->event_base, &error_base))
     {
-        /* query the version */
-        if (XRRQueryVersion (helper->xdisplay, &major, &minor)
-            && (major > 1 || (major == 1 && minor >= 2)))
+        gdk_x11_display_error_trap_push (helper->display);
+        /* get the screen resource */
+        helper->resources = XRRGetScreenResources (helper->xdisplay,
+                                                   GDK_WINDOW_XID (helper->root_window));
+        gdk_display_flush (helper->display);
+        err = gdk_x11_display_error_trap_pop (helper->display);
+        if (err)
         {
-            gdk_x11_display_error_trap_push (helper->display);
-            /* get the screen resource */
-            helper->resources = XRRGetScreenResources (helper->xdisplay,
-                                                       GDK_WINDOW_XID (helper->root_window));
-            gdk_display_flush (helper->display);
-            err = gdk_x11_display_error_trap_pop (helper->display);
-            if (err)
-            {
-                g_critical ("XRRGetScreenResources failed (err: %d). "
-                            "Display settings won't be applied.", err);
-                return;
-            }
-
-            /* get all existing CRTCs and connected outputs */
-            helper->crtcs = xfce_displays_helper_x11_list_crtcs (helper);
-            helper->outputs = xfce_displays_helper_x11_list_outputs (helper);
-
-            /* Set up RandR notifications */
-            XRRSelectInput (helper->xdisplay,
-                            GDK_WINDOW_XID (helper->root_window),
-                            RRScreenChangeNotifyMask);
-            gdk_x11_register_standard_event_type (helper->display,
-                                                  helper->event_base,
-                                                  RRNotify + 1);
-            gdk_window_add_filter (helper->root_window,
-                                   xfce_displays_helper_x11_screen_on_event,
-                                   helper);
-
-#ifdef HAS_RANDR_ONE_POINT_THREE
-            helper->has_1_3 = (major > 1 || (major == 1 && minor >= 3));
-#endif
+            g_critical ("XRRGetScreenResources failed (err: %d). "
+                        "Display settings won't be applied.", err);
+            return;
         }
-        else
-        {
-             g_critical ("RANDR extension is too old, version %d.%d. "
-                         "Display settings won't be applied.",
-                         major, minor);
-        }
+
+        /* get all existing CRTCs and connected outputs */
+        helper->crtcs = xfce_displays_helper_x11_list_crtcs (helper);
+        helper->outputs = xfce_displays_helper_x11_list_outputs (helper);
+
+        /* Set up RandR notifications */
+        XRRSelectInput (helper->xdisplay,
+                        GDK_WINDOW_XID (helper->root_window),
+                        RRScreenChangeNotifyMask);
+        gdk_x11_register_standard_event_type (helper->display,
+                                              helper->event_base,
+                                              RRNotify + 1);
+        gdk_window_add_filter (helper->root_window,
+                               xfce_displays_helper_x11_screen_on_event,
+                               helper);
     }
     else
     {
@@ -450,12 +431,9 @@ xfce_displays_helper_x11_channel_apply (XfceDisplaysHelper *_helper,
     XfconfChannel *channel = xfce_displays_helper_get_channel (_helper);
     gchar       property[512];
     guint       n, nactive;
-    GHashTable *saved_outputs;
+    GHashTable *saved_outputs = NULL;
 
-    saved_outputs = NULL;
-#ifdef HAS_RANDR_ONE_POINT_THREE
     helper->primary = None;
-#endif
 
     xfconf_channel_set_string (channel, ACTIVE_PROFILE, scheme);
 
@@ -513,17 +491,10 @@ xfce_displays_helper_x11_reload (XfceDisplaysHelperX11 *helper)
     XRRFreeScreenResources (helper->resources);
 
     /* get the screen resource */
-#ifdef HAS_RANDR_ONE_POINT_THREE
     /* xfce_displays_helper_x11_reload () is usually called after a xrandr notification,
        which means that X is aware of the new hardware already. So, if possible,
        do not reprobe the hardware again. */
-    if (helper->has_1_3)
-        helper->resources = XRRGetScreenResourcesCurrent (helper->xdisplay,
-                                                          GDK_WINDOW_XID (helper->root_window));
-    else
-#endif
-    helper->resources = XRRGetScreenResources (helper->xdisplay,
-                                               GDK_WINDOW_XID (helper->root_window));
+    helper->resources = XRRGetScreenResourcesCurrent (helper->xdisplay, GDK_WINDOW_XID (helper->root_window));
 
     gdk_display_flush (helper->display);
     err = gdk_x11_display_error_trap_pop (helper->display);
@@ -786,17 +757,12 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     if (value == NULL || !G_VALUE_HOLDS_STRING (value))
         return active;
 
-#ifdef HAS_RANDR_ONE_POINT_THREE
-    if (helper->has_1_3)
-    {
-        /* is it the primary output? */
-        g_snprintf (property, sizeof (property), PRIMARY_PROP, scheme,
-                    output->info->name);
-        value = g_hash_table_lookup (saved_outputs, property);
-        if (G_VALUE_HOLDS_BOOLEAN (value) && g_value_get_boolean (value))
-            helper->primary = output->id;
-    }
-#endif
+    /* is it the primary output? */
+    g_snprintf (property, sizeof (property), PRIMARY_PROP, scheme,
+                output->info->name);
+    value = g_hash_table_lookup (saved_outputs, property);
+    if (G_VALUE_HOLDS_BOOLEAN (value) && g_value_get_boolean (value))
+        helper->primary = output->id;
 
     /* status */
     g_snprintf (property, sizeof (property), ACTIVE_PROP, scheme, output->info->name);
@@ -889,34 +855,29 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     else
         output_rate = 0.0;
 
-#ifdef HAS_RANDR_ONE_POINT_THREE
-    if (helper->has_1_3)
+    /* scaling */
+    g_snprintf (property, sizeof (property), SCALE_PROP, scheme, output->info->name);
+    value = g_hash_table_lookup (saved_outputs, property);
+    if (G_VALUE_HOLDS_DOUBLE (value))
+        scale = g_value_get_double (value);
+    else
+        scale = 1.0;
+
+    /* backward compatibility; old properties are reset in xfce-randr.c when saving  */
+    g_snprintf (property, sizeof (property), SCALEX_PROP, scheme, output->info->name);
+    value = g_hash_table_lookup (saved_outputs, property);
+    if (G_VALUE_HOLDS_DOUBLE (value))
+        scale = g_value_get_double (value);
+
+    if (scale <= 0.0)
+        scale = 1.0;
+
+    if (crtc->scalex != scale || crtc->scaley != scale)
     {
-        /* scaling */
-        g_snprintf (property, sizeof (property), SCALE_PROP, scheme, output->info->name);
-        value = g_hash_table_lookup (saved_outputs, property);
-        if (G_VALUE_HOLDS_DOUBLE (value))
-            scale = g_value_get_double (value);
-        else
-            scale = 1.0;
-
-        /* backward compatibility; old properties are reset in xfce-randr.c when saving  */
-        g_snprintf (property, sizeof (property), SCALEX_PROP, scheme, output->info->name);
-        value = g_hash_table_lookup (saved_outputs, property);
-        if (G_VALUE_HOLDS_DOUBLE (value))
-            scale = g_value_get_double (value);
-
-        if (scale <= 0.0)
-            scale = 1.0;
-
-        if (crtc->scalex != scale || crtc->scaley != scale)
-        {
-            crtc->scalex = scale;
-            crtc->scaley = scale;
-            crtc->changed = TRUE;
-        }
+        crtc->scalex = scale;
+        crtc->scaley = scale;
+        crtc->changed = TRUE;
     }
-#endif
 
     /* check mode validity */
     valid_mode = None;
@@ -1376,35 +1337,30 @@ xfce_displays_helper_x11_apply_crtc_transform (XfceRRCrtc            *crtc,
     if (!crtc->changed)
         return;
 
-#ifdef HAS_RANDR_ONE_POINT_THREE
-    if (helper->has_1_3)
+    if (crtc->scalex == 1 && crtc->scaley == 1)
+        filter = "nearest";
+    else
+        filter = "bilinear";
+
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applying CRTC %lu Transform: x=%lf y=%lf, filter=%s.", crtc->id,
+                    crtc->scalex, crtc->scaley, filter);
+
+    memset(&transform, '\0', sizeof(transform));
+
+    transform.matrix[0][0] = XDoubleToFixed(crtc->scalex);
+    transform.matrix[1][1] = XDoubleToFixed(crtc->scaley);
+    transform.matrix[2][2] = XDoubleToFixed(1.0);
+
+    gdk_x11_display_error_trap_push (helper->display);
+    XRRSetCrtcTransform(helper->xdisplay, crtc->id,
+                        &transform,
+                        filter,
+                        NULL,
+                        0);
+    if (gdk_x11_display_error_trap_pop (helper->display) != 0)
     {
-        if (crtc->scalex == 1 && crtc->scaley == 1)
-            filter = "nearest";
-        else
-            filter = "bilinear";
-
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applying CRTC %lu Transform: x=%lf y=%lf, filter=%s.", crtc->id,
-                        crtc->scalex, crtc->scaley, filter);
-
-        memset(&transform, '\0', sizeof(transform));
-
-        transform.matrix[0][0] = XDoubleToFixed(crtc->scalex);
-        transform.matrix[1][1] = XDoubleToFixed(crtc->scaley);
-        transform.matrix[2][2] = XDoubleToFixed(1.0);
-
-        gdk_x11_display_error_trap_push (helper->display);
-        XRRSetCrtcTransform(helper->xdisplay, crtc->id,
-                            &transform,
-                            filter,
-                            NULL,
-                            0);
-        if (gdk_x11_display_error_trap_pop (helper->display) != 0)
-        {
-            g_warning ("Failed to apply the scale, maybe the CRTC does not support transforms");
-        }
+        g_warning ("Failed to apply the scale, maybe the CRTC does not support transforms");
     }
-#endif
 }
 
 
@@ -1505,11 +1461,7 @@ xfce_displays_helper_x11_apply_all (XfceDisplaysHelperX11 *helper)
     /* final loop, apply crtc changes */
     g_ptr_array_foreach (helper->crtcs, (GFunc) xfce_displays_helper_x11_apply_crtc, helper);
 
-#ifdef HAS_RANDR_ONE_POINT_THREE
-        if (helper->has_1_3)
-            XRRSetOutputPrimary (helper->xdisplay, GDK_WINDOW_XID (helper->root_window),
-                                 helper->primary);
-#endif
+    XRRSetOutputPrimary (helper->xdisplay, GDK_WINDOW_XID (helper->root_window), helper->primary);
 
     /* release the grab, changes are done */
     gdk_display_sync (helper->display);

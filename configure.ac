@@ -25,7 +25,7 @@ m4_define([fontconfig_min_version], [2.6.0])
 m4_define([xi_min_version], [1.2.0])
 m4_define([inputproto_min_version], [1.4.0])
 
-m4_define([xrandr_min_version], [1.2.0])
+m4_define([xrandr_min_version], [1.5.0])
 m4_define([libnotify_min_version], [0.1.3])
 m4_define([colord_min_version], [1.0.2])
 m4_define([xcursor_min_version], [1.1.0])
