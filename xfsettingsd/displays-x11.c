@@ -107,6 +107,7 @@ struct _XfceDisplaysHelperX11
     gint                event_base;
 
     /* RandR cache */
+    XfceRandr          *randr;
     XRRScreenResources *resources;
     GPtrArray          *crtcs;
     GPtrArray          *outputs;
@@ -188,6 +189,11 @@ xfce_displays_helper_x11_init (XfceDisplaysHelperX11 *helper)
     /* check if the randr extension is running */
     if (XRRQueryExtension (helper->xdisplay, &helper->event_base, &error_base))
     {
+        GError *error = NULL;
+        helper->randr = xfce_randr_new (helper->display, &error);
+        if (helper->randr == NULL)
+            g_critical ("%s", error->message);
+
         gdk_x11_display_error_trap_push (helper->display);
         /* get the screen resource */
         helper->resources = XRRGetScreenResources (helper->xdisplay,
@@ -233,6 +239,12 @@ xfce_displays_helper_x11_dispose (GObject *object)
     gdk_window_remove_filter (helper->root_window,
                               xfce_displays_helper_x11_screen_on_event,
                               helper);
+
+    if (helper->randr)
+    {
+        xfce_randr_free (helper->randr);
+        helper->randr = NULL;
+    }
 
     if (helper->outputs)
     {
@@ -399,26 +411,10 @@ static gchar **
 xfce_displays_helper_x11_get_display_infos (XfceDisplaysHelper *_helper)
 {
     XfceDisplaysHelperX11 *helper = XFCE_DISPLAYS_HELPER_X11 (_helper);
-    gchar    **display_infos;
-    guint      m;
-    guint8    *edid_data;
+    if (helper->randr != NULL)
+        return xfce_randr_get_display_infos (helper->randr);
 
-    display_infos = g_new0 (gchar *, helper->outputs->len + 1);
-    /* get all display edids, to only query randr once */
-    for (m = 0; m < helper->outputs->len; ++m)
-    {
-        XfceRROutput *output;
-
-        output = g_ptr_array_index (helper->outputs, m);
-        edid_data = xfce_randr_read_edid_data (helper->xdisplay, output->id);
-
-        if (edid_data)
-            display_infos[m] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
-        else
-            display_infos[m] = g_strdup ("");
-    }
-
-    return display_infos;
+    return NULL;
 }
 
 
@@ -480,6 +476,9 @@ xfce_displays_helper_x11_reload (XfceDisplaysHelperX11 *helper)
     gint err;
 
     xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Refreshing RandR cache.");
+
+    if (helper->randr != NULL)
+        xfce_randr_reload (helper->randr);
 
     /* Free the caches */
     g_ptr_array_unref (helper->outputs);
