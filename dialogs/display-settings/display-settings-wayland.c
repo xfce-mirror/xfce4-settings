@@ -745,7 +745,7 @@ xfce_display_settings_wayland_save (XfceDisplaySettings *settings,
     g_free (property);
 
     property = g_strdup_printf ("/%s/%s/EDID", scheme, output->name);
-    xfconf_channel_set_string (channel, property, output->serial_number);
+    xfconf_channel_set_string (channel, property, output->edid);
     g_free (property);
 
     /* stop here if output is disabled */

@@ -85,6 +85,7 @@ struct _XfceWlrOutputManager
     _XfceWlrOutputListener listener;
     gpointer listener_data;
     GPtrArray *outputs;
+    gboolean initialized;
 };
 
 static const struct wl_registry_listener registry_listener =
@@ -172,6 +173,7 @@ free_output (gpointer data)
     g_free (output->manufacturer);
     g_free (output->model);
     g_free (output->serial_number);
+    g_free (output->edid);
     g_free (output);
 }
 
@@ -237,6 +239,18 @@ xfce_wlr_output_manager_set_property (GObject *object,
 
 
 static void
+output_make_edid (gpointer data,
+                  gpointer user_data)
+{
+    XfceWlrOutput *output = data;
+    gchar *edid_str = g_strdup_printf ("%s-%s-%s", output->serial_number, output->model, output->manufacturer);
+    output->edid = g_compute_checksum_for_string (G_CHECKSUM_SHA1 , edid_str, -1);
+    g_free (edid_str);
+}
+
+
+
+static void
 xfce_wlr_output_manager_constructed (GObject *object)
 {
     XfceWlrOutputManager *manager = XFCE_WLR_OUTPUT_MANAGER (object);
@@ -254,6 +268,8 @@ xfce_wlr_output_manager_constructed (GObject *object)
         manager->wl_listener->finished = manager_finished;
         zwlr_output_manager_v1_add_listener (manager->wl_manager, manager->wl_listener, manager);
         wl_display_roundtrip (wl_display);
+        g_ptr_array_foreach (manager->outputs, output_make_edid, NULL);
+        manager->initialized = TRUE;
     }
     else
     {
@@ -324,6 +340,11 @@ manager_head (void *data,
     output->scale = wl_fixed_from_double (1.0);
     g_ptr_array_add (manager->outputs, output);
     zwlr_output_head_v1_add_listener (head, &head_listener, output);
+    if (manager->initialized)
+    {
+        wl_display_roundtrip (gdk_wayland_display_get_wl_display (gdk_display_get_default ()));
+        output_make_edid (output, NULL);
+    }
 }
 
 
@@ -610,7 +631,7 @@ xfce_wlr_output_manager_get_display_infos (XfceWlrOutputManager *manager)
     for (guint n = 0; n < manager->outputs->len; n++)
     {
         XfceWlrOutput *output = g_ptr_array_index (manager->outputs, n);
-        display_infos[n] = g_strdup (output->serial_number);
+        display_infos[n] = g_strdup (output->edid);
     }
 
     return display_infos;

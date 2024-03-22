@@ -53,6 +53,7 @@ typedef struct _XfceWlrOutput
     gchar *manufacturer;
     gchar *model;
     gchar *serial_number;
+    gchar *edid;
 
     /* writable */
     int32_t enabled;

@@ -557,9 +557,19 @@ xfce_randr_friendly_name (XfceRandr *randr,
     xdisplay = gdk_x11_display_get_xdisplay (randr->priv->display);
     edid_data = xfce_randr_read_edid_data (xdisplay, randr->priv->resources->outputs[output_rr_id]);
 
-    if (edid_data) {
+    if (edid_data)
+    {
         info = decode_edid (edid_data);
         randr->priv->edid[output] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
+    }
+    else
+    {
+        XRROutputInfo *xinfo = randr->priv->output_info[output];
+        gchar *edid_str = g_strdup_printf ("%s-%lu-%lu-%d-%d-%d",
+                                           xinfo->name, xinfo->mm_width, xinfo->mm_height,
+                                           xinfo->ncrtc, xinfo->nclone, xinfo->nmode);
+        randr->priv->edid[output] = g_compute_checksum_for_string (G_CHECKSUM_SHA1 , edid_str, -1);
+        g_free (edid_str);
     }
 
     /* special case, a laptop */
