@@ -1496,7 +1496,7 @@ display_settings_profile_create_cb (GtkWidget *widget, XfceDisplaySettings *sett
     profile_name = gtk_entry_get_text (GTK_ENTRY (entry));
 
     /* check if the profile name is already taken */
-    if (!display_settings_profile_name_exists (channel, profile_name))
+    if (display_settings_profile_name_exists (channel, profile_name))
     {
         button = gtk_builder_get_object (builder, "button-profile-create-cb");
         infobar = gtk_builder_get_object (builder, "profile-exists");

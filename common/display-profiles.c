@@ -27,103 +27,93 @@
 #include <glib.h>
 #include <display-profiles.h>
 
-gint get_size (gchar **i);
+static gboolean
+is_profile (const gchar *property,
+            XfconfChannel *channel)
+{
+    GHashTable *props = xfconf_channel_get_properties (channel, property);
+    gboolean is_profile = FALSE;
 
-gint
-get_size (gchar **i) {
-    gint num = 0;
-    while (*i != NULL) {
-        num++;
-        i++;
+    if (g_hash_table_size (props) > 1)
+    {
+        GHashTableIter iter;
+        gpointer key;
+        g_hash_table_iter_init (&iter, props);
+        while (g_hash_table_iter_next (&iter, &key, NULL))
+        {
+            gchar **tokens = g_strsplit (key, "/", -1);
+            gboolean maybe_output_name = g_strv_length (tokens) == 3;
+            g_strfreev (tokens);
+            if (maybe_output_name)
+            {
+                gchar *prop = g_strdup_printf ("%s/EDID", (gchar*) key);
+                gchar *edid = xfconf_channel_get_string (channel, prop, NULL);
+                g_free (prop);
+                if (edid != NULL)
+                {
+                    is_profile = TRUE;
+                    g_free (edid);
+                    break;
+                }
+            }
+        }
     }
-    return num;
+    g_hash_table_destroy (props);
+
+    return is_profile;
 }
 
 gboolean
 display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_profile_name)
 {
-    GHashTable *properties;
-    GList *channel_contents, *current;
+    GHashTable *props = xfconf_channel_get_properties (channel, NULL);
+    GHashTableIter iter;
+    gpointer key;
+    gboolean exists = FALSE;
 
-    properties = xfconf_channel_get_properties (channel, NULL);
-    channel_contents = g_hash_table_get_keys (properties);
-
-    /* get all profiles */
-    current = g_list_first (channel_contents);
-    while (current)
+    g_hash_table_iter_init (&iter, props);
+    while (g_hash_table_iter_next (&iter, &key, NULL))
     {
-        gchar **current_elements = g_strsplit (current->data, "/", -1);
-        gchar *old_profile_name;
-
-        if (get_size (current_elements) != 2)
+        if (is_profile (key, channel))
         {
-            g_strfreev (current_elements);
-            current = g_list_next (current);
-            continue;
-        }
-
-        old_profile_name = xfconf_channel_get_string (channel, current->data, NULL);
-        if (g_strcmp0 (new_profile_name, old_profile_name) == 0)
-        {
+            gchar *old_profile_name = xfconf_channel_get_string (channel, key, NULL);
+            exists = g_strcmp0 (new_profile_name, old_profile_name) == 0;
             g_free (old_profile_name);
-            return FALSE;
+            if (exists)
+                break;
         }
-        g_free (old_profile_name);
-
-        current = g_list_next (current);
     }
-    g_list_free (channel_contents);
-    g_hash_table_destroy (properties);
-    return TRUE;
+    g_hash_table_destroy (props);
+
+    return exists;
 }
 
 GList*
 display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
 {
-    GHashTable *properties;
-    GList      *channel_contents;
-    GList      *profiles = NULL;
-    GList      *current;
+    GHashTable *props = xfconf_channel_get_properties (channel, NULL);
+    GList *profiles = NULL;
+    GHashTableIter iter;
+    gpointer key;
 
-    properties = xfconf_channel_get_properties (channel, NULL);
-    channel_contents = g_hash_table_get_keys (properties);
-
-    /* get all profiles */
-    current = g_list_first (channel_contents);
-    while (current)
+    g_hash_table_iter_init (&iter, props);
+    while (g_hash_table_iter_next (&iter, &key, NULL))
     {
-        gchar **current_elements = g_strsplit (current->data, "/", -1);
-        gchar *profile_name;
-
-        /* Only process the profiles and skip all other xfconf properties */
-        /* If xfconf ever supports just getting the first-level children of a property
-           we could replace this */
-        if (get_size (current_elements) != 2)
+        if (is_profile (key, channel))
         {
-            g_strfreev (current_elements);
-            current = g_list_next (current);
-            continue;
-        }
+            const gchar *profile = (gchar *) key + 1; /* remove leading '/' */
 
-        profile_name = g_strdup_printf ("%s", *(current_elements + 1));
-        g_strfreev (current_elements);
-
-        /* filter the content of the combobox to only matching profiles and exclude "Notify", "Default" and "Schemes" */
-        if (!g_list_find_custom (profiles, profile_name, (GCompareFunc) strcmp) &&
-            strcmp (profile_name, "Notify") &&
-            strcmp (profile_name, "Default") &&
-            strcmp (profile_name, "Schemes") &&
-            display_settings_profile_matches (current->data, display_infos, channel))
-        {
-            profiles = g_list_prepend (profiles, g_strdup (profile_name));
+            /* add profile if it matches and is not an internal profile */
+            if (g_strcmp0 (profile, "Default") != 0
+                && g_strcmp0 (profile, "Fallback") != 0
+                && display_settings_profile_matches (key, display_infos, channel))
+            {
+                profiles = g_list_prepend (profiles, g_strdup (profile));
+            }
         }
-        /* else don't add the profile to the list */
-        current = g_list_next (current);
-        g_free (profile_name);
     }
 
-    g_list_free (channel_contents);
-    g_hash_table_destroy (properties);
+    g_hash_table_destroy (props);
 
     return profiles;
 }
@@ -136,18 +126,18 @@ display_settings_profile_matches (const gchar *profile,
     /* Walk through the profile and check if every EDID referenced there is also currently available */
     GHashTable *props = xfconf_channel_get_properties (channel, profile);
     GHashTableIter iter;
-    gpointer key, value;
+    gpointer key;
     guint n_infos = g_strv_length (display_infos);
     guint n_outputs = 0;
     gboolean all_match = FALSE;
 
     g_hash_table_iter_init (&iter, props);
-    while (g_hash_table_iter_next (&iter, &key, &value))
+    while (g_hash_table_iter_next (&iter, &key, NULL))
     {
         gchar **tokens = g_strsplit (key, "/", -1);
-        guint n_tokens = g_strv_length (tokens);
+        gboolean is_output_name = g_strv_length (tokens) == 3;
         g_strfreev (tokens);
-        if (n_tokens == 3)
+        if (is_output_name)
         {
             gchar *property;
             gchar *edid;
