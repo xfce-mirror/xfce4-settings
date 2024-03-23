@@ -165,8 +165,6 @@ xfce_randr_populate (XfceRandr *randr,
     guint           m, connected;
     guint          *output_ids = NULL;
 
-    XfconfChannel *display_channel = xfconf_channel_new ("displays");
-
     g_return_if_fail (randr != NULL);
     g_return_if_fail (randr->priv != NULL);
     g_return_if_fail (randr->priv->resources != NULL);
@@ -259,9 +257,6 @@ xfce_randr_populate (XfceRandr *randr,
 
         /* fill in the name used by the UI */
         randr->friendly_name[m] = xfce_randr_friendly_name (randr, m, output_ids[m]);
-
-        /* Update display info, primary display may have changed. */
-        xfce_randr_save_output (randr, "Default", display_channel, m);
 
         /* Replace spaces with underscore in name for xfconf compatibility */
         g_strcanon(randr->priv->output_info[m]->name, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_<>", '_');

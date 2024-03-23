@@ -189,6 +189,7 @@ void                     xfce_display_settings_populate_combobox       (XfceDisp
 void                     xfce_display_settings_populate_popups         (XfceDisplaySettings     *settings);
 void                     xfce_display_settings_set_popups_visible      (XfceDisplaySettings     *settings,
                                                                         gboolean                 visible);
+void                     xfce_display_settings_reload                  (XfceDisplaySettings     *settings);
 guint                    xfce_display_settings_get_selected_output_id  (XfceDisplaySettings     *settings);
 void                     xfce_display_settings_set_selected_output_id  (XfceDisplaySettings     *settings,
                                                                         guint                    output_id);

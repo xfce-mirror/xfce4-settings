@@ -939,7 +939,6 @@ manager_listener (XfceWlrOutputManager *manager,
     XfceDisplaySettings *settings = xfce_wlr_output_manager_get_listener_data (manager);
     XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (manager);
-    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
 
     /* initialization: nothing to update */
     if (wsettings->serial == 0)
@@ -961,23 +960,8 @@ manager_listener (XfceWlrOutputManager *manager,
             g_warning ("Output '%s' has no modes, disabling it", output->name);
         }
     }
-    xfce_display_settings_set_outputs (settings);
 
-    /*
-     * It's not great, but we need to do this so that settings are restored when a temporary
-     * change is cancelled (display_setting_ask_fallback() in main.c). This takes place in
-     * the X11 implementation via xfce_randr_populate(). The logic of Default <-> Fallback
-     * should be reversed to avoid this, by saving temporary changes under a temporary
-     * property, and only modifying the Default property in the event of confirmation.
-     */
-    xfce_display_settings_wayland_save (settings, "Default");
-
-    xfce_display_settings_populate_combobox (settings);
-    xfce_display_settings_populate_profile_list (settings);
-    xfce_display_settings_populate_popups (settings);
-    xfce_display_settings_set_popups_visible (settings, xfconf_channel_get_bool (channel, "/IdentityPopups", FALSE));
-
-    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    xfce_display_settings_reload (settings);
 }
 
 

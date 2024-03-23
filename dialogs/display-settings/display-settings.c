@@ -646,6 +646,33 @@ xfce_display_settings_set_popups_visible (XfceDisplaySettings *settings,
 
 
 
+void
+xfce_display_settings_reload (XfceDisplaySettings *settings)
+{
+    XfceDisplaySettingsPrivate *priv = get_instance_private (settings);
+    gboolean visible = xfconf_channel_get_bool (priv->channel, "/IdentityPopups", FALSE);
+
+    xfce_display_settings_set_outputs (settings);
+
+    /*
+     * It's not great, but we need to do this so that settings are restored when a temporary
+     * change is cancelled (display_setting_ask_fallback() in main.c).
+     * The logic of Default <-> Fallback should be reversed to avoid this, by saving temporary
+     * changes under a temporary property, and only modifying the Default property in the event
+     * of confirmation.
+     */
+    xfce_display_settings_save (settings, "Default");
+
+    xfce_display_settings_populate_combobox (settings);
+    xfce_display_settings_populate_profile_list (settings);
+    xfce_display_settings_populate_popups (settings);
+    xfce_display_settings_set_popups_visible (settings, visible);
+
+    foo_scroll_area_invalidate (FOO_SCROLL_AREA (priv->scroll_area));
+}
+
+
+
 guint
 xfce_display_settings_get_selected_output_id (XfceDisplaySettings *settings)
 {

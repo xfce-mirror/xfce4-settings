@@ -162,7 +162,6 @@ screen_on_event (GdkXEvent *gdk_xevent,
     XfceDisplaySettingsX11 *xsettings = data;
     XfceDisplaySettings *settings = data;
     XEvent *xevent = gdk_xevent;
-    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
 
     if (xevent == NULL)
         return GDK_FILTER_CONTINUE;
@@ -171,14 +170,7 @@ screen_on_event (GdkXEvent *gdk_xevent,
         return GDK_FILTER_CONTINUE;
 
     xfce_randr_reload (xsettings->randr);
-    xfce_display_settings_set_outputs (settings);
-
-    xfce_display_settings_populate_combobox (settings);
-    xfce_display_settings_populate_profile_list (settings);
-    xfce_display_settings_populate_popups (settings);
-    xfce_display_settings_set_popups_visible (settings, xfconf_channel_get_bool (channel, "/IdentityPopups", FALSE));
-
-    foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
+    xfce_display_settings_reload (settings);
 
     return GDK_FILTER_CONTINUE;
 }
