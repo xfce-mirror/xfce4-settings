@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-03-20 00:48+0100\n"
+"POT-Creation-Date: 2024-03-23 00:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Xfce Bot <transifex@xfce.org>, 2019\n"
 "Language-Team: Belarusian (http://app.transifex.com/xfce/xfce4-settings/language/be/)\n"
@@ -42,20 +42,12 @@ msgstr "Тэлевізар"
 msgid "Digital display"
 msgstr "Лічбавы дысплэй"
 
-#: common/xfce-randr.c:301 dialogs/display-settings/display-settings-x11.c:671
+#: common/xfce-randr.c:295 dialogs/display-settings/display-settings-x11.c:672
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Не атрымалася запатрабаваць версію выкарыстоўваемага пашырэння RandR"
 
-#. 1.2 is required
-#: common/xfce-randr.c:309
-#, c-format
-msgid ""
-"This system is using RandR %d.%d. For the display settings to work version "
-"1.2 is required at least"
-msgstr "Гэтая сістэма выкарыстоўвае RandR %d.%d. Для працы налад дысплэя патрабуецца версія 1.2 альбо пазнейшая"
-
-#: common/xfce-randr.c:591
-#: dialogs/display-settings/display-settings-wayland.c:319
+#: common/xfce-randr.c:577
+#: dialogs/display-settings/display-settings-wayland.c:322
 msgid "Laptop"
 msgstr "Ноўтбук"
 
@@ -70,7 +62,7 @@ msgstr "Адмысловыя магчымасці"
 #: dialogs/display-settings/display-dialog.glade:285
 #: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3354
+#: dialogs/display-settings/main.c:3359
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -319,7 +311,7 @@ msgstr "Інфармацыя пра версію"
 
 #: dialogs/accessibility-settings/main.c:200
 #: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3302 dialogs/keyboard-settings/main.c:78
+#: dialogs/display-settings/main.c:3307 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
@@ -331,7 +323,7 @@ msgstr "Увядзіце \"%s --help\" для вываду даведкі."
 
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3321 dialogs/keyboard-settings/main.c:94
+#: dialogs/display-settings/main.c:3326 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
 #: xfsettingsd/main.c:271
@@ -340,7 +332,7 @@ msgstr "Каманда распрацоўкі Xfce. Усе правы абаро
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3322 dialogs/keyboard-settings/main.c:95
+#: dialogs/display-settings/main.c:3327 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
 #: xfsettingsd/main.c:272
@@ -1204,20 +1196,20 @@ msgstr "Абнавіць зменены профіль дысплэя \"%s\"?"
 msgid "_Update '%s'"
 msgstr "_Абнавіць \"%s\""
 
-#: dialogs/display-settings/main.c:1623
+#: dialogs/display-settings/main.c:1612
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Хочаце выдаліць профіль дысплэя \"%s\"?"
 
-#: dialogs/display-settings/main.c:1625
+#: dialogs/display-settings/main.c:1614
 msgid "Delete Profile"
 msgstr "Выдаліць профіль"
 
-#: dialogs/display-settings/main.c:1628
+#: dialogs/display-settings/main.c:1617
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Пасля выдалення профілю яго немагчыма будзе аднавіць."
 
-#: dialogs/display-settings/main.c:1629
+#: dialogs/display-settings/main.c:1618
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1225,22 +1217,22 @@ msgstr "Пасля выдалення профілю яго немагчыма �
 msgid "Cancel"
 msgstr "Скасаваць"
 
-#: dialogs/display-settings/main.c:1630
+#: dialogs/display-settings/main.c:1619
 msgid "Delete"
 msgstr "Выдаліць"
 
-#: dialogs/display-settings/main.c:1716
+#: dialogs/display-settings/main.c:1705
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d панэлі Xfce"
 
-#: dialogs/display-settings/main.c:2458
+#: dialogs/display-settings/main.c:2447
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Абярыце манітор для змены яго ўласцівасцяў; перацягніце для змены яго размяшчэння."
 
-#: dialogs/display-settings/main.c:2557 dialogs/display-settings/main.c:2590
+#: dialogs/display-settings/main.c:2546 dialogs/display-settings/main.c:2579
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1249,23 +1241,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2812
+#: dialogs/display-settings/main.c:2801
 msgid "Mirror Screens"
 msgstr "Адлюстраваныя экраны"
 
-#: dialogs/display-settings/main.c:2862
+#: dialogs/display-settings/main.c:2851
 msgid "(Disabled)"
 msgstr "(Выключана)"
 
-#: dialogs/display-settings/main.c:3348
+#: dialogs/display-settings/main.c:3353
 msgid "ATI Settings"
 msgstr "Налады  ATI"
 
-#: dialogs/display-settings/main.c:3353
+#: dialogs/display-settings/main.c:3358
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Не атрымалася запусціць налады дысплэя Xfce"
 
-#: dialogs/display-settings/main.c:3361
+#: dialogs/display-settings/main.c:3366
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Не атрымалася запусціць налады несвабоднага драйвера"
 
@@ -1278,15 +1270,15 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "дысплэй;налады;экран;раздзяляльная здольнасць;абнаўленне;чашчыня;паварочванне;вонкавы;праектары;маніторы;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:447
+#: dialogs/display-settings/display-settings.c:445
 msgid "Display:"
 msgstr "Дысплэй:"
 
-#: dialogs/display-settings/display-settings.c:455
+#: dialogs/display-settings/display-settings.c:453
 msgid "Resolution:"
 msgstr "Раздзяляльная здольнасць:"
 
-#: dialogs/display-settings/display-settings-wayland.c:980
+#: dialogs/display-settings/display-settings-wayland.c:997
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
