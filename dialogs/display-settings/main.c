@@ -1170,8 +1170,40 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
 }
 
 static void
-display_settings_profile_list_init (GtkBuilder *builder)
+profile_name_edited (GtkCellRendererText *renderer,
+                     char *path,
+                     char *new_text,
+                     XfceDisplaySettings *settings)
 {
+    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
+    if (!display_settings_profile_name_exists (channel, new_text))
+    {
+        GtkBuilder *builder = xfce_display_settings_get_builder (settings);
+        GObject *treeview = gtk_builder_get_object (builder, "randr-profile");
+        GtkTreeModel *model = gtk_tree_view_get_model (GTK_TREE_VIEW (treeview));
+        GtkTreePath *treepath = gtk_tree_path_new_from_string (path);
+        GtkTreeIter iter;
+        if (gtk_tree_model_get_iter (model, &iter, treepath))
+        {
+            gchar *profile, *markup, *prop;
+            gboolean matches;
+            gtk_tree_model_get (model, &iter, COLUMN_HASH, &profile, COLUMN_MATCHES, &matches, -1);
+            markup = matches ? g_strdup (new_text) : g_strdup_printf ("<span alpha=\"50%%\">%s</span>", new_text);
+            prop = g_strdup_printf ("/%s", profile);
+            gtk_list_store_set (GTK_LIST_STORE (model), &iter, COLUMN_NAME, new_text, COLUMN_MARKUP, markup, -1);
+            xfconf_channel_set_string (channel, prop, new_text);
+            g_free (markup);
+            g_free (profile);
+            g_free (prop);
+        }
+        gtk_tree_path_free (treepath);
+    }
+}
+
+static void
+display_settings_profile_list_init (XfceDisplaySettings *settings)
+{
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GtkListStore      *store;
     GObject           *treeview;
     GtkCellRenderer   *renderer;
@@ -1197,7 +1229,8 @@ display_settings_profile_list_init (GtkBuilder *builder)
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
     gtk_tree_view_column_set_attributes (column, renderer, "markup", COLUMN_MARKUP, NULL);
-    g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+    g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, "editable", TRUE, NULL);
+    g_signal_connect (renderer, "edited", G_CALLBACK (profile_name_edited), settings);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
     g_object_unref (G_OBJECT (store));
@@ -1878,7 +1911,7 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
 
     /* Populate the combobox */
     xfce_display_settings_populate_combobox (settings);
-    display_settings_profile_list_init (builder);
+    display_settings_profile_list_init (settings);
     xfce_display_settings_populate_profile_list (settings);
 
     return GTK_WIDGET (gtk_builder_get_object (builder, "display-dialog"));
