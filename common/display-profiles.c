@@ -89,7 +89,9 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
 }
 
 GList*
-display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
+display_settings_get_profiles (gchar **display_infos,
+                               XfconfChannel *channel,
+                               gboolean matching_only)
 {
     GHashTable *props = xfconf_channel_get_properties (channel, NULL);
     GList *profiles = NULL;
@@ -102,7 +104,7 @@ display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
         if (is_user_profile (key, channel))
         {
             const gchar *profile = (gchar *) key + 1; /* remove leading '/' */
-            if (display_settings_profile_matches (profile, display_infos, channel))
+            if (!matching_only || display_settings_profile_matches (profile, display_infos, channel))
             {
                 profiles = g_list_prepend (profiles, g_strdup (profile));
             }

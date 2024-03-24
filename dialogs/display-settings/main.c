@@ -1134,7 +1134,7 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
     GObject *liststore = gtk_builder_get_object (builder, "liststore-profile");
     GtkTreeIter iter;
     gchar **display_infos = xfce_display_settings_get_display_infos (settings);
-    GList *profiles = display_settings_get_profiles (display_infos, channel);
+    GList *profiles = display_settings_get_profiles (display_infos, channel, TRUE);
     gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", NULL);
 
     for (GList *lp = profiles; lp != NULL; lp = lp->next)
@@ -1180,30 +1180,24 @@ display_settings_profile_list_init (GtkBuilder *builder)
     store = gtk_list_store_new (N_COLUMNS,
                                 G_TYPE_ICON,
                                 G_TYPE_STRING,
-                                G_TYPE_STRING);
+                                G_TYPE_STRING,
+                                G_TYPE_STRING,
+                                G_TYPE_BOOLEAN);
 
     treeview = gtk_builder_get_object (builder, "randr-profile");
     gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
-    /* Setup Profile name column */
+
     column = gtk_tree_view_column_new ();
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
     gtk_tree_view_column_set_attributes (column, renderer, "gicon", COLUMN_ICON, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-    /* Setup Profile name column */
+
     column = gtk_tree_view_column_new ();
-    gtk_tree_view_column_set_title (column, _("Profiles matching the currently connected displays"));
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_column_pack_start (column, renderer, TRUE);
-    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_NAME, NULL);
+    gtk_tree_view_column_set_attributes (column, renderer, "markup", COLUMN_MARKUP, NULL);
     g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
-    gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-    /* Setup Profile hash column */
-    column = gtk_tree_view_column_new ();
-    renderer = gtk_cell_renderer_text_new ();
-    gtk_tree_view_column_pack_start (column, renderer, TRUE);
-    gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_HASH, NULL);
-    gtk_tree_view_column_set_visible (column, FALSE);
     gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
     g_object_unref (G_OBJECT (store));
@@ -1397,18 +1391,20 @@ static void
 display_settings_profile_changed (GtkTreeSelection *selection, GtkBuilder *builder)
 {
     GObject *button;
-    GtkTreeModel      *model;
-    GtkTreeIter        iter;
-    gboolean selected;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+    gboolean selected, matches = FALSE;
 
     selected = gtk_tree_selection_get_selected (selection, &model, &iter);
+    if (selected)
+        gtk_tree_model_get (model, &iter, COLUMN_MATCHES, &matches, -1);
 
     button = gtk_builder_get_object (builder, "button-profile-save");
     gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
     button = gtk_builder_get_object (builder, "button-profile-delete");
     gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
     button = gtk_builder_get_object (builder, "button-profile-apply");
-    gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
+    gtk_widget_set_sensitive (GTK_WIDGET (button), selected && matches);
 }
 
 static void
@@ -1585,7 +1581,10 @@ display_settings_profile_row_activated (GtkTreeView       *tree_view,
                                         GtkTreeViewColumn *column,
                                         XfceDisplaySettings *settings)
 {
-    display_settings_profile_apply (NULL, settings);
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
+    GObject *button = gtk_builder_get_object (builder, "button-profile-apply");
+    if (gtk_widget_get_sensitive (GTK_WIDGET (button)))
+        gtk_button_clicked (GTK_BUTTON (button));
 }
 
 static void
@@ -1733,6 +1732,7 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
 {
     XfconfChannel    *channel = xfce_display_settings_get_channel (settings);
     GtkBuilder       *builder = xfce_display_settings_get_builder (settings);
+    GObject          *treeview;
     GObject          *combobox;
     GtkCellRenderer  *renderer;
     GObject          *label, *check, *primary, *mirror, *identify, *primary_indicator;
@@ -1827,12 +1827,13 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox), FALSE);
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), settings);
 
-    combobox = gtk_builder_get_object (builder, "randr-profile");
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (combobox));
+    treeview = gtk_builder_get_object (builder, "randr-profile");
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-    gtk_tree_view_set_activate_on_single_click (GTK_TREE_VIEW (combobox), FALSE);
+    gtk_tree_view_set_activate_on_single_click (GTK_TREE_VIEW (treeview), FALSE);
+    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
     g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_profile_changed), builder);
-    g_signal_connect (G_OBJECT (combobox), "row-activated", G_CALLBACK (display_settings_profile_row_activated), settings);
+    g_signal_connect (G_OBJECT (treeview), "row-activated", G_CALLBACK (display_settings_profile_row_activated), settings);
 
     combobox = gtk_builder_get_object (builder, "autoconnect-mode");
     xfconf_g_property_bind (channel, "/Notify", G_TYPE_INT, combobox, "active");

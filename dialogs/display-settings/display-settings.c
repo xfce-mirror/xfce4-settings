@@ -494,40 +494,30 @@ void
 xfce_display_settings_populate_profile_list (XfceDisplaySettings *settings)
 {
     XfceDisplaySettingsPrivate *priv = get_instance_private (settings);
-    GtkListStore *store;
-    GObject *treeview;
-    GtkTreeIter iter;
-    GList *profiles;
-    gchar **display_infos;
+    GObject *treeview = gtk_builder_get_object (priv->builder, "randr-profile");
+    GtkListStore *store = GTK_LIST_STORE (gtk_tree_view_get_model (GTK_TREE_VIEW (treeview)));
+    gchar **display_infos = xfce_display_settings_get_display_infos (settings);
+    GList *profiles = display_settings_get_profiles (display_infos, priv->channel, FALSE);
+    gchar *active_profile = xfconf_channel_get_string (priv->channel, "/ActiveProfile", "Default");
 
-    /* create a new list store */
-    store = gtk_list_store_new (N_COLUMNS,
-                                G_TYPE_ICON,
-                                G_TYPE_STRING,
-                                G_TYPE_STRING);
-
-    /* set up the new combobox which will replace the above combobox */
-    treeview = gtk_builder_get_object (priv->builder, "randr-profile");
-    gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), GTK_TREE_MODEL (store));
-
-    display_infos = xfce_display_settings_get_display_infos (settings);
-    profiles = display_settings_get_profiles (display_infos, priv->channel);
-    g_strfreev (display_infos);
+    gtk_list_store_clear (store);
 
     /* populate treeview */
     for (GList *lp = profiles; lp != NULL; lp = lp->next)
     {
-        gchar *property, *profile_name, *active_profile_hash;
+        GtkTreeIter iter;
+        gchar *property, *profile_name, *markup;
         const gchar *profile = lp->data;
         GIcon *icon = NULL;
+        gboolean matches = display_settings_profile_matches (profile, display_infos, priv->channel);
 
         /* use the display string value of the profile hash property */
         property = g_strdup_printf ("/%s", profile);
         profile_name = xfconf_channel_get_string (priv->channel, property, NULL);
-        active_profile_hash = xfconf_channel_get_string (priv->channel, "/ActiveProfile", "Default");
+        markup = matches ? g_strdup (profile_name) : g_strdup_printf ("<span alpha=\"50%%\">%s</span>", profile_name);
 
         /* highlight the currently active profile */
-        if (g_strcmp0 (profile, active_profile_hash) == 0)
+        if (g_strcmp0 (profile, active_profile) == 0)
         {
             icon = g_themed_icon_new_with_default_fallbacks ("object-select-symbolic");
         }
@@ -537,18 +527,20 @@ xfce_display_settings_populate_profile_list (XfceDisplaySettings *settings)
                             COLUMN_ICON, icon,
                             COLUMN_NAME, profile_name,
                             COLUMN_HASH, profile,
+                            COLUMN_MARKUP, markup,
+                            COLUMN_MATCHES, matches,
                             -1);
 
         g_free (property);
         g_free (profile_name);
-        g_free (active_profile_hash);
+        g_free (markup);
         if (icon != NULL)
             g_object_unref (icon);
     }
 
-    /* release the store */
+    g_free (active_profile);
+    g_strfreev (display_infos);
     g_list_free_full (profiles, g_free);
-    g_object_unref (G_OBJECT (store));
 }
 
 

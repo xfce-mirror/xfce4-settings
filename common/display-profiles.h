@@ -41,7 +41,8 @@ enum
 gboolean display_settings_profile_name_exists   (XfconfChannel  *channel,
                                                  const gchar    *new_profile_name);
 GList*   display_settings_get_profiles          (gchar         **display_infos,
-                                                 XfconfChannel  *channel);
+                                                 XfconfChannel  *channel,
+                                                 gboolean        matching_only);
 gboolean display_settings_profile_matches       (const gchar    *profile,
                                                  gchar         **display_infos,
                                                  XfconfChannel  *channel);

@@ -43,6 +43,8 @@ enum
     COLUMN_ICON,
     COLUMN_NAME,
     COLUMN_HASH,
+    COLUMN_MARKUP,
+    COLUMN_MATCHES,
     N_COLUMNS
 };
 
