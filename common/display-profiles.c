@@ -102,7 +102,7 @@ display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
         if (is_user_profile (key, channel))
         {
             const gchar *profile = (gchar *) key + 1; /* remove leading '/' */
-            if (display_settings_profile_matches (key, display_infos, channel))
+            if (display_settings_profile_matches (profile, display_infos, channel))
             {
                 profiles = g_list_prepend (profiles, g_strdup (profile));
             }
@@ -120,7 +120,8 @@ display_settings_profile_matches (const gchar *profile,
                                   XfconfChannel *channel)
 {
     /* Walk through the profile and check if every EDID referenced there is also currently available */
-    GHashTable *props = xfconf_channel_get_properties (channel, profile);
+    gchar *profile_prop = g_strdup_printf ("/%s", profile);
+    GHashTable *props = xfconf_channel_get_properties (channel, profile_prop);
     GHashTableIter iter;
     gpointer key;
     guint n_infos = g_strv_length (display_infos);
@@ -150,6 +151,7 @@ display_settings_profile_matches (const gchar *profile,
         }
     }
     g_hash_table_destroy (props);
+    g_free (profile_prop);
 
     return all_match && n_outputs == n_infos;
 }
