@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-03-23 00:47+0100\n"
+"POT-Creation-Date: 2024-03-24 12:47+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>, 2012,2014-2019,2024\n"
 "Language-Team: Serbian (http://app.transifex.com/xfce/xfce4-settings/language/sr/)\n"
@@ -46,11 +46,11 @@ msgstr "Телевизор"
 msgid "Digital display"
 msgstr "Дигитални заслон"
 
-#: common/xfce-randr.c:295 dialogs/display-settings/display-settings-x11.c:672
+#: common/xfce-randr.c:290 dialogs/display-settings/display-settings-x11.c:664
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Нисам успео да пропитам издање проширења Рандра које је у употреби"
 
-#: common/xfce-randr.c:577
+#: common/xfce-randr.c:572
 #: dialogs/display-settings/display-settings-wayland.c:322
 msgid "Laptop"
 msgstr "Лаптоп"
@@ -66,7 +66,7 @@ msgstr "Приступачност"
 #: dialogs/display-settings/display-dialog.glade:285
 #: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3359
+#: dialogs/display-settings/main.c:3401
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -315,7 +315,7 @@ msgstr "Подаци о издању"
 
 #: dialogs/accessibility-settings/main.c:200
 #: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3307 dialogs/keyboard-settings/main.c:78
+#: dialogs/display-settings/main.c:3349 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
@@ -327,7 +327,7 @@ msgstr "Упишите „%s --help“ за коришћење."
 
 #: dialogs/accessibility-settings/main.c:219
 #: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3326 dialogs/keyboard-settings/main.c:94
+#: dialogs/display-settings/main.c:3368 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
 #: xfsettingsd/main.c:271
@@ -336,7 +336,7 @@ msgstr "Развојна дружина.Иксфце-а Сва права су �
 
 #: dialogs/accessibility-settings/main.c:220
 #: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3327 dialogs/keyboard-settings/main.c:95
+#: dialogs/display-settings/main.c:3369 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
 #: xfsettingsd/main.c:272
@@ -1186,34 +1186,30 @@ msgstr "Последњи употребљени излаз не сме бити 
 msgid "Selected output not disabled"
 msgstr "Одабрани излаз није онемогућен"
 
-#: dialogs/display-settings/main.c:1195
-msgid "Profiles matching the currently connected displays"
-msgstr "Пресеци одговарајући тренутно повезаним екранима"
-
-#: dialogs/display-settings/main.c:1284
+#: dialogs/display-settings/main.c:1311
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Да ли освежити измењени пресек приказа „%s“?"
 
-#: dialogs/display-settings/main.c:1289
+#: dialogs/display-settings/main.c:1316
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Освежи „%s“"
 
-#: dialogs/display-settings/main.c:1612
+#: dialogs/display-settings/main.c:1652
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Да ли желите избрисати пресек приказа „%s“?"
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1654
 msgid "Delete Profile"
 msgstr "Избриши пресек"
 
-#: dialogs/display-settings/main.c:1617
+#: dialogs/display-settings/main.c:1657
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Ако ли се избрише пресек приказа не може се повратити."
 
-#: dialogs/display-settings/main.c:1618
+#: dialogs/display-settings/main.c:1658
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1221,22 +1217,22 @@ msgstr "Ако ли се избрише пресек приказа не мож�
 msgid "Cancel"
 msgstr "Откажи"
 
-#: dialogs/display-settings/main.c:1619
+#: dialogs/display-settings/main.c:1659
 msgid "Delete"
 msgstr "Обриши"
 
-#: dialogs/display-settings/main.c:1705
+#: dialogs/display-settings/main.c:1745
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d полица ИксФЦЕ-а"
 
-#: dialogs/display-settings/main.c:2447
+#: dialogs/display-settings/main.c:2489
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Изаберите екран за промену његових поставки; превуците га ради преуређења његовог смештаја."
 
-#: dialogs/display-settings/main.c:2546 dialogs/display-settings/main.c:2579
+#: dialogs/display-settings/main.c:2588 dialogs/display-settings/main.c:2621
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1245,23 +1241,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2801
+#: dialogs/display-settings/main.c:2843
 msgid "Mirror Screens"
 msgstr "Пресликај приказе"
 
-#: dialogs/display-settings/main.c:2851
+#: dialogs/display-settings/main.c:2893
 msgid "(Disabled)"
 msgstr "(Онемогућено)"
 
-#: dialogs/display-settings/main.c:3353
+#: dialogs/display-settings/main.c:3395
 msgid "ATI Settings"
 msgstr "Подешавања АТИ-а"
 
-#: dialogs/display-settings/main.c:3358
+#: dialogs/display-settings/main.c:3400
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Нисам успео да покренем поставке приказа Иксфце-а"
 
-#: dialogs/display-settings/main.c:3366
+#: dialogs/display-settings/main.c:3408
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Нисам успео да покренем поставке власничког управљачког програма"
 
@@ -1282,7 +1278,7 @@ msgstr "Приказ:"
 msgid "Resolution:"
 msgstr "Размера:"
 
-#: dialogs/display-settings/display-settings-wayland.c:997
+#: dialogs/display-settings/display-settings-wayland.c:981
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Ваш управник слагања изгледа да не подржава протокол вир-оутпут-менаџмент."
