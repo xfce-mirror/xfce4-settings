@@ -1502,8 +1502,16 @@ display_settings_profile_create_cb (GtkWidget *widget, XfceDisplaySettings *sett
         gchar *property;
         gchar *profile_hash;
 
-        profile_hash = g_compute_checksum_for_string (G_CHECKSUM_SHA1, profile_name, strlen(profile_name));
-        property = g_strdup_printf ("/%s", profile_hash);
+        while (TRUE)
+        {
+            profile_hash = g_uuid_string_random ();
+            property = g_strdup_printf ("/%s", profile_hash);
+            if (G_LIKELY (!xfconf_channel_has_property (channel, property)))
+                break;
+
+            g_free (profile_hash);
+            g_free (property);
+        }
         xfce_display_settings_save (settings, profile_hash);
 
         /* save the human-readable name of the profile as string value */
