@@ -28,13 +28,13 @@
 #include <display-profiles.h>
 
 static gboolean
-is_profile (const gchar *property,
-            XfconfChannel *channel)
+is_user_profile (const gchar *property,
+                 XfconfChannel *channel)
 {
     GHashTable *props = xfconf_channel_get_properties (channel, property);
-    gboolean is_profile = FALSE;
+    gboolean is_user_profile = FALSE;
 
-    if (g_hash_table_size (props) > 1)
+    if (g_hash_table_size (props) > 1 && g_strrstr_len (property, -1, "/") == property)
     {
         GHashTableIter iter;
         gpointer key;
@@ -51,7 +51,7 @@ is_profile (const gchar *property,
                 g_free (prop);
                 if (edid != NULL)
                 {
-                    is_profile = TRUE;
+                    is_user_profile = TRUE;
                     g_free (edid);
                     break;
                 }
@@ -60,7 +60,7 @@ is_profile (const gchar *property,
     }
     g_hash_table_destroy (props);
 
-    return is_profile;
+    return is_user_profile;
 }
 
 gboolean
@@ -74,7 +74,7 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
     g_hash_table_iter_init (&iter, props);
     while (g_hash_table_iter_next (&iter, &key, NULL))
     {
-        if (is_profile (key, channel))
+        if (is_user_profile (key, channel))
         {
             gchar *old_profile_name = xfconf_channel_get_string (channel, key, NULL);
             exists = g_strcmp0 (new_profile_name, old_profile_name) == 0;
@@ -99,14 +99,10 @@ display_settings_get_profiles (gchar **display_infos, XfconfChannel *channel)
     g_hash_table_iter_init (&iter, props);
     while (g_hash_table_iter_next (&iter, &key, NULL))
     {
-        if (is_profile (key, channel))
+        if (is_user_profile (key, channel))
         {
             const gchar *profile = (gchar *) key + 1; /* remove leading '/' */
-
-            /* add profile if it matches and is not an internal profile */
-            if (g_strcmp0 (profile, "Default") != 0
-                && g_strcmp0 (profile, "Fallback") != 0
-                && display_settings_profile_matches (key, display_infos, channel))
+            if (display_settings_profile_matches (key, display_infos, channel))
             {
                 profiles = g_list_prepend (profiles, g_strdup (profile));
             }
