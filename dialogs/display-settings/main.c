@@ -1358,19 +1358,23 @@ static gboolean
 show_confirmation_dialog (gpointer data)
 {
     XfceDisplaySettings *settings = data;
+    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
 
-    /* Ask user confirmation (or recover to'Fallback on timeout') */
+    /* Ask user confirmation (or recover to Default on timeout) */
     if (display_setting_timed_confirmation (settings))
     {
-        /* Update the Fallback */
-        xfce_display_settings_save (settings, "Fallback");
+        /* Update Default */
+        xfce_display_settings_save (settings, "Default");
     }
     else
     {
-        /* Recover to Fallback (will as well overwrite default xfconf settings) */
-        xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Fallback");
+        /* Recover to Default */
+        xfconf_channel_set_string (channel, "/Schemes/Apply", "Default");
         foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
     }
+
+    /* Delete temporary profile */
+    xfconf_channel_reset_property (channel, "/Temp", TRUE);
 
     return FALSE;
 }
@@ -1410,9 +1414,9 @@ display_setting_apply (GtkWidget *widget, XfceDisplaySettings *settings)
     initialize_connected_outputs_at_zero (settings);
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
 
-    /* Apply changes */
-    xfce_display_settings_save (settings, "Default");
-    xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
+    /* Apply changes via a temporary profile */
+    xfce_display_settings_save (settings, "Temp");
+    xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Temp");
 
     /* Run dialog after this signal handler to avoid random freeze */
     g_idle_add (show_confirmation_dialog, settings);

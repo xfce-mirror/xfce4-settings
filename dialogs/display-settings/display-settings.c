@@ -145,9 +145,6 @@ xfce_display_settings_new (gboolean opt_minimal,
     if (settings != NULL)
     {
         get_instance_private (settings)->opt_minimal = opt_minimal;
-
-        /* store a Fallback of the current settings */
-        xfce_display_settings_save (settings, "Fallback");
     }
     else if (error != NULL && *error == NULL)
     {
@@ -645,15 +642,6 @@ xfce_display_settings_reload (XfceDisplaySettings *settings)
     gboolean visible = xfconf_channel_get_bool (priv->channel, "/IdentityPopups", FALSE);
 
     xfce_display_settings_set_outputs (settings);
-
-    /*
-     * It's not great, but we need to do this so that settings are restored when a temporary
-     * change is cancelled (display_setting_ask_fallback() in main.c).
-     * The logic of Default <-> Fallback should be reversed to avoid this, by saving temporary
-     * changes under a temporary property, and only modifying the Default property in the event
-     * of confirmation.
-     */
-    xfce_display_settings_save (settings, "Default");
 
     xfce_display_settings_populate_combobox (settings);
     xfce_display_settings_populate_profile_list (settings);
