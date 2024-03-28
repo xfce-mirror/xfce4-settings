@@ -886,8 +886,8 @@ xfce_display_settings_wayland_update_output_mirror (XfceDisplaySettings *setting
     XfceWlrMode *mode = get_current_mode (wsettings, xfwl_output);
     output->x = xfwl_output->x;
     output->y = xfwl_output->y;
-    output_set_mode_and_tranformation (output, mode, g_list_index (xfwl_output->modes, mode), xfwl_output);
     output->active = xfwl_output->enabled;
+    output_set_mode_and_tranformation (output, mode, g_list_index (xfwl_output->modes, mode), xfwl_output);
 }
 
 
