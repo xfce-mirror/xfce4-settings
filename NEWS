@@ -1,3 +1,108 @@
+4.19.2 (2024-03-31)
+======
+- Update copyright year
+- wayland: display-settings: Update struct members in order
+- display-settings: Reverse Default <-> Fallback logic to apply changes
+- display-profiles: Allow editing profile names
+- display-profiles: Use a profile id independent of the profile name
+- display-profiles: Show all profiles in tree view
+- display-profiles: Use consistent naming
+- display-profiles: Better user profile filtering
+- display-settings: Do not update default profile in XfceRandr
+- display-settings: Reset profile before saving
+- display-settings: Always provide an EDID hash
+- x11: display-settings: Get display infos from a single place
+- x11: display-settings: Bump xrandr min version
+- display-profiles: Simplify and clarify code
+- xfsettingsd: Try to match the default display profile as well
+- xfsettingsd: Fix memory leaks around get_matching_profile()
+- xsettings: Use correct flag in XInternAtom
+- x11: xfsettingsd: Round to nearest integer when DPI is involved
+- xfsettingsd: Lower warning level
+- display-settings: Round to nearest integer when scaling
+- display-settings: Make main dialog unique
+- xfsettingsd: Bypass display name detection if only one remains
+- display-settings: Share default setting values
+- display-settings: Do not snap mirrored outputs on geometry change
+- display-settings: Reset cursor on leave-notify-event
+- xfsettingsd: Use minimal display dialog only for 2 outputs
+- display-settings: Update primary indicator visibility when toggled
+- display-settings: Avoid confusion about primary display status
+- display-settings: Turn "auto-enable-profiles" into a combo box
+- Revert "display-settings: Include auto-enable profile in combo box"
+- display-settings: Reset cursor if release-event is outside scrollarea
+- display-settings: Update output positioning on geometry change
+- display-settings: Always delay spin button emptying
+- display-settings: Run secondary dialogs outside signal handlers
+- display-settings: Revert switch state when deactivation is cancelled
+- display-settings: Better update output positioning on user interact
+- display-settings: Apply changes only when Apply button is clicked
+- display-settings: Switch to one-dimensional scaling
+- Fix use of gdk_cursor_new*()
+- display-settings: Move get_extended_mode() up one abstraction level
+- display-settings: Always invalidate scroll area on settings change
+- display-settings: Better UI update when mirroring/unmirroring
+- display-settings: Revisit querying mirrored state
+- display-settings: Also reset scale when mirroring
+- display-settings: Some fixes around identify popups
+- display-settings: Update scale with mode and transform
+- display-settings: Take proper account of transformation for 
+positioning
+- wayland: display-settings: Fix is_mirrored()
+- display-settings: Avoid implicit mode change when enabling output
+- display-settings: Fix drawing scaling
+- x11: display-settings: Remove rounding
+- x11: display-settings: Fix meaning of scale factor
+- display-settings: Include auto-enable profile in combo box
+- display-settings: Modify only the first two displays in minimal mode
+- I18n: Update po/LINGUAS list
+- display-settings: Wrap profiles in a combo box in minimal dialog
+- display-settings: Add extend-{up,down} to minimal dialog
+- display-settings: Add extend-left to minimal dialog
+- wayland: display-settings: Disable minimal dialog positioning
+- display-settings: Remove right margin in minimal dialog without 
+profile
+- xfsettingsd: Fix -Wincompatible-pointer-types warning
+- Move X11 clipboard manager to libxfce4ui
+- I18n: Update po/LINGUAS list
+- display-settings: Cleanup profile image file too
+- display-settings: Allow to mirror disabled outputs
+- display-settings: Do not auto-apply profile when opening minimal 
+dialog
+- display-settings: Fix layout detection when opening minimal dialog
+- display-settings: Fix ellipsizing and spacing in minimal dialog
+- display-settings: Rename image files and cleanup
+- display-settings: Rename some ids in glade file and cleanup
+- display-settings: Rename _extend_right() to _extend()
+- display-settings: Better fit with the way GApplication works
+- display-settings: Fix xfconf warning
+- display-settings: Fix cairo surface management
+- Fix memory leaks around display_settings_get_profiles()
+- wayland: Ensure display settings are restored when change is cancelled
+- displays: Silence xfconf warning
+- displays: Fix wrong test for matching profiles
+- x11: displays: Fix use of deprecation macros
+- x11: displays: Disable new outputs if /Notify is set to "Do nothing"
+- wayland: display-settings: Fix disabled output not saved
+- Add new CI builds to build without X11 and Wayland
+- xfsettingsd: Always add sm-client option group
+- build: Check for gmodule-2.0 (V2)
+- Add check box to toggle adaptive/flat mouse accel profile with 
+libinput
+- build: Restrict XfceSMClient to X11
+- build: Fix typo in package version
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Asturian, Basque, Belarusian,
+  Belarusian (Tarask), Bulgarian, Catalan, Chinese (China), Chinese
+  (Hong Kong), Chinese (Taiwan), Croatian, Czech, Danish, Dutch,
+  Eastern Armenian, English (Australia), English (Canada), English
+  (United Kingdom), Estonian, Finnish, French, Galician, German, Greek,
+  Hebrew, Hungarian, Icelandic, Indonesian, Interlingue, Italian,
+  Japanese, Kabyle, Kazakh, Korean, Lithuanian, Malay, Norwegian
+  Bokmål, Norwegian Nynorsk, Occitan (post 1500), Polish, Portuguese,
+  Portuguese (Brazil), Romanian, Russian, Serbian, Slovak, Slovenian,
+  Spanish, Swedish, Thai, Turkish, Ukrainian, Uyghur
+
 4.19.1 (2023-11-15)
 ======
 - build: Fix make dist when configured with --disable-wayland
