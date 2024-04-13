@@ -267,7 +267,7 @@ cb_window_scaling_factor_combo_changed (GtkComboBox *combo)
     gint active;
 
     /* Get active item, prevent number outside the array (stay within zero-index) */
-    active = CLAMP (gtk_combo_box_get_active (combo) + 1, 1, 2);
+    active = CLAMP (gtk_combo_box_get_active (combo) + 1, 1, 4);
 
     /* Save setting */
     xfconf_channel_set_int (xsettings_channel, "/Gdk/WindowScalingFactor", active);
