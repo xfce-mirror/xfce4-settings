@@ -20,7 +20,7 @@ m4_define([libxfce4util_min_version], [4.17.2])
 m4_define([libxfce4ui_min_version], [4.19.5])
 m4_define([xfconf_min_version], [4.13.0])
 
-m4_define([x11_minimum_version], [1.6.7])
+m4_define([libx11_min_version], [1.6.7])
 m4_define([fontconfig_min_version], [2.6.0])
 m4_define([xi_min_version], [1.2.0])
 m4_define([inputproto_min_version], [1.4.0])
