@@ -508,7 +508,7 @@ appearance_settings_load_icon_themes (gpointer user_data)
                     {
                             /* If the theme has no cache, mention this in the tooltip */
                             warning_tooltip = g_strdup_printf (_("Warning: this icon theme has no cache file. You can create this by "
-                                    "running <i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."),
+                                    "running <i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."),
                                     icon_theme_dirs[i], file);
                         }
                     else if (g_strcmp0 (file, "Adwaita") == 0)
