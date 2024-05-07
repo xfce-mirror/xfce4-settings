@@ -506,16 +506,24 @@ appearance_settings_load_icon_themes (gpointer user_data)
 
                     if (!g_file_test (cache_filename, G_FILE_TEST_IS_REGULAR))
                     {
-                            /* If the theme has no cache, mention this in the tooltip */
-                            warning_tooltip = g_strdup_printf (_("Warning: this icon theme has no cache file. You can create this by "
-                                    "running <i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."),
-                                    icon_theme_dirs[i], file);
-                        }
-                    else if (g_strcmp0 (file, "Adwaita") == 0)
-                        {
-                            /* If the theme is known to be incomplete (does not follow fd.org standards), mention this in the tooltip */
-                            warning_tooltip = g_strdup (_("Warning: this icon theme is incomplete. It does not follow the freedesktop.org standards. Some icons will be missing."));
-                        }
+                        /* If the theme has no cache, mention this in the tooltip */
+                        warning_tooltip = g_strdup_printf (_("Warning: this icon theme has no cache file. You can create this by "
+                                "running <i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."),
+                                icon_theme_dirs[i], file);
+                    }
+                    else if (g_strcmp0 (file, "Adwaita") == 0 ||
+                             g_strcmp0 (file, "Adwaita Dark") == 0 ||
+                             g_strcmp0 (file, "HighContrast") == 0)
+                    {
+                        /* If the theme is known to be incomplete (does not follow fd.org standards), mention this in the tooltip */
+                        warning_tooltip = g_strdup (_("Warning: this icon theme is incomplete. It does not follow the freedesktop.org standards. Some icons will be missing."));
+                    }
+                    else if (g_strcmp0 (file, "gnome") == 0 ||
+                             g_strcmp0 (file, "hicolor") == 0)
+                    {
+                        /* These actually are no full themes by purpose */
+                        warning_tooltip = g_strdup (_("Warning: this icon theme is incomplete. It only provides a base set of icons from which other themes can inherit."));
+                    }
 
                     g_free (cache_filename);
 
