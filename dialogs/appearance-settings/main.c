@@ -504,7 +504,7 @@ appearance_settings_load_icon_themes (gpointer user_data)
                     /* Cache filename */
                     cache_filename = g_build_filename (icon_theme_dirs[i], file, "icon-theme.cache", NULL);
 
-                    if (g_file_test (cache_filename, G_FILE_TEST_IS_REGULAR) == FALSE)
+                    if (!g_file_test (cache_filename, G_FILE_TEST_IS_REGULAR))
                         {
                             /* If the theme has no cache, mention this in the tooltip */
                             warning_tooltip = g_strdup_printf (_("Warning: this icon theme has no cache file. You can create this by "
