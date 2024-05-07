@@ -516,7 +516,7 @@ appearance_settings_load_icon_themes (gpointer user_data)
                              g_strcmp0 (file, "HighContrast") == 0)
                     {
                         /* If the theme is known to be incomplete (does not follow fd.org standards), mention this in the tooltip */
-                        warning_tooltip = g_strdup (_("Warning: this icon theme is incomplete. It does not follow the freedesktop.org standards. Some icons will be missing."));
+                        warning_tooltip = g_strdup (_("Warning: this icon theme is incomplete. Some icons will be missing."));
                     }
                     else if (g_strcmp0 (file, "gnome") == 0 ||
                              g_strcmp0 (file, "hicolor") == 0)
