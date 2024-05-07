@@ -512,7 +512,6 @@ appearance_settings_load_icon_themes (gpointer user_data)
                                 icon_theme_dirs[i], file);
                     }
                     else if (g_strcmp0 (file, "Adwaita") == 0 ||
-                             g_strcmp0 (file, "Adwaita Dark") == 0 ||
                              g_strcmp0 (file, "HighContrast") == 0)
                     {
                         /* If the theme is known to be incomplete (does not follow fd.org standards), mention this in the tooltip */
