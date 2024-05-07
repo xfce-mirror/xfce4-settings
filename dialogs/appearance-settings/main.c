@@ -401,8 +401,6 @@ appearance_settings_load_icon_themes (gpointer user_data)
     gsize         p;
     GSList       *check_list = NULL;
     gchar        *cache_filename;
-    gboolean      has_cache;
-    gchar        *cache_tooltip;
     GtkIconTheme *icon_theme;
     cairo_surface_t *preview;
     cairo_t      *cr;
@@ -454,6 +452,8 @@ appearance_settings_load_icon_themes (gpointer user_data)
                 if (G_LIKELY (xfce_rc_has_entry (index_file, "Directories")
                               && !xfce_rc_read_bool_entry (index_file, "Hidden", FALSE)))
                 {
+                    gchar *warning_tooltip = NULL;
+
                     /* Insert the theme in the check list */
                     check_list = g_slist_prepend (check_list, g_strdup (file));
 
@@ -503,16 +503,21 @@ appearance_settings_load_icon_themes (gpointer user_data)
 
                     /* Cache filename */
                     cache_filename = g_build_filename (icon_theme_dirs[i], file, "icon-theme.cache", NULL);
-                    has_cache = g_file_test (cache_filename, G_FILE_TEST_IS_REGULAR);
-                    g_free (cache_filename);
 
-                    /* If the theme has no cache, mention this in the tooltip */
-                    if (!has_cache)
-                        cache_tooltip = g_strdup_printf (_("Warning: this icon theme has no cache file. You can create this by "
-                                                           "running <i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."),
-                                                         icon_theme_dirs[i], file);
-                    else
-                        cache_tooltip = NULL;
+                    if (!g_file_test (cache_filename, G_FILE_TEST_IS_REGULAR))
+                    {
+                            /* If the theme has no cache, mention this in the tooltip */
+                            warning_tooltip = g_strdup_printf (_("Warning: this icon theme has no cache file. You can create this by "
+                                    "running <i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."),
+                                    icon_theme_dirs[i], file);
+                        }
+                    else if (g_strcmp0 (file, "Adwaita") == 0)
+                        {
+                            /* If the theme is known to be incomplete (does not follow fd.org standards), mention this in the tooltip */
+                            warning_tooltip = g_strdup (_("Warning: this icon theme is incomplete. It does not follow the freedesktop.org standards. Some icons will be missing."));
+                        }
+
+                    g_free (cache_filename);
 
                     /* Append icon theme to the list store */
                     gtk_list_store_append (list_store, &iter);
@@ -520,8 +525,8 @@ appearance_settings_load_icon_themes (gpointer user_data)
                                         COLUMN_THEME_PREVIEW, preview,
                                         COLUMN_THEME_NAME, file,
                                         COLUMN_THEME_DISPLAY_NAME, visible_name,
-                                        COLUMN_THEME_WARNING, !has_cache,
-                                        COLUMN_THEME_COMMENT, cache_tooltip,
+                                        COLUMN_THEME_WARNING, warning_tooltip != NULL,
+                                        COLUMN_THEME_COMMENT, warning_tooltip,
                                         -1);
 
                     /* Check if this is the active theme, if so, select it */
