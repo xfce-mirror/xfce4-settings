@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-03-23 00:47+0100\n"
+"POT-Creation-Date: 2024-05-10 12:47+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Kevin Brubeck Unhammer <unhammer+dill@mm.st>, 2017\n"
 "Language-Team: Norwegian Nynorsk (http://app.transifex.com/xfce/xfce4-settings/language/nn/)\n"
@@ -41,11 +41,11 @@ msgstr "Fjernsyn"
 msgid "Digital display"
 msgstr "Digital skjerm"
 
-#: common/xfce-randr.c:295 dialogs/display-settings/display-settings-x11.c:672
+#: common/xfce-randr.c:290 dialogs/display-settings/display-settings-x11.c:664
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Greier ikkje spørja etter kva versjon RandR-utviding som er i bruk"
 
-#: common/xfce-randr.c:577
+#: common/xfce-randr.c:572
 #: dialogs/display-settings/display-settings-wayland.c:322
 msgid "Laptop"
 msgstr "Berbar maskin"
@@ -61,7 +61,7 @@ msgstr "Tilgjenge"
 #: dialogs/display-settings/display-dialog.glade:285
 #: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3359
+#: dialogs/display-settings/main.c:3405
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -309,8 +309,8 @@ msgid "Version information"
 msgstr "Informasjon om denne utgåva"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3307 dialogs/keyboard-settings/main.c:78
+#: dialogs/appearance-settings/main.c:1445 dialogs/color-settings/main.c:1408
+#: dialogs/display-settings/main.c:3353 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
@@ -321,8 +321,8 @@ msgid "Type '%s --help' for usage."
 msgstr "Skriv '%s --help' for bruksinstruksjonar"
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3326 dialogs/keyboard-settings/main.c:94
+#: dialogs/appearance-settings/main.c:1464 dialogs/color-settings/main.c:1425
+#: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
 #: xfsettingsd/main.c:271
@@ -330,8 +330,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Utviklingslaget for Xfce. Alle rettar er reserverte."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3327 dialogs/keyboard-settings/main.c:95
+#: dialogs/appearance-settings/main.c:1465 dialogs/color-settings/main.c:1426
+#: dialogs/display-settings/main.c:3373 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
 #: xfsettingsd/main.c:272
@@ -350,7 +350,7 @@ msgid ""
 msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1299 dialogs/display-settings/main.c:92
+#: dialogs/appearance-settings/main.c:1311 dialogs/display-settings/main.c:92
 #: dialogs/display-settings/main.c:101
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -577,49 +577,63 @@ msgstr "Eige_nskapar"
 msgid "Failed to display Xfwm4 Settings"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:511
+#. If the theme has no cache, mention this in the tooltip
+#: dialogs/appearance-settings/main.c:510
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
-"<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
-msgstr "Åtvaring: denne ikon-drakta har inga hurtiglagerfil. Du kan oppretta ei ved å køyre <i>gtk-update-icon-cache %s/%s/</i> i ein terminal."
+"<i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."
+msgstr ""
 
-#: dialogs/appearance-settings/main.c:993
+#. If the theme is known to be incomplete (does not follow fd.org standards),
+#. mention this in the tooltip
+#: dialogs/appearance-settings/main.c:518
+msgid "Warning: this icon theme is incomplete. Some icons will be missing."
+msgstr ""
+
+#. These actually are no full themes by purpose
+#: dialogs/appearance-settings/main.c:524
+msgid ""
+"Warning: this icon theme is incomplete. It only provides a base set of icons"
+" from which other themes can inherit."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1005
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:998
+#: dialogs/appearance-settings/main.c:1010
 msgid "Failed to create temporary directory"
 msgstr "Klarte ikkje oppretta mellombels mappe"
 
-#: dialogs/appearance-settings/main.c:1003
+#: dialogs/appearance-settings/main.c:1015
 msgid "Failed to extract archive"
 msgstr "Klarte ikkje pakka ut arkivet"
 
-#: dialogs/appearance-settings/main.c:1008
+#: dialogs/appearance-settings/main.c:1020
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Ukjent format, berre arkiv og mapper er støtta"
 
-#: dialogs/appearance-settings/main.c:1013
+#: dialogs/appearance-settings/main.c:1025
 msgid "Not a valid theme package"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1018
+#: dialogs/appearance-settings/main.c:1030
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Ein ukjend feil, avsluttingskoden er %d"
 
-#: dialogs/appearance-settings/main.c:1025
+#: dialogs/appearance-settings/main.c:1037
 msgid "Failed to install theme"
 msgstr "Klarte ikkje å installera bunaden"
 
-#: dialogs/appearance-settings/main.c:1078
+#: dialogs/appearance-settings/main.c:1090
 #, c-format
 msgid "Install %s theme"
 msgstr ""
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1082
+#: dialogs/appearance-settings/main.c:1094
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:133
 #: dialogs/keyboard-settings/command-dialog.c:118
@@ -631,25 +645,25 @@ msgstr ""
 msgid "_Cancel"
 msgstr "Av_bryt"
 
-#: dialogs/appearance-settings/main.c:1084
+#: dialogs/appearance-settings/main.c:1096
 #: dialogs/keyboard-settings/command-dialog.c:283
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Opna"
 
-#: dialogs/appearance-settings/main.c:1303
+#: dialogs/appearance-settings/main.c:1315
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1307
+#: dialogs/appearance-settings/main.c:1319
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1311
+#: dialogs/appearance-settings/main.c:1323
 msgid "Vertical RGB"
 msgstr "Loddrett RGB"
 
-#: dialogs/appearance-settings/main.c:1315
+#: dialogs/appearance-settings/main.c:1327
 msgid "Vertical BGR"
 msgstr "Loddrett BGR"
 
@@ -1181,34 +1195,30 @@ msgstr "Du må ikkje slå av den siste aktive utgangen, for då blir systemet ub
 msgid "Selected output not disabled"
 msgstr "Den valde utgangen er ikkje avslegen"
 
-#: dialogs/display-settings/main.c:1195
-msgid "Profiles matching the currently connected displays"
-msgstr ""
-
-#: dialogs/display-settings/main.c:1284
+#: dialogs/display-settings/main.c:1311
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1289
+#: dialogs/display-settings/main.c:1316
 #, c-format
 msgid "_Update '%s'"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1612
+#: dialogs/display-settings/main.c:1656
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1658
 msgid "Delete Profile"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1617
+#: dialogs/display-settings/main.c:1661
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr ""
 
-#: dialogs/display-settings/main.c:1618
+#: dialogs/display-settings/main.c:1662
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1216,22 +1226,22 @@ msgstr ""
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: dialogs/display-settings/main.c:1619
+#: dialogs/display-settings/main.c:1663
 msgid "Delete"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1705
+#: dialogs/display-settings/main.c:1749
 #, c-format
 msgid "%d Xfce Panels"
 msgstr ""
 
-#: dialogs/display-settings/main.c:2447
+#: dialogs/display-settings/main.c:2493
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Vel ein skjerm for å endre eigenskapane hans; dra han for å endre plasseringa."
 
-#: dialogs/display-settings/main.c:2546 dialogs/display-settings/main.c:2579
+#: dialogs/display-settings/main.c:2592 dialogs/display-settings/main.c:2625
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1240,23 +1250,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2801
+#: dialogs/display-settings/main.c:2847
 msgid "Mirror Screens"
 msgstr "Spegla skjermar"
 
-#: dialogs/display-settings/main.c:2851
+#: dialogs/display-settings/main.c:2897
 msgid "(Disabled)"
 msgstr "(Deaktivert)"
 
-#: dialogs/display-settings/main.c:3353
+#: dialogs/display-settings/main.c:3399
 msgid "ATI Settings"
 msgstr "ATI-innstillingar"
 
-#: dialogs/display-settings/main.c:3358
+#: dialogs/display-settings/main.c:3404
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Greier ikkje starta Xfce-skjerminnstillingane"
 
-#: dialogs/display-settings/main.c:3366
+#: dialogs/display-settings/main.c:3412
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Greier ikkje starta innstillingane for den lukka drivaren"
 
@@ -1269,15 +1279,15 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr ""
 
-#: dialogs/display-settings/display-settings.c:445
+#: dialogs/display-settings/display-settings.c:442
 msgid "Display:"
 msgstr "Skjerm:"
 
-#: dialogs/display-settings/display-settings.c:453
+#: dialogs/display-settings/display-settings.c:450
 msgid "Resolution:"
 msgstr "Oppløysing:"
 
-#: dialogs/display-settings/display-settings-wayland.c:997
+#: dialogs/display-settings/display-settings-wayland.c:981
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
