@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-03-24 12:47+0100\n"
+"POT-Creation-Date: 2024-05-10 12:47+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>, 2015-2021\n"
 "Language-Team: Slovak (http://app.transifex.com/xfce/xfce4-settings/language/sk/)\n"
@@ -62,7 +62,7 @@ msgstr "Prístupnosť"
 #: dialogs/display-settings/display-dialog.glade:285
 #: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3401
+#: dialogs/display-settings/main.c:3405
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
 #: dialogs/mime-settings/xfce-mime-window.c:191
 #: dialogs/mouse-settings/mouse-dialog.glade:195
@@ -310,8 +310,8 @@ msgid "Version information"
 msgstr "Informácie o verzii"
 
 #: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3349 dialogs/keyboard-settings/main.c:78
+#: dialogs/appearance-settings/main.c:1445 dialogs/color-settings/main.c:1408
+#: dialogs/display-settings/main.c:3353 dialogs/keyboard-settings/main.c:78
 #: dialogs/mime-settings/main.c:84
 #: dialogs/mime-settings/xfce-mime-helper-main.c:157
 #: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
@@ -322,8 +322,8 @@ msgid "Type '%s --help' for usage."
 msgstr "Informácie o použití získate príkazom '%s --help'"
 
 #: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3368 dialogs/keyboard-settings/main.c:94
+#: dialogs/appearance-settings/main.c:1464 dialogs/color-settings/main.c:1425
+#: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:94
 #: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
 #: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
 #: xfsettingsd/main.c:271
@@ -331,8 +331,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Vývojársky tím Xfce. Všetky práva vyhradené."
 
 #: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3369 dialogs/keyboard-settings/main.c:95
+#: dialogs/appearance-settings/main.c:1465 dialogs/color-settings/main.c:1426
+#: dialogs/display-settings/main.c:3373 dialogs/keyboard-settings/main.c:95
 #: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
 #: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
 #: xfsettingsd/main.c:272
@@ -351,7 +351,7 @@ msgid ""
 msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1299 dialogs/display-settings/main.c:92
+#: dialogs/appearance-settings/main.c:1311 dialogs/display-settings/main.c:92
 #: dialogs/display-settings/main.c:101
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -578,49 +578,63 @@ msgstr "_Nastavenia"
 msgid "Failed to display Xfwm4 Settings"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:511
+#. If the theme has no cache, mention this in the tooltip
+#: dialogs/appearance-settings/main.c:510
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
-"<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
-msgstr "Upozornenie: tento motív ikon nemá súbor vyrovnávacej pamäte. Môžete ho vytvoriť spustením <i>gtk-update-icon-cache %s/%s/</i> v okne emulátora terminálu."
+"<i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."
+msgstr ""
 
-#: dialogs/appearance-settings/main.c:993
+#. If the theme is known to be incomplete (does not follow fd.org standards),
+#. mention this in the tooltip
+#: dialogs/appearance-settings/main.c:518
+msgid "Warning: this icon theme is incomplete. Some icons will be missing."
+msgstr ""
+
+#. These actually are no full themes by purpose
+#: dialogs/appearance-settings/main.c:524
+msgid ""
+"Warning: this icon theme is incomplete. It only provides a base set of icons"
+" from which other themes can inherit."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1005
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:998
+#: dialogs/appearance-settings/main.c:1010
 msgid "Failed to create temporary directory"
 msgstr "Nie je možné vytvoriť dočasný priečinok"
 
-#: dialogs/appearance-settings/main.c:1003
+#: dialogs/appearance-settings/main.c:1015
 msgid "Failed to extract archive"
 msgstr "Nie je možné rozbaliť archív"
 
-#: dialogs/appearance-settings/main.c:1008
+#: dialogs/appearance-settings/main.c:1020
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Neznámy formát, podporované sú len archívy a priečinky"
 
-#: dialogs/appearance-settings/main.c:1013
+#: dialogs/appearance-settings/main.c:1025
 msgid "Not a valid theme package"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1018
+#: dialogs/appearance-settings/main.c:1030
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Neznáma chyba, kód ukončenia je %d"
 
-#: dialogs/appearance-settings/main.c:1025
+#: dialogs/appearance-settings/main.c:1037
 msgid "Failed to install theme"
 msgstr "Zlyhala inštalácia motívu"
 
-#: dialogs/appearance-settings/main.c:1078
+#: dialogs/appearance-settings/main.c:1090
 #, c-format
 msgid "Install %s theme"
 msgstr "Inštalovať motív %s"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1082
+#: dialogs/appearance-settings/main.c:1094
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:133
 #: dialogs/keyboard-settings/command-dialog.c:118
@@ -632,25 +646,25 @@ msgstr "Inštalovať motív %s"
 msgid "_Cancel"
 msgstr "_Zrušiť"
 
-#: dialogs/appearance-settings/main.c:1084
+#: dialogs/appearance-settings/main.c:1096
 #: dialogs/keyboard-settings/command-dialog.c:283
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Otvoriť"
 
-#: dialogs/appearance-settings/main.c:1303
+#: dialogs/appearance-settings/main.c:1315
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1307
+#: dialogs/appearance-settings/main.c:1319
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1311
+#: dialogs/appearance-settings/main.c:1323
 msgid "Vertical RGB"
 msgstr "Zvislé RGB"
 
-#: dialogs/appearance-settings/main.c:1315
+#: dialogs/appearance-settings/main.c:1327
 msgid "Vertical BGR"
 msgstr "Zvislé BGR"
 
@@ -1192,20 +1206,20 @@ msgstr "Aktualizovať zmenený profil monitora „%s“?"
 msgid "_Update '%s'"
 msgstr "A_ktualizovať „%s“"
 
-#: dialogs/display-settings/main.c:1652
+#: dialogs/display-settings/main.c:1656
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Chcete odstrániť profil monitora „%s“?"
 
-#: dialogs/display-settings/main.c:1654
+#: dialogs/display-settings/main.c:1658
 msgid "Delete Profile"
 msgstr "Odstrániť profil"
 
-#: dialogs/display-settings/main.c:1657
+#: dialogs/display-settings/main.c:1661
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Keď je profile monitora zmazaný, už ho nemožno obnoviť."
 
-#: dialogs/display-settings/main.c:1658
+#: dialogs/display-settings/main.c:1662
 #: dialogs/mime-settings/xfce-mime-chooser.c:134
 #: dialogs/mime-settings/xfce-mime-chooser.c:382
 #: dialogs/mime-settings/xfce-mime-window.c:1178
@@ -1213,22 +1227,22 @@ msgstr "Keď je profile monitora zmazaný, už ho nemožno obnoviť."
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: dialogs/display-settings/main.c:1659
+#: dialogs/display-settings/main.c:1663
 msgid "Delete"
 msgstr "Odstrániť"
 
-#: dialogs/display-settings/main.c:1745
+#: dialogs/display-settings/main.c:1749
 #, c-format
 msgid "%d Xfce Panels"
 msgstr "%d Panelov Xfce"
 
-#: dialogs/display-settings/main.c:2489
+#: dialogs/display-settings/main.c:2493
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Vyberte monitor na zmenu jeho vlastností; presuňte ho na zmenu jeho jeho umiestnenia."
 
-#: dialogs/display-settings/main.c:2588 dialogs/display-settings/main.c:2621
+#: dialogs/display-settings/main.c:2592 dialogs/display-settings/main.c:2625
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1237,23 +1251,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2843
+#: dialogs/display-settings/main.c:2847
 msgid "Mirror Screens"
 msgstr "Zrkadliť obrazovky"
 
-#: dialogs/display-settings/main.c:2893
+#: dialogs/display-settings/main.c:2897
 msgid "(Disabled)"
 msgstr "(Vypnuté)"
 
-#: dialogs/display-settings/main.c:3395
+#: dialogs/display-settings/main.c:3399
 msgid "ATI Settings"
 msgstr "Nastavenie grafickej karty ATI"
 
-#: dialogs/display-settings/main.c:3400
+#: dialogs/display-settings/main.c:3404
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nie je možné spustiť nastavenia obrazovky prostredia Xfce"
 
-#: dialogs/display-settings/main.c:3408
+#: dialogs/display-settings/main.c:3412
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nie je možné spustiť nastavenie proprietárneho ovládača"
 
@@ -1266,11 +1280,11 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "displej;zobrazenie;nastavenia;obrazovka;rozlíšenie;obnovovacia;frekvencia;otočenie;externý;projektory;monitory;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:445
+#: dialogs/display-settings/display-settings.c:442
 msgid "Display:"
 msgstr "Obrazovka:"
 
-#: dialogs/display-settings/display-settings.c:453
+#: dialogs/display-settings/display-settings.c:450
 msgid "Resolution:"
 msgstr "Rozlíšenie:"
 
