@@ -49,10 +49,11 @@
 
 
 
-#define get_instance_private(instance) ((XfceDisplaySettingsPrivate *) \
-    xfce_display_settings_get_instance_private (XFCE_DISPLAY_SETTINGS (instance)))
+#define get_instance_private(instance) \
+    ((XfceDisplaySettingsPrivate *) xfce_display_settings_get_instance_private (XFCE_DISPLAY_SETTINGS (instance)))
 
-static void           xfce_display_settings_finalize        (GObject      *object);
+static void
+xfce_display_settings_finalize (GObject *object);
 
 
 
@@ -559,7 +560,7 @@ xfce_display_settings_populate_combobox (XfceDisplaySettings *settings)
     /* create a new list store */
     store = gtk_list_store_new (N_OUTPUT_COLUMNS,
                                 G_TYPE_STRING, /* COLUMN_OUTPUT_NAME */
-                                G_TYPE_INT);   /* COLUMN_OUTPUT_ID */
+                                G_TYPE_INT); /* COLUMN_OUTPUT_ID */
 
     /* set up the new combobox which will replace the above combobox */
     combobox = gtk_builder_get_object (priv->builder, "randr-outputs");
@@ -738,7 +739,8 @@ xfce_display_settings_get_mirrored_state (XfceDisplaySettings *settings)
             break;
     }
 
-    return cloned ? MIRRORED_STATE_CLONED : mirrored ? MIRRORED_STATE_MIRRORED : MIRRORED_STATE_NONE;
+    return cloned ? MIRRORED_STATE_CLONED : mirrored ? MIRRORED_STATE_MIRRORED
+                                                     : MIRRORED_STATE_NONE;
 }
 
 

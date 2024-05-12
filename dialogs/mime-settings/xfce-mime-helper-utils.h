@@ -26,9 +26,11 @@
 
 G_BEGIN_DECLS
 
-gboolean xfce_mime_helper_category_from_string (const gchar       *string,
-                                          XfceMimeHelperCategory *category_return);
-gchar   *xfce_mime_helper_category_to_string   (XfceMimeHelperCategory  category) G_GNUC_MALLOC;
+gboolean
+xfce_mime_helper_category_from_string (const gchar *string,
+                                       XfceMimeHelperCategory *category_return);
+gchar *
+xfce_mime_helper_category_to_string (XfceMimeHelperCategory category) G_GNUC_MALLOC;
 
 G_END_DECLS
 

@@ -22,15 +22,17 @@
 
 G_BEGIN_DECLS
 
-#define XFCE_TYPE_WORKSPACES_HELPER     (xfce_workspaces_helper_get_type())
-#define XFCE_WORKSPACES_HELPER(obj)     (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCE_TYPE_WORKSPACES_HELPER, XfceWorkspacesHelper))
-#define XFCE_IS_WORKSPACES_HELPER(obj)  (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCE_TYPE_WORKSPACES_HELPER))
+#define XFCE_TYPE_WORKSPACES_HELPER (xfce_workspaces_helper_get_type ())
+#define XFCE_WORKSPACES_HELPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_WORKSPACES_HELPER, XfceWorkspacesHelper))
+#define XFCE_IS_WORKSPACES_HELPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_WORKSPACES_HELPER))
 
-typedef struct _XfceWorkspacesHelper       XfceWorkspacesHelper;
-typedef struct _XfceWorkspacesHelperClass  XfceWorkspacesHelperClass;
+typedef struct _XfceWorkspacesHelper XfceWorkspacesHelper;
+typedef struct _XfceWorkspacesHelperClass XfceWorkspacesHelperClass;
 
-GType xfce_workspaces_helper_get_type(void) G_GNUC_CONST;
-void xfce_workspaces_helper_disable_wm_check (gboolean disable_wm_check);
+GType
+xfce_workspaces_helper_get_type (void) G_GNUC_CONST;
+void
+xfce_workspaces_helper_disable_wm_check (gboolean disable_wm_check);
 
 G_END_DECLS
 

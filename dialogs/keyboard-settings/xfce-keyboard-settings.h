@@ -26,22 +26,26 @@
 G_BEGIN_DECLS
 
 typedef struct _XfceKeyboardSettingsPrivate XfceKeyboardSettingsPrivate;
-typedef struct _XfceKeyboardSettingsClass   XfceKeyboardSettingsClass;
-typedef struct _XfceKeyboardSettings        XfceKeyboardSettings;
+typedef struct _XfceKeyboardSettingsClass XfceKeyboardSettingsClass;
+typedef struct _XfceKeyboardSettings XfceKeyboardSettings;
 
-#define XFCE_TYPE_KEYBOARD_SETTINGS            (xfce_keyboard_settings_get_type ())
-#define XFCE_KEYBOARD_SETTINGS(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettings))
-#define XFCE_KEYBOARD_SETTINGS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettingsClass))
-#define XFCE_IS_KEYBOARD_SETTINGS(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_KEYBOARD_SETTINGS))
+#define XFCE_TYPE_KEYBOARD_SETTINGS (xfce_keyboard_settings_get_type ())
+#define XFCE_KEYBOARD_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettings))
+#define XFCE_KEYBOARD_SETTINGS_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettingsClass))
+#define XFCE_IS_KEYBOARD_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_KEYBOARD_SETTINGS))
 #define XFCE_IS_KEYBOARD_SETTINGS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_KEYBOARD_SETTINGS)
-#define XFCE_KEYBOARD_SETTINGS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettingsClass))
+#define XFCE_KEYBOARD_SETTINGS_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettingsClass))
 
-GType xfce_keyboard_settings_get_type                      (void) G_GNUC_CONST;
+GType
+xfce_keyboard_settings_get_type (void) G_GNUC_CONST;
 
-XfceKeyboardSettings *xfce_keyboard_settings_new           (void) G_GNUC_MALLOC;
-GtkWidget            *xfce_keyboard_settings_create_dialog (XfceKeyboardSettings *settings);
-GtkWidget            *xfce_keyboard_settings_create_plug   (XfceKeyboardSettings *settings,
-                                                            gint                  socket_id);
+XfceKeyboardSettings *
+xfce_keyboard_settings_new (void) G_GNUC_MALLOC;
+GtkWidget *
+xfce_keyboard_settings_create_dialog (XfceKeyboardSettings *settings);
+GtkWidget *
+xfce_keyboard_settings_create_plug (XfceKeyboardSettings *settings,
+                                    gint socket_id);
 
 
 

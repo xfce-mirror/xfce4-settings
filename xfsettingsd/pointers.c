@@ -41,26 +41,33 @@
 #define DEVICE_ENABLED "Device Enabled"
 #endif /* XI_PROP_ENABLED */
 
-static void             xfce_pointers_helper_finalize                 (GObject            *object);
-static void             xfce_pointers_helper_syndaemon_stop           (XfcePointersHelper *helper);
-static void             xfce_pointers_helper_syndaemon_check          (XfcePointersHelper *helper);
-static void             xfce_pointers_helper_restore_devices          (XfcePointersHelper *helper,
-                                                                       XID                *xid);
-static void             xfce_pointers_helper_channel_property_changed (XfconfChannel      *channel,
-                                                                       const gchar        *property_name,
-                                                                       const GValue       *value,
-                                                                       XfcePointersHelper *helper);
+static void
+xfce_pointers_helper_finalize (GObject *object);
+static void
+xfce_pointers_helper_syndaemon_stop (XfcePointersHelper *helper);
+static void
+xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper);
+static void
+xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
+                                      XID *xid);
+static void
+xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
+                                               const gchar *property_name,
+                                               const GValue *value,
+                                               XfcePointersHelper *helper);
 #ifdef DEVICE_HOTPLUGGING
-static GdkFilterReturn  xfce_pointers_helper_event_filter             (GdkXEvent          *xevent,
-                                                                       GdkEvent           *gdk_event,
-                                                                       gpointer            user_data);
+static GdkFilterReturn
+xfce_pointers_helper_event_filter (GdkXEvent *xevent,
+                                   GdkEvent *gdk_event,
+                                   gpointer user_data);
 #endif
 #if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
-static void             xfce_pointers_helper_change_property          (XDeviceInfo        *device_info,
-                                                                       XDevice            *device,
-                                                                       Display            *xdisplay,
-                                                                       const gchar        *prop_name,
-                                                                       const GValue       *value);
+static void
+xfce_pointers_helper_change_property (XDeviceInfo *device_info,
+                                      XDevice *device,
+                                      Display *xdisplay,
+                                      const gchar *prop_name,
+                                      const GValue *value);
 #endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
 
@@ -72,29 +79,28 @@ struct _XfcePointersHelperClass
 
 struct _XfcePointersHelper
 {
-    GObject  __parent__;
+    GObject __parent__;
 
     /* xfconf channel */
     XfconfChannel *channel;
 
 #ifdef DEVICE_PROPERTIES
-    GPid           syndaemon_pid;
+    GPid syndaemon_pid;
 #endif
 
 #ifdef DEVICE_HOTPLUGGING
     /* device presence event type */
-    gint           device_presence_event_type;
+    gint device_presence_event_type;
 #endif
 };
 
 typedef struct
 {
-    Display     *xdisplay;
-    XDevice     *device;
+    Display *xdisplay;
+    XDevice *device;
     XDeviceInfo *device_info;
-    gsize        prop_name_len;
-}
-XfcePointerData;
+    gsize prop_name_len;
+} XfcePointerData;
 
 
 
@@ -116,9 +122,9 @@ static void
 xfce_pointers_helper_init (XfcePointersHelper *helper)
 {
     XExtensionVersion *version = NULL;
-    Display           *xdisplay;
+    Display *xdisplay;
 #ifdef DEVICE_HOTPLUGGING
-    XEventClass        event_class;
+    XEventClass event_class;
 #endif
 
     /* get the default display */
@@ -154,7 +160,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 
         /* monitor the channel */
         g_signal_connect (G_OBJECT (helper->channel), "property-changed",
-             G_CALLBACK (xfce_pointers_helper_channel_property_changed), helper);
+                          G_CALLBACK (xfce_pointers_helper_channel_property_changed), helper);
 
         /* launch syndaemon if required */
         xfce_pointers_helper_syndaemon_check (helper);
@@ -194,10 +200,10 @@ static gboolean
 xfce_pointers_is_enabled (Display *xdisplay,
                           XDevice *device)
 {
-    Atom     prop, type;
-    gulong   n_items, bytes_after;
-    gint     rc, format;
-    guchar  *data;
+    Atom prop, type;
+    gulong n_items, bytes_after;
+    gint rc, format;
+    guchar *data;
     gboolean enabled;
 
     prop = XInternAtom (xdisplay, DEVICE_ENABLED, False);
@@ -222,10 +228,10 @@ static gboolean
 xfce_pointers_is_libinput (Display *xdisplay,
                            XDevice *device)
 {
-    Atom     prop, type;
-    gulong   n_items, bytes_after;
-    gint     rc, format;
-    guchar  *data;
+    Atom prop, type;
+    gulong n_items, bytes_after;
+    gint rc, format;
+    guchar *data;
 
     prop = XInternAtom (xdisplay, LIBINPUT_PROP_LEFT_HANDED, False);
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
@@ -267,19 +273,19 @@ static void
 xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
 {
 #ifdef DEVICE_PROPERTIES
-    Display     *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
     XDeviceInfo *device_list;
-    XDevice     *device;
-    gint         n, ndevices;
-    Atom         touchpad_type;
-    Atom         touchpad_off_prop;
-    Atom        *props;
-    gint         i, nprops;
-    gboolean     have_synaptics = FALSE;
-    gdouble      disable_duration;
-    gchar        disable_duration_string[64];
-    gchar       *args[] = { "syndaemon", "-i", disable_duration_string, "-K", "-R", NULL };
-    GError      *error = NULL;
+    XDevice *device;
+    gint n, ndevices;
+    Atom touchpad_type;
+    Atom touchpad_off_prop;
+    Atom *props;
+    gint i, nprops;
+    gboolean have_synaptics = FALSE;
+    gdouble disable_duration;
+    gchar disable_duration_string[64];
+    gchar *args[] = { "syndaemon", "-i", disable_duration_string, "-K", "-R", NULL };
+    GError *error = NULL;
 
     /* only stop a running daemon */
     if (!xfconf_channel_get_bool (helper->channel, "/DisableTouchpadWhileTyping", FALSE))
@@ -327,7 +333,7 @@ xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
 
     XFreeDeviceList (device_list);
 
-    start_stop_daemon:
+start_stop_daemon:
 
     /* stop the daemon in any case */
     xfce_pointers_helper_syndaemon_stop (helper);
@@ -337,7 +343,7 @@ xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
         disable_duration = xfconf_channel_get_double (helper->channel,
                                                       "/DisableTouchpadDuration",
                                                       2.0);
-        setlocale(LC_NUMERIC, "C"); /* syndaemon needs a dot for the float. Nothing localized! */
+        setlocale (LC_NUMERIC, "C"); /* syndaemon needs a dot for the float. Nothing localized! */
         g_snprintf (disable_duration_string, sizeof (disable_duration_string),
                     "%.1f", disable_duration);
 
@@ -357,15 +363,15 @@ xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
 
 
 static gboolean
-xfce_pointers_helper_change_button_mapping_swap (guchar   *buttonmap,
-                                                 gshort    num_buttons,
-                                                 gint      id_1,
-                                                 gint      id_2,
-                                                 gboolean  reverse)
+xfce_pointers_helper_change_button_mapping_swap (guchar *buttonmap,
+                                                 gshort num_buttons,
+                                                 gint id_1,
+                                                 gint id_2,
+                                                 gboolean reverse)
 {
     gshort n;
-    gint   id_a = -1;
-    gint   id_b = -1;
+    gint id_a = -1;
+    gint id_b = -1;
 
     /* figure out the position of the id_1 and id_2 buttons in the map */
     for (n = 0; n < num_buttons; n++)
@@ -398,18 +404,18 @@ xfce_pointers_helper_change_button_mapping_swap (guchar   *buttonmap,
 
 static void
 xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
-                                            XDevice     *device,
-                                            Display     *xdisplay,
-                                            gint         right_handed,
-                                            gint         reverse_scrolling)
+                                            XDevice *device,
+                                            Display *xdisplay,
+                                            gint right_handed,
+                                            gint reverse_scrolling)
 {
-    XAnyClassPtr  ptr;
-    gshort        num_buttons = 0;
-    guchar       *buttonmap;
-    gboolean      map_changed = FALSE;
-    gint          n;
-    gint          right_button;
-    GString      *readable_map;
+    XAnyClassPtr ptr;
+    gshort num_buttons = 0;
+    guchar *buttonmap;
+    gboolean map_changed = FALSE;
+    gint n;
+    gint right_button;
+    GString *readable_map;
 
 #ifdef HAVE_LIBINPUT
     if (xfce_pointers_is_libinput (xdisplay, device))
@@ -517,7 +523,7 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
                         device_info->name);
     }
 
-    leave:
+leave:
 
     g_free (buttonmap);
 }
@@ -536,18 +542,18 @@ xfce_pointers_helper_gcd (gint num,
 
 static void
 xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
-                                      XDevice     *device,
-                                      Display     *xdisplay,
-                                      gint         threshold,
-                                      gdouble      acceleration)
+                                      XDevice *device,
+                                      Display *xdisplay,
+                                      gint threshold,
+                                      gdouble acceleration)
 {
-    XFeedbackState      *states, *pt;
-    gint                 num_feedbacks;
-    XPtrFeedbackControl  feedback;
-    gint                 n;
-    gulong               mask = 0;
-    gint                 num, denom, gcd;
-    gboolean             found = FALSE;
+    XFeedbackState *states, *pt;
+    gint num_feedbacks;
+    XPtrFeedbackControl feedback;
+    gint n;
+    gulong mask = 0;
+    gint num, denom, gcd;
+    gboolean found = FALSE;
 
 #ifdef HAVE_LIBINPUT
     if (xfce_pointers_is_libinput (xdisplay, device))
@@ -657,10 +663,10 @@ xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
 
 
 static void
-xfce_pointers_helper_change_mode (XDeviceInfo  *device_info,
-                                  XDevice      *device,
-                                  Display      *xdisplay,
-                                  const gchar  *mode_name)
+xfce_pointers_helper_change_mode (XDeviceInfo *device_info,
+                                  XDevice *device,
+                                  Display *xdisplay,
+                                  const gchar *mode_name)
 {
     gint mode;
 
@@ -688,7 +694,7 @@ xfce_pointers_helper_change_mode (XDeviceInfo  *device_info,
 static gchar *
 xfce_pointers_helper_device_xfconf_name (const gchar *name)
 {
-    GString     *string;
+    GString *string;
     const gchar *p;
 
     /* NOTE: this function exists in both the dialog and
@@ -721,30 +727,31 @@ xfce_pointers_helper_device_xfconf_name (const gchar *name)
 
 #if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
-xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
-                                      XDevice      *device,
-                                      Display      *xdisplay,
-                                      const gchar  *prop_name,
+xfce_pointers_helper_change_property (XDeviceInfo *device_info,
+                                      XDevice *device,
+                                      Display *xdisplay,
+                                      const gchar *prop_name,
                                       const GValue *value)
 {
-    Atom         *props;
-    gint          n, n_props;
-    Atom          prop;
-    gchar        *atom_name;
-    Atom          type;
-    gint          format;
-    gulong        n_items, bytes_after, i;
-    gulong        n_succeeds;
-    Atom          float_atom;
-    GPtrArray    *array = NULL;
-    int           rc;
+    Atom *props;
+    gint n, n_props;
+    Atom prop;
+    gchar *atom_name;
+    Atom type;
+    gint format;
+    gulong n_items, bytes_after, i;
+    gulong n_succeeds;
+    Atom float_atom;
+    GPtrArray *array = NULL;
+    int rc;
     const GValue *val;
-    union {
+    union
+    {
         guchar *c;
         gshort *s;
-        glong  *l;
-        float  *f;
-        Atom   *a;
+        glong *l;
+        float *f;
+        Atom *a;
     } data;
 
     /* assuming the device property never contained underscores... */
@@ -764,8 +771,8 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
      * see: https://bugs.freedesktop.org/show_bug.cgi?id=89296
      * and: http://lists.x.org/archives/xorg-devel/2015-February/045716.html
      */
-    if (prop != XInternAtom (xdisplay, DEVICE_ENABLED, True) &&
-        !xfce_pointers_is_enabled (xdisplay, device))
+    if (prop != XInternAtom (xdisplay, DEVICE_ENABLED, True)
+        && !xfce_pointers_is_enabled (xdisplay, device))
         return;
 #endif /* HAVE_LIBINPUT */
 
@@ -851,7 +858,7 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
                 {
                     /* Xorg actually uses sizeof(long) bytes per element if format == 32 */
                     /* See https://gitlab.freedesktop.org/xorg/app/xinput/-/blob/cef07c0c8280d7e7b82c3bcc62a1dfbe8cc43ff8/src/property.c#L80 */
-                    *(float*) &data.l[i] = (float) g_value_get_double (val);
+                    *(float *) &data.l[i] = (float) g_value_get_double (val);
                 }
                 else
                 {
@@ -900,7 +907,7 @@ xfce_pointers_helper_change_properties (gpointer key,
                                         gpointer user_data)
 {
     XfcePointerData *pointer_data = user_data;
-    const gchar     *prop_name = ((gchar *) key) + pointer_data->prop_name_len;
+    const gchar *prop_name = ((gchar *) key) + pointer_data->prop_name_len;
 
     xfce_pointers_helper_change_property (pointer_data->device_info,
                                           pointer_data->device,
@@ -913,21 +920,21 @@ xfce_pointers_helper_change_properties (gpointer key,
 
 static void
 xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
-                                      XID                *xid)
+                                      XID *xid)
 {
-    Display         *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
-    XDeviceInfo     *device_list, *device_info;
-    gint             n, ndevices;
-    XDevice         *device;
-    gchar           *device_name;
-    gchar            prop[256];
-    gboolean         right_handed;
-    gboolean         reverse_scrolling;
-    gint             threshold;
-    gdouble          acceleration;
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    XDeviceInfo *device_list, *device_info;
+    gint n, ndevices;
+    XDevice *device;
+    gchar *device_name;
+    gchar prop[256];
+    gboolean right_handed;
+    gboolean reverse_scrolling;
+    gint threshold;
+    gdouble acceleration;
 #ifdef DEVICE_PROPERTIES
-    GHashTable      *props;
-    XfcePointerData  pointer_data;
+    GHashTable *props;
+    XfcePointerData pointer_data;
 #endif
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
@@ -992,7 +999,7 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
 
         /* read mode settings */
         g_snprintf (prop, sizeof (prop), "/%s/Mode", device_name);
-        mode =  xfconf_channel_get_string  (helper->channel, prop, NULL);
+        mode = xfconf_channel_get_string (helper->channel, prop, NULL);
 
         if (mode != NULL)
         {
@@ -1029,24 +1036,24 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
 
 
 static void
-xfce_pointers_helper_channel_property_changed (XfconfChannel      *channel,
-                                               const gchar        *property_name,
-                                               const GValue       *value,
+xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
+                                               const gchar *property_name,
+                                               const GValue *value,
                                                XfcePointersHelper *helper)
 {
-    Display      *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
-    XDeviceInfo  *device_list, *device_info;
-    XDevice      *device;
-    gint          n, ndevices;
-    gchar       **names;
-    gchar        *device_name;
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    XDeviceInfo *device_list, *device_info;
+    XDevice *device;
+    gint n, ndevices;
+    gchar **names;
+    gchar *device_name;
 
     if (G_UNLIKELY (property_name == NULL))
-         return;
+        return;
 
     /* check the daemon status */
-    if ((strcmp (property_name, "/DisableTouchpadWhileTyping") == 0) ||
-        (strcmp (property_name, "/DisableTouchpadDuration") == 0))
+    if (strcmp (property_name, "/DisableTouchpadWhileTyping") == 0
+        || strcmp (property_name, "/DisableTouchpadDuration") == 0)
     {
         xfce_pointers_helper_syndaemon_check (helper);
         return;
@@ -1145,12 +1152,12 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel      *channel,
 #ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_pointers_helper_event_filter (GdkXEvent *xevent,
-                                   GdkEvent  *gdk_event,
-                                   gpointer   user_data)
+                                   GdkEvent *gdk_event,
+                                   gpointer user_data)
 {
-    XEvent                     *event = xevent;
+    XEvent *event = xevent;
     XDevicePresenceNotifyEvent *dpn_event = xevent;
-    XfcePointersHelper         *helper = XFCE_POINTERS_HELPER (user_data);
+    XfcePointersHelper *helper = XFCE_POINTERS_HELPER (user_data);
 
     if (event->type == helper->device_presence_event_type)
     {

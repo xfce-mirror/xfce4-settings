@@ -44,11 +44,13 @@
 #include <libxfce4ui/libxfce4ui.h>
 
 
-#define get_instance_private(instance) ((XfceDisplaysHelperPrivate *) \
-    xfce_displays_helper_get_instance_private (XFCE_DISPLAYS_HELPER (instance)))
+#define get_instance_private(instance) \
+    ((XfceDisplaysHelperPrivate *) xfce_displays_helper_get_instance_private (XFCE_DISPLAYS_HELPER (instance)))
 
-static void             xfce_displays_helper_constructed                    (GObject                 *object);
-static void             xfce_displays_helper_finalize                       (GObject                 *object);
+static void
+xfce_displays_helper_constructed (GObject *object);
+static void
+xfce_displays_helper_finalize (GObject *object);
 
 
 
@@ -85,13 +87,12 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
 
 
 static void
-xfce_displays_helper_channel_property_changed (XfconfChannel      *channel,
-                                               const gchar        *property_name,
-                                               const GValue       *value,
+xfce_displays_helper_channel_property_changed (XfconfChannel *channel,
+                                               const gchar *property_name,
+                                               const GValue *value,
                                                XfceDisplaysHelper *helper)
 {
-    if (G_UNLIKELY (G_VALUE_HOLDS_STRING (value) &&
-        g_strcmp0 (property_name, APPLY_SCHEME_PROP) == 0))
+    if (G_UNLIKELY (G_VALUE_HOLDS_STRING (value) && g_strcmp0 (property_name, APPLY_SCHEME_PROP) == 0))
     {
         /* apply */
         XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, g_value_get_string (value));

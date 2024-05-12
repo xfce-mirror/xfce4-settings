@@ -48,17 +48,17 @@
 
 /* settings */
 #ifdef HAVE_XCURSOR
-#define PREVIEW_ROWS    (3)
+#define PREVIEW_ROWS (3)
 #define PREVIEW_COLUMNS (6)
-#define PREVIEW_SIZE    (24)
+#define PREVIEW_SIZE (24)
 #define PREVIEW_SPACING (2)
 #endif /* !HAVE_XCURSOR */
 
 #ifdef HAVE_LIBINPUT
 /* if we have an old header file */
-# ifndef LIBINPUT_PROP_HIRES_WHEEL_SCROLL_ENABLED
-#  define LIBINPUT_PROP_HIRES_WHEEL_SCROLL_ENABLED "libinput High Resolution Wheel Scroll Enabled"
-# endif
+#ifndef LIBINPUT_PROP_HIRES_WHEEL_SCROLL_ENABLED
+#define LIBINPUT_PROP_HIRES_WHEEL_SCROLL_ENABLED "libinput High Resolution Wheel Scroll Enabled"
+#endif
 #endif
 
 
@@ -81,16 +81,16 @@ static gint device_presence_event_type = 0;
 static gint opt_socket_id = 0;
 static gchar *opt_device_name = NULL;
 static gboolean opt_version = FALSE;
-static GOptionEntry option_entries[] =
-{
-    { "device", 'd', 0, G_OPTION_ARG_STRING, &opt_device_name, N_("Active device in the dialog"), N_("DEVICE NAME") },
-    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID") },
-    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+static GOptionEntry option_entries[] = {
+    { "device", 'd', 0, G_OPTION_ARG_STRING, &opt_device_name, N_ ("Active device in the dialog"), N_ ("DEVICE NAME") },
+    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_ ("Settings manager socket"), N_ ("SOCKET ID") },
+    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_ ("Version information"), NULL },
     { NULL }
 };
 
 #ifdef HAVE_XCURSOR
 /* icon names for the preview widget */
+/* clang-format off */
 static const gchar *preview_names[] = {
     "left_ptr",            "left_ptr_watch",    "watch",             "hand2",
     "question_arrow",      "sb_h_double_arrow", "sb_v_double_arrow", "bottom_left_corner",
@@ -102,6 +102,7 @@ static const gchar *preview_names[] = {
     "draped_box",          "left_side",         "left_tee",          "ll_angle",
     "top_side",            "top_tee"
 };
+/* clang-format on */
 
 enum
 {
@@ -124,14 +125,14 @@ enum
 
 typedef union
 {
-    gchar   c;
-    guchar  uc;
-    gint16  i16;
+    gchar c;
+    guchar uc;
+    gint16 i16;
     guint16 u16;
-    gint32  i32;
+    gint32 i32;
     guint32 u32;
-    float   f;
-    Atom    a;
+    float f;
+    Atom a;
 } propdata_t;
 
 #ifdef HAVE_LIBINPUT
@@ -160,20 +161,20 @@ static gboolean libinput_supports_custom_accel_profile = FALSE; // Requires libi
 
 static gchar *
 mouse_settings_format_value_px (GtkScale *scale,
-                                gdouble   value)
+                                gdouble value)
 {
-   /* pixel value for some of the scales in the dialog */
-   return g_strdup_printf (_("%g px"), value);
+    /* pixel value for some of the scales in the dialog */
+    return g_strdup_printf (_("%g px"), value);
 }
 
 
 
 static gchar *
 mouse_settings_format_value_ms (GtkScale *scale,
-                                gdouble   value)
+                                gdouble value)
 {
-   /* miliseconds value for some of the scales in the dialog */
-   return g_strdup_printf (_("%g ms"), value);
+    /* miliseconds value for some of the scales in the dialog */
+    return g_strdup_printf (_("%g ms"), value);
 }
 
 
@@ -181,29 +182,28 @@ mouse_settings_format_value_ms (GtkScale *scale,
 #ifdef DEVICE_PROPERTIES
 static gchar *
 mouse_settings_format_value_s (GtkScale *scale,
-                               gdouble   value)
+                               gdouble value)
 {
-   /* seconds value for some of the scales in the dialog */
-   return g_strdup_printf (_("%.1f s"), value);
+    /* seconds value for some of the scales in the dialog */
+    return g_strdup_printf (_("%.1f s"), value);
 }
 #endif
-
 
 
 
 #ifdef HAVE_XCURSOR
 static cairo_surface_t *
 mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
-                                            guint        size,
-                                            gint         scale_factor)
+                                            guint size,
+                                            gint scale_factor)
 {
     XcursorImage *image;
-    GdkPixbuf    *scaled, *pixbuf = NULL;
-    gsize         bsize;
-    guchar       *buffer, *p, tmp;
-    gdouble       wratio, hratio;
-    gint          dest_width, dest_height;
-    guint         full_size = size * scale_factor;
+    GdkPixbuf *scaled, *pixbuf = NULL;
+    gsize bsize;
+    guchar *buffer, *p, tmp;
+    gdouble wratio, hratio;
+    gint dest_width, dest_height;
+    guint full_size = size * scale_factor;
 
     /* load the image */
     image = XcursorFilenameLoadImage (filename, full_size);
@@ -230,7 +230,7 @@ mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
         pixbuf = gdk_pixbuf_new_from_data (buffer, GDK_COLORSPACE_RGB, TRUE,
                                            8, image->width, image->height,
                                            4 * image->width,
-                                           (GdkPixbufDestroyNotify) (void (*)(void)) g_free, NULL);
+                                           (GdkPixbufDestroyNotify) (void (*) (void)) g_free, NULL);
 
         /* don't leak when creating the pixbuf failed */
         if (G_UNLIKELY (pixbuf == NULL))
@@ -248,7 +248,7 @@ mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
 
             /* set dest size */
             if (hratio > wratio)
-                dest_width  = rint (image->width / hratio);
+                dest_width = rint (image->width / hratio);
             else
                 dest_height = rint (image->height / wratio);
 
@@ -280,10 +280,10 @@ mouse_settings_themes_pixbuf_from_filename (const gchar *filename,
 
 static cairo_surface_t *
 mouse_settings_themes_preview_icon (const gchar *path,
-                                    gint         scale_factor)
+                                    gint scale_factor)
 {
-    cairo_surface_t *surface= NULL;
-    gchar     *filename;
+    cairo_surface_t *surface = NULL;
+    gchar *filename;
 
     /* we only try the normal cursor, it is (most likely) always there */
     filename = g_build_filename (path, "left_ptr", NULL);
@@ -301,12 +301,12 @@ mouse_settings_themes_preview_icon (const gchar *path,
 
 static void
 mouse_settings_themes_preview_image (const gchar *path,
-                                     GtkImage    *image)
+                                     GtkImage *image)
 {
     cairo_surface_t *preview;
-    cairo_t         *cr;
-    guint            i, position;
-    gint             scale_factor;
+    cairo_t *cr;
+    guint i, position;
+    gint scale_factor;
 
     /* create an empty preview image */
     scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (image));
@@ -319,7 +319,7 @@ mouse_settings_themes_preview_image (const gchar *path,
     for (i = 0, position = 0; i < G_N_ELEMENTS (preview_names); i++)
     {
         /* create cursor filename and try to load the pixbuf */
-        gchar     *filename = g_build_filename (path, preview_names[i], NULL);
+        gchar *filename = g_build_filename (path, preview_names[i], NULL);
         cairo_surface_t *surface = mouse_settings_themes_pixbuf_from_filename (filename, PREVIEW_SIZE, scale_factor);
 
         g_free (filename);
@@ -357,13 +357,13 @@ mouse_settings_themes_preview_image (const gchar *path,
 
 static void
 mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
-                                         GtkBuilder       *builder)
+                                         GtkBuilder *builder)
 {
     GtkTreeModel *model;
-    GtkTreeIter   iter;
-    gboolean      has_selection;
-    gchar        *path, *name;
-    GObject      *image;
+    GtkTreeIter iter;
+    gboolean has_selection;
+    gchar *path, *name;
+    GObject *image;
 
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
@@ -392,12 +392,12 @@ mouse_settings_themes_selection_changed (GtkTreeSelection *selection,
 
 static gint
 mouse_settings_themes_sort_func (GtkTreeModel *model,
-                                 GtkTreeIter  *a,
-                                 GtkTreeIter  *b,
-                                 gpointer      user_data)
+                                 GtkTreeIter *a,
+                                 GtkTreeIter *b,
+                                 gpointer user_data)
 {
     gchar *name_a, *name_b;
-    gint   retval;
+    gint retval;
 
     /* get the names from the model */
     gtk_tree_model_get (model, a, COLUMN_THEME_DISPLAY_NAME, &name_a, -1);
@@ -410,9 +410,9 @@ mouse_settings_themes_sort_func (GtkTreeModel *model,
         name_b = g_strdup ("");
 
     /* sort the names but keep Default on top */
-    if (g_utf8_collate (name_a, _("Default")) == 0)
+    if (g_utf8_collate (name_a, _( "Default")) == 0)
         retval = -1;
-    else if (g_utf8_collate (name_b, _("Default")) == 0)
+    else if (g_utf8_collate (name_b, _( "Default")) == 0)
         retval = 1;
     else
         retval = g_utf8_collate (name_a, name_b);
@@ -429,28 +429,28 @@ mouse_settings_themes_sort_func (GtkTreeModel *model,
 static void
 mouse_settings_themes_populate_store (GtkBuilder *builder)
 {
-    const gchar        *path;
-    gchar             **basedirs;
-    gint                i;
-    gchar              *homedir;
-    GDir               *dir;
-    const gchar        *theme;
-    gchar              *filename;
-    gchar              *index_file;
-    XfceRc             *rc;
-    const gchar        *name;
-    const gchar        *comment;
-    GtkTreeIter         iter;
-    gint                position = 0;
-    gchar              *active_theme;
-    GtkTreePath        *active_path = NULL;
-    GtkListStore       *store;
-    GtkCellRenderer    *renderer;
-    GtkTreeViewColumn  *column;
-    GObject            *treeview;
-    GtkTreeSelection   *selection;
-    gchar              *comment_escaped;
-    gint                scale_factor;
+    const gchar *path;
+    gchar **basedirs;
+    gint i;
+    gchar *homedir;
+    GDir *dir;
+    const gchar *theme;
+    gchar *filename;
+    gchar *index_file;
+    XfceRc *rc;
+    const gchar *name;
+    const gchar *comment;
+    GtkTreeIter iter;
+    gint position = 0;
+    gchar *active_theme;
+    GtkTreePath *active_path = NULL;
+    GtkListStore *store;
+    GtkCellRenderer *renderer;
+    GtkTreeViewColumn *column;
+    GObject *treeview;
+    GtkTreeSelection *selection;
+    gchar *comment_escaped;
+    gint scale_factor;
 
     /* get the cursor paths */
 #if XCURSOR_LIB_MAJOR == 1 && XCURSOR_LIB_MINOR < 1
@@ -475,7 +475,7 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
     /* insert default */
     gtk_list_store_insert_with_values (store, &iter, position++,
                                        COLUMN_THEME_NAME, "default",
-                                       COLUMN_THEME_DISPLAY_NAME, _("Default"), -1);
+                                       COLUMN_THEME_DISPLAY_NAME, _( "Default"), -1);
 
     /* store the default path, so we always select a theme */
     active_path = gtk_tree_model_get_path (GTK_TREE_MODEL (store), &iter);
@@ -628,18 +628,18 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
 #ifdef HAVE_LIBINPUT
 /* FIXME: Completely overkill here and better suited in some common file */
 static gboolean
-mouse_settings_get_device_prop (Display     *xdisplay,
-                                XDevice     *device,
+mouse_settings_get_device_prop (Display *xdisplay,
+                                XDevice *device,
                                 const gchar *prop_name,
-                                Atom         type,
-                                guint        n_items,
-                                propdata_t  *retval)
+                                Atom type,
+                                guint n_items,
+                                propdata_t *retval)
 {
-    Atom     prop, float_type, type_ret;
-    gulong   n_items_ret, bytes_after;
-    gint     rc, format, size;
-    guint    i;
-    guchar  *data, *ptr;
+    Atom prop, float_type, type_ret;
+    gulong n_items_ret, bytes_after;
+    gint rc, format, size;
+    guint i;
+    guchar *data, *ptr;
     gboolean success;
 
     prop = XInternAtom (xdisplay, prop_name, False);
@@ -653,7 +653,7 @@ mouse_settings_get_device_prop (Display     *xdisplay,
     if (rc == Success && type_ret == type && n_items_ret >= n_items)
     {
         success = TRUE;
-        switch(format)
+        switch (format)
         {
             case 8:
                 size = sizeof (gchar);
@@ -676,7 +676,7 @@ mouse_settings_get_device_prop (Display     *xdisplay,
                     switch (format)
                     {
                         case 8:
-                            retval[i].c = *((gchar*) ptr);
+                            retval[i].c = *((gchar *) ptr);
                             break;
                         case 16:
                             retval[i].i16 = *((gint16 *) ptr);
@@ -690,7 +690,7 @@ mouse_settings_get_device_prop (Display     *xdisplay,
                     switch (format)
                     {
                         case 8:
-                            retval[i].uc = *((guchar*) ptr);
+                            retval[i].uc = *((guchar *) ptr);
                             break;
                         case 16:
                             retval[i].u16 = *((guint16 *) ptr);
@@ -706,7 +706,7 @@ mouse_settings_get_device_prop (Display     *xdisplay,
                 default:
                     if (type_ret == float_type)
                     {
-                        retval[i].f = *((float*) ptr);
+                        retval[i].f = *((float *) ptr);
                     }
                     else
                     {
@@ -748,10 +748,10 @@ mouse_settings_get_libinput_accel (Display *xdisplay,
 
 
 static gboolean
-mouse_settings_get_libinput_boolean (Display     *xdisplay,
-                                     XDevice     *device,
+mouse_settings_get_libinput_boolean (Display *xdisplay,
+                                     XDevice *device,
                                      const gchar *prop_name,
-                                     gboolean    *val)
+                                     gboolean *val)
 {
     propdata_t pdata[1];
 
@@ -768,9 +768,9 @@ mouse_settings_get_libinput_boolean (Display     *xdisplay,
 
 
 static gboolean
-mouse_settings_get_libinput_click_method (Display             *xdisplay,
-                                          XDevice             *device,
-                                          const gchar         *prop_name,
+mouse_settings_get_libinput_click_method (Display *xdisplay,
+                                          XDevice *device,
+                                          const gchar *prop_name,
                                           LibinputClickMethod *click_method)
 {
     propdata_t pdata[2];
@@ -792,9 +792,9 @@ mouse_settings_get_libinput_click_method (Display             *xdisplay,
 
 
 static gboolean
-mouse_settings_get_libinput_accel_profile (Display              *xdisplay,
-                                           XDevice              *device,
-                                           const gchar          *prop_name,
+mouse_settings_get_libinput_accel_profile (Display *xdisplay,
+                                           XDevice *device,
+                                           const gchar *prop_name,
                                            LibinputAccelProfile *accel_profile)
 {
     propdata_t pdata[3] = {};
@@ -828,19 +828,19 @@ mouse_settings_get_libinput_accel_profile (Display              *xdisplay,
 #ifdef DEVICE_PROPERTIES
 static gint
 mouse_settings_device_get_int_property (XDevice *device,
-                                        Atom     prop,
-                                        guint    offset,
-                                        gint    *horiz)
+                                        Atom prop,
+                                        guint offset,
+                                        gint *horiz)
 {
-    Atom     type;
-    gint     format;
-    gulong   n_items, bytes_after;
-    guchar  *data;
-    gint     val = -1;
-    gint     res;
+    Atom type;
+    gint format;
+    gulong n_items, bytes_after;
+    guchar *data;
+    gint val = -1;
+    gint res;
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
-    res = XGetDeviceProperty (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()),
+    res = XGetDeviceProperty (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()),
                               device, prop, 0, 1000, False,
                               AnyPropertyType, &type, &format,
                               &n_items, &bytes_after, &data);
@@ -865,14 +865,14 @@ mouse_settings_device_get_int_property (XDevice *device,
 
 
 static gboolean
-mouse_settings_device_get_selected (GtkBuilder  *builder,
-                                    XDevice    **device,
-                                    gchar      **xfconf_name)
+mouse_settings_device_get_selected (GtkBuilder *builder,
+                                    XDevice **device,
+                                    gchar **xfconf_name)
 {
-    GObject      *combobox;
-    GtkTreeIter   iter;
-    gboolean      found = FALSE;
-    gulong        xid;
+    GObject *combobox;
+    GtkTreeIter iter;
+    gboolean found = FALSE;
+    gulong xid;
     GtkTreeModel *model;
 
     /* get the selected item */
@@ -891,7 +891,7 @@ mouse_settings_device_get_selected (GtkBuilder  *builder,
         {
             /* open the device */
             gdk_x11_display_error_trap_push (gdk_display_get_default ());
-            *device = XOpenDevice (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), xid);
+            *device = XOpenDevice (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), xid);
             if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || *device == NULL)
             {
                 g_critical ("Unable to open device %ld", xid);
@@ -909,14 +909,14 @@ mouse_settings_device_get_selected (GtkBuilder  *builder,
 #ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
-                                   GtkBuilder  *builder)
+                                   GtkBuilder *builder)
 {
-    XDevice      *device;
-    GtkTreeIter   iter;
+    XDevice *device;
+    GtkTreeIter iter;
     GtkTreeModel *model;
-    gint          rotation = 0;
-    gchar        *name = NULL;
-    gchar        *prop;
+    gint rotation = 0;
+    gchar *name = NULL;
+    gchar *prop;
 
     if (locked > 0)
         return;
@@ -933,7 +933,7 @@ mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
             g_free (prop);
         }
 
-        XCloseDevice (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), device);
+        XCloseDevice (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), device);
     }
 
     g_free (name);
@@ -945,15 +945,15 @@ mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
 #ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_wacom_set_mode (GtkComboBox *combobox,
-                               GtkBuilder  *builder)
+                               GtkBuilder *builder)
 {
-    XDevice      *device;
-    Display      *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
-    GtkTreeIter   iter;
+    XDevice *device;
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    GtkTreeIter iter;
     GtkTreeModel *model;
-    gchar        *mode = NULL;
-    gchar        *name = NULL;
-    gchar        *prop;
+    gchar *mode = NULL;
+    gchar *name = NULL;
+    gchar *prop;
 
     if (locked > 0)
         return;
@@ -981,24 +981,24 @@ mouse_settings_wacom_set_mode (GtkComboBox *combobox,
 
 
 
-#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
+#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
 mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
 {
-    Display   *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
-    XDevice   *device;
-    gchar     *name = NULL;
-    Atom       tap_ation_prop;
-    Atom       type;
-    gint       format;
-    gulong     n, n_items, bytes_after;
-    guchar    *data;
-    gboolean   tap_to_click;
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    XDevice *device;
+    gchar *name = NULL;
+    Atom tap_ation_prop;
+    Atom type;
+    gint format;
+    gulong n, n_items, bytes_after;
+    guchar *data;
+    gboolean tap_to_click;
     GPtrArray *array;
-    gint       res;
-    GObject   *object;
-    gchar     *prop;
-    GValue    *val;
+    gint res;
+    GObject *object;
+    gchar *prop;
+    GValue *val;
 
     if (mouse_settings_device_get_selected (builder, &device, &name))
     {
@@ -1017,7 +1017,6 @@ mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
                 && format == 8
                 && n_items >= 7)
             {
-
                 /* format: RT, RB, LT, LB, F1, F2, F3 */
                 data[4] = tap_to_click ? 1 : 0;
                 data[5] = tap_to_click ? 3 : 0;
@@ -1060,9 +1059,9 @@ mouse_settings_synaptics_set_tap_to_click (GtkBuilder *builder)
 static void
 mouse_settings_synaptics_hscroll_sensitive (GtkBuilder *builder)
 {
-    gint      active;
-    gboolean  sensitive = FALSE;
-    GObject  *object;
+    gint active;
+    gboolean sensitive = FALSE;
+    GObject *object;
 
     /* Values for active:
      * -1 no selection
@@ -1086,9 +1085,9 @@ mouse_settings_synaptics_hscroll_sensitive (GtkBuilder *builder)
 
 #ifdef HAVE_LIBINPUT
 static void
-mouse_settings_libinput_toggled (GObject     *object,
-                                 GtkBuilder  *builder,
-                                 const char  *libinput_prop)
+mouse_settings_libinput_toggled (GObject *object,
+                                 GtkBuilder *builder,
+                                 const char *libinput_prop)
 {
     gchar *name = NULL, *prop;
 
@@ -1107,8 +1106,8 @@ mouse_settings_libinput_toggled (GObject     *object,
 
 
 static void
-mouse_settings_libinput_hires_scrolling_toggled (GObject     *object,
-                                                 GtkBuilder  *builder)
+mouse_settings_libinput_hires_scrolling_toggled (GObject *object,
+                                                 GtkBuilder *builder)
 {
     mouse_settings_libinput_toggled (object, builder, LIBINPUT_PROP_HIRES_WHEEL_SCROLL_ENABLED);
 }
@@ -1116,8 +1115,8 @@ mouse_settings_libinput_hires_scrolling_toggled (GObject     *object,
 
 
 static void
-mouse_settings_libinput_disable_touchpad_while_typing_toggled (GObject     *object,
-                                                               GtkBuilder  *builder)
+mouse_settings_libinput_disable_touchpad_while_typing_toggled (GObject *object,
+                                                               GtkBuilder *builder)
 {
     mouse_settings_libinput_toggled (object, builder, LIBINPUT_PROP_DISABLE_WHILE_TYPING);
 }
@@ -1125,8 +1124,8 @@ mouse_settings_libinput_disable_touchpad_while_typing_toggled (GObject     *obje
 
 
 static void
-mouse_settings_libinput_click_method_changed (GObject     *object,
-                                              GtkBuilder  *builder)
+mouse_settings_libinput_click_method_changed (GObject *object,
+                                              GtkBuilder *builder)
 {
     gchar *name = NULL, *prop;
     gint combo_box_val;
@@ -1167,8 +1166,8 @@ mouse_settings_libinput_click_method_changed (GObject     *object,
 
 
 static void
-mouse_settings_libinput_accel_profile_changed (GObject     *object,
-                                               GtkBuilder  *builder)
+mouse_settings_libinput_accel_profile_changed (GObject *object,
+                                               GtkBuilder *builder)
 {
     gchar *name = NULL, *prop;
     gboolean toggle_button_value;
@@ -1196,12 +1195,12 @@ mouse_settings_libinput_accel_profile_changed (GObject     *object,
         if (libinput_supports_custom_accel_profile)
         {
             xfconf_channel_set_array (pointers_channel, prop,
-                                    G_TYPE_INT, &adaptive, G_TYPE_INT, &flat, G_TYPE_INT, &custom, G_TYPE_INVALID);
+                                      G_TYPE_INT, &adaptive, G_TYPE_INT, &flat, G_TYPE_INT, &custom, G_TYPE_INVALID);
         }
         else
         {
             xfconf_channel_set_array (pointers_channel, prop,
-                                    G_TYPE_INT, &adaptive, G_TYPE_INT, &flat, G_TYPE_INVALID);
+                                      G_TYPE_INT, &adaptive, G_TYPE_INT, &flat, G_TYPE_INVALID);
         }
 
         g_free (prop);
@@ -1216,19 +1215,19 @@ mouse_settings_libinput_accel_profile_changed (GObject     *object,
 #if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
 mouse_settings_synaptics_set_scrolling (GtkComboBox *combobox,
-                                        GtkBuilder  *builder)
+                                        GtkBuilder *builder)
 {
-    gint      edge_scroll[3] = { 0, 0, 0 };
-    gint      two_scroll[2] = { 0, 0 };
-    gint      circ_scroll = 0;
-    gint      circ_trigger = 0;
+    gint edge_scroll[3] = { 0, 0, 0 };
+    gint two_scroll[2] = { 0, 0 };
+    gint circ_scroll = 0;
+    gint circ_trigger = 0;
 #ifdef HAVE_LIBINPUT
-    gint      button_scroll = 0;
+    gint button_scroll = 0;
 #endif /* HAVE_LIBINPUT */
-    GObject  *object;
-    gboolean  horizontal = FALSE;
-    gint      active;
-    gchar    *name = NULL, *prop;
+    GObject *object;
+    gboolean horizontal = FALSE;
+    gint active;
+    gchar *name = NULL, *prop;
 
     if (locked > 0)
         return;
@@ -1314,7 +1313,6 @@ mouse_settings_synaptics_set_scrolling (GtkComboBox *combobox,
                                   G_TYPE_INVALID);
         g_free (prop);
 #endif /* HAVE_LIBINPUT */
-
     }
 
     g_free (name);
@@ -1325,10 +1323,10 @@ mouse_settings_synaptics_set_scrolling (GtkComboBox *combobox,
 
 #ifdef DEVICE_PROPERTIES
 static void
-mouse_settings_synaptics_set_scroll_horiz (GtkWidget  *widget,
+mouse_settings_synaptics_set_scroll_horiz (GtkWidget *widget,
                                            GtkBuilder *builder)
 {
-    GObject  *object;
+    GObject *object;
 
     if (locked > 0)
         return;
@@ -1341,16 +1339,16 @@ mouse_settings_synaptics_set_scroll_horiz (GtkWidget  *widget,
 
 
 
-#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
+#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
-mouse_settings_device_set_enabled (GtkSwitch  *widget,
+mouse_settings_device_set_enabled (GtkSwitch *widget,
                                    GParamSpec *pspec,
                                    GtkBuilder *builder)
 {
-    gchar    *name = NULL;
-    gchar    *prop;
-    gboolean  enabled;
-    GObject  *object;
+    gchar *name = NULL;
+    gchar *prop;
+    gboolean enabled;
+    GObject *object;
 
     enabled = gtk_switch_get_active (widget);
     object = gtk_builder_get_object (builder, "device-notebook");
@@ -1375,67 +1373,67 @@ mouse_settings_device_set_enabled (GtkSwitch  *widget,
 static void
 mouse_settings_device_selection_changed (GtkBuilder *builder)
 {
-    gint               nbuttons = 0;
-    Display           *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
-    XDevice           *device;
-    XDeviceInfo       *device_info;
-    XFeedbackState    *states, *pt;
-    XAnyClassPtr       any;
-    gint               nstates;
+    gint nbuttons = 0;
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    XDevice *device;
+    XDeviceInfo *device_info;
+    XFeedbackState *states, *pt;
+    XAnyClassPtr any;
+    gint nstates;
     XPtrFeedbackState *state;
-    gint               i, n;
-    guchar            *buttonmap;
-    gint               id_1 = 0, id_3 = 0;
-    gint               id_4 = 0, id_5 = 0;
-    gdouble            acceleration = -1.00;
-    gint               threshold = -1;
-    GObject           *object;
-    gint               ndevices;
-    gboolean           is_synaptics = FALSE;
-    gboolean           is_wacom = FALSE;
-    gboolean           left_handed = FALSE;
-    gboolean           reverse_scrolling = FALSE;
-    gboolean           scroll_wheel_available = FALSE;
+    gint i, n;
+    guchar *buttonmap;
+    gint id_1 = 0, id_3 = 0;
+    gint id_4 = 0, id_5 = 0;
+    gdouble acceleration = -1.00;
+    gint threshold = -1;
+    GObject *object;
+    gint ndevices;
+    gboolean is_synaptics = FALSE;
+    gboolean is_wacom = FALSE;
+    gboolean left_handed = FALSE;
+    gboolean reverse_scrolling = FALSE;
+    gboolean scroll_wheel_available = FALSE;
 #ifdef HAVE_LIBINPUT
-    gboolean           has_hires_scrolling = FALSE;
-    gboolean           hires_scrolling = FALSE;
-    gboolean           libinput_has_accel_profile = FALSE;
+    gboolean has_hires_scrolling = FALSE;
+    gboolean hires_scrolling = FALSE;
+    gboolean libinput_has_accel_profile = FALSE;
     LibinputAccelProfile libinput_accel_profile_available = LIBINPUT_ACCEL_PROFILE_NONE;
     LibinputAccelProfile libinput_accel_profile = LIBINPUT_ACCEL_PROFILE_NONE;
-    gboolean           is_libinput = FALSE;
+    gboolean is_libinput = FALSE;
 #endif /* HAVE_LIBINPUT */
-#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
+#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 #ifdef HAVE_LIBINPUT
-    Atom               libinput_disable_while_typing_prop;
-    Atom               libinput_tap_prop;
-    Atom               libinput_scroll_methods_prop;
-    Atom               libinput_click_method_prop;
-    gint               libinput_disable_while_typing = -1;
-    gboolean           libinput_has_click_method = FALSE;
+    Atom libinput_disable_while_typing_prop;
+    Atom libinput_tap_prop;
+    Atom libinput_scroll_methods_prop;
+    Atom libinput_click_method_prop;
+    gint libinput_disable_while_typing = -1;
+    gboolean libinput_has_click_method = FALSE;
     LibinputClickMethod libinput_click_methods_available = LIBINPUT_CLICK_METHOD_NONE;
     LibinputClickMethod libinput_click_method = LIBINPUT_CLICK_METHOD_NONE;
 #endif /* HAVE_LIBINPUT */
-    Atom               synaptics_prop;
-    Atom               wacom_prop;
-    Atom               synaptics_tap_prop;
-    Atom               synaptics_edge_scroll_prop;
-    Atom               synaptics_two_scroll_prop;
-    Atom               synaptics_circ_scroll_prop;
-    Atom               device_enabled_prop;
-    Atom               wacom_rotation_prop;
-    gint               is_enabled = -1;
-    gint               synaptics_tap_to_click = -1;
-    gint               synaptics_edge_scroll = -1;
-    gint               synaptics_edge_hscroll = -1;
-    gint               synaptics_two_scroll = -1;
-    gint               synaptics_two_hscroll = -1;
-    gint               synaptics_circ_scroll = -1;
-    gint               synaptics_scroll_mode = 0;
-    GtkTreeIter        iter;
-    gint               wacom_rotation = -1;
-    Atom              *props;
-    gint               nprops;
-    gint               wacom_mode = -1;
+    Atom synaptics_prop;
+    Atom wacom_prop;
+    Atom synaptics_tap_prop;
+    Atom synaptics_edge_scroll_prop;
+    Atom synaptics_two_scroll_prop;
+    Atom synaptics_circ_scroll_prop;
+    Atom device_enabled_prop;
+    Atom wacom_rotation_prop;
+    gint is_enabled = -1;
+    gint synaptics_tap_to_click = -1;
+    gint synaptics_edge_scroll = -1;
+    gint synaptics_edge_hscroll = -1;
+    gint synaptics_two_scroll = -1;
+    gint synaptics_two_hscroll = -1;
+    gint synaptics_circ_scroll = -1;
+    gint synaptics_scroll_mode = 0;
+    GtkTreeIter iter;
+    gint wacom_rotation = -1;
+    Atom *props;
+    gint nprops;
+    gint wacom_mode = -1;
 #endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
     /* lock the dialog */
@@ -1526,7 +1524,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
             states = XGetFeedbackControl (xdisplay, device, &nstates);
             if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || states == NULL)
             {
-                 g_critical ("Failed to get feedback states");
+                g_critical ("Failed to get feedback states");
             }
             else
             {
@@ -1548,7 +1546,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                 XFreeFeedbackList (states);
             }
         }
-#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
+#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 #ifdef HAVE_LIBINPUT
         /* lininput properties */
         libinput_disable_while_typing_prop = XInternAtom (xdisplay, LIBINPUT_PROP_DISABLE_WHILE_TYPING, True);
@@ -1721,7 +1719,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "synaptics-tab");
     gtk_widget_set_visible (GTK_WIDGET (object), is_synaptics);
 
-#if defined(DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
+#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
     if (is_synaptics)
     {
         object = gtk_builder_get_object (builder, "synaptics-tap-to-click");
@@ -1839,16 +1837,16 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 static void
 mouse_settings_device_save (GtkBuilder *builder)
 {
-    GObject          *combobox;
-    GtkTreeModel     *model;
-    GtkTreeIter       iter;
-    gchar            *name;
-    GObject          *object;
-    gchar             property_name[512];
-    gboolean          righthanded;
-    gint              threshold;
-    gdouble           acceleration;
-    gboolean          reverse_scrolling;
+    GObject *combobox;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+    gchar *name;
+    GObject *object;
+    gchar property_name[512];
+    gboolean righthanded;
+    gint threshold;
+    gdouble acceleration;
+    gboolean reverse_scrolling;
 
     /* leave when locked */
     if (locked > 0)
@@ -1903,7 +1901,7 @@ mouse_settings_device_save (GtkBuilder *builder)
 static gchar *
 mouse_settings_device_xfconf_name (const gchar *name)
 {
-    GString     *string;
+    GString *string;
     const gchar *p;
 
     /* NOTE: this function exists in both the dialog and
@@ -1919,7 +1917,7 @@ mouse_settings_device_xfconf_name (const gchar *name)
             || (*p >= 'a' && *p <= 'z')
             || (*p >= '0' && *p <= '9')
             || *p == '_' || *p == '-')
-          string = g_string_append_c (string, *p);
+            string = g_string_append_c (string, *p);
         else if (*p == ' ')
             string = g_string_append_c (string, '_');
     }
@@ -1932,17 +1930,17 @@ mouse_settings_device_xfconf_name (const gchar *name)
 
 static void
 mouse_settings_device_populate_store (GtkBuilder *builder,
-                                      gboolean    create_store)
+                                      gboolean create_store)
 {
-    XDeviceInfo     *device_list, *device_info;
-    gint             ndevices;
-    gint             i;
-    GtkTreeIter      iter;
-    GtkListStore    *store;
-    GObject         *combobox;
+    XDeviceInfo *device_list, *device_info;
+    gint ndevices;
+    gint i;
+    GtkTreeIter iter;
+    GtkListStore *store;
+    GObject *combobox;
     GtkCellRenderer *renderer;
-    gchar           *xfconf_name;
-    gboolean         has_active_item = FALSE;
+    gchar *xfconf_name;
+    gboolean has_active_item = FALSE;
 
     /* lock */
     locked++;
@@ -1965,7 +1963,7 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
                                         "text", COLUMN_DEVICE_NAME, NULL);
 
         g_signal_connect_swapped (G_OBJECT (combobox), "changed",
-            G_CALLBACK (mouse_settings_device_selection_changed), builder);
+                                  G_CALLBACK (mouse_settings_device_selection_changed), builder);
     }
     else
     {
@@ -1975,7 +1973,7 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
 
     /* get all the registered devices */
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
-    device_list = XListInputDevices (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), &ndevices);
+    device_list = XListInputDevices (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), &ndevices);
     if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || device_list == NULL)
     {
         g_message ("No devices found");
@@ -2017,7 +2015,6 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
         }
 
         g_free (xfconf_name);
-
     }
 
     XFreeDeviceList (device_list);
@@ -2025,7 +2022,7 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
     if (!has_active_item)
         gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), 0);
 
-    bailout:
+bailout:
 
     /* unlock */
     locked--;
@@ -2037,7 +2034,7 @@ static gboolean
 mouse_settings_device_update_sliders (gpointer user_data)
 {
     GtkBuilder *builder = GTK_BUILDER (user_data);
-    GObject    *button;
+    GObject *button;
 
     /* update */
     mouse_settings_device_selection_changed (builder);
@@ -2061,13 +2058,13 @@ mouse_settings_device_list_changed_timeout_destroyed (gpointer user_data)
 
 
 static void
-mouse_settings_device_reset (GtkWidget  *button,
+mouse_settings_device_reset (GtkWidget *button,
                              GtkBuilder *builder)
 {
-    gchar        *name, *property_name;
+    gchar *name, *property_name;
     GtkTreeModel *model;
-    GtkTreeIter   iter;
-    GObject      *combobox;
+    GtkTreeIter iter;
+    GObject *combobox;
 
     /* leave when locked */
     if (locked > 0)
@@ -2111,10 +2108,10 @@ mouse_settings_device_reset (GtkWidget  *button,
 #ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 mouse_settings_event_filter (GdkXEvent *xevent,
-                             GdkEvent  *gdk_event,
-                             gpointer   user_data)
+                             GdkEvent *gdk_event,
+                             gpointer user_data)
 {
-    XEvent                     *event = xevent;
+    XEvent *event = xevent;
     XDevicePresenceNotifyEvent *dpn_event = xevent;
 
     /* update on device changes */
@@ -2131,8 +2128,8 @@ mouse_settings_event_filter (GdkXEvent *xevent,
 static void
 mouse_settings_create_event_filter (GtkBuilder *builder)
 {
-    Display     *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
-    XEventClass  event_class;
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    XEventClass event_class;
 
     /* monitor device change events */
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
@@ -2153,7 +2150,7 @@ mouse_settings_create_event_filter (GtkBuilder *builder)
 
 static void
 mouse_settings_dialog_response (GtkWidget *dialog,
-                                gint       response_id)
+                                gint response_id)
 {
     if (response_id == GTK_RESPONSE_HELP)
         xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "mouse",
@@ -2165,19 +2162,20 @@ mouse_settings_dialog_response (GtkWidget *dialog,
 
 
 gint
-main (gint argc, gchar **argv)
+main (gint argc,
+      gchar **argv)
 {
-    GObject           *dialog;
-    GtkWidget         *plug;
-    GObject           *plug_child;
-    GtkBuilder        *builder;
-    GError            *error = NULL;
-    GObject           *object;
+    GObject *dialog;
+    GtkWidget *plug;
+    GObject *plug_child;
+    GtkBuilder *builder;
+    GError *error = NULL;
+    GObject *object;
     XExtensionVersion *version = NULL;
 #ifdef DEVICE_PROPERTIES
-    gchar             *syndaemon;
-    GObject           *synaptics_disable_while_type;
-    GObject           *synaptics_disable_duration_table;
+    gchar *syndaemon;
+    GObject *synaptics_disable_while_type;
+    GObject *synaptics_disable_duration_table;
 #endif
 
     /* setup translation domain */
@@ -2233,7 +2231,7 @@ main (gint argc, gchar **argv)
     }
 
     /* check for Xi */
-    version = XGetExtensionVersion (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), INAME);
+    version = XGetExtensionVersion (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), INAME);
     if (version == NULL || ((long) version) == NoSuchExtension
         || !version->present)
     {
@@ -2263,7 +2261,8 @@ main (gint argc, gchar **argv)
         /* load the Gtk+ user-interface file */
         builder = gtk_builder_new ();
         if (gtk_builder_add_from_string (builder, mouse_dialog_ui,
-                                         mouse_dialog_ui_length, &error) != 0)
+                                         mouse_dialog_ui_length, &error)
+            != 0)
         {
             /* lock */
             locked++;
@@ -2314,7 +2313,7 @@ main (gint argc, gchar **argv)
             g_signal_connect (G_OBJECT (object), "clicked",
                               G_CALLBACK (mouse_settings_device_reset), builder);
 
-#if defined (DEVICE_PROPERTIES) || defined (HAVE_LIBINPUT)
+#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
             synaptics_disable_while_type = gtk_builder_get_object (builder, "synaptics-disable-while-type");
             syndaemon = g_find_program_in_path ("syndaemon");
             gtk_widget_set_sensitive (GTK_WIDGET (object), syndaemon != NULL);
@@ -2384,7 +2383,7 @@ main (gint argc, gchar **argv)
             /* connect sliders in the gtk tab */
             object = gtk_builder_get_object (builder, "dnd-threshold");
             xfconf_g_property_bind (xsettings_channel, "/Net/DndDragThreshold",
-                                    G_TYPE_INT, G_OBJECT (object), "value");\
+                                    G_TYPE_INT, G_OBJECT (object), "value");
 
             object = gtk_builder_get_object (builder, "dnd-threshold-scale");
             g_signal_connect (G_OBJECT (object), "format-value",
@@ -2420,7 +2419,7 @@ main (gint argc, gchar **argv)
                 locked--;
 
                 g_signal_connect (dialog, "response",
-                    G_CALLBACK (mouse_settings_dialog_response), NULL);
+                                  G_CALLBACK (mouse_settings_dialog_response), NULL);
                 gtk_window_present (GTK_WINDOW (dialog));
 
                 /* To prevent the settings dialog to be saved in the session */

@@ -39,34 +39,39 @@ struct _XfceSettingsPropDialog
 
     XfconfChannel *channel;
 
-    GValue         prop_value;
+    GValue prop_value;
 
-    GtkWidget     *prop_name;
-    GtkWidget     *prop_type;
-    GtkWidget     *prop_string;
-    GtkWidget     *prop_integer;
-    GtkWidget     *prop_bool;
+    GtkWidget *prop_name;
+    GtkWidget *prop_type;
+    GtkWidget *prop_string;
+    GtkWidget *prop_integer;
+    GtkWidget *prop_bool;
 };
 
 typedef struct
 {
     const gchar *name;
-    GType        type;
-}
-ValueTypes;
+    GType type;
+} ValueTypes;
 
 
 
-static void     xfce_settings_prop_dialog_finalize             (GObject                   *object);
-static void     xfce_settings_prop_dialog_response             (GtkDialog                 *widget,
-                                                                gint                       response_id);
-static void     xfce_settings_prop_dialog_visible_bind         (GtkWidget                 *widget,
-                                                                GtkWidget                 *label);
-static void     xfce_settings_prop_dialog_entry_validate       (GtkWidget                 *entry,
-                                                                XfceSettingsPropDialog    *dialog);
-static void     xfce_settings_prop_dialog_button_toggled       (GtkWidget                 *button);
-static void     xfce_settings_prop_dialog_type_changed         (GtkWidget                 *combo,
-                                                                XfceSettingsPropDialog    *dialog);
+static void
+xfce_settings_prop_dialog_finalize (GObject *object);
+static void
+xfce_settings_prop_dialog_response (GtkDialog *widget,
+                                    gint response_id);
+static void
+xfce_settings_prop_dialog_visible_bind (GtkWidget *widget,
+                                        GtkWidget *label);
+static void
+xfce_settings_prop_dialog_entry_validate (GtkWidget *entry,
+                                          XfceSettingsPropDialog *dialog);
+static void
+xfce_settings_prop_dialog_button_toggled (GtkWidget *button);
+static void
+xfce_settings_prop_dialog_type_changed (GtkWidget *combo,
+                                        XfceSettingsPropDialog *dialog);
 
 
 
@@ -74,25 +79,24 @@ G_DEFINE_TYPE (XfceSettingsPropDialog, xfce_settings_prop_dialog, GTK_TYPE_DIALO
 
 
 
-static ValueTypes value_types[] =
-{
-  { N_("Empty"), G_TYPE_NONE },
-  { N_("String"), G_TYPE_STRING },
-  { N_("Boolean"), G_TYPE_BOOLEAN },
-  { N_("Int"), G_TYPE_INT },
-  { N_("Double"), G_TYPE_DOUBLE },
-  { N_("Unsigned Int"), G_TYPE_UINT },
-  { N_("Int64"), G_TYPE_INT64 },
-  { N_("Unsigned Int64"), G_TYPE_UINT64 }
+static ValueTypes value_types[] = {
+    { N_ ("Empty"), G_TYPE_NONE },
+    { N_ ("String"), G_TYPE_STRING },
+    { N_ ("Boolean"), G_TYPE_BOOLEAN },
+    { N_ ("Int"), G_TYPE_INT },
+    { N_ ("Double"), G_TYPE_DOUBLE },
+    { N_ ("Unsigned Int"), G_TYPE_UINT },
+    { N_ ("Int64"), G_TYPE_INT64 },
+    { N_ ("Unsigned Int64"), G_TYPE_UINT64 }
 };
 
 
 
 enum
 {
-  COLUMN_NAME,
-  COLUMN_ID,
-  N_COLUMNS
+    COLUMN_NAME,
+    COLUMN_ID,
+    N_COLUMNS
 };
 
 
@@ -100,7 +104,7 @@ enum
 static void
 xfce_settings_prop_dialog_class_init (XfceSettingsPropDialogClass *klass)
 {
-    GObjectClass   *gobject_class;
+    GObjectClass *gobject_class;
     GtkDialogClass *gtkdialog_class;
 
     gobject_class = G_OBJECT_CLASS (klass);
@@ -115,24 +119,23 @@ xfce_settings_prop_dialog_class_init (XfceSettingsPropDialogClass *klass)
 static void
 xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
 {
-    GtkWidget       *table;
-    GtkWidget       *content_area;
-    GtkWidget       *label;
-    GtkWidget       *entry;
-    GtkWidget       *combo;
-    GtkWidget       *spin;
-    GtkWidget       *toggle;
-    GtkListStore    *store;
-    guint            i;
+    GtkWidget *table;
+    GtkWidget *content_area;
+    GtkWidget *label;
+    GtkWidget *entry;
+    GtkWidget *combo;
+    GtkWidget *spin;
+    GtkWidget *toggle;
+    GtkListStore *store;
+    guint i;
     GtkCellRenderer *render;
-    GtkWidget       *save_button;
+    GtkWidget *save_button;
 
     gtk_window_set_icon_name (GTK_WINDOW (dialog), "list-add");
     gtk_window_set_title (GTK_WINDOW (dialog), _("New Property"));
     gtk_window_set_default_size (GTK_WINDOW (dialog), 300, 200);
-    gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                            _("Cancel"), GTK_RESPONSE_CANCEL,
-                            _("Save"), GTK_RESPONSE_OK, NULL);
+    gtk_dialog_add_buttons (
+        GTK_DIALOG (dialog), _("Cancel"), GTK_RESPONSE_CANCEL, _("Save"), GTK_RESPONSE_OK, NULL);
     gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
     save_button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
@@ -158,7 +161,7 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     gtk_grid_attach (GTK_GRID (table), entry, 1, 0, 1, 1);
     xfce_settings_prop_dialog_visible_bind (entry, label);
     g_signal_connect (G_OBJECT (entry), "changed",
-        G_CALLBACK (xfce_settings_prop_dialog_entry_validate), dialog);
+                      G_CALLBACK (xfce_settings_prop_dialog_entry_validate), dialog);
     gtk_widget_show (entry);
 
     label = gtk_label_new_with_mnemonic (_("_Type:"));
@@ -180,7 +183,7 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
     xfce_settings_prop_dialog_visible_bind (combo, label);
     gtk_combo_box_set_active (GTK_COMBO_BOX (combo), 0);
     g_signal_connect (G_OBJECT (combo), "changed",
-        G_CALLBACK (xfce_settings_prop_dialog_type_changed), dialog);
+                      G_CALLBACK (xfce_settings_prop_dialog_type_changed), dialog);
     gtk_widget_show (combo);
     g_object_unref (G_OBJECT (store));
 
@@ -218,7 +221,7 @@ xfce_settings_prop_dialog_init (XfceSettingsPropDialog *dialog)
 
     toggle = dialog->prop_bool = gtk_toggle_button_new_with_label ("FALSE");
     g_signal_connect (G_OBJECT (toggle), "toggled",
-        G_CALLBACK (xfce_settings_prop_dialog_button_toggled), NULL);
+                      G_CALLBACK (xfce_settings_prop_dialog_button_toggled), NULL);
     gtk_grid_attach (GTK_GRID (table), toggle, 1, 4, 1, 1);
     xfce_settings_prop_dialog_visible_bind (toggle, label);
 }
@@ -243,14 +246,14 @@ xfce_settings_prop_dialog_finalize (GObject *object)
 
 static void
 xfce_settings_prop_dialog_response (GtkDialog *widget,
-                                    gint       response_id)
+                                    gint response_id)
 {
     XfceSettingsPropDialog *dialog = XFCE_SETTINGS_PROP_DIALOG (widget);
-    const gchar            *property;
-    ValueTypes             *value_type;
-    GValue                  value = G_VALUE_INIT;
-    gdouble                 spin_value;
-    gint                    active;
+    const gchar *property;
+    ValueTypes *value_type;
+    GValue value = G_VALUE_INIT;
+    gdouble spin_value;
+    gint active;
 
     g_return_if_fail (XFCONF_IS_CHANNEL (dialog->channel));
 
@@ -271,14 +274,12 @@ xfce_settings_prop_dialog_response (GtkDialog *widget,
 
             case G_TYPE_STRING:
                 g_value_init (&value, G_TYPE_STRING);
-                g_value_set_static_string (&value,
-                    gtk_entry_get_text (GTK_ENTRY (dialog->prop_string)));
+                g_value_set_static_string (&value, gtk_entry_get_text (GTK_ENTRY (dialog->prop_string)));
                 break;
 
             case G_TYPE_BOOLEAN:
                 g_value_init (&value, G_TYPE_BOOLEAN);
-                g_value_set_boolean (&value,
-                    gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->prop_bool)));
+                g_value_set_boolean (&value, gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->prop_bool)));
                 break;
 
             case G_TYPE_INT:
@@ -318,9 +319,9 @@ xfce_settings_prop_dialog_response (GtkDialog *widget,
 
 
 static void
-xfce_settings_prop_dialog_visible_changed (GtkWidget  *widget,
+xfce_settings_prop_dialog_visible_changed (GtkWidget *widget,
                                            GParamSpec *pspec,
-                                           GtkWidget  *label)
+                                           GtkWidget *label)
 {
     g_return_if_fail (GTK_IS_WIDGET (widget));
     g_return_if_fail (GTK_IS_LABEL (label));
@@ -331,9 +332,9 @@ xfce_settings_prop_dialog_visible_changed (GtkWidget  *widget,
 
 
 static void
-xfce_settings_prop_dialog_sensitive_changed (GtkWidget  *widget,
+xfce_settings_prop_dialog_sensitive_changed (GtkWidget *widget,
                                              GParamSpec *pspec,
-                                             GtkWidget  *label)
+                                             GtkWidget *label)
 {
     g_return_if_fail (GTK_IS_WIDGET (widget));
     g_return_if_fail (GTK_IS_LABEL (label));
@@ -349,17 +350,17 @@ xfce_settings_prop_dialog_visible_bind (GtkWidget *widget,
 {
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
     g_signal_connect (G_OBJECT (widget), "notify::visible",
-        G_CALLBACK (xfce_settings_prop_dialog_visible_changed), label);
+                      G_CALLBACK (xfce_settings_prop_dialog_visible_changed), label);
     g_signal_connect (G_OBJECT (widget), "notify::sensitive",
-        G_CALLBACK (xfce_settings_prop_dialog_sensitive_changed), label);
+                      G_CALLBACK (xfce_settings_prop_dialog_sensitive_changed), label);
 }
 
 
 
 /* Copied from xfconfd/xfconf-backend.c */
 static gboolean
-xfconf_property_is_valid (const gchar  *property,
-                          GError      **error)
+xfconf_property_is_valid (const gchar *property,
+                          GError **error)
 {
     const gchar *p = property;
 
@@ -436,13 +437,13 @@ xfconf_property_is_valid (const gchar  *property,
 
 
 static void
-xfce_settings_prop_dialog_entry_validate (GtkWidget              *entry,
+xfce_settings_prop_dialog_entry_validate (GtkWidget *entry,
                                           XfceSettingsPropDialog *dialog)
 {
-    GtkWidget   *save_button;
+    GtkWidget *save_button;
     const gchar *text;
-    gboolean     is_valid = FALSE;
-    GError      *error = NULL;
+    gboolean is_valid = FALSE;
+    GError *error = NULL;
 
     text = gtk_entry_get_text (GTK_ENTRY (entry));
 
@@ -451,7 +452,7 @@ xfce_settings_prop_dialog_entry_validate (GtkWidget              *entry,
         is_valid = xfconf_property_is_valid (text, &error);
 
         gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY,
-                                       is_valid ? NULL : "dialog-error");
+                                           is_valid ? NULL : "dialog-error");
         gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY,
                                          is_valid ? NULL : error->message);
 
@@ -481,11 +482,11 @@ xfce_settings_prop_dialog_button_toggled (GtkWidget *button)
 
 
 static void
-xfce_settings_prop_dialog_type_changed (GtkWidget              *combo,
+xfce_settings_prop_dialog_type_changed (GtkWidget *combo,
                                         XfceSettingsPropDialog *dialog)
 {
-    gint          active;
-    ValueTypes   *value_type;
+    gint active;
+    ValueTypes *value_type;
     const GValue *value = &dialog->prop_value;
 
     gtk_widget_hide (dialog->prop_string);
@@ -603,7 +604,7 @@ xfce_settings_prop_dialog_type_changed (GtkWidget              *combo,
 
 static void
 xfce_settings_prop_dialog_type_set_active (XfceSettingsPropDialog *dialog,
-                                           GType                   value_type)
+                                           GType value_type)
 {
     guint i;
 
@@ -620,9 +621,9 @@ xfce_settings_prop_dialog_type_set_active (XfceSettingsPropDialog *dialog,
 
 
 GtkWidget *
-xfce_settings_prop_dialog_new (GtkWindow     *parent,
+xfce_settings_prop_dialog_new (GtkWindow *parent,
                                XfconfChannel *channel,
-                               const gchar   *property)
+                               const gchar *property)
 {
     XfceSettingsPropDialog *dialog;
 
@@ -642,8 +643,7 @@ xfce_settings_prop_dialog_new (GtkWindow     *parent,
 
         if (xfconf_channel_get_property (channel, property, &dialog->prop_value))
         {
-            xfce_settings_prop_dialog_type_set_active (dialog,
-                G_VALUE_TYPE (&dialog->prop_value));
+            xfce_settings_prop_dialog_type_set_active (dialog, G_VALUE_TYPE (&dialog->prop_value));
             gtk_widget_set_sensitive (dialog->prop_type, FALSE);
         }
     }
@@ -663,11 +663,11 @@ xfce_settings_prop_dialog_new (GtkWindow     *parent,
 
 void
 xfce_settings_prop_dialog_set_parent_property (XfceSettingsPropDialog *dialog,
-                                               const gchar            *property)
+                                               const gchar *property)
 {
     gchar *p;
-    gint   length = -1;
-    gint   pos = 0;
+    gint length = -1;
+    gint pos = 0;
 
     g_return_if_fail (XFCE_IS_SETTINGS_PROP_DIALOG (dialog));
 
@@ -675,7 +675,7 @@ xfce_settings_prop_dialog_set_parent_property (XfceSettingsPropDialog *dialog,
     {
         p = strrchr (property, '/');
         if (G_LIKELY (p != NULL))
-          length = (p - property) + 1;
+            length = (p - property) + 1;
 
         gtk_editable_insert_text (GTK_EDITABLE (dialog->prop_name),
                                   property, length, &pos);

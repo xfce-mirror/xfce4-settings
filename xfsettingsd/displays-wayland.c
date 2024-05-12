@@ -32,19 +32,28 @@
 
 
 
-static void             xfce_displays_helper_wayland_finalize                   (GObject                 *object);
-static GPtrArray       *xfce_displays_helper_wayland_get_outputs                (XfceDisplaysHelper      *helper);
-static void             xfce_displays_helper_wayland_toggle_internal            (gpointer                *power,
-                                                                                 gboolean                 lid_is_closed,
-                                                                                 XfceDisplaysHelper      *helper);
-static gchar          **xfce_displays_helper_wayland_get_display_infos          (XfceDisplaysHelper      *helper);
-static void             xfce_displays_helper_wayland_channel_apply              (XfceDisplaysHelper      *helper,
-                                                                                 const gchar             *scheme);
+static void
+xfce_displays_helper_wayland_finalize (GObject *object);
+static GPtrArray *
+xfce_displays_helper_wayland_get_outputs (XfceDisplaysHelper *helper);
+static void
+xfce_displays_helper_wayland_toggle_internal (gpointer *power,
+                                              gboolean lid_is_closed,
+                                              XfceDisplaysHelper *helper);
+static gchar **
+xfce_displays_helper_wayland_get_display_infos (XfceDisplaysHelper *helper);
+static void
+xfce_displays_helper_wayland_channel_apply (XfceDisplaysHelper *helper,
+                                            const gchar *scheme);
 
-static void manager_listener (XfceWlrOutputManager *manager, struct zwlr_output_manager_v1 *wl_manager, uint32_t serial);
-static void configuration_succeeded (void *data, struct zwlr_output_configuration_v1 *config);
-static void configuration_failed (void *data, struct zwlr_output_configuration_v1 *config);
-static void configuration_cancelled (void *data, struct zwlr_output_configuration_v1 *config);
+static void
+manager_listener (XfceWlrOutputManager *manager, struct zwlr_output_manager_v1 *wl_manager, uint32_t serial);
+static void
+configuration_succeeded (void *data, struct zwlr_output_configuration_v1 *config);
+static void
+configuration_failed (void *data, struct zwlr_output_configuration_v1 *config);
+static void
+configuration_cancelled (void *data, struct zwlr_output_configuration_v1 *config);
 
 
 
@@ -58,8 +67,7 @@ struct _XfceDisplaysHelperWayland
     gboolean config_cancelled;
 };
 
-static const struct zwlr_output_configuration_v1_listener configuration_listener =
-{
+static const struct zwlr_output_configuration_v1_listener configuration_listener = {
     .succeeded = configuration_succeeded,
     .failed = configuration_failed,
     .cancelled = configuration_cancelled,

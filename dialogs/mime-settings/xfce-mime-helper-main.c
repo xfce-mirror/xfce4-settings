@@ -25,19 +25,18 @@
 
 
 
-static const gchar *CATEGORY_EXEC_ERRORS[] =
-{
-  N_("Failed to execute default Web Browser"),
-  N_("Failed to execute default Mail Reader"),
-  N_("Failed to execute default File Manager"),
-  N_("Failed to execute default Terminal Emulator"),
+static const gchar *CATEGORY_EXEC_ERRORS[] = {
+  N_ ("Failed to execute default Web Browser"),
+  N_ ("Failed to execute default Mail Reader"),
+  N_ ("Failed to execute default File Manager"),
+  N_ ("Failed to execute default Terminal Emulator"),
 };
 
 
 
 static void
 error_dialog_dismiss_toggled (GtkToggleButton *button,
-                              gboolean        *return_value)
+                              gboolean *return_value)
 {
   *return_value = gtk_toggle_button_get_active (button);
 }
@@ -45,14 +44,14 @@ error_dialog_dismiss_toggled (GtkToggleButton *button,
 
 
 static GtkWidget *
-get_helper_error_dialog (XfceMimeHelperCategory  category,
-                         GError                 *error,
-                         gboolean               *return_value)
+get_helper_error_dialog (XfceMimeHelperCategory category,
+                         GError *error,
+                         gboolean *return_value)
 {
   GtkWidget *dialog;
   GtkWidget *message_area;
   GtkWidget *check_button;
-  GList     *children;
+  GList *children;
 
   dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
                                    "%s.", _(CATEGORY_EXEC_ERRORS[category]));
@@ -85,27 +84,28 @@ get_helper_error_dialog (XfceMimeHelperCategory  category,
 
 
 int
-main (int argc, char **argv)
+main (int argc,
+      char **argv)
 {
-  XfceMimeHelperCategory  category;
+  XfceMimeHelperCategory category;
   XfceMimeHelperDatabase *database;
-  XfceMimeHelper         *helper;
-  GtkWidget              *dialog;
-  GError                 *error = NULL;
-  gint                    result = EXIT_SUCCESS;
-  gchar                  *startup_id;
+  XfceMimeHelper *helper;
+  GtkWidget *dialog;
+  GError *error = NULL;
+  gint result = EXIT_SUCCESS;
+  gchar *startup_id;
 
-  gboolean                opt_version = FALSE;
-  gchar                  *opt_launch_type = NULL;
-  gchar                  *opt_query_type = NULL;
+  gboolean opt_version = FALSE;
+  gchar *opt_launch_type = NULL;
+  gchar *opt_query_type = NULL;
 
-  GOptionContext         *opt_ctx;
-  GOptionGroup           *gtk_option_group;
-  GOptionEntry            option_entries[] = {
-    { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Print version information and exit"), NULL, },
-    { "launch", 'l', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_launch_type, N_("Launch the default helper of TYPE with the optional PARAMETER, where TYPE is one of the following values."), N_("TYPE [PARAMETER]"), },
-    { "query", 'q', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_query_type, N_("Query the default helper of TYPE, where TYPE is one of the following values."), N_("TYPE [PARAMETER]"), },
-    { NULL, },
+  GOptionContext *opt_ctx;
+  GOptionGroup *gtk_option_group;
+  GOptionEntry option_entries[] = {
+    { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_ ("Print version information and exit"), NULL },
+    { "launch", 'l', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_launch_type, N_ ("Launch the default helper of TYPE with the optional PARAMETER, where TYPE is one of the following values."), N_ ("TYPE [PARAMETER]") },
+    { "query", 'q', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_query_type, N_ ("Query the default helper of TYPE, where TYPE is one of the following values."), N_ ("TYPE [PARAMETER]") },
+    { NULL },
   };
 
   /* sanity check helper categories */
@@ -142,15 +142,17 @@ main (int argc, char **argv)
 
   if (!g_option_context_parse (opt_ctx, &argc, &argv, &error))
     {
-      if (G_LIKELY (error)) {
-            g_printerr ("%s: %s.\n", G_LOG_DOMAIN, error->message);
-            g_printerr (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
-            g_printerr ("\n");
-            g_error_free (error);
-        } else
-            g_error ("Unable to open display.");
+      if (G_LIKELY (error))
+        {
+          g_printerr ("%s: %s.\n", G_LOG_DOMAIN, error->message);
+          g_printerr (_("Type '%s --help' for usage."), G_LOG_DOMAIN);
+          g_printerr ("\n");
+          g_error_free (error);
+        }
+      else
+        g_error ("Unable to open display.");
 
-        return EXIT_FAILURE;
+      return EXIT_FAILURE;
     }
 
   /* initialize Gtk+ */
@@ -222,7 +224,7 @@ main (int argc, char **argv)
         }
 
       /* release our reference on the database */
-      g_object_unref(G_OBJECT(database));
+      g_object_unref (G_OBJECT (database));
     }
   else if (opt_version)
     {
@@ -232,10 +234,10 @@ main (int argc, char **argv)
                  "Written by Benedikt Meurer <benny@xfce.org>.\n\n"
                  "Built with Gtk+-%d.%d.%d, running Gtk+-%d.%d.%d.\n\n"
                  "Please report bugs to <%s>.\n"),
-                 PACKAGE_STRING, xfce_version_string (),
-                 GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION,
-                 gtk_major_version, gtk_minor_version, gtk_micro_version,
-                 PACKAGE_BUGREPORT);
+               PACKAGE_STRING, xfce_version_string (),
+               GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION,
+               gtk_major_version, gtk_minor_version, gtk_micro_version,
+               PACKAGE_BUGREPORT);
     }
   else if (opt_query_type != NULL)
     {
