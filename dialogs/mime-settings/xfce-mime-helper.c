@@ -1100,8 +1100,7 @@ helper_compare (gconstpointer a,
  * The returned list keeps references on the included
  * helpers, so be sure to run
  * <informalexample><programlisting>
- *  g_list_foreach (list, (GFunc) g_object_unref, NULL);
- *  g_list_free (list);
+ *  g_list_free_full (list, g_object_unref);
  * </programlisting></informalexample>
  * when you are done.
  *

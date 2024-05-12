@@ -539,7 +539,7 @@ xfce_settings_manager_dialog_query_tooltip (GtkWidget                 *iconview,
                                             XfceSettingsManagerDialog *dialog)
 {
     GtkTreePath    *path;
-    GValue          value = { 0, };
+    GValue          value = G_VALUE_INIT;
     GtkTreeModel   *model;
     GtkTreeIter     iter;
     GarconMenuItem *item;
@@ -962,8 +962,8 @@ xfce_settings_manager_dialog_filter_category (GtkTreeModel *model,
                                               GtkTreeIter  *iter,
                                               gpointer      data)
 {
-    GValue          cat_val = { 0, };
-    GValue          filter_val = { 0, };
+    GValue          cat_val = G_VALUE_INIT;
+    GValue          filter_val = G_VALUE_INIT;
     gboolean        visible;
     DialogCategory *category = data;
     const gchar    *filter_text;

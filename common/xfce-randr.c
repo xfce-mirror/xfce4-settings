@@ -285,7 +285,7 @@ xfce_randr_new (GdkDisplay  *display,
     xdisplay = gdk_x11_display_get_xdisplay (display);
 
     /* check if the randr extension is available */
-    if (XRRQueryVersion (xdisplay, &major, &minor) == FALSE)
+    if (!XRRQueryVersion (xdisplay, &major, &minor))
     {
         g_set_error (error, 0, 0, _("Unable to query the version of the RandR extension being used"));
         return NULL;

@@ -224,7 +224,7 @@ main (int argc, char **argv)
       /* release our reference on the database */
       g_object_unref(G_OBJECT(database));
     }
-  else if (opt_version == TRUE)
+  else if (opt_version)
     {
       g_print (_("%s (Xfce %s)\n\n"
                  "Copyright (c) 2003-2006\n"
