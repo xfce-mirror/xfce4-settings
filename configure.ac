@@ -26,7 +26,7 @@ m4_define([xi_min_version], [1.2.0])
 m4_define([inputproto_min_version], [1.4.0])
 
 m4_define([xrandr_min_version], [1.5.0])
-m4_define([libnotify_min_version], [0.1.3])
+m4_define([libnotify_min_version], [0.7.8])
 m4_define([colord_min_version], [1.0.2])
 m4_define([xcursor_min_version], [1.1.0])
 m4_define([xorg_libinput_min_version], [0.6.0])
@@ -38,7 +38,7 @@ m4_define([wayland_min_version], [1.15])
 
 m4_define([gtk_layer_shell_min_version], [0.7.0])
 
-m4_define([upower_glib_min_version], [0.9.8])
+m4_define([upower_glib_min_version], [0.99.10])
 
 dnl define a short version string for xfce4-settings
 m4_append([xfce4_settings_version_short], ["])

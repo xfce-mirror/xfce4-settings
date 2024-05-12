@@ -30,14 +30,9 @@
 
 static void             xfce_displays_upower_dispose                        (GObject                 *object);
 
-#if UP_CHECK_VERSION(0, 99, 0)
 static void             xfce_displays_upower_property_changed               (UpClient                *client,
                                                                              GParamSpec              *pspec,
                                                                              XfceDisplaysUPower      *upower);
-#else
-static void             xfce_displays_upower_property_changed               (UpClient                *client,
-                                                                             XfceDisplaysUPower      *upower);
-#endif
 
 
 struct _XfceDisplaysUPowerClass
@@ -103,17 +98,10 @@ xfce_displays_upower_init (XfceDisplaysUPower *upower)
     }
 
     upower->lid_is_closed = up_client_get_lid_is_closed (upower->client);
-#if UP_CHECK_VERSION(0, 99, 0)
     upower->handler = g_signal_connect (G_OBJECT (upower->client),
                                         "notify",
                                         G_CALLBACK (xfce_displays_upower_property_changed),
                                         upower);
-#else
-    upower->handler = g_signal_connect (G_OBJECT (upower->client),
-                                        "changed",
-                                        G_CALLBACK (xfce_displays_upower_property_changed),
-                                        upower);
-#endif
 }
 
 
@@ -137,14 +125,9 @@ xfce_displays_upower_dispose (GObject *object)
 
 
 static void
-#if UP_CHECK_VERSION(0, 99, 0)
 xfce_displays_upower_property_changed (UpClient           *client,
                                        GParamSpec         *pspec,
                                        XfceDisplaysUPower *upower)
-#else
-xfce_displays_upower_property_changed (UpClient           *client,
-                                       XfceDisplaysUPower *upower)
-#endif
 {
     gboolean lid_is_closed;
 
