@@ -21,6 +21,7 @@
 #define __XFCE_KEYBOARD_SETTINGS_H__
 
 #include <glib-object.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

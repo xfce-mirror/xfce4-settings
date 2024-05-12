@@ -18,40 +18,33 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_MATH_H
-#include <math.h>
-#endif
+#include "mouse-dialog_ui.h"
 
-#include <xfsettingsd/pointers-defines.h>
+#include "xfsettingsd/pointers-defines.h"
+
+#include <cairo-gobject.h>
+#include <gdk/gdkx.h>
+#include <gtk/gtk.h>
+#include <gtk/gtkx.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
 #ifdef HAVE_XCURSOR
 #include <X11/Xcursor/Xcursor.h>
-
 #include <gio/gio.h>
 #endif /* !HAVE_XCURSOR */
 
 #ifdef HAVE_LIBINPUT
-#include "libinput-properties.h"
+#include <libinput-properties.h>
 #endif /* HAVE_LIBINPUT */
 
-#include <cairo-gobject.h>
-#include <gtk/gtk.h>
-#include <gtk/gtkx.h>
-#include <gdk/gdkx.h>
-
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
-#include <libxfce4ui/libxfce4ui.h>
-
-#include "mouse-dialog_ui.h"
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 /* settings */
 #ifdef HAVE_XCURSOR

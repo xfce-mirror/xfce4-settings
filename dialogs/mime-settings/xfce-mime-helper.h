@@ -19,7 +19,7 @@
 #ifndef __XFCE_MIME_HELPER_H__
 #define __XFCE_MIME_HELPER_H__
 
-#include <exo/exo.h>
+#include <gdk/gdk.h>
 
 G_BEGIN_DECLS
 

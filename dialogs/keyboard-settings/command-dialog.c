@@ -18,14 +18,12 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <gtk/gtk.h>
+#include "command-dialog.h"
 
 #include <libxfce4ui/libxfce4ui.h>
-
-#include "command-dialog.h"
 
 
 

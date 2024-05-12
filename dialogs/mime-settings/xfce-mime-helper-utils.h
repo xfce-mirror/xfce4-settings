@@ -19,9 +19,10 @@
 #ifndef __XFCE_MIME_HELPER_UTILS_H__
 #define __XFCE_MIME_HELPER_UTILS_H__
 
+#include "xfce-mime-helper.h"
+
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
-#include "xfce-mime-helper.h"
 
 G_BEGIN_DECLS
 

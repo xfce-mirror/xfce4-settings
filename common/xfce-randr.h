@@ -17,15 +17,17 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <xfconf/xfconf.h>
-#include <gdk/gdk.h>
-#include <X11/extensions/Xrandr.h>
-
 #ifndef __XFCE_RANDR_H__
 #define __XFCE_RANDR_H__
 
+#include <X11/extensions/Xrandr.h>
+#include <gdk/gdk.h>
+#include <xfconf/xfconf.h>
+
 #define XFCE_RANDR_ROTATIONS_MASK             (RR_Rotate_0|RR_Rotate_90|RR_Rotate_180|RR_Rotate_270)
 #define XFCE_RANDR_REFLECTIONS_MASK           (RR_Reflect_X|RR_Reflect_Y)
+
+G_BEGIN_DECLS
 
 typedef struct _XfceRandr          XfceRandr;
 typedef struct _XfceRandrPrivate   XfceRandrPrivate;
@@ -125,5 +127,7 @@ guint             xfce_randr_mode_width      (XfceRandr        *randr,
 guint             xfce_randr_mode_height     (XfceRandr        *randr,
                                               guint             output,
                                               const XfceRRMode *mode);
+
+G_END_DECLS
 
 #endif /* !__XFCE_RANDR_H__ */

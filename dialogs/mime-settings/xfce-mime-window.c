@@ -17,29 +17,23 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+#include "xfce-mime-chooser.h"
+#include "xfce-mime-helper-chooser.h"
+#include "xfce-mime-window.h"
 
-#include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
+#include <gio/gdesktopappinfo.h>
+#include <gio/gio.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
 #ifdef ENABLE_X11
 #include <gtk/gtkx.h>
 #endif
-#include <gio/gio.h>
-#include <gdk/gdkkeysyms.h>
-
-#include <exo/exo.h>
-#include <libxfce4util/libxfce4util.h>
-#include <libxfce4ui/libxfce4ui.h>
-#include <gio/gdesktopappinfo.h>
-#include <xfconf/xfconf.h>
-
-#include "xfce-mime-helper-chooser.h"
-#include "xfce-mime-window.h"
-#include "xfce-mime-chooser.h"
 
 
 

@@ -21,6 +21,7 @@
 #define __DISPLAYS_H__
 
 #include <glib-object.h>
+#include <xfconf/xfconf.h>
 
 /* Xfconf properties */
 #define APPLY_SCHEME_PROP    "/Schemes/Apply"

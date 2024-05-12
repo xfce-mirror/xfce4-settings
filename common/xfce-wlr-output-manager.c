@@ -17,13 +17,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <gdk/gdkwayland.h>
+#include "common/debug.h"
+#include "common/xfce-wlr-output-manager.h"
 
-#include "debug.h"
-#include "xfce-wlr-output-manager.h"
+#include <gdk/gdkwayland.h>
 
 
 

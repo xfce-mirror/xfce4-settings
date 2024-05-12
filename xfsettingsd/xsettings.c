@@ -23,34 +23,21 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-#ifdef HAVE_TIME_H
-#include <time.h>
-#endif
-
-#include <X11/Xlib.h>
-#include <X11/Xmd.h>
-#include <X11/Xatom.h>
-
-#include <glib.h>
-#include <gtk/gtk.h>
-#include <gdk/gdkx.h>
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
-
-#include <gio/gio.h>
-#include <fontconfig/fontconfig.h>
 
 #include "xsettings.h"
+
 #include "common/debug.h"
+
+#include <X11/Xatom.h>
+#include <X11/Xmd.h>
+#include <fontconfig/fontconfig.h>
+#include <gdk/gdkx.h>
+#include <gio/gio.h>
+#include <gtk/gtk.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
 
 #define XSettingsTypeInteger 0
 #define XSettingsTypeString  1

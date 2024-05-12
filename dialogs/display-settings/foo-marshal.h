@@ -4,9 +4,7 @@
 
 #include	<glib-object.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 /* VOID:OBJECT,OBJECT (marshal.list:1) */
 extern void foo_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
@@ -59,9 +57,6 @@ extern void foo_marshal_VOID__POINTER_POINTER (GClosure     *closure,
                                                gpointer      invocation_hint,
                                                gpointer      marshal_data);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* __foo_marshal_MARSHAL_H__ */
-

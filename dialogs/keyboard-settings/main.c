@@ -18,19 +18,15 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <stdlib.h>
-
-#include <gtk/gtk.h>
+#include "xfce-keyboard-settings.h"
 
 #include <gdk/gdkx.h>
-
+#include <gtk/gtk.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <xfconf/xfconf.h>
-
-#include "xfce-keyboard-settings.h"
 
 
 

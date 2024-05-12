@@ -17,33 +17,21 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef HAVE_SIGNAL_H
-#include <signal.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#ifdef HAVE_LIBINPUT
-#include "libinput-properties.h"
-#endif /* HAVE_LIBINPUT */
-
-#include <glib.h>
-#include <gdk/gdk.h>
-#include <gdk/gdkx.h>
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
-#include <locale.h>
+#include "pointers-defines.h"
+#include "pointers.h"
 
 #include "common/debug.h"
-#include "pointers.h"
-#include "pointers-defines.h"
+
+#include <gdk/gdkx.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
+#ifdef HAVE_LIBINPUT
+#include <libinput-properties.h>
+#endif /* HAVE_LIBINPUT */
 
 #define MAX_DENOMINATOR (100.00)
 

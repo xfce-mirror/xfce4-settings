@@ -20,28 +20,20 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#include <X11/Xlib.h>
-#include <X11/XKBlib.h>
-#include <X11/keysym.h>
-
-#include <glib.h>
-#include <gtk/gtk.h>
-#include <gdk/gdkx.h>
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
+#include "keyboards.h"
 
 #include "common/debug.h"
-#include "keyboards.h"
+
+#include <X11/XKBlib.h>
+#include <X11/Xlib.h>
+#include <X11/keysym.h>
+#include <gdk/gdkx.h>
+#include <gtk/gtk.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
 
 
 
