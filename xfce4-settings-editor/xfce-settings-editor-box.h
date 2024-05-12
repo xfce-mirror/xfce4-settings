@@ -26,22 +26,24 @@
 
 #include <gtk/gtk.h>
 
-#define XFCE_TYPE_SETTINGS_EDITOR_BOX            (xfce_settings_editor_box_get_type ())
-#define XFCE_SETTINGS_EDITOR_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_SETTINGS_EDITOR_BOX, XfceSettingsEditorBox))
-#define XFCE_SETTINGS_EDITOR_BOX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_SETTINGS_EDITOR_BOX, XfceSettingsEditorBoxClass))
-#define XFCE_IS_SETTINGS_EDITOR_BOX(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_SETTINGS_EDITOR_BOX))
+#define XFCE_TYPE_SETTINGS_EDITOR_BOX (xfce_settings_editor_box_get_type ())
+#define XFCE_SETTINGS_EDITOR_BOX(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_SETTINGS_EDITOR_BOX, XfceSettingsEditorBox))
+#define XFCE_SETTINGS_EDITOR_BOX_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_SETTINGS_EDITOR_BOX, XfceSettingsEditorBoxClass))
+#define XFCE_IS_SETTINGS_EDITOR_BOX(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_SETTINGS_EDITOR_BOX))
 #define XFCE_IS_SETTINGS_EDITOR_BOX_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_SETTINGS_EDITOR_BOX))
-#define XFCE_SETTINGS_EDITOR_BOX_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_SETTINGS_EDITOR_BOX, XfceSettingsEditorBoxClass))
+#define XFCE_SETTINGS_EDITOR_BOX_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_SETTINGS_EDITOR_BOX, XfceSettingsEditorBoxClass))
 
 G_BEGIN_DECLS
 
-typedef struct _XfceSettingsEditorBox      XfceSettingsEditorBox;
+typedef struct _XfceSettingsEditorBox XfceSettingsEditorBox;
 typedef struct _XfceSettingsEditorBoxClass XfceSettingsEditorBoxClass;
 
-GType      xfce_settings_editor_box_get_type    (void) G_GNUC_CONST;
+GType
+xfce_settings_editor_box_get_type (void) G_GNUC_CONST;
 
-GtkWidget *xfce_settings_editor_box_new         (gint paned_pos);
+GtkWidget *
+xfce_settings_editor_box_new (gint paned_pos);
 
 G_END_DECLS
 
-#endif  /* __XFCE_SETTINGS_EDITOR_BOX_H__ */
+#endif /* __XFCE_SETTINGS_EDITOR_BOX_H__ */

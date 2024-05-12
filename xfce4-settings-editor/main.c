@@ -40,69 +40,70 @@ XfconfChannel *channel;
 static gint32 opt_socket_id = 0;
 static gboolean opt_version = FALSE;
 
-static GOptionEntry option_entries[] =
-{
-	{ "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID") },
-    { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+static GOptionEntry option_entries[] = {
+    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_ ("Settings manager socket"), N_ ("SOCKET ID") },
+    { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_ ("Version information"), NULL },
     { NULL }
 };
 
 static void
-save_window_size (GtkWidget *dialog, XfceSettingsEditorBox *settings_editor)
+save_window_size (GtkWidget *dialog,
+                  XfceSettingsEditorBox *settings_editor)
 {
-	GdkWindowState            state;
-	gint                      width, height;
-	gint                      paned_pos;
+    GdkWindowState state;
+    gint width, height;
+    gint paned_pos;
 
-	g_object_get (G_OBJECT(settings_editor), "paned-pos", &paned_pos, NULL);
+    g_object_get (G_OBJECT (settings_editor), "paned-pos", &paned_pos, NULL);
 
-	state = gdk_window_get_state (gtk_widget_get_window(dialog));
+    state = gdk_window_get_state (gtk_widget_get_window (dialog));
 
-	if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
-	{
-		/* save window size */
-		gtk_window_get_size (GTK_WINDOW (dialog), &width, &height);
-		xfconf_channel_set_int (channel, "/last/window-width", width),
-			xfconf_channel_set_int (channel, "/last/window-height", height);
-		xfconf_channel_set_int (channel, "/last/paned-position", paned_pos);
-
-	}
+    if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
+    {
+        /* save window size */
+        gtk_window_get_size (GTK_WINDOW (dialog), &width, &height);
+        xfconf_channel_set_int (channel, "/last/window-width", width),
+            xfconf_channel_set_int (channel, "/last/window-height", height);
+        xfconf_channel_set_int (channel, "/last/paned-position", paned_pos);
+    }
 }
 
 static void
 settings_dialog_response (GtkWidget *dialog,
-						  gint       response_id,
-						  XfceSettingsEditorBox *settings_editor)
+                          gint response_id,
+                          XfceSettingsEditorBox *settings_editor)
 {
     if (response_id == GTK_RESPONSE_HELP)
-		xfce_dialog_show_help_with_version (GTK_WINDOW (dialog),
+        xfce_dialog_show_help_with_version (GTK_WINDOW (dialog),
                                             "xfce4-settings",
                                             "editor", NULL,
                                             XFCE4_SETTINGS_VERSION_SHORT);
-	else
-	{
-		save_window_size (dialog, settings_editor);
-		gtk_main_quit ();
-	}
+    else
+    {
+        save_window_size (dialog, settings_editor);
+        gtk_main_quit ();
+    }
 }
 
 #ifdef ENABLE_X11
-static gboolean plug_delete_event (GtkWidget *widget,
-								   GdkEvent *ev,
-								   XfceSettingsEditorBox *settings_editor)
+static gboolean
+plug_delete_event (GtkWidget *widget,
+                   GdkEvent *ev,
+                   XfceSettingsEditorBox *settings_editor)
 {
-	save_window_size (widget, settings_editor);
-	gtk_main_quit ();
-	return TRUE;
+    save_window_size (widget, settings_editor);
+    gtk_main_quit ();
+    return TRUE;
 }
 #endif
 
 gint
-main(gint argc, gchar **argv)
+main (gint argc,
+      gchar **argv)
 {
-	GtkWidget     *dialog;
-	GtkWidget     *settings_editor;
-	GError        *error = NULL;
+    GtkWidget *dialog;
+    GtkWidget *settings_editor;
+    GError *error = NULL;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -150,62 +151,62 @@ main(gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-	channel = xfconf_channel_new ("xfce4-settings-editor");
+    channel = xfconf_channel_new ("xfce4-settings-editor");
 
-	settings_editor = xfce_settings_editor_box_new (
-		xfconf_channel_get_int (channel, "/last/paned-position", 180));
+    settings_editor = xfce_settings_editor_box_new (
+        xfconf_channel_get_int (channel, "/last/paned-position", 180));
 
 #ifdef ENABLE_X11
-	if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
-	{
-		/* Create plug widget */
-		GtkWidget *plug = gtk_plug_new (opt_socket_id);
-		g_signal_connect (plug, "delete-event", G_CALLBACK (plug_delete_event), settings_editor);
+    if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    {
+        /* Create plug widget */
+        GtkWidget *plug = gtk_plug_new (opt_socket_id);
+        g_signal_connect (plug, "delete-event", G_CALLBACK (plug_delete_event), settings_editor);
 
-		gtk_window_set_default_size (GTK_WINDOW (plug),
-		  xfconf_channel_get_int (channel, "/last/window-width", 640),
-          xfconf_channel_get_int (channel, "/last/window-height", 500));
+        gtk_window_set_default_size (GTK_WINDOW (plug),
+                                     xfconf_channel_get_int (channel, "/last/window-width", 640),
+                                     xfconf_channel_get_int (channel, "/last/window-height", 500));
 
-		gtk_widget_show (plug);
+        gtk_widget_show (plug);
 
-		gtk_container_add (GTK_CONTAINER(plug), settings_editor);
+        gtk_container_add (GTK_CONTAINER (plug), settings_editor);
 
-		/* Stop startup notification */
-		gdk_notify_startup_complete ();
+        /* Stop startup notification */
+        gdk_notify_startup_complete ();
 
-		gtk_widget_show (GTK_WIDGET (settings_editor));
-	}
-	else
+        gtk_widget_show (GTK_WIDGET (settings_editor));
+    }
+    else
 #endif
-	{
-		dialog = xfce_titled_dialog_new_with_mixed_buttons (_("Settings Editor"), NULL,
-					GTK_DIALOG_DESTROY_WITH_PARENT,
-					"help-browser", _("_Help"), GTK_RESPONSE_HELP,
-					"window-close-symbolic", _("_Close"), GTK_RESPONSE_OK,
-					NULL);
+    {
+        dialog = xfce_titled_dialog_new_with_mixed_buttons (_("Settings Editor"), NULL,
+                                                            GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                            "help-browser", _("_Help"), GTK_RESPONSE_HELP,
+                                                            "window-close-symbolic", _("_Close"), GTK_RESPONSE_OK,
+                                                            NULL);
 
-		gtk_window_set_icon_name (GTK_WINDOW (dialog), "org.xfce.settings.editor");
-		gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_NORMAL);
-		gtk_window_set_default_size (GTK_WINDOW (dialog),
-          xfconf_channel_get_int (channel, "/last/window-width", 640),
-          xfconf_channel_get_int (channel, "/last/window-height", 500));
+        gtk_window_set_icon_name (GTK_WINDOW (dialog), "org.xfce.settings.editor");
+        gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_NORMAL);
+        gtk_window_set_default_size (GTK_WINDOW (dialog),
+                                     xfconf_channel_get_int (channel, "/last/window-width", 640),
+                                     xfconf_channel_get_int (channel, "/last/window-height", 500));
 
-		gtk_container_add_with_properties(
-			GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog))),
-						  settings_editor,
-						  "expand", TRUE,
-						  "fill", TRUE,
-						  NULL);
+        gtk_container_add_with_properties (
+            GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
+            settings_editor,
+            "expand", TRUE,
+            "fill", TRUE,
+            NULL);
 
-		g_signal_connect (dialog, "response",
-                    G_CALLBACK (settings_dialog_response), settings_editor);
+        g_signal_connect (dialog, "response",
+                          G_CALLBACK (settings_dialog_response), settings_editor);
 
-		gtk_widget_show_all (dialog);
-	}
+        gtk_widget_show_all (dialog);
+    }
 
     gtk_main ();
 
-	g_object_unref(channel);
+    g_object_unref (channel);
 
     /* shutdown xfconf */
     xfconf_shutdown ();

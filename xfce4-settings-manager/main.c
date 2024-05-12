@@ -33,25 +33,24 @@
 #endif
 
 static gboolean opt_version = FALSE;
-static gchar   *opt_dialog = NULL;
+static gchar *opt_dialog = NULL;
 
-static GOptionEntry option_entries[] =
-{
-    { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
-    { "dialog", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_dialog, N_("Settings dialog to show"), NULL },
+static GOptionEntry option_entries[] = {
+    { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_ ("Version information"), NULL },
+    { "dialog", 'd', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &opt_dialog, N_ ("Settings dialog to show"), NULL },
     { NULL }
 };
 
 
 
 int
-main(int argc,
-     char **argv)
+main (int argc,
+      char **argv)
 {
     GtkWidget *dialog;
-    GError    *error = NULL;
+    GError *error = NULL;
 
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     if (!gtk_init_with_args (&argc, &argv, NULL, option_entries, GETTEXT_PACKAGE, &error))
     {
@@ -72,7 +71,7 @@ main(int argc,
 
     if (G_UNLIKELY (opt_version))
     {
-        g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string());
+        g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
         g_print ("%s\n", "Copyright (c) 2008-2024");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
@@ -92,7 +91,7 @@ main(int argc,
 
     /* Workaround for xinput2's subpixel handling triggering unwanted enter/leave-notify events:
      * https://bugs.freedesktop.org/show_bug.cgi?id=92681 */
-    g_setenv("GDK_CORE_DEVICE_EVENTS", "1", TRUE);
+    g_setenv ("GDK_CORE_DEVICE_EVENTS", "1", TRUE);
 
     garcon_set_environment ("XFCE");
 
@@ -100,7 +99,7 @@ main(int argc,
     gtk_window_present (GTK_WINDOW (dialog));
 
     if (opt_dialog != NULL
-        && !xfce_settings_manager_dialog_show_dialog (XFCE_SETTINGS_MANAGER_DIALOG(dialog), opt_dialog))
+        && !xfce_settings_manager_dialog_show_dialog (XFCE_SETTINGS_MANAGER_DIALOG (dialog), opt_dialog))
     {
         g_message ("Dialog \"%s\" not found.", opt_dialog);
     }
@@ -111,7 +110,7 @@ main(int argc,
         gdk_x11_set_sm_client_id ("FAKE ID");
 #endif
 
-    gtk_main();
+    gtk_main ();
 
     xfconf_shutdown ();
 

@@ -25,28 +25,29 @@ G_BEGIN_DECLS
 
 typedef enum
 {
-   XFSD_DEBUG_YES                = 1 << 0,
+    XFSD_DEBUG_YES = 1 << 0,
 
-   /* filter levels */
-   XFSD_DEBUG_XSETTINGS          = 1 << 1,
-   XFSD_DEBUG_FONTCONFIG         = 1 << 2,
-   XFSD_DEBUG_KEYBOARD_LAYOUT    = 1 << 3,
-   XFSD_DEBUG_KEYBOARDS          = 1 << 4,
-   XFSD_DEBUG_KEYBOARD_SHORTCUTS = 1 << 5,
-   XFSD_DEBUG_WORKSPACES         = 1 << 6,
-   XFSD_DEBUG_ACCESSIBILITY      = 1 << 7,
-   XFSD_DEBUG_POINTERS           = 1 << 8,
-   XFSD_DEBUG_DISPLAYS           = 1 << 9,
-}
-XfsdDebugDomain;
+    /* filter levels */
+    XFSD_DEBUG_XSETTINGS = 1 << 1,
+    XFSD_DEBUG_FONTCONFIG = 1 << 2,
+    XFSD_DEBUG_KEYBOARD_LAYOUT = 1 << 3,
+    XFSD_DEBUG_KEYBOARDS = 1 << 4,
+    XFSD_DEBUG_KEYBOARD_SHORTCUTS = 1 << 5,
+    XFSD_DEBUG_WORKSPACES = 1 << 6,
+    XFSD_DEBUG_ACCESSIBILITY = 1 << 7,
+    XFSD_DEBUG_POINTERS = 1 << 8,
+    XFSD_DEBUG_DISPLAYS = 1 << 9,
+} XfsdDebugDomain;
 
-void xfsettings_dbg          (XfsdDebugDomain  domain,
-                              const gchar     *message,
-                              ...) G_GNUC_PRINTF (2, 3);
+void
+xfsettings_dbg (XfsdDebugDomain domain,
+                const gchar *message,
+                ...) G_GNUC_PRINTF (2, 3);
 
-void xfsettings_dbg_filtered (XfsdDebugDomain  domain,
-                              const gchar     *message,
-                              ...) G_GNUC_PRINTF (2, 3);
+void
+xfsettings_dbg_filtered (XfsdDebugDomain domain,
+                         const gchar *message,
+                         ...) G_GNUC_PRINTF (2, 3);
 
 G_END_DECLS
 

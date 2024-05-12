@@ -27,23 +27,26 @@
 G_BEGIN_DECLS
 
 typedef struct _XfceXSettingsHelperClass XfceXSettingsHelperClass;
-typedef struct _XfceXSettingsHelper      XfceXSettingsHelper;
+typedef struct _XfceXSettingsHelper XfceXSettingsHelper;
 
-#define XFCE_TYPE_XSETTINGS_HELPER            (xfce_xsettings_helper_get_type ())
-#define XFCE_XSETTINGS_HELPER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelper))
-#define XFCE_XSETTINGS_HELPER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelperClass))
-#define XFCE_IS_XSETTINGS_HELPER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_XSETTINGS_HELPER))
+#define XFCE_TYPE_XSETTINGS_HELPER (xfce_xsettings_helper_get_type ())
+#define XFCE_XSETTINGS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelper))
+#define XFCE_XSETTINGS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelperClass))
+#define XFCE_IS_XSETTINGS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_XSETTINGS_HELPER))
 #define XFCE_IS_XSETTINGS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_XSETTINGS_HELPER))
-#define XFCE_XSETTINGS_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelperClass))
+#define XFCE_XSETTINGS_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelperClass))
 
-GType    xfce_xsettings_helper_get_type (void) G_GNUC_CONST;
+GType
+xfce_xsettings_helper_get_type (void) G_GNUC_CONST;
 
-gboolean xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
-                                         GdkDisplay          *gdkdisplay,
-                                         gboolean             force_replace);
+gboolean
+xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
+                                GdkDisplay *gdkdisplay,
+                                gboolean force_replace);
 
-Time     xfce_xsettings_get_server_time (Display             *display,
-                                         Window               window);
+Time
+xfce_xsettings_get_server_time (Display *display,
+                                Window window);
 
 G_END_DECLS
 

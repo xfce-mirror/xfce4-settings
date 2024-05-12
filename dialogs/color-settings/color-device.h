@@ -29,14 +29,22 @@ G_BEGIN_DECLS
 #define TYPE_COLOR_DEVICE (color_device_get_type ())
 G_DECLARE_FINAL_TYPE (ColorDevice, color_device, SETTINGS, COLOR_DEVICE, GtkListBoxRow)
 
-gchar       *color_device_get_kind          (CdDevice     *device);
-gchar       *color_device_get_sortable_base (CdDevice     *device);
-gchar       *color_device_get_title         (CdDevice     *device);
-GtkWidget   *color_device_new               (CdDevice     *device);
-CdDevice    *color_device_get_device        (ColorDevice  *color_device);
-const gchar *color_device_get_type_icon     (CdDevice     *device);
-const gchar *color_device_get_sortable      (ColorDevice  *color_device);
-void         color_device_set_enabled       (ColorDevice  *color_device,
-                                             gboolean      enabled);
+gchar *
+color_device_get_kind (CdDevice *device);
+gchar *
+color_device_get_sortable_base (CdDevice *device);
+gchar *
+color_device_get_title (CdDevice *device);
+GtkWidget *
+color_device_new (CdDevice *device);
+CdDevice *
+color_device_get_device (ColorDevice *color_device);
+const gchar *
+color_device_get_type_icon (CdDevice *device);
+const gchar *
+color_device_get_sortable (ColorDevice *color_device);
+void
+color_device_set_enabled (ColorDevice *color_device,
+                          gboolean enabled);
 
 G_END_DECLS

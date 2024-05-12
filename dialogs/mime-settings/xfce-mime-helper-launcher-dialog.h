@@ -26,22 +26,26 @@
 G_BEGIN_DECLS
 
 typedef struct _XfceMimeHelperLauncherDialogClass XfceMimeHelperLauncherDialogClass;
-typedef struct _XfceMimeHelperLauncherDialog      XfceMimeHelperLauncherDialog;
+typedef struct _XfceMimeHelperLauncherDialog XfceMimeHelperLauncherDialog;
 
-#define XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG             (xfce_mime_helper_launcher_dialog_get_type ())
-#define XFCE_MIME_HELPER_LAUNCHER_DIALOG(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG, XfceMimeHelperLauncherDialog))
-#define XFCE_MIME_HELPER_LAUNCHER_DIALOG_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG, XfceMimeHelperLauncherDialogClass))
-#define XFCE_MIME_IS_HELPER_LAUNCHER_DIALOG(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG))
-#define XFCE_MIME_IS_HELPER_LAUNCHER_DIALOG_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG))
-#define XFCE_MIME_HELPER_LAUNCHER_DIALOG_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG, XfceMimeHelperLauncherDialogClass))
+#define XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG (xfce_mime_helper_launcher_dialog_get_type ())
+#define XFCE_MIME_HELPER_LAUNCHER_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG, XfceMimeHelperLauncherDialog))
+#define XFCE_MIME_HELPER_LAUNCHER_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG, XfceMimeHelperLauncherDialogClass))
+#define XFCE_MIME_IS_HELPER_LAUNCHER_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG))
+#define XFCE_MIME_IS_HELPER_LAUNCHER_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG))
+#define XFCE_MIME_HELPER_LAUNCHER_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG, XfceMimeHelperLauncherDialogClass))
 
-GType                   xfce_mime_helper_launcher_dialog_get_type     (void) G_GNUC_CONST;
+GType
+xfce_mime_helper_launcher_dialog_get_type (void) G_GNUC_CONST;
 
-GtkWidget              *xfce_mime_helper_launcher_dialog_new          (XfceMimeHelperCategory              category) G_GNUC_MALLOC;
+GtkWidget *
+xfce_mime_helper_launcher_dialog_new (XfceMimeHelperCategory category) G_GNUC_MALLOC;
 
-XfceMimeHelperCategory  xfce_mime_helper_launcher_dialog_get_category (const XfceMimeHelperLauncherDialog *launcher_dialog);
-void                    xfce_mime_helper_launcher_dialog_set_category (XfceMimeHelperLauncherDialog       *launcher_dialog,
-                                                                       XfceMimeHelperCategory              category);
+XfceMimeHelperCategory
+xfce_mime_helper_launcher_dialog_get_category (const XfceMimeHelperLauncherDialog *launcher_dialog);
+void
+xfce_mime_helper_launcher_dialog_set_category (XfceMimeHelperLauncherDialog *launcher_dialog,
+                                               XfceMimeHelperCategory category);
 
 G_END_DECLS
 

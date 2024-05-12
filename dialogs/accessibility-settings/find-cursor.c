@@ -43,8 +43,8 @@ gint workaround_offset = 1;
 
 
 
-static
-gboolean timeout (gpointer data)
+static gboolean
+timeout (gpointer data)
 {
     GtkWidget *widget = GTK_WIDGET (data);
     gtk_widget_queue_draw (widget);
@@ -54,18 +54,22 @@ gboolean timeout (gpointer data)
 
 
 static GdkPixbuf *
-get_rectangle_screenshot (gint x, gint y) {
+get_rectangle_screenshot (gint x,
+                          gint y)
+{
     GdkPixbuf *screenshot = NULL;
     GdkWindow *root_window = gdk_get_default_root_window ();
     gint width = CIRCLE_SIZE + workaround_offset;
     gint height = CIRCLE_SIZE + workaround_offset;
 
     /* cut down screenshot if it's out of bounds */
-    if (x < 0) {
+    if (x < 0)
+    {
         width += x;
         x = 0;
     }
-    if (y < 0) {
+    if (y < 0)
+    {
         height += y;
         y = 0;
     }
@@ -79,9 +83,10 @@ get_rectangle_screenshot (gint x, gint y) {
 
 
 static gboolean
-find_cursor_motion_notify_event (GtkWidget      *widget,
+find_cursor_motion_notify_event (GtkWidget *widget,
                                  GdkEventMotion *event,
-                                 gpointer        userdata) {
+                                 gpointer userdata)
+{
     gtk_window_move (GTK_WINDOW (widget), event->x_root - CIRCLE_RADIUS, event->y_root - CIRCLE_RADIUS);
     return FALSE;
 }
@@ -89,10 +94,11 @@ find_cursor_motion_notify_event (GtkWidget      *widget,
 
 
 static gboolean
-find_cursor_window_composited (GtkWidget *widget) {
-    GdkScreen   *screen = gtk_widget_get_screen (widget);
-    GdkVisual   *visual = gdk_screen_get_rgba_visual (screen);
-    gboolean     composited;
+find_cursor_window_composited (GtkWidget *widget)
+{
+    GdkScreen *screen = gtk_widget_get_screen (widget);
+    GdkVisual *visual = gdk_screen_get_rgba_visual (screen);
+    gboolean composited;
 
     if (gdk_screen_is_composited (screen))
         composited = TRUE;
@@ -110,7 +116,8 @@ find_cursor_window_composited (GtkWidget *widget) {
 
 static void
 find_cursor_window_destroy (GtkWidget *widget,
-                            gpointer   user_data) {
+                            gpointer user_data)
+{
     if (pixbuf)
         g_object_unref (pixbuf);
     gtk_main_quit ();
@@ -119,21 +126,27 @@ find_cursor_window_destroy (GtkWidget *widget,
 
 
 static gboolean
-find_cursor_window_draw (GtkWidget      *widget,
-                         cairo_t        *cr,
-                         gpointer        user_data) {
+find_cursor_window_draw (GtkWidget *widget,
+                         cairo_t *cr,
+                         gpointer user_data)
+{
     int i = 0;
     int arcs = 1;
     gboolean composited = GPOINTER_TO_INT (user_data);
 
-    if (composited) {
+    if (composited)
+    {
         cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
         cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.0);
     }
-    else {
-        if (pixbuf) {
-            if (screenshot_offset_x > 0) screenshot_offset_x = 0;
-            if (screenshot_offset_y > 0) screenshot_offset_y = 0;
+    else
+    {
+        if (pixbuf)
+        {
+            if (screenshot_offset_x > 0)
+                screenshot_offset_x = 0;
+            if (screenshot_offset_y > 0)
+                screenshot_offset_y = 0;
 
             gdk_cairo_set_source_pixbuf (cr, pixbuf,
                                          0 - screenshot_offset_x - workaround_offset,
@@ -161,13 +174,15 @@ find_cursor_window_draw (GtkWidget      *widget,
 
     /* draw several arcs, depending on the radius */
     cairo_set_source_rgba (cr, 1.0, 0.0, 0.0, 1.0);
-    for (i = 0; i < arcs; i++) {
+    for (i = 0; i < arcs; i++)
+    {
         cairo_arc (cr, 0, 0, px - (i * 30.0), 0, 2 * M_PI);
         cairo_stroke (cr);
     }
 
     /* stop before the circles get bigger than the window */
-    if (px >= CIRCLE_RADIUS) {
+    if (px >= CIRCLE_RADIUS)
+    {
         find_cursor_window_destroy (widget, NULL);
     }
 
@@ -179,20 +194,22 @@ find_cursor_window_draw (GtkWidget      *widget,
 
 
 gint
-main (gint argc, gchar **argv)
+main (gint argc,
+      gchar **argv)
 {
     XfconfChannel *accessibility_channel = NULL;
-    GError        *error = NULL;
-    GtkWidget     *window;
-    GdkDisplay    *display;
-    GdkSeat       *seat;
-    GdkDevice     *device;
-    GdkScreen     *screen;
-    gint           x,y;
-    gboolean       composited;
+    GError *error = NULL;
+    GtkWidget *window;
+    GdkDisplay *display;
+    GdkSeat *seat;
+    GdkDevice *device;
+    GdkScreen *screen;
+    gint x, y;
+    gboolean composited;
 
     /* initialize xfconf */
-    if (!xfconf_init (&error)) {
+    if (!xfconf_init (&error))
+    {
         /* print error and exit */
         g_error ("Failed to connect to xfconf daemon: %s.", error->message);
         g_error_free (error);
@@ -233,13 +250,15 @@ main (gint argc, gchar **argv)
     composited = find_cursor_window_composited (GTK_WIDGET (window));
 
     /* with compositor: make the circles follow the mouse cursor */
-    if (composited) {
+    if (composited)
+    {
         gtk_widget_set_events (GTK_WIDGET (window), GDK_POINTER_MOTION_MASK);
         g_signal_connect (G_OBJECT (window), "motion-notify-event",
                           G_CALLBACK (find_cursor_motion_notify_event), NULL);
     }
     /* fake transparency by creating a screenshot and using that as window bg */
-    else {
+    else
+    {
         /* this offset has to match the screenshot */
         screenshot_offset_x = x - CIRCLE_RADIUS - workaround_offset;
         screenshot_offset_y = y - CIRCLE_RADIUS - workaround_offset;

@@ -25,9 +25,11 @@
 
 
 
-G_MODULE_EXPORT void         gtk_module_init     (gint      *argc,
-                                                  gchar   ***argv);
-G_MODULE_EXPORT const gchar *g_module_check_init (GModule   *module);
+G_MODULE_EXPORT void
+gtk_module_init (gint *argc,
+                 gchar ***argv);
+G_MODULE_EXPORT const gchar *
+g_module_check_init (GModule *module);
 
 
 
@@ -124,7 +126,7 @@ G_MODULE_EXPORT const gchar *
 g_module_check_init (GModule *module)
 {
     GError *error = NULL;
-    if (! xfconf_init (&error))
+    if (!xfconf_init (&error))
     {
         static gchar message[1024];
         g_strlcpy (message, error->message, 1024);
