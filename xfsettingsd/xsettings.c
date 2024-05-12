@@ -277,7 +277,6 @@ xfce_xsettings_helper_fc_free (XfceXSettingsHelper *helper)
     if (helper->fc_monitors != NULL)
     {
         /* remove monitors */
-        g_ptr_array_foreach (helper->fc_monitors, (GFunc) (void (*)(void)) g_object_unref, NULL);
         g_ptr_array_free (helper->fc_monitors, TRUE);
         helper->fc_monitors = NULL;
     }
@@ -333,7 +332,7 @@ xfce_xsettings_helper_fc_init (gpointer data)
 
     if (FcInit ())
     {
-        helper->fc_monitors = g_ptr_array_new ();
+        helper->fc_monitors = g_ptr_array_new_with_free_func (g_object_unref);
 
         /* start monitoring config files and font directories */
         xfce_xsettings_helper_fc_monitor (helper, FcConfigGetConfigFiles (NULL));
@@ -643,7 +642,7 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
     GString      *resource;
     XfceXSetting *setting;
     guint         i;
-    GValue        bool_val = { 0, };
+    GValue        bool_val = G_VALUE_INIT;
     const gchar  *props[][2] =
     {
         /* { xfconf name}, { xft name } */

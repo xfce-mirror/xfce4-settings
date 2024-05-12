@@ -189,7 +189,7 @@ theme_selection_changed (GtkTreeSelection *selection,
 
         /* Set the matching xfwm4 theme if the selected theme is not an icon theme,
          * the xfconf setting is on, and a matching theme is available */
-        if (xfconf_channel_get_bool (xsettings_channel, "/Xfce/SyncThemes", FALSE) == TRUE
+        if (xfconf_channel_get_bool (xsettings_channel, "/Xfce/SyncThemes", FALSE)
             && strcmp (property, "/Net/ThemeName") == 0)
         {
             if (!has_xfwm4)
@@ -554,11 +554,7 @@ appearance_settings_load_icon_themes (gpointer user_data)
     g_strfreev (icon_theme_dirs);
 
     /* Free the check list */
-    if (G_LIKELY (check_list))
-    {
-        g_slist_foreach (check_list, (GFunc) (void (*)(void)) g_free, NULL);
-        g_slist_free (check_list);
-    }
+    g_slist_free_full (check_list, g_free);
 
     return FALSE;
 }
@@ -717,11 +713,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
     g_strfreev (ui_theme_dirs);
 
     /* Free the check list */
-    if (G_LIKELY (check_list))
-    {
-        g_slist_foreach (check_list, (GFunc) (void (*)(void)) g_free, NULL);
-        g_slist_free (check_list);
-    }
+    g_slist_free_full (check_list, g_free);
 
     return FALSE;
 }

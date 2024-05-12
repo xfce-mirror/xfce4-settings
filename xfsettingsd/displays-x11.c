@@ -374,9 +374,9 @@ xfce_displays_helper_x11_toggle_internal (gpointer           *power,
             crtc->rotation = RR_Rotate_0;
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)) {
-G_GNUC_END_IGNORE_DEPRECATIONS
                 crtc->x = crtc->y = 0;
             } /* else - leave values from last time we saw the monitor */
+G_GNUC_END_IGNORE_DEPRECATIONS
             /* set width and height */
             for (m = 0; m < helper->resources->nmode; ++m)
             {

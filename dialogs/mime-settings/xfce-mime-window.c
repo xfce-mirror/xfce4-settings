@@ -749,8 +749,8 @@ xfce_mime_window_row_visible_func (GtkTreeModel *model,
     XfceMimeWindow *window = XFCE_MIME_WINDOW (data);
     const gchar    *mime_type, *app_name;
     gchar          *normalized, *filtertext_folded, *appname_folded = NULL;
-    GValue          mime_value = { 0, };
-    GValue          app_value = { 0, };
+    GValue          mime_value = G_VALUE_INIT;
+    GValue          app_value = G_VALUE_INIT;
     gboolean        visible;
 
     if (window->filter_text == NULL)

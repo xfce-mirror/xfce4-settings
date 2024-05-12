@@ -157,17 +157,13 @@ xfce_keyboard_layout_helper_finalize (GObject *object)
 static void
 xfce_keyboard_layout_helper_process_xmodmap (void)
 {
-    const gchar *xmodmap_path;
-
-    xmodmap_path = g_build_filename (xfce_get_homedir (), ".Xmodmap", NULL);
+    gchar *xmodmap_path = g_build_filename (xfce_get_homedir (), ".Xmodmap", NULL);
 
     if (g_file_test (xmodmap_path, G_FILE_TEST_EXISTS))
     {
         /* There is a .Xmodmap file, try to use it */
-        const gchar *xmodmap_command;
+        gchar *xmodmap_command = g_strconcat ("xmodmap ", xmodmap_path, NULL);
         GError      *error = NULL;
-
-        xmodmap_command = g_strconcat ("xmodmap ", xmodmap_path, NULL);
 
         xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "spawning \"%s\"", xmodmap_command);
 
@@ -177,9 +173,11 @@ xfce_keyboard_layout_helper_process_xmodmap (void)
             DBG ("Xmodmap call failed: %s", error->message);
             g_error_free (error);
         }
+
+        g_free (xmodmap_command);
     }
 
-    g_free ((gchar*) xmodmap_path);
+    g_free (xmodmap_path);
 }
 
 #ifdef HAVE_LIBXKLAVIER
