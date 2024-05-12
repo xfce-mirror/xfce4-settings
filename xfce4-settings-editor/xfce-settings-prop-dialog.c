@@ -248,7 +248,7 @@ xfce_settings_prop_dialog_response (GtkDialog *widget,
     XfceSettingsPropDialog *dialog = XFCE_SETTINGS_PROP_DIALOG (widget);
     const gchar            *property;
     ValueTypes             *value_type;
-    GValue                  value = { 0, };
+    GValue                  value = G_VALUE_INIT;
     gdouble                 spin_value;
     gint                    active;
 

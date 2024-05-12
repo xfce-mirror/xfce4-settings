@@ -269,7 +269,7 @@ static GtkCellRenderer *
 xfce_settings_cell_renderer_prepare (XfceSettingsCellRenderer *renderer)
 {
     const GValue *value = &renderer->cell_value;
-    GValue        str_value = { 0, };
+    GValue        str_value = G_VALUE_INIT;
 
     if (G_VALUE_TYPE (value) == xfce_settings_array_type ()
         || G_VALUE_TYPE (value) == G_TYPE_STRV)
@@ -352,7 +352,7 @@ xfce_settings_cell_renderer_activate (GtkCellRenderer      *cell,
                                       GtkCellRendererState  flags)
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (cell);
-    GValue                    new_value = { 0, };
+    GValue                    new_value = G_VALUE_INIT;
 
     if (renderer->locked)
         return FALSE;
@@ -399,7 +399,7 @@ xfce_settings_cell_renderer_done_editing (GtkCellEditable          *entry,
 {
     EditData    *data;
     const gchar *text;
-    GValue       value = { 0, };
+    GValue       value = G_VALUE_INIT;
     gdouble      dval;
 
     data = g_object_get_qdata (G_OBJECT (entry), edit_data_quark);
@@ -472,7 +472,7 @@ xfce_settings_cell_renderer_start_editing (GtkCellRenderer      *cell,
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (cell);
     GtkWidget                *entry;
-    GValue                    str_value = { 0, };
+    GValue                    str_value = G_VALUE_INIT;
     const gchar              *text;
     EditData                 *data;
 
@@ -540,7 +540,7 @@ xfce_settings_array_to_string (const GValue *src_value,
     GPtrArray    *array = g_value_get_boxed (src_value);
     guint         i;
     const GValue *val;
-    GValue        str_val = { 0, };
+    GValue        str_val = G_VALUE_INIT;
 
     g_return_if_fail (G_VALUE_HOLDS_STRING (dest_value));
     g_return_if_fail (array != NULL);

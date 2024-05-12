@@ -456,7 +456,7 @@ xfce_accessibility_helper_notification_show (XfceAccessibilityHelper *helper,
 {
     /* early leave the avoid dbus errors, we already
      * told we were unable to connect during init */
-    if (notify_is_initted () == FALSE)
+    if (!notify_is_initted ())
         return;
 
     /* close the running notification */

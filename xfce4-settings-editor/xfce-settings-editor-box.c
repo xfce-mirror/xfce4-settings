@@ -521,9 +521,9 @@ xfce_settings_editor_box_property_load (const gchar               *property,
     guint         i;
     GtkTreeIter   child_iter;
     GtkTreeIter   parent_iter;
-    GValue        parent_val = { 0,};
+    GValue        parent_val = G_VALUE_INIT;
     gboolean      found_parent;
-    GValue        string_value = { 0, };
+    GValue        string_value = G_VALUE_INIT;
     GtkTreeModel *model;
 
     g_return_if_fail (GTK_IS_TREE_MODEL_FILTER (self->props_store));
@@ -622,7 +622,7 @@ xfce_settings_editor_box_property_find (GtkTreeModel *model,
                                         GtkTreeIter  *iter,
                                         gpointer      data)
 {
-    GValue         prop = { 0, };
+    GValue         prop = G_VALUE_INIT;
     DeleteContext *context = data;
     gboolean       found = FALSE;
 
@@ -651,7 +651,7 @@ xfce_settings_editor_box_property_changed (XfconfChannel            *channel,
     DeleteContext    *context;
     GtkTreeIter       child_iter;
     GtkTreeModel     *model;
-    GValue            parent_val = { 0, };
+    GValue            parent_val = G_VALUE_INIT;
     GtkTreeIter       parent_iter;
     gboolean          empty_prop;
     gboolean          has_parent;
@@ -792,7 +792,7 @@ xfce_settings_editor_box_channel_changed (GtkTreeSelection      *selection,
                                           XfceSettingsEditorBox *self)
 {
     GtkTreeIter    iter;
-    GValue         value = { 0, };
+    GValue         value = G_VALUE_INIT;
     XfconfChannel *channel;
     gboolean       locked;
 
@@ -886,7 +886,7 @@ xfce_settings_editor_box_channel_monitor_changed (XfconfChannel *channel,
     GtkTextBuffer *buffer;
     gint64         timeval;
     gchar         *str;
-    GValue         str_value = { 0, };
+    GValue         str_value = G_VALUE_INIT;
     GtkTextIter    iter;
 
     buffer = g_object_get_data (G_OBJECT (window), "buffer");
@@ -1126,7 +1126,7 @@ xfce_settings_editor_box_selected (XfceSettingsEditorBox    *self,
     gchar            *property = NULL;
     GtkTreeModel     *model;
     GtkTreeIter       parent_iter;
-    GValue            name_val = { 0, };
+    GValue            name_val = G_VALUE_INIT;
     GString          *string_prop;
     gboolean          property_real = TRUE;
     gchar            *type_name;
@@ -1266,7 +1266,7 @@ transform_g_value_to_string_type (GValue * subject)
         if (g_value_value)
         {
             /* transform to string */
-            GValue  string_value = { 0, };
+            GValue  string_value = G_VALUE_INIT;
             g_value_init (&string_value, G_TYPE_STRING);
             g_value_transform (g_value_value, &string_value);
             g_value_unset (g_value_value);
@@ -1304,7 +1304,7 @@ set_tooltip_from_treemodel_iterator (GtkTreeModel *model,
                                      GtkTooltip   *tooltip)
 {
     gboolean     tooltip_set   = FALSE;
-    GValue       value         = { 0, };
+    GValue       value         = G_VALUE_INIT;
     gint         treemodel_idx = 0;
     const gchar *tooltip_text  = "";
 
@@ -1317,12 +1317,12 @@ set_tooltip_from_treemodel_iterator (GtkTreeModel *model,
         treemodel_idx = PROP_COLUMN_TYPE;
 
     gtk_tree_model_get_value (model, &iter, treemodel_idx, &value);
-    if (transform_g_value_to_string_type (&value) == TRUE)
+    if (transform_g_value_to_string_type (&value))
     {
         tooltip_text = g_value_get_string (&value);
 
         if (tooltip_text &&
-            g_str_equal (tooltip_text,"") == FALSE)
+            !g_str_equal (tooltip_text,""))
         {
             gtk_tooltip_set_text (tooltip, tooltip_text);
             tooltip_set = TRUE;
@@ -1390,7 +1390,7 @@ xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
 
     /* search string from dialog */
     text = gtk_entry_get_text (entry);
-    if (xfce_str_is_empty (text) == TRUE)
+    if (xfce_str_is_empty (text))
       return TRUE;
 
     /* casefold the search text */
@@ -1414,14 +1414,14 @@ xfce_settings_editor_box_row_visible (GtkTreeModel  *model,
     }
 
     /* if the element itself doesn't contain the query recursively search its children */
-    if (visible == FALSE && gtk_tree_model_iter_has_child (model, iter))
+    if (!visible && gtk_tree_model_iter_has_child (model, iter))
     {
       for (int i = 0; i < gtk_tree_model_iter_n_children (model, iter); i++)
       {
         GtkTreeIter child;
         gtk_tree_model_iter_nth_child (model, &child, iter, i);
 
-        if (xfce_settings_editor_box_row_visible (model, &child, user_data) == TRUE)
+        if (xfce_settings_editor_box_row_visible (model, &child, user_data))
         {
           visible = TRUE;
           break;

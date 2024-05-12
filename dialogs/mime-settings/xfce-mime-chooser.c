@@ -280,7 +280,7 @@ xfce_mime_chooser_row_can_select (GtkTreeSelection  *selection,
 {
     gboolean    permitted = TRUE;
     GtkTreeIter iter;
-    GValue      value = { 0, };
+    GValue      value = G_VALUE_INIT;
 
     /* we can always change the selection if the path is already selected */
     if (G_UNLIKELY (!path_currently_selected))
@@ -595,10 +595,8 @@ xfce_mime_chooser_set_mime_type (XfceMimeChooser *chooser,
     gtk_tree_view_expand_all (GTK_TREE_VIEW (chooser->treeview));
 
     /* cleanup */
-    g_list_foreach (recommended, (GFunc) (void (*)(void)) g_object_unref, NULL);
-    g_list_foreach (all, (GFunc) (void (*)(void)) g_object_unref, NULL);
-    g_list_free (recommended);
-    g_list_free (all);
+    g_list_free_full (recommended, g_object_unref);
+    g_list_free_full (all, g_object_unref);
     g_list_free (other);
 
     /* set label and icon */
