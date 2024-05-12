@@ -28,29 +28,31 @@
 
 
 
-static void             xfce_displays_upower_dispose                        (GObject                 *object);
+static void
+xfce_displays_upower_dispose (GObject *object);
 
-static void             xfce_displays_upower_property_changed               (UpClient                *client,
-                                                                             GParamSpec              *pspec,
-                                                                             XfceDisplaysUPower      *upower);
+static void
+xfce_displays_upower_property_changed (UpClient *client,
+                                       GParamSpec *pspec,
+                                       XfceDisplaysUPower *upower);
 
 
 struct _XfceDisplaysUPowerClass
 {
     GObjectClass __parent__;
 
-    void         (*lid_changed)     (XfceDisplaysUPower *upower,
-                                     gboolean            lid_is_closed);
+    void (*lid_changed) (XfceDisplaysUPower *upower,
+                         gboolean lid_is_closed);
 };
 
 struct _XfceDisplaysUPower
 {
-    GObject   __parent__;
+    GObject __parent__;
 
     UpClient *client;
-    gint      handler;
+    gint handler;
 
-    guint     lid_is_closed : 1;
+    guint lid_is_closed : 1;
 };
 
 enum
@@ -59,7 +61,7 @@ enum
     LAST_SIGNAL
 };
 
-static guint signals[LAST_SIGNAL] = {0};
+static guint signals[LAST_SIGNAL] = { 0 };
 
 
 
@@ -125,8 +127,8 @@ xfce_displays_upower_dispose (GObject *object)
 
 
 static void
-xfce_displays_upower_property_changed (UpClient           *client,
-                                       GParamSpec         *pspec,
+xfce_displays_upower_property_changed (UpClient *client,
+                                       GParamSpec *pspec,
                                        XfceDisplaysUPower *upower)
 {
     gboolean lid_is_closed;

@@ -25,16 +25,17 @@
 G_BEGIN_DECLS
 
 typedef struct _XfceKeyboardLayoutHelperClass XfceKeyboardLayoutHelperClass;
-typedef struct _XfceKeyboardLayoutHelper      XfceKeyboardLayoutHelper;
+typedef struct _XfceKeyboardLayoutHelper XfceKeyboardLayoutHelper;
 
-#define XFCE_TYPE_KEYBOARD_LAYOUT_HELPER            (xfce_keyboard_layout_helper_get_type ())
-#define XFCE_KEYBOARD_LAYOUT_HELPER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, XfceKeyboardLayoutHelper))
-#define XFCE_KEYBOARD_LAYOUT_HELPER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, XfceKeyboardLayoutHelperClass))
-#define XFCE_IS_KEYBOARD_LAYOUT_HELPER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_KEYBOARD_LAYOUT_HELPER))
-#define XFCE_IS_KEYBOARD_LAYOUT_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  XFCE_TYPE_KEYBOARD_LAYOUT_HELPER))
-#define XFCE_KEYBOARD_LAYOUT_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, XfceKeyboardLayoutHelperClass))
+#define XFCE_TYPE_KEYBOARD_LAYOUT_HELPER (xfce_keyboard_layout_helper_get_type ())
+#define XFCE_KEYBOARD_LAYOUT_HELPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, XfceKeyboardLayoutHelper))
+#define XFCE_KEYBOARD_LAYOUT_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, XfceKeyboardLayoutHelperClass))
+#define XFCE_IS_KEYBOARD_LAYOUT_HELPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_KEYBOARD_LAYOUT_HELPER))
+#define XFCE_IS_KEYBOARD_LAYOUT_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_KEYBOARD_LAYOUT_HELPER))
+#define XFCE_KEYBOARD_LAYOUT_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, XfceKeyboardLayoutHelperClass))
 
-GType xfce_keyboard_layout_helper_get_type (void) G_GNUC_CONST;
+GType
+xfce_keyboard_layout_helper_get_type (void) G_GNUC_CONST;
 
 G_END_DECLS
 

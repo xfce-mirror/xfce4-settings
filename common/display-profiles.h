@@ -43,14 +43,17 @@ enum
 #define ACTION_ON_NEW_OUTPUT_DEFAULT ACTION_ON_NEW_OUTPUT_SHOW_DIALOG
 #define AUTO_ENABLE_PROFILES_DEFAULT AUTO_ENABLE_PROFILES_ALWAYS
 
-gboolean display_settings_profile_name_exists   (XfconfChannel  *channel,
-                                                 const gchar    *new_profile_name);
-GList*   display_settings_get_profiles          (gchar         **display_infos,
-                                                 XfconfChannel  *channel,
-                                                 gboolean        matching_only);
-gboolean display_settings_profile_matches       (const gchar    *profile,
-                                                 gchar         **display_infos,
-                                                 XfconfChannel  *channel);
+gboolean
+display_settings_profile_name_exists (XfconfChannel *channel,
+                                      const gchar *new_profile_name);
+GList *
+display_settings_get_profiles (gchar **display_infos,
+                               XfconfChannel *channel,
+                               gboolean matching_only);
+gboolean
+display_settings_profile_matches (const gchar *profile,
+                                  gchar **display_infos,
+                                  XfconfChannel *channel);
 
 G_END_DECLS
 

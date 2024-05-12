@@ -22,24 +22,27 @@
 
 #include <gtk/gtk.h>
 
-#define XFCE_TYPE_SETTINGS_CELL_RENDERER            (xfce_settings_cell_renderer_get_type ())
-#define XFCE_SETTINGS_CELL_RENDERER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_SETTINGS_CELL_RENDERER, XfceSettingsCellRenderer))
-#define XFCE_SETTINGS_CELL_RENDERER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_SETTINGS_CELL_RENDERER, XfceSettingsCellRendererClass))
-#define XFCE_IS_SETTINGS_CELL_RENDERER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_SETTINGS_CELL_RENDERER))
+#define XFCE_TYPE_SETTINGS_CELL_RENDERER (xfce_settings_cell_renderer_get_type ())
+#define XFCE_SETTINGS_CELL_RENDERER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_SETTINGS_CELL_RENDERER, XfceSettingsCellRenderer))
+#define XFCE_SETTINGS_CELL_RENDERER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_SETTINGS_CELL_RENDERER, XfceSettingsCellRendererClass))
+#define XFCE_IS_SETTINGS_CELL_RENDERER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_SETTINGS_CELL_RENDERER))
 #define XFCE_IS_SETTINGS_CELL_RENDERER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_SETTINGS_CELL_RENDERER))
-#define XFCE_SETTINGS_CELL_RENDERER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_SETTINGS_CELL_RENDERER, XfceSettingsCellRendererClass))
+#define XFCE_SETTINGS_CELL_RENDERER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_SETTINGS_CELL_RENDERER, XfceSettingsCellRendererClass))
 
 G_BEGIN_DECLS
 
-typedef struct _XfceSettingsCellRenderer      XfceSettingsCellRenderer;
+typedef struct _XfceSettingsCellRenderer XfceSettingsCellRenderer;
 typedef struct _XfceSettingsCellRendererClass XfceSettingsCellRendererClass;
 
-GType            xfce_settings_cell_renderer_get_type (void) G_GNUC_CONST;
+GType
+xfce_settings_cell_renderer_get_type (void) G_GNUC_CONST;
 
-GtkCellRenderer *xfce_settings_cell_renderer_new      (void);
+GtkCellRenderer *
+xfce_settings_cell_renderer_new (void);
 
-GType            xfce_settings_array_type             (void);
+GType
+xfce_settings_array_type (void);
 
 G_END_DECLS
 
-#endif  /* __XFCE_SETTINGS_CELL_RENDERER_H__ */
+#endif /* __XFCE_SETTINGS_CELL_RENDERER_H__ */

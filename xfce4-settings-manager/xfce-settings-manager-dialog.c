@@ -51,43 +51,42 @@ struct _XfceSettingsManagerDialog
 {
     XfceTitledDialog __parent__;
 
-    XfconfChannel  *channel;
-    GarconMenu     *menu;
+    XfconfChannel *channel;
+    GarconMenu *menu;
 
-    GtkListStore   *store;
+    GtkListStore *store;
 
-    GtkWidget      *filter_bar;
-    GtkWidget      *filter_entry;
-    gchar          *filter_text;
+    GtkWidget *filter_bar;
+    GtkWidget *filter_entry;
+    gchar *filter_text;
 
-    GtkWidget      *category_viewport;
-    GtkWidget      *category_scroll;
-    GtkWidget      *category_box;
+    GtkWidget *category_viewport;
+    GtkWidget *category_scroll;
+    GtkWidget *category_box;
 
-    GList          *categories;
+    GList *categories;
 
     GtkCssProvider *css_provider;
 
-    GtkWidget      *socket_scroll;
-    GtkWidget      *socket_viewport;
+    GtkWidget *socket_scroll;
+    GtkWidget *socket_viewport;
     GarconMenuItem *socket_item;
 
-    GtkWidget      *button_back;
-    GtkWidget      *button_help;
+    GtkWidget *button_back;
+    GtkWidget *button_help;
 
-    gchar          *help_page;
-    gchar          *help_component;
-    gchar          *help_version;
+    gchar *help_page;
+    gchar *help_component;
+    gchar *help_version;
 };
 
 typedef struct
 {
-    GarconMenuDirectory       *directory;
+    GarconMenuDirectory *directory;
     XfceSettingsManagerDialog *dialog;
-    GtkWidget                 *iconview;
-    GtkWidget                 *box;
-}
-DialogCategory;
+    GtkWidget *iconview;
+    GtkWidget *box;
+} DialogCategory;
 
 
 
@@ -104,23 +103,33 @@ enum
 
 
 
-static void     xfce_settings_manager_dialog_finalize        (GObject                   *object);
-static void     xfce_settings_manager_dialog_style_updated   (GtkWidget                 *widget);
-static void     xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog);
-static void     xfce_settings_manager_dialog_response        (GtkDialog                 *widget,
-                                                              gint                       response_id);
-static void     xfce_settings_manager_dialog_set_title       (XfceSettingsManagerDialog *dialog,
-                                                              const gchar               *title,
-                                                              const gchar               *icon_name);
-static void     xfce_settings_manager_dialog_go_back         (XfceSettingsManagerDialog *dialog);
-static void     xfce_settings_manager_dialog_entry_changed   (GtkWidget                 *entry,
-                                                              XfceSettingsManagerDialog *dialog);
-static gboolean xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
-                                                              GdkEventKey               *event,
-                                                              XfceSettingsManagerDialog *dialog);
-static void     xfce_settings_manager_dialog_menu_reload     (XfceSettingsManagerDialog *dialog);
-static void     xfce_settings_manager_dialog_scroll_to_item  (GtkWidget                 *iconview,
-                                                              XfceSettingsManagerDialog *dialog);
+static void
+xfce_settings_manager_dialog_finalize (GObject *object);
+static void
+xfce_settings_manager_dialog_style_updated (GtkWidget *widget);
+static void
+xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog);
+static void
+xfce_settings_manager_dialog_response (GtkDialog *widget,
+                                       gint response_id);
+static void
+xfce_settings_manager_dialog_set_title (XfceSettingsManagerDialog *dialog,
+                                        const gchar *title,
+                                        const gchar *icon_name);
+static void
+xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog);
+static void
+xfce_settings_manager_dialog_entry_changed (GtkWidget *entry,
+                                            XfceSettingsManagerDialog *dialog);
+static gboolean
+xfce_settings_manager_dialog_entry_key_press (GtkWidget *entry,
+                                              GdkEventKey *event,
+                                              XfceSettingsManagerDialog *dialog);
+static void
+xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog);
+static void
+xfce_settings_manager_dialog_scroll_to_item (GtkWidget *iconview,
+                                             XfceSettingsManagerDialog *dialog);
 
 
 
@@ -131,7 +140,7 @@ G_DEFINE_TYPE (XfceSettingsManagerDialog, xfce_settings_manager_dialog, XFCE_TYP
 static void
 xfce_settings_manager_dialog_class_init (XfceSettingsManagerDialogClass *klass)
 {
-    GObjectClass   *gobject_class;
+    GObjectClass *gobject_class;
     GtkDialogClass *gtkdialog_class;
     GtkWidgetClass *gtkwiget_class;
 
@@ -172,7 +181,8 @@ xfce_settings_manager_queue_resize_cb (gpointer user_data)
 
 
 static void
-xfce_settings_manager_dialog_check_resize (GtkWidget *widget, gpointer *user_data)
+xfce_settings_manager_dialog_check_resize (GtkWidget *widget,
+                                           gpointer *user_data)
 {
     XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG (user_data);
     xfce_settings_manager_queue_resize (dialog);
@@ -189,7 +199,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     GtkWidget *viewport;
     GtkWidget *image;
     GtkWidget *button;
-    gchar     *path;
+    gchar *path;
 
     dialog->channel = xfconf_channel_get ("xfce4-settings-manager");
 
@@ -206,8 +216,8 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     g_free (path);
 
     gtk_window_set_default_size (GTK_WINDOW (dialog),
-      xfconf_channel_get_int (dialog->channel, "/last/window-width", 640),
-      xfconf_channel_get_int (dialog->channel, "/last/window-height", 500));
+                                 xfconf_channel_get_int (dialog->channel, "/last/window-width", 640),
+                                 xfconf_channel_get_int (dialog->channel, "/last/window-height", 500));
     xfce_settings_manager_dialog_set_title (dialog, NULL, NULL);
 
     /* Add a buttonbox (Help, All Settings, Close) at bottom of the main box */
@@ -220,7 +230,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_button_set_image (GTK_BUTTON (dialog->button_back), image);
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
     g_signal_connect_swapped (G_OBJECT (dialog->button_back), "clicked",
-        G_CALLBACK (xfce_settings_manager_dialog_go_back), dialog);
+                              G_CALLBACK (xfce_settings_manager_dialog_go_back), dialog);
 
     button = xfce_titled_dialog_add_button (XFCE_TITLED_DIALOG (dialog), _("_Close"), GTK_RESPONSE_CLOSE);
     image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_BUTTON);
@@ -234,9 +244,9 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_box_pack_start (GTK_BOX (dialog->filter_bar), entry, TRUE, FALSE, 0);
     gtk_widget_set_halign (dialog->filter_bar, GTK_ALIGN_END);
     g_signal_connect (G_OBJECT (entry), "changed",
-        G_CALLBACK (xfce_settings_manager_dialog_entry_changed), dialog);
+                      G_CALLBACK (xfce_settings_manager_dialog_entry_changed), dialog);
     g_signal_connect (G_OBJECT (entry), "key-press-event",
-        G_CALLBACK (xfce_settings_manager_dialog_entry_key_press), dialog);
+                      G_CALLBACK (xfce_settings_manager_dialog_entry_key_press), dialog);
     gtk_widget_show_all (dialog->filter_bar);
 
     dialog_vbox = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
@@ -260,9 +270,10 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     gtk_container_set_border_width (GTK_CONTAINER (dialog->category_box), 6);
     gtk_widget_show (dialog->category_box);
     gtk_widget_set_size_request (dialog->category_box,
-                                 TEXT_WIDTH   /* text */
-                                 + ICON_WIDTH /* icon */
-                                 + (5 * 6)    /* borders */, -1);
+                                 TEXT_WIDTH /* text */
+                                     + ICON_WIDTH /* icon */
+                                     + (5 * 6) /* borders */,
+                                 -1);
 
     /* pluggable dialog scrolled window and viewport */
     dialog->socket_scroll = scroll = gtk_scrolled_window_new (NULL, NULL);
@@ -282,7 +293,7 @@ xfce_settings_manager_dialog_init (XfceSettingsManagerDialog *dialog)
     xfce_settings_manager_dialog_menu_reload (dialog);
 
     g_signal_connect_swapped (G_OBJECT (dialog->menu), "reload-required",
-        G_CALLBACK (xfce_settings_manager_dialog_menu_reload), dialog);
+                              G_CALLBACK (xfce_settings_manager_dialog_menu_reload), dialog);
 
     g_signal_connect (G_OBJECT (dialog), "check-resize", G_CALLBACK (xfce_settings_manager_dialog_check_resize), dialog);
 }
@@ -329,10 +340,10 @@ static void
 xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog)
 {
     GtkStyleContext *context;
-    GdkRGBA          color;
-    gchar           *css_string;
-    gchar           *color_text;
-    GdkScreen       *screen;
+    GdkRGBA color;
+    gchar *css_string;
+    gchar *color_text;
+    GdkScreen *screen;
 
     context = gtk_widget_get_style_context (GTK_WIDGET (dialog));
     /* Reset the provider to make sure we drop the previous Gtk theme style */
@@ -358,10 +369,10 @@ xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog)
 
 static void
 xfce_settings_manager_dialog_response (GtkDialog *widget,
-                                       gint       response_id)
+                                       gint response_id)
 {
     XfceSettingsManagerDialog *dialog = XFCE_SETTINGS_MANAGER_DIALOG (widget);
-    const gchar               *help_component;
+    const gchar *help_component;
 
     if (response_id == GTK_RESPONSE_NONE)
         return;
@@ -382,16 +393,16 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
     else
     {
         GdkWindowState state;
-        gint           width, height;
+        gint width, height;
 
         /* Don't save the state for full-screen windows */
-        state = gdk_window_get_state (gtk_widget_get_window(GTK_WIDGET(widget)));
+        state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (widget)));
 
         if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
         {
             /* Save window size */
             gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
-            xfconf_channel_set_int (dialog->channel, "/last/window-width", width),
+            xfconf_channel_set_int (dialog->channel, "/last/window-width", width);
             xfconf_channel_set_int (dialog->channel, "/last/window-height", height);
         }
 
@@ -405,8 +416,8 @@ xfce_settings_manager_dialog_response (GtkDialog *widget,
 
 static void
 xfce_settings_manager_dialog_set_title (XfceSettingsManagerDialog *dialog,
-                                        const gchar               *title,
-                                        const gchar               *icon_name)
+                                        const gchar *title,
+                                        const gchar *icon_name)
 {
     g_return_if_fail (XFCE_IS_SETTINGS_MANAGER_DIALOG (dialog));
 
@@ -433,29 +444,29 @@ xfce_settings_manager_dialog_iconview_find (gconstpointer a,
 
 
 static gboolean
-xfce_settings_manager_dialog_iconview_keynav_failed (ExoIconView               *current_view,
-                                                     GtkDirectionType           direction,
+xfce_settings_manager_dialog_iconview_keynav_failed (ExoIconView *current_view,
+                                                     GtkDirectionType direction,
                                                      XfceSettingsManagerDialog *dialog)
 {
-    GList          *li;
-    GtkTreePath    *path;
-    ExoIconView    *new_view;
-    gboolean        result = FALSE;
-    GtkTreeModel   *model;
-    GtkTreeIter     iter;
-    gint            col_old, col_new;
-    gint            dist_prev, dist_new;
-    GtkTreePath    *sel_path;
+    GList *li;
+    GtkTreePath *path;
+    ExoIconView *new_view;
+    gboolean result = FALSE;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+    gint col_old, col_new;
+    gint dist_prev, dist_new;
+    GtkTreePath *sel_path;
     DialogCategory *category;
 
     if (direction == GTK_DIR_UP || direction == GTK_DIR_DOWN)
     {
         /* find this category in the list */
         li = g_list_find_custom (dialog->categories, current_view,
-            xfce_settings_manager_dialog_iconview_find);
+                                 xfce_settings_manager_dialog_iconview_find);
 
         /* find the next of previous visible item */
-        for (; li != NULL; )
+        for (; li != NULL;)
         {
             if (direction == GTK_DIR_DOWN)
                 li = g_list_next (li);
@@ -490,25 +501,24 @@ xfce_settings_manager_dialog_iconview_keynav_failed (ExoIconView               *
             {
                 do
                 {
-                     path = gtk_tree_model_get_path (model, &iter);
-                     col_new = exo_icon_view_get_item_column (new_view, path);
-                     dist_new = ABS (col_new - col_old);
+                    path = gtk_tree_model_get_path (model, &iter);
+                    col_new = exo_icon_view_get_item_column (new_view, path);
+                    dist_new = ABS (col_new - col_old);
 
-                     if ((direction == GTK_DIR_UP && dist_new <= dist_prev)
-                         || (direction == GTK_DIR_DOWN  && dist_new < dist_prev))
-                     {
-                         if (sel_path != NULL)
-                             gtk_tree_path_free (sel_path);
+                    if ((direction == GTK_DIR_UP && dist_new <= dist_prev)
+                        || (direction == GTK_DIR_DOWN && dist_new < dist_prev))
+                    {
+                        if (sel_path != NULL)
+                            gtk_tree_path_free (sel_path);
 
-                         sel_path = path;
-                         dist_prev = dist_new;
-                     }
-                     else
-                     {
-                         gtk_tree_path_free (path);
-                     }
-                }
-                while (gtk_tree_model_iter_next (model, &iter));
+                        sel_path = path;
+                        dist_prev = dist_new;
+                    }
+                    else
+                    {
+                        gtk_tree_path_free (path);
+                    }
+                } while (gtk_tree_model_iter_next (model, &iter));
             }
 
             if (G_LIKELY (sel_path != NULL))
@@ -531,19 +541,19 @@ xfce_settings_manager_dialog_iconview_keynav_failed (ExoIconView               *
 
 
 static gboolean
-xfce_settings_manager_dialog_query_tooltip (GtkWidget                 *iconview,
-                                            gint                       x,
-                                            gint                       y,
-                                            gboolean                   keyboard_mode,
-                                            GtkTooltip                *tooltip,
+xfce_settings_manager_dialog_query_tooltip (GtkWidget *iconview,
+                                            gint x,
+                                            gint y,
+                                            gboolean keyboard_mode,
+                                            GtkTooltip *tooltip,
                                             XfceSettingsManagerDialog *dialog)
 {
-    GtkTreePath    *path;
-    GValue          value = G_VALUE_INIT;
-    GtkTreeModel   *model;
-    GtkTreeIter     iter;
+    GtkTreePath *path;
+    GValue value = G_VALUE_INIT;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
     GarconMenuItem *item;
-    const gchar    *comment;
+    const gchar *comment;
 
     if (keyboard_mode)
     {
@@ -579,8 +589,8 @@ xfce_settings_manager_dialog_query_tooltip (GtkWidget                 *iconview,
 
 
 static gboolean
-xfce_settings_manager_dialog_iconview_focus (GtkWidget                 *iconview,
-                                             GdkEventFocus             *event,
+xfce_settings_manager_dialog_iconview_focus (GtkWidget *iconview,
+                                             GdkEventFocus *event,
                                              XfceSettingsManagerDialog *dialog)
 {
     GtkTreePath *path;
@@ -590,9 +600,9 @@ xfce_settings_manager_dialog_iconview_focus (GtkWidget                 *iconview
         /* a mouse click will have focus, tab events not */
         if (!exo_icon_view_get_cursor (EXO_ICON_VIEW (iconview), &path, NULL))
         {
-           path = gtk_tree_path_new_from_indices (0, -1);
-           exo_icon_view_set_cursor (EXO_ICON_VIEW (iconview), path, NULL, FALSE);
-           xfce_settings_manager_dialog_scroll_to_item (iconview, dialog);
+            path = gtk_tree_path_new_from_indices (0, -1);
+            exo_icon_view_set_cursor (EXO_ICON_VIEW (iconview), path, NULL, FALSE);
+            xfce_settings_manager_dialog_scroll_to_item (iconview, dialog);
         }
 
         exo_icon_view_select_path (EXO_ICON_VIEW (iconview), path);
@@ -630,7 +640,7 @@ static void
 xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
 {
     /* make sure no cursor is shown */
-    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (dialog)), NULL);
 
     /* reset dialog info */
     xfce_settings_manager_dialog_set_title (dialog, NULL, NULL);
@@ -659,15 +669,15 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
 
 
 static void
-xfce_settings_manager_dialog_entry_changed (GtkWidget                 *entry,
+xfce_settings_manager_dialog_entry_changed (GtkWidget *entry,
                                             XfceSettingsManagerDialog *dialog)
 {
-    const gchar    *text;
-    gchar          *normalized;
-    gchar          *filter_text;
-    GList          *li;
-    GtkTreeModel   *model;
-    gint            n_children;
+    const gchar *text;
+    gchar *normalized;
+    gchar *filter_text;
+    GList *li;
+    GtkTreeModel *model;
+    gint n_children;
     DialogCategory *category;
 
     text = gtk_entry_get_text (GTK_ENTRY (entry));
@@ -717,16 +727,16 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget                 *entry,
 
 
 static gboolean
-xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
-                                              GdkEventKey               *event,
+xfce_settings_manager_dialog_entry_key_press (GtkWidget *entry,
+                                              GdkEventKey *event,
                                               XfceSettingsManagerDialog *dialog)
 {
-    GList          *li;
+    GList *li;
     DialogCategory *category;
-    GtkTreePath    *path;
-    gint            n_visible_items;
-    GtkTreeModel   *model;
-    const gchar    *text;
+    GtkTreePath *path;
+    gint n_visible_items;
+    GtkTreeModel *model;
+    const gchar *text;
 
     if (event->keyval == GDK_KEY_Escape)
     {
@@ -790,13 +800,13 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget                 *entry,
 
 #ifdef ENABLE_X11
 static void
-xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
+xfce_settings_manager_dialog_plug_added (GtkWidget *socket,
                                          XfceSettingsManagerDialog *dialog)
 {
     /* set dialog information from desktop file */
     xfce_settings_manager_dialog_set_title (dialog,
-        garcon_menu_item_get_name (dialog->socket_item),
-        garcon_menu_item_get_icon_name (dialog->socket_item));
+                                            garcon_menu_item_get_name (dialog->socket_item),
+                                            garcon_menu_item_get_icon_name (dialog->socket_item));
 
     /* show socket and hide the categories view */
     gtk_widget_show (dialog->socket_scroll);
@@ -808,13 +818,13 @@ xfce_settings_manager_dialog_plug_added (GtkWidget                 *socket,
     gtk_widget_hide (dialog->filter_bar);
 
     /* plug startup complete */
-    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (dialog)), NULL);
 }
 
 
 
 static void
-xfce_settings_manager_dialog_plug_removed (GtkWidget                 *socket,
+xfce_settings_manager_dialog_plug_removed (GtkWidget *socket,
                                            XfceSettingsManagerDialog *dialog)
 {
     /* this shouldn't happen */
@@ -830,17 +840,17 @@ xfce_settings_manager_dialog_plug_removed (GtkWidget                 *socket,
 
 static void
 xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
-                                    GarconMenuItem            *item)
+                                    GarconMenuItem *item)
 {
-    gchar          *command;
-    gboolean        snotify;
-    GdkScreen      *screen;
-    GError         *error = NULL;
-    GFile          *desktop_file;
-    gchar          *filename;
-    XfceRc         *rc;
-    gboolean        pluggable = FALSE;
-    gchar          *uri;
+    gchar *command;
+    gboolean snotify;
+    GdkScreen *screen;
+    GError *error = NULL;
+    GFile *desktop_file;
+    gchar *filename;
+    XfceRc *rc;
+    gboolean pluggable = FALSE;
+    gchar *uri;
 
     g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -887,7 +897,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         cursor = gdk_cursor_new_from_name (gdk_display_get_default (), "wait");
         if (cursor != NULL)
         {
-            gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), cursor);
+            gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (dialog)), cursor);
             g_object_unref (cursor);
         }
 
@@ -897,19 +907,19 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         socket = gtk_socket_new ();
         gtk_container_add (GTK_CONTAINER (dialog->socket_viewport), socket);
         g_signal_connect (G_OBJECT (socket), "plug-added",
-            G_CALLBACK (xfce_settings_manager_dialog_plug_added), dialog);
+                          G_CALLBACK (xfce_settings_manager_dialog_plug_added), dialog);
         g_signal_connect (G_OBJECT (socket), "plug-removed",
-            G_CALLBACK (xfce_settings_manager_dialog_plug_removed), dialog);
+                          G_CALLBACK (xfce_settings_manager_dialog_plug_removed), dialog);
         gtk_widget_show (socket);
 
         /* for info when the plug is attached */
         dialog->socket_item = g_object_ref (item);
 
         /* spawn dialog with socket argument */
-        cmd = g_strdup_printf ("%s --socket-id=%d", command, (gint)gtk_socket_get_id (GTK_SOCKET (socket)));
+        cmd = g_strdup_printf ("%s --socket-id=%d", command, (gint) gtk_socket_get_id (GTK_SOCKET (socket)));
         if (!xfce_spawn_command_line (screen, cmd, FALSE, FALSE, TRUE, &error))
         {
-            gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET(dialog)), NULL);
+            gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (dialog)), NULL);
 
             xfce_dialog_show_error (GTK_WINDOW (dialog), error,
                                     _("Unable to start \"%s\""), command);
@@ -929,18 +939,18 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
         }
     }
 
-  g_free (command);
+    g_free (command);
 }
 
 
 
 static void
-xfce_settings_manager_dialog_item_activated (ExoIconView               *iconview,
-                                             GtkTreePath               *path,
+xfce_settings_manager_dialog_item_activated (ExoIconView *iconview,
+                                             GtkTreePath *path,
                                              XfceSettingsManagerDialog *dialog)
 {
-    GtkTreeModel   *model;
-    GtkTreeIter     iter;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
     GarconMenuItem *item;
 
     model = exo_icon_view_get_model (iconview);
@@ -959,14 +969,14 @@ xfce_settings_manager_dialog_item_activated (ExoIconView               *iconview
 
 static gboolean
 xfce_settings_manager_dialog_filter_category (GtkTreeModel *model,
-                                              GtkTreeIter  *iter,
-                                              gpointer      data)
+                                              GtkTreeIter *iter,
+                                              gpointer data)
 {
-    GValue          cat_val = G_VALUE_INIT;
-    GValue          filter_val = G_VALUE_INIT;
-    gboolean        visible;
+    GValue cat_val = G_VALUE_INIT;
+    GValue filter_val = G_VALUE_INIT;
+    gboolean visible;
     DialogCategory *category = data;
-    const gchar    *filter_text;
+    const gchar *filter_text;
 
     /* filter only the active category */
     gtk_tree_model_get_value (model, iter, COLUMN_MENU_DIRECTORY, &cat_val);
@@ -988,15 +998,15 @@ xfce_settings_manager_dialog_filter_category (GtkTreeModel *model,
 
 
 static void
-xfce_settings_manager_dialog_scroll_to_item (GtkWidget                 *iconview,
+xfce_settings_manager_dialog_scroll_to_item (GtkWidget *iconview,
                                              XfceSettingsManagerDialog *dialog)
 {
     GtkAllocation *alloc = g_new0 (GtkAllocation, 1);
-    GtkTreePath   *path;
-    gint           row, row_height;
-    gdouble        rows;
+    GtkTreePath *path;
+    gint row, row_height;
+    gdouble rows;
     GtkAdjustment *adjustment;
-    gdouble        lower, upper;
+    gdouble lower, upper;
 
     if (exo_icon_view_get_cursor (EXO_ICON_VIEW (iconview), &path, NULL))
     {
@@ -1005,7 +1015,7 @@ xfce_settings_manager_dialog_scroll_to_item (GtkWidget                 *iconview
         gtk_tree_path_free (path);
 
         /* estimated row height */
-        gtk_widget_get_allocation(GTK_WIDGET(iconview), alloc);
+        gtk_widget_get_allocation (GTK_WIDGET (iconview), alloc);
         rows = alloc->height / 56;
         row_height = alloc->height / MAX (1.0, (gint) rows);
 
@@ -1024,8 +1034,8 @@ xfce_settings_manager_dialog_scroll_to_item (GtkWidget                 *iconview
 
 
 static gboolean
-xfce_settings_manager_dialog_key_press_event (GtkWidget                 *iconview,
-                                              GdkEventKey               *event,
+xfce_settings_manager_dialog_key_press_event (GtkWidget *iconview,
+                                              GdkEventKey *event,
                                               XfceSettingsManagerDialog *dialog)
 {
     gboolean result;
@@ -1043,7 +1053,7 @@ xfce_settings_manager_dialog_key_press_event (GtkWidget                 *iconvie
 
 
 static gboolean
-xfce_settings_manager_start_search (GtkWidget                 *iconview,
+xfce_settings_manager_start_search (GtkWidget *iconview,
                                     XfceSettingsManagerDialog *dialog)
 {
     gtk_widget_grab_focus (dialog->filter_entry);
@@ -1055,7 +1065,7 @@ xfce_settings_manager_start_search (GtkWidget                 *iconview,
 static void
 xfce_settings_manager_dialog_category_free (gpointer data)
 {
-    DialogCategory            *category = data;
+    DialogCategory *category = data;
     XfceSettingsManagerDialog *dialog = category->dialog;
 
     dialog->categories = g_list_remove (dialog->categories, category);
@@ -1068,16 +1078,16 @@ xfce_settings_manager_dialog_category_free (gpointer data)
 
 static void
 xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
-                                           GarconMenuDirectory       *directory)
+                                           GarconMenuDirectory *directory)
 {
-    GtkTreeModel    *filter;
-    GtkWidget       *iconview;
-    GtkWidget       *label;
-    GtkWidget       *separator;
-    GtkWidget       *vbox;
-    PangoAttrList   *attrs;
+    GtkTreeModel *filter;
+    GtkWidget *iconview;
+    GtkWidget *label;
+    GtkWidget *separator;
+    GtkWidget *vbox;
+    PangoAttrList *attrs;
     GtkCellRenderer *render;
-    DialogCategory  *category;
+    DialogCategory *category;
 
     category = g_slice_new0 (DialogCategory);
     category->directory = (GarconMenuDirectory *) g_object_ref (G_OBJECT (directory));
@@ -1086,8 +1096,8 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
     /* filter category from main store */
     filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (dialog->store), NULL);
     gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (filter),
-        xfce_settings_manager_dialog_filter_category,
-        category, xfce_settings_manager_dialog_category_free);
+                                            xfce_settings_manager_dialog_filter_category,
+                                            category, xfce_settings_manager_dialog_category_free);
 
     category->box = vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start (GTK_BOX (dialog->category_box), vbox, FALSE, TRUE, 0);
@@ -1124,19 +1134,19 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
 
     gtk_widget_set_has_tooltip (iconview, TRUE);
     g_signal_connect (G_OBJECT (iconview), "query-tooltip",
-        G_CALLBACK (xfce_settings_manager_dialog_query_tooltip), dialog);
+                      G_CALLBACK (xfce_settings_manager_dialog_query_tooltip), dialog);
     g_signal_connect (G_OBJECT (iconview), "focus-in-event",
-        G_CALLBACK (xfce_settings_manager_dialog_iconview_focus), dialog);
+                      G_CALLBACK (xfce_settings_manager_dialog_iconview_focus), dialog);
     g_signal_connect (G_OBJECT (iconview), "focus-out-event",
-        G_CALLBACK (xfce_settings_manager_dialog_iconview_focus), dialog);
+                      G_CALLBACK (xfce_settings_manager_dialog_iconview_focus), dialog);
     g_signal_connect (G_OBJECT (iconview), "keynav-failed",
-        G_CALLBACK (xfce_settings_manager_dialog_iconview_keynav_failed), dialog);
+                      G_CALLBACK (xfce_settings_manager_dialog_iconview_keynav_failed), dialog);
     g_signal_connect (G_OBJECT (iconview), "item-activated",
-        G_CALLBACK (xfce_settings_manager_dialog_item_activated), dialog);
+                      G_CALLBACK (xfce_settings_manager_dialog_item_activated), dialog);
     g_signal_connect (G_OBJECT (iconview), "key-press-event",
-        G_CALLBACK (xfce_settings_manager_dialog_key_press_event), dialog);
+                      G_CALLBACK (xfce_settings_manager_dialog_key_press_event), dialog);
     g_signal_connect (G_OBJECT (iconview), "start-interactive-search",
-        G_CALLBACK (xfce_settings_manager_start_search), dialog);
+                      G_CALLBACK (xfce_settings_manager_start_search), dialog);
 
     render = gtk_cell_renderer_pixbuf_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (iconview), render, FALSE);
@@ -1160,8 +1170,8 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
 
 
 static void
-xfce_settings_manager_dialog_menu_collect (GarconMenu  *menu,
-                                           GList      **items)
+xfce_settings_manager_dialog_menu_collect (GarconMenu *menu,
+                                           GList **items)
 {
     GList *elements, *li;
 
@@ -1203,21 +1213,21 @@ xfce_settings_manager_dialog_menu_sort (gconstpointer a,
 static void
 xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
 {
-    GError              *error = NULL;
-    GList               *elements, *li;
-    GList               *lnext;
+    GError *error = NULL;
+    GList *elements, *li;
+    GList *lnext;
     GarconMenuDirectory *directory;
-    GList               *items, *lp;
-    GList               *keywords, *kli;
-    gint                 i = 0;
-    gchar               *item_text;
-    gchar               *normalized;
-    gchar               *filter_text;
-    GtkIconTheme        *icon_theme = gtk_icon_theme_get_default ();
-    const gchar         *icon_name;
-    GIcon               *icon;
-    GString             *item_keywords;
-    DialogCategory      *category;
+    GList *items, *lp;
+    GList *keywords, *kli;
+    gint i = 0;
+    gchar *item_text;
+    gchar *normalized;
+    gchar *filter_text;
+    GtkIconTheme *icon_theme = gtk_icon_theme_get_default ();
+    const gchar *icon_name;
+    GIcon *icon;
+    GString *item_keywords;
+    DialogCategory *category;
 
     g_return_if_fail (XFCE_IS_SETTINGS_MANAGER_DIALOG (dialog));
     g_return_if_fail (GARCON_IS_MENU (dialog->menu));
@@ -1270,9 +1280,9 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
                         g_string_append (item_keywords, kli->data);
                     }
                     item_text = g_strdup_printf ("%s\n%s\n%s",
-                        garcon_menu_item_get_name (lp->data),
-                        garcon_menu_item_get_comment (lp->data),
-                        item_keywords->str);
+                                                 garcon_menu_item_get_name (lp->data),
+                                                 garcon_menu_item_get_comment (lp->data),
+                                                 item_keywords->str);
                     g_string_free (item_keywords, TRUE);
                     g_list_free (kli);
                     normalized = g_utf8_normalize (item_text, -1, G_NORMALIZE_DEFAULT);
@@ -1293,12 +1303,12 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
                     }
 
                     gtk_list_store_insert_with_values (dialog->store, NULL, i++,
-                        COLUMN_NAME, garcon_menu_item_get_name (lp->data),
-                        COLUMN_GICON, icon,
-                        COLUMN_TOOLTIP, garcon_menu_item_get_comment (lp->data),
-                        COLUMN_MENU_ITEM, lp->data,
-                        COLUMN_MENU_DIRECTORY, directory,
-                        COLUMN_FILTER_TEXT, filter_text, -1);
+                                                       COLUMN_NAME, garcon_menu_item_get_name (lp->data),
+                                                       COLUMN_GICON, icon,
+                                                       COLUMN_TOOLTIP, garcon_menu_item_get_comment (lp->data),
+                                                       COLUMN_MENU_ITEM, lp->data,
+                                                       COLUMN_MENU_DIRECTORY, directory,
+                                                       COLUMN_FILTER_TEXT, filter_text, -1);
 
                     g_free (filter_text);
                     g_object_unref (icon);
@@ -1332,14 +1342,14 @@ xfce_settings_manager_dialog_new (void)
 
 gboolean
 xfce_settings_manager_dialog_show_dialog (XfceSettingsManagerDialog *dialog,
-                                          const gchar               *dialog_name)
+                                          const gchar *dialog_name)
 {
-    GtkTreeModel   *model = GTK_TREE_MODEL (dialog->store);
-    GtkTreeIter     iter;
+    GtkTreeModel *model = GTK_TREE_MODEL (dialog->store);
+    GtkTreeIter iter;
     GarconMenuItem *item;
-    const gchar    *desktop_id;
-    gchar          *name;
-    gboolean        found = FALSE;
+    const gchar *desktop_id;
+    gchar *name;
+    gboolean found = FALSE;
 
     g_return_val_if_fail (XFCE_IS_SETTINGS_MANAGER_DIALOG (dialog), FALSE);
 
@@ -1349,19 +1359,18 @@ xfce_settings_manager_dialog_show_dialog (XfceSettingsManagerDialog *dialog,
     {
         do
         {
-             gtk_tree_model_get (model, &iter, COLUMN_MENU_ITEM, &item, -1);
-             g_assert (GARCON_IS_MENU_ITEM (item));
+            gtk_tree_model_get (model, &iter, COLUMN_MENU_ITEM, &item, -1);
+            g_assert (GARCON_IS_MENU_ITEM (item));
 
-             desktop_id = garcon_menu_item_get_desktop_id (item);
-             if (g_strcmp0 (desktop_id, name) == 0)
-             {
-                  xfce_settings_manager_dialog_spawn (dialog, item);
-                  found = TRUE;
-             }
+            desktop_id = garcon_menu_item_get_desktop_id (item);
+            if (g_strcmp0 (desktop_id, name) == 0)
+            {
+                xfce_settings_manager_dialog_spawn (dialog, item);
+                found = TRUE;
+            }
 
-             g_object_unref (G_OBJECT (item));
-        }
-        while (!found && gtk_tree_model_iter_next (model, &iter));
+            g_object_unref (G_OBJECT (item));
+        } while (!found && gtk_tree_model_iter_next (model, &iter));
     }
 
     g_free (name);

@@ -37,9 +37,9 @@ struct _XfceSettingsCellRenderer
 {
     GtkCellRenderer __parent__;
 
-    GValue           cell_value;
+    GValue cell_value;
 
-    guint            locked : 1;
+    guint locked : 1;
 
     GtkCellRenderer *renderer_text;
     GtkCellRenderer *renderer_toggle;
@@ -60,41 +60,48 @@ enum
 
 static GQuark edit_data_quark = 0;
 
-static guint  renderer_signals[LAST_SIGNAL];
+static guint renderer_signals[LAST_SIGNAL];
 
 
 
-static void             xfce_settings_cell_renderer_set_property  (GObject              *object,
-                                                                   guint                 prop_id,
-                                                                   const GValue         *value,
-                                                                   GParamSpec           *pspec);
-static void             xfce_settings_cell_renderer_get_property  (GObject              *object,
-                                                                   guint                 prop_id,
-                                                                   GValue               *value,
-                                                                   GParamSpec           *pspec);
-static void             xfce_settings_cell_renderer_finalize      (GObject              *object);
-static void             xfce_settings_cell_renderer_render        (GtkCellRenderer      *cell,
-                                                                   cairo_t              *cr,
-                                                                   GtkWidget            *widget,
-                                                                   const GdkRectangle   *background_area,
-                                                                   const GdkRectangle   *cell_area,
-                                                                   GtkCellRendererState  flags);
-static gint             xfce_settings_cell_renderer_activate      (GtkCellRenderer      *cell,
-                                                                   GdkEvent             *event,
-                                                                   GtkWidget            *widget,
-                                                                   const gchar          *path,
-                                                                   const GdkRectangle   *background_area,
-                                                                   const GdkRectangle   *cell_area,
-                                                                   GtkCellRendererState  flags);
-static GtkCellEditable *xfce_settings_cell_renderer_start_editing (GtkCellRenderer      *cell,
-                                                                   GdkEvent             *event,
-                                                                   GtkWidget            *widget,
-                                                                   const gchar          *path,
-                                                                   const GdkRectangle   *background_area,
-                                                                   const GdkRectangle   *cell_area,
-                                                                   GtkCellRendererState  flags);
-static void             xfce_settings_strv_to_string              (const GValue         *src_value,
-                                                                   GValue               *dest_value);
+static void
+xfce_settings_cell_renderer_set_property (GObject *object,
+                                          guint prop_id,
+                                          const GValue *value,
+                                          GParamSpec *pspec);
+static void
+xfce_settings_cell_renderer_get_property (GObject *object,
+                                          guint prop_id,
+                                          GValue *value,
+                                          GParamSpec *pspec);
+static void
+xfce_settings_cell_renderer_finalize (GObject *object);
+static void
+xfce_settings_cell_renderer_render (GtkCellRenderer *cell,
+                                    cairo_t *cr,
+                                    GtkWidget *widget,
+                                    const GdkRectangle *background_area,
+                                    const GdkRectangle *cell_area,
+                                    GtkCellRendererState flags);
+static gint
+xfce_settings_cell_renderer_activate (GtkCellRenderer *cell,
+                                      GdkEvent *event,
+                                      GtkWidget *widget,
+                                      const gchar *path,
+                                      const GdkRectangle *background_area,
+                                      const GdkRectangle *cell_area,
+                                      GtkCellRendererState flags);
+static GtkCellEditable *
+xfce_settings_cell_renderer_start_editing (GtkCellRenderer *cell,
+                                           GdkEvent *event,
+                                           GtkWidget *widget,
+                                           const gchar *path,
+                                           const GdkRectangle *background_area,
+                                           const GdkRectangle *cell_area,
+                                           GtkCellRendererState flags);
+static void
+xfce_settings_strv_to_string (const GValue *src_value,
+                              GValue *dest_value);
 
 
 G_DEFINE_TYPE (XfceSettingsCellRenderer, xfce_settings_cell_renderer, GTK_TYPE_CELL_RENDERER)
@@ -104,7 +111,7 @@ G_DEFINE_TYPE (XfceSettingsCellRenderer, xfce_settings_cell_renderer, GTK_TYPE_C
 static void
 xfce_settings_cell_renderer_class_init (XfceSettingsCellRendererClass *klass)
 {
-    GObjectClass         *gobject_class;
+    GObjectClass *gobject_class;
     GtkCellRendererClass *gtkcellrenderer_class;
 
     gobject_class = G_OBJECT_CLASS (klass);
@@ -123,7 +130,7 @@ xfce_settings_cell_renderer_class_init (XfceSettingsCellRendererClass *klass)
                                                          NULL, NULL,
                                                          G_TYPE_VALUE,
                                                          G_PARAM_READWRITE
-                                                         | G_PARAM_STATIC_STRINGS));
+                                                             | G_PARAM_STATIC_STRINGS));
 
     g_object_class_install_property (gobject_class,
                                      PROP_LOCKED,
@@ -131,7 +138,7 @@ xfce_settings_cell_renderer_class_init (XfceSettingsCellRendererClass *klass)
                                                            NULL, NULL,
                                                            FALSE,
                                                            G_PARAM_READWRITE
-                                                           | G_PARAM_STATIC_STRINGS));
+                                                               | G_PARAM_STATIC_STRINGS));
 
     renderer_signals[VALUE_CHANGED] = g_signal_new (g_intern_static_string ("value-changed"),
                                                     G_TYPE_FROM_CLASS (klass),
@@ -164,15 +171,15 @@ xfce_settings_cell_renderer_init (XfceSettingsCellRenderer *renderer)
 
 
 static void
-xfce_settings_cell_renderer_set_property (GObject      *object,
-                                          guint         prop_id,
+xfce_settings_cell_renderer_set_property (GObject *object,
+                                          guint prop_id,
                                           const GValue *value,
-                                          GParamSpec   *pspec)
+                                          GParamSpec *pspec)
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (object);
-    GValue                   *real_value;
-    GtkCellRendererMode       cell_mode;
-    GType                     cell_type;
+    GValue *real_value;
+    GtkCellRendererMode cell_mode;
+    GType cell_type;
 
     switch (prop_id)
     {
@@ -221,9 +228,9 @@ xfce_settings_cell_renderer_set_property (GObject      *object,
 
 
 static void
-xfce_settings_cell_renderer_get_property (GObject    *object,
-                                          guint       prop_id,
-                                          GValue     *value,
+xfce_settings_cell_renderer_get_property (GObject *object,
+                                          guint prop_id,
+                                          GValue *value,
                                           GParamSpec *pspec)
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (object);
@@ -269,7 +276,7 @@ static GtkCellRenderer *
 xfce_settings_cell_renderer_prepare (XfceSettingsCellRenderer *renderer)
 {
     const GValue *value = &renderer->cell_value;
-    GValue        str_value = G_VALUE_INIT;
+    GValue str_value = G_VALUE_INIT;
 
     if (G_VALUE_TYPE (value) == xfce_settings_array_type ()
         || G_VALUE_TYPE (value) == G_TYPE_STRV)
@@ -293,7 +300,7 @@ xfce_settings_cell_renderer_prepare (XfceSettingsCellRenderer *renderer)
         case G_TYPE_INT64:
         case G_TYPE_UINT64:
         case G_TYPE_DOUBLE:
-            transform_value:
+transform_value:
 
             g_value_init (&str_value, G_TYPE_STRING);
             if (g_value_transform (value, &str_value))
@@ -323,15 +330,15 @@ xfce_settings_cell_renderer_prepare (XfceSettingsCellRenderer *renderer)
 
 
 static void
-xfce_settings_cell_renderer_render (GtkCellRenderer      *cell,
-                                    cairo_t              *cr,
-                                    GtkWidget            *widget,
-                                    const GdkRectangle   *background_area,
-                                    const GdkRectangle   *cell_area,
-                                    GtkCellRendererState  flags)
+xfce_settings_cell_renderer_render (GtkCellRenderer *cell,
+                                    cairo_t *cr,
+                                    GtkWidget *widget,
+                                    const GdkRectangle *background_area,
+                                    const GdkRectangle *cell_area,
+                                    GtkCellRendererState flags)
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (cell);
-    GtkCellRenderer          *cell_renderer;
+    GtkCellRenderer *cell_renderer;
 
     cell_renderer = xfce_settings_cell_renderer_prepare (renderer);
     gtk_cell_renderer_render (cell_renderer,
@@ -343,16 +350,16 @@ xfce_settings_cell_renderer_render (GtkCellRenderer      *cell,
 
 
 static gint
-xfce_settings_cell_renderer_activate (GtkCellRenderer      *cell,
-                                      GdkEvent             *event,
-                                      GtkWidget            *widget,
-                                      const gchar          *path,
-                                      const GdkRectangle   *background_area,
-                                      const GdkRectangle   *cell_area,
-                                      GtkCellRendererState  flags)
+xfce_settings_cell_renderer_activate (GtkCellRenderer *cell,
+                                      GdkEvent *event,
+                                      GtkWidget *widget,
+                                      const gchar *path,
+                                      const GdkRectangle *background_area,
+                                      const GdkRectangle *cell_area,
+                                      GtkCellRendererState flags)
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (cell);
-    GValue                    new_value = G_VALUE_INIT;
+    GValue new_value = G_VALUE_INIT;
 
     if (renderer->locked)
         return FALSE;
@@ -387,27 +394,26 @@ xfce_settings_cell_renderer_activate (GtkCellRenderer      *cell,
 typedef struct
 {
     gchar *path;
-    GType  dest_type;
-}
-EditData;
+    GType dest_type;
+} EditData;
 
 
 
 static void
-xfce_settings_cell_renderer_done_editing (GtkCellEditable          *entry,
+xfce_settings_cell_renderer_done_editing (GtkCellEditable *entry,
                                           XfceSettingsCellRenderer *renderer)
 {
-    EditData    *data;
+    EditData *data;
     const gchar *text;
-    GValue       value = G_VALUE_INIT;
-    gdouble      dval;
+    GValue value = G_VALUE_INIT;
+    gdouble dval;
 
     data = g_object_get_qdata (G_OBJECT (entry), edit_data_quark);
     g_value_init (&value, data->dest_type);
 
     text = gtk_entry_get_text (GTK_ENTRY (entry));
     if (G_UNLIKELY (text == NULL))
-      text = "";
+        text = "";
 
     switch (data->dest_type)
     {
@@ -462,19 +468,19 @@ xfce_settings_cell_renderer_edit_free (gpointer user_data)
 
 
 static GtkCellEditable *
-xfce_settings_cell_renderer_start_editing (GtkCellRenderer      *cell,
-                                           GdkEvent             *event,
-                                           GtkWidget            *widget,
-                                           const gchar          *path,
-                                           const GdkRectangle   *background_area,
-                                           const GdkRectangle   *cell_area,
-                                           GtkCellRendererState  flags)
+xfce_settings_cell_renderer_start_editing (GtkCellRenderer *cell,
+                                           GdkEvent *event,
+                                           GtkWidget *widget,
+                                           const gchar *path,
+                                           const GdkRectangle *background_area,
+                                           const GdkRectangle *cell_area,
+                                           GtkCellRendererState flags)
 {
     XfceSettingsCellRenderer *renderer = XFCE_SETTINGS_CELL_RENDERER (cell);
-    GtkWidget                *entry;
-    GValue                    str_value = G_VALUE_INIT;
-    const gchar              *text;
-    EditData                 *data;
+    GtkWidget *entry;
+    GValue str_value = G_VALUE_INIT;
+    const gchar *text;
+    EditData *data;
 
     if (renderer->locked)
         return NULL;
@@ -505,10 +511,10 @@ xfce_settings_cell_renderer_start_editing (GtkCellRenderer      *cell,
                 data->dest_type = G_VALUE_TYPE (&renderer->cell_value);
 
                 g_object_set_qdata_full (G_OBJECT (entry), edit_data_quark, data,
-                    xfce_settings_cell_renderer_edit_free);
+                                         xfce_settings_cell_renderer_edit_free);
 
                 g_signal_connect (G_OBJECT (entry), "editing-done",
-                    G_CALLBACK (xfce_settings_cell_renderer_done_editing), cell);
+                                  G_CALLBACK (xfce_settings_cell_renderer_done_editing), cell);
 
                 g_value_unset (&str_value);
 
@@ -534,13 +540,13 @@ xfce_settings_cell_renderer_start_editing (GtkCellRenderer      *cell,
 
 static void
 xfce_settings_array_to_string (const GValue *src_value,
-                               GValue       *dest_value)
+                               GValue *dest_value)
 {
-    GString      *str;
-    GPtrArray    *array = g_value_get_boxed (src_value);
-    guint         i;
+    GString *str;
+    GPtrArray *array = g_value_get_boxed (src_value);
+    guint i;
     const GValue *val;
-    GValue        str_val = G_VALUE_INIT;
+    GValue str_val = G_VALUE_INIT;
 
     g_return_if_fail (G_VALUE_HOLDS_STRING (dest_value));
     g_return_if_fail (array != NULL);
@@ -557,8 +563,7 @@ xfce_settings_array_to_string (const GValue *src_value,
         }
         else if (G_VALUE_HOLDS_STRING (val))
         {
-            g_string_append_printf (str, "\"%s\"",
-                g_value_get_string (val));
+            g_string_append_printf (str, "\"%s\"", g_value_get_string (val));
         }
         else
         {
@@ -583,11 +588,11 @@ xfce_settings_array_to_string (const GValue *src_value,
 
 static void
 xfce_settings_strv_to_string (const GValue *src_value,
-                              GValue       *dest_value)
+                              GValue *dest_value)
 {
-    gchar   **array = g_value_get_boxed (src_value);
-    GString  *str;
-    guint     i;
+    gchar **array = g_value_get_boxed (src_value);
+    GString *str;
+    guint i;
 
     g_return_if_fail (G_VALUE_HOLDS_STRING (dest_value));
     g_return_if_fail (array != NULL);
@@ -597,7 +602,7 @@ xfce_settings_strv_to_string (const GValue *src_value,
     for (i = 0; array[i] != NULL; i++)
     {
         if (i > 0)
-          g_string_append (str, ", ");
+            g_string_append (str, ", ");
         g_string_append_printf (str, "\"%s\"", array[i]);
     }
 
@@ -605,7 +610,6 @@ xfce_settings_strv_to_string (const GValue *src_value,
 
     g_value_take_string (dest_value, g_string_free (str, FALSE));
 }
-
 
 
 
