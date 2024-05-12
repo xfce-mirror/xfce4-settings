@@ -108,10 +108,6 @@ command_dialog_create_contents (CommandDialog *dialog,
   gtk_window_set_title (GTK_WINDOW (dialog), _("Shortcut Command"));
   gtk_window_set_icon_name (GTK_WINDOW (dialog), "application-x-executable");
 
-#if !LIBXFCE4UI_CHECK_VERSION (4, 19, 3)
-  xfce_titled_dialog_create_action_area (XFCE_TITLED_DIALOG (dialog));
-#endif
-
   /* Create cancel button */
   button = gtk_button_new_with_mnemonic (_("_Cancel"));
   xfce_titled_dialog_add_action_widget (XFCE_TITLED_DIALOG (dialog), button, GTK_RESPONSE_CANCEL);
