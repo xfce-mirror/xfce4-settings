@@ -21,8 +21,8 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
 #include <colord.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

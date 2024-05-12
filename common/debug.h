@@ -19,6 +19,10 @@
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
 
+#include <glib.h>
+
+G_BEGIN_DECLS
+
 typedef enum
 {
    XFSD_DEBUG_YES                = 1 << 0,
@@ -43,5 +47,7 @@ void xfsettings_dbg          (XfsdDebugDomain  domain,
 void xfsettings_dbg_filtered (XfsdDebugDomain  domain,
                               const gchar     *message,
                               ...) G_GNUC_PRINTF (2, 3);
+
+G_END_DECLS
 
 #endif /* !__DEBUG_H__ */

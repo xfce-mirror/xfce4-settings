@@ -21,6 +21,8 @@
 
 #include <glib-object.h>
 
+G_BEGIN_DECLS
+
 typedef struct _XfceDisplaysUPowerClass XfceDisplaysUPowerClass;
 typedef struct _XfceDisplaysUPower      XfceDisplaysUPower;
 
@@ -34,5 +36,7 @@ typedef struct _XfceDisplaysUPower      XfceDisplaysUPower;
 #define XFSD_LID_STR(b) (b ? "closed" : "open")
 
 GType xfce_displays_upower_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
 
 #endif /* !__DISPLAYS_UPOWER_H__ */

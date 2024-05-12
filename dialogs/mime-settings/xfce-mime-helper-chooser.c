@@ -17,14 +17,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#ifdef HAVE_MEMORY_H
-#include <memory.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
+#include "config.h"
 #endif
 
 #include "xfce-mime-helper-chooser.h"

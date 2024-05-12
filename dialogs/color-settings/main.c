@@ -18,27 +18,20 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#include <colord.h>
-#include <glib.h>
-#include <gtk/gtk.h>
-#ifdef ENABLE_X11
-#include <gdk/gdkx.h>
-#include <gtk/gtkx.h>
-#endif
+#include "color-device.h"
+#include "color-dialog_ui.h"
+#include "color-profile.h"
 
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include "color-device.h"
-#include "color-profile.h"
-#include "color-dialog_ui.h"
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
+#include <gtk/gtkx.h>
+#endif
 
 
 

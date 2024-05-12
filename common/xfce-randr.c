@@ -18,25 +18,19 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_MATH_H
-#include <math.h>
-#endif
+#include "common/edid.h"
+#include "common/xfce-randr.h"
 
-#include <glib.h>
+#include <X11/Xatom.h>
 #include <gdk/gdkx.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include <X11/Xatom.h>
-
-#include "xfce-randr.h"
-#include "edid.h"
-
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 
 

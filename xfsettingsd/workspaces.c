@@ -16,22 +16,18 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
-
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <gdk/gdkx.h>
+#include "workspaces.h"
 
 #include "common/debug.h"
-#include "workspaces.h"
+
+#include <X11/Xatom.h>
+#include <X11/Xlib.h>
+#include <gdk/gdkx.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
 
 #define WORKSPACES_CHANNEL    "xfwm4"
 #define WORKSPACE_NAMES_PROP  "/general/workspace_names"

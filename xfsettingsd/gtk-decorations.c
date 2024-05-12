@@ -18,14 +18,14 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <glib.h>
-#include <gtk/gtk.h>
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
 #include "gtk-decorations.h"
+
+#include <gtk/gtk.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
 
 #define DEFAULT_LAYOUT "O|HMC"
 
@@ -152,4 +152,3 @@ xfce_decorations_helper_finalize (GObject *object)
 {
     (*G_OBJECT_CLASS (xfce_decorations_helper_parent_class)->finalize) (object);
 }
-

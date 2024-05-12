@@ -17,17 +17,18 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <gdk/gdkx.h>
-#include <X11/Xlib.h>
-#include <X11/extensions/Xrandr.h>
-#include <libxfce4util/libxfce4util.h>
-
-#include "common/xfce-randr.h"
 #include "display-settings-x11.h"
 #include "scrollarea.h"
+
+#include "common/xfce-randr.h"
+
+#include <X11/Xlib.h>
+#include <X11/extensions/Xrandr.h>
+#include <gdk/gdkx.h>
+#include <libxfce4util/libxfce4util.h>
 
 
 

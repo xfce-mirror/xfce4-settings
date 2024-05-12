@@ -17,20 +17,16 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#include <glib.h>
-#include <gtk/gtk.h>
 
 #include <gdk/gdkx.h>
-#include <math.h>
-
+#include <gtk/gtk.h>
 #include <xfconf/xfconf.h>
+
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 /* size of the window and circles */
 #define CIRCLE_SIZE 500

@@ -16,8 +16,8 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <X11/Xlib.h>
 #include <X11/Xatom.h>
+#include <X11/Xlib.h>
 #include <X11/extensions/XI.h>
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XIproto.h>

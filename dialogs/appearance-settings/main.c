@@ -18,37 +18,22 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_SYS_WAIT_H
-#include <sys/wait.h>
-#endif
+#include "appearance-dialog_ui.h"
 
-#include <unistd.h>
-#include <fcntl.h>
-
-#include <glib.h>
-#include <glib/gstdio.h>
-#include <gio/gio.h>
 #include <cairo-gobject.h>
+#include <gio/gio.h>
 #include <gtk/gtk.h>
-#ifdef ENABLE_X11
-#include <gdk/gdkx.h>
-#include <gtk/gtkx.h>
-#endif
-
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
-#include "appearance-dialog_ui.h"
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
+#include <gtk/gtkx.h>
+#endif
 
 #define INCH_MM      25.4
 

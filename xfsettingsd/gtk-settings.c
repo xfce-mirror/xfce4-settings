@@ -17,22 +17,23 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
+
+#include "gtk-settings-exported.h"
+#include "gtk-settings.h"
+#include "xsettings-properties.h"
 
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#include <xfconf/xfconf.h>
+
 #ifdef ENABLE_WAYLAND
 #include <gdk/gdkwayland.h>
 #define WINDOWING_IS_WAYLAND() GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ())
 #else
 #define WINDOWING_IS_WAYLAND() FALSE
 #endif
-#include <xfconf/xfconf.h>
-
-#include "gtk-settings.h"
-#include "xsettings-properties.h"
-#include "gtk-settings-exported.h"
 
 
 

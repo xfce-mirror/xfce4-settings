@@ -18,31 +18,23 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+#include "keyboard-layout.h"
 
-#include <X11/Xlib.h>
+#include "common/debug.h"
+
 #include <X11/XKBlib.h>
-
-#include <glib.h>
-#include <gtk/gtk.h>
+#include <X11/Xlib.h>
 #include <gdk/gdkx.h>
-#include <xfconf/xfconf.h>
+#include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
 
 #ifdef HAVE_LIBXKLAVIER
 #include <libxklavier/xklavier.h>
 #endif /* HAVE_LIBXKLAVIER */
-
-#include "common/debug.h"
-#include "keyboard-layout.h"
 
 static void xfce_keyboard_layout_helper_finalize                  (GObject                       *object);
 static void xfce_keyboard_layout_helper_process_xmodmap           (void);

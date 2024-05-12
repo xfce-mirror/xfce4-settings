@@ -17,21 +17,11 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_MEMORY_H
-#include <memory.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <xfce-mime-helper-launcher-dialog.h>
-#include <xfce-mime-helper-utils.h>
+#include "xfce-mime-helper-launcher-dialog.h"
+#include "xfce-mime-helper-utils.h"
 
 
 

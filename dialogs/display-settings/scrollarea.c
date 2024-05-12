@@ -16,9 +16,12 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include <gdk/gdkprivate.h> /* For GDK_PARENT_RELATIVE_BG */
-#include "scrollarea.h"
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "foo-marshal.h"
+#include "scrollarea.h"
 
 G_DEFINE_TYPE_WITH_CODE (FooScrollArea, foo_scroll_area, GTK_TYPE_CONTAINER, G_IMPLEMENT_INTERFACE (GTK_TYPE_SCROLLABLE, NULL));
 
