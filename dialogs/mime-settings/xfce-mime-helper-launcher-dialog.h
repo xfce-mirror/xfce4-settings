@@ -19,7 +19,9 @@
 #ifndef __XFCE_MIME_HELPER_LAUNCHER_DIALOG_H__
 #define __XFCE_MIME_HELPER_LAUNCHER_DIALOG_H__
 
-#include <xfce-mime-helper.h>
+#include "xfce-mime-helper.h"
+
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

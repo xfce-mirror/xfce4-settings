@@ -26,11 +26,15 @@
    (git commit 42452cada8cf1c4d7a81aded0a3ddbb5e97441de)
    Slightly modified by Lionel Le Folgoc <mrpouit@gmail.com> to build with full debug */
 
-#include "edid.h"
-#include <stdlib.h>
-#include <string.h>
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#include "common/edid.h"
+
+#ifdef HAVE_MATH_H
 #include <math.h>
-#include <glib.h>
+#endif
 
 static int
 get_bit (int in, int bit)

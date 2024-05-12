@@ -17,18 +17,18 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <gdk/gdkwayland.h>
-#include <xfconf/xfconf.h>
-#include <libxfce4ui/libxfce4ui.h>
-
-#include "common/xfce-wlr-output-manager.h"
-#include "common/debug.h"
-#include "common/edid.h"
-#include "common/display-profiles.h"
 #include "displays-wayland.h"
+
+#include "common/debug.h"
+#include "common/display-profiles.h"
+#include "common/edid.h"
+#include "common/xfce-wlr-output-manager.h"
+
+#include <gdk/gdkwayland.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 
 

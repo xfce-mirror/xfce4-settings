@@ -15,8 +15,14 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
+
+#ifndef __SCROLLAREA_H__
+#define __SCROLLAREA_H__
+
 #include <cairo.h>
 #include <gtk/gtk.h>
+
+G_BEGIN_DECLS
 
 #define GdkRegion cairo_region_t
 #define gdk_region_new cairo_region_create
@@ -135,3 +141,7 @@ void     foo_scroll_area_begin_auto_scroll (FooScrollArea          *scroll_area)
 void     foo_scroll_area_auto_scroll       (FooScrollArea          *scroll_area,
                                             FooScrollAreaEvent     *event);
 void     foo_scroll_area_end_auto_scroll   (FooScrollArea          *scroll_area);
+
+G_END_DECLS
+
+#endif /* !__SCROLLAREA_H__ */

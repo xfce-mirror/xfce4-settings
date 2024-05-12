@@ -20,6 +20,12 @@
 #ifndef __XSETTINGS_H__
 #define __XSETTINGS_H__
 
+#include <X11/Xlib.h>
+#include <gdk/gdk.h>
+#include <glib-object.h>
+
+G_BEGIN_DECLS
+
 typedef struct _XfceXSettingsHelperClass XfceXSettingsHelperClass;
 typedef struct _XfceXSettingsHelper      XfceXSettingsHelper;
 
@@ -38,5 +44,7 @@ gboolean xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
 
 Time     xfce_xsettings_get_server_time (Display             *display,
                                          Window               window);
+
+G_END_DECLS
 
 #endif /* !__XSETTINGS_H__ */

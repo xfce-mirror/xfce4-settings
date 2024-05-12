@@ -19,28 +19,22 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_MATH_H
-#include <math.h>
-#endif
+#include "displays-x11.h"
 
-#include <gdk/gdkx.h>
-#include <X11/extensions/Xrandr.h>
-#include <xfconf/xfconf.h>
-#include <libxfce4ui/libxfce4ui.h>
-
+#include "common/debug.h"
 #include "common/display-profiles.h"
 #include "common/edid.h"
 #include "common/xfce-randr.h"
-#include "common/debug.h"
-#include "displays-x11.h"
-#ifdef HAVE_UPOWERGLIB
-#include "displays-upower.h"
+
+#include <X11/extensions/Xrandr.h>
+#include <gdk/gdkx.h>
+#include <libxfce4ui/libxfce4ui.h>
+
+#ifdef HAVE_MATH_H
+#include <math.h>
 #endif
 
 

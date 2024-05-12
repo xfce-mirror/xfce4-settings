@@ -20,30 +20,22 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+#include "xfce-settings-manager-dialog.h"
 
-#include <gtk/gtk.h>
+#include <exo/exo.h>
+#include <garcon/garcon.h>
+#include <gdk/gdkkeysyms.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
 #ifdef ENABLE_X11
 #include <gdk/gdkx.h>
 #include <gtk/gtkx.h>
 #endif
-#include <gdk/gdkkeysyms.h>
-
-#include <libxfce4util/libxfce4util.h>
-#include <libxfce4ui/libxfce4ui.h>
-#include <xfconf/xfconf.h>
-#include <garcon/garcon.h>
-#include <exo/exo.h>
-
-#include "xfce-settings-manager-dialog.h"
 
 #define TEXT_WIDTH (128)
 #define ICON_WIDTH (48)

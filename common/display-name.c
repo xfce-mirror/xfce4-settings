@@ -28,14 +28,17 @@
 
 /* Further modifications come from upstream hwdata */
 
-#include <config.h>
-#include <glib/gi18n-lib.h>
-#include <stdlib.h>
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
-#include <glib.h>
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "common/edid.h"
+
+#include <glib/gi18n-lib.h>
+
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 typedef struct Vendor Vendor;
 struct Vendor

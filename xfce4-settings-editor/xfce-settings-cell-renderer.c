@@ -18,19 +18,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <gtk/gtk.h>
-
-#include <libxfce4util/libxfce4util.h>
 
 #include "xfce-settings-cell-renderer.h"
 #include "xfce-settings-marshal.h"
+
+#include <libxfce4util/libxfce4util.h>
 
 
 

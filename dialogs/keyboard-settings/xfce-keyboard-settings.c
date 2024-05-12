@@ -21,26 +21,19 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <string.h>
-
-#include <glib.h>
-#include <glib-object.h>
-#include <gdk/gdkx.h>
-#include <gtk/gtk.h>
-#include <gtk/gtkx.h>
-
-#include <exo/exo.h>
-#include <xfconf/xfconf.h>
-#include <libxfce4ui/libxfce4ui.h>
-#include <libxfce4kbd-private/xfce-shortcuts-provider.h>
-#include <libxfce4kbd-private/xfce-shortcut-dialog.h>
-
+#include "command-dialog.h"
 #include "keyboard-dialog_ui.h"
 #include "xfce-keyboard-settings.h"
-#include "command-dialog.h"
+
+#include <gdk/gdkx.h>
+#include <gtk/gtkx.h>
+#include <libxfce4kbd-private/xfce-shortcut-dialog.h>
+#include <libxfce4kbd-private/xfce-shortcuts-provider.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <xfconf/xfconf.h>
 
 #ifdef HAVE_LIBXKLAVIER
 #include <libxklavier/xklavier.h>

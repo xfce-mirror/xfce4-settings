@@ -17,43 +17,23 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef HAVE_SYS_WAIT_H
-#include <sys/wait.h>
-#endif
-
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
-#ifdef HAVE_MEMORY_H
-#include <memory.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+#include "xfce-mime-helper-utils.h"
+#include "xfce-mime-helper.h"
 
 #ifdef HAVE_GIO_UNIX
 #include <gio/gdesktopappinfo.h>
 #endif
 
-#include <gdk/gdk.h>
 #ifdef ENABLE_X11
 #include <gdk/gdkx.h>
 #endif
 
-#include "xfce-mime-helper.h"
-#include "xfce-mime-helper-utils.h"
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#endif
 
 
 

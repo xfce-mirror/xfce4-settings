@@ -21,6 +21,8 @@
 
 #include "xfce-mime-helper.h"
 
+#include <gtk/gtk.h>
+
 G_BEGIN_DECLS
 
 #define XFCE_MIME_TYPE_HELPER_CHOOSER            (xfce_mime_helper_chooser_get_type ())

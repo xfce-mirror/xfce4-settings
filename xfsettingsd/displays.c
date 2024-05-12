@@ -19,29 +19,29 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <xfconf/xfconf.h>
-#include <libxfce4ui/libxfce4ui.h>
-
-#include "common/display-profiles.h"
-
-#include "common/debug.h"
 #include "displays.h"
+
 #ifdef HAVE_UPOWERGLIB
 #include "displays-upower.h"
 #endif
 
 #ifdef HAVE_XRANDR
-#include <gdk/gdkx.h>
 #include "displays-x11.h"
-#endif
-#ifdef ENABLE_WAYLAND
-#include <gdk/gdkwayland.h>
-#include "displays-wayland.h"
+#include <gdk/gdkx.h>
 #endif
 
+#ifdef ENABLE_WAYLAND
+#include "displays-wayland.h"
+#include <gdk/gdkwayland.h>
+#endif
+
+#include "common/debug.h"
+#include "common/display-profiles.h"
+
+#include <libxfce4ui/libxfce4ui.h>
 
 
 #define get_instance_private(instance) ((XfceDisplaysHelperPrivate *) \

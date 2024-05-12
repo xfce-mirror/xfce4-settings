@@ -17,20 +17,21 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_MATH_H
-#include <math.h>
-#endif
+#include "display-settings-wayland.h"
+#include "scrollarea.h"
+
+#include "common/edid.h"
+#include "common/xfce-wlr-output-manager.h"
 
 #include <gdk/gdkwayland.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include "common/edid.h"
-#include "common/xfce-wlr-output-manager.h"
-#include "display-settings-wayland.h"
-#include "scrollarea.h"
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 
 

@@ -19,8 +19,9 @@
 #ifndef __XFCE_WLR_OUTPUT_MANAGER_H__
 #define __XFCE_WLR_OUTPUT_MANAGER_H__
 
-#include <glib-object.h>
 #include "protocols/wlr-output-management-unstable-v1-client.h"
+
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 

@@ -19,12 +19,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif
+
+#include "color-device.h"
 
 #include <glib/gi18n.h>
-#include <gtk/gtk.h>
-#include <colord.h>
-#include "color-device.h"
 
 struct _ColorDevice
 {

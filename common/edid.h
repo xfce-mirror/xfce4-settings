@@ -24,10 +24,12 @@
 /* Downloaded from <http://git.gnome.org/browse/gnome-desktop/tree/libgnome-desktop>
    (git commit 42452cada8cf1c4d7a81aded0a3ddbb5e97441de) */
 
+#ifndef __EDID_H__
+#define __EDID_H__
+
 #include <glib.h>
 
-#ifndef EDID_H
-#define EDID_H
+G_BEGIN_DECLS
 
 typedef unsigned char uchar;
 typedef struct MonitorInfo MonitorInfo;
@@ -197,4 +199,6 @@ char *make_display_name (const MonitorInfo *info, guint output);
 gboolean display_name_is_laptop_name (const gchar *name);
 const gchar *display_name_get_fallback (const gchar *name);
 
-#endif
+G_END_DECLS
+
+#endif /* !__EDID_H__ */

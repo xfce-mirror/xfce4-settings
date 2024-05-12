@@ -20,6 +20,10 @@
 #ifndef __GTK_DECORATIONS_H__
 #define __GTK_DECORATIONS_H__
 
+#include <glib-object.h>
+
+G_BEGIN_DECLS
+
 typedef struct _XfceDecorationsHelperClass XfceDecorationsHelperClass;
 typedef struct _XfceDecorationsHelper      XfceDecorationsHelper;
 
@@ -31,5 +35,7 @@ typedef struct _XfceDecorationsHelper      XfceDecorationsHelper;
 #define XFCE_DECORATIONS_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_DECORATIONS_HELPER, XfceDecorationsHelperClass))
 
 GType xfce_decorations_helper_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
 
 #endif /* !__GTK_DECORATIONS_H__ */

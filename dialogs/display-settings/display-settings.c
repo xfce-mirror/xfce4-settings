@@ -17,31 +17,35 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <libxfce4util/libxfce4util.h>
+#include "display-settings.h"
+#include "identity-popup_ui.h"
+#include "scrollarea.h"
+
+#ifdef ENABLE_WAYLAND
+#include "display-settings-wayland.h"
+#include <gdk/gdkwayland.h>
+#endif
 
 #ifdef HAVE_XRANDR
-#include <gdk/gdkx.h>
 #include "display-settings-x11.h"
+#include <gdk/gdkx.h>
 #define WINDOWING_IS_X11() GDK_IS_X11_DISPLAY (gdk_display_get_default ())
 #else
 #define WINDOWING_IS_X11() FALSE
 #endif
+
+#include "common/display-profiles.h"
+
+#include <libxfce4util/libxfce4util.h>
+
 #ifdef HAVE_GTK_LAYER_SHELL
 #include <gtk-layer-shell/gtk-layer-shell.h>
 #else
 #define gtk_layer_is_supported() FALSE
 #endif
-#ifdef ENABLE_WAYLAND
-#include <gdk/gdkwayland.h>
-#include "display-settings-wayland.h"
-#endif
-#include "common/display-profiles.h"
-#include "identity-popup_ui.h"
-#include "scrollarea.h"
-#include "display-settings.h"
 
 
 

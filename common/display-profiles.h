@@ -16,8 +16,13 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#ifndef __DISPLAY_PROFILES_H__
+#define __DISPLAY_PROFILES_H__
+
 #include <glib.h>
 #include <xfconf/xfconf.h>
+
+G_BEGIN_DECLS
 
 enum
 {
@@ -46,3 +51,7 @@ GList*   display_settings_get_profiles          (gchar         **display_infos,
 gboolean display_settings_profile_matches       (const gchar    *profile,
                                                  gchar         **display_infos,
                                                  XfconfChannel  *channel);
+
+G_END_DECLS
+
+#endif /* !__DISPLAY_PROFILES_H__ */

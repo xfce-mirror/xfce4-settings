@@ -19,6 +19,10 @@
 #ifndef __POINTERS_H__
 #define __POINTERS_H__
 
+#include <glib-object.h>
+
+G_BEGIN_DECLS
+
 typedef struct _XfcePointersHelperClass XfcePointersHelperClass;
 typedef struct _XfcePointersHelper      XfcePointersHelper;
 
@@ -30,5 +34,7 @@ typedef struct _XfcePointersHelper      XfcePointersHelper;
 #define XFCE_POINTERS_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_POINTERS_HELPER, XfcePointersHelperClass))
 
 GType xfce_pointers_helper_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
 
 #endif /* !__POINTERS_H__ */

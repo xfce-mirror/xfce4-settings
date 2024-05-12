@@ -19,21 +19,23 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_MATH_H
-#include <math.h>
-#endif
+#include "confirmation-dialog_ui.h"
+#include "display-dialog_ui.h"
+#include "display-settings.h"
+#include "minimal-display-dialog_ui.h"
+#include "profile-changed-dialog_ui.h"
+#include "scrollarea.h"
 
-#include <glib.h>
+#include "common/display-profiles.h"
+
 #include <gtk/gtk.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
 #ifdef HAVE_XRANDR
 #include <gdk/gdkx.h>
 #include <gtk/gtkx.h>
@@ -41,23 +43,16 @@
 #else
 #define WINDOWING_IS_X11() FALSE
 #endif
+
 #ifdef HAVE_GTK_LAYER_SHELL
 #include <gtk-layer-shell/gtk-layer-shell.h>
 #else
 #define gtk_layer_is_supported() FALSE
 #endif
 
-#include <xfconf/xfconf.h>
-#include <libxfce4ui/libxfce4ui.h>
-#include <libxfce4util/libxfce4util.h>
-
-#include "common/display-profiles.h"
-#include "display-dialog_ui.h"
-#include "confirmation-dialog_ui.h"
-#include "minimal-display-dialog_ui.h"
-#include "profile-changed-dialog_ui.h"
-#include "scrollarea.h"
-#include "display-settings.h"
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 #define MARGIN  16
 #define ONLY_DISPLAY_1 _("Only %s (1)")

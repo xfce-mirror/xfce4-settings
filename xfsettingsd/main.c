@@ -19,52 +19,38 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-#ifdef HAVE_SIGNAL_H
-#include <signal.h>
-#endif
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
-
-#include <glib.h>
-#include <gio/gio.h>
-#include <gtk/gtk.h>
-
-#ifdef ENABLE_X11
-#include <gdk/gdkx.h>
-#include <X11/X.h>
-#include <X11/Xlib.h>
-#endif
-
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
-#include <libxfce4ui/libxfce4ui.h>
-
-#include <locale.h>
-
-#include "common/debug.h"
 #include "gtk-decorations.h"
 #include "gtk-settings.h"
+
 #ifdef ENABLE_DISPLAY_SETTINGS
 #include "displays.h"
 #endif
+
 #ifdef ENABLE_X11
 #include "accessibility.h"
-#include "pointers.h"
-#include "keyboards.h"
 #include "keyboard-layout.h"
 #include "keyboard-shortcuts.h"
+#include "keyboards.h"
+#include "pointers.h"
 #include "workspaces.h"
 #include "xsettings.h"
+#endif
+
+#include "common/debug.h"
+
+#include <gio/gio.h>
+#include <gtk/gtk.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
+#ifdef ENABLE_X11
+#include <X11/X.h>
+#include <X11/Xlib.h>
+#include <gdk/gdkx.h>
 #endif
 
 #define XFSETTINGS_DBUS_NAME    "org.xfce.SettingsDaemon"

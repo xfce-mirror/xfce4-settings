@@ -19,10 +19,13 @@
  *  by Olivier Fourdan.
  */
 
-#include <X11/extensions/XInput.h>
-
 #ifndef __KEYBOARDS_H__
 #define __KEYBOARDS_H__
+
+#include <X11/extensions/XInput.h>
+#include <glib-object.h>
+
+G_BEGIN_DECLS
 
 typedef struct _XfceKeyboardsHelperClass XfceKeyboardsHelperClass;
 typedef struct _XfceKeyboardsHelper      XfceKeyboardsHelper;
@@ -45,5 +48,7 @@ typedef struct _XfceKeyboardsHelper      XfceKeyboardsHelper;
 #endif
 
 GType xfce_keyboards_helper_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
 
 #endif /* !__KEYBOARDS_H__ */

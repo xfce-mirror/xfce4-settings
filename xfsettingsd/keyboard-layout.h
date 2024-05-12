@@ -20,6 +20,10 @@
 #ifndef __KEYBOARD_LAYOUT_H__
 #define __KEYBOARD_LAYOUT_H__
 
+#include <glib-object.h>
+
+G_BEGIN_DECLS
+
 typedef struct _XfceKeyboardLayoutHelperClass XfceKeyboardLayoutHelperClass;
 typedef struct _XfceKeyboardLayoutHelper      XfceKeyboardLayoutHelper;
 
@@ -31,5 +35,7 @@ typedef struct _XfceKeyboardLayoutHelper      XfceKeyboardLayoutHelper;
 #define XFCE_KEYBOARD_LAYOUT_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, XfceKeyboardLayoutHelperClass))
 
 GType xfce_keyboard_layout_helper_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
 
 #endif /* !__KEYBOARD_LAYOUT_H__ */

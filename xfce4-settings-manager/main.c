@@ -18,23 +18,19 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
+#include "xfce-settings-manager-dialog.h"
 
+#include <garcon/garcon.h>
 #include <gtk/gtk.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
 #ifdef ENABLE_X11
 #include <gdk/gdkx.h>
 #endif
-
-#include <libxfce4util/libxfce4util.h>
-#include <garcon/garcon.h>
-#include <xfconf/xfconf.h>
-
-#include "xfce-settings-manager-dialog.h"
 
 static gboolean opt_version = FALSE;
 static gchar   *opt_dialog = NULL;

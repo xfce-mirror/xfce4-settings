@@ -17,13 +17,14 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
+#include "xfce-mime-helper-chooser.h"
+#include "xfce-mime-helper-enum-types.h"
+#include "xfce-mime-helper-launcher-dialog.h"
+
 #include <libxfce4ui/libxfce4ui.h>
-#include <xfce-mime-helper-chooser.h>
-#include <xfce-mime-helper-enum-types.h>
-#include <xfce-mime-helper-launcher-dialog.h>
 
 
 
@@ -268,5 +269,3 @@ xfce_mime_helper_launcher_dialog_set_category (XfceMimeHelperLauncherDialog *lau
   launcher_dialog->category = category;
   g_object_notify (G_OBJECT (launcher_dialog), "category");
 }
-
-
