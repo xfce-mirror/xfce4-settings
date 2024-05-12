@@ -114,10 +114,16 @@ xfce_randr_list_supported_modes (XRRScreenResources *resources,
         {
             if (output_info->modes[n] == resources->modes[m].id)
             {
+                gdouble v_total = resources->modes[m].vTotal;
+                if (resources->modes[m].modeFlags & RR_DoubleScan)
+                    v_total *= 2.0;
+                if (resources->modes[m].modeFlags & RR_Interlace)
+                    v_total /= 2.0;
+
                 modes[n].width = resources->modes[m].width;
                 modes[n].height = resources->modes[m].height;
                 modes[n].rate = (gdouble) resources->modes[m].dotClock /
-                                ((gdouble) resources->modes[m].hTotal * (gdouble) resources->modes[m].vTotal);
+                                ((gdouble) resources->modes[m].hTotal * v_total);
 
                 break;
             }
