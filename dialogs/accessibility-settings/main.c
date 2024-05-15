@@ -18,33 +18,25 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#include <glib.h>
-#include <gtk/gtk.h>
-#include <gtk/gtkx.h>
+#include "accessibility-dialog_ui.h"
 
 #include <gdk/gdkx.h>
-
+#include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
-
-#include "accessibility-dialog_ui.h"
 
 
 
 static gint opt_socket_id = 0;
 static gboolean opt_version = FALSE;
-static GOptionEntry entries[] =
-{
-    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID") },
-    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+static GOptionEntry entries[] = {
+    { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_ ("Settings manager socket"), N_ ("SOCKET ID") },
+    { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_ ("Version information"), NULL },
     { NULL }
 };
 
@@ -58,40 +50,40 @@ static XfconfChannel *session_channel = NULL;
 
 static void
 accessibility_settings_sensitivity (GtkToggleButton *button,
-                                    GtkWidget       *box)
+                                    GtkWidget *box)
 {
     gtk_widget_set_sensitive (GTK_WIDGET (box),
-        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
+                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
 }
 
 
 
 static void
 accessibility_settings_at (GtkToggleButton *button,
-                           GtkBuilder      *builder)
+                           GtkBuilder *builder)
 {
-  AtkObject  *atkobj;
-  GObject    *info_logout;
-  GObject    *no_atspi;
-  gchar     **atspi;
+    AtkObject *atkobj;
+    GObject *info_logout;
+    GObject *no_atspi;
+    gchar **atspi;
 
-  info_logout = gtk_builder_get_object (builder, "info-logout");
-  no_atspi = gtk_builder_get_object (builder, "info-no-at");
+    info_logout = gtk_builder_get_object (builder, "info-logout");
+    no_atspi = gtk_builder_get_object (builder, "info-no-at");
 
-  gtk_widget_hide (GTK_WIDGET (info_logout));
-  gtk_widget_hide (GTK_WIDGET (no_atspi));
+    gtk_widget_hide (GTK_WIDGET (info_logout));
+    gtk_widget_hide (GTK_WIDGET (no_atspi));
 
-  if (gtk_toggle_button_get_active (button))
+    if (gtk_toggle_button_get_active (button))
     {
-      atspi = xfce_resource_match (XFCE_RESOURCE_CONFIG, "autostart/at-spi-*.desktop", TRUE);
-      atkobj = gtk_widget_get_accessible (GTK_WIDGET (button));
+        atspi = xfce_resource_match (XFCE_RESOURCE_CONFIG, "autostart/at-spi-*.desktop", TRUE);
+        atkobj = gtk_widget_get_accessible (GTK_WIDGET (button));
 
-      if (atspi == NULL || g_strv_length (atspi) == 0)
-        gtk_widget_show (GTK_WIDGET (no_atspi));
-      else if (!GTK_IS_ACCESSIBLE (atkobj))
-        gtk_widget_show (GTK_WIDGET (info_logout));
+        if (atspi == NULL || g_strv_length (atspi) == 0)
+            gtk_widget_show (GTK_WIDGET (no_atspi));
+        else if (!GTK_IS_ACCESSIBLE (atkobj))
+            gtk_widget_show (GTK_WIDGET (info_logout));
 
-      g_strfreev (atspi);
+        g_strfreev (atspi);
     }
 }
 
@@ -143,7 +135,7 @@ accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
     box = gtk_builder_get_object (builder, "mouse-emulation-grid");
     g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
     xfconf_g_property_bind (accessibility_channel, "/MouseKeys", G_TYPE_BOOLEAN, object, "active");
-    gtk_widget_set_sensitive (GTK_WIDGET(box), xfconf_channel_get_bool(accessibility_channel, "/MouseKeys", TRUE));
+    gtk_widget_set_sensitive (GTK_WIDGET (box), xfconf_channel_get_bool (accessibility_channel, "/MouseKeys", TRUE));
 
     object = gtk_builder_get_object (builder, "mouse-emulation-delay");
     xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Delay", G_TYPE_INT, object, "value");
@@ -168,7 +160,7 @@ accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
 
 static void
 accessibility_settings_dialog_response (GtkWidget *dialog,
-                                        gint       response_id)
+                                        gint response_id)
 {
     if (response_id == GTK_RESPONSE_HELP)
         xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "accessibility",
@@ -180,18 +172,19 @@ accessibility_settings_dialog_response (GtkWidget *dialog,
 
 
 gint
-main (gint argc, gchar **argv)
+main (gint argc,
+      gchar **argv)
 {
-    GObject    *dialog, *plug_child;
-    GtkWidget  *plug;
+    GObject *dialog, *plug_child;
+    GtkWidget *plug;
     GtkBuilder *builder;
-    GError     *error = NULL;
+    GError *error = NULL;
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     /* initialize Gtk+ */
-    if(!gtk_init_with_args (&argc, &argv, NULL, entries, PACKAGE, &error))
+    if (!gtk_init_with_args (&argc, &argv, NULL, entries, PACKAGE, &error))
     {
         if (G_LIKELY (error))
         {
@@ -250,7 +243,8 @@ main (gint argc, gchar **argv)
     /* load the Gtk user-interface file */
     builder = gtk_builder_new ();
     if (gtk_builder_add_from_string (builder, accessibility_dialog_ui,
-                                     accessibility_dialog_ui_length, &error) != 0)
+                                     accessibility_dialog_ui_length, &error)
+        != 0)
     {
         /* Configure widgets */
         accessibility_settings_dialog_configure_widgets (builder);
@@ -261,7 +255,7 @@ main (gint argc, gchar **argv)
             dialog = gtk_builder_get_object (builder, "dialog");
 
             g_signal_connect (dialog, "response",
-                G_CALLBACK (accessibility_settings_dialog_response), NULL);
+                              G_CALLBACK (accessibility_settings_dialog_response), NULL);
             gtk_window_present (GTK_WINDOW (dialog));
 
             /* To prevent the settings dialog to be saved in the session */
@@ -305,7 +299,7 @@ main (gint argc, gchar **argv)
     g_object_unref (G_OBJECT (session_channel));
 
     /* shutdown xfconf */
-    xfconf_shutdown();
+    xfconf_shutdown ();
 
     return EXIT_SUCCESS;
 }

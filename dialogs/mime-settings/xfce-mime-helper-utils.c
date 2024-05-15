@@ -17,7 +17,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #include "xfce-mime-helper-enum-types.h"
@@ -37,12 +37,12 @@
  *               is set, else %FALSE.
  **/
 gboolean
-xfce_mime_helper_category_from_string (const gchar       *string,
-                                 XfceMimeHelperCategory *category_return)
+xfce_mime_helper_category_from_string (const gchar *string,
+                                       XfceMimeHelperCategory *category_return)
 {
   GEnumClass *klass;
-  gboolean    found = FALSE;
-  guint       n;
+  gboolean found = FALSE;
+  guint n;
 
   g_return_val_if_fail (category_return != NULL, FALSE);
 
@@ -73,11 +73,11 @@ xfce_mime_helper_category_from_string (const gchar       *string,
  *
  * Return value: the string representation for @category.
  **/
-gchar*
+gchar *
 xfce_mime_helper_category_to_string (XfceMimeHelperCategory category)
 {
   GEnumClass *klass;
-  gchar      *string;
+  gchar *string;
 
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
 

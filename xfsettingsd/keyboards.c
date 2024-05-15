@@ -20,48 +20,48 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#include <X11/Xlib.h>
-#include <X11/XKBlib.h>
-#include <X11/keysym.h>
-
-#include <glib.h>
-#include <gtk/gtk.h>
-#include <gdk/gdkx.h>
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
-
-#include "common/debug.h"
 #include "keyboards.h"
 
+#include "common/debug.h"
+
+#include <X11/XKBlib.h>
+#include <X11/Xlib.h>
+#include <X11/keysym.h>
+#include <gdk/gdkx.h>
+#include <gtk/gtk.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
 
 
-static void xfce_keyboards_helper_finalize                  (GObject                  *object);
-static void xfce_keyboards_helper_set_auto_repeat_mode      (XfceKeyboardsHelper      *helper);
-static void xfce_keyboards_helper_set_repeat_rate           (XfceKeyboardsHelper      *helper);
-static void xfce_keyboards_helper_channel_property_changed  (XfconfChannel            *channel,
-                                                             const gchar              *property_name,
-                                                             const GValue             *value,
-                                                             XfceKeyboardsHelper      *helper);
-static void xfce_keyboards_helper_restore_numlock_state     (XfconfChannel            *channel);
-static void xfce_keyboards_helper_save_numlock_state        (XfconfChannel            *channel);
-static gboolean xfce_keyboards_helper_device_is_keyboard    (XID xid);
-static void xfce_keyboards_helper_set_all_settings          (XfceKeyboardsHelper      *helper);
+
+static void
+xfce_keyboards_helper_finalize (GObject *object);
+static void
+xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper);
+static void
+xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper);
+static void
+xfce_keyboards_helper_channel_property_changed (XfconfChannel *channel,
+                                                const gchar *property_name,
+                                                const GValue *value,
+                                                XfceKeyboardsHelper *helper);
+static void
+xfce_keyboards_helper_restore_numlock_state (XfconfChannel *channel);
+static void
+xfce_keyboards_helper_save_numlock_state (XfconfChannel *channel);
+static gboolean
+xfce_keyboards_helper_device_is_keyboard (XID xid);
+static void
+xfce_keyboards_helper_set_all_settings (XfceKeyboardsHelper *helper);
 #ifdef DEVICE_HOTPLUGGING
-static GdkFilterReturn  xfce_keyboards_helper_event_filter  (GdkXEvent                *xevent,
-                                                             GdkEvent                 *gdk_event,
-                                                             gpointer                 user_data);
+static GdkFilterReturn
+xfce_keyboards_helper_event_filter (GdkXEvent *xevent,
+                                    GdkEvent *gdk_event,
+                                    gpointer user_data);
 #endif
-
 
 
 
@@ -72,7 +72,7 @@ struct _XfceKeyboardsHelperClass
 
 struct _XfceKeyboardsHelper
 {
-    GObject  __parent__;
+    GObject __parent__;
 
     /* xfconf channel */
     XfconfChannel *channel;
@@ -81,7 +81,6 @@ struct _XfceKeyboardsHelper
     /* device presence event type */
     gint device_presence_event_type;
 #endif
-
 };
 
 
@@ -126,7 +125,7 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
 
         /* monitor channel changes */
         g_signal_connect (G_OBJECT (helper->channel), "property-changed",
-            G_CALLBACK (xfce_keyboards_helper_channel_property_changed), helper);
+                          G_CALLBACK (xfce_keyboards_helper_channel_property_changed), helper);
 
 #ifdef DEVICE_HOTPLUGGING
         if (G_LIKELY (xdisplay != NULL))
@@ -173,7 +172,7 @@ static void
 xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
 {
     XKeyboardControl values;
-    gboolean         repeat;
+    gboolean repeat;
 
     /* load setting */
     repeat = xfconf_channel_get_bool (helper->channel, "/Default/KeyRepeat", TRUE);
@@ -182,7 +181,7 @@ xfce_keyboards_helper_set_auto_repeat_mode (XfceKeyboardsHelper *helper)
     values.auto_repeat_mode = repeat ? 1 : 0;
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
-    XChangeKeyboardControl (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), KBAutoRepeatMode, &values);
+    XChangeKeyboardControl (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), KBAutoRepeatMode, &values);
     if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
         g_critical ("Failed to change keyboard repeat mode");
 
@@ -195,7 +194,7 @@ static void
 xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
 {
     XkbDescPtr xkb;
-    gint       delay, rate;
+    gint delay, rate;
 
     /* load settings */
     delay = xfconf_channel_get_int (helper->channel, "/Default/KeyRepeat/Delay", 500);
@@ -208,14 +207,14 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
     if (G_LIKELY (xkb))
     {
         /* load controls */
-        XkbGetControls (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), XkbRepeatKeysMask, xkb);
+        XkbGetControls (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), XkbRepeatKeysMask, xkb);
 
         /* set new values */
         xkb->ctrls->repeat_delay = delay;
         xkb->ctrls->repeat_interval = rate != 0 ? 1000 / rate : 0;
 
         /* set updated controls */
-        XkbSetControls (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), XkbRepeatKeysMask, xkb);
+        XkbSetControls (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), XkbRepeatKeysMask, xkb);
 
         xfsettings_dbg (XFSD_DEBUG_KEYBOARDS, "set key repeat (delay=%d, rate=%d)",
                         xkb->ctrls->repeat_delay, xkb->ctrls->repeat_interval);
@@ -232,10 +231,10 @@ xfce_keyboards_helper_set_repeat_rate (XfceKeyboardsHelper *helper)
 
 
 static void
-xfce_keyboards_helper_channel_property_changed (XfconfChannel      *channel,
-                                               const gchar         *property_name,
-                                               const GValue        *value,
-                                               XfceKeyboardsHelper *helper)
+xfce_keyboards_helper_channel_property_changed (XfconfChannel *channel,
+                                                const gchar *property_name,
+                                                const GValue *value,
+                                                XfceKeyboardsHelper *helper)
 {
     g_return_if_fail (helper->channel == channel);
 
@@ -257,9 +256,9 @@ xfce_keyboards_helper_channel_property_changed (XfconfChannel      *channel,
 static void
 xfce_keyboards_helper_restore_numlock_state (XfconfChannel *channel)
 {
-    unsigned int  numlock_mask;
-    Display      *dpy;
-    gboolean      state;
+    unsigned int numlock_mask;
+    Display *dpy;
+    gboolean state;
 
     if (xfconf_channel_has_property (channel, "/Default/Numlock")
         && xfconf_channel_get_bool (channel, "/Default/RestoreNumlock", TRUE))
@@ -289,13 +288,13 @@ static void
 xfce_keyboards_helper_save_numlock_state (XfconfChannel *channel)
 {
     Display *dpy;
-    Bool     numlock_state;
-    Atom     numlock;
+    Bool numlock_state;
+    Atom numlock;
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
     dpy = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
-    numlock = XInternAtom(dpy, "Num Lock", False);
+    numlock = XInternAtom (dpy, "Num Lock", False);
     XkbGetNamedIndicator (dpy, numlock, NULL, &numlock_state, NULL, NULL);
 
     if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
@@ -311,9 +310,9 @@ xfce_keyboards_helper_save_numlock_state (XfconfChannel *channel)
 static void
 xfce_keyboards_helper_set_all_settings (XfceKeyboardsHelper *helper)
 {
-        xfce_keyboards_helper_set_auto_repeat_mode (helper);
-        xfce_keyboards_helper_set_repeat_rate (helper);
-        xfce_keyboards_helper_restore_numlock_state (helper->channel);
+    xfce_keyboards_helper_set_auto_repeat_mode (helper);
+    xfce_keyboards_helper_set_repeat_rate (helper);
+    xfce_keyboards_helper_restore_numlock_state (helper->channel);
 }
 
 
@@ -325,25 +324,24 @@ xfce_keyboards_helper_device_is_keyboard (XID xid)
     XDeviceInfo *device;
     gboolean device_found;
     XDeviceInfo *device_list;
-    Atom         keyboard_type;
-    gint         n, ndevices;
-    Display     *xdisplay = GDK_DISPLAY_XDISPLAY(gdk_display_get_default());
+    Atom keyboard_type;
+    gint n, ndevices;
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
 
     keyboard_type = XInternAtom (xdisplay, XI_KEYBOARD, True);
-    device_list = XListInputDevices(xdisplay, &ndevices);
+    device_list = XListInputDevices (xdisplay, &ndevices);
     device_found = FALSE;
     for (n = 0; n < ndevices; n++)
     {
         device = &device_list[n];
         /* look for a keyboard that matches this XID */
-        if (device->type == keyboard_type &&
-            device->id == xid)
+        if (device->type == keyboard_type && device->id == xid)
         {
             device_found = TRUE;
             break;
         }
     }
-    XFreeDeviceList(device_list);
+    XFreeDeviceList (device_list);
 
     return device_found;
 }
@@ -354,12 +352,12 @@ xfce_keyboards_helper_device_is_keyboard (XID xid)
 #ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_keyboards_helper_event_filter (GdkXEvent *xevent,
-                                    GdkEvent  *gdk_event,
-                                    gpointer   user_data)
+                                    GdkEvent *gdk_event,
+                                    gpointer user_data)
 {
-    XEvent                     *event = xevent;
+    XEvent *event = xevent;
     XDevicePresenceNotifyEvent *dpn_event = xevent;
-    XfceKeyboardsHelper        *helper = XFCE_KEYBOARDS_HELPER (user_data);
+    XfceKeyboardsHelper *helper = XFCE_KEYBOARDS_HELPER (user_data);
 
     if (G_UNLIKELY (event->type != helper->device_presence_event_type))
         return GDK_FILTER_CONTINUE;
@@ -367,7 +365,7 @@ xfce_keyboards_helper_event_filter (GdkXEvent *xevent,
     if (G_LIKELY (dpn_event->devchange != DeviceAdded))
         return GDK_FILTER_CONTINUE;
 
-    if (!xfce_keyboards_helper_device_is_keyboard(dpn_event->deviceid))
+    if (!xfce_keyboards_helper_device_is_keyboard (dpn_event->deviceid))
         return GDK_FILTER_CONTINUE;
 
     /* New keyboard added. Need to reapply settings. */

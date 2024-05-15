@@ -24,22 +24,26 @@
 G_BEGIN_DECLS
 
 typedef struct _XfceMimeWindowClass XfceMimeWindowClass;
-typedef struct _XfceMimeWindow      XfceMimeWindow;
+typedef struct _XfceMimeWindow XfceMimeWindow;
 
-#define XFCE_TYPE_MIME_WINDOW            (xfce_mime_window_get_type ())
-#define XFCE_MIME_WINDOW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_MIME_WINDOW, XfceMimeWindow))
-#define XFCE_MIME_WINDOW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_MIME_WINDOW, XfceMimeWindowClass))
-#define XFCE_IS_MIME_WINDOW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_MIME_WINDOW))
+#define XFCE_TYPE_MIME_WINDOW (xfce_mime_window_get_type ())
+#define XFCE_MIME_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_MIME_WINDOW, XfceMimeWindow))
+#define XFCE_MIME_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_MIME_WINDOW, XfceMimeWindowClass))
+#define XFCE_IS_MIME_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_MIME_WINDOW))
 #define XFCE_IS_MIME_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_MIME_WINDOW))
-#define XFCE_MIME_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MIME_WINDOW, XfceMimeWindowClass))
+#define XFCE_MIME_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MIME_WINDOW, XfceMimeWindowClass))
 
-GType           xfce_mime_window_get_type      (void) G_GNUC_CONST;
+GType
+xfce_mime_window_get_type (void) G_GNUC_CONST;
 
-XfceMimeWindow *xfce_mime_window_new           (void) G_GNUC_MALLOC;
-GtkWidget      *xfce_mime_window_create_dialog (XfceMimeWindow *settings);
+XfceMimeWindow *
+xfce_mime_window_new (void) G_GNUC_MALLOC;
+GtkWidget *
+xfce_mime_window_create_dialog (XfceMimeWindow *settings);
 #ifdef ENABLE_X11
-GtkWidget      *xfce_mime_window_create_plug   (XfceMimeWindow *settings,
-                                                gint            socket_id);
+GtkWidget *
+xfce_mime_window_create_plug (XfceMimeWindow *settings,
+                              gint socket_id);
 #endif
 
 G_END_DECLS

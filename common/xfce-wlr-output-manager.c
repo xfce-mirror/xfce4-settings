@@ -17,50 +17,77 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
+
+#include "common/debug.h"
+#include "common/xfce-wlr-output-manager.h"
 
 #include <gdk/gdkwayland.h>
 
-#include "debug.h"
-#include "xfce-wlr-output-manager.h"
 
 
+static void
+xfce_wlr_output_manager_get_property (GObject *object,
+                                      guint prop_id,
+                                      GValue *value,
+                                      GParamSpec *pspec);
+static void
+xfce_wlr_output_manager_set_property (GObject *object,
+                                      guint prop_id,
+                                      const GValue *value,
+                                      GParamSpec *pspec);
+static void
+xfce_wlr_output_manager_constructed (GObject *object);
+static void
+xfce_wlr_output_manager_finalize (GObject *object);
 
-static void         xfce_wlr_output_manager_get_property    (GObject       *object,
-                                                             guint          prop_id,
-                                                             GValue        *value,
-                                                             GParamSpec    *pspec);
-static void         xfce_wlr_output_manager_set_property    (GObject       *object,
-                                                             guint          prop_id,
-                                                             const GValue  *value,
-                                                             GParamSpec    *pspec);
-static void         xfce_wlr_output_manager_constructed     (GObject       *object);
-static void         xfce_wlr_output_manager_finalize        (GObject       *object);
-
-static void registry_global (void *data, struct wl_registry *registry, uint32_t id, const char *interface, uint32_t version);
-static void registry_global_remove (void *data, struct wl_registry *registry, uint32_t id);
-static void manager_head (void *data, struct zwlr_output_manager_v1 *wl_manager, struct zwlr_output_head_v1 *head);
-static void manager_done (void *data, struct zwlr_output_manager_v1 *wl_manager, uint32_t serial);
-static void manager_finished (void *data, struct zwlr_output_manager_v1 *wl_manager);
-static void head_name (void *data, struct zwlr_output_head_v1 *head, const char *name);
-static void head_description (void *data, struct zwlr_output_head_v1 *head, const char *description);
-static void head_physical_size (void *data, struct zwlr_output_head_v1 *head, int32_t width, int32_t height);
-static void head_mode (void *data, struct zwlr_output_head_v1 *head, struct zwlr_output_mode_v1 *wl_mode);
-static void head_enabled (void *data, struct zwlr_output_head_v1 *head, int32_t enabled);
-static void head_current_mode (void *data, struct zwlr_output_head_v1 *head, struct zwlr_output_mode_v1 *wl_mode);
-static void head_position (void *data, struct zwlr_output_head_v1 *head, int32_t x, int32_t y);
-static void head_transform (void *data, struct zwlr_output_head_v1 *head, int32_t transform);
-static void head_scale (void *data, struct zwlr_output_head_v1 *head, wl_fixed_t scale);
-static void head_finished (void *data, struct zwlr_output_head_v1 *head);
-static void head_make (void *data, struct zwlr_output_head_v1 *head, const char *make);
-static void head_model (void *data, struct zwlr_output_head_v1 *head, const char *model);
-static void head_serial_number (void *data, struct zwlr_output_head_v1 *head, const char *serial_number);
-static void head_adaptive_sync (void *data, struct zwlr_output_head_v1 *head, uint32_t state);
-static void mode_size (void *data, struct zwlr_output_mode_v1 *wl_mode, int32_t width, int32_t height);
-static void mode_refresh (void *data, struct zwlr_output_mode_v1 *wl_mode, int32_t refresh);
-static void mode_preferred (void *data, struct zwlr_output_mode_v1 *wl_mode);
-static void mode_finished (void *data, struct zwlr_output_mode_v1 *wl_mode);
+static void
+registry_global (void *data, struct wl_registry *registry, uint32_t id, const char *interface, uint32_t version);
+static void
+registry_global_remove (void *data, struct wl_registry *registry, uint32_t id);
+static void
+manager_head (void *data, struct zwlr_output_manager_v1 *wl_manager, struct zwlr_output_head_v1 *head);
+static void
+manager_done (void *data, struct zwlr_output_manager_v1 *wl_manager, uint32_t serial);
+static void
+manager_finished (void *data, struct zwlr_output_manager_v1 *wl_manager);
+static void
+head_name (void *data, struct zwlr_output_head_v1 *head, const char *name);
+static void
+head_description (void *data, struct zwlr_output_head_v1 *head, const char *description);
+static void
+head_physical_size (void *data, struct zwlr_output_head_v1 *head, int32_t width, int32_t height);
+static void
+head_mode (void *data, struct zwlr_output_head_v1 *head, struct zwlr_output_mode_v1 *wl_mode);
+static void
+head_enabled (void *data, struct zwlr_output_head_v1 *head, int32_t enabled);
+static void
+head_current_mode (void *data, struct zwlr_output_head_v1 *head, struct zwlr_output_mode_v1 *wl_mode);
+static void
+head_position (void *data, struct zwlr_output_head_v1 *head, int32_t x, int32_t y);
+static void
+head_transform (void *data, struct zwlr_output_head_v1 *head, int32_t transform);
+static void
+head_scale (void *data, struct zwlr_output_head_v1 *head, wl_fixed_t scale);
+static void
+head_finished (void *data, struct zwlr_output_head_v1 *head);
+static void
+head_make (void *data, struct zwlr_output_head_v1 *head, const char *make);
+static void
+head_model (void *data, struct zwlr_output_head_v1 *head, const char *model);
+static void
+head_serial_number (void *data, struct zwlr_output_head_v1 *head, const char *serial_number);
+static void
+head_adaptive_sync (void *data, struct zwlr_output_head_v1 *head, uint32_t state);
+static void
+mode_size (void *data, struct zwlr_output_mode_v1 *wl_mode, int32_t width, int32_t height);
+static void
+mode_refresh (void *data, struct zwlr_output_mode_v1 *wl_mode, int32_t refresh);
+static void
+mode_preferred (void *data, struct zwlr_output_mode_v1 *wl_mode);
+static void
+mode_finished (void *data, struct zwlr_output_mode_v1 *wl_mode);
 
 
 enum
@@ -88,14 +115,12 @@ struct _XfceWlrOutputManager
     gboolean initialized;
 };
 
-static const struct wl_registry_listener registry_listener =
-{
+static const struct wl_registry_listener registry_listener = {
     .global = registry_global,
     .global_remove = registry_global_remove,
 };
 
-static const struct zwlr_output_head_v1_listener head_listener =
-{
+static const struct zwlr_output_head_v1_listener head_listener = {
     .name = head_name,
     .description = head_description,
     .physical_size = head_physical_size,
@@ -112,8 +137,7 @@ static const struct zwlr_output_head_v1_listener head_listener =
     .adaptive_sync = head_adaptive_sync,
 };
 
-static const struct zwlr_output_mode_v1_listener mode_listener =
-{
+static const struct zwlr_output_mode_v1_listener mode_listener = {
     .size = mode_size,
     .refresh = mode_refresh,
     .preferred = mode_preferred,
@@ -205,7 +229,7 @@ xfce_wlr_output_manager_get_property (GObject *object,
             break;
 
         default:
-            G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
             break;
     }
 }
@@ -244,7 +268,7 @@ output_make_edid (gpointer data,
 {
     XfceWlrOutput *output = data;
     gchar *edid_str = g_strdup_printf ("%s-%s-%s", output->serial_number, output->model, output->manufacturer);
-    output->edid = g_compute_checksum_for_string (G_CHECKSUM_SHA1 , edid_str, -1);
+    output->edid = g_compute_checksum_for_string (G_CHECKSUM_SHA1, edid_str, -1);
     g_free (edid_str);
 }
 

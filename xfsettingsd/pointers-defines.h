@@ -16,8 +16,8 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <X11/Xlib.h>
 #include <X11/Xatom.h>
+#include <X11/Xlib.h>
 #include <X11/extensions/XI.h>
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XIproto.h>
@@ -32,17 +32,17 @@
 /* test if the required version of inputproto (1.4.2) is available */
 #undef DEVICE_HOTPLUGGING
 #ifdef XI_Add_DevicePresenceNotify_Major
-#  if XI_Add_DevicePresenceNotify_Major >= 1 && defined (DeviceRemoved)
-#    define DEVICE_HOTPLUGGING
-#  else
-#    undef DEVICE_HOTPLUGGING
-#  endif
+#if XI_Add_DevicePresenceNotify_Major >= 1 && defined(DeviceRemoved)
+#define DEVICE_HOTPLUGGING
+#else
+#undef DEVICE_HOTPLUGGING
+#endif
 #endif
 
 /* test if device properties are available */
 #undef DEVICE_PROPERTIES
 #ifdef XI_Add_DeviceProperties_Major
-#  define DEVICE_PROPERTIES
+#define DEVICE_PROPERTIES
 #endif
 
 #ifndef IsXExtensionPointer

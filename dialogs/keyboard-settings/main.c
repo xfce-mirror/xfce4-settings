@@ -18,27 +18,23 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <stdlib.h>
-
-#include <gtk/gtk.h>
-
-#include <gdk/gdkx.h>
-
-#include <libxfce4ui/libxfce4ui.h>
-#include <xfconf/xfconf.h>
 
 #include "xfce-keyboard-settings.h"
 
+#include <gdk/gdkx.h>
+#include <gtk/gtk.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <xfconf/xfconf.h>
 
 
-static gint            opt_socket_id = 0;
-static gboolean        opt_version = FALSE;
-static GOptionEntry    entries[] = {
-  { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_("Settings manager socket"), N_("SOCKET ID") },
-  { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
+
+static gint opt_socket_id = 0;
+static gboolean opt_version = FALSE;
+static GOptionEntry entries[] = {
+  { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_ ("Settings manager socket"), N_ ("SOCKET ID") },
+  { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_ ("Version information"), NULL },
   { NULL }
 };
 
@@ -46,25 +42,25 @@ static GOptionEntry    entries[] = {
 
 static void
 keyboard_settings_dialog_response (GtkWidget *dialog,
-                                   gint       response_id)
+                                   gint response_id)
 {
-    if (response_id == GTK_RESPONSE_HELP)
-        xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "keyboard",
-                                            NULL, XFCE4_SETTINGS_VERSION_SHORT);
-    else
-        gtk_main_quit ();
+  if (response_id == GTK_RESPONSE_HELP)
+    xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "keyboard",
+                                        NULL, XFCE4_SETTINGS_VERSION_SHORT);
+  else
+    gtk_main_quit ();
 }
 
 
 
 int
-main (int    argc,
+main (int argc,
       char **argv)
 {
   XfceKeyboardSettings *settings;
-  GtkWidget            *dialog;
-  GtkWidget            *plug;
-  GError               *error = NULL;
+  GtkWidget *dialog;
+  GtkWidget *plug;
+  GError *error = NULL;
 
   /* Set up translation domain */
   xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -98,10 +94,10 @@ main (int    argc,
       return EXIT_SUCCESS;
     }
 
-    if (!GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+  if (!GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {
-        g_warning ("Keyboard settings are only available on X11");
-        return EXIT_FAILURE;
+      g_warning ("Keyboard settings are only available on X11");
+      return EXIT_FAILURE;
     }
 
   /* Initialize xfconf */
@@ -131,7 +127,7 @@ main (int    argc,
       dialog = xfce_keyboard_settings_create_dialog (settings);
 
       g_signal_connect (dialog, "response",
-          G_CALLBACK (keyboard_settings_dialog_response), NULL);
+                        G_CALLBACK (keyboard_settings_dialog_response), NULL);
       gtk_window_present (GTK_WINDOW (dialog));
 
       /* To prevent the settings dialog to be saved in the session */

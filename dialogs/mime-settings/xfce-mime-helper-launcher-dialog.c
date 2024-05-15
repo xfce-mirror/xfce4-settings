@@ -17,13 +17,14 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
+#include "xfce-mime-helper-chooser.h"
+#include "xfce-mime-helper-enum-types.h"
+#include "xfce-mime-helper-launcher-dialog.h"
+
 #include <libxfce4ui/libxfce4ui.h>
-#include <xfce-mime-helper-chooser.h>
-#include <xfce-mime-helper-enum-types.h>
-#include <xfce-mime-helper-launcher-dialog.h>
 
 
 
@@ -36,17 +37,20 @@ enum
 
 
 
-static void xfce_mime_helper_launcher_dialog_get_property     (GObject                      *object,
-                                                               guint                         prop_id,
-                                                               GValue                       *value,
-                                                               GParamSpec                   *pspec);
-static void xfce_mime_helper_launcher_dialog_set_property     (GObject                      *object,
-                                                               guint                         prop_id,
-                                                               const GValue                 *value,
-                                                               GParamSpec                   *pspec);
-static void xfce_mime_helper_launcher_dialog_notify_is_valid  (XfceMimeHelperChooser        *chooser,
-                                                               GParamSpec                   *pspec,
-                                                               XfceMimeHelperLauncherDialog *launcher_dialog);
+static void
+xfce_mime_helper_launcher_dialog_get_property (GObject *object,
+                                               guint prop_id,
+                                               GValue *value,
+                                               GParamSpec *pspec);
+static void
+xfce_mime_helper_launcher_dialog_set_property (GObject *object,
+                                               guint prop_id,
+                                               const GValue *value,
+                                               GParamSpec *pspec);
+static void
+xfce_mime_helper_launcher_dialog_notify_is_valid (XfceMimeHelperChooser *chooser,
+                                                  GParamSpec *pspec,
+                                                  XfceMimeHelperLauncherDialog *launcher_dialog);
 
 
 
@@ -57,8 +61,8 @@ struct _XfceMimeHelperLauncherDialogClass
 
 struct _XfceMimeHelperLauncherDialog
 {
-  GtkDialog              __parent__;
-  GtkWidget             *label;
+  GtkDialog __parent__;
+  GtkWidget *label;
   XfceMimeHelperCategory category;
 };
 
@@ -98,10 +102,10 @@ xfce_mime_helper_launcher_dialog_class_init (XfceMimeHelperLauncherDialogClass *
 static void
 xfce_mime_helper_launcher_dialog_init (XfceMimeHelperLauncherDialog *launcher_dialog)
 {
-  GtkWidget      *chooser;
-  GtkWidget      *image;
-  GtkWidget      *hbox;
-  GtkWidget      *vbox;
+  GtkWidget *chooser;
+  GtkWidget *image;
+  GtkWidget *hbox;
+  GtkWidget *vbox;
 
   gtk_dialog_add_button (GTK_DIALOG (launcher_dialog), _("_Cancel"), GTK_RESPONSE_CANCEL);
   gtk_dialog_add_button (GTK_DIALOG (launcher_dialog), _("_OK"), GTK_RESPONSE_OK);
@@ -139,9 +143,9 @@ xfce_mime_helper_launcher_dialog_init (XfceMimeHelperLauncherDialog *launcher_di
 
 
 static void
-xfce_mime_helper_launcher_dialog_get_property (GObject    *object,
-                                               guint       prop_id,
-                                               GValue     *value,
+xfce_mime_helper_launcher_dialog_get_property (GObject *object,
+                                               guint prop_id,
+                                               GValue *value,
                                                GParamSpec *pspec)
 {
   XfceMimeHelperLauncherDialog *launcher_dialog = XFCE_MIME_HELPER_LAUNCHER_DIALOG (object);
@@ -161,10 +165,10 @@ xfce_mime_helper_launcher_dialog_get_property (GObject    *object,
 
 
 static void
-xfce_mime_helper_launcher_dialog_set_property (GObject      *object,
-                                               guint         prop_id,
+xfce_mime_helper_launcher_dialog_set_property (GObject *object,
+                                               guint prop_id,
                                                const GValue *value,
-                                               GParamSpec   *pspec)
+                                               GParamSpec *pspec)
 {
   XfceMimeHelperLauncherDialog *launcher_dialog = XFCE_MIME_HELPER_LAUNCHER_DIALOG (object);
 
@@ -183,8 +187,8 @@ xfce_mime_helper_launcher_dialog_set_property (GObject      *object,
 
 
 static void
-xfce_mime_helper_launcher_dialog_notify_is_valid (XfceMimeHelperChooser        *chooser,
-                                                  GParamSpec                   *pspec,
+xfce_mime_helper_launcher_dialog_notify_is_valid (XfceMimeHelperChooser *chooser,
+                                                  GParamSpec *pspec,
                                                   XfceMimeHelperLauncherDialog *launcher_dialog)
 {
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
@@ -205,7 +209,7 @@ xfce_mime_helper_launcher_dialog_notify_is_valid (XfceMimeHelperChooser        *
  *
  * Return value: the newly allocated #XfceMimeHelperLauncherDialog.
  **/
-GtkWidget*
+GtkWidget *
 xfce_mime_helper_launcher_dialog_new (XfceMimeHelperCategory category)
 {
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
@@ -241,18 +245,17 @@ xfce_mime_helper_launcher_dialog_get_category (const XfceMimeHelperLauncherDialo
  **/
 void
 xfce_mime_helper_launcher_dialog_set_category (XfceMimeHelperLauncherDialog *launcher_dialog,
-                                               XfceMimeHelperCategory        category)
+                                               XfceMimeHelperCategory category)
 {
-  static const gchar *MESSAGES[] =
-  {
-    N_("Please choose your preferred Web\n"
-       "Browser now and click OK to proceed."),
-    N_("Please choose your preferred Mail Reader\n"
-       "now and click OK to proceed."),
-    N_("Please choose your preferred File Manager\n"
-       "now and click OK to proceed."),
-    N_("Please choose your preferred Terminal\n"
-       "Emulator now and click OK to proceed."),
+  static const gchar *MESSAGES[] = {
+    N_ ("Please choose your preferred Web\n"
+        "Browser now and click OK to proceed."),
+    N_ ("Please choose your preferred Mail Reader\n"
+        "now and click OK to proceed."),
+    N_ ("Please choose your preferred File Manager\n"
+        "now and click OK to proceed."),
+    N_ ("Please choose your preferred Terminal\n"
+        "Emulator now and click OK to proceed."),
   };
 
   /* sanity check the categories */
@@ -268,5 +271,3 @@ xfce_mime_helper_launcher_dialog_set_category (XfceMimeHelperLauncherDialog *lau
   launcher_dialog->category = category;
   g_object_notify (G_OBJECT (launcher_dialog), "category");
 }
-
-

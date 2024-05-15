@@ -23,69 +23,66 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-#ifdef HAVE_TIME_H
-#include <time.h>
-#endif
-
-#include <X11/Xlib.h>
-#include <X11/Xmd.h>
-#include <X11/Xatom.h>
-
-#include <glib.h>
-#include <gtk/gtk.h>
-#include <gdk/gdkx.h>
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
-
-#include <gio/gio.h>
-#include <fontconfig/fontconfig.h>
 
 #include "xsettings.h"
+
 #include "common/debug.h"
 
+#include <X11/Xatom.h>
+#include <X11/Xmd.h>
+#include <fontconfig/fontconfig.h>
+#include <gdk/gdkx.h>
+#include <gio/gio.h>
+#include <gtk/gtk.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
 #define XSettingsTypeInteger 0
-#define XSettingsTypeString  1
-#define XSettingsTypeColor   2
+#define XSettingsTypeString 1
+#define XSettingsTypeColor 2
 
-#define XSETTINGS_PAD(n,m) ((n + m - 1) & (~(m-1)))
+#define XSETTINGS_PAD(n, m) ((n + m - 1) & (~(m - 1)))
 
-#define DPI_FALLBACK        96
-#define DPI_LOW_REASONABLE  50
+#define DPI_FALLBACK 96
+#define DPI_LOW_REASONABLE 50
 #define DPI_HIGH_REASONABLE 500
 
 #define FC_TIMEOUT_SEC 2 /* timeout before xsettings notify */
-#define FC_PROPERTY    "/Fontconfig/Timestamp"
+#define FC_PROPERTY "/Fontconfig/Timestamp"
 
 
 
 typedef struct _XfceXSettingsScreen XfceXSettingsScreen;
-typedef struct _XfceXSetting        XfceXSetting;
+typedef struct _XfceXSetting XfceXSetting;
 typedef struct _XfceXSettingsNotify XfceXSettingsNotify;
 
 
 
-static void     xfce_xsettings_helper_finalize     (GObject             *object);
-static void     xfce_xsettings_helper_fc_free      (XfceXSettingsHelper *helper);
-static gboolean xfce_xsettings_helper_fc_init      (gpointer             data);
-static gboolean xfce_xsettings_helper_notify_idle  (gpointer             data);
-static void     xfce_xsettings_helper_setting_free (gpointer             data);
-static void     xfce_xsettings_helper_prop_changed (XfconfChannel       *channel,
-                                                    const gchar         *prop_name,
-                                                    const GValue        *value,
-                                                    XfceXSettingsHelper *helper);
-static void     xfce_xsettings_helper_load         (XfceXSettingsHelper *helper);
-static void     xfce_xsettings_helper_screen_free  (XfceXSettingsScreen *screen);
-static void     xfce_xsettings_helper_notify_xft   (XfceXSettingsHelper *helper);
-static void     xfce_xsettings_helper_notify       (XfceXSettingsHelper *helper);
+static void
+xfce_xsettings_helper_finalize (GObject *object);
+static void
+xfce_xsettings_helper_fc_free (XfceXSettingsHelper *helper);
+static gboolean
+xfce_xsettings_helper_fc_init (gpointer data);
+static gboolean
+xfce_xsettings_helper_notify_idle (gpointer data);
+static void
+xfce_xsettings_helper_setting_free (gpointer data);
+static void
+xfce_xsettings_helper_prop_changed (XfconfChannel *channel,
+                                    const gchar *prop_name,
+                                    const GValue *value,
+                                    XfceXSettingsHelper *helper);
+static void
+xfce_xsettings_helper_load (XfceXSettingsHelper *helper);
+static void
+xfce_xsettings_helper_screen_free (XfceXSettingsScreen *screen);
+static void
+xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper);
+static void
+xfce_xsettings_helper_notify (XfceXSettingsHelper *helper);
 
 
 
@@ -96,58 +93,58 @@ struct _XfceXSettingsHelperClass
 
 struct _XfceXSettingsHelper
 {
-    GObject  __parent__;
+    GObject __parent__;
 
     XfconfChannel *channel;
 
     /* list of XfceXSettingsScreen we handle */
-    GSList        *screens;
+    GSList *screens;
 
     /* table with xfconf property keyd and XfceXSetting */
-    GHashTable    *settings;
+    GHashTable *settings;
 
     /* auto increasing serial for each time we notify */
-    gulong         serial;
+    gulong serial;
 
     /* idle notifications */
-    guint          notify_idle_id;
-    guint          notify_xft_idle_id;
+    guint notify_idle_id;
+    guint notify_xft_idle_id;
 
     /* atom for xsetting property changes */
-    Atom           xsettings_atom;
+    Atom xsettings_atom;
 
     /* fontconfig monitoring */
-    GPtrArray     *fc_monitors;
-    guint          fc_notify_timeout_id;
-    guint          fc_init_id;
+    GPtrArray *fc_monitors;
+    guint fc_notify_timeout_id;
+    guint fc_init_id;
 };
 
 struct _XfceXSetting
 {
     GValue *value;
-    gulong  last_change_serial;
+    gulong last_change_serial;
 };
 
 struct _XfceXSettingsNotify
 {
     guchar *buf;
-    gsize   buf_len;
-    gint    n_settings;
-    gsize   dpi_offset;
+    gsize buf_len;
+    gint n_settings;
+    gsize dpi_offset;
 };
 
 struct _XfceXSettingsScreen
 {
     Display *xdisplay;
-    Window   window;
-    Atom     selection_atom;
-    gint     screen_num;
+    Window window;
+    Atom selection_atom;
+    gint screen_num;
 };
 
 struct _XfceTimestamp
 {
     Window window;
-    Atom   atom;
+    Atom atom;
 };
 
 
@@ -173,12 +170,12 @@ xfce_xsettings_helper_init (XfceXSettingsHelper *helper)
     helper->channel = xfconf_channel_new ("xsettings");
 
     helper->settings = g_hash_table_new_full (g_str_hash, g_str_equal,
-        g_free, xfce_xsettings_helper_setting_free);
+                                              g_free, xfce_xsettings_helper_setting_free);
 
     xfce_xsettings_helper_load (helper);
 
     g_signal_connect (G_OBJECT (helper->channel), "property-changed",
-        G_CALLBACK (xfce_xsettings_helper_prop_changed), helper);
+                      G_CALLBACK (xfce_xsettings_helper_prop_changed), helper);
 }
 
 
@@ -187,7 +184,7 @@ static void
 xfce_xsettings_helper_finalize (GObject *object)
 {
     XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (object);
-    GSList              *li;
+    GSList *li;
 
     /* stop fontconfig monitoring */
     xfce_xsettings_helper_fc_free (helper);
@@ -217,7 +214,7 @@ static gboolean
 xfce_xsettings_helper_fc_notify (gpointer data)
 {
     XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (data);
-    XfceXSetting        *setting;
+    XfceXSetting *setting;
 
     helper->fc_notify_timeout_id = 0;
 
@@ -265,7 +262,7 @@ xfce_xsettings_helper_fc_changed (XfceXSettingsHelper *helper)
         g_source_remove (helper->fc_notify_timeout_id);
 
     helper->fc_notify_timeout_id = g_timeout_add_seconds (FC_TIMEOUT_SEC,
-        xfce_xsettings_helper_fc_notify, helper);
+                                                          xfce_xsettings_helper_fc_notify, helper);
 }
 
 
@@ -290,7 +287,6 @@ xfce_xsettings_helper_fc_free (XfceXSettingsHelper *helper)
     if (helper->fc_monitors != NULL)
     {
         /* remove monitors */
-        g_ptr_array_foreach (helper->fc_monitors, (GFunc) (void (*)(void)) g_object_unref, NULL);
         g_ptr_array_free (helper->fc_monitors, TRUE);
         helper->fc_monitors = NULL;
     }
@@ -300,10 +296,10 @@ xfce_xsettings_helper_fc_free (XfceXSettingsHelper *helper)
 
 static void
 xfce_xsettings_helper_fc_monitor (XfceXSettingsHelper *helper,
-                                  FcStrList           *files)
+                                  FcStrList *files)
 {
-    const gchar  *path;
-    GFile        *file;
+    const gchar *path;
+    GFile *file;
     GFileMonitor *monitor;
 
     if (G_UNLIKELY (files == NULL))
@@ -323,7 +319,7 @@ xfce_xsettings_helper_fc_monitor (XfceXSettingsHelper *helper,
         {
             g_ptr_array_add (helper->fc_monitors, monitor);
             g_signal_connect_swapped (G_OBJECT (monitor), "changed",
-                G_CALLBACK (xfce_xsettings_helper_fc_changed), helper);
+                                      G_CALLBACK (xfce_xsettings_helper_fc_changed), helper);
 
             xfsettings_dbg_filtered (XFSD_DEBUG_FONTCONFIG, "monitoring \"%s\"",
                                      path);
@@ -346,7 +342,7 @@ xfce_xsettings_helper_fc_init (gpointer data)
 
     if (FcInit ())
     {
-        helper->fc_monitors = g_ptr_array_new ();
+        helper->fc_monitors = g_ptr_array_new_with_free_func (g_object_unref);
 
         /* start monitoring config files and font directories */
         xfce_xsettings_helper_fc_monitor (helper, FcConfigGetConfigFiles (NULL));
@@ -394,7 +390,7 @@ xfce_xsettings_helper_notify_xft_idle (gpointer data)
 
 
 static gboolean
-xfce_xsettings_helper_prop_valid (const gchar  *prop_name,
+xfce_xsettings_helper_prop_valid (const gchar *prop_name,
                                   const GValue *value)
 {
     /* only accept properties in valid domains */
@@ -421,8 +417,8 @@ xfce_xsettings_helper_prop_valid (const gchar  *prop_name,
 
 
 static gboolean
-xfce_xsettings_helper_prop_load (gchar               *prop_name,
-                                 GValue              *value,
+xfce_xsettings_helper_prop_load (gchar *prop_name,
+                                 GValue *value,
                                  XfceXSettingsHelper *helper)
 {
     XfceXSetting *setting;
@@ -447,9 +443,9 @@ xfce_xsettings_helper_prop_load (gchar               *prop_name,
 
 
 static void
-xfce_xsettings_helper_prop_changed (XfconfChannel       *channel,
-                                    const gchar         *prop_name,
-                                    const GValue        *value,
+xfce_xsettings_helper_prop_changed (XfconfChannel *channel,
+                                    const gchar *prop_name,
+                                    const GValue *value,
                                     XfceXSettingsHelper *helper)
 {
     XfceXSetting *setting;
@@ -488,8 +484,8 @@ xfce_xsettings_helper_prop_changed (XfconfChannel       *channel,
         }
         else
         {
-           /* leave, so not notification is scheduled */
-           return;
+            /* leave, so not notification is scheduled */
+            return;
         }
     }
     else
@@ -523,14 +519,13 @@ xfce_xsettings_helper_load (XfceXSettingsHelper *helper)
 
     props = xfconf_channel_get_properties (helper->channel, NULL);
     if (G_LIKELY (props != NULL))
-      {
+    {
         /* steal properties and put them in the settings table */
-        g_hash_table_foreach_steal (props,
-            (GHRFunc) xfce_xsettings_helper_prop_load, helper);
+        g_hash_table_foreach_steal (props, (GHRFunc) xfce_xsettings_helper_prop_load, helper);
 
         /* destroy the remaining properties */
         g_hash_table_destroy (props);
-      }
+    }
 }
 
 
@@ -551,9 +546,9 @@ static gint
 xfce_xsettings_helper_screen_dpi (XfceXSettingsScreen *screen)
 {
     Screen *xscreen;
-    gint    width_mm, width_dpi;
-    gint    height_mm, height_dpi;
-    gint    dpi = DPI_FALLBACK;
+    gint width_mm, width_dpi;
+    gint height_mm, height_dpi;
+    gint dpi = DPI_FALLBACK;
 
     xscreen = ScreenOfDisplay (screen->xdisplay, screen->screen_num);
     if (G_LIKELY (xscreen != NULL))
@@ -586,15 +581,15 @@ xfce_xsettings_helper_screen_dpi (XfceXSettingsScreen *screen)
 
 
 static void
-xfce_xsettings_helper_notify_xft_update (GString      *resource,
-                                         const gchar  *name,
+xfce_xsettings_helper_notify_xft_update (GString *resource,
+                                         const gchar *name,
                                          const GValue *value)
 {
-    gchar       *found;
-    gchar       *end;
+    gchar *found;
+    gchar *end;
     const gchar *str = NULL;
-    gchar        s[64];
-    gint         num;
+    gchar s[64];
+    gint num;
 
     g_return_if_fail (g_str_has_suffix (name, ":"));
 
@@ -628,7 +623,7 @@ xfce_xsettings_helper_notify_xft_update (GString      *resource,
             if (strcmp (name, "Xft.dpi:") == 0)
                 num = CLAMP (num, DPI_LOW_REASONABLE, DPI_HIGH_REASONABLE);
 
-            g_snprintf  (s, sizeof (s), "%d", num);
+            g_snprintf (s, sizeof (s), "%d", num);
             str = s;
             break;
 
@@ -651,14 +646,13 @@ xfce_xsettings_helper_notify_xft_update (GString      *resource,
 static void
 xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
 {
-    Display      *xdisplay;
-    gchar        *str;
-    GString      *resource;
+    Display *xdisplay;
+    gchar *str;
+    GString *resource;
     XfceXSetting *setting;
-    guint         i;
-    GValue        bool_val = { 0, };
-    const gchar  *props[][2] =
-    {
+    guint i;
+    GValue bool_val = G_VALUE_INIT;
+    const gchar *props[][2] = {
         /* { xfconf name}, { xft name } */
         { "/Xft/Antialias", "Xft.antialias:" },
         { "/Xft/Hinting", "Xft.hinting:" },
@@ -715,7 +709,7 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
         g_critical ("Failed to update the resource manager string");
 
     xfsettings_dbg (XFSD_DEBUG_XSETTINGS,
-                    "resource manager (xft) changed (len=%"G_GSIZE_FORMAT")",
+                    "resource manager (xft) changed (len=%" G_GSIZE_FORMAT ")",
                     resource->len);
 
     g_string_free (resource, TRUE);
@@ -724,17 +718,17 @@ xfce_xsettings_helper_notify_xft (XfceXSettingsHelper *helper)
 
 
 static void
-xfce_xsettings_helper_setting_append (const gchar         *name,
-                                      XfceXSetting        *setting,
+xfce_xsettings_helper_setting_append (const gchar *name,
+                                      XfceXSetting *setting,
                                       XfceXSettingsNotify *notify)
 {
-    gsize        buf_len, new_len;
-    gsize        name_len, name_len_pad;
-    gsize        value_len, value_len_pad;
+    gsize buf_len, new_len;
+    gsize name_len, name_len_pad;
+    gsize value_len, value_len_pad;
     const gchar *str = NULL;
-    guchar      *needle;
-    guchar       type = 0;
-    gint         num;
+    guchar *needle;
+    guchar type = 0;
+    gint num;
 
     name_len = strlen (name) - 1 /* -1 for the xfconf slash */;
     name_len_pad = XSETTINGS_PAD (name_len, 4);
@@ -779,7 +773,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
     /* resize the buffer to fit this setting */
     notify->buf = g_renew (guchar, notify->buf, new_len);
     if (G_UNLIKELY (notify->buf == NULL))
-      return;
+        return;
     needle = notify->buf + notify->buf_len;
     notify->buf_len = new_len;
 
@@ -800,7 +794,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
     *needle++ = 0;
 
     /* name length */
-    *(CARD16 *)needle = name_len;
+    *(CARD16 *) needle = name_len;
     needle += 2;
 
     /* name */
@@ -812,7 +806,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
         *needle++ = 0;
 
     /* setting's last change serial */
-    *(CARD32 *)needle = setting->last_change_serial;
+    *(CARD32 *) needle = setting->last_change_serial;
     needle += 4;
 
     /* set setting value */
@@ -828,7 +822,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
             if (G_LIKELY (value_len > 0 && str != NULL))
             {
                 /* value length */
-                *(CARD32 *)needle = value_len;
+                *(CARD32 *) needle = value_len;
                 needle += 4;
 
                 /* value */
@@ -842,7 +836,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
             else
             {
                 /* value length */
-                *(CARD32 *)needle = 0;
+                *(CARD32 *) needle = 0;
                 needle += 4;
             }
             break;
@@ -873,23 +867,23 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
                 num = g_value_get_boolean (setting->value);
             }
 
-            *(INT32 *)needle = num;
+            *(INT32 *) needle = num;
             needle += 4;
             break;
 
         /* TODO */
         case XSettingsTypeColor:
             /* body for XSettingsTypeColor:
-            *
-            * 2  CARD16  red
-            * 2  CARD16  blue
-            * 2  CARD16  green
-            * 2  CARD16  alpha
-            */
-            *(CARD16 *)needle = 0;
-            *(CARD16 *)(needle + 2) = 0;
-            *(CARD16 *)(needle + 4) = 0;
-            *(CARD16 *)(needle + 6) = 0;
+             *
+             * 2  CARD16  red
+             * 2  CARD16  blue
+             * 2  CARD16  green
+             * 2  CARD16  alpha
+             */
+            *(CARD16 *) needle = 0;
+            *(CARD16 *) (needle + 2) = 0;
+            *(CARD16 *) (needle + 4) = 0;
+            *(CARD16 *) (needle + 6) = 0;
             needle += 8;
             break;
 
@@ -907,18 +901,18 @@ static void
 xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
 {
     XfceXSettingsNotify *notify;
-    CARD32               orderint = 0x01020304;
-    guchar              *needle;
+    CARD32 orderint = 0x01020304;
+    guchar *needle;
     XfceXSettingsScreen *screen;
-    GSList              *li;
-    gint                 dpi;
+    GSList *li;
+    gint dpi;
 
     g_return_if_fail (XFCE_IS_XSETTINGS_HELPER (helper));
 
     notify = g_slice_new0 (XfceXSettingsNotify);
     notify->buf = g_new0 (guchar, 12);
     if (G_UNLIKELY (notify->buf == NULL))
-      goto errnomem;
+        goto errnomem;
     notify->buf_len = 12;
     needle = notify->buf;
 
@@ -931,22 +925,21 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
      */
 
     /* byte-order */
-    *(CARD8 *)needle = (*(char *)&orderint == 1) ? MSBFirst : LSBFirst;
+    *(CARD8 *) needle = (*(char *) &orderint == 1) ? MSBFirst : LSBFirst;
     needle += 4;
 
     /* serial for this notification */
-    *(CARD32 *)needle = helper->serial++;
+    *(CARD32 *) needle = helper->serial++;
 
     /* add all the settings */
-    g_hash_table_foreach (helper->settings,
-        (GHFunc) xfce_xsettings_helper_setting_append, notify);
+    g_hash_table_foreach (helper->settings, (GHFunc) xfce_xsettings_helper_setting_append, notify);
 
     if (G_UNLIKELY (notify->buf == NULL))
-      goto errnomem;
+        goto errnomem;
 
     /* number of settings */
     needle = notify->buf + 8;
-    *(CARD32 *)needle = notify->n_settings;
+    *(CARD32 *) needle = notify->n_settings;
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
@@ -960,7 +953,7 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
         {
             dpi = xfce_xsettings_helper_screen_dpi (screen);
             needle = notify->buf + notify->dpi_offset;
-            *(INT32 *)needle = dpi * 1024;
+            *(INT32 *) needle = dpi * 1024;
         }
 
         XChangeProperty (screen->xdisplay, screen->window,
@@ -974,11 +967,11 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
     }
 
     xfsettings_dbg (XFSD_DEBUG_XSETTINGS,
-                    "%d settings changed (serial=%lu, len=%"G_GSIZE_FORMAT")",
+                    "%d settings changed (serial=%lu, len=%" G_GSIZE_FORMAT ")",
                     notify->n_settings, helper->serial - 1, notify->buf_len);
 
     g_free (notify->buf);
-  errnomem:
+errnomem:
     g_slice_free (XfceXSettingsNotify, notify);
 }
 
@@ -995,13 +988,13 @@ xfce_xsettings_helper_screen_free (XfceXSettingsScreen *screen)
 
 static GdkFilterReturn
 xfce_xsettings_helper_event_filter (GdkXEvent *gdkxevent,
-                                    GdkEvent  *gdkevent,
-                                    gpointer   data)
+                                    GdkEvent *gdkevent,
+                                    gpointer data)
 {
     XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (data);
-    GSList              *li;
+    GSList *li;
     XfceXSettingsScreen *screen;
-    XEvent              *xevent = gdkxevent;
+    XEvent *xevent = gdkxevent;
 
     /* check if another settings manager took over the selection
      * of one of the windows */
@@ -1036,11 +1029,11 @@ xfce_xsettings_helper_event_filter (GdkXEvent *gdkxevent,
 
 
 static Bool
-xfce_xsettings_helper_timestamp_predicate (Display  *xdisplay,
-                                           XEvent   *xevent,
-                                           XPointer  arg)
+xfce_xsettings_helper_timestamp_predicate (Display *xdisplay,
+                                           XEvent *xevent,
+                                           XPointer arg)
 {
-    struct _XfceTimestamp *ts = (struct _XfceTimestamp *)arg;
+    struct _XfceTimestamp *ts = (struct _XfceTimestamp *) arg;
 
     return (xevent->type == PropertyNotify
             && xevent->xproperty.window == ts->window
@@ -1051,20 +1044,18 @@ xfce_xsettings_helper_timestamp_predicate (Display  *xdisplay,
 
 Time
 xfce_xsettings_get_server_time (Display *xdisplay,
-                                Window   window)
+                                Window window)
 {
-    struct _XfceTimestamp *ts = g_malloc(sizeof(struct _XfceTimestamp));
+    struct _XfceTimestamp *ts = g_malloc (sizeof (struct _XfceTimestamp));
     guchar c = 'a';
     XEvent xevent;
 
     /* get the current xserver timestamp */
     ts->atom = XInternAtom (xdisplay, "_TIMESTAMP_PROP", False);
     ts->window = window;
-    XChangeProperty (xdisplay, window, ts->atom, ts->atom,
-                     8, PropModeReplace, &c, 1);
-    XIfEvent (xdisplay, &xevent, xfce_xsettings_helper_timestamp_predicate,
-              (XPointer)ts);
-    g_free(ts);
+    XChangeProperty (xdisplay, window, ts->atom, ts->atom, 8, PropModeReplace, &c, 1);
+    XIfEvent (xdisplay, &xevent, xfce_xsettings_helper_timestamp_predicate, (XPointer) ts);
+    g_free (ts);
     return xevent.xproperty.time;
 }
 
@@ -1072,20 +1063,20 @@ xfce_xsettings_get_server_time (Display *xdisplay,
 
 gboolean
 xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
-                                GdkDisplay          *gdkdisplay,
-                                gboolean             force_replace)
+                                GdkDisplay *gdkdisplay,
+                                gboolean force_replace)
 {
-    Display             *xdisplay;
-    Window               root_window;
-    Window               window;
-    gchar                atom_name[64];
-    Atom                 selection_atom;
-    gint                 n_screens, n;
+    Display *xdisplay;
+    Window root_window;
+    Window window;
+    gchar atom_name[64];
+    Atom selection_atom;
+    gint n_screens, n;
 
     XfceXSettingsScreen *screen;
-    Time                 timestamp;
-    XClientMessageEvent  xev;
-    gboolean             succeed;
+    Time timestamp;
+    XClientMessageEvent xev;
+    gboolean succeed;
 
     g_return_val_if_fail (GDK_IS_DISPLAY (gdkdisplay), FALSE);
     g_return_val_if_fail (XFCE_IS_XSETTINGS_HELPER (helper), FALSE);
@@ -1136,11 +1127,12 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
             xev.data.l[0] = timestamp;
             xev.data.l[1] = selection_atom;
             xev.data.l[2] = window;
-            xev.data.l[3] = 0;  /* manager specific data */
-            xev.data.l[4] = 0;  /* manager specific data */
+            xev.data.l[3] = 0; /* manager specific data */
+            xev.data.l[4] = 0; /* manager specific data */
 
             if (XSendEvent (xdisplay, root_window, False,
-                            StructureNotifyMask, (XEvent *)&xev) != 0)
+                            StructureNotifyMask, (XEvent *) &xev)
+                != 0)
             {
                 /* the window was successfully registered as the new
                  * xsettings window for this screen */

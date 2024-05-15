@@ -17,33 +17,37 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
+
+#include "gtk-settings-exported.h"
+#include "gtk-settings.h"
+#include "xsettings-properties.h"
 
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#include <xfconf/xfconf.h>
+
 #ifdef ENABLE_WAYLAND
 #include <gdk/gdkwayland.h>
 #define WINDOWING_IS_WAYLAND() GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ())
 #else
 #define WINDOWING_IS_WAYLAND() FALSE
 #endif
-#include <xfconf/xfconf.h>
-
-#include "gtk-settings.h"
-#include "xsettings-properties.h"
-#include "gtk-settings-exported.h"
 
 
 
-static void         xfce_gtk_settings_helper_finalize                      (GObject                   *object);
-static void         xfce_gtk_settings_helper_gsettings_changed             (GSettings                 *gsettings,
-                                                                            gchar                     *key,
-                                                                            XfceGtkSettingsHelper     *helper);
-static void         xfce_gtk_settings_helper_channel_property_changed      (XfconfChannel             *channel,
-                                                                            const gchar               *property,
-                                                                            const GValue              *value,
-                                                                            XfceGtkSettingsHelper     *helper);
+static void
+xfce_gtk_settings_helper_finalize (GObject *object);
+static void
+xfce_gtk_settings_helper_gsettings_changed (GSettings *gsettings,
+                                            gchar *key,
+                                            XfceGtkSettingsHelper *helper);
+static void
+xfce_gtk_settings_helper_channel_property_changed (XfconfChannel *channel,
+                                                   const gchar *property,
+                                                   const GValue *value,
+                                                   XfceGtkSettingsHelper *helper);
 
 
 
@@ -60,48 +64,47 @@ struct _XfceGtkSettingsHelper
 
 typedef struct _GSettingsData
 {
-  const gchar *schema;
-  const gchar *key;
-  const gchar *gtksetting;
+    const gchar *schema;
+    const gchar *key;
+    const gchar *gtksetting;
 } GSettingsData;
 
 typedef struct _XfconfData
 {
-  const gchar *property;
-  const gchar *gtksetting;
+    const gchar *property;
+    const gchar *gtksetting;
 } XfconfData;
 
 /* from https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gdk/wayland/gdkscreen-wayland.c
  * only types that are supposed to match are kept (.type != G_TYPE_NONE) and duplicates are
  * removed (org.gnome.desktop is preferred) */
-static const GSettingsData translations[] =
-{
-  { "org.gnome.desktop.interface", "gtk-theme", "gtk-theme-name" },
-  { "org.gnome.desktop.interface", "gtk-key-theme", "gtk-key-theme-name" },
-  { "org.gnome.desktop.interface", "icon-theme", "gtk-icon-theme-name" },
-  { "org.gnome.desktop.interface", "cursor-theme", "gtk-cursor-theme-name" },
-  { "org.gnome.desktop.interface", "cursor-size", "gtk-cursor-theme-size" },
-  { "org.gnome.desktop.interface", "font-name", "gtk-font-name" },
-  { "org.gnome.desktop.interface", "cursor-blink", "gtk-cursor-blink" },
-  { "org.gnome.desktop.interface", "cursor-blink-time", "gtk-cursor-blink-time" },
-  { "org.gnome.desktop.interface", "cursor-blink-timeout", "gtk-cursor-blink-timeout" },
-  { "org.gnome.desktop.interface", "gtk-im-module", "gtk-im-module" },
-  { "org.gnome.desktop.interface", "enable-animations", "gtk-enable-animations" },
-  { "org.gnome.desktop.interface", "gtk-enable-primary-paste", "gtk-enable-primary-paste" },
-  { "org.gnome.desktop.interface", "overlay-scrolling", "gtk-overlay-scrolling" },
-  { "org.gnome.desktop.peripherals.mouse", "double-click", "gtk-double-click-time" },
-  { "org.gnome.desktop.peripherals.mouse", "drag-threshold", "gtk-dnd-drag-threshold" },
-  { "org.gnome.desktop.sound", "theme-name", "gtk-sound-theme-name" },
-  { "org.gnome.desktop.sound", "event-sounds", "gtk-enable-event-sounds" },
-  { "org.gnome.desktop.sound", "input-feedback-sounds", "gtk-enable-input-feedback-sounds" },
-  { "org.gnome.desktop.privacy", "recent-files-max-age", "gtk-recent-files-max-age" },
-  { "org.gnome.desktop.privacy", "remember-recent-files", "gtk-recent-files-enabled" },
-  { "org.gnome.desktop.wm.preferences", "button-layout", "gtk-decoration-layout" },
-  { "org.gnome.desktop.wm.preferences", "action-double-click-titlebar", "gtk-titlebar-double-click" },
-  { "org.gnome.desktop.wm.preferences", "action-middle-click-titlebar", "gtk-titlebar-middle-click" },
-  { "org.gnome.desktop.wm.preferences", "action-right-click-titlebar", "gtk-titlebar-right-click" },
-  { "org.gnome.desktop.a11y", "always-show-text-caret", "gtk-keynav-use-caret" },
-  { "org.gnome.fontconfig", "serial", "gtk-fontconfig-timestamp" },
+static const GSettingsData translations[] = {
+    { "org.gnome.desktop.interface", "gtk-theme", "gtk-theme-name" },
+    { "org.gnome.desktop.interface", "gtk-key-theme", "gtk-key-theme-name" },
+    { "org.gnome.desktop.interface", "icon-theme", "gtk-icon-theme-name" },
+    { "org.gnome.desktop.interface", "cursor-theme", "gtk-cursor-theme-name" },
+    { "org.gnome.desktop.interface", "cursor-size", "gtk-cursor-theme-size" },
+    { "org.gnome.desktop.interface", "font-name", "gtk-font-name" },
+    { "org.gnome.desktop.interface", "cursor-blink", "gtk-cursor-blink" },
+    { "org.gnome.desktop.interface", "cursor-blink-time", "gtk-cursor-blink-time" },
+    { "org.gnome.desktop.interface", "cursor-blink-timeout", "gtk-cursor-blink-timeout" },
+    { "org.gnome.desktop.interface", "gtk-im-module", "gtk-im-module" },
+    { "org.gnome.desktop.interface", "enable-animations", "gtk-enable-animations" },
+    { "org.gnome.desktop.interface", "gtk-enable-primary-paste", "gtk-enable-primary-paste" },
+    { "org.gnome.desktop.interface", "overlay-scrolling", "gtk-overlay-scrolling" },
+    { "org.gnome.desktop.peripherals.mouse", "double-click", "gtk-double-click-time" },
+    { "org.gnome.desktop.peripherals.mouse", "drag-threshold", "gtk-dnd-drag-threshold" },
+    { "org.gnome.desktop.sound", "theme-name", "gtk-sound-theme-name" },
+    { "org.gnome.desktop.sound", "event-sounds", "gtk-enable-event-sounds" },
+    { "org.gnome.desktop.sound", "input-feedback-sounds", "gtk-enable-input-feedback-sounds" },
+    { "org.gnome.desktop.privacy", "recent-files-max-age", "gtk-recent-files-max-age" },
+    { "org.gnome.desktop.privacy", "remember-recent-files", "gtk-recent-files-enabled" },
+    { "org.gnome.desktop.wm.preferences", "button-layout", "gtk-decoration-layout" },
+    { "org.gnome.desktop.wm.preferences", "action-double-click-titlebar", "gtk-titlebar-double-click" },
+    { "org.gnome.desktop.wm.preferences", "action-middle-click-titlebar", "gtk-titlebar-middle-click" },
+    { "org.gnome.desktop.wm.preferences", "action-right-click-titlebar", "gtk-titlebar-right-click" },
+    { "org.gnome.desktop.a11y", "always-show-text-caret", "gtk-keynav-use-caret" },
+    { "org.gnome.fontconfig", "serial", "gtk-fontconfig-timestamp" },
 };
 
 
@@ -133,7 +136,7 @@ gtk_setting_to_xfconf_prop (const gchar *setting,
     gchar *prop, *suffix;
     gboolean xft = FALSE;
 
-    if (! g_str_has_prefix (setting, "gtk-"))
+    if (!g_str_has_prefix (setting, "gtk-"))
         return g_strdup (setting);
 
     setting += 4;
@@ -149,7 +152,7 @@ gtk_setting_to_xfconf_prop (const gchar *setting,
 
     suffix = g_strjoinv (NULL, tokens);
     if (xft)
-      prop = g_strdup_printf ("/Xft/%s", suffix);
+        prop = g_strdup_printf ("/Xft/%s", suffix);
     else if (g_hash_table_contains (net_props, suffix))
         prop = g_strdup_printf ("/Net/%s", suffix);
     else
@@ -172,8 +175,8 @@ bus_acquired (GDBusConnection *connection,
     GError *error = NULL;
 
     helper->skeleton = xfce_gtk_settings_helper_exported_skeleton_new ();
-    if (! g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (helper->skeleton),
-                                            connection, "/org/gtk/Settings", &error))
+    if (!g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (helper->skeleton),
+                                           connection, "/org/gtk/Settings", &error))
     {
         g_warning ("Failed to export object at path '/org/gtk/Settings': %s", error->message);
         g_error_free (error);
@@ -238,7 +241,7 @@ xfce_gtk_settings_helper_init (XfceGtkSettingsHelper *helper)
         if (schema == NULL)
             continue;
 
-        if (! g_hash_table_contains (helper->gsettings_objs, translations[i].schema))
+        if (!g_hash_table_contains (helper->gsettings_objs, translations[i].schema))
         {
             GSettings *gsettings = g_settings_new (translations[i].schema);
             g_signal_connect (gsettings, "changed", G_CALLBACK (xfce_gtk_settings_helper_gsettings_changed), helper);
@@ -246,7 +249,7 @@ xfce_gtk_settings_helper_init (XfceGtkSettingsHelper *helper)
         }
 
         /* be careful: translations may not be up to date and there is no API to retrieve it */
-        if (! g_settings_schema_has_key (schema, translations[i].key))
+        if (!g_settings_schema_has_key (schema, translations[i].key))
             g_warning ("Key '%s' not in schema '%s': skipped", translations[i].key, translations[i].schema);
         else
         {
@@ -268,7 +271,7 @@ xfce_gtk_settings_helper_init (XfceGtkSettingsHelper *helper)
                 g_variant_unref (variant);
 
                 /* for GSettings, unlike Xfconf, this check can take place here only once */
-                if (! type_match)
+                if (!type_match)
                     g_warning ("Types of GSettings id '%s.%s' and GtkSettings property '%s' mismatch",
                                translations[i].schema, translations[i].key, translations[i].gtksetting);
                 else
@@ -377,7 +380,7 @@ xfce_gtk_settings_helper_gsettings_changed (GSettings *gsettings,
     /* avoid cycling */
     g_signal_handlers_block_by_func (helper->channel, xfce_gtk_settings_helper_channel_property_changed, helper);
 
-    if (! xfconf_channel_set_property (helper->channel, data->property, &value))
+    if (!xfconf_channel_set_property (helper->channel, data->property, &value))
         g_warning ("Failed to set Xfconf property '%s'", data->property);
 
     g_signal_handlers_unblock_by_func (helper->channel, xfce_gtk_settings_helper_channel_property_changed, helper);
@@ -412,7 +415,7 @@ xfce_gtk_settings_helper_channel_property_changed (XfconfChannel *channel,
 
     /* unlike GSettings the type of Xfconf properties can change or they can be newly created */
     if (G_VALUE_TYPE (value) != G_TYPE_INVALID
-        && ! g_value_type_transformable (G_VALUE_TYPE (value), G_VALUE_TYPE (default_value)))
+        && !g_value_type_transformable (G_VALUE_TYPE (value), G_VALUE_TYPE (default_value)))
     {
         g_warning ("Xfconf property '%s' and GtkSettings property '%s' are of incompatible types", property, data->gtksetting);
         return;
@@ -442,7 +445,7 @@ xfce_gtk_settings_helper_channel_property_changed (XfconfChannel *channel,
         new_variant = g_dbus_gvalue_to_gvariant (&new_value, g_variant_get_type (old_variant));
 
         /* we checked what we could but the value could be out of range for example */
-        if (! g_settings_set_value (gsettings, data->key, new_variant))
+        if (!g_settings_set_value (gsettings, data->key, new_variant))
             g_warning ("Failed to set GSettings id '%s.%s'", data->schema, data->key);
 
         g_variant_unref (new_variant);

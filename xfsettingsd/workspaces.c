@@ -16,42 +16,45 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
-
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <gdk/gdkx.h>
-
-#include "common/debug.h"
 #include "workspaces.h"
 
-#define WORKSPACES_CHANNEL    "xfwm4"
-#define WORKSPACE_NAMES_PROP  "/general/workspace_names"
-#define WORKSPACE_COUNT_PROP  "/general/workspace_count"
+#include "common/debug.h"
+
+#include <X11/Xatom.h>
+#include <X11/Xlib.h>
+#include <gdk/gdkx.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
+#define WORKSPACES_CHANNEL "xfwm4"
+#define WORKSPACE_NAMES_PROP "/general/workspace_names"
+#define WORKSPACE_COUNT_PROP "/general/workspace_count"
 
 
 
-static void             xfce_workspaces_helper_finalize     (GObject              *object);
-static guint            xfce_workspaces_helper_get_count    (void);
-static GdkFilterReturn  xfce_workspaces_helper_filter_func  (GdkXEvent            *gdkxevent,
-                                                             GdkEvent             *event,
-                                                             gpointer              user_data);
-static GPtrArray       *xfce_workspaces_helper_get_names    (void);
-static void             xfce_workspaces_helper_set_names    (XfceWorkspacesHelper *helper,
-                                                             gboolean              disable_wm_check);
-static void             xfce_workspaces_helper_save_names   (XfceWorkspacesHelper *helper);
-static void             xfce_workspaces_helper_prop_changed (XfconfChannel        *channel,
-                                                             const gchar          *property,
-                                                             const GValue         *value,
-                                                             XfceWorkspacesHelper *helper);
+static void
+xfce_workspaces_helper_finalize (GObject *object);
+static guint
+xfce_workspaces_helper_get_count (void);
+static GdkFilterReturn
+xfce_workspaces_helper_filter_func (GdkXEvent *gdkxevent,
+                                    GdkEvent *event,
+                                    gpointer user_data);
+static GPtrArray *
+xfce_workspaces_helper_get_names (void);
+static void
+xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper,
+                                  gboolean disable_wm_check);
+static void
+xfce_workspaces_helper_save_names (XfceWorkspacesHelper *helper);
+static void
+xfce_workspaces_helper_prop_changed (XfconfChannel *channel,
+                                     const gchar *property,
+                                     const GValue *value,
+                                     XfceWorkspacesHelper *helper);
 
 
 
@@ -60,8 +63,8 @@ struct _XfceWorkspacesHelper
     GObject parent;
 
     XfconfChannel *channel;
-    gint64         timestamp;
-    guint          wait_for_wm_timeout_id;
+    gint64 timestamp;
+    guint wait_for_wm_timeout_id;
 };
 
 struct _XfceWorkspacesHelperClass
@@ -75,24 +78,23 @@ static gboolean xfsettingsd_disable_wm_check = FALSE;
 
 typedef struct
 {
-  XfceWorkspacesHelper *helper;
+    XfceWorkspacesHelper *helper;
 
-  Display              *dpy;
-  Atom                 *atoms;
-  guint                 atom_count;
-  guint                 have_wm : 1;
-  guint                 counter;
-}
-WaitForWM;
-
+    Display *dpy;
+    Atom *atoms;
+    guint atom_count;
+    guint have_wm : 1;
+    guint counter;
+} WaitForWM;
 
 
-G_DEFINE_TYPE(XfceWorkspacesHelper, xfce_workspaces_helper, G_TYPE_OBJECT)
+
+G_DEFINE_TYPE (XfceWorkspacesHelper, xfce_workspaces_helper, G_TYPE_OBJECT)
 
 
 
 static void
-xfce_workspaces_helper_class_init(XfceWorkspacesHelperClass *klass)
+xfce_workspaces_helper_class_init (XfceWorkspacesHelperClass *klass)
 {
     GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
@@ -106,10 +108,10 @@ xfce_workspaces_helper_class_init(XfceWorkspacesHelperClass *klass)
 static void
 xfce_workspaces_helper_init (XfceWorkspacesHelper *helper)
 {
-    GdkWindow    *root_window;
-    GdkEventMask  events;
+    GdkWindow *root_window;
+    GdkEventMask events;
 
-    helper->channel = xfconf_channel_get(WORKSPACES_CHANNEL);
+    helper->channel = xfconf_channel_get (WORKSPACES_CHANNEL);
 
     /* monitor root window property changes */
     root_window = gdk_get_default_root_window ();
@@ -119,9 +121,9 @@ xfce_workspaces_helper_init (XfceWorkspacesHelper *helper)
 
     xfce_workspaces_helper_set_names (helper, FALSE);
 
-    g_signal_connect (G_OBJECT(helper->channel),
+    g_signal_connect (G_OBJECT (helper->channel),
                       "property-changed::" WORKSPACE_NAMES_PROP,
-                      G_CALLBACK( xfce_workspaces_helper_prop_changed), helper);
+                      G_CALLBACK (xfce_workspaces_helper_prop_changed), helper);
 }
 
 
@@ -131,9 +133,9 @@ xfce_workspaces_helper_finalize (GObject *object)
 {
     XfceWorkspacesHelper *helper = XFCE_WORKSPACES_HELPER (object);
 
-    g_signal_handlers_disconnect_by_func(G_OBJECT (helper->channel),
-                                         G_CALLBACK (xfce_workspaces_helper_prop_changed),
-                                         helper);
+    g_signal_handlers_disconnect_by_func (G_OBJECT (helper->channel),
+                                          G_CALLBACK (xfce_workspaces_helper_prop_changed),
+                                          helper);
 
     G_OBJECT_CLASS (xfce_workspaces_helper_parent_class)->finalize (object);
 }
@@ -141,12 +143,12 @@ xfce_workspaces_helper_finalize (GObject *object)
 
 
 static GdkFilterReturn
-xfce_workspaces_helper_filter_func (GdkXEvent  *gdkxevent,
-                                    GdkEvent   *event,
-                                    gpointer    user_data)
+xfce_workspaces_helper_filter_func (GdkXEvent *gdkxevent,
+                                    GdkEvent *event,
+                                    gpointer user_data)
 {
-    XfceWorkspacesHelper  *helper = XFCE_WORKSPACES_HELPER (user_data);
-    XEvent                *xevent = gdkxevent;
+    XfceWorkspacesHelper *helper = XFCE_WORKSPACES_HELPER (user_data);
+    XEvent *xevent = gdkxevent;
 
     if (xevent->type == PropertyNotify)
     {
@@ -180,12 +182,12 @@ xfce_workspaces_helper_filter_func (GdkXEvent  *gdkxevent,
 static GPtrArray *
 xfce_workspaces_helper_get_names (void)
 {
-    gboolean     succeed;
-    GdkAtom      utf8_atom, type_returned;
-    gint         i, length, num;
-    GPtrArray   *names = NULL;
-    gchar       *data = NULL;
-    GValue      *val;
+    gboolean succeed;
+    GdkAtom utf8_atom, type_returned;
+    gint i, length, num;
+    GPtrArray *names = NULL;
+    gchar *data = NULL;
+    GValue *val;
     const gchar *p;
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
@@ -239,11 +241,11 @@ xfce_workspaces_helper_get_names (void)
 static guint
 xfce_workspaces_helper_get_count (void)
 {
-    guint     result = 0;
-    guchar   *data = NULL;
-    gboolean  succeed;
-    GdkAtom   cardinal_atom, type_returned;
-    gint      format_returned;
+    guint result = 0;
+    guchar *data = NULL;
+    gboolean succeed;
+    GdkAtom cardinal_atom, type_returned;
+    gint format_returned;
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
@@ -278,13 +280,13 @@ xfce_workspaces_helper_get_count (void)
 static void
 xfce_workspaces_helper_set_names_real (XfceWorkspacesHelper *helper)
 {
-    GString       *names_str;
-    guint          i;
-    guint          n_workspaces;
-    GPtrArray     *names, *existing_names;
-    GValue        *val;
-    gchar         *new_name;
-    const gchar   *name;
+    GString *names_str;
+    guint i;
+    guint n_workspaces;
+    GPtrArray *names, *existing_names;
+    GValue *val;
+    gchar *new_name;
+    const gchar *name;
 
     g_return_if_fail (XFCE_IS_WORKSPACES_HELPER (helper));
 
@@ -307,7 +309,7 @@ xfce_workspaces_helper_set_names_real (XfceWorkspacesHelper *helper)
         for (i = 0; i < names->len && i < n_workspaces; i++)
         {
             val = g_ptr_array_index (names, i);
-            if (G_VALUE_HOLDS_STRING(val))
+            if (G_VALUE_HOLDS_STRING (val))
             {
                 name = g_value_get_string (val);
 
@@ -381,7 +383,7 @@ xfce_workspaces_helper_set_names_real (XfceWorkspacesHelper *helper)
 
         /* store new array in xfconf */
         if (!xfconf_channel_set_arrayv (helper->channel, WORKSPACE_NAMES_PROP, names))
-             g_critical ("Failed to save xfconf property %s", WORKSPACE_NAMES_PROP);
+            g_critical ("Failed to save xfconf property %s", WORKSPACE_NAMES_PROP);
 
         xfsettings_dbg (XFSD_DEBUG_WORKSPACES, "extended names in xfconf, waiting for property-change");
 
@@ -396,25 +398,25 @@ xfce_workspaces_helper_set_names_real (XfceWorkspacesHelper *helper)
 static gboolean
 xfce_workspaces_helper_wait_for_window_manager (gpointer data)
 {
-  WaitForWM *wfwm = data;
-  guint      i;
-  gboolean   have_wm = TRUE;
+    WaitForWM *wfwm = data;
+    guint i;
+    gboolean have_wm = TRUE;
 
-  for (i = 0; i < wfwm->atom_count; i++)
+    for (i = 0; i < wfwm->atom_count; i++)
     {
-      if (XGetSelectionOwner (wfwm->dpy, wfwm->atoms[i]) == None)
+        if (XGetSelectionOwner (wfwm->dpy, wfwm->atoms[i]) == None)
         {
-          DBG ("window manager not ready on screen %d, waiting...", i);
+            DBG ("window manager not ready on screen %d, waiting...", i);
 
-          have_wm = FALSE;
-          break;
+            have_wm = FALSE;
+            break;
         }
     }
 
-  wfwm->have_wm = have_wm;
+    wfwm->have_wm = have_wm;
 
-  /* abort if a window manager is found or 5 seconds expired */
-  return wfwm->counter++ < 20 * 5 && !wfwm->have_wm;
+    /* abort if a window manager is found or 5 seconds expired */
+    return wfwm->counter++ < 20 * 5 && !wfwm->have_wm;
 }
 
 
@@ -422,37 +424,37 @@ xfce_workspaces_helper_wait_for_window_manager (gpointer data)
 static void
 xfce_workspaces_helper_wait_for_window_manager_destroyed (gpointer data)
 {
-  WaitForWM            *wfwm = data;
-  XfceWorkspacesHelper *helper = wfwm->helper;
+    WaitForWM *wfwm = data;
+    XfceWorkspacesHelper *helper = wfwm->helper;
 
-  helper->wait_for_wm_timeout_id = 0;
+    helper->wait_for_wm_timeout_id = 0;
 
-  if (!wfwm->have_wm)
+    if (!wfwm->have_wm)
     {
-      g_printerr (G_LOG_DOMAIN ": No window manager registered on screen 0.\n");
+        g_printerr (G_LOG_DOMAIN ": No window manager registered on screen 0.\n");
     }
-  else
+    else
     {
-      DBG ("found window manager after %d tries", wfwm->counter);
+        DBG ("found window manager after %d tries", wfwm->counter);
     }
 
-  g_free (wfwm->atoms);
-  XCloseDisplay (wfwm->dpy);
-  g_slice_free (WaitForWM, wfwm);
+    g_free (wfwm->atoms);
+    XCloseDisplay (wfwm->dpy);
+    g_slice_free (WaitForWM, wfwm);
 
-  /* set the names anyway... */
-  xfce_workspaces_helper_set_names_real (helper);
+    /* set the names anyway... */
+    xfce_workspaces_helper_set_names_real (helper);
 }
 
 
 
 static void
 xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper,
-                                  gboolean              disable_wm_check)
+                                  gboolean disable_wm_check)
 {
-    WaitForWM  *wfwm;
-    guint       i;
-    gchar     **atom_names;
+    WaitForWM *wfwm;
+    guint i;
+    gchar **atom_names;
 
     if (!disable_wm_check && !xfsettingsd_disable_wm_check)
     {
@@ -478,8 +480,8 @@ xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper,
 
         /* setup timeout to check for a window manager */
         helper->wait_for_wm_timeout_id =
-          g_timeout_add_full (G_PRIORITY_DEFAULT_IDLE, 50, xfce_workspaces_helper_wait_for_window_manager,
-                              wfwm, xfce_workspaces_helper_wait_for_window_manager_destroyed);
+            g_timeout_add_full (G_PRIORITY_DEFAULT_IDLE, 50, xfce_workspaces_helper_wait_for_window_manager,
+                                wfwm, xfce_workspaces_helper_wait_for_window_manager_destroyed);
     }
     else
     {
@@ -493,11 +495,11 @@ xfce_workspaces_helper_set_names (XfceWorkspacesHelper *helper,
 static void
 xfce_workspaces_helper_save_names (XfceWorkspacesHelper *helper)
 {
-    GPtrArray   *xfconf_names, *new_names;
-    GValue      *val_b;
+    GPtrArray *xfconf_names, *new_names;
+    GValue *val_b;
     const gchar *name_a, *name_b;
-    gboolean     save_array = FALSE;
-    guint        i;
+    gboolean save_array = FALSE;
+    guint i;
 
     g_return_if_fail (XFCE_IS_WORKSPACES_HELPER (helper));
 
@@ -508,7 +510,7 @@ xfce_workspaces_helper_save_names (XfceWorkspacesHelper *helper)
     xfconf_names = xfconf_channel_get_arrayv (helper->channel, WORKSPACE_NAMES_PROP);
 
     if (xfconf_names == NULL
-       || xfconf_names->len < new_names->len)
+        || xfconf_names->len < new_names->len)
     {
         /* store the new names in xfconf, should not append often because
          * we probably saved (and set) a name when the workspace count
@@ -523,20 +525,20 @@ xfce_workspaces_helper_save_names (XfceWorkspacesHelper *helper)
         /* update the new names in the xfconf array */
         for (i = 0; i < new_names->len; i++)
         {
-             name_a = g_value_get_string (g_ptr_array_index (new_names, i));
+            name_a = g_value_get_string (g_ptr_array_index (new_names, i));
 
-             val_b = g_ptr_array_index (xfconf_names, i);
-             name_b = g_value_get_string (val_b);
+            val_b = g_ptr_array_index (xfconf_names, i);
+            name_b = g_value_get_string (val_b);
 
-             if (g_strcmp0 (name_a, name_b) != 0)
-             {
-                 /* set the old xfconf name to the new name */
-                 g_value_unset (val_b);
-                 g_value_init (val_b, G_TYPE_STRING);
-                 g_value_set_string (val_b, name_a);
+            if (g_strcmp0 (name_a, name_b) != 0)
+            {
+                /* set the old xfconf name to the new name */
+                g_value_unset (val_b);
+                g_value_init (val_b, G_TYPE_STRING);
+                g_value_set_string (val_b, name_a);
 
-                 save_array = TRUE;
-             }
+                save_array = TRUE;
+            }
         }
 
         if (save_array)
@@ -556,9 +558,9 @@ xfce_workspaces_helper_save_names (XfceWorkspacesHelper *helper)
 
 
 static void
-xfce_workspaces_helper_prop_changed (XfconfChannel        *channel,
-                                     const gchar          *property,
-                                     const GValue         *value,
+xfce_workspaces_helper_prop_changed (XfconfChannel *channel,
+                                     const gchar *property,
+                                     const GValue *value,
                                      XfceWorkspacesHelper *helper)
 {
     g_return_if_fail (XFCE_IS_WORKSPACES_HELPER (helper));

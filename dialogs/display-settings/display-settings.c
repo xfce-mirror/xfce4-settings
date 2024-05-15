@@ -17,38 +17,43 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <libxfce4util/libxfce4util.h>
+#include "display-settings.h"
+#include "identity-popup_ui.h"
+#include "scrollarea.h"
+
+#ifdef ENABLE_WAYLAND
+#include "display-settings-wayland.h"
+#include <gdk/gdkwayland.h>
+#endif
 
 #ifdef HAVE_XRANDR
-#include <gdk/gdkx.h>
 #include "display-settings-x11.h"
+#include <gdk/gdkx.h>
 #define WINDOWING_IS_X11() GDK_IS_X11_DISPLAY (gdk_display_get_default ())
 #else
 #define WINDOWING_IS_X11() FALSE
 #endif
+
+#include "common/display-profiles.h"
+
+#include <libxfce4util/libxfce4util.h>
+
 #ifdef HAVE_GTK_LAYER_SHELL
 #include <gtk-layer-shell/gtk-layer-shell.h>
 #else
 #define gtk_layer_is_supported() FALSE
 #endif
-#ifdef ENABLE_WAYLAND
-#include <gdk/gdkwayland.h>
-#include "display-settings-wayland.h"
-#endif
-#include "common/display-profiles.h"
-#include "identity-popup_ui.h"
-#include "scrollarea.h"
-#include "display-settings.h"
 
 
 
-#define get_instance_private(instance) ((XfceDisplaySettingsPrivate *) \
-    xfce_display_settings_get_instance_private (XFCE_DISPLAY_SETTINGS (instance)))
+#define get_instance_private(instance) \
+    ((XfceDisplaySettingsPrivate *) xfce_display_settings_get_instance_private (XFCE_DISPLAY_SETTINGS (instance)))
 
-static void           xfce_display_settings_finalize        (GObject      *object);
+static void
+xfce_display_settings_finalize (GObject *object);
 
 
 
@@ -555,7 +560,7 @@ xfce_display_settings_populate_combobox (XfceDisplaySettings *settings)
     /* create a new list store */
     store = gtk_list_store_new (N_OUTPUT_COLUMNS,
                                 G_TYPE_STRING, /* COLUMN_OUTPUT_NAME */
-                                G_TYPE_INT);   /* COLUMN_OUTPUT_ID */
+                                G_TYPE_INT); /* COLUMN_OUTPUT_ID */
 
     /* set up the new combobox which will replace the above combobox */
     combobox = gtk_builder_get_object (priv->builder, "randr-outputs");
@@ -734,7 +739,8 @@ xfce_display_settings_get_mirrored_state (XfceDisplaySettings *settings)
             break;
     }
 
-    return cloned ? MIRRORED_STATE_CLONED : mirrored ? MIRRORED_STATE_MIRRORED : MIRRORED_STATE_NONE;
+    return cloned ? MIRRORED_STATE_CLONED : mirrored ? MIRRORED_STATE_MIRRORED
+                                                     : MIRRORED_STATE_NONE;
 }
 
 

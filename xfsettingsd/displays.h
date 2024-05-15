@@ -21,24 +21,25 @@
 #define __DISPLAYS_H__
 
 #include <glib-object.h>
+#include <xfconf/xfconf.h>
 
 /* Xfconf properties */
-#define APPLY_SCHEME_PROP    "/Schemes/Apply"
-#define DEFAULT_SCHEME_NAME  "Default"
-#define ACTIVE_PROFILE       "/ActiveProfile"
+#define APPLY_SCHEME_PROP "/Schemes/Apply"
+#define DEFAULT_SCHEME_NAME "Default"
+#define ACTIVE_PROFILE "/ActiveProfile"
 #define AUTO_ENABLE_PROFILES "/AutoEnableProfiles"
-#define OUTPUT_FMT           "/%s/%s"
-#define PRIMARY_PROP         OUTPUT_FMT "/Primary"
-#define ACTIVE_PROP          OUTPUT_FMT "/Active"
-#define ROTATION_PROP        OUTPUT_FMT "/Rotation"
-#define REFLECTION_PROP      OUTPUT_FMT "/Reflection"
-#define RESOLUTION_PROP      OUTPUT_FMT "/Resolution"
-#define SCALE_PROP           OUTPUT_FMT "/Scale"
-#define SCALEX_PROP          OUTPUT_FMT "/Scale/X"
-#define RRATE_PROP           OUTPUT_FMT "/RefreshRate"
-#define POSX_PROP            OUTPUT_FMT "/Position/X"
-#define POSY_PROP            OUTPUT_FMT "/Position/Y"
-#define NOTIFY_PROP          "/Notify"
+#define OUTPUT_FMT "/%s/%s"
+#define PRIMARY_PROP OUTPUT_FMT "/Primary"
+#define ACTIVE_PROP OUTPUT_FMT "/Active"
+#define ROTATION_PROP OUTPUT_FMT "/Rotation"
+#define REFLECTION_PROP OUTPUT_FMT "/Reflection"
+#define RESOLUTION_PROP OUTPUT_FMT "/Resolution"
+#define SCALE_PROP OUTPUT_FMT "/Scale"
+#define SCALEX_PROP OUTPUT_FMT "/Scale/X"
+#define RRATE_PROP OUTPUT_FMT "/RefreshRate"
+#define POSX_PROP OUTPUT_FMT "/Position/X"
+#define POSY_PROP OUTPUT_FMT "/Position/Y"
+#define NOTIFY_PROP "/Notify"
 
 /* some messages belonging to parts of code common to X11/Wayland implementations
  * that are not easy to share in the parent class */
@@ -61,18 +62,21 @@ struct _XfceDisplaysHelperClass
 {
     GObjectClass __parent__;
 
-    GPtrArray       *(*get_outputs)                 (XfceDisplaysHelper      *helper);
-    void             (*toggle_internal)             (gpointer                *power,
-                                                     gboolean                 lid_is_closed,
-                                                     XfceDisplaysHelper      *helper);
-    gchar          **(*get_display_infos)           (XfceDisplaysHelper      *helper);
-    void             (*channel_apply)               (XfceDisplaysHelper      *helper,
-                                                     const gchar             *scheme);
+    GPtrArray *(*get_outputs) (XfceDisplaysHelper *helper);
+    void (*toggle_internal) (gpointer *power,
+                             gboolean lid_is_closed,
+                             XfceDisplaysHelper *helper);
+    gchar **(*get_display_infos) (XfceDisplaysHelper *helper);
+    void (*channel_apply) (XfceDisplaysHelper *helper,
+                           const gchar *scheme);
 };
 
-GObject           *xfce_displays_helper_new                     (void);
-gchar             *xfce_displays_helper_get_matching_profile    (XfceDisplaysHelper     *helper);
-XfconfChannel     *xfce_displays_helper_get_channel             (XfceDisplaysHelper     *helper);
+GObject *
+xfce_displays_helper_new (void);
+gchar *
+xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper);
+XfconfChannel *
+xfce_displays_helper_get_channel (XfceDisplaysHelper *helper);
 
 G_END_DECLS
 
