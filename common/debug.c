@@ -17,22 +17,15 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <glib.h>
 
 #include "common/debug.h"
 
 
 
-static const GDebugKey dbg_keys[] =
-{
-    { "xsettings",  XFSD_DEBUG_XSETTINGS },
+static const GDebugKey dbg_keys[] = {
+    { "xsettings", XFSD_DEBUG_XSETTINGS },
     { "fontconfig", XFSD_DEBUG_FONTCONFIG },
     { "keyboard-layout", XFSD_DEBUG_KEYBOARD_LAYOUT },
     { "keyboards", XFSD_DEBUG_KEYBOARDS },
@@ -47,9 +40,9 @@ static const GDebugKey dbg_keys[] =
 static XfsdDebugDomain
 xfsettings_dbg_init (void)
 {
-    static gboolean         inited = FALSE;
-    static XfsdDebugDomain  dbg_domains = 0;
-    const gchar            *value;
+    static gboolean inited = FALSE;
+    static XfsdDebugDomain dbg_domains = 0;
+    const gchar *value;
 
     if (!inited)
     {
@@ -70,14 +63,14 @@ xfsettings_dbg_init (void)
 
 
 
-static void __attribute__((format (gnu_printf, 2,0)))
-xfsettings_dbg_print (XfsdDebugDomain  domain,
-                      const gchar     *message,
-                      va_list          args)
+static void __attribute__ ((format (gnu_printf, 2, 0)))
+xfsettings_dbg_print (XfsdDebugDomain domain,
+                      const gchar *message,
+                      va_list args)
 {
     const gchar *domain_name = NULL;
-    guint        i;
-    gchar       *string;
+    guint i;
+    gchar *string;
 
     /* lookup domain name */
     for (i = 0; i < G_N_ELEMENTS (dbg_keys); i++)
@@ -99,8 +92,8 @@ xfsettings_dbg_print (XfsdDebugDomain  domain,
 
 
 void
-xfsettings_dbg (XfsdDebugDomain  domain,
-                const gchar     *message,
+xfsettings_dbg (XfsdDebugDomain domain,
+                const gchar *message,
                 ...)
 {
     va_list args;
@@ -119,8 +112,8 @@ xfsettings_dbg (XfsdDebugDomain  domain,
 
 
 void
-xfsettings_dbg_filtered (XfsdDebugDomain  domain,
-                         const gchar     *message,
+xfsettings_dbg_filtered (XfsdDebugDomain domain,
+                         const gchar *message,
                          ...)
 {
     va_list args;

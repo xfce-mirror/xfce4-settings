@@ -25,24 +25,29 @@
 G_BEGIN_DECLS
 
 typedef struct _CommandDialogClass CommandDialogClass;
-typedef struct _CommandDialog      CommandDialog;
+typedef struct _CommandDialog CommandDialog;
 
-#define TYPE_COMMAND_DIALOG            (command_dialog_get_type ())
-#define COMMAND_DIALOG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_COMMAND_DIALOG, CommandDialog))
-#define COMMAND_DIALOG_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_COMMAND_DIALOG, CommandDialogClass))
-#define IS_COMMAND_DIALOG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_COMMAND_DIALOG))
+#define TYPE_COMMAND_DIALOG (command_dialog_get_type ())
+#define COMMAND_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_COMMAND_DIALOG, CommandDialog))
+#define COMMAND_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_COMMAND_DIALOG, CommandDialogClass))
+#define IS_COMMAND_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_COMMAND_DIALOG))
 #define IS_COMMAND_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_COMMAND_DIALOG))
-#define COMMAND_DIALOG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_COMMAND_DIALOG, CommandDialogClass))
+#define COMMAND_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_COMMAND_DIALOG, CommandDialogClass))
 
-GType       command_dialog_get_type     (void) G_GNUC_CONST;
+GType
+command_dialog_get_type (void) G_GNUC_CONST;
 
-GtkWidget  *command_dialog_new          (const gchar   *shortcut,
-                                         const gchar   *action,
-                                         gboolean       snotify);
-const char *command_dialog_get_command  (CommandDialog *dialog);
-gboolean    command_dialog_get_snotify  (CommandDialog *dialog);
-gint        command_dialog_run          (CommandDialog *dialog,
-                                         GtkWidget     *parent);
+GtkWidget *
+command_dialog_new (const gchar *shortcut,
+                    const gchar *action,
+                    gboolean snotify);
+const char *
+command_dialog_get_command (CommandDialog *dialog);
+gboolean
+command_dialog_get_snotify (CommandDialog *dialog);
+gint
+command_dialog_run (CommandDialog *dialog,
+                    GtkWidget *parent);
 
 G_END_DECLS
 

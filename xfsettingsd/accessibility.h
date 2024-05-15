@@ -22,16 +22,23 @@
 #ifndef __ACCESSIBILITY_H__
 #define __ACCESSIBILITY_H__
 
+#include <glib-object.h>
+
+G_BEGIN_DECLS
+
 typedef struct _XfceAccessibilityHelperClass XfceAccessibilityHelperClass;
-typedef struct _XfceAccessibilityHelper      XfceAccessibilityHelper;
+typedef struct _XfceAccessibilityHelper XfceAccessibilityHelper;
 
-#define XFCE_TYPE_ACCESSIBILITY_HELPER            (xfce_accessibility_helper_get_type ())
-#define XFCE_ACCESSIBILITY_HELPER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_ACCESSIBILITY_HELPER, XfceAccessibilityHelper))
-#define XFCE_ACCESSIBILITY_HELPER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_ACCESSIBILITY_HELPER, XfceAccessibilityHelperClass))
-#define XFCE_IS_ACCESSIBILITY_HELPER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_ACCESSIBILITY_HELPER))
+#define XFCE_TYPE_ACCESSIBILITY_HELPER (xfce_accessibility_helper_get_type ())
+#define XFCE_ACCESSIBILITY_HELPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_ACCESSIBILITY_HELPER, XfceAccessibilityHelper))
+#define XFCE_ACCESSIBILITY_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_ACCESSIBILITY_HELPER, XfceAccessibilityHelperClass))
+#define XFCE_IS_ACCESSIBILITY_HELPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_ACCESSIBILITY_HELPER))
 #define XFCE_IS_ACCESSIBILITY_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_ACCESSIBILITY_HELPER))
-#define XFCE_ACCESSIBILITY_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_ACCESSIBILITY_HELPER, XfceAccessibilityHelperClass))
+#define XFCE_ACCESSIBILITY_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_ACCESSIBILITY_HELPER, XfceAccessibilityHelperClass))
 
-GType xfce_accessibility_helper_get_type (void) G_GNUC_CONST;
+GType
+xfce_accessibility_helper_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
 
 #endif /* !__ACCESSIBILITY_H__ */

@@ -17,15 +17,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <glib.h>
-#include <display-profiles.h>
+#include "common/display-profiles.h"
 
 static gboolean
 is_user_profile (const gchar *property,
@@ -46,7 +41,7 @@ is_user_profile (const gchar *property,
             g_strfreev (tokens);
             if (maybe_output_name)
             {
-                gchar *prop = g_strdup_printf ("%s/EDID", (gchar*) key);
+                gchar *prop = g_strdup_printf ("%s/EDID", (gchar *) key);
                 gchar *edid = xfconf_channel_get_string (channel, prop, NULL);
                 g_free (prop);
                 if (edid != NULL)
@@ -64,7 +59,8 @@ is_user_profile (const gchar *property,
 }
 
 gboolean
-display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_profile_name)
+display_settings_profile_name_exists (XfconfChannel *channel,
+                                      const gchar *new_profile_name)
 {
     GHashTable *props = xfconf_channel_get_properties (channel, NULL);
     GHashTableIter iter;
@@ -88,7 +84,7 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
     return exists;
 }
 
-GList*
+GList *
 display_settings_get_profiles (gchar **display_infos,
                                XfconfChannel *channel,
                                gboolean matching_only)
@@ -143,7 +139,7 @@ display_settings_profile_matches (const gchar *profile,
             if (++n_outputs > n_infos)
                 break;
 
-            property = g_strdup_printf ("%s/EDID", (gchar*) key);
+            property = g_strdup_printf ("%s/EDID", (gchar *) key);
             edid = xfconf_channel_get_string (channel, property, NULL);
             all_match = g_strv_contains ((const gchar *const *) display_infos, edid);
             g_free (edid);

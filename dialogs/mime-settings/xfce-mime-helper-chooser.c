@@ -17,14 +17,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#ifdef HAVE_MEMORY_H
-#include <memory.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
+#include "config.h"
 #endif
 
 #include "xfce-mime-helper-chooser.h"
@@ -43,18 +36,23 @@ enum
 
 
 
-static void xfce_mime_helper_chooser_finalize     (GObject                *object);
-static void xfce_mime_helper_chooser_get_property (GObject                *object,
-                                             guint                   prop_id,
-                                             GValue                 *value,
-                                             GParamSpec             *pspec);
-static void xfce_mime_helper_chooser_set_property (GObject                *object,
-                                             guint                   prop_id,
-                                             const GValue           *value,
-                                             GParamSpec             *pspec);
-static void xfce_mime_helper_chooser_update       (XfceMimeHelperChooser       *chooser);
-static void xfce_mime_helper_chooser_pressed      (XfceMimeHelperChooser       *chooser,
-                                             GtkWidget              *button);
+static void
+xfce_mime_helper_chooser_finalize (GObject *object);
+static void
+xfce_mime_helper_chooser_get_property (GObject *object,
+                                       guint prop_id,
+                                       GValue *value,
+                                       GParamSpec *pspec);
+static void
+xfce_mime_helper_chooser_set_property (GObject *object,
+                                       guint prop_id,
+                                       const GValue *value,
+                                       GParamSpec *pspec);
+static void
+xfce_mime_helper_chooser_update (XfceMimeHelperChooser *chooser);
+static void
+xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
+                                  GtkWidget *button);
 
 
 
@@ -67,13 +65,13 @@ struct _XfceMimeHelperChooser
 {
   GtkBin __parent__;
 
-  GtkWidget         *image;
-  GtkWidget         *label;
+  GtkWidget *image;
+  GtkWidget *label;
 
   XfceMimeHelperDatabase *database;
-  XfceMimeHelperCategory  category;
+  XfceMimeHelperCategory category;
 
-  gboolean           is_valid;
+  gboolean is_valid;
 };
 
 
@@ -128,11 +126,11 @@ xfce_mime_helper_chooser_class_init (XfceMimeHelperChooserClass *klass)
 static void
 xfce_mime_helper_chooser_init (XfceMimeHelperChooser *chooser)
 {
-  AtkObject      *object;
-  GtkWidget      *separator;
-  GtkWidget      *button;
-  GtkWidget      *arrow;
-  GtkWidget      *hbox;
+  AtkObject *object;
+  GtkWidget *separator;
+  GtkWidget *button;
+  GtkWidget *arrow;
+  GtkWidget *hbox;
 
   chooser->database = xfce_mime_helper_database_get ();
 
@@ -189,10 +187,10 @@ xfce_mime_helper_chooser_finalize (GObject *object)
 
 
 static void
-xfce_mime_helper_chooser_get_property (GObject    *object,
-                                 guint       prop_id,
-                                 GValue     *value,
-                                 GParamSpec *pspec)
+xfce_mime_helper_chooser_get_property (GObject *object,
+                                       guint prop_id,
+                                       GValue *value,
+                                       GParamSpec *pspec)
 {
   XfceMimeHelperChooser *chooser = XFCE_MIME_HELPER_CHOOSER (object);
 
@@ -215,10 +213,10 @@ xfce_mime_helper_chooser_get_property (GObject    *object,
 
 
 static void
-xfce_mime_helper_chooser_set_property (GObject      *object,
-                                 guint         prop_id,
-                                 const GValue *value,
-                                 GParamSpec   *pspec)
+xfce_mime_helper_chooser_set_property (GObject *object,
+                                       guint prop_id,
+                                       const GValue *value,
+                                       GParamSpec *pspec)
 {
   XfceMimeHelperChooser *chooser = XFCE_MIME_HELPER_CHOOSER (object);
 
@@ -238,68 +236,68 @@ xfce_mime_helper_chooser_set_property (GObject      *object,
 
 static cairo_surface_t *
 xfce_mime_helper_chooser_load_app_icon (const gchar *icon_name,
-                                        gint         scale_factor)
+                                        gint scale_factor)
 {
-    cairo_surface_t *surface = NULL;
-    GdkPixbuf       *icon = NULL;
-    GtkIconTheme    *icon_theme;
-    gint             icon_size;
+  cairo_surface_t *surface = NULL;
+  GdkPixbuf *icon = NULL;
+  GtkIconTheme *icon_theme;
+  gint icon_size;
 
-    icon_theme = gtk_icon_theme_get_default ();
-    gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_size, &icon_size);
+  icon_theme = gtk_icon_theme_get_default ();
+  gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_size, &icon_size);
 
-    if (G_LIKELY (icon_name != NULL))
-      {
-        /* load the icon */
-        if (g_path_is_absolute (icon_name))
-          {
-            icon = gdk_pixbuf_new_from_file_at_size (icon_name,
-                                                     icon_size * scale_factor,
-                                                     icon_size * scale_factor,
-                                                     NULL);
-          }
-        else
-          {
-            GIcon       *gicon;
-            GtkIconInfo *icon_info;
+  if (G_LIKELY (icon_name != NULL))
+    {
+      /* load the icon */
+      if (g_path_is_absolute (icon_name))
+        {
+          icon = gdk_pixbuf_new_from_file_at_size (icon_name,
+                                                   icon_size * scale_factor,
+                                                   icon_size * scale_factor,
+                                                   NULL);
+        }
+      else
+        {
+          GIcon *gicon;
+          GtkIconInfo *icon_info;
 
-            gicon = g_themed_icon_new_with_default_fallbacks (icon_name);
-            icon_info = gtk_icon_theme_lookup_by_gicon_for_scale (icon_theme, gicon,
-                                                                  icon_size, scale_factor,
-                                                                  GTK_ICON_LOOKUP_FORCE_SIZE);
-            g_object_unref (gicon);
+          gicon = g_themed_icon_new_with_default_fallbacks (icon_name);
+          icon_info = gtk_icon_theme_lookup_by_gicon_for_scale (icon_theme, gicon,
+                                                                icon_size, scale_factor,
+                                                                GTK_ICON_LOOKUP_FORCE_SIZE);
+          g_object_unref (gicon);
 
-            if (icon_info != NULL)
-              {
-                icon = gtk_icon_info_load_icon (icon_info, NULL);
-                g_object_unref (icon_info);
-              }
-         }
-      }
+          if (icon_info != NULL)
+            {
+              icon = gtk_icon_info_load_icon (icon_info, NULL);
+              g_object_unref (icon_info);
+            }
+        }
+    }
 
-    /* fallback to application-x-executable */
-    if (G_UNLIKELY (icon == NULL))
-      {
-        icon = gtk_icon_theme_load_icon_for_scale (icon_theme, "application-x-executable",
-                                                   icon_size, scale_factor,
-                                                   GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
-      }
+  /* fallback to application-x-executable */
+  if (G_UNLIKELY (icon == NULL))
+    {
+      icon = gtk_icon_theme_load_icon_for_scale (icon_theme, "application-x-executable",
+                                                 icon_size, scale_factor,
+                                                 GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
+    }
 
-    /* fallback to gnome-mime-application-x-executable */
-    if (G_UNLIKELY (icon == NULL))
-      {
-        icon = gtk_icon_theme_load_icon_for_scale (icon_theme, "gnome-mime-application-x-executable",
-                                                   icon_size, scale_factor,
-                                                   GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
-      }
+  /* fallback to gnome-mime-application-x-executable */
+  if (G_UNLIKELY (icon == NULL))
+    {
+      icon = gtk_icon_theme_load_icon_for_scale (icon_theme, "gnome-mime-application-x-executable",
+                                                 icon_size, scale_factor,
+                                                 GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
+    }
 
-    if (G_LIKELY (icon != NULL))
-      {
-        surface = gdk_cairo_surface_create_from_pixbuf (icon, scale_factor, NULL);
-        g_object_unref (icon);
-      }
+  if (G_LIKELY (icon != NULL))
+    {
+      surface = gdk_cairo_surface_create_from_pixbuf (icon, scale_factor, NULL);
+      g_object_unref (icon);
+    }
 
-    return surface;
+  return surface;
 }
 
 
@@ -307,10 +305,10 @@ xfce_mime_helper_chooser_load_app_icon (const gchar *icon_name,
 static void
 xfce_mime_helper_chooser_update (XfceMimeHelperChooser *chooser)
 {
-  const gchar     *icon_name;
-  XfceMimeHelper  *helper;
+  const gchar *icon_name;
+  XfceMimeHelper *helper;
   cairo_surface_t *surface = NULL;
-  gint             scale_factor;
+  gint scale_factor;
 
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
 
@@ -344,20 +342,19 @@ xfce_mime_helper_chooser_update (XfceMimeHelperChooser *chooser)
 
 
 static void
-menu_activate (GtkWidget        *item,
+menu_activate (GtkWidget *item,
                XfceMimeHelperChooser *chooser)
 {
-  static const gchar *CATEGORY_ERRORS[] =
-  {
-    N_("Failed to set default Web Browser"),
-    N_("Failed to set default Mail Reader"),
-    N_("Failed to set default File Manager"),
-    N_("Failed to set default Terminal Emulator"),
+  static const gchar *CATEGORY_ERRORS[] = {
+    N_ ("Failed to set default Web Browser"),
+    N_ ("Failed to set default Mail Reader"),
+    N_ ("Failed to set default File Manager"),
+    N_ ("Failed to set default Terminal Emulator"),
   };
 
   XfceMimeHelper *helper;
   GtkWidget *message;
-  GError    *error = NULL;
+  GError *error = NULL;
 
   /* verify helper category values */
   g_assert (XFCE_MIME_HELPER_N_CATEGORIES == G_N_ELEMENTS (CATEGORY_ERRORS));
@@ -366,14 +363,14 @@ menu_activate (GtkWidget        *item,
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
 
   /* determine the helper for the item */
-  helper = g_object_get_data (G_OBJECT (item), I_("exo-helper"));
+  helper = g_object_get_data (G_OBJECT (item), I_ ("exo-helper"));
   if (G_LIKELY (helper != NULL))
     {
       if (!xfce_mime_helper_database_set_default (chooser->database, chooser->category, helper, &error))
         {
           message = gtk_message_dialog_new (GTK_WINDOW (chooser),
                                             GTK_DIALOG_DESTROY_WITH_PARENT
-                                            | GTK_DIALOG_MODAL,
+                                              | GTK_DIALOG_MODAL,
                                             GTK_MESSAGE_ERROR,
                                             GTK_BUTTONS_CLOSE,
                                             "%s.", _(CATEGORY_ERRORS[chooser->category]));
@@ -394,7 +391,7 @@ menu_activate (GtkWidget        *item,
 
 static void
 entry_changed (GtkEditable *editable,
-               GtkDialog   *dialog)
+               GtkDialog *dialog)
 {
   gchar *text;
 
@@ -410,11 +407,11 @@ browse_clicked (GtkWidget *button,
                 GtkWidget *entry)
 {
   GtkFileFilter *filter;
-  GtkWidget     *toplevel;
-  GtkWidget     *chooser;
-  gchar         *filename;
-  gchar         *text;
-  gchar         *s;
+  GtkWidget *toplevel;
+  GtkWidget *chooser;
+  gchar *filename;
+  gchar *text;
+  gchar *s;
 
   /* determine the toplevel window */
   toplevel = gtk_widget_get_toplevel (entry);
@@ -424,10 +421,9 @@ browse_clicked (GtkWidget *button,
   /* allocate the chooser */
   chooser = gtk_file_chooser_dialog_new (_("Select application"),
                                          GTK_WINDOW (toplevel),
-                                         GTK_FILE_CHOOSER_ACTION_OPEN,
-                                         _("_Cancel"), GTK_RESPONSE_CANCEL,
-                                         _("_Open"), GTK_RESPONSE_ACCEPT,
-                                         NULL);
+                                         GTK_FILE_CHOOSER_ACTION_OPEN, _("_Cancel"),
+                                         GTK_RESPONSE_CANCEL, _("_Open"),
+                                         GTK_RESPONSE_ACCEPT, NULL);
   gtk_file_chooser_set_local_only (GTK_FILE_CHOOSER (chooser), TRUE);
 
   /* add filters */
@@ -530,35 +526,33 @@ browse_clicked (GtkWidget *button,
 
 
 static void
-menu_activate_other (GtkWidget        *item,
+menu_activate_other (GtkWidget *item,
                      XfceMimeHelperChooser *chooser)
 {
-  static const gchar *BROWSE_TITLES[] =
-  {
-    N_("Choose a custom Web Browser"),
-    N_("Choose a custom Mail Reader"),
-    N_("Choose a custom File Manager"),
-    N_("Choose a custom Terminal Emulator"),
+  static const gchar *BROWSE_TITLES[] = {
+    N_ ("Choose a custom Web Browser"),
+    N_ ("Choose a custom Mail Reader"),
+    N_ ("Choose a custom File Manager"),
+    N_ ("Choose a custom Terminal Emulator"),
   };
 
-  static const gchar *BROWSE_MESSAGES[] =
-  {
-    N_("Specify the application you want to use\nas default Web Browser for Xfce:"),
-    N_("Specify the application you want to use\nas default Mail Reader for Xfce:"),
-    N_("Specify the application you want to use\nas default File Manager for Xfce:"),
-    N_("Specify the application you want to use\nas default Terminal Emulator for Xfce:"),
+  static const gchar *BROWSE_MESSAGES[] = {
+    N_ ("Specify the application you want to use\nas default Web Browser for Xfce:"),
+    N_ ("Specify the application you want to use\nas default Mail Reader for Xfce:"),
+    N_ ("Specify the application you want to use\nas default File Manager for Xfce:"),
+    N_ ("Specify the application you want to use\nas default Terminal Emulator for Xfce:"),
   };
 
   const gchar *command;
-  XfceMimeHelper   *helper;
-  GtkWidget   *toplevel;
-  GtkWidget   *dialog;
-  GtkWidget   *hbox;
-  GtkWidget   *image;
-  GtkWidget   *vbox;
-  GtkWidget   *label;
-  GtkWidget   *entry;
-  GtkWidget   *button;
+  XfceMimeHelper *helper;
+  GtkWidget *toplevel;
+  GtkWidget *dialog;
+  GtkWidget *hbox;
+  GtkWidget *image;
+  GtkWidget *vbox;
+  GtkWidget *label;
+  GtkWidget *entry;
+  GtkWidget *button;
 
   /* sanity check the category values */
   g_assert (XFCE_MIME_HELPER_N_CATEGORIES == G_N_ELEMENTS (BROWSE_TITLES));
@@ -569,10 +563,10 @@ menu_activate_other (GtkWidget        *item,
   dialog = gtk_dialog_new_with_buttons (dgettext (GETTEXT_PACKAGE, BROWSE_TITLES[chooser->category]),
                                         GTK_WINDOW (toplevel),
                                         GTK_DIALOG_DESTROY_WITH_PARENT
-                                        | GTK_DIALOG_MODAL,
-                                        _("_Cancel"), GTK_RESPONSE_CANCEL,
-                                        _("_OK"), GTK_RESPONSE_OK,
-                                        NULL);
+                                          | GTK_DIALOG_MODAL,
+                                        _("_Cancel"),
+                                        GTK_RESPONSE_CANCEL, _("_OK"),
+                                        GTK_RESPONSE_OK, NULL);
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
   gtk_dialog_set_response_sensitive (GTK_DIALOG (dialog), GTK_RESPONSE_OK, FALSE);
   gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -642,7 +636,7 @@ menu_activate_other (GtkWidget        *item,
           gtk_widget_hide (dialog);
 
           /* use menu_activate() to set the custom application as default */
-          g_object_set_data_full (G_OBJECT (item), I_("exo-helper"), helper, g_object_unref);
+          g_object_set_data_full (G_OBJECT (item), I_ ("exo-helper"), helper, g_object_unref);
           menu_activate (item, chooser);
         }
     }
@@ -654,29 +648,29 @@ menu_activate_other (GtkWidget        *item,
 
 static void
 xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
-                            GtkWidget        *button)
+                                  GtkWidget *button)
 {
   AtkRelationSet *relations;
-  AtkRelation    *relation;
-  AtkObject      *object;
-  const gchar    *icon_name;
+  AtkRelation *relation;
+  AtkObject *object;
+  const gchar *icon_name;
   XfceMimeHelper *helper;
-  GMainLoop      *loop;
-  GdkCursor      *cursor;
-  GtkWidget      *image;
-  GtkWidget      *menu;
-  GtkAllocation   menu_allocation;
-  GtkWidget      *item;
-  GtkWidget      *item_hbox;
-  GtkWidget      *item_label;
-  GList          *helpers;
-  GList          *lp;
-  gint            scale_factor;
-  GtkAllocation   chooser_allocation;
+  GMainLoop *loop;
+  GdkCursor *cursor;
+  GtkWidget *image;
+  GtkWidget *menu;
+  GtkAllocation menu_allocation;
+  GtkWidget *item;
+  GtkWidget *item_hbox;
+  GtkWidget *item_label;
+  GList *helpers;
+  GList *lp;
+  gint scale_factor;
+  GtkAllocation chooser_allocation;
 
   /* Catch button-release-event params and discard */
-  GdkEvent       *event;
-  gboolean        handled;
+  GdkEvent *event;
+  gboolean handled;
 
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
   g_return_if_fail (GTK_IS_BUTTON (button));
@@ -736,7 +730,7 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
         }
 
       /* finish setting up the menu item and add it */
-      g_object_set_data_full (G_OBJECT (item), I_("exo-helper"), helper, g_object_unref);
+      g_object_set_data_full (G_OBJECT (item), I_ ("exo-helper"), helper, g_object_unref);
       g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (menu_activate), chooser);
       gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
       gtk_widget_show_all (item);
@@ -791,7 +785,7 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
  *
  * Return value: the newly allocated #XfceMimeHelperChooser.
  **/
-GtkWidget*
+GtkWidget *
 xfce_mime_helper_chooser_new (XfceMimeHelperCategory category)
 {
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
@@ -827,7 +821,7 @@ xfce_mime_helper_chooser_get_category (const XfceMimeHelperChooser *chooser)
  **/
 void
 xfce_mime_helper_chooser_set_category (XfceMimeHelperChooser *chooser,
-                                 XfceMimeHelperCategory category)
+                                       XfceMimeHelperCategory category)
 {
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
   g_return_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES);

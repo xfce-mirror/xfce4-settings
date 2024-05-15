@@ -19,16 +19,23 @@
 #ifndef __POINTERS_H__
 #define __POINTERS_H__
 
+#include <glib-object.h>
+
+G_BEGIN_DECLS
+
 typedef struct _XfcePointersHelperClass XfcePointersHelperClass;
-typedef struct _XfcePointersHelper      XfcePointersHelper;
+typedef struct _XfcePointersHelper XfcePointersHelper;
 
-#define XFCE_TYPE_POINTERS_HELPER            (xfce_pointers_helper_get_type ())
-#define XFCE_POINTERS_HELPER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_POINTERS_HELPER, XfcePointersHelper))
-#define XFCE_POINTERS_HELPER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_POINTERS_HELPER, XfcePointersHelperClass))
-#define XFCE_IS_POINTERS_HELPER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_POINTERS_HELPER))
+#define XFCE_TYPE_POINTERS_HELPER (xfce_pointers_helper_get_type ())
+#define XFCE_POINTERS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_POINTERS_HELPER, XfcePointersHelper))
+#define XFCE_POINTERS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_POINTERS_HELPER, XfcePointersHelperClass))
+#define XFCE_IS_POINTERS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_POINTERS_HELPER))
 #define XFCE_IS_POINTERS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_POINTERS_HELPER))
-#define XFCE_POINTERS_HELPER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_POINTERS_HELPER, XfcePointersHelperClass))
+#define XFCE_POINTERS_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_POINTERS_HELPER, XfcePointersHelperClass))
 
-GType xfce_pointers_helper_get_type (void) G_GNUC_CONST;
+GType
+xfce_pointers_helper_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
 
 #endif /* !__POINTERS_H__ */

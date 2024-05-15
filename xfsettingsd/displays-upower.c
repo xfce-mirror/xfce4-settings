@@ -17,48 +17,42 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+#include "displays-upower.h"
+
+#include "common/debug.h"
 
 #include <upower.h>
 
-#include "common/debug.h"
-#include "displays-upower.h"
 
 
+static void
+xfce_displays_upower_dispose (GObject *object);
 
-static void             xfce_displays_upower_dispose                        (GObject                 *object);
-
-#if UP_CHECK_VERSION(0, 99, 0)
-static void             xfce_displays_upower_property_changed               (UpClient                *client,
-                                                                             GParamSpec              *pspec,
-                                                                             XfceDisplaysUPower      *upower);
-#else
-static void             xfce_displays_upower_property_changed               (UpClient                *client,
-                                                                             XfceDisplaysUPower      *upower);
-#endif
+static void
+xfce_displays_upower_property_changed (UpClient *client,
+                                       GParamSpec *pspec,
+                                       XfceDisplaysUPower *upower);
 
 
 struct _XfceDisplaysUPowerClass
 {
     GObjectClass __parent__;
 
-    void         (*lid_changed)     (XfceDisplaysUPower *upower,
-                                     gboolean            lid_is_closed);
+    void (*lid_changed) (XfceDisplaysUPower *upower,
+                         gboolean lid_is_closed);
 };
 
 struct _XfceDisplaysUPower
 {
-    GObject   __parent__;
+    GObject __parent__;
 
     UpClient *client;
-    gint      handler;
+    gint handler;
 
-    guint     lid_is_closed : 1;
+    guint lid_is_closed : 1;
 };
 
 enum
@@ -67,7 +61,7 @@ enum
     LAST_SIGNAL
 };
 
-static guint signals[LAST_SIGNAL] = {0};
+static guint signals[LAST_SIGNAL] = { 0 };
 
 
 
@@ -106,17 +100,10 @@ xfce_displays_upower_init (XfceDisplaysUPower *upower)
     }
 
     upower->lid_is_closed = up_client_get_lid_is_closed (upower->client);
-#if UP_CHECK_VERSION(0, 99, 0)
     upower->handler = g_signal_connect (G_OBJECT (upower->client),
                                         "notify",
                                         G_CALLBACK (xfce_displays_upower_property_changed),
                                         upower);
-#else
-    upower->handler = g_signal_connect (G_OBJECT (upower->client),
-                                        "changed",
-                                        G_CALLBACK (xfce_displays_upower_property_changed),
-                                        upower);
-#endif
 }
 
 
@@ -140,14 +127,9 @@ xfce_displays_upower_dispose (GObject *object)
 
 
 static void
-#if UP_CHECK_VERSION(0, 99, 0)
-xfce_displays_upower_property_changed (UpClient           *client,
-                                       GParamSpec         *pspec,
+xfce_displays_upower_property_changed (UpClient *client,
+                                       GParamSpec *pspec,
                                        XfceDisplaysUPower *upower)
-#else
-xfce_displays_upower_property_changed (UpClient           *client,
-                                       XfceDisplaysUPower *upower)
-#endif
 {
     gboolean lid_is_closed;
 

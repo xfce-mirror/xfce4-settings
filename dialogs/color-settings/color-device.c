@@ -19,24 +19,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif
+
+#include "color-device.h"
 
 #include <glib/gi18n.h>
-#include <gtk/gtk.h>
-#include <colord.h>
-#include "color-device.h"
 
 struct _ColorDevice
 {
     GtkListBoxRow parent_instance;
 
-    CdDevice    *device;
-    gboolean     enabled;
-    gchar       *sortable;
-    GtkWidget   *widget_description;
-    GtkWidget   *widget_icon;
-    GtkWidget   *widget_switch;
-    guint        device_changed_id;
+    CdDevice *device;
+    gboolean enabled;
+    gchar *sortable;
+    GtkWidget *widget_description;
+    GtkWidget *widget_icon;
+    GtkWidget *widget_switch;
+    guint device_changed_id;
 };
 
 G_DEFINE_TYPE (ColorDevice, color_device, GTK_TYPE_LIST_BOX_ROW)
@@ -54,7 +55,7 @@ enum
     PROP_LAST
 };
 
-static guint signals [SIGNAL_LAST] = { 0 };
+static guint signals[SIGNAL_LAST] = { 0 };
 
 gchar *
 color_device_get_kind (CdDevice *device)
@@ -88,16 +89,18 @@ color_device_get_title (CdDevice *device)
     string = g_string_new ("");
 
     /* is laptop panel */
-    if (cd_device_get_kind (device) == CD_DEVICE_KIND_DISPLAY &&
-        cd_device_get_embedded (device)) {
+    if (cd_device_get_kind (device) == CD_DEVICE_KIND_DISPLAY
+        && cd_device_get_embedded (device))
+    {
         /* TRANSLATORS: This refers to the TFT display on a laptop */
         g_string_append (string, _("Laptop Screen"));
         goto out;
     }
 
     /* is internal webcam */
-    if (cd_device_get_kind (device) == CD_DEVICE_KIND_WEBCAM &&
-        cd_device_get_embedded (device)) {
+    if (cd_device_get_kind (device) == CD_DEVICE_KIND_WEBCAM
+        && cd_device_get_embedded (device))
+    {
         /* TRANSLATORS: This refers to the embedded webcam on a laptop */
         g_string_append (string, _("Built-in Webcam"));
         goto out;
@@ -167,7 +170,7 @@ static void
 color_device_refresh (ColorDevice *color_device)
 {
     g_autofree gchar *title = NULL;
-    g_autoptr(GPtrArray) profiles = NULL;
+    g_autoptr (GPtrArray) profiles = NULL;
     AtkObject *accessible;
     g_autofree gchar *name1 = NULL;
     g_autofree gchar *device_icon = NULL;
@@ -211,8 +214,10 @@ color_device_get_sortable (ColorDevice *color_device)
 }
 
 static void
-color_device_get_property (GObject *object, guint param_id,
-                           GValue *value, GParamSpec *pspec)
+color_device_get_property (GObject *object,
+                           guint param_id,
+                           GValue *value,
+                           GParamSpec *pspec)
 {
     ColorDevice *color_device = SETTINGS_COLOR_DEVICE (object);
     switch (param_id)
@@ -227,8 +232,10 @@ color_device_get_property (GObject *object, guint param_id,
 }
 
 static void
-color_device_set_property (GObject *object, guint param_id,
-                              const GValue *value, GParamSpec *pspec)
+color_device_set_property (GObject *object,
+                           guint param_id,
+                           const GValue *value,
+                           GParamSpec *pspec)
 {
     ColorDevice *color_device = SETTINGS_COLOR_DEVICE (object);
 
@@ -259,7 +266,7 @@ color_device_finalize (GObject *object)
 
 void
 color_device_set_enabled (ColorDevice *color_device,
-                              gboolean enabled)
+                          gboolean enabled)
 {
     /* same as before */
     if (color_device->enabled == enabled)
@@ -276,21 +283,21 @@ color_device_set_enabled (ColorDevice *color_device,
 
 static void
 color_device_notify_enable_device_cb (GtkSwitch *sw,
-                                         GParamSpec *pspec,
-                                         gpointer user_data)
+                                      GParamSpec *pspec,
+                                      gpointer user_data)
 {
     ColorDevice *color_device = SETTINGS_COLOR_DEVICE (user_data);
     gboolean enable;
     gboolean ret;
-    g_autoptr(GError) error = NULL;
+    g_autoptr (GError) error = NULL;
 
     enable = gtk_switch_get_active (sw);
     g_debug ("Set %s to %i", cd_device_get_id (color_device->device), enable);
     ret = cd_device_set_enabled_sync (color_device->device,
                                       enable, NULL, &error);
     if (!ret)
-      g_warning ("failed to %s to the device: %s",
-                 enable ? "enable" : "disable", error->message);
+        g_warning ("failed to %s to the device: %s",
+                   enable ? "enable" : "disable", error->message);
 
     /* if enabled, close */
     color_device_set_enabled (color_device, enable);
@@ -298,7 +305,7 @@ color_device_notify_enable_device_cb (GtkSwitch *sw,
 
 static void
 color_device_changed_cb (CdDevice *device,
-                                   ColorDevice *color_device)
+                         ColorDevice *color_device)
 {
     color_device_refresh (color_device);
 }
@@ -311,8 +318,8 @@ color_device_constructed (GObject *object)
 
     /* watch the device for changes */
     color_device->device_changed_id =
-      g_signal_connect (color_device->device, "changed",
-                        G_CALLBACK (color_device_changed_cb), color_device);
+        g_signal_connect (color_device->device, "changed",
+                          G_CALLBACK (color_device_changed_cb), color_device);
 
     /* calculate sortable -- FIXME: we have to hack this as EggListBox
      * does not let us specify a GtkSortType:
@@ -345,7 +352,7 @@ color_device_class_init (ColorDeviceClass *klass)
                                                           CD_TYPE_DEVICE,
                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
-    signals [SIGNAL_ENABLED_CHANGED] =
+    signals[SIGNAL_ENABLED_CHANGED] =
         g_signal_new ("enabled-changed",
                       G_TYPE_FROM_CLASS (object_class), G_SIGNAL_RUN_LAST,
                       0,
@@ -363,7 +370,7 @@ color_device_init (ColorDevice *color_device)
     color_device->widget_icon = gtk_image_new ();
     gtk_widget_set_margin_start (color_device->widget_icon, 12);
     gtk_widget_set_margin_end (color_device->widget_icon, 3);
-    gtk_box_pack_start (GTK_BOX (box), color_device->widget_icon, FALSE , FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (box), color_device->widget_icon, FALSE, FALSE, 0);
 
     color_device->widget_description = gtk_label_new ("");
     gtk_widget_set_margin_top (color_device->widget_description, 12);

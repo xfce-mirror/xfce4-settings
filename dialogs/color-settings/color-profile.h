@@ -21,21 +21,26 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
 #include <colord.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
 #define TYPE_COLOR_PROFILE (color_profile_get_type ())
 G_DECLARE_FINAL_TYPE (ColorProfile, color_profile, SETTINGS, COLOR_PROFILE, GtkListBoxRow)
 
-GtkWidget   *color_profile_new              (CdDevice        *device,
-                                             CdProfile       *profile,
-                                             gboolean         is_default);
-gboolean     color_profile_get_is_default   (ColorProfile    *color_profile);
-void         color_profile_set_is_default   (ColorProfile    *color_profile,
-                                             gboolean         profile_is_default);
-CdDevice    *color_profile_get_device       (ColorProfile    *color_profile);
-CdProfile   *color_profile_get_profile      (ColorProfile    *color_profile);
+GtkWidget *
+color_profile_new (CdDevice *device,
+                   CdProfile *profile,
+                   gboolean is_default);
+gboolean
+color_profile_get_is_default (ColorProfile *color_profile);
+void
+color_profile_set_is_default (ColorProfile *color_profile,
+                              gboolean profile_is_default);
+CdDevice *
+color_profile_get_device (ColorProfile *color_profile);
+CdProfile *
+color_profile_get_profile (ColorProfile *color_profile);
 
 G_END_DECLS

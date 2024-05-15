@@ -18,22 +18,22 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <gtk/gtk.h>
-
-#include <libxfce4ui/libxfce4ui.h>
 
 #include "command-dialog.h"
 
+#include <libxfce4ui/libxfce4ui.h>
 
 
-static void command_dialog_create_contents (CommandDialog      *dialog,
-                                            const gchar        *shortcut,
-                                            const gchar        *action,
-                                            gboolean            snotify);
-static void command_dialog_button_clicked  (CommandDialog      *dialog);
+
+static void
+command_dialog_create_contents (CommandDialog *dialog,
+                                const gchar *shortcut,
+                                const gchar *action,
+                                gboolean snotify);
+static void
+command_dialog_button_clicked (CommandDialog *dialog);
 
 
 
@@ -60,7 +60,6 @@ G_DEFINE_TYPE (CommandDialog, command_dialog, XFCE_TYPE_TITLED_DIALOG)
 static void
 command_dialog_class_init (CommandDialogClass *klass)
 {
-
 }
 
 
@@ -74,10 +73,10 @@ command_dialog_init (CommandDialog *dialog)
 
 
 
-GtkWidget*
+GtkWidget *
 command_dialog_new (const gchar *shortcut,
                     const gchar *action,
-                    gboolean     snotify)
+                    gboolean snotify)
 {
   CommandDialog *dialog;
 
@@ -92,27 +91,23 @@ command_dialog_new (const gchar *shortcut,
 
 static void
 command_dialog_create_contents (CommandDialog *dialog,
-                                const gchar   *shortcut,
-                                const gchar   *action,
-                                gboolean       snotify)
+                                const gchar *shortcut,
+                                const gchar *action,
+                                gboolean snotify)
 {
-  GtkWidget       *button;
-  GtkWidget       *content_box;
-  GtkWidget       *hbox;
-  GtkWidget       *label;
-  GtkWidget       *image;
-  GtkWidget       *table;
-  gchar          **keys;
-  guint            i;
+  GtkWidget *button;
+  GtkWidget *content_box;
+  GtkWidget *hbox;
+  GtkWidget *label;
+  GtkWidget *image;
+  GtkWidget *table;
+  gchar **keys;
+  guint i;
   GtkStyleContext *context;
 
   /* Set dialog title and icon */
   gtk_window_set_title (GTK_WINDOW (dialog), _("Shortcut Command"));
   gtk_window_set_icon_name (GTK_WINDOW (dialog), "application-x-executable");
-
-#if !LIBXFCE4UI_CHECK_VERSION (4, 19, 3)
-  xfce_titled_dialog_create_action_area (XFCE_TITLED_DIALOG (dialog));
-#endif
 
   /* Create cancel button */
   button = gtk_button_new_with_mnemonic (_("_Cancel"));
@@ -122,7 +117,7 @@ command_dialog_create_contents (CommandDialog *dialog,
   button = gtk_button_new_with_mnemonic (_("_OK"));
   xfce_titled_dialog_add_action_widget (XFCE_TITLED_DIALOG (dialog), button, GTK_RESPONSE_OK);
   xfce_titled_dialog_set_default_response (XFCE_TITLED_DIALOG (dialog), GTK_RESPONSE_OK);
-  gtk_widget_set_can_default (GTK_WIDGET(button), TRUE);
+  gtk_widget_set_can_default (GTK_WIDGET (button), TRUE);
   gtk_widget_grab_default (button);
   gtk_widget_show (button);
 
@@ -137,7 +132,7 @@ command_dialog_create_contents (CommandDialog *dialog,
       /* No shortcut passed, means that we are creating a new one */
 
       const gchar *explanation;
-      gchar       *explanation_markup;
+      gchar *explanation_markup;
 
       label = gtk_label_new (NULL);
 
@@ -219,13 +214,12 @@ command_dialog_create_contents (CommandDialog *dialog,
 
 
 
-const char*
+const char *
 command_dialog_get_command (CommandDialog *dialog)
 {
   g_return_val_if_fail (IS_COMMAND_DIALOG (dialog), NULL);
   return gtk_entry_get_text (GTK_ENTRY (dialog->entry));
 }
-
 
 
 
@@ -240,9 +234,9 @@ command_dialog_get_snotify (CommandDialog *dialog)
 
 gint
 command_dialog_run (CommandDialog *dialog,
-                    GtkWidget     *parent)
+                    GtkWidget *parent)
 {
-  gint     response = GTK_RESPONSE_CANCEL;
+  gint response = GTK_RESPONSE_CANCEL;
   gboolean finished = FALSE;
 
   g_return_val_if_fail (IS_COMMAND_DIALOG (dialog), GTK_RESPONSE_CANCEL);
@@ -270,17 +264,17 @@ command_dialog_run (CommandDialog *dialog,
 static void
 command_dialog_button_clicked (CommandDialog *dialog)
 {
-  GtkWidget     *chooser;
+  GtkWidget *chooser;
   GtkFileFilter *filter;
-  gchar         *filename;
+  gchar *filename;
 
   g_return_if_fail (IS_COMMAND_DIALOG (dialog));
 
   chooser = gtk_file_chooser_dialog_new (_("Select command"),
                                          GTK_WINDOW (dialog),
-                                         GTK_FILE_CHOOSER_ACTION_OPEN,
-                                         _("_Cancel"), GTK_RESPONSE_CANCEL,
-                                         _("_Open"), GTK_RESPONSE_OK, NULL);
+                                         GTK_FILE_CHOOSER_ACTION_OPEN, _("_Cancel"),
+                                         GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_OK,
+                                         NULL);
 
   /* Add file chooser filters */
   filter = gtk_file_filter_new ();

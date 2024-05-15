@@ -26,20 +26,27 @@
    (git commit 42452cada8cf1c4d7a81aded0a3ddbb5e97441de)
    Slightly modified by Lionel Le Folgoc <mrpouit@gmail.com> to build with full debug */
 
-#include "edid.h"
-#include <stdlib.h>
-#include <string.h>
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#include "common/edid.h"
+
+#ifdef HAVE_MATH_H
 #include <math.h>
-#include <glib.h>
+#endif
 
 static int
-get_bit (int in, int bit)
+get_bit (int in,
+         int bit)
 {
     return (in & (1 << bit)) >> bit;
 }
 
 static int
-get_bits (int in, int begin, int end)
+get_bits (int in,
+          int begin,
+          int end)
 {
     int mask = (1 << (end - begin + 1)) - 1;
 
@@ -55,16 +62,17 @@ decode_header (const uchar *edid)
 }
 
 static int
-decode_vendor_and_product_identification (const uchar *edid, MonitorInfo *info)
+decode_vendor_and_product_identification (const uchar *edid,
+                                          MonitorInfo *info)
 {
     int is_model_year;
 
     /* Manufacturer Code */
-    info->manufacturer_code[0]  = get_bits (edid[0x08], 2, 6);
-    info->manufacturer_code[1]  = get_bits (edid[0x08], 0, 1) << 3;
+    info->manufacturer_code[0] = get_bits (edid[0x08], 2, 6);
+    info->manufacturer_code[1] = get_bits (edid[0x08], 0, 1) << 3;
     info->manufacturer_code[1] |= get_bits (edid[0x09], 5, 7);
-    info->manufacturer_code[2]  = get_bits (edid[0x09], 0, 4);
-    info->manufacturer_code[3]  = '\0';
+    info->manufacturer_code[2] = get_bits (edid[0x09], 0, 4);
+    info->manufacturer_code[3] = '\0';
 
     info->manufacturer_code[0] += 'A' - 1;
     info->manufacturer_code[1] += 'A' - 1;
@@ -74,8 +82,7 @@ decode_vendor_and_product_identification (const uchar *edid, MonitorInfo *info)
     info->product_code = edid[0x0b] << 8 | edid[0x0a];
 
     /* Serial Number */
-    info->serial_number =
-    edid[0x0c] | edid[0x0d] << 8 | edid[0x0e] << 16 | edid[0x0f] << 24;
+    info->serial_number = edid[0x0c] | edid[0x0d] << 8 | edid[0x0e] << 16 | edid[0x0f] << 24;
 
     /* Week and Year */
     is_model_year = FALSE;
@@ -110,7 +117,8 @@ decode_vendor_and_product_identification (const uchar *edid, MonitorInfo *info)
 }
 
 static int
-decode_edid_version (const uchar *edid, MonitorInfo *info)
+decode_edid_version (const uchar *edid,
+                     MonitorInfo *info)
 {
     info->major_version = edid[0x12];
     info->minor_version = edid[0x13];
@@ -119,7 +127,8 @@ decode_edid_version (const uchar *edid, MonitorInfo *info)
 }
 
 static int
-decode_display_parameters (const uchar *edid, MonitorInfo *info)
+decode_display_parameters (const uchar *edid,
+                           MonitorInfo *info)
 {
     /* Digital vs Analog */
     info->is_digital = get_bit (edid[0x14], 7);
@@ -128,13 +137,11 @@ decode_display_parameters (const uchar *edid, MonitorInfo *info)
     {
         int bits;
 
-        static const int bit_depth[8] =
-        {
+        static const int bit_depth[8] = {
             -1, 6, 8, 10, 12, 14, 16, -1
         };
 
-        static const Interface interfaces[6] =
-        {
+        static const Interface interfaces[6] = {
             UNDEFINED, DVI, HDMI_A, HDMI_B, MDDI, DISPLAY_PORT
         };
 
@@ -152,12 +159,11 @@ decode_display_parameters (const uchar *edid, MonitorInfo *info)
     {
         int bits = get_bits (edid[0x14], 5, 6);
 
-        static const double levels[][3] =
-        {
-            { 0.7,   0.3,    1.0 },
-            { 0.714, 0.286,  1.0 },
-            { 1.0,   0.4,    1.4 },
-            { 0.7,   0.0,    0.7 },
+        static const double levels[][3] = {
+            { 0.7, 0.3, 1.0 },
+            { 0.714, 0.286, 1.0 },
+            { 1.0, 0.4, 1.4 },
+            { 0.7, 0.0, 0.7 },
         };
 
         info->connector.analog.video_signal_level = levels[bits][0];
@@ -191,7 +197,7 @@ decode_display_parameters (const uchar *edid, MonitorInfo *info)
         info->width_mm = -1;
         info->height_mm = -1;
         info->aspect_ratio = 100.0 / (edid[0x16] + 99);
-        info->aspect_ratio = 1/info->aspect_ratio; /* portrait */
+        info->aspect_ratio = 1 / info->aspect_ratio; /* portrait */
     }
     else
     {
@@ -221,8 +227,7 @@ decode_display_parameters (const uchar *edid, MonitorInfo *info)
     else
     {
         int bits = get_bits (edid[0x18], 3, 4);
-        ColorType color_type[4] =
-        {
+        ColorType color_type[4] = {
             MONOCHROME, RGB, OTHER_COLOR, UNDEFINED_COLOR
         };
 
@@ -240,7 +245,8 @@ decode_display_parameters (const uchar *edid, MonitorInfo *info)
 }
 
 static double
-decode_fraction (int high, int low)
+decode_fraction (int high,
+                 int low)
 {
     double result = 0.0;
     int i;
@@ -254,7 +260,8 @@ decode_fraction (int high, int low)
 }
 
 static int
-decode_color_characteristics (const uchar *edid, MonitorInfo *info)
+decode_color_characteristics (const uchar *edid,
+                              MonitorInfo *info)
 {
     info->red_x = decode_fraction (edid[0x1b], get_bits (edid[0x19], 6, 7));
     info->red_y = decode_fraction (edid[0x1c], get_bits (edid[0x19], 5, 4));
@@ -269,10 +276,10 @@ decode_color_characteristics (const uchar *edid, MonitorInfo *info)
 }
 
 static int
-decode_established_timings (const uchar *edid, MonitorInfo *info)
+decode_established_timings (const uchar *edid,
+                            MonitorInfo *info)
 {
-    static const Timing established[][8] =
-    {
+    static const Timing established[][8] = {
         {
             { 800, 600, 60 },
             { 800, 600, 56 },
@@ -281,7 +288,7 @@ decode_established_timings (const uchar *edid, MonitorInfo *info)
             { 640, 480, 67 },
             { 640, 480, 60 },
             { 720, 400, 88 },
-            { 720, 400, 70 }
+            { 720, 400, 70 },
         },
         {
             { 1280, 1024, 75 },
@@ -291,7 +298,7 @@ decode_established_timings (const uchar *edid, MonitorInfo *info)
             { 1024, 768, 87 },
             { 832, 624, 75 },
             { 800, 600, 75 },
-            { 800, 600, 72 }
+            { 800, 600, 72 },
         },
         {
             { 0, 0, 0 },
@@ -301,7 +308,7 @@ decode_established_timings (const uchar *edid, MonitorInfo *info)
             { 0, 0, 0 },
             { 0, 0, 0 },
             { 0, 0, 0 },
-            { 1152, 870, 75 }
+            { 1152, 870, 75 },
         },
     };
 
@@ -322,7 +329,8 @@ decode_established_timings (const uchar *edid, MonitorInfo *info)
 }
 
 static int
-decode_standard_timings (const uchar *edid, MonitorInfo *info)
+decode_standard_timings (const uchar *edid,
+                         MonitorInfo *info)
 {
     int i;
 
@@ -354,7 +362,9 @@ decode_standard_timings (const uchar *edid, MonitorInfo *info)
 }
 
 static void
-decode_lf_string (const uchar *s, int n_chars, char *result)
+decode_lf_string (const uchar *s,
+                  int n_chars,
+                  char *result)
 {
     int i;
     for (i = 0; i < n_chars; ++i)
@@ -378,7 +388,7 @@ decode_lf_string (const uchar *s, int n_chars, char *result)
 
 static void
 decode_display_descriptor (const uchar *desc,
-               MonitorInfo *info)
+                           MonitorInfo *info)
 {
     switch (desc[0x03])
     {
@@ -416,11 +426,10 @@ decode_display_descriptor (const uchar *desc,
 
 static void
 decode_detailed_timing (const uchar *timing,
-            DetailedTiming *detailed)
+                        DetailedTiming *detailed)
 {
     int bits;
-    StereoType stereo[] =
-    {
+    StereoType stereo[] = {
         NO_STEREO, NO_STEREO, FIELD_RIGHT, FIELD_LEFT,
         TWO_WAY_RIGHT_ON_EVEN, TWO_WAY_LEFT_ON_EVEN,
         FOUR_WAY_INTERLEAVED, SIDE_BY_SIDE
@@ -434,10 +443,10 @@ decode_detailed_timing (const uchar *timing,
     detailed->h_front_porch = timing[0x08] | get_bits (timing[0x0b], 6, 7) << 8;
     detailed->h_sync = timing[0x09] | get_bits (timing[0x0b], 4, 5) << 8;
     detailed->v_front_porch =
-    get_bits (timing[0x0a], 4, 7) | get_bits (timing[0x0b], 2, 3) << 4;
+        get_bits (timing[0x0a], 4, 7) | get_bits (timing[0x0b], 2, 3) << 4;
     detailed->v_sync =
-    get_bits (timing[0x0a], 0, 3) | get_bits (timing[0x0b], 0, 1) << 4;
-    detailed->width_mm =  timing[0x0c] | get_bits (timing[0x0e], 4, 7) << 8;
+        get_bits (timing[0x0a], 0, 3) | get_bits (timing[0x0b], 0, 1) << 4;
+    detailed->width_mm = timing[0x0c] | get_bits (timing[0x0e], 4, 7) << 8;
     detailed->height_mm = timing[0x0d] | get_bits (timing[0x0e], 0, 3) << 8;
     detailed->right_border = timing[0x0f];
     detailed->top_border = timing[0x10];
@@ -478,7 +487,8 @@ decode_detailed_timing (const uchar *timing,
 }
 
 static int
-decode_descriptors (const uchar *edid, MonitorInfo *info)
+decode_descriptors (const uchar *edid,
+                    MonitorInfo *info)
 {
     int i;
     int timing_idx;
@@ -495,8 +505,7 @@ decode_descriptors (const uchar *edid, MonitorInfo *info)
         }
         else
         {
-            decode_detailed_timing (
-            edid + idx, &(info->detailed_timings[timing_idx++]));
+            decode_detailed_timing (edid + idx, &(info->detailed_timings[timing_idx++]));
         }
     }
 
@@ -507,7 +516,7 @@ decode_descriptors (const uchar *edid, MonitorInfo *info)
 
 static void
 decode_check_sum (const uchar *edid,
-          MonitorInfo *info)
+                  MonitorInfo *info)
 {
     int i;
     uchar check = 0;
@@ -526,13 +535,13 @@ decode_edid (const uchar *edid)
     decode_check_sum (edid, info);
 
     if (decode_header (edid)
-    && decode_vendor_and_product_identification (edid, info)
-    && decode_edid_version (edid, info)
-    && decode_display_parameters (edid, info)
-    && decode_color_characteristics (edid, info)
-    && decode_established_timings (edid, info)
-    && decode_standard_timings (edid, info)
-    && decode_descriptors (edid, info))
+        && decode_vendor_and_product_identification (edid, info)
+        && decode_edid_version (edid, info)
+        && decode_display_parameters (edid, info)
+        && decode_color_characteristics (edid, info)
+        && decode_established_timings (edid, info)
+        && decode_standard_timings (edid, info)
+        && decode_descriptors (edid, info))
     {
         return info;
     }

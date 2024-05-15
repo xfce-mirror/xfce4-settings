@@ -16,9 +16,12 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include <gdk/gdkprivate.h> /* For GDK_PARENT_RELATIVE_BG */
-#include "scrollarea.h"
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "foo-marshal.h"
+#include "scrollarea.h"
 
 G_DEFINE_TYPE_WITH_CODE (FooScrollArea, foo_scroll_area, GTK_TYPE_CONTAINER, G_IMPLEMENT_INTERFACE (GTK_TYPE_SCROLLABLE, NULL));
 
@@ -26,7 +29,7 @@ static GtkWidgetClass *parent_class;
 
 typedef struct BackingStore BackingStore;
 
-typedef void (* ExposeFunc) (cairo_t *cr, GdkRegion *region, gpointer data);
+typedef void (*ExposeFunc) (cairo_t *cr, GdkRegion *region, gpointer data);
 
 typedef struct InputPath InputPath;
 typedef struct InputRegion InputRegion;
@@ -34,70 +37,70 @@ typedef struct AutoScrollInfo AutoScrollInfo;
 
 struct InputPath
 {
-    gboolean                is_stroke;
-    cairo_fill_rule_t       fill_rule;
-    double                  line_width;
-    cairo_path_t           *path;       /* In canvas coordinates */
+    gboolean is_stroke;
+    cairo_fill_rule_t fill_rule;
+    double line_width;
+    cairo_path_t *path; /* In canvas coordinates */
 
-    FooScrollAreaEventFunc  func;
-    gpointer                data;
+    FooScrollAreaEventFunc func;
+    gpointer data;
 
-    InputPath              *next;
+    InputPath *next;
 };
 
 /* InputRegions are mutually disjoint */
 struct InputRegion
 {
-    GdkRegion *region;      /* the boundary of this area in canvas coordinates */
+    GdkRegion *region; /* the boundary of this area in canvas coordinates */
     InputPath *paths;
 };
 
 struct AutoScrollInfo
 {
-    int     dx;
-    int     dy;
-    int     timeout_id;
-    int     begin_x;
-    int     begin_y;
-    double  res_x;
-    double  res_y;
+    int dx;
+    int dy;
+    int timeout_id;
+    int begin_x;
+    int begin_y;
+    double res_x;
+    double res_y;
     GTimer *timer;
 };
 
 struct FooScrollAreaPrivate
 {
-    GdkWindow              *input_window;
+    GdkWindow *input_window;
 
-    int                     width;
-    int                     height;
+    int width;
+    int height;
 
-    GtkAdjustment          *hadj;
-    GtkAdjustment          *vadj;
-    GtkScrollablePolicy     hscroll_policy;
-    GtkScrollablePolicy     vscroll_policy;
-    int                     x_offset;
-    int                     y_offset;
+    GtkAdjustment *hadj;
+    GtkAdjustment *vadj;
+    GtkScrollablePolicy hscroll_policy;
+    GtkScrollablePolicy vscroll_policy;
+    int x_offset;
+    int y_offset;
 
-    int                     min_width;
-    int                     min_height;
+    int min_width;
+    int min_height;
 
-    GPtrArray              *input_regions;
+    GPtrArray *input_regions;
 
-    AutoScrollInfo         *auto_scroll_info;
+    AutoScrollInfo *auto_scroll_info;
 
     /* During expose, this region is set to the region
      * being exposed. At other times, it is NULL
      *
      * It is used for clipping of input areas
      */
-    InputRegion            *current_input;
+    InputRegion *current_input;
 
-    gboolean                grabbed;
-    FooScrollAreaEventFunc  grab_func;
-    gpointer                grab_data;
+    gboolean grabbed;
+    FooScrollAreaEventFunc grab_func;
+    gpointer grab_data;
 
-    cairo_surface_t        *surface;
-    GdkRegion              *update_region;      /* In canvas coordinates */
+    cairo_surface_t *surface;
+    GdkRegion *update_region; /* In canvas coordinates */
 };
 
 enum
@@ -108,7 +111,8 @@ enum
     LAST_SIGNAL,
 };
 
-enum {
+enum
+{
     PROP_0,
     PROP_VADJUSTMENT,
     PROP_HADJUSTMENT,
@@ -116,32 +120,45 @@ enum {
     PROP_VSCROLL_POLICY
 };
 
-static guint scrollarea_signals [LAST_SIGNAL] = { 0 };
+static guint scrollarea_signals[LAST_SIGNAL] = { 0 };
 
-static void     foo_scroll_area_get_preferred_width  (GtkWidget      *widget,
-                                                      gint           *minimum,
-                                                      gint           *natural);
-static void     foo_scroll_area_get_preferred_height (GtkWidget      *widget,
-                                                      gint           *minimum,
-                                                      gint           *natural);
-static gboolean foo_scroll_area_draw                 (GtkWidget      *widget,
-                                                      cairo_t        *cr);
-static void     foo_scroll_area_size_allocate        (GtkWidget      *widget,
-                                                      GtkAllocation  *allocation);
-static void     foo_scroll_area_set_hadjustment      (FooScrollArea  *scroll_area,
-                                                      GtkAdjustment  *hadjustment);
-static void     foo_scroll_area_set_vadjustment      (FooScrollArea  *scroll_area,
-                                                      GtkAdjustment  *vadjustment);
-static void     foo_scroll_area_realize              (GtkWidget      *widget);
-static void     foo_scroll_area_unrealize            (GtkWidget      *widget);
-static void     foo_scroll_area_map                  (GtkWidget      *widget);
-static void     foo_scroll_area_unmap                (GtkWidget      *widget);
-static gboolean foo_scroll_area_button_press         (GtkWidget      *widget,
-                                                      GdkEventButton *event);
-static gboolean foo_scroll_area_button_release       (GtkWidget       *widget,
-                                                      GdkEventButton *event);
-static gboolean foo_scroll_area_motion               (GtkWidget      *widget,
-                                                      GdkEventMotion *event);
+static void
+foo_scroll_area_get_preferred_width (GtkWidget *widget,
+                                     gint *minimum,
+                                     gint *natural);
+static void
+foo_scroll_area_get_preferred_height (GtkWidget *widget,
+                                      gint *minimum,
+                                      gint *natural);
+static gboolean
+foo_scroll_area_draw (GtkWidget *widget,
+                      cairo_t *cr);
+static void
+foo_scroll_area_size_allocate (GtkWidget *widget,
+                               GtkAllocation *allocation);
+static void
+foo_scroll_area_set_hadjustment (FooScrollArea *scroll_area,
+                                 GtkAdjustment *hadjustment);
+static void
+foo_scroll_area_set_vadjustment (FooScrollArea *scroll_area,
+                                 GtkAdjustment *vadjustment);
+static void
+foo_scroll_area_realize (GtkWidget *widget);
+static void
+foo_scroll_area_unrealize (GtkWidget *widget);
+static void
+foo_scroll_area_map (GtkWidget *widget);
+static void
+foo_scroll_area_unmap (GtkWidget *widget);
+static gboolean
+foo_scroll_area_button_press (GtkWidget *widget,
+                              GdkEventButton *event);
+static gboolean
+foo_scroll_area_button_release (GtkWidget *widget,
+                                GdkEventButton *event);
+static gboolean
+foo_scroll_area_motion (GtkWidget *widget,
+                        GdkEventMotion *event);
 
 static void
 foo_scroll_area_map (GtkWidget *widget)
@@ -182,9 +199,9 @@ foo_scroll_area_finalize (GObject *object)
 }
 
 static void
-foo_scroll_area_get_property (GObject    *object,
-                              guint       property_id,
-                              GValue     *value,
+foo_scroll_area_get_property (GObject *object,
+                              guint property_id,
+                              GValue *value,
                               GParamSpec *pspec)
 {
     FooScrollArea *scroll_area = FOO_SCROLL_AREA (object);
@@ -209,10 +226,10 @@ foo_scroll_area_get_property (GObject    *object,
 }
 
 static void
-foo_scroll_area_set_property (GObject      *object,
-                              guint         property_id,
+foo_scroll_area_set_property (GObject *object,
+                              guint property_id,
                               const GValue *value,
-                              GParamSpec   *pspec)
+                              GParamSpec *pspec)
 {
     FooScrollArea *scroll_area = FOO_SCROLL_AREA (object);
 
@@ -307,8 +324,8 @@ foo_scroll_area_init (FooScrollArea *scroll_area)
     scroll_area->priv = g_new0 (FooScrollAreaPrivate, 1);
     scroll_area->priv->width = 0;
     scroll_area->priv->height = 0;
-    scroll_area->priv->hadj = g_object_ref_sink (new_adjustment());
-    scroll_area->priv->vadj = g_object_ref_sink (new_adjustment());
+    scroll_area->priv->hadj = g_object_ref_sink (new_adjustment ());
+    scroll_area->priv->vadj = g_object_ref_sink (new_adjustment ());
     scroll_area->priv->x_offset = 0.0;
     scroll_area->priv->y_offset = 0.0;
     scroll_area->priv->min_width = 0;
@@ -319,9 +336,9 @@ foo_scroll_area_init (FooScrollArea *scroll_area)
     scroll_area->priv->update_region = gdk_region_new ();
 }
 
-typedef void (* PathForeachFunc) (double  *x,
-                                  double  *y,
-                                  gpointer data);
+typedef void (*PathForeachFunc) (double *x,
+                                 double *y,
+                                 gpointer data);
 
 typedef struct
 {
@@ -350,7 +367,7 @@ input_region_free (InputRegion *region)
 
 static void
 get_viewport (FooScrollArea *scroll_area,
-              GdkRectangle  *viewport)
+              GdkRectangle *viewport)
 {
     GtkAllocation allocation;
     GtkWidget *widget = GTK_WIDGET (scroll_area);
@@ -365,8 +382,8 @@ get_viewport (FooScrollArea *scroll_area,
 
 static void
 allocation_to_canvas (FooScrollArea *area,
-                      int           *x,
-                      int           *y)
+                      int *x,
+                      int *y)
 {
     *x += area->priv->x_offset;
     *y += area->priv->y_offset;
@@ -374,7 +391,7 @@ allocation_to_canvas (FooScrollArea *area,
 
 static void
 clear_exposed_input_region (FooScrollArea *area,
-                            GdkRegion     *exposed) /* in canvas coordinates */
+                            GdkRegion *exposed) /* in canvas coordinates */
 {
     guint i;
     GdkRegion *viewport;
@@ -405,18 +422,18 @@ clear_exposed_input_region (FooScrollArea *area,
 
 static void
 setup_background_cr (GdkWindow *window,
-                     cairo_t   *cr,
-                     int        x_offset,
-                     int        y_offset)
+                     cairo_t *cr,
+                     int x_offset,
+                     int y_offset)
 {
-    cairo_translate (cr, - x_offset, - y_offset);
+    cairo_translate (cr, -x_offset, -y_offset);
     cairo_set_source_rgb (cr, 0.98, 0.98, 0.98);
     cairo_translate (cr, x_offset, y_offset);
 }
 
 static void
 initialize_background (GtkWidget *widget,
-                       cairo_t   *cr)
+                       cairo_t *cr)
 {
     setup_background_cr (gtk_widget_get_window (widget), cr, 0, 0);
 
@@ -425,7 +442,7 @@ initialize_background (GtkWidget *widget,
 
 static gboolean
 foo_scroll_area_draw (GtkWidget *widget,
-                      cairo_t   *widget_cr)
+                      cairo_t *widget_cr)
 {
     FooScrollArea *scroll_area = FOO_SCROLL_AREA (widget);
     GdkRegion *region;
@@ -462,7 +479,7 @@ foo_scroll_area_draw (GtkWidget *widget,
 
 void
 foo_scroll_area_get_viewport (FooScrollArea *scroll_area,
-                              GdkRectangle  *viewport)
+                              GdkRectangle *viewport)
 {
     g_return_if_fail (FOO_IS_SCROLL_AREA (scroll_area));
 
@@ -473,15 +490,15 @@ foo_scroll_area_get_viewport (FooScrollArea *scroll_area,
 }
 
 static void
-process_event (FooScrollArea          *scroll_area,
-               FooScrollAreaEventType  input_type,
-               int                     x,
-               int                     y);
+process_event (FooScrollArea *scroll_area,
+               FooScrollAreaEventType input_type,
+               int x,
+               int y);
 
 static void
 emit_viewport_changed (FooScrollArea *scroll_area,
-                       GdkRectangle  *new_viewport,
-                       GdkRectangle  *old_viewport)
+                       GdkRectangle *new_viewport,
+                       GdkRectangle *old_viewport)
 {
     int px, py;
     GdkSeat *seat;
@@ -506,7 +523,7 @@ clamp_adjustment (GtkAdjustment *adj)
     if (gtk_adjustment_get_upper (adj) >= gtk_adjustment_get_page_size (adj))
         gtk_adjustment_set_value (adj, CLAMP (gtk_adjustment_get_value (adj), 0.0,
                                               gtk_adjustment_get_upper (adj)
-                                               - gtk_adjustment_get_page_size (adj)));
+                                                  - gtk_adjustment_get_page_size (adj)));
     else
         gtk_adjustment_set_value (adj, 0.0);
 }
@@ -564,14 +581,14 @@ foo_scroll_area_realize (GtkWidget *widget)
     attributes.height = widget_allocation.height;
     attributes.wclass = GDK_INPUT_ONLY;
     attributes.event_mask = gtk_widget_get_events (widget);
-    attributes.event_mask |= (GDK_BUTTON_PRESS_MASK |
-                              GDK_BUTTON_RELEASE_MASK |
-                              GDK_BUTTON1_MOTION_MASK |
-                              GDK_BUTTON2_MOTION_MASK |
-                              GDK_BUTTON3_MOTION_MASK |
-                              GDK_POINTER_MOTION_MASK |
-                              GDK_ENTER_NOTIFY_MASK |
-                              GDK_LEAVE_NOTIFY_MASK);
+    attributes.event_mask |= (GDK_BUTTON_PRESS_MASK
+                              | GDK_BUTTON_RELEASE_MASK
+                              | GDK_BUTTON1_MOTION_MASK
+                              | GDK_BUTTON2_MOTION_MASK
+                              | GDK_BUTTON3_MOTION_MASK
+                              | GDK_POINTER_MOTION_MASK
+                              | GDK_ENTER_NOTIFY_MASK
+                              | GDK_LEAVE_NOTIFY_MASK);
 
     attributes_mask = GDK_WA_X | GDK_WA_Y;
 
@@ -580,9 +597,9 @@ foo_scroll_area_realize (GtkWidget *widget)
     g_object_ref (window);
 
     area->priv->input_window = gdk_window_new (window, &attributes, attributes_mask);
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     cr = gdk_cairo_create (gtk_widget_get_window (widget));
-G_GNUC_END_IGNORE_DEPRECATIONS
+    G_GNUC_END_IGNORE_DEPRECATIONS
     area->priv->surface = cairo_surface_create_similar (cairo_get_target (cr), CAIRO_CONTENT_COLOR,
                                                         widget_allocation.width, widget_allocation.height);
     cairo_destroy (cr);
@@ -605,7 +622,7 @@ foo_scroll_area_unrealize (GtkWidget *widget)
 }
 
 static cairo_surface_t *
-create_new_surface (GtkWidget       *widget,
+create_new_surface (GtkWidget *widget,
                     cairo_surface_t *old)
 {
     GtkAllocation widget_allocation;
@@ -614,9 +631,9 @@ create_new_surface (GtkWidget       *widget,
 
     gtk_widget_get_allocation (widget, &widget_allocation);
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     cr = gdk_cairo_create (gtk_widget_get_window (widget));
-G_GNUC_END_IGNORE_DEPRECATIONS
+    G_GNUC_END_IGNORE_DEPRECATIONS
 
     new = cairo_surface_create_similar (cairo_get_target (cr),
                                         CAIRO_CONTENT_COLOR,
@@ -644,13 +661,13 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 allocation_to_canvas_region (FooScrollArea *area,
-                             GdkRegion     *region)
+                             GdkRegion *region)
 {
     gdk_region_offset (region, area->priv->x_offset, area->priv->y_offset);
 }
 
 static void
-_cairo_region_xor (cairo_region_t       *dst,
+_cairo_region_xor (cairo_region_t *dst,
                    const cairo_region_t *src)
 {
     cairo_region_t *trb;
@@ -664,7 +681,7 @@ _cairo_region_xor (cairo_region_t       *dst,
 }
 
 static void
-foo_scroll_area_size_allocate (GtkWidget     *widget,
+foo_scroll_area_size_allocate (GtkWidget *widget,
                                GtkAllocation *allocation)
 {
     FooScrollArea *scroll_area = FOO_SCROLL_AREA (widget);
@@ -708,12 +725,12 @@ foo_scroll_area_size_allocate (GtkWidget     *widget,
 }
 
 static void
-emit_input (FooScrollArea         *scroll_area,
+emit_input (FooScrollArea *scroll_area,
             FooScrollAreaEventType type,
-            int                    x,
-            int                    y,
+            int x,
+            int y,
             FooScrollAreaEventFunc func,
-            gpointer               data)
+            gpointer data)
 {
     FooScrollAreaEvent event;
 
@@ -731,10 +748,10 @@ emit_input (FooScrollArea         *scroll_area,
 }
 
 static void
-process_event (FooScrollArea         *scroll_area,
+process_event (FooScrollArea *scroll_area,
                FooScrollAreaEventType input_type,
-               int                    x,
-               int                    y)
+               int x,
+               int y)
 {
     GtkWidget *widget = GTK_WIDGET (scroll_area);
     guint i;
@@ -763,9 +780,9 @@ process_event (FooScrollArea         *scroll_area,
                 cairo_t *cr;
                 gboolean inside;
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+                G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                 cr = gdk_cairo_create (gtk_widget_get_window (widget));
-G_GNUC_END_IGNORE_DEPRECATIONS
+                G_GNUC_END_IGNORE_DEPRECATIONS
                 cairo_set_fill_rule (cr, path->fill_rule);
                 cairo_set_line_width (cr, path->line_width);
                 cairo_append_path (cr, path->path);
@@ -785,7 +802,8 @@ G_GNUC_END_IGNORE_DEPRECATIONS
                                 path->data);
                     return;
                 }
-                else if (input_type == FOO_MOTION) {
+                else if (input_type == FOO_MOTION)
+                {
                     emit_input (scroll_area, FOO_MOTION_OUTSIDE,
                                 x, y,
                                 path->func,
@@ -807,9 +825,9 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 process_gdk_event (FooScrollArea *scroll_area,
-                   int            x,
-                   int            y,
-                   GdkEvent      *event)
+                   int x,
+                   int y,
+                   GdkEvent *event)
 {
     FooScrollAreaEventType input_type;
 
@@ -826,44 +844,44 @@ process_gdk_event (FooScrollArea *scroll_area,
 }
 
 static gboolean
-foo_scroll_area_button_press (GtkWidget      *widget,
+foo_scroll_area_button_press (GtkWidget *widget,
                               GdkEventButton *event)
 {
     FooScrollArea *area = FOO_SCROLL_AREA (widget);
 
-    process_gdk_event (area, event->x, event->y, (GdkEvent *)event);
+    process_gdk_event (area, event->x, event->y, (GdkEvent *) event);
 
     return TRUE;
 }
 
 static gboolean
-foo_scroll_area_button_release (GtkWidget      *widget,
+foo_scroll_area_button_release (GtkWidget *widget,
                                 GdkEventButton *event)
 {
     FooScrollArea *area = FOO_SCROLL_AREA (widget);
 
-    process_gdk_event (area, event->x, event->y, (GdkEvent *)event);
+    process_gdk_event (area, event->x, event->y, (GdkEvent *) event);
 
     return FALSE;
 }
 
 static gboolean
-foo_scroll_area_motion (GtkWidget      *widget,
+foo_scroll_area_motion (GtkWidget *widget,
                         GdkEventMotion *event)
 {
     FooScrollArea *area = FOO_SCROLL_AREA (widget);
 
-    process_gdk_event (area, event->x, event->y, (GdkEvent *)event);
+    process_gdk_event (area, event->x, event->y, (GdkEvent *) event);
 
     return TRUE;
 }
 
 void
 foo_scroll_area_set_size_fixed_y (FooScrollArea *scroll_area,
-                                  int            width,
-                                  int            height,
-                                  int            old_y,
-                                  int            new_y)
+                                  int width,
+                                  int height,
+                                  int old_y,
+                                  int new_y)
 {
     scroll_area->priv->width = width;
     scroll_area->priv->height = height;
@@ -877,8 +895,8 @@ foo_scroll_area_set_size_fixed_y (FooScrollArea *scroll_area,
 
 void
 foo_scroll_area_set_size (FooScrollArea *scroll_area,
-                          int            width,
-                          int            height)
+                          int width,
+                          int height)
 {
     g_return_if_fail (FOO_IS_SCROLL_AREA (scroll_area));
 
@@ -905,38 +923,42 @@ foo_scroll_area_set_size (FooScrollArea *scroll_area,
 
 static void
 foo_scroll_area_get_preferred_width (GtkWidget *widget,
-                                     gint      *minimum,
-                                     gint      *natural)
+                                     gint *minimum,
+                                     gint *natural)
 {
     FooScrollArea *scroll_area = FOO_SCROLL_AREA (widget);
 
-    if (minimum != NULL) {
+    if (minimum != NULL)
+    {
         *minimum = scroll_area->priv->min_width;
     }
-    if (natural != NULL) {
+    if (natural != NULL)
+    {
         *natural = scroll_area->priv->min_width;
     }
 }
 
 static void
 foo_scroll_area_get_preferred_height (GtkWidget *widget,
-                                      gint      *minimum,
-                                      gint      *natural)
+                                      gint *minimum,
+                                      gint *natural)
 {
     FooScrollArea *scroll_area = FOO_SCROLL_AREA (widget);
 
-    if (minimum != NULL) {
+    if (minimum != NULL)
+    {
         *minimum = scroll_area->priv->min_height;
     }
-    if (natural != NULL) {
+    if (natural != NULL)
+    {
         *natural = scroll_area->priv->min_height;
     }
 }
 
 static void
 foo_scroll_area_scroll (FooScrollArea *area,
-                        gint           dx,
-                        gint           dy)
+                        gint dx,
+                        gint dy)
 {
     GdkRectangle allocation;
     GdkRectangle src_area;
@@ -1008,12 +1030,12 @@ foo_scrollbar_adjustment_changed (GtkAdjustment *adj,
         /* FIXME: do we treat the offset as int or double, and,
          * if int, how do we round?
          */
-        dx = (int)gtk_adjustment_get_value (adj) - scroll_area->priv->x_offset;
+        dx = (int) gtk_adjustment_get_value (adj) - scroll_area->priv->x_offset;
         scroll_area->priv->x_offset = gtk_adjustment_get_value (adj);
     }
     else if (adj == scroll_area->priv->vadj)
     {
-        dy = (int)gtk_adjustment_get_value (adj) - scroll_area->priv->y_offset;
+        dy = (int) gtk_adjustment_get_value (adj) - scroll_area->priv->y_offset;
         scroll_area->priv->y_offset = gtk_adjustment_get_value (adj);
     }
     else
@@ -1087,8 +1109,8 @@ foo_scroll_area_new (void)
 
 void
 foo_scroll_area_set_min_size (FooScrollArea *scroll_area,
-                              int            min_width,
-                              int            min_height)
+                              int min_width,
+                              int min_height)
 {
     scroll_area->priv->min_width = min_width;
     scroll_area->priv->min_height = min_height;
@@ -1103,11 +1125,11 @@ foo_scroll_area_set_min_size (FooScrollArea *scroll_area,
 }
 
 static InputPath *
-make_path (FooScrollArea         *area,
-           cairo_t               *cr,
-           gboolean               is_stroke,
+make_path (FooScrollArea *area,
+           cairo_t *cr,
+           gboolean is_stroke,
            FooScrollAreaEventFunc func,
-           gpointer               data)
+           gpointer data)
 {
     InputPath *path = g_new0 (InputPath, 1);
 
@@ -1130,10 +1152,10 @@ make_path (FooScrollArea         *area,
  * as well.
  */
 void
-foo_scroll_area_add_input_from_fill (FooScrollArea         *scroll_area,
-                                     cairo_t               *cr,
+foo_scroll_area_add_input_from_fill (FooScrollArea *scroll_area,
+                                     cairo_t *cr,
                                      FooScrollAreaEventFunc func,
-                                     gpointer               data)
+                                     gpointer data)
 {
     g_return_if_fail (FOO_IS_SCROLL_AREA (scroll_area));
     g_return_if_fail (cr != NULL);
@@ -1143,10 +1165,10 @@ foo_scroll_area_add_input_from_fill (FooScrollArea         *scroll_area,
 }
 
 void
-foo_scroll_area_add_input_from_stroke (FooScrollArea         *scroll_area,
-                                       cairo_t               *cr,
+foo_scroll_area_add_input_from_stroke (FooScrollArea *scroll_area,
+                                       cairo_t *cr,
                                        FooScrollAreaEventFunc func,
-                                       gpointer               data)
+                                       gpointer data)
 {
     g_return_if_fail (FOO_IS_SCROLL_AREA (scroll_area));
     g_return_if_fail (cr != NULL);
@@ -1171,7 +1193,7 @@ foo_scroll_area_invalidate (FooScrollArea *scroll_area)
 
 static void
 canvas_to_window (FooScrollArea *area,
-                  GdkRegion     *region)
+                  GdkRegion *region)
 {
     GtkAllocation allocation;
     GtkWidget *widget = GTK_WIDGET (area);
@@ -1184,7 +1206,7 @@ canvas_to_window (FooScrollArea *area,
 
 static void
 window_to_canvas (FooScrollArea *area,
-                  GdkRegion     *region)
+                  GdkRegion *region)
 {
     GtkAllocation allocation;
     GtkWidget *widget = GTK_WIDGET (area);
@@ -1197,7 +1219,7 @@ window_to_canvas (FooScrollArea *area,
 
 void
 foo_scroll_area_invalidate_region (FooScrollArea *area,
-                                   GdkRegion     *region)
+                                   GdkRegion *region)
 {
     GtkWidget *widget;
 
@@ -1218,10 +1240,10 @@ foo_scroll_area_invalidate_region (FooScrollArea *area,
 
 void
 foo_scroll_area_invalidate_rect (FooScrollArea *scroll_area,
-                                 int            x,
-                                 int            y,
-                                 int            width,
-                                 int            height)
+                                 int x,
+                                 int y,
+                                 int width,
+                                 int height)
 {
     GdkRectangle rect = { x, y, width, height };
     GdkRegion *region;
@@ -1236,9 +1258,9 @@ foo_scroll_area_invalidate_rect (FooScrollArea *scroll_area,
 }
 
 void
-foo_scroll_area_begin_grab (FooScrollArea         *scroll_area,
+foo_scroll_area_begin_grab (FooScrollArea *scroll_area,
                             FooScrollAreaEventFunc func,
-                            gpointer               input_data)
+                            gpointer input_data)
 {
     g_return_if_fail (FOO_IS_SCROLL_AREA (scroll_area));
     g_return_if_fail (!scroll_area->priv->grabbed);
@@ -1269,8 +1291,8 @@ foo_scroll_area_is_grabbed (FooScrollArea *scroll_area)
 
 void
 foo_scroll_area_set_viewport_pos (FooScrollArea *scroll_area,
-                                  int            x,
-                                  int            y)
+                                  int x,
+                                  int y)
 {
     g_object_freeze_notify (G_OBJECT (scroll_area->priv->hadj));
     g_object_freeze_notify (G_OBJECT (scroll_area->priv->vadj));
@@ -1284,13 +1306,12 @@ foo_scroll_area_set_viewport_pos (FooScrollArea *scroll_area,
 
 static gboolean
 rect_contains (const GdkRectangle *rect,
-               int                 x,
-               int                 y)
+               int x,
+               int y)
 {
-    return (x >= rect->x               &&
-            y >= rect->y               &&
-            x  < rect->x + rect->width &&
-            y  < rect->y + rect->height);
+    return x >= rect->x && y >= rect->y
+           && x < rect->x + rect->width
+           && y < rect->y + rect->height;
 }
 
 static void
@@ -1328,12 +1349,8 @@ scroll_idle (gpointer data)
 
     get_viewport (area, &new_viewport);
 
-    if (viewport.x == new_viewport.x &&
-        viewport.y == new_viewport.y &&
-        (info->res_x > 1.0  ||
-         info->res_y > 1.0  ||
-         info->res_x < -1.0 ||
-         info->res_y < -1.0))
+    if (viewport.x == new_viewport.x && viewport.y == new_viewport.y
+        && (info->res_x > 1.0 || info->res_y > 1.0 || info->res_x < -1.0 || info->res_y < -1.0))
     {
         stop_scrolling (area);
 
@@ -1346,8 +1363,8 @@ scroll_idle (gpointer data)
 
 static void
 ensure_scrolling (FooScrollArea *area,
-                  int            dx,
-                  int            dy)
+                  int dx,
+                  int dy)
 {
     if (!area->priv->auto_scroll_info)
     {
@@ -1362,7 +1379,7 @@ ensure_scrolling (FooScrollArea *area,
 }
 
 void
-foo_scroll_area_auto_scroll (FooScrollArea      *scroll_area,
+foo_scroll_area_auto_scroll (FooScrollArea *scroll_area,
                              FooScrollAreaEvent *event)
 {
     GdkRectangle viewport;
