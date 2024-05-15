@@ -23,27 +23,30 @@
 #include <gtk/gtk.h>
 #include <xfconf/xfconf.h>
 
-#define XFCE_TYPE_SETTINGS_PROP_DIALOG            (xfce_settings_prop_dialog_get_type ())
-#define XFCE_SETTINGS_PROP_DIALOG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_SETTINGS_PROP_DIALOG, XfceSettingsPropDialog))
-#define XFCE_SETTINGS_PROP_DIALOG_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_SETTINGS_PROP_DIALOG, XfceSettingsPropDialogClass))
-#define XFCE_IS_SETTINGS_PROP_DIALOG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_SETTINGS_PROP_DIALOG))
+#define XFCE_TYPE_SETTINGS_PROP_DIALOG (xfce_settings_prop_dialog_get_type ())
+#define XFCE_SETTINGS_PROP_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_SETTINGS_PROP_DIALOG, XfceSettingsPropDialog))
+#define XFCE_SETTINGS_PROP_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_SETTINGS_PROP_DIALOG, XfceSettingsPropDialogClass))
+#define XFCE_IS_SETTINGS_PROP_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_SETTINGS_PROP_DIALOG))
 #define XFCE_IS_SETTINGS_PROP_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_SETTINGS_PROP_DIALOG))
-#define XFCE_SETTINGS_PROP_DIALOG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_SETTINGS_PROP_DIALOG, XfceSettingsPropDialogClass))
+#define XFCE_SETTINGS_PROP_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_SETTINGS_PROP_DIALOG, XfceSettingsPropDialogClass))
 
 G_BEGIN_DECLS
 
-typedef struct _XfceSettingsPropDialog      XfceSettingsPropDialog;
+typedef struct _XfceSettingsPropDialog XfceSettingsPropDialog;
 typedef struct _XfceSettingsPropDialogClass XfceSettingsPropDialogClass;
 
-GType      xfce_settings_prop_dialog_get_type            (void) G_GNUC_CONST;
+GType
+xfce_settings_prop_dialog_get_type (void) G_GNUC_CONST;
 
-GtkWidget *xfce_settings_prop_dialog_new                 (GtkWindow              *parent,
-                                                          XfconfChannel          *channel,
-                                                          const gchar            *property);
+GtkWidget *
+xfce_settings_prop_dialog_new (GtkWindow *parent,
+                               XfconfChannel *channel,
+                               const gchar *property);
 
-void       xfce_settings_prop_dialog_set_parent_property (XfceSettingsPropDialog *dialog,
-                                                          const gchar            *property);
+void
+xfce_settings_prop_dialog_set_parent_property (XfceSettingsPropDialog *dialog,
+                                               const gchar *property);
 
 G_END_DECLS
 
-#endif  /* __XFCE_SETTINGS_PROP_DIALOG_H__ */
+#endif /* __XFCE_SETTINGS_PROP_DIALOG_H__ */

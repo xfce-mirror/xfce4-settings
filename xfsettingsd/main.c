@@ -19,60 +19,46 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-#ifdef HAVE_SIGNAL_H
-#include <signal.h>
-#endif
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
-
-#include <glib.h>
-#include <gio/gio.h>
-#include <gtk/gtk.h>
-
-#ifdef ENABLE_X11
-#include <gdk/gdkx.h>
-#include <X11/X.h>
-#include <X11/Xlib.h>
-#endif
-
-#include <xfconf/xfconf.h>
-#include <libxfce4util/libxfce4util.h>
-#include <libxfce4ui/libxfce4ui.h>
-
-#include <locale.h>
-
-#include "common/debug.h"
 #include "gtk-decorations.h"
 #include "gtk-settings.h"
+
 #ifdef ENABLE_DISPLAY_SETTINGS
 #include "displays.h"
 #endif
+
 #ifdef ENABLE_X11
 #include "accessibility.h"
-#include "pointers.h"
-#include "keyboards.h"
 #include "keyboard-layout.h"
 #include "keyboard-shortcuts.h"
+#include "keyboards.h"
+#include "pointers.h"
 #include "workspaces.h"
 #include "xsettings.h"
 #endif
 
-#define XFSETTINGS_DBUS_NAME    "org.xfce.SettingsDaemon"
+#include "common/debug.h"
+
+#include <gio/gio.h>
+#include <gtk/gtk.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
+
+#ifdef ENABLE_X11
+#include <X11/X.h>
+#include <X11/Xlib.h>
+#include <gdk/gdkx.h>
+#endif
+
+#define XFSETTINGS_DBUS_NAME "org.xfce.SettingsDaemon"
 #define XFSETTINGS_DESKTOP_FILE (SYSCONFIGDIR "/xdg/autostart/xfsettingsd.desktop")
 
 #define UNREF_GOBJECT(obj) \
     if (obj) \
-    g_object_unref (G_OBJECT(obj))
+    g_object_unref (G_OBJECT (obj))
 
 static gboolean opt_version = FALSE;
 static gboolean opt_daemon = FALSE;
@@ -82,53 +68,51 @@ static guint owner_id;
 
 struct t_data_set
 {
-    GObject              *gtk_decorations_helper;
-    GObject              *gtk_settings_helper;
+    GObject *gtk_decorations_helper;
+    GObject *gtk_settings_helper;
 #ifdef ENABLE_DISPLAY_SETTINGS
-    GObject              *displays_helper;
+    GObject *displays_helper;
 #endif
 #ifdef ENABLE_X11
-    XfceSMClient         *sm_client;
-    GObject              *pointer_helper;
-    GObject              *keyboards_helper;
-    GObject              *accessibility_helper;
-    GObject              *shortcuts_helper;
-    GObject              *keyboard_layout_helper;
-    GObject              *xsettings_helper;
-    GObject              *clipboard_daemon;
-    GObject              *workspaces_helper;
+    XfceSMClient *sm_client;
+    GObject *pointer_helper;
+    GObject *keyboards_helper;
+    GObject *accessibility_helper;
+    GObject *shortcuts_helper;
+    GObject *keyboard_layout_helper;
+    GObject *xsettings_helper;
+    GObject *clipboard_daemon;
+    GObject *workspaces_helper;
 #endif
 };
 
 
-static GOptionEntry option_entries[] =
-{
-    { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_("Version information"), NULL },
-    { "daemon", 0, 0, G_OPTION_ARG_NONE, &opt_daemon, N_("Fork to the background"), NULL },
-    { "disable-wm-check", 'D', 0, G_OPTION_ARG_NONE, &opt_disable_wm_check, N_("Do not wait for a window manager on startup"), NULL },
-    { "replace", 0, 0, G_OPTION_ARG_NONE, &opt_replace, N_("Replace running xsettings daemon (if any)"), NULL },
+static GOptionEntry option_entries[] = {
+    { "version", 'V', 0, G_OPTION_ARG_NONE, &opt_version, N_ ("Version information"), NULL },
+    { "daemon", 0, 0, G_OPTION_ARG_NONE, &opt_daemon, N_ ("Fork to the background"), NULL },
+    { "disable-wm-check", 'D', 0, G_OPTION_ARG_NONE, &opt_disable_wm_check, N_ ("Do not wait for a window manager on startup"), NULL },
+    { "replace", 0, 0, G_OPTION_ARG_NONE, &opt_replace, N_ ("Replace running xsettings daemon (if any)"), NULL },
     { NULL }
 };
 
 static void
 on_name_lost (GDBusConnection *connection,
-              const gchar     *name,
-              gpointer         user_data)
+              const gchar *name,
+              gpointer user_data)
 {
-
     g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
     gtk_main_quit ();
 }
 
 static void
 on_name_acquired (GDBusConnection *connection,
-                  const gchar     *name,
-                  gpointer         user_data)
+                  const gchar *name,
+                  gpointer user_data)
 {
-    GBusNameOwnerFlags         dbus_flags;
-    struct t_data_set         *s_data;
+    GBusNameOwnerFlags dbus_flags;
+    struct t_data_set *s_data;
 
-    s_data = (struct t_data_set*) user_data;
+    s_data = (struct t_data_set *) user_data;
 
 #ifdef ENABLE_X11
     if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
@@ -185,7 +169,7 @@ on_name_acquired (GDBusConnection *connection,
 
     /* Update the name flags to allow replacement */
     dbus_flags = G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT;
-    g_bus_own_name_on_connection (connection, XFSETTINGS_DBUS_NAME, dbus_flags, NULL, NULL, NULL, NULL );
+    g_bus_own_name_on_connection (connection, XFSETTINGS_DBUS_NAME, dbus_flags, NULL, NULL, NULL, NULL);
 }
 
 static void
@@ -223,17 +207,18 @@ daemonize (void)
 
 
 gint
-main (gint argc, gchar **argv)
+main (gint argc,
+      gchar **argv)
 {
-    GError               *error = NULL;
-    GOptionContext       *context;
-    struct t_data_set     s_data;
-    guint                 i;
-    const gint            signums[] = { SIGQUIT, SIGTERM };
-    GDBusConnection      *dbus_connection;
-    GBusNameOwnerFlags    dbus_flags;
-    gboolean              name_owned;
-    GVariant             *name_owned_variant;
+    GError *error = NULL;
+    GOptionContext *context;
+    struct t_data_set s_data;
+    guint i;
+    const gint signums[] = { SIGQUIT, SIGTERM };
+    GDBusConnection *dbus_connection;
+    GBusNameOwnerFlags dbus_flags;
+    gboolean name_owned;
+    GVariant *name_owned_variant;
 
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -246,7 +231,7 @@ main (gint argc, gchar **argv)
 #ifdef ENABLE_X11
     g_option_context_add_group (context, xfce_sm_client_get_option_group (argc, argv));
 #endif
-    g_option_context_set_ignore_unknown_options(context, TRUE);
+    g_option_context_set_ignore_unknown_options (context, TRUE);
 
     /* parse options */
     if (!g_option_context_parse (context, &argc, &argv, &error))
@@ -302,7 +287,7 @@ main (gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
-    setlocale(LC_NUMERIC,"C");
+    setlocale (LC_NUMERIC, "C");
 
     /* Initialize our data set */
     memset (&s_data, 0, sizeof (struct t_data_set));
@@ -310,7 +295,7 @@ main (gint argc, gchar **argv)
     dbus_connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
     if (G_LIKELY (!error))
     {
-        g_object_set(G_OBJECT (dbus_connection), "exit-on-close", TRUE, NULL);
+        g_object_set (G_OBJECT (dbus_connection), "exit-on-close", TRUE, NULL);
 
         name_owned_variant = g_dbus_connection_call_sync (dbus_connection,
                                                           "org.freedesktop.DBus",
@@ -324,16 +309,18 @@ main (gint argc, gchar **argv)
                                                           NULL,
                                                           &error);
 
-        if (G_UNLIKELY (error)) {
+        if (G_UNLIKELY (error))
+        {
             g_printerr ("%s: %s.\n", G_LOG_DOMAIN, error->message);
             g_error_free (error);
             return EXIT_FAILURE;
         }
 
         name_owned = FALSE;
-        g_variant_get(name_owned_variant, "(b)", &name_owned, NULL);
+        g_variant_get (name_owned_variant, "(b)", &name_owned, NULL);
 
-        if(G_UNLIKELY (name_owned && !opt_replace)) {
+        if (G_UNLIKELY (name_owned && !opt_replace))
+        {
             xfsettings_dbg (XFSD_DEBUG_XSETTINGS, "Another instance is already running. Leaving.");
             g_dbus_connection_close_sync (dbus_connection, NULL, NULL);
             return EXIT_SUCCESS;
@@ -342,9 +329,9 @@ main (gint argc, gchar **argv)
         /* Allow the settings daemon to be replaced */
         dbus_flags = G_BUS_NAME_OWNER_FLAGS_NONE;
         if (opt_replace || name_owned)
-            dbus_flags = G_BUS_NAME_OWNER_FLAGS_REPLACE ;
+            dbus_flags = G_BUS_NAME_OWNER_FLAGS_REPLACE;
 
-        owner_id = g_bus_own_name_on_connection (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, on_name_acquired, on_name_lost, &s_data, NULL );
+        owner_id = g_bus_own_name_on_connection (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, on_name_acquired, on_name_lost, &s_data, NULL);
     }
     else
     {
@@ -369,11 +356,11 @@ main (gint argc, gchar **argv)
             xfce_posix_signal_handler_set_handler (signums[i], signal_handler, NULL, NULL);
     }
 
-    gtk_main();
+    gtk_main ();
 
     /* release the sub daemons */
 #ifdef ENABLE_X11
-    UNREF_GOBJECT(s_data.xsettings_helper);
+    UNREF_GOBJECT (s_data.xsettings_helper);
     UNREF_GOBJECT (s_data.pointer_helper);
     UNREF_GOBJECT (s_data.keyboards_helper);
     UNREF_GOBJECT (s_data.accessibility_helper);

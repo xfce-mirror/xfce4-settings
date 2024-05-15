@@ -20,56 +20,58 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+#include "accessibility.h"
 
-#include <X11/Xlib.h>
+#include "common/debug.h"
+
 #include <X11/XKBlib.h>
-
-#include <glib.h>
-#include <gtk/gtk.h>
+#include <X11/Xlib.h>
 #include <gdk/gdkx.h>
-#include <xfconf/xfconf.h>
+#include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
 
 #ifdef HAVE_LIBNOTIFY
 #include <libnotify/notify.h>
 #endif /* !HAVE_LIBNOTIFY */
 
-#include "common/debug.h"
-#include "accessibility.h"
+
+
+#define SET_FLAG(mask, flag) \
+    G_STMT_START { ((mask) |= (flag)); } \
+    G_STMT_END
+#define UNSET_FLAG(mask, flag) \
+    G_STMT_START { ((mask) &= ~(flag)); } \
+    G_STMT_END
+#define HAS_FLAG(mask, flag) (((mask) & (flag)) != 0)
 
 
 
-#define SET_FLAG(mask,flag)   G_STMT_START{ ((mask) |= (flag)); }G_STMT_END
-#define UNSET_FLAG(mask,flag) G_STMT_START{ ((mask) &= ~(flag)); }G_STMT_END
-#define HAS_FLAG(mask,flag)   (((mask) & (flag)) != 0)
-
-
-
-static void            xfce_accessibility_helper_finalize                       (GObject                      *object);
-static void            xfce_accessibility_helper_set_xkb                        (XfceAccessibilityHelper      *helper,
-                                                                                 gulong                        mask);
-static void            xfce_accessibility_helper_channel_property_changed       (XfconfChannel                *channel,
-                                                                                 const gchar                  *property_name,
-                                                                                 const GValue                 *value,
-                                                                                 XfceAccessibilityHelper      *helper);
+static void
+xfce_accessibility_helper_finalize (GObject *object);
+static void
+xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
+                                   gulong mask);
+static void
+xfce_accessibility_helper_channel_property_changed (XfconfChannel *channel,
+                                                    const gchar *property_name,
+                                                    const GValue *value,
+                                                    XfceAccessibilityHelper *helper);
 #ifdef HAVE_LIBNOTIFY
-static GdkFilterReturn xfce_accessibility_helper_event_filter                   (GdkXEvent                    *xevent,
-                                                                                 GdkEvent                     *gdk_event,
-                                                                                 gpointer                      user_data);
-static void            xfce_accessibility_helper_notification_closed            (NotifyNotification           *notification,
-                                                                                 XfceAccessibilityHelper      *helper);
-static void            xfce_accessibility_helper_notification_show              (XfceAccessibilityHelper      *helper,
-                                                                                 const gchar                  *summary,
-                                                                                 const gchar                  *body);
+static GdkFilterReturn
+xfce_accessibility_helper_event_filter (GdkXEvent *xevent,
+                                        GdkEvent *gdk_event,
+                                        gpointer user_data);
+static void
+xfce_accessibility_helper_notification_closed (NotifyNotification *notification,
+                                               XfceAccessibilityHelper *helper);
+static void
+xfce_accessibility_helper_notification_show (XfceAccessibilityHelper *helper,
+                                             const gchar *summary,
+                                             const gchar *body);
 #endif /* !HAVE_LIBNOTIFY */
 
 
@@ -81,10 +83,10 @@ struct _XfceAccessibilityHelperClass
 
 struct _XfceAccessibilityHelper
 {
-    GObject  __parent__;
+    GObject __parent__;
 
     /* xfconf channel */
-    XfconfChannel      *channel;
+    XfconfChannel *channel;
 
 #ifdef HAVE_LIBNOTIFY
     NotifyNotification *notification;
@@ -118,7 +120,7 @@ xfce_accessibility_helper_init (XfceAccessibilityHelper *helper)
     helper->notification = NULL;
 #endif /* !HAVE_LIBNOTIFY */
 
-    if (XkbQueryExtension (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), &dummy, &dummy, &dummy, &dummy, &dummy))
+    if (XkbQueryExtension (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), &dummy, &dummy, &dummy, &dummy, &dummy))
     {
         /* open the channel */
         helper->channel = xfconf_channel_get ("accessibility");
@@ -135,7 +137,7 @@ xfce_accessibility_helper_init (XfceAccessibilityHelper *helper)
             g_critical ("Failed to connect to the notification daemon.");
 
         /* add event filter */
-        XkbSelectEvents (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), XkbUseCoreKbd, XkbControlsNotifyMask, XkbControlsNotifyMask);
+        XkbSelectEvents (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), XkbUseCoreKbd, XkbControlsNotifyMask, XkbControlsNotifyMask);
 
         /* monitor all window events */
         gdk_window_add_filter (NULL, xfce_accessibility_helper_event_filter, helper);
@@ -168,12 +170,11 @@ xfce_accessibility_helper_finalize (GObject *object)
 
 static void
 xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
-                                   gulong                   mask)
+                                   gulong mask)
 {
-
     XkbDescPtr xkb;
-    gint       delay, interval, time_to_max;
-    gint       max_speed, curve;
+    gint delay, interval, time_to_max;
+    gint max_speed, curve;
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
@@ -185,19 +186,19 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
         SET_FLAG (mask, XkbControlsEnabledMask);
 
         /* if setting sticky keys, we set expiration too */
-        if (HAS_FLAG (mask, XkbStickyKeysMask) ||
-                HAS_FLAG (mask, XkbSlowKeysMask) ||
-                HAS_FLAG (mask, XkbBounceKeysMask) ||
-                HAS_FLAG (mask, XkbMouseKeysMask) ||
-                HAS_FLAG (mask, XkbAccessXKeysMask))
-          SET_FLAG (mask, XkbAccessXTimeoutMask);
+        if (HAS_FLAG (mask, XkbStickyKeysMask)
+            || HAS_FLAG (mask, XkbSlowKeysMask)
+            || HAS_FLAG (mask, XkbBounceKeysMask)
+            || HAS_FLAG (mask, XkbMouseKeysMask)
+            || HAS_FLAG (mask, XkbAccessXKeysMask))
+            SET_FLAG (mask, XkbAccessXTimeoutMask);
 
         /* add the mouse keys values mask if needed */
         if (HAS_FLAG (mask, XkbMouseKeysMask))
             SET_FLAG (mask, XkbMouseKeysAccelMask);
 
         /* load the xkb controls into the structure */
-        XkbGetControls (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), mask, xkb);
+        XkbGetControls (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), mask, xkb);
 
         /* AccessXKeys */
         if (HAS_FLAG (mask, XkbAccessXKeysMask))
@@ -330,8 +331,8 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
                 xkb->ctrls->mk_max_speed = CLAMP (max_speed, 1, G_MAXUSHORT);
                 xkb->ctrls->mk_curve = CLAMP (curve, -1000, 1000);
 
-                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY, "mousekeys enabled (delay=%d, interval=%d, "
-                                "time_to_max=%d, max_speed=%d, curve=%d)",
+                xfsettings_dbg (XFSD_DEBUG_ACCESSIBILITY,
+                                "mousekeys enabled (delay=%d, interval=%d, time_to_max=%d, max_speed=%d, curve=%d)",
                                 xkb->ctrls->mk_delay, xkb->ctrls->mk_interval,
                                 xkb->ctrls->mk_time_to_max, xkb->ctrls->mk_max_speed,
                                 xkb->ctrls->mk_curve);
@@ -348,7 +349,7 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
         }
 
         /* set the modified controls */
-        if (!XkbSetControls (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), mask, xkb))
+        if (!XkbSetControls (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), mask, xkb))
             g_message ("Setting the xkb controls failed");
 
         /* free the structure */
@@ -362,15 +363,15 @@ xfce_accessibility_helper_set_xkb (XfceAccessibilityHelper *helper,
     }
 
     if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0)
-       g_critical ("Failed to set keyboard controls");
+        g_critical ("Failed to set keyboard controls");
 }
 
 
 
 static void
-xfce_accessibility_helper_channel_property_changed (XfconfChannel           *channel,
-                                                    const gchar             *property_name,
-                                                    const GValue            *value,
+xfce_accessibility_helper_channel_property_changed (XfconfChannel *channel,
+                                                    const gchar *property_name,
+                                                    const GValue *value,
                                                     XfceAccessibilityHelper *helper)
 {
     gulong mask;
@@ -396,12 +397,12 @@ xfce_accessibility_helper_channel_property_changed (XfconfChannel           *cha
 #ifdef HAVE_LIBNOTIFY
 static GdkFilterReturn
 xfce_accessibility_helper_event_filter (GdkXEvent *xevent,
-                                        GdkEvent  *gdk_event,
-                                        gpointer   user_data)
+                                        GdkEvent *gdk_event,
+                                        gpointer user_data)
 {
-    XkbEvent                *event = xevent;
+    XkbEvent *event = xevent;
     XfceAccessibilityHelper *helper = XFCE_ACCESSIBILITY_HELPER (user_data);
-    const gchar             *body;
+    const gchar *body;
 
     switch (event->any.xkb_type)
     {
@@ -446,7 +447,7 @@ xfce_accessibility_helper_event_filter (GdkXEvent *xevent,
 
 
 static void
-xfce_accessibility_helper_notification_closed (NotifyNotification      *notification,
+xfce_accessibility_helper_notification_closed (NotifyNotification *notification,
                                                XfceAccessibilityHelper *helper)
 {
     g_return_if_fail (helper->notification == notification);
@@ -459,27 +460,19 @@ xfce_accessibility_helper_notification_closed (NotifyNotification      *notifica
 
 static void
 xfce_accessibility_helper_notification_show (XfceAccessibilityHelper *helper,
-                                             const gchar             *summary,
-                                             const gchar             *body)
+                                             const gchar *summary,
+                                             const gchar *body)
 {
     /* early leave the avoid dbus errors, we already
      * told we were unable to connect during init */
-    if (notify_is_initted () == FALSE)
+    if (!notify_is_initted ())
         return;
 
     /* close the running notification */
     if (helper->notification == NULL)
     {
         /* create a new notification */
-#ifdef NOTIFY_CHECK_VERSION
-#if NOTIFY_CHECK_VERSION (0, 7, 0)
         helper->notification = notify_notification_new (summary, body, "keyboard");
-#else
-        helper->notification = notify_notification_new (summary, body, "keyboard", NULL);
-#endif
-#else
-        helper->notification = notify_notification_new (summary, body, "keyboard", NULL);
-#endif
 
         /* don't log notification */
         notify_notification_set_hint (helper->notification, "transient", g_variant_new_boolean (FALSE));

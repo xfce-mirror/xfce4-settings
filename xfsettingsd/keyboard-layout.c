@@ -18,53 +18,56 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+#include "keyboard-layout.h"
 
-#include <X11/Xlib.h>
+#include "common/debug.h"
+
 #include <X11/XKBlib.h>
-
-#include <glib.h>
-#include <gtk/gtk.h>
+#include <X11/Xlib.h>
 #include <gdk/gdkx.h>
-#include <xfconf/xfconf.h>
+#include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
+#include <xfconf/xfconf.h>
 
 #ifdef HAVE_LIBXKLAVIER
 #include <libxklavier/xklavier.h>
 #endif /* HAVE_LIBXKLAVIER */
 
-#include "common/debug.h"
-#include "keyboard-layout.h"
-
-static void xfce_keyboard_layout_helper_finalize                  (GObject                       *object);
-static void xfce_keyboard_layout_helper_process_xmodmap           (void);
+static void
+xfce_keyboard_layout_helper_finalize (GObject *object);
+static void
+xfce_keyboard_layout_helper_process_xmodmap (void);
 
 #ifdef HAVE_LIBXKLAVIER
-static void xfce_keyboard_layout_helper_set_model                 (XfceKeyboardLayoutHelper      *helper);
-static void xfce_keyboard_layout_helper_set_layout                (XfceKeyboardLayoutHelper      *helper);
-static void xfce_keyboard_layout_helper_set_variant               (XfceKeyboardLayoutHelper      *helper);
-static void xfce_keyboard_layout_helper_set_grpkey                (XfceKeyboardLayoutHelper      *helper);
-static void xfce_keyboard_layout_helper_set_composekey            (XfceKeyboardLayoutHelper      *helper);
-static void xfce_keyboard_layout_helper_channel_property_changed  (XfconfChannel                 *channel,
-                                                                   const gchar                   *property_name,
-                                                                   const GValue                  *value,
-                                                                   XfceKeyboardLayoutHelper      *helper);
-static gchar* xfce_keyboard_layout_get_option                     (gchar                        **options,
-                                                                   const gchar                   *option_name,
-                                                                   gchar                        **other_options);
-static GdkFilterReturn handle_xevent                              (GdkXEvent                     *xev,
-                                                                   GdkEvent                      *event,
-                                                                   XfceKeyboardLayoutHelper      *helper);
-static void xfce_keyboard_layout_reset_xkl_config                 (XklEngine                     *xklengine,
-                                                                   XfceKeyboardLayoutHelper      *helper);
+static void
+xfce_keyboard_layout_helper_set_model (XfceKeyboardLayoutHelper *helper);
+static void
+xfce_keyboard_layout_helper_set_layout (XfceKeyboardLayoutHelper *helper);
+static void
+xfce_keyboard_layout_helper_set_variant (XfceKeyboardLayoutHelper *helper);
+static void
+xfce_keyboard_layout_helper_set_grpkey (XfceKeyboardLayoutHelper *helper);
+static void
+xfce_keyboard_layout_helper_set_composekey (XfceKeyboardLayoutHelper *helper);
+static void
+xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel *channel,
+                                                      const gchar *property_name,
+                                                      const GValue *value,
+                                                      XfceKeyboardLayoutHelper *helper);
+static gchar *
+xfce_keyboard_layout_get_option (gchar **options,
+                                 const gchar *option_name,
+                                 gchar **other_options);
+static GdkFilterReturn
+handle_xevent (GdkXEvent *xev,
+               GdkEvent *event,
+               XfceKeyboardLayoutHelper *helper);
+static void
+xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
+                                       XfceKeyboardLayoutHelper *helper);
 #endif /* HAVE_LIBXKLAVIER */
 
 struct _XfceKeyboardLayoutHelperClass
@@ -74,19 +77,19 @@ struct _XfceKeyboardLayoutHelperClass
 
 struct _XfceKeyboardLayoutHelper
 {
-    GObject  __parent__;
+    GObject __parent__;
 
     /* xfconf channel */
-    XfconfChannel     *channel;
+    XfconfChannel *channel;
 
-    gboolean           xkb_disable_settings;
+    gboolean xkb_disable_settings;
 
 #ifdef HAVE_LIBXKLAVIER
     /* libxklavier */
-    XklEngine         *engine;
+    XklEngine *engine;
     XklConfigRegistry *registry;
-    XklConfigRec      *config;
-    gchar             *system_keyboard_model;
+    XklConfigRec *config;
+    gchar *system_keyboard_model;
 #endif /* HAVE_LIBXKLAVIER */
 };
 
@@ -113,28 +116,31 @@ xfce_keyboard_layout_helper_init (XfceKeyboardLayoutHelper *helper)
     helper->xkb_disable_settings = xfconf_channel_get_bool (helper->channel, "/Default/XkbDisable", TRUE);
 
 #ifdef HAVE_LIBXKLAVIER
-    helper->engine = xkl_engine_get_instance (GDK_DISPLAY_XDISPLAY(gdk_display_get_default()));
-    if (helper->engine == NULL) {
+    helper->engine = xkl_engine_get_instance (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()));
+    if (helper->engine == NULL)
+    {
         g_warning ("Failed to get Xkl engine for display");
-    } else {
+    }
+    else
+    {
         /* monitor channel changes */
-        g_signal_connect(G_OBJECT(helper->channel), "property-changed", G_CALLBACK(xfce_keyboard_layout_helper_channel_property_changed), helper);
+        g_signal_connect (G_OBJECT (helper->channel), "property-changed", G_CALLBACK (xfce_keyboard_layout_helper_channel_property_changed), helper);
 
-        helper->config = xkl_config_rec_new();
-        xkl_config_rec_get_from_server(helper->config, helper->engine);
-        helper->system_keyboard_model = g_strdup(helper->config->model);
+        helper->config = xkl_config_rec_new ();
+        xkl_config_rec_get_from_server (helper->config, helper->engine);
+        helper->system_keyboard_model = g_strdup (helper->config->model);
 
-        gdk_window_add_filter(NULL, (GdkFilterFunc)handle_xevent, helper);
-        g_signal_connect(helper->engine, "X-new-device",
-                         G_CALLBACK(xfce_keyboard_layout_reset_xkl_config), helper);
-        xkl_engine_start_listen(helper->engine, XKLL_TRACK_KEYBOARD_STATE);
+        gdk_window_add_filter (NULL, (GdkFilterFunc) handle_xevent, helper);
+        g_signal_connect (helper->engine, "X-new-device",
+                          G_CALLBACK (xfce_keyboard_layout_reset_xkl_config), helper);
+        xkl_engine_start_listen (helper->engine, XKLL_TRACK_KEYBOARD_STATE);
 
         /* load settings */
-        xfce_keyboard_layout_helper_set_model(helper);
-        xfce_keyboard_layout_helper_set_layout(helper);
-        xfce_keyboard_layout_helper_set_variant(helper);
-        xfce_keyboard_layout_helper_set_grpkey(helper);
-        xfce_keyboard_layout_helper_set_composekey(helper);
+        xfce_keyboard_layout_helper_set_model (helper);
+        xfce_keyboard_layout_helper_set_layout (helper);
+        xfce_keyboard_layout_helper_set_variant (helper);
+        xfce_keyboard_layout_helper_set_grpkey (helper);
+        xfce_keyboard_layout_helper_set_composekey (helper);
     }
 
 #endif /* HAVE_LIBXKLAVIER */
@@ -165,17 +171,13 @@ xfce_keyboard_layout_helper_finalize (GObject *object)
 static void
 xfce_keyboard_layout_helper_process_xmodmap (void)
 {
-    const gchar *xmodmap_path;
-
-    xmodmap_path = g_build_filename (xfce_get_homedir (), ".Xmodmap", NULL);
+    gchar *xmodmap_path = g_build_filename (xfce_get_homedir (), ".Xmodmap", NULL);
 
     if (g_file_test (xmodmap_path, G_FILE_TEST_EXISTS))
     {
         /* There is a .Xmodmap file, try to use it */
-        const gchar *xmodmap_command;
-        GError      *error = NULL;
-
-        xmodmap_command = g_strconcat ("xmodmap ", xmodmap_path, NULL);
+        gchar *xmodmap_command = g_strconcat ("xmodmap ", xmodmap_path, NULL);
+        GError *error = NULL;
 
         xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT, "spawning \"%s\"", xmodmap_command);
 
@@ -185,9 +187,11 @@ xfce_keyboard_layout_helper_process_xmodmap (void)
             DBG ("Xmodmap call failed: %s", error->message);
             g_error_free (error);
         }
+
+        g_free (xmodmap_command);
     }
 
-    g_free ((gchar*) xmodmap_path);
+    g_free (xmodmap_path);
 }
 
 #ifdef HAVE_LIBXKLAVIER
@@ -237,9 +241,8 @@ xfce_keyboard_layout_helper_set (XfceKeyboardLayoutHelper *helper,
 
     if (!helper->xkb_disable_settings)
     {
-        xfconf_values  = g_strjoinv (",", *xkl_config_option);
-        xkl_values  = xfconf_channel_get_string (helper->channel,
-                                                 xfconf_option_name, xfconf_values);
+        xfconf_values = g_strjoinv (",", *xkl_config_option);
+        xkl_values = xfconf_channel_get_string (helper->channel, xfconf_option_name, xfconf_values);
 
         if (g_strcmp0 (xfconf_values, xkl_values) != 0)
         {
@@ -280,14 +283,14 @@ xfce_keyboard_layout_helper_set_variant (XfceKeyboardLayoutHelper *helper)
  * @return the string in @options array corresponding to @option_name,
  *         or NULL if not found
  */
-static gchar*
+static gchar *
 xfce_keyboard_layout_get_option (gchar **options,
                                  const gchar *option_name,
                                  gchar **_other_options)
 {
     gchar **iter;
-    gchar  *option_value  = NULL;
-    gchar  *other_options = NULL;
+    gchar *option_value = NULL;
+    gchar *other_options = NULL;
 
     for (iter = options; iter && *iter; iter++)
     {
@@ -380,10 +383,10 @@ xfce_keyboard_layout_helper_set_composekey (XfceKeyboardLayoutHelper *helper)
 }
 
 static void
-xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channel,
-                                               const gchar               *property_name,
-                                               const GValue              *value,
-                                               XfceKeyboardLayoutHelper  *helper)
+xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel *channel,
+                                                      const gchar *property_name,
+                                                      const GValue *value,
+                                                      XfceKeyboardLayoutHelper *helper)
 {
     g_return_if_fail (helper->channel == channel);
     g_return_if_fail (helper->engine != NULL);
@@ -422,7 +425,7 @@ xfce_keyboard_layout_helper_channel_property_changed (XfconfChannel      *channe
 }
 
 static GdkFilterReturn
-handle_xevent (GdkXEvent * xev, GdkEvent * event, XfceKeyboardLayoutHelper *helper)
+handle_xevent (GdkXEvent *xev, GdkEvent *event, XfceKeyboardLayoutHelper *helper)
 {
     XEvent *xevent = (XEvent *) xev;
     xkl_engine_filter_events (helper->engine, xevent);
@@ -447,9 +450,9 @@ xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
         xkl_config_rec_get_from_server (helper->config, helper->engine);
 
         xfconf_model = xfconf_channel_get_string (helper->channel, "/Default/XkbModel", NULL);
-        if (xfconf_model && *xfconf_model &&
-            g_strcmp0 (xfconf_model, helper->config->model) != 0 &&
-            g_strcmp0 (helper->system_keyboard_model, helper->config->model) != 0)
+        if (xfconf_model && *xfconf_model
+            && g_strcmp0 (xfconf_model, helper->config->model) != 0
+            && g_strcmp0 (helper->system_keyboard_model, helper->config->model) != 0)
         {
             /* We get X-new-device notifications multiple times for a single keyboard device (why?);
                if keyboard model is set in user preferences,

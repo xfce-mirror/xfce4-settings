@@ -19,8 +19,9 @@
 #ifndef __XFCE_WLR_OUTPUT_MANAGER_H__
 #define __XFCE_WLR_OUTPUT_MANAGER_H__
 
-#include <glib-object.h>
 #include "protocols/wlr-output-management-unstable-v1-client.h"
+
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
@@ -77,12 +78,17 @@ typedef void (*XfceWlrOutputListener) (XfceWlrOutputManager *manager,
                                        struct zwlr_output_manager_v1 *wl_manager,
                                        uint32_t serial);
 
-XfceWlrOutputManager              *xfce_wlr_output_manager_new                    (XfceWlrOutputListener      listener,
-                                                                                   gpointer                   listener_data);
-gpointer                           xfce_wlr_output_manager_get_listener_data      (XfceWlrOutputManager      *manager);
-struct zwlr_output_manager_v1     *xfce_wlr_output_manager_get_wl_manager         (XfceWlrOutputManager      *manager);
-GPtrArray                         *xfce_wlr_output_manager_get_outputs            (XfceWlrOutputManager      *manager);
-gchar                            **xfce_wlr_output_manager_get_display_infos      (XfceWlrOutputManager      *manager);
+XfceWlrOutputManager *
+xfce_wlr_output_manager_new (XfceWlrOutputListener listener,
+                             gpointer listener_data);
+gpointer
+xfce_wlr_output_manager_get_listener_data (XfceWlrOutputManager *manager);
+struct zwlr_output_manager_v1 *
+xfce_wlr_output_manager_get_wl_manager (XfceWlrOutputManager *manager);
+GPtrArray *
+xfce_wlr_output_manager_get_outputs (XfceWlrOutputManager *manager);
+gchar **
+xfce_wlr_output_manager_get_display_infos (XfceWlrOutputManager *manager);
 
 G_END_DECLS
 

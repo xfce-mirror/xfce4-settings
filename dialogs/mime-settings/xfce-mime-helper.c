@@ -17,50 +17,33 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef HAVE_SYS_WAIT_H
-#include <sys/wait.h>
-#endif
-
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
-#ifdef HAVE_MEMORY_H
-#include <memory.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+#include "xfce-mime-helper-utils.h"
+#include "xfce-mime-helper.h"
 
 #ifdef HAVE_GIO_UNIX
 #include <gio/gdesktopappinfo.h>
 #endif
 
-#include <gdk/gdk.h>
 #ifdef ENABLE_X11
 #include <gdk/gdkx.h>
 #endif
 
-#include "xfce-mime-helper.h"
-#include "xfce-mime-helper-utils.h"
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#endif
 
 
 
-static void       xfce_mime_helper_finalize   (GObject        *object);
-static XfceMimeHelper *xfce_mime_helper_new        (const gchar    *id,
-                                         XfceRc         *rc);
-static void       clear_bad_entries     (XfceRc         *rc);
+static void
+xfce_mime_helper_finalize (GObject *object);
+static XfceMimeHelper *
+xfce_mime_helper_new (const gchar *id,
+                      XfceRc *rc);
+static void
+clear_bad_entries (XfceRc *rc);
 
 
 
@@ -73,14 +56,14 @@ struct _XfceMimeHelper
 {
   GObject __parent__;
 
-  guint             startup_notify : 1;
+  guint startup_notify : 1;
 
-  gchar            *id;
-  gchar            *icon;
-  gchar            *name;
-  gchar           **commands;
-  gchar           **commands_with_parameter;
-  gchar           **commands_with_flag;
+  gchar *id;
+  gchar *icon;
+  gchar *name;
+  gchar **commands;
+  gchar **commands_with_parameter;
+  gchar **commands_with_flag;
   XfceMimeHelperCategory category;
 };
 
@@ -125,13 +108,13 @@ xfce_mime_helper_finalize (GObject *object)
 
 
 
-static gchar**
+static gchar **
 substitute_binary (const gchar *commands,
                    const gchar *binary)
 {
   gchar **result;
   gchar **s, **t;
-  gchar  *tmp;
+  gchar *tmp;
 
   /* split the commands */
   result = g_strsplit (commands, ";", -1);
@@ -168,52 +151,52 @@ substitute_binary (const gchar *commands,
  * the launcher will only run `env`, quietly doing nothing.
  */
 static gchar **
-substitute_env(const gchar *commands,
-               const gchar *commands_with_parameter,
-               const gchar *binary)
+substitute_env (const gchar *commands,
+                const gchar *commands_with_parameter,
+                const gchar *binary)
 {
   gchar **result;
 
-  result = substitute_binary(commands, binary);
+  result = substitute_binary (commands, binary);
 
-  if (G_UNLIKELY(*result != NULL && g_strcmp0 (*result, "env") == 0))
-  {
-    gchar **replaced;
-    gchar *command = xfce_str_replace(commands_with_parameter, "%s", "");
-    gchar *cleaned = xfce_str_replace(command, "\"\"", "");
-
-    replaced = substitute_binary(cleaned, binary);
-    if (*replaced != NULL && g_strcmp0 (*replaced, "env") != 0)
+  if (G_UNLIKELY (*result != NULL && g_strcmp0 (*result, "env") == 0))
     {
-      g_strfreev(result);
-      result = replaced;
-    }
-    else
-    {
-      g_strfreev(replaced);
-    }
+      gchar **replaced;
+      gchar *command = xfce_str_replace (commands_with_parameter, "%s", "");
+      gchar *cleaned = xfce_str_replace (command, "\"\"", "");
 
-    g_free(cleaned);
-    g_free(command);
-  }
+      replaced = substitute_binary (cleaned, binary);
+      if (*replaced != NULL && g_strcmp0 (*replaced, "env") != 0)
+        {
+          g_strfreev (result);
+          result = replaced;
+        }
+      else
+        {
+          g_strfreev (replaced);
+        }
+
+      g_free (cleaned);
+      g_free (command);
+    }
 
   return result;
 }
 
 
 
-static XfceMimeHelper*
+static XfceMimeHelper *
 xfce_mime_helper_new (const gchar *id,
-                XfceRc      *rc)
+                      XfceRc *rc)
 {
   const gchar *commands_with_flag;
   const gchar *commands_with_parameter;
   const gchar *commands;
   const gchar *str;
-  XfceMimeHelper   *helper;
-  gchar      **binaries;
-  gchar       *binary = NULL;
-  guint        n;
+  XfceMimeHelper *helper;
+  gchar **binaries;
+  gchar *binary = NULL;
+  guint n;
 
   g_return_val_if_fail (id != NULL, NULL);
   g_return_val_if_fail (rc != NULL, NULL);
@@ -322,7 +305,7 @@ xfce_mime_helper_get_category (const XfceMimeHelper *helper)
  *
  * Return value: the unique id of @helper.
  **/
-const gchar*
+const gchar *
 xfce_mime_helper_get_id (const XfceMimeHelper *helper)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
@@ -339,7 +322,7 @@ xfce_mime_helper_get_id (const XfceMimeHelper *helper)
  *
  * Return value: the name of @helper.
  **/
-const gchar*
+const gchar *
 xfce_mime_helper_get_name (const XfceMimeHelper *helper)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
@@ -358,7 +341,7 @@ xfce_mime_helper_get_name (const XfceMimeHelper *helper)
  *
  * Return value: the icon for @helper or %NULL.
  **/
-const gchar*
+const gchar *
 xfce_mime_helper_get_icon (const XfceMimeHelper *helper)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
@@ -375,7 +358,7 @@ xfce_mime_helper_get_icon (const XfceMimeHelper *helper)
  *
  * Return value: a command for @helper.
  **/
-const gchar*
+const gchar *
 xfce_mime_helper_get_command (const XfceMimeHelper *helper)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
@@ -404,24 +387,24 @@ set_environment (gchar *display)
  * Return value: %TRUE on success, %FALSE if @error is set.
  **/
 gboolean
-xfce_mime_helper_execute (XfceMimeHelper   *helper,
-                    GdkScreen   *screen,
-                    const gchar *parameter,
-                    GError     **error)
+xfce_mime_helper_execute (XfceMimeHelper *helper,
+                          GdkScreen *screen,
+                          const gchar *parameter,
+                          GError **error)
 {
-  gint64        previous;
-  gint64        current;
-  gboolean      succeed = FALSE;
-  GError       *err = NULL;
-  gchar       **commands;
-  gchar       **argv;
-  gchar        *command;
-  gchar        *display_name = NULL;
-  guint         n;
-  gint          status;
-  gint          result;
-  gint          pid;
-  const gchar  *real_parameter = parameter;
+  gint64 previous;
+  gint64 current;
+  gboolean succeed = FALSE;
+  GError *err = NULL;
+  gchar **commands;
+  gchar **argv;
+  gchar *command;
+  gchar *display_name = NULL;
+  guint n;
+  gint status;
+  gint result;
+  gint pid;
+  const gchar *real_parameter = parameter;
 
   // FIXME: startup-notification
 
@@ -438,13 +421,18 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
     real_parameter = parameter + 7;
 
   /* determine the command set to use */
-  if (real_parameter != NULL && g_str_has_prefix (real_parameter, "-")) {
-    commands = helper->commands_with_flag;
-  } else if (xfce_str_is_empty (real_parameter)) {
-    commands = helper->commands;
-  } else {
-    commands = helper->commands_with_parameter;
-  }
+  if (real_parameter != NULL && g_str_has_prefix (real_parameter, "-"))
+    {
+      commands = helper->commands_with_flag;
+    }
+  else if (xfce_str_is_empty (real_parameter))
+    {
+      commands = helper->commands;
+    }
+  else
+    {
+      commands = helper->commands_with_parameter;
+    }
 
   /* verify that we have atleast one command */
   if (G_UNLIKELY (*commands == NULL))
@@ -503,7 +491,7 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
       if (G_UNLIKELY (!succeed))
         continue;
 
-      /* set the display variable */
+        /* set the display variable */
 #ifdef ENABLE_X11
       if (GDK_IS_X11_DISPLAY (gdk_screen_get_display (screen)))
         display_name = g_strdup (gdk_display_get_name (gdk_screen_get_display (screen)));
@@ -511,13 +499,13 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
 
       /* try to run the command */
       succeed = g_spawn_async (NULL,
-        argv,
-        NULL,
-        G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
-        (GSpawnChildSetupFunc) set_environment,
-        display_name,
-        &pid,
-        &err);
+                               argv,
+                               NULL,
+                               G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
+                               (GSpawnChildSetupFunc) set_environment,
+                               display_name,
+                               &pid,
+                               &err);
 
       /* cleanup */
       g_strfreev (argv);
@@ -581,11 +569,12 @@ xfce_mime_helper_execute (XfceMimeHelper   *helper,
 
 
 
-
-static void       xfce_mime_helper_database_finalize    (GObject                *object);
-static XfceMimeHelper *xfce_mime_helper_database_lookup      (XfceMimeHelperDatabase      *database,
-                                                   XfceMimeHelperCategory       category,
-                                                   const gchar            *id);
+static void
+xfce_mime_helper_database_finalize (GObject *object);
+static XfceMimeHelper *
+xfce_mime_helper_database_lookup (XfceMimeHelperDatabase *database,
+                                  XfceMimeHelperCategory category,
+                                  const gchar *id);
 
 
 
@@ -596,7 +585,7 @@ struct _XfceMimeHelperDatabaseClass
 
 struct _XfceMimeHelperDatabase
 {
-  GObject     __parent__;
+  GObject __parent__;
   GHashTable *helpers;
 };
 
@@ -637,15 +626,15 @@ xfce_mime_helper_database_finalize (GObject *object)
 
 
 
-static XfceMimeHelper*
+static XfceMimeHelper *
 xfce_mime_helper_database_lookup (XfceMimeHelperDatabase *database,
-                            XfceMimeHelperCategory  category,
-                            const gchar       *id)
+                                  XfceMimeHelperCategory category,
+                                  const gchar *id)
 {
   XfceMimeHelper *helper;
-  XfceRc    *rc;
-  gchar     *file;
-  gchar     *spec;
+  XfceRc *rc;
+  gchar *file;
+  gchar *spec;
 
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), NULL);
   g_return_val_if_fail (id != NULL, NULL);
@@ -707,7 +696,7 @@ xfce_mime_helper_database_lookup (XfceMimeHelperDatabase *database,
  *
  * Return value: a reference to the default #XfceMimeHelperDatabase.
  **/
-XfceMimeHelperDatabase*
+XfceMimeHelperDatabase *
 xfce_mime_helper_database_get (void)
 {
   static XfceMimeHelperDatabase *database = NULL;
@@ -742,14 +731,14 @@ xfce_mime_helper_database_get (void)
  * Return value: the default #XfceMimeHelper for @category
  *               or %NULL.
  **/
-XfceMimeHelper*
+XfceMimeHelper *
 xfce_mime_helper_database_get_default (XfceMimeHelperDatabase *database,
-                                 XfceMimeHelperCategory  category)
+                                       XfceMimeHelperCategory category)
 {
   const gchar *id;
-  XfceMimeHelper   *helper = NULL;
-  XfceRc      *rc;
-  gchar       *key;
+  XfceMimeHelper *helper = NULL;
+  XfceRc *rc;
+  gchar *key;
 
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), NULL);
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
@@ -775,7 +764,7 @@ xfce_mime_helper_database_get_default (XfceMimeHelperDatabase *database,
 
 
 
-static XfceRc*
+static XfceRc *
 mimeapps_open (gboolean readonly)
 {
   XfceRc *rc;
@@ -806,17 +795,17 @@ mimeapps_open (gboolean readonly)
  **/
 gboolean
 xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
-                                 XfceMimeHelperCategory  category,
-                                 XfceMimeHelper         *helper,
-                                 GError           **error)
+                                       XfceMimeHelperCategory category,
+                                       XfceMimeHelper *helper,
+                                       GError **error)
 {
-  XfceRc       *rc, *desktop_file;
-  gchar        *key;
-  const gchar  *filename;
-  gchar       **mimetypes;
-  guint         i;
-  gchar        *path;
-  gchar        *entry;
+  XfceRc *rc, *desktop_file;
+  gchar *key;
+  const gchar *filename;
+  gchar **mimetypes;
+  guint i;
+  gchar *path;
+  gchar *entry;
 
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, FALSE);
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), FALSE);
@@ -845,21 +834,21 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
   /* get the desktop filename */
   switch (category)
     {
-      case XFCE_MIME_HELPER_WEBBROWSER:
-        filename = "xfce4-web-browser.desktop";
-        break;
+    case XFCE_MIME_HELPER_WEBBROWSER:
+      filename = "xfce4-web-browser.desktop";
+      break;
 
-      case XFCE_MIME_HELPER_MAILREADER:
-        filename = "xfce4-mail-reader.desktop";
-        break;
+    case XFCE_MIME_HELPER_MAILREADER:
+      filename = "xfce4-mail-reader.desktop";
+      break;
 
-      case XFCE_MIME_HELPER_FILEMANAGER:
-        filename = "xfce4-file-manager.desktop";
-        break;
+    case XFCE_MIME_HELPER_FILEMANAGER:
+      filename = "xfce4-file-manager.desktop";
+      break;
 
-      default:
-        /* no mimetype support for terminals */
-        return TRUE;
+    default:
+      /* no mimetype support for terminals */
+      return TRUE;
     }
 
   /* open the mimeapp.list file to set the default handler of the mime type */
@@ -945,15 +934,15 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
  **/
 gboolean
 xfce_mime_helper_database_clear_default (XfceMimeHelperDatabase *database,
-                                   XfceMimeHelperCategory  category,
-                                   GError           **error)
+                                         XfceMimeHelperCategory category,
+                                         GError **error)
 {
-  XfceRc       *rc, *desktop_file;
-  gchar        *key;
-  const gchar  *filename;
-  gchar       **mimetypes;
-  guint         i;
-  gchar        *path;
+  XfceRc *rc, *desktop_file;
+  gchar *key;
+  const gchar *filename;
+  gchar **mimetypes;
+  guint i;
+  gchar *path;
 
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, FALSE);
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), FALSE);
@@ -981,21 +970,21 @@ xfce_mime_helper_database_clear_default (XfceMimeHelperDatabase *database,
   /* get the desktop filename */
   switch (category)
     {
-      case XFCE_MIME_HELPER_WEBBROWSER:
-        filename = "xfce4-web-browser.desktop";
-        break;
+    case XFCE_MIME_HELPER_WEBBROWSER:
+      filename = "xfce4-web-browser.desktop";
+      break;
 
-      case XFCE_MIME_HELPER_MAILREADER:
-        filename = "xfce4-mail-reader.desktop";
-        break;
+    case XFCE_MIME_HELPER_MAILREADER:
+      filename = "xfce4-mail-reader.desktop";
+      break;
 
-      case XFCE_MIME_HELPER_FILEMANAGER:
-        filename = "xfce4-file-manager.desktop";
-        break;
+    case XFCE_MIME_HELPER_FILEMANAGER:
+      filename = "xfce4-file-manager.desktop";
+      break;
 
-      default:
-        /* no mimetype support for terminals */
-        return TRUE;
+    default:
+      /* no mimetype support for terminals */
+      return TRUE;
     }
 
   /* open the mimeapp.list file to set the default handler of the mime type */
@@ -1046,8 +1035,8 @@ xfce_mime_helper_database_clear_default (XfceMimeHelperDatabase *database,
 
 static void
 clear_bad_entry (XfceRc *rc,
-                 gchar  *key,
-                 gchar  *filename)
+                 gchar *key,
+                 gchar *filename)
 {
   gchar **values;
 
@@ -1061,12 +1050,12 @@ clear_bad_entry (XfceRc *rc,
 
           for (i = 0; values[i] != NULL; i++)
             {
-              if (!xfce_str_is_empty(values[i]) && g_strcmp0(values[i], filename) != 0)
+              if (!xfce_str_is_empty (values[i]) && g_strcmp0 (values[i], filename) != 0)
                 {
-                  list = g_slist_append (list, g_strdup(values[i]));
+                  list = g_slist_append (list, g_strdup (values[i]));
                 }
             }
-          g_strfreev(values);
+          g_strfreev (values);
 
           if (list == NULL)
             {
@@ -1074,11 +1063,11 @@ clear_bad_entry (XfceRc *rc,
             }
           else
             {
-              gchar   *value;
+              gchar *value;
               GString *string = g_string_new (NULL);
               for (item = list; item != NULL; item = g_slist_next (item))
                 {
-                  g_string_append_printf (string, "%s;", (gchar *)item->data);
+                  g_string_append_printf (string, "%s;", (gchar *) item->data);
                 }
               value = g_string_free (string, FALSE);
               xfce_rc_write_entry (rc, key, value);
@@ -1120,24 +1109,23 @@ helper_compare (gconstpointer a,
  * The returned list keeps references on the included
  * helpers, so be sure to run
  * <informalexample><programlisting>
- *  g_list_foreach (list, (GFunc) g_object_unref, NULL);
- *  g_list_free (list);
+ *  g_list_free_full (list, g_object_unref);
  * </programlisting></informalexample>
  * when you are done.
  *
  * Return value: The list of all helpers available
  *               in @category.
  **/
-GList*
+GList *
 xfce_mime_helper_database_get_all (XfceMimeHelperDatabase *database,
-                             XfceMimeHelperCategory  category)
+                                   XfceMimeHelperCategory category)
 {
   XfceMimeHelper *helper;
-  GList     *helpers = NULL;
-  gchar    **specs;
-  gchar     *id;
-  gchar     *s;
-  guint      n;
+  GList *helpers = NULL;
+  gchar **specs;
+  gchar *id;
+  gchar *s;
+  guint n;
 
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), NULL);
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
@@ -1184,12 +1172,12 @@ xfce_mime_helper_database_get_all (XfceMimeHelperDatabase *database,
  * Return value: the custom #XfceMimeHelper for @category
  *               in @database or %NULL.
  **/
-XfceMimeHelper*
+XfceMimeHelper *
 xfce_mime_helper_database_get_custom (XfceMimeHelperDatabase *database,
-                                XfceMimeHelperCategory  category)
+                                      XfceMimeHelperCategory category)
 {
   gchar *string;
-  gchar  id[256];
+  gchar id[256];
 
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), NULL);
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, NULL);
@@ -1215,16 +1203,16 @@ xfce_mime_helper_database_get_custom (XfceMimeHelperDatabase *database,
  **/
 void
 xfce_mime_helper_database_set_custom (XfceMimeHelperDatabase *database,
-                                XfceMimeHelperCategory  category,
-                                const gchar       *command)
+                                      XfceMimeHelperCategory category,
+                                      const gchar *command)
 {
   XfceRc *rc;
   gchar **argv;
-  gchar  *category_string;
-  gchar  *name;
-  gchar  *cmdline;
-  gchar  *file;
-  gchar   spec[256];
+  gchar *category_string;
+  gchar *name;
+  gchar *cmdline;
+  gchar *file;
+  gchar spec[256];
 
   g_return_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database));
   g_return_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES);
@@ -1263,13 +1251,16 @@ xfce_mime_helper_database_set_custom (XfceMimeHelperDatabase *database,
           xfce_rc_write_entry (rc, "Name", name);
           g_free (name);
 
-          if (strstr (command, "%s") == NULL) {
-            /* trust the user, they defined the command without a parameter (bug #4093) */
-            xfce_rc_write_entry (rc, "X-XFCE-Commands", command);
-          } else {
-            /* use only the binary for the Commands */
-            xfce_rc_write_entry (rc, "X-XFCE-Commands", *argv);
-          }
+          if (strstr (command, "%s") == NULL)
+            {
+              /* trust the user, they defined the command without a parameter (bug #4093) */
+              xfce_rc_write_entry (rc, "X-XFCE-Commands", command);
+            }
+          else
+            {
+              /* use only the binary for the Commands */
+              xfce_rc_write_entry (rc, "X-XFCE-Commands", *argv);
+            }
 
           /* cleanup */
           g_strfreev (argv);
@@ -1305,12 +1296,13 @@ xfce_mime_helper_database_set_custom (XfceMimeHelperDatabase *database,
  *
  * Return value: %TRUE if dismissed, %FALSE otherwise.
  **/
-gboolean xfce_mime_helper_database_get_dismissed (XfceMimeHelperDatabase *database,
-                                            XfceMimeHelperCategory  category)
+gboolean
+xfce_mime_helper_database_get_dismissed (XfceMimeHelperDatabase *database,
+                                         XfceMimeHelperCategory category)
 {
-  XfceRc      *rc;
-  gchar       *key;
-  gboolean     dismissed = FALSE;
+  XfceRc *rc;
+  gchar *key;
+  gboolean dismissed = FALSE;
 
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), FALSE);
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, FALSE);
@@ -1342,11 +1334,11 @@ gboolean xfce_mime_helper_database_get_dismissed (XfceMimeHelperDatabase *databa
  **/
 gboolean
 xfce_mime_helper_database_set_dismissed (XfceMimeHelperDatabase *database,
-                                   XfceMimeHelperCategory  category,
-                                   gboolean           dismissed)
+                                         XfceMimeHelperCategory category,
+                                         gboolean dismissed)
 {
-  XfceRc       *rc;
-  gchar        *key;
+  XfceRc *rc;
+  gchar *key;
 
   g_return_val_if_fail (category < XFCE_MIME_HELPER_N_CATEGORIES, FALSE);
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_DATABASE (database), FALSE);

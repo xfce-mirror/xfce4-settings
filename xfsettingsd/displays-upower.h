@@ -21,18 +21,23 @@
 
 #include <glib-object.h>
 
-typedef struct _XfceDisplaysUPowerClass XfceDisplaysUPowerClass;
-typedef struct _XfceDisplaysUPower      XfceDisplaysUPower;
+G_BEGIN_DECLS
 
-#define XFCE_TYPE_DISPLAYS_UPOWER            (xfce_displays_upower_get_type ())
-#define XFCE_DISPLAYS_UPOWER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_DISPLAYS_UPOWER, XfceDisplaysUPower))
-#define XFCE_DISPLAYS_UPOWER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_DISPLAYS_UPOWER, XfceDisplaysUPowerClass))
-#define XFCE_IS_DISPLAYS_UPOWER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_DISPLAYS_UPOWER))
+typedef struct _XfceDisplaysUPowerClass XfceDisplaysUPowerClass;
+typedef struct _XfceDisplaysUPower XfceDisplaysUPower;
+
+#define XFCE_TYPE_DISPLAYS_UPOWER (xfce_displays_upower_get_type ())
+#define XFCE_DISPLAYS_UPOWER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_DISPLAYS_UPOWER, XfceDisplaysUPower))
+#define XFCE_DISPLAYS_UPOWER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_DISPLAYS_UPOWER, XfceDisplaysUPowerClass))
+#define XFCE_IS_DISPLAYS_UPOWER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_DISPLAYS_UPOWER))
 #define XFCE_IS_DISPLAYS_UPOWER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_DISPLAYS_UPOWER))
-#define XFCE_DISPLAYS_UPOWER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_DISPLAYS_UPOWER, XfceDisplaysUPowerClass))
+#define XFCE_DISPLAYS_UPOWER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_DISPLAYS_UPOWER, XfceDisplaysUPowerClass))
 
 #define XFSD_LID_STR(b) (b ? "closed" : "open")
 
-GType xfce_displays_upower_get_type (void) G_GNUC_CONST;
+GType
+xfce_displays_upower_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
 
 #endif /* !__DISPLAYS_UPOWER_H__ */

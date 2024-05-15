@@ -28,14 +28,17 @@
 
 /* Further modifications come from upstream hwdata */
 
-#include <config.h>
-#include <glib/gi18n-lib.h>
-#include <stdlib.h>
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
-#include <glib.h>
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "common/edid.h"
+
+#include <glib/gi18n-lib.h>
+
+#ifdef HAVE_MATH_H
+#include <math.h>
+#endif
 
 typedef struct Vendor Vendor;
 struct Vendor
@@ -57,8 +60,7 @@ struct Vendor
  * Give back! When contributing vendor names, submit patches upstream
  * to https://git.fedorahosted.org/cgit/hwdata.git/plain/pnp.ids
  */
-static const struct Vendor vendors[] =
-{
+static const struct Vendor vendors[] = {
     { "AAA", "Avolites Ltd" },
     { "AAE", "Anatek Electronics Inc." },
     { "AAT", "Ann Arbor Technologies" },
@@ -2584,14 +2586,14 @@ read_pnp_ids (void)
         lines = g_strsplit (contents, "\n", -1);
         for (i = 0; lines[i]; i++)
         {
-             line = lines[i];
-             if (line[3] == '\t')
-             {
-                 code = line;
-                 line[3] = '\0';
-                 name = line + 4;
-                 g_hash_table_insert (pnp_ids, code, name);
-             }
+            line = lines[i];
+            if (line[3] == '\t')
+            {
+                code = line;
+                line[3] = '\0';
+                name = line + 4;
+                g_hash_table_insert (pnp_ids, code, name);
+            }
         }
         g_free (lines);
         g_free (contents);
@@ -2624,7 +2626,8 @@ find_vendor (const char *code)
 };
 
 char *
-make_display_name (const MonitorInfo *info, guint output)
+make_display_name (const MonitorInfo *info,
+                   guint output)
 {
     const char *vendor;
     int width_mm, height_mm, inches;
@@ -2638,7 +2641,7 @@ make_display_name (const MonitorInfo *info, guint output)
         /* Translators: "Unknown" here is used to identify a monitor for which
          * we don't know the vendor. When a vendor is known, the name of the
          * vendor is used. */
-        vendor = C_("Monitor vendor", "Unknown");
+        vendor = C_ ("Monitor vendor", "Unknown");
     }
 
     if (info && info->width_mm != -1 && info->height_mm)
@@ -2661,7 +2664,7 @@ make_display_name (const MonitorInfo *info, guint output)
     {
         double d = sqrt (width_mm * width_mm + height_mm * height_mm);
 
-        inches = (int)(d / 25.4 + 0.5);
+        inches = (int) (d / 25.4 + 0.5);
     }
     else
     {
@@ -2677,10 +2680,10 @@ make_display_name (const MonitorInfo *info, guint output)
 gboolean
 display_name_is_laptop_name (const gchar *name)
 {
-    return name != NULL && (
-        g_str_has_prefix (name, "LVDS")
-        || g_str_has_prefix (name, "eDP")
-        || strcmp (name, "PANEL") == 0);
+    return name != NULL
+           && (g_str_has_prefix (name, "LVDS")
+               || g_str_has_prefix (name, "eDP")
+               || strcmp (name, "PANEL") == 0);
 }
 
 const gchar *
