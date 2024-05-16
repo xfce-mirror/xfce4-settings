@@ -5,7 +5,7 @@
 # Translators:
 # Automatically generated, 2010
 # Elishai Eliyahu <elishai@mailfence.com>, 2016-2020
-# Elishai Eliyahu <elishai@mailfence.com>, 2020-2023
+# Elishai Eliyahu <elishai@mailfence.com>, 2020-2024
 # gk <genghiskhan@gmx.ca>, 2015
 # Hezy Amiel <open@hezyamiel.com>, 2010
 # koby vurgaft <slipperygate@gmail.com>, 2012
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2024-05-10 12:47+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2020-2023\n"
+"Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2020-2024\n"
 "Language-Team: Hebrew (http://app.transifex.com/xfce/xfce4-settings/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -592,20 +592,20 @@ msgstr "נכשל להציג הגדרות Xfwm4"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."
-msgstr ""
+msgstr "אזהרה: ערכת נושא איקון זו ללא קובץ מטמון. אתה יכול ליצור אותו במדמה מסוף עם הרצה של <i>gtk-update-icon-cache -f -t%s/%s </i>."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
 #: dialogs/appearance-settings/main.c:518
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
-msgstr ""
+msgstr "אזהרה: ערכת נושא איקון זו אינה שלמה. איקונים מסויימים יחסרו."
 
 #. These actually are no full themes by purpose
 #: dialogs/appearance-settings/main.c:524
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
-msgstr ""
+msgstr "אזהרה: ערכת נושא איקון זו אינה שלמה. היא רק מספקת סט בסיס של איקונים ממנו ערכות נושא אחרות יכולות לרשת."
 
 #: dialogs/appearance-settings/main.c:1005
 msgid "File is too large, installation aborted"
@@ -936,11 +936,11 @@ msgstr "אף פעם"
 
 #: dialogs/display-settings/display-dialog.glade:60
 msgid "When a display is connected"
-msgstr ""
+msgstr "כאשר מסך מחובר"
 
 #: dialogs/display-settings/display-dialog.glade:64
 msgid "When a display is disconnected"
-msgstr ""
+msgstr "כאשר מסך מנותק"
 
 #: dialogs/display-settings/display-dialog.glade:68
 msgid "Always"
@@ -964,7 +964,7 @@ msgstr "הרחב"
 
 #: dialogs/display-settings/display-dialog.glade:152
 msgid "The primary display can be configured to show:"
-msgstr ""
+msgstr "המסך הראשי יכול להיות מוגדר להציג:"
 
 #: dialogs/display-settings/display-dialog.glade:166
 msgid "Xfce Panel"
@@ -1055,11 +1055,11 @@ msgstr "עדכן פרופיל קיים."
 
 #: dialogs/display-settings/display-dialog.glade:831
 msgid "First try to automatically enable a profile:"
-msgstr ""
+msgstr "ניסיון ראשון להפעיל פרופיל אוטומטית:"
 
 #: dialogs/display-settings/display-dialog.glade:863
 msgid "When a display is connected:"
-msgstr ""
+msgstr "כאשר מסך מחובר:"
 
 #: dialogs/display-settings/display-dialog.glade:876
 msgid "Show popup windows to identify displays"
@@ -1088,19 +1088,19 @@ msgstr "פרופיל בשם הזה כבר קיים."
 
 #: dialogs/display-settings/minimal-display-dialog.glade:16
 msgid "Extend right"
-msgstr ""
+msgstr "הרחב ימינה"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:19
 msgid "Extend left"
-msgstr ""
+msgstr "הרחב שמאלה"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:22
 msgid "Extend up"
-msgstr ""
+msgstr "הרחב מעלה"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:25
 msgid "Extend down"
-msgstr ""
+msgstr "הרחב מטה"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
@@ -1299,7 +1299,7 @@ msgstr "רזולוציה:"
 #: dialogs/display-settings/display-settings-wayland.c:981
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
-msgstr ""
+msgstr "נראה שהעורך שלך לא תומך בפרוטוקול wlr-output-management"
 
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:110
@@ -2361,14 +2361,14 @@ msgstr "המספר של פיקסלים שהסמן חייב לעבור בזמן �
 
 #: dialogs/mouse-settings/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
-msgstr ""
+msgstr "תאוצת סמן אדפטיבית"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:505
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
-msgstr ""
+msgstr "מחליף בין פרופיל תאוצה אדפטיבי ושטוח. אדפטיבי לוקח את המהירות הנוכחית של ההתקן בחשבון בעת קביעת תאוצה. פרופיל תאוצה מותאם אישית לא נתמך דרך הגדרות xfce4 ."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:525
 msgid "Pointer Speed"
