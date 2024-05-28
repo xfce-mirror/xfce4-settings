@@ -20,7 +20,7 @@
 #include "config.h"
 #endif
 
-#include "common/debug.h"
+#include "debug.h"
 
 
 

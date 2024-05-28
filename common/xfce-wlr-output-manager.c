@@ -20,8 +20,8 @@
 #include "config.h"
 #endif
 
-#include "common/debug.h"
-#include "common/xfce-wlr-output-manager.h"
+#include "debug.h"
+#include "xfce-wlr-output-manager.h"
 
 #include <gdk/gdkwayland.h>
 

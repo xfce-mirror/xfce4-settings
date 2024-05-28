@@ -30,7 +30,7 @@
 #include "config.h"
 #endif
 
-#include "common/edid.h"
+#include "edid.h"
 
 #ifdef HAVE_MATH_H
 #include <math.h>

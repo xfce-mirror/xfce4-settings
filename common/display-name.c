@@ -32,7 +32,7 @@
 #include "config.h"
 #endif
 
-#include "common/edid.h"
+#include "edid.h"
 
 #include <glib/gi18n-lib.h>
 

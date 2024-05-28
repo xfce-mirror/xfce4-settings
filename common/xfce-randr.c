@@ -21,8 +21,8 @@
 #include "config.h"
 #endif
 
-#include "common/edid.h"
-#include "common/xfce-randr.h"
+#include "edid.h"
+#include "xfce-randr.h"
 
 #include <X11/Xatom.h>
 #include <gdk/gdkx.h>

@@ -20,7 +20,7 @@
 #include "config.h"
 #endif
 
-#include "common/display-profiles.h"
+#include "display-profiles.h"
 
 static gboolean
 is_user_profile (const gchar *property,
