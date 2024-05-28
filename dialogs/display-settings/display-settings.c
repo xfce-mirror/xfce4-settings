@@ -26,11 +26,13 @@
 
 #ifdef ENABLE_WAYLAND
 #include "display-settings-wayland.h"
+
 #include <gdk/gdkwayland.h>
 #endif
 
 #ifdef HAVE_XRANDR
 #include "display-settings-x11.h"
+
 #include <gdk/gdkx.h>
 #define WINDOWING_IS_X11() GDK_IS_X11_DISPLAY (gdk_display_get_default ())
 #else

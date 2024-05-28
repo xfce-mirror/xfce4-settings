@@ -30,11 +30,13 @@
 
 #ifdef HAVE_XRANDR
 #include "displays-x11.h"
+
 #include <gdk/gdkx.h>
 #endif
 
 #ifdef ENABLE_WAYLAND
 #include "displays-wayland.h"
+
 #include <gdk/gdkwayland.h>
 #endif
 
