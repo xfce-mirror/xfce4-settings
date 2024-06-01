@@ -196,11 +196,13 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
     GList *profiles = NULL;
     gchar **display_infos = XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->get_display_infos (helper);
     gchar *profile = NULL;
+    gboolean default_matches = FALSE;
 
     if (display_infos != NULL)
     {
         profiles = display_settings_get_profiles (display_infos, priv->channel, TRUE);
-        if (profiles == NULL && display_settings_profile_matches ("Default", display_infos, priv->channel))
+        default_matches = display_settings_profile_matches ("Default", display_infos, priv->channel);
+        if (profiles == NULL && default_matches)
         {
             /* if user profile matching failed, use Default if possible */
             profiles = g_list_prepend (profiles, g_strdup ("Default"));
@@ -219,7 +221,17 @@ xfce_displays_helper_get_matching_profile (XfceDisplaysHelper *helper)
     }
     else
     {
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles.", g_list_length (profiles));
+        if (default_matches)
+        {
+            profile = g_strdup ("Default");
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles, applying %s",
+                            g_list_length (profiles) + 1, profile);
+        }
+        else
+        {
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Found %d matching display profiles, unable to choose",
+                            g_list_length (profiles));
+        }
     }
 
     g_list_free_full (profiles, g_free);
