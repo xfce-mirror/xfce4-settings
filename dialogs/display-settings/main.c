@@ -1145,6 +1145,9 @@ display_settings_minimal_profile_populate (XfceDisplaySettings *settings)
     GList *profiles = display_settings_get_profiles (display_infos, channel, TRUE);
     gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", NULL);
 
+    g_signal_handlers_disconnect_by_func (combobox, display_settings_minimal_profile_combobox_changed, settings);
+    gtk_list_store_clear (GTK_LIST_STORE (liststore));
+
     for (GList *lp = profiles; lp != NULL; lp = lp->next)
     {
         /* use the display string value of the profile hash property */
@@ -3240,19 +3243,96 @@ display_settings_minimal_activated (GSimpleAction *action,
 }
 
 static void
+settings_outputs_changed (XfceDisplaySettings *settings)
+{
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
+    GObject *only_display1 = gtk_builder_get_object (builder, "display1");
+    GObject *mirror_displays = gtk_builder_get_object (builder, "mirror");
+    GObject *extend_displays = gtk_builder_get_object (builder, "extend");
+    GObject *combobox_extend = gtk_builder_get_object (builder, "combobox-extend");
+    GObject *only_display2 = gtk_builder_get_object (builder, "display2");
+    gboolean multi_outputs = xfce_display_settings_get_n_outputs (settings) > 1;
+
+    g_signal_handlers_disconnect_by_func (only_display1, display_settings_minimal_only_display_n_toggled, settings);
+    g_signal_handlers_disconnect_by_func (mirror_displays, display_settings_minimal_mirror_displays_toggled, settings);
+    g_signal_handlers_disconnect_by_func (extend_displays, display_settings_minimal_extend_displays_toggled, settings);
+    g_signal_handlers_disconnect_by_func (combobox_extend, display_settings_minimal_combobox_extend_changed, settings);
+    g_signal_handlers_disconnect_by_func (only_display2, display_settings_minimal_only_display_n_toggled, settings);
+
+    gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), multi_outputs);
+    gtk_widget_set_sensitive (GTK_WIDGET (extend_displays), multi_outputs);
+    gtk_widget_set_sensitive (GTK_WIDGET (combobox_extend), multi_outputs);
+    gtk_widget_set_sensitive (GTK_WIDGET (only_display2), multi_outputs);
+
+    if (multi_outputs)
+    {
+        GObject *label = gtk_builder_get_object (builder, "label-display2");
+        gchar *text = g_strdup_printf (ONLY_DISPLAY_2, xfce_display_settings_get_friendly_name (settings, 1));
+        gboolean clonable = xfce_display_settings_is_clonable (settings);
+
+        gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), clonable);
+        gtk_widget_set_sensitive (GTK_WIDGET (gtk_builder_get_object (builder, "label-mirror")), clonable);
+
+        gtk_label_set_text (GTK_LABEL (label), text);
+        gtk_widget_set_tooltip_text (GTK_WIDGET (label), text);
+        g_free (text);
+
+        if (xfce_display_settings_is_active (settings, 0))
+        {
+            if (xfce_display_settings_is_active (settings, 1))
+            {
+                if (xfce_display_settings_is_mirrored (settings, 0, 1))
+                {
+                    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mirror_displays), TRUE);
+                }
+                else
+                {
+                    ExtendedMode mode = xfce_display_settings_get_extended_mode (settings, 0, 1);
+                    if (mode != EXTENDED_MODE_NONE)
+                    {
+                        gtk_combo_box_set_active (GTK_COMBO_BOX (combobox_extend), mode);
+                        display_settings_minimal_combobox_extend_changed (GTK_COMBO_BOX (combobox_extend), settings);
+                        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_displays), TRUE);
+                    }
+                }
+            }
+            else
+            {
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1), TRUE);
+            }
+        }
+        else
+        {
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display2), xfce_display_settings_is_active (settings, 1));
+        }
+    }
+    else
+    {
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1), TRUE);
+    }
+
+    display_settings_minimal_profile_populate (settings);
+
+    g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display_n_toggled), settings);
+    g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled), settings);
+    g_signal_connect (extend_displays, "toggled", G_CALLBACK (display_settings_minimal_extend_displays_toggled), settings);
+    g_signal_connect (combobox_extend, "changed", G_CALLBACK (display_settings_minimal_combobox_extend_changed), settings);
+    g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display_n_toggled), settings);
+}
+
+static void
 display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
 {
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GtkWidget *dialog, *cancel;
-    GObject *only_display1, *only_display2, *mirror_displays, *mirror_displays_label;
-    GObject *extend_displays, *advanced, *combobox_extend, *label;
+    GObject *label;
     GError *error = NULL;
 
     if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
                                      minimal_display_dialog_ui_length, &error)
         != 0)
     {
-        gchar *only_display1_label, *only_display2_label;
+        gchar *only_display1_label;
 
         /* Build the minimal dialog */
         dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
@@ -3267,80 +3347,16 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
         display_settings_minimal_load_icon (builder, "image-extend", "xfce-display-extend-right");
         display_settings_minimal_load_icon (builder, "image-display2", "xfce-display-right");
 
-        only_display1 = gtk_builder_get_object (builder, "display1");
-        mirror_displays = gtk_builder_get_object (builder, "mirror");
-        mirror_displays_label = gtk_builder_get_object (builder, "label-mirror");
-        extend_displays = gtk_builder_get_object (builder, "extend");
-        combobox_extend = gtk_builder_get_object (builder, "combobox-extend");
-        only_display2 = gtk_builder_get_object (builder, "display2");
-        advanced = gtk_builder_get_object (builder, "advanced-button");
-
         label = gtk_builder_get_object (builder, "label-display1");
         only_display1_label = g_strdup_printf (ONLY_DISPLAY_1, xfce_display_settings_get_friendly_name (settings, 0));
         gtk_label_set_text (GTK_LABEL (label), only_display1_label);
         gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display1_label);
         g_free (only_display1_label);
 
-        if (xfce_display_settings_get_n_outputs (settings) > 1)
-        {
-            gboolean clonable = xfce_display_settings_is_clonable (settings);
-            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), clonable);
-            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays_label), clonable);
-
-            label = gtk_builder_get_object (builder, "label-display2");
-            only_display2_label = g_strdup_printf (ONLY_DISPLAY_2, xfce_display_settings_get_friendly_name (settings, 1));
-            gtk_label_set_text (GTK_LABEL (label), only_display2_label);
-            gtk_widget_set_tooltip_text (GTK_WIDGET (label), only_display2_label);
-            g_free (only_display2_label);
-
-            if (xfce_display_settings_is_active (settings, 0))
-            {
-                if (xfce_display_settings_is_active (settings, 1))
-                {
-                    if (xfce_display_settings_is_mirrored (settings, 0, 1))
-                    {
-                        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mirror_displays), TRUE);
-                    }
-                    else
-                    {
-                        ExtendedMode mode = xfce_display_settings_get_extended_mode (settings, 0, 1);
-                        if (mode != EXTENDED_MODE_NONE)
-                        {
-                            gtk_combo_box_set_active (GTK_COMBO_BOX (combobox_extend), mode);
-                            display_settings_minimal_combobox_extend_changed (GTK_COMBO_BOX (combobox_extend), settings);
-                            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (extend_displays), TRUE);
-                        }
-                    }
-                }
-                else
-                {
-                    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1), TRUE);
-                }
-            }
-            else
-            {
-                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display2), xfce_display_settings_is_active (settings, 1));
-            }
-        }
-        else
-        {
-            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1), TRUE);
-
-            /* Only one output, disable other buttons */
-            gtk_widget_set_sensitive (GTK_WIDGET (mirror_displays), FALSE);
-            gtk_widget_set_sensitive (GTK_WIDGET (extend_displays), FALSE);
-            gtk_widget_set_sensitive (GTK_WIDGET (only_display2), FALSE);
-        }
-
-        /* Create the profile radiobuttons */
-        display_settings_minimal_profile_populate (settings);
-
-        g_signal_connect (only_display1, "toggled", G_CALLBACK (display_settings_minimal_only_display_n_toggled), settings);
-        g_signal_connect (mirror_displays, "toggled", G_CALLBACK (display_settings_minimal_mirror_displays_toggled), settings);
-        g_signal_connect (extend_displays, "toggled", G_CALLBACK (display_settings_minimal_extend_displays_toggled), settings);
-        g_signal_connect (combobox_extend, "changed", G_CALLBACK (display_settings_minimal_combobox_extend_changed), settings);
-        g_signal_connect (only_display2, "toggled", G_CALLBACK (display_settings_minimal_only_display_n_toggled), settings);
-        g_signal_connect (advanced, "clicked", G_CALLBACK (display_settings_minimal_advanced_clicked), settings);
+        g_signal_connect (gtk_builder_get_object (builder, "advanced-button"), "clicked",
+                          G_CALLBACK (display_settings_minimal_advanced_clicked), settings);
+        g_signal_connect (settings, "outputs-changed", G_CALLBACK (settings_outputs_changed), NULL);
+        settings_outputs_changed (settings);
 
         /* Show the minimal dialog and start the main loop */
         gtk_window_present (GTK_WINDOW (dialog));

@@ -27,8 +27,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (XfceDisplaySettingsX11, xfce_display_settings_x11, XFCE, DISPLAY_SETTINGS_X11, XfceDisplaySettings)
 
 XfceDisplaySettings *
-xfce_display_settings_x11_new (gboolean opt_minimal,
-                               GError **error);
+xfce_display_settings_x11_new (GError **error);
 
 G_END_DECLS
 
