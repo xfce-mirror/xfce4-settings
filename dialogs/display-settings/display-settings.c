@@ -172,6 +172,16 @@ xfce_display_settings_is_minimal (XfceDisplaySettings *settings)
 
 
 
+void
+xfce_display_settings_set_minimal (XfceDisplaySettings *settings,
+                                   gboolean minimal)
+{
+    g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
+    get_instance_private (settings)->opt_minimal = minimal;
+}
+
+
+
 GtkBuilder *
 xfce_display_settings_get_builder (XfceDisplaySettings *settings)
 {

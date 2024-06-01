@@ -169,6 +169,17 @@ keep_output_snapped (XfceOutput *output,
                      FooScrollAreaEvent *event,
                      GrabInfo *info,
                      XfceDisplaySettings *settings);
+static void
+display_settings_minimal_activated (GSimpleAction *action,
+                                    GVariant *parameter,
+                                    gpointer data);
+
+/* App actions */
+static const GActionEntry actions[] = {
+    { "cycle", display_settings_minimal_activated, NULL, NULL, NULL },
+};
+
+
 
 static void
 initialize_connected_outputs_at_zero (XfceDisplaySettings *settings)
@@ -3114,6 +3125,7 @@ display_settings_minimal_advanced_clicked (GtkButton *button,
     dialog = GTK_WIDGET (gtk_builder_get_object (xfce_display_settings_get_builder (settings), "dialog"));
     gtk_widget_hide (dialog);
 
+    xfce_display_settings_set_minimal (settings, FALSE);
     display_settings_show_main_dialog (settings);
 
     gtk_main_quit ();
@@ -3187,16 +3199,27 @@ display_settings_activated (GApplication *application,
                             XfceDisplaySettings *settings)
 {
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
-    gtk_window_present (GTK_WINDOW (gtk_builder_get_object (builder, "display-dialog")));
+    if (xfce_display_settings_is_minimal (settings))
+        gtk_window_present (GTK_WINDOW (gtk_builder_get_object (builder, "dialog")));
+    else
+        gtk_window_present (GTK_WINDOW (gtk_builder_get_object (builder, "display-dialog")));
 }
 
 static void
-display_settings_minimal_activated (GApplication *application,
-                                    XfceDisplaySettings *settings)
+display_settings_minimal_activated (GSimpleAction *action,
+                                    GVariant *parameter,
+                                    gpointer data)
 {
+    XfceDisplaySettings *settings = data;
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GtkWidget *dialog;
     GdkRectangle monitor_rect, window_rect;
+
+    if (!xfce_display_settings_is_minimal (settings))
+    {
+        display_settings_activated (NULL, settings);
+        return;
+    }
 
     dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
     display_settings_minimal_get_positions (dialog, &monitor_rect, &window_rect);
@@ -3347,14 +3370,18 @@ handle_local_options (GApplication *app,
     {
         if (xfce_display_settings_get_n_outputs (settings) <= 1 || !xfce_display_settings_is_minimal (settings))
         {
-            g_signal_connect (app, "activate", G_CALLBACK (display_settings_activated), settings);
             display_settings_show_main_dialog (settings);
         }
         else
         {
-            g_signal_connect (app, "activate", G_CALLBACK (display_settings_minimal_activated), settings);
             display_settings_show_minimal_dialog (settings);
         }
+        return EXIT_SUCCESS;
+    }
+
+    if (xfce_display_settings_is_minimal (settings))
+    {
+        g_action_group_activate_action (G_ACTION_GROUP (app), "cycle", NULL);
         return EXIT_SUCCESS;
     }
 
@@ -3450,7 +3477,9 @@ main (gint argc,
 
     /* Use GtkApplication to ensure single instance */
     GtkApplication *app = gtk_application_new ("org.xfce.display.settings", 0);
+    g_action_map_add_action_entries (G_ACTION_MAP (app), actions, G_N_ELEMENTS (actions), settings);
     g_signal_connect (app, "handle-local-options", G_CALLBACK (handle_local_options), settings);
+    g_signal_connect (app, "activate", G_CALLBACK (display_settings_activated), settings);
     g_application_run (G_APPLICATION (app), 0, NULL);
 
     /* Cleanup */
