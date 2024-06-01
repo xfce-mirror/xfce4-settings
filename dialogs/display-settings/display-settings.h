@@ -182,6 +182,9 @@ xfce_display_settings_new (gboolean opt_minimal,
                            GError **error);
 gboolean
 xfce_display_settings_is_minimal (XfceDisplaySettings *settings);
+void
+xfce_display_settings_set_minimal (XfceDisplaySettings *settings,
+                                   gboolean minimal);
 GtkBuilder *
 xfce_display_settings_get_builder (XfceDisplaySettings *settings);
 XfconfChannel *

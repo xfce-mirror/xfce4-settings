@@ -83,6 +83,13 @@ xfce_display_settings_class_init (XfceDisplaySettingsClass *klass)
     GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
     gobject_class->finalize = xfce_display_settings_finalize;
+
+    g_signal_new ("outputs-changed",
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  0, NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 }
 
 
@@ -96,8 +103,7 @@ xfce_display_settings_init (XfceDisplaySettings *settings)
     priv->builder = gtk_builder_new ();
     priv->scroll_area = (GtkWidget *) foo_scroll_area_new ();
     g_signal_connect (priv->scroll_area, "destroy", G_CALLBACK (gtk_widget_destroyed), &priv->scroll_area);
-    if (!priv->opt_minimal)
-        priv->popups = g_hash_table_new_full (g_direct_hash, g_direct_equal, NULL, (GDestroyNotify) gtk_widget_destroy);
+    priv->popups = g_hash_table_new_full (g_direct_hash, g_direct_equal, NULL, (GDestroyNotify) gtk_widget_destroy);
 }
 
 
@@ -123,8 +129,7 @@ xfce_display_settings_finalize (GObject *object)
     g_object_unref (priv->builder);
     if (priv->scroll_area != NULL)
         gtk_widget_destroy (priv->scroll_area);
-    if (priv->popups != NULL)
-        g_hash_table_destroy (priv->popups);
+    g_hash_table_destroy (priv->popups);
     g_list_free_full (priv->outputs, free_output);
 
     G_OBJECT_CLASS (xfce_display_settings_parent_class)->finalize (object);
@@ -142,11 +147,11 @@ xfce_display_settings_new (gboolean opt_minimal,
 
 #ifdef HAVE_XRANDR
     if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
-        settings = xfce_display_settings_x11_new (opt_minimal, error);
+        settings = xfce_display_settings_x11_new (error);
 #endif
 #ifdef ENABLE_WAYLAND
     if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
-        settings = xfce_display_settings_wayland_new (opt_minimal, error);
+        settings = xfce_display_settings_wayland_new (error);
 #endif
 
     if (settings != NULL)
@@ -168,6 +173,16 @@ xfce_display_settings_is_minimal (XfceDisplaySettings *settings)
 {
     g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), FALSE);
     return get_instance_private (settings)->opt_minimal;
+}
+
+
+
+void
+xfce_display_settings_set_minimal (XfceDisplaySettings *settings,
+                                   gboolean minimal)
+{
+    g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
+    get_instance_private (settings)->opt_minimal = minimal;
 }
 
 
@@ -646,16 +661,19 @@ void
 xfce_display_settings_reload (XfceDisplaySettings *settings)
 {
     XfceDisplaySettingsPrivate *priv = get_instance_private (settings);
-    gboolean visible = xfconf_channel_get_bool (priv->channel, "/IdentityPopups", FALSE);
+    if (!priv->opt_minimal)
+    {
+        gboolean visible = xfconf_channel_get_bool (priv->channel, "/IdentityPopups", FALSE);
 
-    xfce_display_settings_set_outputs (settings);
+        xfce_display_settings_set_outputs (settings);
 
-    xfce_display_settings_populate_combobox (settings);
-    xfce_display_settings_populate_profile_list (settings);
-    xfce_display_settings_populate_popups (settings);
-    xfce_display_settings_set_popups_visible (settings, visible);
+        xfce_display_settings_populate_combobox (settings);
+        xfce_display_settings_populate_profile_list (settings);
+        xfce_display_settings_populate_popups (settings);
+        xfce_display_settings_set_popups_visible (settings, visible);
 
-    foo_scroll_area_invalidate (FOO_SCROLL_AREA (priv->scroll_area));
+        foo_scroll_area_invalidate (FOO_SCROLL_AREA (priv->scroll_area));
+    }
 }
 
 

@@ -990,17 +990,16 @@ manager_listener (XfceWlrOutputManager *manager,
     }
 
     xfce_display_settings_reload (settings);
+    g_signal_emit_by_name (G_OBJECT (settings), "outputs-changed");
 }
 
 
 
 XfceDisplaySettings *
-xfce_display_settings_wayland_new (gboolean opt_minimal,
-                                   GError **error)
+xfce_display_settings_wayland_new (GError **error)
 {
     XfceDisplaySettingsWayland *settings = g_object_new (XFCE_TYPE_DISPLAY_SETTINGS_WAYLAND, NULL);
-    XfceWlrOutputListener listener = opt_minimal ? NULL : manager_listener;
-    XfceWlrOutputManager *manager = xfce_wlr_output_manager_new (listener, settings);
+    XfceWlrOutputManager *manager = xfce_wlr_output_manager_new (manager_listener, settings);
     settings->manager = manager;
 
     if (xfce_wlr_output_manager_get_outputs (manager) == NULL)

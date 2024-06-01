@@ -199,6 +199,7 @@ screen_on_event (GdkXEvent *gdk_xevent,
 
     xfce_randr_reload (xsettings->randr);
     xfce_display_settings_reload (settings);
+    g_signal_emit_by_name (G_OBJECT (settings), "outputs-changed");
 
     return GDK_FILTER_CONTINUE;
 }
@@ -211,8 +212,7 @@ xfce_display_settings_x11_finalize (GObject *object)
     XfceDisplaySettingsX11 *settings = XFCE_DISPLAY_SETTINGS_X11 (object);
 
     xfce_randr_free (settings->randr);
-    if (!xfce_display_settings_is_minimal (XFCE_DISPLAY_SETTINGS (settings)))
-        gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, settings);
+    gdk_window_remove_filter (gdk_get_default_root_window (), screen_on_event, settings);
 
     G_OBJECT_CLASS (xfce_display_settings_x11_parent_class)->finalize (object);
 }
@@ -691,8 +691,7 @@ xfce_display_settings_x11_extend (XfceDisplaySettings *settings,
 
 
 XfceDisplaySettings *
-xfce_display_settings_x11_new (gboolean opt_minimal,
-                               GError **error)
+xfce_display_settings_x11_new (GError **error)
 {
     XfceDisplaySettingsX11 *settings;
     XfceRandr *randr;
@@ -711,15 +710,13 @@ xfce_display_settings_x11_new (gboolean opt_minimal,
     settings = g_object_new (XFCE_TYPE_DISPLAY_SETTINGS_X11, NULL);
     settings->randr = randr;
     settings->event_base = event_base;
-    if (!opt_minimal)
-    {
-        /* set up notifications */
-        XRRSelectInput (gdk_x11_get_default_xdisplay (),
-                        GDK_WINDOW_XID (gdk_get_default_root_window ()),
-                        RRScreenChangeNotifyMask);
-        gdk_x11_register_standard_event_type (gdk_display_get_default (), event_base, RRNotify + 1);
-        gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, settings);
-    }
+
+    /* set up notifications */
+    XRRSelectInput (gdk_x11_get_default_xdisplay (),
+                    GDK_WINDOW_XID (gdk_get_default_root_window ()),
+                    RRScreenChangeNotifyMask);
+    gdk_x11_register_standard_event_type (gdk_display_get_default (), event_base, RRNotify + 1);
+    gdk_window_add_filter (gdk_get_default_root_window (), screen_on_event, settings);
 
     return XFCE_DISPLAY_SETTINGS (settings);
 }

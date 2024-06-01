@@ -27,8 +27,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (XfceDisplaySettingsWayland, xfce_display_settings_wayland, XFCE, DISPLAY_SETTINGS_WAYLAND, XfceDisplaySettings)
 
 XfceDisplaySettings *
-xfce_display_settings_wayland_new (gboolean opt_minimal,
-                                   GError **error);
+xfce_display_settings_wayland_new (GError **error);
 
 G_END_DECLS
 
