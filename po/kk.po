@@ -582,20 +582,20 @@ msgstr "Xfwm4 баптауларын іске асыру сәтсіз аяқта
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."
-msgstr ""
+msgstr "Назарыңызға: Бұл таңбашалар темасында кэш файлы жоқ. Сіз оны терминал эмуляторында <i>gtk-update-icon-cache -f -t %s/%s/</i> командасын жөнелту арқылы жасай аласыз."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
 #: dialogs/appearance-settings/main.c:518
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
-msgstr ""
+msgstr "Назарыңызға: Бұл таңбашалар темасында толық емес. Кейбір таңбашалар жоқ болады."
 
 #. These actually are no full themes by purpose
 #: dialogs/appearance-settings/main.c:524
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
-msgstr ""
+msgstr "Назарыңызға: Бұл таңбашалар темасында толық емес. Ол тек базалық таңбашалар жинынын ұсынады, одан басқа темалар мұралай алады."
 
 #: dialogs/appearance-settings/main.c:1005
 msgid "File is too large, installation aborted"
@@ -926,11 +926,11 @@ msgstr "Ешқашан"
 
 #: dialogs/display-settings/display-dialog.glade:60
 msgid "When a display is connected"
-msgstr ""
+msgstr "Экран қосылған кезде"
 
 #: dialogs/display-settings/display-dialog.glade:64
 msgid "When a display is disconnected"
-msgstr ""
+msgstr "Экран ажыратылған кезде"
 
 #: dialogs/display-settings/display-dialog.glade:68
 msgid "Always"
@@ -954,7 +954,7 @@ msgstr "Кеңейту"
 
 #: dialogs/display-settings/display-dialog.glade:152
 msgid "The primary display can be configured to show:"
-msgstr ""
+msgstr "Біріншілік экран келесіні көрсетуді бапталуы мүмкін:"
 
 #: dialogs/display-settings/display-dialog.glade:166
 msgid "Xfce Panel"
@@ -1045,11 +1045,11 @@ msgstr "Бар болып тұрған профильді жаңарту."
 
 #: dialogs/display-settings/display-dialog.glade:831
 msgid "First try to automatically enable a profile:"
-msgstr ""
+msgstr "Алдымен профильді автоматты түрде іске қосып көру:"
 
 #: dialogs/display-settings/display-dialog.glade:863
 msgid "When a display is connected:"
-msgstr ""
+msgstr "Экран қосылған кезде:"
 
 #: dialogs/display-settings/display-dialog.glade:876
 msgid "Show popup windows to identify displays"
@@ -1289,7 +1289,7 @@ msgstr "Кеңейтілуі:"
 #: dialogs/display-settings/display-settings-wayland.c:981
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
-msgstr ""
+msgstr "Сіздің терезелер композитингін басқарушысы wlr-output-management хаттамасын қолдамайтын сияқты"
 
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:110
@@ -1604,8 +1604,8 @@ msgid ""
 msgid_plural ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
 " with:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<i>%s</i>, \"%s\" түріндегі файлдарды және %d басқа таңдалған MIME түрлерін көмегімен ашу:"
+msgstr[1] "<i>%s</i>, \"%s\" түріндегі файлдарды және %d басқа таңдалған MIME түрлерін көмегімен ашу:"
 
 #: dialogs/mime-settings/xfce-mime-chooser.c:661
 #, c-format
@@ -1931,8 +1931,8 @@ msgstr "\"%s\" қолданбасын \"%s\" mime түрі үшін орнату
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d MIME түрі таңдалды"
+msgstr[1] "%d MIME түрі таңдалды"
 
 #: dialogs/mime-settings/xfce-mime-window.c:1169
 #, c-format
@@ -2232,11 +2232,11 @@ msgstr "%.1f с"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:67
 msgid "Use bottom areas as left, middle or right buttons"
-msgstr ""
+msgstr "Астындағы аймақтарды сол жақ, ортаңғы немесе оң жақ батырмасы ретінде қолданыңыз"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:71
 msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
-msgstr ""
+msgstr "1, 2 немесе 3 саусақпен бірге шертуді сол жақ, оң жақ немесе ортаңғы шерту ретінде қолдану"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:92
 msgid "Disabled"
@@ -2305,13 +2305,13 @@ msgstr "Таңдаулы тұрса, тышқан дөңгелегін айна�
 
 #: dialogs/mouse-settings/mouse-dialog.glade:372
 msgid "Allow high _resolution scrolling (experimental)"
-msgstr ""
+msgstr "Жоғары ажы_ратымдылықты айналдыруды қолдану (сынамалы түрде)"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:376
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
-msgstr ""
+msgstr "Тек кейбір тышқандарда қолдауы бар (көбінесе Logitech) және драйвер қолдауын талап етеді. Қолдауы бар құрылғыларда айналдыруды дәлірек етеді."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:395
 msgid "Buttons"
@@ -2348,14 +2348,14 @@ msgstr "Курсорды үдетуді бастау үшін курсор қы�
 
 #: dialogs/mouse-settings/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
-msgstr ""
+msgstr "Курсордың адаптивті үдетілуі"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:505
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
-msgstr ""
+msgstr "Адаптивті және жалпақ үдетілу профильдерінің арасында ауыстырады. Адаптивті режим үдетілуді есептеген кезде құрылғының ағымдағы жылдамдығын есепке алады. Таңдауыңызша үдетілу профиліне xfce4-settings ішінде қолдау жоқ."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:525
 msgid "Pointer Speed"
@@ -2386,7 +2386,7 @@ msgstr "Шерту үшін тач_падқа тию"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:682
 msgid "Click m_ethod:"
-msgstr ""
+msgstr "Шерту _тәсілі:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:767
 msgid "Scrolling _mode:"
