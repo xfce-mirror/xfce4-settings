@@ -259,7 +259,6 @@ cb_window_scaling_factor_combo_changed (GtkComboBox *combo)
     /* Save setting */
     xfconf_channel_set_int (xsettings_channel, "/Gdk/WindowScalingFactor", active);
 }
-#endif
 
 static void
 cb_antialias_check_button_toggled (GtkToggleButton *toggle)
@@ -352,6 +351,7 @@ cb_custom_dpi_spin_button_changed (GtkSpinButton *custom_dpi_spin,
     /* Tell xfsettingsd to apply the custom DPI value */
     xfconf_channel_set_int (xsettings_channel, "/Xft/DPI", dpi);
 }
+#endif
 
 #ifdef ENABLE_SOUND_SETTINGS
 static void
@@ -1098,6 +1098,7 @@ appearance_settings_install_theme_cb (GtkButton *widget,
     g_free (theme);
 }
 
+#ifdef ENABLE_X11
 static cairo_surface_t *
 appearance_settings_draw_subpixel_icon (gboolean is_rgb,
                                         gboolean is_vertical,
@@ -1147,20 +1148,18 @@ appearance_settings_draw_subpixel_icon (gboolean is_rgb,
 
     return surface;
 }
+#endif
 
 static void
 appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 {
-    GObject *object, *object2;
+    GObject *object;
     GtkListStore *list_store;
     GtkCellRenderer *renderer;
-    cairo_surface_t *surface;
     GtkTreeSelection *selection;
     GtkTreeViewColumn *column;
     preview_data *pd;
     gchar *path;
-    gint menu_icon_size;
-    gint scale_factor;
 
     /* Icon themes list */
     object = gtk_builder_get_object (builder, "install_icon_theme");
@@ -1168,8 +1167,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
 
     object = gtk_builder_get_object (builder, "icon_theme_treeview");
-    scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (object));
-
     list_store = gtk_list_store_new (N_THEME_COLUMNS, CAIRO_GOBJECT_TYPE_SURFACE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
     gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COLUMN_THEME_DISPLAY_NAME, GTK_SORT_ASCENDING);
     gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
@@ -1278,36 +1275,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     }
     g_free (path);
 
-    /* Subpixel (rgba) hinting Combo */
-    object = gtk_builder_get_object (builder, "xft_rgba_store");
-
-    gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &menu_icon_size, &menu_icon_size);
-
-    surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, menu_icon_size * scale_factor, menu_icon_size * scale_factor);
-    cairo_surface_set_device_scale (surface, scale_factor, scale_factor);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 0, 0, surface, 1, _("None"), -1);
-    cairo_surface_destroy (surface);
-
-    surface = appearance_settings_draw_subpixel_icon (TRUE, FALSE, menu_icon_size, scale_factor);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 1, 0, surface, 1, _("RGB"), -1);
-    cairo_surface_destroy (surface);
-
-    surface = appearance_settings_draw_subpixel_icon (FALSE, FALSE, menu_icon_size, scale_factor);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 2, 0, surface, 1, _("BGR"), -1);
-    cairo_surface_destroy (surface);
-
-    surface = appearance_settings_draw_subpixel_icon (TRUE, TRUE, menu_icon_size, scale_factor);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 3, 0, surface, 1, _("Vertical RGB"), -1);
-    cairo_surface_destroy (surface);
-
-    surface = appearance_settings_draw_subpixel_icon (FALSE, TRUE, menu_icon_size, scale_factor);
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 4, 0, surface, 1, _("Vertical BGR"), -1);
-    cairo_surface_destroy (surface);
-
-    object = gtk_builder_get_object (builder, "xft_rgba_combo_box");
-    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/RGBA", NULL, builder);
-    g_signal_connect (G_OBJECT (object), "changed", G_CALLBACK (cb_rgba_style_combo_changed), NULL);
-
     /* Enable buttons in native GTK dialog headers */
     object = gtk_builder_get_object (builder, "gtk_dialog_button_header_check_button");
     xfconf_g_property_bind (xsettings_channel, "/Gtk/DialogsUseHeader", G_TYPE_BOOLEAN,
@@ -1338,28 +1305,63 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     xfconf_g_property_bind (xsettings_channel, "/Gtk/MonospaceFontName", G_TYPE_STRING,
                             G_OBJECT (object), "font-name");
 
-    /* Hinting style */
-    object = gtk_builder_get_object (builder, "xft_hinting_style_combo_box");
-    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/HintStyle", NULL, builder);
-    g_signal_connect (G_OBJECT (object), "changed", G_CALLBACK (cb_hinting_style_combo_changed), NULL);
-
-    /* Hinting */
-    object = gtk_builder_get_object (builder, "xft_antialias_check_button");
-    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/Antialias", NULL, builder);
-    g_signal_connect (G_OBJECT (object), "toggled", G_CALLBACK (cb_antialias_check_button_toggled), NULL);
-
-    /* DPI */
-    object = gtk_builder_get_object (builder, "xft_custom_dpi_check_button");
-    object2 = gtk_builder_get_object (builder, "xft_custom_dpi_spin_button");
-    appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/DPI", NULL, builder);
-    gtk_widget_set_sensitive (GTK_WIDGET (object2), gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)));
-    g_signal_connect (G_OBJECT (object), "toggled", G_CALLBACK (cb_custom_dpi_check_button_toggled), object2);
-    g_signal_connect (G_OBJECT (object2), "value-changed", G_CALLBACK (cb_custom_dpi_spin_button_changed), object);
-
-    /* Window scaling factor */
 #ifdef ENABLE_X11
     if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {
+        GObject *object2;
+        cairo_surface_t *surface;
+        gint menu_icon_size;
+        gint scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (gtk_builder_get_object (builder, "icon_theme_treeview")));
+
+        /* Hinting style */
+        object = gtk_builder_get_object (builder, "xft_hinting_style_combo_box");
+        appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/HintStyle", NULL, builder);
+        g_signal_connect (G_OBJECT (object), "changed", G_CALLBACK (cb_hinting_style_combo_changed), NULL);
+
+        /* Hinting */
+        object = gtk_builder_get_object (builder, "xft_antialias_check_button");
+        appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/Antialias", NULL, builder);
+        g_signal_connect (G_OBJECT (object), "toggled", G_CALLBACK (cb_antialias_check_button_toggled), NULL);
+
+        /* Subpixel (rgba) hinting Combo */
+        object = gtk_builder_get_object (builder, "xft_rgba_store");
+
+        gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &menu_icon_size, &menu_icon_size);
+
+        surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, menu_icon_size * scale_factor, menu_icon_size * scale_factor);
+        cairo_surface_set_device_scale (surface, scale_factor, scale_factor);
+        gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 0, 0, surface, 1, _("None"), -1);
+        cairo_surface_destroy (surface);
+
+        surface = appearance_settings_draw_subpixel_icon (TRUE, FALSE, menu_icon_size, scale_factor);
+        gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 1, 0, surface, 1, _("RGB"), -1);
+        cairo_surface_destroy (surface);
+
+        surface = appearance_settings_draw_subpixel_icon (FALSE, FALSE, menu_icon_size, scale_factor);
+        gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 2, 0, surface, 1, _("BGR"), -1);
+        cairo_surface_destroy (surface);
+
+        surface = appearance_settings_draw_subpixel_icon (TRUE, TRUE, menu_icon_size, scale_factor);
+        gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 3, 0, surface, 1, _("Vertical RGB"), -1);
+        cairo_surface_destroy (surface);
+
+        surface = appearance_settings_draw_subpixel_icon (FALSE, TRUE, menu_icon_size, scale_factor);
+        gtk_list_store_insert_with_values (GTK_LIST_STORE (object), NULL, 4, 0, surface, 1, _("Vertical BGR"), -1);
+        cairo_surface_destroy (surface);
+
+        object = gtk_builder_get_object (builder, "xft_rgba_combo_box");
+        appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/RGBA", NULL, builder);
+        g_signal_connect (G_OBJECT (object), "changed", G_CALLBACK (cb_rgba_style_combo_changed), NULL);
+
+        /* DPI */
+        object = gtk_builder_get_object (builder, "xft_custom_dpi_check_button");
+        object2 = gtk_builder_get_object (builder, "xft_custom_dpi_spin_button");
+        appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Xft/DPI", NULL, builder);
+        gtk_widget_set_sensitive (GTK_WIDGET (object2), gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)));
+        g_signal_connect (G_OBJECT (object), "toggled", G_CALLBACK (cb_custom_dpi_check_button_toggled), object2);
+        g_signal_connect (G_OBJECT (object2), "value-changed", G_CALLBACK (cb_custom_dpi_spin_button_changed), object);
+
+        /* Window scaling factor */
         object = gtk_builder_get_object (builder, "gdk_window_scaling_factor_combo_box");
         appearance_settings_dialog_channel_property_changed (xsettings_channel, "/Gdk/WindowScalingFactor", NULL, builder);
         g_signal_connect (G_OBJECT (object), "changed", G_CALLBACK (cb_window_scaling_factor_combo_changed), NULL);
@@ -1367,8 +1369,9 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     else
 #endif
     {
-        object = gtk_builder_get_object (builder, "frame6");
-        gtk_widget_hide (GTK_WIDGET (object));
+        gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "frame4")));
+        gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "frame5")));
+        gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "frame6")));
     }
 
 #ifdef ENABLE_SOUND_SETTINGS
