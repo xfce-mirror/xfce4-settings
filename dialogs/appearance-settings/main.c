@@ -1380,7 +1380,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     gtk_widget_show (GTK_WIDGET (object));
 
     object = gtk_builder_get_object (builder, "enable_event_sounds_check_button");
-    object2 = gtk_builder_get_object (builder, "enable_input_feedback_sounds_button");
+    GObject *object2 = gtk_builder_get_object (builder, "enable_input_feedback_sounds_button");
 
     g_signal_connect (G_OBJECT (object), "toggled",
                       G_CALLBACK (cb_enable_event_sounds_check_button_toggled), object2);
