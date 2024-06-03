@@ -49,6 +49,7 @@ enum
   SHORTCUT_COLUMN,
   SNOTIFY_COLUMN,
   SHORTCUT_LABEL_COLUMN,
+  TOOLTIP_COLUMN,
   N_COLUMNS
 };
 
@@ -422,9 +423,9 @@ xfce_keyboard_settings_constructed (GObject *object)
   g_signal_connect (kbd_shortcuts_view, "row-activated", G_CALLBACK (xfce_keyboard_settings_row_activated), settings);
 
   /* Create list store for keyboard shortcuts */
-  list_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_STRING);
+  list_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), COMMAND_COLUMN, GTK_SORT_ASCENDING);
-  gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (kbd_shortcuts_view), COMMAND_COLUMN);
+  gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (kbd_shortcuts_view), TOOLTIP_COLUMN);
   gtk_tree_view_set_model (GTK_TREE_VIEW (kbd_shortcuts_view), GTK_TREE_MODEL (list_store));
 
   /* Create command column */
@@ -635,7 +636,7 @@ _xfce_keyboard_settings_load_shortcut (XfceShortcut *shortcut,
   GtkTreeIter iter;
   GObject *tree_view;
   guint keyval;
-  gchar *label;
+  gchar *label, *tooltip;
 
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
   g_return_if_fail (shortcut != NULL);
@@ -651,14 +652,20 @@ _xfce_keyboard_settings_load_shortcut (XfceShortcut *shortcut,
   gtk_accelerator_parse (shortcut->shortcut, &keyval, &modifiers);
   label = gtk_accelerator_get_label (keyval, modifiers);
 
+  /* shell commands may contain markup characters */
+  tooltip = g_markup_escape_text (shortcut->command, -1);
+
   gtk_list_store_append (GTK_LIST_STORE (tree_model), &iter);
   gtk_list_store_set (GTK_LIST_STORE (tree_model), &iter,
                       COMMAND_COLUMN, shortcut->command,
                       SHORTCUT_COLUMN, shortcut->shortcut,
                       SNOTIFY_COLUMN, shortcut->snotify,
-                      SHORTCUT_LABEL_COLUMN, label, -1);
+                      SHORTCUT_LABEL_COLUMN, label,
+                      TOOLTIP_COLUMN, tooltip,
+                      -1);
 
   g_free (label);
+  g_free (tooltip);
 }
 
 
@@ -943,7 +950,7 @@ xfce_keyboard_settings_shortcut_added (XfceShortcutsProvider *provider,
     {
       GdkModifierType modifiers;
       guint keyval;
-      gchar *label;
+      gchar *label, *tooltip;
 
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 
@@ -951,16 +958,21 @@ xfce_keyboard_settings_shortcut_added (XfceShortcutsProvider *provider,
       gtk_accelerator_parse (sc->shortcut, &keyval, &modifiers);
       label = gtk_accelerator_get_label (keyval, modifiers);
 
+      /* shell commands may contain markup characters */
+      tooltip = g_markup_escape_text (sc->command, -1);
+
       DBG ("Add shortcut %s for command %s", shortcut, sc->command);
 
       gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                           SHORTCUT_COLUMN, shortcut,
                           COMMAND_COLUMN, sc->command,
                           SNOTIFY_COLUMN, sc->snotify,
-                          SHORTCUT_LABEL_COLUMN, label, -1);
+                          SHORTCUT_LABEL_COLUMN, label,
+                          TOOLTIP_COLUMN, tooltip,
+                          -1);
 
       g_free (label);
-
+      g_free (tooltip);
       xfce_shortcut_free (sc);
     }
 }
