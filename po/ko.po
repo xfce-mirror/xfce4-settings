@@ -7,14 +7,14 @@
 # 1763f4a4329a2376c933c5e919a36cbc_341ca53 <1f851310383599d03339229d772e1290_119292>, 2017-2019
 # Kim, Jeongu, 2022
 # lego37yoon <lego37yoon@outlook.com>, 2014
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022-2023
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2024-05-10 12:47+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022-2023\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/xfce/xfce4-settings/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -586,20 +586,20 @@ msgstr "Xfwm4 설정 표시에 실패했습니다"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."
-msgstr ""
+msgstr "경고: 이 아이콘 테마에 캐시 파일이 없습니다. <i>gtk-update-icon-cache -f -t %s/%s/</i> 명령을 터미널 에뮬레이터에서 실행하면 아이콘 테마 캐시 파일을 만들 수 있습니다."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
 #: dialogs/appearance-settings/main.c:518
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
-msgstr ""
+msgstr "경고: 이 아이콘 테마는 완성본이 아닙니다. 일부 아이콘이 빠져있습니다."
 
 #. These actually are no full themes by purpose
 #: dialogs/appearance-settings/main.c:524
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
-msgstr ""
+msgstr "경고: 이 아이콘 테마는 완성본이 아닙니다. 다른 아이콘 테마에서 끌어다 쓸 수 있는 아이콘 기본 세트만 제공합니다."
 
 #: dialogs/appearance-settings/main.c:1005
 msgid "File is too large, installation aborted"
@@ -930,11 +930,11 @@ msgstr "안함"
 
 #: dialogs/display-settings/display-dialog.glade:60
 msgid "When a display is connected"
-msgstr ""
+msgstr "디스플레이를 연결했을 때"
 
 #: dialogs/display-settings/display-dialog.glade:64
 msgid "When a display is disconnected"
-msgstr ""
+msgstr "디스플레이 연결을 끊었을 때"
 
 #: dialogs/display-settings/display-dialog.glade:68
 msgid "Always"
@@ -958,7 +958,7 @@ msgstr "확장"
 
 #: dialogs/display-settings/display-dialog.glade:152
 msgid "The primary display can be configured to show:"
-msgstr ""
+msgstr "다음을 표시할 기본 디스플레이를 설정할 수 있습니다:"
 
 #: dialogs/display-settings/display-dialog.glade:166
 msgid "Xfce Panel"
@@ -1049,11 +1049,11 @@ msgstr "기존 프로파일을 업데이트합니다."
 
 #: dialogs/display-settings/display-dialog.glade:831
 msgid "First try to automatically enable a profile:"
-msgstr ""
+msgstr "프로파일 자동 활성화를 처음으로 시도합니다:"
 
 #: dialogs/display-settings/display-dialog.glade:863
 msgid "When a display is connected:"
-msgstr ""
+msgstr "디스플레이를 연결했을 때:"
 
 #: dialogs/display-settings/display-dialog.glade:876
 msgid "Show popup windows to identify displays"
@@ -1082,19 +1082,19 @@ msgstr "이미 있는 프로파일 이름입니다."
 
 #: dialogs/display-settings/minimal-display-dialog.glade:16
 msgid "Extend right"
-msgstr ""
+msgstr "우측으로 확장"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:19
 msgid "Extend left"
-msgstr ""
+msgstr "좌측으로 확장"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:22
 msgid "Extend up"
-msgstr ""
+msgstr "상단으로 확장"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:25
 msgid "Extend down"
-msgstr ""
+msgstr "하단으로 확장"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
@@ -1293,7 +1293,7 @@ msgstr "해상도:"
 #: dialogs/display-settings/display-settings-wayland.c:981
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
-msgstr ""
+msgstr "컴포지터에서 wlr-output-management 프로토콜을 지원하지 않는 것 같습니다"
 
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:110
@@ -1608,7 +1608,7 @@ msgid ""
 msgid_plural ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
 " with:"
-msgstr[0] ""
+msgstr[0] "<i>%s</i>, \"%s\" 형식의 다른 파일과 선택한 기타 MIME 형식 %d개를 다음 프로그램을 엽니다:"
 
 #: dialogs/mime-settings/xfce-mime-chooser.c:661
 #, c-format
@@ -1933,7 +1933,7 @@ msgstr "\"%s\"프로그램을 \"%s\" MIME 형식에 대해 설정하는데 실�
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
-msgstr[0] ""
+msgstr[0] "%dMIME 형식을 선택함 "
 
 #: dialogs/mime-settings/xfce-mime-window.c:1169
 #, c-format
@@ -2349,14 +2349,14 @@ msgstr "가속을 시작하기 전 짧은 시간동안 포인터가 반드시 �
 
 #: dialogs/mouse-settings/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
-msgstr ""
+msgstr "적응형 포인터 가속"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:505
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
-msgstr ""
+msgstr "적응형 가속 프로파일과 일반 가속 프로파일을 서로 전환합니다. 적응형 프로파일은 가속을 결정했을 경우 장치 개별로 현재 속도를 적용합니다. 개별 가속 프로파일은 xfce4-settings에서 지원하지 않습니다."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:525
 msgid "Pointer Speed"
