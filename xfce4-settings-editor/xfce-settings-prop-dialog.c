@@ -576,7 +576,7 @@ xfce_settings_prop_dialog_type_changed (GtkWidget *combo,
             gtk_widget_show (dialog->prop_integer);
             gtk_widget_grab_focus (dialog->prop_integer);
             gtk_spin_button_set_range (GTK_SPIN_BUTTON (dialog->prop_integer),
-                                       G_MININT64, G_MAXINT64);
+                                       G_MININT64, (gdouble) G_MAXINT64);
 
             if (G_VALUE_HOLDS_INT64 (value))
             {
@@ -589,7 +589,7 @@ xfce_settings_prop_dialog_type_changed (GtkWidget *combo,
             gtk_widget_show (dialog->prop_integer);
             gtk_widget_grab_focus (dialog->prop_integer);
             gtk_spin_button_set_range (GTK_SPIN_BUTTON (dialog->prop_integer),
-                                       0, G_MAXUINT64);
+                                       0, (gdouble) G_MAXUINT64);
 
             if (G_VALUE_HOLDS_UINT64 (value))
             {

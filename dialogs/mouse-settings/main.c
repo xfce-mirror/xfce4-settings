@@ -679,10 +679,10 @@ mouse_settings_get_device_prop (Display *xdisplay,
                             retval[i].c = *((gchar *) ptr);
                             break;
                         case 16:
-                            retval[i].i16 = *((gint16 *) ptr);
+                            retval[i].i16 = *((gint16 *) (gpointer) ptr);
                             break;
                         case 32:
-                            retval[i].i32 = *((gint32 *) ptr);
+                            retval[i].i32 = *((gint32 *) (gpointer) ptr);
                             break;
                     }
                     break;
@@ -693,20 +693,20 @@ mouse_settings_get_device_prop (Display *xdisplay,
                             retval[i].uc = *((guchar *) ptr);
                             break;
                         case 16:
-                            retval[i].u16 = *((guint16 *) ptr);
+                            retval[i].u16 = *((guint16 *) (gpointer) ptr);
                             break;
                         case 32:
-                            retval[i].u32 = *((guint32 *) ptr);
+                            retval[i].u32 = *((guint32 *) (gpointer) ptr);
                             break;
                     }
                     break;
                 case XA_ATOM:
-                    retval[i].a = *((Atom *) ptr);
+                    retval[i].a = *((Atom *) (gpointer) ptr);
                     break;
                 default:
                     if (type_ret == float_type)
                     {
-                        retval[i].f = *((float *) ptr);
+                        retval[i].f = *((float *) (gpointer) ptr);
                     }
                     else
                     {
@@ -1463,7 +1463,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                         wacom_mode = ((XValuatorInfoPtr) any)->mode == Absolute ? 0 : 1;
 #endif
 
-                    any = (XAnyClassPtr) ((gchar *) any + any->length);
+                    any = (XAnyClassPtr) (gpointer) ((gchar *) any + any->length);
                 }
 
                 break;
@@ -1545,7 +1545,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                     }
 
                     /* advance the offset */
-                    pt = (XFeedbackState *) ((gchar *) pt + pt->length);
+                    pt = (XFeedbackState *) (gpointer) ((gchar *) pt + pt->length);
                 }
 
                 XFreeFeedbackList (states);
