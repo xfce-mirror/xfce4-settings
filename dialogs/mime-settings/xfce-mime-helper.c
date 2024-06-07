@@ -365,14 +365,6 @@ xfce_mime_helper_get_command (const XfceMimeHelper *helper)
   return *helper->commands_with_parameter;
 }
 
-/* Set the DISPLAY variable, to be use by g_spawn_async. */
-static void
-set_environment (gchar *display)
-{
-  if (display != NULL)
-    g_setenv ("DISPLAY", display, TRUE);
-}
-
 /**
  * xfce_mime_helper_execute:
  * @helper    : a #XfceMimeHelper.
@@ -399,7 +391,7 @@ xfce_mime_helper_execute (XfceMimeHelper *helper,
   gchar **commands;
   gchar **argv;
   gchar *command;
-  gchar *display_name = NULL;
+  gchar **envp = NULL;
   guint n;
   gint status;
   gint result;
@@ -440,6 +432,12 @@ xfce_mime_helper_execute (XfceMimeHelper *helper,
       g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_INVAL, _("No command specified"));
       return FALSE;
     }
+
+#ifdef ENABLE_X11
+  /* set the display variable */
+  if (GDK_IS_X11_DISPLAY (gdk_screen_get_display (screen)))
+    envp = g_environ_setenv (g_get_environ (), "DISPLAY", gdk_display_get_name (gdk_screen_get_display (screen)), TRUE);
+#endif
 
   /* try to run the helper using the various given commands */
   for (n = 0; commands[n] != NULL; ++n)
@@ -491,25 +489,18 @@ xfce_mime_helper_execute (XfceMimeHelper *helper,
       if (G_UNLIKELY (!succeed))
         continue;
 
-        /* set the display variable */
-#ifdef ENABLE_X11
-      if (GDK_IS_X11_DISPLAY (gdk_screen_get_display (screen)))
-        display_name = g_strdup (gdk_display_get_name (gdk_screen_get_display (screen)));
-#endif
-
       /* try to run the command */
       succeed = g_spawn_async (NULL,
                                argv,
-                               NULL,
+                               envp,
                                G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
-                               (GSpawnChildSetupFunc) set_environment,
-                               display_name,
+                               NULL,
+                               NULL,
                                &pid,
                                &err);
 
       /* cleanup */
       g_strfreev (argv);
-      g_free (display_name);
 
       /* check if the execution was successful */
       if (G_LIKELY (succeed))
@@ -559,6 +550,8 @@ xfce_mime_helper_execute (XfceMimeHelper *helper,
             break;
         }
     }
+
+  g_strfreev (envp);
 
   /* propagate the error */
   if (G_UNLIKELY (!succeed))
