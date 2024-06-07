@@ -300,7 +300,7 @@ display_setting_timed_confirmation (XfceDisplaySettings *settings)
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GObject *main_dialog;
     GError *error = NULL;
-    gint response_id;
+    gint response_id = 2;
 
     /* Lock the main UI */
     main_dialog = gtk_builder_get_object (builder, "display-dialog");
@@ -331,12 +331,11 @@ display_setting_timed_confirmation (XfceDisplaySettings *settings)
     }
     else
     {
-        response_id = 2;
         g_error ("Failed to load the UI file: %s.", error->message);
         g_error_free (error);
     }
 
-    return ((response_id == 2) ? TRUE : FALSE);
+    return response_id == 2;
 }
 
 static void
@@ -1302,7 +1301,7 @@ display_settings_dialog_response (GtkDialog *dialog,
         {
             GtkBuilder *profile_changed_builder = xfce_display_settings_get_builder (settings);
             GError *error = NULL;
-            gint profile_response_id;
+            gint profile_response_id = 2;
 
             if (gtk_builder_add_from_string (profile_changed_builder, profile_changed_dialog_ui,
                                              profile_changed_dialog_ui_length, &error)
@@ -1335,7 +1334,6 @@ display_settings_dialog_response (GtkDialog *dialog,
             }
             else
             {
-                profile_response_id = 2;
                 g_error ("Failed to load the UI file: %s.", error->message);
                 g_error_free (error);
             }
