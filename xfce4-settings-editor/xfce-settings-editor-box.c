@@ -1321,7 +1321,6 @@ set_tooltip_from_treemodel_iterator (GtkTreeModel *model,
     gboolean tooltip_set = FALSE;
     GValue value = G_VALUE_INIT;
     gint treemodel_idx = 0;
-    const gchar *tooltip_text = "";
 
     /* map view-index (0-3) to model-index (PROP_COLUMN_*) */
     if (0 == treeview_column_idx)
@@ -1334,9 +1333,8 @@ set_tooltip_from_treemodel_iterator (GtkTreeModel *model,
     gtk_tree_model_get_value (model, &iter, treemodel_idx, &value);
     if (transform_g_value_to_string_type (&value))
     {
-        tooltip_text = g_value_get_string (&value);
-
-        if (tooltip_text && !g_str_equal (tooltip_text, ""))
+        const gchar *tooltip_text = g_value_get_string (&value);
+        if (!xfce_str_is_empty (tooltip_text))
         {
             gtk_tooltip_set_text (tooltip, tooltip_text);
             tooltip_set = TRUE;

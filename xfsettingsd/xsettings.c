@@ -837,7 +837,6 @@ xfce_xsettings_helper_setting_append (const gchar *name,
             {
                 /* value length */
                 *(CARD32 *) (gpointer) needle = 0;
-                needle += 4;
             }
             break;
 
@@ -868,7 +867,6 @@ xfce_xsettings_helper_setting_append (const gchar *name,
             }
 
             *(INT32 *) (gpointer) needle = num;
-            needle += 4;
             break;
 
         /* TODO */
@@ -884,7 +882,6 @@ xfce_xsettings_helper_setting_append (const gchar *name,
             *(CARD16 *) (gpointer) (needle + 2) = 0;
             *(CARD16 *) (gpointer) (needle + 4) = 0;
             *(CARD16 *) (gpointer) (needle + 6) = 0;
-            needle += 8;
             break;
 
         default:

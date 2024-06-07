@@ -810,7 +810,6 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
                     || G_VALUE_HOLDS_DOUBLE (value)))
             {
                 /* only 1 items to set */
-                val = value;
             }
             else if (G_VALUE_TYPE (value) == G_TYPE_PTR_ARRAY)
             {
