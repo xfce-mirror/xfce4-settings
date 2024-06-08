@@ -39,9 +39,9 @@
 
 static void
 xfce_mime_window_finalize (GObject *object);
-static gboolean
-xfce_mime_window_delete_event (GtkWidget *widget,
-                               GdkEventAny *event);
+static void
+xfce_mime_window_response (GtkDialog *widget,
+                           int response_id);
 static gint
 xfce_mime_window_mime_model (XfceMimeWindow *window);
 static void
@@ -147,13 +147,13 @@ static void
 xfce_mime_window_class_init (XfceMimeWindowClass *klass)
 {
   GObjectClass *gobject_class;
-  GtkWidgetClass *gtkwidget_class;
+  GtkDialogClass *gtkdialog_class;
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = xfce_mime_window_finalize;
 
-  gtkwidget_class = GTK_WIDGET_CLASS (klass);
-  gtkwidget_class->delete_event = xfce_mime_window_delete_event;
+  gtkdialog_class = GTK_DIALOG_CLASS (klass);
+  gtkdialog_class->response = xfce_mime_window_response;
 }
 
 
@@ -526,9 +526,9 @@ xfce_mime_window_finalize (GObject *object)
 
 
 
-static gboolean
-xfce_mime_window_delete_event (GtkWidget *widget,
-                               GdkEventAny *event)
+static void
+xfce_mime_window_response (GtkDialog *widget,
+                           int response_id)
 {
   XfceMimeWindow *window = XFCE_MIME_WINDOW (widget);
   gint width, height;
@@ -538,31 +538,32 @@ xfce_mime_window_delete_event (GtkWidget *widget,
   gchar prop[32];
   GdkWindowState state;
 
-  g_return_val_if_fail (XFCONF_IS_CHANNEL (window->channel), FALSE);
+  g_return_if_fail (XFCONF_IS_CHANNEL (window->channel));
 
-  /* don't save the state for full-screen windows */
-  state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
-  if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
+  if (response_id == GTK_RESPONSE_DELETE_EVENT || response_id == GTK_RESPONSE_CLOSE)
     {
-      /* save window size */
-      gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
-      xfconf_channel_set_int (window->channel, "/last/window-width", width);
-      xfconf_channel_set_int (window->channel, "/last/window-height", height);
-
-      /* save column positions */
-      for (i = 0; i < G_N_ELEMENTS (columns); i++)
+      /* don't save the state for full-screen windows */
+      state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
+      if ((state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
         {
-          column = gtk_tree_view_get_column (GTK_TREE_VIEW (window->treeview), i);
-          g_snprintf (prop, sizeof (prop), "/last/%s-width", columns[i]);
-          xfconf_channel_set_int (window->channel, prop,
-                                  gtk_tree_view_column_get_width (column));
+          /* save window size */
+          gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
+          xfconf_channel_set_int (window->channel, "/last/window-width", width);
+          xfconf_channel_set_int (window->channel, "/last/window-height", height);
+
+          /* save column positions */
+          for (i = 0; i < G_N_ELEMENTS (columns); i++)
+            {
+              column = gtk_tree_view_get_column (GTK_TREE_VIEW (window->treeview), i);
+              g_snprintf (prop, sizeof (prop), "/last/%s-width", columns[i]);
+              xfconf_channel_set_int (window->channel, prop,
+                                      gtk_tree_view_column_get_width (column));
+            }
         }
     }
 
-  if (GTK_WIDGET_CLASS (xfce_mime_window_parent_class)->delete_event != NULL)
-    return (*GTK_WIDGET_CLASS (xfce_mime_window_parent_class)->delete_event) (widget, event);
-  else
-    return FALSE;
+  if (GTK_DIALOG_CLASS (xfce_mime_window_parent_class)->response != NULL)
+    GTK_DIALOG_CLASS (xfce_mime_window_parent_class)->response (widget, response_id);
 }
 
 
