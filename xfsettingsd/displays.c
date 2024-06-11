@@ -631,7 +631,7 @@ xfce_displays_helper_screen_on_event (GdkXEvent *xevent,
                         crtc = xfce_displays_helper_find_usable_crtc (helper, output);
                         if (crtc)
                         {
-                            crtc->mode = (autoconnect_mode > 0) ? output->preferred_mode : None;
+                            crtc->mode = output->preferred_mode;
                             crtc->rotation = RR_Rotate_0;
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                             if ((crtc->x > gdk_screen_width() + 1) || (crtc->y > gdk_screen_height() + 1)
