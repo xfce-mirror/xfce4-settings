@@ -623,10 +623,9 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
             else if (changed)
                 xfce_displays_helper_x11_apply_all (helper);
         }
-        else
+        else if ((action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT))
+                 != ACTION_ON_NEW_OUTPUT_DO_NOTHING)
         {
-            action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT);
-
             /* Diff the new and old output list to find new outputs */
             for (n = 0; n < helper->outputs->len; ++n)
             {
