@@ -462,7 +462,7 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
         }
 
         /* advance the offset */
-        ptr = (XAnyClassPtr) ((gchar *) ptr + ptr->length);
+        ptr = (XAnyClassPtr) (gpointer) ((gchar *) ptr + ptr->length);
     }
 
     if (num_buttons == 0)
@@ -592,7 +592,7 @@ xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
         if (pt->class != PtrFeedbackClass)
         {
             /* advance the offset */
-            pt = (XFeedbackState *) ((gchar *) pt + pt->length);
+            pt = (XFeedbackState *) (gpointer) ((gchar *) pt + pt->length);
             continue;
         }
 

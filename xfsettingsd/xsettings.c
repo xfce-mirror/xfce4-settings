@@ -800,7 +800,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
     *needle++ = 0;
 
     /* name length */
-    *(CARD16 *)needle = name_len;
+    *(CARD16 *) (gpointer) needle = name_len;
     needle += 2;
 
     /* name */
@@ -812,7 +812,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
         *needle++ = 0;
 
     /* setting's last change serial */
-    *(CARD32 *)needle = setting->last_change_serial;
+    *(CARD32 *) (gpointer) needle = setting->last_change_serial;
     needle += 4;
 
     /* set setting value */
@@ -828,7 +828,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
             if (G_LIKELY (value_len > 0 && str != NULL))
             {
                 /* value length */
-                *(CARD32 *)needle = value_len;
+                *(CARD32 *) (gpointer) needle = value_len;
                 needle += 4;
 
                 /* value */
@@ -842,7 +842,7 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
             else
             {
                 /* value length */
-                *(CARD32 *)needle = 0;
+                *(CARD32 *) (gpointer) needle = 0;
                 needle += 4;
             }
             break;
@@ -873,23 +873,23 @@ xfce_xsettings_helper_setting_append (const gchar         *name,
                 num = g_value_get_boolean (setting->value);
             }
 
-            *(INT32 *)needle = num;
+            *(INT32 *) (gpointer) needle = num;
             needle += 4;
             break;
 
         /* TODO */
         case XSettingsTypeColor:
             /* body for XSettingsTypeColor:
-            *
-            * 2  CARD16  red
-            * 2  CARD16  blue
-            * 2  CARD16  green
-            * 2  CARD16  alpha
-            */
-            *(CARD16 *)needle = 0;
-            *(CARD16 *)(needle + 2) = 0;
-            *(CARD16 *)(needle + 4) = 0;
-            *(CARD16 *)(needle + 6) = 0;
+             *
+             * 2  CARD16  red
+             * 2  CARD16  blue
+             * 2  CARD16  green
+             * 2  CARD16  alpha
+             */
+            *(CARD16 *) (gpointer) needle = 0;
+            *(CARD16 *) (gpointer) (needle + 2) = 0;
+            *(CARD16 *) (gpointer) (needle + 4) = 0;
+            *(CARD16 *) (gpointer) (needle + 6) = 0;
             needle += 8;
             break;
 
@@ -935,7 +935,7 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
     needle += 4;
 
     /* serial for this notification */
-    *(CARD32 *)needle = helper->serial++;
+    *(CARD32 *) (gpointer) needle = helper->serial++;
 
     /* add all the settings */
     g_hash_table_foreach (helper->settings,
@@ -946,7 +946,7 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
 
     /* number of settings */
     needle = notify->buf + 8;
-    *(CARD32 *)needle = notify->n_settings;
+    *(CARD32 *) (gpointer) needle = notify->n_settings;
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
 
@@ -960,7 +960,7 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper)
         {
             dpi = xfce_xsettings_helper_screen_dpi (screen);
             needle = notify->buf + notify->dpi_offset;
-            *(INT32 *)needle = dpi * 1024;
+            *(INT32 *) (gpointer) needle = dpi * 1024;
         }
 
         XChangeProperty (screen->xdisplay, screen->window,
@@ -1040,7 +1040,7 @@ xfce_xsettings_helper_timestamp_predicate (Display  *xdisplay,
                                            XEvent   *xevent,
                                            XPointer  arg)
 {
-    struct _XfceTimestamp *ts = (struct _XfceTimestamp *)arg;
+    struct _XfceTimestamp *ts = (struct _XfceTimestamp *) (gpointer) arg;
 
     return (xevent->type == PropertyNotify
             && xevent->xproperty.window == ts->window
