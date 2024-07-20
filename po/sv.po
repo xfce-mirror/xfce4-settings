@@ -5,18 +5,18 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2021
-# Luna Jernberg <bittin@cafe8bitar.se>, 2021
-# Anders Jonsson <transifex@norsjovallen.se>, 2022
+# Luna Jernberg <droidbittin@gmail.com>, 2021
+# Anders Jonsson <transifex@norsjovallen.se>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-06 12:51+0100\n"
+"POT-Creation-Date: 2023-05-30 00:50+0200\n"
 "PO-Revision-Date: 2020-12-28 17:23+0000\n"
-"Last-Translator: Anders Jonsson <transifex@norsjovallen.se>, 2022\n"
-"Language-Team: Swedish (https://www.transifex.com/xfce/teams/16840/sv/)\n"
+"Last-Translator: Anders Jonsson <transifex@norsjovallen.se>, 2024\n"
+"Language-Team: Swedish (https://app.transifex.com/xfce/teams/16840/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,14 +31,14 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Okänd"
 
-#: ../common/xfce-randr.c:296 ../dialogs/display-settings/main.c:4297
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4297
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr ""
 "Det gick inte att fråga efter vilken version av RandR-utökningen som används"
 
 #. 1.2 is required
-#: ../common/xfce-randr.c:304
+#: ../common/xfce-randr.c:307
 #, c-format
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
@@ -47,21 +47,21 @@ msgstr ""
 "Detta system använder RandR %d.%d. För att skärminställningarna ska fungera "
 "krävs minst version 1.2"
 
-#: ../common/xfce-randr.c:594
+#: ../common/xfce-randr.c:597
 msgid "Laptop"
 msgstr "Bärbar dator"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: ../common/xfce-randr.c:607 ../dialogs/color-settings/color-device.c:65
+#: ../common/xfce-randr.c:610 ../dialogs/color-settings/color-device.c:65
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../common/xfce-randr.c:610
+#: ../common/xfce-randr.c:613
 msgid "Television"
 msgstr "Television"
 
-#: ../common/xfce-randr.c:614
+#: ../common/xfce-randr.c:617
 msgid "Digital display"
 msgstr "Digital skärm"
 
@@ -442,6 +442,7 @@ msgstr "Utseende"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 #: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:327
 msgid "_Add"
 msgstr "L_ägg till"
@@ -775,6 +776,7 @@ msgid "Add a profile to the currently selected device"
 msgstr "Lägg till en profil till den valda enheten"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Remove"
 msgstr "Ta bo_rt"
 
@@ -1450,43 +1452,48 @@ msgstr "Be_teende"
 msgid "Define shortcuts for la_unching applications:"
 msgstr "Definiera _genvägar för att starta program:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
+msgid "_Edit"
+msgstr "_Redigera"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
 msgstr "Återställ till stan_dardvärden"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
 msgstr "_Programgenvägar"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
-msgstr "<b>Använd system standard</b>"
+msgstr "<b>Använd systemets standardvärden</b>"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "_Tangentbordsmodell"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr "Ändra la_youtalternativ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr "Co_mposetangent"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "Flytta markerad post en rad upp"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "Flytta markerad post en rad ner"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "Tangent_bordslayout"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "La_yout"
 
@@ -1503,28 +1510,28 @@ msgstr "Misslyckades med att ansluta till xfconf-demonen. Anledning: %s"
 msgid "Could not create the settings dialog."
 msgstr "Det gick inte att skapa inställningsdialogen."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:400
 msgid "Command"
 msgstr "Kommando"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:408
 msgid "Shortcut"
 msgstr "Genväg"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:487
 msgid "Layout"
 msgstr "Layout"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:488
 msgid "Variant"
 msgstr "Variant"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1255
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "Reset to Defaults"
 msgstr "Återställ till standardvärden"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
@@ -1532,20 +1539,20 @@ msgstr ""
 "Detta kommer att återställa alla genvägar till deras standardvärden. Vill du"
 " verkligen göra detta?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1259
 msgid "No"
 msgstr "Nej"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1260
 msgid "Yes"
 msgstr "Ja"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1336
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Systemets standardvärden kommer att återställas nästa gång du loggar in."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1338
 msgid "Warning"
 msgstr "Varning"
 
@@ -1837,15 +1844,15 @@ msgstr ""
 msgid "No helper defined for \"%s\"."
 msgstr "Ingen hjälpare definierad för \"%s\"."
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:406
+#: ../dialogs/mime-settings/xfce-mime-helper.c:446
 #, c-format
 msgid "No command specified"
 msgstr "Inget kommando angavs"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:747
-#: ../dialogs/mime-settings/xfce-mime-helper.c:786
-#: ../dialogs/mime-settings/xfce-mime-helper.c:883
-#: ../dialogs/mime-settings/xfce-mime-helper.c:922
+#: ../dialogs/mime-settings/xfce-mime-helper.c:822
+#: ../dialogs/mime-settings/xfce-mime-helper.c:861
+#: ../dialogs/mime-settings/xfce-mime-helper.c:958
+#: ../dialogs/mime-settings/xfce-mime-helper.c:997
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Det gick inte att öppna %s för skrivning"
@@ -2524,10 +2531,6 @@ msgstr "Värde"
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:332
 msgid "New property"
 msgstr "Ny egenskap"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
-msgid "_Edit"
-msgstr "_Redigera"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Edit selected property"
