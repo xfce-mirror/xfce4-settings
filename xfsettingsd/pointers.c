@@ -818,7 +818,8 @@ xfce_pointers_helper_change_property (XDeviceInfo  *device_info,
                 // and re-allocate the data array, if it is too small.
                 if (array->len > n_items)
                 {
-                    allocated_data = calloc(array->len, format / 8);
+                    // Just allocate the largest format, because the xinput note below raises doubts about the true item sizes.
+                    allocated_data = calloc(array->len, sizeof(long));
                     data.c = allocated_data;
                 }
                 n_items = array->len;
