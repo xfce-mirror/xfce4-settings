@@ -825,9 +825,15 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
                         case 8: allocated_data = (guchar *) g_new (guchar, array->len); break;
                         case 16: allocated_data = (guchar *) g_new (ushort, array->len); break;
                         case 32: allocated_data = (guchar *) g_new (ulong, array->len); break;
+                        default: allocated_data = NULL;
                     }
                     XFree (data.c);
                     data.c = allocated_data;
+                    if (!allocated_data)
+                    {
+                        g_critical ("Unknown format %d for integer", format);
+                        break;
+                    }
                 }
                 n_items = array->len;
             }
