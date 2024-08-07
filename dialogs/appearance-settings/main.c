@@ -1273,7 +1273,30 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
         object = gtk_builder_get_object (builder, "xfwm4_sync");
         gtk_widget_hide (GTK_WIDGET (object));
     }
+
+    /* Sync CSD and SDD */
+    object = gtk_builder_get_object (builder, "sync_layout_check_button");
+
+    if (path != NULL)
+    {
+        xfconf_g_property_bind (xsettings_channel, "/Xfce/SyncLayoutCSD", G_TYPE_BOOLEAN, G_OBJECT (object), "active");
+        g_object_bind_property (object, "active", gtk_builder_get_object (builder, "entry0"), "sensitive", G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
+    }
+    else
+    {
+        gtk_widget_hide (GTK_WIDGET (object));
+    }
+
     g_free (path);
+
+    /* Show icon in CSD */
+    object = gtk_builder_get_object (builder, "display_icon_check_button");
+    xfconf_g_property_bind (xsettings_channel, "/Xfce/ShowIconCSD", G_TYPE_BOOLEAN, G_OBJECT (object), "active");
+    g_object_bind_property (gtk_builder_get_object (builder, "sync_layout_check_button"), "active", object, "sensitive", G_BINDING_SYNC_CREATE);
+
+    /* CSD Layout Picker*/
+    object = gtk_builder_get_object (builder, "entry0");
+    xfconf_g_property_bind (xsettings_channel, "/Gtk/DecorationLayout", G_TYPE_STRING, G_OBJECT (object), "text");
 
     /* Enable buttons in native GTK dialog headers */
     object = gtk_builder_get_object (builder, "gtk_dialog_button_header_check_button");
