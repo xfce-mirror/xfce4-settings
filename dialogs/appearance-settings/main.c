@@ -1279,12 +1279,12 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     if (path != NULL)
     {
-      xfconf_g_property_bind (xsettings_channel, "/Xfce/SyncLayoutCSD", G_TYPE_BOOLEAN, G_OBJECT (object), "active");
-      g_object_bind_property (object, "active", gtk_builder_get_object (builder, "entry0"), "sensitive", G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
+        xfconf_g_property_bind (xsettings_channel, "/Xfce/SyncLayoutCSD", G_TYPE_BOOLEAN, G_OBJECT (object), "active");
+        g_object_bind_property (object, "active", gtk_builder_get_object (builder, "entry0"), "sensitive", G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
     }
     else
     {
-      gtk_widget_hide (GTK_WIDGET (object));
+        gtk_widget_hide (GTK_WIDGET (object));
     }
 
     g_free (path);

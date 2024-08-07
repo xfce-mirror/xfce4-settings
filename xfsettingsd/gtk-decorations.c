@@ -150,7 +150,7 @@ xfce_decorations_helper_channel_property_changed (XfconfChannel *channel,
           xfce_decorations_set_decoration_layout (helper, g_value_get_string (value));
       }
 
-      if (strcmp (property_name, "/Xfce/ShowIconCSD") == 0)
+      if (strcmp (property_name, "/Xfce/ShowIconCSD") == 0 || strcmp (property_name, "/Xfce/SyncLayoutCSD") == 0)
       {
           layout = xfconf_channel_get_string (helper->wm_channel, "/general/button_layout", DEFAULT_LAYOUT);
           xfce_decorations_set_decoration_layout (helper, layout);
