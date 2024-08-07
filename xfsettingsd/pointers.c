@@ -762,7 +762,7 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
         float *f;
         Atom *a;
     } data;
-    glong *allocated_data = NULL;
+    guchar *allocated_data = NULL;
 
     /* assuming the device property never contained underscores... */
     atom_name = g_strdup (prop_name);
@@ -820,10 +820,14 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
                    and re-allocate the data array, if it is too small. */
                 if (array->len > n_items)
                 {
-                    /* Just allocate the largest format, because the xinput note below raises doubts about the true item sizes. */
-                    allocated_data = g_new(glong, array->len);
+                    switch (format)
+                    {
+                        case 8: allocated_data = (guchar *) g_new (guchar, array->len); break;
+                        case 16: allocated_data = (guchar *) g_new (ushort, array->len); break;
+                        case 32: allocated_data = (guchar *) g_new (ulong, array->len); break;
+                    }
                     XFree (data.c);
-                    data.l = allocated_data;
+                    data.c = allocated_data;
                 }
                 n_items = array->len;
             }
@@ -904,7 +908,7 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
         }
 
         if (allocated_data)
-            g_free(allocated_data);
+            g_free (allocated_data);
         else if (data.c)
             XFree (data.c);
 
