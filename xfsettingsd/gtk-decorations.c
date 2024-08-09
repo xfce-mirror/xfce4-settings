@@ -97,12 +97,10 @@ xfce_decorations_set_decoration_layout (XfceDecorationsHelper *helper,
     gchar *gtk_decoration_layout;
     gboolean add_comma;
     gboolean left_side;
-    gboolean show_icon;
     int len, i;
 
     add_comma = FALSE;
     left_side = TRUE;
-    show_icon = xfconf_channel_get_bool (helper->xsettings_channel, "/Xfce/ShowIconCSD", TRUE);
     len = strlen (value);
     join = g_string_new (NULL);
     for (i = 0; i < len; i++)
@@ -116,7 +114,7 @@ xfce_decorations_set_decoration_layout (XfceDecorationsHelper *helper,
             if (add_comma && value[i] != '|')
                 join = g_string_append (join, ",");
 
-            if (value[i] == 'O' && show_icon)
+            if (value[i] == 'O')
             {
                 if (left_side)
                     join = g_string_append (join, "icon,menu");
@@ -141,47 +139,26 @@ xfce_decorations_helper_channel_property_changed (XfconfChannel *channel,
                                                   const GValue *value,
                                                   XfceDecorationsHelper *helper)
 {
-    gchar *layout;
-
-    if (xfconf_channel_get_bool (helper->xsettings_channel, "/Xfce/SyncLayoutCSD", TRUE))
+    if (strcmp (property_name, "/general/button_layout") == 0)
     {
-        if (strcmp (property_name, "/general/button_layout") == 0)
-        {
-            xfce_decorations_set_decoration_layout (helper, g_value_get_string (value));
-        }
-
-        if (strcmp (property_name, "/Xfce/ShowIconCSD") == 0 || strcmp (property_name, "/Xfce/SyncLayoutCSD") == 0)
-        {
-            layout = xfconf_channel_get_string (helper->wm_channel, "/general/button_layout", DEFAULT_LAYOUT);
-            xfce_decorations_set_decoration_layout (helper, layout);
-            g_free (layout);
-        }
+        xfce_decorations_set_decoration_layout (helper, g_value_get_string (value));
     }
 }
 
 static void
 xfce_decorations_helper_init (XfceDecorationsHelper *helper)
 {
-    gboolean sync_layout;
     gchar *layout;
 
     helper->wm_channel = xfconf_channel_get ("xfwm4");
     helper->xsettings_channel = xfconf_channel_get ("xsettings");
 
-    sync_layout = xfconf_channel_get_bool (helper->xsettings_channel, "/Xfce/SyncLayoutCSD", TRUE);
-
-    if (sync_layout)
-    {
-        layout = xfconf_channel_get_string (helper->wm_channel, "/general/button_layout", DEFAULT_LAYOUT);
-        xfce_decorations_set_decoration_layout (helper, layout);
-        g_free (layout);
-    }
+    layout = xfconf_channel_get_string (helper->wm_channel, "/general/button_layout", DEFAULT_LAYOUT);
+    xfce_decorations_set_decoration_layout (helper, layout);
+    g_free (layout);
 
     /* monitor WM channel changes */
     g_signal_connect (G_OBJECT (helper->wm_channel), "property-changed",
-                      G_CALLBACK (xfce_decorations_helper_channel_property_changed), helper);
-
-    g_signal_connect (G_OBJECT (helper->xsettings_channel), "property-changed",
                       G_CALLBACK (xfce_decorations_helper_channel_property_changed), helper);
 }
 
