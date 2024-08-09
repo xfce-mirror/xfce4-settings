@@ -96,9 +96,11 @@ xfce_decorations_set_decoration_layout (XfceDecorationsHelper *helper,
     const gchar *gtk_name;
     gchar *gtk_decoration_layout;
     gboolean add_comma;
+    gboolean left_side;
     int len, i;
 
     add_comma = FALSE;
+    left_side = TRUE;
     len = strlen (value);
     join = g_string_new (NULL);
     for (i = 0; i < len; i++)
@@ -106,9 +108,22 @@ xfce_decorations_set_decoration_layout (XfceDecorationsHelper *helper,
         gtk_name = xfce_decorations_button_layout_xlate (value[i]);
         if (gtk_name)
         {
+            if (value[i] == '|')
+                left_side = FALSE;
+
             if (add_comma && value[i] != '|')
                 join = g_string_append (join, ",");
-            join = g_string_append (join, gtk_name);
+
+            if (value[i] == 'O')
+            {
+                if (left_side)
+                    join = g_string_append (join, "icon,menu");
+                else
+                    join = g_string_append (join, "menu,icon");
+            }
+            else
+                join = g_string_append (join, gtk_name);
+
             add_comma = (value[i] != '|');
         }
     }
