@@ -1730,11 +1730,8 @@ display_settings_primary_status_info_populate (GtkBuilder *builder)
     GObject *widget;
     GtkWidget *image;
     XfconfChannel *channel;
-    gchar *primary_status_panel;
+    GPtrArray *panel_ids;
     gint primary_status;
-    gint panels = 0;
-    gint panels_with_primary = 0;
-    gchar *property;
 
     widget = gtk_builder_get_object (builder, "primary-info-button");
     image = gtk_image_new_from_icon_name ("dialog-information", GTK_ICON_SIZE_BUTTON);
@@ -1742,31 +1739,39 @@ display_settings_primary_status_info_populate (GtkBuilder *builder)
     gtk_widget_show (image);
 
     channel = xfconf_channel_new ("xfce4-panel");
-    widget = gtk_builder_get_object (builder, "panel-ok");
-    property = g_strdup_printf ("/panels/panel-%u/output-name", panels);
-    /* Check all panels and show the ok icon on the first occurence of a panel set to "Primary" */
-    for (panels = 0; xfconf_channel_has_property (channel, property); panels++)
+    panel_ids = xfconf_channel_get_arrayv (channel, "/panels");
+    if (panel_ids != NULL)
     {
-        primary_status_panel = xfconf_channel_get_string (channel, property, "Automatic");
-        if (g_strcmp0 (primary_status_panel, "Primary") == 0)
+        gint panels_with_primary = 0;
+
+        for (guint n = 0; n < panel_ids->len; n++)
         {
-            gtk_widget_show (GTK_WIDGET (widget));
-            panels_with_primary++;
+            GValue *value = g_ptr_array_index (panel_ids, n);
+            gint id = g_value_get_int (value);
+            gchar *property = g_strdup_printf ("/panels/panel-%d/output-name", id);
+            gchar *output_name = xfconf_channel_get_string (channel, property, "Automatic");
+            if (g_strcmp0 (output_name, "Primary") == 0)
+            {
+                panels_with_primary++;
+            }
+            g_free (output_name);
+            g_free (property);
         }
-        else
-            gtk_widget_hide (GTK_WIDGET (widget));
-        property = g_strdup_printf ("/panels/panel-%u/output-name", panels + 1);
-        g_free (primary_status_panel);
+        if (panels_with_primary > 0)
+        {
+            widget = gtk_builder_get_object (builder, "panel-ok");
+            gtk_widget_show (GTK_WIDGET (widget));
+            if (panel_ids->len > 1)
+            {
+                gchar *label = g_strdup_printf (ngettext ("%d Xfce Panel", "%d Xfce Panels", panels_with_primary),
+                                                panels_with_primary);
+                widget = gtk_builder_get_object (builder, "panel-label");
+                gtk_label_set_text (GTK_LABEL (widget), label);
+                g_free (label);
+            }
+        }
+        xfconf_array_free (panel_ids);
     }
-    if (panels_with_primary > 1)
-    {
-        gchar *label;
-        widget = gtk_builder_get_object (builder, "panel-label");
-        label = g_strdup_printf (_("%d Xfce Panels"), panels_with_primary);
-        gtk_label_set_text (GTK_LABEL (widget), label);
-        g_free (label);
-    }
-    g_free (property);
     g_object_unref (G_OBJECT (channel));
     widget = gtk_builder_get_object (builder, "panel-configure");
     g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfce4-panel --preferences");
