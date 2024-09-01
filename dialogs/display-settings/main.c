@@ -1731,7 +1731,8 @@ display_settings_primary_status_info_populate (GtkBuilder *builder)
     GtkWidget *image;
     XfconfChannel *channel;
     GPtrArray *panel_ids;
-    gint primary_status;
+    gboolean primary_status_bool;
+    gchar *primary_status_str;
 
     widget = gtk_builder_get_object (builder, "primary-info-button");
     image = gtk_image_new_from_icon_name ("dialog-information", GTK_ICON_SIZE_BUTTON);
@@ -1777,17 +1778,18 @@ display_settings_primary_status_info_populate (GtkBuilder *builder)
     g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfce4-panel --preferences");
 
     channel = xfconf_channel_new ("xfce4-desktop");
-    primary_status = xfconf_channel_get_bool (channel, "/desktop-icons/primary", FALSE);
+    primary_status_bool = xfconf_channel_get_bool (channel, "/desktop-icons/primary", FALSE);
     widget = gtk_builder_get_object (builder, "desktop-ok");
-    gtk_widget_set_visible (GTK_WIDGET (widget), primary_status);
+    gtk_widget_set_visible (GTK_WIDGET (widget), primary_status_bool);
     g_object_unref (G_OBJECT (channel));
     widget = gtk_builder_get_object (builder, "desktop-configure");
     g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfdesktop-settings");
 
     channel = xfconf_channel_new ("xfce4-notifyd");
-    primary_status = xfconf_channel_get_uint (channel, "/primary-monitor", 0);
+    primary_status_str = xfconf_channel_get_string (channel, "/show-notifications-on", "active-monitor");
     widget = gtk_builder_get_object (builder, "notifications-ok");
-    gtk_widget_set_visible (GTK_WIDGET (widget), primary_status);
+    gtk_widget_set_visible (GTK_WIDGET (widget), g_strcmp0 (primary_status_str, "primary-monitor") == 0);
+    g_free (primary_status_str);
     g_object_unref (G_OBJECT (channel));
     widget = gtk_builder_get_object (builder, "notifications-configure");
     g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfce4-notifyd-config");
