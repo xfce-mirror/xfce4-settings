@@ -1728,18 +1728,16 @@ static void
 display_settings_primary_status_info_populate (GtkBuilder *builder)
 {
     GObject *widget;
-    GtkWidget *image;
     XfconfChannel *channel;
     GPtrArray *panel_ids;
     gboolean primary_status_bool;
     gchar *primary_status_str;
 
-    widget = gtk_builder_get_object (builder, "primary-info-button");
-    image = gtk_image_new_from_icon_name ("dialog-information", GTK_ICON_SIZE_BUTTON);
-    gtk_container_add (GTK_CONTAINER (widget), image);
-    gtk_widget_show (image);
-
-    channel = xfconf_channel_new ("xfce4-panel");
+    widget = gtk_builder_get_object (builder, "panel-ok");
+    gtk_widget_hide (GTK_WIDGET (widget));
+    widget = gtk_builder_get_object (builder, "panel-label");
+    gtk_label_set_text (GTK_LABEL (widget), "Xfce Panel");
+    channel = xfconf_channel_get ("xfce4-panel");
     panel_ids = xfconf_channel_get_arrayv (channel, "/panels");
     if (panel_ids != NULL)
     {
@@ -1773,25 +1771,25 @@ display_settings_primary_status_info_populate (GtkBuilder *builder)
         }
         xfconf_array_free (panel_ids);
     }
-    g_object_unref (G_OBJECT (channel));
     widget = gtk_builder_get_object (builder, "panel-configure");
+    g_signal_handlers_disconnect_by_func (widget, display_settings_launch_settings_dialogs, "xfce4-panel --preferences");
     g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfce4-panel --preferences");
 
-    channel = xfconf_channel_new ("xfce4-desktop");
+    channel = xfconf_channel_get ("xfce4-desktop");
     primary_status_bool = xfconf_channel_get_bool (channel, "/desktop-icons/primary", FALSE);
     widget = gtk_builder_get_object (builder, "desktop-ok");
     gtk_widget_set_visible (GTK_WIDGET (widget), primary_status_bool);
-    g_object_unref (G_OBJECT (channel));
     widget = gtk_builder_get_object (builder, "desktop-configure");
+    g_signal_handlers_disconnect_by_func (widget, display_settings_launch_settings_dialogs, "xfdesktop-settings");
     g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfdesktop-settings");
 
-    channel = xfconf_channel_new ("xfce4-notifyd");
+    channel = xfconf_channel_get ("xfce4-notifyd");
     primary_status_str = xfconf_channel_get_string (channel, "/show-notifications-on", "active-monitor");
     widget = gtk_builder_get_object (builder, "notifications-ok");
     gtk_widget_set_visible (GTK_WIDGET (widget), g_strcmp0 (primary_status_str, "primary-monitor") == 0);
     g_free (primary_status_str);
-    g_object_unref (G_OBJECT (channel));
     widget = gtk_builder_get_object (builder, "notifications-configure");
+    g_signal_handlers_disconnect_by_func (widget, display_settings_launch_settings_dialogs, "xfce4-notifyd-config");
     g_signal_connect (widget, "clicked", G_CALLBACK (display_settings_launch_settings_dialogs), "xfce4-notifyd-config");
 }
 
@@ -1859,9 +1857,19 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     button = GTK_WIDGET (gtk_builder_get_object (builder, "primary-info-button"));
     if (WINDOWING_IS_X11 ())
     {
+        XfconfChannel *primary_channel;
         g_signal_connect (G_OBJECT (primary), "state-set", G_CALLBACK (display_setting_primary_toggled), settings);
         display_settings_primary_status_info_populate (builder);
         gtk_widget_set_visible (GTK_WIDGET (primary_indicator), gtk_switch_get_active (GTK_SWITCH (primary)));
+        primary_channel = xfconf_channel_get ("xfce4-panel");
+        g_signal_connect_swapped (primary_channel, "property-changed",
+                                  G_CALLBACK (display_settings_primary_status_info_populate), builder);
+        primary_channel = xfconf_channel_get ("xfce4-desktop");
+        g_signal_connect_swapped (primary_channel, "property-changed::/desktop-icons/primary",
+                                  G_CALLBACK (display_settings_primary_status_info_populate), builder);
+        primary_channel = xfconf_channel_get ("xfce4-notifyd");
+        g_signal_connect_swapped (primary_channel, "property-changed::/show-notifications-on",
+                                  G_CALLBACK (display_settings_primary_status_info_populate), builder);
     }
     else
     {
