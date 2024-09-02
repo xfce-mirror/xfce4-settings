@@ -762,6 +762,7 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
         float *f;
         Atom *a;
     } data;
+    glong *allocated_data = NULL;
 
     /* assuming the device property never contained underscores... */
     atom_name = g_strdup (prop_name);
@@ -814,12 +815,17 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
             else if (G_VALUE_TYPE (value) == G_TYPE_PTR_ARRAY)
             {
                 array = g_value_get_boxed (value);
-                if (array->len != n_items)
+                /* LibInput array properties can have dynamic number of items.
+                   Do not enforce equal lengths, set as many items as defined in config
+                   and re-allocate the data array, if it is too small. */
+                if (array->len > n_items)
                 {
-                    g_critical ("Nr device property items (%ld) and xfconf value (%d) differ",
-                                n_items, array->len);
-                    break;
+                    /* Just allocate the largest format, because the xinput note below raises doubts about the true item sizes. */
+                    allocated_data = g_new(glong, array->len);
+                    XFree (data.c);
+                    data.l = allocated_data;
                 }
+                n_items = array->len;
             }
             else
             {
@@ -897,7 +903,9 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
             }
         }
 
-        if (data.c)
+        if (allocated_data)
+            g_free(allocated_data);
+        else if (data.c)
             XFree (data.c);
 
         break;
