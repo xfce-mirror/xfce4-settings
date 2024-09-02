@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-05-10 12:47+0200\n"
+"POT-Creation-Date: 2024-09-02 00:49+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Moo, 2023-2024\n"
 "Language-Team: Lithuanian (http://app.transifex.com/xfce/xfce4-settings/language/lt/)\n"
@@ -23,31 +23,31 @@ msgstr ""
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: common/display-name.c:2641
+#: common/display-name.c:2644
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Nežinomas"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: common/display-name.c:2694 dialogs/color-settings/color-device.c:65
+#: common/display-name.c:2697 dialogs/color-settings/color-device.c:66
 msgid "Monitor"
 msgstr "Monitorius"
 
-#: common/display-name.c:2697
+#: common/display-name.c:2700
 msgid "Television"
 msgstr "Televizorius"
 
-#: common/display-name.c:2701
+#: common/display-name.c:2704
 msgid "Digital display"
 msgstr "Skaitmeninis ekranas"
 
-#: common/xfce-randr.c:290 dialogs/display-settings/display-settings-x11.c:664
+#: common/xfce-randr.c:291 dialogs/display-settings/display-settings-x11.c:702
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nepavyko gauti naudojamos RandR plėtinio versijos"
 
-#: common/xfce-randr.c:572
-#: dialogs/display-settings/display-settings-wayland.c:322
+#: common/xfce-randr.c:573
+#: dialogs/display-settings/display-settings-wayland.c:350
 msgid "Laptop"
 msgstr "Nešiojamas kompiuteris"
 
@@ -59,27 +59,28 @@ msgstr "Prieinamumas"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:85
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:285
+#: dialogs/display-settings/display-dialog.glade:290
 #: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3405
+#: dialogs/display-settings/main.c:3490
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
-#: dialogs/mime-settings/xfce-mime-window.c:191
+#: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:195
-#: xfce4-settings-editor/main.c:191
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:237
+#: xfce4-settings-editor/main.c:185
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:235
 msgid "_Close"
 msgstr "_Užverti"
 
+#. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
 #: dialogs/accessibility-settings/accessibility-dialog.glade:100
 #: dialogs/appearance-settings/appearance-dialog.glade:126
 #: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:269
+#: dialogs/display-settings/display-dialog.glade:274
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
-#: dialogs/mime-settings/xfce-mime-window.c:194
+#: dialogs/mime-settings/xfce-mime-window.c:197
 #: dialogs/mouse-settings/mouse-dialog.glade:179
-#: xfce4-settings-editor/main.c:190
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:226
+#: xfce4-settings-editor/main.c:184
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:224
 msgid "_Help"
 msgstr "Ž_inynas"
 
@@ -284,58 +285,58 @@ msgstr "Rasti žymeklį"
 msgid "_Mouse"
 msgstr "_Pelė"
 
-#: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
-#: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
-#: xfce4-settings-editor/main.c:52
+#: dialogs/accessibility-settings/main.c:38
+#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
+#: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Nustatymų tvarkytuvės lizdas"
 
-#: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
-#: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
-#: xfce4-settings-editor/main.c:52
+#: dialogs/accessibility-settings/main.c:38
+#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
+#: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "LIZDO ID"
 
-#: dialogs/accessibility-settings/main.c:47
-#: dialogs/appearance-settings/main.c:107 dialogs/color-settings/main.c:50
-#: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
-#: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
-#: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
-#: xfsettingsd/main.c:106
+#: dialogs/accessibility-settings/main.c:39
+#: dialogs/appearance-settings/main.c:89 dialogs/color-settings/main.c:42
+#: dialogs/display-settings/main.c:108 dialogs/keyboard-settings/main.c:37
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:87
+#: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
+#: xfsettingsd/main.c:93
 msgid "Version information"
 msgstr "Versijos infomacija"
 
-#: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1445 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3353 dialogs/keyboard-settings/main.c:78
-#: dialogs/mime-settings/main.c:84
-#: dialogs/mime-settings/xfce-mime-helper-main.c:157
-#: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:255
-#: xfsettingsd/main.c:293
+#: dialogs/accessibility-settings/main.c:193
+#: dialogs/appearance-settings/main.c:1426 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
+#: dialogs/mime-settings/main.c:78
+#: dialogs/mime-settings/xfce-mime-helper-main.c:148
+#: dialogs/mouse-settings/main.c:2196 xfce4-settings-editor/main.c:118
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
+#: xfsettingsd/main.c:280
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Bandykite „%s –help“, jei norite išsamesnės informacijos."
 
-#: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1464 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:94
-#: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
-#: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:271
+#: dialogs/accessibility-settings/main.c:212
+#: dialogs/appearance-settings/main.c:1445 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
+#: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
+#: xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce kūrėjų komanda. Visos teisės saugomos."
 
-#: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1465 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3373 dialogs/keyboard-settings/main.c:95
-#: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
-#: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:272
+#: dialogs/accessibility-settings/main.c:213
+#: dialogs/appearance-settings/main.c:1446 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
+#: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
+#: xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Apie klaidas praneškite <%s>."
@@ -351,8 +352,8 @@ msgid ""
 msgstr "pagalbinės;pagalbines;technologijos;pagalbinė;pagalbine;technologija;klavišai;klavisai;prieinamumas;atmenieji;lipnūs;lipnus;pasikartojantys;emuliacija;ekrano skaityklės;ekrano skaitykles;ekrano skaitytuvės;ekrano skaitytuves;ekrano skaitytuvas;ekrano skaitytuvai;didintuvai;didinamasis stiklas;didinamieji stiklai;pasiekiamumas;pritaikymas neįgaliesiems;pritaikymas neigaliesiems;internacionalizacija;lokalizavimas;lokalizacija;AT-SPI;ATK;negalia;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1311 dialogs/display-settings/main.c:92
-#: dialogs/display-settings/main.c:101
+#: dialogs/appearance-settings/main.c:1333 dialogs/display-settings/main.c:86
+#: dialogs/display-settings/main.c:94
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
 msgstr "Nėra"
@@ -403,7 +404,7 @@ msgstr "Išvaizda"
 #: dialogs/color-settings/color-dialog.glade:374
 #: dialogs/keyboard-settings/keyboard-dialog.glade:636
 #: dialogs/keyboard-settings/keyboard-dialog.glade:970
-#: xfce4-settings-editor/xfce-settings-editor-box.c:354
+#: xfce4-settings-editor/xfce-settings-editor-box.c:364
 msgid "_Add"
 msgstr "_Pridėti"
 
@@ -574,12 +575,12 @@ msgstr "_Langų mastelio keitimas"
 msgid "Setti_ngs"
 msgstr "_Nustatymai"
 
-#: dialogs/appearance-settings/main.c:246
+#: dialogs/appearance-settings/main.c:231
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Nepavyko parodyti Xfwm4 nustatymų"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:510
+#: dialogs/appearance-settings/main.c:498
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -588,83 +589,83 @@ msgstr "Įspėjimas: šis piktogramų apipavidalinimas neturi podėlio failo. Ga
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:518
+#: dialogs/appearance-settings/main.c:505
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Įspėjimas: šis piktogramų apipavidalinimas yra neužbaigtas. Trūks kai kurių piktogramų."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:524
+#: dialogs/appearance-settings/main.c:510
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Įspėjimas: šis piktogramų apipavidalinimas yra neužbaigtas. Jis pateikia tik pagrindinį piktogramų rinkinį, kurį kiti apipavidalinimai gali paveldėti."
 
-#: dialogs/appearance-settings/main.c:1005
+#: dialogs/appearance-settings/main.c:985
 msgid "File is too large, installation aborted"
 msgstr "Failas per didelis, įdiegimas nutrauktas"
 
-#: dialogs/appearance-settings/main.c:1010
+#: dialogs/appearance-settings/main.c:990
 msgid "Failed to create temporary directory"
 msgstr "Nepavyko sukurti laikinojo katalogo"
 
-#: dialogs/appearance-settings/main.c:1015
+#: dialogs/appearance-settings/main.c:995
 msgid "Failed to extract archive"
 msgstr "Nepavyko išarchyvuoti"
 
-#: dialogs/appearance-settings/main.c:1020
+#: dialogs/appearance-settings/main.c:1000
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Nežinomas formatas, palaikomi tik archyvai ir katalogai"
 
-#: dialogs/appearance-settings/main.c:1025
+#: dialogs/appearance-settings/main.c:1005
 msgid "Not a valid theme package"
 msgstr "Netinkamas apipavidalinimo paketas"
 
-#: dialogs/appearance-settings/main.c:1030
+#: dialogs/appearance-settings/main.c:1010
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Nežinoma klaida, išėjimo kodas yra %d"
 
-#: dialogs/appearance-settings/main.c:1037
+#: dialogs/appearance-settings/main.c:1017
 msgid "Failed to install theme"
 msgstr "Nepavyko įdiegti apipavidalinimo"
 
-#: dialogs/appearance-settings/main.c:1090
+#: dialogs/appearance-settings/main.c:1071
 #, c-format
 msgid "Install %s theme"
 msgstr "Įdiegti %s apipavidalinimą"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1094
+#: dialogs/appearance-settings/main.c:1073
 #: dialogs/color-settings/color-dialog.glade:529
-#: dialogs/color-settings/main.c:133
-#: dialogs/keyboard-settings/command-dialog.c:118
-#: dialogs/keyboard-settings/command-dialog.c:282
+#: dialogs/color-settings/main.c:127
+#: dialogs/keyboard-settings/command-dialog.c:113
+#: dialogs/keyboard-settings/command-dialog.c:275
 #: dialogs/keyboard-settings/keyboard-dialog.glade:71
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:428
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:573
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:106
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:567
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
 msgid "_Cancel"
 msgstr "_Atsisakyti"
 
-#: dialogs/appearance-settings/main.c:1096
-#: dialogs/keyboard-settings/command-dialog.c:283
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
+#: dialogs/appearance-settings/main.c:1074
+#: dialogs/keyboard-settings/command-dialog.c:276
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Atverti"
 
-#: dialogs/appearance-settings/main.c:1315
+#: dialogs/appearance-settings/main.c:1337
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1319
+#: dialogs/appearance-settings/main.c:1341
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1323
+#: dialogs/appearance-settings/main.c:1345
 msgid "Vertical RGB"
 msgstr "Vertikalus RGB"
 
-#: dialogs/appearance-settings/main.c:1327
+#: dialogs/appearance-settings/main.c:1349
 msgid "Vertical BGR"
 msgstr "Vertikalus BGR"
 
@@ -680,36 +681,36 @@ msgid ""
 msgstr "temos;apipavidalinimai;naudotojo sąsaja;naudotojo sasaja;stiliai;piktogramos;ikonos;šriftai;sriftai;raidės;raides;šriftas;sriftas;glodinimas;taškinė korekcija;taskine korekcija;subpikselinis;subpikselių;subpikseliul;sub-pikselių;sub-pikseliu;atvaizdavimas;ClearType;DPI;RGB;BGR;meniu klavišai;meniu klavisai;meniu prieigos klavisai;meniu prieigos klavišai;spartieji klavišai;spartieji klavisai;klavišų kombinacija;klavisu kombinacija;trumpiniai;įvykių;ivykiu;garsai;garsas;langų mastelis;langu mastelis;mastelio keitimas;HiDPI;Retina ekranas;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
-#: dialogs/color-settings/color-device.c:68
+#: dialogs/color-settings/color-device.c:69
 msgid "Scanner"
 msgstr "skeneris"
 
 #. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
-#: dialogs/color-settings/color-device.c:71
+#: dialogs/color-settings/color-device.c:72
 msgid "Camera"
 msgstr "fotoaparatas"
 
 #. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
-#: dialogs/color-settings/color-device.c:74
+#: dialogs/color-settings/color-device.c:75
 msgid "Printer"
 msgstr "spausdintuvas"
 
 #. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
-#: dialogs/color-settings/color-device.c:77
+#: dialogs/color-settings/color-device.c:78
 msgid "Webcam"
 msgstr "vaizdo kamera"
 
 #. TRANSLATORS: This refers to the TFT display on a laptop
-#: dialogs/color-settings/color-device.c:94
+#: dialogs/color-settings/color-device.c:96
 msgid "Laptop Screen"
 msgstr "nešiojamojo kompiuterio ekranas"
 
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
-#: dialogs/color-settings/color-device.c:102
+#: dialogs/color-settings/color-device.c:105
 msgid "Built-in Webcam"
 msgstr "įtaisyta vaizdo kamera"
 
-#: dialogs/color-settings/color-device.c:195
+#: dialogs/color-settings/color-device.c:198
 #, c-format
 msgid "Enable color management for %s"
 msgstr "Įjungti spalvų valdymą, skirtą %s"
@@ -775,10 +776,10 @@ msgid "Add Profile to Device"
 msgstr "Pridėti profilį į įrenginį"
 
 #: dialogs/color-settings/color-dialog.glade:543
-#: dialogs/keyboard-settings/command-dialog.c:122
+#: dialogs/keyboard-settings/command-dialog.c:117
 #: dialogs/keyboard-settings/keyboard-dialog.glade:86
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:574
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:568
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
 msgid "_OK"
 msgstr "_Gerai"
 
@@ -788,13 +789,13 @@ msgstr "Importuoti spalvų profilio failus (*.icc)"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
-#: dialogs/color-settings/color-profile.c:94
+#: dialogs/color-settings/color-profile.c:97
 msgid "Standard Space"
 msgstr "Standartinė erdvė"
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
-#: dialogs/color-settings/color-profile.c:99
+#: dialogs/color-settings/color-profile.c:103
 msgid "Test Profile"
 msgstr "Išbandyti profilį"
 
@@ -802,7 +803,7 @@ msgstr "Išbandyti profilį"
 #. * by the color management system based on manufacturing data,
 #. * for instance the default monitor profile is created from the
 #. * primaries specified in the monitor EDID
-#: dialogs/color-settings/color-profile.c:106
+#: dialogs/color-settings/color-profile.c:111
 msgctxt "Automatically generated profile"
 msgid "Automatic"
 msgstr "Automatinis"
@@ -810,13 +811,13 @@ msgstr "Automatinis"
 #. TRANSLATORS: the profile quality - low quality profiles take
 #. * much less time to generate but may be a poor reflection of the
 #. * device capability
-#: dialogs/color-settings/color-profile.c:115
+#: dialogs/color-settings/color-profile.c:121
 msgctxt "Profile quality"
 msgid "Low Quality"
 msgstr "Žema kokybė"
 
 #. TRANSLATORS: the profile quality
-#: dialogs/color-settings/color-profile.c:119
+#: dialogs/color-settings/color-profile.c:126
 msgctxt "Profile quality"
 msgid "Medium Quality"
 msgstr "Vidutinė kokybė"
@@ -824,75 +825,75 @@ msgstr "Vidutinė kokybė"
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
 #. * characterisation data.
-#: dialogs/color-settings/color-profile.c:125
+#: dialogs/color-settings/color-profile.c:133
 msgctxt "Profile quality"
 msgid "High Quality"
 msgstr "Aukšta kokybė"
 
 #. TRANSLATORS: this default RGB space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:140
+#: dialogs/color-settings/color-profile.c:150
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
 msgstr "Numatytoji RGB"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:146
+#: dialogs/color-settings/color-profile.c:157
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
 msgstr "Numatytoji CMYK"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:152
+#: dialogs/color-settings/color-profile.c:164
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
 msgstr "Numatytoji pilkoji"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: dialogs/color-settings/main.c:131
+#: dialogs/color-settings/main.c:126
 msgid "Select ICC Profile File"
 msgstr "Pasirinkti ICC profilio failą"
 
-#: dialogs/color-settings/main.c:134
+#: dialogs/color-settings/main.c:128
 msgid "_Import"
 msgstr "_Importuoti"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:145
+#: dialogs/color-settings/main.c:139
 msgid "Supported ICC profiles"
 msgstr "Palaikomi ICC profiliai"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:152
+#: dialogs/color-settings/main.c:146
 msgid "All files"
 msgstr "Visi failai"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: dialogs/color-settings/main.c:194
+#: dialogs/color-settings/main.c:189
 msgid "Default: "
 msgstr "Numatytasis: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: dialogs/color-settings/main.c:200
+#: dialogs/color-settings/main.c:196
 msgid "Colorspace: "
 msgstr "Spalvų erdvė: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: dialogs/color-settings/main.c:206
+#: dialogs/color-settings/main.c:203
 msgid "Test profile: "
 msgstr "Bandomasis profilis: "
 
-#: dialogs/color-settings/main.c:241
+#: dialogs/color-settings/main.c:238
 msgid "Compatible Profiles"
 msgstr "Suderinami profiliai"
 
-#: dialogs/color-settings/main.c:830 dialogs/color-settings/main.c:831
-#: dialogs/color-settings/main.c:832
+#: dialogs/color-settings/main.c:860 dialogs/color-settings/main.c:861
+#: dialogs/color-settings/main.c:862
 msgid "Unknown"
 msgstr "Nežinoma"
 
@@ -922,159 +923,159 @@ msgstr "Palikti šią konfigūraciją"
 msgid "Restore the previous configuration"
 msgstr "Atkurti ankstesnę konfigūraciją"
 
-#: dialogs/display-settings/display-dialog.glade:56
+#: dialogs/display-settings/display-dialog.glade:61
 msgid "Never"
 msgstr "Niekada"
 
-#: dialogs/display-settings/display-dialog.glade:60
+#: dialogs/display-settings/display-dialog.glade:65
 msgid "When a display is connected"
 msgstr "Kai ekranas prijungiamas"
 
-#: dialogs/display-settings/display-dialog.glade:64
+#: dialogs/display-settings/display-dialog.glade:69
 msgid "When a display is disconnected"
 msgstr "Kai ekranas atjungiamas"
 
-#: dialogs/display-settings/display-dialog.glade:68
+#: dialogs/display-settings/display-dialog.glade:73
 msgid "Always"
 msgstr "Visada"
 
-#: dialogs/display-settings/display-dialog.glade:82
+#: dialogs/display-settings/display-dialog.glade:87
 msgid "Do nothing"
 msgstr "Nieko nedaryti"
 
-#: dialogs/display-settings/display-dialog.glade:86
+#: dialogs/display-settings/display-dialog.glade:91
 msgid "Show dialog"
 msgstr "Rodyti dialogą"
 
-#: dialogs/display-settings/display-dialog.glade:90
+#: dialogs/display-settings/display-dialog.glade:95
 msgid "Mirror"
 msgstr "Kopijuoti"
 
-#: dialogs/display-settings/display-dialog.glade:94
+#: dialogs/display-settings/display-dialog.glade:99
 msgid "Extend"
 msgstr "Išplėsti"
 
-#: dialogs/display-settings/display-dialog.glade:152
+#: dialogs/display-settings/display-dialog.glade:157
 msgid "The primary display can be configured to show:"
 msgstr "Pirminis ekranas gali būti sukonfigūruotas rodyti:"
 
-#: dialogs/display-settings/display-dialog.glade:166
+#: dialogs/display-settings/display-dialog.glade:171
 msgid "Xfce Panel"
 msgstr "Xfce skydelis"
 
-#: dialogs/display-settings/display-dialog.glade:179
+#: dialogs/display-settings/display-dialog.glade:184
 msgid "Desktop icons"
 msgstr "Darbalaukio piktogramos"
 
-#: dialogs/display-settings/display-dialog.glade:192
+#: dialogs/display-settings/display-dialog.glade:197
 msgid "Notifications"
 msgstr "Pranešimai"
 
-#: dialogs/display-settings/display-dialog.glade:202
-#: dialogs/display-settings/display-dialog.glade:217
-#: dialogs/display-settings/display-dialog.glade:232
+#: dialogs/display-settings/display-dialog.glade:207
+#: dialogs/display-settings/display-dialog.glade:222
+#: dialogs/display-settings/display-dialog.glade:237
 msgid "Configure..."
 msgstr "Konfigūruoti..."
 
-#: dialogs/display-settings/display-dialog.glade:250
+#: dialogs/display-settings/display-dialog.glade:255
 #: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "Ekranas"
 
-#: dialogs/display-settings/display-dialog.glade:357
+#: dialogs/display-settings/display-dialog.glade:362
 msgid "_Mirror displays"
 msgstr "Kopi_juoti ekranus"
 
-#: dialogs/display-settings/display-dialog.glade:455
+#: dialogs/display-settings/display-dialog.glade:461
 msgid "Primary Display:"
 msgstr "Pirminis ekranas:"
 
-#: dialogs/display-settings/display-dialog.glade:481
+#: dialogs/display-settings/display-dialog.glade:487
 msgid "R_esolution:"
 msgstr "R_aiška:"
 
-#: dialogs/display-settings/display-dialog.glade:507
+#: dialogs/display-settings/display-dialog.glade:513
 msgid "Refresh _rate:"
 msgstr "Atnaujinimo _dažnis:"
 
-#: dialogs/display-settings/display-dialog.glade:533
+#: dialogs/display-settings/display-dialog.glade:539
 msgid "Ro_tation:"
 msgstr "_Pasukimas:"
 
-#: dialogs/display-settings/display-dialog.glade:557
+#: dialogs/display-settings/display-dialog.glade:563
 msgid "Ref_lection:"
 msgstr "Atspindy_s:"
 
-#: dialogs/display-settings/display-dialog.glade:597
+#: dialogs/display-settings/display-dialog.glade:603
 msgid "A_pply"
 msgstr "Tai_kyti"
 
-#: dialogs/display-settings/display-dialog.glade:625
+#: dialogs/display-settings/display-dialog.glade:631
 msgid "_Scale:"
 msgstr "_Mastelis:"
 
-#: dialogs/display-settings/display-dialog.glade:663
+#: dialogs/display-settings/display-dialog.glade:669
 msgid "_General"
 msgstr "_Bendra"
 
-#: dialogs/display-settings/display-dialog.glade:683
+#: dialogs/display-settings/display-dialog.glade:689
 msgid "<b>Profiles</b>"
 msgstr "<b>Profiliai</b>"
 
-#: dialogs/display-settings/display-dialog.glade:699
+#: dialogs/display-settings/display-dialog.glade:705
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>Ekranų prijungimas</b>"
 
-#: dialogs/display-settings/display-dialog.glade:749
+#: dialogs/display-settings/display-dialog.glade:755
 msgid "Delete the currently selected display profile."
 msgstr "Ištrinti šiuo metu pasirinktą ekranų profilį."
 
-#: dialogs/display-settings/display-dialog.glade:762
+#: dialogs/display-settings/display-dialog.glade:768
 msgid "Apply"
 msgstr "Taikyti"
 
-#: dialogs/display-settings/display-dialog.glade:766
+#: dialogs/display-settings/display-dialog.glade:772
 msgid "Apply the currently selected display profile."
 msgstr "Taikyti šiuo metu pasirinktą ekranų profilį."
 
-#: dialogs/display-settings/display-dialog.glade:782
+#: dialogs/display-settings/display-dialog.glade:788
 msgid "Create a new display profile."
 msgstr "Sukurti naują ekranų profilį."
 
-#: dialogs/display-settings/display-dialog.glade:798
+#: dialogs/display-settings/display-dialog.glade:804
 msgid "Update an existing profile."
 msgstr "Atnaujinti esamą ekranų profilį."
 
-#: dialogs/display-settings/display-dialog.glade:831
+#: dialogs/display-settings/display-dialog.glade:837
 msgid "First try to automatically enable a profile:"
 msgstr "Pirmiausia, bandyti automatiškai įjungti profilį:"
 
-#: dialogs/display-settings/display-dialog.glade:863
+#: dialogs/display-settings/display-dialog.glade:869
 msgid "When a display is connected:"
 msgstr "Kai prijungiamas ekranas:"
 
-#: dialogs/display-settings/display-dialog.glade:876
+#: dialogs/display-settings/display-dialog.glade:882
 msgid "Show popup windows to identify displays"
 msgstr "Rodyti iškylančiuosius langus, siekiant atpažinti ekranus"
 
-#: dialogs/display-settings/display-dialog.glade:902
+#: dialogs/display-settings/display-dialog.glade:908
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Ekranų atpažinimas</b>"
 
-#: dialogs/display-settings/display-dialog.glade:940
+#: dialogs/display-settings/display-dialog.glade:946
 #: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr "_Išplėstiniai"
 
-#: dialogs/display-settings/display-dialog.glade:992
+#: dialogs/display-settings/display-dialog.glade:998
 msgid "<b>Profile Name</b>"
 msgstr "<b>Profilio pavadinimas</b>"
 
-#: dialogs/display-settings/display-dialog.glade:1015
+#: dialogs/display-settings/display-dialog.glade:1021
 msgid "Create"
 msgstr "Sukurti"
 
-#: dialogs/display-settings/display-dialog.glade:1050
+#: dialogs/display-settings/display-dialog.glade:1056
 msgid "A profile of this name already exists."
 msgstr "Profilis tokiu pavadinimu jau yra."
 
@@ -1136,45 +1137,45 @@ msgid ""
 "your session or disconnecting or connecting a display."
 msgstr "Jeigu profilio neatnaujinsite, jūsų pakeitimai, paleidus seansą iš naujo ar atjungus, ar prijungus ekraną, bus prarasti."
 
-#: dialogs/display-settings/main.c:63
+#: dialogs/display-settings/main.c:58
 #, c-format
 msgid "Only %s (1)"
 msgstr "Tik %s (1)"
 
-#: dialogs/display-settings/main.c:64
+#: dialogs/display-settings/main.c:59
 #, c-format
 msgid "Only %s (2)"
 msgstr "Tik %s (2)"
 
-#: dialogs/display-settings/main.c:93
+#: dialogs/display-settings/main.c:87
 msgid "Left"
 msgstr "Kairėje"
 
-#: dialogs/display-settings/main.c:94
+#: dialogs/display-settings/main.c:88
 msgid "Inverted"
 msgstr "Invertuotas"
 
-#: dialogs/display-settings/main.c:95
+#: dialogs/display-settings/main.c:89
 msgid "Right"
 msgstr "Dešinėje"
 
-#: dialogs/display-settings/main.c:102
+#: dialogs/display-settings/main.c:95
 msgid "Horizontal"
 msgstr "Horizontalus"
 
-#: dialogs/display-settings/main.c:103
+#: dialogs/display-settings/main.c:96
 msgid "Vertical"
 msgstr "Vertikalus"
 
-#: dialogs/display-settings/main.c:104
+#: dialogs/display-settings/main.c:97
 msgid "Horizontal and Vertical"
 msgstr "Horizontalus ir vertikalus"
 
-#: dialogs/display-settings/main.c:117
+#: dialogs/display-settings/main.c:109
 msgid "Minimal interface to set up an external output"
 msgstr "Minimali sąsaja nustatyti išorinę išvestį"
 
-#: dialogs/display-settings/main.c:275
+#: dialogs/display-settings/main.c:282
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1182,67 +1183,71 @@ msgid ""
 msgstr "Jei neatsakysite į šį klausimą, po <b>%i sekundžių</b> bus atkurta ankstesnė konfigūracija."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:637
+#: dialogs/display-settings/main.c:644
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:965
+#: dialogs/display-settings/main.c:973
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Paskutinė veikianti išvestis neturėtų būti išjungta, nes sistema bus nepanaudojama."
 
-#: dialogs/display-settings/main.c:967
+#: dialogs/display-settings/main.c:974
 msgid "Selected output not disabled"
 msgstr "Pasirinkta išvestis išjungta"
 
-#: dialogs/display-settings/main.c:1311
+#: dialogs/display-settings/main.c:1322
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Atnaujinti pakeistą ekranų profilį „%s“?"
 
-#: dialogs/display-settings/main.c:1316
+#: dialogs/display-settings/main.c:1327
 #, c-format
 msgid "_Update '%s'"
 msgstr "A_tnaujinti „%s“"
 
-#: dialogs/display-settings/main.c:1656
+#: dialogs/display-settings/main.c:1674
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Ar norite ištrinti ekranų profilį „%s“?"
 
-#: dialogs/display-settings/main.c:1658
+#: dialogs/display-settings/main.c:1677
 msgid "Delete Profile"
 msgstr "Ištrinti profilį"
 
-#: dialogs/display-settings/main.c:1661
+#: dialogs/display-settings/main.c:1678
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Ištrinus ekranų profilį, jo nebeįmanoma atkurti."
 
-#: dialogs/display-settings/main.c:1662
-#: dialogs/mime-settings/xfce-mime-chooser.c:134
-#: dialogs/mime-settings/xfce-mime-chooser.c:382
-#: dialogs/mime-settings/xfce-mime-window.c:1178
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:144
+#: dialogs/display-settings/main.c:1678
+#: dialogs/mime-settings/xfce-mime-chooser.c:135
+#: dialogs/mime-settings/xfce-mime-chooser.c:380
+#: dialogs/mime-settings/xfce-mime-window.c:1181
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: dialogs/display-settings/main.c:1663
+#: dialogs/display-settings/main.c:1679
 msgid "Delete"
 msgstr "Ištrinti"
 
-#: dialogs/display-settings/main.c:1749
+#: dialogs/display-settings/main.c:1765
 #, c-format
-msgid "%d Xfce Panels"
-msgstr "%d Xfce skydeliai"
+msgid "%d Xfce Panel"
+msgid_plural "%d Xfce Panels"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: dialogs/display-settings/main.c:2493
+#: dialogs/display-settings/main.c:2550
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Pasirinkite monitorių, norėdami keisti jo savybes; tempkite jį, norėdami pakeisti jo vietą."
 
-#: dialogs/display-settings/main.c:2592 dialogs/display-settings/main.c:2625
+#: dialogs/display-settings/main.c:2649 dialogs/display-settings/main.c:2682
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1251,23 +1256,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2847
+#: dialogs/display-settings/main.c:2899
 msgid "Mirror Screens"
 msgstr "Kopijuoti ekranus"
 
-#: dialogs/display-settings/main.c:2897
+#: dialogs/display-settings/main.c:2949
 msgid "(Disabled)"
 msgstr "(Išjungtas)"
 
-#: dialogs/display-settings/main.c:3399
+#: dialogs/display-settings/main.c:3484
 msgid "ATI Settings"
 msgstr "ATI nustatymai"
 
-#: dialogs/display-settings/main.c:3404
+#: dialogs/display-settings/main.c:3489
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nepavyko paleisti Xfce darbalaukio nustatymų"
 
-#: dialogs/display-settings/main.c:3412
+#: dialogs/display-settings/main.c:3497
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nepavyko paleisti nuosavybinės tvarkyklės nustatymų"
 
@@ -1280,82 +1285,82 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "ekranas;nustatymai;nuostatos;ekranai;monitorius;monitoriai;raiška;raiska;skiriamoji geba;atnaujinimo;dažnis;pasukimas;pozicija;išorinis;isorinis;išoriniai;isoriniai;projektoriai;monitoriai;projektorius;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:442
+#: dialogs/display-settings/display-settings.c:464
 msgid "Display:"
 msgstr "Ekranas:"
 
-#: dialogs/display-settings/display-settings.c:450
+#: dialogs/display-settings/display-settings.c:472
 msgid "Resolution:"
 msgstr "Raiška:"
 
-#: dialogs/display-settings/display-settings-wayland.c:981
+#: dialogs/display-settings/display-settings-wayland.c:1008
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Atrodo, kad jūsų komponavimas nepalaiko „wlr-output-management“ protokolo"
 
 #. Set dialog title and icon
-#: dialogs/keyboard-settings/command-dialog.c:110
+#: dialogs/keyboard-settings/command-dialog.c:109
 msgid "Shortcut Command"
 msgstr "Susiejimo komanda"
 
-#: dialogs/keyboard-settings/command-dialog.c:144
+#: dialogs/keyboard-settings/command-dialog.c:139
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr "Įveskite sparčiuoju klavišu paleidžiamą komandą."
 
 #. We are editing an existing shortcut
-#: dialogs/keyboard-settings/command-dialog.c:162
+#: dialogs/keyboard-settings/command-dialog.c:157
 msgid "Shortcut:"
 msgstr "Susiejimas:"
 
-#: dialogs/keyboard-settings/command-dialog.c:187
+#: dialogs/keyboard-settings/command-dialog.c:182
 msgid "Comm_and:"
 msgstr "Kom_anda:"
 
-#: dialogs/keyboard-settings/command-dialog.c:212
+#: dialogs/keyboard-settings/command-dialog.c:207
 msgid "Use _startup notification"
 msgstr "Naudoti _paleidimo pranešimą"
 
-#: dialogs/keyboard-settings/command-dialog.c:259
+#: dialogs/keyboard-settings/command-dialog.c:253
 msgid "The command may not be empty."
 msgstr "Komanda negali būti tuščia."
 
-#: dialogs/keyboard-settings/command-dialog.c:279
+#: dialogs/keyboard-settings/command-dialog.c:273
 msgid "Select command"
 msgstr "Pasirinkti komandą"
 
-#: dialogs/keyboard-settings/command-dialog.c:287
-#: dialogs/mime-settings/xfce-mime-chooser.c:389
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:435
+#: dialogs/keyboard-settings/command-dialog.c:281
+#: dialogs/mime-settings/xfce-mime-chooser.c:387
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:431
 msgid "All Files"
 msgstr "Visi failai"
 
-#: dialogs/keyboard-settings/command-dialog.c:292
-#: dialogs/mime-settings/xfce-mime-chooser.c:394
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:440
+#: dialogs/keyboard-settings/command-dialog.c:286
+#: dialogs/mime-settings/xfce-mime-chooser.c:392
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:436
 msgid "Executable Files"
 msgstr "Vykdomi failai"
 
-#: dialogs/keyboard-settings/command-dialog.c:307
-#: dialogs/mime-settings/xfce-mime-chooser.c:409
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:455
+#: dialogs/keyboard-settings/command-dialog.c:301
+#: dialogs/mime-settings/xfce-mime-chooser.c:407
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:451
 msgid "Perl Scripts"
 msgstr "Perl scenarijai"
 
-#: dialogs/keyboard-settings/command-dialog.c:313
-#: dialogs/mime-settings/xfce-mime-chooser.c:415
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:461
+#: dialogs/keyboard-settings/command-dialog.c:307
+#: dialogs/mime-settings/xfce-mime-chooser.c:413
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:457
 msgid "Python Scripts"
 msgstr "Python scenarijai"
 
-#: dialogs/keyboard-settings/command-dialog.c:319
-#: dialogs/mime-settings/xfce-mime-chooser.c:421
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:467
+#: dialogs/keyboard-settings/command-dialog.c:313
+#: dialogs/mime-settings/xfce-mime-chooser.c:419
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:463
 msgid "Ruby Scripts"
 msgstr "Ruby scenarijai"
 
-#: dialogs/keyboard-settings/command-dialog.c:325
-#: dialogs/mime-settings/xfce-mime-chooser.c:427
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:473
+#: dialogs/keyboard-settings/command-dialog.c:319
+#: dialogs/mime-settings/xfce-mime-chooser.c:425
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:469
 msgid "Shell Scripts"
 msgstr "Apvalkalo scenarijai"
 
@@ -1442,7 +1447,7 @@ msgstr "Apibrėžkite programų paleidimui skirtus sparčiuosius klavišus:"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:651
 #: dialogs/keyboard-settings/keyboard-dialog.glade:986
-#: xfce4-settings-editor/xfce-settings-editor-box.c:367
+#: xfce4-settings-editor/xfce-settings-editor-box.c:377
 msgid "_Edit"
 msgstr "_Taisa"
 
@@ -1486,59 +1491,58 @@ msgstr "Klaviatūros išdėstymas"
 msgid "_Layout"
 msgstr "_Išdėstymas"
 
-#: dialogs/keyboard-settings/main.c:84
+#: dialogs/keyboard-settings/main.c:80
 msgid "Unable to initialize GTK+."
 msgstr "Nepavyko inicijuoti GTK+."
 
-#: dialogs/keyboard-settings/main.c:110
+#: dialogs/keyboard-settings/main.c:106
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Nepavyko prisijungti prie xfconf tarnybos. Priežastis: %s"
 
-#: dialogs/keyboard-settings/main.c:121
+#: dialogs/keyboard-settings/main.c:117
 msgid "Could not create the settings dialog."
 msgstr "Nepavyko sukurti nustatymų dialogo."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:399
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:433
 msgid "Command"
 msgstr "Komanda"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:407
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:441
 msgid "Shortcut"
 msgstr "Susiejimas"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:484
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:518
 msgid "Layout"
 msgstr "Išdėstymas"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
 msgid "Variant"
 msgstr "Variantas"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
-msgid "Reset to Defaults"
-msgstr "Atstatyti numatytuosius"
-
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1288
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Visi susiejimai bus atstatyti į jų numatytąsias reikšmes. Ar tikrai to norite?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1292
+msgid "Reset to Defaults"
+msgstr "Atstatyti numatytuosius"
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
 msgid "No"
 msgstr "Ne"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
 msgid "Yes"
 msgstr "Taip"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1372
 msgid "The system defaults will be restored next time you log in."
 msgstr "Sistemos numatytieji bus atkurti kitą kartą jums prisijungus."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1374
 msgid "Warning"
 msgstr "Įspėjimas"
 
@@ -1550,16 +1554,16 @@ msgstr "Taisyti klaviatūros nustatymus ir programų susiejimus"
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;skaitmenys;skaičiai;skaiciai;klaviatūra;klaviatura;išdėstymas;isdestymas;spartieji klavišai;spartieji klavisai;trumpiniai;klavišų kombinacijos;klavisu kombinacijos;"
 
-#: dialogs/mime-settings/main.c:121
+#: dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
 msgstr "Nepavyko sukurti mime dialogo."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:128
+#: dialogs/mime-settings/xfce-mime-chooser.c:129
 msgid "Select Application"
 msgstr "Pasirinkite programą"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:136
-#: dialogs/mime-settings/xfce-mime-chooser.c:383
+#: dialogs/mime-settings/xfce-mime-chooser.c:137
+#: dialogs/mime-settings/xfce-mime-chooser.c:381
 msgid "Open"
 msgstr "Atverti"
 
@@ -1577,28 +1581,28 @@ msgstr "Naudoti pasirinktinę komandą programai, kuri nepasiekiama iš aukšči
 msgid "_Browse..."
 msgstr "_Naršyti..."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:379
+#: dialogs/mime-settings/xfce-mime-chooser.c:378
 msgid "Select an Application"
 msgstr "Pasirinkite programą"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:529
+#: dialogs/mime-settings/xfce-mime-chooser.c:527
 msgid "None available"
 msgstr "Neprieinama"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:577
+#: dialogs/mime-settings/xfce-mime-chooser.c:575
 msgid "Recommended Applications"
 msgstr "Rekomenduojamos programos"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:595
+#: dialogs/mime-settings/xfce-mime-chooser.c:594
 msgid "Other Applications"
 msgstr "Kitos programos"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:617
+#: dialogs/mime-settings/xfce-mime-chooser.c:614
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "Atverti <i>%s<i/> ir kitus „%s“ tipo failus naudojant:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:622
+#: dialogs/mime-settings/xfce-mime-chooser.c:619
 #, c-format
 msgid ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
@@ -1611,167 +1615,167 @@ msgstr[1] "Atverti <i>%s</i>, kitus „%s“ failo tipo failus ir dar %d pažym�
 msgstr[2] "Atverti <i>%s</i>, kitus „%s“ failo tipo failus ir dar %d pažymėtų MIME tipų, naudojant:"
 msgstr[3] "Atverti <i>%s</i>, kitus „%s“ failo tipo failus ir dar %d pažymėtą MIME tipą, naudojant:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:661
+#: dialogs/mime-settings/xfce-mime-chooser.c:659
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "Nepavyko pridėti naujos programos „%s“"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:143
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:150
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:141
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:148
 msgid "Press left mouse button to change the selected application."
 msgstr "Paspauskite kairįjį pelės mygtuką, norėdami pakeisti pasirinktą programą."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:149
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:147
 msgid "Application Chooser Button"
 msgstr "Programos pasirinkimo mygtukas"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:336
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:334
 msgid "No application selected"
 msgstr "Nepažymėta nei viena programa"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
 msgid "Failed to set default Web Browser"
 msgstr "Nepavyko nustatyti numatytosios saityno naršyklės"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:353
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
 msgid "Failed to set default Mail Reader"
 msgstr "Nepavyko nustatyti numatytosios pašto programos"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:354
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
 msgid "Failed to set default File Manager"
 msgstr "Nepavyko nustatyti numatytosios failų tvarkytuvės"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:355
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
 msgid "Failed to set default Terminal Emulator"
 msgstr "Nepavyko nustatyti numatytojo terminalo emuliatoriaus"
 
 #. allocate the chooser
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
 msgid "Select application"
 msgstr "Pasirinkite programą"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
 msgid "Choose a custom Web Browser"
 msgstr "Pasirinkite pasirinktinę saityno naršyklę"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:539
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
 msgid "Choose a custom Mail Reader"
 msgstr "Pasirinkite pasirinktinę pašto programą"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
 msgid "Choose a custom File Manager"
 msgstr "Pasirinkite pasirinktinę failų tvarkytuvę"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:541
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
 msgid "Choose a custom Terminal Emulator"
 msgstr "Pasirinkite pasirinktinį terminalo emuliatorių"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr "Pasirinkite programą, kurią naudosite kaip\nnumatytąją saityno naršyklę Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:547
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:541
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr "Pasirinkite programą kurią naudosite kaip\nnumatytąją pašto programą XFce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:548
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr "Pasirinkite programą, kurią naudosite kaip\nnumatytąją failų tvarkytuvę Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:549
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr "Pasirinkite programą kurią naudosite kaip\nnumatytąjį terminalo emuliatorių XFce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:613
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:607
 msgid "Browse the file system to choose a custom command."
 msgstr "Naršyti failų sistemą pasirinktinės komandos pasirinkimui."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:752
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:746
 msgid "_Other..."
 msgstr "_Kita..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:753
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:747
 msgid "Use a custom application which is not included in the above list."
 msgstr "Naudoti pasirinktinę programą kurios nėra aukščiau esančiame sąraše."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:114
 msgid "Choose Preferred Application"
 msgstr "Pasirinkite pageidaujamą programą"
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:248
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
 msgstr "Pasirinkite pageidaujamą saityno\nnaršyklę ir spustelėkite Gerai, norėdami tęsti."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:250
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
 msgstr "Pasirinkite pageidaujamą pašto programą\nir spustelėkite Gerai, norėdami tęsti."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:252
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
 msgstr "Pasirinkite pageidaujamą failų tvarkytuvę\nir spustelėkite Gerai, norėdami tęsti."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:254
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
 msgstr "Pasirinkite pageidaujamą terminalo emuliatorių\nir spustelėkite Gerai, norėdami tęsti."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:40
+#: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Web Browser"
 msgstr "Nepavyko paleisti numatytosios saityno naršyklės"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:41
+#: dialogs/mime-settings/xfce-mime-helper-main.c:30
 msgid "Failed to execute default Mail Reader"
 msgstr "Nepavyko paleisti numatytosios pašto programos"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:42
+#: dialogs/mime-settings/xfce-mime-helper-main.c:31
 msgid "Failed to execute default File Manager"
 msgstr "Nepavyko paleisti numatytosios failų tvarkytuvės"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:43
+#: dialogs/mime-settings/xfce-mime-helper-main.c:32
 msgid "Failed to execute default Terminal Emulator"
 msgstr "Nepavyko paleisti numatytojo terminalo emuliatoriaus"
 
 #. Enable permanently dismissing this error.
-#: dialogs/mime-settings/xfce-mime-helper-main.c:85
+#: dialogs/mime-settings/xfce-mime-helper-main.c:74
 msgid "Do _not show this message again"
 msgstr "Daugiau _neberodyti šio pranešimo"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:115
+#: dialogs/mime-settings/xfce-mime-helper-main.c:105
 msgid "Print version information and exit"
 msgstr "Parodyti versiją ir išeiti"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:116
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr "Paleisti numatytąjį TIPO pagelbiklį su nebūtinu PARAMETRU, TIPAS gali būti viena iš šių reikšmių."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:116
-#: dialogs/mime-settings/xfce-mime-helper-main.c:117
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid "TYPE [PARAMETER]"
 msgstr "TIPAS [PARAMETRAS]"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:117
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr "Užklausti numatytąjį TIPO pagelbiklį, kuriame TIPAS yra viena iš šių reikšmių."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:147
+#: dialogs/mime-settings/xfce-mime-helper-main.c:137
 msgid ""
 "The following TYPEs are supported for the --launch and --query commands:\n"
 "\n"
@@ -1781,13 +1785,13 @@ msgid ""
 "  TerminalEmulator - The preferred Terminal Emulator."
 msgstr "Komandoms --launch ir --query yra palaikomi šie TIPAI:\n\n  WebBrowser       - Pageidaujama saityno naršyklė.\n  MailReader       - Pageidaujama pašto programa.\n  FileManager      - Pageidaujama failų tvarkytuvė.\n  TerminalEmulator - Pageidaujamas terminalo emuliatorius."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:182
-#: dialogs/mime-settings/xfce-mime-helper-main.c:255
+#: dialogs/mime-settings/xfce-mime-helper-main.c:174
+#: dialogs/mime-settings/xfce-mime-helper-main.c:247
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "Netinkamas pagelbiklio tipas „%s“"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:239
+#: dialogs/mime-settings/xfce-mime-helper-main.c:231
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -1802,124 +1806,124 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nAutorinės teisės (c) 2003-2006\n        os-cillation e.K. Visos teisės saugomos.\n\nSukūrė Benedikt Meurer <benny@xfce.org>.\n\nSukompiliuota su Gtk+-%d.%d.%d, veikia Gtk+-%d.%d.%d.\n\nApie klaidas praneškite <%s>.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:265
+#: dialogs/mime-settings/xfce-mime-helper-main.c:257
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Nėra apibrėžta jokio pagelbiklio, skirto „%s“."
 
-#: dialogs/mime-settings/xfce-mime-helper.c:452
+#: dialogs/mime-settings/xfce-mime-helper.c:432
 msgid "No command specified"
 msgstr "Nenurodyta komanda"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:830
-#: dialogs/mime-settings/xfce-mime-helper.c:869
-#: dialogs/mime-settings/xfce-mime-helper.c:966
-#: dialogs/mime-settings/xfce-mime-helper.c:1005
+#: dialogs/mime-settings/xfce-mime-helper.c:812
+#: dialogs/mime-settings/xfce-mime-helper.c:851
+#: dialogs/mime-settings/xfce-mime-helper.c:948
+#: dialogs/mime-settings/xfce-mime-helper.c:987
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Nepavyko atverti %s rašymui"
 
-#: dialogs/mime-settings/xfce-mime-window.c:186
+#: dialogs/mime-settings/xfce-mime-window.c:192
 #: dialogs/mime-settings/xfce4-mime-settings.desktop.in:4
 msgid "Default Applications"
 msgstr "Numatytosios programos"
 
 #. Internet
-#: dialogs/mime-settings/xfce-mime-window.c:212
+#: dialogs/mime-settings/xfce-mime-window.c:215
 msgid "_Internet"
 msgstr "_Internetas"
 
-#: dialogs/mime-settings/xfce-mime-window.c:225
+#: dialogs/mime-settings/xfce-mime-window.c:228
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
 msgid "Web Browser"
 msgstr "Saityno naršyklė"
 
-#: dialogs/mime-settings/xfce-mime-window.c:233
+#: dialogs/mime-settings/xfce-mime-window.c:236
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr "Numatytoji saityno naršyklė bus naudojama nuorodų atvėrimui ir žinyno turiniui rodyti."
 
-#: dialogs/mime-settings/xfce-mime-window.c:251
+#: dialogs/mime-settings/xfce-mime-window.c:254
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
 msgid "Mail Reader"
 msgstr "Pašto programa"
 
-#: dialogs/mime-settings/xfce-mime-window.c:259
+#: dialogs/mime-settings/xfce-mime-window.c:262
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr "Numatytoji pašto programa, jums spustelėjus ant el. pašto adreso, bus naudojama el. laiškams rašyti."
 
 #. Utilities
-#: dialogs/mime-settings/xfce-mime-window.c:273
+#: dialogs/mime-settings/xfce-mime-window.c:276
 msgid "_Utilities"
 msgstr "_Reikmenys"
 
-#: dialogs/mime-settings/xfce-mime-window.c:286
+#: dialogs/mime-settings/xfce-mime-window.c:289
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
 msgid "File Manager"
 msgstr "Failų tvarkytuvė"
 
-#: dialogs/mime-settings/xfce-mime-window.c:294
+#: dialogs/mime-settings/xfce-mime-window.c:297
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr "Numatytoji failų tvarkytuvė bus naudojama aplankų turiniui naršyti."
 
-#: dialogs/mime-settings/xfce-mime-window.c:312
+#: dialogs/mime-settings/xfce-mime-window.c:315
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
 msgid "Terminal Emulator"
 msgstr "Terminalo emuliatorius"
 
-#: dialogs/mime-settings/xfce-mime-window.c:320
+#: dialogs/mime-settings/xfce-mime-window.c:323
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr "Numatytasis terminalo emuliatorius bus naudojamas komandų, kurioms reikia komandų eilutės aplinkos, vykdymui."
 
 #. Mimes
-#: dialogs/mime-settings/xfce-mime-window.c:334
+#: dialogs/mime-settings/xfce-mime-window.c:337
 msgid "_Others"
 msgstr "_Kiti"
 
-#: dialogs/mime-settings/xfce-mime-window.c:344
+#: dialogs/mime-settings/xfce-mime-window.c:347
 msgid "_Filter:"
 msgstr "_Filtras:"
 
-#: dialogs/mime-settings/xfce-mime-window.c:352
+#: dialogs/mime-settings/xfce-mime-window.c:355
 msgid "Clear filter"
 msgstr "Išvalyti filtrą"
 
-#: dialogs/mime-settings/xfce-mime-window.c:382
+#: dialogs/mime-settings/xfce-mime-window.c:385
 msgid "Open with..."
 msgstr "Atverti naudojant..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:431
+#: dialogs/mime-settings/xfce-mime-window.c:434
 msgid "MIME Type"
 msgstr "MIME tipas"
 
-#: dialogs/mime-settings/xfce-mime-window.c:459
+#: dialogs/mime-settings/xfce-mime-window.c:462
 msgid "Status"
 msgstr "Būsena"
 
-#: dialogs/mime-settings/xfce-mime-window.c:479
+#: dialogs/mime-settings/xfce-mime-window.c:482
 msgid "Default Application"
 msgstr "Numatytoji programa"
 
-#: dialogs/mime-settings/xfce-mime-window.c:654
-#: dialogs/mime-settings/xfce-mime-window.c:820
+#: dialogs/mime-settings/xfce-mime-window.c:658
+#: dialogs/mime-settings/xfce-mime-window.c:825
 msgid "User Set"
 msgstr "Naudotojo nustatyta"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:656
-#: dialogs/mime-settings/xfce-mime-window.c:820
-#: dialogs/mouse-settings/main.c:420 dialogs/mouse-settings/main.c:422
-#: dialogs/mouse-settings/main.c:485
+#: dialogs/mime-settings/xfce-mime-window.c:660
+#: dialogs/mime-settings/xfce-mime-window.c:825
+#: dialogs/mouse-settings/main.c:413 dialogs/mouse-settings/main.c:415
+#: dialogs/mouse-settings/main.c:478
 msgid "Default"
 msgstr "Numatyta"
 
-#: dialogs/mime-settings/xfce-mime-window.c:744
+#: dialogs/mime-settings/xfce-mime-window.c:748
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
@@ -1928,12 +1932,12 @@ msgstr[1] "Rasti %d MIME tipai"
 msgstr[2] "Rasta %d MIME tipų"
 msgstr[3] "Rasta %d MIME tipų"
 
-#: dialogs/mime-settings/xfce-mime-window.c:865
+#: dialogs/mime-settings/xfce-mime-window.c:870
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Nepavyko nustatyti programą „%s“ mime tipui „%s“."
 
-#: dialogs/mime-settings/xfce-mime-window.c:973
+#: dialogs/mime-settings/xfce-mime-window.c:978
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
@@ -1942,27 +1946,27 @@ msgstr[1] "Pažymėti %d MIME tipai"
 msgstr[2] "Pažymėta %d MIME tipų"
 msgstr[3] "Pažymėtas %d MIME tipas"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1169
-#, c-format
-msgid "Are you sure you want to reset content type \"%s\" to its default value?"
-msgstr "Ar tikrai norite atstatyti turinio tipą „%s“ į jo numatytąją reikšmę?"
-
-#: dialogs/mime-settings/xfce-mime-window.c:1173
-msgid "Question"
-msgstr "Klausimas"
-
-#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1174
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Bus pašalinti jūsų tinkinti mime susiejimai ir atkurti sistemos numatytieji."
 
+#: dialogs/mime-settings/xfce-mime-window.c:1176
+#, c-format
+msgid "Are you sure you want to reset content type \"%s\" to its default value?"
+msgstr "Ar tikrai norite atstatyti turinio tipą „%s“ į jo numatytąją reikšmę?"
+
 #: dialogs/mime-settings/xfce-mime-window.c:1180
-#: dialogs/mime-settings/xfce-mime-window.c:1251
+msgid "Question"
+msgstr "Klausimas"
+
+#: dialogs/mime-settings/xfce-mime-window.c:1182
+#: dialogs/mime-settings/xfce-mime-window.c:1254
 msgid "Reset to Default"
 msgstr "Atstatyti numatytuosius"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1246
+#: dialogs/mime-settings/xfce-mime-window.c:1249
 msgid "Choose Application..."
 msgstr "Pasirinkite programą..."
 
@@ -2212,28 +2216,28 @@ msgstr "Xfe failų tvarkytuvė"
 msgid "X Terminal"
 msgstr "X Terminalas"
 
-#: dialogs/mouse-settings/main.c:93
+#: dialogs/mouse-settings/main.c:85
 msgid "Active device in the dialog"
 msgstr "Aktyvus įrenginys dialoge"
 
-#: dialogs/mouse-settings/main.c:93
+#: dialogs/mouse-settings/main.c:85
 msgid "DEVICE NAME"
 msgstr "ĮRENGINIO PAVADINIMAS"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:173
+#: dialogs/mouse-settings/main.c:167
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:183
+#: dialogs/mouse-settings/main.c:177
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:194
+#: dialogs/mouse-settings/main.c:188
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f sek."
@@ -2495,196 +2499,196 @@ msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "nustatymai;nuostatos;mygtukai;slinkti;slinkimo;kryptis;rodyklė;rodykle;žymeklis;zymeklis;greitis;dvikartis spustelėjimas;dvikartis spustelejimas;dvikartis spragtelėjimas;dvigubas;spustelėjimas;spragtelėjimas;spustelejimas;spragtelejimas;ratukas;ratas;tema;apipavidalinimas;pelės ratukas;peles ratukas;"
 
-#: xfce4-settings-editor/main.c:188
+#: xfce4-settings-editor/main.c:182
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
 msgid "Settings Editor"
 msgstr "Nustatymų redaktorius"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:267
+#: xfce4-settings-editor/xfce-settings-editor-box.c:277
 msgid "Channel"
 msgstr "Kanalas"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:317
+#: xfce4-settings-editor/xfce-settings-editor-box.c:327
 msgid "Property"
 msgstr "Savybė"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:325
+#: xfce4-settings-editor/xfce-settings-editor-box.c:335
 msgid "Type"
 msgstr "Tipas"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:332
+#: xfce4-settings-editor/xfce-settings-editor-box.c:342
 msgid "Locked"
 msgstr "Užrakinta"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:339
+#: xfce4-settings-editor/xfce-settings-editor-box.c:349
 msgid "Value"
 msgstr "Reikšmė"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:359
+#: xfce4-settings-editor/xfce-settings-editor-box.c:369
 msgid "New property"
 msgstr "Nauja savybė"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:372
+#: xfce4-settings-editor/xfce-settings-editor-box.c:382
 msgid "Edit selected property"
 msgstr "Taisyti pasirinktą savybę"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:380
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1070
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1576
+#: xfce4-settings-editor/xfce-settings-editor-box.c:390
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1076
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1578
 msgid "_Reset"
 msgstr "A_tstatyti"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:385
+#: xfce4-settings-editor/xfce-settings-editor-box.c:395
 msgid "Reset selected property"
 msgstr "Atstatyti pasirinktą savybę"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:492
-#: xfce4-settings-editor/xfce-settings-editor-box.c:585
-#: xfce4-settings-editor/xfce-settings-editor-box.c:704
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:89
+#: xfce4-settings-editor/xfce-settings-editor-box.c:501
+#: xfce4-settings-editor/xfce-settings-editor-box.c:594
+#: xfce4-settings-editor/xfce-settings-editor-box.c:712
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:83
 msgid "Empty"
 msgstr "Tuščia"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:495
+#: xfce4-settings-editor/xfce-settings-editor-box.c:504
 msgid "Array"
 msgstr "Masyvas"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:500
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+#: xfce4-settings-editor/xfce-settings-editor-box.c:509
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:84
 msgid "String"
 msgstr "Eilutė"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:508
+#: xfce4-settings-editor/xfce-settings-editor-box.c:517
 msgid "Integer"
 msgstr "Skaičius"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:511
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+#: xfce4-settings-editor/xfce-settings-editor-box.c:520
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:85
 msgid "Boolean"
 msgstr "Loginė reikšmė"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:514
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+#: xfce4-settings-editor/xfce-settings-editor-box.c:523
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:87
 msgid "Double"
 msgstr "Dviguba"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:851
-msgid "_Reset Channel"
-msgstr "_Atstatyti kanalą"
-
-#: xfce4-settings-editor/xfce-settings-editor-box.c:852
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Atstačius kanalą bus prarasti visi pasirinktiniai nustatymai."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:853
+#: xfce4-settings-editor/xfce-settings-editor-box.c:859
+msgid "_Reset Channel"
+msgstr "_Atstatyti kanalą"
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:860
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Ar tikrai norite atstatyti „%s“ kanalą ir visas jo savybes?"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:928
+#: xfce4-settings-editor/xfce-settings-editor-box.c:935
 msgid "reset"
 msgstr "atstatyti"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:985
+#: xfce4-settings-editor/xfce-settings-editor-box.c:992
 #, c-format
 msgid "Monitor %s"
 msgstr "Stebėti %s"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:993
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
 msgid "Clear"
 msgstr "Išvalyti"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:994
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
 msgid "Close"
 msgstr "Užverti"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1027
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1033
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "pradėti stebėti kanalą „%s“"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1076
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1082
 msgid "_Monitor"
 msgstr "_Stebėti"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1086
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1092
 msgid "Refresh"
 msgstr "Įkelti iš naujo"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1577
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1575
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Atstačius savybę bus prarasti visi pasirinktiniai nustatymai."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1578
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1579
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Ar tikrai norite atstatyti savybę „%s“?"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
 msgid "Int"
 msgstr "Int"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:88
 msgid "Unsigned Int"
 msgstr "Unsigned Int"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Int64"
 msgstr "Int64"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Unsigned Int64"
 msgstr "Unsigned Int64"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:141
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:135
 msgid "New Property"
 msgstr "Nauja savybė"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:145
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Save"
 msgstr "Įrašyti"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:160
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:153
 msgid "_Property:"
 msgstr "_Savybė:"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:174
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:167
 msgid "_Type:"
 msgstr "_Tipas:"
 
 #. strings
 #. integers
 #. bool
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:203
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:213
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:224
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:196
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:206
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:217
 msgid "_Value:"
 msgstr "_Reikšmė:"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:381
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:372
 msgid "Property names must start with a '/' character"
 msgstr "Savybės vardas turi prasidėti simboliu '/'"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:392
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:383
 msgid "The root element ('/') is not a valid property name"
 msgstr "Šakninis elementas ('/') nėra tinkamas savybės vardas"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:409
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:400
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
 msgstr "Savybių pavadinimuose gali būti tik ASCII simboliai A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', taipogi '/' kaip skirtukas"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:423
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:414
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Savybių vardai negali turėti kelių iš eilės einančių '/' simbolių"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:437
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:428
 msgid "Property names cannot end with a '/' character"
 msgstr "Savybių vardai negali baigtis simboliu '/'"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:650
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:641
 msgid "Edit Property"
 msgstr "Taisyti savybę"
 
@@ -2696,20 +2700,20 @@ msgstr "Grafinis nustatymų redaktorius skirtas Xfconf"
 msgid "registry;regedit;configuration file;"
 msgstr "registras;regedit;konfigūracijos failas;konfiguracijos failas;"
 
-#: xfce4-settings-manager/main.c:45
+#: xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Nustatymų dialogas, kurį rodyti"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:228
 msgid "All _Settings"
 msgstr "Visi _nustatymai"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:428
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:427
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:927
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:939
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:925
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:937
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nepavyko paleisti „%s“"
@@ -2726,61 +2730,61 @@ msgstr "Xfce grafinė nustatymų tvarkytuvė"
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr "valdymo;skydas;skydelis;centras;sistema;sistemos;nustatymai;nuostatos;personalizuoti;asmeninti;aparatinė įranga;aparatine iranga;"
 
-#: xfsettingsd/accessibility.c:412
+#: xfsettingsd/accessibility.c:413
 msgid "Sticky keys are enabled"
 msgstr "Atmenieji klavišai įjungti"
 
-#: xfsettingsd/accessibility.c:414
+#: xfsettingsd/accessibility.c:415
 msgid "Sticky keys are disabled"
 msgstr "Atmenieji klavišai išjungti"
 
-#: xfsettingsd/accessibility.c:416
+#: xfsettingsd/accessibility.c:417
 msgid "Sticky keys"
 msgstr "Atmenieji klavišai"
 
-#: xfsettingsd/accessibility.c:421
+#: xfsettingsd/accessibility.c:422
 msgid "Slow keys are enabled"
 msgstr "Lėtieji klavišai įjungti"
 
-#: xfsettingsd/accessibility.c:423
+#: xfsettingsd/accessibility.c:424
 msgid "Slow keys are disabled"
 msgstr "Lėtieji klavišai išjungti"
 
-#: xfsettingsd/accessibility.c:425
+#: xfsettingsd/accessibility.c:426
 msgid "Slow keys"
 msgstr "Lėtieji klavišai"
 
-#: xfsettingsd/accessibility.c:430
+#: xfsettingsd/accessibility.c:431
 msgid "Bounce keys are enabled"
 msgstr "Pasikartojantys klavišai įjungti"
 
-#: xfsettingsd/accessibility.c:432
+#: xfsettingsd/accessibility.c:433
 msgid "Bounce keys are disabled"
 msgstr "Pasikartojantys klavišai išjungti"
 
-#: xfsettingsd/accessibility.c:434
+#: xfsettingsd/accessibility.c:435
 msgid "Bounce keys"
 msgstr "Pasikartojantys klavišai"
 
-#: xfsettingsd/keyboard-shortcuts.c:242
+#: xfsettingsd/keyboard-shortcuts.c:240
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Nepavyko paleisti susiejimo „%s“"
 
-#: xfsettingsd/main.c:107
+#: xfsettingsd/main.c:94
 msgid "Fork to the background"
 msgstr "Prijungti prie fono"
 
-#: xfsettingsd/main.c:108
+#: xfsettingsd/main.c:95
 msgid "Do not wait for a window manager on startup"
 msgstr "Paleidžiant, nelaukti langų tvarkytuvės"
 
-#: xfsettingsd/main.c:109
+#: xfsettingsd/main.c:96
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Pakeisti vykdomą xsettings tarnybą (jei tokia yra)"
 
 #. value in xfconf isn't a string, so make a default one
-#: xfsettingsd/workspaces.c:320 xfsettingsd/workspaces.c:377
+#: xfsettingsd/workspaces.c:322 xfsettingsd/workspaces.c:379
 #, c-format
 msgid "Workspace %d"
 msgstr "Darbo sritis %d"
