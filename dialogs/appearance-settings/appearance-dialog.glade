@@ -178,19 +178,13 @@
                     <property name="vexpand">True</property>
                     <property name="shadow_type">etched-in</property>
                     <child>
-                      <object class="GtkViewport">
+                      <object class="GtkTreeView" id="gtk_theme_treeview">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkTreeView" id="gtk_theme_treeview">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="headers_visible">False</property>
-                            <property name="show_expanders">False</property>
-                            <child internal-child="selection">
-                              <object class="GtkTreeSelection" id="treeview-selection1"/>
-                            </child>
-                          </object>
+                        <property name="can_focus">True</property>
+                        <property name="headers_visible">False</property>
+                        <property name="show_expanders">False</property>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection" id="treeview-selection1"/>
                         </child>
                       </object>
                     </child>
