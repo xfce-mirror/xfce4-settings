@@ -663,11 +663,23 @@ appearance_settings_load_ui_themes (gpointer user_data)
                 theme_name_markup = g_strdup_printf ("<b>%s</b>\nGtk3", theme_name);
 
                 if (has_gtk2)
-                    theme_name_markup = g_strconcat (theme_name_markup, ", Gtk2", NULL);
+                {
+                    gchar *temp = g_strconcat (theme_name_markup, ", Gtk2", NULL);
+                    g_free (theme_name_markup);
+                    theme_name_markup = temp;
+                }
                 if (has_xfwm4)
-                    theme_name_markup = g_strconcat (theme_name_markup, ", Xfwm4", NULL);
+                {
+                    gchar *temp = g_strconcat (theme_name_markup, ", Xfwm4", NULL);
+                    g_free (theme_name_markup);
+                    theme_name_markup = temp;
+                }
                 if (has_notifyd)
-                    theme_name_markup = g_strconcat (theme_name_markup, ", Xfce4-notifyd", NULL);
+                {
+                    gchar *temp = g_strconcat (theme_name_markup, ", Xfce4-notifyd", NULL);
+                    g_free (theme_name_markup);
+                    theme_name_markup = temp;
+                }
 
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
