@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-09-02 00:49+0200\n"
+"POT-Creation-Date: 2024-09-04 12:50+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2018,2024\n"
 "Language-Team: Hungarian (http://app.transifex.com/xfce/xfce4-settings/language/hu/)\n"
@@ -320,7 +320,7 @@ msgid "Version information"
 msgstr "Verzióinformációk"
 
 #: dialogs/accessibility-settings/main.c:193
-#: dialogs/appearance-settings/main.c:1426 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:1690 dialogs/color-settings/main.c:1463
 #: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:148
@@ -332,7 +332,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Segítségért adja ki az „%s --help” parancsot."
 
 #: dialogs/accessibility-settings/main.c:212
-#: dialogs/appearance-settings/main.c:1445 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:1709 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
@@ -341,7 +341,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Az Xfce fejlesztőcsapata. Minden jog fenntartva."
 
 #: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1446 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:1710 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
@@ -361,7 +361,7 @@ msgid ""
 msgstr "segítő;technológiák;kulcsok;ragadás;ugrálás;emuláció;képernyőolvasók;nagyítók;a11y;akadálymentesítés;i18n;nemzetköziesítés;AT-SPI;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1333 dialogs/display-settings/main.c:86
+#: dialogs/appearance-settings/main.c:1597 dialogs/display-settings/main.c:86
 #: dialogs/display-settings/main.c:94
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -408,8 +408,8 @@ msgstr "2x"
 msgid "Appearance"
 msgstr "Megjelenés"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:211
-#: dialogs/appearance-settings/appearance-dialog.glade:321
+#: dialogs/appearance-settings/appearance-dialog.glade:205
+#: dialogs/appearance-settings/appearance-dialog.glade:315
 #: dialogs/color-settings/color-dialog.glade:374
 #: dialogs/keyboard-settings/keyboard-dialog.glade:636
 #: dialogs/keyboard-settings/keyboard-dialog.glade:970
@@ -417,234 +417,234 @@ msgstr "Megjelenés"
 msgid "_Add"
 msgstr "_Hozzáadás"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:244
+#: dialogs/appearance-settings/appearance-dialog.glade:238
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
 msgstr "Megfelelő <a href=\"xfwm4-settings:\">Xfwm4 téma</a> beállítása, ha van olyan"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:278
+#: dialogs/appearance-settings/appearance-dialog.glade:272
 msgid "St_yle"
 msgstr "Stíl_us"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:354
+#: dialogs/appearance-settings/appearance-dialog.glade:348
 msgid "_Icons"
 msgstr "I_konok"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:394
+#: dialogs/appearance-settings/appearance-dialog.glade:388
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "Ez a betűkészlet lesz az alapértelmezett a felhasználói felület szövegének rajzolásakor"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:396
+#: dialogs/appearance-settings/appearance-dialog.glade:390
 msgid "Select a default font"
 msgstr "Válasszon alapértelmezett betűkészletet"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:405
+#: dialogs/appearance-settings/appearance-dialog.glade:399
 msgid "Default Fon_t"
 msgstr "_Alapértelmezett betűkészlet"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:437
+#: dialogs/appearance-settings/appearance-dialog.glade:431
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr "Ez lesz az alapértelmezett fix-szélességű betűtípus, pl. a terminál emulátorokban."
 
-#: dialogs/appearance-settings/appearance-dialog.glade:439
+#: dialogs/appearance-settings/appearance-dialog.glade:433
 msgid "Select a default monospace font"
 msgstr "Válassza ki az alapértelmezett fix szélességű betűkészletet"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:448
+#: dialogs/appearance-settings/appearance-dialog.glade:442
 msgid "Default _Monospace Font"
 msgstr "Alapértelmezett _fix-szélességű betűtípus"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:483
+#: dialogs/appearance-settings/appearance-dialog.glade:477
 msgid "_Enable anti-aliasing"
 msgstr "Élsi_mítás engedélyezése"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:487
+#: dialogs/appearance-settings/appearance-dialog.glade:481
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Az élsimítás javíthatja a képernyőn látható szöveg megjelenését"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:515
+#: dialogs/appearance-settings/appearance-dialog.glade:509
 msgid "Hintin_g:"
 msgstr "_Hinting:"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:527
+#: dialogs/appearance-settings/appearance-dialog.glade:521
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Számos betűkészlet információkat tartalmaz, amelyek a betűkészlet legjobb kirajzolásához további tanácsokat adnak; válassza ki a beállított betűkészlettel a legszebb eredményt adó lehetőséget"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:547
+#: dialogs/appearance-settings/appearance-dialog.glade:541
 msgid "Sub-_pixel order:"
 msgstr "Képp_onton belüli sorrend:"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:559
+#: dialogs/appearance-settings/appearance-dialog.glade:553
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "A TFT vagy LCD képernyőn megjelenő betűkészletek minősége jelentősen javítható a képernyő megfelelő képponton belüli sorrendjének kiválasztásával"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:597
+#: dialogs/appearance-settings/appearance-dialog.glade:591
 msgid "Rendering"
 msgstr "Megjelenítés"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:629
+#: dialogs/appearance-settings/appearance-dialog.glade:623
 msgid "Custom _DPI setting:"
 msgstr "Egyéni _DPI beállítás:"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:633
+#: dialogs/appearance-settings/appearance-dialog.glade:627
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Az észlelt monitorfelbontás felülbírálása, ha a betűk túl nagynak vagy túl kicsinek tűnnek"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:670
+#: dialogs/appearance-settings/appearance-dialog.glade:664
 msgid "DPI"
 msgstr "DPI"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:696
+#: dialogs/appearance-settings/appearance-dialog.glade:690
 msgid "_Fonts"
 msgstr "Betűkés_zletek"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:739
+#: dialogs/appearance-settings/appearance-dialog.glade:733
 msgid "Show images on _buttons"
 msgstr "Képek megjelenítése a _gombokon"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:743
+#: dialogs/appearance-settings/appearance-dialog.glade:737
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Adja meg, hogy megjelenjenek-e ikonok a gombokon a szöveg mellett"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:756
+#: dialogs/appearance-settings/appearance-dialog.glade:750
 msgid "Show images in _menus"
 msgstr "Képek megjelenítése a _menükben"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:760
+#: dialogs/appearance-settings/appearance-dialog.glade:754
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Megjelenjenek-e ikonok a menüelemek mellett"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:773
+#: dialogs/appearance-settings/appearance-dialog.glade:767
 msgid "Enable e_ditable accelerators"
 msgstr "Szerkeszthető gy_orsbillentyűk engedélyezése"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:777
+#: dialogs/appearance-settings/appearance-dialog.glade:771
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "A menüelemek gyorsbillentyűi módosíthatók az egérrel a menüre mutatva és az új gyorsbillentyű-kombináció lenyomásával"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:790
+#: dialogs/appearance-settings/appearance-dialog.glade:784
 msgid "Enable header bars in dialo_gs"
 msgstr "Címsávok bekapcsolása a párbeszédablakokon"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:794
+#: dialogs/appearance-settings/appearance-dialog.glade:788
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr "Meghatározza, hogy a GTK párbeszédablakok helyezhetnek-e el felületi elemeket, például gombokat, a párbeszédablak címsorában. Ez kliensoldali dekorációt feltételez. Csak az újonnan megnyitott párbeszédablakokat érinti."
 
-#: dialogs/appearance-settings/appearance-dialog.glade:813
+#: dialogs/appearance-settings/appearance-dialog.glade:807
 msgid "Menus and Buttons"
 msgstr "Menük és gombok"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:845
+#: dialogs/appearance-settings/appearance-dialog.glade:839
 msgid "Enable _event sounds"
 msgstr "Esemény_hangok engedélyezése"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:849
+#: dialogs/appearance-settings/appearance-dialog.glade:843
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Eseményhangok globális engedélyezése vagy letiltása („Canberra” támogatást igényel)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:862
+#: dialogs/appearance-settings/appearance-dialog.glade:856
 msgid "Enable input feedbac_k sounds"
 msgstr "Be_vitelt visszajelző hangok engedélyezése"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:866
+#: dialogs/appearance-settings/appearance-dialog.glade:860
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Adja meg, hogy egérkattintás és más felhasználói bevitel hatására hallatsszanak-e eseményhangok"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:885
+#: dialogs/appearance-settings/appearance-dialog.glade:879
 msgid "Event sounds"
 msgstr "Eseményhangok"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:914
+#: dialogs/appearance-settings/appearance-dialog.glade:908
 msgid "Adjust the system-wide display scaling"
 msgstr "A rendszerszintű képernyő-méretezés állítása"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:932
+#: dialogs/appearance-settings/appearance-dialog.glade:926
 msgid "_Window Scaling"
 msgstr "_Ablakméretezés"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:960
+#: dialogs/appearance-settings/appearance-dialog.glade:954
 msgid "Setti_ngs"
 msgstr "Beállítások"
 
-#: dialogs/appearance-settings/main.c:231
+#: dialogs/appearance-settings/main.c:335
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Nem sikerült az Xfwm4 beállítások megjelenítése"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:498
+#: dialogs/appearance-settings/main.c:629
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
-"<i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."
-msgstr "Figyelmeztetés: ez az ikontéma nem rendelkezik gyorsítótárfájllal. Ezt létrehozhatja a <i>gtk-update-icon-cache -f -t %s/%s/</i> parancs egy terminálemulátorban való futtatásával"
+"<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
+msgstr ""
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:505
+#: dialogs/appearance-settings/main.c:636
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Figyelmeztetés: ez az ikontéma nem teljes. Egyes ikonok hiányozni fognak."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:510
+#: dialogs/appearance-settings/main.c:641
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Figyelmeztetés: ez az ikontéma nem teljes. Csak egy alap ikonkészletet biztosít, melyet más témák megörökölhetnek."
 
-#: dialogs/appearance-settings/main.c:985
+#: dialogs/appearance-settings/main.c:1248
 msgid "File is too large, installation aborted"
 msgstr "A fájl túl nagy, a telepítés megszakítva"
 
-#: dialogs/appearance-settings/main.c:990
+#: dialogs/appearance-settings/main.c:1253
 msgid "Failed to create temporary directory"
 msgstr "Az átmeneti könyvtár létrehozása sikertelen"
 
-#: dialogs/appearance-settings/main.c:995
+#: dialogs/appearance-settings/main.c:1258
 msgid "Failed to extract archive"
 msgstr "Az archívum kibontása sikertelen"
 
-#: dialogs/appearance-settings/main.c:1000
+#: dialogs/appearance-settings/main.c:1263
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Ismeretlen formátum, csak archívumok és könyvtárak támogatottak"
 
-#: dialogs/appearance-settings/main.c:1005
+#: dialogs/appearance-settings/main.c:1268
 msgid "Not a valid theme package"
 msgstr "Nem érvényes témacsomag"
 
-#: dialogs/appearance-settings/main.c:1010
+#: dialogs/appearance-settings/main.c:1273
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Ismeretlen hiba történt, a kilépési kód: %d"
 
-#: dialogs/appearance-settings/main.c:1017
+#: dialogs/appearance-settings/main.c:1280
 msgid "Failed to install theme"
 msgstr "A téma telepítése sikertelen"
 
-#: dialogs/appearance-settings/main.c:1071
+#: dialogs/appearance-settings/main.c:1334
 #, c-format
 msgid "Install %s theme"
 msgstr "%s téma telepítése"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1073
+#: dialogs/appearance-settings/main.c:1336
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:127
 #: dialogs/keyboard-settings/command-dialog.c:113
@@ -656,25 +656,25 @@ msgstr "%s téma telepítése"
 msgid "_Cancel"
 msgstr "Mé_gse"
 
-#: dialogs/appearance-settings/main.c:1074
+#: dialogs/appearance-settings/main.c:1337
 #: dialogs/keyboard-settings/command-dialog.c:276
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Megnyitás"
 
-#: dialogs/appearance-settings/main.c:1337
+#: dialogs/appearance-settings/main.c:1601
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1341
+#: dialogs/appearance-settings/main.c:1605
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1345
+#: dialogs/appearance-settings/main.c:1609
 msgid "Vertical RGB"
 msgstr "Függőleges RGB"
 
-#: dialogs/appearance-settings/main.c:1349
+#: dialogs/appearance-settings/main.c:1613
 msgid "Vertical BGR"
 msgstr "Függőleges BGR"
 
