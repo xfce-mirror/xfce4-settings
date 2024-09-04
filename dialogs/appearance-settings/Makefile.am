@@ -15,6 +15,7 @@ xfce4_appearance_settings_SOURCES = \
 	appearance-dialog_ui.h
 
 xfce4_appearance_settings_CFLAGS = \
+	$(GTHREAD_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
@@ -31,6 +32,7 @@ xfce4_appearance_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_appearance_settings_LDADD = \
+	$(GTHREAD_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS)
