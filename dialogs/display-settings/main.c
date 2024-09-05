@@ -1736,7 +1736,7 @@ display_settings_primary_status_info_populate (GtkBuilder *builder)
     widget = gtk_builder_get_object (builder, "panel-ok");
     gtk_widget_hide (GTK_WIDGET (widget));
     widget = gtk_builder_get_object (builder, "panel-label");
-    gtk_label_set_text (GTK_LABEL (widget), "Xfce Panel");
+    gtk_label_set_text (GTK_LABEL (widget), _("Xfce Panel"));
     channel = xfconf_channel_get ("xfce4-panel");
     panel_ids = xfconf_channel_get_arrayv (channel, "/panels");
     if (panel_ids != NULL)
