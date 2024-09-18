@@ -699,6 +699,7 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   relation = atk_relation_new (&object, 1, ATK_RELATION_POPUP_FOR);
   atk_relation_set_add (relations, relation);
   g_object_unref (G_OBJECT (relation));
+  g_object_unref (relations);
 
   scale_factor = gtk_widget_get_scale_factor (button);
 
