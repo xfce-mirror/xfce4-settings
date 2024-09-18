@@ -32,6 +32,7 @@
 #include <gtk/gtkx.h>
 #include <libxfce4kbd-private/xfce-shortcut-dialog.h>
 #include <libxfce4kbd-private/xfce-shortcuts-provider.h>
+#include <libxfce4kbd-private/xfce-shortcuts.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <xfconf/xfconf.h>
 
