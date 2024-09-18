@@ -264,7 +264,9 @@ main (int argc,
     {
       result = EXIT_FAILURE;
 
-      g_printerr ("%s", g_option_context_get_help (opt_ctx, FALSE, NULL));
+      gchar *help_text = g_option_context_get_help (opt_ctx, FALSE, NULL);
+      g_printerr ("%s", help_text);
+      g_free (help_text);
     }
 
   g_option_context_free (opt_ctx);
