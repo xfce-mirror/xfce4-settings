@@ -189,7 +189,6 @@ static XfceMimeHelper *
 xfce_mime_helper_new (const gchar *id,
                       XfceRc *rc)
 {
-  const gchar *commands_with_flag;
   const gchar *commands_with_parameter;
   const gchar *commands;
   const gchar *str;
@@ -234,8 +233,6 @@ xfce_mime_helper_new (const gchar *id,
   if (G_UNLIKELY (commands == NULL))
     goto failed;
 
-  commands_with_flag = xfce_str_replace (commands, ";", " %s;");
-
   /* determine the commands (with parameter) */
   commands_with_parameter = xfce_rc_read_entry_untranslated (rc, "X-XFCE-CommandsWithParameter", NULL);
   if (G_UNLIKELY (commands_with_parameter == NULL))
@@ -262,9 +259,13 @@ xfce_mime_helper_new (const gchar *id,
     }
 
   /* substitute the binary (if any) */
+  gchar *commands_with_flag = xfce_str_replace (commands, ";", " %s;");
+
   helper->commands = substitute_env (commands, commands_with_parameter, binary);
   helper->commands_with_flag = substitute_binary (commands_with_flag, binary);
   helper->commands_with_parameter = substitute_binary (commands_with_parameter, binary);
+
+  g_free (commands_with_flag);
   g_free (binary);
 
   /* verify that we have atleast one command */
