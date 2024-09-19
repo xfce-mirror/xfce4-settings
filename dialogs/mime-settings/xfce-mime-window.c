@@ -908,6 +908,7 @@ xfce_mime_window_row_activated (GtkTreeView *tree_view,
       dialog = g_object_new (XFCE_TYPE_MIME_CHOOSER, NULL);
       gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
       xfce_mime_chooser_set_mime_type (XFCE_MIME_CHOOSER (dialog), mime_type, selected_row_count);
+      g_free (mime_type);
 
       if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_YES)
         {
