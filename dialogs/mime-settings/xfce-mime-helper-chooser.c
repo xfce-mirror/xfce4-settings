@@ -742,6 +742,7 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
       item = gtk_separator_menu_item_new ();
       gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
       gtk_widget_show (item);
+      g_list_free (helpers);
     }
 
   item = gtk_menu_item_new_with_mnemonic (_("_Other..."));
