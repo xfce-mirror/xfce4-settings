@@ -669,7 +669,7 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   GtkAllocation chooser_allocation;
 
   /* Catch button-release-event params and discard */
-  GdkEvent *event;
+  GdkEvent *event = NULL;
   gboolean handled;
 
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
