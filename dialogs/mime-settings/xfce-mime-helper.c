@@ -814,15 +814,15 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
     }
 
   /* save the new setting */
-  key = xfce_mime_helper_category_to_string (category);
-  xfce_rc_write_entry (rc, key, xfce_mime_helper_get_id (helper));
-  g_free (key);
+  gchar *category_str = xfce_mime_helper_category_to_string (category);
+  xfce_rc_write_entry (rc, category_str, xfce_mime_helper_get_id (helper));
 
   /* clear the dismissed preference */
-  key = g_strconcat (xfce_mime_helper_category_to_string (category), "Dismissed", NULL);
+  key = g_strconcat (category_str, "Dismissed", NULL);
   xfce_rc_delete_entry (rc, key, FALSE);
   xfce_rc_close (rc);
   g_free (key);
+  g_free (category_str);
 
   /* get the desktop filename */
   switch (category)
