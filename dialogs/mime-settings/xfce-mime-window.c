@@ -659,16 +659,18 @@ xfce_mime_window_mime_model (XfceMimeWindow *window)
       else
         status = _("Default");
 
+      GIcon *icon = g_content_type_get_icon (mime_type);
       gtk_list_store_insert_with_values (model, NULL, n++,
                                          COLUMN_MIME_TYPE, mime_type,
                                          COLUMN_MIME_DEFAULT, app_name,
                                          COLUMN_MIME_STATUS, status,
-                                         COLUMN_MIME_GICON, g_content_type_get_icon (mime_type),
+                                         COLUMN_MIME_GICON, icon,
                                          COLUMN_MIME_ATTRS,
                                          is_user_set ? window->attrs_bold : NULL,
                                          -1);
 
       g_free (mime_type);
+      g_object_unref (icon);
       if (G_LIKELY (app_default != NULL))
         g_object_unref (app_default);
     }
