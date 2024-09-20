@@ -183,6 +183,9 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         }
 #endif
     }
+
+    if (version)
+        XFree (version);
 }
 
 

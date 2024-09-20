@@ -2241,6 +2241,9 @@ main (gint argc,
         || !version->present)
     {
         g_critical ("XI is not present.");
+
+        if (version)
+            XFree (version);
         return EXIT_FAILURE;
     }
     else if (version->major_version < MIN_XI_VERS_MAJOR
@@ -2250,8 +2253,10 @@ main (gint argc,
         g_critical ("Your XI is too old (%d.%d) version %d.%d is required.",
                     version->major_version, version->minor_version,
                     MIN_XI_VERS_MAJOR, MIN_XI_VERS_MINOR);
+        XFree (version);
         return EXIT_FAILURE;
     }
+    XFree (version);
 
     /* hook to make sure the libxfce4ui library is linked */
     if (xfce_titled_dialog_get_type () == 0)
