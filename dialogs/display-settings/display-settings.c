@@ -243,7 +243,7 @@ xfce_display_settings_set_outputs (XfceDisplaySettings *settings)
 
     if (priv->outputs != NULL)
     {
-        g_list_free_full (priv->outputs, g_free);
+        g_list_free_full (priv->outputs, free_output);
         priv->outputs = NULL;
     }
 
