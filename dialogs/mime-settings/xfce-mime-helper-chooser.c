@@ -776,7 +776,7 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   if (event == NULL)
     event = gdk_event_new (GDK_BUTTON_RELEASE);
 
-  g_signal_emit_by_name (button, "button-release-event", &event, &handled);
+  g_signal_emit_by_name (button, "button-release-event", event, &handled);
   gdk_event_free (event);
 
   g_object_unref (G_OBJECT (menu));
