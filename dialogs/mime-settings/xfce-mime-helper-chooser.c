@@ -51,7 +51,7 @@ xfce_mime_helper_chooser_set_property (GObject *object,
 static void
 xfce_mime_helper_chooser_update (XfceMimeHelperChooser *chooser);
 static void
-xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
+xfce_mime_helper_chooser_toggled (XfceMimeHelperChooser *chooser,
                                   GtkWidget *button);
 
 
@@ -136,8 +136,8 @@ xfce_mime_helper_chooser_init (XfceMimeHelperChooser *chooser)
 
   /*gtk_widget_push_composite_child ();*/
 
-  button = gtk_button_new ();
-  g_signal_connect_swapped (G_OBJECT (button), "pressed", G_CALLBACK (xfce_mime_helper_chooser_pressed), chooser);
+  button = gtk_toggle_button_new ();
+  g_signal_connect_swapped (G_OBJECT (button), "toggled", G_CALLBACK (xfce_mime_helper_chooser_toggled), chooser);
   gtk_widget_set_tooltip_text (button, _("Press left mouse button to change the selected application."));
   gtk_container_add (GTK_CONTAINER (chooser), button);
   gtk_widget_show (button);
@@ -647,7 +647,15 @@ menu_activate_other (GtkWidget *item,
 
 
 static void
-xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
+xfce_mime_helper_chooser_reset_button (GtkWidget *button)
+{
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), FALSE);
+}
+
+
+
+static void
+xfce_mime_helper_chooser_toggled (XfceMimeHelperChooser *chooser,
                                   GtkWidget *button)
 {
   AtkRelationSet *relations;
@@ -655,7 +663,6 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   AtkObject *object;
   const gchar *icon_name;
   XfceMimeHelper *helper;
-  GMainLoop *loop;
   GdkCursor *cursor;
   GtkWidget *image;
   GtkWidget *menu;
@@ -668,12 +675,13 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   gint scale_factor;
   GtkAllocation chooser_allocation;
 
-  /* Catch button-release-event params and discard */
-  GdkEvent *event;
-  gboolean handled;
-
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
-  g_return_if_fail (GTK_IS_BUTTON (button));
+  g_return_if_fail (GTK_IS_TOGGLE_BUTTON (button));
+
+  if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)))
+    {
+      return;
+    }
 
   /* set a watch cursor while loading the menu */
   if (G_LIKELY (gtk_widget_get_window (button) != NULL))
@@ -692,6 +700,7 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   g_object_ref_sink (G_OBJECT (menu));
   gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
   gtk_menu_set_screen (GTK_MENU (menu), gtk_widget_get_screen (button));
+  g_signal_connect_swapped (G_OBJECT (menu), "deactivate", G_CALLBACK (xfce_mime_helper_chooser_reset_button), button);
 
   /* set Atk popup-window relation for the menu */
   object = gtk_widget_get_accessible (button);
@@ -761,19 +770,7 @@ xfce_mime_helper_chooser_pressed (XfceMimeHelperChooser *chooser,
   if (G_LIKELY (gtk_widget_get_window (button) != NULL))
     gdk_window_set_cursor (gtk_widget_get_window (button), NULL);
 
-  /* allocate a new main loop */
-  loop = g_main_loop_new (NULL, FALSE);
-  g_signal_connect_swapped (G_OBJECT (menu), "deactivate", G_CALLBACK (g_main_loop_quit), loop);
-
-  /* run the loop for the menu */
-  gtk_grab_add (menu);
   gtk_menu_popup_at_widget (GTK_MENU (menu), button, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
-  g_main_loop_run (loop);
-  gtk_grab_remove (menu);
-  g_main_loop_unref (loop);
-
-  g_signal_emit_by_name (button, "button-release-event", &event, &handled);
-  g_object_unref (G_OBJECT (menu));
 }
 
 
