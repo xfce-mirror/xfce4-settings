@@ -12,7 +12,7 @@ dnl ***************************
 XDT_VERSION_INIT([4.19.2], [git])
 
 dnl minimum required versions
-m4_define([glib_min_version], [2.66.0])
+m4_define([glib_min_version], [2.72.0])
 m4_define([gtk_min_version], [3.24.0])
 m4_define([garcon_min_version], [0.1.10])
 m4_define([exo_min_version], [0.11.0])

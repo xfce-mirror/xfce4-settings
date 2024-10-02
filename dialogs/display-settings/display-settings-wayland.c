@@ -277,7 +277,7 @@ get_clonable_modes (GPtrArray *outputs)
     }
 
     if (modes[outputs->len - 1] != NULL)
-        return g_memdup (modes, sizeof (XfceWlrMode *) * outputs->len);
+        return g_memdup2 (modes, sizeof (XfceWlrMode *) * outputs->len);
 
     return NULL;
 }
