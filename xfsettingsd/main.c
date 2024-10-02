@@ -320,6 +320,7 @@ main (gint argc,
 
         name_owned = FALSE;
         g_variant_get (name_owned_variant, "(b)", &name_owned, NULL);
+        g_variant_unref (name_owned_variant);
 
         if (G_UNLIKELY (name_owned && !opt_replace))
         {
