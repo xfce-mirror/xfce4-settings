@@ -34,7 +34,7 @@ m4_define([libxklavier_min_version], [0.3.0])
 m4_define([libxklavier4_min_version], [4.0])
 m4_define([libxklavier5_min_version], [5.0])
 
-m4_define([wayland_min_version], [1.15])
+m4_define([wayland_min_version], [1.20])
 
 m4_define([gtk_layer_shell_min_version], [0.7.0])
 
