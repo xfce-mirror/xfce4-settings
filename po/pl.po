@@ -169,7 +169,7 @@ msgstr "_Opóźnienie:"
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr "Określa ilość czasu, po upływie którego wciśnięty i przytrzymany klawisz zostanie wprowadzony, wyrażoną w milisekundach"
+msgstr "Określa czas (w milisekundach), po upływie którego wciśnięty i przytrzymany klawisz zostanie wprowadzony"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:571
 msgid "Slow Keys"
@@ -191,7 +191,7 @@ msgstr "O_późnienie:"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:667
 msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "Określa ilość czasu pomiędzy wciśnięciami klawiszy, wymaganego do wprowadzenia ich znaków, wyrażoną w milisekundach"
+msgstr "Określa czas (w milisekundach) pomiędzy wciśnięciami klawiszy"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:703
 msgid "Bounce Keys"
@@ -227,7 +227,7 @@ msgstr "ms"
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
-msgstr "Określa ilość czasu pomiędzy wciśnięciem klawisza a rozpoczęciem ruchu kursora"
+msgstr "Określa czas (w milisekundach) pomiędzy wciśnięciem klawisza a rozpoczęciem ruchu kursora"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:852
 msgid "_Acceleration delay:"
@@ -239,7 +239,7 @@ msgstr "Opóźnienie _powtarzania:"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:877
 msgid "The time, in milliseconds, between repeated motion events"
-msgstr "Określa ilość czasu pomiędzy kolejnymi zmianami pozycji kursora"
+msgstr "Określa czas (w milisekundach) pomiędzy kolejnymi zmianami pozycji kursora"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:906
 msgid "Acceleration t_ime:"
@@ -247,7 +247,7 @@ msgstr "Czas przy_spieszania:"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:918
 msgid "The time, in milliseconds, to get to maximum speed"
-msgstr "Określa ilość czasu pomiędzy rozpoczęciem ruchu kursora a osiągnięciem jego maksymalnej prędkości"
+msgstr "Określa czas (w milisekundach) pomiędzy rozpoczęciem ruchu kursora a osiągnięciem jego maksymalnej prędkości"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:948
 msgid "Ma_ximum speed:"
@@ -471,7 +471,7 @@ msgstr "_Przyciąganie do siatki:"
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr "Określa metodę przyciągania czcionek krawędzi czcionek do siatki (np. pikseli matrycy ekranu), umożliwiającą poprawienie ich wyglądu na ekranie"
+msgstr "Określa metodę przyciągania krawędzi czcionek do siatki (np. pikseli matrycy ekranu), umożliwiającą poprawienie ich wyglądu na ekranie"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:541
 msgid "Sub-_pixel order:"
@@ -1141,7 +1141,7 @@ msgstr "<big><b>Dokonano zmian we wcześniej aktywnym profilu</b></big>"
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
-msgstr "Jeśli nie zaktualizujesz profilu, zmiany zostaną utracone po ponownym uruchomieniu sesji lub odłączeniu lub podłączeniu wyświetlacza."
+msgstr "Jeśli nie zaktualizujesz profilu, zmiany zostaną utracone po ponownym uruchomieniu sesji lub odłączeniu lub podłączeniu ekranu."
 
 #: dialogs/display-settings/main.c:58
 #, c-format
@@ -1197,7 +1197,7 @@ msgstr "%.2f Hz"
 #: dialogs/display-settings/main.c:973
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
-msgstr "Nie można wyłączyć ostatniego aktywnego wyjścia. W przeciwnym razie komputer byłby nie zdatny do użycia."
+msgstr "Nie można wyłączyć ostatniego aktywnego wyjścia. W przeciwnym razie komputer byłby niezdatny do użycia."
 
 #: dialogs/display-settings/main.c:974
 msgid "Selected output not disabled"
@@ -1372,7 +1372,7 @@ msgstr "Skrypty powłoki"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:53
 msgid "Keyboard layout selection"
-msgstr "Układ"
+msgstr "Układ klawiatury"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:162
 #: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
@@ -1405,7 +1405,7 @@ msgstr "_Opóźnienie:"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:347
 msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "Określa w milisekundach czas, po którym naciśnięty klawisz zaczyna się powtarzać"
+msgstr "Określa czas (w milisekundach), po którym naciśnięty klawisz zaczyna się powtarzać"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:363
 msgid "Repe_at speed:"
@@ -1433,7 +1433,7 @@ msgstr "Opóź_nienie:"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:484
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Określa ilość czasu pomiędzy kolejnymi mignięciami kursora, wyrażoną w milisekundach"
+msgstr "Określa czas (w milisekundach) pomiędzy kolejnymi mignięciami kursora"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:512
 msgid "Cursor"
@@ -1491,7 +1491,7 @@ msgstr "Przemieszcza wybrany element jeden wiersz w niżej"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:1096
 msgid "Key_board layout"
-msgstr "_Układ"
+msgstr "_Układ klawiatury"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:1123
 msgid "_Layout"
@@ -1562,7 +1562,7 @@ msgstr "numlock;klawiatura;układ;skróty klawiszowe;"
 
 #: dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
-msgstr "Nie można utworzyć okna mime."
+msgstr "Nie można utworzyć okna MIME."
 
 #: dialogs/mime-settings/xfce-mime-chooser.c:129
 msgid "Select Application"
@@ -1606,7 +1606,7 @@ msgstr "Inne programy"
 #: dialogs/mime-settings/xfce-mime-chooser.c:614
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
-msgstr "Otwieranie pliku <i>%s</i> i innych plików typu „%s”, przy użyciu:"
+msgstr "Otwieranie pliku <i>%s</i> i innych plików typu „%s” za pomocą:"
 
 #: dialogs/mime-settings/xfce-mime-chooser.c:619
 #, c-format
@@ -1789,7 +1789,7 @@ msgid ""
 "  MailReader       - The preferred Mail Reader.\n"
 "  FileManager      - The preferred File Manager.\n"
 "  TerminalEmulator - The preferred Terminal Emulator."
-msgstr "Następujące TYPY są obłsugiwane w poleceniach --launch oraz --query:\n\n  WebBrowser       - Preferowana przeglądarka internetowa.\n  MailReader       - Preferowany program pocztowy.\n  FileManager      - Preferowany menedżer plików.\n  TerminalEmulator - Preferowany emulator terminala."
+msgstr "Następujące TYPY są obłsugiwane w poleceniach --launch oraz --query:\n\n  WebBrowser       – Preferowana przeglądarka internetowa.\n  MailReader       – Preferowany program pocztowy.\n  FileManager      – Preferowany menedżer plików.\n  TerminalEmulator – Preferowany emulator terminala."
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:174
 #: dialogs/mime-settings/xfce-mime-helper-main.c:247
@@ -1859,7 +1859,7 @@ msgstr "Czytnik poczty"
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
-msgstr "Domyślny czytnik poczty będzie używany do komponowania wiadomości e-mail po kliknięciu na adresy e-mail."
+msgstr "Domyślny czytnik poczty będzie używany do komponowania wiadomości e-mail po kliknięciu adresów e-mail."
 
 #. Utilities
 #: dialogs/mime-settings/xfce-mime-window.c:276
@@ -1874,7 +1874,7 @@ msgstr "Menedżer plików"
 #: dialogs/mime-settings/xfce-mime-window.c:297
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
-msgstr "Domyślny menedżer plików będzie używany do przeglądania zawartości folderów."
+msgstr "Domyślny menedżer plików będzie używany do przeglądania zawartości katalogów."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
@@ -2028,11 +2028,11 @@ msgstr "Chromium"
 
 #: dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in:6
 msgid "Debian Sensible Browser"
-msgstr "Debian Sensible Browser"
+msgstr "Przeglądarka internetowa Debiana"
 
 #: dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in:6
 msgid "Debian X Terminal Emulator"
-msgstr "Debian X"
+msgstr "Emulator X-terminala Debiana"
 
 #: dialogs/mime-settings/helpers/dillo.desktop.in.in:6
 msgid "Dillo"
@@ -2120,7 +2120,7 @@ msgstr "Przeglądarka internetowa Mozilla"
 
 #: dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in:6
 msgid "Mozilla Mail"
-msgstr "Mozilla Mail"
+msgstr "Klient poczty Mozilla"
 
 #: dialogs/mime-settings/helpers/mutt.desktop.in.in:6
 msgid "Mutt"
@@ -2144,7 +2144,7 @@ msgstr "Opera"
 
 #: dialogs/mime-settings/helpers/pcmanfm.desktop.in.in:7
 msgid "PCMan File Manager"
-msgstr "PCMan File Manager"
+msgstr "Menedżer plików PCManFM"
 
 #: dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in:6
 msgid "PCManFM-Qt File Manager"
@@ -2200,7 +2200,7 @@ msgstr "Mozilla Thunderbird"
 
 #: dialogs/mime-settings/helpers/urxvt.desktop.in.in:6
 msgid "RXVT Unicode"
-msgstr "Unikod RXVT"
+msgstr "RXVT-Unicode"
 
 #: dialogs/mime-settings/helpers/vimprobable2.desktop.in.in:6
 msgid "Vimprobable2"
@@ -2208,7 +2208,7 @@ msgstr "Vimprobable2"
 
 #: dialogs/mime-settings/helpers/w3m.desktop.in.in:6
 msgid "W3M Text Browser"
-msgstr "W3M Text Browser"
+msgstr "Przeglądarka tekstowa W3M"
 
 #: dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in:6
 msgid "Xfce Terminal"
@@ -2220,7 +2220,7 @@ msgstr "Menedżer plików Xfe"
 
 #: dialogs/mime-settings/helpers/xterm.desktop.in.in:6
 msgid "X Terminal"
-msgstr "X Terminal"
+msgstr "X-terminal"
 
 #: dialogs/mouse-settings/main.c:85
 msgid "Active device in the dialog"
@@ -2362,7 +2362,7 @@ msgstr "Określa przyspieszoną prędkość ruchu kursora, wyrażoną jako wielo
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
-msgstr "Określa odległość o jaką należy przenieść kursor myszy w krótkim czasie, aby jego ruch został przyspieszony, wyrażoną w pikselach"
+msgstr "Określa liczbę pikseli, o jaką musi przesunąć się kursor w krótkim czasie, aby jego ruch został przyspieszony"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
@@ -2373,7 +2373,7 @@ msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
-msgstr "Przełącza między adaptacyjnym a płaskim profilem przyspieszenia. Adaptacyjny przy podejmowaniu decyzji o przyspieszeniu bierze pod uwagę aktualną prędkość urządzenia. Niestandardowy profil przyspieszenia nie jest obsługiwany przez ustawienia xfce4-settings."
+msgstr "Przełącza między adaptacyjnym a płaskim profilem przyspieszenia. Adaptacyjny przy podejmowaniu decyzji o przyspieszeniu bierze pod uwagę aktualną prędkość urządzenia. Niestandardowy profil przyspieszenia nie jest obsługiwany przez xfce4-settings."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:525
 msgid "Pointer Speed"
@@ -2460,7 +2460,7 @@ msgstr "_Czas:"
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
-msgstr "Określa maksymalną ilość czasu (w milisekundach), jaki może upłynąć pomiędzy kliknięciami, aby zostały one zinterpretowane jako dwukrotne"
+msgstr "Określa maksymalny czas (w milisekundach), jaki może upłynąć pomiędzy kliknięciami, aby zostały one zinterpretowane jako dwukrotne"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:1133
 msgid "D_istance:"
@@ -2580,7 +2580,7 @@ msgstr "Podwójnej precyzji"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:851
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr "Wyzerowanie wartości kanału ustawień, usunie określone spersonalizowane preferencje programów."
+msgstr "Wyzerowanie wartości kanału ustawień usunie określone spersonalizowane preferencje programów."
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:859
 msgid "_Reset Channel"
@@ -2623,7 +2623,7 @@ msgstr "Odśwież"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:1575
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr "Wyzerowanie wartości właściwości, usunie określone spersonalizowane preferencje programów."
+msgstr "Wyzerowanie wartości właściwości usunie określone spersonalizowane preferencje programów."
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:1579
 #, c-format
@@ -2783,7 +2783,7 @@ msgstr "Uruchamia w tle"
 
 #: xfsettingsd/main.c:95
 msgid "Do not wait for a window manager on startup"
-msgstr "Nie oczekuje na menedżera okien podczas uruchamiania"
+msgstr "Nie oczekuje na menedżer okien podczas uruchamiania"
 
 #: xfsettingsd/main.c:96
 msgid "Replace running xsettings daemon (if any)"
