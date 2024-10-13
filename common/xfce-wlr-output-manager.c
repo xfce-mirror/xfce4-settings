@@ -439,6 +439,7 @@ head_mode (void *data,
     XfceWlrMode *mode = g_new0 (XfceWlrMode, 1);
 
     mode->wl_mode = wl_mode;
+    mode->output = output;
     output->modes = g_list_append (output->modes, mode);
     zwlr_output_mode_v1_add_listener (wl_mode, &mode_listener, mode);
 }
