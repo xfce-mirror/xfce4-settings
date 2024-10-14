@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-03-23 00:47+0100\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>, 2012\n"
 "Language-Team: Uyghur (http://app.transifex.com/xfce/xfce4-settings/language/ug/)\n"
@@ -21,31 +21,31 @@ msgstr ""
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: common/display-name.c:2641
+#: common/display-name.c:2644
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "نامەلۇم"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: common/display-name.c:2694 dialogs/color-settings/color-device.c:65
+#: common/display-name.c:2697 dialogs/color-settings/color-device.c:66
 msgid "Monitor"
 msgstr "كۆزەتكۈچ"
 
-#: common/display-name.c:2697
+#: common/display-name.c:2700
 msgid "Television"
 msgstr "تېلېۋىزور"
 
-#: common/display-name.c:2701
+#: common/display-name.c:2704
 msgid "Digital display"
 msgstr "رەقەملىك ئېكران"
 
-#: common/xfce-randr.c:295 dialogs/display-settings/display-settings-x11.c:672
+#: common/xfce-randr.c:291 dialogs/display-settings/display-settings-x11.c:702
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "ئىشلىتىلىۋاتقان RandR كېڭەيتىلمىسىنىڭ نەشرىنى سۈرۈشتۈرگىلى بولمىدى"
 
-#: common/xfce-randr.c:577
-#: dialogs/display-settings/display-settings-wayland.c:322
+#: common/xfce-randr.c:573
+#: dialogs/display-settings/display-settings-wayland.c:350
 msgid "Laptop"
 msgstr "Laptop"
 
@@ -57,27 +57,28 @@ msgstr "ياردەم ئىقتىدارى"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:85
 #: dialogs/appearance-settings/appearance-dialog.glade:142
 #: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:285
+#: dialogs/display-settings/display-dialog.glade:290
 #: dialogs/display-settings/minimal-display-dialog.glade:368
 #: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3359
+#: dialogs/display-settings/main.c:3490
 #: dialogs/keyboard-settings/keyboard-dialog.glade:181
-#: dialogs/mime-settings/xfce-mime-window.c:191
+#: dialogs/mime-settings/xfce-mime-window.c:194
 #: dialogs/mouse-settings/mouse-dialog.glade:195
-#: xfce4-settings-editor/main.c:191
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:237
+#: xfce4-settings-editor/main.c:185
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:235
 msgid "_Close"
 msgstr "تاقا(_C)"
 
+#. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
 #: dialogs/accessibility-settings/accessibility-dialog.glade:100
 #: dialogs/appearance-settings/appearance-dialog.glade:126
 #: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:269
+#: dialogs/display-settings/display-dialog.glade:274
 #: dialogs/keyboard-settings/keyboard-dialog.glade:196
-#: dialogs/mime-settings/xfce-mime-window.c:194
+#: dialogs/mime-settings/xfce-mime-window.c:197
 #: dialogs/mouse-settings/mouse-dialog.glade:179
-#: xfce4-settings-editor/main.c:190
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:226
+#: xfce4-settings-editor/main.c:184
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:224
 msgid "_Help"
 msgstr "ياردەم(_H)"
 
@@ -282,58 +283,58 @@ msgstr ""
 msgid "_Mouse"
 msgstr "چاشقىنەك(_M)"
 
-#: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
-#: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
-#: xfce4-settings-editor/main.c:52
+#: dialogs/accessibility-settings/main.c:38
+#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
+#: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "باشقۇرغۇچى سوكېتنىڭ تەڭشەكلىرى"
 
-#: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:106 dialogs/color-settings/main.c:49
-#: dialogs/display-settings/main.c:115 dialogs/keyboard-settings/main.c:40
-#: dialogs/mime-settings/main.c:46 dialogs/mouse-settings/main.c:94
-#: xfce4-settings-editor/main.c:52
+#: dialogs/accessibility-settings/main.c:38
+#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
+#: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
-#: dialogs/accessibility-settings/main.c:47
-#: dialogs/appearance-settings/main.c:107 dialogs/color-settings/main.c:50
-#: dialogs/display-settings/main.c:116 dialogs/keyboard-settings/main.c:41
-#: dialogs/mime-settings/main.c:47 dialogs/mouse-settings/main.c:95
-#: xfce4-settings-editor/main.c:53 xfce4-settings-manager/main.c:44
-#: xfsettingsd/main.c:106
+#: dialogs/accessibility-settings/main.c:39
+#: dialogs/appearance-settings/main.c:89 dialogs/color-settings/main.c:42
+#: dialogs/display-settings/main.c:108 dialogs/keyboard-settings/main.c:37
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:87
+#: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
+#: xfsettingsd/main.c:93
 msgid "Version information"
 msgstr "نەشر ئۇچۇرى"
 
-#: dialogs/accessibility-settings/main.c:200
-#: dialogs/appearance-settings/main.c:1433 dialogs/color-settings/main.c:1408
-#: dialogs/display-settings/main.c:3307 dialogs/keyboard-settings/main.c:78
-#: dialogs/mime-settings/main.c:84
-#: dialogs/mime-settings/xfce-mime-helper-main.c:157
-#: dialogs/mouse-settings/main.c:2200 xfce4-settings-editor/main.c:124
-#: xfce4-settings-manager/main.c:65 xfsettingsd/main.c:255
-#: xfsettingsd/main.c:293
+#: dialogs/accessibility-settings/main.c:193
+#: dialogs/appearance-settings/main.c:1690 dialogs/color-settings/main.c:1464
+#: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
+#: dialogs/mime-settings/main.c:78
+#: dialogs/mime-settings/xfce-mime-helper-main.c:148
+#: dialogs/mouse-settings/main.c:2196 xfce4-settings-editor/main.c:118
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
+#: xfsettingsd/main.c:280
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "'%s --help' كىرگۈزسە ئىشلىتىش ئۇسۇلىنى كۆرگىلى بولىدۇ"
 
-#: dialogs/accessibility-settings/main.c:219
-#: dialogs/appearance-settings/main.c:1452 dialogs/color-settings/main.c:1425
-#: dialogs/display-settings/main.c:3326 dialogs/keyboard-settings/main.c:94
-#: dialogs/mime-settings/main.c:103 dialogs/mouse-settings/main.c:2219
-#: xfce4-settings-editor/main.c:143 xfce4-settings-manager/main.c:81
-#: xfsettingsd/main.c:271
+#: dialogs/accessibility-settings/main.c:212
+#: dialogs/appearance-settings/main.c:1709 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
+#: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
+#: xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce ئىجادىيەت گۇرۇپپىسى. نەشر ھوقۇقى ئۆزىمىزگە تەۋە."
 
-#: dialogs/accessibility-settings/main.c:220
-#: dialogs/appearance-settings/main.c:1453 dialogs/color-settings/main.c:1426
-#: dialogs/display-settings/main.c:3327 dialogs/keyboard-settings/main.c:95
-#: dialogs/mime-settings/main.c:104 dialogs/mouse-settings/main.c:2220
-#: xfce4-settings-editor/main.c:144 xfce4-settings-manager/main.c:82
-#: xfsettingsd/main.c:272
+#: dialogs/accessibility-settings/main.c:213
+#: dialogs/appearance-settings/main.c:1710 dialogs/color-settings/main.c:1484
+#: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
+#: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
+#: xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "كەمتۈكنى <%s> غا دوكلات قىلىڭ."
@@ -349,8 +350,8 @@ msgid ""
 msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1299 dialogs/display-settings/main.c:92
-#: dialogs/display-settings/main.c:101
+#: dialogs/appearance-settings/main.c:1597 dialogs/display-settings/main.c:86
+#: dialogs/display-settings/main.c:94
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
 msgstr "يوق"
@@ -396,259 +397,273 @@ msgstr ""
 msgid "Appearance"
 msgstr "كۆرۈنۈشى"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:211
-#: dialogs/appearance-settings/appearance-dialog.glade:321
+#: dialogs/appearance-settings/appearance-dialog.glade:205
+#: dialogs/appearance-settings/appearance-dialog.glade:315
 #: dialogs/color-settings/color-dialog.glade:374
 #: dialogs/keyboard-settings/keyboard-dialog.glade:636
 #: dialogs/keyboard-settings/keyboard-dialog.glade:970
-#: xfce4-settings-editor/xfce-settings-editor-box.c:354
+#: xfce4-settings-editor/xfce-settings-editor-box.c:364
 msgid "_Add"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:244
+#: dialogs/appearance-settings/appearance-dialog.glade:238
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:278
+#: dialogs/appearance-settings/appearance-dialog.glade:272
 msgid "St_yle"
 msgstr "ئۇسلۇب(_Y)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:354
+#: dialogs/appearance-settings/appearance-dialog.glade:348
 msgid "_Icons"
 msgstr "سىنبەلگە(_I)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:394
+#: dialogs/appearance-settings/appearance-dialog.glade:388
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "بۇ فونت كۆرۈنمە يۈزدە ئىشلىتىلىدىغان كۆڭۈلدىكى فونت قىلىپ ئىشلىتىلىدۇ"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:396
+#: dialogs/appearance-settings/appearance-dialog.glade:390
 msgid "Select a default font"
 msgstr "كۆڭۈلدىكى فونتى تاللايدۇ"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:405
+#: dialogs/appearance-settings/appearance-dialog.glade:399
 msgid "Default Fon_t"
 msgstr "كۆڭۈلدىكى خەت نۇسخىسى(_T)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:437
+#: dialogs/appearance-settings/appearance-dialog.glade:431
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:439
+#: dialogs/appearance-settings/appearance-dialog.glade:433
 msgid "Select a default monospace font"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:448
+#: dialogs/appearance-settings/appearance-dialog.glade:442
 msgid "Default _Monospace Font"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:483
+#: dialogs/appearance-settings/appearance-dialog.glade:477
 msgid "_Enable anti-aliasing"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:487
+#: dialogs/appearance-settings/appearance-dialog.glade:481
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "ھەرە چىشىنى يوق(Anti-aliasing) قىلىش ياكى سىلىقلاش ئارىلىق ئېكراندىكى تېكىستنىڭ كۆرۈنۈشىنى ياخشىلىغىلى بولىدۇ"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:515
+#: dialogs/appearance-settings/appearance-dialog.glade:509
 msgid "Hintin_g:"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:527
+#: dialogs/appearance-settings/appearance-dialog.glade:521
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "نۇرغۇن فونتلاردا بېشارەت ئۇچۇرلىرى بار بولۇپ، بۇ فونتنى تېخىمۇ چىرايلىق كۆرسىتىش رولىنى ئوينايدۇ. قايسى ئەڭ چىرايلىق كۆرۈنگەن بولسا شۇنى تاللاڭ"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:547
+#: dialogs/appearance-settings/appearance-dialog.glade:541
 msgid "Sub-_pixel order:"
 msgstr "تارماق پىكسېل تەرتىپى(_P):"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:559
+#: dialogs/appearance-settings/appearance-dialog.glade:553
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "ئەگەر مۇۋاپىق بولغان تارماق پىكسېل(sub-pixel) تەرتىپى تاللانسا، TFT ياكى LCD ئېكرانىدا كۆرسىتىلىدىغان خەتلەرنىڭ كۆرۈنۈشى ياخشىلىنىدۇ"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:597
+#: dialogs/appearance-settings/appearance-dialog.glade:591
 msgid "Rendering"
 msgstr "سىزىۋاتىدۇ"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:629
+#: dialogs/appearance-settings/appearance-dialog.glade:623
 msgid "Custom _DPI setting:"
 msgstr "ئىختىيارىي DPI تەڭشىكى(_D):"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:633
+#: dialogs/appearance-settings/appearance-dialog.glade:627
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "فونت بەك چوڭ ياكى بەك كىچىك بولۇپ قالغاندا مۇشۇ تاللانما ئارىلىق ياخشىلاشقا بولىدۇ. بۇ ئېكراننىڭ ئېنىقلىقىدىنمۇ ئاۋۋال نەزەرگە ئېلىنىدۇ."
 
-#: dialogs/appearance-settings/appearance-dialog.glade:670
+#: dialogs/appearance-settings/appearance-dialog.glade:664
 msgid "DPI"
 msgstr "DPI"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:696
+#: dialogs/appearance-settings/appearance-dialog.glade:690
 msgid "_Fonts"
 msgstr "فونتلار(_F)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:739
+#: dialogs/appearance-settings/appearance-dialog.glade:733
 msgid "Show images on _buttons"
 msgstr "توپچىنىڭ سىنبەلگىنى كۆرسەتسۇن(_B)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:743
+#: dialogs/appearance-settings/appearance-dialog.glade:737
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "بۇ تاللانما تاللانسا توپچا تېكىستنىڭ يېنىدا سىنبەلگە كۆرسىتىلىدۇ"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:756
+#: dialogs/appearance-settings/appearance-dialog.glade:750
 msgid "Show images in _menus"
 msgstr "تىزىملىكنىڭ ئىچىدە سىنبەلگىنى كۆرسەتسۇن(_M)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:760
+#: dialogs/appearance-settings/appearance-dialog.glade:754
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "بۇ تاللانما تاللانسا تىزىملىكنىڭ يېنىدا سىنبەلگە كۆرسىتىلىدۇ"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:773
+#: dialogs/appearance-settings/appearance-dialog.glade:767
 msgid "Enable e_ditable accelerators"
 msgstr "تىزىملىكنىڭ تېزلەتمىسى ئۆزگەرتىشكە ئىجازەت(_E)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:777
+#: dialogs/appearance-settings/appearance-dialog.glade:771
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "بۇ تاللانما تاللانسا، چاشقىنەك ئىسترېلكىسى تىزىملىك تۈرىنىڭ ئۈستىدە تۇرغان ۋاقىتتا، خالىغان بىرىكمە كۇنۇپكىلار بېسىلسا، ئۇ مەزكۇر تىزىملىكنىڭ تېزلەتمىسى بولىدۇ."
 
-#: dialogs/appearance-settings/appearance-dialog.glade:790
+#: dialogs/appearance-settings/appearance-dialog.glade:784
 msgid "Enable header bars in dialo_gs"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:794
+#: dialogs/appearance-settings/appearance-dialog.glade:788
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:813
+#: dialogs/appearance-settings/appearance-dialog.glade:807
 msgid "Menus and Buttons"
 msgstr "تىزىملىكلەر ۋە توپچىلار"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:845
+#: dialogs/appearance-settings/appearance-dialog.glade:839
 msgid "Enable _event sounds"
 msgstr "ھادىسە ئاۋازلىرى ئىناۋەتلىك بولسۇن(_E)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:849
+#: dialogs/appearance-settings/appearance-dialog.glade:843
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "پۈتكۈل دائىرىدىكى ھادىسە ئاۋازىنى ئىناۋەتلىك ياكى ئىناۋەتسىز قىلىدۇ (بۇنىڭ ئۈچۈن «Canberra» بولۇشى كېرەك)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:862
+#: dialogs/appearance-settings/appearance-dialog.glade:856
 msgid "Enable input feedbac_k sounds"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:866
+#: dialogs/appearance-settings/appearance-dialog.glade:860
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "چاشقىنەك چېكىلگەندە ۋە باشقا كىرگۈزۈش مەشغۇلاتى بولغاندا ئاۋاز چىقىرىش چىقارماسلىقنى بەلگىلەيدۇ"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:885
+#: dialogs/appearance-settings/appearance-dialog.glade:879
 msgid "Event sounds"
 msgstr "ھادىسە ئاۋازى"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:914
+#: dialogs/appearance-settings/appearance-dialog.glade:908
 msgid "Adjust the system-wide display scaling"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:932
+#: dialogs/appearance-settings/appearance-dialog.glade:926
 msgid "_Window Scaling"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:960
+#: dialogs/appearance-settings/appearance-dialog.glade:954
 msgid "Setti_ngs"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:246
+#: dialogs/appearance-settings/main.c:335
 msgid "Failed to display Xfwm4 Settings"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:511
+#. If the theme has no cache, mention this in the tooltip
+#: dialogs/appearance-settings/main.c:629
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
-"<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
+"<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:993
+#. If the theme is known to be incomplete (does not follow fd.org standards),
+#. mention this in the tooltip
+#: dialogs/appearance-settings/main.c:636
+msgid "Warning: this icon theme is incomplete. Some icons will be missing."
+msgstr ""
+
+#. These actually are no full themes by purpose
+#: dialogs/appearance-settings/main.c:641
+msgid ""
+"Warning: this icon theme is incomplete. It only provides a base set of icons"
+" from which other themes can inherit."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1248
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:998
+#: dialogs/appearance-settings/main.c:1253
 msgid "Failed to create temporary directory"
 msgstr "ۋاقىتلىق مۇندەرىجە ياساش مەغلۇپ بولدى"
 
-#: dialogs/appearance-settings/main.c:1003
+#: dialogs/appearance-settings/main.c:1258
 msgid "Failed to extract archive"
 msgstr "ئارخىپنى يېيىش مەغلۇپ بولدى"
 
-#: dialogs/appearance-settings/main.c:1008
+#: dialogs/appearance-settings/main.c:1263
 msgid "Unknown format, only archives and directories are supported"
 msgstr "پىچىمى نامەلۇم، ئارخىپلار ۋە مۇندەرىجىلەرنىلا ئىشلەتكىلى بولىدۇ"
 
-#: dialogs/appearance-settings/main.c:1013
+#: dialogs/appearance-settings/main.c:1268
 msgid "Not a valid theme package"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1018
+#: dialogs/appearance-settings/main.c:1273
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "نامەلۇم خاتالىق، ئاخىرلىشىش كودى %d"
 
-#: dialogs/appearance-settings/main.c:1025
+#: dialogs/appearance-settings/main.c:1280
 msgid "Failed to install theme"
 msgstr "ئۆرنەكنى ئورنىتىش مەغلۇپ بولدى"
 
-#: dialogs/appearance-settings/main.c:1078
+#: dialogs/appearance-settings/main.c:1334
 #, c-format
 msgid "Install %s theme"
 msgstr ""
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1082
+#: dialogs/appearance-settings/main.c:1336
 #: dialogs/color-settings/color-dialog.glade:529
-#: dialogs/color-settings/main.c:133
-#: dialogs/keyboard-settings/command-dialog.c:118
-#: dialogs/keyboard-settings/command-dialog.c:282
+#: dialogs/color-settings/main.c:127
+#: dialogs/keyboard-settings/command-dialog.c:113
+#: dialogs/keyboard-settings/command-dialog.c:275
 #: dialogs/keyboard-settings/keyboard-dialog.glade:71
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:428
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:573
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:106
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:567
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
 msgid "_Cancel"
 msgstr "ۋاز كەچ(_C)"
 
-#: dialogs/appearance-settings/main.c:1084
-#: dialogs/keyboard-settings/command-dialog.c:283
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:429
+#: dialogs/appearance-settings/main.c:1337
+#: dialogs/keyboard-settings/command-dialog.c:276
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "ئاچ(_O)"
 
-#: dialogs/appearance-settings/main.c:1303
+#: dialogs/appearance-settings/main.c:1601
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1307
+#: dialogs/appearance-settings/main.c:1605
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1311
+#: dialogs/appearance-settings/main.c:1609
 msgid "Vertical RGB"
 msgstr "ۋېرتىكال RGB"
 
-#: dialogs/appearance-settings/main.c:1315
+#: dialogs/appearance-settings/main.c:1613
 msgid "Vertical BGR"
 msgstr "ۋېرتىكال GBR"
 
@@ -664,36 +679,36 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
-#: dialogs/color-settings/color-device.c:68
+#: dialogs/color-settings/color-device.c:69
 msgid "Scanner"
 msgstr ""
 
 #. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
-#: dialogs/color-settings/color-device.c:71
+#: dialogs/color-settings/color-device.c:72
 msgid "Camera"
 msgstr ""
 
 #. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
-#: dialogs/color-settings/color-device.c:74
+#: dialogs/color-settings/color-device.c:75
 msgid "Printer"
 msgstr ""
 
 #. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
-#: dialogs/color-settings/color-device.c:77
+#: dialogs/color-settings/color-device.c:78
 msgid "Webcam"
 msgstr ""
 
 #. TRANSLATORS: This refers to the TFT display on a laptop
-#: dialogs/color-settings/color-device.c:94
+#: dialogs/color-settings/color-device.c:96
 msgid "Laptop Screen"
 msgstr ""
 
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
-#: dialogs/color-settings/color-device.c:102
+#: dialogs/color-settings/color-device.c:105
 msgid "Built-in Webcam"
 msgstr ""
 
-#: dialogs/color-settings/color-device.c:195
+#: dialogs/color-settings/color-device.c:198
 #, c-format
 msgid "Enable color management for %s"
 msgstr ""
@@ -759,10 +774,10 @@ msgid "Add Profile to Device"
 msgstr ""
 
 #: dialogs/color-settings/color-dialog.glade:543
-#: dialogs/keyboard-settings/command-dialog.c:122
+#: dialogs/keyboard-settings/command-dialog.c:117
 #: dialogs/keyboard-settings/keyboard-dialog.glade:86
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:574
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:568
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
 msgid "_OK"
 msgstr "تامام"
 
@@ -772,13 +787,13 @@ msgstr ""
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
-#: dialogs/color-settings/color-profile.c:94
+#: dialogs/color-settings/color-profile.c:97
 msgid "Standard Space"
 msgstr ""
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
-#: dialogs/color-settings/color-profile.c:99
+#: dialogs/color-settings/color-profile.c:103
 msgid "Test Profile"
 msgstr ""
 
@@ -786,7 +801,7 @@ msgstr ""
 #. * by the color management system based on manufacturing data,
 #. * for instance the default monitor profile is created from the
 #. * primaries specified in the monitor EDID
-#: dialogs/color-settings/color-profile.c:106
+#: dialogs/color-settings/color-profile.c:111
 msgctxt "Automatically generated profile"
 msgid "Automatic"
 msgstr "ئاپتوماتىك"
@@ -794,13 +809,13 @@ msgstr "ئاپتوماتىك"
 #. TRANSLATORS: the profile quality - low quality profiles take
 #. * much less time to generate but may be a poor reflection of the
 #. * device capability
-#: dialogs/color-settings/color-profile.c:115
+#: dialogs/color-settings/color-profile.c:121
 msgctxt "Profile quality"
 msgid "Low Quality"
 msgstr ""
 
 #. TRANSLATORS: the profile quality
-#: dialogs/color-settings/color-profile.c:119
+#: dialogs/color-settings/color-profile.c:126
 msgctxt "Profile quality"
 msgid "Medium Quality"
 msgstr ""
@@ -808,75 +823,84 @@ msgstr ""
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
 #. * characterisation data.
-#: dialogs/color-settings/color-profile.c:125
+#: dialogs/color-settings/color-profile.c:133
 msgctxt "Profile quality"
 msgid "High Quality"
 msgstr ""
 
 #. TRANSLATORS: this default RGB space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:140
+#: dialogs/color-settings/color-profile.c:150
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
 msgstr ""
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:146
+#: dialogs/color-settings/color-profile.c:157
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
 msgstr ""
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:152
+#: dialogs/color-settings/color-profile.c:164
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
 msgstr ""
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: dialogs/color-settings/main.c:131
+#: dialogs/color-settings/main.c:126
 msgid "Select ICC Profile File"
 msgstr ""
 
-#: dialogs/color-settings/main.c:134
+#: dialogs/color-settings/main.c:128
 msgid "_Import"
 msgstr ""
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:145
+#: dialogs/color-settings/main.c:139
 msgid "Supported ICC profiles"
 msgstr ""
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:152
+#: dialogs/color-settings/main.c:146
 msgid "All files"
 msgstr "ھەممە ھۆججەتلەر"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: dialogs/color-settings/main.c:194
+#: dialogs/color-settings/main.c:189
 msgid "Default: "
 msgstr ""
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: dialogs/color-settings/main.c:200
+#: dialogs/color-settings/main.c:196
 msgid "Colorspace: "
 msgstr ""
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: dialogs/color-settings/main.c:206
+#: dialogs/color-settings/main.c:203
 msgid "Test profile: "
 msgstr ""
 
-#: dialogs/color-settings/main.c:241
+#: dialogs/color-settings/main.c:238
 msgid "Compatible Profiles"
 msgstr ""
 
-#: dialogs/color-settings/main.c:830 dialogs/color-settings/main.c:831
-#: dialogs/color-settings/main.c:832
+#: dialogs/color-settings/main.c:517
+#, c-format
+msgid "Add Color Profile to %s"
+msgstr ""
+
+#: dialogs/color-settings/main.c:517
+msgid "Device"
+msgstr "ئۈسكۈنە"
+
+#: dialogs/color-settings/main.c:861 dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:863
 msgid "Unknown"
 msgstr "نامەلۇم"
 
@@ -906,159 +930,160 @@ msgstr "بۇ سەپلىمىنى ساقلاپ قال"
 msgid "Restore the previous configuration"
 msgstr "بۇرۇنقى سەپلىمىنى ئەسلىگە كەلتۈر"
 
-#: dialogs/display-settings/display-dialog.glade:56
+#: dialogs/display-settings/display-dialog.glade:61
 msgid "Never"
 msgstr "زادىلا"
 
-#: dialogs/display-settings/display-dialog.glade:60
+#: dialogs/display-settings/display-dialog.glade:65
 msgid "When a display is connected"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:64
+#: dialogs/display-settings/display-dialog.glade:69
 msgid "When a display is disconnected"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:68
+#: dialogs/display-settings/display-dialog.glade:73
 msgid "Always"
 msgstr "ھەمىشە"
 
-#: dialogs/display-settings/display-dialog.glade:82
+#: dialogs/display-settings/display-dialog.glade:87
 msgid "Do nothing"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:86
+#: dialogs/display-settings/display-dialog.glade:91
 msgid "Show dialog"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:90
+#: dialogs/display-settings/display-dialog.glade:95
 msgid "Mirror"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:94
+#: dialogs/display-settings/display-dialog.glade:99
 msgid "Extend"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:152
+#: dialogs/display-settings/display-dialog.glade:157
 msgid "The primary display can be configured to show:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:166
+#: dialogs/display-settings/display-dialog.glade:171
+#: dialogs/display-settings/main.c:1739
 msgid "Xfce Panel"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:179
+#: dialogs/display-settings/display-dialog.glade:184
 msgid "Desktop icons"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:192
+#: dialogs/display-settings/display-dialog.glade:197
 msgid "Notifications"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:202
-#: dialogs/display-settings/display-dialog.glade:217
-#: dialogs/display-settings/display-dialog.glade:232
+#: dialogs/display-settings/display-dialog.glade:207
+#: dialogs/display-settings/display-dialog.glade:222
+#: dialogs/display-settings/display-dialog.glade:237
 msgid "Configure..."
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:250
+#: dialogs/display-settings/display-dialog.glade:255
 #: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "كۆرسەتكۈچ"
 
-#: dialogs/display-settings/display-dialog.glade:357
+#: dialogs/display-settings/display-dialog.glade:362
 msgid "_Mirror displays"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:455
+#: dialogs/display-settings/display-dialog.glade:461
 msgid "Primary Display:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:481
+#: dialogs/display-settings/display-dialog.glade:487
 msgid "R_esolution:"
 msgstr "ئېنىقلىق(_E):"
 
-#: dialogs/display-settings/display-dialog.glade:507
+#: dialogs/display-settings/display-dialog.glade:513
 msgid "Refresh _rate:"
 msgstr "چاستوتىسى(_R):"
 
-#: dialogs/display-settings/display-dialog.glade:533
+#: dialogs/display-settings/display-dialog.glade:539
 msgid "Ro_tation:"
 msgstr "چۆرگىلىتىش(_T):"
 
-#: dialogs/display-settings/display-dialog.glade:557
+#: dialogs/display-settings/display-dialog.glade:563
 msgid "Ref_lection:"
 msgstr "تەتۈر(_F):"
 
-#: dialogs/display-settings/display-dialog.glade:597
+#: dialogs/display-settings/display-dialog.glade:603
 msgid "A_pply"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:625
+#: dialogs/display-settings/display-dialog.glade:631
 msgid "_Scale:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:663
+#: dialogs/display-settings/display-dialog.glade:669
 msgid "_General"
 msgstr "ئادەتتىكى(_G)"
 
-#: dialogs/display-settings/display-dialog.glade:683
+#: dialogs/display-settings/display-dialog.glade:689
 msgid "<b>Profiles</b>"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:699
+#: dialogs/display-settings/display-dialog.glade:705
 msgid "<b>Connecting Displays</b>"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:749
+#: dialogs/display-settings/display-dialog.glade:755
 msgid "Delete the currently selected display profile."
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:762
+#: dialogs/display-settings/display-dialog.glade:768
 msgid "Apply"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:766
+#: dialogs/display-settings/display-dialog.glade:772
 msgid "Apply the currently selected display profile."
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:782
+#: dialogs/display-settings/display-dialog.glade:788
 msgid "Create a new display profile."
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:798
+#: dialogs/display-settings/display-dialog.glade:804
 msgid "Update an existing profile."
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:831
+#: dialogs/display-settings/display-dialog.glade:837
 msgid "First try to automatically enable a profile:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:863
+#: dialogs/display-settings/display-dialog.glade:869
 msgid "When a display is connected:"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:876
+#: dialogs/display-settings/display-dialog.glade:882
 msgid "Show popup windows to identify displays"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:902
+#: dialogs/display-settings/display-dialog.glade:908
 msgid "<b>Identifying Displays</b>"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:940
+#: dialogs/display-settings/display-dialog.glade:946
 #: dialogs/display-settings/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:992
+#: dialogs/display-settings/display-dialog.glade:998
 msgid "<b>Profile Name</b>"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:1015
+#: dialogs/display-settings/display-dialog.glade:1021
 msgid "Create"
 msgstr ""
 
-#: dialogs/display-settings/display-dialog.glade:1050
+#: dialogs/display-settings/display-dialog.glade:1056
 msgid "A profile of this name already exists."
 msgstr ""
 
@@ -1120,45 +1145,45 @@ msgid ""
 "your session or disconnecting or connecting a display."
 msgstr ""
 
-#: dialogs/display-settings/main.c:63
+#: dialogs/display-settings/main.c:58
 #, c-format
 msgid "Only %s (1)"
 msgstr ""
 
-#: dialogs/display-settings/main.c:64
+#: dialogs/display-settings/main.c:59
 #, c-format
 msgid "Only %s (2)"
 msgstr ""
 
-#: dialogs/display-settings/main.c:93
+#: dialogs/display-settings/main.c:87
 msgid "Left"
 msgstr "سول"
 
-#: dialogs/display-settings/main.c:94
+#: dialogs/display-settings/main.c:88
 msgid "Inverted"
 msgstr "تەتۈر قىلىش"
 
-#: dialogs/display-settings/main.c:95
+#: dialogs/display-settings/main.c:89
 msgid "Right"
 msgstr "ئوڭ"
 
-#: dialogs/display-settings/main.c:102
+#: dialogs/display-settings/main.c:95
 msgid "Horizontal"
 msgstr "گورىزونتال"
 
-#: dialogs/display-settings/main.c:103
+#: dialogs/display-settings/main.c:96
 msgid "Vertical"
 msgstr "ۋېرتىكال"
 
-#: dialogs/display-settings/main.c:104
+#: dialogs/display-settings/main.c:97
 msgid "Horizontal and Vertical"
 msgstr ""
 
-#: dialogs/display-settings/main.c:117
+#: dialogs/display-settings/main.c:109
 msgid "Minimal interface to set up an external output"
 msgstr "سىرتقى چىقىرىشنى بەلگىلەيدىغان ئەڭ كىچىك ئارايۈز"
 
-#: dialogs/display-settings/main.c:275
+#: dialogs/display-settings/main.c:282
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1166,71 +1191,69 @@ msgid ""
 msgstr ""
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:637
+#: dialogs/display-settings/main.c:644
 #, c-format
 msgid "%.2f Hz"
 msgstr ""
 
-#: dialogs/display-settings/main.c:965
+#: dialogs/display-settings/main.c:973
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "ئەڭ ئاخىرقى ئاكتىپ چىقىرىشنى ئىناۋەتسىز قىلىشقا بولمايدۇ. بولمىسا سىستېمىنى ئىشلەتكىلى بولمايدۇ."
 
-#: dialogs/display-settings/main.c:967
+#: dialogs/display-settings/main.c:974
 msgid "Selected output not disabled"
 msgstr "تاللانغان چىقىرىش ئىناۋەتسىز بولمىدى"
 
-#: dialogs/display-settings/main.c:1195
-msgid "Profiles matching the currently connected displays"
-msgstr ""
-
-#: dialogs/display-settings/main.c:1284
+#: dialogs/display-settings/main.c:1322
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1289
+#: dialogs/display-settings/main.c:1327
 #, c-format
 msgid "_Update '%s'"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1612
+#: dialogs/display-settings/main.c:1674
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1677
 msgid "Delete Profile"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1617
+#: dialogs/display-settings/main.c:1678
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr ""
 
-#: dialogs/display-settings/main.c:1618
-#: dialogs/mime-settings/xfce-mime-chooser.c:134
-#: dialogs/mime-settings/xfce-mime-chooser.c:382
-#: dialogs/mime-settings/xfce-mime-window.c:1178
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:144
+#: dialogs/display-settings/main.c:1678
+#: dialogs/mime-settings/xfce-mime-chooser.c:135
+#: dialogs/mime-settings/xfce-mime-chooser.c:380
+#: dialogs/mime-settings/xfce-mime-window.c:1184
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Cancel"
 msgstr "ۋاز كەچ"
 
-#: dialogs/display-settings/main.c:1619
+#: dialogs/display-settings/main.c:1679
 msgid "Delete"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1705
+#: dialogs/display-settings/main.c:1765
 #, c-format
-msgid "%d Xfce Panels"
-msgstr ""
+msgid "%d Xfce Panel"
+msgid_plural "%d Xfce Panels"
+msgstr[0] ""
+msgstr[1] ""
 
-#: dialogs/display-settings/main.c:2447
+#: dialogs/display-settings/main.c:2550
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr ""
 
-#: dialogs/display-settings/main.c:2546 dialogs/display-settings/main.c:2579
+#: dialogs/display-settings/main.c:2649 dialogs/display-settings/main.c:2682
 #, c-format
 msgid "(%i, %i)"
 msgstr ""
@@ -1239,23 +1262,23 @@ msgstr ""
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2801
+#: dialogs/display-settings/main.c:2899
 msgid "Mirror Screens"
 msgstr ""
 
-#: dialogs/display-settings/main.c:2851
+#: dialogs/display-settings/main.c:2949
 msgid "(Disabled)"
 msgstr ""
 
-#: dialogs/display-settings/main.c:3353
+#: dialogs/display-settings/main.c:3484
 msgid "ATI Settings"
 msgstr "ATI تەڭشىكى"
 
-#: dialogs/display-settings/main.c:3358
+#: dialogs/display-settings/main.c:3489
 msgid "Unable to start the Xfce Display Settings"
 msgstr "كۆرسەتكۈچ تەڭشىكىنى قوزغاتقىلى بولمىدى"
 
-#: dialogs/display-settings/main.c:3366
+#: dialogs/display-settings/main.c:3497
 msgid "Unable to launch the proprietary driver settings"
 msgstr "ئىگىسى بار قوزغاتقۇنىڭ تەڭشىكىنى ئىجرا قىلغىلى بولمىدى"
 
@@ -1268,82 +1291,82 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr ""
 
-#: dialogs/display-settings/display-settings.c:445
+#: dialogs/display-settings/display-settings.c:464
 msgid "Display:"
 msgstr ""
 
-#: dialogs/display-settings/display-settings.c:453
+#: dialogs/display-settings/display-settings.c:472
 msgid "Resolution:"
 msgstr ""
 
-#: dialogs/display-settings/display-settings-wayland.c:997
+#: dialogs/display-settings/display-settings-wayland.c:1008
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
 
 #. Set dialog title and icon
-#: dialogs/keyboard-settings/command-dialog.c:110
+#: dialogs/keyboard-settings/command-dialog.c:109
 msgid "Shortcut Command"
 msgstr "تېزلەتمە بۇيرۇق"
 
-#: dialogs/keyboard-settings/command-dialog.c:144
+#: dialogs/keyboard-settings/command-dialog.c:139
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr ""
 
 #. We are editing an existing shortcut
-#: dialogs/keyboard-settings/command-dialog.c:162
+#: dialogs/keyboard-settings/command-dialog.c:157
 msgid "Shortcut:"
 msgstr "تېزلەتمە:"
 
-#: dialogs/keyboard-settings/command-dialog.c:187
+#: dialogs/keyboard-settings/command-dialog.c:182
 msgid "Comm_and:"
 msgstr "بۇيرۇق(_A):"
 
-#: dialogs/keyboard-settings/command-dialog.c:212
+#: dialogs/keyboard-settings/command-dialog.c:207
 msgid "Use _startup notification"
 msgstr "قوزغىلىش ئۇقتۇرۇشى ئىشلەت(_S)"
 
-#: dialogs/keyboard-settings/command-dialog.c:259
+#: dialogs/keyboard-settings/command-dialog.c:253
 msgid "The command may not be empty."
 msgstr "بۇيرۇق چوقۇم كىرگۈزۈلۈشى كېرەك."
 
-#: dialogs/keyboard-settings/command-dialog.c:279
+#: dialogs/keyboard-settings/command-dialog.c:273
 msgid "Select command"
 msgstr "بۇيرۇق تاللا"
 
-#: dialogs/keyboard-settings/command-dialog.c:287
-#: dialogs/mime-settings/xfce-mime-chooser.c:389
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:435
+#: dialogs/keyboard-settings/command-dialog.c:281
+#: dialogs/mime-settings/xfce-mime-chooser.c:387
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:431
 msgid "All Files"
 msgstr "ھەممە ھۆججەتلەر"
 
-#: dialogs/keyboard-settings/command-dialog.c:292
-#: dialogs/mime-settings/xfce-mime-chooser.c:394
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:440
+#: dialogs/keyboard-settings/command-dialog.c:286
+#: dialogs/mime-settings/xfce-mime-chooser.c:392
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:436
 msgid "Executable Files"
 msgstr "پروگرامما(ئىجرا بولىدىغان ھۆججەت)"
 
-#: dialogs/keyboard-settings/command-dialog.c:307
-#: dialogs/mime-settings/xfce-mime-chooser.c:409
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:455
+#: dialogs/keyboard-settings/command-dialog.c:301
+#: dialogs/mime-settings/xfce-mime-chooser.c:407
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:451
 msgid "Perl Scripts"
 msgstr "Perl پروگراممىسى"
 
-#: dialogs/keyboard-settings/command-dialog.c:313
-#: dialogs/mime-settings/xfce-mime-chooser.c:415
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:461
+#: dialogs/keyboard-settings/command-dialog.c:307
+#: dialogs/mime-settings/xfce-mime-chooser.c:413
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:457
 msgid "Python Scripts"
 msgstr "Python پروگراممىسى"
 
-#: dialogs/keyboard-settings/command-dialog.c:319
-#: dialogs/mime-settings/xfce-mime-chooser.c:421
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:467
+#: dialogs/keyboard-settings/command-dialog.c:313
+#: dialogs/mime-settings/xfce-mime-chooser.c:419
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:463
 msgid "Ruby Scripts"
 msgstr "Ruby پروگراممىسى"
 
-#: dialogs/keyboard-settings/command-dialog.c:325
-#: dialogs/mime-settings/xfce-mime-chooser.c:427
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:473
+#: dialogs/keyboard-settings/command-dialog.c:319
+#: dialogs/mime-settings/xfce-mime-chooser.c:425
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:469
 msgid "Shell Scripts"
 msgstr "Shell پروگراممىسى"
 
@@ -1430,7 +1453,7 @@ msgstr ""
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:651
 #: dialogs/keyboard-settings/keyboard-dialog.glade:986
-#: xfce4-settings-editor/xfce-settings-editor-box.c:367
+#: xfce4-settings-editor/xfce-settings-editor-box.c:377
 msgid "_Edit"
 msgstr "تەھرىر(_E)"
 
@@ -1474,59 +1497,58 @@ msgstr ""
 msgid "_Layout"
 msgstr "ئورۇنلاشتۇرۇلۇشى(_L)"
 
-#: dialogs/keyboard-settings/main.c:84
+#: dialogs/keyboard-settings/main.c:80
 msgid "Unable to initialize GTK+."
 msgstr "GTK+ دەسلەپلەشتۈرگىلى بولمىدى."
 
-#: dialogs/keyboard-settings/main.c:110
+#: dialogs/keyboard-settings/main.c:106
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "xfconf مۇئەككىلىگە باغلىنىش مەغلۇپ بولدى. سەۋەبى: %s"
 
-#: dialogs/keyboard-settings/main.c:121
+#: dialogs/keyboard-settings/main.c:117
 msgid "Could not create the settings dialog."
 msgstr "تەڭشەك سۆزلەشكۈسىنى قۇرغىلى بولمىدى."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:399
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:434
 msgid "Command"
 msgstr "بۇيرۇق"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:407
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:442
 msgid "Shortcut"
 msgstr "تېزلەتمە"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:484
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
 msgid "Layout"
 msgstr "ئورۇنلاشتۇرۇلۇشى"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:520
 msgid "Variant"
 msgstr "ۋارىيانتى"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
-msgid "Reset to Defaults"
-msgstr "كۆڭۈلدىكىگە قايتۇر"
-
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1289
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "بۇ بارلىق تېزلەتمىلەرنىڭ كۆڭۈلدىكى قىممەتلىرىنى ئەسلىگە كەلتۈرۈۋاتىدۇ. بۇنى قىلسۇنمۇ؟"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+msgid "Reset to Defaults"
+msgstr "كۆڭۈلدىكىگە قايتۇر"
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
 msgid "No"
 msgstr "ياق"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
 msgid "Yes"
 msgstr "ھەئە"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1373
 msgid "The system defaults will be restored next time you log in."
 msgstr "سىستېمىنىڭ كۆڭۈلدىكى قىممەتلىرى كېيىنكى قېتىم سىستېمىغا كىرگەندە ئەسلىگە قايتىدۇ."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1375
 msgid "Warning"
 msgstr "دىققەت"
 
@@ -1538,16 +1560,16 @@ msgstr "ھەرپتاختا تەڭشىكى ۋە پروگرامما تېزلەتم
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr ""
 
-#: dialogs/mime-settings/main.c:121
+#: dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:128
+#: dialogs/mime-settings/xfce-mime-chooser.c:129
 msgid "Select Application"
 msgstr "پروگرامما تاللاش"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:136
-#: dialogs/mime-settings/xfce-mime-chooser.c:383
+#: dialogs/mime-settings/xfce-mime-chooser.c:137
+#: dialogs/mime-settings/xfce-mime-chooser.c:381
 msgid "Open"
 msgstr ""
 
@@ -1565,28 +1587,28 @@ msgstr "يۇقىرىدىكى پروگرامما تىزىمىدا يوق بۇير
 msgid "_Browse..."
 msgstr "كۆر(_B)..."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:379
+#: dialogs/mime-settings/xfce-mime-chooser.c:378
 msgid "Select an Application"
 msgstr "پروگرامما تاللاش"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:529
+#: dialogs/mime-settings/xfce-mime-chooser.c:527
 msgid "None available"
 msgstr "ئىشلەتكىلى بولىدىغان نەرسە يوق"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:577
+#: dialogs/mime-settings/xfce-mime-chooser.c:575
 msgid "Recommended Applications"
 msgstr "تەۋسىيىلىك پروگراممىلار"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:595
+#: dialogs/mime-settings/xfce-mime-chooser.c:594
 msgid "Other Applications"
 msgstr "باشقا پروگراممىلار"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:617
+#: dialogs/mime-settings/xfce-mime-chooser.c:614
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "<i>%s</i> بىلەن تىپى «%s» بولغان ھۆججەتلەرنى تۆۋەندىكى پروگراممىدا ئاچ:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:622
+#: dialogs/mime-settings/xfce-mime-chooser.c:619
 #, c-format
 msgid ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
@@ -1597,167 +1619,167 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:661
+#: dialogs/mime-settings/xfce-mime-chooser.c:659
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "يېڭى پروگرامما «%s» قوشۇش مەغلۇپ بولدى"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:143
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:150
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:141
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:148
 msgid "Press left mouse button to change the selected application."
 msgstr "تاللانغان پروگراممىنى ئۆزگەرتىش ئۈچۈن چاشقىنەكنىڭ سول توپچىسىنى بېسىڭ."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:149
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:147
 msgid "Application Chooser Button"
 msgstr "پروگرامما تاللىغۇ توپچىسى"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:336
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:334
 msgid "No application selected"
 msgstr "پروگرامما تاللانمىدى"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
 msgid "Failed to set default Web Browser"
 msgstr "كۆڭۈلدىكى توركۆرگۈنى بېكىتىش مەغلۇپ بولدى"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:353
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
 msgid "Failed to set default Mail Reader"
 msgstr "كۆڭۈلدىكى خەت ئوقۇغۇنى بېكىتىش مەغلۇپ بولدى"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:354
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
 msgid "Failed to set default File Manager"
 msgstr "كۆڭۈلدىكى ھۆججەت باشقۇرغۇنى بېكىتىش مەغلۇپ بولدى"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:355
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
 msgid "Failed to set default Terminal Emulator"
 msgstr "كۆڭۈلدىكى تېرمىنال تەقلىدلىگۈ نى بېكىتىش مەغلۇپ بولدى"
 
 #. allocate the chooser
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
 msgid "Select application"
 msgstr "پروگرامما تاللا"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
 msgid "Choose a custom Web Browser"
 msgstr "توركۆرگۈ تاللا"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:539
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
 msgid "Choose a custom Mail Reader"
 msgstr "خەت ئوقۇغۇ تاللا"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
 msgid "Choose a custom File Manager"
 msgstr "ھۆججەت باشقۇرغۇ تاللا"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:541
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
 msgid "Choose a custom Terminal Emulator"
 msgstr "تېرمىنال تەقلىدلىگۈ تاللا"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr "Xfce دىكى كۆڭۈلدىكى توركۆرگۈنى بېكىتىڭ:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:547
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:541
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr "Xfce دىكى كۆڭۈلدىكى خەت ئوقۇغۇنى بېكىتىڭ:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:548
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr "Xfce دىكى كۆڭۈلدىكى ھۆججەت باشقۇرغۇنى بېكىتىڭ:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:549
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr "Xfce دىكى كۆڭۈلدىكى تېرمىنال تەقلىدلىگۈنى بېكىتىڭ:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:613
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:607
 msgid "Browse the file system to choose a custom command."
 msgstr "بۇيرۇق تاللاش ئۈچۈن ھۆججەت سىستېمىنى كۆرىدۇ."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:752
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:757
 msgid "_Other..."
 msgstr "باشقا(_O)..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:753
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:758
 msgid "Use a custom application which is not included in the above list."
 msgstr "تىزىملىكتە يوق پروگراممىنى ئىشلىتىدۇ."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:114
 msgid "Choose Preferred Application"
 msgstr "ئامراق پروگراممىنى تاللاش"
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:248
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
 msgstr "ئۆزىڭىز ئامراق تور كۆرگۈنى تاللاپ OK نى چېكىڭ."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:250
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
 msgstr "ئۆزىڭىز ئامراق خەت ئوقۇغۇنى تاللاپ OK نى چېكىڭ."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:252
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
 msgstr "ئۆزىڭىز ئامراق ھۆججەت باشقۇرغۇنى تاللاپ OK نى چېكىڭ."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:254
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
 msgstr "ئۆزىڭىز ئامراق تېرمىنال تەقلىدلىگۈنى تاللاپ OK نى چېكىڭ."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:40
+#: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Web Browser"
 msgstr "كۆڭۈلدىكى تور كۆرگۈنى ئىجرا قىلىش مەغلۇپ بولدى"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:41
+#: dialogs/mime-settings/xfce-mime-helper-main.c:30
 msgid "Failed to execute default Mail Reader"
 msgstr "كۆڭۈلدىكى خەت ئوقۇغۇنى ئىجرا قىلىش مەغلۇپ بولدى"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:42
+#: dialogs/mime-settings/xfce-mime-helper-main.c:31
 msgid "Failed to execute default File Manager"
 msgstr "كۆڭۈلدىكى ھۆججەت باشقۇرغۇنى ئىجرا قىلىش مەغلۇپ بولدى"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:43
+#: dialogs/mime-settings/xfce-mime-helper-main.c:32
 msgid "Failed to execute default Terminal Emulator"
 msgstr "كۆڭۈلدىكى تېرمىنال تەقلىدلىگۈنى ئىجرا قىلىش مەغلۇپ بولدى"
 
 #. Enable permanently dismissing this error.
-#: dialogs/mime-settings/xfce-mime-helper-main.c:85
+#: dialogs/mime-settings/xfce-mime-helper-main.c:74
 msgid "Do _not show this message again"
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:115
+#: dialogs/mime-settings/xfce-mime-helper-main.c:105
 msgid "Print version information and exit"
 msgstr "نەشر ئۇچۇرىنى كۆرسىتىپ ئاخىرلاشتۇرۇش"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:116
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr "TYPE نىڭ كۆڭۈلدىكى helper نى  PARAMETER تاللانمىسىنى قوشۇپ ئىجرا قىل. TYPE تۆۋەندىكىلەرنىڭ بىرى."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:116
-#: dialogs/mime-settings/xfce-mime-helper-main.c:117
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid "TYPE [PARAMETER]"
 msgstr "TYPE [PARAMETER]"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:117
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:147
+#: dialogs/mime-settings/xfce-mime-helper-main.c:137
 msgid ""
 "The following TYPEs are supported for the --launch and --query commands:\n"
 "\n"
@@ -1767,13 +1789,13 @@ msgid ""
 "  TerminalEmulator - The preferred Terminal Emulator."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:182
-#: dialogs/mime-settings/xfce-mime-helper-main.c:255
+#: dialogs/mime-settings/xfce-mime-helper-main.c:176
+#: dialogs/mime-settings/xfce-mime-helper-main.c:251
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "ياردەمچى تىپى «%s» ئىناۋەتسىز."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:239
+#: dialogs/mime-settings/xfce-mime-helper-main.c:235
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -1788,163 +1810,163 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nCopyright (c) 2003-2006\n        os-cillation e.K. All rights reserved.\n\n ئاپتور Benedikt Meurer <benny@xfce.org>.\n\nGtk+-%d.%d.%d دا ياسالغان, Gtk+-%d.%d.%d. دا ئىجرا بولۇۋاتىدۇ\n\nكەمتۈكىنى <%s> غا مەلۇم قىلىڭ.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:265
+#: dialogs/mime-settings/xfce-mime-helper-main.c:263
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper.c:452
+#: dialogs/mime-settings/xfce-mime-helper.c:433
 msgid "No command specified"
 msgstr "بۇيرۇق بېكىتىلمىگەن"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:830
-#: dialogs/mime-settings/xfce-mime-helper.c:869
-#: dialogs/mime-settings/xfce-mime-helper.c:966
-#: dialogs/mime-settings/xfce-mime-helper.c:1005
+#: dialogs/mime-settings/xfce-mime-helper.c:813
+#: dialogs/mime-settings/xfce-mime-helper.c:852
+#: dialogs/mime-settings/xfce-mime-helper.c:949
+#: dialogs/mime-settings/xfce-mime-helper.c:988
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "يېزىش مەقسىتىدە %s نى ئېچىش مەغلۇپ بولدى"
 
-#: dialogs/mime-settings/xfce-mime-window.c:186
+#: dialogs/mime-settings/xfce-mime-window.c:192
 #: dialogs/mime-settings/xfce4-mime-settings.desktop.in:4
 msgid "Default Applications"
 msgstr ""
 
 #. Internet
-#: dialogs/mime-settings/xfce-mime-window.c:212
+#: dialogs/mime-settings/xfce-mime-window.c:215
 msgid "_Internet"
 msgstr "ئىنتېرنېت(_I)"
 
-#: dialogs/mime-settings/xfce-mime-window.c:225
+#: dialogs/mime-settings/xfce-mime-window.c:228
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
 msgid "Web Browser"
 msgstr "توركۆرگۈ"
 
-#: dialogs/mime-settings/xfce-mime-window.c:233
+#: dialogs/mime-settings/xfce-mime-window.c:236
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-window.c:251
+#: dialogs/mime-settings/xfce-mime-window.c:254
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
 msgid "Mail Reader"
 msgstr "ئېلخەت ئوقۇغۇ"
 
-#: dialogs/mime-settings/xfce-mime-window.c:259
+#: dialogs/mime-settings/xfce-mime-window.c:262
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr ""
 
 #. Utilities
-#: dialogs/mime-settings/xfce-mime-window.c:273
+#: dialogs/mime-settings/xfce-mime-window.c:276
 msgid "_Utilities"
 msgstr "قوراللار(_I)"
 
-#: dialogs/mime-settings/xfce-mime-window.c:286
+#: dialogs/mime-settings/xfce-mime-window.c:289
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
 msgid "File Manager"
 msgstr "ھۆججەت باشقۇرغۇ"
 
-#: dialogs/mime-settings/xfce-mime-window.c:294
+#: dialogs/mime-settings/xfce-mime-window.c:297
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-window.c:312
+#: dialogs/mime-settings/xfce-mime-window.c:315
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
 msgid "Terminal Emulator"
 msgstr "تېرمىنال Emulator"
 
-#: dialogs/mime-settings/xfce-mime-window.c:320
+#: dialogs/mime-settings/xfce-mime-window.c:323
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr ""
 
 #. Mimes
-#: dialogs/mime-settings/xfce-mime-window.c:334
+#: dialogs/mime-settings/xfce-mime-window.c:337
 msgid "_Others"
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-window.c:344
+#: dialogs/mime-settings/xfce-mime-window.c:347
 msgid "_Filter:"
 msgstr "سۈز(_F):"
 
-#: dialogs/mime-settings/xfce-mime-window.c:352
+#: dialogs/mime-settings/xfce-mime-window.c:355
 msgid "Clear filter"
 msgstr "سۈزگۈچنى تازىلاش"
 
-#: dialogs/mime-settings/xfce-mime-window.c:382
+#: dialogs/mime-settings/xfce-mime-window.c:385
 msgid "Open with..."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-window.c:431
+#: dialogs/mime-settings/xfce-mime-window.c:434
 msgid "MIME Type"
 msgstr "MIME تىپى"
 
-#: dialogs/mime-settings/xfce-mime-window.c:459
+#: dialogs/mime-settings/xfce-mime-window.c:462
 msgid "Status"
 msgstr "ھالىتى"
 
-#: dialogs/mime-settings/xfce-mime-window.c:479
+#: dialogs/mime-settings/xfce-mime-window.c:482
 msgid "Default Application"
 msgstr "كۆڭۈلدىكى پروگرامما"
 
-#: dialogs/mime-settings/xfce-mime-window.c:654
-#: dialogs/mime-settings/xfce-mime-window.c:820
+#: dialogs/mime-settings/xfce-mime-window.c:658
+#: dialogs/mime-settings/xfce-mime-window.c:827
 msgid "User Set"
 msgstr "ئىشلەتكۈچى تەڭشىگىنى"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:656
-#: dialogs/mime-settings/xfce-mime-window.c:820
-#: dialogs/mouse-settings/main.c:420 dialogs/mouse-settings/main.c:422
-#: dialogs/mouse-settings/main.c:485
+#: dialogs/mime-settings/xfce-mime-window.c:660
+#: dialogs/mime-settings/xfce-mime-window.c:827
+#: dialogs/mouse-settings/main.c:413 dialogs/mouse-settings/main.c:415
+#: dialogs/mouse-settings/main.c:478
 msgid "Default"
 msgstr "كۆڭۈلدىكى"
 
-#: dialogs/mime-settings/xfce-mime-window.c:744
+#: dialogs/mime-settings/xfce-mime-window.c:750
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] ""
 msgstr[1] "%d MIME تىپى تېپىلدى"
 
-#: dialogs/mime-settings/xfce-mime-window.c:865
+#: dialogs/mime-settings/xfce-mime-window.c:872
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "پروگرامما «%s» نى mime تىپى «%s» غا چاتقىلى بولمىدى."
 
-#: dialogs/mime-settings/xfce-mime-window.c:973
+#: dialogs/mime-settings/xfce-mime-window.c:981
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dialogs/mime-settings/xfce-mime-window.c:1169
-#, c-format
-msgid "Are you sure you want to reset content type \"%s\" to its default value?"
-msgstr "مەزمۇن تىپى «%s» نى كۆڭۈلدىكى قىممەتكە قايتۇرامسىز؟"
-
-#: dialogs/mime-settings/xfce-mime-window.c:1173
-msgid "Question"
-msgstr "سوئال"
-
-#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1177
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "بۇنىڭ بىلەن سىز بەلگىلىگەن mime تىپى مۇناسىۋەتلىرى ئۆچۈرۈلۈپ سىستېمىنىڭ تەڭشىكى ئەسلىگە كېلىدۇ."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1180
-#: dialogs/mime-settings/xfce-mime-window.c:1251
+#: dialogs/mime-settings/xfce-mime-window.c:1179
+#, c-format
+msgid "Are you sure you want to reset content type \"%s\" to its default value?"
+msgstr "مەزمۇن تىپى «%s» نى كۆڭۈلدىكى قىممەتكە قايتۇرامسىز؟"
+
+#: dialogs/mime-settings/xfce-mime-window.c:1183
+msgid "Question"
+msgstr "سوئال"
+
+#: dialogs/mime-settings/xfce-mime-window.c:1185
+#: dialogs/mime-settings/xfce-mime-window.c:1257
 msgid "Reset to Default"
 msgstr "كۆڭۈلدىكىگە ئەسلىگە كەلتۈر"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1246
+#: dialogs/mime-settings/xfce-mime-window.c:1252
 msgid "Choose Application..."
 msgstr "پروگرامما تاللا…"
 
@@ -2194,28 +2216,28 @@ msgstr "Xfe  ھۆججەت باشقۇرغۇ"
 msgid "X Terminal"
 msgstr "X تېرمىنالى"
 
-#: dialogs/mouse-settings/main.c:93
+#: dialogs/mouse-settings/main.c:85
 msgid "Active device in the dialog"
 msgstr "سۆزلەشكۈدىكى ئاكتىپ ئۈسكۈنە"
 
-#: dialogs/mouse-settings/main.c:93
+#: dialogs/mouse-settings/main.c:85
 msgid "DEVICE NAME"
 msgstr "DEVICE NAME"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:173
+#: dialogs/mouse-settings/main.c:167
 #, c-format
 msgid "%g px"
 msgstr "%g پىكسېل"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:183
+#: dialogs/mouse-settings/main.c:177
 #, c-format
 msgid "%g ms"
 msgstr "%g مىللىسېكۇنت"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:194
+#: dialogs/mouse-settings/main.c:188
 #, c-format
 msgid "%.1f s"
 msgstr ""
@@ -2477,196 +2499,196 @@ msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr ""
 
-#: xfce4-settings-editor/main.c:188
+#: xfce4-settings-editor/main.c:182
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
 msgid "Settings Editor"
 msgstr "تەڭشەك تەھرىرلىگۈ"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:267
+#: xfce4-settings-editor/xfce-settings-editor-box.c:277
 msgid "Channel"
 msgstr "قانال"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:317
+#: xfce4-settings-editor/xfce-settings-editor-box.c:327
 msgid "Property"
 msgstr "خاسلىق"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:325
+#: xfce4-settings-editor/xfce-settings-editor-box.c:335
 msgid "Type"
 msgstr "تىپى"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:332
+#: xfce4-settings-editor/xfce-settings-editor-box.c:342
 msgid "Locked"
 msgstr "قۇلۇپلانغان"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:339
+#: xfce4-settings-editor/xfce-settings-editor-box.c:349
 msgid "Value"
 msgstr "قىممەت"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:359
+#: xfce4-settings-editor/xfce-settings-editor-box.c:369
 msgid "New property"
 msgstr "يېڭى خاسلىق"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:372
+#: xfce4-settings-editor/xfce-settings-editor-box.c:382
 msgid "Edit selected property"
 msgstr "تاللانغان خاسلىقنى تەھرىرلەيدۇ"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:380
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1070
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1576
+#: xfce4-settings-editor/xfce-settings-editor-box.c:390
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1076
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1578
 msgid "_Reset"
 msgstr "ئەسلىگە قايتۇر(_R)"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:385
+#: xfce4-settings-editor/xfce-settings-editor-box.c:395
 msgid "Reset selected property"
 msgstr "تاللانغان خاسلىقنى ئەسلىگە قايتۇرىدۇ"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:492
-#: xfce4-settings-editor/xfce-settings-editor-box.c:585
-#: xfce4-settings-editor/xfce-settings-editor-box.c:704
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:89
+#: xfce4-settings-editor/xfce-settings-editor-box.c:501
+#: xfce4-settings-editor/xfce-settings-editor-box.c:594
+#: xfce4-settings-editor/xfce-settings-editor-box.c:712
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:83
 msgid "Empty"
 msgstr "قۇرۇق"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:495
+#: xfce4-settings-editor/xfce-settings-editor-box.c:504
 msgid "Array"
 msgstr "تىزىق"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:500
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+#: xfce4-settings-editor/xfce-settings-editor-box.c:509
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:84
 msgid "String"
 msgstr "تېكىست"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:508
+#: xfce4-settings-editor/xfce-settings-editor-box.c:517
 msgid "Integer"
 msgstr "پۈتۈن سان"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:511
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:91
+#: xfce4-settings-editor/xfce-settings-editor-box.c:520
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:85
 msgid "Boolean"
 msgstr "بۇلىن"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:514
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:93
+#: xfce4-settings-editor/xfce-settings-editor-box.c:523
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:87
 msgid "Double"
 msgstr "يۇقىرى ئېنىقلىقتىكى سان"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:851
-msgid "_Reset Channel"
-msgstr "قانالنى ئەسلىگە قايتۇر(_R)"
-
-#: xfce4-settings-editor/xfce-settings-editor-box.c:852
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "بۇ ئىختىيارىي تەڭشەكلەرنى ئۆچۈرۈپ قانالنى تولۇق ئەسلىگە كەلتۈرىدۇ."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:853
+#: xfce4-settings-editor/xfce-settings-editor-box.c:859
+msgid "_Reset Channel"
+msgstr "قانالنى ئەسلىگە قايتۇر(_R)"
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:860
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "راستلا قانال «%s» نى ۋە ئۇنىڭ بارلىق خاسلىقىنى ئەسلىگە قايتۇرامسىز؟"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:928
+#: xfce4-settings-editor/xfce-settings-editor-box.c:935
 msgid "reset"
 msgstr "ئەسلىگە قايتۇر"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:985
+#: xfce4-settings-editor/xfce-settings-editor-box.c:992
 #, c-format
 msgid "Monitor %s"
 msgstr "كۆزەت %s"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:993
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
 msgid "Clear"
 msgstr "تازىلا"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:994
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
 msgid "Close"
 msgstr "تاقا"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1027
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1033
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "قانال «%s» نى كۆزىتىشنى باشلايدۇ"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1076
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1082
 msgid "_Monitor"
 msgstr "كۆزەتكۈچ(_M)"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1086
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1092
 msgid "Refresh"
 msgstr ""
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1577
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1575
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "بىرەر خاسلىق ئەسلىگە قايتۇرۇلسا ئىختىيارىي تەڭشەكلەر مەڭگۈلۈككە ئۆچۈرۈلىدۇ."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1578
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1579
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "راستلا خاسلىق «%s» نى ئەسلىگە قايتۇرامسىز؟"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:92
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
 msgid "Int"
 msgstr "Int"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:94
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:88
 msgid "Unsigned Int"
 msgstr "Unsigned Int"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:95
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Int64"
 msgstr "Int64"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:96
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Unsigned Int64"
 msgstr "Unsigned Int64"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:141
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:135
 msgid "New Property"
 msgstr "يېڭى خاسلىق"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:145
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Save"
 msgstr ""
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:160
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:153
 msgid "_Property:"
 msgstr "خاسلىق(_P):"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:174
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:167
 msgid "_Type:"
 msgstr "تىپى(_T):"
 
 #. strings
 #. integers
 #. bool
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:203
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:213
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:224
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:196
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:206
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:217
 msgid "_Value:"
 msgstr "قىممىتى(_V):"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:381
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:372
 msgid "Property names must start with a '/' character"
 msgstr "خاسلىق ئاتى '/' ھەرپ بىلەن باشلىنىشى شەرت"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:392
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:383
 msgid "The root element ('/') is not a valid property name"
 msgstr "root ئېلېمېنت ('/') ئىناۋەتلىك خاسلىق ئاتى ئەمەس"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:409
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:400
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
 msgstr ""
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:423
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:414
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "خاسلىق ئاتىغا ئارقىمۇ-ئارقا كەلگەن ئىككىدىن ياكى ئۇنىڭدىن ئارتۇق '/' نى ئىشلىتىشكە بولمايدۇ"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:437
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:428
 msgid "Property names cannot end with a '/' character"
 msgstr "خاسلىق ئاتى  '/' ھەرپى بىلەن ئاخىرلاشسا بولمايدۇ"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:650
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:641
 msgid "Edit Property"
 msgstr "خاسلىق تەھرىرلەش"
 
@@ -2678,20 +2700,20 @@ msgstr "Xfconf نىڭ گرافىكىلىق تەڭشەك تەھرىرلىگۈسى
 msgid "registry;regedit;configuration file;"
 msgstr ""
 
-#: xfce4-settings-manager/main.c:45
+#: xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "كۆرسىتىلىدىغان تەڭشەك سۆزلەشكۈسى"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:228
 msgid "All _Settings"
 msgstr ""
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:428
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:427
 msgid "Settings"
 msgstr "تەڭشەكلەر"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:927
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:939
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:925
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:937
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "«%s» نى قوزغاتقىلى بولمىدى"
@@ -2708,61 +2730,61 @@ msgstr ""
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr ""
 
-#: xfsettingsd/accessibility.c:412
+#: xfsettingsd/accessibility.c:413
 msgid "Sticky keys are enabled"
 msgstr "چاپلىشاڭغۇ كۇنۇپكىلار ئىناۋەتلىك قىلىنغان"
 
-#: xfsettingsd/accessibility.c:414
+#: xfsettingsd/accessibility.c:415
 msgid "Sticky keys are disabled"
 msgstr "چاپلىشاڭغۇ كۇنۇپكىلار ئىناۋەتسىز قىلىنغان"
 
-#: xfsettingsd/accessibility.c:416
+#: xfsettingsd/accessibility.c:417
 msgid "Sticky keys"
 msgstr "چاپلىشاڭغۇ كۇنۇپكىلار"
 
-#: xfsettingsd/accessibility.c:421
+#: xfsettingsd/accessibility.c:422
 msgid "Slow keys are enabled"
 msgstr "ئاستا كۇنۇپكىلار ئىناۋەتلىك قىلىنغان"
 
-#: xfsettingsd/accessibility.c:423
+#: xfsettingsd/accessibility.c:424
 msgid "Slow keys are disabled"
 msgstr "ئاستا كۇنۇپكىلار ئىناۋەتسىز قىلىنغان"
 
-#: xfsettingsd/accessibility.c:425
+#: xfsettingsd/accessibility.c:426
 msgid "Slow keys"
 msgstr "ئاستا كۇنۇپكىلار"
 
-#: xfsettingsd/accessibility.c:430
+#: xfsettingsd/accessibility.c:431
 msgid "Bounce keys are enabled"
 msgstr "سەكرىمە كۇنۇپكىلار ئىناۋەتلىك قىلىنغان"
 
-#: xfsettingsd/accessibility.c:432
+#: xfsettingsd/accessibility.c:433
 msgid "Bounce keys are disabled"
 msgstr "سەكرىمە كۇنۇپكىلار ئىناۋەتسىز قىلىنغان"
 
-#: xfsettingsd/accessibility.c:434
+#: xfsettingsd/accessibility.c:435
 msgid "Bounce keys"
 msgstr "سەكرىمە كۇنۇپكىلار"
 
-#: xfsettingsd/keyboard-shortcuts.c:242
+#: xfsettingsd/keyboard-shortcuts.c:240
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "تېزلەتمە «%s» نى ئىجرا قىلىش مەغلۇپ بولدى"
 
-#: xfsettingsd/main.c:107
+#: xfsettingsd/main.c:94
 msgid "Fork to the background"
 msgstr "ئارقا تەرەپكە ئاچىلا(Fork)"
 
-#: xfsettingsd/main.c:108
+#: xfsettingsd/main.c:95
 msgid "Do not wait for a window manager on startup"
 msgstr "باشلانغاندا ھۆججەت باشقۇرغۇنى كۈتمىسۇن"
 
-#: xfsettingsd/main.c:109
+#: xfsettingsd/main.c:96
 msgid "Replace running xsettings daemon (if any)"
 msgstr "ئىجرا قىلىنىۋاتقان xsettings مۇئەككىلى (بار بولسا) نى ئالماشتۇر"
 
 #. value in xfconf isn't a string, so make a default one
-#: xfsettingsd/workspaces.c:320 xfsettingsd/workspaces.c:377
+#: xfsettingsd/workspaces.c:322 xfsettingsd/workspaces.c:379
 #, c-format
 msgid "Workspace %d"
 msgstr "خىزمەت رايونى %d"
