@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-09-02 00:49+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: beriain, 2020-2024\n"
 "Language-Team: Basque (http://app.transifex.com/xfce/xfce4-settings/language/eu/)\n"
@@ -311,7 +311,7 @@ msgid "Version information"
 msgstr "Bertsio argibideak"
 
 #: dialogs/accessibility-settings/main.c:193
-#: dialogs/appearance-settings/main.c:1426 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:1690 dialogs/color-settings/main.c:1464
 #: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:148
@@ -323,7 +323,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Idatzi '%s --help' erabilerarentzat."
 
 #: dialogs/accessibility-settings/main.c:212
-#: dialogs/appearance-settings/main.c:1445 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:1709 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
@@ -332,7 +332,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce garapen taldea. Eskubide guztiak erreserbatuta."
 
 #: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1446 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:1710 dialogs/color-settings/main.c:1484
 #: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
@@ -352,7 +352,7 @@ msgid ""
 msgstr "asistentzia;teknologiak;teklak;itsaskorrak;errebote;emulazioa;pantaila irakurgailuak;lupak;a11y;i18n;l10n;AT-SPI;ATK;desgaitasunak;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1333 dialogs/display-settings/main.c:86
+#: dialogs/appearance-settings/main.c:1597 dialogs/display-settings/main.c:86
 #: dialogs/display-settings/main.c:94
 #: dialogs/mouse-settings/mouse-dialog.glade:63
 msgid "None"
@@ -399,8 +399,8 @@ msgstr "x2"
 msgid "Appearance"
 msgstr "Itxura"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:211
-#: dialogs/appearance-settings/appearance-dialog.glade:321
+#: dialogs/appearance-settings/appearance-dialog.glade:205
+#: dialogs/appearance-settings/appearance-dialog.glade:315
 #: dialogs/color-settings/color-dialog.glade:374
 #: dialogs/keyboard-settings/keyboard-dialog.glade:636
 #: dialogs/keyboard-settings/keyboard-dialog.glade:970
@@ -408,234 +408,234 @@ msgstr "Itxura"
 msgid "_Add"
 msgstr "_Gehitu"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:244
+#: dialogs/appearance-settings/appearance-dialog.glade:238
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
 msgstr "Ezarri <a href=\"xfwm4-settings:\">Xfwm4 itxura</a>rekin bat datorrena, baten bat badago"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:278
+#: dialogs/appearance-settings/appearance-dialog.glade:272
 msgid "St_yle"
 msgstr "Es_tiloa"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:354
+#: dialogs/appearance-settings/appearance-dialog.glade:348
 msgid "_Icons"
 msgstr "_Ikonoak"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:394
+#: dialogs/appearance-settings/appearance-dialog.glade:388
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "Letra-tipo hau erabiliko da Lehenetsitako letra-tipoa gisa erabiltzaile interfaze testu bat erakustean"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:396
+#: dialogs/appearance-settings/appearance-dialog.glade:390
 msgid "Select a default font"
 msgstr "Hautatu lehenetsitako letra-tipoa"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:405
+#: dialogs/appearance-settings/appearance-dialog.glade:399
 msgid "Default Fon_t"
 msgstr "Lehenetsitako letra-tipoa"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:437
+#: dialogs/appearance-settings/appearance-dialog.glade:431
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr "Letra-tipo hau aurrez zehaztutako monospace letra-tipo gisa erabiliko da, adibidez, terminal-emuladoretan."
 
-#: dialogs/appearance-settings/appearance-dialog.glade:439
+#: dialogs/appearance-settings/appearance-dialog.glade:433
 msgid "Select a default monospace font"
 msgstr "Aukeratu lehenetsitako monospace letra-tipoa"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:448
+#: dialogs/appearance-settings/appearance-dialog.glade:442
 msgid "Default _Monospace Font"
 msgstr "Lehenetsitako monospace letra-tipoa"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:483
+#: dialogs/appearance-settings/appearance-dialog.glade:477
 msgid "_Enable anti-aliasing"
 msgstr "Gaitu _anti-aliasing-a"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:487
+#: dialogs/appearance-settings/appearance-dialog.glade:481
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Anti-aliasing, edo letra-tipo leuntzea, pantailako testuaren itxura hobe dezake"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:515
+#: dialogs/appearance-settings/appearance-dialog.glade:509
 msgid "Hintin_g:"
 msgstr "Hintin_g-a:"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:527
+#: dialogs/appearance-settings/appearance-dialog.glade:521
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Letra-tipo askok letra-tipoa hobe marrazteko gomendioez hornitzen dute, hautatu zure hobespen pertsonaletara gehien gerturatzen dena"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:547
+#: dialogs/appearance-settings/appearance-dialog.glade:541
 msgid "Sub-_pixel order:"
 msgstr "Azpi-_pixel ordena:"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:559
+#: dialogs/appearance-settings/appearance-dialog.glade:553
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "TFT edo LCD pantailetako letra-tipo kalitatea asko hobetu daiteke pantailan dagokion azpi-pixel orden zuzena hautatuaz"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:597
+#: dialogs/appearance-settings/appearance-dialog.glade:591
 msgid "Rendering"
 msgstr "Errendatzea"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:629
+#: dialogs/appearance-settings/appearance-dialog.glade:623
 msgid "Custom _DPI setting:"
 msgstr "Pertsonalizatutako DPI ezarpena:"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:633
+#: dialogs/appearance-settings/appearance-dialog.glade:627
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Gainidatzi atzemandako monitore erresoluzioa letra-tipoak handiegi edo txikiegi ikusten badira"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:670
+#: dialogs/appearance-settings/appearance-dialog.glade:664
 msgid "DPI"
 msgstr "DPI"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:696
+#: dialogs/appearance-settings/appearance-dialog.glade:690
 msgid "_Fonts"
 msgstr "_Letra-tipoak"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:739
+#: dialogs/appearance-settings/appearance-dialog.glade:733
 msgid "Show images on _buttons"
 msgstr "Ikusi irudiak _botoietan"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:743
+#: dialogs/appearance-settings/appearance-dialog.glade:737
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Zehaztu ikonoak ikusiko diren testuen ondoan menuetan"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:756
+#: dialogs/appearance-settings/appearance-dialog.glade:750
 msgid "Show images in _menus"
 msgstr "Ikusi irudiak _menuetan"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:760
+#: dialogs/appearance-settings/appearance-dialog.glade:754
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Zehaztu ikonoak ikusiko diren elementuen ondoan menuetan"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:773
+#: dialogs/appearance-settings/appearance-dialog.glade:767
 msgid "Enable e_ditable accelerators"
 msgstr "Gaitu bizkortzaile e_ditagarriak"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:777
+#: dialogs/appearance-settings/appearance-dialog.glade:771
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Hautaturik badago menu elementuen teklatu lasterbideak aldatu egin daitezke sagua menu elementuaren gainean ipini eta lasterbide berriaren tekla nahasketa sakatuaz"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:790
+#: dialogs/appearance-settings/appearance-dialog.glade:784
 msgid "Enable header bars in dialo_gs"
 msgstr "Goiburu barrak gaitu leihotxoetan"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:794
+#: dialogs/appearance-settings/appearance-dialog.glade:788
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr "GTK leihotxoek botoiak bezalako widget-ak leihotxoen goiburu barran jarri dezaketen definitzen du. Inplikazioak ditu Bezero Aldeko Dekorazioan (Client Side Decoration). Irekitako leihotxo berrietan du eragina soilik."
 
-#: dialogs/appearance-settings/appearance-dialog.glade:813
+#: dialogs/appearance-settings/appearance-dialog.glade:807
 msgid "Menus and Buttons"
 msgstr "Menuak eta botoiak"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:845
+#: dialogs/appearance-settings/appearance-dialog.glade:839
 msgid "Enable _event sounds"
 msgstr "Gaitu g_ertaera soinuak"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:849
+#: dialogs/appearance-settings/appearance-dialog.glade:843
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Gaitu edo desgaitu gertaera soinuak osotasunean (\"Camberra\" onarpena beharrezkoa)"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:862
+#: dialogs/appearance-settings/appearance-dialog.glade:856
 msgid "Enable input feedbac_k sounds"
 msgstr "Gaitu sa_rrera atzeraelikadura soinuak"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:866
+#: dialogs/appearance-settings/appearance-dialog.glade:860
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Zehaztu sagu klik-ek edo beste erabiltzaile sarrerek gertaera soinuak erreproduzitzea eragingo duen ala ez"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:885
+#: dialogs/appearance-settings/appearance-dialog.glade:879
 msgid "Event sounds"
 msgstr "Gertaera soinuak"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:914
+#: dialogs/appearance-settings/appearance-dialog.glade:908
 msgid "Adjust the system-wide display scaling"
 msgstr "Doitu sistemaren osoaren bistaratze-eskala"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:932
+#: dialogs/appearance-settings/appearance-dialog.glade:926
 msgid "_Window Scaling"
 msgstr "_Leiho eskala"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:960
+#: dialogs/appearance-settings/appearance-dialog.glade:954
 msgid "Setti_ngs"
 msgstr "Ezarpe_nak"
 
-#: dialogs/appearance-settings/main.c:231
+#: dialogs/appearance-settings/main.c:335
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Ezin izan da Xfwm4 Ezarpenak erakutsi"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:498
+#: dialogs/appearance-settings/main.c:629
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
-"<i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."
+"<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
 msgstr ""
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:505
+#: dialogs/appearance-settings/main.c:636
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr ""
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:510
+#: dialogs/appearance-settings/main.c:641
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:985
+#: dialogs/appearance-settings/main.c:1248
 msgid "File is too large, installation aborted"
 msgstr "Fitxategia handiegia da, instalazioa bertan behera uzten"
 
-#: dialogs/appearance-settings/main.c:990
+#: dialogs/appearance-settings/main.c:1253
 msgid "Failed to create temporary directory"
 msgstr "Huts aldiroko direktorioa sortzean"
 
-#: dialogs/appearance-settings/main.c:995
+#: dialogs/appearance-settings/main.c:1258
 msgid "Failed to extract archive"
 msgstr "Huts fitxategiak artxibotik ateratzean"
 
-#: dialogs/appearance-settings/main.c:1000
+#: dialogs/appearance-settings/main.c:1263
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Formatu ezezaguna, fitxategi eta direktorioak bakarrik onartzen dira"
 
-#: dialogs/appearance-settings/main.c:1005
+#: dialogs/appearance-settings/main.c:1268
 msgid "Not a valid theme package"
 msgstr "Ez da itxura pakete balioduna"
 
-#: dialogs/appearance-settings/main.c:1010
+#: dialogs/appearance-settings/main.c:1273
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Errore ezezaguna, irteera kodea %d da"
 
-#: dialogs/appearance-settings/main.c:1017
+#: dialogs/appearance-settings/main.c:1280
 msgid "Failed to install theme"
 msgstr "Huts gaia instalatzean"
 
-#: dialogs/appearance-settings/main.c:1071
+#: dialogs/appearance-settings/main.c:1334
 #, c-format
 msgid "Install %s theme"
 msgstr "%s estiloa instalatu"
 
 #. Create cancel button
-#: dialogs/appearance-settings/main.c:1073
+#: dialogs/appearance-settings/main.c:1336
 #: dialogs/color-settings/color-dialog.glade:529
 #: dialogs/color-settings/main.c:127
 #: dialogs/keyboard-settings/command-dialog.c:113
@@ -647,25 +647,25 @@ msgstr "%s estiloa instalatu"
 msgid "_Cancel"
 msgstr "_Utzi"
 
-#: dialogs/appearance-settings/main.c:1074
+#: dialogs/appearance-settings/main.c:1337
 #: dialogs/keyboard-settings/command-dialog.c:276
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Ireki"
 
-#: dialogs/appearance-settings/main.c:1337
+#: dialogs/appearance-settings/main.c:1601
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1341
+#: dialogs/appearance-settings/main.c:1605
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1345
+#: dialogs/appearance-settings/main.c:1609
 msgid "Vertical RGB"
 msgstr "RGB bertikala"
 
-#: dialogs/appearance-settings/main.c:1349
+#: dialogs/appearance-settings/main.c:1613
 msgid "Vertical BGR"
 msgstr "BGR bertikala"
 
@@ -892,8 +892,17 @@ msgstr "Testu profila:"
 msgid "Compatible Profiles"
 msgstr "Profil bateragarriak"
 
-#: dialogs/color-settings/main.c:860 dialogs/color-settings/main.c:861
-#: dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:517
+#, c-format
+msgid "Add Color Profile to %s"
+msgstr ""
+
+#: dialogs/color-settings/main.c:517
+msgid "Device"
+msgstr "Gailua"
+
+#: dialogs/color-settings/main.c:861 dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:863
 msgid "Unknown"
 msgstr "Ezezaguna"
 
@@ -960,6 +969,7 @@ msgid "The primary display can be configured to show:"
 msgstr "Pantaila nagusia hurrengoa erakusteko konfiguratu daiteke:"
 
 #: dialogs/display-settings/display-dialog.glade:171
+#: dialogs/display-settings/main.c:1739
 msgid "Xfce Panel"
 msgstr "Xfce panela"
 
@@ -1223,7 +1233,7 @@ msgstr "Bistaratze-profil bat ezabatutakoan, ezin da berreskuratu."
 #: dialogs/display-settings/main.c:1678
 #: dialogs/mime-settings/xfce-mime-chooser.c:135
 #: dialogs/mime-settings/xfce-mime-chooser.c:380
-#: dialogs/mime-settings/xfce-mime-window.c:1181
+#: dialogs/mime-settings/xfce-mime-window.c:1184
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Cancel"
 msgstr "Utzi"
@@ -1502,45 +1512,45 @@ msgstr "Huts xfconf deabrura konektatzean. Arrazoia: %s"
 msgid "Could not create the settings dialog."
 msgstr "Ezin da ezapen elkarrizketa sortu."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:433
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:434
 msgid "Command"
 msgstr "Komandoa"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:441
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:442
 msgid "Shortcut"
 msgstr "Lasterbidea"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:518
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
 msgid "Layout"
 msgstr "Diseinua"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:520
 msgid "Variant"
 msgstr "Aldagaia"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1288
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1289
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Honek laster-tekla guztiak bere lehenetsiriko balioetara ezarriko ditu. Benetan hau egin nahi duzula?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1292
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
 msgid "Reset to Defaults"
 msgstr "Berrezarri lehenetsian"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
 msgid "No"
 msgstr "Ez"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
 msgid "Yes"
 msgstr "Bai"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1372
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1373
 msgid "The system defaults will be restored next time you log in."
 msgstr "Sistema lehenespenak berrezarriko dira saio hasten duzun hurrengoan."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1374
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1375
 msgid "Warning"
 msgstr "Abisua"
 
@@ -1694,11 +1704,11 @@ msgstr "Xfce-ren lehenetsiriko terminal emuladore bezala erabili\nnahi duzun apl
 msgid "Browse the file system to choose a custom command."
 msgstr "Pertsonalizatutako komando bat aukeratzeko fitxategi-sistema arakatu."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:746
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:757
 msgid "_Other..."
 msgstr "_Besteak..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:747
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:758
 msgid "Use a custom application which is not included in the above list."
 msgstr "Beheko zerrendan ez dagoen aplikazio pertsonalizatu bat aukeratu."
 
@@ -1781,13 +1791,13 @@ msgid ""
 "  TerminalEmulator - The preferred Terminal Emulator."
 msgstr "Hurrengo MOTAk onartzen dira --launch eta --query komandoetarako:\n\n  WebBrowser       - Hobetsiriko web nabigatzailea.\n  MailReader       - Hobetsiriko posta bezeroa.\n  FileManager      - Hobetsiriko fitxategi kudeatzailea.\n  TerminalEmulator - Hobetsiriko terminal emuladorea."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:174
-#: dialogs/mime-settings/xfce-mime-helper-main.c:247
+#: dialogs/mime-settings/xfce-mime-helper-main.c:176
+#: dialogs/mime-settings/xfce-mime-helper-main.c:251
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "\"%s\" laguntzaile mota baliogabea"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:231
+#: dialogs/mime-settings/xfce-mime-helper-main.c:235
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -1802,19 +1812,19 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nCopyright (c) 2003-2006\n        os-cillation e.K. All rights reserved.\n\nBenedikt Meurerek <benny@xfce.org> idatzia.\n\nGtk+-%d.%d.%d erabiliaz eraikia, Gtk+-%d.%d.%d erabiliaz exekutatua.\n\nPrograma erroreen berri hemen eman: <%s>.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:257
+#: dialogs/mime-settings/xfce-mime-helper-main.c:263
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Ez dago laguntzailerik definituta \"%s\"(e)rako."
 
-#: dialogs/mime-settings/xfce-mime-helper.c:432
+#: dialogs/mime-settings/xfce-mime-helper.c:433
 msgid "No command specified"
 msgstr "Ez da komandoa ezarri"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:812
-#: dialogs/mime-settings/xfce-mime-helper.c:851
-#: dialogs/mime-settings/xfce-mime-helper.c:948
-#: dialogs/mime-settings/xfce-mime-helper.c:987
+#: dialogs/mime-settings/xfce-mime-helper.c:813
+#: dialogs/mime-settings/xfce-mime-helper.c:852
+#: dialogs/mime-settings/xfce-mime-helper.c:949
+#: dialogs/mime-settings/xfce-mime-helper.c:988
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Ezin da %s fitxategia idazketarako ireki"
@@ -1907,58 +1917,58 @@ msgid "Default Application"
 msgstr "Lehenetsitako aplikazioa"
 
 #: dialogs/mime-settings/xfce-mime-window.c:658
-#: dialogs/mime-settings/xfce-mime-window.c:825
+#: dialogs/mime-settings/xfce-mime-window.c:827
 msgid "User Set"
 msgstr "Erabiltzaile ezarpenak"
 
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:660
-#: dialogs/mime-settings/xfce-mime-window.c:825
+#: dialogs/mime-settings/xfce-mime-window.c:827
 #: dialogs/mouse-settings/main.c:413 dialogs/mouse-settings/main.c:415
 #: dialogs/mouse-settings/main.c:478
 msgid "Default"
 msgstr "Lehenetsia"
 
-#: dialogs/mime-settings/xfce-mime-window.c:748
+#: dialogs/mime-settings/xfce-mime-window.c:750
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "MIME mota %d topatu da"
 msgstr[1] "%d MIME mota topatu dira"
 
-#: dialogs/mime-settings/xfce-mime-window.c:870
+#: dialogs/mime-settings/xfce-mime-window.c:872
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Huts \"%s\" aplikazioa \"%s\" MIME motarentzat ezartzerakoan."
 
-#: dialogs/mime-settings/xfce-mime-window.c:978
+#: dialogs/mime-settings/xfce-mime-window.c:981
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
 msgstr[0] "MIME mota %d hautatuta"
 msgstr[1] "%d MIME mota hautatuta"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1174
+#: dialogs/mime-settings/xfce-mime-window.c:1177
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Honek zure pertsonalizatutako mime-lotura ezabatu eta sistemaren lehenespena berrezarriko du."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1179
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Ziur zaude \"%s\" kanala eta dituen propietateak berrabiarazi nahi duzula?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1180
+#: dialogs/mime-settings/xfce-mime-window.c:1183
 msgid "Question"
 msgstr "Galdera"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1182
-#: dialogs/mime-settings/xfce-mime-window.c:1254
+#: dialogs/mime-settings/xfce-mime-window.c:1185
+#: dialogs/mime-settings/xfce-mime-window.c:1257
 msgid "Reset to Default"
 msgstr "Berrezarri lehenetsian"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1249
+#: dialogs/mime-settings/xfce-mime-window.c:1252
 msgid "Choose Application..."
 msgstr "Hautatu aplikazioa..."
 
