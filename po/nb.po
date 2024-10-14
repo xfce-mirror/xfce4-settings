@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-09-04 12:50+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: heskjestad, 2024\n"
 "Language-Team: Norwegian Bokmål (http://app.transifex.com/xfce/xfce4-settings/language/nb/)\n"
@@ -318,7 +318,7 @@ msgid "Version information"
 msgstr "Versjonsinformasjon"
 
 #: dialogs/accessibility-settings/main.c:193
-#: dialogs/appearance-settings/main.c:1690 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:1690 dialogs/color-settings/main.c:1464
 #: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:148
@@ -330,7 +330,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Skriv '%s --help' for bruksinstruksjoner."
 
 #: dialogs/accessibility-settings/main.c:212
-#: dialogs/appearance-settings/main.c:1709 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:1709 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
@@ -339,7 +339,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce utviklingsteam. Alle rettigheter reservert."
 
 #: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1710 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:1710 dialogs/color-settings/main.c:1484
 #: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
@@ -899,8 +899,17 @@ msgstr "Testprofil:"
 msgid "Compatible Profiles"
 msgstr "Kompatible profiler"
 
-#: dialogs/color-settings/main.c:860 dialogs/color-settings/main.c:861
-#: dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:517
+#, c-format
+msgid "Add Color Profile to %s"
+msgstr ""
+
+#: dialogs/color-settings/main.c:517
+msgid "Device"
+msgstr "Enhet"
+
+#: dialogs/color-settings/main.c:861 dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:863
 msgid "Unknown"
 msgstr "Ukjent"
 
@@ -967,6 +976,7 @@ msgid "The primary display can be configured to show:"
 msgstr "Hovedskjermen kan settes opp til å vise:"
 
 #: dialogs/display-settings/display-dialog.glade:171
+#: dialogs/display-settings/main.c:1739
 msgid "Xfce Panel"
 msgstr "Xfce-panelet"
 
@@ -1230,7 +1240,7 @@ msgstr "En slettet skjermprofil kan ikke gjenopprettes."
 #: dialogs/display-settings/main.c:1678
 #: dialogs/mime-settings/xfce-mime-chooser.c:135
 #: dialogs/mime-settings/xfce-mime-chooser.c:380
-#: dialogs/mime-settings/xfce-mime-window.c:1181
+#: dialogs/mime-settings/xfce-mime-window.c:1184
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Cancel"
 msgstr "Avbryt"
@@ -1509,45 +1519,45 @@ msgstr "Klarte ikke koble til xfconf-prosessen. Årsak: %s"
 msgid "Could not create the settings dialog."
 msgstr "Kan ikke opprette dialogboks for innstillinger"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:433
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:434
 msgid "Command"
 msgstr "Kommando"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:441
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:442
 msgid "Shortcut"
 msgstr "Hurtigtast"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:518
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
 msgid "Layout"
 msgstr "Oppsett"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:520
 msgid "Variant"
 msgstr "Variant"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1288
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1289
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Dette vil tilbakestille alle hurtigtaster til dens forvalgte verdi. Ønsker du å gjøre dette?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1292
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
 msgid "Reset to Defaults"
 msgstr "Tilbakestill til forvalgte verdier"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
 msgid "No"
 msgstr "Nei"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
 msgid "Yes"
 msgstr "Ja"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1372
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1373
 msgid "The system defaults will be restored next time you log in."
 msgstr "Forvalgte verdier vil bli gjenopprettet neste gang du logger inn."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1374
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1375
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -1701,11 +1711,11 @@ msgstr "Velg programmet du ønsker å bruke som\nstandard terminalemulator i Xfc
 msgid "Browse the file system to choose a custom command."
 msgstr "Bla gjennom filsystemet for å velge kommando."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:746
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:757
 msgid "_Other..."
 msgstr "_Andre …"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:747
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:758
 msgid "Use a custom application which is not included in the above list."
 msgstr "Bruk selvvalgt program som ikke ligger i listen ovenfor"
 
@@ -1788,13 +1798,13 @@ msgid ""
 "  TerminalEmulator - The preferred Terminal Emulator."
 msgstr "Følgende TYPE-r er støttet for --launch og --query kommandoene:\n\n  WebBrowser       - Ønsket nettleser.\n  MailReader       - Ønsket e-postleser.\n FileManager - Ønsket filbehandler.\n TerminalEmulator - Ønsket teminalemulator."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:174
-#: dialogs/mime-settings/xfce-mime-helper-main.c:247
+#: dialogs/mime-settings/xfce-mime-helper-main.c:176
+#: dialogs/mime-settings/xfce-mime-helper-main.c:251
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "Ugyldig hjelpertype \"%s\""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:231
+#: dialogs/mime-settings/xfce-mime-helper-main.c:235
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -1809,19 +1819,19 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nOpphavsrettt (c) 2003-2006\n        os-cillation e.K. Alle rettigheter reservert.\n\nSkrevet av Benedikt Meurer <benny@xfce.org>.\n\nBygget med Gtk+-%d.%d.%d, kjører Gtk+-%d.%d.%d.\n\nRapporter feil til <%s>.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:257
+#: dialogs/mime-settings/xfce-mime-helper-main.c:263
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Ingen hjelper definert for «%s»."
 
-#: dialogs/mime-settings/xfce-mime-helper.c:432
+#: dialogs/mime-settings/xfce-mime-helper.c:433
 msgid "No command specified"
 msgstr "Ingen kommando er angitt"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:812
-#: dialogs/mime-settings/xfce-mime-helper.c:851
-#: dialogs/mime-settings/xfce-mime-helper.c:948
-#: dialogs/mime-settings/xfce-mime-helper.c:987
+#: dialogs/mime-settings/xfce-mime-helper.c:813
+#: dialogs/mime-settings/xfce-mime-helper.c:852
+#: dialogs/mime-settings/xfce-mime-helper.c:949
+#: dialogs/mime-settings/xfce-mime-helper.c:988
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Klarte ikke å åpne %s for skriving"
@@ -1914,58 +1924,58 @@ msgid "Default Application"
 msgstr "Forvalgt program"
 
 #: dialogs/mime-settings/xfce-mime-window.c:658
-#: dialogs/mime-settings/xfce-mime-window.c:825
+#: dialogs/mime-settings/xfce-mime-window.c:827
 msgid "User Set"
 msgstr "Angitt av bruker"
 
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:660
-#: dialogs/mime-settings/xfce-mime-window.c:825
+#: dialogs/mime-settings/xfce-mime-window.c:827
 #: dialogs/mouse-settings/main.c:413 dialogs/mouse-settings/main.c:415
 #: dialogs/mouse-settings/main.c:478
 msgid "Default"
 msgstr "Forvalgt"
 
-#: dialogs/mime-settings/xfce-mime-window.c:748
+#: dialogs/mime-settings/xfce-mime-window.c:750
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "Fant %d MIME-type"
 msgstr[1] "Fant %d MIME-typer"
 
-#: dialogs/mime-settings/xfce-mime-window.c:870
+#: dialogs/mime-settings/xfce-mime-window.c:872
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Klarte ikke angi program «%s» for MIME-type «%s»."
 
-#: dialogs/mime-settings/xfce-mime-window.c:978
+#: dialogs/mime-settings/xfce-mime-window.c:981
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
 msgstr[0] "%d MIME-type valgt"
 msgstr[1] "%d MIME-typer valgt"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1174
+#: dialogs/mime-settings/xfce-mime-window.c:1177
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Dette vil fjerne dine brukerdefinerte MIME-assosiasjoner og gjenopprette systemets forvalgte verdier."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1179
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Er du sikker på at du vil tilbakestille innholdstypen «%s» til forvalgt verdi?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1180
+#: dialogs/mime-settings/xfce-mime-window.c:1183
 msgid "Question"
 msgstr "Spørsmål"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1182
-#: dialogs/mime-settings/xfce-mime-window.c:1254
+#: dialogs/mime-settings/xfce-mime-window.c:1185
+#: dialogs/mime-settings/xfce-mime-window.c:1257
 msgid "Reset to Default"
 msgstr "Tilbakestill til forvalgte verdier"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1249
+#: dialogs/mime-settings/xfce-mime-window.c:1252
 msgid "Choose Application..."
 msgstr "Velg program …"
 
