@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-09-04 12:50+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2024\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
@@ -323,7 +323,7 @@ msgid "Version information"
 msgstr "版本信息"
 
 #: dialogs/accessibility-settings/main.c:193
-#: dialogs/appearance-settings/main.c:1690 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:1690 dialogs/color-settings/main.c:1464
 #: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:148
@@ -335,7 +335,7 @@ msgid "Type '%s --help' for usage."
 msgstr "输入 ‘%s --help’ 获取用法。"
 
 #: dialogs/accessibility-settings/main.c:212
-#: dialogs/appearance-settings/main.c:1709 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:1709 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
@@ -344,7 +344,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发团队。保留所有权利。"
 
 #: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1710 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:1710 dialogs/color-settings/main.c:1484
 #: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
@@ -904,8 +904,17 @@ msgstr "测试配置文件： "
 msgid "Compatible Profiles"
 msgstr "兼容的配置文件"
 
-#: dialogs/color-settings/main.c:860 dialogs/color-settings/main.c:861
-#: dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:517
+#, c-format
+msgid "Add Color Profile to %s"
+msgstr "添加色彩配置文件至%s"
+
+#: dialogs/color-settings/main.c:517
+msgid "Device"
+msgstr "设备"
+
+#: dialogs/color-settings/main.c:861 dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:863
 msgid "Unknown"
 msgstr "未知的"
 
@@ -972,6 +981,7 @@ msgid "The primary display can be configured to show:"
 msgstr "主显示器可以配置为显示："
 
 #: dialogs/display-settings/display-dialog.glade:171
+#: dialogs/display-settings/main.c:1739
 msgid "Xfce Panel"
 msgstr "Xfce 面板"
 
@@ -1235,7 +1245,7 @@ msgstr "一旦删除显示配置文件后，将无法恢复。"
 #: dialogs/display-settings/main.c:1678
 #: dialogs/mime-settings/xfce-mime-chooser.c:135
 #: dialogs/mime-settings/xfce-mime-chooser.c:380
-#: dialogs/mime-settings/xfce-mime-window.c:1181
+#: dialogs/mime-settings/xfce-mime-window.c:1184
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Cancel"
 msgstr "取消"
@@ -1513,45 +1523,45 @@ msgstr "无法与 xfconf 守护进程连接。原因：%s"
 msgid "Could not create the settings dialog."
 msgstr "未能创建设置对话框。"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:433
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:434
 msgid "Command"
 msgstr "命令"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:441
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:442
 msgid "Shortcut"
 msgstr "快捷键"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:518
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
 msgid "Layout"
 msgstr "布局"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:520
 msgid "Variant"
 msgstr "变体"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1288
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1289
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "这会把所有快捷键重置为它们的默认值，您真的要这样做吗？"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1292
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
 msgid "Reset to Defaults"
 msgstr "重置为默认"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
 msgid "No"
 msgstr "不"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
 msgid "Yes"
 msgstr "是的"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1372
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1373
 msgid "The system defaults will be restored next time you log in."
 msgstr "在您下次登录时将恢复系统默认。"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1374
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1375
 msgid "Warning"
 msgstr "警告"
 
@@ -1704,11 +1714,11 @@ msgstr "指定您要用作 Xfce 默认\n终端模拟器的应用程序："
 msgid "Browse the file system to choose a custom command."
 msgstr "浏览文件系统以选择自定义命令。"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:746
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:757
 msgid "_Other..."
 msgstr "其它(_O)…"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:747
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:758
 msgid "Use a custom application which is not included in the above list."
 msgstr "使用不在以上列表中的自定义应用程序。"
 
@@ -1791,13 +1801,13 @@ msgid ""
 "  TerminalEmulator - The preferred Terminal Emulator."
 msgstr "--launch 和 --query 命令支持以下类型：\n\n  WebBrowser       - 首选网络浏览器。\n  MailReader       - 首选邮件阅读器。\n  FileManager      - 首选文件管理器。\n  TerminalEmulator - 首选终端模拟器。"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:174
-#: dialogs/mime-settings/xfce-mime-helper-main.c:247
+#: dialogs/mime-settings/xfce-mime-helper-main.c:176
+#: dialogs/mime-settings/xfce-mime-helper-main.c:251
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "无效辅助程序类型 “%s”"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:231
+#: dialogs/mime-settings/xfce-mime-helper-main.c:235
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -1812,19 +1822,19 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s(Xfce %s)\n\n版权 (c) 2003-2006\n        os-cillation e.K. 版权所有。\n\n由 Benedikt Meurer <benny@xfce.org> 编写。\n\n用 Gtk+-%d.%d.%d 构建，运行 Gtk+-%d.%d.%d。\n\n请向 <%s> 报告程序缺陷。\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:257
+#: dialogs/mime-settings/xfce-mime-helper-main.c:263
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr " \"%s\"的辅助程序未定义。"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:432
+#: dialogs/mime-settings/xfce-mime-helper.c:433
 msgid "No command specified"
 msgstr "未指定命令"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:812
-#: dialogs/mime-settings/xfce-mime-helper.c:851
-#: dialogs/mime-settings/xfce-mime-helper.c:948
-#: dialogs/mime-settings/xfce-mime-helper.c:987
+#: dialogs/mime-settings/xfce-mime-helper.c:813
+#: dialogs/mime-settings/xfce-mime-helper.c:852
+#: dialogs/mime-settings/xfce-mime-helper.c:949
+#: dialogs/mime-settings/xfce-mime-helper.c:988
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "无法打开 %s 来写入"
@@ -1917,56 +1927,56 @@ msgid "Default Application"
 msgstr "默认应用程序"
 
 #: dialogs/mime-settings/xfce-mime-window.c:658
-#: dialogs/mime-settings/xfce-mime-window.c:825
+#: dialogs/mime-settings/xfce-mime-window.c:827
 msgid "User Set"
 msgstr "用户设置"
 
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:660
-#: dialogs/mime-settings/xfce-mime-window.c:825
+#: dialogs/mime-settings/xfce-mime-window.c:827
 #: dialogs/mouse-settings/main.c:413 dialogs/mouse-settings/main.c:415
 #: dialogs/mouse-settings/main.c:478
 msgid "Default"
 msgstr "默认"
 
-#: dialogs/mime-settings/xfce-mime-window.c:748
+#: dialogs/mime-settings/xfce-mime-window.c:750
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "找到了 %d 个 MIME 类型"
 
-#: dialogs/mime-settings/xfce-mime-window.c:870
+#: dialogs/mime-settings/xfce-mime-window.c:872
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "无法为 mime 类型 “%2$s” 设置应用程序 “%1$s”。"
 
-#: dialogs/mime-settings/xfce-mime-window.c:978
+#: dialogs/mime-settings/xfce-mime-window.c:981
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
 msgstr[0] "已选中 %d 个 MIME 类型"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1174
+#: dialogs/mime-settings/xfce-mime-window.c:1177
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "这样会移除您的自定义 mime 绑定并恢复系统范围的默认。"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1179
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "您确定要重置内容类型 “%s” 为其默认值吗？"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1180
+#: dialogs/mime-settings/xfce-mime-window.c:1183
 msgid "Question"
 msgstr "问题"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1182
-#: dialogs/mime-settings/xfce-mime-window.c:1254
+#: dialogs/mime-settings/xfce-mime-window.c:1185
+#: dialogs/mime-settings/xfce-mime-window.c:1257
 msgid "Reset to Default"
 msgstr "重置为默认"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1249
+#: dialogs/mime-settings/xfce-mime-window.c:1252
 msgid "Choose Application..."
 msgstr "选择应用程序..."
 
