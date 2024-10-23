@@ -533,12 +533,6 @@ screen_on_event (gpointer data)
     XfceDisplaysHelperX11 *helper = XFCE_DISPLAYS_HELPER_X11 (data);
     XfconfChannel *channel = xfce_displays_helper_get_channel (XFCE_DISPLAYS_HELPER (helper));
     GPtrArray *old_outputs;
-    XfceRRCrtc *crtc = NULL;
-    XfceRROutput *output, *o;
-    gint j;
-    guint n, m, nactive = 0;
-    gint action;
-    gboolean found = FALSE, changed = FALSE;
 
     helper->screen_on_event_id = 0;
 
@@ -572,25 +566,30 @@ screen_on_event (gpointer data)
 
     if (old_outputs->len > helper->outputs->len)
     {
+        gboolean changed = FALSE;
+        guint nactive = 0;
+
         /* Diff the new and old output list to find removed outputs */
-        for (n = 0; n < old_outputs->len; ++n)
+        for (guint n = 0; n < old_outputs->len; ++n)
         {
-            found = FALSE;
-            output = g_ptr_array_index (old_outputs, n);
-            for (m = 0; m < helper->outputs->len && !found; ++m)
+            gboolean found = FALSE;
+            XfceRROutput *output = g_ptr_array_index (old_outputs, n);
+            for (guint m = 0; m < helper->outputs->len && !found; ++m)
             {
-                o = g_ptr_array_index (helper->outputs, m);
+                XfceRROutput *o = g_ptr_array_index (helper->outputs, m);
                 found = o->id == output->id;
             }
             if (!found)
             {
+                XfceRRCrtc *crtc = NULL;
+
                 xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Output disconnected: %s",
                                 output->info->name);
                 /* force deconfiguring the crtc for the removed output */
                 if (output->info->crtc != None)
                     crtc = xfce_displays_helper_x11_find_crtc_by_id (helper,
                                                                      output->info->crtc);
-                if (crtc)
+                if (crtc != NULL)
                 {
                     crtc->mode = None;
                     xfce_displays_helper_x11_disable_crtc (helper, crtc->id);
@@ -602,9 +601,9 @@ screen_on_event (gpointer data)
 
         /* Basically, this means the external output was disconnected,
            so reenable the internal one if needed. */
-        for (n = 0; n < helper->outputs->len; ++n)
+        for (guint n = 0; n < helper->outputs->len; ++n)
         {
-            output = g_ptr_array_index (helper->outputs, n);
+            XfceRROutput *output = g_ptr_array_index (helper->outputs, n);
             if (output->active)
                 ++nactive;
         }
@@ -616,70 +615,80 @@ screen_on_event (gpointer data)
         else if (changed)
             xfce_displays_helper_x11_apply_all (helper);
     }
-    else if ((action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT))
-             != ACTION_ON_NEW_OUTPUT_DO_NOTHING)
+    else
     {
-        /* Diff the new and old output list to find new outputs */
-        for (n = 0; n < helper->outputs->len; ++n)
+        gint action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT);
+        if (action != ACTION_ON_NEW_OUTPUT_DO_NOTHING)
         {
-            found = FALSE;
-            output = g_ptr_array_index (helper->outputs, n);
-            for (m = 0; m < old_outputs->len && !found; ++m)
+            gboolean changed = FALSE;
+
+            /* Diff the new and old output list to find new outputs */
+            for (guint n = 0; n < helper->outputs->len; ++n)
             {
-                o = g_ptr_array_index (old_outputs, m);
-                found = o->id == output->id;
-            }
-            if (!found)
-            {
-                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_NEW_OUTPUT, output->info->name);
-                /* need to enable crtc for output ? */
-                if (output->info->crtc == None)
+                gboolean found = FALSE;
+                XfceRROutput *output = g_ptr_array_index (helper->outputs, n);
+                for (guint m = 0; m < old_outputs->len && !found; ++m)
                 {
-                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "enabling crtc for %s", output->info->name);
-                    crtc = xfce_displays_helper_x11_find_usable_crtc (helper, output);
-                    if (crtc)
-                    {
-                        crtc->mode = output->preferred_mode;
-                        crtc->rotation = RR_Rotate_0;
-                        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-                        if ((crtc->x > gdk_screen_width () + 1) || (crtc->y > gdk_screen_height () + 1)
-                            || action == ACTION_ON_NEW_OUTPUT_MIRROR)
-                        {
-                            crtc->x = crtc->y = 0;
-                        }
-                        /* Extend to the right if configured */
-                        else if (action == ACTION_ON_NEW_OUTPUT_EXTEND)
-                        {
-                            crtc->x = helper->width - crtc->width;
-                            crtc->y = 0;
-                        } /* else - leave values from last time we saw the monitor */
-                        G_GNUC_END_IGNORE_DEPRECATIONS
-                        /* set width and height */
-                        for (j = 0; j < helper->resources->nmode; ++j)
-                        {
-                            if (helper->resources->modes[j].id == output->preferred_mode)
-                            {
-                                crtc->width = helper->resources->modes[j].width;
-                                crtc->height = helper->resources->modes[j].height;
-                                break;
-                            }
-                        }
-                        xfce_displays_helper_x11_set_outputs (crtc, output);
-                        crtc->changed = TRUE;
-                    }
+                    XfceRROutput *o = g_ptr_array_index (old_outputs, m);
+                    found = o->id == output->id;
                 }
+                if (!found)
+                {
+                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_NEW_OUTPUT, output->info->name);
+                    /* need to enable crtc for output ? */
+                    if (output->info->crtc == None)
+                    {
+                        XfceRRCrtc *crtc = xfce_displays_helper_x11_find_usable_crtc (helper, output);
 
-                changed = TRUE;
+                        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "enabling crtc for %s", output->info->name);
+
+                        if (crtc != NULL)
+                        {
+                            crtc->mode = output->preferred_mode;
+                            crtc->rotation = RR_Rotate_0;
+                            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+                            if ((crtc->x > gdk_screen_width () + 1) || (crtc->y > gdk_screen_height () + 1)
+                                || action == ACTION_ON_NEW_OUTPUT_MIRROR)
+                            {
+                                crtc->x = crtc->y = 0;
+                            }
+                            /* Extend to the right if configured */
+                            else if (action == ACTION_ON_NEW_OUTPUT_EXTEND)
+                            {
+                                crtc->x = helper->width - crtc->width;
+                                crtc->y = 0;
+                            } /* else - leave values from last time we saw the monitor */
+                            G_GNUC_END_IGNORE_DEPRECATIONS
+                            /* set width and height */
+                            for (gint j = 0; j < helper->resources->nmode; ++j)
+                            {
+                                if (helper->resources->modes[j].id == output->preferred_mode)
+                                {
+                                    crtc->width = helper->resources->modes[j].width;
+                                    crtc->height = helper->resources->modes[j].height;
+                                    break;
+                                }
+                            }
+                            xfce_displays_helper_x11_set_outputs (crtc, output);
+                            crtc->changed = TRUE;
+                        }
+                    }
+
+                    changed = TRUE;
+                }
             }
-        }
-        if (changed)
-            xfce_displays_helper_x11_apply_all (helper);
 
-        /* Start the display dialog according to the user preferences */
-        if (changed && action == ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
-        {
-            const gchar *cmd = helper->outputs->len <= 2 ? "xfce4-display-settings -m" : "xfce4-display-settings";
-            xfce_spawn_command_line (NULL, cmd, FALSE, FALSE, TRUE, NULL);
+            if (changed)
+            {
+                xfce_displays_helper_x11_apply_all (helper);
+
+                /* Start the display dialog according to the user preferences */
+                if (action == ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
+                {
+                    const gchar *cmd = helper->outputs->len <= 2 ? "xfce4-display-settings -m" : "xfce4-display-settings";
+                    xfce_spawn_command_line (NULL, cmd, FALSE, FALSE, TRUE, NULL);
+                }
+            }
         }
     }
     g_ptr_array_unref (old_outputs);
