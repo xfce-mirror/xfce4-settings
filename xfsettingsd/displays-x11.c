@@ -123,6 +123,7 @@ struct _XfceDisplaysHelperX11
     GdkWindow *root_window;
     Display *xdisplay;
     gint event_base;
+    guint screen_on_event_id;
 
     /* RandR cache */
     XfceRandr *randr;
@@ -284,6 +285,9 @@ static void
 xfce_displays_helper_x11_finalize (GObject *object)
 {
     XfceDisplaysHelperX11 *helper = XFCE_DISPLAYS_HELPER_X11 (object);
+
+    if (helper->screen_on_event_id != 0)
+        g_source_remove (helper->screen_on_event_id);
 
     /* Free the screen resources */
     if (helper->resources)
@@ -523,7 +527,165 @@ xfce_displays_helper_x11_reload (XfceDisplaysHelperX11 *helper)
     helper->outputs = xfce_displays_helper_x11_list_outputs (helper);
 }
 
+static gboolean
+screen_on_event (gpointer data)
+{
+    XfceDisplaysHelperX11 *helper = XFCE_DISPLAYS_HELPER_X11 (data);
+    XfconfChannel *channel = xfce_displays_helper_get_channel (XFCE_DISPLAYS_HELPER (helper));
+    GPtrArray *old_outputs;
+    XfceRRCrtc *crtc = NULL;
+    XfceRROutput *output, *o;
+    gint j;
+    guint n, m, nactive = 0;
+    gint action;
+    gboolean found = FALSE, changed = FALSE;
 
+    helper->screen_on_event_id = 0;
+
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "RRScreenChangeNotify event received.");
+
+    old_outputs = g_ptr_array_ref (helper->outputs);
+    xfce_displays_helper_x11_reload (helper);
+
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_DIFF_N_OUTPUTS,
+                    old_outputs->len, helper->outputs->len);
+
+    /* Check if we have different amount of outputs and a matching profile and
+       apply it if there's only one */
+    if (helper->outputs->len != old_outputs->len)
+    {
+        gint mode = xfconf_channel_get_int (channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_DEFAULT);
+        if (mode == AUTO_ENABLE_PROFILES_ALWAYS
+            || (mode == AUTO_ENABLE_PROFILES_ON_CONNECT && helper->outputs->len > old_outputs->len)
+            || (mode == AUTO_ENABLE_PROFILES_ON_DISCONNECT && helper->outputs->len < old_outputs->len))
+        {
+            gchar *matching_profile = xfce_displays_helper_get_matching_profile (XFCE_DISPLAYS_HELPER (helper));
+            if (matching_profile != NULL)
+            {
+                xfce_displays_helper_x11_channel_apply (XFCE_DISPLAYS_HELPER (helper), matching_profile);
+                g_free (matching_profile);
+                return FALSE;
+            }
+        }
+        xfconf_channel_set_string (channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
+    }
+
+    if (old_outputs->len > helper->outputs->len)
+    {
+        /* Diff the new and old output list to find removed outputs */
+        for (n = 0; n < old_outputs->len; ++n)
+        {
+            found = FALSE;
+            output = g_ptr_array_index (old_outputs, n);
+            for (m = 0; m < helper->outputs->len && !found; ++m)
+            {
+                o = g_ptr_array_index (helper->outputs, m);
+                found = o->id == output->id;
+            }
+            if (!found)
+            {
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Output disconnected: %s",
+                                output->info->name);
+                /* force deconfiguring the crtc for the removed output */
+                if (output->info->crtc != None)
+                    crtc = xfce_displays_helper_x11_find_crtc_by_id (helper,
+                                                                     output->info->crtc);
+                if (crtc)
+                {
+                    crtc->mode = None;
+                    xfce_displays_helper_x11_disable_crtc (helper, crtc->id);
+                }
+                /* if the output was active, we must recalculate the screen size */
+                changed |= output->active;
+            }
+        }
+
+        /* Basically, this means the external output was disconnected,
+           so reenable the internal one if needed. */
+        for (n = 0; n < helper->outputs->len; ++n)
+        {
+            output = g_ptr_array_index (helper->outputs, n);
+            if (output->active)
+                ++nactive;
+        }
+        if (nactive == 0)
+        {
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_ALL_DISABLED);
+            xfce_displays_helper_x11_toggle_internal (NULL, FALSE, XFCE_DISPLAYS_HELPER (helper));
+        }
+        else if (changed)
+            xfce_displays_helper_x11_apply_all (helper);
+    }
+    else if ((action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT))
+             != ACTION_ON_NEW_OUTPUT_DO_NOTHING)
+    {
+        /* Diff the new and old output list to find new outputs */
+        for (n = 0; n < helper->outputs->len; ++n)
+        {
+            found = FALSE;
+            output = g_ptr_array_index (helper->outputs, n);
+            for (m = 0; m < old_outputs->len && !found; ++m)
+            {
+                o = g_ptr_array_index (old_outputs, m);
+                found = o->id == output->id;
+            }
+            if (!found)
+            {
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_NEW_OUTPUT, output->info->name);
+                /* need to enable crtc for output ? */
+                if (output->info->crtc == None)
+                {
+                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "enabling crtc for %s", output->info->name);
+                    crtc = xfce_displays_helper_x11_find_usable_crtc (helper, output);
+                    if (crtc)
+                    {
+                        crtc->mode = output->preferred_mode;
+                        crtc->rotation = RR_Rotate_0;
+                        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+                        if ((crtc->x > gdk_screen_width () + 1) || (crtc->y > gdk_screen_height () + 1)
+                            || action == ACTION_ON_NEW_OUTPUT_MIRROR)
+                        {
+                            crtc->x = crtc->y = 0;
+                        }
+                        /* Extend to the right if configured */
+                        else if (action == ACTION_ON_NEW_OUTPUT_EXTEND)
+                        {
+                            crtc->x = helper->width - crtc->width;
+                            crtc->y = 0;
+                        } /* else - leave values from last time we saw the monitor */
+                        G_GNUC_END_IGNORE_DEPRECATIONS
+                        /* set width and height */
+                        for (j = 0; j < helper->resources->nmode; ++j)
+                        {
+                            if (helper->resources->modes[j].id == output->preferred_mode)
+                            {
+                                crtc->width = helper->resources->modes[j].width;
+                                crtc->height = helper->resources->modes[j].height;
+                                break;
+                            }
+                        }
+                        xfce_displays_helper_x11_set_outputs (crtc, output);
+                        crtc->changed = TRUE;
+                    }
+                }
+
+                changed = TRUE;
+            }
+        }
+        if (changed)
+            xfce_displays_helper_x11_apply_all (helper);
+
+        /* Start the display dialog according to the user preferences */
+        if (changed && action == ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
+        {
+            const gchar *cmd = helper->outputs->len <= 2 ? "xfce4-display-settings -m" : "xfce4-display-settings";
+            xfce_spawn_command_line (NULL, cmd, FALSE, FALSE, TRUE, NULL);
+        }
+    }
+    g_ptr_array_unref (old_outputs);
+
+    return FALSE;
+}
 
 static GdkFilterReturn
 xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
@@ -531,166 +693,14 @@ xfce_displays_helper_x11_screen_on_event (GdkXEvent *xevent,
                                           gpointer data)
 {
     XfceDisplaysHelperX11 *helper = XFCE_DISPLAYS_HELPER_X11 (data);
-    XfconfChannel *channel = xfce_displays_helper_get_channel (XFCE_DISPLAYS_HELPER (helper));
-    GPtrArray *old_outputs;
-    XfceRRCrtc *crtc = NULL;
-    XfceRROutput *output, *o;
     XEvent *e = xevent;
-    gint event_num;
-    gint j;
-    guint n, m, nactive = 0;
-    gint action;
-    gboolean found = FALSE, changed = FALSE;
 
-    if (!e)
+    if (e == NULL || e->type - helper->event_base != RRScreenChangeNotify)
         return GDK_FILTER_CONTINUE;
 
-    event_num = e->type - helper->event_base;
-
-    if (event_num == RRScreenChangeNotify)
-    {
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "RRScreenChangeNotify event received.");
-
-        old_outputs = g_ptr_array_ref (helper->outputs);
-        xfce_displays_helper_x11_reload (helper);
-
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_DIFF_N_OUTPUTS,
-                        old_outputs->len, helper->outputs->len);
-
-        /* Check if we have different amount of outputs and a matching profile and
-           apply it if there's only one */
-        if (helper->outputs->len != old_outputs->len)
-        {
-            gint mode = xfconf_channel_get_int (channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_DEFAULT);
-            if (mode == AUTO_ENABLE_PROFILES_ALWAYS
-                || (mode == AUTO_ENABLE_PROFILES_ON_CONNECT && helper->outputs->len > old_outputs->len)
-                || (mode == AUTO_ENABLE_PROFILES_ON_DISCONNECT && helper->outputs->len < old_outputs->len))
-            {
-                gchar *matching_profile = xfce_displays_helper_get_matching_profile (XFCE_DISPLAYS_HELPER (helper));
-                if (matching_profile != NULL)
-                {
-                    xfce_displays_helper_x11_channel_apply (XFCE_DISPLAYS_HELPER (helper), matching_profile);
-                    g_free (matching_profile);
-                    return GDK_FILTER_CONTINUE;
-                }
-            }
-            xfconf_channel_set_string (channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
-        }
-
-        if (old_outputs->len > helper->outputs->len)
-        {
-            /* Diff the new and old output list to find removed outputs */
-            for (n = 0; n < old_outputs->len; ++n)
-            {
-                found = FALSE;
-                output = g_ptr_array_index (old_outputs, n);
-                for (m = 0; m < helper->outputs->len && !found; ++m)
-                {
-                    o = g_ptr_array_index (helper->outputs, m);
-                    found = o->id == output->id;
-                }
-                if (!found)
-                {
-                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Output disconnected: %s",
-                                    output->info->name);
-                    /* force deconfiguring the crtc for the removed output */
-                    if (output->info->crtc != None)
-                        crtc = xfce_displays_helper_x11_find_crtc_by_id (helper,
-                                                                         output->info->crtc);
-                    if (crtc)
-                    {
-                        crtc->mode = None;
-                        xfce_displays_helper_x11_disable_crtc (helper, crtc->id);
-                    }
-                    /* if the output was active, we must recalculate the screen size */
-                    changed |= output->active;
-                }
-            }
-
-            /* Basically, this means the external output was disconnected,
-               so reenable the internal one if needed. */
-            for (n = 0; n < helper->outputs->len; ++n)
-            {
-                output = g_ptr_array_index (helper->outputs, n);
-                if (output->active)
-                    ++nactive;
-            }
-            if (nactive == 0)
-            {
-                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_ALL_DISABLED);
-                xfce_displays_helper_x11_toggle_internal (NULL, FALSE, XFCE_DISPLAYS_HELPER (helper));
-            }
-            else if (changed)
-                xfce_displays_helper_x11_apply_all (helper);
-        }
-        else if ((action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT))
-                 != ACTION_ON_NEW_OUTPUT_DO_NOTHING)
-        {
-            /* Diff the new and old output list to find new outputs */
-            for (n = 0; n < helper->outputs->len; ++n)
-            {
-                found = FALSE;
-                output = g_ptr_array_index (helper->outputs, n);
-                for (m = 0; m < old_outputs->len && !found; ++m)
-                {
-                    o = g_ptr_array_index (old_outputs, m);
-                    found = o->id == output->id;
-                }
-                if (!found)
-                {
-                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_NEW_OUTPUT, output->info->name);
-                    /* need to enable crtc for output ? */
-                    if (output->info->crtc == None)
-                    {
-                        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "enabling crtc for %s", output->info->name);
-                        crtc = xfce_displays_helper_x11_find_usable_crtc (helper, output);
-                        if (crtc)
-                        {
-                            crtc->mode = output->preferred_mode;
-                            crtc->rotation = RR_Rotate_0;
-                            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-                            if ((crtc->x > gdk_screen_width () + 1) || (crtc->y > gdk_screen_height () + 1)
-                                || action == ACTION_ON_NEW_OUTPUT_MIRROR)
-                            {
-                                crtc->x = crtc->y = 0;
-                            }
-                            /* Extend to the right if configured */
-                            else if (action == ACTION_ON_NEW_OUTPUT_EXTEND)
-                            {
-                                crtc->x = helper->width - crtc->width;
-                                crtc->y = 0;
-                            } /* else - leave values from last time we saw the monitor */
-                            G_GNUC_END_IGNORE_DEPRECATIONS
-                            /* set width and height */
-                            for (j = 0; j < helper->resources->nmode; ++j)
-                            {
-                                if (helper->resources->modes[j].id == output->preferred_mode)
-                                {
-                                    crtc->width = helper->resources->modes[j].width;
-                                    crtc->height = helper->resources->modes[j].height;
-                                    break;
-                                }
-                            }
-                            xfce_displays_helper_x11_set_outputs (crtc, output);
-                            crtc->changed = TRUE;
-                        }
-                    }
-
-                    changed = TRUE;
-                }
-            }
-            if (changed)
-                xfce_displays_helper_x11_apply_all (helper);
-
-            /* Start the display dialog according to the user preferences */
-            if (changed && action == ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
-            {
-                const gchar *cmd = helper->outputs->len <= 2 ? "xfce4-display-settings -m" : "xfce4-display-settings";
-                xfce_spawn_command_line (NULL, cmd, FALSE, FALSE, TRUE, NULL);
-            }
-        }
-        g_ptr_array_unref (old_outputs);
-    }
+    if (helper->screen_on_event_id != 0)
+        g_source_remove (helper->screen_on_event_id);
+    helper->screen_on_event_id = g_timeout_add_seconds (1, screen_on_event, helper);
 
     /* Pass the event on to GTK+ */
     return GDK_FILTER_CONTINUE;
