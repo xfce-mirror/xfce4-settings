@@ -123,6 +123,9 @@ enum
 static guint scrollarea_signals[LAST_SIGNAL] = { 0 };
 
 static void
+input_region_free (InputRegion *region);
+
+static void
 foo_scroll_area_get_preferred_width (GtkWidget *widget,
                                      gint *minimum,
                                      gint *natural);
@@ -331,7 +334,7 @@ foo_scroll_area_init (FooScrollArea *scroll_area)
     scroll_area->priv->min_width = 0;
     scroll_area->priv->min_height = 0;
     scroll_area->priv->auto_scroll_info = NULL;
-    scroll_area->priv->input_regions = g_ptr_array_new ();
+    scroll_area->priv->input_regions = g_ptr_array_new_with_free_func ((GDestroyNotify) input_region_free);
     scroll_area->priv->surface = NULL;
     scroll_area->priv->update_region = gdk_region_new ();
 }
@@ -412,7 +415,6 @@ clear_exposed_input_region (FooScrollArea *area,
 
         if (gdk_region_empty (region->region))
         {
-            input_region_free (region);
             g_ptr_array_remove_index_fast (area->priv->input_regions, i--);
         }
     }
