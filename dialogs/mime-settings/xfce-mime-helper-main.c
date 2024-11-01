@@ -260,7 +260,7 @@ main (int argc,
 
       if (G_UNLIKELY (helper == NULL))
         {
-          g_printerr (_("No helper defined for \"%s\"."), opt_launch_type);
+          g_printerr (_("No helper defined for \"%s\"."), opt_query_type);
           g_option_context_free (opt_ctx);
           g_free (startup_id);
           return EXIT_FAILURE;
