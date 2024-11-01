@@ -1,3 +1,85 @@
+4.19.3 (2024-11-01)
+======
+- Added Keywords/Categories fields to .desktop files
+- display-settings: Fix InputRegion leak
+- x11: displays: Refactor screen_on_event()
+- x11: displays: Delay RRScreenChangeNotify handling
+- wayland: common: Properly initialize output modes
+- color-settings: Add missing translation
+- build: Adjust Wayland requirements for Xfce 4.20
+- build: Bump requirements for Xfce 4.20
+- xfsettingsd: Fix GVariant leak
+- Use a toggle button for the MIME chooser dropdown buttons
+- Revert "mime: Fix UMRs with GdkEvent"
+- mime: Fix UMRs with GdkEvent
+- mime: Fix string leak
+- display-settings: Fix XfceMode leak
+- mime: Fix GOptionContext leak
+- mouse: Fix XGetExtensionVersion leaks
+- mime: Fix leak in xfce_mime_window_row_activated
+- mime: Fix GList leak in xfce_mime_helper_chooser_pressed
+- mime: Fix xfce_mime_helper_category_to_string leak
+- mime: Fix xfce_str_replace leak
+- mime: Fix icon leaks
+- mime: Fix g_option_context_get_help leak
+- mime: Fix AtkRelationSet leak
+- build: Fix build with libxfce4ui master
+- xfsettingsd: pointers: Allow changing the size of device property 
+array
+- display-settings: Add missing translation
+- Enumerate/load icon themes off of the UI thread
+- appearance-settings: Fix memory leak
+- Fix gtk-layer-shell includes
+- appearance-settings: Fix scrolling via arrow keys in gtk theme list
+- display-settings: Update primary monitor status on setting change
+- display-settings: Fix primary monitor status for xfce4-notifyd
+- display-settings: Fix primary monitor status for xfce4-panel
+- xfsettingsd: Fix client side decoration layout
+- x11: displays: Really honor /Notify is set to "Do nothing"
+- Revert "x11: displays: Disable new outputs if /Notify is set to "Do 
+nothing""
+- mime-settings: Override GtkDialog::response()
+- settings-manager: Add xfce4-about
+- settings-manager: Remove xscreensaver
+- scan-build: Fix unix.Malloc
+- scan-build: Fix deadcode.DeadStores
+- scan-build: Add false positive file
+- gcc-analyzer: Add false positive file
+- build: clang: Fix -Wimplicit-const-int-float-conversion
+- build: clang: Fix -Wcast-align
+- build: clang: Fix -Wignored-attributes
+- keyboard-settings: Escape markup characters in command tooltips
+- build: Fix build with --enable-sound-settings
+- wayland: appearance-settings: Hide Xft settings
+- mouse-settings: Fixes reverse horizontal scrolling
+- display-settings: Listen to output change for minimal dialog too
+- display-settings: Avoid weird interact between main and minimal 
+dialogs
+- xfsettingsd: Use default display profile when several profiles match
+- Revert "Add new CI builds to build without X11 and Wayland"
+- Apply .clang-format file
+- Remove unnecessary dirname in local includes
+- clang-format: Use IncludeBlocks::Regroup
+- Apply .clang-format file
+- Preliminary cleanup
+- Bump required versions and remove dead code
+- Clean up and sort includes
+- clang-format: Add file
+- xfce-randr: Take RR_DoubleScan and RR_Interlace flags into account
+- appearance-settings: Show warnings for incomplete icon themes
+- build: Fix x11 detection by defining the right m4 macro
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Asturian, Basque, Belarusian,
+  Belarusian (Tarask), Bulgarian, Catalan, Chinese (China), Chinese
+  (Hong Kong), Chinese (Taiwan), Croatian, Czech, Danish, Dutch,
+  Eastern Armenian, English (Australia), English (Canada), English
+  (United Kingdom), Estonian, Finnish, French, Galician, German, Greek,
+  Hebrew, Hungarian, Icelandic, Indonesian, Interlingue, Italian,
+  Japanese, Kabyle, Kazakh, Korean, Lithuanian, Malay, Norwegian
+  Bokmål, Norwegian Nynorsk, Occitan (post 1500), Polish, Portuguese,
+  Portuguese (Brazil), Romanian, Russian, Serbian, Slovak, Slovenian,
+  Spanish, Swedish, Thai, Turkish, Ukrainian, Uyghur
+
 4.19.2 (2024-03-31)
 ======
 - Update copyright year
