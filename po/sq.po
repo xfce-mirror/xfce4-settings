@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2020-2024\n"
 "Language-Team: Albanian (http://app.transifex.com/xfce/xfce4-settings/language/sq/)\n"
@@ -1839,7 +1839,7 @@ msgid "_Internet"
 msgstr "_Internet"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Shfletues"
 
@@ -1850,7 +1850,7 @@ msgid ""
 msgstr "Shfletuesi parazgjedhje do të përdoret për të hapur tejlidhje dhe për të shfaqur lëndë ndihme."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Lexues Poste"
 
@@ -1866,7 +1866,7 @@ msgid "_Utilities"
 msgstr "Të _dobishme"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Përgjegjës Kartelash"
 
@@ -1876,7 +1876,7 @@ msgid ""
 msgstr "Përgjegjësi parazgjedhje i Kartelave do të përdoret për të shfletuar lëndën e dosjeve."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Emulues Terminali"
 
@@ -1981,19 +1981,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "kartelë;lloj;zgjatim;përshoqërim;hape me;shfletues;lexues poste;përgjegjës kartelash;emulues terminali;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr "kartelë;përgjegjës;eksplorues;shfletoni;sistem kartelash;drejtori;dosjexfce;"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "Shfletoni sistem kartelash"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr "email;postë;të marrë;mesazhe;komunikim;"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "Lexoni email-et tuaj"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr "terminal;rresht urdhrash;shell;konsolë;xfce;"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "Përdorni rreshtin e urdhrave"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr "internet;web;shletues;shfletim;eksploroni;xfce;"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "Shfletoni në Web"
 
@@ -2797,3 +2813,7 @@ msgstr "Demoni Xfce i Rregullimeve"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "Demoni i Rregullimeve Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr "rregullime;demon;xfce;formësim;parapëlqime;sistem;administroni;"
