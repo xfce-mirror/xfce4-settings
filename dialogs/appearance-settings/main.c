@@ -35,6 +35,10 @@
 #include <gtk/gtkx.h>
 #endif
 
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#endif
+
 #define INCH_MM 25.4
 
 /* Use a fallback DPI of 96 which should be ok-ish on most systems
