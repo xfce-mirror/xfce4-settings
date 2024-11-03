@@ -152,9 +152,8 @@ main (int argc,
       else
         g_error ("Unable to open display.");
 
-      g_option_context_free (opt_ctx);
-      g_free (startup_id);
-      return EXIT_FAILURE;
+      result = EXIT_FAILURE;
+      goto out;
     }
 
   /* initialize Gtk+ */
@@ -174,9 +173,8 @@ main (int argc,
       if (!xfce_mime_helper_category_from_string (opt_launch_type, &category))
         {
           g_warning (_("Invalid helper type \"%s\""), opt_launch_type);
-          g_option_context_free (opt_ctx);
-          g_free (startup_id);
-          return EXIT_FAILURE;
+          result = EXIT_FAILURE;
+          goto out;
         }
 
       /* determine the default helper for the category */
@@ -249,9 +247,8 @@ main (int argc,
       if (!xfce_mime_helper_category_from_string (opt_query_type, &category))
         {
           g_warning (_("Invalid helper type \"%s\""), opt_query_type);
-          g_option_context_free (opt_ctx);
-          g_free (startup_id);
-          return EXIT_FAILURE;
+          result = EXIT_FAILURE;
+          goto out;
         }
 
       /* determine the default helper for the category */
@@ -261,9 +258,8 @@ main (int argc,
       if (G_UNLIKELY (helper == NULL))
         {
           g_printerr (_("No helper defined for \"%s\"."), opt_query_type);
-          g_option_context_free (opt_ctx);
-          g_free (startup_id);
-          return EXIT_FAILURE;
+          result = EXIT_FAILURE;
+          goto out;
         }
 
       g_print ("%s\n", xfce_mime_helper_get_id (helper));
@@ -277,8 +273,11 @@ main (int argc,
       g_free (help_text);
     }
 
+out:
   g_option_context_free (opt_ctx);
   g_free (startup_id);
+  g_free (opt_launch_type);
+  g_free (opt_query_type);
 
   return result;
 }
