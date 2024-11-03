@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009,2014-2024\n"
 "Language-Team: Kazakh (http://app.transifex.com/xfce/xfce4-settings/language/kk/)\n"
@@ -583,7 +583,7 @@ msgstr "Xfwm4 баптауларын іске асыру сәтсіз аяқта
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
-msgstr ""
+msgstr "Назарыңызға: Бұл таңбашалар темасында кэш файлы жоқ. Сіз оны терминал эмуляторында <i>gtk-update-icon-cache -f -t %s/</i> командасын жөнелту арқылы жасай аласыз."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
@@ -893,7 +893,7 @@ msgstr "Үйлесімді профильдер"
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "%s ішіне түстер профилін қосу"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -1244,8 +1244,8 @@ msgstr "Өшіру"
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Xfce панелі"
+msgstr[1] "%d Xfce панелі"
 
 #: dialogs/display-settings/main.c:2550
 msgid ""
@@ -1838,7 +1838,7 @@ msgid "_Internet"
 msgstr "_Интернет"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Веб браузері"
 
@@ -1849,7 +1849,7 @@ msgid ""
 msgstr "Бастапқы веб браузер гиперсілтемелерді ашу және көмекті көрсету үшін қолданылатын болады."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Пошта қолданбасы"
 
@@ -1865,7 +1865,7 @@ msgid "_Utilities"
 msgstr "_Утилиталар"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Файлдар басқарушысы"
 
@@ -1875,7 +1875,7 @@ msgid ""
 msgstr "Бастапқы файлдар басқарушысы бумалар құрамасын шолу үшін қолданылатын болады."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Терминал эмуляторы"
 
@@ -1980,19 +1980,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "file;type;extension;association;open with;web browser;mail reader;file manager;terminal emulator;файл;түрі;кеңейту;сәйкестілік;көмегімен ашу;веб браузері;пошта қолданбасы;файлдар басқарушысы;терминал эмуляторы;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr "file;manager;explorer;browse;filesystem;directory;folder;xfce;файл;басқарушы;шолу;файлдық жүйе;бума;"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "Файлдық жүйені шолу"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr "email;mail;inbox;message;communication;эл. пошта;пошта;кіріс;хабарлама;байланысу;"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "Поштаңызды оқу"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr "terminal;command line;shell;console;xfce;терминал;командалық жол;қоршам;консоль;"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "Командалық жолды қолдану"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr "internet;web;browser;surf;explore;xfce;интернет;веб;браузер;шолу;"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "Интернетті шолу"
 
@@ -2796,3 +2812,7 @@ msgstr "Xfce баптаулар қызметі"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "Xfce баптаулар қызметі"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr "settings;daemon;xfce;configuration;preferences;system;manage;баптаулар;қызмет;баптау;конфигурация;қалаулар;жүйе;басқару;"
