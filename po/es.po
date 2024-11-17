@@ -12,7 +12,7 @@
 # Casper, 2022-2024
 # Cristian Othón Martínez Vera <cfuga@cfuga.mx>, 2024
 # gabrieltandil <gabriel.tandil@gmail.com>, 2014-2015
-# Ignacio Poggi <ignaciop.3@gmail.com>, 2019-2020,2023
+# Ignacio Poggi <ignaciop.3@gmail.com>, 2019-2020,2023-2024
 # Jaime Marquínez Ferrándiz, 2018
 # Jaime Marquínez Ferrándiz, 2018
 # Joel Barrios <darkshram@gmail.com>, 2022-2023
@@ -25,9 +25,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Casper, 2022-2024\n"
+"Last-Translator: Ignacio Poggi <ignaciop.3@gmail.com>, 2019-2020,2023-2024\n"
 "Language-Team: Spanish (http://app.transifex.com/xfce/xfce4-settings/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1857,7 +1857,7 @@ msgid "_Internet"
 msgstr "_Internet"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Navegador web"
 
@@ -1868,7 +1868,7 @@ msgid ""
 msgstr "El navegador web predeterminado se usará para abrir hipervínculos y mostrar el contenido de la ayuda."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Lector de correo"
 
@@ -1884,7 +1884,7 @@ msgid "_Utilities"
 msgstr "_Utilidades"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Gestor de archivos"
 
@@ -1894,7 +1894,7 @@ msgid ""
 msgstr "El gestor de archivos predeterminado se usará para navegar por el contenido de las carpetas."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Emulador de terminal"
 
@@ -2001,19 +2001,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "archivo;tipo;extensión;asociación;abrir con;navegador web;lector de correo;gestor de archivos;emulador de terminal;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr "archivo;gestor;explorador;navegar;sistema de archivos;directorio;carpeta;xfce;"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "Navegar por el sistema de archivos"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr "correo electronico;correo;bandeja;mensaje;comunicacion;"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "Leer correo"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr "terminal;linea de ordenes;shell;consola;xfce;"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "Usar la línea de órdenes"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr "internet;web;navegador;navegar;explorar;xfce;"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "Navegar por la red"
 
@@ -2043,7 +2059,7 @@ msgstr "Chromium"
 
 #: dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in:6
 msgid "Debian Sensible Browser"
-msgstr "Navegador sensible de Debian"
+msgstr "Navegador Sensible de Debian"
 
 #: dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in:6
 msgid "Debian X Terminal Emulator"
@@ -2817,3 +2833,7 @@ msgstr "Servicio de configuración de Xfce"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "El demonio de configuraciones de Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr "preferencias;demonio;xfce;configuracion;preferencias;sistema;administrar;"
