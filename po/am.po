@@ -1,22 +1,65 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# samson <sambelet@yahoo.com>, 2016,2018
+# Xfce Bot <transifex@xfce.org>, 2022
+# samson <sambelet@yahoo.com>, 2022
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfce4-settings\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-04 06:31+0200\n"
-"PO-Revision-Date: 2018-09-14 00:26+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Amharic (http://www.transifex.com/xfce/xfce4-settings/language/am/)\n"
+"POT-Creation-Date: 2023-05-30 00:50+0200\n"
+"PO-Revision-Date: 2022-12-22 11:33+0000\n"
+"Last-Translator: samson <sambelet@yahoo.com>, 2022\n"
+"Language-Team: Amharic (https://app.transifex.com/xfce/teams/16840/am/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: am\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: ../common/display-name.c:2641
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr "ያልታወቀ"
+
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4391
+#, c-format
+msgid "Unable to query the version of the RandR extension being used"
+msgstr ""
+
+#. 1.2 is required
+#: ../common/xfce-randr.c:307
+#, c-format
+msgid ""
+"This system is using RandR %d.%d. For the display settings to work version "
+"1.2 is required at least"
+msgstr ""
+
+#: ../common/xfce-randr.c:597
+msgid "Laptop"
+msgstr "ላፕቶፕ"
+
+#. TRANSLATORS: an externally connected display, where %s is either the
+#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
+#: ../common/xfce-randr.c:610 ../dialogs/color-settings/color-device.c:65
+msgid "Monitor"
+msgstr "መቆጣጠሪያ "
+
+#: ../common/xfce-randr.c:613
+msgid "Television"
+msgstr "ቴሌቪዥን"
+
+#: ../common/xfce-randr.c:617
+msgid "Digital display"
+msgstr "ዲጂታል ማሳያ"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
@@ -24,259 +67,286 @@ msgid "Accessibility"
 msgstr "መድረሻ"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
-msgid "Configure keyboard and mouse accessibility"
-msgstr "የ ፊደል ገበታ እና አይጥ መድረሻ ማሰናጃ"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/color-settings/color-dialog.glade.h:2
+#: ../dialogs/display-settings/display-dialog.glade.h:17
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
+#: ../dialogs/display-settings/main.c:4431
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#: ../dialogs/mime-settings/xfce-mime-window.c:187
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../xfce4-settings-editor/main.c:166
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:232
+msgid "_Close"
+msgstr "_መዝጊያ"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
+#: ../dialogs/color-settings/color-dialog.glade.h:3
+#: ../dialogs/display-settings/display-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
+#: ../dialogs/mime-settings/xfce-mime-window.c:190
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
+#: ../xfce4-settings-editor/main.c:165
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:221
+msgid "_Help"
+msgstr "_እርዳታ"
+
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "_Enable assistive technologies"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "Start With Session"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Assistive technologies will be available the next time you login"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "No AT-SPI provider was found on your system"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Assistive _Technologies"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Use sticky keys"
 msgstr "ተጣባቂ ቁልፎች _ይጠቀሙ"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "_Lock sticky keys"
 msgstr "ተጣባቂ ቁልፎች _መቆለፊያ"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "Sticky Keys"
 msgstr "ተጣባቂ ቁልፎች"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Use slow _keys"
 msgstr "ማዘግያ _ቁልፎች ይጠቀሙ: "
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid "Acceptance _delay:"
 msgstr "መቀበያ _ማዘግያ"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "Slow Keys"
 msgstr "ማዘግያ ቁልፎች"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "Use _bounce keys"
 msgstr "መዝለያ ቁልፎች ይጠቀሙ"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "K_eystroke delay:"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Bounce Keys"
 msgstr "መዝለያ ቁልፎች"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid "Keyboa_rd"
 msgstr "የ ፊደል ገ_በታ:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "_Use mouse emulation"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "msec"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Acceleration delay:"
 msgstr "_ማፍጠኛ ማዘግያ:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "R_epeat interval:"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "Acceleration t_ime:"
 msgstr "ማፍጠኛ ጊ_ዜ:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "Ma_ximum speed:"
 msgstr "ከፍ_ተኛ ፍጥነት:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "The maximum pointer speed after acceleration"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "pixels/sec"
 msgstr "ፒክስልስ/ሰከንድ"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "Acceleration _profile:"
 msgstr "ገጽታ ማፍጠኛ:"
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "The ramp used to reach maximum pointer speed"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
 msgid "Show location of pointer on keypress"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "Find Cursor"
 msgstr ""
 
-#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
+#: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:47
 msgid "_Mouse"
 msgstr "_አይጥ"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/display-settings/main.c:121
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
-#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/appearance-settings/main.c:104
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
+#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "የ ማሰናጃዎች አስተዳዳሪ ሶኬት"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:109
-#: ../dialogs/display-settings/main.c:121
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
-#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/appearance-settings/main.c:104
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
+#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "ሶኬት ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:110
-#: ../dialogs/display-settings/main.c:122
-#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:50
-#: ../xfsettingsd/main.c:101 ../xfce4-settings-manager/main.c:43
+#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:141
+#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:45
+#: ../dialogs/mouse-settings/main.c:89 ../xfce4-settings-editor/main.c:50
+#: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
 msgid "Version information"
 msgstr "የ እትም መረጃ"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1166
-#: ../dialogs/display-settings/main.c:3115
-#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
-#: ../dialogs/mouse-settings/main.c:1872 ../xfce4-settings-editor/main.c:120
-#: ../xfsettingsd/main.c:237 ../xfsettingsd/main.c:275
-#: ../xfce4-settings-manager/main.c:64
+#: ../dialogs/appearance-settings/main.c:1396
+#: ../dialogs/color-settings/main.c:1379
+#: ../dialogs/display-settings/main.c:4359
+#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
+#: ../dialogs/mouse-settings/main.c:1889 ../xfce4-settings-editor/main.c:120
+#: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
+#: ../xfsettingsd/main.c:280
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "ይጻፉ '%s --እርዳታ' ለ መጠቀም"
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1185
-#: ../dialogs/display-settings/main.c:3134
-#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
-#: ../dialogs/mouse-settings/main.c:1891 ../xfce4-settings-editor/main.c:139
-#: ../xfsettingsd/main.c:253 ../xfce4-settings-manager/main.c:80
+#: ../dialogs/appearance-settings/main.c:1415
+#: ../dialogs/color-settings/main.c:1396
+#: ../dialogs/display-settings/main.c:4378
+#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
+#: ../dialogs/mouse-settings/main.c:1908 ../xfce4-settings-editor/main.c:139
+#: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. All rights reserved."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1186
-#: ../dialogs/display-settings/main.c:3135
-#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
-#: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:140
-#: ../xfsettingsd/main.c:254 ../xfce4-settings-manager/main.c:81
+#: ../dialogs/appearance-settings/main.c:1416
+#: ../dialogs/color-settings/main.c:1397
+#: ../dialogs/display-settings/main.c:4379
+#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
+#: ../dialogs/mouse-settings/main.c:1909 ../xfce4-settings-editor/main.c:140
+#: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "እባክዎን ችግሩን ያሳውቁን ለ <%s>."
@@ -285,9 +355,16 @@ msgstr "እባክዎን ችግሩን ያሳውቁን ለ <%s>."
 msgid "Improve keyboard and mouse accessibility"
 msgstr ""
 
+#: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:3
+msgid ""
+"assistive;technologies;keys;sticky;bounce;emulation;screen "
+"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
+msgstr ""
+
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1041
-#: ../dialogs/display-settings/main.c:88 ../dialogs/display-settings/main.c:99
+#: ../dialogs/appearance-settings/main.c:1271
+#: ../dialogs/display-settings/main.c:107
+#: ../dialogs/display-settings/main.c:118
 msgid "None"
 msgstr "ምንም"
 
@@ -324,6 +401,7 @@ msgid "1x (no scaling)"
 msgstr "1x (መጠን የለም)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
+#: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "2x"
 msgstr "2x"
 
@@ -332,293 +410,670 @@ msgstr "2x"
 msgid "Appearance"
 msgstr "አቀራረብ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
-#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
-msgid "Customize the look of your desktop"
-msgstr "የ እርስዎን ዴስክቶፕ መልክ ማስተካከያ"
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/color-settings/color-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
+msgid "_Add"
+msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+msgid "Set matching Xfwm4 theme if there is one"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
 msgstr "ዘ_ዴ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "_Icons"
 msgstr "_ምልክቶች"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Select a default font"
 msgstr "ነባር ፊደል ይምረጡ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Default Fon_t"
 msgstr "ነባር ፊደ_ል"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Select a default monospace font"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Default _Monospace Font"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "_Enable anti-aliasing"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid "Hintin_g:"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Sub-_pixel order:"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Rendering"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "Custom _DPI setting:"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "DPI"
 msgstr "DPI"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "_Fonts"
 msgstr "_ፊደሎች"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
-msgid "Specify what should be displayed in toolbar items"
-msgstr ""
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
-msgid "_Toolbar Style"
-msgstr "የ _እቃ መደርደሪያ ዘዴ"
-
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Show images on _buttons"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Show images in _menus"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Enable e_ditable accelerators"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
-msgid "Menus and Buttons"
-msgstr "ዝርዝር እና ቁልፎች"
-
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
-msgid "Enable _event sounds"
-msgstr "የ _ሁኔታ ድምፆች ማስቻያ"
+msgid "Enable header bars in dialo_gs"
+msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
-msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgid ""
+"Defines whether GTK dialogs may place widgets such as buttons in the "
+"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
+"opened dialogs."
 msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+msgid "Menus and Buttons"
+msgstr "ዝርዝር እና ቁልፎች"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+msgid "Enable _event sounds"
+msgstr "የ _ሁኔታ ድምፆች ማስቻያ"
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Enable input feedbac_k sounds"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Event sounds"
 msgstr "የ ሁኔታ ድምፆች"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
 msgid "Adjust the system-wide display scaling"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:50
 msgid "_Window Scaling"
 msgstr "_መስኮት መመጠኛ"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:51
 msgid "Setti_ngs"
 msgstr "ማሰና_ጃዎች"
 
-#: ../dialogs/appearance-settings/main.c:463
+#: ../dialogs/appearance-settings/main.c:481
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:879
+#: ../dialogs/appearance-settings/main.c:968
 #, c-format
-msgid "File is larger than %d MB, installation aborted"
+msgid "File is too large, installation aborted"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:884
+#: ../dialogs/appearance-settings/main.c:973
 msgid "Failed to create temporary directory"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:889
+#: ../dialogs/appearance-settings/main.c:978
 msgid "Failed to extract archive"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:894
+#: ../dialogs/appearance-settings/main.c:983
 msgid "Unknown format, only archives and directories are supported"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:899
+#: ../dialogs/appearance-settings/main.c:988
+msgid "Not a valid theme package"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:993
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:906
+#: ../dialogs/appearance-settings/main.c:1000
 msgid "Failed to install theme"
 msgstr "ገጽታ መግጠም አልተቻለም"
 
-#: ../dialogs/appearance-settings/main.c:1045
+#: ../dialogs/appearance-settings/main.c:1054
+#, c-format
+msgid "Install %s theme"
+msgstr ""
+
+#. Create cancel button
+#: ../dialogs/appearance-settings/main.c:1058
+#: ../dialogs/color-settings/color-dialog.glade.h:18
+#: ../dialogs/color-settings/main.c:130
+#: ../dialogs/keyboard-settings/command-dialog.c:116
+#: ../dialogs/keyboard-settings/command-dialog.c:280
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:428
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:573
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
+msgid "_Cancel"
+msgstr "_መሰረዣ"
+
+#: ../dialogs/appearance-settings/main.c:1060
+#: ../dialogs/keyboard-settings/command-dialog.c:281
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:429
+msgid "_Open"
+msgstr "_መክፈቻ"
+
+#: ../dialogs/appearance-settings/main.c:1275
 msgid "RGB"
 msgstr "ቀአሰ"
 
-#: ../dialogs/appearance-settings/main.c:1049
+#: ../dialogs/appearance-settings/main.c:1279
 msgid "BGR"
 msgstr "ሰአቀ"
 
-#: ../dialogs/appearance-settings/main.c:1053
+#: ../dialogs/appearance-settings/main.c:1283
 msgid "Vertical RGB"
 msgstr "በ ቁመት ቀአሰ"
 
-#: ../dialogs/appearance-settings/main.c:1057
+#: ../dialogs/appearance-settings/main.c:1287
 msgid "Vertical BGR"
 msgstr "በ ቁመት ሰአቀ"
 
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
+msgid "Customize the look of your desktop"
+msgstr "የ እርስዎን ዴስክቶፕ መልክ ማስተካከያ"
+
+#: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:3
+msgid ""
+"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
+"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
+"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
+msgstr ""
+
+#. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
+#: ../dialogs/color-settings/color-device.c:68
+msgid "Scanner"
+msgstr ""
+
+#. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
+#: ../dialogs/color-settings/color-device.c:71
+msgid "Camera"
+msgstr ""
+
+#. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
+#: ../dialogs/color-settings/color-device.c:74
+msgid "Printer"
+msgstr ""
+
+#. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
+#: ../dialogs/color-settings/color-device.c:77
+msgid "Webcam"
+msgstr ""
+
+#. TRANSLATORS: This refers to the TFT display on a laptop
+#: ../dialogs/color-settings/color-device.c:94
+msgid "Laptop Screen"
+msgstr ""
+
+#. TRANSLATORS: This refers to the embedded webcam on a laptop
+#: ../dialogs/color-settings/color-device.c:102
+msgid "Built-in Webcam"
+msgstr ""
+
+#: ../dialogs/color-settings/color-device.c:195
+#, c-format
+msgid "Enable color management for %s"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:1
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
+msgid "Color Profiles"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:4
+msgid "<b>No devices found.</b>"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:5
+msgid "Model:"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:6
+msgid "Colorspace:"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:7
+msgid "Vendor:"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:8
+msgid "Calibrate"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:9
+msgid "<b>No profiles for the selected device.</b>"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:11
+msgid "Add a profile to the currently selected device"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+msgid "_Remove"
+msgstr " _ማስወገጃ"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:13
+msgid "Delete the currently selected profile"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:14
+msgid "Show detailed information about the selected profile"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:15
+msgid "Enable"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:16
+msgid "Enable the selected profile"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:17
+msgid "Add Profile to Device"
+msgstr ""
+
+#: ../dialogs/color-settings/color-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/command-dialog.c:120
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:574
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:108
+msgid "_OK"
+msgstr "_እሺ"
+
+#: ../dialogs/color-settings/color-dialog.glade.h:20
+msgid "Import color profile files (*.icc)"
+msgstr ""
+
+#. TRANSLATORS: standard spaces are well known colorspaces like
+#. * sRGB, AdobeRGB and ProPhotoRGB
+#: ../dialogs/color-settings/color-profile.c:94
+msgid "Standard Space"
+msgstr ""
+
+#. TRANSLATORS: test profiles do things like changing the screen
+#. * a different color, or swap the red and green channels
+#: ../dialogs/color-settings/color-profile.c:99
+msgid "Test Profile"
+msgstr ""
+
+#. TRANSLATORS: automatic profiles are generated automatically
+#. * by the color management system based on manufacturing data,
+#. * for instance the default monitor profile is created from the
+#. * primaries specified in the monitor EDID
+#: ../dialogs/color-settings/color-profile.c:106
+msgctxt "Automatically generated profile"
+msgid "Automatic"
+msgstr "ራሱ በራሱ "
+
+#. TRANSLATORS: the profile quality - low quality profiles take
+#. * much less time to generate but may be a poor reflection of the
+#. * device capability
+#: ../dialogs/color-settings/color-profile.c:115
+msgctxt "Profile quality"
+msgid "Low Quality"
+msgstr ""
+
+#. TRANSLATORS: the profile quality
+#: ../dialogs/color-settings/color-profile.c:119
+msgctxt "Profile quality"
+msgid "Medium Quality"
+msgstr ""
+
+#. TRANSLATORS: the profile quality - high quality profiles take
+#. * a *long* time, and have the best calibration and
+#. * characterisation data.
+#: ../dialogs/color-settings/color-profile.c:125
+msgctxt "Profile quality"
+msgid "High Quality"
+msgstr ""
+
+#. TRANSLATORS: this default RGB space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:140
+msgctxt "Colorspace fallback"
+msgid "Default RGB"
+msgstr ""
+
+#. TRANSLATORS: this default CMYK space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:146
+msgctxt "Colorspace fallback"
+msgid "Default CMYK"
+msgstr ""
+
+#. TRANSLATORS: this default gray space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: ../dialogs/color-settings/color-profile.c:152
+msgctxt "Colorspace fallback"
+msgid "Default Gray"
+msgstr ""
+
+#. TRANSLATORS: an ICC profile is a file containing colorspace data
+#: ../dialogs/color-settings/main.c:128
+msgid "Select ICC Profile File"
+msgstr ""
+
+#: ../dialogs/color-settings/main.c:131
+msgid "_Import"
+msgstr ""
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: ../dialogs/color-settings/main.c:142
+msgid "Supported ICC profiles"
+msgstr ""
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: ../dialogs/color-settings/main.c:149
+msgid "All files"
+msgstr "ሁሉንም ፋይሎች"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile has been auto-generated for this hardware
+#: ../dialogs/color-settings/main.c:191
+msgid "Default: "
+msgstr ""
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile his a standard space like AdobeRGB
+#: ../dialogs/color-settings/main.c:197
+msgid "Colorspace: "
+msgstr ""
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile is a test profile
+#: ../dialogs/color-settings/main.c:203
+msgid "Test profile: "
+msgstr ""
+
+#: ../dialogs/color-settings/main.c:238
+msgid "Compatible Profiles"
+msgstr ""
+
+#: ../dialogs/color-settings/main.c:825 ../dialogs/color-settings/main.c:826
+#: ../dialogs/color-settings/main.c:827
+msgid "Unknown"
+msgstr "ያልታወቀ"
+
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
+msgid "Set color profiles"
+msgstr ""
+
+#: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
+msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
+msgstr ""
+
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
-msgid "Confirmation"
-msgstr "ማረጋገጫ"
+msgid "<b><big>Would you like to keep this configuration?</big></b>"
+msgstr ""
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
-msgid "Keep this configuration"
+msgid ""
+"The previous configuration will be restored in <b>10 seconds</b> if you do "
+"not reply to this question."
 msgstr ""
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
-msgid "Restore the previous configuration"
+msgid "Keep this configuration"
 msgstr ""
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
-msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "<big><b>እርስዎ ይህን ማሰናጃ ማስቀመጥ ይፈልጋሉ?</b></big>"
-
-#: ../dialogs/display-settings/confirmation-dialog.glade.h:5
-msgid ""
-"The previous configuration will be restored in 10 seconds if you do not "
-"reply to this question."
+msgid "Restore the previous configuration"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
+msgid "1.25x"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:2
+msgid "1.5x"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:3
+msgid "1.75x"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:5
+msgid "Custom:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:6
+msgid "Do nothing"
+msgstr "ምንም አትስራ"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:7
+msgid "Show dialog"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:8
+msgid "Mirror"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:9
+msgid "Extend"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:10
+msgid "The primary display is currently configured to show:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Xfce Panel"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:12
+msgid "Desktop icons"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:13
+msgid "Notifications"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:14
+msgid "Configure..."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:15
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "ማሳያ"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:2
-#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
-msgid "Configure screen settings and layout"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:3
-msgid "Ref_lection:"
-msgstr ""
-
-#: ../dialogs/display-settings/display-dialog.glade.h:4
-msgid "Ro_tation:"
-msgstr "ማዞ_ሪያ:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:5
-msgid "Refresh _rate:"
-msgstr "ማነቃቂያ _መጠን:"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:6
-msgid "R_esolution:"
-msgstr "ሪ_ዞሊሽን: "
-
-#: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "_Use this display"
-msgstr "ይህን ማሳያ _ይጠቀሙ"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:8
+#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "_Mirror displays"
 msgstr "አንፀባራቂ _ማሳያ"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:9
-msgid "_Primary display"
-msgstr "_ቀዳሚ ማሳያ"
-
-#: ../dialogs/display-settings/display-dialog.glade.h:10
-msgid ""
-"This is a hint for panels, docks and desktop to show on this display "
-"preferably."
+#: ../dialogs/display-settings/display-dialog.glade.h:19
+msgid "Primary Display:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:11
-msgid "Configure _new displays when connected"
+#: ../dialogs/display-settings/display-dialog.glade.h:20
+msgid "R_esolution:"
+msgstr "ሪ_ዞሊሽን: "
+
+#: ../dialogs/display-settings/display-dialog.glade.h:21
+msgid "Refresh _rate:"
+msgstr "ማነቃቂያ _መጠን:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:22
+msgid "Ro_tation:"
+msgstr "ማዞ_ሪያ:"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:23
+msgid "Ref_lection:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:12
-msgid "Identify Displays"
-msgstr "መለያ ማሳያ"
+#: ../dialogs/display-settings/display-dialog.glade.h:24
+msgid "A_pply"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:25
+msgid "_Scale:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:26
+msgid "X:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:27
+msgid "Y:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:28
+msgid "_General"
+msgstr "_ባጠቃላይ"
+
+#: ../dialogs/display-settings/display-dialog.glade.h:29
+msgid "<b>Profiles</b>"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:30
+msgid "<b>Connecting Displays</b>"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:31
+msgid "Delete the currently selected display profile."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:32
+msgid "Apply"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:33
+msgid "Apply the currently selected display profile."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:34
+msgid "Create a new display profile."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:35
+msgid "Update an existing profile."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:36
+msgid "Automatically enable profiles when new display is connected"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:37
+msgid "When new displays are connected:"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:38
+msgid "Show popup windows to identify displays"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:39
+msgid "<b>Identifying Displays</b>"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:40
+#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
+msgid "_Advanced"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:41
+msgid "<b>Profile Name</b>"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:42
+msgid "Create"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:43
+msgid "A profile of this name already exists."
+msgstr ""
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -640,80 +1095,139 @@ msgstr ""
 msgid "Only Display 2"
 msgstr "ማሳያ ብቻ 2"
 
-#: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
-msgid "Advanced"
-msgstr "የ ረቀቀ"
-
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
 msgstr "የ ራዲዮ ቁልፍ"
 
-#: ../dialogs/display-settings/main.c:89
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
+msgid "Update Display Profile"
+msgstr ""
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
+msgid "_Update"
+msgstr ""
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:4
+msgid ""
+"<big><b>You have made changes to your previously active profile</b></big>"
+msgstr ""
+
+#: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
+msgid ""
+"If you don't update the profile your changes will be lost upon restarting "
+"your session or disconnecting or connecting a display."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:108
 msgid "Left"
 msgstr "በ ግራ"
 
-#: ../dialogs/display-settings/main.c:90
+#: ../dialogs/display-settings/main.c:109
 msgid "Inverted"
 msgstr "የተገለበጠ"
 
-#: ../dialogs/display-settings/main.c:91
+#: ../dialogs/display-settings/main.c:110
 msgid "Right"
 msgstr "በ ቀኝ"
 
-#: ../dialogs/display-settings/main.c:100
+#: ../dialogs/display-settings/main.c:119
 msgid "Horizontal"
 msgstr "በ አግድም"
 
-#: ../dialogs/display-settings/main.c:101
+#: ../dialogs/display-settings/main.c:120
 msgid "Vertical"
 msgstr "በ ቁመት"
 
-#: ../dialogs/display-settings/main.c:102
+#: ../dialogs/display-settings/main.c:121
 msgid "Horizontal and Vertical"
 msgstr "በ አግድም እና በ ቁመት"
 
-#: ../dialogs/display-settings/main.c:123
+#: ../dialogs/display-settings/main.c:142
 msgid "Minimal interface to set up an external output"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:255
+#: ../dialogs/display-settings/main.c:324
 #, c-format
 msgid ""
-"The previous configuration will be restored in %i seconds if you do not "
-"reply to this question."
+"The previous configuration will be restored in <b>%i seconds</b> if you do "
+"not reply to this question."
 msgstr ""
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:544
+#: ../dialogs/display-settings/main.c:783
 #, c-format
-msgid "%.1f Hz"
-msgstr "%.1f Hz"
+msgid "%.2f Hz"
+msgstr ""
 
-#: ../dialogs/display-settings/main.c:838
+#: ../dialogs/display-settings/main.c:1181
 msgid "Display:"
 msgstr "ማሳያ:"
 
-#: ../dialogs/display-settings/main.c:843
+#: ../dialogs/display-settings/main.c:1186
 msgid "Resolution:"
 msgstr "ሪዞሊሽን"
 
-#: ../dialogs/display-settings/main.c:1106
+#: ../dialogs/display-settings/main.c:1466
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1108
+#: ../dialogs/display-settings/main.c:1468
 msgid "Selected output not disabled"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2264
+#: ../dialogs/display-settings/main.c:1645
+msgid "Profiles matching the currently connected displays"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:1851
+#, c-format
+msgid "Update changed display profile '%s'?"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:1856
+#, c-format
+msgid "_Update '%s'"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:2144
+#, c-format
+msgid "Do you want to delete the display profile '%s'?"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:2146
+msgid "Delete Profile"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:2149
+msgid "Once a display profile is deleted it cannot be restored."
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:2150
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:134
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:382
+#: ../dialogs/mime-settings/xfce-mime-window.c:1129
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
+msgid "Cancel"
+msgstr "መሰረዣ"
+
+#: ../dialogs/display-settings/main.c:2151
+msgid "Delete"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:2256
+#, c-format
+msgid "%d Xfce Panels"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:3293
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2306
-#: ../dialogs/display-settings/main.c:2380
+#: ../dialogs/display-settings/main.c:3336
+#: ../dialogs/display-settings/main.c:3412
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -722,148 +1236,109 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2565
+#: ../dialogs/display-settings/main.c:3627
 msgid "Mirror Screens"
 msgstr "አንፀባራቂ መመልከቻ"
 
-#: ../dialogs/display-settings/main.c:2614
+#: ../dialogs/display-settings/main.c:3677
 msgid "(Disabled)"
 msgstr "(ተሰናክሏል)"
 
-#: ../dialogs/display-settings/main.c:3147
-#: ../dialogs/display-settings/xfce-randr.c:282
+#: ../dialogs/display-settings/main.c:4196
 #, c-format
-msgid "Unable to query the version of the RandR extension being used"
+msgid "Only %s (1)"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3148
-#: ../dialogs/display-settings/main.c:3185
+#: ../dialogs/display-settings/main.c:4207
+#, c-format
+msgid "Only %s (2)"
+msgstr ""
+
+#: ../dialogs/display-settings/main.c:4392
+#: ../dialogs/display-settings/main.c:4429
 msgid "Unable to start the Xfce Display Settings"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3180
+#: ../dialogs/display-settings/main.c:4424
 msgid "ATI Settings"
 msgstr "ATI ማሰናጃዎች"
 
-#: ../dialogs/display-settings/main.c:3187
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:208
-msgid "_Close"
-msgstr "_መዝጊያ"
-
-#: ../dialogs/display-settings/main.c:3195
+#: ../dialogs/display-settings/main.c:4439
 msgid "Unable to launch the proprietary driver settings"
 msgstr ""
 
-#. 1.2 is required
-#: ../dialogs/display-settings/xfce-randr.c:290
-#, c-format
-msgid ""
-"This system is using RandR %d.%d. For the display settings to work version "
-"1.2 is required at least"
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
+msgid "Configure screen settings and layout"
 msgstr ""
 
-#: ../dialogs/display-settings/xfce-randr.c:554
-msgid "Laptop"
-msgstr "ላፕቶፕ"
-
-#: ../dialogs/display-settings/xfce-randr.c:575
-msgid "Monitor"
-msgstr "መቆጣጠሪያ "
-
-#: ../dialogs/display-settings/xfce-randr.c:578
-msgid "Television"
-msgstr "ቴሌቪዥን"
-
-#: ../dialogs/display-settings/xfce-randr.c:582
-msgid "Digital display"
-msgstr "ዲጂታል ማሳያ"
-
-#. Translators: "Unknown" here is used to identify a monitor for which
-#. * we don't know the vendor. When a vendor is known, the name of the
-#. * vendor is used.
-#: ../dialogs/display-settings/display-name.c:2641
-msgctxt "Monitor vendor"
-msgid "Unknown"
-msgstr "ያልታወቀ"
+#: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:3
+msgid ""
+"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
+msgstr ""
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:106
+#: ../dialogs/keyboard-settings/command-dialog.c:110
 msgid "Shortcut Command"
 msgstr "አቋራጭ ትእዛዝ"
 
-#. Create cancel button
-#: ../dialogs/keyboard-settings/command-dialog.c:110
-#: ../dialogs/keyboard-settings/command-dialog.c:259
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:134
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:382
-#: ../dialogs/mime-settings/xfce-mime-window.c:908
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
-msgid "Cancel"
-msgstr "መሰረዣ"
-
-#: ../dialogs/keyboard-settings/command-dialog.c:114
-msgid "OK"
-msgstr "እሺ"
-
-#: ../dialogs/keyboard-settings/command-dialog.c:137
+#: ../dialogs/keyboard-settings/command-dialog.c:142
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr ""
 
 #. We are editing an existing shortcut
-#: ../dialogs/keyboard-settings/command-dialog.c:155
+#: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Shortcut:"
 msgstr "አቋራጭ:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:168
-msgid "Command:"
-msgstr "ትእዛዝ:"
+#: ../dialogs/keyboard-settings/command-dialog.c:185
+msgid "Comm_and:"
+msgstr "ትእ_ዛዝ:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:184
-#: ../dialogs/keyboard-settings/command-dialog.c:260
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:136
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
-msgid "Open"
-msgstr "መክፈቻ"
-
-#: ../dialogs/keyboard-settings/command-dialog.c:189
+#: ../dialogs/keyboard-settings/command-dialog.c:210
 msgid "Use _startup notification"
 msgstr "ይጠቀሙ ማስታወቂያ _ማስጀመሪያ"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:236
+#: ../dialogs/keyboard-settings/command-dialog.c:257
 msgid "The command may not be empty."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/command-dialog.c:256
+#: ../dialogs/keyboard-settings/command-dialog.c:277
 msgid "Select command"
 msgstr "ትእዛዝ ይምረጡ"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:264
+#: ../dialogs/keyboard-settings/command-dialog.c:285
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:389
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:435
 msgid "All Files"
 msgstr "ሁሉንም ፋይሎች"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:269
+#: ../dialogs/keyboard-settings/command-dialog.c:290
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:394
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:440
 msgid "Executable Files"
 msgstr "ሊፈጸሙ የሚችሉ ፋይሎች"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:284
+#: ../dialogs/keyboard-settings/command-dialog.c:305
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:409
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:455
 msgid "Perl Scripts"
 msgstr "Perl Scripts"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:290
+#: ../dialogs/keyboard-settings/command-dialog.c:311
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:415
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:461
 msgid "Python Scripts"
 msgstr "Python Scripts"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:296
+#: ../dialogs/keyboard-settings/command-dialog.c:317
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:421
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:467
 msgid "Ruby Scripts"
 msgstr "Ruby Scripts"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:302
+#: ../dialogs/keyboard-settings/command-dialog.c:323
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:427
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:473
 msgid "Shell Scripts"
 msgstr "Shell Scripts"
 
@@ -871,134 +1346,124 @@ msgstr "Shell Scripts"
 msgid "Keyboard layout selection"
 msgstr "የ ፊደል ገበታ እቅድ መምረጫ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
-msgid "Select keyboard layout and variant"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
 msgstr "የ ፊደል ገበታ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
-msgid "Edit keyboard settings and application shortcuts"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "Restore num l_ock state on startup"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "General"
 msgstr "ባጠቃላይ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "_Enable key repeat"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "_Repeat delay:"
 msgstr "_መድገሚያ ማሳያ:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Repe_at speed:"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Typing Settings"
 msgstr "መጻፊያ ማሰናጃ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Show _blinking"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Specify whether or not the text cursor blinks"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Blink _delay:"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Cursor"
 msgstr "መጠቆሚያ"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "_Test area:"
 msgstr "_መሞከሪያ ቦታ:"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Beha_vior"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "Define shortcuts for la_unching applications:"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:367
+msgid "_Edit"
+msgstr "_ማረሚያ"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
-msgid "_Use system defaults"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
-msgid ""
-"Specifies whether the keyboard layout is controlled with this settings "
-"dialog, or by the X server"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
-msgid "_Keyboard model"
-msgstr "ይ _ፊደል ገበታ ዘዴ:"
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
-msgid "Change la_yout option"
-msgstr ""
-
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
-msgid "Co_mpose key"
-msgstr ""
-
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
-msgid "Move currently selected item up by one row"
+msgid "<b>Use system defaults</b>"
 msgstr ""
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+msgid "_Keyboard model"
+msgstr "ይ _ፊደል ገበታ ዘዴ:"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+msgid "Change la_yout option"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+msgid "Co_mpose key"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+msgid "Move currently selected item up by one row"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "የ ፊደል ገበታ እቅድ "
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "_እቅድ:"
 
@@ -1015,61 +1480,69 @@ msgstr ""
 msgid "Could not create the settings dialog."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:404
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
 msgid "Command"
 msgstr "ትእዛዝ:"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:409
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
 msgid "Shortcut"
 msgstr "አቋራጭ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
 msgid "Layout"
 msgstr "እቅድ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:486
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:485
 msgid "Variant"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1009
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1113
-msgid "Shortcut command may not be empty."
-msgstr ""
-
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1277
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
 msgid "Reset to Defaults"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1281
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "No"
 msgstr "አይ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid "Yes"
 msgstr "አዎ"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
 msgstr "ማስጠንቀቂያ"
 
-#: ../dialogs/mime-settings/main.c:115
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
+msgid "Edit keyboard settings and application shortcuts"
+msgstr ""
+
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
+msgid "numlock;keyboard;layout;shortcuts;"
+msgstr ""
+
+#: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
 msgstr ""
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
 msgstr "መተግበሪያ ይምረጡ"
+
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:136
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
+msgid "Open"
+msgstr "መክፈቻ"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid "Use a c_ustom command:"
@@ -1111,107 +1584,614 @@ msgstr "መክፈቻ <i>%s</i> እና ሌሎች የ ፋይል አይነቶች \"
 msgid "Failed to add new application \"%s\""
 msgstr "አዲስ መተግበሪያ መጨመር አልተቻለም \"%s\""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:169
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:143
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:150
+msgid "Press left mouse button to change the selected application."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:149
+msgid "Application Chooser Button"
+msgstr "መተግበሪያ መምረጫ ቁልፍ"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:336
+msgid "No application selected"
+msgstr "ምንም መተግበሪያ አልተመረጠም"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+msgid "Failed to set default Web Browser"
+msgstr "ነባር የ ዌብ መቃኛ ማሰናዳት አልተቻለም"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:353
+msgid "Failed to set default Mail Reader"
+msgstr "ነባር የ ደብዳቤ አንባቢ ማሰናዳት አልተቻለም"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:354
+msgid "Failed to set default File Manager"
+msgstr "ነባር የ ፋይል አስተዳዳሪ ማሰናዳት አልተቻለም "
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:355
+msgid "Failed to set default Terminal Emulator"
+msgstr "ነባር ተርሚናል ማሰናዳት አልተቻለም "
+
+#. allocate the chooser
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:425
+msgid "Select application"
+msgstr "መተግበሪያ ይምረጡ"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+msgid "Choose a custom Web Browser"
+msgstr "የ ዌብ መቃኛ ማስተካከያ ይምረጡ"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:539
+msgid "Choose a custom Mail Reader"
+msgstr "የ ደብዳቤ አንባቢ ማስተካከያ ይምረጡ"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+msgid "Choose a custom File Manager"
+msgstr "የ ፋይል አስተዳዳሪ ማስተካከያ ይምረጡ"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:541
+msgid "Choose a custom Terminal Emulator"
+msgstr "ተርሚናል ማስተካከያ ይምረጡ"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:546
+msgid ""
+"Specify the application you want to use\n"
+"as default Web Browser for Xfce:"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:547
+msgid ""
+"Specify the application you want to use\n"
+"as default Mail Reader for Xfce:"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:548
+msgid ""
+"Specify the application you want to use\n"
+"as default File Manager for Xfce:"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:549
+msgid ""
+"Specify the application you want to use\n"
+"as default Terminal Emulator for Xfce:"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:613
+msgid "Browse the file system to choose a custom command."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:749
+msgid "_Other..."
+msgstr "_ሌሎች..."
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:750
+msgid "Use a custom application which is not included in the above list."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
+msgid "Choose Preferred Application"
+msgstr "የ ተመረጠው መተግባሪያ"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:249
+msgid ""
+"Please choose your preferred Web\n"
+"Browser now and click OK to proceed."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
+msgid ""
+"Please choose your preferred Mail Reader\n"
+"now and click OK to proceed."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
+msgid ""
+"Please choose your preferred File Manager\n"
+"now and click OK to proceed."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
+msgid ""
+"Please choose your preferred Terminal\n"
+"Emulator now and click OK to proceed."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:41
+msgid "Failed to execute default Web Browser"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:42
+msgid "Failed to execute default Mail Reader"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:43
+msgid "Failed to execute default File Manager"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:44
+msgid "Failed to execute default Terminal Emulator"
+msgstr ""
+
+#. Enable permanently dismissing this error.
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:86
+msgid "Do _not show this message again"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:116
+msgid "Print version information and exit"
+msgstr "የ እትም መረጃ ማተሚያ እና መውጫ"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:117
+msgid ""
+"Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
+" one of the following values."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:117
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:118
+msgid "TYPE [PARAMETER]"
+msgstr "አይነት [ደንብ]"
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:118
+msgid ""
+"Query the default helper of TYPE, where TYPE is one of the following values."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:148
+msgid ""
+"The following TYPEs are supported for the --launch and --query commands:\n"
+"\n"
+"  WebBrowser       - The preferred Web Browser.\n"
+"  MailReader       - The preferred Mail Reader.\n"
+"  FileManager      - The preferred File Manager.\n"
+"  TerminalEmulator - The preferred Terminal Emulator."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:183
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:256
+#, c-format
+msgid "Invalid helper type \"%s\""
+msgstr "ዋጋ የሌለው የ ረዳት አይነት \"%s\""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:240
+#, c-format
+msgid ""
+"%s (Xfce %s)\n"
+"\n"
+"Copyright (c) 2003-2006\n"
+"        os-cillation e.K. All rights reserved.\n"
+"\n"
+"Written by Benedikt Meurer <benny@xfce.org>.\n"
+"\n"
+"Built with Gtk+-%d.%d.%d, running Gtk+-%d.%d.%d.\n"
+"\n"
+"Please report bugs to <%s>.\n"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:266
+#, c-format
+msgid "No helper defined for \"%s\"."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper.c:453
+#, c-format
+msgid "No command specified"
+msgstr "ምንም ፋይል/ፎልደር አልተወሰነም"
+
+#: ../dialogs/mime-settings/xfce-mime-helper.c:832
+#: ../dialogs/mime-settings/xfce-mime-helper.c:871
+#: ../dialogs/mime-settings/xfce-mime-helper.c:968
+#: ../dialogs/mime-settings/xfce-mime-helper.c:1007
+#, c-format
+msgid "Failed to open %s for writing"
+msgstr "ፋይል  %sን ለመጻፍ መክፈት አልተቻለም"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:184
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
-msgid "MIME Type Editor"
+msgid "Default Applications"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:173
-#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
-msgid "Associate applications with MIME types"
+#. Internet
+#: ../dialogs/mime-settings/xfce-mime-window.c:208
+msgid "_Internet"
+msgstr "_ኢንተርኔት"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:221
+#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
+msgid "Web Browser"
+msgstr "ዌብ መቃኛ"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:229
+msgid ""
+"The default Web Browser will be used to open hyperlinks and display help "
+"contents."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:192
+#: ../dialogs/mime-settings/xfce-mime-window.c:247
+#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
+msgid "Mail Reader"
+msgstr "ደብዳቤ አንባቢ"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:255
+msgid ""
+"The default Mail Reader will be used to compose emails when you click on "
+"email addresses."
+msgstr ""
+
+#. Utilities
+#: ../dialogs/mime-settings/xfce-mime-window.c:269
+msgid "_Utilities"
+msgstr "_የተለያዩ"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:282
+#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
+msgid "File Manager"
+msgstr "የ ፋይል አስተዳዳሪ"
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:290
+msgid ""
+"The default File Manager will be used to browse the contents of folders."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:308
+#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
+msgid "Terminal Emulator"
+msgstr "ተርሚናል "
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:316
+msgid ""
+"The default Terminal Emulator will be used to run commands that require a "
+"CLI environment."
+msgstr ""
+
+#. Mimes
+#: ../dialogs/mime-settings/xfce-mime-window.c:330
+msgid "_Others"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:340
 msgid "_Filter:"
 msgstr "_ማጣሪያ: "
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:200
+#: ../dialogs/mime-settings/xfce-mime-window.c:348
 msgid "Clear filter"
 msgstr "ማጣሪያ ማጽጃ"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:249
+#: ../dialogs/mime-settings/xfce-mime-window.c:378
+msgid "Open with..."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:425
 msgid "MIME Type"
 msgstr "MIME አይነት"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:277
+#: ../dialogs/mime-settings/xfce-mime-window.c:453
 msgid "Status"
 msgstr "ሁኔታዎች"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:297
+#: ../dialogs/mime-settings/xfce-mime-window.c:473
 msgid "Default Application"
 msgstr "ነባር መተግበሪያ"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:472
-#: ../dialogs/mime-settings/xfce-mime-window.c:597
+#: ../dialogs/mime-settings/xfce-mime-window.c:648
+#: ../dialogs/mime-settings/xfce-mime-window.c:812
 msgid "User Set"
 msgstr "ተጠቃሚ ማሰናጃ"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:474
-#: ../dialogs/mime-settings/xfce-mime-window.c:597
-#: ../dialogs/mouse-settings/main.c:383 ../dialogs/mouse-settings/main.c:385
-#: ../dialogs/mouse-settings/main.c:445
+#: ../dialogs/mime-settings/xfce-mime-window.c:650
+#: ../dialogs/mime-settings/xfce-mime-window.c:812
+#: ../dialogs/mouse-settings/main.c:398 ../dialogs/mouse-settings/main.c:400
+#: ../dialogs/mouse-settings/main.c:463
 msgid "Default"
 msgstr "ነባር"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:543
+#: ../dialogs/mime-settings/xfce-mime-window.c:736
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:642
+#: ../dialogs/mime-settings/xfce-mime-window.c:857
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:899
+#: ../dialogs/mime-settings/xfce-mime-window.c:1120
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:903
+#: ../dialogs/mime-settings/xfce-mime-window.c:1124
 msgid "Question"
 msgstr "ጥያቄ"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:906
+#: ../dialogs/mime-settings/xfce-mime-window.c:1127
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:910
-#: ../dialogs/mime-settings/xfce-mime-window.c:981
+#: ../dialogs/mime-settings/xfce-mime-window.c:1131
+#: ../dialogs/mime-settings/xfce-mime-window.c:1202
 msgid "Reset to Default"
 msgstr "ወደ ነባር እንደ ነበር መመለሻ"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:976
+#: ../dialogs/mime-settings/xfce-mime-window.c:1197
 msgid "Choose Application..."
 msgstr "መተግበሪያ ይምረጡ..."
 
-#: ../dialogs/mouse-settings/main.c:83
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
+msgid "Associate preferred applications with MIME types"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
+msgid ""
+"file;type;extension;association;open with;web browser;mail reader;file "
+"manager;terminal emulator;"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
+msgid "Browse the file system"
+msgstr "በ ፋይል ስርአት ውስጥ መቃኛ"
+
+#: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:2
+msgid "Read your email"
+msgstr "የ እርስዎን ኢሜይል ይንብቡ"
+
+#: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:2
+msgid "Use the command line"
+msgstr "የ ትእዛዝ መስመር ይጠቀሙ:"
+
+#: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:2
+msgid "Browse the web"
+msgstr "ዌብ መቃኛ"
+
+#: ../dialogs/mime-settings/helpers/alacritty.desktop.in.in.h:1
+msgid "Alacritty"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/aterm.desktop.in.in.h:1
+msgid "aterm"
+msgstr "aterm"
+
+#: ../dialogs/mime-settings/helpers/balsa.desktop.in.in.h:1
+msgid "Balsa"
+msgstr "Balsa"
+
+#: ../dialogs/mime-settings/helpers/brave.desktop.in.in.h:1
+msgid "Brave"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/caja.desktop.in.in.h:1
+msgid "Caja File Manager"
+msgstr "ካጃ የ ፋይል አስተዳዳሪ"
+
+#: ../dialogs/mime-settings/helpers/chromium.desktop.in.in.h:1
+msgid "Chromium"
+msgstr "Chromium"
+
+#: ../dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in.h:1
+msgid "Debian Sensible Browser"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in.h:1
+msgid "Debian X Terminal Emulator"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/dillo.desktop.in.in.h:1
+msgid "Dillo"
+msgstr "Dillo"
+
+#: ../dialogs/mime-settings/helpers/encompass.desktop.in.in.h:1
+msgid "Encompass"
+msgstr "Encompass"
+
+#: ../dialogs/mime-settings/helpers/epiphany.desktop.in.in.h:1
+msgid "Epiphany Web Browser"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/eterm.desktop.in.in.h:1
+msgid "Enlightened Terminal Emulator"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/evolution.desktop.in.in.h:1
+msgid "Evolution"
+msgstr "Evolution"
+
+#: ../dialogs/mime-settings/helpers/firefox.desktop.in.in.h:1
+msgid "Mozilla Firefox"
+msgstr "Mozilla Firefox"
+
+#: ../dialogs/mime-settings/helpers/galeon.desktop.in.in.h:1
+msgid "Galeon Web Browser"
+msgstr "Galeon Web Browser"
+
+#: ../dialogs/mime-settings/helpers/geary.desktop.in.in.h:1
+msgid "Geary"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/google-chrome.desktop.in.in.h:1
+msgid "Google Chrome"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in.h:1
+msgid "GNOME Terminal"
+msgstr "GNOME ተርሚናል"
+
+#: ../dialogs/mime-settings/helpers/icecat.desktop.in.in.h:1
+msgid "Icecat"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/icedove.desktop.in.in.h:1
+msgid "Icedove"
+msgstr "Icedove"
+
+#: ../dialogs/mime-settings/helpers/iceweasel.desktop.in.in.h:1
+msgid "Iceweasel"
+msgstr "Iceweasel"
+
+#: ../dialogs/mime-settings/helpers/jumanji.desktop.in.in.h:1
+msgid "Jumanji"
+msgstr "Jumanji"
+
+#: ../dialogs/mime-settings/helpers/kitty.desktop.in.in.h:1
+msgid "kitty"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/kmail.desktop.in.in.h:1
+msgid "KMail"
+msgstr "KMail"
+
+#: ../dialogs/mime-settings/helpers/konqueror.desktop.in.in.h:1
+msgid "Konqueror Web Browser"
+msgstr "Konqueror ዌብ መቃኛ"
+
+#: ../dialogs/mime-settings/helpers/links.desktop.in.in.h:1
+msgid "Links Text Browser"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/lynx.desktop.in.in.h:1
+msgid "Lynx Text Browser"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/midori.desktop.in.in.h:1
+msgid "Midori"
+msgstr "Midori"
+
+#: ../dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in.h:1
+msgid "Mozilla Browser"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in.h:1
+msgid "Mozilla Mail"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/mutt.desktop.in.in.h:1
+msgid "Mutt"
+msgstr "Mutt"
+
+#: ../dialogs/mime-settings/helpers/nautilus.desktop.in.in.h:1
+msgid "Nautilus"
+msgstr "Nautilus"
+
+#: ../dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in.h:1
+msgid "Netscape Navigator"
+msgstr "Netscape Navigator"
+
+#: ../dialogs/mime-settings/helpers/nxterm.desktop.in.in.h:1
+msgid "NXterm"
+msgstr "NXterm"
+
+#: ../dialogs/mime-settings/helpers/opera-browser.desktop.in.in.h:1
+msgid "Opera Browser"
+msgstr "መቃኛ መክፈቻ"
+
+#: ../dialogs/mime-settings/helpers/pcmanfm.desktop.in.in.h:1
+msgid "PCMan File Manager"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in.h:1
+msgid "PCManFM-Qt File Manager"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/qterminal.desktop.in.in.h:1
+msgid "QTerminal"
+msgstr "QTerminal"
+
+#: ../dialogs/mime-settings/helpers/qtfm.desktop.in.in.h:1
+msgid "qtFM"
+msgstr "qtFM"
+
+#: ../dialogs/mime-settings/helpers/qupzilla.desktop.in.in.h:1
+msgid "QupZilla"
+msgstr "QupZilla"
+
+#: ../dialogs/mime-settings/helpers/rodent.desktop.in.in.h:1
+msgid "Rodent File Manager"
+msgstr "Rodent የ ፋይል አስተዳዳሪ"
+
+#: ../dialogs/mime-settings/helpers/rox-filer.desktop.in.in.h:1
+msgid "ROX-Filer"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/sakura.desktop.in.in.h:1
+msgid "Sakura"
+msgstr "Sakura"
+
+#: ../dialogs/mime-settings/helpers/surf.desktop.in.in.h:1
+msgid "Surf"
+msgstr "Surf"
+
+#: ../dialogs/mime-settings/helpers/sylpheed.desktop.in.in.h:1
+msgid "Sylpheed"
+msgstr "Sylpheed"
+
+#: ../dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in.h:1
+msgid "Claws Mail"
+msgstr "Claws Mail"
+
+#: ../dialogs/mime-settings/helpers/terminator.desktop.in.in.h:1
+msgid "Terminator"
+msgstr "Terminator"
+
+#: ../dialogs/mime-settings/helpers/thunar.desktop.in.in.h:1
+msgid "Thunar"
+msgstr "ቱናር"
+
+#: ../dialogs/mime-settings/helpers/thunderbird.desktop.in.in.h:1
+msgid "Mozilla Thunderbird"
+msgstr "Mozilla Thunderbird"
+
+#: ../dialogs/mime-settings/helpers/urxvt.desktop.in.in.h:1
+msgid "RXVT Unicode"
+msgstr "RXVT Unicode"
+
+#: ../dialogs/mime-settings/helpers/vimprobable2.desktop.in.in.h:1
+msgid "Vimprobable2"
+msgstr "Vimprobable2"
+
+#: ../dialogs/mime-settings/helpers/w3m.desktop.in.in.h:1
+msgid "W3M Text Browser"
+msgstr "W3M Text Browser"
+
+#: ../dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in.h:1
+msgid "Xfce Terminal"
+msgstr "Xfce ተርሚናል"
+
+#: ../dialogs/mime-settings/helpers/xfe.desktop.in.in.h:1
+msgid "Xfe File Manager"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/xterm.desktop.in.in.h:1
+msgid "X Terminal"
+msgstr ""
+
+#: ../dialogs/mouse-settings/main.c:87
 msgid "Active device in the dialog"
 msgstr ""
 
-#: ../dialogs/mouse-settings/main.c:83
+#: ../dialogs/mouse-settings/main.c:87
 msgid "DEVICE NAME"
 msgstr "የ አካሉ ስም"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:141
+#: ../dialogs/mouse-settings/main.c:145
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:151
+#: ../dialogs/mouse-settings/main.c:155
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:162
+#: ../dialogs/mouse-settings/main.c:166
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
@@ -1261,316 +2241,304 @@ msgstr "ከ ቀኝ ወደ ግራ"
 msgid "Mouse and Touchpad"
 msgstr "አይጥ እና ተችፓድ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
-#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
-msgid "Configure pointer device behavior and appearance"
-msgstr ""
-
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "De_vice:"
 msgstr "አካ_ል:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Le_ft-handed"
 msgstr "ለ _ግራ-እጆች"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Ri_ght-handed"
 msgstr "ለ _ቀኝ-እጆች"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Reverse scroll d_irection"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Buttons"
 msgstr "ቁልፎች"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "_Reset to Defaults"
 msgstr "ወደ ነባር _እንደ ነበር መመለሻ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Sensitivit_y:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Acceleratio_n:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Pointer Speed"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "B_uttons and Feedback"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Disable touchpad _while typing"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Duratio_n:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Tap touchpad to clic_k"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Scrolling _mode:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Enable hori_zontal scrolling"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Scrolling"
 msgstr "መሸብለያ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "T_ouchpad"
 msgstr "ተ_ችፓድ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Trac_king mode:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "_Rotation:"
 msgstr "_ማዞሪያ:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Tab_let"
 msgstr "ታብ_ሌት"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "_Devices"
 msgstr "_አካሎች"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Th_reshold:"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Drag and Drop"
 msgstr "መጎተቻ እና መጣያ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "Ti_me:"
 msgstr "ሰአ_ት:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "D_istance:"
 msgstr "እ_ርቀት:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr ""
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "Double Click"
 msgstr "ሁለት ጊዜ መጫኛ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "_Behavior"
 msgstr "_ባህሪ"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "Cursor si_ze:"
 msgstr "የ መጠቆሚያ መጠ_ን:"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "Size"
 msgstr "መጠን"
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "Preview"
 msgstr "ቅድመ እይታ "
 
-#: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
+#: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid "_Theme"
 msgstr "_ገጽታ"
+
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
+msgid "Configure pointer device behavior and appearance"
+msgstr ""
+
+#: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
+msgid ""
+"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
+msgstr ""
 
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
 msgstr "አራሚ ማሰናጃ"
 
-#: ../xfce4-settings-editor/main.c:170
-msgid "Customize settings stored by Xfconf"
-msgstr ""
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:252
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:267
 msgid "Channel"
 msgstr "ጣቢያ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:286
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:317
 msgid "Property"
 msgstr "ባህሪ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:293
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:325
 msgid "Type"
 msgstr "አይነት"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:300
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:332
 msgid "Locked"
 msgstr "ተቆልፏል"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:307
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:339
 msgid "Value"
 msgstr "ዋጋ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:322
-msgid "New"
-msgstr "አዲስ"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:325
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:359
 msgid "New property"
 msgstr "አዲስ ባህሪ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:333
-msgid "Edit"
-msgstr "ማረሚያ"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:336
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:372
 msgid "Edit selected property"
 msgstr "የ ተመረጠውን ባህሪ ማረሚያ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:344
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1031
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1370
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:380
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1070
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1576
 msgid "_Reset"
 msgstr "_እንደ ነበር መመለሻ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:347
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:385
 msgid "Reset selected property"
 msgstr "የ ተመረጠውን ባህሪ እንደ ነበር መመለሻ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:454
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:545
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:664
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:492
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:585
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:704
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "ባዶ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:457
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:495
 msgid "Array"
 msgstr "ማዘጋጃ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:462
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:500
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "ሀረግ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:470
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:508
 msgid "Integer"
 msgstr "ኢንቲጀር"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:473
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:511
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "ቡሊያን"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:476
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:514
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "ሁለት ጊዜ "
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:810
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:851
 msgid "_Reset Channel"
 msgstr "ጣቢያ _እንደ ነበር መመለሻ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:811
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:852
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:812
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:853
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:887
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:928
 msgid "reset"
 msgstr "እንደ ነበር መመለሻ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:944
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:985
 #, c-format
 msgid "Monitor %s"
 msgstr "መቆጣጠሪያ %s"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:952
-msgid "Watch an Xfconf channel for property changes"
-msgstr ""
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:954
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:993
 msgid "Clear"
 msgstr "ማጽጃ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:955
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:994
 msgid "Close"
 msgstr "መዝጊያ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:988
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1027
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "ጣቢያ መቆጣጠሪያ ማስጀመሪያ \"%s\""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1037
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1076
 msgid "_Monitor"
 msgstr "_መቆጣጠሪያ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1047
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1086
 msgid "Refresh"
 msgstr "ማነቃቂያ:"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1371
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1577
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1372
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1578
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr ""
@@ -1652,6 +2620,40 @@ msgstr "እቃ ማረሚያ"
 msgid "Graphical settings editor for Xfconf"
 msgstr ""
 
+#: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
+msgid "registry;regedit;configuration file;"
+msgstr ""
+
+#: ../xfce4-settings-manager/main.c:44
+msgid "Settings dialog to show"
+msgstr "ለ ማሳያ ንግግር ማሰናጃ"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:225
+msgid "All _Settings"
+msgstr "ሁሉንም _ማሰናጃዎች"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:423
+msgid "Settings"
+msgstr "ማሰናጃዎች"
+
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:917
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:928
+#, c-format
+msgid "Unable to start \"%s\""
+msgstr "ማስጀመር አልተቻለም \"%s\""
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
+msgid "Settings Manager"
+msgstr "የ ማሰናጃዎች አስተዳዳሪ"
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
+msgid "Graphical Settings Manager for Xfce"
+msgstr ""
+
+#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
+msgid "control;panel;center;system;settings;personalize;hardware;"
+msgstr ""
+
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
 msgstr "ተጣባቂ ቁልፍ አስችለዋል"
@@ -1693,54 +2695,28 @@ msgstr "መዝለያ ቁልፎች"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "አቋራጭ ማስጀመር አልተቻለም %s"
 
-#: ../xfsettingsd/main.c:102
-msgid "Do not fork to the background"
+#: ../xfsettingsd/main.c:103
+msgid "Fork to the background"
 msgstr ""
 
-#: ../xfsettingsd/main.c:103
+#: ../xfsettingsd/main.c:104
+msgid "Do not wait for a window manager on startup"
+msgstr "በሚጀምር ጊዜ የ መስኮት አስተዳዳሪን አትጠብቅ"
+
+#: ../xfsettingsd/main.c:105
 msgid "Replace running xsettings daemon (if any)"
 msgstr ""
 
 #. value in xfconf isn't a string, so make a default one
-#: ../xfsettingsd/workspaces.c:338 ../xfsettingsd/workspaces.c:396
+#: ../xfsettingsd/workspaces.c:333 ../xfsettingsd/workspaces.c:390
 #, c-format
 msgid "Workspace %d"
 msgstr "የ ስራ ቦታ %d"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
+msgid "Xfce Settings Daemon"
+msgstr ""
+
+#: ../xfsettingsd/xfsettingsd.desktop.in.h:2
 msgid "The Xfce Settings Daemon"
 msgstr "የ Xfce ማሰናጃ እረዳት"
-
-#: ../xfce4-settings-manager/main.c:44
-msgid "Settings dialog to show"
-msgstr "ለ ማሳያ ንግግር ማሰናጃ"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:195
-msgid "All _Settings"
-msgstr "ሁሉንም _ማሰናጃዎች"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:205
-msgid "_Help"
-msgstr "_እርዳታ"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:432
-msgid "Settings"
-msgstr "ማሰናጃዎች"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:434
-msgid "Customize your desktop"
-msgstr "የ እርስዎን ዴስክቶፕ ማስተካከያ"
-
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:939
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
-#, c-format
-msgid "Unable to start \"%s\""
-msgstr "ማስጀመር አልተቻለም \"%s\""
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
-msgid "Settings Manager"
-msgstr "የ ማሰናጃዎች አስተዳዳሪ"
-
-#: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
-msgid "Graphical Settings Manager for Xfce 4"
-msgstr "የ ንድፍ ማሰናጃዎች አስተዳዳሪ ለ Xfce 4"
