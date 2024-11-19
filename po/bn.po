@@ -1,17 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Sadia Afroz <sadia@ankur.org.bd>, 2010
+# Xfce Bot <transifex@xfce.org>, 2022
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfce4-settings\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 12:46+0200\n"
-"PO-Revision-Date: 2021-03-28 10:46+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Bengali (http://www.transifex.com/xfce/xfce4-settings/language/bn/)\n"
+"POT-Creation-Date: 2023-05-30 00:50+0200\n"
+"PO-Revision-Date: 2022-12-22 11:33+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>, 2022\n"
+"Language-Team: Bengali (https://app.transifex.com/xfce/teams/16840/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +29,7 @@ msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "অজানা"
 
-#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4295
+#: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4391
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "ব্যবহৃত RandR বর্ধিতাংশের সংস্করণ জিজ্ঞাসা করতে ব্যর্থ"
@@ -65,27 +68,27 @@ msgstr "স্বাচ্ছন্দ্যকরণ"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 #: ../dialogs/color-settings/color-dialog.glade.h:2
-#: ../dialogs/display-settings/display-dialog.glade.h:13
+#: ../dialogs/display-settings/display-dialog.glade.h:17
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:8
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:2
-#: ../dialogs/display-settings/main.c:4335
+#: ../dialogs/display-settings/main.c:4431
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
-#: ../dialogs/mime-settings/xfce-mime-window.c:191
+#: ../dialogs/mime-settings/xfce-mime-window.c:187
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 #: ../xfce4-settings-editor/main.c:166
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:236
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:232
 msgid "_Close"
 msgstr "বন্ধ (_C)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 #: ../dialogs/color-settings/color-dialog.glade.h:3
-#: ../dialogs/display-settings/display-dialog.glade.h:12
+#: ../dialogs/display-settings/display-dialog.glade.h:16
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
-#: ../dialogs/mime-settings/xfce-mime-window.c:194
+#: ../dialogs/mime-settings/xfce-mime-window.c:190
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 #: ../xfce4-settings-editor/main.c:165
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:225
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:221
 msgid "_Help"
 msgstr "সহায়তা (_H)"
 
@@ -134,7 +137,9 @@ msgstr "স্টিকি কী আবদ্ধ (_L)"
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "নির্বাচিত করার সময়, মডিফায়ার কীসমূহ (যেমন: Control, Alt, ও Shift) চাপ দেয়া অবস্থায় আবদ্ধ থাকবে যতক্ষণ না পুনরায় চাপ দেয়া হয়"
+msgstr ""
+"নির্বাচিত করার সময়, মডিফায়ার কীসমূহ (যেমন: Control, Alt, ও Shift) চাপ দেয়া "
+"অবস্থায় আবদ্ধ থাকবে যতক্ষণ না পুনরায় চাপ দেয়া হয়"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "Disable sticky keys if two keys are _pressed"
@@ -144,7 +149,9 @@ msgstr ""
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "নির্বাচিত করার সময়, পরপর দুটো কী চাপা হলে \"স্টিকি কী\"-র বৈশিষ্ট্য নিষ্ক্রিয় হয়ে যাবে"
+msgstr ""
+"নির্বাচিত করার সময়, পরপর দুটো কী চাপা হলে \"স্টিকি কী\"-র বৈশিষ্ট্য "
+"নিষ্ক্রিয় হয়ে যাবে"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "Sticky Keys"
@@ -214,7 +221,9 @@ msgstr "মাউস অনুকরণ ব্যবহার (_U)"
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
-msgstr "নির্বাচিত করার সময়, কীবোর্ড নাম্বার প্যাড ব্যবহার করে মাউস পয়েন্টার কন্ট্রোল করা যাবে"
+msgstr ""
+"নির্বাচিত করার সময়, কীবোর্ড নাম্বার প্যাড ব্যবহার করে মাউস পয়েন্টার কন্ট্রোল"
+" করা যাবে"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "msec"
@@ -224,7 +233,9 @@ msgstr "মিলিসেকেন্ড"
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
-msgstr "প্রারম্ভিক কী চাপা ও প্রথম পুনরাবৃত্ত গতি ইভেন্টের মধ্যবর্তী সময়, মিলিসেকেন্ডে"
+msgstr ""
+"প্রারম্ভিক কী চাপা ও প্রথম পুনরাবৃত্ত গতি ইভেন্টের মধ্যবর্তী সময়, "
+"মিলিসেকেন্ডে"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Acceleration delay:"
@@ -289,37 +300,37 @@ msgid "_Mouse"
 msgstr "মাউস (_M)"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:106
-#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
-#: ../dialogs/mouse-settings/main.c:86 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/appearance-settings/main.c:104
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
+#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "সেটিংস ব্যবস্থাপক সকেট"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:106
-#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:139
-#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:43
-#: ../dialogs/mouse-settings/main.c:86 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/appearance-settings/main.c:104
+#: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
+#: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
+#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:107
-#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:140
-#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:50
+#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:141
+#: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:45
+#: ../dialogs/mouse-settings/main.c:89 ../xfce4-settings-editor/main.c:50
 #: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
 msgid "Version information"
 msgstr "সংস্করণ তথ্যাবলী"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1301
-#: ../dialogs/color-settings/main.c:1389
-#: ../dialogs/display-settings/main.c:4263
-#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:78
+#: ../dialogs/appearance-settings/main.c:1396
+#: ../dialogs/color-settings/main.c:1379
+#: ../dialogs/display-settings/main.c:4359
+#: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
-#: ../dialogs/mouse-settings/main.c:1886 ../xfce4-settings-editor/main.c:120
+#: ../dialogs/mouse-settings/main.c:1889 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
 #: ../xfsettingsd/main.c:280
 #, c-format
@@ -327,21 +338,21 @@ msgid "Type '%s --help' for usage."
 msgstr "ব্যবহারের জন্য '%s --সহায়তা' টাইপ করুন।"
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1320
-#: ../dialogs/color-settings/main.c:1406
-#: ../dialogs/display-settings/main.c:4282
-#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:97
-#: ../dialogs/mouse-settings/main.c:1905 ../xfce4-settings-editor/main.c:139
+#: ../dialogs/appearance-settings/main.c:1415
+#: ../dialogs/color-settings/main.c:1396
+#: ../dialogs/display-settings/main.c:4378
+#: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
+#: ../dialogs/mouse-settings/main.c:1908 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce ডেভেলপমেন্ট টিম। সকল অধিকার সংরক্ষিত।"
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1321
-#: ../dialogs/color-settings/main.c:1407
-#: ../dialogs/display-settings/main.c:4283
-#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:98
-#: ../dialogs/mouse-settings/main.c:1906 ../xfce4-settings-editor/main.c:140
+#: ../dialogs/appearance-settings/main.c:1416
+#: ../dialogs/color-settings/main.c:1397
+#: ../dialogs/display-settings/main.c:4379
+#: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
+#: ../dialogs/mouse-settings/main.c:1909 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -358,9 +369,9 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1181
-#: ../dialogs/display-settings/main.c:106
-#: ../dialogs/display-settings/main.c:117
+#: ../dialogs/appearance-settings/main.c:1271
+#: ../dialogs/display-settings/main.c:107
+#: ../dialogs/display-settings/main.c:118
 msgid "None"
 msgstr "কোনটি না"
 
@@ -408,7 +419,8 @@ msgstr "অবয়ব"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 #: ../dialogs/color-settings/color-dialog.glade.h:10
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:327
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
 msgid "_Add"
 msgstr ""
 
@@ -428,7 +440,9 @@ msgstr "আইকন (_I)"
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
-msgstr "ব্যবহারকারী ইন্টারফেস টেক্সট অঙ্কনের সময় এই ফন্টটি পূর্বনির্ধারিত ফন্ট হিসেবে ব্যবহৃত হবে"
+msgstr ""
+"ব্যবহারকারী ইন্টারফেস টেক্সট অঙ্কনের সময় এই ফন্টটি পূর্বনির্ধারিত ফন্ট "
+"হিসেবে ব্যবহৃত হবে"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Select a default font"
@@ -459,7 +473,8 @@ msgstr ""
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "অ্যান্টিএলিয়াসিং, বা ফন্ট মসৃনকরণ, পর্দায় টেক্সটের অবয়ব উন্নত করতে পারে"
+msgstr ""
+"অ্যান্টিএলিয়াসিং, বা ফন্ট মসৃনকরণ, পর্দায় টেক্সটের অবয়ব উন্নত করতে পারে"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid "Hintin_g:"
@@ -469,7 +484,10 @@ msgstr ""
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr "অনেক ফন্টেই এমন কিছু তথ্য থাকে যা বাড়তি ইঙ্গিত প্রদান করে যেমন ফন্টটিকে কিভাবে সবচেয়ে ভালোভাবে আঁকা যায়; ব্যক্তিগত পছন্দ অনুযায়ী সর্বোত্তম অবয়বটিকে পছন্দ করুন"
+msgstr ""
+"অনেক ফন্টেই এমন কিছু তথ্য থাকে যা বাড়তি ইঙ্গিত প্রদান করে যেমন ফন্টটিকে "
+"কিভাবে সবচেয়ে ভালোভাবে আঁকা যায়; ব্যক্তিগত পছন্দ অনুযায়ী সর্বোত্তম অবয়বটিকে "
+"পছন্দ করুন"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Sub-_pixel order:"
@@ -479,7 +497,9 @@ msgstr "সাব-পিক্সেলের বিন্যাস: (_p)"
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
-msgstr "পর্দার জন্য সঠিক সাব-পিক্সেলের বিন্যাস নির্বাচন করার মাধ্যমে TFT বা LCD পর্দার ফন্টের গুণগত মান অনেকাংশে উন্নত করা যায়"
+msgstr ""
+"পর্দার জন্য সঠিক সাব-পিক্সেলের বিন্যাস নির্বাচন করার মাধ্যমে TFT বা LCD "
+"পর্দার ফন্টের গুণগত মান অনেকাংশে উন্নত করা যায়"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Rendering"
@@ -509,7 +529,9 @@ msgstr "বোতামে ছবি প্রদর্শন (_b)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "বোতামের টেক্সটের সাথে আইকন প্রদর্শিত হওয়া উচিত কিনা তা সুনির্দিষ্টভাবে উল্লেখ করুন"
+msgstr ""
+"বোতামের টেক্সটের সাথে আইকন প্রদর্শিত হওয়া উচিত কিনা তা সুনির্দিষ্টভাবে "
+"উল্লেখ করুন"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Show images in _menus"
@@ -517,7 +539,9 @@ msgstr "মেনুতে ছবি প্রদর্শন (_m)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "মেনুর আইটেমের সাথে আইকন প্রদর্শিত হওয়া উচিত কিনা তা সুনির্দিষ্টভাবে উল্লেখ করুন"
+msgstr ""
+"মেনুর আইটেমের সাথে আইকন প্রদর্শিত হওয়া উচিত কিনা তা সুনির্দিষ্টভাবে উল্লেখ "
+"করুন"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Enable e_ditable accelerators"
@@ -528,116 +552,138 @@ msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr "নির্বাচিত করা হলে, মেনু আইটেমের উপর মাউস ধরে রেখে এবং শর্টকাটের জন্য নতুন কী সমাবেশ চাপার ফলে মেনু আইটেমের জন্য নির্ধারিত কীবোর্ড শর্টকাট পরিবর্তিত করা যেতে পারে "
+msgstr ""
+"নির্বাচিত করা হলে, মেনু আইটেমের উপর মাউস ধরে রেখে এবং শর্টকাটের জন্য নতুন কী"
+" সমাবেশ চাপার ফলে মেনু আইটেমের জন্য নির্ধারিত কীবোর্ড শর্টকাট পরিবর্তিত করা "
+"যেতে পারে "
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
+msgid "Enable header bars in dialo_gs"
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+msgid ""
+"Defines whether GTK dialogs may place widgets such as buttons in the "
+"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
+"opened dialogs."
+msgstr ""
+
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Menus and Buttons"
 msgstr "মেনু ও বোতাম"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid "Enable _event sounds"
 msgstr "ইভেন্ট সাউন্ড সক্রিয় (_e)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "সার্বজনীনভাবে ইভেন্ট সাউন্ড সক্রিয় বা নিষ্ক্রিয় (\"Canberra\" সাপোর্ট আবশ্যকীয়)"
+msgstr ""
+"সার্বজনীনভাবে ইভেন্ট সাউন্ড সক্রিয় বা নিষ্ক্রিয় (\"Canberra\" সাপোর্ট "
+"আবশ্যকীয়)"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Enable input feedbac_k sounds"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
-msgstr "মাউস ক্লিক এবং অন্যান্য ব্যবহারকারী ইনপুটের জন্য ইভেন্ট সাউন্ড চালান হবে কিনা তা সুনির্দিষ্টভাবে উল্লেখ করুন"
+msgstr ""
+"মাউস ক্লিক এবং অন্যান্য ব্যবহারকারী ইনপুটের জন্য ইভেন্ট সাউন্ড চালান হবে "
+"কিনা তা সুনির্দিষ্টভাবে উল্লেখ করুন"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Event sounds"
 msgstr "ইভেন্ট সাউন্ড"
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
 msgid "Adjust the system-wide display scaling"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:50
 msgid "_Window Scaling"
 msgstr ""
 
-#: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
+#: ../dialogs/appearance-settings/appearance-dialog.glade.h:51
 msgid "Setti_ngs"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:467
+#: ../dialogs/appearance-settings/main.c:481
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:944
+#: ../dialogs/appearance-settings/main.c:968
 #, c-format
-msgid "File is larger than %d MB, installation aborted"
+msgid "File is too large, installation aborted"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:949
+#: ../dialogs/appearance-settings/main.c:973
 msgid "Failed to create temporary directory"
 msgstr "অস্থায়ী ডিরেক্টরি তৈরিতে ব্যর্থ"
 
-#: ../dialogs/appearance-settings/main.c:954
+#: ../dialogs/appearance-settings/main.c:978
 msgid "Failed to extract archive"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:959
+#: ../dialogs/appearance-settings/main.c:983
 msgid "Unknown format, only archives and directories are supported"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:964
+#: ../dialogs/appearance-settings/main.c:988
+msgid "Not a valid theme package"
+msgstr ""
+
+#: ../dialogs/appearance-settings/main.c:993
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:971
+#: ../dialogs/appearance-settings/main.c:1000
 msgid "Failed to install theme"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:1025
+#: ../dialogs/appearance-settings/main.c:1054
 #, c-format
 msgid "Install %s theme"
 msgstr ""
 
 #. Create cancel button
-#: ../dialogs/appearance-settings/main.c:1029
+#: ../dialogs/appearance-settings/main.c:1058
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
 #: ../dialogs/keyboard-settings/command-dialog.c:280
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:395
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:540
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:109
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:428
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:573
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
 msgid "_Cancel"
 msgstr "বাতিল (_C)"
 
-#: ../dialogs/appearance-settings/main.c:1031
+#: ../dialogs/appearance-settings/main.c:1060
 #: ../dialogs/keyboard-settings/command-dialog.c:281
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:396
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "খুলুন (_O)"
 
-#: ../dialogs/appearance-settings/main.c:1185
+#: ../dialogs/appearance-settings/main.c:1275
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1189
+#: ../dialogs/appearance-settings/main.c:1279
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1193
+#: ../dialogs/appearance-settings/main.c:1283
 msgid "Vertical RGB"
 msgstr "উল্লম্ব RGB"
 
-#: ../dialogs/appearance-settings/main.c:1197
+#: ../dialogs/appearance-settings/main.c:1287
 msgid "Vertical BGR"
 msgstr "উল্লম্ব BGR"
 
@@ -721,6 +767,7 @@ msgid "Add a profile to the currently selected device"
 msgstr ""
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Remove"
 msgstr ""
 
@@ -747,8 +794,8 @@ msgstr ""
 #: ../dialogs/color-settings/color-dialog.glade.h:19
 #: ../dialogs/keyboard-settings/command-dialog.c:120
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:541
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:574
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:108
 msgid "_OK"
 msgstr ""
 
@@ -841,28 +888,28 @@ msgstr "সকল ফাইল"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: ../dialogs/color-settings/main.c:193
+#: ../dialogs/color-settings/main.c:191
 msgid "Default: "
 msgstr ""
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: ../dialogs/color-settings/main.c:200
+#: ../dialogs/color-settings/main.c:197
 msgid "Colorspace: "
 msgstr ""
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: ../dialogs/color-settings/main.c:206
+#: ../dialogs/color-settings/main.c:203
 msgid "Test profile: "
 msgstr ""
 
-#: ../dialogs/color-settings/main.c:244
+#: ../dialogs/color-settings/main.c:238
 msgid "Compatible Profiles"
 msgstr ""
 
-#: ../dialogs/color-settings/main.c:835 ../dialogs/color-settings/main.c:836
-#: ../dialogs/color-settings/main.c:837
+#: ../dialogs/color-settings/main.c:825 ../dialogs/color-settings/main.c:826
+#: ../dialogs/color-settings/main.c:827
 msgid "Unknown"
 msgstr "অজানা"
 
@@ -909,132 +956,148 @@ msgid "Custom:"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
-msgid "The primary display is currently configured to show:"
+msgid "Do nothing"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
-msgid "Xfce Panel"
+msgid "Show dialog"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
-msgid "Desktop icons"
+msgid "Mirror"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
-msgid "Notifications"
+msgid "Extend"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
-msgid "Configure..."
+msgid "The primary display is currently configured to show:"
 msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:11
+msgid "Xfce Panel"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:12
+msgid "Desktop icons"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:13
+msgid "Notifications"
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:14
+msgid "Configure..."
+msgstr ""
+
+#: ../dialogs/display-settings/display-dialog.glade.h:15
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
 msgstr "প্রদর্শন"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:14
+#: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "_Mirror displays"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:15
+#: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "Primary Display:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:16
+#: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "R_esolution:"
 msgstr "রেজল্যুশন: (_e)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:17
+#: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Refresh _rate:"
 msgstr "রিফ্রেশ হার: (_r)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:18
+#: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "Ro_tation:"
 msgstr "আবর্তন: (_t)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:19
+#: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "Ref_lection:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:20
+#: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "A_pply"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:21
+#: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "_Scale:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:22
+#: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "X:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:23
+#: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "Y:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:24
+#: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "_General"
 msgstr "সাধারণ (_G)"
 
-#: ../dialogs/display-settings/display-dialog.glade.h:25
+#: ../dialogs/display-settings/display-dialog.glade.h:29
 msgid "<b>Profiles</b>"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:26
+#: ../dialogs/display-settings/display-dialog.glade.h:30
 msgid "<b>Connecting Displays</b>"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:27
+#: ../dialogs/display-settings/display-dialog.glade.h:31
 msgid "Delete the currently selected display profile."
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:28
+#: ../dialogs/display-settings/display-dialog.glade.h:32
 msgid "Apply"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:29
+#: ../dialogs/display-settings/display-dialog.glade.h:33
 msgid "Apply the currently selected display profile."
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:30
+#: ../dialogs/display-settings/display-dialog.glade.h:34
 msgid "Create a new display profile."
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:31
+#: ../dialogs/display-settings/display-dialog.glade.h:35
 msgid "Update an existing profile."
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:32
+#: ../dialogs/display-settings/display-dialog.glade.h:36
 msgid "Automatically enable profiles when new display is connected"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:33
-msgid "Configure new displays when connected"
+#: ../dialogs/display-settings/display-dialog.glade.h:37
+msgid "When new displays are connected:"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:34
+#: ../dialogs/display-settings/display-dialog.glade.h:38
 msgid "Show popup windows to identify displays"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:35
+#: ../dialogs/display-settings/display-dialog.glade.h:39
 msgid "<b>Identifying Displays</b>"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:36
+#: ../dialogs/display-settings/display-dialog.glade.h:40
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "_Advanced"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:37
+#: ../dialogs/display-settings/display-dialog.glade.h:41
 msgid "<b>Profile Name</b>"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:38
+#: ../dialogs/display-settings/display-dialog.glade.h:42
 msgid "Create"
 msgstr ""
 
-#: ../dialogs/display-settings/display-dialog.glade.h:39
+#: ../dialogs/display-settings/display-dialog.glade.h:43
 msgid "A profile of this name already exists."
 msgstr ""
 
@@ -1081,35 +1144,35 @@ msgid ""
 "your session or disconnecting or connecting a display."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:107
+#: ../dialogs/display-settings/main.c:108
 msgid "Left"
 msgstr "বাম"
 
-#: ../dialogs/display-settings/main.c:108
+#: ../dialogs/display-settings/main.c:109
 msgid "Inverted"
 msgstr "উল্টানো"
 
-#: ../dialogs/display-settings/main.c:109
+#: ../dialogs/display-settings/main.c:110
 msgid "Right"
 msgstr "ডান"
 
-#: ../dialogs/display-settings/main.c:118
+#: ../dialogs/display-settings/main.c:119
 msgid "Horizontal"
 msgstr "আনুভূমিক"
 
-#: ../dialogs/display-settings/main.c:119
+#: ../dialogs/display-settings/main.c:120
 msgid "Vertical"
 msgstr "উল্লম্ব"
 
-#: ../dialogs/display-settings/main.c:120
+#: ../dialogs/display-settings/main.c:121
 msgid "Horizontal and Vertical"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:141
+#: ../dialogs/display-settings/main.c:142
 msgid "Minimal interface to set up an external output"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:323
+#: ../dialogs/display-settings/main.c:324
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1117,80 +1180,80 @@ msgid ""
 msgstr ""
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:782
+#: ../dialogs/display-settings/main.c:783
 #, c-format
-msgid "%.1f Hz"
+msgid "%.2f Hz"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1180
+#: ../dialogs/display-settings/main.c:1181
 msgid "Display:"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1185
+#: ../dialogs/display-settings/main.c:1186
 msgid "Resolution:"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1462
+#: ../dialogs/display-settings/main.c:1466
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1464
+#: ../dialogs/display-settings/main.c:1468
 msgid "Selected output not disabled"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1641
+#: ../dialogs/display-settings/main.c:1645
 msgid "Profiles matching the currently connected displays"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1847
+#: ../dialogs/display-settings/main.c:1851
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:1852
+#: ../dialogs/display-settings/main.c:1856
 #, c-format
 msgid "_Update '%s'"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2140
+#: ../dialogs/display-settings/main.c:2144
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2142
+#: ../dialogs/display-settings/main.c:2146
 msgid "Delete Profile"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2145
+#: ../dialogs/display-settings/main.c:2149
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2146
+#: ../dialogs/display-settings/main.c:2150
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:382
-#: ../dialogs/mime-settings/xfce-mime-window.c:1131
+#: ../dialogs/mime-settings/xfce-mime-window.c:1129
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:144
 msgid "Cancel"
 msgstr "বাতিল"
 
-#: ../dialogs/display-settings/main.c:2147
+#: ../dialogs/display-settings/main.c:2151
 msgid "Delete"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:2249
+#: ../dialogs/display-settings/main.c:2256
 #, c-format
 msgid "%d Xfce Panels"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3280
+#: ../dialogs/display-settings/main.c:3293
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3323
-#: ../dialogs/display-settings/main.c:3399
+#: ../dialogs/display-settings/main.c:3336
+#: ../dialogs/display-settings/main.c:3412
 #, c-format
 msgid "(%i, %i)"
 msgstr ""
@@ -1199,34 +1262,34 @@ msgstr ""
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:3601
+#: ../dialogs/display-settings/main.c:3627
 msgid "Mirror Screens"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:3651
+#: ../dialogs/display-settings/main.c:3677
 msgid "(Disabled)"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:4101
+#: ../dialogs/display-settings/main.c:4196
 #, c-format
 msgid "Only %s (1)"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:4112
+#: ../dialogs/display-settings/main.c:4207
 #, c-format
 msgid "Only %s (2)"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:4296
-#: ../dialogs/display-settings/main.c:4333
+#: ../dialogs/display-settings/main.c:4392
+#: ../dialogs/display-settings/main.c:4429
 msgid "Unable to start the Xfce Display Settings"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:4328
+#: ../dialogs/display-settings/main.c:4424
 msgid "ATI Settings"
 msgstr ""
 
-#: ../dialogs/display-settings/main.c:4343
+#: ../dialogs/display-settings/main.c:4439
 msgid "Unable to launch the proprietary driver settings"
 msgstr ""
 
@@ -1271,37 +1334,37 @@ msgstr "কমান্ড নির্বাচন"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:285
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:389
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:402
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:435
 msgid "All Files"
 msgstr "সকল ফাইল"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:290
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:394
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:407
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:440
 msgid "Executable Files"
 msgstr "চলনক্ষম ফাইলসমূহ"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:305
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:409
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:422
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:455
 msgid "Perl Scripts"
 msgstr "পার্ল স্ক্রিপ্ট"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:311
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:415
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:428
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:461
 msgid "Python Scripts"
 msgstr "পাইথন স্ক্রিপ্ট"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:317
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:421
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:434
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:467
 msgid "Ruby Scripts"
 msgstr "রুবি স্ক্রিপ্ট"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:323
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:427
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:440
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:473
 msgid "Shell Scripts"
 msgstr "শেল স্ক্রিপ্ট"
 
@@ -1331,7 +1394,8 @@ msgstr "কী পুনরাবৃত্ত সক্রিয় (_E)"
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
-msgstr "নির্বাচিত করা হলে, কোন কী চেপে ধরে রাখলে একই অক্ষর বার বার মুদ্রিত হতে থাকে "
+msgstr ""
+"নির্বাচিত করা হলে, কোন কী চেপে ধরে রাখলে একই অক্ষর বার বার মুদ্রিত হতে থাকে "
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "_Repeat delay:"
@@ -1367,7 +1431,8 @@ msgstr "মিটিমিটি জ্বলার বিরতি: (_d)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "কার্সারের ধারাবাহিকভাবে মিটিমিটি জ্বলার মধ্যবর্তী বিলম্ব, মিলিসেকেন্ডে"
+msgstr ""
+"কার্সারের ধারাবাহিকভাবে মিটিমিটি জ্বলার মধ্যবর্তী বিলম্ব, মিলিসেকেন্ডে"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Cursor"
@@ -1385,43 +1450,48 @@ msgstr ""
 msgid "Define shortcuts for la_unching applications:"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:367
+msgid "_Edit"
+msgstr "সম্পাদনা (_E)"
+
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "বর্তমানে নির্বাচিত আইটেম এক সারি উপরে উঠানো হবে"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "বর্তমানে নির্বাচিত আইটেম এক সারি নীচে নামানো হবে"
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr ""
 
-#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
+#: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "বহির্বিন্যাস (_L)"
 
@@ -1463,7 +1533,9 @@ msgstr "পূর্বনির্ধারিততে পুনঃনির�
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
-msgstr "এর মাধ্যমে সকল শর্টকাট তার পূর্বনির্ধারিত মানে পুনঃনির্ধারিত হবে। আপনি কি সত্যিই এটা করতে চান?"
+msgstr ""
+"এর মাধ্যমে সকল শর্টকাট তার পূর্বনির্ধারিত মানে পুনঃনির্ধারিত হবে। আপনি কি "
+"সত্যিই এটা করতে চান?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "No"
@@ -1489,7 +1561,7 @@ msgstr "কীবোর্ড সেটিংসমূহ ও অ্যাপ্
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr ""
 
-#: ../dialogs/mime-settings/main.c:115
+#: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
 msgstr ""
 
@@ -1510,7 +1582,9 @@ msgstr ""
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
-msgstr "উপরের অ্যাপ্লিকেশন তালিকা নেই এমন একটি অ্যাপ্লিকেশনের জন্য একটি কাস্টম কমান্ড ব্যবহার করুন।"
+msgstr ""
+"উপরের অ্যাপ্লিকেশন তালিকা নেই এমন একটি অ্যাপ্লিকেশনের জন্য একটি কাস্টম "
+"কমান্ড ব্যবহার করুন।"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:224
 msgid "_Browse..."
@@ -1542,119 +1616,135 @@ msgstr "<i>%s</i> এবং \"%s\" ধরণের ফাইলগুলো য�
 msgid "Failed to add new application \"%s\""
 msgstr "নতুন অ্যাপ্লিকেশন \"%s\" যোগ করতে ব্যর্থ"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:145
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:152
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:143
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:150
 msgid "Press left mouse button to change the selected application."
 msgstr "নির্বাচিত অ্যাপ্লিকেশন পরিবর্তন করতে মাউসের বাম বোতাম চাপুন।"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:151
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:149
 msgid "Application Chooser Button"
 msgstr "অ্যাপ্লিকেশন পছন্দ করার বোতাম"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:303
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:336
 msgid "No application selected"
 msgstr "কোনো অ্যাপ্লিকেশন নির্বাচিত করা হয়নি"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:319
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:352
 msgid "Failed to set default Web Browser"
 msgstr "ডিফল্ট ওয়েব ব্রাউজার নির্ধারণ করতে ব্যর্থ"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:320
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:353
 msgid "Failed to set default Mail Reader"
 msgstr "ডিফল্ট মেইল রিডার নির্ধারণ করতে ব্যর্থ"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:321
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:354
 msgid "Failed to set default File Manager"
 msgstr "ডিফল্ট ফাইল ম্যানেজার নির্ধারণ করতে ব্যর্থ"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:322
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:355
 msgid "Failed to set default Terminal Emulator"
 msgstr "ডিফল্ট টার্মিনাল ইম্যুলেটর নির্ধারণ করতে ব্যর্থ"
 
 #. allocate the chooser
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:392
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "Select application"
 msgstr "অ্যাপ্লিকেশন নির্বাচন করা হবে"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:505
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:538
 msgid "Choose a custom Web Browser"
 msgstr "স্বনির্ধারিত ওয়েব ব্রাউজার নির্বাচন করা হবে"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:506
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:539
 msgid "Choose a custom Mail Reader"
 msgstr "একটি পছন্দসই মেইল রিডার নির্বাচন করা হবে"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:507
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:540
 msgid "Choose a custom File Manager"
 msgstr "একটি স্বনির্ধারিত ফাইল ম্যানেজার নির্বাচন করা হবে"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:508
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:541
 msgid "Choose a custom Terminal Emulator"
 msgstr "একটি স্বনির্ধারিত টার্মিনাল ইম্যুলেটর নির্বাচন করা হবে"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:513
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:546
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
-msgstr "Xfce এর জন্য ডিফল্ট ওয়েব ব্রাউজার হিসেবে ব্যবহার করতে চান\nসে অ্যাপ্লিকেশন উল্লেখ করুন:"
+msgstr ""
+"Xfce এর জন্য ডিফল্ট ওয়েব ব্রাউজার হিসেবে ব্যবহার করতে চান\n"
+"সে অ্যাপ্লিকেশন উল্লেখ করুন:"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:514
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:547
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
-msgstr "Xfce এর জন্য ডিফল্ট মেইল রিডার হিসেবে ব্যবহার করতে চান\nসে অ্যাপ্লিকেশন উল্লেখ করুন:"
+msgstr ""
+"Xfce এর জন্য ডিফল্ট মেইল রিডার হিসেবে ব্যবহার করতে চান\n"
+"সে অ্যাপ্লিকেশন উল্লেখ করুন:"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:515
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:548
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
-msgstr "Xfce এর জন্য ডিফল্ট ফাইল ম্যানেজার হিসেবে ব্যবহার করতে চান\nসে অ্যাপ্লিকেশন উল্লেখ করুন:"
+msgstr ""
+"Xfce এর জন্য ডিফল্ট ফাইল ম্যানেজার হিসেবে ব্যবহার করতে চান\n"
+"সে অ্যাপ্লিকেশন উল্লেখ করুন:"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:516
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:549
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
-msgstr "Xfce এর জন্য ডিফল্ট টার্মিনাল ইমুলেটর হিসেবে ব্যবহার করতে চান\nসে অ্যাপ্লিকেশন উল্লেখ করুন:"
+msgstr ""
+"Xfce এর জন্য ডিফল্ট টার্মিনাল ইমুলেটর হিসেবে ব্যবহার করতে চান\n"
+"সে অ্যাপ্লিকেশন উল্লেখ করুন:"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:580
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:613
 msgid "Browse the file system to choose a custom command."
 msgstr "পছন্দসই কমান্ড বেছে নিতে ফাইল সিস্টেম ব্রাউজ করুন।"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:789
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:749
 msgid "_Other..."
 msgstr "অন্যান্য... (_O)"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:790
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:750
 msgid "Use a custom application which is not included in the above list."
 msgstr "উপরের তালিকায় নেই এমন একটি পছন্দসই অ্যাপ্লিকেশন ব্যবহার করুন।"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:113
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
 msgid "Choose Preferred Application"
 msgstr "পছন্দসই অ্যাপ্লিকেশন নির্বাচন করা হবে"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:256
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:249
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
-msgstr "অনুগ্রহ করে আপনার পছন্দসই ওয়েব ব্রাউজার বেছে নিন\nকাজ এগিয়ে নিয়ে যেতে \"ঠিক আছে\" ক্লিক করুন।"
+msgstr ""
+"অনুগ্রহ করে আপনার পছন্দসই ওয়েব ব্রাউজার বেছে নিন\n"
+"কাজ এগিয়ে নিয়ে যেতে \"ঠিক আছে\" ক্লিক করুন।"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:258
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
-msgstr "অনুগ্রহ করে আপনার পছন্দসই মেইল রিডার বেছে নিন\nকাজ এগিয়ে নিয়ে যেতে \"ঠিক আছে\" ক্লিক করুন।"
+msgstr ""
+"অনুগ্রহ করে আপনার পছন্দসই মেইল রিডার বেছে নিন\n"
+"কাজ এগিয়ে নিয়ে যেতে \"ঠিক আছে\" ক্লিক করুন।"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:260
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
-msgstr "অনুগ্রহ করে আপনার পছন্দসই ফাইল ম্যানেজার বেছে নিন\nকাজ এগিয়ে নিয়ে যেতে \"ঠিক আছে\" ক্লিক করুন।"
+msgstr ""
+"অনুগ্রহ করে আপনার পছন্দসই ফাইল ম্যানেজার বেছে নিন\n"
+"কাজ এগিয়ে নিয়ে যেতে \"ঠিক আছে\" ক্লিক করুন।"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:262
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
-msgstr "অনুগ্রহ করে আপনার পছন্দসই টার্মিনাল ইমুলেটর বেছে নিন\nকাজ এগিয়ে নিয়ে যেতে \"ঠিক আছে\" ক্লিক করুন।"
+msgstr ""
+"অনুগ্রহ করে আপনার পছন্দসই টার্মিনাল ইমুলেটর বেছে নিন\n"
+"কাজ এগিয়ে নিয়ে যেতে \"ঠিক আছে\" ক্লিক করুন।"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:41
 msgid "Failed to execute default Web Browser"
@@ -1685,7 +1775,9 @@ msgstr "সংস্করণ তথ্য মুদ্রণ করুন এ�
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
-msgstr "ঐচ্ছিক PARAMETER সহ ডিফল্ট সাহায্যকারী TYPE চালু করা হয়, যেখানে TYPE এর নিম্নোক্ত মান আছে:"
+msgstr ""
+"ঐচ্ছিক PARAMETER সহ ডিফল্ট সাহায্যকারী TYPE চালু করা হয়, যেখানে TYPE এর "
+"নিম্নোক্ত মান আছে:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:117
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:118
@@ -1726,159 +1818,169 @@ msgid ""
 "Built with Gtk+-%d.%d.%d, running Gtk+-%d.%d.%d.\n"
 "\n"
 "Please report bugs to <%s>.\n"
-msgstr "%s (Xfce %s)\n\nCopyright (c) 2003-2006\n        os-cillation e.K. All rights reserved.\n\nWritten by Benedikt Meurer <benny@xfce.org>.\n\nBuilt with Gtk+-%d.%d.%d, running Gtk+-%d.%d.%d.\n\nPlease report bugs to <%s>.\n"
+msgstr ""
+"%s (Xfce %s)\n"
+"\n"
+"Copyright (c) 2003-2006\n"
+"        os-cillation e.K. All rights reserved.\n"
+"\n"
+"Written by Benedikt Meurer <benny@xfce.org>.\n"
+"\n"
+"Built with Gtk+-%d.%d.%d, running Gtk+-%d.%d.%d.\n"
+"\n"
+"Please report bugs to <%s>.\n"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:266
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:406
+#: ../dialogs/mime-settings/xfce-mime-helper.c:453
 #, c-format
 msgid "No command specified"
 msgstr "কোন কমান্ড উল্লেখ করা হয়নি"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:747
-#: ../dialogs/mime-settings/xfce-mime-helper.c:786
-#: ../dialogs/mime-settings/xfce-mime-helper.c:883
-#: ../dialogs/mime-settings/xfce-mime-helper.c:922
+#: ../dialogs/mime-settings/xfce-mime-helper.c:832
+#: ../dialogs/mime-settings/xfce-mime-helper.c:871
+#: ../dialogs/mime-settings/xfce-mime-helper.c:968
+#: ../dialogs/mime-settings/xfce-mime-helper.c:1007
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "লেখার জন্য %s খুলতে ব্যর্থ"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:187
+#: ../dialogs/mime-settings/xfce-mime-window.c:184
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
 msgstr ""
 
 #. Internet
-#: ../dialogs/mime-settings/xfce-mime-window.c:212
+#: ../dialogs/mime-settings/xfce-mime-window.c:208
 msgid "_Internet"
 msgstr "ইন্টারনেট (_I)"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:225
+#: ../dialogs/mime-settings/xfce-mime-window.c:221
 #: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
 msgid "Web Browser"
 msgstr "ওয়েব ব্রাউজার"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:233
+#: ../dialogs/mime-settings/xfce-mime-window.c:229
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:256
+#: ../dialogs/mime-settings/xfce-mime-window.c:247
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
 msgid "Mail Reader"
 msgstr "মেইল রিডার"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:264
+#: ../dialogs/mime-settings/xfce-mime-window.c:255
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr ""
 
 #. Utilities
-#: ../dialogs/mime-settings/xfce-mime-window.c:283
+#: ../dialogs/mime-settings/xfce-mime-window.c:269
 msgid "_Utilities"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:296
+#: ../dialogs/mime-settings/xfce-mime-window.c:282
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
 msgid "File Manager"
 msgstr "ফাইল ব্যবস্থাপক"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:304
+#: ../dialogs/mime-settings/xfce-mime-window.c:290
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:327
+#: ../dialogs/mime-settings/xfce-mime-window.c:308
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
 msgstr "টার্মিনাল ইম্যুলেটর"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:335
+#: ../dialogs/mime-settings/xfce-mime-window.c:316
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr ""
 
 #. Mimes
-#: ../dialogs/mime-settings/xfce-mime-window.c:354
+#: ../dialogs/mime-settings/xfce-mime-window.c:330
 msgid "_Others"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:364
+#: ../dialogs/mime-settings/xfce-mime-window.c:340
 msgid "_Filter:"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:372
+#: ../dialogs/mime-settings/xfce-mime-window.c:348
 msgid "Clear filter"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:402
+#: ../dialogs/mime-settings/xfce-mime-window.c:378
 msgid "Open with..."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:449
+#: ../dialogs/mime-settings/xfce-mime-window.c:425
 msgid "MIME Type"
 msgstr "MIME ধরণ"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:477
+#: ../dialogs/mime-settings/xfce-mime-window.c:453
 msgid "Status"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:497
+#: ../dialogs/mime-settings/xfce-mime-window.c:473
 msgid "Default Application"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:672
-#: ../dialogs/mime-settings/xfce-mime-window.c:814
+#: ../dialogs/mime-settings/xfce-mime-window.c:648
+#: ../dialogs/mime-settings/xfce-mime-window.c:812
 msgid "User Set"
 msgstr ""
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:674
-#: ../dialogs/mime-settings/xfce-mime-window.c:814
-#: ../dialogs/mouse-settings/main.c:397 ../dialogs/mouse-settings/main.c:399
-#: ../dialogs/mouse-settings/main.c:459
+#: ../dialogs/mime-settings/xfce-mime-window.c:650
+#: ../dialogs/mime-settings/xfce-mime-window.c:812
+#: ../dialogs/mouse-settings/main.c:398 ../dialogs/mouse-settings/main.c:400
+#: ../dialogs/mouse-settings/main.c:463
 msgid "Default"
 msgstr "পূর্বনির্ধারিত"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:760
+#: ../dialogs/mime-settings/xfce-mime-window.c:736
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:859
+#: ../dialogs/mime-settings/xfce-mime-window.c:857
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1122
+#: ../dialogs/mime-settings/xfce-mime-window.c:1120
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1126
+#: ../dialogs/mime-settings/xfce-mime-window.c:1124
 msgid "Question"
 msgstr "প্রশ্ন"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1129
+#: ../dialogs/mime-settings/xfce-mime-window.c:1127
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1133
-#: ../dialogs/mime-settings/xfce-mime-window.c:1204
+#: ../dialogs/mime-settings/xfce-mime-window.c:1131
+#: ../dialogs/mime-settings/xfce-mime-window.c:1202
 msgid "Reset to Default"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1199
+#: ../dialogs/mime-settings/xfce-mime-window.c:1197
 msgid "Choose Application..."
 msgstr ""
 
@@ -1907,6 +2009,10 @@ msgstr "কমান্ড লাইন ব্যবহার করুন"
 #: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:2
 msgid "Browse the web"
 msgstr "ওয়েব ব্রাউজ করুন"
+
+#: ../dialogs/mime-settings/helpers/alacritty.desktop.in.in.h:1
+msgid "Alacritty"
+msgstr ""
 
 #: ../dialogs/mime-settings/helpers/aterm.desktop.in.in.h:1
 msgid "aterm"
@@ -1990,6 +2096,10 @@ msgstr ""
 
 #: ../dialogs/mime-settings/helpers/jumanji.desktop.in.in.h:1
 msgid "Jumanji"
+msgstr ""
+
+#: ../dialogs/mime-settings/helpers/kitty.desktop.in.in.h:1
+msgid "kitty"
 msgstr ""
 
 #: ../dialogs/mime-settings/helpers/kmail.desktop.in.in.h:1
@@ -2120,11 +2230,11 @@ msgstr ""
 msgid "X Terminal"
 msgstr "X টার্মিনাল"
 
-#: ../dialogs/mouse-settings/main.c:85
+#: ../dialogs/mouse-settings/main.c:87
 msgid "Active device in the dialog"
 msgstr "ডায়ালগে সক্রিয় ডিভাইস"
 
-#: ../dialogs/mouse-settings/main.c:85
+#: ../dialogs/mouse-settings/main.c:87
 msgid "DEVICE NAME"
 msgstr "DEVICE NAME"
 
@@ -2242,7 +2352,9 @@ msgstr "যে পরিস্থিতিতে পয়েন্টারের 
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
-msgstr "এক্সিলারেটিং শুরু করার আগে স্বল্পতম সময়ে পয়েন্টারকে যে সংখ্যক পিক্সেল সরাতে হবে"
+msgstr ""
+"এক্সিলারেটিং শুরু করার আগে স্বল্পতম সময়ে পয়েন্টারকে যে সংখ্যক পিক্সেল সরাতে "
+"হবে"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Pointer Speed"
@@ -2323,7 +2435,9 @@ msgstr "সময়: (_m)"
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
-msgstr "দুটো মাউস ক্লিকের মধ্যে এর চাইতে স্বল্প দৈর্ঘ্যের (মিলিসেকেন্ডে) সময় ব্যবধান থাকলে একে ডবল ক্লিক হিসেবে বিবেচনা করা হবে"
+msgstr ""
+"দুটো মাউস ক্লিকের মধ্যে এর চাইতে স্বল্প দৈর্ঘ্যের (মিলিসেকেন্ডে) সময় ব্যবধান"
+" থাকলে একে ডবল ক্লিক হিসেবে বিবেচনা করা হবে"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "D_istance:"
@@ -2333,7 +2447,9 @@ msgstr ""
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
-msgstr "ডবল ক্লিক হিসেবে বিবেচনাকৃত দুটো ক্লিকের মধ্যবর্তী সময়ে মাউস পয়েন্টার এর চাইতে বেশী দূরত্বে সরানো যায়না"
+msgstr ""
+"ডবল ক্লিক হিসেবে বিবেচনাকৃত দুটো ক্লিকের মধ্যবর্তী সময়ে মাউস পয়েন্টার এর "
+"চাইতে বেশী দূরত্বে সরানো যায়না"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "Double Click"
@@ -2373,126 +2489,127 @@ msgstr ""
 msgid "Settings Editor"
 msgstr "সেটিংস সম্পাদক"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:257
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:267
 msgid "Channel"
 msgstr "চ্যানেল"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:291
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:317
 msgid "Property"
 msgstr "বৈশিষ্ট্য"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:298
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:325
 msgid "Type"
 msgstr "ধরন"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:305
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:332
 msgid "Locked"
 msgstr "আবদ্ধ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:312
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:339
 msgid "Value"
 msgstr "মান"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:332
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:359
 msgid "New property"
 msgstr "নতুন বৈশিষ্ট্য"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:340
-msgid "_Edit"
-msgstr "সম্পাদনা (_E)"
-
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:345
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:372
 msgid "Edit selected property"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:353
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1040
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1462
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:380
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1070
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1576
 msgid "_Reset"
 msgstr "পুনঃনির্ধারণ (_R)"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:358
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:385
 msgid "Reset selected property"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:465
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:556
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:675
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:492
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:585
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:704
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Empty"
 msgstr "খালি"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:468
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:495
 msgid "Array"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:473
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:500
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
 msgstr "স্ট্রিং"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:481
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:508
 msgid "Integer"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:484
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:511
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
 msgstr "বুলিয়ান"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:487
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:514
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
 msgstr "ডবল"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:821
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:851
 msgid "_Reset Channel"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:822
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:852
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr "কোন চ্যানেল পুনঃনির্ধারিত হলে স্বনির্ধারিত সেটিংসমূহ স্থায়ীভাবে অপসারিত হবে।"
+msgstr ""
+"কোন চ্যানেল পুনঃনির্ধারিত হলে স্বনির্ধারিত সেটিংসমূহ স্থায়ীভাবে অপসারিত হবে।"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:823
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:853
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr "আপনি কি নিশ্চিত আপনি \"%s\" চ্যানেল এবং এর সকল বৈশিষ্ট্যাবলী পুনঃনির্ধারণ করতে চান?"
+msgstr ""
+"আপনি কি নিশ্চিত আপনি \"%s\" চ্যানেল এবং এর সকল বৈশিষ্ট্যাবলী পুনঃনির্ধারণ "
+"করতে চান?"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:898
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:928
 msgid "reset"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:955
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:985
 #, c-format
 msgid "Monitor %s"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:963
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:993
 msgid "Clear"
 msgstr "অপসারণ করা"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:964
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:994
 msgid "Close"
 msgstr "বন্ধ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:997
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1027
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1046
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1076
 msgid "_Monitor"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1056
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1086
 msgid "Refresh"
 msgstr ""
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1463
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1577
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr "কোন বৈশিষ্ট্য পুনঃনির্ধারিত হলে স্বনির্ধারিত সেটিংসমূহ স্থায়ীভাবে অপসারিত হবে।"
+msgstr ""
+"কোন বৈশিষ্ট্য পুনঃনির্ধারিত হলে স্বনির্ধারিত সেটিংসমূহ স্থায়ীভাবে অপসারিত "
+"হবে।"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1464
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1578
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "আপনি কি নিশ্চিত আপনি \"%s\" বৈশিষ্ট্যটি পুনঃনির্ধারণ করতে চান?"
@@ -2582,16 +2699,16 @@ msgstr ""
 msgid "Settings dialog to show"
 msgstr "যে সেটিংস ডায়ালগ প্রদর্শন করা হবে"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:229
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:225
 msgid "All _Settings"
 msgstr ""
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:438
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:423
 msgid "Settings"
 msgstr "সেটিংসমূহ"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:950
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:961
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:917
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:928
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "\"%s\" আরম্ভ করতে ব্যর্থ"
